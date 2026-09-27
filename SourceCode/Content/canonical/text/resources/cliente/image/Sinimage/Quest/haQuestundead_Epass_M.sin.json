@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquestundead_epass_m.path_ff0c531709",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/Sinimage/Quest/haQuestundead_Epass_M.sin",
+    "image/Sinimage/Quest/haQuestundead_Epass_M.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/Sinimage/Quest/haQuestundead_Epass_M.sin",
+    "legacy_sha256": "414fa94aaaddf946d73cbc3b544bbe0b13f274f70fa8334c2e38483979055433",
+    "legacy_size": 164
+  },
+  "semantic": {
+    "lines": [
+      "The striking power of Corrupt is really ",
+      "horrible.",
+      "",
+      "It's not easy for you to attack them. ",
+      "Hunt them again after preparing potions ",
+      "or defensive equipments. "
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "VGhlIHN0cmlraW5nIHBvd2VyIG9mIENvcnJ1cHQgaXMgcmVhbGx5IA0KaG9ycmlibGUuDQoNCkl0J3Mgbm90IGVhc3kgZm9yIHlvdSB0byBhdHRhY2sgdGhlbS4gDQpIdW50IHRoZW0gYWdhaW4gYWZ0ZXIgcHJlcGFyaW5nIHBvdGlvbnMgDQpvciBkZWZlbnNpdmUgZXF1aXBtZW50cy4gDQo="
+  }
+}

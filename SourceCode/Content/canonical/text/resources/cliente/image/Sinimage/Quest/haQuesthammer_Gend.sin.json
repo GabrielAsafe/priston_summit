@@ -1,0 +1,37 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquesthammer_gend",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/Sinimage/Quest/haQuesthammer_Gend.sin",
+    "image/Sinimage/Quest/haQuesthammer_Gend.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/Sinimage/Quest/haQuesthammer_Gend.sin",
+    "legacy_sha256": "48d6dcf0a27b78716e254931abf74701b5120fb542e11a222240fbac181eab26",
+    "legacy_size": 309
+  },
+  "semantic": {
+    "lines": [
+      "Wow! I got my hammer back! Actually, I also ran ",
+      "after the Bargons when I am free, but I gave it ",
+      "up because it was too hard for me. ",
+      "I want to return your favor somehow.",
+      "",
+      "Luckily, I bought Transparo from the Force Master ",
+      "yesterday and I'll give it to you. ",
+      "Hunt all The Bargons with this.",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "V293ISBJIGdvdCBteSBoYW1tZXIgYmFjayEgQWN0dWFsbHksIEkgYWxzbyByYW4gDQphZnRlciB0aGUgQmFyZ29ucyB3aGVuIEkgYW0gZnJlZSwgYnV0IEkgZ2F2ZSBpdCANCnVwIGJlY2F1c2UgaXQgd2FzIHRvbyBoYXJkIGZvciBtZS4gDQpJIHdhbnQgdG8gcmV0dXJuIHlvdXIgZmF2b3Igc29tZWhvdy4NCg0KTHVja2lseSwgSSBib3VnaHQgVHJhbnNwYXJvIGZyb20gdGhlIEZvcmNlIE1hc3RlciANCnllc3RlcmRheSBhbmQgSSdsbCBnaXZlIGl0IHRvIHlvdS4gDQpIdW50IGFsbCBUaGUgQmFyZ29ucyB3aXRoIHRoaXMuDQoNCg0KDQoNCg0K"
+  }
+}

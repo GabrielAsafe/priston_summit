@@ -1,0 +1,16 @@
+{
+  "spawns": 54,
+  "relations": {
+    "actor_legacy_skip_if_missing": 1,
+    "actor_exact": 237,
+    "boss_master_exact": 16,
+    "boss_slave_exact": 15,
+    "actor_explicit_compatibility_override": 1,
+    "boss_slave_explicit_compatibility_override": 1
+  },
+  "unresolved_ambiguous": [],
+  "explicit_overrides": {
+    "Cavaleiro Fantasma": "monster.60_cavaleiro_fantasma",
+    "Itens 165": "legacy_skip_if_missing"
+  }
+}

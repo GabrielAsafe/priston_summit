@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.2_wp109",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/2_WP109.zhoon",
+    "GameServer/OpenItem/name/2_WP109.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/2_WP109.zhoon",
+    "legacy_sha256": "c7a14c4ade7d9082f6e7b48e40254d2efbb23100327f5064aa87a789354cc714",
+    "legacy_size": 42
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Devil Scythe"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly8yX1dQMTA5LnR4dA0KDQoqSl9OYW1lCQkiRGV2aWwgU2N5dGhlIg0K"
+  }
+}

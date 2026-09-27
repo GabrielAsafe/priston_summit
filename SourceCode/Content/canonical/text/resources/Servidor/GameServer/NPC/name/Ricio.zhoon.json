@@ -1,0 +1,48 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.ricio",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Ricio.zhoon",
+    "GameServer/NPC/name/Ricio.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Ricio.zhoon",
+    "legacy_sha256": "524715b84ebeef50240810e730d5dfdad2e27264ff13851296b7a16dabf1e378",
+    "legacy_size": 299
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "Ricio"
+      },
+      {
+        "line": 5,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Runestones can be equipped to drill holes of the same color."
+      },
+      {
+        "line": 6,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Runestones can be found all over the world of Priston, but the best are in Secret Labratory and Ancient Weapon!"
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Runestones add different abilities to your equipment."
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9SaWNpby5ucGMNCg0KKkpfTkFNRQkJIlJpY2lvIg0KDQoqSl9DSEFUCQkiUnVuZXN0b25lcyBjYW4gYmUgZXF1aXBwZWQgdG8gZHJpbGwgaG9sZXMgb2YgdGhlIHNhbWUgY29sb3IuIiANCipKX0NIQVQJCSJSdW5lc3RvbmVzIGNhbiBiZSBmb3VuZCBhbGwgb3ZlciB0aGUgd29ybGQgb2YgUHJpc3RvbiwgYnV0IHRoZSBiZXN0IGFyZSBpbiBTZWNyZXQgTGFicmF0b3J5IGFuZCBBbmNpZW50IFdlYXBvbiEiDQoqSl9DSEFUCQkiUnVuZXN0b25lcyBhZGQgZGlmZmVyZW50IGFiaWxpdGllcyB0byB5b3VyIGVxdWlwbWVudC4iDQo="
+  }
+}

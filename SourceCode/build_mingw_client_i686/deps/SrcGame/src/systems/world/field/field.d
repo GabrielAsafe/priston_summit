@@ -144,7 +144,8 @@
  Shared/content/v1/map/content/CompiledMapContentSource.h \
  Shared/content/v1/map/content/IMapContentSource.h \
  Shared/content/v1/map/domain/MapDefinition.h \
- Shared/content/v1/common/Sha256.h
+ Shared/content/v1/common/Sha256.h \
+ Shared/content/v1/runtime/RuntimeContentPath.h
 Shared/world/field/field_legacy_client.inl:
 Shared/gameplay/classes/v2/services/ClassService.h:
 Shared/gameplay/classes/v2/PlayableClassRegistry.h:
@@ -292,3 +293,4 @@ Shared/content/v1/map/content/CompiledMapContentSource.h:
 Shared/content/v1/map/content/IMapContentSource.h:
 Shared/content/v1/map/domain/MapDefinition.h:
 Shared/content/v1/common/Sha256.h:
+Shared/content/v1/runtime/RuntimeContentPath.h:

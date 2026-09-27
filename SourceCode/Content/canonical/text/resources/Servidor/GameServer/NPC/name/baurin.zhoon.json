@@ -1,0 +1,42 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.baurin",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/baurin.zhoon",
+    "GameServer/NPC/name/baurin.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/baurin.zhoon",
+    "legacy_sha256": "fd3c21f4c274b2fcd47b5458c6e53a768ccbadecc46d300bcafd29137c7c4cc2",
+    "legacy_size": 137
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "Baurin"
+      },
+      {
+        "line": 5,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Happy New Year"
+      },
+      {
+        "line": 6,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "If you bring me a dragon capsule, I will exchange with a gift."
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9iYXVyaW4ubnBjDQoNCipKX05BTUUJCSJCYXVyaW4iDQoNCipKX0NIQVQJCSJIYXBweSBOZXcgWWVhciINCipKX0NIQVQJCSJJZiB5b3UgYnJpbmcgbWUgYSBkcmFnb24gY2Fwc3VsZSwgSSB3aWxsIGV4Y2hhbmdlIHdpdGggYSBnaWZ0LiI="
+  }
+}

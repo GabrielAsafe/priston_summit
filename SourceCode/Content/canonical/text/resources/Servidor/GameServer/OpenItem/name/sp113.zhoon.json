@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.sp113",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/sp113.zhoon",
+    "GameServer/OpenItem/name/sp113.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/sp113.zhoon",
+    "legacy_sha256": "d8a04740400771df64fa483ae8fc7f509f74a866c0cf8da2952a17bb46f1a1eb",
+    "legacy_size": 24
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 2,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Event Box"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "DQoqSl9OYW1lCQkiRXZlbnQgQm94Ig0K"
+  }
+}

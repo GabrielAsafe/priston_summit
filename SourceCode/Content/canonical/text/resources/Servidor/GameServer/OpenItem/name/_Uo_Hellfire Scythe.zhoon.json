@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.uo_hellfire_scythe",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/_Uo_Hellfire Scythe.zhoon",
+    "GameServer/OpenItem/name/_Uo_Hellfire Scythe.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/_Uo_Hellfire Scythe.zhoon",
+    "legacy_sha256": "3cb97f4b235f6d7b4bfffae28a1d199e4fda977d3739280e8d721c7a3b26d92b",
+    "legacy_size": 60
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Hellfire Scythe"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9VV1AxMjFfSGVsbGZpcmUgU2N5dGhlLnR4dA0KDQoqSl9OYW1lCQkiSGVsbGZpcmUgU2N5dGhlIg0K"
+  }
+}

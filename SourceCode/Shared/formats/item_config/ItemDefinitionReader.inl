@@ -64,6 +64,16 @@ inline bool CopyText(char (&destination)[Capacity], const char *source)
 	return true;
 }
 
+// The server-side legacy sDEF_ITEMINFO has a user-defined constructor that
+// historically did not initialize Item. Value-initialization therefore leaves
+// fields such as UniqueItem indeterminate on the server, while DecodeItemInfo
+// always zeroed the complete item payload before parsing. Keep compiled and
+// legacy materialization equivalent by explicitly clearing the embedded item.
+inline void InitializeItemDefinitionImport(sDEF_ITEMINFO &definition)
+{
+	std::memset(&definition.Item, 0, sizeof(definition.Item));
+}
+
 // CP949 tokens used by the historical OpenItem files. Keeping bytes explicit
 // avoids source-encoding differences between the client and server projects.
 namespace token
@@ -302,6 +312,7 @@ inline bool ReadItemDefinition(const char *sourceFile, sDEF_ITEMINFO &output)
 		return false;
 
 	sDEF_ITEMINFO staged = sDEF_ITEMINFO();
+	InitializeItemDefinitionImport(staged);
 	summit::io::LegacyFile file(sourceFile,"rb");
 	if(!file)
 		return false;

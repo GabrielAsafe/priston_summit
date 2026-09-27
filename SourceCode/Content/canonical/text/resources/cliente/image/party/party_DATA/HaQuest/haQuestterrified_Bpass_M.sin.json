@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquestterrified_bpass_m.path_c00e5acf33",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/party/party_DATA/HaQuest/haQuestterrified_Bpass_M.sin",
+    "image/party/party_DATA/HaQuest/haQuestterrified_Bpass_M.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/party/party_DATA/HaQuest/haQuestterrified_Bpass_M.sin",
+    "legacy_sha256": "568b95f32c42083bc1f59baa0144043b1f7bb88c5a1c5db7f82eefad07aff459",
+    "legacy_size": 203
+  },
+  "semantic": {
+    "lines": [
+      "Você não terminou de caçar os Hopis. ",
+      "Você pode comprar poções na loja na cidade.",
+      "Por favor, tente novamente depois de estar preparado.",
+      "",
+      "Você pode encontrar a loja facilmente, clicando no",
+      "mini-mapa."
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Vm9j6iBu428gdGVybWlub3UgZGUgY2HnYXIgb3MgSG9waXMuIA0KVm9j6iBwb2RlIGNvbXByYXIgcG/n9WVzIG5hIGxvamEgbmEgY2lkYWRlLg0KUG9yIGZhdm9yLCB0ZW50ZSBub3ZhbWVudGUgZGVwb2lzIGRlIGVzdGFyIHByZXBhcmFkby4NCg0KVm9j6iBwb2RlIGVuY29udHJhciBhIGxvamEgZmFjaWxtZW50ZSwgY2xpY2FuZG8gbm8NCm1pbmktbWFwYS4="
+  }
+}

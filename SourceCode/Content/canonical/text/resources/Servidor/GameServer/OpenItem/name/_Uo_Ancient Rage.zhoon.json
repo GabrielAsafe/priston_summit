@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.uo_ancient_rage",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/_Uo_Ancient Rage.zhoon",
+    "GameServer/OpenItem/name/_Uo_Ancient Rage.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/_Uo_Ancient Rage.zhoon",
+    "legacy_sha256": "2a1a2e3ed0fffde2218cdaef1523a505e54d8ce2a306ef42f57e8327bf21fc16",
+    "legacy_size": 23
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 1,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Ancient Rage"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "KkpfTmFtZQkJIkFuY2llbnQgUmFnZSI="
+  }
+}

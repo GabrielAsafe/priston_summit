@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.dzari",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Dzari.zhoon",
+    "GameServer/NPC/name/Dzari.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Dzari.zhoon",
+    "legacy_sha256": "cbba479ff315fa8d61365c076c7acc2bd207dd638f39b4eea47e9e35e18e4990",
+    "legacy_size": 44
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "Princess Dzari"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9EemFyaS5ucGMNCg0KKkpfTkFNRQkJIlByaW5jZXNzIER6YXJpIg0KDQo="
+  }
+}

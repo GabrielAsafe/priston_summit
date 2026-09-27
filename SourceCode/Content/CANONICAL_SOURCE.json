@@ -1,0 +1,51 @@
+{
+  "schema": "summit.canonical-source/v1",
+  "source_of_truth": "SourceCode/Content/canonical",
+  "runtime_dependency_on_external_canonical": false,
+  "imported_this_run": false,
+  "imported_families": {},
+  "families": {
+    "maps": {
+      "files": 2,
+      "bytes": 317321,
+      "sha256": "c14dda7c2ced9397d00aef48920b01f3bc55d344b38fd22412fecfeffecac4fc"
+    },
+    "stage_spawns": {
+      "files": 56,
+      "bytes": 94891,
+      "sha256": "ee5bd88d34646db5869af2c016781f2870a1d47f273650e520b0040ae962821c"
+    },
+    "text": {
+      "files": 5613,
+      "bytes": 29867374,
+      "sha256": "6557ca1701b20ef5b890bb6de2e8ac9c6a6bd8496497e2060c2d0699c87edb46"
+    },
+    "item_profiles": {
+      "files": 3,
+      "bytes": 46747,
+      "sha256": "4b0f5252fb8f11d38fa8d5b4ef2f24315b20968708ad8b9190e7381e86727954"
+    }
+  },
+  "forever_fall": {
+    "forever-fall-01.ase.spm.json": {
+      "actors": 5,
+      "bosses": 0,
+      "weight_sum": 100
+    },
+    "forever-fall-02.ase.spm.json": {
+      "actors": 6,
+      "bosses": 0,
+      "weight_sum": 100
+    },
+    "forever-fall-03.ase.spm.json": {
+      "actors": 7,
+      "bosses": 0,
+      "weight_sum": 100
+    },
+    "forever-fall-04.ase.spm.json": {
+      "actors": 6,
+      "bosses": 0,
+      "weight_sum": 100
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquestgoblin_dstart_m.path_a287748dd0",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/party/party_DATA/HaQuest/haQuestGoblin_Dstart_M.sin",
+    "image/party/party_DATA/HaQuest/haQuestGoblin_Dstart_M.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/party/party_DATA/HaQuest/haQuestGoblin_Dstart_M.sin",
+    "legacy_sha256": "22af459771440472e4a679404ebee5a7c155321ca42a8122a21f684c531bd379",
+    "legacy_size": 798
+  },
+  "semantic": {
+    "lines": [
+      "Ouvi dizer que Duendes Macabros tem agido estranho esses",
+      "dias. Normalmente, os Duendes macabros não se mostram com",
+      "frequência, mas hoje em dia um grupo deles têm vagado por",
+      "aí, no Jardim da Liberdade bem perto da cidade. ",
+      "Os guardas da cidade têm lidado com eles todos os dias, ",
+      "mas eles parecem estar de mãos atadas e tendo dificuldades",
+      "para cuidar disso.",
+      "",
+      "Então agora, eles estão oferecendo uma recompensa e ",
+      "esperando por a ajuda de muitos grandes guerreiros. ",
+      "Você também está pronto para o desafio?",
+      "Você receberá um conjunto de anéis e amuleto como uma",
+      "recompensa, se caçar 5 Duendes Macabros no Jardim da",
+      "Liberdade e informar aos guardas na entrada da cidade.",
+      "",
+      "[Objetivo do Desafio]",
+      "",
+      "Cace 5 Duendes Macabros no Jardim da Liberdade e reporte ao",
+      "guarda na entrada de Ricarten."
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "T3V2aSBkaXplciBxdWUgRHVlbmRlcyBNYWNhYnJvcyB0ZW0gYWdpZG8gZXN0cmFuaG8gZXNzZXMNCmRpYXMuIE5vcm1hbG1lbnRlLCBvcyBEdWVuZGVzIG1hY2Ficm9zIG7jbyBzZSBtb3N0cmFtIGNvbQ0KZnJlcXXqbmNpYSwgbWFzIGhvamUgZW0gZGlhIHVtIGdydXBvIGRlbGVzIHTqbSB2YWdhZG8gcG9yDQph7Swgbm8gSmFyZGltIGRhIExpYmVyZGFkZSBiZW0gcGVydG8gZGEgY2lkYWRlLiANCk9zIGd1YXJkYXMgZGEgY2lkYWRlIHTqbSBsaWRhZG8gY29tIGVsZXMgdG9kb3Mgb3MgZGlhcywgDQptYXMgZWxlcyBwYXJlY2VtIGVzdGFyIGRlIG3jb3MgYXRhZGFzIGUgdGVuZG8gZGlmaWN1bGRhZGVzDQpwYXJhIGN1aWRhciBkaXNzby4NCg0KRW50428gYWdvcmEsIGVsZXMgZXN0428gb2ZlcmVjZW5kbyB1bWEgcmVjb21wZW5zYSBlIA0KZXNwZXJhbmRvIHBvciBhIGFqdWRhIGRlIG11aXRvcyBncmFuZGVzIGd1ZXJyZWlyb3MuIA0KVm9j6iB0YW1i6W0gZXN04SBwcm9udG8gcGFyYSBvIGRlc2FmaW8/DQpWb2PqIHJlY2ViZXLhIHVtIGNvbmp1bnRvIGRlIGFu6WlzIGUgYW11bGV0byBjb21vIHVtYQ0KcmVjb21wZW5zYSwgc2UgY2HnYXIgNSBEdWVuZGVzIE1hY2Ficm9zIG5vIEphcmRpbSBkYQ0KTGliZXJkYWRlIGUgaW5mb3JtYXIgYW9zIGd1YXJkYXMgbmEgZW50cmFkYSBkYSBjaWRhZGUuDQoNCltPYmpldGl2byBkbyBEZXNhZmlvXQ0KDQpDYWNlIDUgRHVlbmRlcyBNYWNhYnJvcyBubyBKYXJkaW0gZGEgTGliZXJkYWRlIGUgcmVwb3J0ZSBhbw0KZ3VhcmRhIG5hIGVudHJhZGEgZGUgUmljYXJ0ZW4u"
+  }
+}

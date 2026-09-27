@@ -1,0 +1,36 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.quest",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/quest.zhoon",
+    "GameServer/NPC/name/quest.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/quest.zhoon",
+    "legacy_sha256": "68dc5ac0c064049251c3850408bc16810e52ce18a1ea75ae4083009f9624d726",
+    "legacy_size": 62
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 1,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "릿식絿육"
+      },
+      {
+        "line": 3,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "긏긄긚긣귩뭈궢궲궋귡궻궔갎"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "KkpfTkFNRQkJIri0vcTPvcCwIg0KDQoqSl9DSEFUCQkig06DR4NYg2eC8JJUgrWCxIKigumCzIKpgUgiDQo="
+  }
+}

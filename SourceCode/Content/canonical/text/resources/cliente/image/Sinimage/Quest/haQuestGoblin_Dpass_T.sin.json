@@ -1,0 +1,31 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquestgoblin_dpass_t",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/Sinimage/Quest/haQuestGoblin_Dpass_T.sin",
+    "image/Sinimage/Quest/haQuestGoblin_Dpass_T.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/Sinimage/Quest/haQuestGoblin_Dpass_T.sin",
+    "legacy_sha256": "5404fa4f8e52687be059156008c51b0192926b06de56c2f82e05c0785eb5e9ad",
+    "legacy_size": 139
+  },
+  "semantic": {
+    "lines": [
+      "You haven't hunted all of the Hob Goblins. ",
+      "Potions are sold at the grocery shop in the town. ",
+      "So, get ready for hunting there.",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "WW91IGhhdmVuJ3QgaHVudGVkIGFsbCBvZiB0aGUgSG9iIEdvYmxpbnMuIA0KUG90aW9ucyBhcmUgc29sZCBhdCB0aGUgZ3JvY2VyeSBzaG9wIGluIHRoZSB0b3duLiANClNvLCBnZXQgcmVhZHkgZm9yIGh1bnRpbmcgdGhlcmUuDQoNCg0KDQoNCg=="
+  }
+}

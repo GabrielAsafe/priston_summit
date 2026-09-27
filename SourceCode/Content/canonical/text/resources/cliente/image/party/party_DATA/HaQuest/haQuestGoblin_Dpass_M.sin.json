@@ -1,0 +1,27 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquestgoblin_dpass_m.path_83ceda7114",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/party/party_DATA/HaQuest/haQuestGoblin_Dpass_M.sin",
+    "image/party/party_DATA/HaQuest/haQuestGoblin_Dpass_M.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/party/party_DATA/HaQuest/haQuestGoblin_Dpass_M.sin",
+    "legacy_sha256": "3df30c78fe5f531895d03ea413c98e2b5d52a5acdaf6f3db14f8f152cb516d7d",
+    "legacy_size": 147
+  },
+  "semantic": {
+    "lines": [
+      "Você não terminou de caçar os Duendes Macabros.",
+      "Você pode comprar poções na loja na cidade.",
+      "Por favor, tente novamente depois de estar preparado."
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Vm9j6iBu428gdGVybWlub3UgZGUgY2HnYXIgb3MgRHVlbmRlcyBNYWNhYnJvcy4NClZvY+ogcG9kZSBjb21wcmFyIHBv5/VlcyBuYSBsb2phIG5hIGNpZGFkZS4NClBvciBmYXZvciwgdGVudGUgbm92YW1lbnRlIGRlcG9pcyBkZSBlc3RhciBwcmVwYXJhZG8u"
+  }
+}

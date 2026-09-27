@@ -8,7 +8,6 @@
 #include <windows.h>
 
 #include "compat/legacy/sin/sinLinkHeader.h"
-#include "systems/commerce/premium/HaPremiumItem.h"
 #include "systems/rendering/2d/legacy/drawsub.h"
 
 namespace ui::v2
@@ -17,8 +16,8 @@ namespace
 {
 struct HudEffect
 {
-    int materialIndex;
     bool detrimental;
+    char badge[8];
     char text[128];
 };
 
@@ -50,21 +49,16 @@ bool IsDetrimental(const CovenantUiModifier& modifier)
     return false;
 }
 
-int MaterialFor(const CovenantUiModifier& modifier, bool detrimental)
+void BadgeFor(const CovenantUiModifier& modifier, bool detrimental, char* out, std::size_t outSize)
 {
-    if (detrimental)
-        return nsPremiumItem::MANA_REDUCE_P - 1;
-    if (Contains(modifier.statKey, "xp"))
-        return nsPremiumItem::EXPUP_POTION - 1;
-    if (Contains(modifier.statKey, "drop") || Contains(modifier.statKey, "loot"))
-        return nsPremiumItem::THIRD_EYES - 1;
-    if (Contains(modifier.statKey, "gather") || Contains(modifier.statKey, "survey"))
-        return nsPremiumItem::PHENIX_PET - 1;
-    if (Contains(modifier.statKey, "craft") || Contains(modifier.statKey, "artisan"))
-        return nsPremiumItem::MANA_RECHAR_P - 1;
-    if (Contains(modifier.statKey, "hunt") || Contains(modifier.statKey, "trophy"))
-        return nsPremiumItem::MIGHT_OF_AWELL - 1;
-    return nsPremiumItem::PHENIX_PET - 1;
+    const char* badge = "COV";
+    if (detrimental) badge = "-";
+    else if (Contains(modifier.statKey, "xp")) badge = "XP";
+    else if (Contains(modifier.statKey, "drop") || Contains(modifier.statKey, "loot")) badge = "DROP";
+    else if (Contains(modifier.statKey, "gather") || Contains(modifier.statKey, "survey")) badge = "GATH";
+    else if (Contains(modifier.statKey, "craft") || Contains(modifier.statKey, "artisan")) badge = "CRFT";
+    else if (Contains(modifier.statKey, "hunt") || Contains(modifier.statKey, "trophy")) badge = "HUNT";
+    std::snprintf(out, outSize, "%s", badge);
 }
 
 void FriendlyStat(const std::string& key, char* out, std::size_t outSize)
@@ -93,7 +87,7 @@ void FriendlyStat(const std::string& key, char* out, std::size_t outSize)
 void FormatEffect(const CovenantUiModifier& modifier, HudEffect& effect)
 {
     effect.detrimental = IsDetrimental(modifier);
-    effect.materialIndex = MaterialFor(modifier, effect.detrimental);
+    BadgeFor(modifier, effect.detrimental, effect.badge, sizeof(effect.badge));
     char stat[72] = {0};
     FriendlyStat(modifier.statKey, stat, sizeof(stat));
 
@@ -140,39 +134,39 @@ void CovenantEffectHud::Render(const CovenantUiSnapshot& snapshot) const
     {
         HudEffect effect{};
         FormatEffect(snapshot.activeModifiers[static_cast<std::size_t>(i)], effect);
-        if (effect.materialIndex < 0 || effect.materialIndex >= SINUPKEEPITEM_MAX)
-            continue;
-        const int material = chaPremiumitem.UpKeepItemTGAImage[effect.materialIndex];
-        if (!material)
-            continue;
         const int x = baseX;
         const int y = baseY + i * 36;
-        dsDrawColorBox(D3DCOLOR_RGBA(18, 22, 30, 190), x - 1, y - 1, 34, 34);
-        dsDrawTexImage(material, x, y, 32, 32, 255);
+        const DWORD fill = effect.detrimental ? D3DCOLOR_RGBA(92, 34, 38, 230)
+                                              : D3DCOLOR_RGBA(28, 58, 48, 230);
+        dsDrawColorBox(D3DCOLOR_RGBA(10, 12, 18, 235), x - 2, y - 2, 36, 36);
+        dsDrawColorBox(fill, x, y, 32, 32);
+        SetFontTextColor32(RGB(255, 255, 255));
+        const int badgeLen = static_cast<int>(std::strlen(effect.badge));
+        const int badgeX = x + std::max(2, (32 - badgeLen * 7) / 2);
+        dsTextLineOut32(badgeX, y + 9, effect.badge, badgeLen);
         if (pRealCursorPos.x >= x && pRealCursorPos.x < x + 32 &&
             pRealCursorPos.y >= y && pRealCursorPos.y < y + 32)
             DrawTooltip(x, y, effect.text, effect.detrimental);
     }
 
-    // Active Tier III powers get a Phoenix-style icon beneath passive effects.
+    // Active Tier III powers use a dedicated semantic badge instead of
+    // borrowing an unrelated premium-item image.
     if (snapshot.activePower.activeUntil > snapshot.serverNow && count < maxVisible)
     {
-        const int material = chaPremiumitem.UpKeepItemTGAImage[nsPremiumItem::PHENIX_PET - 1];
-        if (material)
+        const int x = baseX;
+        const int y = baseY + count * 36;
+        dsDrawColorBox(D3DCOLOR_RGBA(10, 12, 18, 235), x - 2, y - 2, 36, 36);
+        dsDrawColorBox(D3DCOLOR_RGBA(50, 48, 92, 230), x, y, 32, 32);
+        SetFontTextColor32(RGB(255, 255, 255));
+        dsTextLineOut32(x + 9, y + 9, "III", 3);
+        if (pRealCursorPos.x >= x && pRealCursorPos.x < x + 32 &&
+            pRealCursorPos.y >= y && pRealCursorPos.y < y + 32)
         {
-            const int x = baseX;
-            const int y = baseY + count * 36;
-            dsDrawColorBox(D3DCOLOR_RGBA(18, 22, 30, 190), x - 1, y - 1, 34, 34);
-            dsDrawTexImage(material, x, y, 32, 32, 255);
-            if (pRealCursorPos.x >= x && pRealCursorPos.x < x + 32 &&
-                pRealCursorPos.y >= y && pRealCursorPos.y < y + 32)
-            {
-                char text[128] = {0};
-                const long long remain = snapshot.activePower.activeUntil - snapshot.serverNow;
-                std::snprintf(text, sizeof(text), "%s - %s (%llds)", CovenantName(snapshot.activeCovenantId),
-                              snapshot.activePower.key.c_str(), remain > 0 ? remain : 0);
-                DrawTooltip(x, y, text, false);
-            }
+            char text[128] = {0};
+            const long long remain = snapshot.activePower.activeUntil - snapshot.serverNow;
+            std::snprintf(text, sizeof(text), "%s - %s (%llds)", CovenantName(snapshot.activeCovenantId),
+                          snapshot.activePower.key.c_str(), remain > 0 ? remain : 0);
+            DrawTooltip(x, y, text, false);
         }
     }
 }

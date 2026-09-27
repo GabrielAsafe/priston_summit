@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.uwa109_destroyer",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/_Uwa109_Destroyer.zhoon",
+    "GameServer/OpenItem/name/_Uwa109_Destroyer.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/_Uwa109_Destroyer.zhoon",
+    "legacy_sha256": "004c8a9a4dacdbac0f3ac1e619bc24fb9b45a179f47904f1ee28915cf717407e",
+    "legacy_size": 22
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 1,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Destroyer"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "KkpfTmFtZQkJIkRlc3Ryb3llciINCg=="
+  }
+}

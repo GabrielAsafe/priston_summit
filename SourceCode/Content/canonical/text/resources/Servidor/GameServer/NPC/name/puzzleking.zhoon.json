@@ -1,0 +1,54 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.puzzleking",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/puzzleking.zhoon",
+    "GameServer/NPC/name/puzzleking.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/puzzleking.zhoon",
+    "legacy_sha256": "b076bc748b021adf67b4125786bfd0b2ce859df3611113f160e69b4d24ddc15d",
+    "legacy_size": 332
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 1,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "LOzs["
+      },
+      {
+        "line": 3,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "8ÂÌjÐð®¬µÄÁÄ½çACeÉð·µÄ °éæB"
+      },
+      {
+        "line": 4,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "7뙉1볷귏궳뫲궯궲귡궔귞갂궩궻렄귏궳둋빣귩렃궯궲궖궲궘귢갃"
+      },
+      {
+        "line": 5,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "r[ÌG¿ÍíÞÆð·Å«éµA}¤ÌG¿ÆÍhïªð·Å«éæB"
+      },
+      {
+        "line": 6,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Ü¾Ü¾«èÈ¢¥¥¥71úÜÅ¾©çàÁÆàÁÆÁÄ¢I"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "KkpfTkFNRQkJCSKDTIOTg0+DeoNzgVsiDQoNCipKX0NIQVQJCQkiOIzCgsyUapXQgvCKrpCsgrWCxI6dgsGCxJeIgr2C54NBg0ODZYOAgsmM8Iq3grWCxIKggrCC6YLmgUIiDQoqSl9DSEFUCQkJIjeMjjGT+oLcgsWR0oLBgsSC6YKpgueBQYK7gsyOnoLcgsWKR5W/gvCOnYLBgsSCq4LEgq2C6oFCIg0KKkpfQ0hBVAkJCSKDcoFbg4uCzIpHlb+CzZWQiu2X3oLGjPCKt4LFgquC6YK1gUGOfZOkgsyKR5W/gsaCzZZoi++CqozwireCxYKrgumC5oFCIg0KKkpfQ0hBVAkJCSKC3IK+gtyCvpGrguiCyIKipaWlN4yOMZP6gtyCxYK+gqmC54LggsGCxoLggsGCxo6dgsGCxJeIgqKBSSINCg0KDQo="
+  }
+}

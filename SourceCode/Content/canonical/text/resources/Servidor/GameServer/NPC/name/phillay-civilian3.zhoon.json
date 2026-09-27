@@ -1,0 +1,48 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.phillay_civilian3",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/phillay-civilian3.zhoon",
+    "GameServer/NPC/name/phillay-civilian3.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/phillay-civilian3.zhoon",
+    "legacy_sha256": "bbbdbe51c85d52e7134df4ef2a93eccc5767c1feb5b88c8ec87955fea81c0bd9",
+    "legacy_size": 287
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 1,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "±¹²Ýã j[^["
+      },
+      {
+        "line": 3,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "vªVµ¢_ÎðTµÉo©¯ÄAÁÄ±È¢Å·ËB»ÌÔªGCWOµÄ °Ü·"
+      },
+      {
+        "line": 4,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Ç±©ÅvÉïÁ½ç­AÁÄ­éæ¤É`¦Ä­¾³¢"
+      },
+      {
+        "line": 5,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "럡궼긾깏긵귌궵뾆귢궲궼궋귏궧귪궕갂봀궧궲궘귢귡궻궳궢궫귞딀뮗귟귏궥갏"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "KkpfTkFNRQkJIrG5st2R45edIINqg4WBW4NegVsiDQoNCipKX0NIQVQJCSKDgoOKg3aCqpBWgrWCopBfkM6C8JJUgrWCyY9vgqmCr4LEi0GCwYLEgrGCyIKigsWCt4LLgUKCu4LMitSOhIKqg0eDQ4NXg5ODT4K1gsSCoIKwgtyCtyINCipKX0NIQVQJCSKCx4KxgqmCxYOCg4qDdoLJie+CwYK9gueRgYKti0GCwYLEgq2C6YLmgqSCyZNggqaCxIKtgr6Cs4KiIg0KKkpfQ0hBVAkJIo6Egs2DgoOKg3aC2YLHl0SC6oLEgs2CooLcgrmC8YKqgUGUQ4K5gsSCrYLqgumCzILFgrWCvYLniuaSo4LogtyCt4FJIg0KDQo="
+  }
+}

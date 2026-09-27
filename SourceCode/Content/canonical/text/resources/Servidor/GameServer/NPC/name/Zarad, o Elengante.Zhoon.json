@@ -1,0 +1,36 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.zarad_o_elengante",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Zarad, o Elengante.Zhoon",
+    "GameServer/NPC/name/Zarad, o Elengante.Zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Zarad, o Elengante.Zhoon",
+    "legacy_sha256": "df5d0f73cd3c4c166d21bca0967c6723562c6463f63fcfbc7e67dff784d2a301",
+    "legacy_size": 99
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 4,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Zarad, o Elegante"
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": " EPT e Muito Divertido"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9aYXJhZCwgbyBFbGVuZ2FudGUuTlBDDQoNCg0KKkpfTmFtZQkiWmFyYWQsIG8gRWxlZ2FudGUiDQoNCg0KKkpfQ2hhdAkiIEVQVCBlIE11aXRvIERpdmVydGlkbyINCg0K"
+  }
+}

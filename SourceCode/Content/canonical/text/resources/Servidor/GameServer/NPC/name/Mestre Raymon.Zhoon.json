@@ -1,0 +1,36 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.mestre_raymon",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Mestre Raymon.Zhoon",
+    "GameServer/NPC/name/Mestre Raymon.Zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Mestre Raymon.Zhoon",
+    "legacy_sha256": "89071b9e2f4284269715c6fe0e994411e6f9be636d2aad394da58d6217f9a5e0",
+    "legacy_size": 86
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 4,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Mestre Raymon"
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": "What im talking?!?"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9NZXN0cmUgUmF5bW9uLk5QQw0KDQoNCipKX05hbWUJIk1lc3RyZSBSYXltb24iDQoNCg0KKkpfQ2hhdAkiV2hhdCBpbSB0YWxraW5nPyE/Ig0KDQo="
+  }
+}

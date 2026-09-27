@@ -1,0 +1,54 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.barba",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Barba.zhoon",
+    "GameServer/NPC/name/Barba.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Barba.zhoon",
+    "legacy_sha256": "decf7d26a37e9045fd55b5c18b00c8e33b366d76fc8eb52a5d8f96141002bfff",
+    "legacy_size": 344
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "Barba"
+      },
+      {
+        "line": 5,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "There's a way to protect your equipment in this chaotic time."
+      },
+      {
+        "line": 6,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Imprinting on your equipment will decrease the risk of losing them."
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "If you want to remove the imprint, you'll need a Brush of Oblivion."
+      },
+      {
+        "line": 8,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Imprinted items cannot be moved from your inventory to other's."
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9CYXJiYS5ucGMNCg0KKkpfTkFNRQkJIkJhcmJhIg0KDQoqSl9DSEFUCQkiVGhlcmUncyBhIHdheSB0byBwcm90ZWN0IHlvdXIgZXF1aXBtZW50IGluIHRoaXMgY2hhb3RpYyB0aW1lLiIgDQoqSl9DSEFUCQkiSW1wcmludGluZyBvbiB5b3VyIGVxdWlwbWVudCB3aWxsIGRlY3JlYXNlIHRoZSByaXNrIG9mIGxvc2luZyB0aGVtLiINCipKX0NIQVQJCSJJZiB5b3Ugd2FudCB0byByZW1vdmUgdGhlIGltcHJpbnQsIHlvdSdsbCBuZWVkIGEgQnJ1c2ggb2YgT2JsaXZpb24uIg0KKkpfQ0hBVAkJIkltcHJpbnRlZCBpdGVtcyBjYW5ub3QgYmUgbW92ZWQgZnJvbSB5b3VyIGludmVudG9yeSB0byBvdGhlcidzLiI="
+  }
+}

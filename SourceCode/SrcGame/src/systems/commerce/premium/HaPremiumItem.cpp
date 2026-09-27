@@ -565,15 +565,15 @@ void cHaPremiumItem::DrawUp()
             {
                 if (i > 6 && i < 14)
                 {
-                    InfoBox(WinSizeX - 92 - 208 - 10, (WinSizeY / 2) - 145 + (36 * (i - 7)), 10, 6);
+                    InfoBox(WinSizeX - 92 - 240 - 10, (WinSizeY / 2) - 145 + (36 * (i - 7)), 14, 6);
                 }
                 else if (i > 13)
                 {
-                    InfoBox(WinSizeX - 92 - 208 - 10, (WinSizeY / 2) - 145 + (36 * (i - 14)), 10, 6);
+                    InfoBox(WinSizeX - 92 - 240 - 10, (WinSizeY / 2) - 145 + (36 * (i - 14)), 14, 6);
                 }
                 else
                 {
-                    InfoBox(WinSizeX - 92 - 208 - 10, (WinSizeY / 2) - 145 + (36 * (i)), 10, 6);
+                    InfoBox(WinSizeX - 92 - 240 - 10, (WinSizeY / 2) - 145 + (36 * (i)), 14, 6);
 
                 }
             }
@@ -2532,8 +2532,6 @@ int cHaPremiumItem::DrawText()
 
 				//SetFontTextColor( RGB(146, 226, 255)); // COR DO TEMPO RESTANTE
 				SetFontTextColor(RGB(50, 250, 50));
-				dsTextLineOut32( UpKeepItem[i].PosiX + 55, UpKeepItem[i].PosiY + 64, strBuff, strlen(strBuff));
-						
 				SetFontTextColor(RGB( 50, 250, 50 ) );	
 		   		
 				if (i > 6 && i < 14)

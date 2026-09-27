@@ -1,6 +1,6 @@
 #include "systems/localization/messages/TextMessage.h"
 
-char *szAppName = "Summit Tale"; // NOME DA JANELA
+char *szAppName = "Just Tale"; // NOME DA JANELA
 
  
 char *mgRequestTrade = "Pedido de Troca enviado para %s";

@@ -1403,7 +1403,9 @@ switch (messg)
 		}
 		if (wParam == VK_F11 && !VRKeyBuff[VK_CONTROL] && !VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_MENU])
 		{
-			if (!cSettings.isOpen())
+			if (GameMode == 2)
+				ui::v2::legacy::ToggleSettingsWindow();
+			else if (!cSettings.isOpen())
 				cSettings.Open();
 		}
 
@@ -2111,7 +2113,8 @@ switch (messg)
 	case WM_IME_CHAR:
 	case WM_IME_COMPOSITION:
 
-		cSettings.OnKeyDown((char)wParam);
+		if (cSettings.isOpen())
+			cSettings.OnKeyDown((char)wParam);
 		
 		if (g_IsDxProjectZoomIn > 0)
 			break;

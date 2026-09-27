@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.r6b_doom_lord",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/Monster/Name/R6B Doom Lord.zhoon",
+    "GameServer/Monster/Name/R6B Doom Lord.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/Monster/Name/R6B Doom Lord.zhoon",
+    "legacy_sha256": "8bfb4318a4305ea78d69ba884b682c512a9b5c750be8135d79af1e83c30cff06",
+    "legacy_size": 23
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 1,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "R6B Doom Lord"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "KkpfTkFNRSAiUjZCIERvb20gTG9yZCI="
+  }
+}

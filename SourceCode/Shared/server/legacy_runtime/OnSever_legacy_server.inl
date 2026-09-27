@@ -2323,6 +2323,9 @@ int InitItems()
 
 	DefaultItemCount = 0;
 
+	fprintf(stderr, "[CONTENT][DEFINITION] pack=%s\n", summit::content::definition::DefinitionPackPath());
+	fflush(stderr);
+
 	bool summitCompiledItems=false;
 	if(summit::content::definition::CompiledDefinitionsEnabled())
 	{
@@ -2335,14 +2338,14 @@ int InitItems()
 			{
 				strcpy_s(szFilePath, entries[index].logicalPath.c_str());
 				if(fpItemAudit) fprintf(fpItemAudit, "[BEFORE] INDEX=%d FILE=%s ID=%s\n", DefaultItemCount, szFilePath, entries[index].contentId.c_str());
-				if(!DecodeItemInfo(szFilePath, &DefaultItems[DefaultItemCount])) { if(summit::content::definition::DefinitionStrictMode()) { if(fpItemAudit) fclose(fpItemAudit); return FALSE; } else continue; }
+				if(!DecodeItemInfo(szFilePath, &DefaultItems[DefaultItemCount])) { fprintf(stderr,"[STARTUP][ITEMS] DECODE_FAIL path=%s id=%s\n",szFilePath,entries[index].contentId.c_str());fflush(stderr); if(summit::content::definition::DefinitionStrictMode()) { if(fpItemAudit) fclose(fpItemAudit); return FALSE; } else continue; }
 				if(fpItemAudit) fprintf(fpItemAudit, "[AFTER ] INDEX=%d CODE=0x%08lX NAME=\"%s\" ITEM_INDEX=%d UNIQUE=0x%08lX PRICE=%d LEVEL=%d\n", DefaultItemCount,(unsigned long)DefaultItems[DefaultItemCount].Item.CODE,DefaultItems[DefaultItemCount].Item.ItemName,DefaultItems[DefaultItemCount].Item.Index,(unsigned long)DefaultItems[DefaultItemCount].Item.UniqueItem,DefaultItems[DefaultItemCount].Item.Price,DefaultItems[DefaultItemCount].Item.Level);
 				memcpy(&DefItem,&DefaultItems[DefaultItemCount],sizeof(sDEF_ITEMINFO)); SetLowerItem(&DefItem); DefItem.Item.BackUpKey=0; DefItem.Item.BackUpChkSum=0; DefItem.Item.dwCreateTime=0;
 				DefaultItems[DefaultItemCount].DefCompressDataLen=EecodeCompress((BYTE *)&DefItem.Item,(BYTE *)DefaultItems[DefaultItemCount].DefCompressData,sizeof(sITEMINFO),sizeof(DefaultItems[DefaultItemCount].DefCompressData));
 				if(fpItemAudit) fprintf(fpItemAudit, "[COMP  ] INDEX=%d LEN=%d\n\n",DefaultItemCount,DefaultItems[DefaultItemCount].DefCompressDataLen); DefaultItemCount++;
 			}
 		}
-		else if(summit::content::definition::DefinitionStrictMode()) { if(fpItemAudit) fclose(fpItemAudit); return FALSE; }
+		else if(summit::content::definition::DefinitionStrictMode()) { const summit::content::definition::CompiledDefinitionSource *source=summit::content::definition::ActiveDefinitionSource(); fprintf(stderr,"[CONTENT][DEFINITION] LIST_FAIL error=%s\n",source?source->LastError().c_str():"source unavailable");fflush(stderr); if(fpItemAudit) fclose(fpItemAudit); return FALSE; }
 	}
 	if(!summitCompiledItems)
 	{
@@ -11923,6 +11926,24 @@ int rsOpen_MonsterItemExp(rsKILL_MONSTER_INFO *lpKillMonInfo)
 	return rsOpen_MonsterItemExp(&smChar, lprsPlayInfo);
 }
 
+// The localized skill contract says Vanish makes the Pikeman invisible to
+// monsters for its duration. The old acquisition code only reduced Sight by
+// Vanish_Range, which still allowed nearby monsters to acquire the player.
+// Keep the four legacy boss immunities, but hide the player completely from
+// normal monster acquisition while the buff is active.
+static bool SummitVanishHidesPlayerFromMonster(const smCHAR *lpChar, const rsPLAYINFO *lpPlayInfo)
+{
+	if(!lpChar || !lpPlayInfo || !lpPlayInfo->dwSkill_Vanish_Time ||
+		lpPlayInfo->dwSkill_Vanish_Time < dwPlayServTime)
+		return false;
+
+	const DWORD soundCode = lpChar->smCharInfo.dwCharSoundCode;
+	return soundCode != snCHAR_SOUND_BABEL &&
+		soundCode != snCHAR_SOUND_DEATHKNIGHT &&
+		soundCode != snCHAR_SOUND_KELVEZU &&
+		soundCode != snCHAR_SOUND_MOKOVA;
+}
+
 //Eventos Chat
 int srAutoCharMain(smCHAR *lpChar)
 {
@@ -12396,8 +12417,9 @@ int srAutoCharMain(smCHAR *lpChar)
 
 							if(dist < DIST_TRANSLEVEL_CONNECT && abs(rX) < TRANS_VIEW_LIMIT && abs(rZ) < TRANS_VIEW_LIMIT)
 							{
+								const bool hiddenByVanish = SummitVanishHidesPlayerFromMonster(lpChar, &rsPlayInfo[cnt]);
 
-								if(lpChar->AttackSkillRange && abs(rY) < 140)
+								if(lpChar->AttackSkillRange && abs(rY) < 140 && !hiddenByVanish)
 								{
 									if(lpChar->smMonsterInfo.SkillDistance && lpChar->smMonsterInfo.SkillRangeRect.left && lpChar->smMonsterInfo.SkillRangeRect.right)
 									{
@@ -12420,36 +12442,10 @@ int srAutoCharMain(smCHAR *lpChar)
 									}
 								}
 
-								if(dist < MinDist && abs(rY) < 140)
+								if(!hiddenByVanish && dist < MinDist && abs(rY) < 140)
 								{
 
 									dist2 = lpChar->smCharInfo.Sight;
-
-
-									if(rsPlayInfo[cnt].dwSkill_Vanish_Time)
-									{
-										if(rsPlayInfo[cnt].dwSkill_Vanish_Time < dwPlayServTime)
-										{
-
-											rsPlayInfo[cnt].dwSkill_Vanish_Time = 0;
-											rsPlayInfo[cnt].dwSkill_Vanish_Param = 0;
-										}
-										else
-										{
-
-											if(lpChar->smCharInfo.dwCharSoundCode != snCHAR_SOUND_BABEL &&
-												lpChar->smCharInfo.dwCharSoundCode != snCHAR_SOUND_DEATHKNIGHT &&
-												lpChar->smCharInfo.dwCharSoundCode != snCHAR_SOUND_KELVEZU &&
-												lpChar->smCharInfo.dwCharSoundCode != snCHAR_SOUND_MOKOVA)
-											{
-												dist2 = (lpChar->smMonsterInfo.Real_Sight*Vanish_Range[rsPlayInfo[cnt].dwSkill_Vanish_Param]) / 100;
-												dist2 = lpChar->smMonsterInfo.Real_Sight + dist2;
-												if(dist2 > 0) dist2 *= dist2;
-												else dist2 = 0;
-											}
-										}
-									}
-
 
 									if(dist < dist2 && !rsPlayInfo[cnt].HideMode)
 									{
@@ -14025,7 +14021,12 @@ int InitAll()
 
 	fprintf(stderr, "[STARTUP][ITEMS] CALL\n");
 	fflush(stderr);
-	InitItems();
+	if(!InitItems())
+	{
+		fprintf(stderr, "[STARTUP][ITEMS] FATAL: compiled item definitions failed to initialize\n");
+		fflush(stderr);
+		return FALSE;
+	}
 
 	std::string progressionFinalizeError;
 	if(!gameplay::progression::FinalizeServerProgressionRuntimeAfterItems(&progressionFinalizeError))
@@ -14079,7 +14080,12 @@ int InitAll()
 	cout << "[INIT] DEPOIS: alocar StageArea" << endl;
 
 	cout << "[INIT] ANTES: srReadStage" << endl;
-	srReadStage();
+	if(!srReadStage())
+	{
+		fprintf(stderr, "[INIT] FATAL: mapas compilados nao foram inicializados\n");
+		fflush(stderr);
+		return FALSE;
+	}
 	fprintf(stderr, "[INIT] DEPOIS: srReadStage\n");
 	fflush(stderr);
 	//temp change

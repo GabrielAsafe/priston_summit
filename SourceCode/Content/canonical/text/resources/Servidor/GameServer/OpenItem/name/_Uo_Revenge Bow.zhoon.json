@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.uo_revenge_bow",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/_Uo_Revenge Bow.zhoon",
+    "GameServer/OpenItem/name/_Uo_Revenge Bow.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/_Uo_Revenge Bow.zhoon",
+    "legacy_sha256": "37f559bd1fb19df0d2832288c520b2e9cf95bfcbc0804f28ddc38b4fa7310cc9",
+    "legacy_size": 52
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Revenge Bow"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9VV1MxMjJfUmV2ZW5nZSBCb3cudHh0DQoNCipKX05hbWUJCSJSZXZlbmdlIEJvdyINCg=="
+  }
+}

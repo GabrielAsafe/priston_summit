@@ -1,0 +1,31 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquestterrified_bpass_t",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/Sinimage/Quest/haQuestterrified_Bpass_T.sin",
+    "image/Sinimage/Quest/haQuestterrified_Bpass_T.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/Sinimage/Quest/haQuestterrified_Bpass_T.sin",
+    "legacy_sha256": "b7cff54bf79442e229fd81bc6e20244f15740905be5121a6da751e7f5ad11d4e",
+    "legacy_size": 179
+  },
+  "semantic": {
+    "lines": [
+      "",
+      "You haven't hunted all of the Hoppies. You can ",
+      "buy the potions in the town so get ready for ",
+      "hunting.",
+      "",
+      "Double click the minimap and you can find the ",
+      "miscellaneous shop."
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "DQpZb3UgaGF2ZW4ndCBodW50ZWQgYWxsIG9mIHRoZSBIb3BwaWVzLiBZb3UgY2FuIA0KYnV5IHRoZSBwb3Rpb25zIGluIHRoZSB0b3duIHNvIGdldCByZWFkeSBmb3IgDQpodW50aW5nLg0KDQpEb3VibGUgY2xpY2sgdGhlIG1pbmltYXAgYW5kIHlvdSBjYW4gZmluZCB0aGUgDQptaXNjZWxsYW5lb3VzIHNob3AuDQo="
+  }
+}

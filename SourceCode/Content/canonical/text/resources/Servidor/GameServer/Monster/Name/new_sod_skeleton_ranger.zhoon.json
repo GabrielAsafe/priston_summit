@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.new_sod_skeleton_ranger",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/Monster/Name/new_sod_skeleton_ranger.zhoon",
+    "GameServer/Monster/Name/new_sod_skeleton_ranger.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/Monster/Name/new_sod_skeleton_ranger.zhoon",
+    "legacy_sha256": "1d1719c4a5147b5bf248aab258304cf0c0f9c043b26dc4ac2a7ce447af8c73e7",
+    "legacy_size": 33
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 1,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "SoD Skeleton Ranger"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "KkpfTkFNRQkJCSJTb0QgU2tlbGV0b24gUmFuZ2VyIg0K"
+  }
+}

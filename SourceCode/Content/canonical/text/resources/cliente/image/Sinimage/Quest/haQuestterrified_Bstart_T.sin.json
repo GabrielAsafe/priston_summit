@@ -1,0 +1,42 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquestterrified_bstart_t",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/Sinimage/Quest/haQuestterrified_Bstart_T.sin",
+    "image/Sinimage/Quest/haQuestterrified_Bstart_T.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/Sinimage/Quest/haQuestterrified_Bstart_T.sin",
+    "legacy_sha256": "e1db1753314289ece8b68230db8c3005e8bc7a239c737c35e219051aac9f7567",
+    "legacy_size": 552
+  },
+  "semantic": {
+    "lines": [
+      "",
+      "We are not sure when the horrible monsters started to",
+      "appear outside of our town. So, people can't",
+      "go outside, they have to stay inside to be safe.",
+      "",
+      "If you go in town and meet some people, it will",
+      "be good to talk and trade things with them.",
+      "",
+      "If you want to be a stronger warrior, ",
+      "you have to hunt monsters outside the town.",
+      "Hunt 5 Hoppies in the Garden of freedom and come ",
+      "back to me, that is the first step of becoming ",
+      "a Warrior.",
+      "",
+      "[Quest Subject]",
+      "",
+      "     After having hunted 5 Hoppies in the Garden ",
+      "     of freedom, go back to Ran."
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "DQpXZSBhcmUgbm90IHN1cmUgd2hlbiB0aGUgaG9ycmlibGUgbW9uc3RlcnMgc3RhcnRlZCB0bw0KYXBwZWFyIG91dHNpZGUgb2Ygb3VyIHRvd24uIFNvLCBwZW9wbGUgY2FuJ3QNCmdvIG91dHNpZGUsIHRoZXkgaGF2ZSB0byBzdGF5IGluc2lkZSB0byBiZSBzYWZlLg0KDQpJZiB5b3UgZ28gaW4gdG93biBhbmQgbWVldCBzb21lIHBlb3BsZSwgaXQgd2lsbA0KYmUgZ29vZCB0byB0YWxrIGFuZCB0cmFkZSB0aGluZ3Mgd2l0aCB0aGVtLg0KDQpJZiB5b3Ugd2FudCB0byBiZSBhIHN0cm9uZ2VyIHdhcnJpb3IsIA0KeW91IGhhdmUgdG8gaHVudCBtb25zdGVycyBvdXRzaWRlIHRoZSB0b3duLg0KSHVudCA1IEhvcHBpZXMgaW4gdGhlIEdhcmRlbiBvZiBmcmVlZG9tIGFuZCBjb21lIA0KYmFjayB0byBtZSwgdGhhdCBpcyB0aGUgZmlyc3Qgc3RlcCBvZiBiZWNvbWluZyANCmEgV2Fycmlvci4NCg0KW1F1ZXN0IFN1YmplY3RdDQoNCiAgICAgQWZ0ZXIgaGF2aW5nIGh1bnRlZCA1IEhvcHBpZXMgaW4gdGhlIEdhcmRlbiANCiAgICAgb2YgZnJlZWRvbSwgZ28gYmFjayB0byBSYW4u"
+  }
+}

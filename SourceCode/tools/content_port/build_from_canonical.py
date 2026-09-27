@@ -42,6 +42,7 @@ def main() -> None:
     ap.add_argument('--canonical-text', type=Path, required=True)
     ap.add_argument('--canonical-spawns', type=Path, required=True)
     ap.add_argument('--canonical-maps', type=Path, required=True)
+    ap.add_argument('--canonical-item-profiles', type=Path, required=True)
     ap.add_argument('--out-root', type=Path, required=True)
     args = ap.parse_args()
 
@@ -50,6 +51,7 @@ def main() -> None:
     text = args.canonical_text.resolve()
     spawns = args.canonical_spawns.resolve()
     maps = args.canonical_maps.resolve()
+    item_profiles = args.canonical_item_profiles.resolve()
     out = args.out_root.resolve()
     invocation_root = Path.cwd().resolve()
     packs = out / 'packs'
@@ -60,7 +62,8 @@ def main() -> None:
 
     outputs = {
         'text_resources': packs / 'text_resources.sres',
-        'definitions': packs / 'definitions.scfg',
+        'definitions_client': packs / 'definitions_client.scfg',
+        'definitions_server': packs / 'definitions_server.scfg',
         'localization': packs / 'localization.sloc',
         'gameplay_config': packs / 'gameplay_config.sgcf',
         'stage_spawns': packs / 'stage_spawns.sspb',
@@ -70,8 +73,14 @@ def main() -> None:
 
     run(py, here / 'compile_text_resources.py', text, outputs['text_resources'])
     run(py, here / 'inspect_text_resources.py', outputs['text_resources'])
-    run(py, here / 'compile_definitions.py', text, outputs['definitions'])
-    run(py, here / 'inspect_definitions.py', outputs['definitions'])
+    for profile in ('client', 'server'):
+        profile_catalog = item_profiles / f'{profile}.items.json'
+        if not profile_catalog.is_file():
+            raise SystemExit(f'missing canonical item profile: {profile_catalog}')
+        output = outputs[f'definitions_{profile}']
+        run(py, here / 'compile_definitions.py', text, output, '--item-profile', profile_catalog)
+        run(py, here / 'inspect_definitions.py', output)
+    run(py, here / 'validate_item_profile_pack.py', '--source-root', here.parent.parent, '--content-root', out, '--profile', 'both')
     run(py, here / 'compile_localization.py', text, outputs['localization'])
     run(py, here / 'inspect_localization.py', outputs['localization'])
     run(py, here / 'compile_gameplay_config.py', text, outputs['gameplay_config'])
@@ -93,6 +102,7 @@ def main() -> None:
             'canonical_text': portable_input_path(text, invocation_root),
             'canonical_spawns': portable_input_path(spawns, invocation_root),
             'canonical_maps': portable_input_path(maps, invocation_root),
+            'canonical_item_profiles': portable_input_path(item_profiles, invocation_root),
         },
         'packs': {
             name: {

@@ -1,0 +1,48 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.npc_ninefox",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/npc_ninefox.zhoon",
+    "GameServer/NPC/name/npc_ninefox.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/npc_ninefox.zhoon",
+    "legacy_sha256": "57b4c1a1b494f97c383f825e2f066c57a1f4a76da0c0c50f01907c8b8319c68f",
+    "legacy_size": 292
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 1,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "긵깒귽귺"
+      },
+      {
+        "line": 3,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Ó½ÂÌA~bgðTµÉ±±ÜÅÜµ½B"
+      },
+      {
+        "line": 4,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "»ÌûÍX^[¾Á½¯ÇABÍ{É¤µÁÄ½ÌÅ·EEE"
+      },
+      {
+        "line": 5,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Ó½ÂÌA~bgÍBÌ¤Ì ©µÅµ½B»êðñ¾X^[Í¹Ü¹ñB"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "KkpfTkFNRQkJCSKDdoOMg0ODQSINCg0KKkpfQ0hBVAkJCSKC04K9gsKCzINBg36DhYOMg2KDZ4LwklSCtYLJgrGCsYLcgsWXiILcgrWCvYFCIg0KKkpfQ0hBVCAgICAgICAgICAgICAgICAgICAigruCzJX7gs2DgoOTg1iDXoFbgr6CwYK9gq+Cx4FBjoSSQoLNlnuTloLJiKSCtY2HgsGCxIK9gsyCxYK3gUWBRYFFIg0KKkpfQ0hBVCAgICAgICAgICAgICAgICAgICAigtOCvYLCgsyDQYN+g4WDjINig2eCzY6EkkKCzIikgsyCoIKpgrWCxYK1gr2BQoK7guqC8JOQgvGCvoOCg5ODWINegVuCzYuWgrmC3IK5gvGBQiINCg=="
+  }
+}

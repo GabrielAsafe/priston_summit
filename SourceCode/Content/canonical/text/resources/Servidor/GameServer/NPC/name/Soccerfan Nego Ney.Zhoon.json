@@ -1,0 +1,36 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.soccerfan_nego_ney",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Soccerfan Nego Ney.Zhoon",
+    "GameServer/NPC/name/Soccerfan Nego Ney.Zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Soccerfan Nego Ney.Zhoon",
+    "legacy_sha256": "7d63b77f173aae5bb87e5bc03de56bb45f6eeca9a6b719851aa263b1c60f171d",
+    "legacy_size": 80
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 4,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Soccerfan"
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": "Nego ney..."
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9Tb2NjZXJmYW4gTmVnbyBOZXkuTlBDDQoNCg0KKkpfTmFtZQkiU29jY2VyZmFuIg0KDQoNCipKX0NoYXQJIk5lZ28gbmV5Li4uIg0KDQo="
+  }
+}

@@ -9,6 +9,7 @@ HEADER=struct.Struct('<4sHH10I32s')
 RECORD=struct.Struct('<5I') # path,id,kind,directive_start,directive_count
 DIRECTIVE=struct.Struct('<3I') # command bytes string, values bytes string, flags
 KIND={'monster_definition':1,'npc_definition':2,'open_item_definition':3}
+SHOP_KEYS={'sell_weapon','sell_defence','sell_etc'}
 
 def norm(s:str)->str:
  p=[]
@@ -47,9 +48,47 @@ def linked_lines(payload:bytes):
   result.append((toks[0].raw,b' '.join(vals),0))
  return result
 
+def load_item_profile(path:Path|None):
+ if path is None:return None,None
+ doc=json.loads(path.read_text(encoding='utf-8'))
+ if doc.get('schema')!='summit.item-profile/v1':raise ValueError(f'unsupported item profile: {path}')
+ codes=doc.get('codes') or []
+ return doc.get('profile'),{str(x).casefold() for x in codes}
+
+def item_code(d:dict):
+ for directive in d.get('semantic',{}).get('directives',[]):
+  if directive.get('key')!='code':continue
+  values=directive.get('raw_values_hex') or []
+  if values:
+   return bytes.fromhex(values[0]).decode('latin1').casefold()
+  semantic=directive.get('values') or []
+  if semantic:return str(semantic[0]).casefold()
+ return None
+
+def item_is_normal(d:dict)->bool:
+ fields=d.get('semantic',{}).get('fields',{})
+ return not bool(fields.get('unique',0))
+
+def render_shop_values(d:dict,materializable_codes:set[str]):
+ raws=d.get('raw_values_hex') or []
+ semantic=d.get('values') or []
+ quoted=d.get('quoted') or []
+ out=[];filtered=[]
+ for i,h in enumerate(raws):
+  b=bytes.fromhex(h)
+  token=str(semantic[i]).strip() if i<len(semantic) else b.decode('latin1').strip()
+  keep=(token=='없음' or token.casefold() in materializable_codes)
+  if not keep:
+   filtered.append(token)
+   continue
+  q=(i<len(quoted) and quoted[i]) or any(c in b' \t\r\n' for c in b)
+  out.append((b'"'+b+b'"') if q else b)
+ return b' '.join(out),filtered
+
 def main():
- ap=argparse.ArgumentParser();ap.add_argument('canonical',type=Path);ap.add_argument('output',type=Path);a=ap.parse_args()
+ ap=argparse.ArgumentParser();ap.add_argument('canonical',type=Path);ap.add_argument('output',type=Path);ap.add_argument('--item-profile',type=Path);a=ap.parse_args()
  root=a.canonical.resolve(); idx=json.loads((root/'index.json').read_text(encoding='utf-8'))['documents']
+ profile_name,profile_codes=load_item_profile(a.item_profile.resolve() if a.item_profile else None)
  docs={}; alias_map={}
  for e in idx:
   d=json.loads((root/e['json_path']).read_text(encoding='utf-8')); docs[d['id']]=d
@@ -60,8 +99,21 @@ def main():
   if b not in soff:soff[b]=len(strings);strings.extend(b+b'\0')
   return soff[b]
  def intern_text(s:str)->int:return intern_bytes(s.encode('utf-8'))
- directives=[];records=[];flattened_links=0;unresolved_links=[]
+ directives=[];records=[];flattened_links=0;unresolved_links=[];filtered_shop_tokens=[]
  defs=[d for d in docs.values() if d['kind'] in KIND]
+ filtered_open_items=[]
+ if profile_codes is not None:
+  kept=[]
+  for d in defs:
+   if d['kind']!='open_item_definition':
+    kept.append(d);continue
+   code=item_code(d)
+   if code is not None and code in profile_codes:
+    kept.append(d)
+   else:
+    filtered_open_items.append({'id':d['id'],'path':runtime_alias(d),'code':code})
+  defs=kept
+ materializable_codes={item_code(d) for d in defs if d['kind']=='open_item_definition' and item_is_normal(d) and item_code(d)}
  defs.sort(key=lambda d:runtime_alias(d).casefold())
  for d in defs:
   start=len(directives); rpath=runtime_alias(d)
@@ -83,7 +135,13 @@ def main():
      else: unresolved_links.append({'id':d['id'],'path':rpath,'target':target})
     break # exact legacy behavior switches file and never returns
    command=bytes.fromhex(directive['legacy_token_hex'])
-   directives.append((intern_bytes(command),intern_bytes(render_values(directive)),0))
+   if key in SHOP_KEYS and profile_name=='server':
+    rendered,filtered=render_shop_values(directive,materializable_codes)
+    for token in filtered:
+     filtered_shop_tokens.append({'id':d['id'],'path':rpath,'key':key,'token':token})
+    directives.append((intern_bytes(command),intern_bytes(rendered),0))
+   else:
+    directives.append((intern_bytes(command),intern_bytes(render_values(directive)),0))
   records.append((intern_text(rpath),intern_text(d['id']),KIND[d['kind']],start,len(directives)-start))
  header_size=HEADER.size;ro=header_size;rs=RECORD.size;do=ro+len(records)*rs;ds=DIRECTIVE.size;so=do+len(directives)*ds
  body=bytearray()
@@ -92,7 +150,7 @@ def main():
  body.extend(strings);digest=hashlib.sha256(body).digest()
  header=HEADER.pack(MAGIC,VERSION,0,len(records),ro,rs,len(directives),do,ds,so,len(strings),0,0,digest)
  a.output.parent.mkdir(parents=True,exist_ok=True);a.output.write_bytes(header+body)
- report={'format':'SCFG','version':VERSION,'definitions':len(records),'directives':len(directives),'flattened_links':flattened_links,'legacy_missing_links':unresolved_links,'bytes':a.output.stat().st_size,'sha256':hashlib.sha256(a.output.read_bytes()).hexdigest()}
+ report={'format':'SCFG','version':VERSION,'profile':profile_name or 'unprofiled','definitions':len(records),'directives':len(directives),'flattened_links':flattened_links,'filtered_open_items':len(filtered_open_items),'filtered_open_item_rows':filtered_open_items,'filtered_shop_tokens':filtered_shop_tokens,'legacy_missing_links':unresolved_links,'bytes':a.output.stat().st_size,'sha256':hashlib.sha256(a.output.read_bytes()).hexdigest()}
  a.output.with_suffix(a.output.suffix+'.report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
- print(json.dumps({k:(len(v) if k=='legacy_missing_links' else v) for k,v in report.items()},ensure_ascii=False))
+ print(json.dumps({k:(len(v) if k in ('legacy_missing_links','filtered_open_item_rows','filtered_shop_tokens') else v) for k,v in report.items()},ensure_ascii=False))
 if __name__=='__main__':main()

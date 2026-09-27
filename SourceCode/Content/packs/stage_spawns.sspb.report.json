@@ -1,0 +1,16 @@
+{
+  "format": "SSPB",
+  "version": 2,
+  "maps": 54,
+  "actors": 262,
+  "bosses": 16,
+  "filtered_legacy_missing_actors": [
+    {
+      "path": "GameServer/Field/HeartOfFire.ase.spm",
+      "legacy_name": "Itens 165",
+      "weight": 10
+    }
+  ],
+  "bytes": 15625,
+  "sha256": "85c4f1c9cb1837642b0db63a156ae89c6784d7757eefbe68139a7ff86212d9d8"
+}

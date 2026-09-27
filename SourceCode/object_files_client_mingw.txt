@@ -251,5 +251,6 @@
 /home/gabriel/Área de Trabalho/summit/SourceCode/build_mingw_client_i686/objects/SrcGame/src/systems/ui/v2/widgets/ProgressBar.o
 /home/gabriel/Área de Trabalho/summit/SourceCode/build_mingw_client_i686/objects/SrcGame/src/systems/ui/v2/widgets/Separator.o
 /home/gabriel/Área de Trabalho/summit/SourceCode/build_mingw_client_i686/objects/SrcGame/src/systems/ui/v2/windows/CharacterWindow.o
+/home/gabriel/Área de Trabalho/summit/SourceCode/build_mingw_client_i686/objects/SrcGame/src/systems/ui/v2/windows/SettingsWindow.o
 /home/gabriel/Área de Trabalho/summit/SourceCode/build_mingw_client_i686/objects/SrcGame/src/systems/ui/v2/windows/UIWindowManager.o
 /home/gabriel/Área de Trabalho/summit/SourceCode/build_mingw_client_i686/objects/SrcGame/src/systems/world/field/field.o

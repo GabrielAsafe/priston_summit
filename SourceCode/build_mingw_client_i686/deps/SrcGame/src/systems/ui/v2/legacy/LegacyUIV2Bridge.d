@@ -205,7 +205,8 @@
  SrcGame/src/systems/ui/v2/rendering/FontHandle.h \
  SrcGame/src/systems/ui/v2/widgets/Label.h \
  SrcGame/src/systems/ui/v2/widgets/Panel.h \
- SrcGame/src/systems/ui/v2/windows/CharacterWindow.h
+ SrcGame/src/systems/ui/v2/windows/CharacterWindow.h \
+ SrcGame/src/systems/ui/v2/windows/SettingsWindow.h
 SrcGame/src/systems/ui/v2/legacy/LegacyUIV2Bridge.h:
 SrcGame/src/compat/legacy/sin/sinLinkHeader.h:
 SrcGame/src/systems/rendering/legacy_3d/smd3d.h:
@@ -416,3 +417,4 @@ SrcGame/src/systems/ui/v2/rendering/FontHandle.h:
 SrcGame/src/systems/ui/v2/widgets/Label.h:
 SrcGame/src/systems/ui/v2/widgets/Panel.h:
 SrcGame/src/systems/ui/v2/windows/CharacterWindow.h:
+SrcGame/src/systems/ui/v2/windows/SettingsWindow.h:

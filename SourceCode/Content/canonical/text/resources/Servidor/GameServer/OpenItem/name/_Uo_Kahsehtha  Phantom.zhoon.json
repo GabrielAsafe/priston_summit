@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.uo_kahsehtha_phantom",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/_Uo_Kahsehtha  Phantom.zhoon",
+    "GameServer/OpenItem/name/_Uo_Kahsehtha  Phantom.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/_Uo_Kahsehtha  Phantom.zhoon",
+    "legacy_sha256": "a067564474ae63bb106d10cb22c0a39dd3f35dde31776f56aec513da70ab6a39",
+    "legacy_size": 58
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "E_NAME",
+        "kind": "name",
+        "text": "Kahsehtha  Phantom"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9fVW9fRW5pZ21hIERhZ2dlci50eHQNCg0KKkVfTkFNRQkJIkthaHNlaHRoYSAgUGhhbnRvbSINCg=="
+  }
+}

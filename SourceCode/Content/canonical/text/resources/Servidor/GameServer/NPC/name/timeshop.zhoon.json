@@ -1,0 +1,36 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.timeshop",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/timeshop.zhoon",
+    "GameServer/NPC/name/timeshop.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/timeshop.zhoon",
+    "legacy_sha256": "88b81223a9fa852aa96015eceabe9bcf0af640ea28042ba926f6a40768fa903d",
+    "legacy_size": 107
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 4,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Loja do Minutos"
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": "Aproveite os time e tune o seu personagem!"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly90aW1lc2hvcC5OUEMNCg0KDQoqSl9OYW1lCSJMb2phIGRvIE1pbnV0b3MiDQoNCg0KKkpfQ2hhdAkiQXByb3ZlaXRlIG9zIHRpbWUgZSB0dW5lIG8gc2V1IHBlcnNvbmFnZW0hIg0KDQo="
+  }
+}

@@ -19,6 +19,7 @@
 #include "content/v1/map/legacy/LegacyMapAdapter.h"
 #include "systems/audio/effects/legacy/effectsnd.h"
 #include "systems/localization/legacy_catalog/language.h"
+#include "content/v1/runtime/RuntimeContentPath.h"
 
 char szFieldDirectory[64];
 char szMapDirectory[64];
@@ -1938,14 +1939,17 @@ static int InitFieldCompiled(const char *packPath)
 
 int InitField()
 {
-	const char *packPath = std::getenv("SUMMIT_MAP_PACK");
-	if (packPath && packPath[0])
+	static const std::string resolvedPackPath = summit::content::runtime::ResolveRuntimePackPath("maps_client.smap");
+	const char *packPath = resolvedPackPath.c_str();
+	fprintf(stderr, "[CONTENT][MAP] profile=client pack=%s\n", packPath);
+	fflush(stderr);
+	const int loaded = InitFieldCompiled(packPath);
+	if(!loaded)
 	{
-		if (InitFieldCompiled(packPath)) return TRUE;
-		const char *strict = std::getenv("SUMMIT_MAP_STRICT");
-		if (strict && strict[0] == '1') return FALSE;
+		fprintf(stderr, "[CONTENT][MAP] FATAL profile=client failed to load compiled map pack: %s\n", packPath);
+		fflush(stderr);
 	}
-	return InitFieldLegacy();
+	return loaded;
 }
 
 

@@ -4,6 +4,7 @@
  Shared/content/v1/text_resource/content/TextResourceRuntime.h \
  Shared/content/v1/text_resource/content/CompiledTextResourceSource.h \
  Shared/content/v1/common/Sha256.h \
+ Shared/content/v1/runtime/RuntimeContentPath.h \
  Shared/content/v1/definition/content/DefinitionRuntime.h \
  Shared/content/v1/definition/content/CompiledDefinitionSource.h \
  Shared/content/v1/text_resource/legacy/LegacyContentIdRegistry.h \
@@ -211,6 +212,7 @@ Shared/server/legacy_runtime/OnSever_legacy_server.inl:
 Shared/content/v1/text_resource/content/TextResourceRuntime.h:
 Shared/content/v1/text_resource/content/CompiledTextResourceSource.h:
 Shared/content/v1/common/Sha256.h:
+Shared/content/v1/runtime/RuntimeContentPath.h:
 Shared/content/v1/definition/content/DefinitionRuntime.h:
 Shared/content/v1/definition/content/CompiledDefinitionSource.h:
 Shared/content/v1/text_resource/legacy/LegacyContentIdRegistry.h:

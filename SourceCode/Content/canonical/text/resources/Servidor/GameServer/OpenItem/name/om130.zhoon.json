@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.om130",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/om130.zhoon",
+    "GameServer/OpenItem/name/om130.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/om130.zhoon",
+    "legacy_sha256": "ef1fdd110e91905b3fd3f4df2736f914d15e25c0fd7b756d11bfab46fcf8c46c",
+    "legacy_size": 32
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Deadly Sphere"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "DQoNCipKX05hbWUJCSJEZWFkbHkgU3BoZXJlIg0KDQo="
+  }
+}

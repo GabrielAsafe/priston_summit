@@ -1649,9 +1649,7 @@ void cINTERFACE::LButtonDown(int x, int y)
 
 	if (sinMenuBottonPosi == 2)
 	{
-		if (!cSettings.isOpen())
-			cSettings.Open();
-
+		ui::v2::legacy::ToggleSettingsWindow();
 		ExitButtonClick = 0;
 	}
 

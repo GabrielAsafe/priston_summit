@@ -1,0 +1,36 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.clanmaster",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/ClanMaster.zhoon",
+    "GameServer/NPC/name/ClanMaster.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/ClanMaster.zhoon",
+    "legacy_sha256": "dbc81b5fc0ea6e430818d640dfa673850ee703cc816c08e524b2e7486c561980",
+    "legacy_size": 116
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 1,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "~X^[u}"
+      },
+      {
+        "line": 3,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "íµÌ±ÆÍNÌVË'~X^[u}³Ü'ÆÅàÄñÅ­ê¢IÓ§ÁÓ§ÁÓ§"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "KkpfTkFNRQkJIoN+g1iDXoFbg3WDfSINCg0KKkpfQ0hBVAkJIoLtgrWCzIKxgsaCzYNOg4mDk4LMk1aNyyeDfoNYg16BW4N1g32Cs4LcJ4LGgsWC4IzEgvGCxYKtguqCooFJgtOCp4LBgtOCp4LBgtOCpyI="
+  }
+}

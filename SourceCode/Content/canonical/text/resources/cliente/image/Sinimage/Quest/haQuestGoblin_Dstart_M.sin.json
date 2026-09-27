@@ -1,0 +1,41 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquestgoblin_dstart_m.path_bdcee73b20",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/Sinimage/Quest/haQuestGoblin_Dstart_M.sin",
+    "image/Sinimage/Quest/haQuestGoblin_Dstart_M.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/Sinimage/Quest/haQuestGoblin_Dstart_M.sin",
+    "legacy_sha256": "19caad8cd2a5c9ed59ef0fb79ae33fe37ed3475f40d43e336f53e43fe8a194db",
+    "legacy_size": 608
+  },
+  "semantic": {
+    "lines": [
+      "The recent actions of the Goblins are uncommon. ",
+      "They appear unexpectedly at the Road to the Wind. ",
+      "The Guardians continue to battle against them. ",
+      "But they are in difficulties owing lack of ",
+      "strength. They are just waiting for your help ",
+      "and offering a reward. ",
+      "Why don't you challenge the battle? ",
+      "If you hunt 5 North Goblins in the Road to the ",
+      "Wind and go back to the Guardian at the town's ",
+      "entrance, he will give you ring and amulet.",
+      "",
+      "[Quest Subject]",
+      "     ",
+      "",
+      "     After having hunted 5 North Goblins in the ",
+      "     Road to the Wind, go back to the Guardian ",
+      "     at the village's entrance."
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "VGhlIHJlY2VudCBhY3Rpb25zIG9mIHRoZSBHb2JsaW5zIGFyZSB1bmNvbW1vbi4gDQpUaGV5IGFwcGVhciB1bmV4cGVjdGVkbHkgYXQgdGhlIFJvYWQgdG8gdGhlIFdpbmQuIA0KVGhlIEd1YXJkaWFucyBjb250aW51ZSB0byBiYXR0bGUgYWdhaW5zdCB0aGVtLiANCkJ1dCB0aGV5IGFyZSBpbiBkaWZmaWN1bHRpZXMgb3dpbmcgbGFjayBvZiANCnN0cmVuZ3RoLiBUaGV5IGFyZSBqdXN0IHdhaXRpbmcgZm9yIHlvdXIgaGVscCANCmFuZCBvZmZlcmluZyBhIHJld2FyZC4gDQpXaHkgZG9uJ3QgeW91IGNoYWxsZW5nZSB0aGUgYmF0dGxlPyANCklmIHlvdSBodW50IDUgTm9ydGggR29ibGlucyBpbiB0aGUgUm9hZCB0byB0aGUgDQpXaW5kIGFuZCBnbyBiYWNrIHRvIHRoZSBHdWFyZGlhbiBhdCB0aGUgdG93bidzIA0KZW50cmFuY2UsIGhlIHdpbGwgZ2l2ZSB5b3UgcmluZyBhbmQgYW11bGV0Lg0KDQpbUXVlc3QgU3ViamVjdF0NCiAgICAgDQoNCiAgICAgQWZ0ZXIgaGF2aW5nIGh1bnRlZCA1IE5vcnRoIEdvYmxpbnMgaW4gdGhlIA0KICAgICBSb2FkIHRvIHRoZSBXaW5kLCBnbyBiYWNrIHRvIHRoZSBHdWFyZGlhbiANCiAgICAgYXQgdGhlIHZpbGxhZ2UncyBlbnRyYW5jZS4="
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.nadia",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Nadia.zhoon",
+    "GameServer/NPC/name/Nadia.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Nadia.zhoon",
+    "legacy_sha256": "7ba56b807ce5fcc84edaae36b942bf0badacb590d301e8c598151aab04b0cff0",
+    "legacy_size": 94
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 4,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "PasseDeBatalha"
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": "Obrigado por jogar Summit Tale =)"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9OYWRpYS5OUEMNCg0KDQoqSl9OYW1lCSJQYXNzZURlQmF0YWxoYSINCg0KDQoqSl9DaGF0CSJPYnJpZ2FkbyBwb3Igam9nYXIgU3VtbWl0IFRhbGUgPSkiDQoNCg=="
+  }
+}

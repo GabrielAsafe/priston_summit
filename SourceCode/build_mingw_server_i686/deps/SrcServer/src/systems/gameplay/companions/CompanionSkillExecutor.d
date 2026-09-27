@@ -5,6 +5,7 @@
  Shared/content/v1/gameplay_config/content/CompiledGameplayConfigSource.h \
  Shared/content/v1/common/Sha256.h \
  Shared/content/v1/text_resource/content/CompiledTextResourceSource.h \
+ Shared/content/v1/runtime/RuntimeContentPath.h \
  SrcServer/src/systems/network/transport/legacy/smwsock.h \
  Shared/network/transport/legacy/smwsock_legacy_server.h \
  SrcServer/src/systems/network/transport/legacy/NetType.h \
@@ -54,6 +55,7 @@ Shared/content/v1/gameplay_config/content/GameplayConfigRuntime.h:
 Shared/content/v1/gameplay_config/content/CompiledGameplayConfigSource.h:
 Shared/content/v1/common/Sha256.h:
 Shared/content/v1/text_resource/content/CompiledTextResourceSource.h:
+Shared/content/v1/runtime/RuntimeContentPath.h:
 SrcServer/src/systems/network/transport/legacy/smwsock.h:
 Shared/network/transport/legacy/smwsock_legacy_server.h:
 SrcServer/src/systems/network/transport/legacy/NetType.h:

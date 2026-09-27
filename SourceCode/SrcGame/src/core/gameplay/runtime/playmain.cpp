@@ -1698,7 +1698,12 @@ void InitStage()
 	InitFieldMap();
 
 
-	InitField();
+	if(!InitField())
+	{
+		fprintf(stderr, "[CONTENT][MAP] FATAL: client field catalog was not initialized; aborting world bootstrap\n");
+		fflush(stderr);
+		return;
+	}
 
 	if(GameStartField < 0)
 	{

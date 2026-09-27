@@ -1,0 +1,48 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.dailyquest",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/dailyquest.zhoon",
+    "GameServer/NPC/name/dailyquest.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/dailyquest.zhoon",
+    "legacy_sha256": "6404e56b090ca9ef3b56057611d2e800ab7501e7ef5765b8297ef008d4e3adf0",
+    "legacy_size": 212
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 4,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Removedor de MIX/AGE"
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": "Remova com segurança seu aging/mix."
+      },
+      {
+        "line": 9,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": "Limpeza de Itens do Summit Tale."
+      },
+      {
+        "line": 11,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": "Quer seu item limpinho? Venha falar comigo ;)"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9kYWlseXF1ZXN0Lk5QQw0KDQoNCipKX05hbWUJIlJlbW92ZWRvciBkZSBNSVgvQUdFIg0KDQoNCipKX0NoYXQJIlJlbW92YSBjb20gc2VndXJhbudhIHNldSBhZ2luZy9taXguIg0KDQoqSl9DaGF0CSJMaW1wZXphIGRlIEl0ZW5zIGRvIFN1bW1pdCBUYWxlLiINCg0KKkpfQ2hhdAkiUXVlciBzZXUgaXRlbSBsaW1waW5obz8gVmVuaGEgZmFsYXIgY29taWdvIDspIg0KDQo="
+  }
+}

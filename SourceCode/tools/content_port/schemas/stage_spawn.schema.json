@@ -97,7 +97,8 @@
       "enum": [
         "exact",
         "explicit_compatibility_override",
-        "legacy_skip_if_missing"
+        "legacy_skip_if_missing",
+        "source_monster_signature"
       ]
     },
     "actor": {
@@ -125,6 +126,9 @@
         },
         "resolution": {
           "$ref": "#/$defs/resolution"
+        },
+        "canonical_name": {
+          "type": "string"
         }
       },
       "additionalProperties": false

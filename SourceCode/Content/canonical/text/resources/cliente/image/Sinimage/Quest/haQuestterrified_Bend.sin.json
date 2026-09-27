@@ -1,0 +1,40 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquestterrified_bend",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/Sinimage/Quest/haQuestterrified_Bend.sin",
+    "image/Sinimage/Quest/haQuestterrified_Bend.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/Sinimage/Quest/haQuestterrified_Bend.sin",
+    "legacy_sha256": "42b07380a2f7b6e85da358d8fbc6beda521cb1238432d0dc25937da58f2175f7",
+    "legacy_size": 478
+  },
+  "semantic": {
+    "lines": [
+      "You did great at hunting, Can you feel that ",
+      "you're going to be a Warrior? As a reward for ",
+      "hunting successfully, I'll give the armlet as ",
+      "a reward.",
+      "",
+      "",
+      "",
+      "Armlet has the space for storing potion so that ",
+      "you can use it while you are in battle.",
+      "At the same time, it raises some defense ability ",
+      "so you have a lower fatality rate.",
+      "Fortunately, you got the long armlet which is ",
+      "specialized armlet and makes defensive health ",
+      "stronger.",
+      "",
+      "Now, have the other adventure."
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "WW91IGRpZCBncmVhdCBhdCBodW50aW5nLCBDYW4geW91IGZlZWwgdGhhdCANCnlvdSdyZSBnb2luZyB0byBiZSBhIFdhcnJpb3I/IEFzIGEgcmV3YXJkIGZvciANCmh1bnRpbmcgc3VjY2Vzc2Z1bGx5LCBJJ2xsIGdpdmUgdGhlIGFybWxldCBhcyANCmEgcmV3YXJkLg0KDQoNCg0KQXJtbGV0IGhhcyB0aGUgc3BhY2UgZm9yIHN0b3JpbmcgcG90aW9uIHNvIHRoYXQgDQp5b3UgY2FuIHVzZSBpdCB3aGlsZSB5b3UgYXJlIGluIGJhdHRsZS4NCkF0IHRoZSBzYW1lIHRpbWUsIGl0IHJhaXNlcyBzb21lIGRlZmVuc2UgYWJpbGl0eSANCnNvIHlvdSBoYXZlIGEgbG93ZXIgZmF0YWxpdHkgcmF0ZS4NCkZvcnR1bmF0ZWx5LCB5b3UgZ290IHRoZSBsb25nIGFybWxldCB3aGljaCBpcyANCnNwZWNpYWxpemVkIGFybWxldCBhbmQgbWFrZXMgZGVmZW5zaXZlIGhlYWx0aCANCnN0cm9uZ2VyLg0KDQpOb3csIGhhdmUgdGhlIG90aGVyIGFkdmVudHVyZS4NCg=="
+  }
+}

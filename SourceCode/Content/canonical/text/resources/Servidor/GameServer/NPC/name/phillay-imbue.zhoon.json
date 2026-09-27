@@ -1,0 +1,54 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.phillay_imbue",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/phillay-imbue.zhoon",
+    "GameServer/NPC/name/phillay-imbue.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/phillay-imbue.zhoon",
+    "legacy_sha256": "42d2090f809dca64399d0f6ba218cc5914da3664b685258f0a1652bdc745293f",
+    "legacy_size": 457
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 1,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "Moriph, o Misterioso"
+      },
+      {
+        "line": 3,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Ouvi por aí que agora existe uma pedra que aumenta a chance de sucesso no Aging...^^"
+      },
+      {
+        "line": 4,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Este sistema foi criado para buscar o desempenho máximo dos itens, mas, existe um certo risco em seu uso..."
+      },
+      {
+        "line": 5,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Alguns itens podem ser perdidos durante o processo, mas ele é muito mais eficaz do que a Mixagem."
+      },
+      {
+        "line": 6,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Você poderá fazer o Aging, a qualquer momento, se tiver os recursos necessários."
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "KkpfTkFNRQkJIk1vcmlwaCwgbyBNaXN0ZXJpb3NvIg0KDQoqSl9DSEFUCQkiT3V2aSBwb3IgYe0gcXVlIGFnb3JhIGV4aXN0ZSB1bWEgcGVkcmEgcXVlIGF1bWVudGEgYSBjaGFuY2UgZGUgc3VjZXNzbyBubyBBZ2luZy4uLl5eIg0KKkpfQ0hBVAkJIkVzdGUgc2lzdGVtYSBmb2kgY3JpYWRvIHBhcmEgYnVzY2FyIG8gZGVzZW1wZW5obyBt4XhpbW8gZG9zIGl0ZW5zLCBtYXMsIGV4aXN0ZSB1bSBjZXJ0byByaXNjbyBlbSBzZXUgdXNvLi4uIg0KKkpfQ0hBVAkJIkFsZ3VucyBpdGVucyBwb2RlbSBzZXIgcGVyZGlkb3MgZHVyYW50ZSBvIHByb2Nlc3NvLCBtYXMgZWxlIOkgbXVpdG8gbWFpcyBlZmljYXogZG8gcXVlIGEgTWl4YWdlbS4iDQoqSl9DSEFUCQkiVm9j6iBwb2RlcuEgZmF6ZXIgbyBBZ2luZywgYSBxdWFscXVlciBtb21lbnRvLCBzZSB0aXZlciBvcyByZWN1cnNvcyBuZWNlc3Phcmlvcy4iDQoNCg=="
+  }
+}

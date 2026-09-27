@@ -1,0 +1,36 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.arena_de_batalha",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Arena de Batalha.Zhoon",
+    "GameServer/NPC/name/Arena de Batalha.Zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Arena de Batalha.Zhoon",
+    "legacy_sha256": "4123654fd9a43e045f83b675769495b14024e0a2cc12d7265c41457c294b9a76",
+    "legacy_size": 105
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 4,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Zarad, o Elegante"
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": " Summit Tale e Muito Divertido"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9BcmVuYSBkZSBCYXRhbGhhLk5QQw0KDQoNCipKX05hbWUJIlphcmFkLCBvIEVsZWdhbnRlIg0KDQoNCipKX0NoYXQJIiBTdW1taXQgVGFsZSBlIE11aXRvIERpdmVydGlkbyINCg0K"
+  }
+}

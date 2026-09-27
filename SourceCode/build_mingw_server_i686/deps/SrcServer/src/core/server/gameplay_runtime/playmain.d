@@ -4,6 +4,7 @@
  Shared/content/v1/definition/content/CompiledDefinitionSource.h \
  Shared/content/v1/common/Sha256.h \
  Shared/content/v1/text_resource/content/CompiledTextResourceSource.h \
+ Shared/content/v1/runtime/RuntimeContentPath.h \
  SrcServer/src/systems/network/protocol/server/opcodes.h \
  SrcServer/src/systems/rendering/legacy_3d/smd3d.h \
  SrcServer/src/systems/rendering/legacy_3d/smDsx.h \
@@ -137,6 +138,7 @@ Shared/content/v1/definition/content/DefinitionRuntime.h:
 Shared/content/v1/definition/content/CompiledDefinitionSource.h:
 Shared/content/v1/common/Sha256.h:
 Shared/content/v1/text_resource/content/CompiledTextResourceSource.h:
+Shared/content/v1/runtime/RuntimeContentPath.h:
 SrcServer/src/systems/network/protocol/server/opcodes.h:
 SrcServer/src/systems/rendering/legacy_3d/smd3d.h:
 SrcServer/src/systems/rendering/legacy_3d/smDsx.h:

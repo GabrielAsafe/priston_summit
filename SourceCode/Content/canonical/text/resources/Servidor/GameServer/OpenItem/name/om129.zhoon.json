@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.om129",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/om129.zhoon",
+    "GameServer/OpenItem/name/om129.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/om129.zhoon",
+    "legacy_sha256": "e0ed8f67a5cd3c410c13072cad954689b235f8de1a67faec8fa0c2289a53e381",
+    "legacy_size": 30
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Aeon Sphere"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "DQoNCipKX05hbWUJCSJBZW9uIFNwaGVyZSINCg0K"
+  }
+}

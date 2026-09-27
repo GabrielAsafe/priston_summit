@@ -26,7 +26,12 @@ require('SrcGame/src/systems/ui/v2/windows/CharacterWindow.cpp','CharacterTab::C
 require('SrcGame/src/systems/ui/v2/legacy/LegacyUIV2Bridge.cpp',"sinGetKeyClick('N')",'N hotkey wired')
 require('SrcGame/src/systems/ui/v2/pages/CovenantsPage.cpp','COVENANTS','Covenant page renders')
 
-require('SrcGame/src/systems/ui/v2/legacy/CovenantEffectHud.cpp','UpKeepItemTGAImage','Covenant HUD reuses upkeep/Phoenix material pipeline through legacy renderer')
+require('SrcGame/src/systems/ui/v2/legacy/CovenantEffectHud.cpp','BadgeFor','Covenant HUD maps modifiers to semantic Covenant badges')
+require('SrcGame/src/systems/ui/v2/legacy/CovenantEffectHud.cpp','"DROP"','Covenant HUD exposes a drop/loot badge')
+require('SrcGame/src/systems/ui/v2/legacy/CovenantEffectHud.cpp','"GATH"','Covenant HUD exposes a gathering badge')
+require('SrcGame/src/systems/ui/v2/legacy/CovenantEffectHud.cpp','"CRFT"','Covenant HUD exposes a crafting badge')
+hud=(ROOT/'SrcGame/src/systems/ui/v2/legacy/CovenantEffectHud.cpp').read_text('utf-8', errors='ignore')
+checks.append(('UpKeepItemTGAImage' not in hud,'Covenant HUD does not borrow unrelated premium upkeep icons'))
 require('SrcGame/src/systems/ui/v2/legacy/LegacyUIV2Bridge.cpp','covenantEffectHud.Render','Covenant HUD renders from authoritative snapshot')
 require('SrcGame/src/systems/ui/v2/legacy/LegacyCovenantGateway.cpp','void LegacyCovenantGateway::Tick','gateway periodically refreshes Covenant state')
 require('SrcServer/src/systems/gameplay/covenants/v2/CovenantUIHandler.cpp','COVENANT_UI_HARVEST_MINING','server handles mining UI action')

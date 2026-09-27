@@ -116,7 +116,8 @@
  Shared/content/v1/gameplay_config/content/GameplayConfigRuntime.h \
  Shared/content/v1/gameplay_config/content/CompiledGameplayConfigSource.h \
  Shared/content/v1/common/Sha256.h \
- Shared/content/v1/text_resource/content/CompiledTextResourceSource.h
+ Shared/content/v1/text_resource/content/CompiledTextResourceSource.h \
+ Shared/content/v1/runtime/RuntimeContentPath.h
 SrcServer/src/systems/combat/skills/server_support/SkillSub.h:
 SrcServer/src/systems/combat/skills/legacy/sinSkill_InfoIni.h:
 SrcServer/src/core/server/legacy_sin_runtime/sinLinkHeader.h:
@@ -237,3 +238,4 @@ Shared/content/v1/gameplay_config/content/GameplayConfigRuntime.h:
 Shared/content/v1/gameplay_config/content/CompiledGameplayConfigSource.h:
 Shared/content/v1/common/Sha256.h:
 Shared/content/v1/text_resource/content/CompiledTextResourceSource.h:
+Shared/content/v1/runtime/RuntimeContentPath.h:

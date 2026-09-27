@@ -1,0 +1,48 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.skadi.path_2d56f97915",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Skadi.zhoon",
+    "GameServer/NPC/name/Skadi.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Skadi.zhoon",
+    "legacy_sha256": "f706d6eb85d17d29eb59f1dfd489c64bc562e9df70b0b7ea4005e0577619027d",
+    "legacy_size": 318
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "Adventurer Skadi"
+      },
+      {
+        "line": 5,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Hello! I'm Scady who has traveled all over the Priston continent."
+      },
+      {
+        "line": 6,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "I was born from a traveler family with a twin. I'm doing volunteer work at the village during this dangerous time."
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Could you please say 'Hello' to my younger brother? ^0^"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9Ta2FkaS5ucGMNCg0KKkpfTkFNRQkJIkFkdmVudHVyZXIgU2thZGkiDQoNCipKX0NIQVQJCSJIZWxsbyEgSSdtIFNjYWR5IHdobyBoYXMgdHJhdmVsZWQgYWxsIG92ZXIgdGhlIFByaXN0b24gY29udGluZW50LiIgDQoqSl9DSEFUCQkiSSB3YXMgYm9ybiBmcm9tIGEgdHJhdmVsZXIgZmFtaWx5IHdpdGggYSB0d2luLiBJJ20gZG9pbmcgdm9sdW50ZWVyIHdvcmsgYXQgdGhlIHZpbGxhZ2UgZHVyaW5nIHRoaXMgZGFuZ2Vyb3VzIHRpbWUuIg0KKkpfQ0hBVAkJIkNvdWxkIHlvdSBwbGVhc2Ugc2F5ICdIZWxsbycgdG8gbXkgeW91bmdlciBicm90aGVyPyBeMF4i"
+  }
+}

@@ -1846,6 +1846,15 @@ void SetVolumeBGM(DWORD dwVol)
 	}
 }
 
+// Compatibility overload for Settings V2.  The settings window originally
+// declared SetVolumeBGM(int), while the legacy audio implementation exports
+// SetVolumeBGM(DWORD).  Keep both symbols linkable and forward to the canonical
+// DWORD implementation.
+void SetVolumeBGM(int dwVol)
+{
+	SetVolumeBGM(static_cast<DWORD>(dwVol));
+}
+
 BOOL Init_BGM(HWND hwnd)
 {
 	m_hWnd = hwnd;

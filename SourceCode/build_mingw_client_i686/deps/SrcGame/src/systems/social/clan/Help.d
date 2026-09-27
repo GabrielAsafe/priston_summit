@@ -3,6 +3,7 @@
  Shared/content/v1/text_resource/content/TextResourceRuntime.h \
  Shared/content/v1/text_resource/content/CompiledTextResourceSource.h \
  Shared/content/v1/common/Sha256.h \
+ Shared/content/v1/runtime/RuntimeContentPath.h \
  SrcGame/src/systems/social/clan/tjclanDEF.h \
  SrcGame/src/systems/localization/legacy_catalog/language.h \
  SrcGame/src/compat/legacy/sin/sinLinkHeader.h \
@@ -149,6 +150,7 @@
 Shared/content/v1/text_resource/content/TextResourceRuntime.h:
 Shared/content/v1/text_resource/content/CompiledTextResourceSource.h:
 Shared/content/v1/common/Sha256.h:
+Shared/content/v1/runtime/RuntimeContentPath.h:
 SrcGame/src/systems/social/clan/tjclanDEF.h:
 SrcGame/src/systems/localization/legacy_catalog/language.h:
 SrcGame/src/compat/legacy/sin/sinLinkHeader.h:

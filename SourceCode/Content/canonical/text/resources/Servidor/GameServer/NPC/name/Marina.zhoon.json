@@ -1,0 +1,48 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.marina",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Marina.zhoon",
+    "GameServer/NPC/name/Marina.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Marina.zhoon",
+    "legacy_sha256": "e18e16c5005d242121dd3b0470331c44601ae49cb695482a5e1c49756f56662a",
+    "legacy_size": 229
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "Marina"
+      },
+      {
+        "line": 5,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "My dear prince, isn't he so gorgeous?"
+      },
+      {
+        "line": 6,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Except he is being too show off to others, he would be perfect.."
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Actually I think his swag is also very attractive too."
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9NYXJpbmEubnBjDQoNCipKX05BTUUJCSJNYXJpbmEiDQoNCipKX0NIQVQJCSJNeSBkZWFyIHByaW5jZSwgaXNuJ3QgaGUgc28gZ29yZ2VvdXM/Ig0KKkpfQ0hBVAkJIkV4Y2VwdCBoZSBpcyBiZWluZyB0b28gc2hvdyBvZmYgdG8gb3RoZXJzLCBoZSB3b3VsZCBiZSBwZXJmZWN0Li4iDQoqSl9DSEFUCQkiQWN0dWFsbHkgSSB0aGluayBoaXMgc3dhZyBpcyBhbHNvIHZlcnkgYXR0cmFjdGl2ZSB0b28uIg=="
+  }
+}

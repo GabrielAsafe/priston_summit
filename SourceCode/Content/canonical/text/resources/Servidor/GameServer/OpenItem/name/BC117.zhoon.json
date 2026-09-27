@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.bc117",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/BC117.zhoon",
+    "GameServer/OpenItem/name/BC117.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/BC117.zhoon",
+    "legacy_sha256": "73554a8cbf2f0cb802ff34acfe5ec3de1563969469a94299dbf40ddcc2e1835d",
+    "legacy_size": 39
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Might Stone"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9CQzExNS50eHQNCg0KKkpfTmFtZQkJIk1pZ2h0IFN0b25lIg0K"
+  }
+}

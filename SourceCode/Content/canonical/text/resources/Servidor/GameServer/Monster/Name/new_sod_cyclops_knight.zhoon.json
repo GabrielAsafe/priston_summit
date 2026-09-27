@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.new_sod_cyclops_knight",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/Monster/Name/new_sod_cyclops_knight.zhoon",
+    "GameServer/Monster/Name/new_sod_cyclops_knight.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/Monster/Name/new_sod_cyclops_knight.zhoon",
+    "legacy_sha256": "e40a376f5c94332d78c2abe966f9b862d159a27b92ec2c40f9813d6f907aab9c",
+    "legacy_size": 32
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 1,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "SoD Cyclops Knight"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "KkpfTkFNRQkJCSJTb0QgQ3ljbG9wcyBLbmlnaHQiDQo="
+  }
+}

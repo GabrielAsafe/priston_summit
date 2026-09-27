@@ -1,0 +1,36 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.arad",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Arad.Zhoon",
+    "GameServer/NPC/name/Arad.Zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Arad.Zhoon",
+    "legacy_sha256": "364be0806f09d139eb2893b4ed4fb5fcd1ebaed89c0e57bc972697c7e9a70f6c",
+    "legacy_size": 90
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 4,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Trocar Skin"
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": "Obrigado por jogar Summit Tale =)"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9BcmFkLk5QQw0KDQoNCipKX05hbWUJIlRyb2NhciBTa2luIg0KDQoNCipKX0NoYXQJIk9icmlnYWRvIHBvciBqb2dhciBTdW1taXQgVGFsZSA9KSINCg0K"
+  }
+}

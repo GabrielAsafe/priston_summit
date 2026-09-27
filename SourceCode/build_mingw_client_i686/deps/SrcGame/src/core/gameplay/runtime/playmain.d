@@ -4,7 +4,8 @@
  Shared/content/v1/definition/content/CompiledDefinitionSource.h \
  Shared/content/v1/common/Sha256.h \
  Shared/content/v1/text_resource/content/CompiledTextResourceSource.h \
- Shared/opcodes.h SrcGame/src/core/concurrency/JobSystem.h \
+ Shared/content/v1/runtime/RuntimeContentPath.h Shared/opcodes.h \
+ SrcGame/src/core/concurrency/JobSystem.h \
  SrcGame/src/core/concurrency/SourceAssetLock.h \
  SrcGame/src/systems/rendering/legacy_3d/smd3d.h \
  SrcGame/src/systems/rendering/legacy_3d/smDsx.h \
@@ -171,6 +172,7 @@ Shared/content/v1/definition/content/DefinitionRuntime.h:
 Shared/content/v1/definition/content/CompiledDefinitionSource.h:
 Shared/content/v1/common/Sha256.h:
 Shared/content/v1/text_resource/content/CompiledTextResourceSource.h:
+Shared/content/v1/runtime/RuntimeContentPath.h:
 Shared/opcodes.h:
 SrcGame/src/core/concurrency/JobSystem.h:
 SrcGame/src/core/concurrency/SourceAssetLock.h:

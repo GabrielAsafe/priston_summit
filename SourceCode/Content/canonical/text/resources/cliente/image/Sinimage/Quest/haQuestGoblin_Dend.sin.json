@@ -1,0 +1,42 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquestgoblin_dend",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/Sinimage/Quest/haQuestGoblin_Dend.sin",
+    "image/Sinimage/Quest/haQuestGoblin_Dend.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/Sinimage/Quest/haQuestGoblin_Dend.sin",
+    "legacy_sha256": "d499c2b883d94ae4081a695cad7f629c0c5a51e7cbb65485c6df6c1823f30e4f",
+    "legacy_size": 495
+  },
+  "semantic": {
+    "lines": [
+      "Actually Goblins are not intelligent enough to ",
+      "move in formation.",
+      "However with unknown reason, They are moving in ",
+      "formation and marching towards the town gate.",
+      "We need to organize our militia and defend our ",
+      "town quickly.",
+      "",
+      "First I'll give you a ring and amulet to defeat ",
+      "the Goblins.",
+      "",
+      "When you equip your ring and amulet, they will ",
+      "increase your life, stamina and mana.",
+      "Anyway I have to report this message to our Knight ",
+      "leader. May the bless of Awell be with you... ",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "QWN0dWFsbHkgR29ibGlucyBhcmUgbm90IGludGVsbGlnZW50IGVub3VnaCB0byANCm1vdmUgaW4gZm9ybWF0aW9uLg0KSG93ZXZlciB3aXRoIHVua25vd24gcmVhc29uLCBUaGV5IGFyZSBtb3ZpbmcgaW4gDQpmb3JtYXRpb24gYW5kIG1hcmNoaW5nIHRvd2FyZHMgdGhlIHRvd24gZ2F0ZS4NCldlIG5lZWQgdG8gb3JnYW5pemUgb3VyIG1pbGl0aWEgYW5kIGRlZmVuZCBvdXIgDQp0b3duIHF1aWNrbHkuDQoNCkZpcnN0IEknbGwgZ2l2ZSB5b3UgYSByaW5nIGFuZCBhbXVsZXQgdG8gZGVmZWF0IA0KdGhlIEdvYmxpbnMuDQoNCldoZW4geW91IGVxdWlwIHlvdXIgcmluZyBhbmQgYW11bGV0LCB0aGV5IHdpbGwgDQppbmNyZWFzZSB5b3VyIGxpZmUsIHN0YW1pbmEgYW5kIG1hbmEuDQpBbnl3YXkgSSBoYXZlIHRvIHJlcG9ydCB0aGlzIG1lc3NhZ2UgdG8gb3VyIEtuaWdodCANCmxlYWRlci4gTWF5IHRoZSBibGVzcyBvZiBBd2VsbCBiZSB3aXRoIHlvdS4uLiANCg0KDQoNCg0K"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "format": "SRES",
+  "version": 2,
+  "resources": 5604,
+  "aliases": 11209,
+  "unique_payloads": 5427,
+  "strings_bytes": 544179,
+  "payload_bytes": 2149935,
+  "bytes": 2963210,
+  "sha256": "7b02bfecc6b059713d8d1e3c0096925e0b503adc539ad05b28b418d1cf535b78"
+}

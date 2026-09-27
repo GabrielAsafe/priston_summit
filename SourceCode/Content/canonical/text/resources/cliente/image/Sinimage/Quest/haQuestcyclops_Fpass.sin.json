@@ -1,0 +1,33 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquestcyclops_fpass",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/Sinimage/Quest/haQuestcyclops_Fpass.sin",
+    "image/Sinimage/Quest/haQuestcyclops_Fpass.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/Sinimage/Quest/haQuestcyclops_Fpass.sin",
+    "legacy_sha256": "8690a6facb406fcea11fff09b9d27d4575d4a000acf769cf11bc99940b453ded",
+    "legacy_size": 229
+  },
+  "semantic": {
+    "lines": [
+      "Wow Cyclops are really scary monsters! They ",
+      "have great power and defense.",
+      "",
+      "You must defeat those Cyclops and save our land ",
+      "from chaos.",
+      "Get your equipment changed to better one in the ",
+      "town and go to the Cursed land.",
+      "",
+      ""
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "V293IEN5Y2xvcHMgYXJlIHJlYWxseSBzY2FyeSBtb25zdGVycyEgVGhleSANCmhhdmUgZ3JlYXQgcG93ZXIgYW5kIGRlZmVuc2UuDQoNCllvdSBtdXN0IGRlZmVhdCB0aG9zZSBDeWNsb3BzIGFuZCBzYXZlIG91ciBsYW5kIA0KZnJvbSBjaGFvcy4NCkdldCB5b3VyIGVxdWlwbWVudCBjaGFuZ2VkIHRvIGJldHRlciBvbmUgaW4gdGhlIA0KdG93biBhbmQgZ28gdG8gdGhlIEN1cnNlZCBsYW5kLg0KDQoNCg=="
+  }
+}

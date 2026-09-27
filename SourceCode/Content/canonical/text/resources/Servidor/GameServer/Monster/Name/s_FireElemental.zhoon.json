@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.s_fireelemental",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/Monster/Name/s_FireElemental.zhoon",
+    "GameServer/Monster/Name/s_FireElemental.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/Monster/Name/s_FireElemental.zhoon",
+    "legacy_sha256": "d1ec63536f72f9ff28591bdb5c88602934412dc0b1d9246f01caae78fefa2af2",
+    "legacy_size": 56
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "E_NAME",
+        "kind": "name",
+        "text": "Fire Elemental"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly82MF9zX0ZpcmVFbGVtZW50YWwuaW5mDQoNCipFX05BTUUJCQkiRmlyZSBFbGVtZW50YWwiDQo="
+  }
+}

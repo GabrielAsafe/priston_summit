@@ -667,7 +667,7 @@ ContextInputRequest LegacyContextGateway::InventoryAcceptanceRequest(int invento
     if (!item.Flag || item.ItemPosition > 0)
         return request;
 
-    if (state.kind == ContextKind::Merchant && CursorClass == SIN_CURSOR_SELL)
+    if (state.kind == ContextKind::Merchant)
     {
         // Selling to an NPC merchant is immediate in the V2 surface. The
         // resolved path below still runs every legacy salability, Gold-limit
@@ -761,7 +761,7 @@ bool LegacyContextGateway::AcceptInventoryItemResolvedOption(int inventoryIndex,
 {
     const ContextSnapshot state = GetSnapshot();
 
-    if (state.kind == ContextKind::Merchant && CursorClass == SIN_CURSOR_SELL)
+    if (state.kind == ContextKind::Merchant)
     {
         if (inventoryIndex < 0 || inventoryIndex >= INVENTORY_MAXITEM)
             return false;
@@ -899,7 +899,7 @@ bool LegacyContextGateway::AcceptInventoryItem(int inventoryIndex)
         return false;
 
     const ContextSnapshot state = GetSnapshot();
-    if (state.kind == ContextKind::Merchant && CursorClass == SIN_CURSOR_SELL)
+    if (state.kind == ContextKind::Merchant)
         return AcceptInventoryItemResolvedOption(inventoryIndex, 1, false);
 
     if (state.kind == ContextKind::CoinShop || state.kind == ContextKind::TimeCoinShop ||

@@ -1,0 +1,48 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.jin.path_1f1aa5fee2",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Jin.zhoon",
+    "GameServer/NPC/name/Jin.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Jin.zhoon",
+    "legacy_sha256": "eb267db45cde1c64d7a7921484c2c1ca5c84febf21833981b13bec7219fdef2f",
+    "legacy_size": 324
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "Adventurer Jin"
+      },
+      {
+        "line": 5,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Hello! I'm Jin. I've traveled all over the Priston continent."
+      },
+      {
+        "line": 6,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "I had traveled for few years, but now I've been doing volunteer work after many monsters came out."
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "I have a twin sister. We are travelers, and now we are apart. I wonder where she is~ "
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9KaW4ubnBjDQoNCipKX05BTUUJCSJBZHZlbnR1cmVyIEppbiINCg0KKkpfQ0hBVAkJIkhlbGxvISBJJ20gSmluLiBJJ3ZlIHRyYXZlbGVkIGFsbCBvdmVyIHRoZSBQcmlzdG9uIGNvbnRpbmVudC4iIA0KKkpfQ0hBVAkJIkkgaGFkIHRyYXZlbGVkIGZvciBmZXcgeWVhcnMsIGJ1dCBub3cgSSd2ZSBiZWVuIGRvaW5nIHZvbHVudGVlciB3b3JrIGFmdGVyIG1hbnkgbW9uc3RlcnMgY2FtZSBvdXQuIg0KKkpfQ0hBVAkJIkkgaGF2ZSBhIHR3aW4gc2lzdGVyLiBXZSBhcmUgdHJhdmVsZXJzLCBhbmQgbm93IHdlIGFyZSBhcGFydC4gSSB3b25kZXIgd2hlcmUgc2hlIGlzfiAi"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.loja_do_tempo",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Loja do Tempo.Zhoon",
+    "GameServer/NPC/name/Loja do Tempo.Zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Loja do Tempo.Zhoon",
+    "legacy_sha256": "861432b9c259aded71ff8931c6c3ff82cb31065d7dff73ed24ceb421f50a8e2a",
+    "legacy_size": 110
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 4,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Loja do Tempo"
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": "Aproveite os time e tune o seu personagem!"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9Mb2phIGRvIFRlbXBvLk5QQw0KDQoNCipKX05hbWUJIkxvamEgZG8gVGVtcG8iDQoNCg0KKkpfQ2hhdAkiQXByb3ZlaXRlIG9zIHRpbWUgZSB0dW5lIG8gc2V1IHBlcnNvbmFnZW0hIg0KDQo="
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.toolspilai",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/toolspilai.Zhoon",
+    "GameServer/NPC/name/toolspilai.Zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/toolspilai.Zhoon",
+    "legacy_sha256": "4216d9062c4fbabe998e187d597b83cf297df9c6f41b2a9558bc92fa3a036c16",
+    "legacy_size": 88
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 4,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Loja de Brinquedos"
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": "What im talking?!?"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly90b29sc3BpbGFpLk5QQw0KDQoNCipKX05hbWUJIkxvamEgZGUgQnJpbnF1ZWRvcyINCg0KDQoqSl9DaGF0CSJXaGF0IGltIHRhbGtpbmc/IT8iDQoNCg=="
+  }
+}

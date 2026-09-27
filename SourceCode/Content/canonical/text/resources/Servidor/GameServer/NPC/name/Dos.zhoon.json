@@ -1,0 +1,48 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.dos",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Dos.zhoon",
+    "GameServer/NPC/name/Dos.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Dos.zhoon",
+    "legacy_sha256": "1cf9b8b90ba096e772a11f547241a4e6553cb857f2f6d03f4741a3accce3ad9f",
+    "legacy_size": 216
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "Dos"
+      },
+      {
+        "line": 5,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "I work in a Secret Labratory."
+      },
+      {
+        "line": 6,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "I have learned the skill of drilling colored holes in your equipment."
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "My drills can penetrate the toughest of armors."
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9Eb3MubnBjDQoNCipKX05BTUUJCSJEb3MiDQoNCipKX0NIQVQJCSJJIHdvcmsgaW4gYSBTZWNyZXQgTGFicmF0b3J5LiIgDQoqSl9DSEFUCQkiSSBoYXZlIGxlYXJuZWQgdGhlIHNraWxsIG9mIGRyaWxsaW5nIGNvbG9yZWQgaG9sZXMgaW4geW91ciBlcXVpcG1lbnQuIg0KKkpfQ0hBVAkJIk15IGRyaWxscyBjYW4gcGVuZXRyYXRlIHRoZSB0b3VnaGVzdCBvZiBhcm1vcnMuIg0K"
+  }
+}

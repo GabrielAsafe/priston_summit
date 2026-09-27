@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.r3b_cursed_web",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/Monster/Name/R3B Cursed Web.zhoon",
+    "GameServer/Monster/Name/R3B Cursed Web.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/Monster/Name/R3B Cursed Web.zhoon",
+    "legacy_sha256": "c7e546afb4c5c0510e032ee87472c3ff4391f9af1e739c370e102b19ff2a81f1",
+    "legacy_size": 24
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 1,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "R3B Cursed Web"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "KkpfTkFNRSAiUjNCIEN1cnNlZCBXZWIi"
+  }
+}

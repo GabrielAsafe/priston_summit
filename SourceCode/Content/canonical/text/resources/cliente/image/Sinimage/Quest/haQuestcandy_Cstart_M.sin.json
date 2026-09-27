@@ -1,0 +1,40 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquestcandy_cstart_m.path_53df747966",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/Sinimage/Quest/haQuestcandy_Cstart_M.sin",
+    "image/Sinimage/Quest/haQuestcandy_Cstart_M.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/Sinimage/Quest/haQuestcandy_Cstart_M.sin",
+    "legacy_sha256": "2eca621dc9a89d375df3bf2456c3690760069220ac85bb1c905154abd284022d",
+    "legacy_size": 455
+  },
+  "semantic": {
+    "lines": [
+      "Wow long time no see. You've changed alot after ",
+      "the Rabbie hunt. Can you spare me some time to tell ",
+      "me your story? It seems very interesting.",
+      "Oops! I almost forgot something by having chat with ",
+      "you.",
+      "",
+      "Great warrior! Can you do me a favor? Can you please ",
+      "hand this candy to blacksmith Bartz?",
+      "He left his candy last night at my home. He is ",
+      "probably looking for this candy badly.",
+      "",
+      "",
+      "[Quest Subject]",
+      "",
+      "Give this candy to blacksmith Bartz. ",
+      ""
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "V293IGxvbmcgdGltZSBubyBzZWUuIFlvdSd2ZSBjaGFuZ2VkIGFsb3QgYWZ0ZXIgDQp0aGUgUmFiYmllIGh1bnQuIENhbiB5b3Ugc3BhcmUgbWUgc29tZSB0aW1lIHRvIHRlbGwgDQptZSB5b3VyIHN0b3J5PyBJdCBzZWVtcyB2ZXJ5IGludGVyZXN0aW5nLg0KT29wcyEgSSBhbG1vc3QgZm9yZ290IHNvbWV0aGluZyBieSBoYXZpbmcgY2hhdCB3aXRoIA0KeW91Lg0KDQpHcmVhdCB3YXJyaW9yISBDYW4geW91IGRvIG1lIGEgZmF2b3I/IENhbiB5b3UgcGxlYXNlIA0KaGFuZCB0aGlzIGNhbmR5IHRvIGJsYWNrc21pdGggQmFydHo/DQpIZSBsZWZ0IGhpcyBjYW5keSBsYXN0IG5pZ2h0IGF0IG15IGhvbWUuIEhlIGlzIA0KcHJvYmFibHkgbG9va2luZyBmb3IgdGhpcyBjYW5keSBiYWRseS4NCg0KDQpbUXVlc3QgU3ViamVjdF0NCg0KR2l2ZSB0aGlzIGNhbmR5IHRvIGJsYWNrc21pdGggQmFydHouIA0KDQo="
+  }
+}

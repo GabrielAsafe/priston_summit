@@ -1,0 +1,42 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.hermit",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Hermit.zhoon",
+    "GameServer/NPC/name/Hermit.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Hermit.zhoon",
+    "legacy_sha256": "bf6f7bc9d86275548895107d510235a1ef5d3c7129aed83d3d587db6143ccd63",
+    "legacy_size": 111
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "Hermit"
+      },
+      {
+        "line": 5,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "No ones here.. right?"
+      },
+      {
+        "line": 6,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "It will be safe hiding here.."
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9IZXJtaXQubnBjDQoNCipKX05BTUUJCSJIZXJtaXQiDQoNCipKX0NIQVQJCSJObyBvbmVzIGhlcmUuLiByaWdodD8iDQoqSl9DSEFUCQkiSXQgd2lsbCBiZSBzYWZlIGhpZGluZyBoZXJlLi4i"
+  }
+}

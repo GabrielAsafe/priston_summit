@@ -1,0 +1,36 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.loja_da_allya",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Loja da Allya.Zhoon",
+    "GameServer/NPC/name/Loja da Allya.Zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Loja da Allya.Zhoon",
+    "legacy_sha256": "be96a3e69e21018da8e95c5ac2912f6682112a911613afae2540d516387759be",
+    "legacy_size": 89
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 4,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Loja do Repot L2"
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": "What im talking?!?"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9Mb2phIGRhIEFsbHlhLk5QQw0KDQoNCipKX05hbWUJIkxvamEgZG8gUmVwb3QgTDIiDQoNCg0KKkpfQ2hhdAkiV2hhdCBpbSB0YWxraW5nPyE/Ig0KDQo="
+  }
+}

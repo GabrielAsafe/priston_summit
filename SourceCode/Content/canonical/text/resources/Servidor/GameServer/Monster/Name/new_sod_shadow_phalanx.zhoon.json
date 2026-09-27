@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.new_sod_shadow_phalanx",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/Monster/Name/new_sod_shadow_phalanx.zhoon",
+    "GameServer/Monster/Name/new_sod_shadow_phalanx.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/Monster/Name/new_sod_shadow_phalanx.zhoon",
+    "legacy_sha256": "f42ca1d0b236c5a0e9da67b0fef318155997e4ca245f92c1b19f0ff199b51f74",
+    "legacy_size": 34
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 1,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "SoD Shadow Phalanx"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "KkpfTkFNRQkJCSJTb0QgU2hhZG93IFBoYWxhbngiDQoNCg=="
+  }
+}

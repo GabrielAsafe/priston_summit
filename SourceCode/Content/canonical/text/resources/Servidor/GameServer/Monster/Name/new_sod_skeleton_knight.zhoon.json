@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.new_sod_skeleton_knight",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/Monster/Name/new_sod_skeleton_knight.zhoon",
+    "GameServer/Monster/Name/new_sod_skeleton_knight.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/Monster/Name/new_sod_skeleton_knight.zhoon",
+    "legacy_sha256": "bbd47f5d7c3449efb29bee307a1e99b86ec3ee3802104e3e34f517ab97bdc5ab",
+    "legacy_size": 33
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 1,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "SoD Skeleton Knight"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "KkpfTkFNRQkJCSJTb0QgU2tlbGV0b24gS25pZ2h0Ig0K"
+  }
+}

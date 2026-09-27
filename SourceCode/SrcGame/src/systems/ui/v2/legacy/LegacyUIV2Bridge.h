@@ -12,6 +12,8 @@ bool HandleCharacterHotkeys();
 bool HandleSkillShortcutHotkeys();
 bool HandleQuestHotkey();
 bool HandleMainHudHotkeys();
+void ToggleSettingsWindow();
+[[nodiscard]] bool IsSettingsWindowOpen();
 bool HandleModalHotkeys();
 void OnResolutionChanged(int width, int height);
 

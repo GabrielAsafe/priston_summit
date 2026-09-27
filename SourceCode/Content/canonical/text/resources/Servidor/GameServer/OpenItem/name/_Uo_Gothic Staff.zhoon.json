@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.uo_gothic_staff",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/_Uo_Gothic Staff.zhoon",
+    "GameServer/OpenItem/name/_Uo_Gothic Staff.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/_Uo_Gothic Staff.zhoon",
+    "legacy_sha256": "08333babb43d8280e1f3d371b941291be379554137cd3fd18a9cfcde74ddeb68",
+    "legacy_size": 54
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Gothic Staff"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9VV00xMjFfR290aGljIFN0YWZmLnR4dA0KDQoqSl9OYW1lCQkiR290aGljIFN0YWZmIg0K"
+  }
+}

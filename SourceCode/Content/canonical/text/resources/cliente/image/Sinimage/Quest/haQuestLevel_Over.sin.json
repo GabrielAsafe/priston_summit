@@ -1,0 +1,38 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquestlevel_over",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/Sinimage/Quest/haQuestLevel_Over.sin",
+    "image/Sinimage/Quest/haQuestLevel_Over.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/Sinimage/Quest/haQuestLevel_Over.sin",
+    "legacy_sha256": "5115ddacd17fd744533572bd733b2d71c8d7060f91b541ec67050ffbd9420170",
+    "legacy_size": 502
+  },
+  "semantic": {
+    "lines": [
+      "You are already over 39 levels and become a ",
+      "dignified combatant. So you can't do the quests ",
+      "for beginners anymore. You've grew out of ",
+      "beginner, how do you feel? Are you happy? I was ",
+      "also very proud of you each time you grew up. ",
+      "Please go to the wide world and train more ",
+      "in order to arrest Igolanos and its cohorts.",
+      "",
+      "From now, you can't do the quests for beginners. ",
+      "If you are under the quest for beginners, ",
+      "it will be stopped.",
+      "",
+      "May the spirit of Awell and Mardanos be with you.",
+      ""
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "WW91IGFyZSBhbHJlYWR5IG92ZXIgMzkgbGV2ZWxzIGFuZCBiZWNvbWUgYSANCmRpZ25pZmllZCBjb21iYXRhbnQuIFNvIHlvdSBjYW4ndCBkbyB0aGUgcXVlc3RzIA0KZm9yIGJlZ2lubmVycyBhbnltb3JlLiBZb3UndmUgZ3JldyBvdXQgb2YgDQpiZWdpbm5lciwgaG93IGRvIHlvdSBmZWVsPyBBcmUgeW91IGhhcHB5PyBJIHdhcyANCmFsc28gdmVyeSBwcm91ZCBvZiB5b3UgZWFjaCB0aW1lIHlvdSBncmV3IHVwLiANClBsZWFzZSBnbyB0byB0aGUgd2lkZSB3b3JsZCBhbmQgdHJhaW4gbW9yZSANCmluIG9yZGVyIHRvIGFycmVzdCBJZ29sYW5vcyBhbmQgaXRzIGNvaG9ydHMuDQoNCkZyb20gbm93LCB5b3UgY2FuJ3QgZG8gdGhlIHF1ZXN0cyBmb3IgYmVnaW5uZXJzLiANCklmIHlvdSBhcmUgdW5kZXIgdGhlIHF1ZXN0IGZvciBiZWdpbm5lcnMsIA0KaXQgd2lsbCBiZSBzdG9wcGVkLg0KDQpNYXkgdGhlIHNwaXJpdCBvZiBBd2VsbCBhbmQgTWFyZGFub3MgYmUgd2l0aCB5b3UuDQoNCg=="
+  }
+}

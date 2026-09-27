@@ -1,0 +1,34 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquestgoblin_dpass_m.path_d963da8dc6",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/Sinimage/Quest/haQuestGoblin_Dpass_M.sin",
+    "image/Sinimage/Quest/haQuestGoblin_Dpass_M.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/Sinimage/Quest/haQuestGoblin_Dpass_M.sin",
+    "legacy_sha256": "8543e3b827603eecf48e70129759ee3d8ec5768b2bd6c6f7f2b4bccae5787512",
+    "legacy_size": 150
+  },
+  "semantic": {
+    "lines": [
+      "You haven't hunted all of the North Goblins. ",
+      "Potions are sold at the grocery shop in the ",
+      "village. So, get ready for hunting there.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "WW91IGhhdmVuJ3QgaHVudGVkIGFsbCBvZiB0aGUgTm9ydGggR29ibGlucy4gDQpQb3Rpb25zIGFyZSBzb2xkIGF0IHRoZSBncm9jZXJ5IHNob3AgaW4gdGhlIA0KdmlsbGFnZS4gU28sIGdldCByZWFkeSBmb3IgaHVudGluZyB0aGVyZS4NCg0KDQoNCg0KDQoNCg0K"
+  }
+}

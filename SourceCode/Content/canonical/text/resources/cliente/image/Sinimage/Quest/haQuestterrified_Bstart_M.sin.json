@@ -1,0 +1,44 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquestterrified_bstart_m.path_211f94f48a",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/Sinimage/Quest/haQuestterrified_Bstart_M.sin",
+    "image/Sinimage/Quest/haQuestterrified_Bstart_M.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/Sinimage/Quest/haQuestterrified_Bstart_M.sin",
+    "legacy_sha256": "6cb9536c7b966f3c3dcaa604dabe4c3feaa51cba03a70b2b1e851b49151fac81",
+    "legacy_size": 553
+  },
+  "semantic": {
+    "lines": [
+      "We are not sure when the horrible monsters started to",
+      "appear outside of our town. So, people can't",
+      "go outside, they have to stay inside to be safe.",
+      "",
+      "If you go in town and meet some people, it will",
+      "be good to talk and trade things with them.",
+      "",
+      "If you want to be a stronger warrior, ",
+      "you have to hunt monsters outside the town.",
+      "Hunt 5 Rabbies in the Road to the Wind and come ",
+      "back to me, that is the first step of becoming ",
+      "a Warrior.",
+      "",
+      "[Quest Subject]",
+      "",
+      "     After having hunted 5 Rabbies in Road to the Wind, ",
+      "     go back to Ran.",
+      " ",
+      "",
+      ""
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "V2UgYXJlIG5vdCBzdXJlIHdoZW4gdGhlIGhvcnJpYmxlIG1vbnN0ZXJzIHN0YXJ0ZWQgdG8NCmFwcGVhciBvdXRzaWRlIG9mIG91ciB0b3duLiBTbywgcGVvcGxlIGNhbid0DQpnbyBvdXRzaWRlLCB0aGV5IGhhdmUgdG8gc3RheSBpbnNpZGUgdG8gYmUgc2FmZS4NCg0KSWYgeW91IGdvIGluIHRvd24gYW5kIG1lZXQgc29tZSBwZW9wbGUsIGl0IHdpbGwNCmJlIGdvb2QgdG8gdGFsayBhbmQgdHJhZGUgdGhpbmdzIHdpdGggdGhlbS4NCg0KSWYgeW91IHdhbnQgdG8gYmUgYSBzdHJvbmdlciB3YXJyaW9yLCANCnlvdSBoYXZlIHRvIGh1bnQgbW9uc3RlcnMgb3V0c2lkZSB0aGUgdG93bi4NCkh1bnQgNSBSYWJiaWVzIGluIHRoZSBSb2FkIHRvIHRoZSBXaW5kIGFuZCBjb21lIA0KYmFjayB0byBtZSwgdGhhdCBpcyB0aGUgZmlyc3Qgc3RlcCBvZiBiZWNvbWluZyANCmEgV2Fycmlvci4NCg0KW1F1ZXN0IFN1YmplY3RdDQoNCiAgICAgQWZ0ZXIgaGF2aW5nIGh1bnRlZCA1IFJhYmJpZXMgaW4gUm9hZCB0byB0aGUgV2luZCwgDQogICAgIGdvIGJhY2sgdG8gUmFuLg0KIA0KDQoNCg=="
+  }
+}

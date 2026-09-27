@@ -1,0 +1,36 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.enzo_o_restaure",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Enzo, o Restaure.Zhoon",
+    "GameServer/NPC/name/Enzo, o Restaure.Zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Enzo, o Restaure.Zhoon",
+    "legacy_sha256": "577b44f9c17cfac818d32db5db0f0f0aa04a8d9b821a20810de434488c95ae8c",
+    "legacy_size": 147
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 4,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Creed, O Restaurador"
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": "Quebrou seu item no aging? não se preocupe com isso, eu lhe ajudarei!"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9FbnpvLCBvIFJlc3RhdXJlLk5QQw0KDQoNCipKX05hbWUJIkNyZWVkLCBPIFJlc3RhdXJhZG9yIg0KDQoNCipKX0NoYXQJIlF1ZWJyb3Ugc2V1IGl0ZW0gbm8gYWdpbmc/IG7jbyBzZSBwcmVvY3VwZSBjb20gaXNzbywgZXUgbGhlIGFqdWRhcmVpISINCg0K"
+  }
+}

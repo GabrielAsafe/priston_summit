@@ -1,0 +1,36 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.phillai_quest_shop",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Phillai Quest Shop.Zhoon",
+    "GameServer/NPC/name/Phillai Quest Shop.Zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Phillai Quest Shop.Zhoon",
+    "legacy_sha256": "3f52637443df59f2a23fda843c083845c4da9d76cc091b1f426ab3847d9a5759",
+    "legacy_size": 95
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 4,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Pillai Quest Shop"
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": "What im talking?!?"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9QaGlsbGFpIFF1ZXN0IFNob3AuTlBDDQoNCg0KKkpfTmFtZQkiUGlsbGFpIFF1ZXN0IFNob3AiDQoNCg0KKkpfQ2hhdAkiV2hhdCBpbSB0YWxraW5nPyE/Ig0KDQo="
+  }
+}

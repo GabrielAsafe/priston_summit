@@ -1,0 +1,54 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.t_messenger",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/T_Messenger.zhoon",
+    "GameServer/NPC/name/T_Messenger.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/T_Messenger.zhoon",
+    "legacy_sha256": "7c14ca007ec813226cc753d522d4396bf979187f5ec04a7e814371abe2a356b9",
+    "legacy_size": 334
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "Messenger Ian"
+      },
+      {
+        "line": 5,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "How are you? I'm Ian, the messenger of Temskron."
+      },
+      {
+        "line": 6,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "I deliver urgent messages all over the continent."
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Currently, all the kingdoms in Priston are under suppressing monsters."
+      },
+      {
+        "line": 8,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "There are many powerful monsters out of the village, so be careful."
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9UX01lc3Nlbmdlci5ucGMNCg0KKkpfTkFNRQkJIk1lc3NlbmdlciBJYW4iDQoNCipKX0NIQVQJCSJIb3cgYXJlIHlvdT8gSSdtIElhbiwgdGhlIG1lc3NlbmdlciBvZiBUZW1za3Jvbi4iIA0KKkpfQ0hBVAkJIkkgZGVsaXZlciB1cmdlbnQgbWVzc2FnZXMgYWxsIG92ZXIgdGhlIGNvbnRpbmVudC4iDQoqSl9DSEFUCQkiQ3VycmVudGx5LCBhbGwgdGhlIGtpbmdkb21zIGluIFByaXN0b24gYXJlIHVuZGVyIHN1cHByZXNzaW5nIG1vbnN0ZXJzLiINCipKX0NIQVQJCSJUaGVyZSBhcmUgbWFueSBwb3dlcmZ1bCBtb25zdGVycyBvdXQgb2YgdGhlIHZpbGxhZ2UsIHNvIGJlIGNhcmVmdWwuIg=="
+  }
+}

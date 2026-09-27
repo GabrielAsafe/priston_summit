@@ -1,0 +1,48 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.soul",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Soul.zhoon",
+    "GameServer/NPC/name/Soul.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Soul.zhoon",
+    "legacy_sha256": "ea25d15f5029ce0a4fd1d7c588cbe8d0f4d0c9d8b4e12a97a057c40bb1ba9684",
+    "legacy_size": 196
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "Wandering Soul"
+      },
+      {
+        "line": 5,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Your Majestry. Please listen to me."
+      },
+      {
+        "line": 6,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "our mission must be completed no matter what."
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Please share your strength to us."
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9Tb3VsLm5wYw0KDQoqSl9OQU1FCQkiV2FuZGVyaW5nIFNvdWwiDQoNCipKX0NIQVQJCSJZb3VyIE1hamVzdHJ5LiBQbGVhc2UgbGlzdGVuIHRvIG1lLiIgDQoqSl9DSEFUCQkib3VyIG1pc3Npb24gbXVzdCBiZSBjb21wbGV0ZWQgbm8gbWF0dGVyIHdoYXQuIg0KKkpfQ0hBVAkJIlBsZWFzZSBzaGFyZSB5b3VyIHN0cmVuZ3RoIHRvIHVzLiINCg=="
+  }
+}

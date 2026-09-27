@@ -4,6 +4,7 @@
  Shared/content/v1/gameplay_config/content/CompiledGameplayConfigSource.h \
  Shared/content/v1/common/Sha256.h \
  Shared/content/v1/text_resource/content/CompiledTextResourceSource.h \
+ Shared/content/v1/runtime/RuntimeContentPath.h \
  SrcServer/src/systems/gameplay/companions/CompanionSystem.h \
  Shared/gameplay/companions/CompanionProtocol.h \
  SrcServer/src/systems/gameplay/companions/CompanionProfileStore.h \
@@ -50,6 +51,7 @@ Shared/content/v1/gameplay_config/content/GameplayConfigRuntime.h:
 Shared/content/v1/gameplay_config/content/CompiledGameplayConfigSource.h:
 Shared/content/v1/common/Sha256.h:
 Shared/content/v1/text_resource/content/CompiledTextResourceSource.h:
+Shared/content/v1/runtime/RuntimeContentPath.h:
 SrcServer/src/systems/gameplay/companions/CompanionSystem.h:
 Shared/gameplay/companions/CompanionProtocol.h:
 SrcServer/src/systems/gameplay/companions/CompanionProfileStore.h:

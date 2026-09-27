@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.ws253",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/WS253.zhoon",
+    "GameServer/OpenItem/name/WS253.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/WS253.zhoon",
+    "legacy_sha256": "6eabd2516d0974452ab58243dc8683dc13255ca6caf804ef6fba9c0cadfa254a",
+    "legacy_size": 41
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Support Sword"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9XUzI1NC50eHQNCg0KKkpfTmFtZQkJIlN1cHBvcnQgU3dvcmQiDQo="
+  }
+}

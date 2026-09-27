@@ -1,15 +1,27 @@
 #pragma once
-#include <cstdlib>
 #include <string>
 #include <vector>
 #include "content/v1/localization/content/CompiledLocalizationSource.h"
+#include "content/v1/runtime/RuntimeContentPath.h"
 
 namespace summit { namespace content { namespace localization {
 
-inline bool LocalizationStrictMode(){const char*value=std::getenv("SUMMIT_LOCALIZATION_STRICT");return value&&value[0]=='1';}
-inline const char* LocalizationPackPath(){const char*path=std::getenv("SUMMIT_LOCALIZATION_PACK");return(path&&*path)?path:0;}
-inline const char* LocalizationLocale(){const char*locale=std::getenv("SUMMIT_LOCALE");return(locale&&*locale)?locale:"en";}
-inline bool LocalizationOverrideEnabled(){const char*locale=std::getenv("SUMMIT_LOCALE");return locale&&*locale;}
+inline bool LocalizationStrictMode(){return false;}
+inline const char* LocalizationPackPath(){static const std::string p=summit::content::runtime::ResolveRuntimePackPath("localization.sloc");return p.c_str();}
+inline const char* LocalizationLocale(){
+#ifdef _LANGUAGE_BRAZIL
+ return "pt-BR";
+#else
+ return "en";
+#endif
+}
+inline bool LocalizationOverrideEnabled(){
+#ifdef _LANGUAGE_BRAZIL
+ return true;
+#else
+ return false;
+#endif
+}
 
 inline const CompiledLocalizationSource* ActiveLocalizationSource(){
     struct Holder{std::string path;CompiledLocalizationSource*source;Holder():source(0){const char*configured=LocalizationPackPath();if(configured){path=configured;source=new CompiledLocalizationSource(path.c_str());}}~Holder(){delete source;}};

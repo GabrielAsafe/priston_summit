@@ -1,0 +1,36 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.navisko_warehouse",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/navisko-warehouse.zhoon",
+    "GameServer/NPC/name/navisko-warehouse.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/navisko-warehouse.zhoon",
+    "legacy_sha256": "51fab48cf0a1b552df4674c867144406160abb587a6a8001a152c669f138fb53",
+    "legacy_size": 89
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "T_NAME",
+        "kind": "name",
+        "text": "­Ü®wºÞ²z­û"
+      },
+      {
+        "line": 4,
+        "legacy_key": "T_CHAT",
+        "kind": "chat",
+        "text": "¤£­n«ü±æ§Ú·|´£¨Ñ§K¶OªA°È¡C"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9uYXZpc2tvLXdhcmVob3VzZS5ucGMNCg0KKlRfTkFNRQkJIq3crne63rJ6rfsiDQoqVF9DSEFUCQkipKOtbqv8sean2rd8tKOo0adLtk+qQbDIoUMiDQo="
+  }
+}

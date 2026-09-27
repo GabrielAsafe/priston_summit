@@ -1,0 +1,31 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquestterrified_bpass_m.path_6ac3e7037a",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/Sinimage/Quest/haQuestterrified_Bpass_M.sin",
+    "image/Sinimage/Quest/haQuestterrified_Bpass_M.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/Sinimage/Quest/haQuestterrified_Bpass_M.sin",
+    "legacy_sha256": "26b6eed6078575b343d9e98f3d0c7730e0f180c16636ec5506e5b5ff72047068",
+    "legacy_size": 179
+  },
+  "semantic": {
+    "lines": [
+      "",
+      "You haven't hunted all of the Rabbies.",
+      "You can buy the potions in the town so get ready ",
+      "for hunting.",
+      "",
+      "Double click the minimap and you can find the ",
+      "miscellaneous shop. "
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "DQpZb3UgaGF2ZW4ndCBodW50ZWQgYWxsIG9mIHRoZSBSYWJiaWVzLg0KWW91IGNhbiBidXkgdGhlIHBvdGlvbnMgaW4gdGhlIHRvd24gc28gZ2V0IHJlYWR5IA0KZm9yIGh1bnRpbmcuDQoNCkRvdWJsZSBjbGljayB0aGUgbWluaW1hcCBhbmQgeW91IGNhbiBmaW5kIHRoZSANCm1pc2NlbGxhbmVvdXMgc2hvcC4gDQo="
+  }
+}

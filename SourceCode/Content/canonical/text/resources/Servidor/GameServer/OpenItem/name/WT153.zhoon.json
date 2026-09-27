@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.wt153",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/WT153.zhoon",
+    "GameServer/OpenItem/name/WT153.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/WT153.zhoon",
+    "legacy_sha256": "9a9a0940713e136dee085e658df6e61c3feaae97fcb8b2b1693a12a6323d4a73",
+    "legacy_size": 43
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Support Javelin"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9XVDE1My50eHQNCg0KKkpfTmFtZQkJIlN1cHBvcnQgSmF2ZWxpbiINCg=="
+  }
+}

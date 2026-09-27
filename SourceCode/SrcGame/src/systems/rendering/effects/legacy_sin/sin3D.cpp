@@ -2,9 +2,20 @@
 
 #include "compat/legacy/sin/sinLinkHeader.h"
 
+#include <cstdlib>
+
 #define  _ASSA_EFFECT_START_
 
 cSIN3D cSin3D;
+
+namespace
+{
+bool SummitLegacyEffectTestKeysEnabled()
+{
+	const char *value = std::getenv("SUMMIT_ENABLE_EFFECT_TEST_KEYS");
+	return value && value[0] == '1';
+}
+}
 
 int sinStarParticleKey = 0;
 int TestCount2 = 0;
@@ -146,7 +157,7 @@ void cSIN3D::KeyDown()
 
 
 
-	if(smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR)
+	if(smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR && SummitLegacyEffectTestKeysEnabled())
 	{
 		ParticleTestKey();
 		sinSkillTestKey();

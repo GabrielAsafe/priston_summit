@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.uo_dragon_born_hammer",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/_Uo_Dragon Born Hammer.zhoon",
+    "GameServer/OpenItem/name/_Uo_Dragon Born Hammer.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/_Uo_Dragon Born Hammer.zhoon",
+    "legacy_sha256": "9bb63080d8f7a58a0af67f1c7eef6e8b804a68ae6e1810407c6357e0b1703022",
+    "legacy_size": 66
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Dragon Bone Hammer"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9VV0gxMjFfRHJhZ29uIEJvbmUgSGFtbWVyLnR4dA0KDQoqSl9OYW1lCQkiRHJhZ29uIEJvbmUgSGFtbWVyIg0K"
+  }
+}

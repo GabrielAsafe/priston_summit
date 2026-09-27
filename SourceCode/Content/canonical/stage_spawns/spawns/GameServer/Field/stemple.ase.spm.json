@@ -1,0 +1,18 @@
+{
+  "schema": "summit.stage-spawn/v1",
+  "schema_version": 1,
+  "id": "spawn.stemple",
+  "logical_path": "GameServer/Field/stemple.ase.spm",
+  "legacy_source": {
+    "path": "Servidor/GameServer/Field/stemple.ase.spm",
+    "sha256": "f39c7db88f476e1d85bac19d6f16a60c9d8b7498dee239285ae18c3d2827cca2"
+  },
+  "limit_max": 300,
+  "delay": {
+    "shift": 1,
+    "milliseconds": 2000
+  },
+  "open_limit": 2,
+  "actors": [],
+  "bosses": []
+}

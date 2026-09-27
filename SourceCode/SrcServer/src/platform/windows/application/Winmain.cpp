@@ -277,7 +277,7 @@ int main(int argv, char* argc[])
 	SetUnhandledExceptionFilter(unhandled_handler);
 	HookAPI("kernel32.dll", "SetUnhandledExceptionFilter", RedirectedSetUnhandledExceptionFilter);
 
-	SetConsoleTitle("Summit Tale - Console");
+	SetConsoleTitle("Just Tale - Console");
 
 	initSinCos();
 	srand(GetCurrentTime());

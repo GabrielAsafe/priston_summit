@@ -1,0 +1,128 @@
+{
+  "schema": "summit.forever-fall-recovery/v1",
+  "archive_root": "/home/gabriel/armazem/priston",
+  "source_code": "/home/gabriel/Área de Trabalho/summit/SourceCode",
+  "canonical_root": "/home/gabriel/Transferências/refactor/refactor_01/refactor/map/SUMMIT_TEXT_JSON_MIGRATION_COMPLETE_PORTABLE_2026-09-26/canonical",
+  "source_priority": [
+    "PT_EU",
+    "ExMachina",
+    "priston-main_src"
+  ],
+  "selected_sources": {
+    "forever-fall-01.ase.spm": {
+      "kind": "file",
+      "label": "ExMachina",
+      "rank": 1,
+      "where": "/home/gabriel/armazem/priston/ExMachina/server/GameServer/Field/Forever-Fall-01.ase.spm",
+      "rel": "server/GameServer/Field/Forever-Fall-01.ase.spm",
+      "score": 140,
+      "size": 385,
+      "sha256": "a556bf7ae068c647d9ee12bbb8406af34b4aec6645e02a4b1de3e8a8ced47479"
+    },
+    "forever-fall-02.ase.spm": {
+      "kind": "file",
+      "label": "ExMachina",
+      "rank": 1,
+      "where": "/home/gabriel/armazem/priston/ExMachina/server/GameServer/Field/Forever-Fall-02.ase.spm",
+      "rel": "server/GameServer/Field/Forever-Fall-02.ase.spm",
+      "score": 140,
+      "size": 408,
+      "sha256": "1dcde08645710bb1b373735dd15fbd1dda31fd2318acd852cc873c96b52c6556"
+    },
+    "forever-fall-03.ase.spm": {
+      "kind": "file",
+      "label": "ExMachina",
+      "rank": 1,
+      "where": "/home/gabriel/armazem/priston/ExMachina/server/GameServer/Field/Forever-Fall-03.ase.spm",
+      "rel": "server/GameServer/Field/Forever-Fall-03.ase.spm",
+      "score": 140,
+      "size": 416,
+      "sha256": "647c5081d0549e755f8ba659bca00b3fc9cbfee20a6cf3fcebc367b955932fc2"
+    },
+    "forever-fall-04.ase.spm": {
+      "kind": "file",
+      "label": "ExMachina",
+      "rank": 1,
+      "where": "/home/gabriel/armazem/priston/ExMachina/server/GameServer/Field/Forever-Fall-04.ase.spm",
+      "rel": "server/GameServer/Field/Forever-Fall-04.ase.spm",
+      "score": 140,
+      "size": 406,
+      "sha256": "75f0075df7e8c25f77e110292db3ccc76a051a87b4ed3652f27cc4574ec9747c"
+    }
+  },
+  "before": {
+    "forever-fall-01.ase.spm": {
+      "actors": 0,
+      "bosses": 0,
+      "actor_weight_sum": 0,
+      "json_path": "spawns/GameServer/Field/forever-fall-01.ase.spm.json"
+    },
+    "forever-fall-02.ase.spm": {
+      "actors": 0,
+      "bosses": 0,
+      "actor_weight_sum": 0,
+      "json_path": "spawns/GameServer/Field/forever-fall-02.ase.spm.json"
+    },
+    "forever-fall-03.ase.spm": {
+      "actors": 0,
+      "bosses": 0,
+      "actor_weight_sum": 0,
+      "json_path": "spawns/GameServer/Field/forever-fall-03.ase.spm.json"
+    },
+    "forever-fall-04.ase.spm": {
+      "actors": 0,
+      "bosses": 0,
+      "actor_weight_sum": 0,
+      "json_path": "spawns/GameServer/Field/forever-fall-04.ase.spm.json"
+    }
+  },
+  "after": {
+    "forever-fall-01.ase.spm": {
+      "actors": 5,
+      "bosses": 0,
+      "actor_weight_sum": 100,
+      "json_path": "spawns/GameServer/Field/forever-fall-01.ase.spm.json"
+    },
+    "forever-fall-02.ase.spm": {
+      "actors": 6,
+      "bosses": 0,
+      "actor_weight_sum": 100,
+      "json_path": "spawns/GameServer/Field/forever-fall-02.ase.spm.json"
+    },
+    "forever-fall-03.ase.spm": {
+      "actors": 7,
+      "bosses": 0,
+      "actor_weight_sum": 100,
+      "json_path": "spawns/GameServer/Field/forever-fall-03.ase.spm.json"
+    },
+    "forever-fall-04.ase.spm": {
+      "actors": 6,
+      "bosses": 0,
+      "actor_weight_sum": 100,
+      "json_path": "spawns/GameServer/Field/forever-fall-04.ase.spm.json"
+    }
+  },
+  "candidate_pack": {
+    "bytes": 15484,
+    "sha256": "e16bdd2a61a50ca3b61fb01bfb6887e03eef1f1858c592117766772bf24ba480"
+  },
+  "replacements": [
+    {
+      "logical_path": "GameServer/Field/forever-fall-01.ase.spm",
+      "json_path": "spawns/GameServer/Field/forever-fall-01.ase.spm.json"
+    },
+    {
+      "logical_path": "GameServer/Field/forever-fall-02.ase.spm",
+      "json_path": "spawns/GameServer/Field/forever-fall-02.ase.spm.json"
+    },
+    {
+      "logical_path": "GameServer/Field/forever-fall-03.ase.spm",
+      "json_path": "spawns/GameServer/Field/forever-fall-03.ase.spm.json"
+    },
+    {
+      "logical_path": "GameServer/Field/forever-fall-04.ase.spm",
+      "json_path": "spawns/GameServer/Field/forever-fall-04.ase.spm.json"
+    }
+  ],
+  "applied": false
+}

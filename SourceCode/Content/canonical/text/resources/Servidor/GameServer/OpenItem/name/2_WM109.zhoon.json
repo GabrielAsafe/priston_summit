@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.2_wm109",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/2_WM109.zhoon",
+    "GameServer/OpenItem/name/2_WM109.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/2_WM109.zhoon",
+    "legacy_sha256": "b7a37084c825b0cdfcbbe707555864e72f0d5524c19da54be4819172c3b0ffa4",
+    "legacy_size": 35
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Ghost"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly8yX1dNMTA5LnR4dA0KDQoqSl9OYW1lCQkiR2hvc3QiDQo="
+  }
+}

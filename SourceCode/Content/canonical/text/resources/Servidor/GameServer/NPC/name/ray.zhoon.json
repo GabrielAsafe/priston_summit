@@ -1,0 +1,36 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.ray",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/ray.zhoon",
+    "GameServer/NPC/name/ray.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/ray.zhoon",
+    "legacy_sha256": "74a579c9b5d1c27ec5e630470ec2244973efb4095f836ca28b33a6d923876503",
+    "legacy_size": 78
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 4,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Mestre Real Ray"
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": "What im talking?!?"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9yYXkuTlBDDQoNCg0KKkpfTmFtZQkiTWVzdHJlIFJlYWwgUmF5Ig0KDQoNCipKX0NoYXQJIldoYXQgaW0gdGFsa2luZz8hPyINCg0K"
+  }
+}

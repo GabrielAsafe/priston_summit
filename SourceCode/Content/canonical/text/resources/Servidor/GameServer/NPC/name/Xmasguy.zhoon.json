@@ -1,0 +1,54 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.xmasguy",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Xmasguy.zhoon",
+    "GameServer/NPC/name/Xmasguy.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Xmasguy.zhoon",
+    "legacy_sha256": "1c4bf7afd5f908a8d6e76a54c9a1fe02ffb1a55315ca5c760aa8967b970e3c77",
+    "legacy_size": 262
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 1,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "­«Ò{["
+      },
+      {
+        "line": 3,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "[NX}X[I"
+      },
+      {
+        "line": 4,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "ÝAÝñÈÌ½ßÉc[ðìÁÄ«½ñ¾¯Çc"
+      },
+      {
+        "line": 5,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "뭫궘뤾룋궕갷궶궔궶궔뙥뱰궫귞궶궋궶갷"
+      },
+      {
+        "line": 6,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "±ñÈ±Æ¾Á½çc¬ÅÔçÔçµÄÈ¢Å^®ÅàâÁÆ¯ÎÇ©Á½c"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "KkpfTkFNRQkJCSKTrYKrjtKDjYOTg3uBWyINCg0KKkpfQ0hBVAkJCSKDgYOKgVuDToOKg1iDfYNYgVuBSSINCipKX0NIQVQJCQkigt2BQYLdgvGCyILMgr2C34LJg2ODioFbgvCN7ILBgsSCq4K9gvGCvoKvgseBYyINCipKX0NIQVQJCQkiknWCrY/qj4qCqoFjgsiCqYLIgqmMqZOWgr2C54LIgqKCyIFjIg0KKkpfQ0hBVAkJCSKCsYLxgsiCsYLGgr6CwYK9gueBY5KsgsWC1ILngtSC54K1gsSCyIKigsWJXpOugsWC4ILigsGCxoKvgs6Xx4KpgsGCvYFjIg0KDQoNCg=="
+  }
+}

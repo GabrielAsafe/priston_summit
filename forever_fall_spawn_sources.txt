@@ -1,0 +1,32 @@
+ROOT=/home/gabriel/armazem/priston
+TARGETS=forever-fall-01.ase.spm, forever-fall-02.ase.spm, forever-fall-03.ase.spm, forever-fall-04.ase.spm
+
+=== forever-fall-01.ase.spm ===
+  CANDIDATE source=ExMachina kind=FILE size=385 sha256=a556bf7ae068c647d9ee12bbb8406af34b4aec6645e02a4b1de3e8a8ced47479 where='server/GameServer/Field/Forever-Fall-01.ase.spm'
+  CANDIDATE source=ARCHIVE kind=ZIP size=365 sha256=4e18b0ee526b76218da7d677a657cef3df6c2c0d68058caab79b9c55a6dbc09e where='zips/pristontale-1-master.zip::pristontale-1-master/bin/Server/GameServer/Field/Forever-Fall-01.ase.spm'
+  CANDIDATE source=ARCHIVE kind=ZIP size=157 sha256=67d117d8f6078276b528ff8ec3ae54d564e023f53d2639978f84c9bccbd1beb6 where='zips/Servidor.zip::Servidor/GameServer/Field/forever-fall-01.ase.spm'
+
+=== forever-fall-02.ase.spm ===
+  CANDIDATE source=ExMachina kind=FILE size=408 sha256=1dcde08645710bb1b373735dd15fbd1dda31fd2318acd852cc873c96b52c6556 where='server/GameServer/Field/Forever-Fall-02.ase.spm'
+  CANDIDATE source=ARCHIVE kind=ZIP size=393 sha256=da53d4450be97477d52c50aa6375b700b041aee094c638a155e40fd2981d2b89 where='zips/pristontale-1-master.zip::pristontale-1-master/bin/Server/GameServer/Field/Forever-Fall-02.ase.spm'
+  CANDIDATE source=ARCHIVE kind=ZIP size=157 sha256=67d117d8f6078276b528ff8ec3ae54d564e023f53d2639978f84c9bccbd1beb6 where='zips/Servidor.zip::Servidor/GameServer/Field/forever-fall-02.ase.spm'
+
+=== forever-fall-03.ase.spm ===
+  CANDIDATE source=ExMachina kind=FILE size=416 sha256=647c5081d0549e755f8ba659bca00b3fc9cbfee20a6cf3fcebc367b955932fc2 where='server/GameServer/Field/Forever-Fall-03.ase.spm'
+  CANDIDATE source=ARCHIVE kind=ZIP size=416 sha256=647c5081d0549e755f8ba659bca00b3fc9cbfee20a6cf3fcebc367b955932fc2 where='zips/pristontale-1-master.zip::pristontale-1-master/bin/Server/GameServer/Field/Forever-Fall-03.ase.spm'
+  CANDIDATE source=ARCHIVE kind=ZIP size=157 sha256=67d117d8f6078276b528ff8ec3ae54d564e023f53d2639978f84c9bccbd1beb6 where='zips/Servidor.zip::Servidor/GameServer/Field/forever-fall-03.ase.spm'
+
+=== forever-fall-04.ase.spm ===
+  CANDIDATE source=ExMachina kind=FILE size=406 sha256=75f0075df7e8c25f77e110292db3ccc76a051a87b4ed3652f27cc4574ec9747c where='server/GameServer/Field/Forever-Fall-04.ase.spm'
+  CANDIDATE source=ARCHIVE kind=ZIP size=406 sha256=75f0075df7e8c25f77e110292db3ccc76a051a87b4ed3652f27cc4574ec9747c where='zips/pristontale-1-master.zip::pristontale-1-master/bin/Server/GameServer/Field/Forever-Fall-04.ase.spm'
+  CANDIDATE source=ARCHIVE kind=ZIP size=157 sha256=67d117d8f6078276b528ff8ec3ae54d564e023f53d2639978f84c9bccbd1beb6 where='zips/Servidor.zip::Servidor/GameServer/Field/forever-fall-04.ase.spm'
+
+SUMMARY found=4/4 archive_errors=2
+HASH_VARIANTS forever-fall-04.ase.spm=2
+HASH_VARIANTS forever-fall-01.ase.spm=3
+HASH_VARIANTS forever-fall-02.ase.spm=3
+HASH_VARIANTS forever-fall-03.ase.spm=2
+RESULT=ALL_FOUND
+ARCHIVE_ERRORS:
+  /home/gabriel/armazem/priston/pristontale-1-master/nprotect/Sample/nprotect ì‹ ë²„ì „.zip: File is not a zip file
+  /home/gabriel/armazem/priston/pristontale-1-master/nprotect/Sample/ìƒ˜í”Œì˜ˆì œ.zip: File is not a zip file

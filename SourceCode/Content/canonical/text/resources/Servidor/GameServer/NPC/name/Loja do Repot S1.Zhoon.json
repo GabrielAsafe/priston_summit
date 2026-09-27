@@ -1,0 +1,36 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.loja_do_repot_s1",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Loja do Repot S1.Zhoon",
+    "GameServer/NPC/name/Loja do Repot S1.Zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Loja do Repot S1.Zhoon",
+    "legacy_sha256": "3ee3d49fecdcc4cdb52d348c0af0e39cbe1419e19bcfd00ff2de723d8c619da5",
+    "legacy_size": 92
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 4,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Loja do Repot S1"
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": "What im talking?!?"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9Mb2phIGRvIFJlcG90IFMxLk5QQw0KDQoNCipKX05hbWUJIkxvamEgZG8gUmVwb3QgUzEiDQoNCg0KKkpfQ2hhdAkiV2hhdCBpbSB0YWxraW5nPyE/Ig0KDQo="
+  }
+}

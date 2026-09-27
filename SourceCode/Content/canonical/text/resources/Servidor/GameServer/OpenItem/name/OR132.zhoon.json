@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.or132",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/OR132.zhoon",
+    "GameServer/OpenItem/name/OR132.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/OR132.zhoon",
+    "legacy_sha256": "92e341f363435d27c677d8bc56b45f04396a07fe1d21edc1b5ebdb91d1f8d9fd",
+    "legacy_size": 39
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Eragon Ring"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9PUjIwNS50eHQNCg0KKkpfTmFtZQkJIkVyYWdvbiBSaW5nIg0K"
+  }
+}

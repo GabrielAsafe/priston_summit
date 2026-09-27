@@ -1,0 +1,36 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.star_girl",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Star Girl.Zhoon",
+    "GameServer/NPC/name/Star Girl.Zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Star Girl.Zhoon",
+    "legacy_sha256": "aba10bc97bfef4ca5947b5cf0a5ec8a00871d4ce4e2f28411a0d41fe12b7cf09",
+    "legacy_size": 101
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 4,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Garota Do Ranking"
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": "Obrigado por jogar Summit Tale =)"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9TdGFyIEdpcmwuTlBDDQoNCg0KKkpfTmFtZQkiR2Fyb3RhIERvIFJhbmtpbmciDQoNCg0KKkpfQ2hhdAkiT2JyaWdhZG8gcG9yIGpvZ2FyIFN1bW1pdCBUYWxlID0pIg0KDQo="
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquesttired_astart",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/Sinimage/Quest/haQuesttired_Astart.sin",
+    "image/Sinimage/Quest/haQuesttired_Astart.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/Sinimage/Quest/haQuesttired_Astart.sin",
+    "legacy_sha256": "c396b85767df3454dba0f2a4f32f41cee7d178030efa8d6891a24949a2be3446",
+    "legacy_size": 562
+  },
+  "semantic": {
+    "lines": [
+      "",
+      "Welcome to PristonTale battle field.",
+      "I am Ran who help the beginners.",
+      "This is the place where shops for items and potions ",
+      "are located, so you can get ready for the battle.",
+      "Please have a look around the town carefully.",
+      "",
+      "That's great, I was looking for a person who can ",
+      "help me. Can you give this cake to warehouse keeper?",
+      "If you don't know where the warehouse keeper is, ",
+      "please double click on the minimap situated at",
+      "the bottom right hand corner of the screen.",
+      "",
+      "[Quest Subject]",
+      "",
+      "Deliver the cake to the warehouse keeper and come ",
+      "back to Ran."
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "DQpXZWxjb21lIHRvIFByaXN0b25UYWxlIGJhdHRsZSBmaWVsZC4NCkkgYW0gUmFuIHdobyBoZWxwIHRoZSBiZWdpbm5lcnMuDQpUaGlzIGlzIHRoZSBwbGFjZSB3aGVyZSBzaG9wcyBmb3IgaXRlbXMgYW5kIHBvdGlvbnMgDQphcmUgbG9jYXRlZCwgc28geW91IGNhbiBnZXQgcmVhZHkgZm9yIHRoZSBiYXR0bGUuDQpQbGVhc2UgaGF2ZSBhIGxvb2sgYXJvdW5kIHRoZSB0b3duIGNhcmVmdWxseS4NCg0KVGhhdCdzIGdyZWF0LCBJIHdhcyBsb29raW5nIGZvciBhIHBlcnNvbiB3aG8gY2FuIA0KaGVscCBtZS4gQ2FuIHlvdSBnaXZlIHRoaXMgY2FrZSB0byB3YXJlaG91c2Uga2VlcGVyPw0KSWYgeW91IGRvbid0IGtub3cgd2hlcmUgdGhlIHdhcmVob3VzZSBrZWVwZXIgaXMsIA0KcGxlYXNlIGRvdWJsZSBjbGljayBvbiB0aGUgbWluaW1hcCBzaXR1YXRlZCBhdA0KdGhlIGJvdHRvbSByaWdodCBoYW5kIGNvcm5lciBvZiB0aGUgc2NyZWVuLg0KDQpbUXVlc3QgU3ViamVjdF0NCg0KRGVsaXZlciB0aGUgY2FrZSB0byB0aGUgd2FyZWhvdXNlIGtlZXBlciBhbmQgY29tZSANCmJhY2sgdG8gUmFuLg=="
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.ahin",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Ahin.zhoon",
+    "GameServer/NPC/name/Ahin.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Ahin.zhoon",
+    "legacy_sha256": "be6dad8359719a0d1866ac4a27aa492552637ae04b723466c1dae58b1386a795",
+    "legacy_size": 252
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "Ahin"
+      },
+      {
+        "line": 5,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "You must be a brave worrior come to this far."
+      },
+      {
+        "line": 6,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "I've prepared a gift for you"
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Because I don't have much time, you can only buy one item in 3 min."
+      },
+      {
+        "line": 8,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "See you again. Good bye."
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9BaGluLm5wYw0KDQoqSl9OQU1FCQkJIkFoaW4iDQoNCipKX0NIQVQJCQkiWW91IG11c3QgYmUgYSBicmF2ZSB3b3JyaW9yIGNvbWUgdG8gdGhpcyBmYXIuIg0KKkpfQ0hBVAkJCSJJJ3ZlIHByZXBhcmVkIGEgZ2lmdCBmb3IgeW91Ig0KKkpfQ0hBVAkJCSJCZWNhdXNlIEkgZG9uJ3QgaGF2ZSBtdWNoIHRpbWUsIHlvdSBjYW4gb25seSBidXkgb25lIGl0ZW0gaW4gMyBtaW4uIg0KKkpfQ0hBVAkJCSJTZWUgeW91IGFnYWluLiBHb29kIGJ5ZS4i"
+  }
+}

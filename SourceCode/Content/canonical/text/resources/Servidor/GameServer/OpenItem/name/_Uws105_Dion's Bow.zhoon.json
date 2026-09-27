@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.uws105_dion_s_bow",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/_Uws105_Dion's Bow.zhoon",
+    "GameServer/OpenItem/name/_Uws105_Dion's Bow.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/_Uws105_Dion's Bow.zhoon",
+    "legacy_sha256": "648e7d56b6359db3bf0be7f529b70ca9fa1515902864dcb848fb23bab2609ef2",
+    "legacy_size": 21
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 1,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Dion's Bow"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "KkpfTmFtZQkJIkRpb24ncyBCb3ci"
+  }
+}

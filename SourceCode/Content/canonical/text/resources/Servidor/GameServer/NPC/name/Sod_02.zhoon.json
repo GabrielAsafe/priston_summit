@@ -1,0 +1,48 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.sod_02",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Sod_02.zhoon",
+    "GameServer/NPC/name/Sod_02.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Sod_02.zhoon",
+    "legacy_sha256": "2d1f181e2207775e5f2939b3e6d5c00c0067bed24f7137063808f917ed99299b",
+    "legacy_size": 191
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 4,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Ariel"
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": "Está preparado para a competição?"
+      },
+      {
+        "line": 9,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": "Eu te levarei para o Survival or Die!"
+      },
+      {
+        "line": 11,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": "Boa sorte para sobreviver, vai precisar!"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9Tb2RfMDIuTlBDDQoNCg0KKkpfTmFtZQkiQXJpZWwiDQoNCg0KKkpfQ2hhdAkiRXN04SBwcmVwYXJhZG8gcGFyYSBhIGNvbXBldGnn428/Ig0KDQoqSl9DaGF0CSJFdSB0ZSBsZXZhcmVpIHBhcmEgbyBTdXJ2aXZhbCBvciBEaWUhIg0KDQoqSl9DaGF0CSJCb2Egc29ydGUgcGFyYSBzb2JyZXZpdmVyLCB2YWkgcHJlY2lzYXIhIg0KDQo="
+  }
+}

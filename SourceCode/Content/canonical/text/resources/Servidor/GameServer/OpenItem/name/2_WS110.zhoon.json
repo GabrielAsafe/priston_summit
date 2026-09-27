@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.2_ws110",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/2_WS110.zhoon",
+    "GameServer/OpenItem/name/2_WS110.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/2_WS110.zhoon",
+    "legacy_sha256": "632bb74ac3dfdf110d778419de4cc3578dc7acbdfbdfd798d7cb22041a9c44cc",
+    "legacy_size": 34
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Mist"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly8yX1dTMTEwLnR4dA0KDQoqSl9OYW1lCQkiTWlzdCINCg=="
+  }
+}

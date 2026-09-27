@@ -111,6 +111,10 @@ struct	sDEF_ITEMINFO
 	sDEF_ITEMINFO()
 	{
 
+		// Match DecodeItemInfo legacy semantics: a fresh definition starts with
+		// an entirely zeroed sITEMINFO. Without this, UniqueItem and other
+		// fields can contain stack garbage in compiled-definition paths.
+		ZeroMemory(&Item, sizeof(Item));
 		ZeroMemory(&sDurability, sizeof(sDurability));
 		ZeroMemory(&sResistance, sizeof(sResistance));
 		ZeroMemory(&sDamage, sizeof(sDamage));

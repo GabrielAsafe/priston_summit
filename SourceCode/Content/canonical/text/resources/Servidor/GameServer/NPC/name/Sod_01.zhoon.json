@@ -1,0 +1,48 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.sod_01",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Sod_01.zhoon",
+    "GameServer/NPC/name/Sod_01.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Sod_01.zhoon",
+    "legacy_sha256": "b539f0a09831debf5a74e0ff61c16e959cfd4dc3c8853e4514a251a03e337169",
+    "legacy_size": 190
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 4,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Casa"
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": "Está preparado para a competição?"
+      },
+      {
+        "line": 9,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": "Eu te levarei para o Survival or Die!"
+      },
+      {
+        "line": 11,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": "Boa sorte para sobreviver, vai precisar!"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9Tb2RfMDEuTlBDDQoNCg0KKkpfTmFtZQkiQ2FzYSINCg0KDQoqSl9DaGF0CSJFc3ThIHByZXBhcmFkbyBwYXJhIGEgY29tcGV0aefjbz8iDQoNCipKX0NoYXQJIkV1IHRlIGxldmFyZWkgcGFyYSBvIFN1cnZpdmFsIG9yIERpZSEiDQoNCipKX0NoYXQJIkJvYSBzb3J0ZSBwYXJhIHNvYnJldml2ZXIsIHZhaSBwcmVjaXNhciEiDQoNCg=="
+  }
+}

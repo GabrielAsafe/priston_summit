@@ -1,0 +1,54 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.amanda",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/amanda.Zhoon",
+    "GameServer/NPC/name/amanda.Zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/amanda.Zhoon",
+    "legacy_sha256": "125cceb9718f0d509343a639ee56c99f595836f0b8b9f6b815ed4a7de2b33507",
+    "legacy_size": 340
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 4,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Enzo, o Restaurador de Itens"
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": "Nesse NPC consigo restaura seu ITEM quebrado no AGING."
+      },
+      {
+        "line": 9,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": "Não precisa de STAFF online para restaurar seu item quebrado, eu dou um jeito!"
+      },
+      {
+        "line": 11,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": "Com um preço bem acessivel que cabe no seu bolso ;)"
+      },
+      {
+        "line": 13,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": "Estou aqui para te ajudar e nós ajudar!"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9hbWFuZGEuTlBDDQoNCg0KKkpfTmFtZQkiRW56bywgbyBSZXN0YXVyYWRvciBkZSBJdGVucyINCg0KDQoqSl9DaGF0CSJOZXNzZSBOUEMgY29uc2lnbyByZXN0YXVyYSBzZXUgSVRFTSBxdWVicmFkbyBubyBBR0lORy4iDQoNCipKX0NoYXQJIk7jbyBwcmVjaXNhIGRlIFNUQUZGIG9ubGluZSBwYXJhIHJlc3RhdXJhciBzZXUgaXRlbSBxdWVicmFkbywgZXUgZG91IHVtIGplaXRvISINCg0KKkpfQ2hhdAkiQ29tIHVtIHByZedvIGJlbSBhY2Vzc2l2ZWwgcXVlIGNhYmUgbm8gc2V1IGJvbHNvIDspIg0KDQoqSl9DaGF0CSJFc3RvdSBhcXVpIHBhcmEgdGUgYWp1ZGFyIGUgbvNzIGFqdWRhciEiDQoNCg=="
+  }
+}

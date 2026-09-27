@@ -1,0 +1,39 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquestterrified_bstart_m.path_426e851eea",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/party/party_DATA/HaQuest/haQuestterrified_Bstart_M.sin",
+    "image/party/party_DATA/HaQuest/haQuestterrified_Bstart_M.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/party/party_DATA/HaQuest/haQuestterrified_Bstart_M.sin",
+    "legacy_sha256": "cbbb360b423c4f28bc43047589da6e6304090443646101b9e882de323dad130a",
+    "legacy_size": 576
+  },
+  "semantic": {
+    "lines": [
+      "Eu não sei quando isso aconteceu, mas há muitos monstros ",
+      "ferozes do lado de fora da cidade. Então, os civis, agora,",
+      "estão isolados e não pode ir para fora da cidade.",
+      "",
+      "Parece que vender coisas para viajantes ou guerreiros que",
+      "vem para essa cidade é muita sorte. ",
+      "Se você está procurando ser um verdadeiro guerreiro, você",
+      "terá que cuidar primeiro desses monstros. ",
+      "Por favor, cace 5 Hopis no Jardim da Liberdade.",
+      "Este é o primeiro passo para se tornar um grande guerreiro.",
+      "",
+      "[Objetivo do Desafio]",
+      "",
+      "Cace 5 Hopis no Jardim da Liberdade e informe à",
+      "Instrutora Amanda."
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "RXUgbuNvIHNlaSBxdWFuZG8gaXNzbyBhY29udGVjZXUsIG1hcyBo4SBtdWl0b3MgbW9uc3Ryb3MgDQpmZXJvemVzIGRvIGxhZG8gZGUgZm9yYSBkYSBjaWRhZGUuIEVudONvLCBvcyBjaXZpcywgYWdvcmEsDQplc3TjbyBpc29sYWRvcyBlIG7jbyBwb2RlIGlyIHBhcmEgZm9yYSBkYSBjaWRhZGUuDQoNClBhcmVjZSBxdWUgdmVuZGVyIGNvaXNhcyBwYXJhIHZpYWphbnRlcyBvdSBndWVycmVpcm9zIHF1ZQ0KdmVtIHBhcmEgZXNzYSBjaWRhZGUg6SBtdWl0YSBzb3J0ZS4gDQpTZSB2b2PqIGVzdOEgcHJvY3VyYW5kbyBzZXIgdW0gdmVyZGFkZWlybyBndWVycmVpcm8sIHZvY+oNCnRlcuEgcXVlIGN1aWRhciBwcmltZWlybyBkZXNzZXMgbW9uc3Ryb3MuIA0KUG9yIGZhdm9yLCBjYWNlIDUgSG9waXMgbm8gSmFyZGltIGRhIExpYmVyZGFkZS4NCkVzdGUg6SBvIHByaW1laXJvIHBhc3NvIHBhcmEgc2UgdG9ybmFyIHVtIGdyYW5kZSBndWVycmVpcm8uDQoNCltPYmpldGl2byBkbyBEZXNhZmlvXQ0KDQpDYWNlIDUgSG9waXMgbm8gSmFyZGltIGRhIExpYmVyZGFkZSBlIGluZm9ybWUg4A0KSW5zdHJ1dG9yYSBBbWFuZGEu"
+  }
+}

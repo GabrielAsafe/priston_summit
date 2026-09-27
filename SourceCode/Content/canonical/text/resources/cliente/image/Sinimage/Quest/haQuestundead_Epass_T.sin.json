@@ -1,0 +1,33 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquestundead_epass_t",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/Sinimage/Quest/haQuestundead_Epass_T.sin",
+    "image/Sinimage/Quest/haQuestundead_Epass_T.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/Sinimage/Quest/haQuestundead_Epass_T.sin",
+    "legacy_sha256": "c251cc6a58a7b3b5ec201f1866a3b8be9e633184d7e1985809a5660ec34325c9",
+    "legacy_size": 171
+  },
+  "semantic": {
+    "lines": [
+      "The striking power of Skeleton is really ",
+      "horrible.",
+      "",
+      "It's not easy for you to attack them. ",
+      "Hunt them again after preparing potions ",
+      "or defensive equipments. ",
+      "",
+      "",
+      ""
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "VGhlIHN0cmlraW5nIHBvd2VyIG9mIFNrZWxldG9uIGlzIHJlYWxseSANCmhvcnJpYmxlLg0KDQpJdCdzIG5vdCBlYXN5IGZvciB5b3UgdG8gYXR0YWNrIHRoZW0uIA0KSHVudCB0aGVtIGFnYWluIGFmdGVyIHByZXBhcmluZyBwb3Rpb25zIA0Kb3IgZGVmZW5zaXZlIGVxdWlwbWVudHMuIA0KDQoNCg0K"
+  }
+}

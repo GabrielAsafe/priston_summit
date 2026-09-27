@@ -1,0 +1,42 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquesthammer_gstart",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/Sinimage/Quest/haQuesthammer_Gstart.sin",
+    "image/Sinimage/Quest/haQuesthammer_Gstart.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/Sinimage/Quest/haQuesthammer_Gstart.sin",
+    "legacy_sha256": "dc5273b760c5cc19c7bc26e14b7803b3cf01207f74df7050a52bfd7056365a33",
+    "legacy_size": 548
+  },
+  "semantic": {
+    "lines": [
+      "The combatants who have been training with their ",
+      "skills are leaving for the place where there ",
+      "are more stronger monsters. And Navisko is their way. ",
+      "They will rest themselves and fix their equipments ",
+      "while staying there. But a few days ago, Ump in ",
+      "Navisko lost his hammer. It was stolen by the ",
+      "Bargons that invaded Navisko. Could you look for ",
+      "it? If you see it, please give it back to him. ",
+      "",
+      "[Quest Subject]",
+      "",
+      "     After hunting Bargons in the continent ",
+      "     and acquiring Ump's hammer, go back to ",
+      "     Ump in Navisco.",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "VGhlIGNvbWJhdGFudHMgd2hvIGhhdmUgYmVlbiB0cmFpbmluZyB3aXRoIHRoZWlyIA0Kc2tpbGxzIGFyZSBsZWF2aW5nIGZvciB0aGUgcGxhY2Ugd2hlcmUgdGhlcmUgDQphcmUgbW9yZSBzdHJvbmdlciBtb25zdGVycy4gQW5kIE5hdmlza28gaXMgdGhlaXIgd2F5LiANClRoZXkgd2lsbCByZXN0IHRoZW1zZWx2ZXMgYW5kIGZpeCB0aGVpciBlcXVpcG1lbnRzIA0Kd2hpbGUgc3RheWluZyB0aGVyZS4gQnV0IGEgZmV3IGRheXMgYWdvLCBVbXAgaW4gDQpOYXZpc2tvIGxvc3QgaGlzIGhhbW1lci4gSXQgd2FzIHN0b2xlbiBieSB0aGUgDQpCYXJnb25zIHRoYXQgaW52YWRlZCBOYXZpc2tvLiBDb3VsZCB5b3UgbG9vayBmb3IgDQppdD8gSWYgeW91IHNlZSBpdCwgcGxlYXNlIGdpdmUgaXQgYmFjayB0byBoaW0uIA0KDQpbUXVlc3QgU3ViamVjdF0NCg0KICAgICBBZnRlciBodW50aW5nIEJhcmdvbnMgaW4gdGhlIGNvbnRpbmVudCANCiAgICAgYW5kIGFjcXVpcmluZyBVbXAncyBoYW1tZXIsIGdvIGJhY2sgdG8gDQogICAgIFVtcCBpbiBOYXZpc2NvLg0KDQoNCg0KDQo="
+  }
+}

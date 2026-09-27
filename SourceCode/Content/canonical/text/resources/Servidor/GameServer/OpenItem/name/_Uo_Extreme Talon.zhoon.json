@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.uo_extreme_talon",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/_Uo_Extreme Talon.zhoon",
+    "GameServer/OpenItem/name/_Uo_Extreme Talon.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/_Uo_Extreme Talon.zhoon",
+    "legacy_sha256": "bb181c331108cb7014f1583a5f8e29205187a893740074a85a2954ba1f132870",
+    "legacy_size": 56
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Extreme Talon"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9VV0MxMjBfRXh0cmVtZSBUYWxvbi50eHQNCg0KKkpfTmFtZQkJIkV4dHJlbWUgVGFsb24iDQo="
+  }
+}

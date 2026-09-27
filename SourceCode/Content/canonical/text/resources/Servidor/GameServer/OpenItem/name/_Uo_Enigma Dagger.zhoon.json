@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.uo_enigma_dagger",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/_Uo_Enigma Dagger.zhoon",
+    "GameServer/OpenItem/name/_Uo_Enigma Dagger.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/_Uo_Enigma Dagger.zhoon",
+    "legacy_sha256": "260084a067e5cfe1ba1c8ccc86ea3d4891b131b920f73a67d27409254653bdc5",
+    "legacy_size": 53
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "E_NAME",
+        "kind": "name",
+        "text": "Enigma Dagger"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9fVW9fRW5pZ21hIERhZ2dlci50eHQNCg0KKkVfTkFNRQkJIkVuaWdtYSBEYWdnZXIiDQo="
+  }
+}

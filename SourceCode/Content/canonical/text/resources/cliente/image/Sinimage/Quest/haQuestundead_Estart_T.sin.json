@@ -1,0 +1,47 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquestundead_estart_t",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/Sinimage/Quest/haQuestundead_Estart_T.sin",
+    "image/Sinimage/Quest/haQuestundead_Estart_T.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/Sinimage/Quest/haQuestundead_Estart_T.sin",
+    "legacy_sha256": "06d50cfd8f52c5be1a772c6d2efb7c54f7a76561efd52ed1bc4af58b22de6769",
+    "legacy_size": 587
+  },
+  "semantic": {
+    "lines": [
+      "On the north of this village, there is an old ",
+      "city called, Ruinen. There, the merchants",
+      "buy the products from Ricarten and sell them ",
+      "for living. But the Skeletons started to appear",
+      "enroute to Ruinen Village for some time now. ",
+      "So the merchants are having much difficulties. ",
+      "",
+      "They need your help urgently. ",
+      "Go to Refuge of the Ancient and hunt 10 Skeletons, ",
+      "then go back to Blacksmith Ruga in Ruinen Village.",
+      "",
+      "[Quest Subject]",
+      "     ",
+      "     Hunt 10 10 Skeletons in the ",
+      "     Refuge of the ancients, then go back to  ",
+      "     Blacksmith Ruga in Ruinen Village.",
+      "",
+      "",
+      " ",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "T24gdGhlIG5vcnRoIG9mIHRoaXMgdmlsbGFnZSwgdGhlcmUgaXMgYW4gb2xkIA0KY2l0eSBjYWxsZWQsIFJ1aW5lbi4gVGhlcmUsIHRoZSBtZXJjaGFudHMNCmJ1eSB0aGUgcHJvZHVjdHMgZnJvbSBSaWNhcnRlbiBhbmQgc2VsbCB0aGVtIA0KZm9yIGxpdmluZy4gQnV0IHRoZSBTa2VsZXRvbnMgc3RhcnRlZCB0byBhcHBlYXINCmVucm91dGUgdG8gUnVpbmVuIFZpbGxhZ2UgZm9yIHNvbWUgdGltZSBub3cuIA0KU28gdGhlIG1lcmNoYW50cyBhcmUgaGF2aW5nIG11Y2ggZGlmZmljdWx0aWVzLiANCg0KVGhleSBuZWVkIHlvdXIgaGVscCB1cmdlbnRseS4gDQpHbyB0byBSZWZ1Z2Ugb2YgdGhlIEFuY2llbnQgYW5kIGh1bnQgMTAgU2tlbGV0b25zLCANCnRoZW4gZ28gYmFjayB0byBCbGFja3NtaXRoIFJ1Z2EgaW4gUnVpbmVuIFZpbGxhZ2UuDQoNCltRdWVzdCBTdWJqZWN0XQ0KICAgICANCiAgICAgSHVudCAxMCAxMCBTa2VsZXRvbnMgaW4gdGhlIA0KICAgICBSZWZ1Z2Ugb2YgdGhlIGFuY2llbnRzLCB0aGVuIGdvIGJhY2sgdG8gIA0KICAgICBCbGFja3NtaXRoIFJ1Z2EgaW4gUnVpbmVuIFZpbGxhZ2UuDQoNCg0KIA0KDQoNCg0KDQo="
+  }
+}

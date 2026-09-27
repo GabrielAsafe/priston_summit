@@ -1,7 +1,7 @@
 
 #include "systems/rendering/legacy_3d/smd3d.h"
 
-#define SMSFACE_MAX		1000
+#define SMSFACE_MAX		8192
 
 
 smSTAGE_FACE *smFaceList[SMSFACE_MAX];
@@ -1450,7 +1450,8 @@ int smSTAGE3D::MakeAreaFaceList(int x, int z, int width, int height, int top, in
 						y2 = Vertex[face->Vertex[1]].y;
 						y3 = Vertex[face->Vertex[2]].y;
 						if((y1<top && y1>bottom) || (y2<top && y2>bottom) || (y3<top && y3>bottom))
-							smFaceList[smFaceListCnt++] = face;
+							if(smFaceListCnt < SMSFACE_MAX)
+								smFaceList[smFaceListCnt++] = face;
 					}
 				}
 			}

@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.wp153",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/WP153.zhoon",
+    "GameServer/OpenItem/name/WP153.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/WP153.zhoon",
+    "legacy_sha256": "a9be35f6434b67b371973b779789228807d094d30787dc8b1f96dce6a77d24b6",
+    "legacy_size": 42
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Support Scythe"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9XUDE1My50eHQNCg0KKkpfTmFtZQkJIlN1cHBvcnQgU2N5dGhlIg0K"
+  }
+}

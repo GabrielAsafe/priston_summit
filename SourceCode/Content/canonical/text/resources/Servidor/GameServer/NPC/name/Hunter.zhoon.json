@@ -1,0 +1,48 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.hunter",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Hunter.zhoon",
+    "GameServer/NPC/name/Hunter.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Hunter.zhoon",
+    "legacy_sha256": "655182966c389bb6de38d4c27021dc8bd7a5b6c75d62ea8477350d9fce7ccf01",
+    "legacy_size": 226
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "Hunter Owen"
+      },
+      {
+        "line": 5,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Oh~ Brave soldier. Nice to see you."
+      },
+      {
+        "line": 6,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "I'm Owen, a hunter. I'm not superb, but I can kill most monsters!"
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Always, be careful. Monsters are very violent."
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9IdW50ZXIubnBjDQoNCipKX05BTUUJCSJIdW50ZXIgT3dlbiINCg0KKkpfQ0hBVAkJIk9ofiBCcmF2ZSBzb2xkaWVyLiBOaWNlIHRvIHNlZSB5b3UuIiANCipKX0NIQVQJCSJJJ20gT3dlbiwgYSBodW50ZXIuIEknbSBub3Qgc3VwZXJiLCBidXQgSSBjYW4ga2lsbCBtb3N0IG1vbnN0ZXJzISINCipKX0NIQVQJCSJBbHdheXMsIGJlIGNhcmVmdWwuIE1vbnN0ZXJzIGFyZSB2ZXJ5IHZpb2xlbnQuIg=="
+  }
+}

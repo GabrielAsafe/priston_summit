@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.bossmundo",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/Monster/Name/Bossmundo.zhoon",
+    "GameServer/Monster/Name/Bossmundo.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/Monster/Name/Bossmundo.zhoon",
+    "legacy_sha256": "250aa9920e2e1e18a38a52eb405c73a1fea9a343cae52352bd4e29e2fd12a1ab",
+    "legacy_size": 39
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "Boss Mundo"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9ib3NzbXVuZG8uaW5mDQoNCipKX05BTUUgIkJvc3MgTXVuZG8i"
+  }
+}

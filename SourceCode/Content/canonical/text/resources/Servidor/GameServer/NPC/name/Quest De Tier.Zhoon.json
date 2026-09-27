@@ -1,0 +1,36 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.quest_de_tier",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Quest De Tier.Zhoon",
+    "GameServer/NPC/name/Quest De Tier.Zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Quest De Tier.Zhoon",
+    "legacy_sha256": "9fb485d3d235994b494bdd6bd07a8605b20bfe4eea5a33e918ac5e8f6948dba2",
+    "legacy_size": 123
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 4,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Ricarten Quest Shop, Wanda"
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": "Estou aqui para auxiliar em seus desafios!"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9RdWVzdCBEZSBUaWVyLk5QQw0KDQoNCipKX05hbWUJIlJpY2FydGVuIFF1ZXN0IFNob3AsIFdhbmRhIg0KDQoNCipKX0NoYXQJIkVzdG91IGFxdWkgcGFyYSBhdXhpbGlhciBlbSBzZXVzIGRlc2FmaW9zISINCg0K"
+  }
+}

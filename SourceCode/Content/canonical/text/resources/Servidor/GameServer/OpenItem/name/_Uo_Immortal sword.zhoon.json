@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.uo_immortal_sword",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/_Uo_Immortal sword.zhoon",
+    "GameServer/OpenItem/name/_Uo_Immortal sword.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/_Uo_Immortal sword.zhoon",
+    "legacy_sha256": "f3afe72293d051e11f2e11968f556d0f1cbccd2080aa06b541288daf30fdadeb",
+    "legacy_size": 58
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Immortal sword"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9VV1MyMjNfSW1tb3J0YWwgc3dvcmQudHh0DQoNCipKX05hbWUJCSJJbW1vcnRhbCBzd29yZCINCg=="
+  }
+}

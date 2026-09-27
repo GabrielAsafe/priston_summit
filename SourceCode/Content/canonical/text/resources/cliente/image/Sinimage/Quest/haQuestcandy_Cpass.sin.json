@@ -1,0 +1,33 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquestcandy_cpass",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/Sinimage/Quest/haQuestcandy_Cpass.sin",
+    "image/Sinimage/Quest/haQuestcandy_Cpass.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/Sinimage/Quest/haQuestcandy_Cpass.sin",
+    "legacy_sha256": "e5846ffe1faccf37e6ca67194f5374695b20baf15cfe8f9eefda6b512291fa6c",
+    "legacy_size": 207
+  },
+  "semantic": {
+    "lines": [
+      "You still have it on you. Perhaps you don't know ",
+      "where the blacksmith located?",
+      "Well you can simply find the location of blacksmith",
+      "by double clicking your mini map.",
+      "",
+      "Hurry, before it melt away.",
+      "",
+      "",
+      ""
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "WW91IHN0aWxsIGhhdmUgaXQgb24geW91LiBQZXJoYXBzIHlvdSBkb24ndCBrbm93IA0Kd2hlcmUgdGhlIGJsYWNrc21pdGggbG9jYXRlZD8NCldlbGwgeW91IGNhbiBzaW1wbHkgZmluZCB0aGUgbG9jYXRpb24gb2YgYmxhY2tzbWl0aA0KYnkgZG91YmxlIGNsaWNraW5nIHlvdXIgbWluaSBtYXAuDQoNCkh1cnJ5LCBiZWZvcmUgaXQgbWVsdCBhd2F5Lg0KDQoNCg0K"
+  }
+}

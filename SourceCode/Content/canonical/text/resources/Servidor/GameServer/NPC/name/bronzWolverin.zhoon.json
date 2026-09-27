@@ -1,0 +1,42 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.bronzwolverin",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/bronzWolverin.zhoon",
+    "GameServer/NPC/name/bronzWolverin.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/bronzWolverin.zhoon",
+    "legacy_sha256": "7d1608228901c8132ba0d816220b896f867fe72e9125584ebb04c66e48087b7e",
+    "legacy_size": 106
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 1,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "Wolverine de Bronze"
+      },
+      {
+        "line": 3,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Grrrrr... grrrrrr..."
+      },
+      {
+        "line": 4,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Urr.. urrrrrrrrr.. urrr..."
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "KkpfTkFNRQkJIldvbHZlcmluZSBkZSBCcm9uemUiDQoNCipKX0NIQVQJCSJHcnJycnIuLi4gZ3JycnJyci4uLiINCipKX0NIQVQJCSJVcnIuLiB1cnJycnJycnJyLi4gdXJyci4uLiINCg=="
+  }
+}

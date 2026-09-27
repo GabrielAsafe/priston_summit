@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.wc153",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/WC153.zhoon",
+    "GameServer/OpenItem/name/WC153.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/WC153.zhoon",
+    "legacy_sha256": "019b17361b76a665705f6693202ce31b73a9646057779b3a8b6a62818ce655b7",
+    "legacy_size": 41
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Support Talon"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9XQzE1My50eHQNCg0KKkpfTmFtZQkJIlN1cHBvcnQgVGFsb24iDQo="
+  }
+}

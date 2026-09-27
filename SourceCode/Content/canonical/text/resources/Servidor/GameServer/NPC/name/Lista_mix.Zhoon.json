@@ -1,0 +1,36 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.lista_mix",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Lista_mix.Zhoon",
+    "GameServer/NPC/name/Lista_mix.Zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Lista_mix.Zhoon",
+    "legacy_sha256": "877b9047229e620d6cfc308425162cb4f563cb415995318fa3fe7e527f85e59a",
+    "legacy_size": 84
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 4,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Tabela de Mix"
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": "Tabela de mix Online"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9MaXN0YV9taXguTlBDDQoNCg0KKkpfTmFtZQkiVGFiZWxhIGRlIE1peCINCg0KDQoqSl9DaGF0CSJUYWJlbGEgZGUgbWl4IE9ubGluZSINCg0K"
+  }
+}

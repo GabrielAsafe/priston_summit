@@ -7,6 +7,7 @@
  Shared/content/v1/text_resource/content/TextResourceRuntime.h \
  Shared/content/v1/text_resource/content/CompiledTextResourceSource.h \
  Shared/content/v1/common/Sha256.h \
+ Shared/content/v1/runtime/RuntimeContentPath.h \
  SrcServer/src/systems/social/clan/legacy/tjclanDEF.h \
  SrcServer/src/systems/localization/config/language.h \
  SrcServer/src/core/server/legacy_sin_runtime/sinLinkHeader.h \
@@ -134,6 +135,7 @@ Shared/social/clan/GuideHelp_legacy_server.inl:
 Shared/content/v1/text_resource/content/TextResourceRuntime.h:
 Shared/content/v1/text_resource/content/CompiledTextResourceSource.h:
 Shared/content/v1/common/Sha256.h:
+Shared/content/v1/runtime/RuntimeContentPath.h:
 SrcServer/src/systems/social/clan/legacy/tjclanDEF.h:
 SrcServer/src/systems/localization/config/language.h:
 SrcServer/src/core/server/legacy_sin_runtime/sinLinkHeader.h:

@@ -1,0 +1,42 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.sillverwolverin",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/sillverWolverin.zhoon",
+    "GameServer/NPC/name/sillverWolverin.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/sillverWolverin.zhoon",
+    "legacy_sha256": "57592442d229735ef3466c80057ca688dd123b29ff58cf9bab063a5df0ee9ce9",
+    "legacy_size": 107
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 2,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "Wolverine de Prata"
+      },
+      {
+        "line": 4,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Urr.. urrrrrrrrr.. urrr..."
+      },
+      {
+        "line": 5,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Grrrrr... grrrrrr..."
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "DQoqSl9OQU1FCQkiV29sdmVyaW5lIGRlIFByYXRhIg0KDQoqSl9DSEFUCQkiVXJyLi4gdXJycnJycnJyci4uIHVycnIuLi4iDQoqSl9DSEFUCQkiR3JycnJyLi4uIGdycnJycnIuLi4iDQo="
+  }
+}

@@ -251,5 +251,6 @@ SrcGame/src/systems/ui/v2/widgets/Panel.cpp
 SrcGame/src/systems/ui/v2/widgets/ProgressBar.cpp
 SrcGame/src/systems/ui/v2/widgets/Separator.cpp
 SrcGame/src/systems/ui/v2/windows/CharacterWindow.cpp
+SrcGame/src/systems/ui/v2/windows/SettingsWindow.cpp
 SrcGame/src/systems/ui/v2/windows/UIWindowManager.cpp
 SrcGame/src/systems/world/field/field.cpp

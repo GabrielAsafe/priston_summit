@@ -1,0 +1,60 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.sod_goblin",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Sod_Goblin.zhoon",
+    "GameServer/NPC/name/Sod_Goblin.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Sod_Goblin.zhoon",
+    "legacy_sha256": "c2e77e4f24ca31e1210818c024e34365bbdffa6907e2fd9e8b2ab5cf6088b0b0",
+    "legacy_size": 361
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 1,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "긼긳긕긳깏깛"
+      },
+      {
+        "line": 3,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "덇쀱궸빥귪궳볺뤾궢궲궘궬궠궋갃"
+      },
+      {
+        "line": 4,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "궩궞궻뒆귟뜛귒궢궲귡뺴갏돺궳궥궔갎궭귗귪궴빥귪궳궘궬궠궋귝갃"
+      },
+      {
+        "line": 5,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "SOD궼뻽볷뽭뼻궚궳궥갃렄듩귩롧궯궲궘궬궠궋갃"
+      },
+      {
+        "line": 6,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "SODÅ¾½XRAÍãÅÜàÆµÄl¾Å«Ü·ÌÅnCXRAð_ÁÄ­¾³¢B"
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "SOD£ZêÌüêÌÛAxÉæé§Àª é©ç}¢Å­¾³¢B"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "KkpfTkFNRQkJIoN6g3WDU4N1g4qDkyINCg0KKkpfQ0hBVAkJIojql/GCyZXAgvGCxZP8j+qCtYLEgq2CvoKzgqKBQiINCipKX0NIQVQJCSKCu4KxgsyKhILojZ6C3YK1gsSC6ZX7gUmJvYLFgreCqYFIgr+C4YLxgsaVwILxgsWCrYK+grOCooLmgUIiDQoqSl9DSEFUCQkiU09Egs2WiJP6lumWvoKvgsWCt4FCjp6K1ILwjueCwYLEgq2CvoKzgqKBQiINCipKX0NIQVQJCSJTT0SCxZO+gr2DWINSg0GCzYzjgsWP3IvggsaCtYLEimyTvoLFgquC3IK3gsyCxYNug0ODWINSg0GC8JFfgsGCxIKtgr6Cs4KigUIiDQoqSl9DSEFUCQkiU09Ei6OLWo/qgsyT/I/qgsyN24FBg4yDeIOLgsmC5oLpkKeMwIKqgqCC6YKpgueLfYKigsWCrYK+grOCooFCIg=="
+  }
+}

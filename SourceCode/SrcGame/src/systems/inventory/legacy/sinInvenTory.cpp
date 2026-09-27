@@ -5399,6 +5399,11 @@ int cINVENTORY::AutoSetInvenItem(sITEM *pItem, int PostBox)
 {
 	char szBuff[128];
 
+	// Items received from shops, drops and rewards may arrive before the
+	// legacy special/quest marker has been restored from the item code.
+	// Classify first so quest items are routed into the dedicated 6x3 area
+	// instead of consuming a normal backpack slot until the next reload.
+	sinSetSpecialItemCode(&pItem->sItemInfo);
 	if(SetSpecialItem(pItem))
 		return TRUE;
 

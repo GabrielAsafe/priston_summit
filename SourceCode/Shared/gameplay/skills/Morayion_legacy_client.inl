@@ -327,11 +327,11 @@ int sinContinueSkillSet(sSKILL* lpSkill)
 				lpSkill->CODE != BOOSTER_ITEM_LIFE && lpSkill->CODE != BOOSTER_ITEM_MANA && lpSkill->CODE != BOOSTER_ITEM_STAMINA))
 				ContinueSkill[i].MatIcon = 0;
 
-			// Tier 5 skills are initialized dynamically and are not present in the
-			// legacy sSkill[] icon registry. Resolve their timer icon immediately so
-			// the first frame already has the icon/background/progress material.
-			if ((lpSkill->CODE & 0x00FF0000) == CHANGE_JOB5)
-				cSkill.EnsureContinueSkillIcon(lpSkill->CODE);
+			// Resolve the timer icon immediately for every continued skill. The old
+			// path cleared MatIcon here and CheckContinueIcon() restored only one
+			// entry per frame, so Vanish and other freshly-applied buffs could appear
+			// without an icon while several timers were being registered together.
+			cSkill.EnsureContinueSkillIcon(lpSkill->CODE);
 			break;
 
 		}

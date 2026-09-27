@@ -1,0 +1,41 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquestundead_estart_m.path_5bd3e269cc",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/Sinimage/Quest/haQuestundead_Estart_M.sin",
+    "image/Sinimage/Quest/haQuestundead_Estart_M.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/Sinimage/Quest/haQuestundead_Estart_M.sin",
+    "legacy_sha256": "2871244ab4a42620328f732faf3463035515e5e1c8efef0464708c6f03e44d4d",
+    "legacy_size": 562
+  },
+  "semantic": {
+    "lines": [
+      "On the north of this village, there is an old ",
+      "city called, Ruinen. There, the merchants",
+      "buy the products from Philai and sell them ",
+      "for living. But the Skeletons started to appear",
+      "enroute to Ruinen Village for some time now. ",
+      "So the merchants are having much difficulties. ",
+      "",
+      "They need your help urgently. ",
+      "Go to Forest of Spirits and hunt 10 Corrupts, ",
+      "then go back to Blacksmith Ruga in Ruinen Village.",
+      "",
+      "[Quest Subject]",
+      "     ",
+      "     Hunt 10 10 Skeletons in the ",
+      "     Forest of Spirits, then go back to  ",
+      "     Blacksmith Ruga in Ruinen Village.",
+      ""
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "T24gdGhlIG5vcnRoIG9mIHRoaXMgdmlsbGFnZSwgdGhlcmUgaXMgYW4gb2xkIA0KY2l0eSBjYWxsZWQsIFJ1aW5lbi4gVGhlcmUsIHRoZSBtZXJjaGFudHMNCmJ1eSB0aGUgcHJvZHVjdHMgZnJvbSBQaGlsYWkgYW5kIHNlbGwgdGhlbSANCmZvciBsaXZpbmcuIEJ1dCB0aGUgU2tlbGV0b25zIHN0YXJ0ZWQgdG8gYXBwZWFyDQplbnJvdXRlIHRvIFJ1aW5lbiBWaWxsYWdlIGZvciBzb21lIHRpbWUgbm93LiANClNvIHRoZSBtZXJjaGFudHMgYXJlIGhhdmluZyBtdWNoIGRpZmZpY3VsdGllcy4gDQoNClRoZXkgbmVlZCB5b3VyIGhlbHAgdXJnZW50bHkuIA0KR28gdG8gRm9yZXN0IG9mIFNwaXJpdHMgYW5kIGh1bnQgMTAgQ29ycnVwdHMsIA0KdGhlbiBnbyBiYWNrIHRvIEJsYWNrc21pdGggUnVnYSBpbiBSdWluZW4gVmlsbGFnZS4NCg0KW1F1ZXN0IFN1YmplY3RdDQogICAgIA0KICAgICBIdW50IDEwIDEwIFNrZWxldG9ucyBpbiB0aGUgDQogICAgIEZvcmVzdCBvZiBTcGlyaXRzLCB0aGVuIGdvIGJhY2sgdG8gIA0KICAgICBCbGFja3NtaXRoIFJ1Z2EgaW4gUnVpbmVuIFZpbGxhZ2UuDQoNCg=="
+  }
+}

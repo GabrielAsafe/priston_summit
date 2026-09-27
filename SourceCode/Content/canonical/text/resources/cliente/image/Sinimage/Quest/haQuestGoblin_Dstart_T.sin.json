@@ -1,0 +1,44 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquestgoblin_dstart_t",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/Sinimage/Quest/haQuestGoblin_Dstart_T.sin",
+    "image/Sinimage/Quest/haQuestGoblin_Dstart_T.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/Sinimage/Quest/haQuestGoblin_Dstart_T.sin",
+    "legacy_sha256": "bc6727fef932817cdce7cc8518e9f65cb4a31a90725886073ea2ac8ca6de190b",
+    "legacy_size": 613
+  },
+  "semantic": {
+    "lines": [
+      "The recent actions of the Goblins are uncommon. ",
+      "They appear unexpectedly at the Garden of freedom. ",
+      "The Guardians continue to battle against them. ",
+      "But they are in difficulties owing to lack of ",
+      "strength. They are just waiting for your help and ",
+      "offering a reward. ",
+      "Why don't you challenge the battle? ",
+      "If you hunt 5 Hob Goblins in the Garden of freedom ",
+      "and go back to the Guardian at the town entrance, ",
+      "he will give you a ring and an amulet.",
+      "",
+      "[Quest Subject]",
+      "",
+      "     After having hunted 5 Hob Goblins in the ",
+      "     Garden of freedom, go back to the Guardian ",
+      "     at the town's entrance.",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "VGhlIHJlY2VudCBhY3Rpb25zIG9mIHRoZSBHb2JsaW5zIGFyZSB1bmNvbW1vbi4gDQpUaGV5IGFwcGVhciB1bmV4cGVjdGVkbHkgYXQgdGhlIEdhcmRlbiBvZiBmcmVlZG9tLiANClRoZSBHdWFyZGlhbnMgY29udGludWUgdG8gYmF0dGxlIGFnYWluc3QgdGhlbS4gDQpCdXQgdGhleSBhcmUgaW4gZGlmZmljdWx0aWVzIG93aW5nIHRvIGxhY2sgb2YgDQpzdHJlbmd0aC4gVGhleSBhcmUganVzdCB3YWl0aW5nIGZvciB5b3VyIGhlbHAgYW5kIA0Kb2ZmZXJpbmcgYSByZXdhcmQuIA0KV2h5IGRvbid0IHlvdSBjaGFsbGVuZ2UgdGhlIGJhdHRsZT8gDQpJZiB5b3UgaHVudCA1IEhvYiBHb2JsaW5zIGluIHRoZSBHYXJkZW4gb2YgZnJlZWRvbSANCmFuZCBnbyBiYWNrIHRvIHRoZSBHdWFyZGlhbiBhdCB0aGUgdG93biBlbnRyYW5jZSwgDQpoZSB3aWxsIGdpdmUgeW91IGEgcmluZyBhbmQgYW4gYW11bGV0Lg0KDQpbUXVlc3QgU3ViamVjdF0NCg0KICAgICBBZnRlciBoYXZpbmcgaHVudGVkIDUgSG9iIEdvYmxpbnMgaW4gdGhlIA0KICAgICBHYXJkZW4gb2YgZnJlZWRvbSwgZ28gYmFjayB0byB0aGUgR3VhcmRpYW4gDQogICAgIGF0IHRoZSB0b3duJ3MgZW50cmFuY2UuDQoNCg0KDQoNCg=="
+  }
+}

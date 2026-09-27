@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.da230",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/da230.zhoon",
+    "GameServer/OpenItem/name/da230.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/da230.zhoon",
+    "legacy_sha256": "3d12c9b0a5d4ca474f5e4df797461ea355fa86d95199ca97a1bf13864184d3fd",
+    "legacy_size": 33
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Mythology Robe"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "DQoNCipKX05hbWUJCSJNeXRob2xvZ3kgUm9iZSINCg0K"
+  }
+}

@@ -3,6 +3,7 @@
  Shared/content/v1/text_resource/content/TextResourceRuntime.h \
  Shared/content/v1/text_resource/content/CompiledTextResourceSource.h \
  Shared/content/v1/common/Sha256.h \
+ Shared/content/v1/runtime/RuntimeContentPath.h \
  SrcGame/src/compat/legacy/sin/sinLinkHeader.h \
  SrcGame/src/systems/rendering/legacy_3d/smd3d.h \
  SrcGame/src/systems/rendering/legacy_3d/smDsx.h \
@@ -146,6 +147,7 @@
 Shared/content/v1/text_resource/content/TextResourceRuntime.h:
 Shared/content/v1/text_resource/content/CompiledTextResourceSource.h:
 Shared/content/v1/common/Sha256.h:
+Shared/content/v1/runtime/RuntimeContentPath.h:
 SrcGame/src/compat/legacy/sin/sinLinkHeader.h:
 SrcGame/src/systems/rendering/legacy_3d/smd3d.h:
 SrcGame/src/systems/rendering/legacy_3d/smDsx.h:

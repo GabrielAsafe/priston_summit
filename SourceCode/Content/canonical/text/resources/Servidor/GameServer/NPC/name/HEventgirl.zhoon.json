@@ -1,0 +1,36 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.heventgirl",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/HEventgirl.zhoon",
+    "GameServer/NPC/name/HEventgirl.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/HEventgirl.zhoon",
+    "legacy_sha256": "d6d34082374466aeefc9f2cb181d36ce260955c7645d25c07adeedf0b08da44d",
+    "legacy_size": 66
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 1,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "볺뤾뙏붛봽덒"
+      },
+      {
+        "line": 3,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "X^[AÖæ¤±»ÁI"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "KkpfTkFNRQkJIpP8j+qMlJTMlISI9SINCg0KKkpfQ0hBVAkJIoOCg5ODWINegVuRg4xBgtaC5oKkgrGCu4LBgUki"
+  }
+}

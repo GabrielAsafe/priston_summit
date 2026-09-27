@@ -1,0 +1,36 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.ricarden_civilian2",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/ricarden-civilian2.zhoon",
+    "GameServer/NPC/name/ricarden-civilian2.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/ricarden-civilian2.zhoon",
+    "legacy_sha256": "adce1508e3651ad6ddf1075c05f124f27ec3eb6bf31f9085e9bee46e09b128ba",
+    "legacy_size": 134
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "T_NAME",
+        "kind": "name",
+        "text": "톀붸땁㉵ず넌짟"
+      },
+      {
+        "line": 4,
+        "legacy_key": "T_CHAT",
+        "kind": "chat",
+        "text": "¥ý«eµo²{ªº¥j¥NºÊº»¤w¸gÅÜ¦¨¤F©Çª«ªº±_¥Þ¡A°ê¤ý¤w¸g¤U¥O­n®ø·À¥¦­Ì¡C"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9yaWNhcmRlbi1jaXZpbGlhbjIubnBjDQoNCipUX05BTUUJCSK3UrretqKoxqq6s82kQiINCipUX0NIQVQJCSKl/atltW+ye6q6pWqlTrrKurukd7hnxdymqKRGqceqq6q6sV+l3qFBsOqk/aR3uGekVaVPrW6u+LfApaatzKFDIg0KDQo="
+  }
+}

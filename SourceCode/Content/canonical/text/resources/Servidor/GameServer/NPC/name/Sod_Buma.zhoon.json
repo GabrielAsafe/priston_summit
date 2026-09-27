@@ -1,0 +1,54 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.sod_buma",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Sod_Buma.zhoon",
+    "GameServer/NPC/name/Sod_Buma.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Sod_Buma.zhoon",
+    "legacy_sha256": "6d0b8e6918eaf129530b048fdfe9ac242095713428d7d85ba7ca659ed83a2760",
+    "legacy_size": 284
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 1,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "ƒuƒ}"
+      },
+      {
+        "line": 3,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": " ÁI@©È¢ÅEESzSz"
+      },
+      {
+        "line": 4,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "SOD궼뻽볷뽭뼻궚궬궚궳궥갃렄듩귩롧궯궲궘궬궠궋갃"
+      },
+      {
+        "line": 5,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "SODÅ¾½XRAÍãÅÜàÆµÄl¾Å«éÌÅnCXRAð_ÁÄ­¾³¢B"
+      },
+      {
+        "line": 6,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "SOD£ZêÌüêÌÛAxÉæé§Àª é©ç}¢Å­¾³¢B"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "KkpfTkFNRQkJIoN1g30iDQoNCipKX0NIQVQJCSKCoILBgUmSQIKpgsiCooLFgUWBRYNTg3qDU4N6Ig0KKkpfQ0hBVAkJIlNPRILNloiT+pbplr6Cr4K+gq+CxYK3gUKOnorUgvCO54LBgsSCrYK+grOCooFCIg0KKkpfQ0hBVAkJIlNPRILFk76CvYNYg1KDQYLNjOOCxY/ci+CCxoK1gsSKbJO+gsWCq4LpgsyCxYNug0ODWINSg0GC8JFfgsGCxIKtgr6Cs4KigUIiDQoqSl9DSEFUCQkiU09Ei6OLWo/qgsyT/I/qgsyN24FBg4yDeIOLgsmC5oLpkKeMwIKqgqCC6YKpgueLfYKigsWCrYK+grOCooFCIg0KDQo="
+  }
+}

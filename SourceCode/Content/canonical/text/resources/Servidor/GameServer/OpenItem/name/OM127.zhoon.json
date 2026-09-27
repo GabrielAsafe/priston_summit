@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.om127",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/OM127.zhoon",
+    "GameServer/OpenItem/name/OM127.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/OM127.zhoon",
+    "legacy_sha256": "b964d8bcd590939480e4b02489e2d080f143477c76eed4ec7ceb942518715d22",
+    "legacy_size": 42
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Dynasty Sphere"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9PTTMwNS50eHQNCg0KKkpfTmFtZQkJIkR5bmFzdHkgU3BoZXJlIg0K"
+  }
+}

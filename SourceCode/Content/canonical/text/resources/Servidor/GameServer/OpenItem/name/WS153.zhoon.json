@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.ws153",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/WS153.zhoon",
+    "GameServer/OpenItem/name/WS153.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/WS153.zhoon",
+    "legacy_sha256": "211738d1a1b7a8cb41accd72e8a6de2ef5c6af64bdb0f037e99abfb62896694f",
+    "legacy_size": 39
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Support Bow"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9XUzE1My50eHQNCg0KKkpfTmFtZQkJIlN1cHBvcnQgQm93Ig0K"
+  }
+}

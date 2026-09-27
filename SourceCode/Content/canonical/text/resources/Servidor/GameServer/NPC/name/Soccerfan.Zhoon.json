@@ -1,0 +1,36 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.soccerfan",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Soccerfan.Zhoon",
+    "GameServer/NPC/name/Soccerfan.Zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Soccerfan.Zhoon",
+    "legacy_sha256": "db19234267defa0c542c07fe7c8fc03e796f5a596291f115ee3673c95e18ddc5",
+    "legacy_size": 70
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 4,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Soccerfan"
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": "Ziddane..."
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9Tb2NjZXJmYW4uTlBDDQoNCg0KKkpfTmFtZQkiU29jY2VyZmFuIg0KDQoNCipKX0NoYXQJIlppZGRhbmUuLi4iDQoNCg=="
+  }
+}

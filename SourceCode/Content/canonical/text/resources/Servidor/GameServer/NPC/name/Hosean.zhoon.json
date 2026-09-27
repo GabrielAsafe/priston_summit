@@ -1,0 +1,54 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.hosean",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Hosean.zhoon",
+    "GameServer/NPC/name/Hosean.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Hosean.zhoon",
+    "legacy_sha256": "5da37e5ec41b02de6603d8136cb1376160f9d06746c41870a18179ff38a8ef89",
+    "legacy_size": 364
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "Elder Hosean"
+      },
+      {
+        "line": 6,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "How come you are so far out in the country?"
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "huh huh ...I'm just an old man who lives far out in the country."
+      },
+      {
+        "line": 8,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "I'm temporarily helping the Kingdom with the testing for the Rank-Up tests."
+      },
+      {
+        "line": 9,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Be careful! Move around without caution because there are dangerous monsters around."
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9ob3NlYW4ubnBjDQoNCipKX05BTUUJCSJFbGRlciBIb3NlYW4iDQoNCg0KKkpfQ0hBVAkJIkhvdyBjb21lIHlvdSBhcmUgc28gZmFyIG91dCBpbiB0aGUgY291bnRyeT8iIA0KKkpfQ0hBVAkJImh1aCBodWggLi4uSSdtIGp1c3QgYW4gb2xkIG1hbiB3aG8gbGl2ZXMgZmFyIG91dCBpbiB0aGUgY291bnRyeS4iICANCipKX0NIQVQJCSJJJ20gdGVtcG9yYXJpbHkgaGVscGluZyB0aGUgS2luZ2RvbSB3aXRoIHRoZSB0ZXN0aW5nIGZvciB0aGUgUmFuay1VcCB0ZXN0cy4iDQoqSl9DSEFUCQkiQmUgY2FyZWZ1bCEgTW92ZSBhcm91bmQgd2l0aG91dCBjYXV0aW9uIGJlY2F1c2UgdGhlcmUgYXJlIGRhbmdlcm91cyBtb25zdGVycyBhcm91bmQuIg=="
+  }
+}

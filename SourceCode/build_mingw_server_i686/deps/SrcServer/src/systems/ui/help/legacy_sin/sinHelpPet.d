@@ -3,6 +3,7 @@
  Shared/content/v1/text_resource/content/TextResourceRuntime.h \
  Shared/content/v1/text_resource/content/CompiledTextResourceSource.h \
  Shared/content/v1/common/Sha256.h \
+ Shared/content/v1/runtime/RuntimeContentPath.h \
  Shared/gameplay/classes/v2/services/ClassService.h \
  Shared/gameplay/classes/v2/PlayableClassRegistry.h \
  Shared/gameplay/classes/v2/domain/ClassDefinition.h \
@@ -124,6 +125,7 @@
 Shared/content/v1/text_resource/content/TextResourceRuntime.h:
 Shared/content/v1/text_resource/content/CompiledTextResourceSource.h:
 Shared/content/v1/common/Sha256.h:
+Shared/content/v1/runtime/RuntimeContentPath.h:
 Shared/gameplay/classes/v2/services/ClassService.h:
 Shared/gameplay/classes/v2/PlayableClassRegistry.h:
 Shared/gameplay/classes/v2/domain/ClassDefinition.h:

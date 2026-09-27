@@ -9297,20 +9297,28 @@ int smCHAR::StartHandEffect(int Mode)
 		memcpy(&angle, &Angle, sizeof(POINT3D));
 		angle.y = (-angle.y + ANGLE_180)&ANGCLIP;
 
-		AnimObjectTree(HvLeftHand.ObjBip, frame, angle.x, angle.y, angle.z);
-		mWorld = &HvLeftHand.ObjBip->mWorld;
-		x = pX + mWorld->_41;
-		z = pZ + mWorld->_42;
-		y = pY + mWorld->_43;
-		StartEffectMonster(x, y, z, MONSTER_PIGON_POWER1);
+		// Monster patterns are not required to expose every humanoid hand bone.
+		// Treat effect anchors as optional: missing bones must never crash the client.
+		if (HvLeftHand.ObjBip)
+		{
+			AnimObjectTree(HvLeftHand.ObjBip, frame, angle.x, angle.y, angle.z);
+			mWorld = &HvLeftHand.ObjBip->mWorld;
+			x = pX + mWorld->_41;
+			z = pZ + mWorld->_42;
+			y = pY + mWorld->_43;
+			StartEffectMonster(x, y, z, MONSTER_PIGON_POWER1);
+		}
 
 
-		AnimObjectTree(HvRightHand.ObjBip, frame, angle.x, angle.y, angle.z);
-		mWorld = &HvRightHand.ObjBip->mWorld;
-		x = pX + mWorld->_41;
-		z = pZ + mWorld->_42;
-		y = pY + mWorld->_43;
-		StartEffectMonster(x, y, z, MONSTER_PIGON_POWER1);
+		if (HvRightHand.ObjBip)
+		{
+			AnimObjectTree(HvRightHand.ObjBip, frame, angle.x, angle.y, angle.z);
+			mWorld = &HvRightHand.ObjBip->mWorld;
+			x = pX + mWorld->_41;
+			z = pZ + mWorld->_42;
+			y = pY + mWorld->_43;
+			StartEffectMonster(x, y, z, MONSTER_PIGON_POWER1);
+		}
 
 
 
@@ -9319,7 +9327,7 @@ int smCHAR::StartHandEffect(int Mode)
 	}
 	if (smCharInfo.dwCharSoundCode == snCHAR_SOUND_SEN)
 	{
-		if (MotionInfo->State != CHRMOTION_STATE_DEAD)
+		if (MotionInfo && HvLeftHand.ObjBip && MotionInfo->State != CHRMOTION_STATE_DEAD)
 		{
 			memcpy(&angle, &Angle, sizeof(POINT3D));
 			angle.y = (-angle.y + ANGLE_180)&ANGCLIP;
@@ -9341,7 +9349,7 @@ int smCHAR::StartHandEffect(int Mode)
 
 	if (smCharInfo.dwCharSoundCode == snCHAR_SOUND_MUTANTTREE)
 	{
-		if (MotionInfo->State != CHRMOTION_STATE_DEAD)
+		if (MotionInfo && HvLeftHand.ObjBip && MotionInfo->State != CHRMOTION_STATE_DEAD)
 		{
 			memcpy(&angle, &Angle, sizeof(POINT3D));
 			angle.y = (-angle.y + ANGLE_180)&ANGCLIP;

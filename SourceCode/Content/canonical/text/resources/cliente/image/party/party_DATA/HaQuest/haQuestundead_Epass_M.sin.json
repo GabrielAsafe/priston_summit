@@ -1,0 +1,29 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquestundead_epass_m.path_a382f4fc21",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/party/party_DATA/HaQuest/haQuestundead_Epass_M.sin",
+    "image/party/party_DATA/HaQuest/haQuestundead_Epass_M.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/party/party_DATA/HaQuest/haQuestundead_Epass_M.sin",
+    "legacy_sha256": "827c8151ce2bd5dab454ea76b220181d192d126b1bcd89a8b9f67c473830baef",
+    "legacy_size": 191
+  },
+  "semantic": {
+    "lines": [
+      "O poder de ataque dos Esqueletos é mortal.",
+      "",
+      "Eles não são fáceis de lidar. ",
+      "Certifique-se de estar preparado com poções o suficiente",
+      "e o equipamento adequado para quando tentar novamente. "
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "TyBwb2RlciBkZSBhdGFxdWUgZG9zIEVzcXVlbGV0b3Mg6SBtb3J0YWwuDQoNCkVsZXMgbuNvIHPjbyBm4WNlaXMgZGUgbGlkYXIuIA0KQ2VydGlmaXF1ZS1zZSBkZSBlc3RhciBwcmVwYXJhZG8gY29tIHBv5/VlcyBvIHN1ZmljaWVudGUNCmUgbyBlcXVpcGFtZW50byBhZGVxdWFkbyBwYXJhIHF1YW5kbyB0ZW50YXIgbm92YW1lbnRlLiA="
+  }
+}

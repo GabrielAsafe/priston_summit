@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.or151",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/OR151.zhoon",
+    "GameServer/OpenItem/name/OR151.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/OR151.zhoon",
+    "legacy_sha256": "366f7aac4ad845447d1aa26f9abd1a969987aac0044ad0edfdc3d981a09fa59d",
+    "legacy_size": 38
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Shire Ring"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9PUjEyMi50eHQNCg0KKkpfTmFtZQkJIlNoaXJlIFJpbmciDQo="
+  }
+}

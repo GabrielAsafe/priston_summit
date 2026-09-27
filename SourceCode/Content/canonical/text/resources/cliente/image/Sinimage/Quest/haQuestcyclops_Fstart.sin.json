@@ -1,0 +1,35 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquestcyclops_fstart",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/Sinimage/Quest/haQuestcyclops_Fstart.sin",
+    "image/Sinimage/Quest/haQuestcyclops_Fstart.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/Sinimage/Quest/haQuestcyclops_Fstart.sin",
+    "legacy_sha256": "f52b0b90214139d223734e57eba8dd6dca56ae7b5b8e6846f3ca21ea7ac297f3",
+    "legacy_size": 338
+  },
+  "semantic": {
+    "lines": [
+      "I sense that Igolanos' attack is impending. ",
+      "Recently we've received the news about Cyclops are",
+      "putting massive attack on Cursed land.",
+      "",
+      "If we fail to defend, there are no place for us to ",
+      "live. We need to stop them. Defend Cursed land from ",
+      "Cyclops' attack.",
+      "",
+      "[Quest Subject]",
+      "",
+      "Hunt 10 Cyclops in Cursed Land and report it to Ran."
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "SSBzZW5zZSB0aGF0IElnb2xhbm9zJyBhdHRhY2sgaXMgaW1wZW5kaW5nLiANClJlY2VudGx5IHdlJ3ZlIHJlY2VpdmVkIHRoZSBuZXdzIGFib3V0IEN5Y2xvcHMgYXJlDQpwdXR0aW5nIG1hc3NpdmUgYXR0YWNrIG9uIEN1cnNlZCBsYW5kLg0KDQpJZiB3ZSBmYWlsIHRvIGRlZmVuZCwgdGhlcmUgYXJlIG5vIHBsYWNlIGZvciB1cyB0byANCmxpdmUuIFdlIG5lZWQgdG8gc3RvcCB0aGVtLiBEZWZlbmQgQ3Vyc2VkIGxhbmQgZnJvbSANCkN5Y2xvcHMnIGF0dGFjay4NCg0KW1F1ZXN0IFN1YmplY3RdDQoNCkh1bnQgMTAgQ3ljbG9wcyBpbiBDdXJzZWQgTGFuZCBhbmQgcmVwb3J0IGl0IHRvIFJhbi4="
+  }
+}

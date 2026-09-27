@@ -1,0 +1,46 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.shunter",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/shunter.zhoon",
+    "GameServer/NPC/name/shunter.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/shunter.zhoon",
+    "legacy_sha256": "34c0f519c5286e57d65372a9d331c6b5fc9b72365e4fc97cd6ca91e556d757d6",
+    "legacy_size": 141,
+    "legacy_aliases": [
+      "Servidor/GameServer/NPC/name/shunter.zhoon",
+      "Servidor/gameserver/npc/name/shunter.zhoon"
+    ]
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 1,
+        "legacy_key": "E_NAME",
+        "kind": "name",
+        "text": "Snake Hunter"
+      },
+      {
+        "line": 3,
+        "legacy_key": "E_CHAT",
+        "kind": "chat",
+        "text": "All the snakes that I captured has escaped"
+      },
+      {
+        "line": 4,
+        "legacy_key": "E_CHAT",
+        "kind": "chat",
+        "text": "Black snakes have strong power we never knew."
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "KkVfTkFNRQkJIlNuYWtlIEh1bnRlciINCg0KKkVfQ0hBVAkJIkFsbCB0aGUgc25ha2VzIHRoYXQgSSBjYXB0dXJlZCBoYXMgZXNjYXBlZCIgDQoqRV9DSEFUCQkiQmxhY2sgc25ha2VzIGhhdmUgc3Ryb25nIHBvd2VyIHdlIG5ldmVyIGtuZXcuIg0K"
+  }
+}

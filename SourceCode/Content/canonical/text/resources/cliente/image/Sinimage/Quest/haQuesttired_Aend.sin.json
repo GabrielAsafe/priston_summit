@@ -1,0 +1,40 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquesttired_aend",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/Sinimage/Quest/haQuesttired_Aend.sin",
+    "image/Sinimage/Quest/haQuesttired_Aend.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/Sinimage/Quest/haQuesttired_Aend.sin",
+    "legacy_sha256": "3ba7edaed390bc8baf1a8d086e82f54c65d06195d08da2afa27b77c8027f5a13",
+    "legacy_size": 363
+  },
+  "semantic": {
+    "lines": [
+      "",
+      "Did he enjoy my cake?",
+      "I feel happy when people enjoy my food.",
+      "If I have time, I will make one for you.",
+      "",
+      "You have passed my request so, I will give this weapon as ",
+      "a reward. It is so dangerous weapon for beginner however, ",
+      "it helps you when you are hunting monsters outside the town.",
+      "",
+      "",
+      "Now, go to the outside of town and enjoy the adventure.",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "DQpEaWQgaGUgZW5qb3kgbXkgY2FrZT8NCkkgZmVlbCBoYXBweSB3aGVuIHBlb3BsZSBlbmpveSBteSBmb29kLg0KSWYgSSBoYXZlIHRpbWUsIEkgd2lsbCBtYWtlIG9uZSBmb3IgeW91Lg0KDQpZb3UgaGF2ZSBwYXNzZWQgbXkgcmVxdWVzdCBzbywgSSB3aWxsIGdpdmUgdGhpcyB3ZWFwb24gYXMgDQphIHJld2FyZC4gSXQgaXMgc28gZGFuZ2Vyb3VzIHdlYXBvbiBmb3IgYmVnaW5uZXIgaG93ZXZlciwgDQppdCBoZWxwcyB5b3Ugd2hlbiB5b3UgYXJlIGh1bnRpbmcgbW9uc3RlcnMgb3V0c2lkZSB0aGUgdG93bi4NCg0KDQpOb3csIGdvIHRvIHRoZSBvdXRzaWRlIG9mIHRvd24gYW5kIGVuam95IHRoZSBhZHZlbnR1cmUuDQoNCg0KDQoNCg0K"
+  }
+}

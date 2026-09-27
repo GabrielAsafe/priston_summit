@@ -1,0 +1,54 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.novic",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/novic.zhoon",
+    "GameServer/NPC/name/novic.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/novic.zhoon",
+    "legacy_sha256": "4afac0b771e8c7e1cd4b795df54f6841f739dd70455cdc37caed63f7596127b8",
+    "legacy_size": 248
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "Novic"
+      },
+      {
+        "line": 5,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Where is this?"
+      },
+      {
+        "line": 6,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "I think I can combine those gems that you have."
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "I can feel a mysterious spirit around those gems."
+      },
+      {
+        "line": 8,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Hmm.. I'm not sure I can create it for some reason..."
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9ub3ZpYy5ucGMNCg0KKkpfTkFNRQkJIk5vdmljIg0KDQoqSl9DSEFUCQkiV2hlcmUgaXMgdGhpcz8iDQoqSl9DSEFUCQkiSSB0aGluayBJIGNhbiBjb21iaW5lIHRob3NlIGdlbXMgdGhhdCB5b3UgaGF2ZS4iDQoqSl9DSEFUCQkiSSBjYW4gZmVlbCBhIG15c3RlcmlvdXMgc3Bpcml0IGFyb3VuZCB0aG9zZSBnZW1zLiINCipKX0NIQVQJCSJIbW0uLiBJJ20gbm90IHN1cmUgSSBjYW4gY3JlYXRlIGl0IGZvciBzb21lIHJlYXNvbi4uLiI="
+  }
+}

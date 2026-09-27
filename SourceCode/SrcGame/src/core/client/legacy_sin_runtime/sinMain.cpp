@@ -493,6 +493,18 @@ void sinProc(int Message)
 			cInvenTory.ReFormMousePotionNum();
 			return;
 		}
+
+		// UI V2 intentionally disables the hidden legacy inventory hit boxes.
+		// Keep the one world interaction that a dragged item still needs: when
+		// the Inventory tab owns the drag and no V2 surface consumed this click,
+		// route it through the original validated ground-drop path.
+		if (ui::v2::legacy::OwnsInventory() && MouseItem.Flag)
+		{
+			cInvenTory.ThrowInvenItemToField(&MouseItem);
+			cInvenTory.ReFormMousePotionNum();
+			return;
+		}
+
 		if (LegacyInterfaceInputEnabled()) cInterFace.LButtonDown(pCursorPos.x, pCursorPos.y);
 		if (!ui::v2::legacy::SuppressLegacyCharacterPanels()) cCharStatus.LButtonDown(pCursorPos.x, pCursorPos.y);
 		if (LegacyInventoryPointerEnabled()) cInvenTory.LButtonDown(pCursorPos.x, pCursorPos.y);
@@ -592,6 +604,14 @@ void sinProc(int Message)
 
 		case SINKEYDOWN:
 		if (cSettings.isOpen())return;
+		if (ui::v2::legacy::IsSettingsWindowOpen())
+		{
+			// Match the old settings modal behavior: do not let gameplay/UI
+			// shortcuts fire behind the settings window. X and Escape close it.
+			if (sinGetKeyClick('X') || sinGetKeyClick(VK_ESCAPE))
+				ui::v2::legacy::ToggleSettingsWindow();
+			return;
+		}
 		if(sinbaram_Stop)return;
 		if (ui::v2::legacy::HandleModalHotkeys()) return;
 		if (!ui::v2::legacy::OwnsLegacyMessage3UI()) cMessageBox.KeyDown();

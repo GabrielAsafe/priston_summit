@@ -1,0 +1,48 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.lake_guard",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/lake-guard.zhoon",
+    "GameServer/NPC/name/lake-guard.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/lake-guard.zhoon",
+    "legacy_sha256": "c54d5334a9cbb72ec9501103e8ab1362189d022274ca6a7795713432fc310a61",
+    "legacy_size": 283
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "Lake Guard"
+      },
+      {
+        "line": 5,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "This area is open for the warriors  who are approved by the kingdom.    Stay back it's very dangerous."
+      },
+      {
+        "line": 6,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Warriors at level 70 may pass here."
+      },
+      {
+        "line": 7,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "We prohibit this area because there are very dangerous monsters."
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9sYWtpX2d1YXJkLm5wYw0KDQoqSl9OQU1FCQkiTGFrZSBHdWFyZCINCg0KKkpfQ0hBVAkJIlRoaXMgYXJlYSBpcyBvcGVuIGZvciB0aGUgd2FycmlvcnMgIHdobyBhcmUgYXBwcm92ZWQgYnkgdGhlIGtpbmdkb20uICAgIFN0YXkgYmFjayBpdCdzIHZlcnkgZGFuZ2Vyb3VzLiINCipKX0NIQVQJCSJXYXJyaW9ycyBhdCBsZXZlbCA3MCBtYXkgcGFzcyBoZXJlLiINCipKX0NIQVQJCSJXZSBwcm9oaWJpdCB0aGlzIGFyZWEgYmVjYXVzZSB0aGVyZSBhcmUgdmVyeSBkYW5nZXJvdXMgbW9uc3RlcnMuIg=="
+  }
+}

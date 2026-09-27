@@ -2928,6 +2928,9 @@ int HoLogin::Draw()
 
 
 					LoadSelectableJobCharacters();
+					PlayWav2(9 - 1);
+					SelectNextState = JOB_SELECT_STATE;
+					RaceMarkScaleSize = 128;
 
 				}
 			}
@@ -2957,6 +2960,9 @@ int HoLogin::Draw()
 
 
 					LoadSelectableJobCharacters();
+					PlayWav2(9 - 1);
+					SelectNextState = JOB_SELECT_STATE;
+					RaceMarkScaleSize = 128;
 				}
 			}
 			else

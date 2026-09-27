@@ -35,6 +35,7 @@
 #include "systems/ui/v2/widgets/Label.h"
 #include "systems/ui/v2/widgets/Panel.h"
 #include "systems/ui/v2/windows/CharacterWindow.h"
+#include "systems/ui/v2/windows/SettingsWindow.h"
 
 extern int SetChatingLine(char* szMessage);
 
@@ -52,6 +53,7 @@ constexpr WindowId LegacyMessageWindowId = 0x554956324D534733ULL; // "UIV2MSG3"
 constexpr WindowId LegacyNotificationWindowId = 0x554956324E4F5446ULL; // "UIV2NOTF"
 constexpr WindowId NpcDialogWindowId = 0x554956324E504344ULL; // "UIV2NPCD"
 constexpr WindowId SkillNpcWindowId = 0x55495632534B4E50ULL; // "UIV2SKNP"
+constexpr WindowId SettingsWindowId = 0x5549563253455454ULL; // "UIV2SETT"
 UIRuntime runtime;
 DWORD lastTick = 0;
 CharacterWindow* characterWindow = nullptr;
@@ -63,6 +65,7 @@ LegacyMessageWindow* legacyMessageWindow = nullptr;
 LegacyNotificationHud* legacyNotificationHud = nullptr;
 LegacyNpcDialogWindow* npcDialogWindow = nullptr;
 LegacySkillNpcWindow* skillNpcWindow = nullptr;
+SettingsWindow* settingsWindow = nullptr;
 LegacyCharacterStatsGateway statsGateway;
 LegacySkillGateway skillGateway;
 LegacyInventoryGateway inventoryGateway;
@@ -261,7 +264,7 @@ void ExecuteHudShortcut(HudShortcutAction action)
         case HudShortcutAction::Party: ShowParty(); break;
         case HudShortcutAction::Quests: ToggleQuestJournal(); break;
         case HudShortcutAction::System:
-            if (!cSettings.isOpen()) cSettings.Open(); else cSettings.Close();
+            ToggleSettingsWindow();
             break;
         case HudShortcutAction::RunWalk:
             cInterFace.sInterFlags.RunFlag = cInterFace.sInterFlags.RunFlag ? 0 : 1;
@@ -335,6 +338,19 @@ void BuildQuestUI()
     runtime.Windows().Register(QuestTrackerWindowId, std::move(tracker), UIWindowLayer::Hud);
     runtime.Windows().Open(QuestTrackerWindowId);
 #endif
+}
+
+
+void BuildSettingsWindow()
+{
+    auto window = std::make_unique<SettingsWindow>(210);
+    settingsWindow = window.get();
+    settingsWindow->SetViewport(WinSizeX, WinSizeY);
+    settingsWindow->SetOnClose([]()
+    {
+        runtime.Windows().Close(SettingsWindowId);
+    });
+    runtime.Windows().Register(SettingsWindowId, std::move(window), UIWindowLayer::NormalWindow);
 }
 
 void BuildLegacyDialogUI()
@@ -553,6 +569,7 @@ void Initialize()
     BuildPlayerHud();
     BuildCompanionPartyHud();
     BuildQuestUI();
+    BuildSettingsWindow();
     BuildLegacyDialogUI();
     // MixGuide/Mixage is a legacy reference-only surface. UI V2 no longer
     // exposes or keeps it open; mixing rules remain in cCraftItem/context.
@@ -573,6 +590,7 @@ void Shutdown()
     legacyNotificationHud = nullptr;
     npcDialogWindow = nullptr;
     skillNpcWindow = nullptr;
+    settingsWindow = nullptr;
     questGateway.ShutdownBackend();
     companionGateway.Reset();
     covenantGateway.Reset();
@@ -794,6 +812,30 @@ bool HandleMainHudHotkeys()
     return false;
 }
 
+bool IsSettingsWindowOpen()
+{
+    return runtime.IsInitialized() && settingsWindow != nullptr && runtime.Windows().IsOpen(SettingsWindowId);
+}
+
+void ToggleSettingsWindow()
+{
+    if (!runtime.IsInitialized() || !settingsWindow)
+        return;
+
+    if (runtime.Windows().IsOpen(SettingsWindowId))
+    {
+        runtime.Windows().Close(SettingsWindowId);
+        return;
+    }
+
+    // Never stack the old settings surface behind the V2 one. Login/opening can
+    // still use cSettings, but gameplay always owns Settings through this window.
+    if (cSettings.isOpen())
+        cSettings.Close();
+    settingsWindow->ReloadFromRuntime();
+    runtime.Windows().Open(SettingsWindowId);
+}
+
 void OnResolutionChanged(int width, int height)
 {
     runtime.OnResolutionChanged(width, height);
@@ -811,6 +853,8 @@ void OnResolutionChanged(int width, int height)
         legacyMessageWindow->SetBounds({0, 0, width, height});
     if (legacyNotificationHud)
         legacyNotificationHud->SetViewport(width, height);
+    if (settingsWindow)
+        settingsWindow->SetViewport(width, height);
 }
 
 bool OwnsCharacterStatus()
@@ -919,6 +963,9 @@ bool BlocksWorldInputAt(int x, int y)
         return true;
     if (skillNpcWindow && runtime.Windows().IsOpen(SkillNpcWindowId) &&
         skillNpcWindow->GlobalBounds().Contains(Point{x, y}))
+        return true;
+    if (settingsWindow && runtime.Windows().IsOpen(SettingsWindowId) &&
+        settingsWindow->GlobalBounds().Contains(Point{x, y}))
         return true;
     return false;
 #else

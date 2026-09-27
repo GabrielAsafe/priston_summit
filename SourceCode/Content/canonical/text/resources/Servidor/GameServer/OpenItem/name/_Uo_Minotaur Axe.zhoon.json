@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.uo_minotaur_axe",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/_Uo_Minotaur Axe.zhoon",
+    "GameServer/OpenItem/name/_Uo_Minotaur Axe.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/_Uo_Minotaur Axe.zhoon",
+    "legacy_sha256": "99eb0460b50d01646fbd8ad1cb07a4c8ce84ba0ae175279593a5137d35e83fa2",
+    "legacy_size": 54
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Minotaur Axe"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9Vd2ExMjBfTWlub3RhdXIgQXhlLnR4dA0KDQoqSl9OYW1lCQkiTWlub3RhdXIgQXhlIg0K"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.2_wn109",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/2_WN109.zhoon",
+    "GameServer/OpenItem/name/2_WN109.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/2_WN109.zhoon",
+    "legacy_sha256": "fdc073d12ebf50fb8e073005dfb4ce37e687fe6e03a31d67591b1798de9de832",
+    "legacy_size": 45
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "E_NAME",
+        "kind": "name",
+        "text": "Tatanka Phantom"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly8yX1dOMTA5LnR4dA0KDQoqRV9OQU1FCQkiVGF0YW5rYSBQaGFudG9tIg0K"
+  }
+}

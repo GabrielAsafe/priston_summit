@@ -1,0 +1,42 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.goldenwolverin",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/goldenWolverin.zhoon",
+    "GameServer/NPC/name/goldenWolverin.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/goldenWolverin.zhoon",
+    "legacy_sha256": "6f5b485fa627522e63acb1c5f4d4c0952019b1a8de67746b91cd59310b49a2dc",
+    "legacy_size": 104
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 1,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "Wolverine Dourado"
+      },
+      {
+        "line": 3,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Grrrrr... grrrrrr..."
+      },
+      {
+        "line": 4,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Urr.. urrrrrrrrr.. urrr..."
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "KkpfTkFNRQkJIldvbHZlcmluZSBEb3VyYWRvIg0KDQoqSl9DSEFUCQkiR3JycnJyLi4uIGdycnJycnIuLi4iDQoqSl9DSEFUCQkiVXJyLi4gdXJycnJycnJyci4uIHVycnIuLi4iDQo="
+  }
+}

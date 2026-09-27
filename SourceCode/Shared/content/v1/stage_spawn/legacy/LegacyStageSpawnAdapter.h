@@ -8,6 +8,7 @@
 #include "content/v1/stage_spawn/content/LegacyStageSpawnContentSource.h"
 #include "content/v1/stage_spawn/content/StageSpawnService.h"
 #include "content/v1/text_resource/legacy/LegacyContentIdRegistry.h"
+#include "content/v1/runtime/RuntimeContentPath.h"
 
 namespace summit
 {
@@ -101,31 +102,14 @@ inline bool DecodeOpenMonsterViaContent(const char *sourceFile,
                                         int characterCount)
 {
     if(!sourceFile || !output) return false;
-    LegacyStageSpawnContentSource legacy;
-    const char *pack=std::getenv("SUMMIT_STAGE_SPAWN_PACK");
-    const char *strictEnv=std::getenv("SUMMIT_STAGE_SPAWN_STRICT");
-    const bool strict=strictEnv && strictEnv[0]=='1';
-
+    static const std::string packPath=summit::content::runtime::ResolveRuntimePackPath("stage_spawns.sspb");
+    const char *pack=packPath.c_str();
     StageSpawnDefinition definition;
     std::string error;
-    bool loaded=false;
-    if(pack && *pack)
-    {
-        CompiledStageSpawnContentSource compiled(pack);
-        if(compiled.IsValid())
-        {
-            StageSpawnService service(compiled);
-            loaded=service.Load(sourceFile,definition,&error);
-        }
-        else
-            error=compiled.LastError();
-        if(!loaded && strict) return false;
-    }
-    if(!loaded)
-    {
-        StageSpawnService service(legacy);
-        if(!service.Load(sourceFile,definition,&error)) return false;
-    }
+    CompiledStageSpawnContentSource compiled(pack);
+    if(!compiled.IsValid()) return false;
+    StageSpawnService service(compiled);
+    if(!service.Load(sourceFile,definition,&error)) return false;
     return MaterializeLegacyStageSpawn(definition,*output,characters,characterCount,&error);
 }
 

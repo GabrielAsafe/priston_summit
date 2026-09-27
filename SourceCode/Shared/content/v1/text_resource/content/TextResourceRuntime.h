@@ -1,14 +1,14 @@
 #pragma once
 #include <cstdio>
-#include <cstdlib>
 #include <string>
 #include <vector>
 #include "content/v1/text_resource/content/CompiledTextResourceSource.h"
+#include "content/v1/runtime/RuntimeContentPath.h"
 
 namespace summit { namespace content { namespace text_resource {
 
-inline bool TextResourceStrictMode(){ const char*e=std::getenv("SUMMIT_TEXT_RESOURCE_STRICT"); return e&&e[0]=='1'; }
-inline const char* TextResourcePackPath(){ const char*p=std::getenv("SUMMIT_TEXT_RESOURCE_PACK"); return (p&&*p)?p:0; }
+inline bool TextResourceStrictMode(){ return true; }
+inline const char* TextResourcePackPath(){ static const std::string p=summit::content::runtime::ResolveRuntimePackPath("text_resources.sres"); return p.c_str(); }
 
 inline const CompiledTextResourceSource* ActiveTextResourceSource(){
   struct Holder {

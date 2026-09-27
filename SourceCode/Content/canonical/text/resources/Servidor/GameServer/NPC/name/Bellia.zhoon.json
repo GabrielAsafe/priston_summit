@@ -1,0 +1,36 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.bellia",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/Bellia.zhoon",
+    "GameServer/NPC/name/Bellia.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/Bellia.zhoon",
+    "legacy_sha256": "e274b845adbab7442530661d6b5ddf483f5334a9638feff2b9eb2e1d0300c303",
+    "legacy_size": 210
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "Bellia"
+      },
+      {
+        "line": 6,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Bring me three of the same monster  crystal and I can craft you a triple monster crystal."
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9CZWxsaWEubnBjDQoNCipKX05BTUUJCSJCZWxsaWEiDQoNCi8vKkpfQ0hBVAkiWW91IGNhbiBtYWtlIHRoZSBzYW1lIHR5cGUgb2YgY3J5c3RhbCB0aHJlZSBzdHJvbmcgY3J5c3RhbC4iDQoqSl9DSEFUCQkiQnJpbmcgbWUgdGhyZWUgb2YgdGhlIHNhbWUgbW9uc3RlciAgY3J5c3RhbCBhbmQgSSBjYW4gY3JhZnQgeW91IGEgdHJpcGxlIG1vbnN0ZXIgY3J5c3RhbC4i"
+  }
+}

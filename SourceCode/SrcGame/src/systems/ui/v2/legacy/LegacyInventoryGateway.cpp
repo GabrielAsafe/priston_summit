@@ -285,20 +285,40 @@ bool LegacyInventoryGateway::DropAtLegacyPoint(int x, int y)
 
 bool LegacyInventoryGateway::DropToBag(int column, int row)
 {
-    if (column < 0 || row < 0 || column >= LegacyColumns || row >= LegacyRows)
+    if (!MouseItem.Flag || column < 0 || row < 0 || column >= LegacyColumns || row >= LegacyRows)
         return false;
-    return DropAtLegacyPoint(LegacyBagX + column * LegacyCell + LegacyCell / 2,
-                             LegacyBagY + row * LegacyCell + LegacyCell / 2);
+
+    const int widthCells = std::max(1, (MouseItem.w + LegacyCell - 1) / LegacyCell);
+    const int heightCells = std::max(1, (MouseItem.h + LegacyCell - 1) / LegacyCell);
+    if (column + widthCells > LegacyColumns || row + heightCells > LegacyRows)
+        return false;
+
+    // V2 grid coordinates describe the desired top-left cell. DropAtLegacyPoint()
+    // receives a cursor position and recentres MouseItem around that cursor before
+    // the legacy 22px snap. Using the centre of a single cell shifted multi-cell
+    // items left/up; offset by half of the actual item instead.
+    const int targetX = LegacyBagX + column * LegacyCell;
+    const int targetY = LegacyBagY + row * LegacyCell;
+    return DropAtLegacyPoint(targetX + std::max(1, MouseItem.w / 2),
+                             targetY + std::max(1, MouseItem.h / 2));
 }
 
 bool LegacyInventoryGateway::DropToQuest(int column, int row)
 {
-    if (column < 0 || row < 0 || column >= LegacyQuestColumns || row >= LegacyQuestRows)
+    if (!MouseItem.Flag || column < 0 || row < 0 || column >= LegacyQuestColumns || row >= LegacyQuestRows)
         return false;
     if (!SetQuestItemsVisible(true))
         return false;
-    return DropAtLegacyPoint(LegacyBagX + column * LegacyQuestCell + LegacyQuestCell / 2,
-                             LegacyBagY + row * LegacyQuestCell + LegacyQuestCell / 2);
+
+    const int widthCells = std::max(1, (MouseItem.w + LegacyQuestCell - 1) / LegacyQuestCell);
+    const int heightCells = std::max(1, (MouseItem.h + LegacyQuestCell - 1) / LegacyQuestCell);
+    if (column + widthCells > LegacyQuestColumns || row + heightCells > LegacyQuestRows)
+        return false;
+
+    const int targetX = LegacyBagX + column * LegacyQuestCell;
+    const int targetY = LegacyBagY + row * LegacyQuestCell;
+    return DropAtLegacyPoint(targetX + std::max(1, MouseItem.w / 2),
+                             targetY + std::max(1, MouseItem.h / 2));
 }
 
 bool LegacyInventoryGateway::DropToEquipment(int equipmentSlot)

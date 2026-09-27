@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.wa153",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/WA153.zhoon",
+    "GameServer/OpenItem/name/WA153.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/WA153.zhoon",
+    "legacy_sha256": "12535f31cbdeab67f90fa77e2c725a8cbaec88adb1f5a7521ffd84173c89782f",
+    "legacy_size": 39
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Support Axe"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9XQTE1My50eHQNCg0KKkpfTmFtZQkJIlN1cHBvcnQgQXhlIg0K"
+  }
+}

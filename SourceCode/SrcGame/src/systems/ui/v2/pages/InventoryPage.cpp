@@ -435,10 +435,38 @@ UIEventResult InventoryPage::OnEvent(const UIEvent& event)
                     viewModel_.DropToEquipment(hit.equipmentSlot);
                 else if (hit.bagColumn >= 0)
                 {
+                    // The drag preview is centred on the pointer. Convert that
+                    // centre position back to the item's top-left grid cell so
+                    // multi-cell items do not treat the hovered cell as their
+                    // top-left corner. This also lets large items reach the
+                    // right/bottom edges without requiring the cursor to sit on
+                    // their upper-left cell.
+                    const auto& drag = viewModel_.Snapshot().drag;
+                    const Rect global = GlobalBounds();
+                    const Point local{event.pointer.x - global.x, event.pointer.y - global.y};
+                    const Rect bag = BagRectLocal();
+                    const int cell = questMode_ ? QuestCell : Cell;
+                    const int columns = questMode_ ? viewModel_.Snapshot().questColumns : viewModel_.Snapshot().columns;
+                    const int rows = questMode_ ? viewModel_.Snapshot().questRows : viewModel_.Snapshot().rows;
+                    const int cellsW = questMode_ ? 1 : std::max(1, (drag.widthPixels + 21) / 22);
+                    const int cellsH = questMode_ ? 1 : std::max(1, (drag.heightPixels + 21) / 22);
+
+                    const auto roundCell = [cell](int value)
+                    {
+                        return value >= 0
+                            ? (value + cell / 2) / cell
+                            : -((-value + cell / 2) / cell);
+                    };
+
+                    const int centredLeft = (local.x - bag.x) - (cellsW * cell) / 2;
+                    const int centredTop = (local.y - bag.y) - (cellsH * cell) / 2;
+                    const int dropColumn = std::clamp(roundCell(centredLeft), 0, std::max(0, columns - cellsW));
+                    const int dropRow = std::clamp(roundCell(centredTop), 0, std::max(0, rows - cellsH));
+
                     if (questMode_)
-                        viewModel_.DropToQuest(hit.bagColumn, hit.bagRow);
+                        viewModel_.DropToQuest(dropColumn, dropRow);
                     else
-                        viewModel_.DropToBag(hit.bagColumn, hit.bagRow);
+                        viewModel_.DropToBag(dropColumn, dropRow);
                 }
                 return UIEventResult::Handled;
             }
@@ -650,8 +678,11 @@ void InventoryPage::DrawDrag(UIRenderContext& context)
         return;
 
     auto& r = context.Renderer();
-    const int w = std::max(24, drag.widthPixels);
-    const int h = std::max(24, drag.heightPixels);
+    const int cell = questMode_ ? QuestCell : Cell;
+    const int cellsW = questMode_ ? 1 : std::max(1, (drag.widthPixels + 21) / 22);
+    const int cellsH = questMode_ ? 1 : std::max(1, (drag.heightPixels + 21) / 22);
+    const int w = cellsW * cell;
+    const int h = cellsH * cell;
     const Rect rect{lastPointer_.x - w / 2, lastPointer_.y - h / 2, w, h};
     r.DrawRect(rect, Color{30, 35, 44, 210});
     if (drag.texture.IsValid())

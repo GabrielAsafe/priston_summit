@@ -1,0 +1,18 @@
+{
+  "schema": "summit.stage-spawn/v1",
+  "schema_version": 1,
+  "id": "spawn.ancientw",
+  "logical_path": "GameServer/Field/ancientw.ase.spm",
+  "legacy_source": {
+    "path": "Servidor/GameServer/Field/ancientw.ase.spm",
+    "sha256": "f2a82246a09c6b018319ae2ca35b0ba534e4593f5df3f4ec4c9e2a10885fbb85"
+  },
+  "limit_max": 300,
+  "delay": {
+    "shift": 1,
+    "milliseconds": 2000
+  },
+  "open_limit": 1,
+  "actors": [],
+  "bosses": []
+}

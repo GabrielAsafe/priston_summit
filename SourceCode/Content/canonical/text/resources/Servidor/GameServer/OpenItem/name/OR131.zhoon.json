@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.or131",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/OR131.zhoon",
+    "GameServer/OpenItem/name/OR131.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/OR131.zhoon",
+    "legacy_sha256": "976ae9ea9ab8064021737644f782688a61e1113d1eb4c5f9b7058992432053d9",
+    "legacy_size": 39
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Throne Ring"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9PUjEzMS50eHQNCg0KKkpfTmFtZQkJIlRocm9uZSBSaW5nIg0K"
+  }
+}

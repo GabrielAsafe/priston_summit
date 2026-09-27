@@ -1,0 +1,39 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquestcandy_cstart_t",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/Sinimage/Quest/haQuestcandy_Cstart_T.sin",
+    "image/Sinimage/Quest/haQuestcandy_Cstart_T.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/Sinimage/Quest/haQuestcandy_Cstart_T.sin",
+    "legacy_sha256": "532406ab8cfb76b4b591ded3d909bb320f3d05d547696f5d1ed536a6bcc892ef",
+    "legacy_size": 451
+  },
+  "semantic": {
+    "lines": [
+      "Wow long time no see. You've changed alot after ",
+      "the Hopy hunt. Can you spare me some time to tell ",
+      "me your story? It seems very interesting.",
+      "Oops! I almost forgot something by having chat ",
+      "with you.",
+      "",
+      "Great warrior! Can you do me a favor? can you ",
+      "please hand this candy to blacksmith Goden?",
+      "He left his candy last night at my home. He is ",
+      "probably looking for this candy badly.",
+      "",
+      "",
+      "[Quest Subject]",
+      "",
+      "Give this candy to blacksmith Goden. "
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "V293IGxvbmcgdGltZSBubyBzZWUuIFlvdSd2ZSBjaGFuZ2VkIGFsb3QgYWZ0ZXIgDQp0aGUgSG9weSBodW50LiBDYW4geW91IHNwYXJlIG1lIHNvbWUgdGltZSB0byB0ZWxsIA0KbWUgeW91ciBzdG9yeT8gSXQgc2VlbXMgdmVyeSBpbnRlcmVzdGluZy4NCk9vcHMhIEkgYWxtb3N0IGZvcmdvdCBzb21ldGhpbmcgYnkgaGF2aW5nIGNoYXQgDQp3aXRoIHlvdS4NCg0KR3JlYXQgd2FycmlvciEgQ2FuIHlvdSBkbyBtZSBhIGZhdm9yPyBjYW4geW91IA0KcGxlYXNlIGhhbmQgdGhpcyBjYW5keSB0byBibGFja3NtaXRoIEdvZGVuPw0KSGUgbGVmdCBoaXMgY2FuZHkgbGFzdCBuaWdodCBhdCBteSBob21lLiBIZSBpcyANCnByb2JhYmx5IGxvb2tpbmcgZm9yIHRoaXMgY2FuZHkgYmFkbHkuDQoNCg0KW1F1ZXN0IFN1YmplY3RdDQoNCkdpdmUgdGhpcyBjYW5keSB0byBibGFja3NtaXRoIEdvZGVuLiANCg=="
+  }
+}

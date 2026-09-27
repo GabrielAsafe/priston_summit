@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.uwa105_bone_crasher",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/_Uwa105_Bone Crasher.zhoon",
+    "GameServer/OpenItem/name/_Uwa105_Bone Crasher.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/_Uwa105_Bone Crasher.zhoon",
+    "legacy_sha256": "6dc204f65ec456b0a32d4e0cee8f9747371a999213a1f36c997aa51938260e0d",
+    "legacy_size": 25
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 1,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Bone Crasher"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "KkpfTmFtZQkJIkJvbmUgQ3Jhc2hlciINCg=="
+  }
+}

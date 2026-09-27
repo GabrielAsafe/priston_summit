@@ -1,0 +1,32 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquesttired_apass1",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/Sinimage/Quest/haQuesttired_Apass1.sin",
+    "image/Sinimage/Quest/haQuesttired_Apass1.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/Sinimage/Quest/haQuesttired_Apass1.sin",
+    "legacy_sha256": "c1a37e9b96b21dbe16ea63d95361b4c00779e43cc66b98382a9be1ba21317aa8",
+    "legacy_size": 238
+  },
+  "semantic": {
+    "lines": [
+      "",
+      "Oops! You didn't give this cake to him yet? ",
+      "",
+      "My cake has no preservatives so you have to give it",
+      "to the warehouse keeper quickly. Hurry up!",
+      "",
+      "Hard to find the warehouse keeper? Double click ",
+      "the mini map then, you will find him."
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "DQpPb3BzISBZb3UgZGlkbid0IGdpdmUgdGhpcyBjYWtlIHRvIGhpbSB5ZXQ/IA0KDQpNeSBjYWtlIGhhcyBubyBwcmVzZXJ2YXRpdmVzIHNvIHlvdSBoYXZlIHRvIGdpdmUgaXQNCnRvIHRoZSB3YXJlaG91c2Uga2VlcGVyIHF1aWNrbHkuIEh1cnJ5IHVwIQ0KDQpIYXJkIHRvIGZpbmQgdGhlIHdhcmVob3VzZSBrZWVwZXI/IERvdWJsZSBjbGljayANCnRoZSBtaW5pIG1hcCB0aGVuLCB5b3Ugd2lsbCBmaW5kIGhpbS4NCg=="
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.2_wh109",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/2_WH109.zhoon",
+    "GameServer/OpenItem/name/2_WH109.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/2_WH109.zhoon",
+    "legacy_sha256": "430d1b89affa324e10200fc37c8f9331f446085696120e0b731ad12e2099d91e",
+    "legacy_size": 39
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Meteorite"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly8yX1dIMTA5LnR4dA0KDQoqSl9OYW1lCQkiTWV0ZW9yaXRlIg0K"
+  }
+}

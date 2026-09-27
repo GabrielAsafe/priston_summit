@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.2_wc108",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/2_WC108.zhoon",
+    "GameServer/OpenItem/name/2_WC108.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/2_WC108.zhoon",
+    "legacy_sha256": "79ed047967063cf2e05d3b79c6550f721015d393b60303540a46ad9ef54ec4ff",
+    "legacy_size": 45
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Ancient Revenge"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly8yX1dDMTA4LnR4dA0KDQoqSl9OYW1lCQkiQW5jaWVudCBSZXZlbmdlIg0K"
+  }
+}

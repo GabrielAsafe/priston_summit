@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.31_bronzewolverine",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/Monster/Name/31_BronzeWolverine.zhoon",
+    "GameServer/Monster/Name/31_BronzeWolverine.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/Monster/Name/31_BronzeWolverine.zhoon",
+    "legacy_sha256": "d052c243e4e49ff5b2f2b88a8e37fee281410d088812c964ebd7ba920a8bc5b5",
+    "legacy_size": 58
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "E_NAME",
+        "kind": "name",
+        "text": "Bronze Wolverine"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly8zN19Ccm9uemVXb2x2ZXJpbmUuaW5mDQoNCipFX05BTUUJCQkiQnJvbnplIFdvbHZlcmluZSINCg=="
+  }
+}

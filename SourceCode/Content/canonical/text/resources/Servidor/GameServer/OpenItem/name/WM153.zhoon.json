@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.wm153",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/WM153.zhoon",
+    "GameServer/OpenItem/name/WM153.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/WM153.zhoon",
+    "legacy_sha256": "76f38e04b913404b033692b94b5542606745cb8421543b3a1b67f2acd87e4260",
+    "legacy_size": 41
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Support Staff"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9XTTE1My50eHQNCg0KKkpfTmFtZQkJIlN1cHBvcnQgU3RhZmYiDQo="
+  }
+}

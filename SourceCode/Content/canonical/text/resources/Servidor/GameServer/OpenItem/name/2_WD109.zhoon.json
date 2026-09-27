@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.2_wd109",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/2_WD109.zhoon",
+    "GameServer/OpenItem/name/2_WD109.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/2_WD109.zhoon",
+    "legacy_sha256": "2ec070dbd45a9dcadb0e7f6006cf087c8a3f2e7e1e48d8e416f421a6384d0d4f",
+    "legacy_size": 45
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "E_NAME",
+        "kind": "name",
+        "text": "Platinum Dagger"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly8yX1dEMTA5LnR4dA0KDQoqRV9OQU1FCQkiUGxhdGludW0gRGFnZ2VyIg0K"
+  }
+}

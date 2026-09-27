@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.wh153",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/WH153.zhoon",
+    "GameServer/OpenItem/name/WH153.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/name/WH153.zhoon",
+    "legacy_sha256": "4ee06dd27dfc7af3a5d789f4887fb67823199e9c934fec9b7e7f800d2700227d",
+    "legacy_size": 42
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "J_Name",
+        "kind": "name",
+        "text": "Support Hammer"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9XSDE1My50eHQNCg0KKkpfTmFtZQkJIlN1cHBvcnQgSGFtbWVyIg0K"
+  }
+}

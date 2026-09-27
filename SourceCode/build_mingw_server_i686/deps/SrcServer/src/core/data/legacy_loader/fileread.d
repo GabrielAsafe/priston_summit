@@ -2,7 +2,8 @@
  SrcServer/src/core/data/legacy_loader/fileread.cpp \
  Shared/content/v1/text_resource/content/TextResourceRuntime.h \
  Shared/content/v1/text_resource/content/CompiledTextResourceSource.h \
- Shared/content/v1/common/Sha256.h Shared/items.h \
+ Shared/content/v1/common/Sha256.h \
+ Shared/content/v1/runtime/RuntimeContentPath.h Shared/items.h \
  SrcServer/src/systems/inventory/legacy/sinItem.h \
  Shared/inventory/legacy/sinItem_legacy_server.h \
  SrcServer/src/systems/rendering/legacy_3d/smDsx.h \
@@ -86,6 +87,7 @@
 Shared/content/v1/text_resource/content/TextResourceRuntime.h:
 Shared/content/v1/text_resource/content/CompiledTextResourceSource.h:
 Shared/content/v1/common/Sha256.h:
+Shared/content/v1/runtime/RuntimeContentPath.h:
 Shared/items.h:
 SrcServer/src/systems/inventory/legacy/sinItem.h:
 Shared/inventory/legacy/sinItem_legacy_server.h:

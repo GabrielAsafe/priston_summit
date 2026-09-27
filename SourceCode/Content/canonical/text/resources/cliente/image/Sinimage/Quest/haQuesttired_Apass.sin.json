@@ -1,0 +1,35 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.haquesttired_apass",
+  "kind": "sin_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "cliente/image/Sinimage/Quest/haQuesttired_Apass.sin",
+    "image/Sinimage/Quest/haQuesttired_Apass.sin"
+  ],
+  "source": {
+    "legacy_path": "cliente/image/Sinimage/Quest/haQuesttired_Apass.sin",
+    "legacy_sha256": "a470c8dc11c963f95bf9db57e55b551d853d3fca57d89adda818a996bb4be884",
+    "legacy_size": 283
+  },
+  "semantic": {
+    "lines": [
+      "Welcome, wow, what's that?",
+      "That's the cake Ran made, isn't it?",
+      "",
+      "I had no time to eat with so many warriors",
+      "visiting to deposit their weapons and he's been",
+      "sending me fodd ever since he heard me grumbling.",
+      "",
+      "How do I repay this...",
+      "",
+      "Please pass my gratitude on your return.",
+      ""
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "V2VsY29tZSwgd293LCB3aGF0J3MgdGhhdD8NClRoYXQncyB0aGUgY2FrZSBSYW4gbWFkZSwgaXNuJ3QgaXQ/DQoNCkkgaGFkIG5vIHRpbWUgdG8gZWF0IHdpdGggc28gbWFueSB3YXJyaW9ycw0KdmlzaXRpbmcgdG8gZGVwb3NpdCB0aGVpciB3ZWFwb25zIGFuZCBoZSdzIGJlZW4NCnNlbmRpbmcgbWUgZm9kZCBldmVyIHNpbmNlIGhlIGhlYXJkIG1lIGdydW1ibGluZy4NCg0KSG93IGRvIEkgcmVwYXkgdGhpcy4uLg0KDQpQbGVhc2UgcGFzcyBteSBncmF0aXR1ZGUgb24geW91ciByZXR1cm4uDQoNCg=="
+  }
+}

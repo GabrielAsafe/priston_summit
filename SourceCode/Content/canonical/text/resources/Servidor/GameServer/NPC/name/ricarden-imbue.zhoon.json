@@ -1,0 +1,54 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.ricarden_imbue",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/NPC/name/ricarden-imbue.zhoon",
+    "GameServer/NPC/name/ricarden-imbue.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/NPC/name/ricarden-imbue.zhoon",
+    "legacy_sha256": "efbbff2c0b6a5fd7f043940328456d4fff037e251b5c2e8e081db9efce5829ce",
+    "legacy_size": 585
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 1,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "Artesão Morald"
+      },
+      {
+        "line": 3,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "A Mixagem não é somente eficiente. Ela é o meio mais seguro de melhorar o desempenho de seus itens..."
+      },
+      {
+        "line": 4,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Qual o objetivo da Mixagem? Bem, você irá melhorar o desempenho de seus itens, com um processo único, sem riscos, o que é muito melhor que o Aging, devido à impossibilidade de perder seus itens."
+      },
+      {
+        "line": 5,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "A Mixagem foi criada a alguns milênios atrás, mas, somente metade das combinações foram descobertas até agora."
+      },
+      {
+        "line": 6,
+        "legacy_key": "J_CHAT",
+        "kind": "chat",
+        "text": "Na Mixagem é impossível sair prejudicado, a menos que você erre a combinação de Sheltoms adequada."
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "KkpfTkFNRQkJIkFydGVz428gTW9yYWxkIg0KDQoqSl9DSEFUCQkiQSBNaXhhZ2VtIG7jbyDpIHNvbWVudGUgZWZpY2llbnRlLiBFbGEg6SBvIG1laW8gbWFpcyBzZWd1cm8gZGUgbWVsaG9yYXIgbyBkZXNlbXBlbmhvIGRlIHNldXMgaXRlbnMuLi4iIA0KKkpfQ0hBVAkJIlF1YWwgbyBvYmpldGl2byBkYSBNaXhhZ2VtPyBCZW0sIHZvY+ogaXLhIG1lbGhvcmFyIG8gZGVzZW1wZW5obyBkZSBzZXVzIGl0ZW5zLCBjb20gdW0gcHJvY2Vzc28g+m5pY28sIHNlbSByaXNjb3MsIG8gcXVlIOkgbXVpdG8gbWVsaG9yIHF1ZSBvIEFnaW5nLCBkZXZpZG8g4CBpbXBvc3NpYmlsaWRhZGUgZGUgcGVyZGVyIHNldXMgaXRlbnMuIg0KKkpfQ0hBVAkJIkEgTWl4YWdlbSBmb2kgY3JpYWRhIGEgYWxndW5zIG1pbOpuaW9zIGF0cuFzLCBtYXMsIHNvbWVudGUgbWV0YWRlIGRhcyBjb21iaW5h5/VlcyBmb3JhbSBkZXNjb2JlcnRhcyBhdOkgYWdvcmEuIg0KKkpfQ0hBVAkJIk5hIE1peGFnZW0g6SBpbXBvc3PtdmVsIHNhaXIgcHJlanVkaWNhZG8sIGEgbWVub3MgcXVlIHZvY+ogZXJyZSBhIGNvbWJpbmHn428gZGUgU2hlbHRvbXMgYWRlcXVhZGEuIg0K"
+  }
+}
