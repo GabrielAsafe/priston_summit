@@ -1,0 +1,62 @@
+//ID
+*코드 "WP108"
+
+//Korean Name
+*이름 "Foice Dupla"
+
+//English Name
+*Name "Foice Dupla"
+
+//AttackPower
+*공격력 9 12 24 27
+
+//AttackRating
+*명중력 66 90
+
+//AttackSpeed
+*공격속도 7
+
+//AttackCritical
+*크리티컬 11
+
+//Block
+*블럭율 8.0 8.0
+
+//Integrity
+*내구력 50 69
+
+//Level
+*레벨 30
+
+//Strength
+*힘 85
+
+//Talent
+*재능 50
+
+//PrimarySpec
+**특화 Pikeman
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Atalanta
+
+//SpecAttackPower
+**공격력 6 6
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 5
+
+//Weight
+*무게 28
+
+//Price
+*가격 24000
+
+//Name File
+*연결파일 "Name\WP108.zhoon"

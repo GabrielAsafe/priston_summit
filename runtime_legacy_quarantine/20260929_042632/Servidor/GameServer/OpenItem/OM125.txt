@@ -1,0 +1,65 @@
+//ID
+*코드 "OM125"
+
+//Korean Name
+*이름 "Orbital Freyja"
+
+//English Name
+*Name "Orbital Freyja"
+
+//OrganicResistance
+*생체 7 11
+
+//FireResistance
+*불 7 11
+
+//FrostResistance
+*냉기 7 11
+
+//LightningResistance
+*번개 7 11
+
+//PoisonResistance
+*독 7 11
+
+//Defense
+*방어력 166 180
+
+//Absorption
+*흡수력 7.9 8.3
+
+//Block
+*블럭율 11.0 13.0
+
+//HP
+*생명력추가 117 129
+
+//MP
+*기력추가 74 90
+
+//Integrity
+*내구력 154 174
+
+//Level
+*레벨 110
+
+//Spirit
+*정신력 174
+
+//SecondarySpec
+**특화랜덤 Priestess Magician
+
+//SpecAbsorption
+**흡수력 1.2 1.8
+
+//SpecMPRegen
+**기력재생 1.4 1.9
+
+//Weight
+*무게 58
+
+//Price
+*가격 950000
+
+//Name File
+*연결파일 "Name\OM125.zhoon"

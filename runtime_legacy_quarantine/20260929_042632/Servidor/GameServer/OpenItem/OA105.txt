@@ -1,0 +1,32 @@
+//ID
+*코드 "OA105"
+
+//Korean Name
+*이름 "Colar Precioso"
+
+//English Name
+*Name "Colar Precioso"
+
+//MP
+*기력추가 4 9
+
+//Level
+*레벨 5
+
+//Spirit
+*정신력 20
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecMPRegen
+**기력재생 0.1 0.3
+
+//Weight
+*무게 2
+
+//Price
+*가격 1000
+
+//Name File
+*연결파일 "Name\OA105.zhoon"

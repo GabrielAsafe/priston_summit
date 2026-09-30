@@ -1,0 +1,62 @@
+//ID
+*코드 "DG117"
+
+//Korean Name
+*이름 "Luvas de Diamante"
+
+//English Name
+*Name "Luvas de Diamante"
+
+//Defense
+*방어력 105 120
+
+//Absorption
+*흡수력 5.0 5.6
+
+//OrganicResistance
+*생체 3 6
+
+//FireResistance
+*불 3 6
+
+//FrostResistance
+*냉기 3 6
+
+//LightningResistance
+*번개 3 6
+
+//PoisonResistance
+*독 3 6
+
+//Integrity
+*내구력 105 132
+
+//Level
+*레벨 80
+
+//Strength
+*힘 100
+
+//Talent
+*재능 70
+
+//Agility
+*민첩성 74
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecDefense
+**방어력 36 40
+
+//SpecAbsorption
+**흡수력 0.6 0.8
+
+//Weight
+*무게 35
+
+//Price
+*가격 200000
+
+//Name File
+*연결파일 "Name\DG117.zhoon"

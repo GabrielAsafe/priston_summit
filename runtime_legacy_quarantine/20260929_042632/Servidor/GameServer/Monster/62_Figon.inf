@@ -1,0 +1,104 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\figon\figon.ini"
+
+//Name
+*이름 "Figon"
+
+//Level
+*레벨 62
+
+//Size
+*모델크기 1.0
+
+//QuestCode
+*구별코드 21
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 410
+
+//HP
+*생명력 900
+
+//AttackPower
+*공격력 62 77
+
+//AttackRating
+*명중력 1200
+
+//AttackSpeed
+*공격속도 8
+
+//AttackRange
+*공격범위 230
+
+//Defense
+*방어력 350
+
+//Absorption
+*흡수율 9
+
+//MoveSpeed
+*이동력 3
+
+//Race
+*몬스터종족 디먼
+
+//ShadowSize
+*크기 대형
+
+//Experience
+*경험치 95089
+
+//Sound
+*효과음 FIGON
+
+//DropsNumber
+*아이템카운터 1
+
+//DropGold
+*아이템 2500 돈 2000 2600
+
+//DropPotion
+*아이템 2500 PS103 PL103 PM103 PM103
+
+//Drop
+//*아이템 102 SE102 SE104
+
+//Drop
+*아이템 32 GP106 GP109 GP107
+
+//Drop
+*아이템 88 OS104 OS223
+
+//Drop
+*아이템 44 OS105 OS224
+
+//Drop
+*아이템 22 OS106 OS225
+
+//Drop
+*아이템 102 EC101 EC102 EC104
+
+//Drop
+*아이템 3812 WA108 WC108 WH109 WM109 WP109 WS110 WS211 WT109 OA112 OA208 OM109 OR112 DA110 DA210 DB108 DG108 DS108
+
+//Drop
+*아이템 378 WA109 WC109 WH110 WM110 WP110 WS111 WS212 WT110 OA113 OA209 OM110 OR113 DA111 DA211 DB109 DG109 DS109
+
+//Drop
+*아이템 252 WA110 WC110 WH111 WM111 WP111 WS112 WS213 WT111 OA114 OA210 OM111 OR114 DA112 DA212 DB110 DG110 DS110
+
+//Drop
+*아이템 126 WA111 WC111 WH112 WM112 WP112 WS113 WS214 WT112 OA115 OA211 OM112 OR115 DA113 DA213 DB111 DG111 DS111
+
+//Drop
+*아이템 42 WA112 WC112 WH113 WM113 WP113 WS114 WS215 WT113 OA116 OA212 OM113 OR116 DA114 DA214 DB112 DG112 DS112
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

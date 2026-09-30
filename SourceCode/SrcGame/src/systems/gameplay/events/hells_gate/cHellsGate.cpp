@@ -2,6 +2,7 @@
 #include "compat/legacy/sin/sinLinkHeader.h"
 #include "systems/world/field/field.h"
 #include "systems/gameplay/events/hells_gate/cHellsGate.h"
+#include "systems/network/v2/legacy/LegacyClientCommandSender.h"
 
 extern int DrawFontImage(char *lpStr, int xPos, int yPos, DWORD rgba, float fRatio);
 
@@ -17,7 +18,8 @@ void cHELLSGATE::ConfirmEnterHg()
 	smTRANS_COMMAND sPacket;
 	sPacket.code = OpCode::OPCODE_OPEN_HG;
 	sPacket.size = sizeof(smTRANS_COMMAND);
-	smWsockServer->Send((char*)&sPacket, sPacket.size, TRUE);
+	(void)gameplay::network::legacy::ClientLegacyCommandSender().Send(
+		gameplay::network::PacketView(&sPacket, sPacket.size, static_cast<std::uint32_t>(sPacket.code)));
 }
 
 void cHELLSGATE::Draw()

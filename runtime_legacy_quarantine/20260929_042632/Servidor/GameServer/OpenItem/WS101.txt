@@ -1,0 +1,59 @@
+//ID
+*코드 "WS101"
+
+//Korean Name
+*이름 "Arco Pequeno"
+
+//English Name
+*Name "Arco Pequeno"
+
+//AttackPower
+*공격력 1 1 3 4
+
+//AttackRating
+*명중력 15 21
+
+//AttackRange
+*사정거리 190
+
+//AttackSpeed
+*공격속도 7
+
+//AttackCritical
+*크리티컬 2
+
+//Block
+*블럭율 1.0 1.0
+
+//Integrity
+*내구력 25 30
+
+//PrimarySpec
+**특화 Archer
+
+//SecondarySpec
+**특화랜덤 Mechanician Atalanta
+
+//SpecAttackPower
+**공격력 7 7
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackRange
+**사정거리 10
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 3
+
+//Weight
+*무게 3
+
+//Price
+*가격 70
+
+//Name File
+*연결파일 "Name\WS101.zhoon"

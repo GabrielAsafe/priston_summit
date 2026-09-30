@@ -1,0 +1,36 @@
+//		아이템 정보		//
+
+
+*이름		"Brinco Summit"
+*Name		"Brinco Summit"
+*코드		"OE103"
+
+//AttackPower
+*공격력 4 7 9 12
+
+//AttackCritical
+*크리티컬 5
+
+//HP
+*생명력추가 80 80
+
+//HPRegen
+*생명력재생 3.0 4.0
+
+//Level
+*레벨 100
+
+//Spirit
+//*정신력 50
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecHPRegen
+**생명력재생 3.0 4.0
+
+//Weight
+*무게 5
+
+//Name File
+*연결파일	"name\OE103.zhoon"

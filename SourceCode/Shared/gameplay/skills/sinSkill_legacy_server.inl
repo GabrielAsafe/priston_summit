@@ -1,3 +1,22 @@
+// =============================================================================
+// MAPA DO MONOLITO LEGACY - SERVER SKILL LEGACY SUPPORT
+//
+// Este mapa e apenas documental. O ficheiro permanece RED e no mesmo local;
+// os separadores abaixo nao alteram ownership, ordem de execucao ou ABI.
+// FUNCIONAMENTO GERAL: Mantem UI/metadata e estado legacy de skills. Authorities novas usam services/content modernos; este arquivo preserva display e compatibilidade.
+//
+// AREAS PRINCIPAIS:
+//   AREA 01 - SKILL UI LIFECYCLE
+//   AREA 02 - TIER METADATA
+//   AREA 03 - ACTIVE SKILL STATE
+//   AREA 04 - SHOWSKILLINFO TOOLTIP
+//   AREA 05 - MASTERY / SKILL POINTS
+//   AREA 06 - CONTINUOUS BUFF ICONS
+//   AREA 07 - BOOSTER / DELAY ITEMS
+//
+// Desenvolvimento novo deve usar contracts/ports/adapters AMBER existentes.
+// =============================================================================
+
 #include <cstring>
 
 
@@ -2608,6 +2627,14 @@ DWORD UseSkillItemInfo[10] = { 0,sinWA1,sinWM1,sinWH1,sinDS1,sinWP1,sinWS2,sinWC
 
 
 
+
+// =============================================================================
+// AREA 04 - SHOWSKILLINFO
+// TIPO: skills + UI
+// FUNCIONAMENTO: Monta tooltip legacy da skill a partir de codigo, nivel, mastery e metadata das classes/tier.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 {
@@ -6374,6 +6401,14 @@ int cSKILL::CheckSkillData()
 	return TRUE;
 }
 
+// =============================================================================
+// AREA 05 - MASTERY / SKILL POINTS
+// TIPO: skills + progression
+// FUNCIONAMENTO: Inicializa/reconcilia pontos e mastery no formato legacy.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
+
 int cSKILL::InitSkillPoint(int kind)
 {
 
@@ -7435,6 +7470,14 @@ int cSKILL::SkillBarDraw(sSKILL *pSkill, int x, int y, int Alpha)
 
 
 
+
+// =============================================================================
+// AREA 06 - CONTINUOUS BUFF ICONS
+// TIPO: skills + UI
+// FUNCIONAMENTO: Mantem icones/timers das skills continuas no HUD legacy.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 int cSKILL::CheckContinueIcon()
 {

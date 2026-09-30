@@ -1,0 +1,8 @@
+// NOME E COD DO ITEM
+*이름	"Elixir da Gloria"
+*코드	"BI325"
+
+// PESO DO ITEM
+//*무게	1
+// PRE? DO ITEM
+*가격	

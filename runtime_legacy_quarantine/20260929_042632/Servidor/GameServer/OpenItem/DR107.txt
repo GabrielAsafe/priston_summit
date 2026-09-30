@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "DR107"
+
+//Korean Name
+*ÀÌ¸§ "Receita de Defesa Nível 100"
+
+//English Name
+*Name "Receita de Defesa Nível 100"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DR107.zhoon"

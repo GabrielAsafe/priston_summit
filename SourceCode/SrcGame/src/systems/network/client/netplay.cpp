@@ -1,3 +1,23 @@
+// =============================================================================
+// MAPA DO MONOLITO LEGACY - CLIENT NETPLAY
+//
+// Este mapa e apenas documental. O ficheiro permanece RED e no mesmo local;
+// os separadores abaixo nao alteram ownership, ordem de execucao ou ABI.
+// FUNCIONAMENTO GERAL: Opera a camada de rede legacy do cliente. Novos fluxos de feature devem usar IClientCommandSender/router, nao smWsockServer diretamente.
+//
+// AREAS PRINCIPAIS:
+//   AREA 01 - VALIDACAO / HELPERS DE PACOTE
+//   AREA 02 - SOCKET / CONEXAO / SESSAO
+//   AREA 03 - RECEIVE QUEUE E PACKET DISPATCH
+//   AREA 04 - CHAT
+//   AREA 05 - PLAYER REPLICATION / NETWORK LOOP
+//   AREA 06 - ITEM / WORLD COMMANDS
+//   AREA 07 - SAVE / RECORD / ADMIN / ANTI-CHEAT
+//
+// Desenvolvimento novo deve usar contracts/ports/adapters AMBER existentes.
+// =============================================================================
+
+#include <stdarg.h>
 #include "../../Shared/opcodes.h"
 
 
@@ -13,6 +33,10 @@
 #include "gameplay/covenants/v2/CovenantUIProtocol.h"
 #include "systems/ui/v2/legacy/LegacyCompanionGateway.h"
 #include "systems/ui/v2/legacy/LegacyCovenantGateway.h"
+#include "systems/presentation/v2/legacy/LegacyAnimationAdapter.h"
+#include "systems/presentation/v2/legacy/LegacyAudioAdapter.h"
+#include "systems/presentation/v2/legacy/LegacyVisualEffectAdapter.h"
+#include "systems/presentation/v2/legacy/LegacyLightingAdapter.h"
 
 namespace gameplay
 {
@@ -593,6 +617,21 @@ int SendProcessInfo()
 
 
 
+static void SummitLoginHandshakeClientTrace(const char *fmt, ...)
+{
+	FILE *fp = fopen("LOGS\\mingw_login_handshake_client.txt", "a");
+	if(!fp)
+		return;
+
+	va_list ap;
+	va_start(ap, fmt);
+	vfprintf(fp, fmt, ap);
+	va_end(ap);
+	fprintf(fp, "\n");
+	fflush(fp);
+	fclose(fp);
+}
+
 smWINSOCK *ConnectServer_Main()
 {
 	char server2[32];
@@ -721,6 +760,12 @@ int DisconnectServerFull()
 
 smWINSOCK *ConnectServer_InfoMain()
 {
+	SummitLoginHandshakeClientTrace(
+		"[CONNECT_INFO_ENTER] existing=%p configuredServer1=%s configuredPort=%d",
+		(void *)smWsockDataServer,
+		SETTINGSHANDLER->getServer1().c_str(),
+		SETTINGSHANDLER->getPort());
+
 	if(!smWsockDataServer)
 	{
 		char server1[32];
@@ -730,10 +775,23 @@ smWINSOCK *ConnectServer_InfoMain()
 		if(server1[0])
 		{
 			dwDataServPort = SETTINGSHANDLER->getPort() ? SETTINGSHANDLER->getPort() : TCP_SERVPORT;
+			WSASetLastError(0);
 			smWsockDataServer = smConnectSock(server1, (WORD)dwDataServPort);
+			SummitLoginHandshakeClientTrace(
+				"[CONNECT_INFO_RESULT] host=%s port=%lu socket=%p wsaError=%d",
+				server1,
+				(unsigned long)dwDataServPort,
+				(void *)smWsockDataServer,
+				WSAGetLastError());
 			ZeroMemory(&TransServerConnectInfo, sizeof(smTRANS_COMMAND));
 			return smWsockDataServer;
 		}
+
+		SummitLoginHandshakeClientTrace("[CONNECT_INFO_ABORT] Server1 is empty");
+	}
+	else
+	{
+		SummitLoginHandshakeClientTrace("[CONNECT_INFO_REUSE] socket=%p", (void *)smWsockDataServer);
 	}
 
 
@@ -1687,6 +1745,14 @@ static void SummitLogSkillInfoSizeMismatch(const char *name, DWORD opcode, int r
 #define SUMMIT_SKILL_INFO_SIZE_OK(ptr, type, opcode) \
 	((ptr) && (ptr)->size == (int)sizeof(type) ? TRUE : \
 	 (SummitLogSkillInfoSizeMismatch(#type, (opcode), (ptr) ? (ptr)->size : -1, (int)sizeof(type)), FALSE))
+
+// =============================================================================
+// AREA 03 - RECEIVE / PACKET DISPATCH
+// TIPO: rede
+// FUNCIONAMENTO: Consome mensagens do socket, valida tamanho/opcode e atualiza os subsistemas legacy correspondentes.
+// FRONTEIRA: RED network kernel; handlers modernos entram pelo router/adapters.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 {	
@@ -6332,6 +6398,14 @@ char *rsGetWord(char *q, char *p);
 extern int WaveCameraMode;
 
 
+// =============================================================================
+// AREA 04 - CHAT
+// TIPO: rede + social
+// FUNCIONAMENTO: Formata e envia chat/comandos legacy, mantendo filtros e opcodes historicos.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
+
 int SendChatMessageToServer(char *szChatMessage)
 {
 
@@ -8009,6 +8083,14 @@ HWND WinFocusCrack()
 	return NULL;
 }
 
+// =============================================================================
+// AREA 05 - PLAYER REPLICATION / NETWORK LOOP
+// TIPO: rede + world
+// FUNCIONAMENTO: Processa fila de rede e sincronizacao de players remotos durante o tick client.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
+
 int NetWorkPlay()
 {
 	int cnt = 0;
@@ -8477,6 +8559,14 @@ int NetWorkPlay()
 }
 
 
+
+// =============================================================================
+// AREA 06 - ITEM / WORLD COMMANDS
+// TIPO: inventario + rede
+// FUNCIONAMENTO: Inicia o fluxo legacy para colocar/drop de item no world e envia os dados esperados pelo servidor.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 int ThrowPutItem(sITEM *lpItem, int x, int y, int z)
 {
@@ -9545,6 +9635,14 @@ static DWORD dwCheckNetCount = 0;
 static DWORD dwLastTransCheckTime = 0;
 static int	ReconnectCount = 0;
 
+
+// =============================================================================
+// AREA 07 - SAVE / ADMIN / SECURITY
+// TIPO: rede + operacao
+// FUNCIONAMENTO: Agrupa checks de conectividade, save e comandos operacionais/anti-cheat do protocolo antigo.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 int	TransCheckNetwork()
 {
@@ -13443,10 +13541,18 @@ int RecvProcessSkill(smTRANS_COMMAND *lpTransCommand)
 		{
 			SendProcessSKillToServer(SKILL_PLAY_RESURRECTION, point, 0, 0);
 
-			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_RESTART);
-			StartEffect(lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ, EFFECT_GAME_START1);
-			SetDynLight(lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ, 100, 100, 100, 0, 200);
-			CharPlaySound(lpCurPlayer);
+			presentation::legacy::ClientLegacyAnimationAdapter().Play(
+				gameplay::EntityId(lpCurPlayer->dwObjectSerial),
+				presentation::AnimationId("character.restart"));
+			presentation::legacy::ClientLegacyVisualEffectAdapter().PlayAt(
+				presentation::EffectId("effect.character.resurrection_restart"),
+				presentation::PresentationTarget(lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ));
+			presentation::legacy::ClientLegacyLightingAdapter().PulseAt(
+				presentation::LightId("light.character.resurrection_restart"),
+				presentation::PresentationTarget(lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ));
+			presentation::legacy::ClientLegacyAudioAdapter().PlayForEntity(
+				gameplay::EntityId(lpCurPlayer->dwObjectSerial),
+				presentation::SoundId("character.resurrection_restart"));
 
 			sinSetLife(lpCurPlayer->smCharInfo.Life[1] / 2);
 			ResetEnergyGraph(4);

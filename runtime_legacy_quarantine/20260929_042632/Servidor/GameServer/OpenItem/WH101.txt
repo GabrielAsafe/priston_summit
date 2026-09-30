@@ -1,0 +1,50 @@
+//ID
+*코드 "WH101"
+
+//Korean Name
+*이름 "Martelo Pequeno"
+
+//English Name
+*Name "Martelo Pequeno"
+
+//AttackPower
+*공격력 1 1 3 4
+
+//AttackRating
+*명중력 35 45
+
+//AttackSpeed
+*공격속도 7
+
+//AttackCritical
+*크리티컬 3
+
+//Integrity
+*내구력 22 28
+
+//PrimarySpec
+**특화 Mechanician
+
+//SecondarySpec
+**특화랜덤 Fighter Pikeman Knight
+
+//SpecAttackPower
+**공격력 7 7
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 2
+
+//Weight
+*무게 3
+
+//Price
+*가격 60
+
+//Name File
+*연결파일 "Name\WH101.zhoon"

@@ -1,0 +1,65 @@
+//ID
+*코드 "DS126"
+
+//Korean Name
+*이름 "Escudo Mortal"
+
+//English Name
+*Name "Escudo Mortal"
+
+//Defense
+*방어력 258 278
+
+//Absorption
+*흡수력 16.2 16.5
+
+//Block
+*블럭율 19.0 23.0
+
+//OrganicResistance
+*생체 3 6
+
+//FireResistance
+*불 3 6
+
+//FrostResistance
+*냉기 3 6
+
+//LightningResistance
+*번개 3 6
+
+//PoisonResistance
+*독 3 6
+
+//Integrity
+*내구력 220 240
+
+//Level
+*레벨 120
+
+//Strength
+*힘 145
+
+//Talent
+*재능 80
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**방어력 50 56
+
+//SpecAbsorption
+**흡수력 1.5 1.9
+
+//SpecBlock
+**블럭율 5.0
+
+//Weight
+*무게 108
+
+//Price
+*가격 1100000
+
+//Name File
+*연결파일 "Name\DS126.zhoon"

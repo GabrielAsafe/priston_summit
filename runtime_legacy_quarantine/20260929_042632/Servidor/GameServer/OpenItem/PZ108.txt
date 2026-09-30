@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "PZ108"
+
+//Korean Name
+*ÀÌ¸§ "Quebra-Cabeça A8"
+
+//English Name
+*Name "Quebra-Cabeça A8"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\PZ108.zhoon"

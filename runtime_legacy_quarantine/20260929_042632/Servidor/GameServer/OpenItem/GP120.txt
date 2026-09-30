@@ -1,0 +1,17 @@
+//ID
+*코드 "GP120"
+
+//Korean Name
+*이름 "Cristal Extremo"
+
+//English Name
+*Name "Cristal Extremo"
+
+//Level
+*레벨 70
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\GP120.zhoon"

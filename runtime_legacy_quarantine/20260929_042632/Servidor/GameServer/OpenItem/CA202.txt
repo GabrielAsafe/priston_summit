@@ -1,0 +1,18 @@
+// NOME E CODIGO DO ITEM
+*이름 "Mechanic Costume (F)"
+*코드 "CA202"
+
+// PESO NO INVETARIO
+*무게 1
+// ABSORCAO
+*흡수력 8.0
+// TAXA DE DEFESA
+*방어력 180
+// VELOCIDADE
+*이동속도 1.0
+// ADD HP
+*생명력추가	10
+// ADD MP
+*기력추가	10
+// ADD RES
+*근력추가	10

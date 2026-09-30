@@ -1,0 +1,74 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\monheavygoblin\monheavygoblin.ini"
+
+//Name
+*이름 "R3 Duende Guerreiro"
+
+//Level
+*레벨 68
+
+//Size
+*모델크기 1.0
+
+//QuestCode
+*구별코드 31
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 350
+
+//HP
+*생명력 2000
+
+//AttackPower
+*공격력 96 104
+
+//AttackRating
+*명중력 1100
+
+//AttackSpeed
+*공격속도 8
+
+//AttackRange
+*공격범위 75
+
+//SkillPower
+*기술공격력 105 120
+
+//SkillRating
+*기술공격률 18
+
+//SkillRange
+*기술공격범위 55
+
+//SkillDistance
+*기술공격거리 80
+
+//Defense
+*방어력 700
+
+//Absorption
+*흡수율 12
+
+//MoveSpeed
+*이동력 4
+
+//Race
+*몬스터종족 노멀
+
+//ShadowSize
+*크기 중대형
+
+//Experience
+*경험치 50000
+
+//Sound
+*효과음 HEAVYGOBLIN
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

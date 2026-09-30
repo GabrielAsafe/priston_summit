@@ -17,7 +17,7 @@
     "fields": {
       "state": "적",
       "model_file": "char\\monster\\monmightygoblin\\monmightygoblin.ini",
-      "name": "Duende L?er",
+      "name": "Duende Líder",
       "level": 40,
       "model_scale": 1.0,
       "generate_group": [

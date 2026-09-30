@@ -8,6 +8,10 @@
  Shared/content/v1/definition/content/DefinitionRuntime.h \
  Shared/content/v1/definition/content/CompiledDefinitionSource.h \
  Shared/content/v1/text_resource/legacy/LegacyContentIdRegistry.h \
+ Shared/content/v1/field_runtime/content/CompiledFieldRuntimeSource.h \
+ Shared/content/v1/field_runtime/content/FieldRuntimePack.h \
+ Shared/content/v1/field_runtime/domain/FieldPlacementDefinition.h \
+ Shared/content/v1/stage_spawn/content/StageSpawnPath.h \
  modules/Helper/Utils/utils_logging.h \
  SrcServer/src/compat/server_build/server_compat_packets.h \
  SrcServer/src/compat/server_build/server_build_compat.h \
@@ -128,6 +132,26 @@
  SrcServer/src/systems/persistence/database/core/Database.h \
  Shared/persistence/database/Database_sqlite_server.h \
  SrcServer/src/systems/commerce/coin_shop/CoinShop_T.h \
+ SrcServer/src/systems/commerce/v2/legacy/LegacyTradeAdapter.h \
+ Shared/gameplay/commerce/v2/TradeService.h \
+ Shared/gameplay/core/v2/GameplayIds.h \
+ Shared/gameplay/commerce/v2/Wallet.h \
+ Shared/gameplay/commerce/v2/CoinWallet.h \
+ Shared/gameplay/inventory/v2/Inventory.h \
+ Shared/gameplay/inventory/v2/PotionStack.h \
+ SrcServer/src/systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h \
+ SrcServer/src/systems/commerce/v2/legacy/LegacyShopAdapter.h \
+ Shared/gameplay/commerce/v2/ShopService.h \
+ SrcServer/src/systems/commerce/v2/legacy/LegacyPersonalShopAdapter.h \
+ Shared/gameplay/commerce/v2/PersonalShopService.h \
+ SrcServer/src/systems/commerce/v2/legacy/LegacyCraftingAdapter.h \
+ Shared/gameplay/commerce/v2/CraftingService.h \
+ SrcServer/src/systems/commerce/v2/legacy/LegacyAgingAdapter.h \
+ Shared/gameplay/commerce/v2/AgingService.h \
+ SrcServer/src/systems/commerce/v2/legacy/LegacyMixingAdapter.h \
+ Shared/gameplay/commerce/v2/MixingService.h \
+ SrcServer/src/systems/community/chat/v2/legacy/LegacyChatDeliveryAdapter.h \
+ Shared/gameplay/social/v2/ChatDelivery.h \
  SrcServer/src/systems/combat/skills/legacy/sinSkill_InfoIni.h \
  Shared/gameplay/classes/v2/services/ClassService.h \
  Shared/gameplay/classes/v2/PlayableClassRegistry.h \
@@ -165,14 +189,19 @@
  Shared/gameplay/progression/v2/ProgressionSnapshot.h \
  SrcServer/src/systems/gameplay/progression/v2/ServerProgressionConditionContext.h \
  SrcServer/src/systems/gameplay/covenants/v2/CovenantChatCommand.h \
- SrcServer/src/systems/gameplay/covenants/v2/CovenantUIHandler.h \
- Shared/gameplay/covenants/v2/CovenantUIProtocol.h \
+ SrcServer/src/systems/network/v2/legacy/LegacyGameplayPacketRouter.h \
+ Shared/network/v2/PacketRouter.h Shared/network/v2/PacketSender.h \
+ SrcServer/src/systems/network/v2/legacy/LegacyPacketSender.h \
+ Shared/network/v2/ConnectionQuery.h \
  SrcServer/src/systems/gameplay/mining/v2/MiningRuntime.h \
  SrcServer/src/systems/gameplay/mining/v2/MiningService.h \
  Shared/gameplay/covenants/v2/ICovenantGameplayBridge.h \
  Shared/gameplay/gathering/v2/GatheringTypes.h \
- Shared/gameplay/professions/v2/ProfessionService.h \
+ Shared/gameplay/professions/v2/ProfessionTypes.h \
+ Shared/gameplay/mining/v2/IMiningService.h \
+ Shared/gameplay/professions/v2/IProfessionService.h \
  SrcServer/src/systems/gameplay/gathering/v2/GatheringService.h \
+ Shared/gameplay/gathering/v2/IGatheringService.h \
  SrcServer/src/systems/gameplay/mining/v2/MiningInteractionRuntime.h \
  SrcServer/src/systems/gameplay/gathering/v2/GatheringRuntime.h \
  SrcServer/src/systems/gameplay/gathering/v2/SQLiteGatheringRepository.h \
@@ -188,10 +217,42 @@
  SrcServer/src/systems/security/firewall/Firewall.h \
  SrcServer/src/systems/admin/game_masters/GameMasters.h \
  SrcServer/src/systems/combat/skills/server_support/SkillSub.h \
- SrcServer/src/systems/gameplay/quests/server/cQuestHandler.h \
+ SrcServer/src/systems/gameplay/quests/v2/legacy/LegacyQuestObjectiveService.h \
+ Shared/gameplay/quests/v2/QuestObjectiveService.h \
+ SrcServer/src/systems/gameplay/quests/v2/legacy/LegacyQuestRepository.h \
+ Shared/gameplay/quests/v2/IQuestRepository.h \
+ SrcServer/src/systems/gameplay/quests/v2/legacy/LegacyQuestQueryIngressAdapter.h \
+ SrcServer/src/systems/gameplay/quests/v2/legacy/LegacyQuestLifecycleService.h \
+ Shared/gameplay/quests/v2/QuestLifecycleService.h \
+ SrcServer/src/systems/gameplay/quests/v2/legacy/LegacyQuestAdminService.h \
+ Shared/gameplay/quests/v2/QuestAdminService.h \
+ SrcServer/src/systems/gameplay/quests/v2/legacy/LegacyQuestProgressService.h \
+ Shared/gameplay/quests/v2/QuestProgressService.h \
+ SrcServer/src/systems/gameplay/events/v2/legacy/LegacyGameplayEventAdapter.h \
  SrcServer/src/systems/gameplay/events/v2/GameplayEventRuntime.h \
- SrcServer/src/systems/gameplay/companions/CompanionSystem.h \
- Shared/gameplay/companions/CompanionProtocol.h \
+ Shared/gameplay/events/v2/MonsterDefeatedEvent.h \
+ SrcServer/src/systems/gameplay/events/v2/MonsterKilledEvent.h \
+ Shared/gameplay/events/v2/WorldEventLifecycleEvents.h \
+ Shared/gameplay/companions/v2/CompanionQuery.h \
+ SrcServer/src/systems/gameplay/companions/v2/legacy/CompanionLegacyExperienceRuntime.h \
+ SrcServer/src/systems/gameplay/companions/v2/legacy/LegacyCompanionQueryAdapter.h \
+ SrcServer/src/systems/gameplay/companions/v2/legacy/LegacyCompanionCommandsAdapter.h \
+ Shared/gameplay/companions/v2/CompanionCommands.h \
+ SrcServer/src/systems/gameplay/companions/v2/legacy/LegacyCompanionLifecycleAdapter.h \
+ Shared/gameplay/companions/v2/CompanionLifecycle.h \
+ SrcServer/src/systems/gameplay/pets/v2/legacy/LegacyPetRuntimeAdapter.h \
+ Shared/gameplay/pets/v2/PetRuntime.h \
+ SrcServer/src/systems/social/clan/v2/legacy/LegacyClanChatAdapter.h \
+ Shared/gameplay/social/clan/v2/ClanChatService.h \
+ SrcServer/src/systems/social/clan/v2/legacy/LegacyClanQueryAdapter.h \
+ Shared/gameplay/social/clan/v2/ClanQuery.h \
+ SrcServer/src/systems/social/clan/v2/legacy/LegacyClanUpdateNotifier.h \
+ Shared/gameplay/social/clan/v2/ClanUpdateNotifier.h \
+ SrcServer/src/systems/social/party/v2/legacy/LegacyPartyCommandsAdapter.h \
+ Shared/gameplay/social/party/v2/PartyCommands.h \
+ SrcServer/src/systems/social/party/v2/legacy/LegacyPartyRelayRuntime.h \
+ Shared/gameplay/social/party/v2/PartyRelayService.h \
+ Shared/gameplay/social/party/v2/PartyQuery.h \
  SrcServer/src/systems/commerce/restoration/cRestaureHandler.h \
  SrcServer/src/systems/authentication/protocol/Login.h \
  SrcServer/src/systems/gameplay/loot/alerts/Alerta.h \
@@ -216,6 +277,10 @@ Shared/content/v1/runtime/RuntimeContentPath.h:
 Shared/content/v1/definition/content/DefinitionRuntime.h:
 Shared/content/v1/definition/content/CompiledDefinitionSource.h:
 Shared/content/v1/text_resource/legacy/LegacyContentIdRegistry.h:
+Shared/content/v1/field_runtime/content/CompiledFieldRuntimeSource.h:
+Shared/content/v1/field_runtime/content/FieldRuntimePack.h:
+Shared/content/v1/field_runtime/domain/FieldPlacementDefinition.h:
+Shared/content/v1/stage_spawn/content/StageSpawnPath.h:
 modules/Helper/Utils/utils_logging.h:
 SrcServer/src/compat/server_build/server_compat_packets.h:
 SrcServer/src/compat/server_build/server_build_compat.h:
@@ -339,6 +404,26 @@ SrcServer/src/systems/progression/class_rank/Rank.h:
 SrcServer/src/systems/persistence/database/core/Database.h:
 Shared/persistence/database/Database_sqlite_server.h:
 SrcServer/src/systems/commerce/coin_shop/CoinShop_T.h:
+SrcServer/src/systems/commerce/v2/legacy/LegacyTradeAdapter.h:
+Shared/gameplay/commerce/v2/TradeService.h:
+Shared/gameplay/core/v2/GameplayIds.h:
+Shared/gameplay/commerce/v2/Wallet.h:
+Shared/gameplay/commerce/v2/CoinWallet.h:
+Shared/gameplay/inventory/v2/Inventory.h:
+Shared/gameplay/inventory/v2/PotionStack.h:
+SrcServer/src/systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h:
+SrcServer/src/systems/commerce/v2/legacy/LegacyShopAdapter.h:
+Shared/gameplay/commerce/v2/ShopService.h:
+SrcServer/src/systems/commerce/v2/legacy/LegacyPersonalShopAdapter.h:
+Shared/gameplay/commerce/v2/PersonalShopService.h:
+SrcServer/src/systems/commerce/v2/legacy/LegacyCraftingAdapter.h:
+Shared/gameplay/commerce/v2/CraftingService.h:
+SrcServer/src/systems/commerce/v2/legacy/LegacyAgingAdapter.h:
+Shared/gameplay/commerce/v2/AgingService.h:
+SrcServer/src/systems/commerce/v2/legacy/LegacyMixingAdapter.h:
+Shared/gameplay/commerce/v2/MixingService.h:
+SrcServer/src/systems/community/chat/v2/legacy/LegacyChatDeliveryAdapter.h:
+Shared/gameplay/social/v2/ChatDelivery.h:
 SrcServer/src/systems/combat/skills/legacy/sinSkill_InfoIni.h:
 Shared/gameplay/classes/v2/services/ClassService.h:
 Shared/gameplay/classes/v2/PlayableClassRegistry.h:
@@ -376,14 +461,20 @@ Shared/gameplay/progression/v2/ProgressionPlayerRuntime.h:
 Shared/gameplay/progression/v2/ProgressionSnapshot.h:
 SrcServer/src/systems/gameplay/progression/v2/ServerProgressionConditionContext.h:
 SrcServer/src/systems/gameplay/covenants/v2/CovenantChatCommand.h:
-SrcServer/src/systems/gameplay/covenants/v2/CovenantUIHandler.h:
-Shared/gameplay/covenants/v2/CovenantUIProtocol.h:
+SrcServer/src/systems/network/v2/legacy/LegacyGameplayPacketRouter.h:
+Shared/network/v2/PacketRouter.h:
+Shared/network/v2/PacketSender.h:
+SrcServer/src/systems/network/v2/legacy/LegacyPacketSender.h:
+Shared/network/v2/ConnectionQuery.h:
 SrcServer/src/systems/gameplay/mining/v2/MiningRuntime.h:
 SrcServer/src/systems/gameplay/mining/v2/MiningService.h:
 Shared/gameplay/covenants/v2/ICovenantGameplayBridge.h:
 Shared/gameplay/gathering/v2/GatheringTypes.h:
-Shared/gameplay/professions/v2/ProfessionService.h:
+Shared/gameplay/professions/v2/ProfessionTypes.h:
+Shared/gameplay/mining/v2/IMiningService.h:
+Shared/gameplay/professions/v2/IProfessionService.h:
 SrcServer/src/systems/gameplay/gathering/v2/GatheringService.h:
+Shared/gameplay/gathering/v2/IGatheringService.h:
 SrcServer/src/systems/gameplay/mining/v2/MiningInteractionRuntime.h:
 SrcServer/src/systems/gameplay/gathering/v2/GatheringRuntime.h:
 SrcServer/src/systems/gameplay/gathering/v2/SQLiteGatheringRepository.h:
@@ -400,10 +491,42 @@ SrcServer/src/systems/gameplay/events/hells_gate/cHellsGate.h:
 SrcServer/src/systems/security/firewall/Firewall.h:
 SrcServer/src/systems/admin/game_masters/GameMasters.h:
 SrcServer/src/systems/combat/skills/server_support/SkillSub.h:
-SrcServer/src/systems/gameplay/quests/server/cQuestHandler.h:
+SrcServer/src/systems/gameplay/quests/v2/legacy/LegacyQuestObjectiveService.h:
+Shared/gameplay/quests/v2/QuestObjectiveService.h:
+SrcServer/src/systems/gameplay/quests/v2/legacy/LegacyQuestRepository.h:
+Shared/gameplay/quests/v2/IQuestRepository.h:
+SrcServer/src/systems/gameplay/quests/v2/legacy/LegacyQuestQueryIngressAdapter.h:
+SrcServer/src/systems/gameplay/quests/v2/legacy/LegacyQuestLifecycleService.h:
+Shared/gameplay/quests/v2/QuestLifecycleService.h:
+SrcServer/src/systems/gameplay/quests/v2/legacy/LegacyQuestAdminService.h:
+Shared/gameplay/quests/v2/QuestAdminService.h:
+SrcServer/src/systems/gameplay/quests/v2/legacy/LegacyQuestProgressService.h:
+Shared/gameplay/quests/v2/QuestProgressService.h:
+SrcServer/src/systems/gameplay/events/v2/legacy/LegacyGameplayEventAdapter.h:
 SrcServer/src/systems/gameplay/events/v2/GameplayEventRuntime.h:
-SrcServer/src/systems/gameplay/companions/CompanionSystem.h:
-Shared/gameplay/companions/CompanionProtocol.h:
+Shared/gameplay/events/v2/MonsterDefeatedEvent.h:
+SrcServer/src/systems/gameplay/events/v2/MonsterKilledEvent.h:
+Shared/gameplay/events/v2/WorldEventLifecycleEvents.h:
+Shared/gameplay/companions/v2/CompanionQuery.h:
+SrcServer/src/systems/gameplay/companions/v2/legacy/CompanionLegacyExperienceRuntime.h:
+SrcServer/src/systems/gameplay/companions/v2/legacy/LegacyCompanionQueryAdapter.h:
+SrcServer/src/systems/gameplay/companions/v2/legacy/LegacyCompanionCommandsAdapter.h:
+Shared/gameplay/companions/v2/CompanionCommands.h:
+SrcServer/src/systems/gameplay/companions/v2/legacy/LegacyCompanionLifecycleAdapter.h:
+Shared/gameplay/companions/v2/CompanionLifecycle.h:
+SrcServer/src/systems/gameplay/pets/v2/legacy/LegacyPetRuntimeAdapter.h:
+Shared/gameplay/pets/v2/PetRuntime.h:
+SrcServer/src/systems/social/clan/v2/legacy/LegacyClanChatAdapter.h:
+Shared/gameplay/social/clan/v2/ClanChatService.h:
+SrcServer/src/systems/social/clan/v2/legacy/LegacyClanQueryAdapter.h:
+Shared/gameplay/social/clan/v2/ClanQuery.h:
+SrcServer/src/systems/social/clan/v2/legacy/LegacyClanUpdateNotifier.h:
+Shared/gameplay/social/clan/v2/ClanUpdateNotifier.h:
+SrcServer/src/systems/social/party/v2/legacy/LegacyPartyCommandsAdapter.h:
+Shared/gameplay/social/party/v2/PartyCommands.h:
+SrcServer/src/systems/social/party/v2/legacy/LegacyPartyRelayRuntime.h:
+Shared/gameplay/social/party/v2/PartyRelayService.h:
+Shared/gameplay/social/party/v2/PartyQuery.h:
 SrcServer/src/systems/commerce/restoration/cRestaureHandler.h:
 SrcServer/src/systems/authentication/protocol/Login.h:
 SrcServer/src/systems/gameplay/loot/alerts/Alerta.h:

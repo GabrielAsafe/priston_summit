@@ -1,0 +1,53 @@
+//ID
+*코드 "DB104"
+
+//Korean Name
+*이름 "Botas Longas"
+
+//English Name
+*Name "Botas Longas"
+
+//Defense
+*방어력 12 21
+
+//Absorption
+*흡수력 0.5 0.7
+
+//Speed
+*이동속도 0.9 1.2
+
+//FrostResistance
+*냉기 2 4
+
+//PoisonResistance
+*독 2 4
+
+//Integrity
+*내구력 34 42
+
+//Level
+*레벨 9
+
+//Strength
+*힘 40
+
+//Agility
+*민첩성 30
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecAbsorption
+**흡수력 0.2 0.3
+
+//SpecSpeed
+**이동속도 0.2 0
+
+//Weight
+*무게 5
+
+//Price
+*가격 2800
+
+//Name File
+*연결파일 "Name\DB104.zhoon"

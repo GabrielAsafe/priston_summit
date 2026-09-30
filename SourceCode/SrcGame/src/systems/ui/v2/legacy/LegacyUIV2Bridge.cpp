@@ -21,6 +21,7 @@
 #include "systems/ui/v2/legacy/LegacyCovenantGateway.h"
 #include "systems/ui/v2/legacy/LegacyContextGateway.h"
 #include "systems/ui/v2/legacy/LegacyQuestGateway.h"
+#include "systems/ui/v2/legacy/LegacyMixGuideGateway.h"
 #include "systems/ui/v2/legacy/LegacySkillGateway.h"
 #include "systems/ui/v2/legacy/LegacyMessageWindow.h"
 #include "systems/ui/v2/legacy/LegacyNotificationHud.h"
@@ -31,6 +32,7 @@
 #include "systems/ui/v2/hud/CovenantEffectHud.h"
 #include "systems/ui/v2/quests/QuestJournalWindow.h"
 #include "systems/ui/v2/quests/QuestTrackerHud.h"
+#include "systems/ui/v2/crafting/MixGuideWindow.h"
 #include "systems/ui/v2/rendering/Dx9UIRenderer.h"
 #include "systems/ui/v2/widgets/Label.h"
 #include "systems/ui/v2/widgets/Panel.h"
@@ -49,6 +51,7 @@ constexpr WindowId PlayerHudWindowId = 0x5549563248554431ULL; // "UIV2HUD1"
 constexpr WindowId CompanionPartyHudWindowId = 0x5549563243485544ULL; // "UIV2CHUD"
 constexpr WindowId QuestJournalWindowId = 0x5549563251554553ULL; // "UIV2QUES"
 constexpr WindowId QuestTrackerWindowId = 0x554956325452414BULL; // "UIV2TRAK"
+constexpr WindowId MixGuideWindowId = 0x554956324D495847ULL; // "UIV2MIXG"
 constexpr WindowId LegacyMessageWindowId = 0x554956324D534733ULL; // "UIV2MSG3"
 constexpr WindowId LegacyNotificationWindowId = 0x554956324E4F5446ULL; // "UIV2NOTF"
 constexpr WindowId NpcDialogWindowId = 0x554956324E504344ULL; // "UIV2NPCD"
@@ -61,6 +64,7 @@ PlayerHud* playerHud = nullptr;
 CompanionPartyHud* companionPartyHud = nullptr;
 QuestJournalWindow* questJournal = nullptr;
 QuestTrackerHud* questTracker = nullptr;
+MixGuideWindow* mixGuideWindow = nullptr;
 LegacyMessageWindow* legacyMessageWindow = nullptr;
 LegacyNotificationHud* legacyNotificationHud = nullptr;
 LegacyNpcDialogWindow* npcDialogWindow = nullptr;
@@ -71,6 +75,7 @@ LegacySkillGateway skillGateway;
 LegacyInventoryGateway inventoryGateway;
 LegacyContextGateway contextGateway;
 LegacyQuestGateway questGateway;
+LegacyMixGuideGateway mixGuideGateway;
 LegacyCompanionGateway& companionGateway = GetLegacyCompanionGateway();
 LegacyCovenantGateway& covenantGateway = GetLegacyCovenantGateway();
 bool companionTabRequested = false;
@@ -341,6 +346,18 @@ void BuildQuestUI()
 }
 
 
+void BuildMixGuideUI()
+{
+    auto window = std::make_unique<MixGuideWindow>(mixGuideGateway, 170);
+    mixGuideWindow = window.get();
+    mixGuideWindow->SetViewport(WinSizeX, WinSizeY);
+    mixGuideWindow->SetOnClose([]()
+    {
+        runtime.Windows().Close(MixGuideWindowId);
+    });
+    runtime.Windows().Register(MixGuideWindowId, std::move(window), UIWindowLayer::NormalWindow);
+}
+
 void BuildSettingsWindow()
 {
     auto window = std::make_unique<SettingsWindow>(210);
@@ -569,11 +586,9 @@ void Initialize()
     BuildPlayerHud();
     BuildCompanionPartyHud();
     BuildQuestUI();
+    BuildMixGuideUI();
     BuildSettingsWindow();
     BuildLegacyDialogUI();
-    // MixGuide/Mixage is a legacy reference-only surface. UI V2 no longer
-    // exposes or keeps it open; mixing rules remain in cCraftItem/context.
-    cMixGuide::GetInstance()->Close();
     lastTick = GetTickCount();
 }
 
@@ -586,6 +601,7 @@ void Shutdown()
     companionPartyHud = nullptr;
     questJournal = nullptr;
     questTracker = nullptr;
+    mixGuideWindow = nullptr;
     legacyMessageWindow = nullptr;
     legacyNotificationHud = nullptr;
     npcDialogWindow = nullptr;
@@ -615,7 +631,14 @@ void Update()
                                          cInterFace.sInterFlags.CameraAutoFlag,
                                          cInterFace.sInterFlags.MapOnFlag != 0);
     if (cMixGuide::GetInstance()->IsOpen())
+    {
         cMixGuide::GetInstance()->Close();
+        if (mixGuideWindow)
+        {
+            mixGuideWindow->Reload();
+            runtime.Windows().Open(MixGuideWindowId);
+        }
+    }
 
     const DWORD now = GetTickCount();
     covenantGateway.Tick(now);
@@ -669,6 +692,10 @@ bool HandleCharacterHotkeys()
 {
 #if UI_V2_CHARACTER_WINDOW
     if (!runtime.IsInitialized() || !characterWindow || RequiresLegacyInventoryUI())
+        return false;
+
+    // SUMMIT_COMMAND_HOTKEYS_V17: simple player shortcuts do not leak through modified chords.
+    if (VRKeyBuff[VK_CONTROL] || VRKeyBuff[VK_SHIFT] || VRKeyBuff[VK_MENU])
         return false;
 
     CharacterTab requestedTab = CharacterTab::Attributes;
@@ -750,6 +777,9 @@ bool HandleSkillShortcutHotkeys()
         !characterWindow->HasArmedSkillShortcutTarget())
         return false;
 
+    if (VRKeyBuff[VK_CONTROL] || VRKeyBuff[VK_SHIFT] || VRKeyBuff[VK_MENU])
+        return false;
+
     static const int keys[8] = {VK_F1, VK_F2, VK_F3, VK_F4, VK_F5, VK_F6, VK_F7, VK_F8};
     for (int i = 0; i < 8; ++i)
     {
@@ -764,6 +794,8 @@ bool HandleQuestHotkey()
 {
 #if UI_V2_QUEST_JOURNAL
     if (!runtime.IsInitialized() || !questJournal)
+        return false;
+    if (VRKeyBuff[VK_CONTROL] || VRKeyBuff[VK_SHIFT] || VRKeyBuff[VK_MENU])
         return false;
     if (!sinGetKeyClick('U'))
         return false;
@@ -802,6 +834,7 @@ bool HandleMainHudHotkeys()
 {
 #if UI_V2_PLAYER_HUD
     if (!SuppressLegacyMainHud() || HandleModalHotkeys()) return false;
+    if (VRKeyBuff[VK_CONTROL] || VRKeyBuff[VK_SHIFT] || VRKeyBuff[VK_MENU]) return false;
     if (sinGetKeyClick('X')) { ExecuteHudShortcut(HudShortcutAction::System); return true; }
     if (sinGetKeyClick('R')) { ExecuteHudShortcut(HudShortcutAction::RunWalk); return true; }
     if (sinGetKeyClick(VK_TAB)) { ExecuteHudShortcut(HudShortcutAction::Map); return true; }
@@ -849,6 +882,8 @@ void OnResolutionChanged(int width, int height)
         questJournal->SetViewport(width, height);
     if (questTracker)
         questTracker->SetViewport(width, height);
+    if (mixGuideWindow)
+        mixGuideWindow->SetViewport(width, height);
     if (legacyMessageWindow)
         legacyMessageWindow->SetBounds({0, 0, width, height});
     if (legacyNotificationHud)

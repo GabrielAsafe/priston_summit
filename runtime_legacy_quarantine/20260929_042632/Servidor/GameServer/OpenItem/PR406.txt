@@ -1,0 +1,14 @@
+//ID
+*코드 "PR406"
+
+//Korean Name
+*이름 "Runa de Citrino B"
+
+//English Name
+*Name "Runa de Citrino B"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\PR406.zhoon"

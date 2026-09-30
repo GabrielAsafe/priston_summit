@@ -1,0 +1,24 @@
+(null)
+         (((((                  H
+         h((((                  H
+                                 H
+	IDD_SETUP
+&File
+iE&xit
+&Help
+h&About ...
+About
+System
+mp3dec Version 1.0
+Copyright (C) 2001
+Priston Tale installation
+Arial
+Install in progress.
+Readying update
+[1/100]
+Total install :
+333f3
+f3fff
+mp3dec
+Hello World!
+MP3DEC

@@ -1,0 +1,71 @@
+//ID
+*ÄÚµå "WS112"
+
+//Korean Name
+*ÀÌ¸§ "Arco Sagitário"
+
+//English Name
+*Name "Arco Sagitário"
+
+//AttackPower
+*°ø°Ý·Â 15 17 22 25
+
+//AttackRating
+*¸íÁß·Â 61 85
+
+//AttackRange
+*»çÁ¤°Å¸® 235
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 14
+
+//Block
+*ºí·°À² 6.0 6.0
+
+//Integrity
+*³»±¸·Â 75 94
+
+//Level
+*·¹º§ 47
+
+//Strength
+*Èû 60
+
+//Talent
+*Àç´É 60
+
+//Agility
+*¹ÎÃ¸¼º 90
+
+//PrimarySpec
+**Æ¯È­ Archer
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Atalanta
+
+//SpecAttackPower
+**°ø°Ý·Â 7 7
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SpecAttackRange
+**»çÁ¤°Å¸® 10
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 4
+
+//Weight
+*¹«°Ô 32
+
+//Price
+*°¡°Ý 47000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WS112.zhoon"

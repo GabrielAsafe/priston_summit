@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "SP139"
+
+//Korean Name
+*ÀÌ¸§ "Lágrimas de Kara"
+
+//English Name
+*Name "Lágrimas de Kara"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\SP139.zhoon"

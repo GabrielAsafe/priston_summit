@@ -1,0 +1,17 @@
+//ID
+*코드 "SE104"
+
+//Korean Name
+*이름 "Teiwaz"
+
+//English Name
+*Name "Teiwaz"
+
+//Weight
+*무게 1
+
+//Price
+*가격 40000
+
+//Name File
+*연결파일 "Name\SE104.zhoon"

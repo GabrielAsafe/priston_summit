@@ -25,18 +25,18 @@ struct sFULL_INFO
 	int LevelMin, LevelMax;
 	int ClanLevelMin, ClanLevelMax;
 	int PartyFlag;
-	char QuestDesc[500];
+	char QuestDesc[1024];
 	int QuestType;
 
 	int MonsterCount;
-	char MonsterNames[4][32];
-	int MonsterCounts[4];
-	int MonsterKilled[4];
-	int MonsterMaps[4];
+	char MonsterNames[QUEST_FULL_ENTRY_MAX][64];
+	int MonsterCounts[QUEST_FULL_ENTRY_MAX];
+	int MonsterKilled[QUEST_FULL_ENTRY_MAX];
+	int MonsterMaps[QUEST_FULL_ENTRY_MAX];
 
 	int RewardCount;
-	char RewardNames[4][32];
-	int RewardCounts[4];
+	char RewardNames[QUEST_FULL_ENTRY_MAX][64];
+	int RewardCounts[QUEST_FULL_ENTRY_MAX];
 	int RewardGold;
 	INT64 RewardExp;
 	int RewardCoin;

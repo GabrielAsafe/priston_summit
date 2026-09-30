@@ -1,0 +1,20 @@
+//ID
+*ÄÚµå "FO112"
+
+//Korean Name
+*ÀÌ¸§ "Força Enigma"
+
+//English Name
+*Name "Força Enigma"
+
+//Weight
+*¹«°Ô 2
+
+//Price
+*°¡°Ý 1000
+
+//Level
+*·¹º§ 90
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\FO112.zhoon"

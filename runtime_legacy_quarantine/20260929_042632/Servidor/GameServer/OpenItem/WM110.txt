@@ -1,0 +1,65 @@
+//ID
+*ÄÚµå "WM110"
+
+//Korean Name
+*ÀÌ¸§ "Cajado Mágico"
+
+//English Name
+*Name "Cajado Mágico"
+
+//AttackPower
+*°ø°Ý·Â 12 14 17 19
+
+//AttackRating
+*¸íÁß·Â 58 74
+
+//AttackRange
+*»çÁ¤°Å¸® 170
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 7
+
+//Block
+*ºí·°À² 6.0 6.0
+
+//Integrity
+*³»±¸·Â 58 74
+
+//Level
+*·¹º§ 44
+
+//Strength
+*Èû 44
+
+//Spirit
+*Á¤½Å·Â 75
+
+//Talent
+*Àç´É 47
+
+//SecondarySpec
+**Æ¯È­·£´ý Priestess Magician
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecMPRegen
+**±â·ÂÀç»ý 1.1 1.4
+
+//SpecSkillTraining
+**¸¶¹ý¼÷·Ãµµ 3 6
+
+//Weight
+*¹«°Ô 10
+
+//Price
+*°¡°Ý 39000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WM110.zhoon"

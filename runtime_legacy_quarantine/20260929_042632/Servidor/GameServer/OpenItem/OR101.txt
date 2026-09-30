@@ -1,0 +1,23 @@
+//ID
+*코드 "OR101"
+
+//Korean Name
+*이름 "Anel Comum"
+
+//English Name
+*Name "Anel Comum"
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecHPRegen
+**생명력재생 0.1 0.1
+
+//Weight
+*무게 1
+
+//Price
+*가격 100
+
+//Name File
+*연결파일 "Name\OR101.zhoon"

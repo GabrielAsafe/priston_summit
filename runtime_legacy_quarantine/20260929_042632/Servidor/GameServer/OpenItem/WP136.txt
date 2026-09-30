@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "WP136"
+
+//Korean Name
+*ÀÌ¸§ "Foice Anúbis"
+
+//English Name
+*Name "Foice Anúbis"
+
+//AttackPower
+*°ø°Ý·Â 108 111 147 150
+
+//AttackRating
+*¸íÁß·Â 300 333
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 8
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 20
+
+//Block
+*ºí·°À² 18.0 18.0
+
+//Integrity
+*³»±¸·Â 285 305
+
+//Level
+*·¹º§ 130
+
+//Strength
+*Èû 268
+
+//Talent
+*Àç´É 100
+
+//PrimarySpec
+**Æ¯È­ Pikeman
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Atalanta
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 4
+
+//Weight
+*¹«°Ô 151
+
+//Price
+*°¡°Ý 2250000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WP136.zhoon"

@@ -1,0 +1,62 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\figon\figon.ini"
+
+//Name
+*이름 "R2 Figon"
+
+//Level
+*레벨 62
+
+//Size
+*모델크기 1.0
+
+//QuestCode
+*구별코드 21
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 410
+
+//HP
+*생명력 900
+
+//AttackPower
+*공격력 62 77
+
+//AttackRating
+*명중력 1200
+
+//AttackSpeed
+*공격속도 8
+
+//AttackRange
+*공격범위 230
+
+//Defense
+*방어력 350
+
+//Absorption
+*흡수율 9
+
+//MoveSpeed
+*이동력 3
+
+//Race
+*몬스터종족 디먼
+
+//ShadowSize
+*크기 대형
+
+//Experience
+*경험치 36200
+
+//Sound
+*효과음 FIGON
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

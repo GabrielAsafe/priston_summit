@@ -1,0 +1,59 @@
+//ID
+*코드 "DA113"
+
+//Korean Name
+*이름 "Armadura Suprema"
+
+//English Name
+*Name "Armadura Suprema"
+
+//Defense
+*방어력 170 190
+
+//Absorption
+*흡수력 8.0 8.6
+
+//OrganicResistance
+*생체 5 8
+
+//FireResistance
+*불 5 8
+
+//FrostResistance
+*냉기 5 8
+
+//LightningResistance
+*번개 -2 -1
+
+//PoisonResistance
+*독 5 8
+
+//Integrity
+*내구력 100 126
+
+//Level
+*레벨 55
+
+//Strength
+*힘 135
+
+//Talent
+*재능 70
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**방어력 34 40
+
+//SpecAbsorption
+**흡수력 0.6 1.1
+
+//Weight
+*무게 78
+
+//Price
+*가격 70000
+
+//Name File
+*연결파일 "Name\DA113.zhoon"

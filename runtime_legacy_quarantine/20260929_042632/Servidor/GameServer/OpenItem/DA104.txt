@@ -1,0 +1,59 @@
+//ID
+*코드 "DA104"
+
+//Korean Name
+*이름 "Armadura Brigandine"
+
+//English Name
+*Name "Armadura Brigandine"
+
+//Defense
+*방어력 16 38
+
+//Absorption
+*흡수력 1.7 2.0
+
+//OrganicResistance
+*생체 2 5
+
+//FireResistance
+*불 -2 -1
+
+//FrostResistance
+*냉기 2 5
+
+//LightningResistance
+*번개 -2 -1
+
+//PoisonResistance
+*독 2 5
+
+//Integrity
+*내구력 25 44
+
+//Level
+*레벨 10
+
+//Strength
+*힘 52
+
+//Talent
+*재능 30
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**방어력 14 18
+
+//SpecAbsorption
+**흡수력 0.2 0.3
+
+//Weight
+*무게 15
+
+//Price
+*가격 2500
+
+//Name File
+*연결파일 "Name\DA104.zhoon"

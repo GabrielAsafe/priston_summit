@@ -1,0 +1,33 @@
+// NOME E COD DO ITEM
+*ÀÌ¸§		"Traje de Futebol"
+*ÄÚµå		"CA715"
+
+//ID
+*ÄÚµå "DA247"
+
+//Korean Name
+*ÀÌ¸§ "Traje de Futebol Mágico"
+
+//English Name
+*Name "Traje de Futebol Mágico"
+
+//Defense
+*¹æ¾î·Â 200 200
+
+//Absorption
+*Èí¼ö·Â 6.0 6.0
+
+//Block
+*ºí·°À² 3.0 3.0
+
+//Level
+*·¹º§ 20
+
+//Weight
+*¹«°Ô 50
+
+//Price
+*°¡°Ý 200000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\CA715.zhoon"

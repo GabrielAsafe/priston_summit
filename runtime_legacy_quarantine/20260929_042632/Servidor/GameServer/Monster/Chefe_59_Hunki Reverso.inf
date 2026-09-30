@@ -1,0 +1,128 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\hongky\hongky.ini"
+
+//Name
+*이름 "Hunki Reverso"
+
+//Level
+*레벨 59
+
+//Size
+*모델크기 2.0
+
+//ShowAllDrops
+*아이템모두
+
+//EventCode
+*계급 1
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 480
+
+//HP
+*생명력 2610
+
+//AttackPower
+*공격력 84 105
+
+//AttackRating
+*명중력 700
+
+//AttackSpeed
+*공격속도 7
+
+//AttackRange
+*공격범위 75
+
+//SkillPower
+*기술공격력 94 115
+
+//SkillRating
+*기술공격률 18
+
+//SkillRange
+*기술공격범위 50
+
+//SkillDistance
+*기술공격거리 80
+
+//Defense
+*방어력 450
+
+//Absorption
+*흡수율 18
+
+//Block
+*블럭율 10
+
+//MoveSpeed
+*이동력 3
+
+//Organic
+*생체 100
+
+//Lightning
+*번개 10
+
+//Ice
+*얼음 20
+
+//Poison
+*독 10
+
+//Race
+*몬스터종족 노멀
+
+//ShadowSize
+*크기 소형
+
+//Experience
+*경험치 386100
+
+//Sound
+*효과음 HONGKY
+
+//DropsNumber
+*아이템카운터 8
+
+//Drop
+//*아이템 204 SE102 SE104
+
+//Drop
+*아이템 176 OS104
+
+//Drop
+*아이템 88 OS105
+
+//Drop
+*아이템 44 OS106
+
+//Drop
+//*아이템 3449 WA107 WC107 WH108 WM108 WP108 WS109 WS210 WT108 OA111 OA207 OM108 OR111 DA109 DA209 DB107 DG107 DS107
+
+//Drop
+//*아이템 2736 WA108 WC108 WH109 WM109 WP109 WS110 WS211 WT109 OA112 OA208 OM109 OR112 DA110 DA210 DB108 DG108 DS108
+
+//Drop
+//*아이템 1824 WA109 WC109 WH110 WM110 WP110 WS111 WS212 WT110 OA113 OA209 OM110 OR113 DA111 DA211 DB109 DG109 DS109
+
+//Drop
+*아이템 912 WA110 WC110 WH111 WM111 WP111 WS112 WS213 WT111 OA114 OA210 OM111 OR114 DA112 DA212 DB110 DG110 DS110
+
+//Drop
+*아이템 304 WA111 WC111 WH112 WM112 WP112 WS113 WS214 WT112 OA115 OA211 OM112 OR115 DA113 DA213 DB111 DG111 DS111
+
+//Drop
+*아이템 20 RS101 RS102 RS103 RS104 RS105 RS106 RS107 RS108
+
+//QuestDrop
+*이벤트아이템 QT109
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

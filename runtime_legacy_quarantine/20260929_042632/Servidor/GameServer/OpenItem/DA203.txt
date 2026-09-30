@@ -1,0 +1,59 @@
+//ID
+*ÄÚµå "DA203"
+
+//Korean Name
+*ÀÌ¸§ "Roupão Reforçado"
+
+//English Name
+*Name "Roupão Reforçado"
+
+//Defense
+*¹æ¾î·Â 8 14
+
+//Absorption
+*Èí¼ö·Â 0.9 1.3
+
+//OrganicResistance
+*»ýÃ¼ 3 6
+
+//FireResistance
+*ºÒ 1 3
+
+//FrostResistance
+*³Ã±â 3 6
+
+//LightningResistance
+*¹ø°³ 1 6
+
+//PoisonResistance
+*µ¶ 3 6
+
+//Integrity
+*³»±¸·Â 18 33
+
+//Level
+*·¹º§ 6
+
+//Spirit
+*Á¤½Å·Â 40
+
+//SecondarySpec
+**Æ¯È­·£´ý Priestess Magician
+
+//SpecDefense
+**¹æ¾î·Â 4 8
+
+//SpecAbsorption
+**Èí¼ö·Â 0.2 0.4
+
+//SpecMPRegen
+**±â·ÂÀç»ý 0.2 0.5
+
+//Weight
+*¹«°Ô 10
+
+//Price
+*°¡°Ý 1200
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DA203.zhoon"

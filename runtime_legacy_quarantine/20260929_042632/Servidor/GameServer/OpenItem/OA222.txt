@@ -1,0 +1,44 @@
+//ID
+*ÄÚµå "OA222"
+
+//Korean Name
+*ÀÌ¸§ "Bracelete Fênix"
+
+//English Name
+*Name "Bracelete Fênix"
+
+//AttackRating
+*¸íÁß·Â 130 140
+
+//Defense
+*¹æ¾î·Â 125 136
+
+//PotionStorage
+*º¸À¯°ø°£ 85
+
+//Integrity
+*³»±¸·Â 143 155
+
+//Level
+*·¹º§ 102
+
+//Strength
+*Èû 90
+
+//Agility
+*¹ÎÃ¸¼º 83
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//Weight
+*¹«°Ô 53
+
+//Price
+*°¡°Ý 800000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\OA222.zhoon"

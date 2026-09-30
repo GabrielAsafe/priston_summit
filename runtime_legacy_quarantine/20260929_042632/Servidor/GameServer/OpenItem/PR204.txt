@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "PR204"
+
+//Korean Name
+*ÀÌ¸§ "Relíquia de Água Marinha"
+
+//English Name
+*Name "Relíquia de Água Marinha"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\PR204.zhoon"

@@ -1,0 +1,17 @@
+//ID
+*ÄÚµå "SE101"
+
+//Korean Name
+*ÀÌ¸§ "Pedra Mágica Jera"
+
+//English Name
+*Name "Pedra Mágica Jera"
+
+//Weight
+*¹«°Ô 1
+
+//Price
+*°¡°İ 300000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\SE101.zhoon"

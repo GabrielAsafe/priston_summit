@@ -1,0 +1,20 @@
+//ID
+*ÄÚµå "GP110"
+
+//Korean Name
+*ÀÌ¸§ "Cristal do Guardião Santo"
+
+//English Name
+*Name "Cristal do Guardião Santo"
+
+//Level
+*·¹º§ 50
+
+//Weight
+*¹«°Ô 1
+
+//Price
+*°¡°Ý 25000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\GP110.zhoon"

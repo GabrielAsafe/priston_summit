@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Ensure production Shared gameplay V2 translation units are in the server build."""
+"""Ensure every production Shared gameplay V2 translation unit is in the server build."""
 
 from pathlib import Path
 import re
@@ -7,12 +7,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 BUILD_SCRIPT = ROOT / "build_server_mingw_i686_j8.sh"
-PRODUCTION_DIRS = [
-    ROOT / "Shared" / "gameplay" / "covenants" / "v2",
-    ROOT / "Shared" / "gameplay" / "story" / "v2",
-    ROOT / "Shared" / "gameplay" / "progression" / "v2",
-    ROOT / "Shared" / "gameplay" / "reputation" / "v2",
-]
+SHARED_GAMEPLAY = ROOT / "Shared" / "gameplay"
 
 
 def fail(message: str) -> None:
@@ -20,34 +15,41 @@ def fail(message: str) -> None:
     raise SystemExit(1)
 
 
+def is_production_v2_cpp(path: Path) -> bool:
+    relative = path.relative_to(SHARED_GAMEPLAY)
+    return path.suffix == ".cpp" and "v2" in relative.parts and "tests" not in relative.parts
+
+
 def main() -> None:
     if not BUILD_SCRIPT.is_file():
         fail(f"missing {BUILD_SCRIPT}")
-    script = BUILD_SCRIPT.read_text(encoding="utf-8")
+    if not SHARED_GAMEPLAY.is_dir():
+        fail(f"missing {SHARED_GAMEPLAY}")
 
-    expected = set()
-    for directory in PRODUCTION_DIRS:
-        if not directory.is_dir():
-            fail(f"missing production directory {directory}")
-        for path in directory.glob("*.cpp"):
-            expected.add(path.relative_to(ROOT).as_posix())
+    script = BUILD_SCRIPT.read_text(encoding="utf-8")
+    expected = {
+        path.relative_to(ROOT).as_posix()
+        for path in SHARED_GAMEPLAY.rglob("*.cpp")
+        if is_production_v2_cpp(path)
+    }
 
     listed = set(
         match.group(0)
         for match in re.finditer(
-            r"Shared/gameplay/(?:covenants|story|progression|reputation)/v2/[A-Za-z0-9_./-]+\.cpp",
+            r"Shared/gameplay/[A-Za-z0-9_./-]+/v2/[A-Za-z0-9_./-]+\.cpp",
             script,
         )
     )
+
     missing = sorted(expected - listed)
     if missing:
-        fail(f"production units absent from build_server_mingw_i686_j8.sh: {missing}")
+        fail(f"production V2 units absent from build_server_mingw_i686_j8.sh: {missing}")
 
     stale = sorted(listed - expected)
     if stale:
-        fail(f"manifest references missing Shared production units: {stale}")
+        fail(f"manifest references missing/non-production Shared V2 units: {stale}")
 
-    print(f"server Shared gameplay manifest validation: PASS ({len(expected)} units)")
+    print(f"server Shared gameplay manifest validation: PASS ({len(expected)} production V2 units)")
 
 
 if __name__ == "__main__":

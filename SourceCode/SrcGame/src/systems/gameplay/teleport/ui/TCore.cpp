@@ -1,5 +1,6 @@
 #include "compat/legacy/sin/sinLinkHeader.h"
 #include "systems/gameplay/teleport/ui/TCore.h"
+#include "systems/presentation/v2/legacy/LegacyTextureAdapter.h"
 #include "systems/world/field/field.h"
 char Text[38][32];
 const char* InfoMapa[38] = {
@@ -91,66 +92,72 @@ int basey = 90;
 SIZE size4[38] = {};
 extern bool isMousePos(int x, int y, int w, int h);
 
+static int LoadTeleportTexture(const char* key)
+{
+	return presentation::legacy::ClientLegacyTextureAdapter().Load(
+		presentation::TextureAssetId(key)).value;
+}
+
 void TCORE::init() {
 
-	imagens[JANELA] = CreateTextureMaterial("game//teleport//window.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imagens[BTNTELEPORT] = CreateTextureMaterial("game//teleport//btnteleport.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imagens[BTNTELEPORT_] = CreateTextureMaterial("game//teleport//btnteleport_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imagens[BTNCLOSE] = CreateTextureMaterial("game//teleport//close.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imagens[BTNCLOSE_] = CreateTextureMaterial("game//teleport//close_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imagens[EXP] = CreateTextureMaterial("game//teleport//exp.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imagens[HUNT] = CreateTextureMaterial("game//teleport//hunt.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imagens[GOLD] = CreateTextureMaterial("game//teleport//gold.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imagens[TOWN] = CreateTextureMaterial("game//teleport//town.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imagens[SHELTONS] = CreateTextureMaterial("game//teleport//sheltons.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imagens[PVP] = CreateTextureMaterial("game//teleport//pvp.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imagens[HUNTPVP] = CreateTextureMaterial("game//teleport//huntpvp.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imagens[12] = CreateTextureMaterial("game//teleport//Mapas//border.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imagens[13] = CreateTextureMaterial("game//teleport//page1.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imagens[14] = CreateTextureMaterial("game//teleport//page1_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imagens[15] = CreateTextureMaterial("game//teleport//page2.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imagens[16] = CreateTextureMaterial("game//teleport//page2_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imagens[17] = CreateTextureMaterial("game//teleport//page3.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imagens[18] = CreateTextureMaterial("game//teleport//page3_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imagens[19] = CreateTextureMaterial("game//teleport//expdrop.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[0] = CreateTextureMaterial("game//teleport//Mapas//estrada-dos-ventos.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[1] = CreateTextureMaterial("game//teleport//Mapas//vale-tranquilo.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[2] = CreateTextureMaterial("game//teleport//Mapas//floresta-espirito.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[3] = CreateTextureMaterial("game//teleport//Mapas//mata-acacias.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[4] = CreateTextureMaterial("game//teleport//Mapas//jardim-liberdade.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[5] = CreateTextureMaterial("game//teleport//Mapas//refugio-ancioes.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[6] = CreateTextureMaterial("game//teleport//Mapas//castelo-perdidos.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[7] = CreateTextureMaterial("game//teleport//Mapas//terra-maldita.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[8] = CreateTextureMaterial("game//teleport//Mapas//terra-esquecida.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[9] = CreateTextureMaterial("game//teleport//Mapas//oasis.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[10] = CreateTextureMaterial("game//teleport//Mapas//cba.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[11] = CreateTextureMaterial("game//teleport//Mapas//terra-proibida.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[12] = CreateTextureMaterial("game//teleport//Mapas//bcave.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[13] = CreateTextureMaterial("game//teleport//Mapas//mcave.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[14] = CreateTextureMaterial("game//teleport//Mapas//ds.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[15] = CreateTextureMaterial("game//teleport//Mapas//dun1.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[16] = CreateTextureMaterial("game//teleport//Mapas//dun2.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[17] = CreateTextureMaterial("game//teleport//Mapas//dun3.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[18] = CreateTextureMaterial("game//teleport//Mapas//s1.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[19] = CreateTextureMaterial("game//teleport//Mapas//s2.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[20] = CreateTextureMaterial("game//teleport//Mapas//s3.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[21] = CreateTextureMaterial("game//teleport//Mapas//gl.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[22] = CreateTextureMaterial("game//teleport//Mapas//iron1.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[23] = CreateTextureMaterial("game//teleport//Mapas//iron2.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[24] = CreateTextureMaterial("game//teleport//Mapas//eura.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[25] = CreateTextureMaterial("game//teleport//Mapas//ice1.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[26] = CreateTextureMaterial("game//teleport//Mapas//ice2.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[27] = CreateTextureMaterial("game//teleport//Mapas//kcave.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[28] = CreateTextureMaterial("game//teleport//Mapas//lost1.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[29] = CreateTextureMaterial("game//teleport//Mapas//lost2.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[30] = CreateTextureMaterial("game//teleport//Mapas//et1.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[31] = CreateTextureMaterial("game//teleport//Mapas//et2.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[32] = CreateTextureMaterial("game//teleport//Mapas//et3.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[33] = CreateTextureMaterial("game//teleport//Mapas//mine-ice.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[34] = CreateTextureMaterial("game//teleport//Mapas//slab.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[35] = CreateTextureMaterial("game//teleport//Mapas//AncientW.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[36] = CreateTextureMaterial("game//teleport//Mapas//SeaA.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgs[37] = CreateTextureMaterial("game//teleport//Mapas//Stemple.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	imagens[JANELA] = LoadTeleportTexture("ui.teleport.window");
+	imagens[BTNTELEPORT] = LoadTeleportTexture("ui.teleport.action.teleport");
+	imagens[BTNTELEPORT_] = LoadTeleportTexture("ui.teleport.action.teleport.alt");
+	imagens[BTNCLOSE] = LoadTeleportTexture("ui.teleport.action.close");
+	imagens[BTNCLOSE_] = LoadTeleportTexture("ui.teleport.action.close.alt");
+	imagens[EXP] = LoadTeleportTexture("ui.teleport.category.exp");
+	imagens[HUNT] = LoadTeleportTexture("ui.teleport.category.hunt");
+	imagens[GOLD] = LoadTeleportTexture("ui.teleport.category.gold");
+	imagens[TOWN] = LoadTeleportTexture("ui.teleport.category.town");
+	imagens[SHELTONS] = LoadTeleportTexture("ui.teleport.category.sheltons");
+	imagens[PVP] = LoadTeleportTexture("ui.teleport.category.pvp");
+	imagens[HUNTPVP] = LoadTeleportTexture("ui.teleport.category.huntpvp");
+	imagens[12] = LoadTeleportTexture("ui.teleport.map.border");
+	imagens[13] = LoadTeleportTexture("ui.teleport.page.1.base");
+	imagens[14] = LoadTeleportTexture("ui.teleport.page.1.alt");
+	imagens[15] = LoadTeleportTexture("ui.teleport.page.2.base");
+	imagens[16] = LoadTeleportTexture("ui.teleport.page.2.alt");
+	imagens[17] = LoadTeleportTexture("ui.teleport.page.3.base");
+	imagens[18] = LoadTeleportTexture("ui.teleport.page.3.alt");
+	imagens[19] = LoadTeleportTexture("ui.teleport.expdrop");
+	imgs[0] = LoadTeleportTexture("ui.teleport.map.estrada-dos-ventos");
+	imgs[1] = LoadTeleportTexture("ui.teleport.map.vale-tranquilo");
+	imgs[2] = LoadTeleportTexture("ui.teleport.map.floresta-espirito");
+	imgs[3] = LoadTeleportTexture("ui.teleport.map.mata-acacias");
+	imgs[4] = LoadTeleportTexture("ui.teleport.map.jardim-liberdade");
+	imgs[5] = LoadTeleportTexture("ui.teleport.map.refugio-ancioes");
+	imgs[6] = LoadTeleportTexture("ui.teleport.map.castelo-perdidos");
+	imgs[7] = LoadTeleportTexture("ui.teleport.map.terra-maldita");
+	imgs[8] = LoadTeleportTexture("ui.teleport.map.terra-esquecida");
+	imgs[9] = LoadTeleportTexture("ui.teleport.map.oasis");
+	imgs[10] = LoadTeleportTexture("ui.teleport.map.cba");
+	imgs[11] = LoadTeleportTexture("ui.teleport.map.terra-proibida");
+	imgs[12] = LoadTeleportTexture("ui.teleport.map.bcave");
+	imgs[13] = LoadTeleportTexture("ui.teleport.map.mcave");
+	imgs[14] = LoadTeleportTexture("ui.teleport.map.ds");
+	imgs[15] = LoadTeleportTexture("ui.teleport.map.dun1");
+	imgs[16] = LoadTeleportTexture("ui.teleport.map.dun2");
+	imgs[17] = LoadTeleportTexture("ui.teleport.map.dun3");
+	imgs[18] = LoadTeleportTexture("ui.teleport.map.s1");
+	imgs[19] = LoadTeleportTexture("ui.teleport.map.s2");
+	imgs[20] = LoadTeleportTexture("ui.teleport.map.s3");
+	imgs[21] = LoadTeleportTexture("ui.teleport.map.gl");
+	imgs[22] = LoadTeleportTexture("ui.teleport.map.iron1");
+	imgs[23] = LoadTeleportTexture("ui.teleport.map.iron2");
+	imgs[24] = LoadTeleportTexture("ui.teleport.map.eura");
+	imgs[25] = LoadTeleportTexture("ui.teleport.map.ice1");
+	imgs[26] = LoadTeleportTexture("ui.teleport.map.ice2");
+	imgs[27] = LoadTeleportTexture("ui.teleport.map.kcave");
+	imgs[28] = LoadTeleportTexture("ui.teleport.map.lost1");
+	imgs[29] = LoadTeleportTexture("ui.teleport.map.lost2");
+	imgs[30] = LoadTeleportTexture("ui.teleport.map.et1");
+	imgs[31] = LoadTeleportTexture("ui.teleport.map.et2");
+	imgs[32] = LoadTeleportTexture("ui.teleport.map.et3");
+	imgs[33] = LoadTeleportTexture("ui.teleport.map.mine-ice");
+	imgs[34] = LoadTeleportTexture("ui.teleport.map.slab");
+	imgs[35] = LoadTeleportTexture("ui.teleport.map.ancientw");
+	imgs[36] = LoadTeleportTexture("ui.teleport.map.seaa");
+	imgs[37] = LoadTeleportTexture("ui.teleport.map.stemple");
 
 
 	for (int i = 0; i < 38; i++) {

@@ -10,8 +10,8 @@
   ],
   "source": {
     "legacy_path": "Servidor/GameServer/NPC/name/amanda.Zhoon",
-    "legacy_sha256": "125cceb9718f0d509343a639ee56c99f595836f0b8b9f6b815ed4a7de2b33507",
-    "legacy_size": 340
+    "legacy_sha256": "2de10d77df1c4398383da31c23f53b5a8dc87b193f41f9649a1e48e0ad218603",
+    "legacy_size": 449
   },
   "semantic": {
     "entries": [
@@ -19,36 +19,42 @@
         "line": 4,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Enzo, o Restaurador de Itens"
+        "text": "Instrutora Amanda"
       },
       {
         "line": 7,
         "legacy_key": "J_Chat",
         "kind": "chat",
-        "text": "Nesse NPC consigo restaura seu ITEM quebrado no AGING."
+        "text": "Vou lhe arranjar uns bons itens se você atender meus pedidos."
       },
       {
         "line": 9,
         "legacy_key": "J_Chat",
         "kind": "chat",
-        "text": "Não precisa de STAFF online para restaurar seu item quebrado, eu dou um jeito!"
+        "text": "Se você ajudar ao povo da cidade, eles provavelmente te darão vários itens."
       },
       {
         "line": 11,
         "legacy_key": "J_Chat",
         "kind": "chat",
-        "text": "Com um preço bem acessivel que cabe no seu bolso ;)"
+        "text": "Depois que você chegar a level 40, não terá mais que falar comigo."
       },
       {
         "line": 13,
         "legacy_key": "J_Chat",
         "kind": "chat",
-        "text": "Estou aqui para te ajudar e nós ajudar!"
+        "text": "Estou aqui para ajudar os iniciantes a viver no continente de Priston."
+      },
+      {
+        "line": 15,
+        "legacy_key": "J_Chat",
+        "kind": "chat",
+        "text": "E só você para trazer de volta as conspirações e Igolanos."
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9hbWFuZGEuTlBDDQoNCg0KKkpfTmFtZQkiRW56bywgbyBSZXN0YXVyYWRvciBkZSBJdGVucyINCg0KDQoqSl9DaGF0CSJOZXNzZSBOUEMgY29uc2lnbyByZXN0YXVyYSBzZXUgSVRFTSBxdWVicmFkbyBubyBBR0lORy4iDQoNCipKX0NoYXQJIk7jbyBwcmVjaXNhIGRlIFNUQUZGIG9ubGluZSBwYXJhIHJlc3RhdXJhciBzZXUgaXRlbSBxdWVicmFkbywgZXUgZG91IHVtIGplaXRvISINCg0KKkpfQ2hhdAkiQ29tIHVtIHByZedvIGJlbSBhY2Vzc2l2ZWwgcXVlIGNhYmUgbm8gc2V1IGJvbHNvIDspIg0KDQoqSl9DaGF0CSJFc3RvdSBhcXVpIHBhcmEgdGUgYWp1ZGFyIGUgbvNzIGFqdWRhciEiDQoNCg=="
+    "legacy_payload_base64": "Ly9hbWFuZGEuTlBDDQoNCg0KKkpfTmFtZQkiSW5zdHJ1dG9yYSBBbWFuZGEiDQoNCipKX0NoYXQJIlZvdSBsaGUgYXJyYW5qYXIgdW5zIGJvbnMgaXRlbnMgc2Ugdm9j6iBhdGVuZGVyIG1ldXMgcGVkaWRvcy4iDQoNCipKX0NoYXQJIlNlIHZvY+ogYWp1ZGFyIGFvIHBvdm8gZGEgY2lkYWRlLCBlbGVzIHByb3ZhdmVsbWVudGUgdGUgZGFy428gduFyaW9zIGl0ZW5zLiINCg0KKkpfQ2hhdAkiRGVwb2lzIHF1ZSB2b2PqIGNoZWdhciBhIGxldmVsIDQwLCBu428gdGVy4SBtYWlzIHF1ZSBmYWxhciBjb21pZ28uIg0KDQoqSl9DaGF0CSJFc3RvdSBhcXVpIHBhcmEgYWp1ZGFyIG9zIGluaWNpYW50ZXMgYSB2aXZlciBubyBjb250aW5lbnRlIGRlIFByaXN0b24uIg0KDQoqSl9DaGF0CSJFIHPzIHZvY+ogcGFyYSB0cmF6ZXIgZGUgdm9sdGEgYXMgY29uc3BpcmHn9WVzIGUgSWdvbGFub3MuIg0KDQo="
   }
 }

@@ -1,0 +1,324 @@
+!This program cannot be run in DOS mode.
+Rich
+.text
+.rdata
+@.data
+.rsrc
+t$pW3
+L$|Qh
+t(HuQ
+hyN@
+hbN@
+L$ Q
+hyN@
+L$4V
+h(b@
+hde@
+L$$_
+D$4VP
+L$<Q
+t$4P
+h*O@
+h@P@
+h|b@
+T$xh<
+hxb@
+D$PP
+L$@Q
+hpb@
+t?95T
+Ph4b@
+hHO@
+hqO@
+JHuNPj
+9y(u
+SUVWj
+_^][
+VSRP
+RVQQP
+PQRS
+PWQj
+h%P@
+SUVW
+-Ha@
+h|b@
+_^]d
+F@Ph
+F`SP
+f9~^
+j(SV
+@^G;
+@@CB;
+@@B;
+PWWh++@
+QSU3
+t)j h<
+f9/v
+_^][Y
+d_^[|
+tWVj
+tUHt=Ht
+FLQQ
+t0Jt
+j@X+
+U +U$
+_^[]
+j@X;
+QSVW
+-,c@
+jdY;
+PSQR
+A0ZY[X
+HL[s
+D8d<
+V0RQ
+N,Q3
+F$PV
+VDRP
+F@P3
+F8PV
+)FHy
+taJtK
+t&JJt
+Ju_V
+~*,@
+j@X9F
+Ht~HtZHtKH
+j@X9F
+j8X9F
+JtQJu
+t@Hu~
+_^[]
+=8c@
+F0PQ
+F,P3
+F$PV
+FDPQ
+F@P3
+F8PV
+)NHy
+j@X9F
+Fu)F
+j@Y;
+F +E
+teIItPIIt1
+Fi)F
+A,+S
+A ;A<u"
+A$;A@u
+_^[]
+hXc@
+%ha@
+%da@
+%`a@
+t$Wh
+%\a@
+%Xa@
+%Ta@
+%La@
+jthpc@
+=$`@
+8MZu
+h@N@
+< w]:
+XPVSS
+U<"u
+%@a@
+%8a@
+%0a@
+%,a@
+%(a@
+%$a@
+% a@
+Y_^[
+8csm
+%la@
+%la@
+%L`@
+%D`@
+hPP@
+Error In Getting Level Data!
+Error
+vector<T> too long
+bad cast
+Error Loading User Data! Path not found or Access denied!
+.dat
+Dataserver\userdata\
+Level Changed
+Succeeded
+Can not open file 'XPHex.txt'!
+XPHex.txt
+1ff0B
+RSDSr
+d:\Backup\
+\Visual Studio Projects\LevelEditor\Release\LvlEditor.pdb
+ExitProcess
+SetThreadPriority
+CreateThread
+Sleep
+KERNEL32.dll
+MessageBoxA
+GetDlgItemInt
+GetDlgItemTextA
+EndDialog
+GetDlgItem
+SendMessageA
+LoadIconA
+DialogBoxParamA
+USER32.dll
+??1exception@@UAE@XZ
+??0exception@@QAE@XZ
+__CxxFrameHandler
+??3@YAXPAX@Z
+??0exception@@QAE@ABV0@@Z
+_CxxThrowException
+??0bad_cast@@QAE@ABV0@@Z
+??1bad_cast@@UAE@XZ
+??0bad_cast@@QAE@PBD@Z
+??2@YAPAXI@Z
+sprintf
+strtol
+memset
+calloc
+memcpy
+free
+fabs
+__security_error_handler
+_except_handler3
+MSVCR71.dll
+??1type_info@@UAE@XZ
+__dllonexit
+_onexit
+_c_exit
+_exit
+_XcptFilter
+_ismbblead
+_cexit
+exit
+_acmdln
+_amsg_exit
+__getmainargs
+_initterm
+__setusermatherr
+_adjust_fdiv
+__p__commode
+__p__fmode
+__set_app_type
+?terminate@@YAXXZ
+_controlfp
+??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@ABV01@@Z
+??1?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@XZ
+?_Unlock@_Mutex@std@@QAEXXZ
+?_Lock@_Mutex@std@@QAEXXZ
+??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@PBD@Z
+?_Register@facet@locale@std@@QAEXXZ
+?_Incref@facet@locale@std@@QAEXXZ
+?_Getcat@?$ctype@D@std@@SAIPAPBVfacet@locale@2@@Z
+?_Getfacet@locale@std@@QBEPBVfacet@12@I@Z
+?_Id_cnt@id@locale@std@@0HA
+??1_Lockit@std@@QAE@XZ
+?id@?$ctype@D@std@@2V0locale@2@A
+??0_Lockit@std@@QAE@H@Z
+??Y?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV01@PBD@Z
+??4?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV01@ABV01@@Z
+?close@?$basic_ifstream@DU?$char_traits@D@std@@@std@@QAEXXZ
+??_D?$basic_ifstream@DU?$char_traits@D@std@@@std@@QAEXXZ
+??0?$basic_ifstream@DU?$char_traits@D@std@@@std@@QAE@PBDHH@Z
+?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBD@Z
+?clear@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEXXZ
+??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@XZ
+?_Ipfx@?$basic_istream@DU?$char_traits@D@std@@@std@@QAE_N_N@Z
+?clear@ios_base@std@@QAEXH_N@Z
+?snextc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QAEHXZ
+?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ID@Z
+?sgetc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QAEHXZ
+?max_size@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEIXZ
+?erase@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@II@Z
+?npos@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@2IB
+??1locale@std@@QAE@XZ
+?getloc@ios_base@std@@QBE?AVlocale@2@XZ
+??_D?$basic_fstream@DU?$char_traits@D@std@@@std@@QAEXXZ
+?close@?$basic_fstream@DU?$char_traits@D@std@@@std@@QAEXXZ
+?substr@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBE?AV12@II@Z
+E	?put@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV12@D@Z
+?seekp@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV12@JH@Z
+??0?$basic_fstream@DU?$char_traits@D@std@@@std@@QAE@PBDHH@Z
+MSVCP71.dll
+waveOutWrite
+waveOutPrepareHeader
+waveOutOpen
+waveOutClose
+waveOutReset
+waveOutUnprepareHeader
+waveOutGetPosition
+WINMM.dll
+GetModuleHandleA
+GetStartupInfoA
+QueryPerformanceCounter
+GetTickCount
+GetCurrentThreadId
+GetCurrentProcessId
+GetSystemTimeAsFileTime
+Extended Module: When she was here   
+FastTracker v2.00   
+0	0:
+0	 :
+ 	08
+ 	 6
+ 	 =
+ 	0?
+ 	0=
+Track Title:
+                      
+%* 	
+				
+				
+"When she was here"
+                      
+Music from game:
+"Fatman Adventures"
+Composed by:
+                      
+Surgeon of Lame Soft
+Game developed by:
+Another Day Ltd.
+... but she left and
+it's much better :))
+Pulsate3.wav          
+Wowswep2.wav          
+				
+				
+					
+sample by Zodiak      
+@vlfN
+Clap.wav              
+Hatopen.wav           
+Rsclhat.wav           
+	Bong5.wav             
+				
+					
+	Drum5.wav             
+	Drum6.wav             
+.?AVexception@@
+.?AVlogic_error@std@@
+.?AVlength_error@std@@
+.?AVbad_cast@@
+.?AVtype_info@@
+@!P4
+2*P P P Z d n x 
+2 < F P Z d n x 
+G P P P Z d n x 
+2 < F P Z d n x 
+2 < F P Z d n x 
+2 < F P Z d n x 
+2 < F P Z d n x 
+2 < F P Z d n x 
+2 < F P Z d n x 
+2 < F P Z d n x 
+2 < F P Z d n x 
+Level Editor
+MS Shell Dlg
+&Change
+CharName:
+NewLevel:
+^(Powered By WaHVeY)^

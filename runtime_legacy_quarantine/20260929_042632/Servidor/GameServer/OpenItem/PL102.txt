@@ -1,0 +1,20 @@
+//ID
+*ÄÚµå "PL102"
+
+//Korean Name
+*ÀÌ¸§ "Poção Média de HP"
+
+//English Name
+*Name "Poção Média de HP"
+
+//HPRecovery
+*»ý¸í·Â»ó½Â 330 450
+
+//Weight
+*¹«°Ô 1
+
+//Price
+*°¡°Ý 100
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\PL102.zhoon"

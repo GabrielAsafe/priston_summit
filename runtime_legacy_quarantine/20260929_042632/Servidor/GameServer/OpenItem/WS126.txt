@@ -1,0 +1,71 @@
+//ID
+*코드 "WS126"
+
+//Korean Name
+*이름 "Arco Cronus"
+
+//English Name
+*Name "Arco Cronus"
+
+//AttackPower
+*공격력 76 80 99 102
+
+//AttackRating
+*명중력 156 178
+
+//AttackRange
+*사정거리 255
+
+//AttackSpeed
+*공격속도 8
+
+//AttackCritical
+*크리티컬 19
+
+//Block
+*블럭율 8.0 8.0
+
+//Integrity
+*내구력 176 195
+
+//Level
+*레벨 108
+
+//Strength
+*힘 82
+
+//Talent
+*재능 85
+
+//Agility
+*민첩성 195
+
+//PrimarySpec
+**특화 Archer
+
+//SecondarySpec
+**특화랜덤 Mechanician Atalanta
+
+//SpecAttackPower
+**공격력 7 7
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackRange
+**사정거리 25
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 5
+
+//Weight
+*무게 73
+
+//Price
+*가격 1290000
+
+//Name File
+*연결파일 "Name\WS126.zhoon"

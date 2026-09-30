@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "PZ203"
+
+//Korean Name
+*ÀÌ¸§ "Quebra-Cabeça B3"
+
+//English Name
+*Name "Quebra-Cabeça B3"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\PZ203.zhoon"

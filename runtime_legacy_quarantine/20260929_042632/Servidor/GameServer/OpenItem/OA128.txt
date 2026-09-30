@@ -1,0 +1,35 @@
+//ID
+*코드 "OA128"
+
+//Korean Name
+*이름 "Colar Imperial"
+
+//English Name
+*Name "Colar Imperial"
+
+//HP
+*생명력추가 85 85
+
+//MP
+*기력추가 59 65
+
+//Level
+*레벨 100
+
+//Spirit
+*정신력 60
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecHPRegen
+**생명력재생 0.9 1.2
+
+//Weight
+*무게 7
+
+//Price
+*가격 90000
+
+//Name File
+*연결파일 "Name\OA128.zhoon"

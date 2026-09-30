@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "SP102"
+
+//Korean Name
+*ÀÌ¸§ "Songpyon Médio"
+
+//English Name
+*Name "Songpyon Médio"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\SP102.zhoon"

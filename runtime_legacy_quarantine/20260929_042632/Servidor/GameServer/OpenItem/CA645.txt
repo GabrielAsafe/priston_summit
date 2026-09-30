@@ -1,0 +1,35 @@
+//ID
+*ÄÚµå "CA645"
+
+//Korean Name
+*ÀÌ¸§ "Traje Mágico Comandante 7d"
+
+//English Name
+*Name "Traje Mágico Comandante 7d"
+
+//Defense
+*¹æ¾î·Â 150 150
+
+//Absorption
+*Èí¼ö·Â 7.0 7.0
+
+//HP
+*»ý¸í·ÂÃß°¡ 150 150
+
+//MP
+*±â·ÂÃß°¡ 150 150
+
+//STM
+*±Ù·ÂÃß°¡ 150 150
+
+//Level
+*·¹º§ 1
+
+//Weight
+*¹«°Ô 1
+
+//Price
+*°¡°Ý 1000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\CA645.zhoon"

@@ -1,0 +1,101 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\monsarcher\monsarcher.ini"
+
+//Name
+*이름 "Arqueiro do Mal"
+
+//Level
+*레벨 32
+
+//Size
+*모델크기 1.0
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 380
+
+//HP
+*생명력 350
+
+//AttackPower
+*공격력 20 28
+
+//AttackRating
+*명중력 550
+
+//AttackSpeed
+*공격속도 8
+
+//AttackRange
+*공격범위 200
+
+//Defense
+*방어력 160
+
+//Absorption
+*흡수율 7
+
+//MoveSpeed
+*이동력 4
+
+//Race
+*몬스터종족 언데드
+
+//ShadowSize
+*크기 중형
+
+//Experience
+*경험치 12164
+
+//Sound
+*효과음 SKELETONRANGE
+
+//DropsNumber
+*아이템카운터 2
+
+//DropGold
+*아이템 2500 돈 6000 7000
+
+//DropPotion
+*아이템 2500 PS102 PL102 PM102 PM102
+
+//Drop
+//*아이템 102 SE103 SE104
+
+//Drop
+*아이템 32 GP103 GP109 GP104
+
+//Drop
+*아이템 20 OS105
+
+//Drop
+*아이템 44 OS103
+
+//Drop
+*아이템 22 OS104
+
+//Drop
+*아이템 102 EC101 EC102 EC104
+
+//Drop
+*아이템 3812 WA102 WC102 WH103 WM103 WP103 WS104 WS205 WT103 OA106 OA202 OM103 OR106 DA104 DA204 DB102 DG102 DS102
+
+//Drop
+*아이템 378 WA103 WC103 WH104 WM104 WP104 WS105 WS206 WT104 OA107 OA203 OM104 OR107 DA105 DA205 DB103 DG103 DS103
+
+//Drop
+*아이템 252 WA104 WC104 WH105 WM105 WP105 WS106 WS207 WT105 OA108 OA204 OM105 OR108 DA106 DA206 DB104 DG104 DS104
+
+//Drop
+*아이템 126 WA105 WC105 WH106 WM106 WP106 WS107 WS208 WT106 OA109 OA205 OM106 OR109 DA107 DA207 DB105 DG105 DS105
+
+//Drop
+*아이템 42 WA106 WC106 WH107 WM107 WP107 WS108 WS209 WT107 OA110 OA206 OM107 OR110 DA108 DA208 DB106 DG106 DS106
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

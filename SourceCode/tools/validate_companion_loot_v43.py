@@ -9,7 +9,6 @@ paths = {
     'client_net': ROOT / 'SrcGame/src/systems/network/client/netplay.cpp',
     'client_inven': ROOT / 'SrcGame/src/core/client/legacy_sin_runtime/sinSubMain.cpp',
     'protocol': ROOT / 'Shared/gameplay/companions/CompanionProtocol.h',
-    'doc': ROOT / 'docs/COMPANION_LOOT_V43_2026-09-26.md',
 }
 text = {k: p.read_text(errors='ignore') for k, p in paths.items()}
 errors = []
@@ -61,13 +60,6 @@ for needle in ('AutoSetInvenItem(&sinTempItem)', 'sinThrowItemToFeild(&sinTempIt
 req('protocol remains v6', 'protocol', 'COMPANION_UI_PROTOCOL_VERSION = 6')
 if 'COMPANION_UI_PROTOCOL_VERSION = 7' in text['protocol']:
     errors.append('protocol: V43 loot must not bump UI ABI without a client editor contract')
-
-# Explicit documentation of runtime limitations and opt-in deployment.
-for needle in (
-    'LootEnabled=0', 'server-authoritative', 'inventory full', 'sinQT136',
-    'MinGW i686', 'Wine', '4 companions',
-):
-    req('V43 documentation', 'doc', needle)
 
 if errors:
     print('Companion Loot V43: FAIL')

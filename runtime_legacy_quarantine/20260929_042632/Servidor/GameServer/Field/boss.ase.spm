@@ -1,0 +1,20 @@
+//몬스터 출현 비율
+
+*최대동시출현수	 300
+//출현간격 범위 9-1 1차이당 2배씩 빨라짐
+*출현간격	 1 2
+*출현수	 1
+
+//		몬스터 이름          출현빈도
+
+*출연자	"Nevasca"		15
+*출연자	"Conjuradora"		10
+*출연자	"Tartaruga Blindada"		10
+*출연자	"Gelo"		13
+*출연자	"Golem de Gelo"		13
+*출연자	"Passaro Demoniaco"		2
+*출연자	"Mistico"		20
+*출연자	"Guerreiro Ciclope"		15
+
+*출연자두목	"Kelvezu"	"Gelo"	2	0 4 8 12 16 20
+

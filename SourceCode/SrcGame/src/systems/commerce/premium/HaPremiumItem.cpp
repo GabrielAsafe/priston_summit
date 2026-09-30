@@ -6,6 +6,7 @@
 #include "systems/commerce/restoration/cRestaureWindow.h"
 #include <string>
 #include "systems/combat/pvp/war_mode/WarMode.h"
+#include "systems/network/v2/legacy/LegacyClientCommandSender.h"
 
 using namespace std;
 
@@ -488,8 +489,10 @@ void cHaPremiumItem::Main()
 							Packet.size = sizeof(Packet);
 							Packet.code = OpCode::DELETE_ITEM_PREMIUM;
 							Packet.LParam = chaPremiumitem.UpKeepItem[i].TGAImageNumber;
-							if(smWsockServer)
-								smWsockServer->Send((char*)&Packet, Packet.size, TRUE);
+							auto& sender = gameplay::network::legacy::ClientLegacyCommandSender();
+							if(sender.Available())
+								(void)sender.Send(gameplay::network::PacketView(
+									&Packet, Packet.size, static_cast<std::uint32_t>(Packet.code)));
 						}
 					});
 					_ConfirmationBox.Start();

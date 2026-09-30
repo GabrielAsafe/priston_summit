@@ -17,7 +17,7 @@
     "fields": {
       "state": "적",
       "model_file": "char\\monster\\LTechnician\\LTechnician.ini",
-      "name": "T?nico Invasor",
+      "name": "Técnico Invasor",
       "level": 114,
       "model_scale": 1.0,
       "generate_group": [

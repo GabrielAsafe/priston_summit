@@ -1,0 +1,65 @@
+//ID
+*ÄÚµå "WT133"
+
+//Korean Name
+*ÀÌ¸§ "Lança Mitril"
+
+//English Name
+*Name "Lança Mitril"
+
+//AttackPower
+*°ø°Ý·Â 180 190 200 210
+
+//AttackRange
+*»çÁ¤°Å¸® 260
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 8
+
+//AttackRating
+*¸íÁß·Â 250 270
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 20
+
+//Integrity
+*³»±¸·Â 223 247
+
+//Level
+*·¹º§ 1
+
+//Strength
+*Èû 1
+
+//Talent
+*Àç´É 1
+
+//Agility
+*¹ÎÃ¸¼º 1
+
+//PrimarySpec
+**Æ¯È­ Atalanta
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Archer
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 6
+
+//SpecAttackRange
+**»çÁ¤°Å¸® 25
+
+//Weight
+*¹«°Ô 1
+
+//Price
+*°¡°Ý 1980000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WT133.zhoon"

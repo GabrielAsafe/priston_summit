@@ -1,0 +1,62 @@
+//ID
+*코드 "DG127"
+
+//Korean Name
+*이름 "Luvas Flamejantes"
+
+//English Name
+*Name "Luvas Flamejantes"
+
+//Defense
+*방어력 321 335
+
+//Absorption
+*흡수력 15.1 15.4
+
+//OrganicResistance
+*생체 5 8
+
+//FireResistance
+*불 5 8
+
+//FrostResistance
+*냉기 5 8
+
+//LightningResistance
+*번개 5 8
+
+//PoisonResistance
+*독 5 8
+
+//Integrity
+*내구력 216 225
+
+//Level
+*레벨 125
+
+//Strength
+*힘 100
+
+//Talent
+*재능 83
+
+//Agility
+*민첩성 83
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecDefense
+**방어력 66 74
+
+//SpecAbsorption
+**흡수력 1.2 1.5
+
+//Weight
+*무게 66
+
+//Price
+*가격 1290000
+
+//Name File
+*연결파일 "Name\DG127.zhoon"

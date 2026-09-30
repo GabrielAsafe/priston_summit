@@ -116,7 +116,20 @@
  SrcServer/src/systems/progression/class_rank/Rank.h \
  SrcServer/src/systems/persistence/database/core/Database.h \
  Shared/persistence/database/Database_sqlite_server.h \
+ SrcServer/src/systems/commerce/coin_shop/CoinShop_T.h \
+ SrcServer/src/systems/gameplay/inventory/v2/legacy/LegacyItemCatalogAdapter.h \
+ Shared/gameplay/inventory/v2/ItemCatalog.h \
+ Shared/gameplay/core/v2/GameplayIds.h \
  SrcServer/src/systems/gameplay/progression/v2/ProgressionTriggerRuntime.h \
+ SrcServer/src/systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h \
+ SrcServer/src/systems/inventory/v2/legacy/LegacyInventoryRuntime.h \
+ Shared/gameplay/inventory/v2/Inventory.h \
+ SrcServer/src/systems/gameplay/quests/v2/legacy/LegacyQuestRepository.h \
+ Shared/gameplay/quests/v2/IQuestRepository.h \
+ SrcServer/src/systems/gameplay/quests/v2/legacy/LegacyQuestViewQuery.h \
+ Shared/gameplay/quests/v2/QuestViewQuery.h \
+ SrcServer/src/systems/gameplay/quests/v2/legacy/LegacyQuestLifecycleService.h \
+ Shared/gameplay/quests/v2/QuestLifecycleService.h \
  SrcServer/src/core/server/legacy_runtime/onserver.h
 SrcServer/src/compat/server_build/server_compat_packets.h:
 SrcServer/src/systems/network/protocol/server/opcodes.h:
@@ -237,5 +250,18 @@ SrcServer/src/systems/crafting/professions/JOBS.h:
 SrcServer/src/systems/progression/class_rank/Rank.h:
 SrcServer/src/systems/persistence/database/core/Database.h:
 Shared/persistence/database/Database_sqlite_server.h:
+SrcServer/src/systems/commerce/coin_shop/CoinShop_T.h:
+SrcServer/src/systems/gameplay/inventory/v2/legacy/LegacyItemCatalogAdapter.h:
+Shared/gameplay/inventory/v2/ItemCatalog.h:
+Shared/gameplay/core/v2/GameplayIds.h:
 SrcServer/src/systems/gameplay/progression/v2/ProgressionTriggerRuntime.h:
+SrcServer/src/systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h:
+SrcServer/src/systems/inventory/v2/legacy/LegacyInventoryRuntime.h:
+Shared/gameplay/inventory/v2/Inventory.h:
+SrcServer/src/systems/gameplay/quests/v2/legacy/LegacyQuestRepository.h:
+Shared/gameplay/quests/v2/IQuestRepository.h:
+SrcServer/src/systems/gameplay/quests/v2/legacy/LegacyQuestViewQuery.h:
+Shared/gameplay/quests/v2/QuestViewQuery.h:
+SrcServer/src/systems/gameplay/quests/v2/legacy/LegacyQuestLifecycleService.h:
+Shared/gameplay/quests/v2/QuestLifecycleService.h:
 SrcServer/src/core/server/legacy_runtime/onserver.h:

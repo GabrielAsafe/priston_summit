@@ -1,0 +1,59 @@
+//ID
+*코드 "DA121"
+
+//Korean Name
+*이름 "Armadura Wyvern"
+
+//English Name
+*Name "Armadura Wyvern"
+
+//Defense
+*방어력 360 380
+
+//Absorption
+*흡수력 18.1 18.6
+
+//OrganicResistance
+*생체 8 13
+
+//FireResistance
+*불 8 13
+
+//FrostResistance
+*냉기 8 13
+
+//LightningResistance
+*번개 8 13
+
+//PoisonResistance
+*독 8 13
+
+//Integrity
+*내구력 165 200
+
+//Level
+*레벨 80
+
+//Strength
+*힘 192
+
+//Talent
+*재능 90
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**방어력 46 56
+
+//SpecAbsorption
+**흡수력 1.2 1.5
+
+//Weight
+*무게 122
+
+//Price
+*가격 900000
+
+//Name File
+*연결파일 "Name\DA121.zhoon"

@@ -113,7 +113,9 @@
  SrcServer/src/systems/persistence/database/core/Database.h \
  Shared/persistence/database/Database_sqlite_server.h modules/File/File.h \
  SrcServer/src/core/server/legacy_runtime/onserver.h \
- SrcServer/src/systems/gameplay/progression/v2/ProgressionTriggerRuntime.h
+ SrcServer/src/systems/gameplay/progression/v2/ProgressionTriggerRuntime.h \
+ Shared/gameplay/core/v2/GameplayIds.h \
+ SrcServer/src/systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h
 SrcServer/src/systems/network/protocol/server/opcodes.h:
 SrcServer/src/core/server/legacy_sin_runtime/sinLinkHeader.h:
 SrcServer/src/systems/rendering/legacy_3d/smd3d.h:
@@ -231,3 +233,5 @@ Shared/persistence/database/Database_sqlite_server.h:
 modules/File/File.h:
 SrcServer/src/core/server/legacy_runtime/onserver.h:
 SrcServer/src/systems/gameplay/progression/v2/ProgressionTriggerRuntime.h:
+Shared/gameplay/core/v2/GameplayIds.h:
+SrcServer/src/systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h:

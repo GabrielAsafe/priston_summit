@@ -1,0 +1,62 @@
+//ID
+*코드 "WH107"
+
+//Korean Name
+*이름 "Martelo Cruzado"
+
+//English Name
+*Name "Martelo Cruzado"
+
+//AttackPower
+*공격력 7 8 14 17
+
+//AttackRating
+*명중력 56 69
+
+//AttackSpeed
+*공격속도 7
+
+//AttackCritical
+*크리티컬 11
+
+//Block
+*블럭율 6.0 6.0
+
+//Integrity
+*내구력 56 74
+
+//Level
+*레벨 22
+
+//Strength
+*힘 70
+
+//Talent
+*재능 40
+
+//PrimarySpec
+**특화 Mechanician
+
+//SecondarySpec
+**특화랜덤 Fighter Pikeman Knight
+
+//SpecAttackPower
+**공격력 7 7
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 7
+
+//Weight
+*무게 24
+
+//Price
+*가격 14000
+
+//Name File
+*연결파일 "Name\WH107.zhoon"

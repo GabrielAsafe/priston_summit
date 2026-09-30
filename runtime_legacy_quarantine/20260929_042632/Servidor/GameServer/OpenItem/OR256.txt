@@ -1,0 +1,47 @@
+//ID
+*코드 "OR256"
+
+//Korean Name
+*이름 "Anel do Selamento 7d"
+
+//English Name
+*Name "Anel do Selamento 7d"
+
+//AttackRating
+*명중력 20 20
+
+//Defense
+*방어력 10 10
+
+//Absorption
+*흡수력 1.0 1.0
+
+//HP
+*생명력추가 30 30
+
+//MP
+*기력추가 30 30
+
+//STM
+*근력추가 30 30
+
+//HPRegen
+*생명력재생 2.0 2.0
+
+//MPRegen
+*기력재생 2.0 2.0
+
+//STMRegen
+*근력재생 2.0 2.0
+
+//Level
+*레벨 10
+
+//Spirit
+*정신력 64
+
+//Weight
+*무게 5
+
+//Name File
+*연결파일 "Name\OR256.zhoon"

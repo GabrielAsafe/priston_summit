@@ -1,0 +1,20 @@
+//ID
+*코드 "GP106"
+
+//Korean Name
+*이름 "Cristal de Figon"
+
+//English Name
+*Name "Cristal de Figon"
+
+//Level
+*레벨 40
+
+//Weight
+*무게 1
+
+//Price
+*가격 15000
+
+//Name File
+*연결파일 "Name\GP106.zhoon"

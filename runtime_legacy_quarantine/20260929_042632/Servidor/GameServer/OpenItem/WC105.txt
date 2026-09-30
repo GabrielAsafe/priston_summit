@@ -1,0 +1,65 @@
+//ID
+*ÄÚµå "WC105"
+
+//Korean Name
+*ÀÌ¸§ "Garra de Mão"
+
+//English Name
+*Name "Garra de Mão"
+
+//AttackPower
+*°ø°Ý·Â 5 7 10 12
+
+//AttackRating
+*¸íÁß·Â 50 60
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 6
+
+//Defense
+*¹æ¾î·Â 12 17
+
+//Integrity
+*³»±¸·Â 34 48
+
+//Level
+*·¹º§ 16
+
+//Strength
+*Èû 44
+
+//Talent
+*Àç´É 34
+
+//Agility
+*¹ÎÃ¸¼º 34
+
+//PrimarySpec
+**Æ¯È­ Mechanician
+
+//SecondarySpec
+**Æ¯È­·£´ý Fighter Pikeman Knight Atalanta
+
+//SpecAttackPower
+**°ø°Ý·Â 7 7
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 5
+
+//Weight
+*¹«°Ô 19
+
+//Price
+*°¡°Ý 6400
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WC105.zhoon"

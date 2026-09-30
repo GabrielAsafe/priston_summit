@@ -7,6 +7,9 @@
 
 #include "systems/gameplay/progression/v2/LegacyProgressionGateways.h"
 #include "systems/gameplay/progression/v2/LegacyProgressionReaders.h"
+#include "systems/gameplay/quests/v2/legacy/LegacyQuestStateQuery.h"
+#include "systems/gameplay/quests/v2/legacy/LegacyQuestCommands.h"
+#include "systems/gameplay/quests/v2/legacy/LegacyQuestCatalog.h"
 #include "systems/gameplay/progression/v2/ProgressionTriggerRuntime.h"
 #include "gameplay/progression/v2/ProgressionContent.h"
 #include "gameplay/progression/v2/ProgressionTriggerCoordinator.h"
@@ -19,6 +22,8 @@
 #include "gameplay/covenants/v2/CovenantRewardProcessor.h"
 #include "systems/gameplay/events/v2/GameplayEventRuntime.h"
 #include "systems/gameplay/story/v2/SQLiteStoryRepository.h"
+#include "systems/gameplay/inventory/v2/legacy/LegacyItemCatalogAdapter.h"
+#include "systems/inventory/v2/legacy/LegacyInventoryRuntime.h"
 
 namespace gameplay
 {
@@ -138,6 +143,7 @@ struct RuntimeStorage
     LegacyProgressionRewardGateway rewardGateway;
     rewards::RewardService rewardService;
     covenants::CovenantRewardProcessor covenantRewardProcessor;
+    quests::QuestService questService;
     LegacyProgressionStoryCommandGateway commandGateway;
     story::StoryService storyService;
     LegacyQuestStateReader questReader;
@@ -147,12 +153,21 @@ struct RuntimeStorage
     RuntimeStorage()
         : covenantService(covenantRepository, &events::ServerGameplayEventHub()),
           reputationService(reputationRepository, &events::ServerGameplayEventHub()),
-          rewardGateway(storyRepository, covenantService, reputationService, customHandlers),
+          rewardGateway(storyRepository, covenantService, reputationService, customHandlers,
+                        inventory::legacy::ServerLegacyItemCatalogAdapter(),
+                        inventory::legacy::ServerLegacyInventoryRuntime(),
+                        player::legacy::ServerLegacyOnlinePlayerRegistry()),
           rewardService(rewardGateway),
           covenantRewardProcessor(covenantRepository, covenantService, rewardService),
-          commandGateway(covenantService, customHandlers),
+          questService(quests::legacy::ServerLegacyQuestStateQuery(),
+                       quests::legacy::ServerLegacyQuestCommands()),
+          commandGateway(covenantService, customHandlers,
+                         player::legacy::ServerLegacyOnlinePlayerRegistry(),
+                         quests::legacy::ServerLegacyQuestCatalog(),
+                         questService),
           storyService(storyRepository, commandGateway, rewardService,
                        &events::ServerGameplayEventHub()),
+          questReader(quests::legacy::ServerLegacyQuestStateQuery()),
           customConditionReader(customHandlers)
     {
     }

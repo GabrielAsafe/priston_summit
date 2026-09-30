@@ -1,0 +1,65 @@
+//ID
+*ÄÚµå "WT136"
+
+//Korean Name
+*ÀÌ¸§ "Lança Anúbis"
+
+//English Name
+*Name "Lança Anúbis"
+
+//AttackPower
+*°ø°Ý·Â 115 118 135 138
+
+//AttackRange
+*»çÁ¤°Å¸® 255
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 8
+
+//AttackRating
+*¸íÁß·Â 252 272
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 17
+
+//Integrity
+*³»±¸·Â 247 271
+
+//Level
+*·¹º§ 150
+
+//Strength
+*Èû 82
+
+//Talent
+*Àç´É 100
+
+//Agility
+*¹ÎÃ¸¼º 225
+
+//PrimarySpec
+**Æ¯È­ Atalanta
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Archer
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 6
+
+//SpecAttackRange
+**»çÁ¤°Å¸® 25
+
+//Weight
+*¹«°Ô 98
+
+//Price
+*°¡°Ý 2280000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WT136.zhoon"

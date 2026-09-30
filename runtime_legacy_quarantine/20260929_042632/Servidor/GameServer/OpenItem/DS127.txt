@@ -1,0 +1,65 @@
+//ID
+*코드 "DS127"
+
+//Korean Name
+*이름 "Escudo Flamejante"
+
+//English Name
+*Name "Escudo Flamejante"
+
+//Defense
+*방어력 270 290
+
+//Absorption
+*흡수력 17.2 17.5
+
+//Block
+*블럭율 21.0 24.0
+
+//OrganicResistance
+*생체 3 6
+
+//FireResistance
+*불 3 6
+
+//FrostResistance
+*냉기 3 6
+
+//LightningResistance
+*번개 3 6
+
+//PoisonResistance
+*독 3 6
+
+//Integrity
+*내구력 230 250
+
+//Level
+*레벨 125
+
+//Strength
+*힘 150
+
+//Talent
+*재능 80
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**방어력 53 60
+
+//SpecAbsorption
+**흡수력 1.6 2.0
+
+//SpecBlock
+**블럭율 6.0
+
+//Weight
+*무게 114
+
+//Price
+*가격 1200000
+
+//Name File
+*연결파일 "Name\DS127.zhoon"

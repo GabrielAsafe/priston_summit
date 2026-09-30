@@ -1,0 +1,14 @@
+//ID
+*코드 "PR408"
+
+//Korean Name
+*이름 "Runa de Esmeralda B"
+
+//English Name
+*Name "Runa de Esmeralda B"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\PR408.zhoon"

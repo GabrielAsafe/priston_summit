@@ -1,0 +1,20 @@
+//ID
+*ÄÚµå "FO129"
+
+//Korean Name
+*ÀÌ¸§ "Força Mágica Celesto"
+
+//English Name
+*Name "Força Mágica Celesto"
+
+//Weight
+*¹«°Ô 2
+
+//Price
+*°¡°Ý 1000
+
+//Level
+*·¹º§ 50
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\FO129.zhoon"

@@ -1,0 +1,2 @@
+# path | symbol/include | reason | owner_doc | expiry/milestone
+# Existing modern-v2 leaks are explicit debt. New entries require architectural review.

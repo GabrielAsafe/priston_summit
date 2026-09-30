@@ -1,0 +1,17 @@
+//ID
+*코드 "QW102"
+
+//Korean Name
+*이름 "Asa de Prata"
+
+//English Name
+*Name "Asa de Prata"
+
+//Weight
+*무게 1
+
+//Price
+*가격 40000
+
+//Name File
+*연결파일 "Name\QW102.zhoon"

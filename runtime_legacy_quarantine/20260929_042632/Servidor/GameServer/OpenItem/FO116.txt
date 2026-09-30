@@ -1,0 +1,20 @@
+//ID
+*ÄÚµå "FO116"
+
+//Korean Name
+*ÀÌ¸§ "Força Sol"
+
+//English Name
+*Name "Força Sol"
+
+//Weight
+*¹«°Ô 2
+
+//Price
+*°¡°Ý 1000
+
+//Level
+*·¹º§ 10
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\FO116.zhoon"

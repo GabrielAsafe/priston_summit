@@ -1,0 +1,59 @@
+//ID
+*코드 "WM113"
+
+//Korean Name
+*이름 "Varinha Arch"
+
+//English Name
+*Name "Varinha Arch"
+
+//AttackPower
+*공격력 10 13 16 19
+
+//AttackRating
+*명중력 65 84
+
+//AttackRange
+*사정거리 155
+
+//AttackSpeed
+*공격속도 7
+
+//AttackCritical
+*크리티컬 7
+
+//Integrity
+*내구력 64 82
+
+//Level
+*레벨 60
+
+//Spirit
+*정신력 115
+
+//Talent
+*재능 80
+
+//SecondarySpec
+**특화랜덤 Priestess Magician
+
+//SpecAttackPower
+**공격력 6 6
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecMPRegen
+**기력재생 0.5 0.8
+
+//SpecSkillTraining
+**마법숙련도 3 7
+
+//Weight
+*무게 12
+
+//Price
+*가격 63000
+
+//Name File
+*연결파일 "Name\WM113.zhoon"

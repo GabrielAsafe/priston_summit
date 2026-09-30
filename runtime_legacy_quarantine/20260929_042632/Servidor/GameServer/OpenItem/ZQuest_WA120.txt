@@ -1,0 +1,50 @@
+//ID
+*코드 "WA120"
+
+//Korean Name
+*이름 "Machado Minotauro"
+
+//English Name
+*Name "Machado Minotauro"
+
+//Quest
+*유니크 2
+
+//Color
+*유니크색상 220 80 0 0 9
+
+//AttackPower
+*공격력 68 68 90 90
+
+//AttackRating
+*명중력 275 275
+
+//AttackSpeed
+*공격속도 8
+
+//AttackCritical
+*크리티컬 22
+
+//Block
+*블럭율 13.0 13.0
+
+//HP
+*생명력추가 50 50
+
+//MP
+*기력추가 50 50
+
+//STM
+*근력추가 50 50
+
+//Integrity
+*내구력 70 70
+
+//Level
+*레벨 100
+
+//Weight
+*무게 50
+
+//Name File
+*연결파일 "Name\ZQuest_WA120.zhoon"

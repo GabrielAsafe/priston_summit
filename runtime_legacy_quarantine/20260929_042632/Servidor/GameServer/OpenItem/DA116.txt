@@ -1,0 +1,59 @@
+//ID
+*코드 "DA116"
+
+//Korean Name
+*이름 "Armadura Extrema"
+
+//English Name
+*Name "Armadura Extrema"
+
+//Defense
+*방어력 250 270
+
+//Absorption
+*흡수력 10.1 10.6
+
+//OrganicResistance
+*생체 6 11
+
+//FireResistance
+*불 6 11
+
+//FrostResistance
+*냉기 6 11
+
+//LightningResistance
+*번개 6 11
+
+//PoisonResistance
+*독 6 11
+
+//Integrity
+*내구력 120 140
+
+//Level
+*레벨 70
+
+//Strength
+*힘 166
+
+//Talent
+*재능 80
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**방어력 34 44
+
+//SpecAbsorption
+**흡수력 0.7 1.3
+
+//Weight
+*무게 94
+
+//Price
+*가격 92000
+
+//Name File
+*연결파일 "Name\DA116.zhoon"

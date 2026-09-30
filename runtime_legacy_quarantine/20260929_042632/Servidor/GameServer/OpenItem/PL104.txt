@@ -1,0 +1,20 @@
+//ID
+*ÄÚµå "PL104"
+
+//Korean Name
+*ÀÌ¸§ "Poção Mística de HP"
+
+//English Name
+*Name "Poção Mística de HP"
+
+//HPRecovery
+*»ý¸í·Â»ó½Â 1500 2000
+
+//Weight
+*¹«°Ô 1
+
+//Price
+*°¡°Ý 500
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\PL104.zhoon"

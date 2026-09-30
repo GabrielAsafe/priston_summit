@@ -1,0 +1,65 @@
+//ID
+*코드 "DS112"
+
+//Korean Name
+*이름 "Escudo Espinhoso"
+
+//English Name
+*Name "Escudo Espinhoso"
+
+//Defense
+*방어력 76 100
+
+//Absorption
+*흡수력 4.2 4.6
+
+//Block
+*블럭율 16.0 18.0
+
+//OrganicResistance
+*생체 2 4
+
+//FireResistance
+*불 2 4
+
+//FrostResistance
+*냉기 2 4
+
+//LightningResistance
+*번개 2 4
+
+//PoisonResistance
+*독 2 4
+
+//Integrity
+*내구력 85 110
+
+//Level
+*레벨 60
+
+//Strength
+*힘 112
+
+//Talent
+*재능 60
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**방어력 16 20
+
+//SpecAbsorption
+**흡수력 0.6 0.8
+
+//SpecBlock
+**블럭율 2.0
+
+//Weight
+*무게 38
+
+//Price
+*가격 56000
+
+//Name File
+*연결파일 "Name\DS112.zhoon"

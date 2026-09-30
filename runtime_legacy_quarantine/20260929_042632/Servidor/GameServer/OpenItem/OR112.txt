@@ -1,0 +1,32 @@
+//ID
+*ÄÚµå "OR112"
+
+//Korean Name
+*ÀÌ¸§ "Anel Mágico +3"
+
+//English Name
+*Name "Anel Mágico +3"
+
+//STM
+*±Ù·ÂÃß°¡ 28 40
+
+//Level
+*·¹º§ 40
+
+//Spirit
+*Á¤½Å·Â 48
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecHPRegen
+**»ý¸í·ÂÀç»ý 0.2 0.3
+
+//Weight
+*¹«°Ô 3
+
+//Price
+*°¡°Ý 10000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\OR112.zhoon"

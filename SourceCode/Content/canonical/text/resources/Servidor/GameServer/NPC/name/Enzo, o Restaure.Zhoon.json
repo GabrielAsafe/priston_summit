@@ -10,8 +10,8 @@
   ],
   "source": {
     "legacy_path": "Servidor/GameServer/NPC/name/Enzo, o Restaure.Zhoon",
-    "legacy_sha256": "577b44f9c17cfac818d32db5db0f0f0aa04a8d9b821a20810de434488c95ae8c",
-    "legacy_size": 147
+    "legacy_sha256": "635b4275aa288cd7db73b14ceb81a9bd1be077c0979f8b9bad96cd94a717ee08",
+    "legacy_size": 153
   },
   "semantic": {
     "entries": [
@@ -19,7 +19,7 @@
         "line": 4,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Creed, O Restaurador"
+        "text": "Enzo, o Restaurador de Itens"
       },
       {
         "line": 7,
@@ -31,6 +31,6 @@
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9FbnpvLCBvIFJlc3RhdXJlLk5QQw0KDQoNCipKX05hbWUJIkNyZWVkLCBPIFJlc3RhdXJhZG9yIg0KDQoNCipKX0NoYXQJIlF1ZWJyb3Ugc2V1IGl0ZW0gbm8gYWdpbmc/IG7jbyBzZSBwcmVvY3VwZSBjb20gaXNzbywgZXUgbGhlIGFqdWRhcmVpISINCg0K"
+    "legacy_payload_base64": "Ly9FbnpvLCBvIFJlc3RhdXJlLk5QQw0KDQoNCipKX05hbWUJIkVuem8sIG8gUmVzdGF1cmFkb3IgZGUgSXRlbnMiDQoNCipKX0NoYXQJIlF1ZWJyb3Ugc2V1IGl0ZW0gbm8gYWdpbmc/IG7jbyBzZSBwcmVvY3VwZSBjb20gaXNzbywgZXUgbGhlIGFqdWRhcmVpISINCg0K"
   }
 }

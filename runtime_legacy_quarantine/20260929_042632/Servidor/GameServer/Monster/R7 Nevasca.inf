@@ -1,0 +1,75 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\blizzardgiant\blizzardgiant.ini"
+
+//Name
+*이름 "R7 Nevasca"
+
+//Level
+*레벨 89
+
+//Size
+*모델크기 1.0
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 370
+
+//HP
+*생명력 8800
+
+//AttackPower
+*공격력 110 200
+
+//AttackRating
+*명중력 1250
+
+//AttackSpeed
+*공격속도 7
+
+//AttackRange
+*공격범위 80
+
+//SkillPower
+*기술공격력 200 230
+
+//SkillRating
+*기술공격률 17
+
+//SkillRange
+*기술공격범위 55
+
+//SkillDistance
+*기술공격거리 60
+
+//Defense
+*방어력 830
+
+//Block
+*블럭율 17
+
+//Stun
+*스턴율 10
+
+//MoveSpeed
+*이동력 4
+
+//Race
+*몬스터종족 뮤턴트
+
+//ShadowSize
+*크기 대형
+
+//Experience
+*경험치 158000
+
+//Sound
+*효과음 BLIZZARDGIANT
+
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

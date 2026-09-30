@@ -1,3 +1,22 @@
+// =============================================================================
+// MAPA DO MONOLITO LEGACY - CLIENT SKILL UI / STATE
+//
+// Este mapa e apenas documental. O ficheiro permanece RED e no mesmo local;
+// os separadores abaixo nao alteram ownership, ordem de execucao ou ABI.
+// FUNCIONAMENTO GERAL: Mantem UI/metadata e estado legacy de skills. Authorities novas usam services/content modernos; este arquivo preserva display e compatibilidade.
+//
+// AREAS PRINCIPAIS:
+//   AREA 01 - SKILL UI LIFECYCLE
+//   AREA 02 - TIER METADATA
+//   AREA 03 - ACTIVE SKILL STATE
+//   AREA 04 - SHOWSKILLINFO TOOLTIP
+//   AREA 05 - MASTERY / SKILL POINTS
+//   AREA 06 - CONTINUOUS BUFF ICONS
+//   AREA 07 - BOOSTER / DELAY ITEMS
+//
+// Desenvolvimento novo deve usar contracts/ports/adapters AMBER existentes.
+// =============================================================================
+
 
 
 #include "compat/legacy/sin/sinLinkHeader.h"
@@ -1557,6 +1576,9 @@ void cSKILL::KeyDown()
 
 
 	int i = 0;
+	// SUMMIT_COMMAND_HOTKEYS_V17: Shift/Ctrl/Alt F-keys belong to debug/admin chords.
+	if(VRKeyBuff[VK_CONTROL] || VRKeyBuff[VK_SHIFT] || VRKeyBuff[VK_MENU])
+		return;
 	char szKeyBuff[8] = { VK_F1,VK_F2,VK_F3,VK_F4,VK_F5,VK_F6,VK_F7,VK_F8 };
 	for(i = 0; i < 8; i++)
 	{
@@ -2749,6 +2771,14 @@ static const char* sinLegacyClassMasterTitle(int legacyJobCode)
 	const std::string* title = gameplay::classes::DefaultClassService().LegacyMasterTitle(legacyJobCode);
 	return title ? title->c_str() : "";
 }
+
+// =============================================================================
+// AREA 04 - SHOWSKILLINFO
+// TIPO: skills + UI
+// FUNCIONAMENTO: Monta tooltip legacy da skill a partir de codigo, nivel, mastery e metadata das classes/tier.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 {
@@ -6561,6 +6591,14 @@ int cSKILL::CheckSkillData()
 }
 
 
+// =============================================================================
+// AREA 05 - MASTERY / SKILL POINTS
+// TIPO: skills + progression
+// FUNCIONAMENTO: Inicializa/reconcilia pontos e mastery no formato legacy.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
+
 int cSKILL::InitSkillPoint(int kind)
 {
 
@@ -7651,6 +7689,14 @@ int cSKILL::EnsureContinueSkillIcon(DWORD CODE)
 
 	return FALSE;
 }
+
+// =============================================================================
+// AREA 06 - CONTINUOUS BUFF ICONS
+// TIPO: skills + UI
+// FUNCIONAMENTO: Mantem icones/timers das skills continuas no HUD legacy.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 int cSKILL::CheckContinueIcon()
 {

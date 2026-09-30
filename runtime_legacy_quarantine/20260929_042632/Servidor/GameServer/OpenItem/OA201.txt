@@ -1,0 +1,35 @@
+//ID
+*코드 "OA201"
+
+//Korean Name
+*이름 "Bracelete Leve"
+
+//English Name
+*Name "Bracelete Leve"
+
+//AttackRating
+*명중력 10 16
+
+//Defense
+*방어력 3 5
+
+//PotionStorage
+*보유공간 20
+
+//Integrity
+*내구력 26 40
+
+//SpecAttackRating
+**명중력 1 3
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//Weight
+*무게 2
+
+//Price
+*가격 150
+
+//Name File
+*연결파일 "Name\OA201.zhoon"

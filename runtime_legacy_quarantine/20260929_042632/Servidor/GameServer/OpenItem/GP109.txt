@@ -1,0 +1,17 @@
+//ID
+*ÄÚµå	"GP109"
+
+//Korean Name
+*ÀÌ¸§	"Cristal Místico"
+
+//English Name
+*Name	"Cristal Místico"
+
+//Weight
+*¹«°Ô	1
+
+//Price
+*°¡°Ý	5000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\GP109.zhoon"

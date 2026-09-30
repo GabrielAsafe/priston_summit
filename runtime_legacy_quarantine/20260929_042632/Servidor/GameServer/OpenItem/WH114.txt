@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "WH114"
+
+//Korean Name
+*ÀÌ¸§ "Martelo Místico"
+
+//English Name
+*Name "Martelo Místico"
+
+//AttackPower
+*°ø°Ý·Â 22 24 40 46
+
+//AttackRating
+*¸íÁß·Â 105 120
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 16
+
+//Block
+*ºí·°À² 7.0 7.0
+
+//Integrity
+*³»±¸·Â 80 105
+
+//Level
+*·¹º§ 64
+
+//Strength
+*Èû 138
+
+//Talent
+*Àç´É 80
+
+//PrimarySpec
+**Æ¯È­ Mechanician
+
+//SecondarySpec
+**Æ¯È­·£´ý Fighter Pikeman Knight
+
+//SpecAttackPower
+**°ø°Ý·Â 7 7
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 6
+
+//Weight
+*¹«°Ô 47
+
+//Price
+*°¡°Ý 66000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WH114.zhoon"

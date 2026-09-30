@@ -1,0 +1,107 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\great_greven\great_greven.ini"
+
+//Name
+*이름 "Grande Griven"
+
+//Level
+*레벨 70
+
+//Size
+*모델크기 1.0
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 350
+
+//HP
+*생명력 1900
+
+//AttackPower
+*공격력 72 80
+
+//AttackRating
+*명중력 1200
+
+//AttackSpeed
+*공격속도 8
+
+//AttackRange
+*공격범위 80
+
+//Defense
+*방어력 600
+
+//Absorption
+*흡수율 14
+
+//Block
+*블럭율 10
+
+//Stun
+*스턴율 70
+
+//MoveSpeed
+*이동력 6
+
+//Race
+*몬스터종족 뮤턴트
+
+//ShadowSize
+*크기 중형
+
+//Experience
+*경험치 57935
+
+//Sound
+*효과음 GREATE_GREVEN
+
+//DropsNumber
+*아이템카운터 1
+
+//DropGold
+*아이템 2500 돈 2200 2900
+
+//DropPotion
+*아이템 5000 PS104 PL104 PM104 PM104 PM104
+
+//Drop
+//*아이템 100 SE102 SE104
+
+//Drop
+*아이템 30 GP106 GP109 GP107
+
+//Drop
+*아이템 80 OS105 OS224
+
+//Drop
+*아이템 40 OS106 OS225
+
+//Drop
+*아이템 20 OS107 OS226
+
+//Drop
+*아이템 100 EC101 EC102 EC104
+
+//Drop
+*아이템 1370 WA110 WC110 WH111 WM111 WP111 WS112 WS213 WT111 OA114 OA210 OM111 OR114 DA112 DA212 DB110 DG110 DS110
+
+//Drop
+*아이템 360 WA111 WC111 WH112 WM112 WP112 WS113 WS214 WT112 OA115 OA211 OM112 OR115 DA113 DA213 DB111 DG111 DS111
+
+//Drop
+*아이템 240 WA112 WC112 WH113 WM113 WP113 WS114 WS215 WT113 OA116 OA212 OM113 OR116 DA114 DA214 DB112 DG112 DS112
+
+//Drop
+*아이템 120 WA113 WC113 WH114 WM114 WP114 WS115 WS216 WT114 OA117 OA213 OM114 OR117 DA115 DA215 DB113 DG113 DS113
+
+//Drop
+*아이템 40 WA114 WC114 WH115 WM115 WP115 WS116 WS217 WT115 OA118 OA214 OM115 OR118 DA116 DA216 DB114 DG114 DS114
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

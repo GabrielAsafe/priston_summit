@@ -8,6 +8,7 @@ CAT=(ROOT/'SrcServer/src/systems/gameplay/companions/CompanionSkillCatalog.inl')
 DMG=(ROOT/'Shared/legacy_oracle/client/compat/client_server/server_legacy/Svr_Damge.cpp.inl').read_text(errors='ignore')
 SUB=(ROOT/'Shared/legacy_oracle/server/systems/combat/skills/server_support/SkillSub.cpp.inl').read_text(errors='ignore')
 ON=(ROOT/'Shared/legacy_oracle/server/core/server/legacy_runtime/OnSever.cpp.inl').read_text(errors='ignore')
+STATUS=(ROOT/'SrcServer/src/systems/gameplay/combat/v2/legacy/LegacyStatusEffectAdapter.cpp').read_text(errors='ignore')
 err=[]
 line=next((ln for ln in CAT.splitlines() if '{ SKILL_ENCHANT_WEAPON,' in ln),'')
 if ', true,' not in line: err.append('Enchant Weapon not READY')
@@ -16,8 +17,10 @@ for tok in ('enchantWeaponExpiresAt','enchantWeaponPoint','enchantWeaponElement'
 for tok in ('ApplyEnchantWeaponBonus','Enchant_Weapon_Damage_Ice[p][0]','Enchant_Weapon_Damage_Lightning[p][0]','Enchant_Weapon_Damage_Fire[p][0]',
             'damage += RandomBetween(low, high)','damage -= (high * resistance) / 100'):
     if tok not in CPP: err.append('Enchant damage semantics missing '+tok)
-for tok in ('runtime.enchantWeaponElement == 0','int slowCount = 16 * 3','target->PlaySlowSpeed = 230 - 10 * runtime.enchantWeaponPoint','target->PlayDistortion = 0'):
+for tok in ('runtime.enchantWeaponElement == 0','ServerLegacyStatusEffectAdapter().ApplyElementalSlow16Hz(', '3, 230 - 10 * runtime.enchantWeaponPoint, resistance'):
     if tok not in CPP: err.append('Enchant ice semantics missing '+tok)
+for tok in ('int durationTicks = durationSeconds * 16','resolved->PlaySlowSpeed = moveSpeed','resolved->PlayDistortion = 0'):
+    if tok not in STATUS: err.append('Enchant slow adapter missing '+tok)
 for tok in ('runtime.enchantWeaponElement = rand() % 3','visualParam = runtime.enchantWeaponElement','((DWORD)(visualParam & 0xF) << 12)'):
     if tok not in CPP: err.append('Enchant element/visual parameter missing '+tok)
 # The enchant augments non-elemental/basic physical damage. It must not stack onto native magic-element skills.

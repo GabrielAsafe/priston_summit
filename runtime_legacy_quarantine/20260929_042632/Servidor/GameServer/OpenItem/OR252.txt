@@ -1,0 +1,47 @@
+//ID
+*코드 "OR252"
+
+//Korean Name
+*이름 "Anel Eliot 30d"
+
+//English Name
+*Name "Anel Eliot 30d"
+
+//AttackRating
+*명중력 25 25
+
+//Defense
+*방어력 25 25
+
+//Absorption
+*흡수력 2.1 2.1
+
+//HP
+*생명력추가 35 35
+
+//MP
+*기력추가 35 35
+
+//STM
+*근력추가 35 35
+
+//HPRegen
+*생명력재생 1.0 1.0
+
+//MPRegen
+*기력재생 1.0 1.0
+
+//STMRegen
+*근력재생 1.0 1.0
+
+//Level
+*레벨 10
+
+//Spirit
+*정신력 45
+
+//Weight
+*무게 5
+
+//Name File
+*연결파일 "Name\OR252.zhoon"

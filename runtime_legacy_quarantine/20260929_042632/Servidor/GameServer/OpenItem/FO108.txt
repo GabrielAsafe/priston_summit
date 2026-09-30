@@ -1,0 +1,20 @@
+//ID
+*ÄÚµå "FO108"
+
+//Korean Name
+*ÀÌ¸§ "Força Devine"
+
+//English Name
+*Name "Força Devine"
+
+//Weight
+*¹«°Ô 2
+
+//Price
+*°¡°Ý 1000
+
+//Level
+*·¹º§ 50
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\FO108.zhoon"

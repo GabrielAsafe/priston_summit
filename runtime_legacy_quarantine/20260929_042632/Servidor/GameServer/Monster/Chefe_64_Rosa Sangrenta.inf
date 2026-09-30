@@ -1,0 +1,119 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\mongknight\mong2knight.ini"
+
+//Name
+*이름 "Rosa Sangrenta"
+
+//Level
+*레벨 64
+
+//Size
+*모델크기 2.0
+
+//ShowAllDrops
+*아이템모두
+
+//EventCode
+*계급 1
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 450
+
+//HP
+*생명력 3180
+
+//AttackPower
+*공격력 108 124
+
+//AttackRating
+*명중력 1050
+
+//AttackSpeed
+*공격속도 8
+
+//AttackRange
+*공격범위 70
+
+//Defense
+*방어력 520
+
+//Absorption
+*흡수율 20
+
+//Block
+*블럭율 14
+
+//MoveSpeed
+*이동력 4
+
+//Organic
+*생체 100
+
+//Lightning
+*번개 20
+
+//Ice
+*얼음 50
+
+//Fire
+*불 20
+
+//Poison
+*독 100
+
+//Race
+*몬스터종족 언데드
+
+//ShadowSize
+*크기 중형
+
+//Experience
+*경험치 530000
+
+//Sound
+*효과음 ILLUSIONKNIGHT
+
+//DropsNumber
+*아이템카운터 8
+
+//Drop
+//*아이템 204 SE102 SE104
+
+//Drop
+*아이템 176 OS104
+
+//Drop
+*아이템 88 OS105
+
+//Drop
+*아이템 44 OS106
+
+//Drop
+//*아이템 3444 WA108 WC108 WH109 WM109 WP109 WS110 WS211 WT109 OA112 OA208 OM109 OR112 DA110 DA210 DB108 DG108 DS108
+
+//Drop
+//*아이템 2736 WA109 WC109 WH110 WM110 WP110 WS111 WS212 WT110 OA113 OA209 OM110 OR113 DA111 DA211 DB109 DG109 DS109
+
+//Drop
+//*아이템 1824 WA110 WC110 WH111 WM111 WP111 WS112 WS213 WT111 OA114 OA210 OM111 OR114 DA112 DA212 DB110 DG110 DS110
+
+//Drop
+*아이템 912 WA111 WC111 WH112 WM112 WP112 WS113 WS214 WT112 OA115 OA211 OM112 OR115 DA113 DA213 DB111 DG111 DS111
+
+//Drop
+*아이템 304 WA112 WC112 WH113 WM113 WP113 WS114 WS215 WT113 OA116 OA212 OM113 OR116 DA114 DA214 DB112 DG112 DS112
+
+//Drop
+*아이템 20 RS101 RS102 RS103 RS104 RS105 RS106 RS107 RS108
+
+//QuestDrop
+*이벤트아이템 QT110
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

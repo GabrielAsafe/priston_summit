@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "WT106"
+
+//Korean Name
+*ÀÌ¸§ "Lança dos Elfos"
+
+//English Name
+*Name "Lança dos Elfos"
+
+//AttackPower
+*°ø°Ý·Â 6 7 9 11
+
+//AttackRange
+*»çÁ¤°Å¸® 200
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackRating
+*¸íÁß·Â 48 52
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 5
+
+//Integrity
+*³»±¸·Â 33 43
+
+//Level
+*·¹º§ 16
+
+//Talent
+*Àç´É 30
+
+//Agility
+*¹ÎÃ¸¼º 53
+
+//PrimarySpec
+**Æ¯È­ Atalanta
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Archer
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 3
+
+//SpecAttackRange
+**»çÁ¤°Å¸® 15
+
+//Weight
+*¹«°Ô 3
+
+//Price
+*°¡°Ý 6400
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WT106.zhoon"

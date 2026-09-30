@@ -139,7 +139,10 @@
  SrcGame/src/systems/gameplay/quests/ui/cQuestWindow.h \
  Shared/gameplay/classes/v2/services/ClassService.h \
  Shared/gameplay/classes/v2/PlayableClassRegistry.h \
- Shared/gameplay/classes/v2/domain/ClassDefinition.h
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
+ SrcGame/src/systems/network/v2/legacy/LegacyClientCommandSender.h \
+ Shared/network/v2/ClientCommandSender.h Shared/network/v2/PacketSender.h \
+ Shared/gameplay/core/v2/GameplayIds.h
 Shared/opcodes.h:
 SrcGame/src/compat/legacy/sin/sinLinkHeader.h:
 SrcGame/src/systems/rendering/legacy_3d/smd3d.h:
@@ -285,3 +288,7 @@ SrcGame/src/systems/gameplay/quests/ui/cQuestWindow.h:
 Shared/gameplay/classes/v2/services/ClassService.h:
 Shared/gameplay/classes/v2/PlayableClassRegistry.h:
 Shared/gameplay/classes/v2/domain/ClassDefinition.h:
+SrcGame/src/systems/network/v2/legacy/LegacyClientCommandSender.h:
+Shared/network/v2/ClientCommandSender.h:
+Shared/network/v2/PacketSender.h:
+Shared/gameplay/core/v2/GameplayIds.h:

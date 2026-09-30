@@ -1,0 +1,104 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\monwolverin\monwolverin-03.ini"
+
+//Name
+*이름 "Wolverine de Prata"
+
+//Level
+*레벨 8
+
+//Size
+*모델크기 1.0
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 410
+
+//HP
+*생명력 820
+
+//AttackPower
+*공격력 29 40
+
+//AttackRating
+*명중력 600
+
+//AttackSpeed
+*공격속도 8
+
+//AttackRange
+*공격범위 75
+
+//Defense
+*방어력 270
+
+//Absorption
+*흡수율 10
+
+//MoveSpeed
+*이동력 4
+
+//Race
+*몬스터종족 노멀
+
+//ShadowSize
+*크기 중대형
+
+//Experience
+*경험치 6048
+
+//Sound
+*효과음 WOLVERLIN
+
+//WolverineCode
+*이벤트코드 100
+
+//WolverineField
+*이벤트정보 0
+
+//DropsNumber
+*아이템카운터 1
+
+//DropGold
+*아이템 2500 돈 6000 7000
+
+//DropPotion
+*아이템 2500 PS101 PL101 PM102 PM102
+
+//Drop
+//*아이템 103 SE103 SE104
+
+//Drop
+*아이템 33 GP102 GP109 GP102
+
+//Drop
+*아이템 23 OS101 OS102
+
+//Drop
+*아이템 103 EC101 EC102 EC104
+
+//Drop
+*아이템 3921 WA101 WC101 WH101 WM101 WP101 WS101 WS102 WS201 WS202 WS203 WT101 OA101 OA102 OA103 OA104 OA201 OM101 OR101 OR102 OR103 OR104 DA102 DA202 DB101 DG101 DS101
+
+//Drop
+*아이템 387 WA101 WC101 WH101 WM101 WP101 WS101 WS102 WS201 WS202 WS203 WT101 OA101 OA102 OA103 OA104 OA201 OM101 OR101 OR102 OR103 OR104 DA102 DA202 DB101 DG101 DS101
+
+//Drop
+*아이템 258 WA101 WC101 WH101 WM101 WP101 WS101 WS102 WS201 WS202 WS203 WT101 OA101 OA102 OA103 OA104 OA201 OM101 OR101 OR102 OR103 OR104 DA102 DA202 DB101 DG101 DS101
+
+//Drop
+*아이템 129 WA101 WC101 WH101 WM101 WP101 WS101 WS102 WS201 WS202 WS203 WT101 OA101 OA102 OA103 OA104 OA201 OM101 OR101 OR102 OR103 OR104 DA102 DA202 DB101 DG101 DS101
+
+//Drop
+*아이템 43 WA101 WC101 WH102 WM102 WP102 WS103 WS204 WT102 OA105 OA201 OM102 OR105 DA103 DA203 DB101 DG101 DS101
+
+//QuestDrop
+*이벤트아이템 QT101
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

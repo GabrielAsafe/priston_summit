@@ -1,0 +1,17 @@
+//ID
+*코드 "QW101"
+
+//Korean Name
+*이름 "Asa de Metal"
+
+//English Name
+*Name "Asa de Metal"
+
+//Weight
+*무게 1
+
+//Price
+*가격 10000
+
+//Name File
+*연결파일 "Name\QW101.zhoon"

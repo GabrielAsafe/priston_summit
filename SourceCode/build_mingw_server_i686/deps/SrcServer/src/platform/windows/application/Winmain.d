@@ -161,9 +161,11 @@
  Shared/gameplay/progression/v2/ProgressionSnapshot.h \
  SrcServer/src/systems/gameplay/progression/v2/ServerProgressionConditionContext.h \
  SrcServer/src/systems/gameplay/gathering/v2/GatheringRuntime.h \
+ Shared/gameplay/core/v2/GameplayIds.h \
  Shared/gameplay/gathering/v2/GatheringTypes.h \
- Shared/gameplay/professions/v2/ProfessionService.h \
+ Shared/gameplay/professions/v2/ProfessionTypes.h \
  SrcServer/src/systems/gameplay/gathering/v2/GatheringService.h \
+ Shared/gameplay/gathering/v2/IGatheringService.h \
  SrcServer/src/systems/gameplay/gathering/v2/SQLiteGatheringRepository.h \
  SrcServer/src/systems/gameplay/quests/legacy/HaQuestBoard.h \
  Shared/gameplay/quests/HaQuestBoardLegacyCommon.inl \
@@ -334,9 +336,11 @@ Shared/gameplay/progression/v2/ProgressionPlayerRuntime.h:
 Shared/gameplay/progression/v2/ProgressionSnapshot.h:
 SrcServer/src/systems/gameplay/progression/v2/ServerProgressionConditionContext.h:
 SrcServer/src/systems/gameplay/gathering/v2/GatheringRuntime.h:
+Shared/gameplay/core/v2/GameplayIds.h:
 Shared/gameplay/gathering/v2/GatheringTypes.h:
-Shared/gameplay/professions/v2/ProfessionService.h:
+Shared/gameplay/professions/v2/ProfessionTypes.h:
 SrcServer/src/systems/gameplay/gathering/v2/GatheringService.h:
+Shared/gameplay/gathering/v2/IGatheringService.h:
 SrcServer/src/systems/gameplay/gathering/v2/SQLiteGatheringRepository.h:
 SrcServer/src/systems/gameplay/quests/legacy/HaQuestBoard.h:
 Shared/gameplay/quests/HaQuestBoardLegacyCommon.inl:

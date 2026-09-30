@@ -157,6 +157,10 @@ void cSIN3D::KeyDown()
 
 
 
+	// SUMMIT_V17_2_DISABLED_EFFECT_TEST_HOTKEYS
+	// Heavy legacy effect-test dispatch is intentionally disconnected from keyboard input.
+	// Keep the implementation for source reference only.
+	/*
 	if(smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR && SummitLegacyEffectTestKeysEnabled())
 	{
 		ParticleTestKey();
@@ -175,6 +179,7 @@ void cSIN3D::KeyDown()
 			TestCount2 = 0;
 		}
 	}
+	*/
 }
 
 

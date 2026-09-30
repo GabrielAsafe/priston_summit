@@ -1,0 +1,65 @@
+//ID
+*코드 "DS104"
+
+//Korean Name
+*이름 "Escudo Kite"
+
+//English Name
+*Name "Escudo Kite"
+
+//Defense
+*방어력 25 45
+
+//Absorption
+*흡수력 1.4 1.9
+
+//Block
+*블럭율 8.0 14.0
+
+//OrganicResistance
+*생체 2 3
+
+//FireResistance
+*불 2 3
+
+//FrostResistance
+*냉기 2 3
+
+//LightningResistance
+*번개 2 3
+
+//PoisonResistance
+*독 2 3
+
+//Integrity
+*내구력 40 65
+
+//Level
+*레벨 9
+
+//Strength
+*힘 50
+
+//Talent
+*재능 30
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**방어력 4 10
+
+//SpecAbsorption
+**흡수력 0.3 0.5
+
+//SpecBlock
+**블럭율 4.0
+
+//Weight
+*무게 12
+
+//Price
+*가격 3300
+
+//Name File
+*연결파일 "Name\DS104.zhoon"

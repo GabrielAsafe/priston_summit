@@ -26,7 +26,6 @@ public:
 	bool CompleteQuestObjective(rsPLAYINFO* lpPlayInfo, int QuestID, const char* pszMonsterName);
 	bool CompleteQuestObjectives(rsPLAYINFO* lpPlayInfo, int QuestID);
 	bool CancelQuestProgressSilent(rsPLAYINFO* lpPlayInfo, int QuestID);
-	bool MarkSingleQuestCompletedForTesting(rsPLAYINFO* lpPlayInfo, int QuestID);
 	bool HandleTier5MonsterKill(rsPLAYINFO* lpKiller, smCHAR* lpChar, rsPLAYINFO** lpDamageUsers, int DamageUserCount);
 
 	void VerifyLevel(rsPLAYINFO* lpPlayInfo);

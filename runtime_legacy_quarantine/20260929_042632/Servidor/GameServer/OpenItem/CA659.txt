@@ -1,0 +1,27 @@
+// NOME E COD DO ITEM
+*이름		"Uniforme Portugal"
+*코드		"CA659"
+
+// PESO NO INVETARIO
+*무게	100
+// PRECO DO ITEM
+*가격	100000
+// RESISTENCIA ORGANICA
+*생체	5 5
+// RESISTENCIA A FOGO
+*불	5 5
+// RESISTENCIA A GELO
+*냉기	5 5
+// RESISTENCIA A RAIO
+*번개	5 5
+// RESISTENCIA A VENENO
+*독	5 5
+// ABSORCAO
+*흡수력	6 6
+// TAXA DE DEFESA
+*방어력	200 200
+// BLOQUEIO
+*블럭율	2 2
+
+// LEVEL DO ITEM
+*레벨	

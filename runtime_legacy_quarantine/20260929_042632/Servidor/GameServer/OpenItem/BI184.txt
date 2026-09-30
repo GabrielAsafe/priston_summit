@@ -1,0 +1,14 @@
+//ID
+*코드 "BI184"
+
+//Korean Name
+*이름 "Pedra da Gravidade"
+
+//English Name
+*Name "Pedra da Gravidade"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\BI184.zhoon"

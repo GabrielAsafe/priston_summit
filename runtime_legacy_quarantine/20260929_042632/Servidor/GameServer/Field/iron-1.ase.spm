@@ -1,0 +1,20 @@
+//몬스터 출현 비율
+
+*최대동시출현수	 300
+//출현간격 범위 9-1 1차이당 2배씩 빨라짐
+*출현간격	 1 2
+*출현수	 1
+
+//		몬스터 이름          출현빈도
+
+*출연자	"Centauro Arqueira"		13
+*출연자	"Grotesco"		5
+*출연자	"Destruidor"		17
+*출연자	"Guardiao de Aco"		15
+*출연자	"Golem de Aco"		15
+*출연자	"Hiper Maquina"		12
+*출연자	"M?uina Vampira"		8
+*출연자	"Morte Subita"		12
+
+*출연자두목	"Babel"	"Grotesco"	2	1 4 7 10 13 16 19 22
+

@@ -1,0 +1,62 @@
+//ID
+*코드 "DB143"
+
+//Korean Name
+*이름 "Botas Imperiais"
+
+//English Name
+*Name "Botas Imperiais"
+
+//Defense
+*방어력 239 251
+
+//Absorption
+*흡수력 16.9 17.4
+
+//Speed
+*이동속도 4.3 4.7
+
+//OrganicResistance
+*생체 14 17
+
+//FireResistance
+*불 14 17
+
+//FrostResistance
+*냉기 14 17
+
+//LightningResistance
+*번개 14 17
+
+//PoisonResistance
+*독 14 17
+
+//Integrity
+*내구력 266 275
+
+//Level
+*레벨 120
+
+//Strength
+*힘 100
+
+//Agility
+*민첩성 100
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecAbsorption
+**흡수력 1.7 2.1
+
+//SpecSpeed
+**이동속도 1.6 2
+
+//Weight
+*무게 92
+
+//Price
+*가격 1790000
+
+//Name File
+*연결파일 "Name\DB143.zhoon"

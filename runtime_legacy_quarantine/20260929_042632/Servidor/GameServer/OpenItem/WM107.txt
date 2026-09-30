@@ -1,0 +1,59 @@
+//ID
+*ÄÚµå "WM107"
+
+//Korean Name
+*ÀÌ¸§ "Varinha Druída"
+
+//English Name
+*Name "Varinha Druída"
+
+//AttackPower
+*°ø°Ý·Â 7 9 10 12
+
+//AttackRating
+*¸íÁß·Â 38 50
+
+//AttackRange
+*»çÁ¤°Å¸® 150
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 5
+
+//Integrity
+*³»±¸·Â 38 50
+
+//Level
+*·¹º§ 22
+
+//Spirit
+*Á¤½Å·Â 70
+
+//Talent
+*Àç´É 36
+
+//SecondarySpec
+**Æ¯È­·£´ý Priestess Magician
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecMPRegen
+**±â·ÂÀç»ý 0.3 0.6
+
+//SpecSkillTraining
+**¸¶¹ý¼÷·Ãµµ 3 5
+
+//Weight
+*¹«°Ô 5
+
+//Price
+*°¡°Ý 12000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WM107.zhoon"

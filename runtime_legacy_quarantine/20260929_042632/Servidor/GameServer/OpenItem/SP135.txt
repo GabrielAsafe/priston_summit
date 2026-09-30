@@ -1,0 +1,14 @@
+//ID
+*코드 "SP135"
+
+//Korean Name
+*이름 "Evento Dia dos Namorados"
+
+//English Name
+*Name "Evento Dia dos Namorados"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\SP135.zhoon"

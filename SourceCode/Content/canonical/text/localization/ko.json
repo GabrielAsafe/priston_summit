@@ -743,24 +743,6 @@
       "source": "item.wn153"
     },
     {
-      "key": "monster.58_u00c1rvore_das_trevas.name",
-      "text": "햞vore das Trevas",
-      "quality": "legacy_source",
-      "source": "monster.58_u00c1rvore_das_trevas"
-    },
-    {
-      "key": "monster.chefe_14_u00c1rvore_maldita.name",
-      "text": "햞vore Maldita",
-      "quality": "legacy_source",
-      "source": "monster.chefe_14_u00c1rvore_maldita"
-    },
-    {
-      "key": "monster.chefe_19_lorde_das_u00c1rvores.name",
-      "text": "Lorde das 햞vores",
-      "quality": "legacy_source",
-      "source": "monster.chefe_19_lorde_das_u00c1rvores"
-    },
-    {
       "key": "npc.7crystal.name",
       "text": "노점상 델라",
       "quality": "legacy_source",

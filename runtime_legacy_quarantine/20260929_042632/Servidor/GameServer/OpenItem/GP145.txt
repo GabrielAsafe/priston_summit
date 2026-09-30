@@ -1,0 +1,17 @@
+//ID
+*코드 "GP145"
+
+//Korean Name
+*이름 "Cristal do Caos Cara"
+
+//English Name
+*Name "Cristal do Caos Cara"
+
+//Level
+*레벨 20
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\GP145.zhoon"

@@ -1,0 +1,14 @@
+//ID
+*코드 "BI152"
+
+//Korean Name
+*이름 "Terry 1h"
+
+//English Name
+*Name "Terry 1h"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\BI152.zhoon"

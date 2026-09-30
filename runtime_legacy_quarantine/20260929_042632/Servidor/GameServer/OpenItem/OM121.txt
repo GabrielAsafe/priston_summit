@@ -1,0 +1,65 @@
+//ID
+*ÄÚµå "OM121"
+
+//Korean Name
+*ÀÌ¸§ "Orbital da Clarividência"
+
+//English Name
+*Name "Orbital da Clarividência"
+
+//OrganicResistance
+*»ýÃ¼ 4 8
+
+//FireResistance
+*ºÒ 4 8
+
+//FrostResistance
+*³Ã±â 4 8
+
+//LightningResistance
+*¹ø°³ 4 8
+
+//PoisonResistance
+*µ¶ 4 8
+
+//Defense
+*¹æ¾î·Â 136 150
+
+//Absorption
+*Èí¼ö·Â 6.0 6.3
+
+//Block
+*ºí·°À² 10.0 11.0
+
+//HP
+*»ý¸í·ÂÃß°¡ 93 109
+
+//MP
+*±â·ÂÃß°¡ 58 70
+
+//Integrity
+*³»±¸·Â 114 134
+
+//Level
+*·¹º§ 96
+
+//Spirit
+*Á¤½Å·Â 150
+
+//SecondarySpec
+**Æ¯È­·£´ý Priestess Magician
+
+//SpecAbsorption
+**Èí¼ö·Â 1.1 1.5
+
+//SpecMPRegen
+**±â·ÂÀç»ý 1.1 1.5
+
+//Weight
+*¹«°Ô 40
+
+//Price
+*°¡°Ý 720000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\OM121.zhoon"

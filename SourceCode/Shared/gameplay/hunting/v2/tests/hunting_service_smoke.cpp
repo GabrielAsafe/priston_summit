@@ -8,11 +8,11 @@ int main()
     gameplay::hunting::HuntingService service;
 
     gameplay::events::MonsterKilledEvent solo(
-        0, 0, false, "Archer", "Hopy", 101u, 2);
+        gameplay::PlayerId(1), gameplay::EntityId(101), false, false, "Archer", "Hopy", 101u, 2);
     gameplay::events::MonsterKilledEvent party(
-        0, 0, true, "Archer", "Hopy", 101u, 2);
+        gameplay::PlayerId(1), gameplay::EntityId(101), true, false, "Archer", "Hopy", 101u, 2);
     gameplay::events::MonsterKilledEvent other(
-        0, 0, false, "Archer", "Goblin", 202u, 4);
+        gameplay::PlayerId(1), gameplay::EntityId(202), false, false, "Archer", "Goblin", 202u, 4);
 
     service.OnMonsterKilled(solo);
     service.OnMonsterKilled(party);

@@ -1,0 +1,8 @@
+//Bcn03.npc
+
+*J_NAME			"Vendedora Sosarine"
+
+*J_CHAT			"Eu sou a irmã do meio das vendedoras do local."
+*J_CHAT                   "Selbi, Rosa e eu gostaríamos de abrir uma grande loja em Ricarten."
+*J_CHAT                   "Se você chegou aqui pelo portal, você deverá usar um Core para sair."
+*J_CHAT                   "Às vezes, você poderá ver o brilho da Torre de Valhalla, daqui."

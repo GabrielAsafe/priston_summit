@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "BI228"
+
+//Korean Name
+*ÀÌ¸§ "Baú de Bronze Up 24h"
+
+//English Name
+*Name "Baú de Bronze Up 24h"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\BI228.zhoon"

@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "SP162"
+
+//Korean Name
+*ÀÌ¸§ "Símbolo 3"
+
+//English Name
+*Name "Símbolo 3"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\SP162.zhoon"

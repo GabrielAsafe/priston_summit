@@ -1,0 +1,65 @@
+//ID
+*코드 "WC128"
+
+//Korean Name
+*이름 "Garra Verus"
+
+//English Name
+*Name "Garra Verus"
+
+//AttackPower
+*공격력 127 130 143 146
+
+//AttackRating
+*명중력 233 2252
+
+//AttackSpeed
+*공격속도 8
+
+//AttackCritical
+*크리티컬 19
+
+//Defense
+*방어력 122 127
+
+//Integrity
+*내구력 216 292
+
+//Level
+*레벨 125
+
+//Strength
+*힘 193
+
+//Talent
+*재능 100
+
+//Agility
+*민첩성 80
+
+//PrimarySpec
+**특화 Mechanician
+
+//SecondarySpec
+**특화랜덤 Fighter Pikeman Knight Atalanta
+
+//SpecAttackPower
+**공격력 7 7
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 4
+
+//Weight
+*무게 104
+
+//Price
+*가격 1590000
+
+//Name File
+*연결파일 "Name\WC128.zhoon"

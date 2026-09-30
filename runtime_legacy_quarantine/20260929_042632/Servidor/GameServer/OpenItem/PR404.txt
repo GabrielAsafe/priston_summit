@@ -1,0 +1,14 @@
+//ID
+*코드 "PR404"
+
+//Korean Name
+*이름 "Runa de 햓ua Marinha B"
+
+//English Name
+*Name "Runa de 햓ua Marinha B"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\PR404.zhoon"

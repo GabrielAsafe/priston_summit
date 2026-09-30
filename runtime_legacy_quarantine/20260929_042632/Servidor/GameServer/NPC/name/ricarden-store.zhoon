@@ -1,0 +1,14 @@
+//ricarden-store.NPC
+
+
+*J_Name	"Loja da Allya"
+
+
+*J_Chat	"Até os guerreiros mais fortes não conseguem lutar sem a ajuda dessas poções!"
+
+*J_Chat	"As Poções vermelhas restauram seu HP, as verdes, sua Resistência. Tenha sempre ambas em mãos!"
+
+*J_Chat	"Eu mesmo faço as poções, que vendo nesta humilde loja. De qual poção você precisa?"
+
+*J_Chat	"Você deve escolher a poção que se encaixa com seu HP."
+

@@ -1,0 +1,38 @@
+//ID
+*코드 "OS109"
+
+//Korean Name
+*이름 "Celesto"
+
+//English Name
+*Name "Celesto"
+
+//HPRegen
+*생명력재생 0.9 1.2
+
+//MPRegen
+*기력재생 1.0 1.3
+
+//Level
+*레벨 60
+
+//Spirit
+*정신력 100
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecHPRegen
+**생명력재생 0.5 0.8
+
+//SpecMPRegen
+**기력재생 0.9 1.3
+
+//Weight
+*무게 2
+
+//Price
+*가격 1000
+
+//Name File
+*연결파일 "Name\OS109.zhoon"

@@ -1,0 +1,62 @@
+//ID
+*코드 "WA122"
+
+//Korean Name
+*이름 "Machado Zecram"
+
+//English Name
+*Name "Machado Zecram"
+
+//AttackPower
+*공격력 74 76 87 90
+
+//AttackRating
+*명중력 194 196
+
+//AttackSpeed
+*공격속도 7
+
+//AttackCritical
+*크리티컬 20
+
+//Block
+*블럭율 11.0 11.0
+
+//Integrity
+*내구력 170 208
+
+//Level
+*레벨 102
+
+//Strength
+*힘 193
+
+//Talent
+*재능 90
+
+//PrimarySpec
+**특화 Fighter
+
+//SecondarySpec
+**특화랜덤 Mechanician Pikeman
+
+//SpecAttackPower
+**공격력 7 7
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 3
+
+//Weight
+*무게 86
+
+//Price
+*가격 970000
+
+//Name File
+*연결파일 "Name\WA122.zhoon"

@@ -1,0 +1,32 @@
+//ID
+*코드 "DA156"
+
+//Korean Name
+*이름 "Armadura de Noivo"
+
+//English Name
+*Name "Armadura de Noivo"
+
+//Defense
+*방어력 400 400
+
+//Absorption
+*흡수력 11.6 11.6
+
+//HP
+*생명력추가 30 30
+
+//MP
+*기력추가 30 30
+
+//Level
+*레벨 20
+
+//Weight
+*무게 50
+
+//Price
+*가격 100000
+
+//Name File
+*연결파일 "Name\DA156.zhoon"

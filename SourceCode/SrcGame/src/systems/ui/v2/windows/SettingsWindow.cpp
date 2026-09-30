@@ -1,5 +1,8 @@
 #include "systems/ui/v2/windows/SettingsWindow.h"
 
+// SUMMIT_COMMAND_HOTKEYS_V17
+// SUMMIT_COMMAND_HOTKEYS_SAFETY_V17_1
+
 #include <algorithm>
 #include <cstdio>
 #include <string>
@@ -58,6 +61,7 @@ SettingsWindow::SettingsWindow(UIId id)
     BuildAudioPage();
     BuildGeneralPage();
     BuildLootPage();
+    BuildCommandsPage();
     Layout();
     ReloadFromRuntime();
     SetActiveTab(SettingsTab::Video);
@@ -80,6 +84,10 @@ void SettingsWindow::BuildChrome()
     auto& loot = AddChild<Button>(703, "Loot");
     loot.SetOnClick([this](const UIEvent&) { SetActiveTab(SettingsTab::Loot); });
     lootTab_ = &loot;
+
+    auto& commands = AddChild<Button>(707, "Comandos");
+    commands.SetOnClick([this](const UIEvent&) { SetActiveTab(SettingsTab::Commands); });
+    commandsTab_ = &commands;
 
     auto& close = AddChild<Button>(704, "X");
     close.SetOnClick([this](const UIEvent&) { if (onClose_) onClose_(); });
@@ -235,6 +243,90 @@ void SettingsWindow::BuildLootPage()
     }
 }
 
+
+void SettingsWindow::BuildCommandsPage()
+{
+    auto& page = AddChild<Container>(840);
+    commandsPage_ = &page;
+
+    static const char* groups[4] = {"Jogo", "Chat / UI", "GM / Debug", "Testes"};
+    for (int i = 0; i < 4; ++i)
+    {
+        auto& button = page.AddChild<Button>(841 + i, groups[i]);
+        button.SetBounds({16 + i * 168, 10, 156, 28});
+        button.SetOnClick([this, i](const UIEvent&) { SetCommandGroup(i); });
+        commandGroupButtons_[static_cast<std::size_t>(i)] = &button;
+    }
+
+    auto& note = page.AddChild<Label>(849, "Comandos perigosos de render/pattern/edicao persistente foram removidos do teclado.");
+    note.SetBounds({18, 42, 690, 22});
+    note.SetStyle(TextStyle{UITheme::TextMuted, false, TextAlign::Left});
+
+    for (int i = 0; i < 24; ++i)
+    {
+        const int col = i >= 12 ? 1 : 0;
+        const int row = i % 12;
+        auto& label = page.AddChild<Label>(850 + i, "");
+        label.SetBounds({18 + col * 360, 68 + row * 27, 344, 24});
+        label.SetStyle(TextStyle{UITheme::Text, false, TextAlign::Left});
+        commandLabels_[static_cast<std::size_t>(i)] = &label;
+    }
+
+    SetCommandGroup(0);
+}
+
+void SettingsWindow::SetCommandGroup(int group)
+{
+    commandGroup_ = std::clamp(group, 0, 3);
+    for (int i = 0; i < 4; ++i)
+        commandGroupButtons_[static_cast<std::size_t>(i)]->SetSelected(i == commandGroup_);
+    RefreshCommandPage();
+}
+
+void SettingsWindow::RefreshCommandPage()
+{
+    static const std::array<const char*, 24> kGame = {{
+        "C  - Atributos", "S  - Skills", "V  - Inventario", "N  - Covenants",
+        "U  - Diario de quests", "Q  - Quests", "D  - Party", "X  - Configuracoes",
+        "R  - Correr / caminhar", "Tab  - Mini-mapa", "M  - Mapa mundial", "Z  - Modo da camera",
+        "K  - War Mode", "T  - Mostrar/ocultar traje", "L  - Travar inventario", "E  - Equipamento A/B",
+        "W  - Costume set 1/2", "1/2/3  - Usar pocao", "Shift+1/2/3  - Atribuir pocao", "F1-F8  - Skills rapidas",
+        "F10  - TimeShop", "F11  - Configuracoes", "F12  - Janela/tela cheia", "Space  - Fechar interfaces"
+    }};
+    static const std::array<const char*, 24> kChat = {{
+        "Ctrl+F9  - CoinShop", "Ctrl+1..0  - Macros de chat 1..10", "Enter  - Abrir/enviar chat", "Esc  - Fechar/voltar",
+        "Shift+Esc  - Sair do jogo", "Tab (chat)  - Chat de clan", "Up/Down (chat)  - Historico", "PgUp/PgDn (chat)  - Scroll",
+        "Left/Right  - Rodar camera", "Up/Down  - Zoom da camera", "Ctrl+Up/Down  - Inclinar camera", "PgUp/PgDn  - Inclinar camera",
+        "Ctrl+Home  - Screenshot", "Ctrl+End  - Screenshot", "Numpad +/-  - Field-view step", "M (mapa)  - Fechar mapa",
+        "Ctrl+clique item  - Link no chat", "Space (Yahoo)  - Emote/evento", "", "",
+        "", "", "", ""
+    }};
+    // SUMMIT_V17_2_DANGEROUS_COMMANDS_REMOVED_FROM_MENU
+    // Removed from the visible command list and keyboard dispatch: Shift+F3/F4/F7,
+    // Shift+Home/End, persistent Insert/Delete editing, Numpad7/8 and effect tests.
+    static const std::array<const char*, 24> kGm = {{
+        "Shift+F9  - Debug/coordenadas", "Shift+F5  - Skip field 1", "Shift+F6  - Skip field 2", "Shift+F8  - Draw info",
+        "Ctrl+F11  - Interface on/off", "Ctrl+T  - Test flag", "Ctrl+F  - Shop", "Ctrl+G  - Craft",
+        "Ctrl+H  - Aging", "Ctrl+J  - Mixture Reset", "Ctrl+Shift+F1  - Talk zoom ON", "Ctrl+Shift+F2  - Talk zoom OFF",
+        "Ctrl+Shift+F3  - Talk repeat ON", "Ctrl+Shift+F4  - Talk repeat OFF", "", "",
+        "", "", "", "", "", "", "", ""
+    }};
+    static const std::array<const char*, 24> kTest = {{
+        "Ctrl+Shift+F5  - Facial repeat ON", "Ctrl+Shift+F6  - Facial repeat OFF", "Shift+N  - VIP no-collision", "O + ataque  - Berserker test [PERIGOSO]",
+        "Ctrl+N+M  - Park player [TEST SERVER]", "Ctrl+N+B  - Durabilidade [TEST SERVER]", "P+O  - Potion qty [PERIGOSO]", "Ctrl+Shift+B (status)  - +9 pontos [GM]",
+        "", "", "", "", "", "", "", "",
+        "", "", "", "", "", "", "", ""
+    }};
+
+    const std::array<const char*, 24>* list = &kGame;
+    if (commandGroup_ == 1) list = &kChat;
+    else if (commandGroup_ == 2) list = &kGm;
+    else if (commandGroup_ == 3) list = &kTest;
+
+    for (std::size_t i = 0; i < commandLabels_.size(); ++i)
+        commandLabels_[i]->SetText((*list)[i]);
+}
+
 void SettingsWindow::Layout()
 {
     const Rect bounds = Bounds();
@@ -242,6 +334,7 @@ void SettingsWindow::Layout()
     audioTab_->SetBounds({130, 40, 110, 30});
     generalTab_->SetBounds({246, 40, 110, 30});
     lootTab_->SetBounds({362, 40, 110, 30});
+    commandsTab_->SetBounds({478, 40, 110, 30});
     closeButton_->SetBounds({bounds.width - 42, 5, 30, 24});
 
     const Rect pageBounds{8, kPageTop, bounds.width - 16, kFooterTop - kPageTop - 6};
@@ -249,6 +342,7 @@ void SettingsWindow::Layout()
     audioPage_->SetBounds(pageBounds);
     generalPage_->SetBounds(pageBounds);
     lootPage_->SetBounds(pageBounds);
+    commandsPage_->SetBounds(pageBounds);
 
     resetButton_->SetBounds({bounds.width - 226, kFooterTop, 100, 30});
     saveButton_->SetBounds({bounds.width - 118, kFooterTop, 100, 30});
@@ -272,10 +366,12 @@ void SettingsWindow::SetActiveTab(SettingsTab tab)
     audioPage_->SetVisible(tab == SettingsTab::Audio);
     generalPage_->SetVisible(tab == SettingsTab::General);
     lootPage_->SetVisible(tab == SettingsTab::Loot);
+    commandsPage_->SetVisible(tab == SettingsTab::Commands);
     videoTab_->SetSelected(tab == SettingsTab::Video);
     audioTab_->SetSelected(tab == SettingsTab::Audio);
     generalTab_->SetSelected(tab == SettingsTab::General);
     lootTab_->SetSelected(tab == SettingsTab::Loot);
+    commandsTab_->SetSelected(tab == SettingsTab::Commands);
 }
 
 void SettingsWindow::ReloadFromRuntime()

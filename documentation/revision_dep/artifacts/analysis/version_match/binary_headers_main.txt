@@ -1,0 +1,110 @@
+============================================================
+cliente/Summit Tale Client Full/cliente/Game.exe
+cliente/Summit Tale Client Full/cliente/Game.exe: PE32 executable for MS Windows 6.00 (GUI), Intel i386, 4 sections
+Time/Date		Wed Aug 27 02:32:40 2025
+MajorLinkerVersion	14
+MinorLinkerVersion	44
+ImageBase		00870000
+MajorSubsystemVersion	6
+MinorSubsystemVersion	0
+Subsystem		00000002	(Windows GUI)
+============================================================
+cliente/Summit Tale Client Full/cliente/pstale.exe
+cliente/Summit Tale Client Full/cliente/pstale.exe: PE32 executable for MS Windows 4.00 (GUI), Intel i386, 4 sections
+Time/Date		Fri Apr 22 08:08:30 2005
+MajorLinkerVersion	7
+MinorLinkerVersion	0
+ImageBase		00400000
+MajorSubsystemVersion	4
+MinorSubsystemVersion	0
+Subsystem		00000002	(Windows GUI)
+============================================================
+Servidor/Server.exe
+Servidor/Server.exe: PE32 executable for MS Windows 6.00 (console), Intel i386, 8 sections
+Time/Date		Fri Aug 22 03:52:06 2025
+MajorLinkerVersion	14
+MinorLinkerVersion	44
+ImageBase		00400000
+MajorSubsystemVersion	6
+MinorSubsystemVersion	0
+Subsystem		00000003	(Windows CUI)
+============================================================
+Servidor/1.exe
+Servidor/1.exe: PE32 executable for MS Windows 4.00 (GUI), Intel i386, 6 sections
+Time/Date		Fri May  2 10:01:49 2003
+MajorLinkerVersion	7
+MinorLinkerVersion	0
+ImageBase		00400000
+MajorSubsystemVersion	4
+MinorSubsystemVersion	0
+Subsystem		00000002	(Windows GUI)
+============================================================
+Servidor/2.exe
+Servidor/2.exe: PE32 executable for MS Windows 4.00 (GUI), Intel i386, 5 sections
+Time/Date		Mon Apr 23 13:10:01 2007
+MajorLinkerVersion	6
+MinorLinkerVersion	0
+ImageBase		00400000
+MajorSubsystemVersion	4
+MinorSubsystemVersion	0
+Subsystem		00000002	(Windows GUI)
+============================================================
+Servidor/3.exe
+Servidor/3.exe: PE32 executable for MS Windows 4.00 (GUI), Intel i386, 5 sections
+Time/Date		Sat Apr 14 13:37:13 2007
+MajorLinkerVersion	6
+MinorLinkerVersion	0
+ImageBase		00400000
+MajorSubsystemVersion	4
+MinorSubsystemVersion	0
+Subsystem		00000002	(Windows GUI)
+============================================================
+Servidor/4.exe
+Servidor/4.exe: PE32 executable for MS Windows 4.00 (GUI), Intel i386 Mono/.Net assembly, 3 sections
+Time/Date		Wed Dec  6 17:06:36 2006
+MajorLinkerVersion	6
+MinorLinkerVersion	0
+ImageBase		11000000
+MajorSubsystemVersion	4
+MinorSubsystemVersion	0
+Subsystem		00000002	(Windows GUI)
+============================================================
+Servidor/5.exe
+Servidor/5.exe: PE32 executable for MS Windows 4.00 (GUI), Intel i386 Mono/.Net assembly, 3 sections
+Time/Date		Mon Nov 27 18:47:47 2006
+MajorLinkerVersion	6
+MinorLinkerVersion	0
+ImageBase		11000000
+MajorSubsystemVersion	4
+MinorSubsystemVersion	0
+Subsystem		00000002	(Windows GUI)
+============================================================
+Servidor/6.exe
+Servidor/6.exe: PE32 executable for MS Windows 4.00 (GUI), Intel i386, 3 sections
+Time/Date		Sun Aug 26 03:36:36 2007
+MajorLinkerVersion	6
+MinorLinkerVersion	0
+ImageBase		00400000
+MajorSubsystemVersion	4
+MinorSubsystemVersion	0
+Subsystem		00000002	(Windows GUI)
+============================================================
+Servidor/9.exe
+Servidor/9.exe: PE32 executable for MS Windows 4.00 (GUI), Intel i386, UPX compressed, 3 sections
+Time/Date		Fri Jun 19 23:22:17 1992
+MajorLinkerVersion	2
+MinorLinkerVersion	25
+ImageBase		00400000
+MajorSubsystemVersion	4
+MinorSubsystemVersion	0
+Subsystem		00000002	(Windows GUI)
+============================================================
+Servidor/10.exe
+Servidor/10.exe: PE32 executable for MS Windows 4.00 (GUI), Intel i386, 3 sections
+Time/Date		Sat Aug 25 09:17:18 2007
+MajorLinkerVersion	6
+MinorLinkerVersion	0
+ImageBase		00400000
+MajorSubsystemVersion	4
+MinorSubsystemVersion	0
+Subsystem		00000002	(Windows GUI)

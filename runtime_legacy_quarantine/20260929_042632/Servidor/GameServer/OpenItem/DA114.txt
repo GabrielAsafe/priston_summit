@@ -1,0 +1,59 @@
+//ID
+*코드 "DA114"
+
+//Korean Name
+*이름 "Armadura Espinhosa"
+
+//English Name
+*Name "Armadura Espinhosa"
+
+//Defense
+*방어력 170 210
+
+//Absorption
+*흡수력 8.8 9.3
+
+//OrganicResistance
+*생체 5 9
+
+//FireResistance
+*불 5 9
+
+//FrostResistance
+*냉기 5 9
+
+//LightningResistance
+*번개 5 9
+
+//PoisonResistance
+*독 5 9
+
+//Integrity
+*내구력 100 135
+
+//Level
+*레벨 60
+
+//Strength
+*힘 145
+
+//Talent
+*재능 70
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**방어력 40 46
+
+//SpecAbsorption
+**흡수력 0.5 0.9
+
+//Weight
+*무게 82
+
+//Price
+*가격 77000
+
+//Name File
+*연결파일 "Name\DA114.zhoon"

@@ -5,6 +5,7 @@
 #include "core/server/legacy_runtime/onserver.h"
 #include "systems/crafting/professions/JOBS.h"
 #include "systems/gameplay/progression/v2/ProgressionTriggerRuntime.h"
+#include "systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h"
 
 #include <time.h>
 
@@ -1184,7 +1185,8 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 		delete lpsItem;
 
 		if (professionStateChanged)
-			gameplay::progression::NotifyServerProgressionPlayerStateChanged(Player);
+			gameplay::progression::NotifyServerProgressionPlayerStateChanged(
+                gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(Player));
 	}
 }
 
@@ -1259,7 +1261,8 @@ void JOBS::AddExpJOBS(rsPLAYINFO* Player, int valor)
 		SQL::GetInstance()->LeaveSqlSection();
 
 		if (professionStateChanged)
-			gameplay::progression::NotifyServerProgressionPlayerStateChanged(Player);
+			gameplay::progression::NotifyServerProgressionPlayerStateChanged(
+                gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(Player));
 	}
 }
 

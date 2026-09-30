@@ -1,0 +1,29 @@
+//ID
+*코드 "CA505"
+
+//Korean Name
+*이름 "Traje Hambok Elegante 1d"
+
+//English Name
+*Name "Traje Hambok Elegante 1d"
+
+//Weight
+*무게 1
+
+//Level
+*레벨 10
+
+//Defense
+*방어력 100 100
+
+//Absorption
+*흡수력 10.0 10.0
+
+//HP
+*생명력추가 100 100
+
+//MP
+*기력추가 100 100
+
+//Name File
+*연결파일 "Name\CA505.zhoon"

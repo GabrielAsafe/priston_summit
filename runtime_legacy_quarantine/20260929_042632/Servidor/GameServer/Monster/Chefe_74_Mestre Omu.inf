@@ -1,0 +1,113 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\omu\omu.ini"
+
+//Name
+*이름 "Mestre Omu"
+
+//Level
+*레벨 74
+
+//Size
+*모델크기 2.0
+
+//ShowAllDrops
+*아이템모두
+
+//EventCode
+*계급 1
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 450
+
+//HP
+*생명력 4050
+
+//AttackPower
+*공격력 120 141
+
+//AttackRating
+*명중력 1500
+
+//AttackSpeed
+*공격속도 7
+
+//AttackRange
+*공격범위 85
+
+//Defense
+*방어력 600
+
+//Absorption
+*흡수율 20
+
+//Block
+*블럭율 9
+
+//Organic
+*생체 50
+
+//Lightning
+*번개 20
+
+//Ice
+*얼음 50
+
+//Fire
+*불 100
+
+//Poison
+*독 100
+
+//Race
+*몬스터종족 노멀
+
+//ShadowSize
+*크기 소형
+
+//Experience
+*경험치 760000
+
+//Sound
+*효과음 OMU
+
+//DropsNumber
+*아이템카운터 8
+
+//Drop
+//*아이템 204 SE102 SE104
+
+//Drop
+*아이템 176 OS105
+
+//Drop
+*아이템 88 OS106
+
+//Drop
+*아이템 44 OS107
+
+//Drop
+//*아이템 3434 WA110 WC110 WH111 WM111 WP111 WS112 WS213 WT111 OA114 OA210 OM111 OR114 DA112 DA212 DB110 DG110 DS110
+
+//Drop
+//*아이템 2736 WA111 WC111 WH112 WM112 WP112 WS113 WS214 WT112 OA115 OA211 OM112 OR115 DA113 DA213 DB111 DG111 DS111
+
+//Drop
+//*아이템 1824 WA112 WC112 WH113 WM113 WP113 WS114 WS215 WT113 OA116 OA212 OM113 OR116 DA114 DA214 DB112 DG112 DS112
+
+//Drop
+*아이템 912 WA113 WC113 WH114 WM114 WP114 WS115 WS216 WT114 OA117 OA213 OM114 OR117 DA115 DA215 DB113 DG113 DS113
+
+//Drop
+*아이템 304 WA114 WC114 WH115 WM115 WP115 WS116 WS217 WT115 OA118 OA214 OM115 OR118 DA116 DA216 DB114 DG114 DS114
+
+//Drop
+*아이템 20 RS101 RS102 RS103 RS104 RS105 RS106 RS107 RS108
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

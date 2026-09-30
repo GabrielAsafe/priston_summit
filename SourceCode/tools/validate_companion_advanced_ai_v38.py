@@ -12,7 +12,7 @@ for needle in ('MoveTowardInjuredAlly', 'percent < 70',
 for needle in ('DisengageTarget(healer)', 'healer->SetTargetPosi2',
                'healer->TargetMoveCount = 2', 'healer->SetMotionFromCode(CHRMOTION_STATE_RUN)'):
     req('healer movement', needle)
-for needle in ('character->smCharInfo.JOB_CODE == JOBCODE_PRIESTESS',
+for needle in ('HasCompanionHealingRole(static_cast<classes::PlayableClassId>(',
                'GetCompanionSkillPoint(managedSlot->skillRuntime, 1) > 0',
                'healAttempt.reason == COMPANION_SKILL_NO_TARGET', 'AI_HEAL_POSITION'):
     req('AI integration', needle)

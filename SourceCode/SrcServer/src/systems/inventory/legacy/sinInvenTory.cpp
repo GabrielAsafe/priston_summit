@@ -1,3 +1,23 @@
+// =============================================================================
+// MAPA DO MONOLITO LEGACY - SERVER INVENTORY LEGACY SUPPORT
+//
+// Este mapa e apenas documental. O ficheiro permanece RED e no mesmo local;
+// os separadores abaixo nao alteram ownership, ordem de execucao ou ABI.
+// FUNCIONAMENTO GERAL: Implementacao legacy compartilhada/suporte do inventario no build servidor. Authority moderna de inventory fica nos services/adapters V2.
+//
+// AREAS PRINCIPAIS:
+//   AREA 01 - INIT / LOAD
+//   AREA 02 - INPUT/UI COMPAT
+//   AREA 03 - POTIONS
+//   AREA 04 - GRID / PICKUP / DROP
+//   AREA 05 - EQUIPMENT / TWO-HAND
+//   AREA 06 - CHARACTER APPLY
+//   AREA 07 - PRICE / REPAIR / WEIGHT
+//   AREA 08 - SYNC / SECURITY
+//
+// Desenvolvimento novo deve usar contracts/ports/adapters AMBER existentes.
+// =============================================================================
+
 #include <cstring>
 #include "systems/network/protocol/server/opcodes.h"
 
@@ -1461,6 +1481,14 @@ using namespace std;
 
 extern int AgingLevelSheltomIndex[4][3];
 extern POINT AgingLevelSheltomXY[4][3];
+
+// =============================================================================
+// AREA 02 - INPUT / RIGHT-CLICK
+// TIPO: inventario
+// FUNCIONAMENTO: Mantem o dispatch legacy de acoes de item conforme o contexto ativo.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 void cINVENTORY::RButtonDown(int x, int y)
 {
@@ -3898,6 +3926,14 @@ int cINVENTORY::LastSetInvenItem(sITEM *pItem, int AutoSet)
 
 
 
+// =============================================================================
+// AREA 03 - POTIONS
+// TIPO: inventario + consumiveis
+// FUNCIONAMENTO: Aplica fluxo historico de potion e stacks.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
+
 int cINVENTORY::UsePotion(int x, int y)
 {
 	for(int i = 0; i < INVENTORY_MAXITEM; i++)
@@ -4517,6 +4553,14 @@ int cINVENTORY::InvenNotOpenCheck(sITEM *pItem)
 			return FALSE;
 	return TRUE;
 }
+
+// =============================================================================
+// AREA 04 - GRID / PICKUP / DROP
+// TIPO: inventario
+// FUNCIONAMENTO: Resolve movimentacao e ocupacao de grid no suporte legacy.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 int cINVENTORY::PickUpInvenItem(int x, int y, int PickUpFlag)
 {
@@ -5624,6 +5668,14 @@ int cINVENTORY::SearchJobAndSetting()
 	return TRUE;
 }
 
+
+// =============================================================================
+// AREA 06 - APPLY EQUIPMENT
+// TIPO: inventario + character
+// FUNCIONAMENTO: Aplica loadout legacy ao character e executa checks associados.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 int cINVENTORY::SetItemToChar(int CheckHackFlag)
 {

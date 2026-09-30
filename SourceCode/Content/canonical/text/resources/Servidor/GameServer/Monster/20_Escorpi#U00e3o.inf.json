@@ -17,7 +17,7 @@
     "fields": {
       "state": "적",
       "model_file": "char\\monster\\scorpion\\scorpion.ini",
-      "name": "Escorpi?",
+      "name": "Escorpião",
       "level": 20,
       "model_scale": 1.0,
       "generate_group": [

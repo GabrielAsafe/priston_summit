@@ -240,8 +240,8 @@ void cQUESTWINDOW::handlePacket(smTRANS_QUEST_FULL* pTransQuestInfo)
 	int monsterCount = pTransQuestInfo->MonsterCount;
 	if (monsterCount < 0)
 		monsterCount = 0;
-	if (monsterCount > 4)
-		monsterCount = 4;
+	if (monsterCount > QUEST_FULL_ENTRY_MAX)
+		monsterCount = QUEST_FULL_ENTRY_MAX;
 
 	pQuest->QuestInfo.MonsterCount = monsterCount;
 
@@ -256,8 +256,8 @@ void cQUESTWINDOW::handlePacket(smTRANS_QUEST_FULL* pTransQuestInfo)
 	int rewardCount = pTransQuestInfo->RewardCount;
 	if (rewardCount < 0)
 		rewardCount = 0;
-	if (rewardCount > 4)
-		rewardCount = 4;
+	if (rewardCount > QUEST_FULL_ENTRY_MAX)
+		rewardCount = QUEST_FULL_ENTRY_MAX;
 
 	pQuest->QuestInfo.RewardCount = rewardCount;
 

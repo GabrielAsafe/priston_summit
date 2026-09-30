@@ -1,0 +1,14 @@
+//ID
+*코드 "SP127"
+
+//Korean Name
+*이름 "P"
+
+//English Name
+*Name "P"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\SP127.zhoon"

@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "DA214"
+
+//Korean Name
+*ÀÌ¸§ "Roupão Místico"
+
+//English Name
+*Name "Roupão Místico"
+
+//Defense
+*¹æ¾î·Â 146 170
+
+//Absorption
+*Èí¼ö·Â 7.1 7.5
+
+//OrganicResistance
+*»ýÃ¼ 6 14
+
+//FireResistance
+*ºÒ 6 14
+
+//FrostResistance
+*³Ã±â 6 14
+
+//LightningResistance
+*¹ø°³ 6 14
+
+//PoisonResistance
+*µ¶ 6 14
+
+//Integrity
+*³»±¸·Â 70 90
+
+//Level
+*·¹º§ 60
+
+//Spirit
+*Á¤½Å·Â 150
+
+//Talent
+*Àç´É 86
+
+//SecondarySpec
+**Æ¯È­·£´ý Priestess Magician
+
+//SpecDefense
+**¹æ¾î·Â 24 30
+
+//SpecAbsorption
+**Èí¼ö·Â 0.8 1.1
+
+//SpecMPRegen
+**±â·ÂÀç»ý 1.5 1.9
+
+//Weight
+*¹«°Ô 56
+
+//Price
+*°¡°Ý 77000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DA214.zhoon"

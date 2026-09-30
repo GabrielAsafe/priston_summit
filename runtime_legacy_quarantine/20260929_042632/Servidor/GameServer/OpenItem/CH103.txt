@@ -1,0 +1,17 @@
+//ID
+*코드 "CH103"
+
+//Korean Name
+*이름 "Pirulito do Amor"
+
+//English Name
+*Name "Pirulito do Amor"
+
+//Weight
+*무게 1
+
+//Price
+*가격 50000
+
+//Name File
+*연결파일 "Name\CH103.zhoon"

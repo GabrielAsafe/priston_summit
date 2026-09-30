@@ -1,0 +1,62 @@
+//ID
+*코드 "WA133"
+
+//Korean Name
+*이름 "Machado Mitril"
+
+//English Name
+*Name "Machado Mitril"
+
+//AttackPower
+*공격력 169 172 181 184
+
+//AttackRating
+*명중력 292 302
+
+//AttackSpeed
+*공격속도 8
+
+//AttackCritical
+*크리티컬 22
+
+//Block
+*블럭율 13.0 13.0
+
+//Integrity
+*내구력 258 329
+
+//Level
+*레벨 138
+
+//Strength
+*힘 256
+
+//Talent
+*재능 100
+
+//PrimarySpec
+**특화 Fighter
+
+//SecondarySpec
+**특화랜덤 Mechanician Pikeman
+
+//SpecAttackPower
+**공격력 7 7
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 4
+
+//Weight
+*무게 156
+
+//Price
+*가격 1810000
+
+//Name File
+*연결파일 "Name\WA133.zhoon"

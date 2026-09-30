@@ -1,0 +1,65 @@
+//ID
+*ÄÚµå "OM124"
+
+//Korean Name
+*ÀÌ¸§ "Orbital do Rosário"
+
+//English Name
+*Name "Orbital do Rosário"
+
+//OrganicResistance
+*»ýÃ¼ 6 10
+
+//FireResistance
+*ºÒ 6 10
+
+//FrostResistance
+*³Ã±â 6 10
+
+//LightningResistance
+*¹ø°³ 6 10
+
+//PoisonResistance
+*µ¶ 6 10
+
+//Defense
+*¹æ¾î·Â 158 170
+
+//Absorption
+*Èí¼ö·Â 7.7 8.0
+
+//Block
+*ºí·°À² 11.0 12.0
+
+//HP
+*»ý¸í·ÂÃß°¡ 111 124
+
+//MP
+*±â·ÂÃß°¡ 70 83
+
+//Integrity
+*³»±¸·Â 144 164
+
+//Level
+*·¹º§ 105
+
+//Spirit
+*Á¤½Å·Â 168
+
+//SecondarySpec
+**Æ¯È­·£´ý Priestess Magician
+
+//SpecAbsorption
+**Èí¼ö·Â 1.2 1.7
+
+//SpecMPRegen
+**±â·ÂÀç»ý 1.2 1.7
+
+//Weight
+*¹«°Ô 54
+
+//Price
+*°¡°Ý 850000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\OM124.zhoon"

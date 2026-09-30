@@ -1,0 +1,17 @@
+//ID
+*코드 "CH102"
+
+//Korean Name
+*이름 "Chocolate Branco"
+
+//English Name
+*Name "Chocolate Branco"
+
+//Weight
+*무게 1
+
+//Price
+*가격 50000
+
+//Name File
+*연결파일 "Name\CH102.zhoon"

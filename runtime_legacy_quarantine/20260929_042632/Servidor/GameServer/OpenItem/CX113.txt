@@ -1,0 +1,14 @@
+//ID
+*코드 "CX113"
+
+//Korean Name
+*이름 "Caixa 70 Aging 8"
+
+//English Name
+*Name "Caixa 70 Aging 8"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\CX113.zhoon"

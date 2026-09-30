@@ -1,0 +1,53 @@
+//ID
+*코드 "DG103"
+
+//Korean Name
+*이름 "Luvas Protetoras"
+
+//English Name
+*Name "Luvas Protetoras"
+
+//Defense
+*방어력 12 23
+
+//Absorption
+*흡수력 0.5 0.7
+
+//OrganicResistance
+*생체 3 4
+
+//FireResistance
+*불 -2 -1
+
+//FrostResistance
+*냉기 3 4
+
+//LightningResistance
+*번개 -2 -1
+
+//PoisonResistance
+*독 3 4
+
+//Integrity
+*내구력 35 48
+
+//Strength
+*힘 38
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecDefense
+**방어력 6 10
+
+//SpecAbsorption
+**흡수력 0.2 0.3
+
+//Weight
+*무게 8
+
+//Price
+*가격 780
+
+//Name File
+*연결파일 "Name\DG103.zhoon"

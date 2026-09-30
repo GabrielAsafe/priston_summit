@@ -1,0 +1,56 @@
+//ID
+*코드 "DA171"
+
+//Korean Name
+*이름 "Armadura Lucy Khan"
+
+//English Name
+*Name "Armadura Lucy Khan"
+
+//Defense
+*방어력 180 210
+
+//Absorption
+*흡수력 9.0 9.5
+
+//OrganicResistance
+*생체 5 8
+
+//FireResistance
+*불 5 8
+
+//FrostResistance
+*냉기 5 8
+
+//LightningResistance
+*번개 1 2
+
+//PoisonResistance
+*독 5 8
+
+//Level
+*레벨 55
+
+//Strength
+*힘 140
+
+//Talent
+*재능 70
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**방어력 35 45
+
+//SpecAbsorption
+**흡수력 0.4 1.0
+
+//Weight
+*무게 50
+
+//Price
+*가격 100000
+
+//Name File
+*연결파일 "Name\DA171.zhoon"

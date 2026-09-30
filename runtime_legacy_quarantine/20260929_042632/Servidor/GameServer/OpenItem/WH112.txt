@@ -1,0 +1,59 @@
+//ID
+*ÄÚµå "WH112"
+
+//Korean Name
+*ÀÌ¸§ "Martelo Mágico"
+
+//English Name
+*Name "Martelo Mágico"
+
+//AttackPower
+*°ø°Ý·Â 14 17 26 31
+
+//AttackRating
+*¸íÁß·Â 78 94
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 8
+
+//Integrity
+*³»±¸·Â 61 79
+
+//Level
+*·¹º§ 54
+
+//Strength
+*Èû 105
+
+//Talent
+*Àç´É 80
+
+//PrimarySpec
+**Æ¯È­ Mechanician
+
+//SecondarySpec
+**Æ¯È­·£´ý Fighter Pikeman Knight
+
+//SpecAttackPower
+**°ø°Ý·Â 7 7
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 4
+
+//Weight
+*¹«°Ô 38
+
+//Price
+*°¡°Ý 47000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WH112.zhoon"

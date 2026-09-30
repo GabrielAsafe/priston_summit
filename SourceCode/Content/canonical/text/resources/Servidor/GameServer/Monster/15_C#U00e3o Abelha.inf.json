@@ -17,7 +17,7 @@
     "fields": {
       "state": "적",
       "model_file": "char\\monster\\monbeedog\\monbeedog.ini",
-      "name": "C? Abelha",
+      "name": "Cão Abelha",
       "level": 15,
       "model_scale": 1.0,
       "generate_group": [

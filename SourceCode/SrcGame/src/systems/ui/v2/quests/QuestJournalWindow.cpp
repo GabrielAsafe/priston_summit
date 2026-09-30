@@ -33,75 +33,190 @@ void DrawBorder(IUIRenderer& renderer, const Rect& rect, Color color)
     renderer.DrawRect({rect.x + rect.width - 1, rect.y, 1, rect.height}, color);
 }
 
-std::vector<DetailVisualLine> BuildDetailLines(const QuestEntrySnapshot& quest, int width)
+void AddWrapped(std::vector<DetailVisualLine>& lines, const std::string& text, int width, Color color = UITheme::Text, bool bold = false)
+{
+    if (text.empty())
+        return;
+    const auto wrapped = WrapTextApprox(text, std::max(80, width), 160, 8);
+    for (const auto& line : wrapped)
+        lines.push_back({line, color, bold});
+}
+
+void AddStringList(std::vector<DetailVisualLine>& lines, const char* heading,
+                   const std::vector<std::string>& values, int width)
+{
+    if (values.empty())
+        return;
+    lines.push_back({heading, UITheme::TextMuted, true});
+    for (const auto& value : values)
+        AddWrapped(lines, "- " + value, width);
+}
+
+std::vector<DetailVisualLine> BuildDetailLines(const QuestEntrySnapshot& quest, int width, QuestDetailTab tab)
 {
     std::vector<DetailVisualLine> lines;
     const int textWidth = std::max(80, width);
-
     const std::string heading = !quest.name.empty() ? quest.name : (!quest.title.empty() ? quest.title : "Quest");
     lines.push_back({heading, UITheme::Accent, true});
 
-    std::string meta;
-    if (quest.levelMin > 0)
+    auto addMeta = [&]()
     {
-        meta = "Nivel " + std::to_string(quest.levelMin);
-        if (quest.levelMax > 0 && quest.levelMax != quest.levelMin)
-            meta += "-" + std::to_string(quest.levelMax);
-    }
-    if (quest.party)
-        meta += (meta.empty() ? "" : "  |  ") + std::string("Grupo");
-    else if (!meta.empty())
-        meta += "  |  Solo";
-    if (!meta.empty())
-        lines.push_back({meta, UITheme::TextMuted, false});
-
-    if (!quest.description.empty())
-    {
-        lines.push_back({"", UITheme::Text, false});
-        const auto wrapped = WrapTextApprox(quest.description, textWidth, 128, 8);
-        for (const auto& line : wrapped)
-            lines.push_back({line, UITheme::Text, false});
-    }
-
-    if (!quest.objectives.empty())
-    {
-        lines.push_back({"", UITheme::Text, false});
-        lines.push_back({"OBJETIVOS", UITheme::TextMuted, true});
-        for (const auto& objective : quest.objectives)
+        std::string meta;
+        if (quest.levelMin > 0)
         {
-            std::string value = std::to_string(objective.current) + "/" + std::to_string(objective.required) + "  " + objective.name;
-            if (!objective.location.empty())
-                value += " - " + objective.location;
-            const auto wrapped = WrapTextApprox(value, textWidth, 64, 8);
-            const Color color = objective.complete ? UITheme::Positive : UITheme::Text;
-            for (const auto& line : wrapped)
-                lines.push_back({line, color, false});
+            meta = "Nivel " + std::to_string(quest.levelMin);
+            if (quest.levelMax > 0 && quest.levelMax != quest.levelMin)
+                meta += "-" + std::to_string(quest.levelMax);
+        }
+        if (quest.party)
+            meta += (meta.empty() ? "" : "  |  ") + std::string("Grupo");
+        else if (!meta.empty())
+            meta += "  |  Solo";
+        if (quest.codex.available && quest.codex.repeatable)
+            meta += (meta.empty() ? "" : "  |  ") + std::string("Repetivel");
+        if (!meta.empty())
+            lines.push_back({meta, UITheme::TextMuted, false});
+    };
+
+    if (tab == QuestDetailTab::Summary)
+    {
+        addMeta();
+        if (!quest.description.empty())
+        {
+            lines.push_back({"", UITheme::Text, false});
+            AddWrapped(lines, quest.description, textWidth);
+        }
+        if (quest.codex.available)
+        {
+            lines.push_back({"", UITheme::Text, false});
+            lines.push_back({"CODEX PT-BR", UITheme::TextMuted, true});
+            if (!quest.codex.type.empty())
+                AddWrapped(lines, "Tipo: " + quest.codex.type, textWidth);
+            if (!quest.codex.category.empty())
+                AddWrapped(lines, "Categoria: " + quest.codex.category, textWidth);
+            if (!quest.codex.classes.empty())
+                AddWrapped(lines, "Classes: " + [&]() { std::string x; for (const auto& v : quest.codex.classes) { if (!x.empty()) x += ", "; x += v; } return x; }(), textWidth);
+            if (!quest.codex.factions.empty())
+                AddWrapped(lines, "Faccoes: " + [&]() { std::string x; for (const auto& v : quest.codex.factions) { if (!x.empty()) x += ", "; x += v; } return x; }(), textWidth);
+            if (!quest.codex.prerequisites.empty())
+            {
+                lines.push_back({"", UITheme::Text, false});
+                AddStringList(lines, "PRE-REQUISITOS", quest.codex.prerequisites, textWidth);
+            }
         }
     }
-
-    if (!quest.rewards.empty() || quest.rewardGold || quest.rewardExp || quest.rewardClanExp || quest.rewardCoin || quest.rewardTCoin)
+    else if (tab == QuestDetailTab::Lore)
     {
-        lines.push_back({"", UITheme::Text, false});
-        lines.push_back({"RECOMPENSAS", UITheme::TextMuted, true});
-        for (const auto& reward : quest.rewards)
-            lines.push_back({std::to_string(reward.count) + "x " + reward.name, UITheme::Text, false});
-        if (quest.rewardGold)
-            lines.push_back({std::to_string(quest.rewardGold) + " Gold", UITheme::Text, false});
-        if (quest.rewardExp)
-            lines.push_back({std::to_string(quest.rewardExp) + " EXP", UITheme::Text, false});
-        if (quest.rewardClanExp)
-            lines.push_back({std::to_string(quest.rewardClanExp) + " EXP Clan", UITheme::Text, false});
-        if (quest.rewardCoin)
-            lines.push_back({std::to_string(quest.rewardCoin) + " Coin", UITheme::Text, false});
-        if (quest.rewardTCoin)
-            lines.push_back({std::to_string(quest.rewardTCoin) + " TCoin", UITheme::Text, false});
+        if (!quest.codex.available)
+        {
+            lines.push_back({"", UITheme::Text, false});
+            lines.push_back({"Esta quest ainda nao possui uma entrada vinculada no Codex.", UITheme::TextMuted, false});
+        }
+        else
+        {
+            lines.push_back({"", UITheme::Text, false});
+            if (!quest.codex.lore.empty())
+                AddWrapped(lines, quest.codex.lore, textWidth);
+            else
+                AddWrapped(lines, "O guia fornecido nao separa um texto narrativo proprio. Esta aba mostra o contexto documentado sem inventar lore adicional.", textWidth, UITheme::TextMuted);
+            if (!quest.codex.stages.empty())
+            {
+                lines.push_back({"", UITheme::Text, false});
+                AddStringList(lines, "ETAPAS", quest.codex.stages, textWidth);
+            }
+            if (!quest.codex.prerequisites.empty())
+            {
+                lines.push_back({"", UITheme::Text, false});
+                AddStringList(lines, "PRE-REQUISITOS", quest.codex.prerequisites, textWidth);
+            }
+            if (!quest.codex.notes.empty())
+            {
+                lines.push_back({"", UITheme::Text, false});
+                AddStringList(lines, "NOTAS", quest.codex.notes, textWidth);
+            }
+            if (!quest.codex.source.empty())
+            {
+                lines.push_back({"", UITheme::Text, false});
+                lines.push_back({"FONTE", UITheme::TextMuted, true});
+                AddWrapped(lines, quest.codex.source, textWidth, UITheme::TextMuted);
+            }
+        }
     }
-
-    if (quest.description.empty() && quest.objectives.empty() && quest.rewards.empty() &&
-        !quest.rewardGold && !quest.rewardExp && !quest.rewardClanExp && !quest.rewardCoin && !quest.rewardTCoin)
+    else if (tab == QuestDetailTab::Objectives)
+    {
+        if (!quest.objectives.empty())
+        {
+            lines.push_back({"", UITheme::Text, false});
+            lines.push_back({"PROGRESSO ATUAL", UITheme::TextMuted, true});
+            for (const auto& objective : quest.objectives)
+            {
+                std::string value;
+                if (objective.required > 0)
+                    value = std::to_string(objective.current) + "/" + std::to_string(objective.required) + "  ";
+                value += objective.name;
+                if (!objective.location.empty())
+                    value += " - " + objective.location;
+                const Color color = objective.complete ? UITheme::Positive : UITheme::Text;
+                AddWrapped(lines, value, textWidth, color);
+            }
+        }
+        if (quest.codex.available && !quest.codex.objectives.empty())
+        {
+            lines.push_back({"", UITheme::Text, false});
+            AddStringList(lines, "OBJETIVOS DO GUIA", quest.codex.objectives, textWidth);
+        }
+        if (quest.codex.available && !quest.codex.questItems.empty())
+        {
+            lines.push_back({"", UITheme::Text, false});
+            AddStringList(lines, "ITENS DA QUEST", quest.codex.questItems, textWidth);
+        }
+        if (quest.objectives.empty() && (!quest.codex.available || quest.codex.objectives.empty()))
+        {
+            lines.push_back({"", UITheme::Text, false});
+            lines.push_back({"Nenhum objetivo documentado para esta entrada.", UITheme::TextMuted, false});
+        }
+    }
+    else if (tab == QuestDetailTab::Npcs)
     {
         lines.push_back({"", UITheme::Text, false});
-        lines.push_back({"Carregando detalhes da quest...", UITheme::TextMuted, false});
+        if (quest.codex.available && !quest.codex.npcs.empty())
+            AddStringList(lines, "PERSONAGENS / NPCS", quest.codex.npcs, textWidth);
+        else
+            lines.push_back({"Nenhum NPC documentado no Codex para esta quest.", UITheme::TextMuted, false});
+    }
+    else if (tab == QuestDetailTab::Maps)
+    {
+        lines.push_back({"", UITheme::Text, false});
+        if (quest.codex.available && !quest.codex.locations.empty())
+            AddStringList(lines, "MAPAS / LOCAIS", quest.codex.locations, textWidth);
+        else
+            lines.push_back({"Nenhum mapa documentado no Codex para esta quest.", UITheme::TextMuted, false});
+    }
+    else if (tab == QuestDetailTab::Rewards)
+    {
+        if (!quest.rewards.empty() || quest.rewardGold || quest.rewardExp || quest.rewardClanExp || quest.rewardCoin || quest.rewardTCoin)
+        {
+            lines.push_back({"", UITheme::Text, false});
+            lines.push_back({"RECOMPENSA DO RUNTIME", UITheme::TextMuted, true});
+            for (const auto& reward : quest.rewards)
+                lines.push_back({std::to_string(reward.count) + "x " + reward.name, UITheme::Text, false});
+            if (quest.rewardGold) lines.push_back({std::to_string(quest.rewardGold) + " Gold", UITheme::Text, false});
+            if (quest.rewardExp) lines.push_back({std::to_string(quest.rewardExp) + " EXP", UITheme::Text, false});
+            if (quest.rewardClanExp) lines.push_back({std::to_string(quest.rewardClanExp) + " EXP Clan", UITheme::Text, false});
+            if (quest.rewardCoin) lines.push_back({std::to_string(quest.rewardCoin) + " Coin", UITheme::Text, false});
+            if (quest.rewardTCoin) lines.push_back({std::to_string(quest.rewardTCoin) + " TCoin", UITheme::Text, false});
+        }
+        if (quest.codex.available && !quest.codex.rewards.empty())
+        {
+            lines.push_back({"", UITheme::Text, false});
+            AddStringList(lines, "RECOMPENSA DOCUMENTADA", quest.codex.rewards, textWidth);
+        }
+        if (quest.rewards.empty() && !quest.rewardGold && !quest.rewardExp && !quest.rewardClanExp && !quest.rewardCoin && !quest.rewardTCoin &&
+            (!quest.codex.available || quest.codex.rewards.empty()))
+        {
+            lines.push_back({"", UITheme::Text, false});
+            lines.push_back({"Nenhuma recompensa documentada para esta entrada.", UITheme::TextMuted, false});
+        }
     }
 
     return lines;
@@ -129,6 +244,29 @@ void QuestJournalWindow::BuildChrome()
     auto& progress = AddChild<Button>(901, "Progresso");
     progress.SetOnClick([this](const UIEvent&) { SetTab(JournalTab::Progress); });
     progressTab_ = &progress;
+
+    auto& codex = AddChild<Button>(908, "Codex");
+    codex.SetOnClick([this](const UIEvent&) { SetTab(JournalTab::Codex); });
+    codexTab_ = &codex;
+
+    auto& summary = AddChild<Button>(910, "Resumo");
+    summary.SetOnClick([this](const UIEvent&) { SetDetailTab(QuestDetailTab::Summary); });
+    summaryTab_ = &summary;
+    auto& lore = AddChild<Button>(911, "Lore");
+    lore.SetOnClick([this](const UIEvent&) { SetDetailTab(QuestDetailTab::Lore); });
+    loreTab_ = &lore;
+    auto& objectives = AddChild<Button>(912, "Objetivos");
+    objectives.SetOnClick([this](const UIEvent&) { SetDetailTab(QuestDetailTab::Objectives); });
+    objectivesTab_ = &objectives;
+    auto& npcs = AddChild<Button>(913, "NPCs");
+    npcs.SetOnClick([this](const UIEvent&) { SetDetailTab(QuestDetailTab::Npcs); });
+    npcsTab_ = &npcs;
+    auto& maps = AddChild<Button>(914, "Mapas");
+    maps.SetOnClick([this](const UIEvent&) { SetDetailTab(QuestDetailTab::Maps); });
+    mapsTab_ = &maps;
+    auto& rewards = AddChild<Button>(915, "Recomp.");
+    rewards.SetOnClick([this](const UIEvent&) { SetDetailTab(QuestDetailTab::Rewards); });
+    rewardsTab_ = &rewards;
 
     auto& accept = AddChild<Button>(902, "Aceitar");
     accept.SetOnClick([this](const UIEvent&)
@@ -176,9 +314,22 @@ void QuestJournalWindow::BuildChrome()
 void QuestJournalWindow::Layout()
 {
     const Rect bounds = Bounds();
-    availableTab_->SetBounds({14, 40, 128, 30});
-    progressTab_->SetBounds({148, 40, 128, 30});
+    availableTab_->SetBounds({14, 40, 112, 30});
+    progressTab_->SetBounds({132, 40, 112, 30});
+    codexTab_->SetBounds({250, 40, 92, 30});
     closeButton_->SetBounds({bounds.width - 42, 5, 30, 24});
+
+    const int detailX = 338;
+    const int detailY = 86;
+    const int detailGap = 4;
+    const int detailAvailable = std::max(300, bounds.width - detailX - 22);
+    const int detailButtonWidth = std::max(48, (detailAvailable - detailGap * 5) / 6);
+    summaryTab_->SetBounds({detailX, detailY, detailButtonWidth, 24});
+    loreTab_->SetBounds({detailX + (detailButtonWidth + detailGap), detailY, detailButtonWidth, 24});
+    objectivesTab_->SetBounds({detailX + 2 * (detailButtonWidth + detailGap), detailY, detailButtonWidth, 24});
+    npcsTab_->SetBounds({detailX + 3 * (detailButtonWidth + detailGap), detailY, detailButtonWidth, 24});
+    mapsTab_->SetBounds({detailX + 4 * (detailButtonWidth + detailGap), detailY, detailButtonWidth, 24});
+    rewardsTab_->SetBounds({detailX + 5 * (detailButtonWidth + detailGap), detailY, detailButtonWidth, 24});
 
     const int actionY = bounds.height - 42;
     acceptButton_->SetBounds({bounds.width - 432, actionY, 100, 28});
@@ -206,9 +357,28 @@ void QuestJournalWindow::SetTab(JournalTab tab)
     tab_ = tab;
     listScroll_ = 0;
     detailsScroll_ = 0;
+    detailTab_ = QuestDetailTab::Summary;
     availableTab_->SetSelected(tab == JournalTab::Available);
     progressTab_->SetSelected(tab == JournalTab::Progress);
+    codexTab_->SetSelected(tab == JournalTab::Codex);
     RefreshButtons();
+}
+
+void QuestJournalWindow::SetDetailTab(QuestDetailTab tab)
+{
+    detailTab_ = tab;
+    detailsScroll_ = 0;
+    RefreshButtons();
+}
+
+bool QuestJournalWindow::SectionVisible(const QuestSectionSnapshot& section) const noexcept
+{
+    if (tab_ == JournalTab::Codex)
+        return section.codexGroup;
+    if (section.codexGroup)
+        return false;
+    const bool progress = section.progressGroup || section.finalizedGroup;
+    return tab_ == JournalTab::Progress ? progress : !progress;
 }
 
 void QuestJournalWindow::Refresh()
@@ -234,7 +404,7 @@ void QuestJournalWindow::Update(float deltaSeconds)
 const QuestEntrySnapshot* QuestJournalWindow::SelectedQuest() const noexcept
 {
     for (const auto& section : snapshot_.sections)
-        if (section.id == snapshot_.selectedSectionId)
+        if (section.id == snapshot_.selectedSectionId && SectionVisible(section))
             for (const auto& quest : section.quests)
                 if (quest.id == snapshot_.selectedQuestId)
                     return &quest;
@@ -245,21 +415,33 @@ void QuestJournalWindow::RefreshButtons()
 {
     availableTab_->SetSelected(tab_ == JournalTab::Available);
     progressTab_->SetSelected(tab_ == JournalTab::Progress);
+    codexTab_->SetSelected(tab_ == JournalTab::Codex);
 
     const QuestEntrySnapshot* selected = SelectedQuest();
     const bool hasSelected = selected != nullptr;
+    const bool inCodex = tab_ == JournalTab::Codex || (hasSelected && selected->sectionId == 0x7020);
     const bool inProgress = hasSelected && selected->sectionId == 10;
     const bool finalized = hasSelected && selected->sectionId == 11;
 
-    acceptButton_->SetVisible(hasSelected && !inProgress && !finalized);
-    acceptButton_->SetEnabled(hasSelected && selected->active && !inProgress && !finalized);
-    cancelButton_->SetVisible(inProgress && !selected->complete);
-    cancelButton_->SetEnabled(inProgress && !selected->complete);
-    rewardButton_->SetVisible(inProgress && selected->complete);
-    rewardButton_->SetEnabled(inProgress && selected->complete);
-    trackButton_->SetVisible(inProgress);
-    trackButton_->SetEnabled(inProgress);
-    trackButton_->SetText(inProgress && selected->tracked ? "Rastreando" : "Rastrear");
+    acceptButton_->SetVisible(hasSelected && !inCodex && !inProgress && !finalized);
+    acceptButton_->SetEnabled(hasSelected && !inCodex && selected->active && !inProgress && !finalized);
+    cancelButton_->SetVisible(!inCodex && inProgress && !selected->complete);
+    cancelButton_->SetEnabled(!inCodex && inProgress && !selected->complete);
+    rewardButton_->SetVisible(!inCodex && inProgress && selected->complete);
+    rewardButton_->SetEnabled(!inCodex && inProgress && selected->complete);
+    trackButton_->SetVisible(!inCodex && inProgress);
+    trackButton_->SetEnabled(!inCodex && inProgress);
+    trackButton_->SetText(inProgress && selected && selected->tracked ? "Rastreando" : "Rastrear");
+
+    Button* detailButtons[] = {summaryTab_, loreTab_, objectivesTab_, npcsTab_, mapsTab_, rewardsTab_};
+    for (Button* button : detailButtons)
+        if (button) button->SetVisible(hasSelected);
+    if (summaryTab_) summaryTab_->SetSelected(detailTab_ == QuestDetailTab::Summary);
+    if (loreTab_) loreTab_->SetSelected(detailTab_ == QuestDetailTab::Lore);
+    if (objectivesTab_) objectivesTab_->SetSelected(detailTab_ == QuestDetailTab::Objectives);
+    if (npcsTab_) npcsTab_->SetSelected(detailTab_ == QuestDetailTab::Npcs);
+    if (mapsTab_) mapsTab_->SetSelected(detailTab_ == QuestDetailTab::Maps);
+    if (rewardsTab_) rewardsTab_->SetSelected(detailTab_ == QuestDetailTab::Rewards);
 }
 
 int QuestJournalWindow::MaxListScroll() const noexcept
@@ -268,8 +450,7 @@ int QuestJournalWindow::MaxListScroll() const noexcept
     int contentHeight = 0;
     for (const auto& section : snapshot_.sections)
     {
-        const bool progress = section.progressGroup || section.finalizedGroup;
-        if ((tab_ == JournalTab::Progress) != progress)
+        if (!SectionVisible(section))
             continue;
         contentHeight += SectionHeaderHeight + std::max(1, static_cast<int>(section.quests.size())) * QuestRowHeight + 6;
     }
@@ -282,8 +463,8 @@ int QuestJournalWindow::MaxDetailsScroll() const noexcept
     if (!selected)
         return 0;
     const int detailsWidth = std::max(160, Bounds().width - 334 - 30);
-    const int detailsHeight = std::max(1, Bounds().height - 126);
-    const auto lines = BuildDetailLines(*selected, detailsWidth - 26);
+    const int detailsHeight = std::max(1, Bounds().height - 158);
+    const auto lines = BuildDetailLines(*selected, detailsWidth - 26, detailTab_);
     return std::max(0, static_cast<int>(lines.size()) * DetailLineHeight - detailsHeight + 18);
 }
 
@@ -296,8 +477,7 @@ void QuestJournalWindow::BuildVisibleRows()
 
     for (const auto& section : snapshot_.sections)
     {
-        const bool progress = section.progressGroup || section.finalizedGroup;
-        if ((tab_ == JournalTab::Progress) != progress)
+        if (!SectionVisible(section))
             continue;
         y += SectionHeaderHeight;
         if (section.quests.empty())
@@ -359,6 +539,7 @@ UIEventResult QuestJournalWindow::OnEvent(const UIEvent& event)
                 if (gateway_.SelectQuest(row.sectionId, row.questId))
                 {
                     detailsScroll_ = 0;
+                    detailTab_ = QuestDetailTab::Summary;
                     Refresh();
                 }
                 return UIEventResult::Handled;
@@ -381,8 +562,7 @@ void QuestJournalWindow::DrawList(UIRenderContext& context)
     int y = list.y - listScroll_;
     for (const auto& section : snapshot_.sections)
     {
-        const bool progress = section.progressGroup || section.finalizedGroup;
-        if ((tab_ == JournalTab::Progress) != progress)
+        if (!SectionVisible(section))
             continue;
 
         const Rect header{list.x + 1, y, list.width - 2, SectionHeaderHeight};
@@ -454,8 +634,8 @@ void QuestJournalWindow::DrawDetails(UIRenderContext& context)
         return;
     }
 
-    const Rect content{details.x + 12, details.y + 10, details.width - 24, details.height - 18};
-    const auto lines = BuildDetailLines(*selected, content.width - 8);
+    const Rect content{details.x + 12, details.y + 40, details.width - 24, details.height - 48};
+    const auto lines = BuildDetailLines(*selected, content.width - 8, detailTab_);
     renderer.PushClip(content);
     int y = content.y - detailsScroll_;
     for (const auto& line : lines)
@@ -470,7 +650,7 @@ void QuestJournalWindow::DrawDetails(UIRenderContext& context)
     const int maxScroll = MaxDetailsScroll();
     if (maxScroll > 0)
     {
-        const Rect track{details.x + details.width - 6, details.y + 8, 2, details.height - 16};
+        const Rect track{details.x + details.width - 6, details.y + 40, 2, details.height - 48};
         renderer.DrawRect(track, UITheme::BorderSoft);
         const int thumbHeight = std::max(24, details.height * details.height / (details.height + maxScroll));
         const int travel = std::max(0, track.height - thumbHeight);

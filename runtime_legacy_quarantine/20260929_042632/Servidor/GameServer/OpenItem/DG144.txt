@@ -1,0 +1,62 @@
+//ID
+*코드 "DG144"
+
+//Korean Name
+*이름 "Luvas Drax"
+
+//English Name
+*Name "Luvas Drax"
+
+//Defense
+*방어력 268 285
+
+//Absorption
+*흡수력 17.6 17.9
+
+//OrganicResistance
+*생체 5 8
+
+//FireResistance
+*불 5 8
+
+//FrostResistance
+*냉기 5 8
+
+//LightningResistance
+*번개 5 8
+
+//PoisonResistance
+*독 5 8
+
+//Integrity
+*내구력 286 295
+
+//Level
+*레벨 146
+
+//Strength
+*힘 100
+
+//Talent
+*재능 83
+
+//Agility
+*민첩성 83
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecDefense
+**방어력 84 92
+
+//SpecAbsorption
+**흡수력 1.8 2.1
+
+//Weight
+*무게 143
+
+//Price
+*가격 1800000
+
+//Name File
+*연결파일 "Name\DG144.zhoon"

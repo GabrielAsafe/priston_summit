@@ -1,0 +1,125 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\mountain\b_mountain.ini"
+
+//Name
+*이름 "Montanha Azul"
+
+//Level
+*레벨 90
+
+//Size
+*모델크기 2.3
+
+//ShowAllDrops
+*아이템모두
+
+//EventCode
+*계급 1
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 400
+
+//HP
+*생명력 30000
+
+//AttackPower
+*공격력 300 330
+
+//AttackRating
+*명중력 1700
+
+//AttackSpeed
+*공격속도 8
+
+//AttackRange
+*공격범위 150
+
+//SkillPower
+*기술공격력 440 550
+
+//SkillRating
+*기술공격률 30
+
+//SkillRange
+*기술공격범위 100
+
+//SkillDistance
+*기술공격거리 100
+
+//Defense
+*방어력 1200
+
+//Absorption
+*흡수율 75
+
+//Organic
+*생체 90
+
+//Lightning
+*번개 20
+
+//Ice
+*얼음 50
+
+//Fire
+*불 50
+
+//Poison
+*독 50
+
+//Race
+*몬스터종족 노멀
+
+//ShadowSize
+*크기 소형
+
+//Experience
+*경험치 1100000
+
+//Sound
+*효과음 BLUEMOUNTAIN
+
+//DropsNumber
+*아이템카운터 8
+
+//Drop
+*아이템 202 SE101
+
+//Drop
+*아이템 168 OS108
+
+//Drop
+*아이템 84 OS109
+
+//Drop
+//*아이템 42 OS110
+
+//Drop
+//*아이템 3477 WA113 WC113 WH114 WM114 WP114 WS115 WS216 WT114 OA117 OA213 OM114 OR117 DA115 DA215 DB113 DG113 DS113
+
+//Drop
+//*아이템 2718 WA114 WC114 WH115 WM115 WP115 WS116 WS217 WT115 OA118 OA214 OM115 OR118 DA116 DA216 DB114 DG114 DS114
+
+//Drop
+*아이템 1812 WA115 WC115 WH116 WM116 WP116 WS117 WS218 WT116 OA119 OA215 OM116 OR119 DA117 DA217 DB115 DG115 DS115
+
+//Drop
+*아이템 906 WA116 WC116 WH117 WM117 WP117 WS118 WS219 WT117 OA120 OA216 OM117 OR120 DA118 DA218 DB116 DG116 DS116
+
+//Drop
+//*아이템 302 WA117 WC117 WH118 WM118 WP118 WS119 WS220 WT118 OA121 OA217 OM118 OR121 DA119 DA219 DB117 DG117 DS117
+
+//Drop
+*아이템 20 RS101 RS102 RS103 RS104 RS105 RS106 RS107 RS108
+
+//DropBrinco
+*아이템 60 OE102
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

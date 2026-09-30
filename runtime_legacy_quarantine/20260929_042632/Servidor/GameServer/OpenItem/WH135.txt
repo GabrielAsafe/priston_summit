@@ -1,0 +1,62 @@
+//ID
+*코드 "WH135"
+
+//Korean Name
+*이름 "Martelo Imperial"
+
+//English Name
+*Name "Martelo Imperial"
+
+//AttackPower
+*공격력 114 117 127 130
+
+//AttackRating
+*명중력 321 330
+
+//AttackSpeed
+*공격속도 8
+
+//AttackCritical
+*크리티컬 22
+
+//Block
+*블럭율 15.0 15.0
+
+//Integrity
+*내구력 280 300
+
+//Level
+*레벨 1
+
+//Strength
+*힘 1
+
+//Talent
+*재능 1
+
+//PrimarySpec
+**특화 Mechanician
+
+//SecondarySpec
+**특화랜덤 Fighter Pikeman Knight
+
+//SpecAttackPower
+**공격력 7 7
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 5
+
+//Weight
+*무게 1
+
+//Price
+*가격 2080000
+
+//Name File
+*연결파일 "Name\WH135.zhoon"

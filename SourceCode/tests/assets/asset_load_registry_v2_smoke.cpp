@@ -11,8 +11,8 @@ int main()
     AssetLoadPolicy policy = AssetLoadPolicy::Defaults();
     policy.maxTransientFailures = 3;
     policy.residentBudgetBytes = 100;
-    assert(policy.globalPrewarmLimit == 64u);
-    assert(policy.scopedPrewarmLimit == 128u);
+    assert(policy.globalPrewarmLimit == 32u);
+    assert(policy.scopedPrewarmLimit == 32u);
     assert(policy.maxExternalRuntimeDimension == 2048u);
     registry.SetPolicy(policy);
 

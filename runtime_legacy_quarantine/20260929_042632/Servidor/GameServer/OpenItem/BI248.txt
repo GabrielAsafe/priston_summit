@@ -1,0 +1,17 @@
+//ID
+*코드 "BI248"
+
+//Korean Name
+*이름 "Po豫o de Cabelo T"
+
+//English Name
+*Name "Po豫o de Cabelo T"
+
+//Weight
+*무게 1
+
+//Price
+*가격 100000
+
+//Name File
+*연결파일 "Name\BI248.zhoon"

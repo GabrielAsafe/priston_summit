@@ -1,3 +1,23 @@
+// =============================================================================
+// MAPA DO MONOLITO LEGACY - SERVER CHARACTER CORE
+//
+// Este mapa e apenas documental. O ficheiro permanece RED e no mesmo local;
+// os separadores abaixo nao alteram ownership, ordem de execucao ou ABI.
+// FUNCIONAMENTO GERAL: Kernel de smCHAR no servidor: movimento, motion state, combate, AI legacy e serializacao. Features modernas devem consumir snapshots/services, nao smCHAR diretamente.
+//
+// AREAS PRINCIPAIS:
+//   AREA 01 - MATH / RESISTENCIA / HELPERS
+//   AREA 02 - PATTERN / MODEL LOADING
+//   AREA 03 - POSITION / MOVEMENT / MOTION
+//   AREA 04 - COMBAT / ATTACK / SKILL EVENTS
+//   AREA 05 - MAIN SIMULATION TICK
+//   AREA 06 - RENDER/SUPPORT LEGACY
+//   AREA 07 - NETWORK SERIALIZATION / PLAYER INFO
+//   AREA 08 - STATUS / TIMERS / EVENT SKILLS
+//
+// Desenvolvimento novo deve usar contracts/ports/adapters AMBER existentes.
+// =============================================================================
+
 #include <algorithm>
 #include <cstring>
 #include "systems/network/protocol/server/opcodes.h"
@@ -7,7 +27,7 @@
 #include "systems/network/transport/legacy/smwsock.h"
 
 #include "systems/gameplay/character/core/character.h"
-#include "systems/gameplay/companions/CompanionSystem.h"
+#include "systems/gameplay/companions/v2/legacy/CompanionLegacyCharacterHooks.h"
 #include "systems/audio/playback/legacy/Dxwav.h"
 #include "systems/rendering/effects/particle_legacy/particle.h"
 #include "core/data/legacy_loader/fileread.h"
@@ -1819,6 +1839,14 @@ int smCHAR::SetTool(DWORD dwItemCode, int hvPosi)
 	return TRUE;
 }
 
+// =============================================================================
+// AREA 03 - POSITION / MOVEMENT
+// TIPO: world + movement
+// FUNCIONAMENTO: Atualiza posicao/orientacao e estado de movimento da entidade legacy.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
+
 int smCHAR::SetPosi(int x, int y, int z, int angX, int angY, int angZ)
 {
 	int sy;
@@ -3263,6 +3291,14 @@ int smCHAR::ChargingSkill()
 }
 
 
+// =============================================================================
+// AREA 04 - COMBAT / ATTACK EVENTS
+// TIPO: combate
+// FUNCIONAMENTO: Executa eventos de ataque ligados aos frames/motions legacy e aos efeitos associados.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
+
 int smCHAR::EventAttack(int Flag)
 {
 	int shootFlag;
@@ -4429,6 +4465,14 @@ int smCHAR::EventAttack(int Flag)
 
 	return TRUE;
 }
+
+// =============================================================================
+// AREA 05 - MAIN SIMULATION TICK
+// TIPO: character + world + combat
+// FUNCIONAMENTO: Tick principal de smCHAR: motion, deslocamento, target/AI, timers, combat events, leash e lifecycle.
+// FRONTEIRA: RED character kernel; boundaries modernas leem snapshots e emitem commands/hooks.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 int smCHAR::Main()
 {
@@ -10400,6 +10444,14 @@ int smCHAR::FormSetPlayerInfo()
 }
 
 
+// =============================================================================
+// AREA 07 - NETWORK SERIALIZATION
+// TIPO: rede + character
+// FUNCIONAMENTO: Traduz estado da entidade para os records/packets legacy de player info.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
+
 int smCHAR::SetTransPlayerInfo(smTRNAS_PLAYERINFO *lpTransPlayerInfo)
 {
 	memcpy(&smCharInfo, &lpTransPlayerInfo->smCharInfo, sizeof(smCHAR_INFO));
@@ -13567,6 +13619,14 @@ int smCHAR::EndSkill()
 	return TRUE;
 }
 
+
+// =============================================================================
+// AREA 08 - EVENT SKILLS / STATUS
+// TIPO: skills + combat
+// FUNCIONAMENTO: Executa efeitos de skill dependentes de motion/event frames e estado legacy da entidade.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 int smCHAR::EventSkill()
 {

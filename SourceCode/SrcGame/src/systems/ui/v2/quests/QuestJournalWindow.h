@@ -12,6 +12,16 @@ namespace ui::v2
 class Button;
 class ConfirmationOverlay;
 
+enum class QuestDetailTab
+{
+    Summary,
+    Lore,
+    Objectives,
+    Npcs,
+    Maps,
+    Rewards
+};
+
 class QuestJournalWindow final : public Window
 {
 public:
@@ -33,7 +43,8 @@ private:
     enum class JournalTab
     {
         Available,
-        Progress
+        Progress,
+        Codex
     };
 
     struct VisibleQuestRow
@@ -48,6 +59,8 @@ private:
     void Refresh();
     void RefreshButtons();
     void SetTab(JournalTab tab);
+    void SetDetailTab(QuestDetailTab tab);
+    [[nodiscard]] bool SectionVisible(const QuestSectionSnapshot& section) const noexcept;
     [[nodiscard]] const QuestEntrySnapshot* SelectedQuest() const noexcept;
     [[nodiscard]] int MaxListScroll() const noexcept;
     [[nodiscard]] int MaxDetailsScroll() const noexcept;
@@ -58,8 +71,16 @@ private:
     IQuestGateway& gateway_;
     QuestJournalSnapshot snapshot_{};
     JournalTab tab_ = JournalTab::Available;
+    QuestDetailTab detailTab_ = QuestDetailTab::Summary;
     Button* availableTab_ = nullptr;
     Button* progressTab_ = nullptr;
+    Button* codexTab_ = nullptr;
+    Button* summaryTab_ = nullptr;
+    Button* loreTab_ = nullptr;
+    Button* objectivesTab_ = nullptr;
+    Button* npcsTab_ = nullptr;
+    Button* mapsTab_ = nullptr;
+    Button* rewardsTab_ = nullptr;
     Button* acceptButton_ = nullptr;
     Button* cancelButton_ = nullptr;
     Button* rewardButton_ = nullptr;

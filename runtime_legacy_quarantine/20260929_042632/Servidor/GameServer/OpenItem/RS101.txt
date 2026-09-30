@@ -1,0 +1,17 @@
+//ID
+*코드 "RS101"
+
+//Korean Name
+*이름 "Pedra de Respec FS"
+
+//English Name
+*Name "Pedra de Respec FS"
+
+//Weight
+*무게 1
+
+//Price
+*가격 50000
+
+//Name File
+*연결파일 "Name\RS101.zhoon"

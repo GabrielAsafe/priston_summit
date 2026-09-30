@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "PR101"
+
+//Korean Name
+*ÀÌ¸§ "Minério de Ametista"
+
+//English Name
+*Name "Minério de Ametista"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\PR101.zhoon"

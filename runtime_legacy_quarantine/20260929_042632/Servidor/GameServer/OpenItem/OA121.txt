@@ -1,0 +1,35 @@
+//ID
+*ÄÚµå "OA121"
+
+//Korean Name
+*ÀÌ¸§ "Colar Místico"
+
+//English Name
+*Name "Colar Místico"
+
+//HP
+*»ý¸í·ÂÃß°¡ 20 28
+
+//MP
+*±â·ÂÃß°¡ 34 40
+
+//Level
+*·¹º§ 85
+
+//Spirit
+*Á¤½Å·Â 80
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecMPRegen
+**±â·ÂÀç»ý 0.4 0.7
+
+//Weight
+*¹«°Ô 6
+
+//Price
+*°¡°Ý 60000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\OA121.zhoon"

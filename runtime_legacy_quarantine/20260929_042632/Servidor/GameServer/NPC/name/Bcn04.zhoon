@@ -1,0 +1,8 @@
+//Bcn04.npc
+
+*J_NAME			"Vendedora Rosa"
+
+*J_CHAT			"Eu sou a irmã mais nova das vendedoras do local."
+*J_CHAT                   "Compre sempre comigo!"
+*J_CHAT                   "Eu tenho poções suficientes à venda. Dê uma olhada."
+*J_CHAT                   "Minhas irmãs e eu pretendemos abrir uma grande loja na cidade."

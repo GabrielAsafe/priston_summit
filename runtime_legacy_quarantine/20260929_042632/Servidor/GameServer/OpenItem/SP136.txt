@@ -1,0 +1,14 @@
+//ID
+*코드 "SP136"
+
+//Korean Name
+*이름 "Evento Doce"
+
+//English Name
+*Name "Evento Doce"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\SP136.zhoon"

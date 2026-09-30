@@ -17,7 +17,7 @@
     "fields": {
       "state": "적",
       "model_file": "char\\monster\\deadzone\\deadzone.ini",
-      "name": "R6 Morte S?ita",
+      "name": "R6 Morte Súbita",
       "level": 80,
       "model_scale": 1.0,
       "generate_group": [

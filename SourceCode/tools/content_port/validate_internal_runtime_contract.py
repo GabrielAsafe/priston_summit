@@ -9,7 +9,10 @@ RUNTIME_FILES = (
     'Shared/content/v1/text_resource/content/TextResourceRuntime.h',
     'Shared/content/v1/localization/content/LocalizationRuntime.h',
     'Shared/content/v1/gameplay_config/content/GameplayConfigRuntime.h',
+    'Shared/content/v1/gameplay_reference/content/GameplayReferenceRuntime.h',
     'Shared/content/v1/stage_spawn/legacy/LegacyStageSpawnAdapter.h',
+    'Shared/server/legacy_runtime/OnSever_legacy_client.inl',
+    'Shared/server/legacy_runtime/OnSever_legacy_server.inl',
     'Shared/world/field/field_legacy_client.inl',
     'Shared/world/field/field_legacy_server.inl',
 )
@@ -46,13 +49,29 @@ def main() -> int:
         errors.append('server map runtime does not resolve maps_server.smap internally')
 
     stage = texts.get('Shared/content/v1/stage_spawn/legacy/LegacyStageSpawnAdapter.h', '')
-    if 'ResolveRuntimePackPath("stage_spawns.sspb")' not in stage:
-        errors.append('stage-spawn runtime does not resolve stage_spawns.sspb internally')
+    if 'ResolveRuntimePackPath("field_runtime.sfld")' not in stage:
+        errors.append('stage-spawn runtime does not resolve field_runtime.sfld internally')
+
+
+    for rel in ('Shared/server/legacy_runtime/OnSever_legacy_client.inl', 'Shared/server/legacy_runtime/OnSever_legacy_server.inl'):
+        text = texts.get(rel, '')
+        if text and 'ResolveRuntimePackPath("field_runtime.sfld")' not in text:
+            errors.append(f'field placement runtime does not resolve field_runtime.sfld internally: {rel}')
+        for forbidden in ('fread(StartPoint,', 'fread(TransCharFixed,'):
+            if forbidden in text:
+                errors.append(f'legacy SPP/SPC runtime read remains active in {rel}: {forbidden}')
+        for forbidden in ('fwrite(StartPoint,', 'fwrite(TransCharFixed,'):
+            if forbidden in text:
+                errors.append(f'legacy SPP/SPC runtime write remains active in {rel}: {forbidden}')
+        for forbidden in ('OpenNpc(lpFindPlayerInfo);', 'SaveStartPoint(szStartPointFile);', 'SaveCharInfoFixed(szCharFixedFile);'):
+            if forbidden in text:
+                errors.append(f'legacy live field authoring remains active in {rel}: {forbidden}')
 
     expected = {
         'Shared/content/v1/text_resource/content/TextResourceRuntime.h': 'ResolveRuntimePackPath("text_resources.sres")',
         'Shared/content/v1/localization/content/LocalizationRuntime.h': 'ResolveRuntimePackPath("localization.sloc")',
         'Shared/content/v1/gameplay_config/content/GameplayConfigRuntime.h': 'ResolveRuntimePackPath("gameplay_config.sgcf")',
+        'Shared/content/v1/gameplay_reference/content/GameplayReferenceRuntime.h': 'ResolveRuntimePackPath("gameplay_reference.sgrf")',
     }
     for rel, needle in expected.items():
         if needle not in texts.get(rel, ''):

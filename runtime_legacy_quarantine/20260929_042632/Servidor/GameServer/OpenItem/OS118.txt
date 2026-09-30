@@ -1,0 +1,34 @@
+//		¾ÆÀÌÅÛ Á¤º¸		//
+
+
+*ÀÌ¸§	"Shelton Guardião"
+*Name	"Shelton Guardião"
+*ÄÚµå	"OS118"
+
+//HPRegen
+*»ı¸í·ÂÀç»ı 2.6 2.8
+
+//MPRegen
+*±â·ÂÀç»ı 2.3 2.6
+
+//Level
+*·¹º§ 100
+
+//Spirit
+*Á¤½Å·Â 45
+
+//SecondarySpec
+**Æ¯È­·£´ı Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecHPRegen
+**»ı¸í·ÂÀç»ı 1.3 1.8
+
+//SpecMPRegen
+**±â·ÂÀç»ı 1.7 2.0
+
+//Weight
+*¹«°Ô 2
+
+//Price
+*°¡°İ 1000
+*¿¬°áÆÄÀÏ		"name\OS118.zhoon"

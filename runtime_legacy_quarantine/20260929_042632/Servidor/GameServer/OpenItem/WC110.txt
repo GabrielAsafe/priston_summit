@@ -1,0 +1,65 @@
+//ID
+*코드 "WC110"
+
+//Korean Name
+*이름 "Garra Hidra"
+
+//English Name
+*Name "Garra Hidra"
+
+//AttackPower
+*공격력 14 17 24 27
+
+//AttackRating
+*명중력 80 95
+
+//AttackSpeed
+*공격속도 7
+
+//AttackCritical
+*크리티컬 10
+
+//Defense
+*방어력 30 35
+
+//Integrity
+*내구력 50 75
+
+//Level
+*레벨 50
+
+//Strength
+*힘 90
+
+//Talent
+*재능 61
+
+//Agility
+*민첩성 61
+
+//PrimarySpec
+**특화 Mechanician
+
+//SecondarySpec
+**특화랜덤 Fighter Pikeman Knight Atalanta
+
+//SpecAttackPower
+**공격력 7 7
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 3
+
+//Weight
+*무게 23
+
+//Price
+*가격 32000
+
+//Name File
+*연결파일 "Name\WC110.zhoon"

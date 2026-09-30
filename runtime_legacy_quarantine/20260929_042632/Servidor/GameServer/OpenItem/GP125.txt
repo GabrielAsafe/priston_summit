@@ -1,0 +1,17 @@
+//ID
+*코드 "GP125"
+
+//Korean Name
+*이름 "Cristal Wyvern"
+
+//English Name
+*Name "Cristal Wyvern"
+
+//Level
+*레벨 20
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\GP125.zhoon"

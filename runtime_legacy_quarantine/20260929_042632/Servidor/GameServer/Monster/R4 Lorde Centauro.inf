@@ -1,0 +1,69 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\monavelrisk\monavelrisk-mass.ini"
+
+//Name
+*이름 "R4 Lorde Centauro"
+
+//Level
+*레벨 71
+
+//Size
+*모델크기 1.0
+
+//QuestCode
+*구별코드 38
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 380
+
+//HP
+*생명력 1700
+
+//AttackPower
+*공격력 75 94
+
+//AttackRating
+*명중력 1080
+
+//AttackSpeed
+*공격속도 8
+
+//AttackRange
+*공격범위 85
+
+//Defense
+*방어력 600
+
+//Absorption
+*흡수율 17
+
+//Block
+*블럭율 15
+
+//Stun
+*스턴율 80
+
+//MoveSpeed
+*이동력 3
+
+//Race
+*몬스터종족 뮤턴트
+
+//ShadowSize
+*크기 대형
+
+//Experience
+*경험치 60000
+
+//Sound
+*효과음 AVELISK
+
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

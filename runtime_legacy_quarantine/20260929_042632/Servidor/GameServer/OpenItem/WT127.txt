@@ -1,0 +1,65 @@
+//ID
+*ÄÚµå "WT127"
+
+//Korean Name
+*ÀÌ¸§ "Lança Mitológica"
+
+//English Name
+*Name "Lança Mitológica"
+
+//AttackPower
+*°ø°Ý·Â 97 101 117 120
+
+//AttackRange
+*»çÁ¤°Å¸® 255
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 8
+
+//AttackRating
+*¸íÁß·Â 186 206
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 17
+
+//Integrity
+*³»±¸·Â 175 199
+
+//Level
+*·¹º§ 118
+
+//Strength
+*Èû 82
+
+//Talent
+*Àç´É 100
+
+//Agility
+*¹ÎÃ¸¼º 176
+
+//PrimarySpec
+**Æ¯È­ Atalanta
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Archer
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 6
+
+//SpecAttackRange
+**»çÁ¤°Å¸® 25
+
+//Weight
+*¹«°Ô 53
+
+//Price
+*°¡°Ý 1480000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WT127.zhoon"

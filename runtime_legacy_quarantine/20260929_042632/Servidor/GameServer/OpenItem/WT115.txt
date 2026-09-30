@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "WT115"
+
+//Korean Name
+*ÀÌ¸§ "Lança Link"
+
+//English Name
+*Name "Lança Link"
+
+//AttackPower
+*°ø°Ý·Â 20 23 31 34
+
+//AttackRange
+*»çÁ¤°Å¸® 230
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackRating
+*¸íÁß·Â 82 104
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 9
+
+//Integrity
+*³»±¸·Â 65 91
+
+//Level
+*·¹º§ 70
+
+//Strength
+*Èû 70
+
+//Talent
+*Àç´É 80
+
+//Agility
+*¹ÎÃ¸¼º 112
+
+//PrimarySpec
+**Æ¯È­ Atalanta
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Archer
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 6
+
+//Weight
+*¹«°Ô 11
+
+//Price
+*°¡°Ý 77000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WT115.zhoon"

@@ -1,0 +1,59 @@
+//ID
+*코드 "DA117"
+
+//Korean Name
+*이름 "Armadura Antiga"
+
+//English Name
+*Name "Armadura Antiga"
+
+//Defense
+*방어력 260 290
+
+//Absorption
+*흡수력 11.1 11.5
+
+//OrganicResistance
+*생체 5 12
+
+//FireResistance
+*불 5 12
+
+//FrostResistance
+*냉기 5 12
+
+//LightningResistance
+*번개 5 12
+
+//PoisonResistance
+*독 5 12
+
+//Integrity
+*내구력 125 160
+
+//Level
+*레벨 75
+
+//Strength
+*힘 172
+
+//Talent
+*재능 80
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**방어력 36 50
+
+//SpecAbsorption
+**흡수력 0.8 1.3
+
+//Weight
+*무게 90
+
+//Price
+*가격 280000
+
+//Name File
+*연결파일 "Name\DA117.zhoon"

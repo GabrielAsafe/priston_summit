@@ -1,0 +1,18 @@
+{
+  "schema": "summit.stage-start-points/v1",
+  "id": "start_points.ruin_arenasf",
+  "logical_path": "GameServer/Field/ruin-arenaSF.ASE.spp",
+  "points": [
+    {
+      "slot": 0,
+      "state": 1,
+      "x": -45500,
+      "z": -23599
+    }
+  ],
+  "provenance": {
+    "source": "GameServer/Field/ruin-arenaSF.ASE.spp",
+    "legacy_size": 2400,
+    "legacy_sha256": "b79838cf6f0b72bddf1dce5a7ecf4ed3ea5ace16bc15920b7a16a3cba7aa712b"
+  }
+}

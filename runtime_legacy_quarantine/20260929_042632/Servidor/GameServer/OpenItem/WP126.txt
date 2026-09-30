@@ -1,0 +1,62 @@
+//ID
+*코드 "WP126"
+
+//Korean Name
+*이름 "Foice Negra"
+
+//English Name
+*Name "Foice Negra"
+
+//AttackPower
+*공격력 76 79 123 126
+
+//AttackRating
+*명중력 217 240
+
+//AttackSpeed
+*공격속도 8
+
+//AttackCritical
+*크리티컬 20
+
+//Block
+*블럭율 18.0 18.0
+
+//Integrity
+*내구력 185 205
+
+//Level
+*레벨 115
+
+//Strength
+*힘 205
+
+//Talent
+*재능 95
+
+//PrimarySpec
+**특화 Pikeman
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Atalanta
+
+//SpecAttackPower
+**공격력 6 6
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 4
+
+//Weight
+*무게 91
+
+//Price
+*가격 1370000
+
+//Name File
+*연결파일 "Name\WP126.zhoon"

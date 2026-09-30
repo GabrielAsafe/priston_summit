@@ -1,0 +1,71 @@
+//ID
+*코드 "WS117"
+
+//Korean Name
+*이름 "Arco Antigo"
+
+//English Name
+*Name "Arco Antigo"
+
+//AttackPower
+*공격력 25 27 41 44
+
+//AttackRating
+*명중력 85 120
+
+//AttackRange
+*사정거리 250
+
+//AttackSpeed
+*공격속도 7
+
+//AttackCritical
+*크리티컬 17
+
+//Block
+*블럭율 5.0 5.0
+
+//Integrity
+*내구력 104 126
+
+//Level
+*레벨 75
+
+//Strength
+*힘 70
+
+//Talent
+*재능 80
+
+//Agility
+*민첩성 140
+
+//PrimarySpec
+**특화 Archer
+
+//SecondarySpec
+**특화랜덤 Mechanician Atalanta
+
+//SpecAttackPower
+**공격력 7 7
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackRange
+**사정거리 10
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 2
+
+//Weight
+*무게 42
+
+//Price
+*가격 150000
+
+//Name File
+*연결파일 "Name\WS117.zhoon"

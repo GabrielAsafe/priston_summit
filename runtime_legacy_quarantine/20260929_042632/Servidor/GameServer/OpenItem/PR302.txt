@@ -1,0 +1,14 @@
+//ID
+*코드 "PR302"
+
+//Korean Name
+*이름 "Runa de Prata A"
+
+//English Name
+*Name "Runa de Prata A"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\PR302.zhoon"

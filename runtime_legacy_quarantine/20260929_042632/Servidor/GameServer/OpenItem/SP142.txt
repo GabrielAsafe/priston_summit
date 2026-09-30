@@ -1,0 +1,14 @@
+//ID
+*코드 "SP142"
+
+//Korean Name
+*이름 "Melancia 2"
+
+//English Name
+*Name "Melancia 2"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\SP142.zhoon"

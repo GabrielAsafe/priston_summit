@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "DA215"
+
+//Korean Name
+*ÀÌ¸§ "Roupão Divino"
+
+//English Name
+*Name "Roupão Divino"
+
+//Defense
+*¹æ¾î·Â 160 190
+
+//Absorption
+*Èí¼ö·Â 7.6 8.1
+
+//OrganicResistance
+*»ýÃ¼ 8 14
+
+//FireResistance
+*ºÒ 2 6
+
+//FrostResistance
+*³Ã±â 8 14
+
+//LightningResistance
+*¹ø°³ 2 6
+
+//PoisonResistance
+*µ¶ 8 14
+
+//Integrity
+*³»±¸·Â 74 96
+
+//Level
+*·¹º§ 65
+
+//Spirit
+*Á¤½Å·Â 160
+
+//Talent
+*Àç´É 90
+
+//SecondarySpec
+**Æ¯È­·£´ý Priestess Magician
+
+//SpecDefense
+**¹æ¾î·Â 27 32
+
+//SpecAbsorption
+**Èí¼ö·Â 0.9 1.2
+
+//SpecMPRegen
+**±â·ÂÀç»ý 1.6 2.0
+
+//Weight
+*¹«°Ô 62
+
+//Price
+*°¡°Ý 84000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DA215.zhoon"

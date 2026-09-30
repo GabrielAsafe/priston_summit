@@ -1,0 +1,35 @@
+//ID
+*ÄÚµå "CA706"
+
+//Korean Name
+*ÀÌ¸§ "Roupão Kimono"
+
+//English Name
+*Name "Roupão Kimono"
+
+//Defense
+*¹æ¾î·Â 70 70
+
+//Absorption
+*Èí¼ö·Â 3.0 3.0
+
+//HP
+*»ý¸í·ÂÃß°¡ 70 70
+
+//MP
+*±â·ÂÃß°¡ 70 70
+
+//STM
+*±Ù·ÂÃß°¡ 70 70
+
+//Level
+*·¹º§ 1
+
+//Weight
+*¹«°Ô 1
+
+//Price
+*°¡°Ý 1000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\CA706.zhoon"

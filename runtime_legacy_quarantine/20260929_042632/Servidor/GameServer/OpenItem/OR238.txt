@@ -1,0 +1,11 @@
+//ID
+*코드 "OR238"
+
+//Korean Name
+*이름 "Anel 5"
+
+//English Name
+*Name "Anel 5"
+
+//Name File
+*연결파일 "Name\OR238.zhoon"

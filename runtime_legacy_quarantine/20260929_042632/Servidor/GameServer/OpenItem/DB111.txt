@@ -1,0 +1,62 @@
+//ID
+*코드 "DB111"
+
+//Korean Name
+*이름 "Botas Sagradas"
+
+//English Name
+*Name "Botas Sagradas"
+
+//Defense
+*방어력 50 75
+
+//Absorption
+*흡수력 2.2 2.8
+
+//Speed
+*이동속도 2.3 2.5
+
+//OrganicResistance
+*생체 2 4
+
+//FireResistance
+*불 2 4
+
+//FrostResistance
+*냉기 2 4
+
+//LightningResistance
+*번개 2 4
+
+//PoisonResistance
+*독 2 4
+
+//Integrity
+*내구력 65 85
+
+//Level
+*레벨 55
+
+//Strength
+*힘 60
+
+//Agility
+*민첩성 55
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecAbsorption
+**흡수력 0.5 0.7
+
+//SpecSpeed
+**이동속도 0.4 1
+
+//Weight
+*무게 21
+
+//Price
+*가격 46000
+
+//Name File
+*연결파일 "Name\DB111.zhoon"

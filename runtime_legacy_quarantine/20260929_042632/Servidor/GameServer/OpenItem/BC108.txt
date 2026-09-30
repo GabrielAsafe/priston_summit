@@ -1,0 +1,17 @@
+//ID
+*코드 "BC108"
+
+//Korean Name
+*이름 "Pedra da Revolta Raio"
+
+//English Name
+*Name "Pedra da Revolta Raio"
+
+//Weight
+*무게 1
+
+//Price
+*가격 10000
+
+//Name File
+*연결파일 "Name\BC108.zhoon"

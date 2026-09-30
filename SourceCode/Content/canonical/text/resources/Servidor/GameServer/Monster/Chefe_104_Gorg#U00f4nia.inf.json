@@ -17,7 +17,7 @@
     "fields": {
       "state": "적",
       "model_file": "char\\monster\\gorgon\\gorgon.ini",
-      "name": "Gorg?ia",
+      "name": "Gorgônia",
       "level": 120,
       "model_scale": 2.0,
       "all_see_item": true,

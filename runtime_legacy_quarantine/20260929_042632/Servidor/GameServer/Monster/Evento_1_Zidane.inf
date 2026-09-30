@@ -1,0 +1,74 @@
+//FileType
+*속성 적
+
+*모양파일		"char\monster\Ziddane\world_fran.INI"
+
+*이름	"Zidane"
+
+//Level
+*레벨 60
+
+//Size
+*모델크기 1.2
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 300
+
+//HP
+*생명력 1500
+
+//AttackPower
+*공격력 6 10
+
+//AttackRating
+*명중력 500
+
+//AttackSpeed
+*공격속도 8
+
+//AttackRange
+*공격범위 150
+
+//Defense
+*방어력 100
+
+//Absorption
+*흡수율 45
+
+//MoveSpeed
+*이동력 2
+
+//Lightning
+*번개 50
+
+//Ice
+*얼음 50
+
+//Fire
+*불 50
+
+//Race
+*몬스터종족 노멀
+
+//ShadowSize
+*크기 소형
+
+*효과음	LTechnician
+
+//Exp
+*경험치			100000
+
+//DropsNumber
+*아이템카운터 3
+
+*아이템		0	없음
+*아이템		2000	돈	20000	30000
+*아이템		3000	os106 fo106 os107 fo107 os108 fo108 os109 fo109 os110
+*아이템 	2500 	PS104 PL104 PM104 PM105
+
+
+*연결파일 "Name\Name.zhoon"
+

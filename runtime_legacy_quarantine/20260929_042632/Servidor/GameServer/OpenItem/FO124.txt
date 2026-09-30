@@ -1,0 +1,20 @@
+//ID
+*ÄÚµå "FO124"
+
+//Korean Name
+*ÀÌ¸§ "Força Mágica Sparki"
+
+//English Name
+*Name "Força Mágica Sparki"
+
+//Weight
+*¹«°Ô 2
+
+//Price
+*°¡°Ý 1000
+
+//Level
+*·¹º§ 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\FO124.zhoon"

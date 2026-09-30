@@ -133,6 +133,9 @@ CONCRETE_JOB_ALLOWED_FILES = {
     "SrcGame/src/systems/inventory/legacy/sinInvenTory.cpp",
     "SrcGame/src/systems/network/client/netplay.cpp",
     "SrcServer/src/systems/gameplay/character/core/character.cpp",
+    # Canonical extended skill metadata is itself a legacy skill-content boundary;
+    # concrete owner-class identities are the payload it translates.
+    "Shared/gameplay/skills/v2/legacy/LegacyExtendedSkillMetadata.inl",
 }
 for scan_root in SCAN_ROOTS:
     for path in scan_root.rglob("*"):

@@ -1,0 +1,20 @@
+//ID
+*코드 "GP107"
+
+//Korean Name
+*이름 "Cristal de Rei Hopi"
+
+//English Name
+*Name "Cristal de Rei Hopi"
+
+//Level
+*레벨 50
+
+//Weight
+*무게 1
+
+//Price
+*가격 20000
+
+//Name File
+*연결파일 "Name\GP107.zhoon"

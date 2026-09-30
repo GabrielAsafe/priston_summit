@@ -8,7 +8,7 @@ errors=[]
 def req(label, text, needle):
     if needle not in text: errors.append(f"{label}: missing {needle!r}")
 req('protocol threat flag', proto, 'COMPANION_RUNTIME_STATUS_THREAT = 1u << 4')
-for n in ('HasIncomingCompanionThreat', 'candidate->lpTargetChar == companion',
+for n in ('HasIncomingCompanionThreat', 'ThreatTargetsCompanion(threat, companion)',
           'entry.statusFlags |= protocol::COMPANION_RUNTIME_STATUS_THREAT'):
     req('server threat snapshot', server, n)
 req('HUD aggro marker', hud, 'effects += "  AGGRO"')

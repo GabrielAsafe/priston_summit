@@ -4,11 +4,11 @@
 #include <string>
 #include <vector>
 
+#include "gameplay/core/v2/GameplayIds.h"
 #include "gameplay/gathering/v2/GatheringTypes.h"
 #include "systems/gameplay/gathering/v2/GatheringService.h"
 #include "systems/gameplay/gathering/v2/SQLiteGatheringRepository.h"
 
-struct rsPLAYINFO;
 
 namespace gameplay
 {
@@ -18,7 +18,7 @@ bool InitializeServerGatheringRuntime(std::string* error = 0);
 GatheringService& ServerGatheringService();
 SQLiteGatheringRepository& ServerGatheringRepository();
 
-HarvestResult HarvestGatheringNodeForPlayer(rsPLAYINFO* player,
+HarvestResult HarvestGatheringNodeForPlayer(PlayerId player,
                                              std::uint32_t nodeId,
                                              std::uint64_t nowMilliseconds,
                                              std::uint32_t roll);

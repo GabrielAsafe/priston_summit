@@ -1,0 +1,142 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\tulla\tulla.ini"
+
+//Name
+*이름 "Tulla"
+
+//Level
+*레벨 130
+
+//Size
+*모델크기 1.2
+
+//ShowAllDrops
+*아이템모두
+
+//EventCode
+*계급 1
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 450
+
+//HP
+*생명력 30000
+
+//AttackPower
+*공격력 1000 1300
+
+//AttackRating
+*명중력 3000
+
+//AttackSpeed
+*공격속도 9
+
+//AttackRange
+*공격범위 450
+
+//SkillPower
+*기술공격력 1100 1500
+
+//SkillRating
+*기술공격률 50
+
+//SkillRange
+*기술공격범위 400
+
+//SkillDistance
+*기술공격거리 2
+
+//Defense
+*방어력 1700
+
+//Block
+*블럭율 35
+
+//Stun
+*스턴율 10
+
+//MoveSpeed
+*이동력 1
+
+//Organic
+*생체 100
+
+//Ice
+*얼음 5
+
+//Fire
+*불 10
+
+//Poison
+*독 10
+
+//Race
+*몬스터종족 노멀
+
+//ShadowSize
+*크기 소형
+
+//Experience
+*경험치 13249600
+
+//Sound
+*효과음 TULLA
+
+//DropsNumber
+*아이템카운터 8
+
+//Drop Gold
+*아이템 4000 돈 2000 20000
+
+//Drop Potion
+*아이템 3000 PM104 PM104
+
+//Drop Jera
+*아이템 20 SE101
+
+//Drop Mirage Celesto Devine
+*아이템 200 OS110 OS109 OS108
+
+//Drop Enigma Inferna
+*아이템 30 OS112 OS111
+
+//Drop Ordo Bellum
+*아이템 10 OS114 OS113
+
+//Drop Force
+*아이템 1000 F0108 FO128 FO109 FO129
+
+//Drop Itens 105
+*아이템 3000 WA123 WC123 WH124 WM124 WP124 WS125 WS226 WT124 OA124 OA223 OM125 OR124 DA125 DA225 DB123 DG123 DS123
+
+//Drop Itens 108
+*아이템 2000 DA127 DA227 DS124 DB124 DG124 OA224 OM125 WA124 WA125 WC124 WH125 WH126 WM125 WM126 WP125 WS126 WS227 WS228 WT125
+
+//Drop Itens 115
+*아이템 300 WA126 WC125 WH127 WM127	WP126 WS127 WS229 WT126 DA126 DA226
+
+//Drop Itens 118
+*아이템 100 DA128 DA228 DS125 DB125 DG125 OA225 OM125 WA127 WC126 WH128 WM128 WP127 WS128 WS230 WT127
+
+//Drop Itens Especiais
+*아이템 50 OR201 OS117 OS116 OS118 OR127 OA127 OA128 OE101 OE102 OE103
+
+//Drop Amuleto Tulla
+*아이템 50 OA126
+
+// 10000 - 100%
+// 1000 - 10%
+// 500 - 5%
+// 100 - 1%
+// 50 - 0,5%
+// 10 - 0,1%
+// 5 - 0,05%
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

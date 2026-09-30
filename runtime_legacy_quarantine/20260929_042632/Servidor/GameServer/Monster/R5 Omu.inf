@@ -1,0 +1,65 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\omu\omu.ini"
+
+//Name
+*이름 "R5 Omu"
+
+//Level
+*레벨 70
+
+//Size
+*모델크기 1.0
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 350
+
+//HP
+*생명력 2200
+
+//AttackPower
+*공격력 74 90
+
+//AttackRating
+*명중력 1180
+
+//AttackSpeed
+*공격속도 8
+
+//AttackRange
+*공격범위 80
+
+//Defense
+*방어력 580
+
+//Absorption
+*흡수율 12
+
+//Block
+*블럭율 8
+
+//Stun
+*스턴율 70
+
+//MoveSpeed
+*이동력 5
+
+//Race
+*몬스터종족 노멀
+
+//ShadowSize
+*크기 중대형
+
+//Experience
+*경험치 77000
+
+//Sound
+*효과음 OMU
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

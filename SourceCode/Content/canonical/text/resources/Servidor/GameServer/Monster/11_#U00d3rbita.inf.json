@@ -17,7 +17,7 @@
     "fields": {
       "state": "적",
       "model_file": "char\\monster\\moneye\\eye.ini",
-      "name": "?bita",
+      "name": "Órbita",
       "level": 11,
       "model_scale": 1.0,
       "generate_group": [

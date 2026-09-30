@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "PR207"
+
+//Korean Name
+*ÀÌ¸§ "Relíquia de Rubi"
+
+//English Name
+*Name "Relíquia de Rubi"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\PR207.zhoon"

@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "WT104"
+
+//Korean Name
+*ÀÌ¸§ "Lança de Aço"
+
+//English Name
+*Name "Lança de Aço"
+
+//AttackPower
+*°ø°Ý·Â 4 5 6 7
+
+//AttackRange
+*»çÁ¤°Å¸® 195
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackRating
+*¸íÁß·Â 40 48
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 4
+
+//Integrity
+*³»±¸·Â 29 37
+
+//Level
+*·¹º§ 6
+
+//Strength
+*Èû 30
+
+//Talent
+*Àç´É 26
+
+//PrimarySpec
+**Æ¯È­ Atalanta
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Archer
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 3
+
+//SpecAttackRange
+**»çÁ¤°Å¸® 10
+
+//Weight
+*¹«°Ô 4
+
+//Price
+*°¡°Ý 1200
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WT104.zhoon"

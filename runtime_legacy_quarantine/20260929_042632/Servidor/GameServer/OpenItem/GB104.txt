@@ -1,0 +1,17 @@
+//ID
+*코드 "GB104"
+
+//Korean Name
+*이름 "Barra de Diamante"
+
+//English Name
+*Name "Barra de Diamante"
+
+//Weight
+*무게 1
+
+//Price
+*가격 25000000
+
+//Name File
+*연결파일 "Name\GB104.zhoon"

@@ -1,0 +1,62 @@
+//ID
+*코드 "DB118"
+
+//Korean Name
+*이름 "Botas Encantadas"
+
+//English Name
+*Name "Botas Encantadas"
+
+//Defense
+*방어력 113 125
+
+//Absorption
+*흡수력 6.8 7.1
+
+//Speed
+*이동속도 3.6 4.0
+
+//OrganicResistance
+*생체 3 5
+
+//FireResistance
+*불 3 5
+
+//FrostResistance
+*냉기 3 5
+
+//LightningResistance
+*번개 3 5
+
+//PoisonResistance
+*독 3 5
+
+//Integrity
+*내구력 100 120
+
+//Level
+*레벨 80
+
+//Strength
+*힘 90
+
+//Agility
+*민첩성 90
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecAbsorption
+**흡수력 0.5 0.8
+
+//SpecSpeed
+**이동속도 0.5 0.8
+
+//Weight
+*무게 33
+
+//Price
+*가격 280000
+
+//Name File
+*연결파일 "Name\DB118.zhoon"

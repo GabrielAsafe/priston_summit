@@ -1,0 +1,11 @@
+//ID
+*코드 "OR234"
+
+//Korean Name
+*이름 "Anel 1"
+
+//English Name
+*Name "Anel 1"
+
+//Name File
+*연결파일 "Name\OR234.zhoon"

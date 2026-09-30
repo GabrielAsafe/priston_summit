@@ -1,0 +1,29 @@
+//ID
+*코드 "DB134"
+
+//Korean Name
+*이름 "Botas da Velocidade 1h"
+
+//English Name
+*Name "Botas da Velocidade 1h"
+
+//Defense
+*방어력 115 115
+
+//Absorption
+*흡수력 7.5 7.5
+
+//Speed
+*이동속도 12.0 12.0
+
+//Level
+*레벨 10
+
+//Weight
+*무게 1
+
+//Price
+*가격 100000
+
+//Name File
+*연결파일 "Name\DB134.zhoon"

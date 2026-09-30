@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "PR208"
+
+//Korean Name
+*ÀÌ¸§ "Relíquia de Esmeralda"
+
+//English Name
+*Name "Relíquia de Esmeralda"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\PR208.zhoon"

@@ -1,0 +1,65 @@
+//ID
+*코드 "DS114"
+
+//Korean Name
+*이름 "Escudo Extremo"
+
+//English Name
+*Name "Escudo Extremo"
+
+//Defense
+*방어력 95 123
+
+//Absorption
+*흡수력 5.0 5.3
+
+//Block
+*블럭율 17.0 19.0
+
+//OrganicResistance
+*생체 2 5
+
+//FireResistance
+*불 2 5
+
+//FrostResistance
+*냉기 2 5
+
+//LightningResistance
+*번개 2 5
+
+//PoisonResistance
+*독 2 5
+
+//Integrity
+*내구력 96 130
+
+//Level
+*레벨 70
+
+//Strength
+*힘 124
+
+//Talent
+*재능 67
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**방어력 20 30
+
+//SpecAbsorption
+**흡수력 0.8 1.0
+
+//SpecBlock
+**블럭율 2.0
+
+//Weight
+*무게 46
+
+//Price
+*가격 67000
+
+//Name File
+*연결파일 "Name\DS114.zhoon"

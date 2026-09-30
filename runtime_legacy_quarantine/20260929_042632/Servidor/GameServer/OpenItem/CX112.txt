@@ -1,0 +1,14 @@
+//ID
+*코드 "CX112"
+
+//Korean Name
+*이름 "Pacote de Aging +20"
+
+//English Name
+*Name "Pacote de Aging +20"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\CX112.zhoon"

@@ -1,0 +1,65 @@
+//ID
+*코드 "DS105"
+
+//Korean Name
+*이름 "Escudo Torre"
+
+//English Name
+*Name "Escudo Torre"
+
+//Defense
+*방어력 35 55
+
+//Absorption
+*흡수력 1.7 2.2
+
+//Block
+*블럭율 10.0 15.0
+
+//OrganicResistance
+*생체 2 3
+
+//FireResistance
+*불 2 3
+
+//FrostResistance
+*냉기 2 3
+
+//LightningResistance
+*번개 2 3
+
+//PoisonResistance
+*독 2 3
+
+//Integrity
+*내구력 40 70
+
+//Level
+*레벨 16
+
+//Strength
+*힘 62
+
+//Talent
+*재능 36
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**방어력 6 12
+
+//SpecAbsorption
+**흡수력 0.3 0.6
+
+//SpecBlock
+**블럭율 4.0
+
+//Weight
+*무게 16
+
+//Price
+*가격 6200
+
+//Name File
+*연결파일 "Name\DS105.zhoon"

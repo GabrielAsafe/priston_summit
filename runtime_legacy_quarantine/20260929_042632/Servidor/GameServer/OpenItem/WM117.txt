@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "WM117"
+
+//Korean Name
+*ÀÌ¸§ "Varinha dos Apóstolos"
+
+//English Name
+*Name "Varinha dos Apóstolos"
+
+//AttackPower
+*°ø°Ý·Â 20 23 29 31
+
+//AttackRating
+*¸íÁß·Â 118 140
+
+//AttackRange
+*»çÁ¤°Å¸® 165
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 8
+
+//Integrity
+*³»±¸·Â 90 108
+
+//Level
+*·¹º§ 80
+
+//Strength
+*Èû 55
+
+//Spirit
+*Á¤½Å·Â 146
+
+//Talent
+*Àç´É 88
+
+//SecondarySpec
+**Æ¯È­·£´ý Priestess Magician
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecMPRegen
+**±â·ÂÀç»ý 0.7 1.0
+
+//SpecSkillTraining
+**¸¶¹ý¼÷·Ãµµ 5 8
+
+//Weight
+*¹«°Ô 20
+
+//Price
+*°¡°Ý 260000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WM117.zhoon"

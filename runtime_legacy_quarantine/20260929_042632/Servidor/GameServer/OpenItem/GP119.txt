@@ -1,0 +1,17 @@
+//ID
+*코드 "GP119"
+
+//Korean Name
+*이름 "Cristal Inferna"
+
+//English Name
+*Name "Cristal Inferna"
+
+//Level
+*레벨 80
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\GP119.zhoon"

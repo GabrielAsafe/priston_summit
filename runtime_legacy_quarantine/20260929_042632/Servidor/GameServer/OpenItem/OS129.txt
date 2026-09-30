@@ -1,0 +1,17 @@
+//ID
+*ÄÚµå "OS129"
+
+//Korean Name
+*ÀÌ¸§ "Celesto Mágico"
+
+//English Name
+*Name "Celesto Mágico"
+
+//Weight
+*¹«°Ô 2
+
+//Price
+*°¡°Ý 1000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\OS129.zhoon"

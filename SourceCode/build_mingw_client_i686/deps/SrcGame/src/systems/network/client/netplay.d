@@ -60,6 +60,17 @@
  SrcGame/src/systems/ui/v2/legacy/LegacyCovenantGateway.h \
  SrcGame/src/systems/ui/v2/domain/ICovenantGateway.h \
  SrcGame/src/systems/ui/v2/domain/CovenantUIModels.h \
+ SrcGame/src/systems/presentation/v2/legacy/LegacyAnimationAdapter.h \
+ Shared/presentation/v2/AnimationService.h \
+ Shared/gameplay/core/v2/GameplayIds.h \
+ Shared/presentation/v2/PresentationIds.h \
+ SrcGame/src/systems/presentation/v2/legacy/LegacyAudioAdapter.h \
+ Shared/presentation/v2/AudioService.h \
+ SrcGame/src/systems/presentation/v2/legacy/LegacyVisualEffectAdapter.h \
+ Shared/presentation/v2/VisualEffectService.h \
+ Shared/presentation/v2/PresentationTarget.h \
+ SrcGame/src/systems/presentation/v2/legacy/LegacyLightingAdapter.h \
+ Shared/presentation/v2/LightingService.h \
  SrcGame/src/systems/rendering/effects/particle/legacy/particle.h \
  SrcGame/src/compat/legacy/sin/sinLinkHeader.h \
  SrcGame/src/systems/rendering/2d/legacy/drawsub.h \
@@ -244,6 +255,17 @@ SrcGame/src/systems/ui/v2/domain/CompanionUIModels.h:
 SrcGame/src/systems/ui/v2/legacy/LegacyCovenantGateway.h:
 SrcGame/src/systems/ui/v2/domain/ICovenantGateway.h:
 SrcGame/src/systems/ui/v2/domain/CovenantUIModels.h:
+SrcGame/src/systems/presentation/v2/legacy/LegacyAnimationAdapter.h:
+Shared/presentation/v2/AnimationService.h:
+Shared/gameplay/core/v2/GameplayIds.h:
+Shared/presentation/v2/PresentationIds.h:
+SrcGame/src/systems/presentation/v2/legacy/LegacyAudioAdapter.h:
+Shared/presentation/v2/AudioService.h:
+SrcGame/src/systems/presentation/v2/legacy/LegacyVisualEffectAdapter.h:
+Shared/presentation/v2/VisualEffectService.h:
+Shared/presentation/v2/PresentationTarget.h:
+SrcGame/src/systems/presentation/v2/legacy/LegacyLightingAdapter.h:
+Shared/presentation/v2/LightingService.h:
 SrcGame/src/systems/rendering/effects/particle/legacy/particle.h:
 SrcGame/src/compat/legacy/sin/sinLinkHeader.h:
 SrcGame/src/systems/rendering/2d/legacy/drawsub.h:

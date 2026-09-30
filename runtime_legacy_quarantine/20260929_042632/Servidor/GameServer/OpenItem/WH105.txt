@@ -1,0 +1,59 @@
+//ID
+*코드 "WH105"
+
+//Korean Name
+*이름 "Martelo de Guerra"
+
+//English Name
+*Name "Martelo de Guerra"
+
+//AttackPower
+*공격력 5 7 10 13
+
+//AttackRating
+*명중력 42 55
+
+//AttackSpeed
+*공격속도 7
+
+//AttackCritical
+*크리티컬 5
+
+//Integrity
+*내구력 44 61
+
+//Level
+*레벨 12
+
+//Strength
+*힘 50
+
+//Talent
+*재능 35
+
+//PrimarySpec
+**특화 Mechanician
+
+//SecondarySpec
+**특화랜덤 Fighter Pikeman Knight
+
+//SpecAttackPower
+**공격력 7 7
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 2
+
+//Weight
+*무게 17
+
+//Price
+*가격 6000
+
+//Name File
+*연결파일 "Name\WH105.zhoon"

@@ -22,7 +22,12 @@
 #include "systems/localization/config/language.h"
 #include "core/server/legacy_runtime/PartyMsg.h"
 #include "core/server/legacy_runtime/onserver.h"
-#include "systems/gameplay/companions/CompanionSystem.h"
+#include "systems/gameplay/companions/v2/legacy/CompanionLegacyExperienceRuntime.h"
+#include "gameplay/companions/v2/PartyCompanionQuery.h"
+#include "systems/gameplay/companions/v2/legacy/LegacyCompanionQueryAdapter.h"
+#include "systems/social/party/v2/legacy/LegacyPartyQueryAdapter.h"
+#include "systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h"
+#include "systems/gameplay/pets/v2/legacy/LegacyPetRuntimeAdapter.h"
 #include "systems/gameplay/progression/v2/ProgressionRuntime.h"
 
 extern DWORD	dwPlayServTime;
@@ -475,8 +480,7 @@ void LoadPartyExpTable()
 
 
 
-#include "systems/gameplay/quests/server/cQuestHandler.h"
-#include "systems/gameplay/events/v2/GameplayEventRuntime.h"
+#include "systems/gameplay/events/v2/legacy/LegacyGameplayEventAdapter.h"
 
 int rsPLAYINFO::GetPartyExp(smCHAR* lpChar, rsPLAYINFO* lpPlayInfo)
 {
@@ -487,15 +491,19 @@ int rsPLAYINFO::GetPartyExp(smCHAR* lpChar, rsPLAYINFO* lpPlayInfo)
 
 	int Sucess = 0;
 
-	bool quest = cQuestHandler.inQuest(lpPlayInfo, lpChar);
-
-	gameplay::events::PublishMonsterKilled(lpPlayInfo, lpChar, false);
+	gameplay::events::legacy::ServerLegacyGameplayEventAdapter().PublishMonsterKilled(lpPlayInfo, lpChar, false);
 
 	if (lpChar->smMonsterInfo.GetExp) {
 
 		LoadPartyExpTable();
-		int effectivePartyCount = PartyUserCount +
-			gameplay::companions::GetPartyActiveCount(this, lpPlayInfo->Position.Area);
+		const gameplay::PlayerId partyMasterId =
+			gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(this);
+		const std::uint32_t activeCompanions = gameplay::companions::ActivePartyCompanionsOnMap(
+			gameplay::social::party::legacy::ServerLegacyPartyQueryAdapter(),
+			gameplay::companions::legacy::ServerLegacyCompanionQueryAdapter(),
+			partyMasterId,
+			gameplay::MapId(static_cast<std::uint32_t>(lpPlayInfo->Position.Area)));
+		int effectivePartyCount = PartyUserCount + static_cast<int>(activeCompanions);
 		if(effectivePartyCount < 1) effectivePartyCount = 1;
 		if(effectivePartyCount > 8) effectivePartyCount = 8;
 		const float killerRate = PartyExpTable[effectivePartyCount - 1][0];
@@ -524,7 +532,7 @@ int rsPLAYINFO::GetPartyExp(smCHAR* lpChar, rsPLAYINFO* lpPlayInfo)
 				{
 
 					
-					gameplay::events::PublishMonsterKilled(lpPartyPlayers[cnt], lpChar, true);
+					gameplay::events::legacy::ServerLegacyGameplayEventAdapter().PublishMonsterKilled(lpPartyPlayers[cnt], lpChar, true);
 
 
 
@@ -585,7 +593,10 @@ int rsPLAYINFO::GetPartyExp(smCHAR* lpChar, rsPLAYINFO* lpPlayInfo)
 					if (rsHasPCBangGameplayEntitlement(lpPartyPlayers[cnt]))
 						ExpUp += 20;
 
-					if (lpPartyPlayers[cnt]->dwTime_PrimeItem_PhenixPet > 0)
+					const gameplay::pets::PetRuntimeSnapshot petSnapshot =
+						gameplay::pets::legacy::ServerLegacyPetRuntimeAdapter().Snapshot(
+							gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPartyPlayers[cnt]));
+					if (petSnapshot.PhoenixActive())
 					{
 						ExpUp += 20;
 					}

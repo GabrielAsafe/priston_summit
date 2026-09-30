@@ -2,6 +2,7 @@
 #include "compat/legacy/sin/sinLinkHeader.h"
 #include "systems/commerce/restoration/cRestaureWindow.h"
 #include "systems/commerce/coin_shop/CoinShop.h"
+#include "systems/network/v2/legacy/LegacyClientCommandSender.h"
 cRESTAURE cRestaure;
 
 extern bool isMousePos(int x, int y, int w, int h);
@@ -111,7 +112,8 @@ void cRESTAURE::Open()
 	smTransCommand.code = OpCode::OPCODE_GET_RESTAURE;
 	smTransCommand.size = sizeof(smTRANS_COMMAND);
 
-	smWsockServer->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+	(void)gameplay::network::legacy::ClientLegacyCommandSender().Send(
+		gameplay::network::PacketView(&smTransCommand, smTransCommand.size, static_cast<std::uint32_t>(smTransCommand.code)));
 
 	OpenFlag = true;
 }
@@ -163,7 +165,8 @@ void cRESTAURE::Restaure()
 
 	resetList = true;
 
-	smWsockServer->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+	(void)gameplay::network::legacy::ClientLegacyCommandSender().Send(
+		gameplay::network::PacketView(&smTransCommand, smTransCommand.size, static_cast<std::uint32_t>(smTransCommand.code)));
 }
 
 void cRESTAURE::SwitchItem(int Side)

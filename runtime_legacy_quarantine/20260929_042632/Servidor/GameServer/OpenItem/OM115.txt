@@ -1,0 +1,65 @@
+//ID
+*코드 "OM115"
+
+//Korean Name
+*이름 "Orbital Astral"
+
+//English Name
+*Name "Orbital Astral"
+
+//OrganicResistance
+*생체 3 8
+
+//FireResistance
+*불 3 8
+
+//FrostResistance
+*냉기 3 8
+
+//LightningResistance
+*번개 3 8
+
+//PoisonResistance
+*독 3 8
+
+//Defense
+*방어력 62 80
+
+//Absorption
+*흡수력 2.6 3.0
+
+//Block
+*블럭율 8.0 10.0
+
+//HP
+*생명력추가 54 75
+
+//MP
+*기력추가 36 50
+
+//Integrity
+*내구력 65 85
+
+//Level
+*레벨 70
+
+//Spirit
+*정신력 120
+
+//SecondarySpec
+**특화랜덤 Priestess Magician
+
+//SpecAbsorption
+**흡수력 0.8 1.2
+
+//SpecMPRegen
+**기력재생 0.9 1.1
+
+//Weight
+*무게 22
+
+//Price
+*가격 68000
+
+//Name File
+*연결파일 "Name\OM115.zhoon"

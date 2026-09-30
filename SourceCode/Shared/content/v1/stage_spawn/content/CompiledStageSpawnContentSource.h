@@ -27,6 +27,12 @@ public:
         LoadPack();
     }
 
+    explicit CompiledStageSpawnContentSource(const std::vector<unsigned char> &packData)
+        : data_(packData), valid_(false)
+    {
+        ValidateData();
+    }
+
     bool IsValid() const { return valid_; }
     const std::string& PackPath() const { return packPath_; }
     const std::string& LastError() const { return lastError_; }
@@ -130,6 +136,13 @@ private:
         data_.resize(static_cast<std::size_t>(size));
         if(std::fread(&data_[0],1,data_.size(),fp)!=data_.size()) { std::fclose(fp); data_.clear(); lastError_="cannot read compiled stage spawn pack"; return false; }
         std::fclose(fp);
+        return ValidateData();
+    }
+
+    bool ValidateData()
+    {
+        valid_=false; lastError_.clear();
+        if(data_.size()<80) { lastError_="compiled stage spawn pack is too small"; return false; }
         const unsigned char *p=&data_[0];
         if(std::memcmp(p,"SSPB",4)!=0) { lastError_="compiled stage spawn magic mismatch"; return false; }
         header_.version=U16(p+4); header_.flags=U16(p+6);

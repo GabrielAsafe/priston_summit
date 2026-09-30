@@ -1,0 +1,14 @@
+//ID
+*코드 "BI250"
+
+//Korean Name
+*이름 "Po豫o Cartola"
+
+//English Name
+*Name "Po豫o Cartola"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\BI250.zhoon"

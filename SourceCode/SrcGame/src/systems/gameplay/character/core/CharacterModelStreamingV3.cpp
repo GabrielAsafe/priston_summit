@@ -1,4 +1,5 @@
 #include "systems/gameplay/character/core/CharacterModelStreamingV3.h"
+#include "authentication/character_selection/CharacterSelectionTrace.h"
 
 #include <algorithm>
 #include <atomic>
@@ -384,6 +385,14 @@ static void SummitPrepareRequestOnWorker(const std::shared_ptr<SummitModelReques
     if (!request)
         return;
 
+    // SUMMIT_MODEL_WORKER_TRACE_V14
+    SummitCharacterSelectionTrace("STREAM",
+        "WORKER begin id=%llu key='%s' targetKind=%d cancelled=%d primary='%s' secondary='%s'",
+        static_cast<unsigned long long>(request->id), request->key.c_str(),
+        static_cast<int>(request->targetKind),
+        request->cancelled.load(std::memory_order_acquire) ? 1 : 0,
+        request->primaryName.c_str(), request->requestedSecondary.c_str());
+
     try
     {
         const bool cancelled = request->cancelled.load(std::memory_order_acquire);
@@ -425,6 +434,12 @@ static void SummitPrepareRequestOnWorker(const std::shared_ptr<SummitModelReques
     // Prepared smPAT3D/material objects are never destroyed on workers: legacy
     // destructors can release texture/D3D state. Even cancellation/shutdown is
     // transferred to the owner-thread completion/reset queue for cleanup.
+    SummitCharacterSelectionTrace("STREAM",
+        "WORKER end id=%llu success=%d cancelled=%d primarySuccess=%d secondarySuccess=%d primarySource='%s' secondarySource='%s'",
+        static_cast<unsigned long long>(request->id), request->success ? 1 : 0,
+        request->cancelled.load(std::memory_order_acquire) ? 1 : 0,
+        request->primary.success ? 1 : 0, request->secondary.success ? 1 : 0,
+        request->primary.sourceName.c_str(), request->secondary.sourceName.c_str());
     std::lock_guard<std::mutex> lock(SummitModelState().mutex);
     SummitModelState().completed.push_back(request);
 }
@@ -676,6 +691,15 @@ static void SummitCompleteRequestOnMain(const std::shared_ptr<SummitModelRequest
         targets = request->targets;
     }
 
+    // SUMMIT_MODEL_COMMIT_TRACE_V14
+    SummitCharacterSelectionTrace("STREAM",
+        "COMMIT begin id=%llu key='%s' success=%d cancelled=%d targets=%u primarySuccess=%d secondarySuccess=%d",
+        static_cast<unsigned long long>(request->id), request->key.c_str(),
+        request->success ? 1 : 0,
+        request->cancelled.load(std::memory_order_acquire) ? 1 : 0,
+        static_cast<unsigned>(targets.size()),
+        request->primary.success ? 1 : 0, request->secondary.success ? 1 : 0);
+
     if (request->cancelled.load(std::memory_order_acquire) || !request->success)
     {
         for (std::size_t i = 0; i < targets.size(); ++i)
@@ -698,7 +722,18 @@ static void SummitCompleteRequestOnMain(const std::shared_ptr<SummitModelRequest
         const SummitModelTarget &target = targets[i];
         if (target.kind == SUMMIT_MODEL_TARGET_CHARACTER)
         {
-            if (SummitCharacterTargetCurrent(target)) valid.push_back(target);
+            const bool current = SummitCharacterTargetCurrent(target);
+            SummitCharacterSelectionTrace("STREAM",
+                "COMMIT target id=%llu gen=%llu char=%p current=%d flag=%d display=%d loading=%d pattern=%p serial=%lu",
+                static_cast<unsigned long long>(request->id),
+                static_cast<unsigned long long>(target.generation),
+                (void *)target.character, current ? 1 : 0,
+                target.character ? target.character->Flag : -1,
+                target.character ? target.character->DisplayFlag : -1,
+                target.character ? target.character->PatLoading : -1,
+                target.character ? (void *)target.character->Pattern : NULL,
+                target.character ? static_cast<unsigned long>(target.character->dwObjectSerial) : 0ul);
+            if (current) valid.push_back(target);
         }
         else if (target.kind == SUMMIT_MODEL_TARGET_ITEM)
         {
@@ -712,6 +747,9 @@ static void SummitCompleteRequestOnMain(const std::shared_ptr<SummitModelRequest
 
     if (valid.empty())
     {
+        SummitCharacterSelectionTrace("STREAM",
+            "COMMIT no_valid_targets id=%llu key='%s'",
+            static_cast<unsigned long long>(request->id), request->key.c_str());
         SummitDestroyPreparedModel(request->secondary);
         SummitDestroyPreparedModel(request->primary);
         return;
@@ -808,6 +846,14 @@ static void SummitCompleteRequestOnMain(const std::shared_ptr<SummitModelRequest
         smDPAT *oldPrimary = character->lpDinaPattern;
         smDPAT *oldSecondary = character->lpDinaPattern2;
 
+        SummitCharacterSelectionTrace("STREAM",
+            "PUBLISH before id=%llu gen=%llu char=%p flag=%d display=%d loading=%d pattern=%p oldPrimary=%p oldSecondary=%p newPrimary=%p newSecondary=%p",
+            static_cast<unsigned long long>(request->id),
+            static_cast<unsigned long long>(target.generation),
+            (void *)character, character->Flag, character->DisplayFlag, character->PatLoading,
+            (void *)character->Pattern, (void *)oldPrimary, (void *)oldSecondary,
+            (void *)primary, (void *)secondary);
+
         character->DisplayFlag = 0;
         character->SetDinaPattern(primary);
         character->SetMotionFromCode(CHRMOTION_STATE_STAND);
@@ -831,6 +877,14 @@ static void SummitCompleteRequestOnMain(const std::shared_ptr<SummitModelRequest
 
         character->DisplayFlag = TRUE;
         character->PatLoading = FALSE;
+        SummitCharacterSelectionTrace("STREAM",
+            "PUBLISH after id=%llu gen=%llu char=%p flag=%d display=%d loading=%d pattern=%p primary=%p secondary=%p model='%s' model2='%s'",
+            static_cast<unsigned long long>(request->id),
+            static_cast<unsigned long long>(target.generation),
+            (void *)character, character->Flag, character->DisplayFlag, character->PatLoading,
+            (void *)character->Pattern, (void *)character->lpDinaPattern,
+            (void *)character->lpDinaPattern2,
+            character->smCharInfo.szModelName, character->smCharInfo.szModelName2);
         if (oldPrimary) smDPAT_Delete(oldPrimary);
         if (oldSecondary) smDPAT_Delete(oldSecondary);
     }
@@ -877,6 +931,15 @@ static int SummitQueueRequest(const std::shared_ptr<SummitModelRequest> &request
             if (existing && !existing->cancelled.load(std::memory_order_acquire))
             {
                 existing->targets.push_back(target);
+                // SUMMIT_MODEL_QUEUE_TRACE_V14
+                SummitCharacterSelectionTrace("STREAM",
+                    "QUEUE coalesce newId=%llu existingId=%llu gen=%llu char=%p key='%s' targets=%u",
+                    static_cast<unsigned long long>(request->id),
+                    static_cast<unsigned long long>(existing->id),
+                    static_cast<unsigned long long>(target.generation),
+                    target.kind == SUMMIT_MODEL_TARGET_CHARACTER ? (void *)target.character : NULL,
+                    request->key.c_str(),
+                    static_cast<unsigned>(existing->targets.size()));
                 return TRUE;
             }
             SummitModelState().pendingByKey.erase(existingIt);
@@ -899,8 +962,20 @@ static int SummitQueueRequest(const std::shared_ptr<SummitModelRequest> &request
             if (!current || current->id == request->id)
                 SummitModelState().pendingByKey.erase(it);
         }
+        SummitCharacterSelectionTrace("STREAM",
+            "QUEUE submit_failed id=%llu gen=%llu char=%p key='%s'",
+            static_cast<unsigned long long>(request->id),
+            static_cast<unsigned long long>(target.generation),
+            target.kind == SUMMIT_MODEL_TARGET_CHARACTER ? (void *)target.character : NULL,
+            request->key.c_str());
         return FALSE;
     }
+    SummitCharacterSelectionTrace("STREAM",
+        "QUEUE submitted id=%llu gen=%llu char=%p key='%s'",
+        static_cast<unsigned long long>(request->id),
+        static_cast<unsigned long long>(target.generation),
+        target.kind == SUMMIT_MODEL_TARGET_CHARACTER ? (void *)target.character : NULL,
+        request->key.c_str());
     return TRUE;
 }
 
@@ -960,7 +1035,23 @@ static int SummitRequestCharacterModelV3WithPriority(smCHAR *character, const ch
     request->dataServerCompanion = companion;
     request->key = SummitMakeCharacterKey(primaryName, secondaryName,
         request->faceHair.c_str(), request->defaultFaceHair.c_str(), companion);
+    // SUMMIT_MODEL_REQUEST_TRACE_V14
+    SummitCharacterSelectionTrace("STREAM",
+        "REQUEST id=%llu gen=%llu char=%p primary='%s' secondary='%s' face='%s' fallback='%s' interactive=%d companion=%d beforeFlag=%d beforeDisplay=%d beforeLoading=%d beforePattern=%p",
+        static_cast<unsigned long long>(request->id),
+        static_cast<unsigned long long>(target.generation),
+        (void *)character,
+        request->primaryName.c_str(), request->requestedSecondary.c_str(),
+        request->faceHair.c_str(), request->defaultFaceHair.c_str(),
+        request->interactive ? 1 : 0, request->dataServerCompanion ? 1 : 0,
+        character->Flag, character->DisplayFlag, character->PatLoading,
+        (void *)character->Pattern);
     const int queued = SummitQueueRequest(request, target);
+    SummitCharacterSelectionTrace("STREAM",
+        "REQUEST_QUEUED id=%llu gen=%llu char=%p result=%d loading=%d",
+        static_cast<unsigned long long>(request->id),
+        static_cast<unsigned long long>(target.generation),
+        (void *)character, queued, character->PatLoading);
     if (!queued)
         character->PatLoading = FALSE;
     return queued;

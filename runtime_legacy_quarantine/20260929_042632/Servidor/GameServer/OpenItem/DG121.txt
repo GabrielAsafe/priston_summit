@@ -1,0 +1,62 @@
+//ID
+*코드 "DG121"
+
+//Korean Name
+*이름 "Luvas Inferno"
+
+//English Name
+*Name "Luvas Inferno"
+
+//Defense
+*방어력 145 164
+
+//Absorption
+*흡수력 9.1 9.3
+
+//OrganicResistance
+*생체 4 7
+
+//FireResistance
+*불 4 7
+
+//FrostResistance
+*냉기 4 7
+
+//LightningResistance
+*번개 4 7
+
+//PoisonResistance
+*독 4 7
+
+//Integrity
+*내구력 156 165
+
+//Level
+*레벨 100
+
+//Strength
+*힘 100
+
+//Talent
+*재능 78
+
+//Agility
+*민첩성 77
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecDefense
+**방어력 48 52
+
+//SpecAbsorption
+**흡수력 0.7 1.0
+
+//Weight
+*무게 45
+
+//Price
+*가격 600000
+
+//Name File
+*연결파일 "Name\DG121.zhoon"

@@ -1,0 +1,35 @@
+//ID
+*코드 "OS102"
+
+//Korean Name
+*이름 "Sereneo"
+
+//English Name
+*Name "Sereneo"
+
+//HPRegen
+*생명력재생 0.2 0.3
+
+//MPRegen
+*기력재생 0.2 0.4
+
+//Level
+*레벨 12
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecHPRegen
+**생명력재생 0.1 0.1
+
+//SpecMPRegen
+**기력재생 0.1 0.2
+
+//Weight
+*무게 2
+
+//Price
+*가격 1000
+
+//Name File
+*연결파일 "Name\OS102.zhoon"

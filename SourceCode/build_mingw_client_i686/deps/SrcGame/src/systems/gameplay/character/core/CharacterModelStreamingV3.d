@@ -1,6 +1,7 @@
 /home/gabriel/Área\ de\ Trabalho/summit/SourceCode/build_mingw_client_i686/objects/SrcGame/src/systems/gameplay/character/core/CharacterModelStreamingV3.o: \
  SrcGame/src/systems/gameplay/character/core/CharacterModelStreamingV3.cpp \
  SrcGame/src/systems/gameplay/character/core/CharacterModelStreamingV3.h \
+ Shared/authentication/character_selection/CharacterSelectionTrace.h \
  Shared/opcodes.h SrcGame/src/systems/rendering/legacy_3d/smd3d.h \
  SrcGame/src/systems/rendering/legacy_3d/smDsx.h \
  Dependency/DirectX9/Include/d3d9.h \
@@ -50,6 +51,7 @@
  SrcGame/src/core/concurrency/JobSystem.h \
  SrcGame/src/core/concurrency/SourceAssetLock.h
 SrcGame/src/systems/gameplay/character/core/CharacterModelStreamingV3.h:
+Shared/authentication/character_selection/CharacterSelectionTrace.h:
 Shared/opcodes.h:
 SrcGame/src/systems/rendering/legacy_3d/smd3d.h:
 SrcGame/src/systems/rendering/legacy_3d/smDsx.h:

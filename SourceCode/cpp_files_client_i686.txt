@@ -94,9 +94,15 @@ SrcGame/src/systems/media/video/ParkDXPlayer.cpp
 SrcGame/src/systems/network/client/netplay.cpp
 SrcGame/src/systems/network/region/AreaServer.cpp
 SrcGame/src/systems/network/transport/legacy/smwsock.cpp
+SrcGame/src/systems/network/v2/legacy/LegacyClientCommandSender.cpp
 SrcGame/src/systems/persistence/character_record/record.cpp
 SrcGame/src/systems/presentation/opening/HoOpening.cpp
 SrcGame/src/systems/presentation/opening/legacy_runtime/HoLinkHeader.cpp
+SrcGame/src/systems/presentation/v2/legacy/LegacyAnimationAdapter.cpp
+SrcGame/src/systems/presentation/v2/legacy/LegacyAudioAdapter.cpp
+SrcGame/src/systems/presentation/v2/legacy/LegacyLightingAdapter.cpp
+SrcGame/src/systems/presentation/v2/legacy/LegacyTextureAdapter.cpp
+SrcGame/src/systems/presentation/v2/legacy/LegacyVisualEffectAdapter.cpp
 SrcGame/src/systems/progression/battle_pass/BattlePass.cpp
 SrcGame/src/systems/progression/rankings/class_rank/Rank.cpp
 SrcGame/src/systems/progression/rankings/general/Ranking.cpp
@@ -216,6 +222,7 @@ SrcGame/src/systems/ui/v2/core/Container.cpp
 SrcGame/src/systems/ui/v2/core/UIRuntime.cpp
 SrcGame/src/systems/ui/v2/core/Widget.cpp
 SrcGame/src/systems/ui/v2/core/Window.cpp
+SrcGame/src/systems/ui/v2/crafting/MixGuideWindow.cpp
 SrcGame/src/systems/ui/v2/hud/CompanionPartyHud.cpp
 SrcGame/src/systems/ui/v2/hud/PlayerHud.cpp
 SrcGame/src/systems/ui/v2/input/UIFocusManager.cpp
@@ -228,6 +235,7 @@ SrcGame/src/systems/ui/v2/legacy/LegacyContextGateway.cpp
 SrcGame/src/systems/ui/v2/legacy/LegacyCovenantGateway.cpp
 SrcGame/src/systems/ui/v2/legacy/LegacyInventoryGateway.cpp
 SrcGame/src/systems/ui/v2/legacy/LegacyMessageWindow.cpp
+SrcGame/src/systems/ui/v2/legacy/LegacyMixGuideGateway.cpp
 SrcGame/src/systems/ui/v2/legacy/LegacyNotificationHud.cpp
 SrcGame/src/systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp
 SrcGame/src/systems/ui/v2/legacy/LegacyQuestGateway.cpp

@@ -1,0 +1,59 @@
+//ID
+*코드 "DB107"
+
+//Korean Name
+*이름 "Botas de Bronze"
+
+//English Name
+*Name "Botas de Bronze"
+
+//Defense
+*방어력 28 44
+
+//Absorption
+*흡수력 1.1 1.4
+
+//Speed
+*이동속도 1.4 1.6
+
+//OrganicResistance
+*생체 1 5
+
+//FireResistance
+*불 1 5
+
+//LightningResistance
+*번개 1 5
+
+//PoisonResistance
+*독 1 5
+
+//Integrity
+*내구력 55 70
+
+//Level
+*레벨 30
+
+//Strength
+*힘 65
+
+//Agility
+*민첩성 55
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecAbsorption
+**흡수력 0.2 0.4
+
+//SpecSpeed
+**이동속도 0.2 0
+
+//Weight
+*무게 14
+
+//Price
+*가격 26000
+
+//Name File
+*연결파일 "Name\DB107.zhoon"

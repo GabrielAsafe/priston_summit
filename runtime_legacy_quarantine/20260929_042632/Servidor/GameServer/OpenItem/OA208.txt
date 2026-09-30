@@ -1,0 +1,44 @@
+//ID
+*ÄÚµå "OA208"
+
+//Korean Name
+*ÀÌ¸§ "Bracelete Mecânico"
+
+//English Name
+*Name "Bracelete Mecânico"
+
+//AttackRating
+*¸íÁß·Â 32 46
+
+//Defense
+*¹æ¾î·Â 23 27
+
+//PotionStorage
+*º¸À¯°ø°£ 38
+
+//Integrity
+*³»±¸·Â 44 60
+
+//Level
+*·¹º§ 37
+
+//Strength
+*Èû 58
+
+//Agility
+*¹ÎÃ¸¼º 40
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//Weight
+*¹«°Ô 16
+
+//Price
+*°¡°Ý 22000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\OA208.zhoon"

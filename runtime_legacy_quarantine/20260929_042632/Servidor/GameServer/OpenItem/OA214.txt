@@ -1,0 +1,44 @@
+//ID
+*ÄÚµå "OA214"
+
+//Korean Name
+*ÀÌ¸§ "Bracelete da Justiça"
+
+//English Name
+*Name "Bracelete da Justiça"
+
+//AttackRating
+*¸íÁß·Â 58 74
+
+//Defense
+*¹æ¾î·Â 46 56
+
+//PotionStorage
+*º¸À¯°ø°£ 47
+
+//Integrity
+*³»±¸·Â 64 85
+
+//Level
+*·¹º§ 70
+
+//Strength
+*Èû 85
+
+//Agility
+*¹ÎÃ¸¼º 60
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//Weight
+*¹«°Ô 24
+
+//Price
+*°¡°Ý 56000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\OA214.zhoon"

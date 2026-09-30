@@ -1,3 +1,24 @@
+// =============================================================================
+// MAPA DO MONOLITO LEGACY - CLIENT CHARACTER CORE
+//
+// Este mapa e apenas documental. O ficheiro permanece RED e no mesmo local;
+// os separadores abaixo nao alteram ownership, ordem de execucao ou ABI.
+// FUNCIONAMENTO GERAL: Kernel client de smCHAR: modelos, motion, movimento, combat presentation e replicacao visual. Renderer/feature APIs modernas ficam fora deste arquivo.
+//
+// AREAS PRINCIPAIS:
+//   AREA 01 - MATH / CAMERA / HELPERS
+//   AREA 02 - PATTERN / MODEL STREAMING
+//   AREA 03 - COMPANION VISUAL RUNTIME
+//   AREA 04 - POSITION / MOVEMENT / MOTION
+//   AREA 05 - COMBAT / ATTACK / SKILL EVENTS
+//   AREA 06 - MAIN CLIENT TICK
+//   AREA 07 - DRAW / PRESENTATION
+//   AREA 08 - NETWORK STATE / SERIALIZATION
+//   AREA 09 - EVENT SKILLS
+//
+// Desenvolvimento novo deve usar contracts/ports/adapters AMBER existentes.
+// =============================================================================
+
 #include "opcodes.h"
 
 
@@ -2610,6 +2631,14 @@ static void SyncNetworkAccountCompanionTools(smCHAR *character)
 extern bool SummitCapturePendingFieldTransitionSetPosi(smCHAR *character,
 	int x, int y, int z, int ax, int ay, int az);
 
+// =============================================================================
+// AREA 04 - POSITION / MOVEMENT
+// TIPO: world + movement
+// FUNCIONAMENTO: Aplica posicao/orientacao no character client e prepara o estado de deslocamento/motion.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
+
 int smCHAR::SetPosi(int x, int y, int z, int angX, int angY, int angZ)
 {
 	if (SummitCapturePendingFieldTransitionSetPosi(this, x, y, z, angX, angY, angZ))
@@ -2728,7 +2757,8 @@ int smCHAR::MoveAngle2(int step)
 
 #ifndef _W_SERVER
 
-	if (smConfig.getSecurity() >= AccountTypes::SEC_VIP && VRKeyBuff['N'])
+	// SUMMIT_COMMAND_HOTKEYS_V17: Shift+N keeps VIP no-collision separate from N=Covenants.
+	if (smConfig.getSecurity() >= AccountTypes::SEC_VIP && VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_CONTROL] && VRKeyBuff['N'])
 	{
 		x = pX + (((GetSin[Angle.y&ANGCLIP] >> FLOATNS) * step) >> FLOATNS);
 		z = pZ + (((GetCos[Angle.y&ANGCLIP] >> FLOATNS) * step) >> FLOATNS);
@@ -5982,6 +6012,14 @@ int smCHAR::EventAttack(int Flag)
 }
 
 int iLoadedMapIndex = -1;
+
+// =============================================================================
+// AREA 06 - MAIN CLIENT TICK
+// TIPO: character + presentation
+// FUNCIONAMENTO: Tick principal client: motion, movement, target, animation, timers e apresentacao do character.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 int smCHAR::Main()
 {
@@ -9437,6 +9475,14 @@ int smCHAR::VirtualDraw()
 
 	return FALSE;
 }
+
+// =============================================================================
+// AREA 07 - DRAW / PRESENTATION
+// TIPO: render
+// FUNCIONAMENTO: Desenha o character e os attachments legacy usando renderer/effects historicos.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 int smCHAR::Draw()
 {
@@ -15571,6 +15617,14 @@ int smCHAR::EndSkill()
 	return TRUE;
 }
 
+
+// =============================================================================
+// AREA 09 - EVENT SKILLS
+// TIPO: skills + presentation
+// FUNCIONAMENTO: Dispara efeitos e transicoes de skill associados aos event frames do character.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 int smCHAR::EventSkill()
 {

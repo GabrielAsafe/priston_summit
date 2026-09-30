@@ -1,3 +1,22 @@
+// =============================================================================
+// MAPA DO MONOLITO LEGACY - CLIENT HO EFFECTS
+//
+// Este mapa e apenas documental. O ficheiro permanece RED e no mesmo local;
+// os separadores abaixo nao alteram ownership, ordem de execucao ou ABI.
+// FUNCIONAMENTO GERAL: Factory/manager legacy de efeitos visuais. Novos consumidores modernos devem passar por IVisualEffectService/adapter quando aplicavel.
+//
+// AREAS PRINCIPAIS:
+//   AREA 01 - PRIMITIVAS 2D/3D
+//   AREA 02 - BILLBOARD / PATH / PARTICLES
+//   AREA 03 - PATTERN-ATTACHED EFFECTS
+//   AREA 04 - EFFECT MANAGER LIFECYCLE
+//   AREA 05 - SKILL EFFECT DISPATCH
+//   AREA 06 - GENERIC EFFECT DISPATCH
+//   AREA 07 - UPDATE / DRAW
+//
+// Desenvolvimento novo deve usar contracts/ports/adapters AMBER existentes.
+// =============================================================================
+
 #include "systems/rendering/effects/particle/legacy/particle.h"
 #include "systems/presentation/opening/legacy_runtime/HoLinkHeader.h"
 #include "compat/legacy/sin/sinLinkHeader.h"
@@ -3372,6 +3391,14 @@ int HoEffectMgr::EmptyTimeObjectBufferIndex()
 	return -1;
 }
 
+// =============================================================================
+// AREA 04 - EFFECT MANAGER LIFECYCLE
+// TIPO: efeitos
+// FUNCIONAMENTO: Atualiza slots/objetos ativos, lifetime e cleanup do manager legacy.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
+
 int HoEffectMgr::Main()
 {
 
@@ -4056,6 +4083,14 @@ int HoEffectMgr::StartSkillDest(int x, int y, int z, int destX, int destY, int d
 	}
 	return TRUE;
 }
+
+// =============================================================================
+// AREA 05 - SKILL EFFECT DISPATCH
+// TIPO: efeitos + skills
+// FUNCIONAMENTO: Seleciona e instancia efeitos visuais historicos a partir do skillType/level e posicao.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 int HoEffectMgr::StartSkill(int x, int y, int z, int angleX, int angleY, int angleZ, int skillType, int level)
 {
@@ -6618,6 +6653,14 @@ int HoEffectMgr::Start(int x, int y, int z, int effectType, HoEffectObject *pare
 
 	return TRUE;
 }
+
+// =============================================================================
+// AREA 06 - GENERIC EFFECT DISPATCH
+// TIPO: efeitos
+// FUNCIONAMENTO: Factory legacy para efeitos genericos identificados por effectType.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 int HoEffectMgr::Start(int x, int y, int z, int effectType, int level)
 {
@@ -12460,13 +12503,21 @@ int DrawEffect(int x, int y, int z, int ax, int ay, int az)
 		static int shellTomCount = 0;
 
 
+		// SUMMIT_V17_2_DISABLED_RECREATE_SKY_HOTKEY
+		// Numpad7 recreated renderer sky resources at runtime; repeated activation
+		// could leave the sky black/incomplete. Function kept, keyboard path disabled.
+		/*
 		if(VRKeyBuff[VK_NUMPAD7])
 		{
 			VRKeyBuff[VK_NUMPAD7] = FALSE;
 			ReCreateSky();
 
 		}
+		*/
 
+
+		// SUMMIT_COMMAND_HOTKEYS_SAFETY_V17_1: Numpad8 SetNextSky remains disabled;
+		// repeated sky recreation can leave legacy render resources in an inconsistent state.
 
 		/*if(VRKeyBuff[VK_NUMPAD8])
 		{

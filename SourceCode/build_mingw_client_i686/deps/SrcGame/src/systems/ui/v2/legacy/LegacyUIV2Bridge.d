@@ -186,6 +186,9 @@
  SrcGame/src/systems/ui/v2/legacy/LegacyQuestGateway.h \
  SrcGame/src/systems/ui/v2/domain/IQuestGateway.h \
  SrcGame/src/systems/ui/v2/domain/QuestUIModels.h \
+ SrcGame/src/systems/ui/v2/legacy/LegacyMixGuideGateway.h \
+ SrcGame/src/systems/ui/v2/domain/IMixGuideGateway.h \
+ SrcGame/src/systems/ui/v2/domain/MixGuideModels.h \
  SrcGame/src/systems/ui/v2/legacy/LegacySkillGateway.h \
  SrcGame/src/systems/ui/v2/domain/ISkillGateway.h \
  SrcGame/src/systems/ui/v2/legacy/LegacyMessageWindow.h \
@@ -200,6 +203,7 @@
  SrcGame/src/systems/ui/v2/hud/CovenantEffectHud.h \
  SrcGame/src/systems/ui/v2/quests/QuestJournalWindow.h \
  SrcGame/src/systems/ui/v2/quests/QuestTrackerHud.h \
+ SrcGame/src/systems/ui/v2/crafting/MixGuideWindow.h \
  SrcGame/src/systems/ui/v2/rendering/Dx9UIRenderer.h \
  SrcGame/src/systems/ui/v2/rendering/IUIRenderer.h \
  SrcGame/src/systems/ui/v2/rendering/FontHandle.h \
@@ -397,6 +401,9 @@ SrcGame/src/systems/ui/v2/domain/ContextUIModels.h:
 SrcGame/src/systems/ui/v2/legacy/LegacyQuestGateway.h:
 SrcGame/src/systems/ui/v2/domain/IQuestGateway.h:
 SrcGame/src/systems/ui/v2/domain/QuestUIModels.h:
+SrcGame/src/systems/ui/v2/legacy/LegacyMixGuideGateway.h:
+SrcGame/src/systems/ui/v2/domain/IMixGuideGateway.h:
+SrcGame/src/systems/ui/v2/domain/MixGuideModels.h:
 SrcGame/src/systems/ui/v2/legacy/LegacySkillGateway.h:
 SrcGame/src/systems/ui/v2/domain/ISkillGateway.h:
 SrcGame/src/systems/ui/v2/legacy/LegacyMessageWindow.h:
@@ -411,6 +418,7 @@ SrcGame/src/systems/ui/v2/hud/CompanionPartyHud.h:
 SrcGame/src/systems/ui/v2/hud/CovenantEffectHud.h:
 SrcGame/src/systems/ui/v2/quests/QuestJournalWindow.h:
 SrcGame/src/systems/ui/v2/quests/QuestTrackerHud.h:
+SrcGame/src/systems/ui/v2/crafting/MixGuideWindow.h:
 SrcGame/src/systems/ui/v2/rendering/Dx9UIRenderer.h:
 SrcGame/src/systems/ui/v2/rendering/IUIRenderer.h:
 SrcGame/src/systems/ui/v2/rendering/FontHandle.h:

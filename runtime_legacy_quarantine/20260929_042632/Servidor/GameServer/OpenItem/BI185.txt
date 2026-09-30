@@ -1,0 +1,14 @@
+//ID
+*코드 "BI185"
+
+//Korean Name
+*이름 "Pedra do Aging Perfeito"
+
+//English Name
+*Name "Pedra do Aging Perfeito"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\BI185.zhoon"

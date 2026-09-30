@@ -1,0 +1,32 @@
+//ID
+*ÄÚµå "OA110"
+
+//Korean Name
+*ÀÌ¸§ "Colar Mágico +1"
+
+//English Name
+*Name "Colar Mágico +1"
+
+//MP
+*±â·ÂÃß°¡ 9 19
+
+//Level
+*·¹º§ 30
+
+//Spirit
+*Á¤½Å·Â 40
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecMPRegen
+**±â·ÂÀç»ý 0.2 0.4
+
+//Weight
+*¹«°Ô 3
+
+//Price
+*°¡°Ý 6000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\OA110.zhoon"

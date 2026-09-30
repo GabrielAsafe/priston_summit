@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "PR103"
+
+//Korean Name
+*ÀÌ¸§ "Minério de Ouro"
+
+//English Name
+*Name "Minério de Ouro"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\PR103.zhoon"

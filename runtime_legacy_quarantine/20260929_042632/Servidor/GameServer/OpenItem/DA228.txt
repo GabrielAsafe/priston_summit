@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "DA228"
+
+//Korean Name
+*ÀÌ¸§ "Roupão Mitológico"
+
+//English Name
+*Name "Roupão Mitológico"
+
+//Defense
+*¹æ¾î·Â 420 440
+
+//Absorption
+*Èí¼ö·Â 28.6 29.0
+
+//OrganicResistance
+*»ýÃ¼ 11 17
+
+//FireResistance
+*ºÒ 11 17
+
+//FrostResistance
+*³Ã±â 11 17
+
+//LightningResistance
+*¹ø°³ 11 17
+
+//PoisonResistance
+*µ¶ 11 17
+
+//Integrity
+*³»±¸·Â 200 220
+
+//Level
+*·¹º§ 118
+
+//Spirit
+*Á¤½Å·Â 235
+
+//Talent
+*Àç´É 90
+
+//SecondarySpec
+**Æ¯È­·£´ý Priestess Magician
+
+//SpecDefense
+**¹æ¾î·Â 50 55
+
+//SpecAbsorption
+**Èí¼ö·Â 1.2 1.8
+
+//SpecMPRegen
+**±â·ÂÀç»ý 4.0 4.3
+
+//Weight
+*¹«°Ô 116
+
+//Price
+*°¡°Ý 800000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DA228.zhoon"

@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "DA217"
+
+//Korean Name
+*ÀÌ¸§ "Roupão Celestial"
+
+//English Name
+*Name "Roupão Celestial"
+
+//Defense
+*¹æ¾î·Â 200 230
+
+//Absorption
+*Èí¼ö·Â 9.3 9.6
+
+//OrganicResistance
+*»ýÃ¼ 8 15
+
+//FireResistance
+*ºÒ 8 15
+
+//FrostResistance
+*³Ã±â 8 15
+
+//LightningResistance
+*¹ø°³ 8 15
+
+//PoisonResistance
+*µ¶ 8 15
+
+//Integrity
+*³»±¸·Â 86 110
+
+//Level
+*·¹º§ 75
+
+//Spirit
+*Á¤½Å·Â 170
+
+//Talent
+*Àç´É 90
+
+//SecondarySpec
+**Æ¯È­·£´ý Priestess Magician
+
+//SpecDefense
+**¹æ¾î·Â 35 40
+
+//SpecAbsorption
+**Èí¼ö·Â 1.0 1.5
+
+//SpecMPRegen
+**±â·ÂÀç»ý 2.0 2.2
+
+//Weight
+*¹«°Ô 68
+
+//Price
+*°¡°Ý 110000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DA217.zhoon"

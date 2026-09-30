@@ -1,0 +1,65 @@
+//ID
+*코드 "OM110"
+
+//Korean Name
+*이름 "Orbital Cerimonial"
+
+//English Name
+*Name "Orbital Cerimonial"
+
+//OrganicResistance
+*생체 3 6
+
+//FireResistance
+*불 3 6
+
+//FrostResistance
+*냉기 3 6
+
+//LightningResistance
+*번개 3 6
+
+//PoisonResistance
+*독 3 6
+
+//Defense
+*방어력 30 56
+
+//Absorption
+*흡수력 1.1 1.7
+
+//Block
+*블럭율 7.0 8.0
+
+//HP
+*생명력추가 30 42
+
+//MP
+*기력추가 20 28
+
+//Integrity
+*내구력 52 70
+
+//Level
+*레벨 47
+
+//Spirit
+*정신력 88
+
+//SecondarySpec
+**특화랜덤 Priestess Magician
+
+//SpecAbsorption
+**흡수력 0.6 0.9
+
+//SpecMPRegen
+**기력재생 0.6 0.9
+
+//Weight
+*무게 9
+
+//Price
+*가격 36000
+
+//Name File
+*연결파일 "Name\OM110.zhoon"

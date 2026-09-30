@@ -1,0 +1,20 @@
+//ID
+*ÄÚµå "PM104"
+
+//Korean Name
+*ÀÌ¸§ "Poção Mística de Mana"
+
+//English Name
+*Name "Poção Mística de Mana"
+
+//MPRecovery
+*±â·Â»ó½Â 1500 2000
+
+//Weight
+*¹«°Ô 1
+
+//Price
+*°¡°Ý 1000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\PM104.zhoon"

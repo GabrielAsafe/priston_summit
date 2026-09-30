@@ -1,15 +1,14 @@
 #include "systems/gameplay/progression/v2/ProgressionTriggerRuntime.h"
 
-#include <cctype>
-#include <cstring>
 #include <mutex>
+#include <vector>
 
-#include "core/server/legacy_runtime/onserver.h"
 #include "gameplay/progression/v2/ProgressionTriggerCoordinator.h"
 #include "gameplay/covenants/v2/CovenantEvents.h"
 #include "gameplay/reputation/v2/ReputationEvents.h"
 #include "gameplay/story/v2/StoryEvents.h"
 #include "systems/gameplay/events/v2/GameplayEventRuntime.h"
+#include "systems/gameplay/player/v2/legacy/LegacyPlayerAdapter.h"
 #include "systems/gameplay/progression/v2/ProgressionRuntime.h"
 
 namespace gameplay
@@ -30,56 +29,32 @@ std::recursive_mutex& WorldProcessingMutex()
     return mutex;
 }
 
-bool SamePlayerName(const char* left, const std::string& right)
+bool ProcessSnapshot(const player::PlayerSnapshot& snapshot)
 {
-    if (!left || std::strlen(left) != right.size())
+    if (!snapshot.online || snapshot.playerKey.empty() || !IsServerProgressionRuntimeReady())
         return false;
-    for (std::size_t i = 0; i < right.size(); ++i)
-    {
-        const unsigned char a = static_cast<unsigned char>(left[i]);
-        const unsigned char b = static_cast<unsigned char>(right[i]);
-        if (std::tolower(a) != std::tolower(b))
-            return false;
-    }
-    return true;
-}
 
-rsPLAYINFO* FindOnlinePlayerByName(const std::string& playerKey)
-{
-    if (playerKey.empty())
-        return 0;
-    for (int i = 0; i < CONNECTMAX; ++i)
-    {
-        rsPLAYINFO* player = &rsPlayInfo[i];
-        if (player->lpsmSock && SamePlayerName(player->getName(), playerKey))
-            return player;
-    }
-    return 0;
+    return ProcessServerProgressionPlayer(
+        snapshot.playerKey, snapshot.level, snapshot.legacyJobCode).Ok();
 }
 
 void NotifyProgressionPlayer(const std::string& playerKey)
 {
-    rsPLAYINFO* player = FindOnlinePlayerByName(playerKey);
-    if (player)
-        NotifyServerProgressionPlayerStateChanged(player);
+    player::PlayerSnapshot snapshot;
+    if (player::legacy::ServerLegacyPlayerAdapter().TryGetByKey(playerKey, snapshot))
+        (void)ProcessSnapshot(snapshot);
 }
 }
-bool ProcessServerProgressionOnlinePlayer(rsPLAYINFO* player)
+
+bool ProcessServerProgressionOnlinePlayer(PlayerId playerId)
 {
-    if (!player || !player->lpsmSock || !IsServerProgressionRuntimeReady())
+    player::PlayerSnapshot snapshot;
+    if (!player::legacy::ServerLegacyPlayerAdapter().TryGet(playerId, snapshot))
         return false;
-
-    const char* name = player->getName();
-    if (!name || !name[0])
-        return false;
-
-    const std::string playerKey(name);
-    const int playerLevel = player->smCharInfo.Level;
-    const int legacyJobCode = player->smCharInfo.JOB_CODE;
-    return ProcessServerProgressionPlayer(playerKey, playerLevel, legacyJobCode).Ok();
+    return ProcessSnapshot(snapshot);
 }
 
-void NotifyServerProgressionPlayerStateChanged(rsPLAYINFO* player)
+void NotifyServerProgressionPlayerStateChanged(PlayerId player)
 {
     (void)ProcessServerProgressionOnlinePlayer(player);
 }
@@ -93,11 +68,16 @@ void NotifyServerProgressionWorldStateChanged()
     (void)WorldProcessingCoordinator().Request("__world__", []()
     {
         bool ok = true;
-        for (int i = 0; i < CONNECTMAX; ++i)
+        const std::vector<PlayerHandle> handles =
+            player::legacy::ServerLegacyOnlinePlayerRegistry().OnlineHandles();
+        for (std::vector<PlayerHandle>::const_iterator it = handles.begin(); it != handles.end(); ++it)
         {
-            rsPLAYINFO* player = &rsPlayInfo[i];
-            if (player->lpsmSock && !ProcessServerProgressionOnlinePlayer(player))
+            player::PlayerSnapshot snapshot;
+            if (!player::legacy::ServerLegacyPlayerAdapter().TryGet(*it, snapshot) ||
+                !ProcessSnapshot(snapshot))
+            {
                 ok = false;
+            }
         }
         return ok;
     });

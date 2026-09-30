@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "SP109"
+
+//Korean Name
+*ÀÌ¸§ "Ovo de Páscoa (E)"
+
+//English Name
+*Name "Ovo de Páscoa (E)"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\SP109.zhoon"

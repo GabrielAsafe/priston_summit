@@ -5,6 +5,8 @@
 #include "systems/social/clan/cE_CViewClanInfo.h"
 #include "gameplay/classes/v2/services/ClassService.h"
 #include "systems/ui/v2/legacy/LegacyUIV2Bridge.h"
+#include "systems/presentation/v2/legacy/LegacyAudioAdapter.h"
+#include "systems/presentation/v2/legacy/LegacyVisualEffectAdapter.h"
 
 cCHARSTATUS cCharStatus;
 sDISPLAYSTATE sDisplayState[10];
@@ -487,7 +489,9 @@ void cCHARSTATUS::LButtonDown(int x, int y)
 			OpenFlag = SIN_CLOSE;
 
 
-		if (/*smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR && */VRKeyBuff['B'])
+		// SUMMIT_COMMAND_HOTKEYS_SAFETY_V17_1: the +9 stat developer shortcut must never fire on plain B.
+		if (smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR && sinGetKeyClick('B') &&
+			VRKeyBuff[VK_CONTROL] && VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_MENU])
 		{
 			if (sinChar->StatePoint > 9)
 			{
@@ -1490,8 +1494,11 @@ int cCHARSTATUS::InitCharStatus_Attribute(int kind)
 	default: return FALSE;
 	}
 
-	sinPlaySound(SIN_SOUND_EAT_POTION2);
-	StartEffect(lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ, EFFECT_AGING);
+	presentation::legacy::ClientLegacyAudioAdapter().PlayOneShot(
+		presentation::SoundId("ui.stat_reset.consume"));
+	presentation::legacy::ClientLegacyVisualEffectAdapter().PlayAt(
+		presentation::EffectId("effect.ui.stat_reset"),
+		presentation::PresentationTarget(lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ));
 
 	const int baseTotal = sinChar->Strength + sinChar->Spirit + sinChar->Talent +
 		sinChar->Dexterity + sinChar->Health;

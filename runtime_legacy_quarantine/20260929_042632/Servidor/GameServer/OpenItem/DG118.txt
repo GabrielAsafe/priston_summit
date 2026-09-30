@@ -1,0 +1,62 @@
+//ID
+*코드 "DG118"
+
+//Korean Name
+*이름 "Luvas Anjo"
+
+//English Name
+*Name "Luvas Anjo"
+
+//Defense
+*방어력 117 136
+
+//Absorption
+*흡수력 6.4 6.7
+
+//OrganicResistance
+*생체 3 6
+
+//FireResistance
+*불 3 6
+
+//FrostResistance
+*냉기 3 6
+
+//LightningResistance
+*번개 3 6
+
+//PoisonResistance
+*독 3 6
+
+//Integrity
+*내구력 113 140
+
+//Level
+*레벨 80
+
+//Strength
+*힘 94
+
+//Talent
+*재능 70
+
+//Agility
+*민첩성 74
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecDefense
+**방어력 40 44
+
+//SpecAbsorption
+**흡수력 0.6 0.8
+
+//Weight
+*무게 32
+
+//Price
+*가격 270000
+
+//Name File
+*연결파일 "Name\DG118.zhoon"

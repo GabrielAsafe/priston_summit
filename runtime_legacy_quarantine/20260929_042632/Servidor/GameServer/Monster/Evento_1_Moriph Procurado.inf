@@ -1,0 +1,100 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\npc\evenmorif\evenmorif.ini"
+
+//Name
+*이름 "Moriph Procurado"
+
+//Level
+*레벨 60
+
+//Size
+*모델크기 1.2
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 300
+
+//HP
+*생명력 1000
+
+//AttackPower
+*공격력 15 30
+
+//AttackRating
+*명중력 500
+
+//AttackSpeed
+*공격속도 8
+
+//AttackRange
+*공격범위 150
+
+//Defense
+*방어력 300
+
+//Absorption
+*흡수율 45
+
+//MoveSpeed
+*이동력 2
+
+//Lightning
+*번개 50
+
+//Ice
+*얼음 50
+
+//Fire
+*불 50
+
+//Race
+*몬스터종족 노멀
+
+//ShadowSize
+*크기 소형
+
+//Sound
+*효과음 MORIF
+
+//Exp
+*경험치 100000
+
+//DropsNumber
+*아이템카운터 1
+
+//DropPotion
+*아이템 4000 PS104 PL104 PM104 PM105
+
+//Drop MISTIC
+*아이템 7000 GP109 GP106 GP107 GP108 FO108 FO128
+
+//Drop MISTIC
+*아이템 2000 GP109 GP112 GP107 GP108 OS108 FO109 FO129
+
+//Drop ESQUELETO
+*아이템 500 GP117 OS109 FO110 FO130
+
+//Drop CAOS
+*아이템 100 GP118 OS110 FO111 FO131
+
+//Drop WYVERN MIROTC
+*아이템 60 GP125 GP124 OS111 FO112 FO132
+
+//Drop CHAOSCARA
+*아이템 20 GP145 OS112 FO113 FO133
+
+// 10000 - 100%
+// 1000 - 10%
+// 500 - 5%
+// 100 - 1%
+// 50 - 0,5%
+// 10 - 0,1%
+// 5 - 0,05%
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

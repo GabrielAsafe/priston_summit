@@ -1,0 +1,124 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\turtlecannon\turtlecannon.ini"
+
+//Name
+*이름 "Tartaruga Blindada"
+
+//Level
+*레벨 89
+
+//Size
+*모델크기 1.0
+
+//QuestCode
+*구별코드 14
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 420
+
+//HP
+*생명력 7000
+
+//AttackPower
+*공격력 140 200
+
+//AttackRating
+*명중력 1500
+
+//AttackSpeed
+*공격속도 8
+
+//AttackRange
+*공격범위 180
+
+//SkillPower
+*기술공격력 250 270
+
+//SkillRating
+*기술공격률 20
+
+//SkillRange
+*기술공격범위 150
+
+//Defense
+*방어력 880
+
+//Block
+*블럭율 18
+
+//Stun
+*스턴율 30
+
+//MoveSpeed
+*이동력 4
+
+//Race
+*몬스터종족 뮤턴트
+
+//ShadowSize
+*크기 중대형
+
+//Experience
+*경험치 269149
+
+//Sound
+*효과음 TURTLECANNON
+
+//DropsNumber
+*아이템카운터 1
+
+//DropGold
+*아이템 5000 돈 3000 3700
+
+//DropPotion
+*아이템 4000 PS104 PL104 PM104 PM104
+
+//Drop
+*아이템 1000 GP109 
+
+//DropJera
+*아이템 20 SE101
+
+//Drop Mirage Celesto Devine
+*아이템 200 OS110 OS109 OS108
+
+//DropInferna
+*아이템 500 OS111
+
+//DropEnigma
+*아이템 300 OS112
+
+//Drop Force
+*아이템 1000 F0108 FO128 FO109 FO129
+
+//Drop
+*아이템 5000 WA114 WC114 WH115 WM115 WP115 WS116 WS217 WT115 OA118 OA214 OM115 DA116 DA216 DB114 DG114 DS114
+
+//Drop
+*아이템 3000 WA115 WC115 WH116 WM116 WP116 WS117 WS218 WT116 OA119 OA215 OM116 OR119 DA117 DA217 DB115 DG115 DS115
+
+//Drop
+*아이템 1500 WA116 WC116 WH117 WM117 WP117 WS118 WS219 WT117 OA120 OA216 OM117 OR120 DA118 DA218 DB116 DG116 DS116
+
+//Drop
+*아이템 100 WA117 WC117 WH118 WM118 WP118 WS119 WS220 WT118 OA121 OA217 OM118 OR121 DA119 DA219 DB117 DG117 DS117
+
+//Drop
+*아이템 50 WA118 WC118 WH119 WM119 WP119 WS120 WS221 WT119 OA122 OA218 OM119 OR122 DA120 DA220 DB118 DG118 DS118
+
+// 10000 - 100%
+// 1000 - 10%
+// 500 - 5%
+// 100 - 1%
+// 50 - 0,5%
+// 10 - 0,1%
+// 5 - 0,05%
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

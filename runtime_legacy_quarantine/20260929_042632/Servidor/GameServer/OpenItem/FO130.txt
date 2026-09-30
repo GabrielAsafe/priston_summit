@@ -1,0 +1,20 @@
+//ID
+*ÄÚµå "FO130"
+
+//Korean Name
+*ÀÌ¸§ "Força Mágica Mirage"
+
+//English Name
+*Name "Força Mágica Mirage"
+
+//Weight
+*¹«°Ô 2
+
+//Price
+*°¡°Ý 1000
+
+//Level
+*·¹º§ 70
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\FO130.zhoon"

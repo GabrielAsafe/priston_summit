@@ -1,0 +1,14 @@
+//ID
+*코드 "QT115"
+
+//Korean Name
+*이름 "Bolo Quente"
+
+//English Name
+*Name "Bolo Quente"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\QT115.zhoon"

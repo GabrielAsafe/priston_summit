@@ -1,6 +1,6 @@
 #include "systems/gameplay/companions/CompanionProfileStore.h"
 #include "systems/gameplay/companions/CompanionSkillExecutor.h"
-#include "systems/gameplay/companions/CompanionSystem.h"
+#include "gameplay/companions/v2/CompanionQuery.h"
 
 #include <stddef.h>
 #include <stdint.h>
@@ -95,8 +95,8 @@ int ClampInt(int value, int minimum, int maximum)
 
 bool IsModeValid(int mode)
 {
-    return mode >= static_cast<int>(COMPANION_MODE_AGGRESSIVE) &&
-        mode <= static_cast<int>(COMPANION_MODE_PASSIVE);
+    return mode >= static_cast<int>(CompanionBehaviorMode::Aggressive) &&
+        mode <= static_cast<int>(CompanionBehaviorMode::Passive);
 }
 
 bool IsTacticValid(int tactic)
@@ -135,7 +135,7 @@ bool BuildProfilePath(const char *account, const char *characterName, char (&pat
 
 CompanionProfile::CompanionProfile()
     : loadoutActive(false), rightItemCode(0), leftItemCode(0),
-      mode(static_cast<int>(COMPANION_MODE_AGGRESSIVE)),
+      mode(static_cast<int>(CompanionBehaviorMode::Aggressive)),
       tactic(COMPANION_TACTIC_BALANCED), retreatHpPercent(0),
       preferredRange(0), formationSlot(-1), skillLoadoutActive(false),
       buffLoadoutActive(false)
@@ -186,7 +186,7 @@ bool LoadCompanionProfile(const char *account, const char *characterName, Compan
     profile->loadoutActive = (disk.flags & COMPANION_PROFILE_LOADOUT_ACTIVE) != 0;
     profile->rightItemCode = disk.rightItemCode;
     profile->leftItemCode = disk.leftItemCode;
-    profile->mode = IsModeValid(disk.mode) ? disk.mode : static_cast<int>(COMPANION_MODE_AGGRESSIVE);
+    profile->mode = IsModeValid(disk.mode) ? disk.mode : static_cast<int>(CompanionBehaviorMode::Aggressive);
     profile->tactic = IsTacticValid(disk.tactic) ?
         static_cast<CompanionTacticPreset>(disk.tactic) : COMPANION_TACTIC_BALANCED;
     // V1 shipped with an implicit 25% retreat default. Treat that legacy
@@ -244,7 +244,7 @@ bool SaveCompanionProfile(const char *account, const char *characterName, const 
         disk.flags |= COMPANION_PROFILE_BUFF_LOADOUT_ACTIVE;
     disk.rightItemCode = profile.rightItemCode;
     disk.leftItemCode = profile.leftItemCode;
-    disk.mode = IsModeValid(profile.mode) ? profile.mode : static_cast<int>(COMPANION_MODE_AGGRESSIVE);
+    disk.mode = IsModeValid(profile.mode) ? profile.mode : static_cast<int>(CompanionBehaviorMode::Aggressive);
     disk.tactic = IsTacticValid(static_cast<int>(profile.tactic)) ?
         static_cast<int>(profile.tactic) : static_cast<int>(COMPANION_TACTIC_BALANCED);
     disk.retreatHpPercent = ClampInt(profile.retreatHpPercent, 0, 90);

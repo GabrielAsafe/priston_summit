@@ -1,14 +1,13 @@
 #pragma once
 
-#define MAX_HG_PLAYER 8
-#define HG_WAIT_TIME 3*60*1000 
-#define HG_RUN_TIME 45*60*1000
+#include <windows.h>
 
-struct sHGPLAYER
-{
-	char szName[32];
-	DWORD dwObjectSerial;
-};
+#include "gameplay/core/v2/GameplayIds.h"
+#include <vector>
+
+#define MAX_HG_PLAYER 8
+#define HG_WAIT_TIME 3*60*1000
+#define HG_RUN_TIME 45*60*1000
 
 class cHELLSGATE
 {
@@ -16,18 +15,18 @@ public:
 	cHELLSGATE();
 
 	void Main();
-	void SendOpenNpc(rsPLAYINFO* lpPlayInfo);
-	void RecvJoinHg(rsPLAYINFO* lpPlayInfo);
-	void MonsterKilled(smCHAR* lpChar);
+	void SendOpenNpc(gameplay::PlayerId player);
+	void RequestJoin(gameplay::PlayerId player);
+	void MonsterKilled(gameplay::EntityId monster);
 
 private:
 	DWORD dwLastHgHour;
 	DWORD dwTickWaiting;
 	DWORD dwTick;
 	int iState;
-	smCHAR* lpBoss;
+	gameplay::EntityId bossId;
 
-	vector<sHGPLAYER> vPlayers;
+	std::vector<gameplay::PlayerId> vPlayers;
 
 	void StartEvent();
 	void SpawnBoss();
@@ -38,8 +37,8 @@ private:
 	void SendToPlayers(char* psPacket, int size);
 	void SendMessageToPlayers(char* szMessage, bool bToAll=false);
 
-	void SendReward(rsPLAYINFO* lpPlayInfo);
-	void SendLeaveArena(rsPLAYINFO* lpPlayInfo);
+	void SendReward(gameplay::PlayerId player);
+	void SendLeaveArena(gameplay::PlayerId player);
 };
 
 extern cHELLSGATE cHg;

@@ -1,0 +1,14 @@
+//ID
+*코드 "BI290"
+
+//Korean Name
+*이름 "Pedra do Acesso - Aging"
+
+//English Name
+*Name "Pedra do Acesso - Aging"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\BI290.zhoon"

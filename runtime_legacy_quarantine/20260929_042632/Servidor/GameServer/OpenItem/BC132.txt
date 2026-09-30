@@ -1,0 +1,5 @@
+//ID
+*코드 "BC132"
+
+//Name File
+*연결파일 "Name\BC132.zhoon"

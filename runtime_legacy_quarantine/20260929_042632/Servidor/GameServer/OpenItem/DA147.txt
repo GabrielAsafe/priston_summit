@@ -1,0 +1,29 @@
+//ID
+*코드 "DA147"
+
+//Korean Name
+*이름 "Uniforme"
+
+//English Name
+*Name "Uniforme"
+
+//Defense
+*방어력 100 100
+
+//Absorption
+*흡수력 4.0 4.0
+
+//Block
+*블럭율 3.0 3.0
+
+//Level
+*레벨 20
+
+//Weight
+*무게 100
+
+//Price
+*가격 150000
+
+//Name File
+*연결파일 "Name\DA147.zhoon"

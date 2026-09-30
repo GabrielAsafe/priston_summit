@@ -17,7 +17,7 @@
     "fields": {
       "state": "적",
       "model_file": "char\\monster\\hobogolem\\hobogolem.ini",
-      "name": "Rob?Mutante",
+      "name": "Robô Mutante",
       "level": 120,
       "model_scale": 2.3,
       "all_see_item": true,

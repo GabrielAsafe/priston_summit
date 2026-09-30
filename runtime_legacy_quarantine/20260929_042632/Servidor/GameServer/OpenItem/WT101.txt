@@ -1,0 +1,53 @@
+//ID
+*ÄÚµå "WT101"
+
+//Korean Name
+*ÀÌ¸§ "Lança"
+
+//English Name
+*Name "Lança"
+
+//AttackPower
+*°ø°Ý·Â 1 2 3 4
+
+//AttackRange
+*»çÁ¤°Å¸® 180
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackRating
+*¸íÁß·Â 25 34
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 2
+
+//Integrity
+*³»±¸·Â 20 27
+
+//PrimarySpec
+**Æ¯È­ Atalanta
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Archer
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 1
+
+//SpecAttackRange
+**»çÁ¤°Å¸® 10
+
+//Weight
+*¹«°Ô 2
+
+//Price
+*°¡°Ý 100
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WT101.zhoon"

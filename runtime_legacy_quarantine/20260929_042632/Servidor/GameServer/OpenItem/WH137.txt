@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "WH137"
+
+//Korean Name
+*ÀÌ¸§ "Martelo Anúbis"
+
+//English Name
+*Name "Martelo Anúbis"
+
+//AttackPower
+*°ø°Ý·Â 129 132 142 145
+
+//AttackRating
+*¸íÁß·Â 345 354
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 8
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 22
+
+//Block
+*ºí·°À² 15.0 15.0
+
+//Integrity
+*³»±¸·Â 300 320
+
+//Level
+*·¹º§ 130
+
+//Strength
+*Èû 231
+
+//Talent
+*Àç´É 100
+
+//PrimarySpec
+**Æ¯È­ Mechanician
+
+//SecondarySpec
+**Æ¯È­·£´ý Fighter Pikeman Knight
+
+//SpecAttackPower
+**°ø°Ý·Â 7 7
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 5
+
+//Weight
+*¹«°Ô 153
+
+//Price
+*°¡°Ý 2280000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WH137.zhoon"

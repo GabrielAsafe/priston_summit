@@ -18,6 +18,21 @@
 #include "systems/security/firewall/Firewall.h"
 #include <stdarg.h>
 
+static void SummitAlwaysLoginHandshakeServerTrace(const char *fmt, ...)
+{
+	FILE *fp = fopen("LOGS\\mingw_login_handshake_server.txt", "a");
+	if(!fp)
+		return;
+
+	va_list ap;
+	va_start(ap, fmt);
+	vfprintf(fp, fmt, ap);
+	va_end(ap);
+	fprintf(fp, "\n");
+	fflush(fp);
+	fclose(fp);
+}
+
 /* MINGW_TRANSPORT_TRACE_V2 */
 static void MingwTransportTraceV2(const char *fmt, ...)
 {
@@ -199,6 +214,12 @@ DWORD WINAPI smTransRecvThreadProc(void *pInfo)
 			SockInfo = ThreadRoute->smThreadSock;
 			ThreadRoute->Sleep = FALSE;
 
+			/* A suspended pooled receive worker can be resumed without a route
+			 * during teardown/compatibility runtimes (notably Wine).  The send
+			 * worker already tolerates this state; receive must do the same. */
+			if(!SockInfo)
+				continue;
+
 			if(!ThreadRoute->TimeOut)
 			{
 				SockInfo->Sucess = FALSE;
@@ -285,6 +306,15 @@ DWORD WINAPI smTransRecvThreadProc(void *pInfo)
 
 			RecvLen = (((int*)szBuff)[0]);
 			RecvCode = (((int*)szBuff)[1]);
+
+			if(RecvCode == OpCode::OPCODE_ID_GETUSERINFO)
+			{
+				SummitAlwaysLoginHandshakeServerTrace(
+					"[LOGIN_HEADER] size=%d code=0x%08X socket=%llu",
+					RecvLen,
+					(unsigned)RecvCode,
+					SockInfo ? (unsigned long long)SockInfo->Sock : 0ULL);
+			}
 
             MingwTransportTraceV2(
                 "[HEADER] socket=%llu size=%d code=0x%08X BuffCnt=%d len=%d",
@@ -812,6 +842,11 @@ int smWINSOCK::mesAccept(WPARAM wParam, LPARAM lParam)
 		CreateTransThread(TRANSMODE_DUAL);
 
 		ConnectPlayer(MyPoint);
+		SummitAlwaysLoginHandshakeServerTrace(
+			"[ACCEPT] ip=%s socket=%llu extData1=%p",
+			szIPAddr,
+			(unsigned long long)sock,
+			ExtData1);
 
 		int sockBufferSize;
 

@@ -1,0 +1,17 @@
+//ID
+*코드 "BI138"
+
+//Korean Name
+*이름 "Mestre do Aging C"
+
+//English Name
+*Name "Mestre do Aging C"
+
+//Weight
+*무게 1
+
+//Price
+*가격 80000
+
+//Name File
+*연결파일 "Name\BI138.zhoon"

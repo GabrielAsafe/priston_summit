@@ -1,0 +1,16 @@
+// NOME E CODIGO DO ITEM
+*이름		"Traje Hopi (F)"
+*코드		"CA550"
+
+// PESO NO INVETARIO
+*무게 50
+// ABSORCAO
+*흡수력 2.5
+// TAXA DE DEFESA
+*방어력 80
+// ADD HP
+*생명력추가	10
+// ADD MP
+*기력추가	5
+// ADD RES
+*근력추가	5

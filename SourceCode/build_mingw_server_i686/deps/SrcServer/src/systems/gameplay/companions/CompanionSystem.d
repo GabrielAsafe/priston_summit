@@ -6,10 +6,40 @@
  Shared/content/v1/text_resource/content/CompiledTextResourceSource.h \
  Shared/content/v1/runtime/RuntimeContentPath.h \
  SrcServer/src/systems/gameplay/companions/CompanionSystem.h \
+ Shared/gameplay/companions/v2/CompanionCommands.h \
+ Shared/gameplay/companions/v2/CompanionQuery.h \
+ Shared/gameplay/core/v2/GameplayIds.h \
+ Shared/gameplay/companions/v2/CompanionLifecycle.h \
+ Shared/gameplay/companions/v2/CompanionUIIngress.h \
  Shared/gameplay/companions/CompanionProtocol.h \
+ SrcServer/src/systems/gameplay/companions/v2/legacy/CompanionLegacyCommandsRuntime.h \
+ SrcServer/src/systems/gameplay/companions/v2/legacy/CompanionLegacyLifecycleRuntime.h \
+ SrcServer/src/systems/gameplay/companions/v2/legacy/CompanionLegacyUIRuntime.h \
+ SrcServer/src/systems/gameplay/companions/v2/legacy/CompanionLegacyCharacterHooks.h \
+ SrcServer/src/systems/gameplay/companions/v2/legacy/CompanionLegacyExperienceRuntime.h \
+ Shared/gameplay/companions/v2/CompanionSkillProfile.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
+ Shared/gameplay/skills/v2/domain/SkillDefinition.h \
+ SrcServer/src/systems/gameplay/companions/v2/CompanionRuntimeQuery.h \
  SrcServer/src/systems/gameplay/companions/CompanionProfileStore.h \
  SrcServer/src/systems/gameplay/companions/CompanionTacticsStore.h \
  SrcServer/src/systems/gameplay/companions/CompanionSkillExecutor.h \
+ SrcServer/src/systems/gameplay/player/v2/legacy/LegacyPlayerAdapter.h \
+ Shared/gameplay/player/v2/IPlayerQuery.h \
+ Shared/gameplay/player/v2/PlayerSnapshot.h \
+ Shared/gameplay/world/v2/WorldPosition.h \
+ SrcServer/src/systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h \
+ SrcServer/src/systems/gameplay/player/v2/legacy/LegacyCharacterRecordAdapter.h \
+ Shared/gameplay/player/v2/ICharacterRepository.h \
+ SrcServer/src/systems/gameplay/loot/v2/legacy/LegacyLootAdapter.h \
+ Shared/gameplay/loot/v2/LootService.h \
+ SrcServer/src/systems/social/party/v2/legacy/LegacyPartyQueryAdapter.h \
+ Shared/gameplay/social/party/v2/PartyQuery.h \
+ SrcServer/src/systems/gameplay/companions/v2/legacy/LegacyCompanionQueryAdapter.h \
+ SrcServer/src/systems/gameplay/combat/v2/legacy/LegacyThreatService.h \
+ Shared/gameplay/combat/v2/ThreatService.h \
+ SrcServer/src/systems/network/v2/legacy/LegacyPacketSender.h \
+ Shared/network/v2/PacketSender.h Shared/network/v2/ConnectionQuery.h \
  Shared/opcodes.h \
  SrcServer/src/systems/network/transport/legacy/smwsock.h \
  Shared/network/transport/legacy/smwsock_legacy_server.h \
@@ -53,10 +83,41 @@ Shared/content/v1/common/Sha256.h:
 Shared/content/v1/text_resource/content/CompiledTextResourceSource.h:
 Shared/content/v1/runtime/RuntimeContentPath.h:
 SrcServer/src/systems/gameplay/companions/CompanionSystem.h:
+Shared/gameplay/companions/v2/CompanionCommands.h:
+Shared/gameplay/companions/v2/CompanionQuery.h:
+Shared/gameplay/core/v2/GameplayIds.h:
+Shared/gameplay/companions/v2/CompanionLifecycle.h:
+Shared/gameplay/companions/v2/CompanionUIIngress.h:
 Shared/gameplay/companions/CompanionProtocol.h:
+SrcServer/src/systems/gameplay/companions/v2/legacy/CompanionLegacyCommandsRuntime.h:
+SrcServer/src/systems/gameplay/companions/v2/legacy/CompanionLegacyLifecycleRuntime.h:
+SrcServer/src/systems/gameplay/companions/v2/legacy/CompanionLegacyUIRuntime.h:
+SrcServer/src/systems/gameplay/companions/v2/legacy/CompanionLegacyCharacterHooks.h:
+SrcServer/src/systems/gameplay/companions/v2/legacy/CompanionLegacyExperienceRuntime.h:
+Shared/gameplay/companions/v2/CompanionSkillProfile.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
+Shared/gameplay/skills/v2/domain/SkillDefinition.h:
+SrcServer/src/systems/gameplay/companions/v2/CompanionRuntimeQuery.h:
 SrcServer/src/systems/gameplay/companions/CompanionProfileStore.h:
 SrcServer/src/systems/gameplay/companions/CompanionTacticsStore.h:
 SrcServer/src/systems/gameplay/companions/CompanionSkillExecutor.h:
+SrcServer/src/systems/gameplay/player/v2/legacy/LegacyPlayerAdapter.h:
+Shared/gameplay/player/v2/IPlayerQuery.h:
+Shared/gameplay/player/v2/PlayerSnapshot.h:
+Shared/gameplay/world/v2/WorldPosition.h:
+SrcServer/src/systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h:
+SrcServer/src/systems/gameplay/player/v2/legacy/LegacyCharacterRecordAdapter.h:
+Shared/gameplay/player/v2/ICharacterRepository.h:
+SrcServer/src/systems/gameplay/loot/v2/legacy/LegacyLootAdapter.h:
+Shared/gameplay/loot/v2/LootService.h:
+SrcServer/src/systems/social/party/v2/legacy/LegacyPartyQueryAdapter.h:
+Shared/gameplay/social/party/v2/PartyQuery.h:
+SrcServer/src/systems/gameplay/companions/v2/legacy/LegacyCompanionQueryAdapter.h:
+SrcServer/src/systems/gameplay/combat/v2/legacy/LegacyThreatService.h:
+Shared/gameplay/combat/v2/ThreatService.h:
+SrcServer/src/systems/network/v2/legacy/LegacyPacketSender.h:
+Shared/network/v2/PacketSender.h:
+Shared/network/v2/ConnectionQuery.h:
 Shared/opcodes.h:
 SrcServer/src/systems/network/transport/legacy/smwsock.h:
 Shared/network/transport/legacy/smwsock_legacy_server.h:

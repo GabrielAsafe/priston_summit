@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "BI202"
+
+//Korean Name
+*ÀÌ¸§ "Baú de Bronze 6h"
+
+//English Name
+*Name "Baú de Bronze 6h"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\BI202.zhoon"

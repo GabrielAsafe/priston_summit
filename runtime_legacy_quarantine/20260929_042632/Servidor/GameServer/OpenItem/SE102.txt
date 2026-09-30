@@ -1,0 +1,17 @@
+//ID
+*코드 "SE102"
+
+//Korean Name
+*이름 "Nied"
+
+//English Name
+*Name "Nied"
+
+//Weight
+*무게 1
+
+//Price
+*가격 20000
+
+//Name File
+*연결파일 "Name\SE102.zhoon"

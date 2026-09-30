@@ -9,6 +9,7 @@ CHAR=(ROOT/'SrcServer/src/systems/gameplay/character/core/character.cpp').read_t
 CAT=(ROOT/'SrcServer/src/systems/gameplay/companions/CompanionSkillCatalog.inl').read_text(errors='ignore')
 POL=(ROOT/'Shared/gameplay/combat/LegacyDamagePolicy.inl').read_text(errors='ignore')
 ORACLE=(ROOT/'Shared/legacy_oracle/server/core/server/legacy_runtime/OnSever.cpp.inl').read_text(errors='ignore')
+STATUS=(ROOT/'SrcServer/src/systems/gameplay/combat/v2/legacy/LegacyStatusEffectAdapter.cpp').read_text(errors='ignore')
 err=[]
 for code in ('SKILL_GOD_BLESS','SKILL_FROST_JAVELIN'):
     line=next((ln for ln in CAT.splitlines() if '{ '+code+',' in ln),'')
@@ -21,8 +22,10 @@ for tok in ('lpTransAttackData->Power += lpPlayInfo->dwSkill_GodsBless_Param','d
     src=POL if 'lpTransAttackData' in tok else ORACLE
     if tok not in src: err.append('God Bless oracle missing '+tok)
 # Frost Javelin is basic-only and weapon-gated at hit time.
-for tok in ('modifier.frostJavelinPoint = point','(rightItemCode & sinITEM_MASK2) == sinWT1','Frost_Javelin_IceAddDamage[p][0]','target->smCharInfo.Resistance[sITEMINFO_ICE]','16 * Frost_Javelin_IceTime[p]','Frost_Javelin_SpeedSubPercent[p]','target->PlayDistortion = 0'):
+for tok in ('modifier.frostJavelinPoint = point','(rightItemCode & sinITEM_MASK2) == sinWT1','Frost_Javelin_IceAddDamage[p][0]','target->smCharInfo.Resistance[sITEMINFO_ICE]','ServerLegacyStatusEffectAdapter().ApplyElementalSlow16Hz(','Frost_Javelin_IceTime[p]','Frost_Javelin_SpeedSubPercent[p]'):
     if tok not in CPP: err.append('Frost Javelin missing '+tok)
+for tok in ('int durationTicks = durationSeconds * 16','resolved->PlayDistortion = 0'):
+    if tok not in STATUS: err.append('Frost Javelin status adapter missing '+tok)
 for tok in ('lpPlayInfo->dwSkill_FrostJavelin_Time && !dwAttSkillCode','dwWeaponCode == sinWT1','Frost_Javelin_IceAddDamage[lpPlayInfo->dwSkill_FrostJavelin_Param][0]','PlaySlowCount = 16 * Frost_Javelin_IceTime','PlaySlowSpeed = 240 - (240 * Frost_Javelin_SpeedSubPercent'):
     if tok not in POL: err.append('Frost Javelin oracle missing '+tok)
 # Exactly two direct attack hooks and a managed-companion bridge.

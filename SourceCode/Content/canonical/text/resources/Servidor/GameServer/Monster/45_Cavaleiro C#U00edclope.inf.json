@@ -17,7 +17,7 @@
     "fields": {
       "state": "적",
       "model_file": "char\\monster\\moncyclops\\moncyclops-d.ini",
-      "name": "Cavaleiro C?lope",
+      "name": "Cavaleiro Cíclope",
       "level": 45,
       "model_scale": 1.0,
       "generate_group": [

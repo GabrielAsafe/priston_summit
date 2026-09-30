@@ -9,6 +9,7 @@ system = ROOT / "SrcServer/src/systems/gameplay/companions/CompanionSystem.cpp"
 record = ROOT / "Shared/persistence/character_record/record_legacy_server.inl"
 record_h = ROOT / "SrcServer/src/systems/persistence/character_record/record.h"
 config = ROOT / "Configs/Companion.ini"
+profile = ROOT / "Shared/gameplay/companions/v2/CompanionSkillProfile.h"
 
 errors = []
 
@@ -22,24 +23,29 @@ def forbid(path: Path, needle: str, label: str):
     if needle in data:
         errors.append(f"{path.relative_to(ROOT)}: forbidden {label}: {needle}")
 
-for path in (executor, header, system, record, record_h):
+for path in (executor, header, system, record, record_h, profile):
     if not path.exists():
         errors.append(f"missing file: {path.relative_to(ROOT)}")
 
 if not errors:
-    # One real learned offensive skill per legacy class + Priestess healing.
+    # Exact default offensive-skill parity moved out of the executor into
+    # canonical Companion content. Keep the eight historical mappings stable.
     for token in (
-        "JOBCODE_FIGHTER: return SKILL_IMPACT",
-        "JOBCODE_MECHANICIAN: return SKILL_GREAT_SMASH",
-        "JOBCODE_ARCHER: return SKILL_WIND_ARROW",
-        "JOBCODE_PIKEMAN: return SKILL_JUMPING_CRASH",
-        "JOBCODE_ATALANTA: return SKILL_TWIST_JAVELIN",
-        "JOBCODE_KNIGHT: return SKILL_SWORD_BLAST",
-        "JOBCODE_MAGICIAN: return SKILL_FIRE_BOLT",
-        "JOBCODE_PRIESTESS: return SKILL_HOLY_BOLT",
-        "SKILL_HEALING",
+        "{1, 0x02010004u, false}",  # Fighter -> Impact
+        "{2, 0x01020001u, false}",  # Mechanician -> Great Smash
+        "{3, 0x04010003u, false}",  # Archer -> Wind Arrow
+        "{4, 0x03010004u, false}",  # Pikeman -> Jumping Crash
+        "{5, 0x06020002u, false}",  # Atalanta -> Twist Javelin
+        "{6, 0x05010001u, false}",  # Knight -> Sword Blast
+        "{7, 0x08010002u, false}",  # Magician -> Fire Bolt
+        "{8, 0x07010002u, true}",   # Priestess -> Holy Bolt + heal role
     ):
-        need(executor, token, "skill mapping")
+        need(profile, token, "canonical companion class skill mapping")
+    need(executor, "DefaultDamageSkillForClass", "content-owned damage skill mapping")
+    need(executor, "HasCompanionHealingRole", "content-owned healing role")
+    need(executor, "SKILL_HEALING", "healing skill execution")
+    forbid(executor, "JOBCODE_", "concrete class switch")
+    forbid(system, "JOBCODE_", "concrete companion class branch")
 
     # Skill points are normalized into a logical catalog-owned slot space.
     # The legacy circular 16-byte DAT layout is translated by CompanionSystem;

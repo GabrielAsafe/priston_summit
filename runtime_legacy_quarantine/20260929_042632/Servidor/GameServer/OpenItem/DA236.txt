@@ -1,0 +1,41 @@
+//ID
+*ÄÚµå "DA236"
+
+//Korean Name
+*ÀÌ¸§ "Roupão de Mardanos M (3d)"
+
+//English Name
+*Name "Roupão de Mardanos M (3d)"
+
+//Defense
+*¹æ¾î·Â 280 280
+
+//Absorption
+*Èí¼ö·Â 6.5 6.5
+
+//Block
+*ºí·°À² 1.0 1.0
+
+//OrganicResistance
+*»ýÃ¼ 5 5
+
+//FireResistance
+*ºÒ 5 5
+
+//FrostResistance
+*³Ã±â 5 5
+
+//LightningResistance
+*¹ø°³ 5 5
+
+//PoisonResistance
+*µ¶ 5 5
+
+//Weight
+*¹«°Ô 70
+
+//Price
+*°¡°Ý 500000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DA236.zhoon"

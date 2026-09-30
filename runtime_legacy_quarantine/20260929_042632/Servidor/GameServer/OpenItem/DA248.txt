@@ -1,0 +1,50 @@
+//ID
+*ÄÚµå "DA248"
+
+//Korean Name
+*ÀÌ¸§ "Pijama Mágico"
+
+//English Name
+*Name "Pijama Mágico"
+
+//Defense
+*¹æ¾î·Â 260 260
+
+//Absorption
+*Èí¼ö·Â 5.0 5.1
+
+//OrganicResistance
+*»ýÃ¼ 5 5
+
+//FireResistance
+*ºÒ 5 5
+
+//FrostResistance
+*³Ã±â 5 5
+
+//LightningResistance
+*¹ø°³ 5 5
+
+//PoisonResistance
+*µ¶ 5 5
+
+//HP
+*»ý¸í·ÂÃß°¡ 20 20
+
+//MP
+*±â·ÂÃß°¡ 20 20
+
+//STM
+*±Ù·ÂÃß°¡ 20 20
+
+//Integrity
+*³»±¸·Â 100 100
+
+//Weight
+*¹«°Ô 50
+
+//Price
+*°¡°Ý 3200000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DA248.zhoon"

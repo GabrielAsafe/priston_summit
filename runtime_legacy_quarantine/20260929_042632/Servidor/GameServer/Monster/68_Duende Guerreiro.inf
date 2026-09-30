@@ -1,0 +1,116 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\monheavygoblin\monheavygoblin.ini"
+
+//Name
+*이름 "Duende Guerreiro"
+
+//Level
+*레벨 68
+
+//Size
+*모델크기 1.0
+
+//QuestCode
+*구별코드 31
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 350
+
+//HP
+*생명력 2000
+
+//AttackPower
+*공격력 96 104
+
+//AttackRating
+*명중력 1100
+
+//AttackSpeed
+*공격속도 8
+
+//AttackRange
+*공격범위 75
+
+//SkillPower
+*기술공격력 105 120
+
+//SkillRating
+*기술공격률 18
+
+//SkillRange
+*기술공격범위 55
+
+//SkillDistance
+*기술공격거리 80
+
+//Defense
+*방어력 700
+
+//Absorption
+*흡수율 12
+
+//MoveSpeed
+*이동력 5
+
+//Race
+*몬스터종족 노멀
+
+//ShadowSize
+*크기 중대형
+
+//Experience
+*경험치 53827
+
+//Sound
+*효과음 HEAVYGOBLIN
+
+//DropsNumber
+*아이템카운터 1
+
+//DropGold
+*아이템 2500 돈 2000 2600
+
+//DropPotion
+*아이템 2500 PS103 PL103 PM103 PM103
+
+//Drop
+//*아이템 100 SE102 SE104
+
+//Drop
+*아이템 30 GP106 GP109 GP107
+
+//Drop
+*아이템 80 OS105 OS224
+
+//Drop
+*아이템 40 OS106 OS225
+
+//Drop
+*아이템 20 OS107 OS226
+
+//Drop
+*아이템 103 EC101 EC102 EC104
+
+//Drop
+*아이템 3783 WA109 WC109 WH110 WM110 WP110 WS111 WS212 WT110 OA113 OA209 OM110 OR113 DA111 DA211 DB109 DG109 DS109
+
+//Drop
+*아이템 387 WA110 WC110 WH111 WM111 WP111 WS112 WS213 WT111 OA114 OA210 OM111 OR114 DA112 DA212 DB110 DG110 DS110
+
+//Drop
+*아이템 258 WA111 WC111 WH112 WM112 WP112 WS113 WS214 WT112 OA115 OA211 OM112 OR115 DA113 DA213 DB111 DG111 DS111
+
+//Drop
+*아이템 129 WA112 WC112 WH113 WM113 WP113 WS114 WS215 WT113 OA116 OA212 OM113 OR116 DA114 DA214 DB112 DG112 DS112
+
+//Drop
+*아이템 43 WA113 WC113 WH114 WM114 WP114 WS115 WS216 WT114 OA117 OA213 OM114 OR117 DA115 DA215 DB113 DG113 DS113
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

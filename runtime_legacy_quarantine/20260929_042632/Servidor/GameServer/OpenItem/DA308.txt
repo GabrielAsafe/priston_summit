@@ -1,0 +1,59 @@
+//ID
+*코드 "DA308"
+
+//Korean Name
+*이름 "Armadura Drax"
+
+//English Name
+*Name "Armadura Drax"
+
+//Defense
+*방어력 785 805
+
+//Absorption
+*흡수력 41.7 42.0
+
+//OrganicResistance
+*생체 11 17
+
+//FireResistance
+*불 11 17
+
+//FrostResistance
+*냉기 11 17
+
+//LightningResistance
+*번개 11 17
+
+//PoisonResistance
+*독 11 17
+
+//Integrity
+*내구력 330 360
+
+//Level
+*레벨 146
+
+//Strength
+*힘 256
+
+//Talent
+*재능 95
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**방어력 69 81
+
+//SpecAbsorption
+**흡수력 2.5 2.9
+
+//Weight
+*무게 240
+
+//Price
+*가격 1600000
+
+//Name File
+*연결파일 "Name\DA308.zhoon"

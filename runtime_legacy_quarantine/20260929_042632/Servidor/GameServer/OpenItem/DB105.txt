@@ -1,0 +1,56 @@
+//ID
+*ÄÚµå "DB105"
+
+//Korean Name
+*ÀÌ¸§ "Botas de Aço"
+
+//English Name
+*Name "Botas de Aço"
+
+//Defense
+*¹æ¾î·Â 17 28
+
+//Absorption
+*Èí¼ö·Â 0.7 0.9
+
+//Speed
+*ÀÌµ¿¼Óµµ 1.0 1.3
+
+//FireResistance
+*ºÒ 2 4
+
+//FrostResistance
+*³Ã±â 1 4
+
+//PoisonResistance
+*µ¶ 1 4
+
+//Integrity
+*³»±¸·Â 38 50
+
+//Level
+*·¹º§ 16
+
+//Strength
+*Èû 55
+
+//Agility
+*¹ÎÃ¸¼º 40
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecAbsorption
+**Èí¼ö·Â 0.2 0.4
+
+//SpecSpeed
+**ÀÌµ¿¼Óµµ 0.2 0
+
+//Weight
+*¹«°Ô 7
+
+//Price
+*°¡°Ý 6600
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DB105.zhoon"

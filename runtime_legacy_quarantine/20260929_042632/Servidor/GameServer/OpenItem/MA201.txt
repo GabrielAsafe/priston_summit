@@ -1,0 +1,14 @@
+//ID
+*코드 "MA201"
+
+//Korean Name
+*이름 "Mel"
+
+//English Name
+*Name "Mel"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\MA201.zhoon"

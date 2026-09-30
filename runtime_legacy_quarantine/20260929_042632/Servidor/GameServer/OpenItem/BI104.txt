@@ -1,0 +1,17 @@
+//ID
+*코드 "BI104"
+
+//Korean Name
+*이름 "Pergaminho da Ressurrei豫o"
+
+//English Name
+*Name "Pergaminho da Ressurrei豫o"
+
+//Weight
+*무게 1
+
+//Price
+*가격 5000
+
+//Name File
+*연결파일 "Name\BI104.zhoon"

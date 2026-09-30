@@ -1,0 +1,17 @@
+//ID
+*코드 "GP118"
+
+//Korean Name
+*이름 "Cristal do Caos"
+
+//English Name
+*Name "Cristal do Caos"
+
+//Level
+*레벨 40
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\GP118.zhoon"

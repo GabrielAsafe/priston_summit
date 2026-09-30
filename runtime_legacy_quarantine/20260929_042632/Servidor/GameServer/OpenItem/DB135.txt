@@ -1,0 +1,62 @@
+//ID
+*코드 "DB135"
+
+//Korean Name
+*이름 "Botas do Draxos"
+
+//English Name
+*Name "Botas do Draxos"
+
+//Defense
+*방어력 200 210
+
+//Absorption
+*흡수력 17.5 20.5
+
+//Speed
+*이동속도 15.0 15.0
+
+//OrganicResistance
+*생체 3 6
+
+//FireResistance
+*불 3 6
+
+//FrostResistance
+*냉기 3 6
+
+//LightningResistance
+*번개 3 6
+
+//PoisonResistance
+*독 3 6
+
+//Integrity
+*내구력 100 100
+
+//Level
+*레벨 105
+
+//Strength
+*힘 100
+
+//Agility
+*민첩성 100
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecAbsorption
+**흡수력 1.3 2.0
+
+//SpecSpeed
+**이동속도 2.0 2
+
+//Weight
+*무게 70
+
+//Price
+*가격 1100000
+
+//Name File
+*연결파일 "Name\DB135.zhoon"

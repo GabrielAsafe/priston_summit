@@ -4,38 +4,46 @@
     "canonical_text": "SourceCode/Content/canonical/text",
     "canonical_spawns": "SourceCode/Content/canonical/stage_spawns",
     "canonical_maps": "SourceCode/Content/canonical/maps",
-    "canonical_item_profiles": "SourceCode/Content/canonical/item_profiles"
+    "canonical_start_points": "SourceCode/Content/canonical/stage_start_points",
+    "canonical_fixed_npcs": "SourceCode/Content/canonical/fixed_npcs",
+    "canonical_item_profiles": "SourceCode/Content/canonical/item_profiles",
+    "canonical_gameplay_reference": "SourceCode/Content/canonical/gameplay_reference"
   },
   "packs": {
     "text_resources": {
       "path": "packs/text_resources.sres",
-      "bytes": 2963210,
-      "sha256": "7b02bfecc6b059713d8d1e3c0096925e0b503adc539ad05b28b418d1cf535b78"
+      "bytes": 2963318,
+      "sha256": "a99453b5ffb90e25d344160ef6610fb855110d389cae7caca409de347134afcf"
     },
     "definitions_client": {
       "path": "packs/definitions_client.scfg",
-      "bytes": 755235,
-      "sha256": "51f2995a65d848ab7649177c6a42167bd31c6ac66122640c0b9129ca3ed687ce"
+      "bytes": 755043,
+      "sha256": "36c40ad3ee58e72253c7a57386223b302a2bfa34cf9c3225a05fc3302f270e01"
     },
     "definitions_server": {
       "path": "packs/definitions_server.scfg",
-      "bytes": 838226,
-      "sha256": "fed4d9cfe568b4ddd5c5b69da795581bb9e16d2368ef8c583bc2f0bc9f9b1cec"
+      "bytes": 838034,
+      "sha256": "f3dcb9c18755280f72299355e213694e4b223d0c017c0137d24e8de13b4f6bba"
     },
     "localization": {
       "path": "packs/localization.sloc",
-      "bytes": 356688,
-      "sha256": "bb2370e9ad5300d886130e3407784917d53239b3b5d160fa4a5eb7f542080c1f"
+      "bytes": 356566,
+      "sha256": "7756f87f052a92ec0f8e0c18163ddbe4e488e56f3255ad3b2c19717c72966a06"
     },
     "gameplay_config": {
       "path": "packs/gameplay_config.sgcf",
       "bytes": 37187,
       "sha256": "55067c012579aa34011eaf3a9839395b501ccce42c8e87e0b9607001124b1f77"
     },
-    "stage_spawns": {
-      "path": "packs/stage_spawns.sspb",
-      "bytes": 15625,
-      "sha256": "85c4f1c9cb1837642b0db63a156ae89c6784d7757eefbe68139a7ff86212d9d8"
+    "gameplay_reference": {
+      "path": "packs/gameplay_reference.sgrf",
+      "bytes": 71792,
+      "sha256": "50cc01ef5d6f3911011f163a9e39c7aac97ef4c8d334d7400bd46d85300f445f"
+    },
+    "field_runtime": {
+      "path": "packs/field_runtime.sfld",
+      "bytes": 137351,
+      "sha256": "193ddde79ff0a08e5fc1188c5a224433975fe31d42439811f627c54d3622b068"
     },
     "maps_client": {
       "path": "packs/maps_client.smap",

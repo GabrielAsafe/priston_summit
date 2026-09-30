@@ -1,0 +1,62 @@
+//ID
+*코드 "WP129"
+
+//Korean Name
+*이름 "Foice Verus"
+
+//English Name
+*Name "Foice Verus"
+
+//AttackPower
+*공격력 107 110 155 158
+
+//AttackRating
+*명중력 257 277
+
+//AttackSpeed
+*공격속도 8
+
+//AttackCritical
+*크리티컬 20
+
+//Block
+*블럭율 18.0 18.0
+
+//Integrity
+*내구력 215 235
+
+//Level
+*레벨 125
+
+//Strength
+*힘 219
+
+//Talent
+*재능 100
+
+//PrimarySpec
+**특화 Pikeman
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Atalanta
+
+//SpecAttackPower
+**공격력 6 6
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 4
+
+//Weight
+*무게 109
+
+//Price
+*가격 1550000
+
+//Name File
+*연결파일 "Name\WP129.zhoon"

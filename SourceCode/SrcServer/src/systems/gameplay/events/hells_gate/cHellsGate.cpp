@@ -2,13 +2,19 @@
 #include "systems/network/protocol/server/opcodes.h"
 #include "core/server/legacy_sin_runtime/sinLinkHeader.h"
 #include "systems/gameplay/events/hells_gate/cHellsGate.h"
+#include "systems/gameplay/events/v2/GameplayEventRuntime.h"
+#include "systems/gameplay/events/v2/legacy/LegacyWorldEventRewardGateway.h"
+#include "systems/gameplay/events/v2/legacy/LegacyWorldEventAdmissionAdapter.h"
+#include "systems/gameplay/player/v2/legacy/LegacyPlayerAdapter.h"
+#include "gameplay/world/v2/ITeleportService.h"
+#include "gameplay/world/v2/ISpawnService.h"
+#include "gameplay/social/v2/ChatDelivery.h"
+#include "network/v2/PacketSender.h"
+#include "systems/community/chat/v2/legacy/LegacyChatDeliveryAdapter.h"
+#include "systems/network/v2/legacy/LegacyPacketSender.h"
+#include "systems/gameplay/world/v2/legacy/LegacyTeleportAdapter.h"
+#include "systems/gameplay/world/v2/legacy/LegacySpawnAdapter.h"
 
-extern int SendQuickMessage2(rsPLAYINFO *lpPlayInfo, char *szMessage);
-extern void SendWarpField(rsPLAYINFO* lpPlayInfo, int Field, int x, int z);
-extern smCHAR *OpenMonsterFromName(char *szName, int x, int y, int z, rsPLAYINFO *lpPlayInfo = 0);
-extern rsPLAYINFO *FindUserFromCode(DWORD dwUserCode);
-extern int CreateCommandItem(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, char *szItem);
-extern int spJobCode;
 extern int SendToAll(char* Buff, int Size);
 extern int Event_HellsGate;
 
@@ -21,6 +27,11 @@ cHELLSGATE::cHELLSGATE()
 	iState = 0;
 	dwTickWaiting = 0;
 	dwTick = 0;
+	(void)gameplay::events::ServerGameplayEventHub().Subscribe<gameplay::events::MonsterDefeatedEvent>(
+		[this](const gameplay::events::MonsterDefeatedEvent& event)
+		{
+			MonsterKilled(event.monster);
+		});
 }
 
 void cHELLSGATE::Main()
@@ -57,67 +68,96 @@ void cHELLSGATE::Main()
 	}
 }
 
-void cHELLSGATE::SendOpenNpc(rsPLAYINFO * lpPlayInfo)
+void cHELLSGATE::SendOpenNpc(gameplay::PlayerId player)
 {
+	auto sendMessage = [player](const char* text)
+	{
+		gameplay::social::legacy::ServerLegacyChatDeliveryAdapter().SendToPlayer(
+			player, gameplay::social::ChatMessage(
+				text ? text : "", 0, gameplay::social::ChatDeliveryKind::Whisper));
+	};
+
 	if (vPlayers.size() >= MAX_HG_PLAYER)
 	{
-		SendQuickMessage2(lpPlayInfo, "> O evento est\341 cheio.");
+		sendMessage("> O evento est\341 cheio.");
 		return;
 	}
 
 	if (iState != 1)
 	{
 		if (iState == 0)
-			SendQuickMessage2(lpPlayInfo, "> O evento ainda n\343o abriu.");
+			sendMessage("> O evento ainda n\343o abriu.");
 
 		if (iState == 2)
-			SendQuickMessage2(lpPlayInfo, "> O evento j\341 est\341 em andamento.");
+			sendMessage("> O evento j\341 est\341 em andamento.");
 
 		return;
 	}
 
-	smTRANS_COMMAND sPacket;
-	sPacket.code = OpCode::OPCODE_OPEN_HG;
-	sPacket.size = sizeof(smTRANS_COMMAND);
-	lpPlayInfo->lpsmSock->Send((char*)&sPacket, sPacket.size, TRUE);
+	smTRANS_COMMAND packet = {};
+	packet.code = OpCode::OPCODE_OPEN_HG;
+	packet.size = sizeof(smTRANS_COMMAND);
+	gameplay::network::legacy::ServerLegacyPacketSender().Send(
+		player, gameplay::network::PacketView(
+			&packet, sizeof(packet), static_cast<std::uint32_t>(packet.code)));
 }
 
-void cHELLSGATE::RecvJoinHg(rsPLAYINFO * lpPlayInfo)
+void cHELLSGATE::RequestJoin(gameplay::PlayerId playerId)
 {
+	if (!gameplay::player::legacy::ServerLegacyPlayerAdapter().IsOnline(playerId))
+		return;
+
+	auto sendMessage = [playerId](const char* text)
+	{
+		gameplay::social::legacy::ServerLegacyChatDeliveryAdapter().SendToPlayer(
+			playerId, gameplay::social::ChatMessage(
+				text ? text : "", 0, gameplay::social::ChatDeliveryKind::Whisper));
+	};
+
+	const gameplay::events::WorldEventAdmissionStatus admission =
+		gameplay::events::legacy::ServerLegacyWorldEventAdmissionAdapter().Check(
+			gameplay::events::WorldEventAdmissionRequest(
+				playerId, gameplay::MapId(23u), true));
+	if (admission == gameplay::events::WorldEventAdmissionStatus::PlayerUnavailable)
+		return;
+	if (admission == gameplay::events::WorldEventAdmissionStatus::RemoteAddressAlreadyPresent)
+	{
+		sendMessage("HG> M\341ximo 1 personagem por pessoa!");
+		return;
+	}
+
 	if (vPlayers.size() >= MAX_HG_PLAYER)
 	{
-		SendQuickMessage2(lpPlayInfo, "> O evento est\341 cheio.");
+		sendMessage("> O evento est\341 cheio.");
 		return;
 	}
 
 	if (iState != 1)
 	{
 		if (iState == 0)
-			SendQuickMessage2(lpPlayInfo, "> O evento ainda n\343o abriu.");
+			sendMessage("> O evento ainda n\343o abriu.");
 
 		if (iState == 2)
-			SendQuickMessage2(lpPlayInfo, "> O evento j\341 est\341 em andamento.");
+			sendMessage("> O evento j\341 est\341 em andamento.");
 
 		return;
 	}
 
-	sHGPLAYER sPlayer;
-	lstrcpy(sPlayer.szName, lpPlayInfo->getName());
-	sPlayer.dwObjectSerial = lpPlayInfo->dwObjectSerial;
-	vPlayers.push_back(sPlayer);
+	vPlayers.push_back(playerId);
 
-	SendWarpField(lpPlayInfo, 23, -3624, -43172);
+	gameplay::world::legacy::ServerLegacyTeleportAdapter().Teleport(
+		playerId, gameplay::WorldPosition(gameplay::MapId(23u), gameplay::WorldGridToFixed(-3624), 0, gameplay::WorldGridToFixed(-43172)));
 }
 
-void cHELLSGATE::MonsterKilled(smCHAR * lpChar)
+void cHELLSGATE::MonsterKilled(gameplay::EntityId monster)
 {
 	if (iState != 2)
 		return;
 
-	if (lpBoss && lpChar && lpBoss->dwObjectSerial == lpChar->dwObjectSerial)
+	if (bossId.Valid() && monster.Valid() && bossId == monster)
 	{
 		EndEvent(true);
-	}  
+	}
 }
 
 void cHELLSGATE::StartEvent()
@@ -125,13 +165,23 @@ void cHELLSGATE::StartEvent()
 	iState = 1;
 	dwTick = 0;
 	dwTickWaiting = GetCurrentTime();
+	gameplay::events::PublishWorldEventStarted(
+		gameplay::events::WorldEventStarted("hells_gate"));
 
 	//SendMessageToPlayers("> O Hell's Gate está aberto.", true);
 }
 
 void cHELLSGATE::SpawnBoss()
 {
-	lpBoss = OpenMonsterFromName("Esp\355rito do Mal", -3624 * fONE, 484 * fONE, -43172 * fONE);
+	const gameplay::world::SpawnResult spawned = gameplay::world::legacy::ServerLegacySpawnAdapter().Spawn(
+		gameplay::world::SpawnRequest(
+			"Esp\355rito do Mal",
+			gameplay::WorldPosition(
+				gameplay::MapId(23u),
+				gameplay::WorldGridToFixed(-3624),
+				gameplay::WorldGridToFixed(484),
+				gameplay::WorldGridToFixed(-43172))));
+	bossId = spawned.Succeeded() ? spawned.entity : gameplay::EntityId();
 
 	dwTick = GetCurrentTime();
 	iState = 2;
@@ -139,21 +189,19 @@ void cHELLSGATE::SpawnBoss()
 
 void cHELLSGATE::EndEvent(bool bKilled)
 {
-	lpBoss = 0;
+	bossId = gameplay::EntityId();
 	iState = 0;
 	dwTick = 0;
 	dwTickWaiting = 0;
+	gameplay::events::PublishWorldEventEnded(
+		gameplay::events::WorldEventEnded("hells_gate", bKilled));
 
-	for (auto player : vPlayers)
+	for (const gameplay::PlayerId playerId : vPlayers)
 	{
-		rsPLAYINFO* lpPlayInfo = FindUserFromCode(player.dwObjectSerial);
-		if (lpPlayInfo)
-		{
-			if (bKilled)
-				SendReward(lpPlayInfo);
+		if (bKilled)
+			SendReward(playerId);
 
-			SendLeaveArena(lpPlayInfo);
-		}
+		SendLeaveArena(playerId);
 	}
 
 	SendMessageToPlayers("> O Hell's Gate foi finalizado.");
@@ -183,12 +231,15 @@ void cHELLSGATE::UpdateWaiting()
 
 void cHELLSGATE::SendToPlayers(char * psPacket, int size)
 {
-	for (auto player : vPlayers)
-	{
-		rsPLAYINFO* lpPlayInfo = FindUserFromCode(player.dwObjectSerial);
+	if (!psPacket || size <= 0)
+		return;
 
-		if (lpPlayInfo && lpPlayInfo->lpsmSock)
-			lpPlayInfo->lpsmSock->Send(psPacket, size, TRUE);
+	const smTRANS_COMMAND* header = reinterpret_cast<const smTRANS_COMMAND*>(psPacket);
+	const gameplay::network::PacketView packet(
+		psPacket, static_cast<std::size_t>(size), static_cast<std::uint32_t>(header->code));
+	for (const gameplay::PlayerId playerId : vPlayers)
+	{
+		gameplay::network::legacy::ServerLegacyPacketSender().Send(playerId, packet);
 	}
 }
 
@@ -206,20 +257,31 @@ void cHELLSGATE::SendMessageToPlayers(char * szMessage, bool bToAll)
 		SendToPlayers((char*)&TransChatMessage, TransChatMessage.size);
 }
 
-void cHELLSGATE::SendReward(rsPLAYINFO * lpPlayInfo)
+void cHELLSGATE::SendReward(gameplay::PlayerId playerId)
 {
-	spJobCode = lpPlayInfo->smCharInfo.JOB_CODE;
-	CreateCommandItem(lpPlayInfo, lpPlayInfo, "CX101");
-	//CreateCommandItem(lpPlayInfo, lpPlayInfo, "os102");
-	spJobCode = 0;
+	gameplay::player::PlayerSnapshot player;
+	if (!gameplay::player::legacy::ServerLegacyPlayerAdapter().TryGet(playerId, player))
+		return;
+
+	gameplay::rewards::RewardDefinition reward;
+	reward.type = gameplay::rewards::RewardType::Item;
+	reward.key = "CX101";
+	reward.amount = 1;
+	(void)gameplay::events::legacy::ServerWorldEventRewardService().Grant(
+		player.playerKey, reward, "world_event:hells_gate");
 }
 
-void cHELLSGATE::SendLeaveArena(rsPLAYINFO * lpPlayInfo)
+void cHELLSGATE::SendLeaveArena(gameplay::PlayerId playerId)
 {
-	smTRANS_COMMAND sPacket;
+	if (!playerId.Valid())
+		return;
+
+	smTRANS_COMMAND sPacket = {};
 	sPacket.code = OpCode::OPCODE_LEAVE_HG;
 	sPacket.size = sizeof(smTRANS_COMMAND);
-	lpPlayInfo->lpsmSock->Send((char*)&sPacket, sPacket.size, TRUE);
+	gameplay::network::legacy::ServerLegacyPacketSender().Send(
+		playerId, gameplay::network::PacketView(
+			&sPacket, sizeof(sPacket), static_cast<std::uint32_t>(sPacket.code)));
 }
 
 

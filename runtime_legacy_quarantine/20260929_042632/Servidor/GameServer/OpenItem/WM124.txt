@@ -1,0 +1,65 @@
+//ID
+*코드 "WM124"
+
+//Korean Name
+*이름 "Cajado Astral"
+
+//English Name
+*Name "Cajado Astral"
+
+//AttackPower
+*공격력 60 63 77 79
+
+//AttackRating
+*명중력 183 193
+
+//AttackRange
+*사정거리 210
+
+//AttackSpeed
+*공격속도 8
+
+//AttackCritical
+*크리티컬 15
+
+//Block
+*블럭율 9.0 9.0
+
+//Integrity
+*내구력 160 180
+
+//Level
+*레벨 105
+
+//Strength
+*힘 75
+
+//Spirit
+*정신력 205
+
+//Talent
+*재능 90
+
+//SecondarySpec
+**특화랜덤 Priestess Magician
+
+//SpecAttackPower
+**공격력 6 6
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecMPRegen
+**기력재생 2.4 2.7
+
+//SpecSkillTraining
+**마법숙련도 11 16
+
+//Weight
+*무게 56
+
+//Price
+*가격 1200000
+
+//Name File
+*연결파일 "Name\WM124.zhoon"

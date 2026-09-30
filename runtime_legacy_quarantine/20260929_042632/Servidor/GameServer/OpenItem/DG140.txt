@@ -1,0 +1,62 @@
+//ID
+*코드 "DG140"
+
+//Korean Name
+*이름 "Luvas Infernais"
+
+//English Name
+*Name "Luvas Infernais"
+
+//Defense
+*방어력 228 245
+
+//Absorption
+*흡수력 15.6 15.9
+
+//OrganicResistance
+*생체 5 8
+
+//FireResistance
+*불 5 8
+
+//FrostResistance
+*냉기 5 8
+
+//LightningResistance
+*번개 5 8
+
+//PoisonResistance
+*독 5 8
+
+//Integrity
+*내구력 246 255
+
+//Level
+*레벨 130
+
+//Strength
+*힘 100
+
+//Talent
+*재능 83
+
+//Agility
+*민첩성 83
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecDefense
+**방어력 72 80
+
+//SpecAbsorption
+**흡수력 1.4 1.7
+
+//Weight
+*무게 99
+
+//Price
+*가격 1400000
+
+//Name File
+*연결파일 "Name\DG140.zhoon"

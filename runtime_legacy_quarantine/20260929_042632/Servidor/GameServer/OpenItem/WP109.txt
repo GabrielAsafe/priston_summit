@@ -1,0 +1,62 @@
+//ID
+*코드 "WP109"
+
+//Korean Name
+*이름 "Foice do Mal"
+
+//English Name
+*Name "Foice do Mal"
+
+//AttackPower
+*공격력 11 13 28 32
+
+//AttackRating
+*명중력 70 90
+
+//AttackSpeed
+*공격속도 7
+
+//AttackCritical
+*크리티컬 13
+
+//Block
+*블럭율 9.0 9.0
+
+//Integrity
+*내구력 56 75
+
+//Level
+*레벨 37
+
+//Strength
+*힘 90
+
+//Talent
+*재능 54
+
+//PrimarySpec
+**특화 Pikeman
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Atalanta
+
+//SpecAttackPower
+**공격력 6 6
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 2
+
+//Weight
+*무게 31
+
+//Price
+*가격 30000
+
+//Name File
+*연결파일 "Name\WP109.zhoon"

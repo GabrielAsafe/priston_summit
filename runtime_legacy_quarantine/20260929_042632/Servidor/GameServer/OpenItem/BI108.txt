@@ -1,0 +1,17 @@
+//ID
+*ÄÚµå "BI108"
+
+//Korean Name
+*ÀÌ¸§ "Pergaminho Mágico"
+
+//English Name
+*Name "Pergaminho Mágico"
+
+//Weight
+*¹«°Ô 1
+
+//Price
+*°¡°İ 10000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\BI108.zhoon"

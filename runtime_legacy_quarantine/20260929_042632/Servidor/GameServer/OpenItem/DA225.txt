@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "DA225"
+
+//Korean Name
+*ÀÌ¸§ "Roupão Arcanjo"
+
+//English Name
+*Name "Roupão Arcanjo"
+
+//Defense
+*¹æ¾î·Â 370 390
+
+//Absorption
+*Èí¼ö·Â 24.2 24.6
+
+//OrganicResistance
+*»ýÃ¼ 11 17
+
+//FireResistance
+*ºÒ 11 17
+
+//FrostResistance
+*³Ã±â 11 17
+
+//LightningResistance
+*¹ø°³ 11 17
+
+//PoisonResistance
+*µ¶ 11 17
+
+//Integrity
+*³»±¸·Â 170 190
+
+//Level
+*·¹º§ 105
+
+//Spirit
+*Á¤½Å·Â 221
+
+//Talent
+*Àç´É 90
+
+//SecondarySpec
+**Æ¯È­·£´ý Priestess Magician
+
+//SpecDefense
+**¹æ¾î·Â 40 45
+
+//SpecAbsorption
+**Èí¼ö·Â 1.1 1.6
+
+//SpecMPRegen
+**±â·ÂÀç»ý 3.4 3.7
+
+//Weight
+*¹«°Ô 104
+
+//Price
+*°¡°Ý 650000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DA225.zhoon"

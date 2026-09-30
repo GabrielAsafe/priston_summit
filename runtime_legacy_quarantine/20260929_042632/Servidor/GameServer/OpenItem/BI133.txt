@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "BI133"
+
+//Korean Name
+*ÀÌ¸§ "Fênix 1d"
+
+//English Name
+*Name "Fênix 1d"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\BI133.zhoon"

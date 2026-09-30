@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "WS218"
+
+//Korean Name
+*ÀÌ¸§ "Espada Gêmea"
+
+//English Name
+*Name "Espada Gêmea"
+
+//AttackPower
+*°ø°Ý·Â 32 35 48 51
+
+//AttackRating
+*¸íÁß·Â 118 142
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 18
+
+//Block
+*ºí·°À² 9.0 9.0
+
+//Integrity
+*³»±¸·Â 85 130
+
+//Level
+*·¹º§ 75
+
+//Strength
+*Èû 126
+
+//Talent
+*Àç´É 90
+
+//PrimarySpec
+**Æ¯È­ Knight
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Pikeman
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 4
+
+//Weight
+*¹«°Ô 33
+
+//Price
+*°¡°Ý 150000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WS218.zhoon"

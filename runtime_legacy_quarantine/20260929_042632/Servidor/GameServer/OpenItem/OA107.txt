@@ -1,0 +1,32 @@
+//ID
+*코드 "OA107"
+
+//Korean Name
+*이름 "Colar Precioso +2"
+
+//English Name
+*Name "Colar Precioso +2"
+
+//MP
+*기력추가 6 13
+
+//Level
+*레벨 15
+
+//Spirit
+*정신력 28
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecMPRegen
+**기력재생 0.1 0.3
+
+//Weight
+*무게 2
+
+//Price
+*가격 2400
+
+//Name File
+*연결파일 "Name\OA107.zhoon"

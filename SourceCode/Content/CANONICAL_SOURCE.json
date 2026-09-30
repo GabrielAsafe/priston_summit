@@ -15,10 +15,20 @@
       "bytes": 94891,
       "sha256": "ee5bd88d34646db5869af2c016781f2870a1d47f273650e520b0040ae962821c"
     },
+    "stage_start_points": {
+      "files": 66,
+      "bytes": 592408,
+      "sha256": "83d113aaf9e5ba110edc5d67071c84fbea1b464cf32f66ca3214451a9eeea83d"
+    },
+    "fixed_npcs": {
+      "files": 25,
+      "bytes": 33522,
+      "sha256": "917206baad4284ff400aa4c8451b53a6d9fd31da26c11e3d42d9b94339eeb451"
+    },
     "text": {
-      "files": 5613,
-      "bytes": 29867374,
-      "sha256": "6557ca1701b20ef5b890bb6de2e8ac9c6a6bd8496497e2060c2d0699c87edb46"
+      "files": 5614,
+      "bytes": 29869008,
+      "sha256": "6b7e35836cc7b9eb34f8629a65c47ba9377aacec0416366f922e5d32e82c03e9"
     },
     "item_profiles": {
       "files": 3,

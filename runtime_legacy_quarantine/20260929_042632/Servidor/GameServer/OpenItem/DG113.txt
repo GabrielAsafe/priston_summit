@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "DG113"
+
+//Korean Name
+*ÀÌ¸§ "Luvas Titã"
+
+//English Name
+*Name "Luvas Titã"
+
+//Defense
+*¹æ¾î·Â 64 86
+
+//Absorption
+*Èí¼ö·Â 3.3 3.6
+
+//OrganicResistance
+*»ýÃ¼ 2 3
+
+//FireResistance
+*ºÒ 2 3
+
+//FrostResistance
+*³Ã±â 2 3
+
+//LightningResistance
+*¹ø°³ 2 3
+
+//PoisonResistance
+*µ¶ 2 3
+
+//Integrity
+*³»±¸·Â 80 110
+
+//Level
+*·¹º§ 65
+
+//Strength
+*Èû 90
+
+//Talent
+*Àç´É 60
+
+//Agility
+*¹ÎÃ¸¼º 60
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecDefense
+**¹æ¾î·Â 30 36
+
+//SpecAbsorption
+**Èí¼ö·Â 0.4 0.6
+
+//Weight
+*¹«°Ô 32
+
+//Price
+*°¡°Ý 54000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DG113.zhoon"

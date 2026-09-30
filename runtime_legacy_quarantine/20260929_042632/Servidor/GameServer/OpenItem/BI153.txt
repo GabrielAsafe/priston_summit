@@ -1,0 +1,14 @@
+//ID
+*코드 "BI153"
+
+//Korean Name
+*이름 "Napsys 1h"
+
+//English Name
+*Name "Napsys 1h"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\BI153.zhoon"

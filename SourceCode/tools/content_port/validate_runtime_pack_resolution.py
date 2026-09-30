@@ -6,7 +6,7 @@ import hashlib
 from pathlib import Path
 
 COMMON_PACKS = (
-    'stage_spawns.sspb',
+    'field_runtime.sfld',
     'text_resources.sres',
     'localization.sloc',
     'gameplay_config.sgcf',

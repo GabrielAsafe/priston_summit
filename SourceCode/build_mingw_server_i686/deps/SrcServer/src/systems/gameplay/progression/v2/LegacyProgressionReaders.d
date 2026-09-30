@@ -16,7 +16,8 @@
  Shared/gameplay/reputation/v2/IReputationRepository.h \
  Shared/gameplay/reputation/v2/ReputationTypes.h \
  Shared/gameplay/progression/v2/ProgressionCustomHandlers.h \
- SrcServer/src/systems/gameplay/progression/v2/LegacyQuestContract.h \
+ Shared/gameplay/quests/v2/QuestStateQuery.h \
+ Shared/gameplay/core/v2/GameplayIds.h \
  SrcServer/src/core/server/legacy_runtime/onserver.h \
  SrcServer/src/core/data/legacy_loader/fileread.h \
  SrcServer/src/systems/rendering/legacy_3d/smType.h Shared/smPacket.h \
@@ -28,7 +29,6 @@
  SrcServer/src/systems/inventory/legacy/sinItem.h \
  Shared/inventory/legacy/sinItem_legacy_server.h \
  SrcServer/src/systems/rendering/legacy_3d/smDsx.h \
- SrcServer/src/systems/gameplay/quests/server/cQuestHandler.h \
  Shared/persistence/database/Database_sqlite_server.h
 SrcServer/src/systems/gameplay/progression/v2/LegacyProgressionReaders.h:
 SrcServer/src/systems/gameplay/progression/v2/ServerProgressionConditionContext.h:
@@ -46,7 +46,8 @@ Shared/gameplay/reputation/v2/ReputationService.h:
 Shared/gameplay/reputation/v2/IReputationRepository.h:
 Shared/gameplay/reputation/v2/ReputationTypes.h:
 Shared/gameplay/progression/v2/ProgressionCustomHandlers.h:
-SrcServer/src/systems/gameplay/progression/v2/LegacyQuestContract.h:
+Shared/gameplay/quests/v2/QuestStateQuery.h:
+Shared/gameplay/core/v2/GameplayIds.h:
 SrcServer/src/core/server/legacy_runtime/onserver.h:
 SrcServer/src/core/data/legacy_loader/fileread.h:
 SrcServer/src/systems/rendering/legacy_3d/smType.h:
@@ -59,5 +60,4 @@ SrcServer/src/systems/localization/config/language.h:
 SrcServer/src/systems/inventory/legacy/sinItem.h:
 Shared/inventory/legacy/sinItem_legacy_server.h:
 SrcServer/src/systems/rendering/legacy_3d/smDsx.h:
-SrcServer/src/systems/gameplay/quests/server/cQuestHandler.h:
 Shared/persistence/database/Database_sqlite_server.h:

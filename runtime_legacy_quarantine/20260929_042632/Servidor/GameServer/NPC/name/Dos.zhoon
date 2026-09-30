@@ -1,0 +1,7 @@
+//Dos.npc
+
+*J_NAME		"Dos"
+
+*J_CHAT		"I work in a Secret Labratory." 
+*J_CHAT		"I have learned the skill of drilling colored holes in your equipment."
+*J_CHAT		"My drills can penetrate the toughest of armors."

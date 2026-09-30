@@ -1,0 +1,62 @@
+//ID
+*코드 "DB119"
+
+//Korean Name
+*이름 "Botas Reais"
+
+//English Name
+*Name "Botas Reais"
+
+//Defense
+*방어력 125 135
+
+//Absorption
+*흡수력 7.9 8.3
+
+//Speed
+*이동속도 3.6 4.0
+
+//OrganicResistance
+*생체 3 5
+
+//FireResistance
+*불 3 5
+
+//FrostResistance
+*냉기 3 5
+
+//LightningResistance
+*번개 3 5
+
+//PoisonResistance
+*독 3 5
+
+//Integrity
+*내구력 108 126
+
+//Level
+*레벨 80
+
+//Strength
+*힘 80
+
+//Agility
+*민첩성 90
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecAbsorption
+**흡수력 0.6 0.9
+
+//SpecSpeed
+**이동속도 0.6 0.9
+
+//Weight
+*무게 36
+
+//Price
+*가격 410000
+
+//Name File
+*연결파일 "Name\DB119.zhoon"

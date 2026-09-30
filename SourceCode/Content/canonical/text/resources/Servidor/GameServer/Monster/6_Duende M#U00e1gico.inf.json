@@ -17,7 +17,7 @@
     "fields": {
       "state": "적",
       "model_file": "char\\monster\\monegan\\monegan.ini",
-      "name": "Duende M?ico",
+      "name": "Duende Mágico",
       "level": 6,
       "model_scale": 1.0,
       "generate_group": [

@@ -1,0 +1,59 @@
+//ID
+*코드 "DA108"
+
+//Korean Name
+*이름 "Armadura Anelar"
+
+//English Name
+*Name "Armadura Anelar"
+
+//Defense
+*방어력 70 100
+
+//Absorption
+*흡수력 3.9 4.6
+
+//OrganicResistance
+*생체 2 5
+
+//FireResistance
+*불 2 5
+
+//FrostResistance
+*냉기 2 5
+
+//LightningResistance
+*번개 -3 -1
+
+//PoisonResistance
+*독 2 5
+
+//Integrity
+*내구력 44 62
+
+//Level
+*레벨 35
+
+//Strength
+*힘 80
+
+//Talent
+*재능 54
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**방어력 28 34
+
+//SpecAbsorption
+**흡수력 0.3 0.4
+
+//Weight
+*무게 47
+
+//Price
+*가격 30000
+
+//Name File
+*연결파일 "Name\DA108.zhoon"

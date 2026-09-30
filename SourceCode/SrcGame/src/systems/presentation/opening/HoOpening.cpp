@@ -189,6 +189,21 @@ char	UserAccount[ACCOUNT_SIZE];
 char	UserPassword[PASSWORD_SIZE];
 
 
+static void SummitAlwaysLoginHandshakeTrace(const char *fmt, ...)
+{
+	FILE *f = fopen("LOGS\\mingw_login_handshake_client.txt", "a");
+	if(!f)
+		return;
+
+	va_list args;
+	va_start(args, fmt);
+	vfprintf(f, fmt, args);
+	va_end(args);
+	fprintf(f, "\n");
+	fflush(f);
+	fclose(f);
+}
+
 static void MINGW_LoginTrace(const char* fmt, ...)
 {
     FILE* f = SummitOpeningRuntimeTraceFile("LOGS\\mingw_login_thread.txt");
@@ -1498,6 +1513,7 @@ HANDLE	hHoLoginThread = 0;
 DWORD WINAPI HoLoginThreadProc(void* pInfo)
 {
 	MINGW_LoginTrace("ENTER HoLoginThreadProc");
+	SummitAlwaysLoginHandshakeTrace("[LOGIN_THREAD_ENTER] dataSocket=%p", (void *)smWsockDataServer);
 	HoOpening* lpHoOpening = (HoOpening*)pInfo;
 
 	if (!smWsockDataServer)
@@ -1505,6 +1521,7 @@ DWORD WINAPI HoLoginThreadProc(void* pInfo)
 		MINGW_LoginTrace("before ConnectServer_InfoMain");
 	ConnectServer_InfoMain();
 	MINGW_LoginTrace("after ConnectServer_InfoMain smWsockDataServer=%p", smWsockDataServer);
+	SummitAlwaysLoginHandshakeTrace("[LOGIN_THREAD_AFTER_CONNECT] dataSocket=%p", (void *)smWsockDataServer);
 
 		if (smWsockDataServer)
 		{
@@ -1555,6 +1572,10 @@ DWORD WINAPI HoLoginThreadProc(void* pInfo)
 				"after requestLogin result=%d",
 				static_cast<int>(result)
 			);
+			SummitAlwaysLoginHandshakeTrace(
+				"[LOGIN_THREAD_AFTER_REQUEST] result=%d dataSocket=%p",
+				static_cast<int>(result),
+				(void *)smWsockDataServer);
 
 			if (result != LoginResult::OK)
 			{
@@ -1583,6 +1604,11 @@ DWORD WINAPI HoLoginThreadProc(void* pInfo)
 int HoOpening::LoginDataServer()
 {
 	MINGW_LoginTrace("ENTER LoginDataServer");
+	SummitAlwaysLoginHandshakeTrace(
+		"[LOGIN_CLICK] thread=%p dataSocket=%p accountLen=%u",
+		(void *)hHoLoginThread,
+		(void *)smWsockDataServer,
+		(unsigned)MINGW_SafeStringLength(UserAccount, ACCOUNT_SIZE));
 	DWORD dwHoLoginThreadId;
 
 	if (!hHoLoginThread)

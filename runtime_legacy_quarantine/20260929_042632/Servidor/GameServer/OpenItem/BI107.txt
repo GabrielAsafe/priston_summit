@@ -1,0 +1,17 @@
+//ID
+*ÄÚµå "BI107"
+
+//Korean Name
+*ÀÌ¸§ "Pergaminho da Caça 1h"
+
+//English Name
+*Name "Pergaminho da Caça 1h"
+
+//Weight
+*¹«°Ô 1
+
+//Price
+*°¡°İ 150000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\BI107.zhoon"

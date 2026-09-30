@@ -1,0 +1,74 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\ssnail\ssnail.ini"
+
+//Name
+*이름 "R1 Caramujo Rijo"
+
+//Level
+*레벨 57
+
+//Size
+*모델크기 1.0
+
+//QuestCode
+*구별코드 17
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 380
+
+//HP
+*생명력 1160
+
+//AttackPower
+*공격력 60 73
+
+//AttackRating
+*명중력 640
+
+//AttackSpeed
+*공격속도 7
+
+//AttackRange
+*공격범위 60
+
+//SkillPower
+*기술공격력 65 80
+
+//SkillRating
+*기술공격률 15
+
+//SkillDistance
+*기술공격거리 80
+
+//Defense
+*방어력 480
+
+//Absorption
+*흡수율 16
+
+//Block
+*블럭율 8
+
+//MoveSpeed
+*이동력 3
+
+//Race
+*몬스터종족 디먼
+
+//ShadowSize
+*크기 중대형
+
+//Experience
+*경험치 18600
+
+//Sound
+*효과음 SOLIDSNAIL
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

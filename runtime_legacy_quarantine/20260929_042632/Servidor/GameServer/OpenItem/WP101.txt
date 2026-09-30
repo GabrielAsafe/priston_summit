@@ -1,0 +1,53 @@
+//ID
+*ÄÚµå "WP101"
+
+//Korean Name
+*ÀÌ¸§ "Foice Bastão"
+
+//English Name
+*Name "Foice Bastão"
+
+//AttackPower
+*°ø°Ý·Â 1 1 4 6
+
+//AttackRating
+*¸íÁß·Â 40 45
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 3
+
+//Integrity
+*³»±¸·Â 28 35
+
+//Strength
+*Èû 20
+
+//PrimarySpec
+**Æ¯È­ Pikeman
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Atalanta
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 1
+
+//Weight
+*¹«°Ô 4
+
+//Price
+*°¡°Ý 140
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WP101.zhoon"

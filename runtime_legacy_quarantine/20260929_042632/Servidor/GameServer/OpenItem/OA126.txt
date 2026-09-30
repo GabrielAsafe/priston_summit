@@ -1,0 +1,50 @@
+//ID
+*코드 "OA126"
+
+//Korean Name
+*이름 "Colar do Tulla"
+
+//English Name
+*Name "Colar do Tulla"
+
+//HP
+*생명력추가 65 65
+
+//MP
+*기력추가 65 65
+
+//STM
+*근력추가 55 55
+
+//HPRegen
+*생명력재생 4.4 4.9
+
+//MPRegen
+*기력재생 3.6 4.5
+
+//STMRegen
+*근력재생 3.6 4.8
+
+//Level
+*레벨 100
+
+//Spirit
+*정신력 80
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecHPRegen
+**생명력재생 2.6 2.8
+
+//SpecMPRegen
+**기력재생 2.6 2.8
+
+//Weight
+*무게 10
+
+//Price
+*가격 90000
+
+//Name File
+*연결파일 "Name\OA126.zhoon"

@@ -1,0 +1,29 @@
+//ID
+*코드 "DA161"
+
+//Korean Name
+*이름 "Armadura Kimono"
+
+//English Name
+*Name "Armadura Kimono"
+
+//Defense
+*방어력 400 400
+
+//Absorption
+*흡수력 5.0 5.0
+
+//Block
+*블럭율 3.0 3.0
+
+//Level
+*레벨 20
+
+//Weight
+*무게 50
+
+//Price
+*가격 100000
+
+//Name File
+*연결파일 "Name\DA161.zhoon"

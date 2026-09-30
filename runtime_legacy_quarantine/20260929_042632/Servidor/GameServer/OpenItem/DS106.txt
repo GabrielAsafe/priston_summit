@@ -1,0 +1,65 @@
+//ID
+*ÄÚµå "DS106"
+
+//Korean Name
+*ÀÌ¸§ "Escudo Metálico"
+
+//English Name
+*Name "Escudo Metálico"
+
+//Defense
+*¹æ¾î·Â 40 70
+
+//Absorption
+*Èí¼ö·Â 1.9 2.5
+
+//Block
+*ºí·°À² 10.0 14.0
+
+//OrganicResistance
+*»ýÃ¼ 2 4
+
+//FireResistance
+*ºÒ 2 4
+
+//FrostResistance
+*³Ã±â 2 4
+
+//LightningResistance
+*¹ø°³ -3 -3
+
+//PoisonResistance
+*µ¶ 2 4
+
+//Integrity
+*³»±¸·Â 50 80
+
+//Level
+*·¹º§ 22
+
+//Strength
+*Èû 74
+
+//Talent
+*Àç´É 40
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**¹æ¾î·Â 8 14
+
+//SpecAbsorption
+**Èí¼ö·Â 0.2 0.5
+
+//SpecBlock
+**ºí·°À² 3.0
+
+//Weight
+*¹«°Ô 19
+
+//Price
+*°¡°Ý 13000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DS106.zhoon"

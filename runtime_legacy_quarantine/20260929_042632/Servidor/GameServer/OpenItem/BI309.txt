@@ -1,0 +1,14 @@
+//ID
+*코드 "BI309"
+
+//Korean Name
+*이름 "Coletor de Ouro 1d"
+
+//English Name
+*Name "Coletor de Ouro 1d"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\BI309.zhoon"

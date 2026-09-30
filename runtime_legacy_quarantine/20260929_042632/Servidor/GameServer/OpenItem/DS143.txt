@@ -1,0 +1,65 @@
+//ID
+*코드 "DS143"
+
+//Korean Name
+*이름 "Escudo Imperial"
+
+//English Name
+*Name "Escudo Imperial"
+
+//Defense
+*방어력 390 410
+
+//Absorption
+*흡수력 22.2 22.5
+
+//Block
+*블럭율 21.0 24.0
+
+//OrganicResistance
+*생체 13 16
+
+//FireResistance
+*불 13 16
+
+//FrostResistance
+*냉기 13 16
+
+//LightningResistance
+*번개 13 16
+
+//PoisonResistance
+*독 13 16
+
+//Integrity
+*내구력 280 300
+
+//Level
+*레벨 120
+
+//Strength
+*힘 175
+
+//Talent
+*재능 80
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**방어력 68 75
+
+//SpecAbsorption
+**흡수력 2.1 2.5
+
+//SpecBlock
+**블럭율 6.0
+
+//Weight
+*무게 144
+
+//Price
+*가격 1500000
+
+//Name File
+*연결파일 "Name\DS143.zhoon"

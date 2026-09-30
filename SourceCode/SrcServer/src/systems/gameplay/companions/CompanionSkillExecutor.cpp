@@ -9,7 +9,6 @@
 #include "systems/network/transport/legacy/smwsock.h"
 #include "systems/rendering/legacy_3d/smd3d.h"
 #include "systems/gameplay/character/core/character.h"
-#include "systems/persistence/character_record/record.h"
 #include "systems/audio/effects/legacy/effectsnd.h"
 #include "core/server/gameplay_runtime/playmain.h"
 #include "core/gameplay/legacy_support/playsub.h"
@@ -19,6 +18,29 @@
 #include "gameplay/skills/Tempskron_legacy_server.h"
 #include "gameplay/skills/Morayion_legacy_server.h"
 #include "gameplay/skills/v2/legacy/LegacySkillAdapter.h"
+#include "gameplay/companions/v2/CompanionSkillProfile.h"
+#include "gameplay/skills/v2/runtime/SkillRuntime.h"
+#include "gameplay/combat/v2/DamageContracts.h"
+#include "gameplay/combat/v2/LifeCommands.h"
+#include "gameplay/combat/v2/HealingService.h"
+#include "gameplay/combat/v2/TargetingService.h"
+#include "gameplay/combat/v2/StatusEffectService.h"
+#include "gameplay/combat/v2/CombatBuffService.h"
+#include "gameplay/inventory/v2/PotionService.h"
+#include "gameplay/monsters/v2/MonsterCommands.h"
+#include "gameplay/monsters/v2/MonsterQuery.h"
+#include "gameplay/world/v2/MovementCommands.h"
+#include "systems/gameplay/combat/v2/legacy/LegacyDamageAdapter.h"
+#include "systems/gameplay/combat/v2/legacy/LegacyLifeAdapter.h"
+#include "systems/gameplay/combat/v2/legacy/LegacyHealingAdapter.h"
+#include "systems/gameplay/combat/v2/legacy/LegacyTargetingAdapter.h"
+#include "systems/gameplay/combat/v2/legacy/LegacyStatusEffectAdapter.h"
+#include "systems/gameplay/combat/v2/legacy/LegacyCombatBuffAdapter.h"
+#include "systems/gameplay/inventory/v2/legacy/LegacyPotionAdapter.h"
+#include "systems/gameplay/monsters/v2/legacy/LegacyMonsterAdapter.h"
+#include "systems/gameplay/world/v2/legacy/LegacyMovementAdapter.h"
+#include "systems/gameplay/skills/v2/legacy/LegacySkillRuntimeAdapter.h"
+#include "systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h"
 #include "opcodes.h"
 
 extern DWORD dwPlayServTime;
@@ -95,36 +117,10 @@ static int SkillResourceReserveAmount(int maximum, const char *key, int fallback
     return (maximum * percent + 99) / 100;
 }
 
-static DWORD LegacySkillGroupForJob(DWORD jobCode)
-{
-    switch(jobCode)
-    {
-        case JOBCODE_FIGHTER: return GROUP_FIGHTER;
-        case JOBCODE_MECHANICIAN: return GROUP_MECHANICIAN;
-        case JOBCODE_ARCHER: return GROUP_ARCHER;
-        case JOBCODE_PIKEMAN: return GROUP_PIKEMAN;
-        case JOBCODE_ATALANTA: return GROUP_ATALANTA;
-        case JOBCODE_KNIGHT: return GROUP_KNIGHT;
-        case JOBCODE_MAGICIAN: return GROUP_MAGICIAN;
-        case JOBCODE_PRIESTESS: return GROUP_PRIESTESS;
-        default: return 0;
-    }
-}
-
 static DWORD DamageSkillForJob(DWORD jobCode)
 {
-    switch(jobCode)
-    {
-        case JOBCODE_FIGHTER: return SKILL_IMPACT;
-        case JOBCODE_MECHANICIAN: return SKILL_GREAT_SMASH;
-        case JOBCODE_ARCHER: return SKILL_WIND_ARROW;
-        case JOBCODE_PIKEMAN: return SKILL_JUMPING_CRASH;
-        case JOBCODE_ATALANTA: return SKILL_TWIST_JAVELIN;
-        case JOBCODE_KNIGHT: return SKILL_SWORD_BLAST;
-        case JOBCODE_MAGICIAN: return SKILL_FIRE_BOLT;
-        case JOBCODE_PRIESTESS: return SKILL_HOLY_BOLT;
-        default: return 0;
-    }
+    return static_cast<DWORD>(DefaultDamageSkillForClass(
+        static_cast<classes::PlayableClassId>(jobCode)));
 }
 
 static const gameplay::skills::SkillDefinition *FindCatalogSkillForSlot(DWORD jobCode, int useSlot)
@@ -308,13 +304,9 @@ static int ApplyEnchantWeaponBonus(const CompanionSkillRuntime &runtime, smCHAR 
     damage -= (high * resistance) / 100;
     if(damage < 0) damage = 0;
     if(runtime.enchantWeaponElement == 0)
-    {
-        int slowCount = 16 * 3;
-        slowCount -= (slowCount * resistance) / 100;
-        target->PlaySlowCount = slowCount;
-        target->PlaySlowSpeed = 230 - 10 * runtime.enchantWeaponPoint;
-        target->PlayDistortion = 0;
-    }
+        combat::legacy::ServerLegacyStatusEffectAdapter().ApplyElementalSlow16Hz(
+            EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)),
+            3, 230 - 10 * runtime.enchantWeaponPoint, resistance);
     return damage;
 }
 
@@ -859,38 +851,16 @@ static int DamageForSkill(const smCHAR *caster, const smCHAR *target, DWORD skil
 
 static bool ApplySkillDamage(smCHAR *caster, rsPLAYINFO *owner, smCHAR *target, int rawDamage)
 {
-    if(!caster || !owner || !target || !target->Flag || target->smCharInfo.Life[0] <= 0 || rawDamage <= 0)
-        return false;
-    if(target->smCharInfo.State != smCHAR_STATE_ENEMY || target->smCharInfo.Brood == smCHAR_MONSTER_USER || target->lpMasterPlayInfo)
+    if(!caster || !owner || !target)
         return false;
 
-    int damage = rawDamage;
-    damage -= (damage * target->smCharInfo.Absorption) / 100;
-    if(damage < 1)
-        damage = 1;
-
-    target->smCharInfo.Life[0] -= damage;
-    if(target->smCharInfo.Life[0] <= 0)
-    {
-        if(target->UseObject_VirtualLife && target->sObject_VirtualLife[0] > 0)
-        {
-            target->smCharInfo.Life[0] = std::max(1, target->smCharInfo.Life[1] / 100);
-        }
-        else
-        {
-            target->smCharInfo.Life[0] = 0;
-            target->SetMotionFromCode(CHRMOTION_STATE_DEAD);
-            if(owner->dwObjectSerial && owner->dwObjectSerial == caster->smCharInfo.Next_Exp)
-                target->smMonsterInfo.GetExp >>= 1;
-            target->lpExt2 = owner;
-            target->lpExt3 = caster;
-        }
-    }
-    else if(target->MotionInfo && target->MotionInfo->State < 0x100)
-    {
-        target->SetMotionFromCode(CHRMOTION_STATE_DAMAGE);
-    }
-    return true;
+    const PlayerId ownerId = player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(owner);
+    const combat::DamageRequest request(EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)),
+                                        ownerId,
+                                        EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)),
+                                        rawDamage);
+    const combat::DamageResult result = combat::legacy::ServerLegacyDamageAdapter().Apply(request);
+    return result.Accepted();
 }
 
 static void ApplyCompanionTargetSideEffects(smCHAR *target, DWORD skillCode, int point, int rawDamage)
@@ -901,38 +871,49 @@ static void ApplyCompanionTargetSideEffects(smCHAR *target, DWORD skillCode, int
     switch(skillCode)
     {
         case SKILL_VENOM_SPEAR:
-            target->PlayPoison[1] = VenomSpear_Time[p] * 17;
-            target->PlayPoison[0] = (rawDamage * VenomSpear_DamagePercent[p]) / 100;
+            combat::legacy::ServerLegacyStatusEffectAdapter().ApplyPoison(
+                EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)),
+                VenomSpear_Time[p] * 17, (rawDamage * VenomSpear_DamagePercent[p]) / 100);
             break;
         case SKILL_ROAR:
         {
             int resistance = std::max(0, std::min(100, (int)target->smCharInfo.Resistance[sITEMINFO_BIONIC]));
-            target->PlayStunCount = ((Roar_Time[p] << 4) * (100 - resistance)) / 100;
+            combat::legacy::ServerLegacyStatusEffectAdapter().ApplyStun(
+                EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)),
+                ((Roar_Time[p] << 4) * (100 - resistance)) / 100);
             break;
         }
         case SKILL_SHIELD_STRIKE:
         {
             int resistance = std::max(0, std::min(100, (int)target->smCharInfo.Resistance[sITEMINFO_BIONIC]));
-            target->PlayStunCount = ((10 << 4) * (100 - resistance)) / 100;
+            combat::legacy::ServerLegacyStatusEffectAdapter().ApplyStun(
+                EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)),
+                ((10 << 4) * (100 - resistance)) / 100);
             break;
         }
         case SKILL_ASSASSIN_EYE:
-            target->dwAssassinEyeTime = dwPlayServTime + (DWORD)Assassin_Eye_Time[p] * 1000U;
-            target->AssassinEyeParam = Assassin_Eye_M_SubCritical[p];
+            combat::legacy::ServerLegacyStatusEffectAdapter().ApplyAssassinEye(
+                EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)),
+                static_cast<std::uint32_t>(dwPlayServTime + (DWORD)Assassin_Eye_Time[p] * 1000U),
+                Assassin_Eye_M_SubCritical[p]);
             break;
         case SKILL_HOLY_MIND:
         {
             int resistance = std::max(0, std::min(100, (int)target->smCharInfo.Resistance[sITEMINFO_BIONIC]));
-            target->PlayHolyMind[0] = (short)HolyMind_DecDamage[p];
-            target->PlayHolyMind[1] = (short)(((HolyMind_Time[p] << 4) * (100 - resistance)) / 100);
+            combat::legacy::ServerLegacyStatusEffectAdapter().ApplyHolyMind(
+                EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)), HolyMind_DecDamage[p],
+                ((HolyMind_Time[p] << 4) * (100 - resistance)) / 100);
             break;
         }
         case SKILL_DISTORTION:
-            target->PlaySlowCount = Distortion_Time[p] * 17;
-            target->PlaySlowSpeed = 240 - (240 * Distortion_SpeedSubPercent[p]) / 100;
-            target->PlayDistortion = target->PlaySlowCount;
-            target->PlayStunCount = 0;
+        {
+            const int time = Distortion_Time[p] * 17;
+            combat::legacy::ServerLegacyStatusEffectAdapter().ApplySlow(
+                EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)),
+                combat::SlowEffect(time, 240 - (240 * Distortion_SpeedSubPercent[p]) / 100,
+                                   time, false, false, true));
             break;
+        }
         case SKILL_EXTINCTION:
             if(target->smCharInfo.Brood == smCHAR_MONSTER_UNDEAD)
             {
@@ -948,26 +929,36 @@ static void ApplyCompanionTargetSideEffects(smCHAR *target, DWORD skillCode, int
             }
             break;
         case SKILL_T5_PARASIT_SHOT:
-            target->PlayPoison[1] = Parasit_Shot_PoisonDuration[p] * 17;
-            target->PlayPoison[0] = (rawDamage * Parasit_Shot_PoisonDamagePercent[p]) / 100;
+            combat::legacy::ServerLegacyStatusEffectAdapter().ApplyPoison(
+                EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)),
+                Parasit_Shot_PoisonDuration[p] * 17,
+                (rawDamage * Parasit_Shot_PoisonDamagePercent[p]) / 100);
             break;
         case SKILL_T5_PLAGUE_JAVELIN:
-            target->PlayPoison[1] = Atalanta_T5_Plague_PoisonDuration[p] * 17;
-            target->PlayPoison[0] = (rawDamage * Atalanta_T5_Plague_PoisonDamagePercent[p]) / 100;
+            combat::legacy::ServerLegacyStatusEffectAdapter().ApplyPoison(
+                EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)),
+                Atalanta_T5_Plague_PoisonDuration[p] * 17,
+                (rawDamage * Atalanta_T5_Plague_PoisonDamagePercent[p]) / 100);
             break;
         case SKILL_T5_RING_OF_SPEARS:
         {
             int resistance = std::max(0, std::min(100, (int)target->smCharInfo.Resistance[sITEMINFO_BIONIC]));
             const int stun = Pike_T5_Ring_Duration[p] << 4;
-            target->PlayStunCount = (stun * (100 - resistance)) / 100;
+            combat::legacy::ServerLegacyStatusEffectAdapter().ApplyStun(
+                EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)),
+                (stun * (100 - resistance)) / 100);
             break;
         }
         case SKILL_T5_ENTALING_ROOTS:
-            target->PlayStunCount = Archer_T5_Roots_Duration[p] << 4;
+            combat::legacy::ServerLegacyStatusEffectAdapter().ApplyStun(
+                EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)),
+                Archer_T5_Roots_Duration[p] << 4);
             break;
         case SKILL_T5_HEAVENLY_LIGHT:
-            target->PlayHeavenlyLight[0] = (short)Priestess_T5_HeavenlyLight_AttackRateReduction[p];
-            target->PlayHeavenlyLight[1] = (short)(Priestess_T5_HeavenlyLight_Duration[p] << 4);
+            combat::legacy::ServerLegacyStatusEffectAdapter().ApplyHeavenlyLight(
+                EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)),
+                Priestess_T5_HeavenlyLight_AttackRateReduction[p],
+                Priestess_T5_HeavenlyLight_Duration[p] << 4);
             break;
         default:
             break;
@@ -980,7 +971,7 @@ static bool ApplyCompanionSkillImpact(smCHAR *caster, rsPLAYINFO *owner, smCHAR 
     if(!ApplySkillDamage(caster, owner, target, rawDamage))
         return false;
     if(skillCode == SKILL_SOUL_SUCKER && caster->smCharInfo.Life[0] > 0 && caster->smCharInfo.Life[1] > 0)
-        caster->smCharInfo.Life[0] = (short)std::min((int)caster->smCharInfo.Life[1], (int)caster->smCharInfo.Life[0] + rawDamage);
+        combat::legacy::ServerLegacyLifeAdapter().Restore(EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)), rawDamage);
     ApplyCompanionTargetSideEffects(target, skillCode, point, rawDamage);
     return true;
 }
@@ -1155,14 +1146,11 @@ static void PushTargetAwayFromCaster(smCHAR *caster, smCHAR *target, int distanc
 {
     if(!caster || !target || distance <= 0 || IsLegacyPushImmuneBoss(target) || target->smCharInfo.Life[0] <= 0)
         return;
-    const int oldAngle = target->Angle.y;
-    const int towardCaster = GetRadian2D(target->pX, target->pZ, caster->pX, caster->pZ);
-    target->Angle.y = (towardCaster + ANGLE_180) & ANGCLIP;
-    target->OverLapPosi2 = FALSE;
-    target->MoveAngle(distance);
-    target->Angle.y = oldAngle;
-    target->lpTargetPlayInfo = NULL;
-    target->dwNextMotionCode = CHRMOTION_STATE_STAND;
+    const world::MovementCommandResult moved = world::legacy::ServerLegacyMovementAdapter().PushAway(
+        EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)),
+        EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)), distance);
+    if(moved.Ok())
+        target->lpTargetPlayInfo = NULL;
 }
 
 static bool ApplyShieldStrikeToTarget(smCHAR *caster, rsPLAYINFO *owner, smCHAR *target, int point,
@@ -1174,7 +1162,9 @@ static bool ApplyShieldStrikeToTarget(smCHAR *caster, rsPLAYINFO *owner, smCHAR 
     int resistance = target->smCharInfo.Resistance[sITEMINFO_BIONIC];
     if(resistance < 0) resistance = 0;
     if(resistance > 100) resistance = 100;
-    target->PlayStunCount = (16 * 10 * (100 - resistance)) / 100;
+    combat::legacy::ServerLegacyStatusEffectAdapter().ApplyStun(
+        EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)),
+        (16 * 10 * (100 - resistance)) / 100);
     PushTargetAwayFromCaster(caster, target, 10);
     return true;
 }
@@ -1195,10 +1185,9 @@ static bool ApplyStatusEffectToTarget(smCHAR *caster, rsPLAYINFO *owner, smCHAR 
         if(resistance > 100) resistance = 100;
         const int time = (15 << 4) * (100 - resistance) / 100;
         if(time > 0)
-        {
-            target->PlayHolyMind[0] = (short)HolyMind_DecDamage[p];
-            target->PlayHolyMind[1] = (short)time;
-        }
+            combat::legacy::ServerLegacyStatusEffectAdapter().ApplyHolyMind(
+                EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)),
+                HolyMind_DecDamage[p], time);
         // Full Bionic resistance cancels the debuff, but the legacy cast still
         // completes and consumes its resources.
         return true;
@@ -1206,17 +1195,22 @@ static bool ApplyStatusEffectToTarget(smCHAR *caster, rsPLAYINFO *owner, smCHAR 
 
     if(skillCode == SKILL_ASSASSIN_EYE)
     {
-        target->dwAssassinEyeTime = dwPlayServTime + (DWORD)Assassin_Eye_Time[p] * 1000U;
-        target->AssassinEyeParam = Assassin_Eye_M_SubCritical[p];
+        combat::legacy::ServerLegacyStatusEffectAdapter().ApplyAssassinEye(
+            EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)),
+            static_cast<std::uint32_t>(dwPlayServTime + (DWORD)Assassin_Eye_Time[p] * 1000U),
+            Assassin_Eye_M_SubCritical[p]);
         return true;
     }
 
     if(skillCode == SKILL_HOLY_INCANTATION)
     {
-        if(target->smCharInfo.Brood != smCHAR_MONSTER_UNDEAD)
+        monsters::MonsterSnapshot monster;
+        if(!monsters::legacy::ServerLegacyMonsterAdapter().TryGetMonster(
+               EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)), monster) ||
+           monster.family != monsters::MonsterFamily::Undead)
             return false;
         int chance = H_Incantation_Success[p];
-        int resistance = ClampLegacyResistance(target->smCharInfo.Resistance[sITEMINFO_BIONIC]);
+        int resistance = ClampLegacyResistance(monster.bionicResistance);
         if(resistance != 0)
         {
             if(resistance == 100)
@@ -1229,18 +1223,12 @@ static bool ApplyStatusEffectToTarget(smCHAR *caster, rsPLAYINFO *owner, smCHAR 
         if(chance <= 0 || (rand() % 100) >= chance)
             return true;
 
-        target->lpMasterPlayInfo = owner;
-        target->smMonsterInfo.dwAutoCharCode = 0;
-        target->smCharInfo.bUpdateInfo[0]++;
-        target->PlayHolyIncantation[0] = (short)target->smCharInfo.Brood;
-        target->PlayHolyIncantation[1] = (short)(H_Incantation_Time[p] * 17);
-        const int convertedLife = ((int)target->smCharInfo.Life[0] * H_Incantation_AddLife[p]) / 100;
-        target->smCharInfo.Life[0] = target->smCharInfo.Life[1] = (short)std::max(1, std::min(32767, convertedLife));
-        target->smCharInfo.Next_Exp = owner->dwObjectSerial;
-        target->smCharInfo.Brood = smCHAR_MONSTER_USER;
-        target->lpTargetChar = NULL;
-        target->lpTargetPlayInfo = NULL;
-        return true;
+        const monsters::FollowerConversionResult conversion = monsters::legacy::ServerLegacyMonsterAdapter().ConvertToFollower(
+            monsters::FollowerConversionRequest(
+                EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)),
+                PlayerId(static_cast<std::uint32_t>(owner->dwObjectSerial)),
+                H_Incantation_Time[p] * 17, H_Incantation_AddLife[p]));
+        return conversion.Ok();
     }
 
     if(skillCode == SKILL_ROAR)
@@ -1248,27 +1236,31 @@ static bool ApplyStatusEffectToTarget(smCHAR *caster, rsPLAYINFO *owner, smCHAR 
         int resistance = target->smCharInfo.Resistance[sITEMINFO_BIONIC];
         if(resistance < 0) resistance = 0;
         if(resistance > 100) resistance = 100;
-        target->PlayStunCount = (Roar_Time[p] << 4) * (100 - resistance) / 100;
-        return target->PlayStunCount > 0;
+        const int stun = (Roar_Time[p] << 4) * (100 - resistance) / 100;
+        combat::legacy::ServerLegacyStatusEffectAdapter().ApplyStun(
+            EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)), stun);
+        return stun > 0;
     }
 
     if(skillCode == SKILL_DISTORTION)
     {
         const int time = Distortion_Time[p] * 17;
-        target->PlaySlowCount = time;
-        target->PlaySlowSpeed = 240 - (240 * Distortion_SpeedSubPercent[p]) / 100;
-        target->PlayDistortion = time;
-        target->PlayStunCount = 0;
-        target->AttackIce = 0;
+        combat::legacy::ServerLegacyStatusEffectAdapter().ApplySlow(
+            EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)),
+            combat::SlowEffect(time, 240 - (240 * Distortion_SpeedSubPercent[p]) / 100,
+                               time, true, false, true));
         return time > 0;
     }
 
     if(skillCode == SKILL_EXTINCTION)
     {
-        if(target->smCharInfo.Brood != smCHAR_MONSTER_UNDEAD)
+        monsters::MonsterSnapshot monster;
+        if(!monsters::legacy::ServerLegacyMonsterAdapter().TryGetMonster(
+               EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)), monster) ||
+           monster.family != monsters::MonsterFamily::Undead)
             return false;
         int chance = Extinction_Percent[p];
-        int resistance = ClampLegacyResistance(target->smCharInfo.Resistance[sITEMINFO_BIONIC]);
+        int resistance = ClampLegacyResistance(monster.bionicResistance);
         if(resistance != 0)
         {
             if(resistance == 100)
@@ -1276,10 +1268,11 @@ static bool ApplyStatusEffectToTarget(smCHAR *caster, rsPLAYINFO *owner, smCHAR 
             else
                 chance += caster->smCharInfo.Level / 4;
         }
-        target->PlayStunCount = 0;
+        combat::legacy::ServerLegacyStatusEffectAdapter().ClearStatus(
+            EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)), combat::StatusEffectKind::Stun);
         if(chance <= 0 || (rand() % 100) >= chance)
             return false;
-        const int damage = ((int)target->smCharInfo.Life[0] * Extinction_Amount[p]) / 100;
+        const int damage = (monster.life * Extinction_Amount[p]) / 100;
         return ApplyDirectLifeLoss(caster, owner, target, damage);
     }
 
@@ -1288,8 +1281,10 @@ static bool ApplyStatusEffectToTarget(smCHAR *caster, rsPLAYINFO *owner, smCHAR 
     {
         const int poisonBase = damage;
         damage = ApplyLegacyResistance(damage, target, sITEMINFO_POISON);
-        target->PlayPoison[1] = (short)(VenomSpear_Time[p] * 17);
-        target->PlayPoison[0] = (short)std::max(0, (poisonBase * VenomSpear_DamagePercent[p]) / 100);
+        combat::legacy::ServerLegacyStatusEffectAdapter().ApplyPoison(
+            EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)),
+            VenomSpear_Time[p] * 17,
+            std::max(0, (poisonBase * VenomSpear_DamagePercent[p]) / 100));
         return ApplySkillDamage(caster, owner, target, damage);
     }
     if(skillCode == SKILL_GROUND_PIKE || skillCode == SKILL_GLACIAL_SPIKE)
@@ -1297,12 +1292,11 @@ static bool ApplyStatusEffectToTarget(smCHAR *caster, rsPLAYINFO *owner, smCHAR 
         damage = ApplyLegacyResistance(damage, target, sITEMINFO_ICE);
         const int resistance = std::max(0, ClampLegacyResistance(target->smCharInfo.Resistance[sITEMINFO_ICE]));
         int time = skillCode == SKILL_GLACIAL_SPIKE ? (8 * 17) : (G_Pike_Time[p] * 17);
-        target->PlaySlowCount = time - (time * resistance) / 100;
-        if(target->PlaySlowCount < 0) target->PlaySlowCount = 0;
-        target->PlaySlowSpeed = skillCode == SKILL_GLACIAL_SPIKE ? 200 : 0;
-        target->PlayStunCount = 0;
-        target->PlayDistortion = 0;
-        target->AttackIce = 1;
+        const int slowTime = std::max(0, time - (time * resistance) / 100);
+        combat::legacy::ServerLegacyStatusEffectAdapter().ApplySlow(
+            EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)),
+            combat::SlowEffect(slowTime, skillCode == SKILL_GLACIAL_SPIKE ? 200 : 0,
+                               0, true, true, true));
         return ApplySkillDamage(caster, owner, target, damage);
     }
     return false;
@@ -1329,7 +1323,8 @@ static bool ApplyPikeWind(smCHAR *caster, rsPLAYINFO *owner, smCHAR *primary, in
         {
             const int dist = (int)sqrt((double)dist2);
             PushTargetAwayFromCaster(caster, candidate, std::max(0, radius - dist));
-            candidate->PlayStunCount = 0;
+            combat::legacy::ServerLegacyStatusEffectAdapter().ClearStatus(
+                EntityId(static_cast<std::uint32_t>(candidate->dwObjectSerial)), combat::StatusEffectKind::Stun);
             applied = true;
         }
     }
@@ -1528,22 +1523,22 @@ static bool ApplyCompanionControlSkill(smCHAR *caster, rsPLAYINFO *owner, smCHAR
 
     if(skillCode == SKILL_HOLY_INCANTATION)
     {
-        if(!owner || primary->smCharInfo.Brood != smCHAR_MONSTER_UNDEAD)
+        if(!owner)
             return false;
-        int resistance = std::max(-100, std::min(100, (int)primary->smCharInfo.Resistance[sITEMINFO_BIONIC]));
+        monsters::MonsterSnapshot monster;
+        if(!monsters::legacy::ServerLegacyMonsterAdapter().TryGetMonster(
+               EntityId(static_cast<std::uint32_t>(primary->dwObjectSerial)), monster) ||
+           monster.family != monsters::MonsterFamily::Undead)
+            return false;
+        int resistance = std::max(-100, std::min(100, monster.bionicResistance));
         int chance = resistance == 100 ? 0 : H_Incantation_Success[p] + owner->smCharInfo.Level / 4;
         if((rand() % 100) < std::max(0, std::min(100, chance)))
         {
-            primary->lpMasterPlayInfo = owner;
-            primary->smMonsterInfo.dwAutoCharCode = 0;
-            primary->PlayHolyIncantation[0] = (short)primary->smCharInfo.Brood;
-            primary->PlayHolyIncantation[1] = H_Incantation_Time[p] * 17;
-            const int charmedLife = std::max(1, ((int)primary->smCharInfo.Life[0] * H_Incantation_AddLife[p]) / 100);
-            primary->smCharInfo.Life[0] = primary->smCharInfo.Life[1] = (short)std::min(32767, charmedLife);
-            primary->smCharInfo.Next_Exp = owner->dwObjectSerial;
-            primary->smCharInfo.Brood = smCHAR_MONSTER_USER;
-            primary->lpTargetChar = NULL;
-            primary->lpTargetPlayInfo = NULL;
+            monsters::legacy::ServerLegacyMonsterAdapter().ConvertToFollower(
+                monsters::FollowerConversionRequest(
+                    EntityId(static_cast<std::uint32_t>(primary->dwObjectSerial)),
+                    PlayerId(static_cast<std::uint32_t>(owner->dwObjectSerial)),
+                    H_Incantation_Time[p] * 17, H_Incantation_AddLife[p]));
         }
         // A resisted charm is still a valid cast and consumes its resources.
         return true;
@@ -1667,45 +1662,28 @@ static void CompanionPotionDebugLog(const char *characterName, CompanionSkillRun
 static bool ConsumeAndApplyPotion(const char *accountName, const char *characterName,
     smCHAR *caster, CompanionSkillRuntime &runtime, int type, int threshold, DWORD now)
 {
-    int tier = -1;
-    int remaining = 0;
-    int restore = 0;
-    int status = 0;
-    DWORD code = 0;
-    const int currentValue = type == 0 ? caster->smCharInfo.Life[0] :
-        (type == 1 ? caster->smCharInfo.Mana[0] : caster->smCharInfo.Stamina[0]);
-    const int maxValue = type == 0 ? caster->smCharInfo.Life[1] :
-        (type == 1 ? caster->smCharInfo.Mana[1] : caster->smCharInfo.Stamina[1]);
+    if(!caster || type < 0 || type >= 3)
+        return false;
 
-    if(!rsConsumeOfflineCharacterPotion(accountName, characterName, type,
-        &tier, &remaining, &restore, &code, &status))
+    const inventory::PotionResource resource = type == 0 ? inventory::PotionResource::Life :
+        (type == 1 ? inventory::PotionResource::Mana : inventory::PotionResource::Stamina);
+    const inventory::PotionUseResult result = inventory::legacy::ServerLegacyPotionAdapter().ConsumeAndApply(
+        inventory::PotionUseRequest(accountName ? accountName : "", characterName ? characterName : "",
+            EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)), resource));
+
+    if(!result.Ok())
     {
-        // Avoid hammering the DAT every server tick when a type is empty or a
-        // legacy record cannot be consumed. The log carries the exact reason.
-        runtime.nextPotionUseTime = now + CompanionPotionRetryDelay(status);
-        CompanionPotionDebugLog(characterName, runtime, type, currentValue, maxValue,
-            threshold, status, tier, code, restore, remaining, now);
+        runtime.nextPotionUseTime = now + CompanionPotionRetryDelay(result.legacyStatus);
+        CompanionPotionDebugLog(characterName, runtime, type, result.beforeValue, result.maxValue,
+            threshold, result.legacyStatus, result.tier, static_cast<DWORD>(result.itemCode),
+            result.restoreAmount, result.remainingCount, now);
         return false;
     }
-
-    if(restore <= 0)
-    {
-        runtime.nextPotionUseTime = now + CompanionPotionRetryDelay(-11);
-        CompanionPotionDebugLog(characterName, runtime, type, currentValue, maxValue,
-            threshold, -11, tier, code, restore, remaining, now);
-        return false;
-    }
-
-    if(type == 0)
-        caster->smCharInfo.Life[0] = (short)std::min((int)caster->smCharInfo.Life[1], (int)caster->smCharInfo.Life[0] + restore);
-    else if(type == 1)
-        caster->smCharInfo.Mana[0] = (short)std::min((int)caster->smCharInfo.Mana[1], (int)caster->smCharInfo.Mana[0] + restore);
-    else
-        caster->smCharInfo.Stamina[0] = (short)std::min((int)caster->smCharInfo.Stamina[1], (int)caster->smCharInfo.Stamina[0] + restore);
 
     runtime.nextPotionUseTime = now + 1500U;
-    CompanionPotionDebugLog(characterName, runtime, type, currentValue, maxValue,
-        threshold, status > 0 ? status : 1, tier, code, restore, remaining, now);
+    CompanionPotionDebugLog(characterName, runtime, type, result.beforeValue, result.maxValue,
+        threshold, result.legacyStatus > 0 ? result.legacyStatus : 1, result.tier,
+        static_cast<DWORD>(result.itemCode), result.restoreAmount, result.remainingCount, now);
     return true;
 }
 
@@ -1812,89 +1790,58 @@ static DWORD SkillPlayCode(DWORD skillCode)
         (gameplay::skills::SkillId)skillCode);
 }
 
-static DWORD SkillMotionState(DWORD skillCode)
-{
-    if(FindLegacyExtendedSkillMeta(skillCode)) return CHRMOTION_STATE_SKILL;
-    // The original client drives these two projectile skills through the normal
-    // weapon ATTACK clip. The remaining V1 skills select a SKILL clip using
-    // AttackSkil/SKILL_PLAY_* metadata.
-    if(skillCode == SKILL_RAVING || skillCode == SKILL_CRITICAL_HIT || skillCode == SKILL_FARINA || skillCode == SKILL_WIND_ARROW || skillCode == SKILL_PERFECT_AIM ||
-       skillCode == SKILL_BOMB_SHOT || skillCode == SKILL_ARROW_OF_RAGE || skillCode == SKILL_AVALANCHE ||
-       skillCode == SKILL_TWIST_JAVELIN || skillCode == SKILL_FIRE_JAVELIN || skillCode == SKILL_SPLIT_JAVELIN ||
-       skillCode == SKILL_ELEMENTAL_SHOT || skillCode == SKILL_PHOENIX_SHOT ||
-       skillCode == SKILL_VIGOR_SPEAR || skillCode == SKILL_LIGHTNING_JAVELIN ||
-       skillCode == SKILL_VENGEANCE)
-        return CHRMOTION_STATE_ATTACK;
-    return CHRMOTION_STATE_SKILL;
-}
-
 static void BeginCast(smCHAR *caster, CompanionSkillRuntime &runtime, DWORD skillCode,
     int point, DWORD targetSerial, DWORD now, DWORD lockMs,
     int targetX = 0, int targetY = 0, int targetZ = 0, int visualParam = 0)
 {
     runtime.lastSkillCode = skillCode;
-    runtime.lastSkillPlayCode = SkillPlayCode(skillCode) | ((DWORD)(visualParam & 0xF) << 12);
     runtime.lastSkillPoint = (DWORD)std::max(0, std::min(point, 10));
     runtime.lastSkillTargetSerial = targetSerial;
     runtime.lastSkillTargetX = targetX;
     runtime.lastSkillTargetY = targetY;
     runtime.lastSkillTargetZ = targetZ;
-    runtime.lastSkillMotionState = SkillMotionState(skillCode);
     ++runtime.skillVisualSequence;
     if(runtime.skillVisualSequence == 0)
         runtime.skillVisualSequence = 1;
     runtime.skillLockStartedAt = now;
     runtime.skillLockUntil = now + lockMs;
 
-    caster->lpTargetChar = NULL;
-    caster->lpTargetPlayInfo = NULL;
-    caster->TargetMoveCount = 0;
-    caster->AutoMoveStep = 0;
+    combat::legacy::ServerLegacyTargetingAdapter().ClearAcquiredTarget(
+        EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)));
 
-    // Server model indices are never replicated, but selecting the same logical
-    // motion here keeps server-side state coherent. AttackSkil is only needed
-    // while resolving the model-local SKILL clip; clear it immediately because
-    // authoritative skill damage/heal has already been applied by this executor.
-    const int encodedPlaySkill = (int)(runtime.lastSkillPlayCode | (runtime.lastSkillPoint << 8));
-    caster->AttackSkil = encodedPlaySkill;
-    caster->SetMotionFromCode(runtime.lastSkillMotionState);
-    const bool desiredSelected = caster->MotionInfo &&
-        (DWORD)caster->MotionInfo->State == runtime.lastSkillMotionState;
-    if(!desiredSelected)
-        caster->SetMotionFromCode(CHRMOTION_STATE_ATTACK);
-    caster->AttackSkil = 0;
+    const skills::SkillRuntimeResult skillRuntime = skills::legacy::ServerLegacySkillRuntimeAdapter().Begin(
+        skills::SkillRuntimeRequest(
+            EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)),
+            static_cast<skills::SkillId>(skillCode), point, visualParam));
+    runtime.lastSkillPlayCode = skillRuntime.playCode;
+    runtime.lastSkillMotionState = skillRuntime.motionState;
+}
+
+static combat::CombatBuffDelta ToCombatBuffDelta(const CompanionBuffModifier &modifier)
+{
+    combat::CombatBuffDelta delta;
+    delta.attackMin = modifier.attackMinDelta;
+    delta.attackMax = modifier.attackMaxDelta;
+    delta.attackRating = modifier.attackRatingDelta;
+    delta.defence = modifier.defenceDelta;
+    delta.attackSpeed = modifier.attackSpeedDelta;
+    delta.shootingRange = modifier.shootingRangeDelta;
+    delta.absorption = modifier.absorptionDelta;
+    delta.chanceBlock = modifier.chanceBlockDelta;
+    delta.maxLife = modifier.maxLifeDelta;
+    delta.lifeRegen = modifier.lifeRegenDelta;
+    delta.manaRegen = modifier.manaRegenDelta;
+    for(int r = 0; r < 8; ++r)
+        delta.resistance[r] = modifier.resistanceDelta[r];
+    return delta;
 }
 
 static void RemoveBuffModifier(smCHAR *caster, CompanionBuffModifier &modifier)
 {
     if(caster && modifier.skillCode)
     {
-        caster->smCharInfo.Attack_Damage[0] -= modifier.attackMinDelta;
-        caster->smCharInfo.Attack_Damage[1] -= modifier.attackMaxDelta;
-        caster->smCharInfo.Attack_Rating -= modifier.attackRatingDelta;
-        caster->smCharInfo.Defence -= modifier.defenceDelta;
-        caster->smCharInfo.Attack_Speed -= modifier.attackSpeedDelta;
-        caster->smCharInfo.Shooting_Range -= modifier.shootingRangeDelta;
-        caster->smCharInfo.Absorption -= modifier.absorptionDelta;
-        caster->smCharInfo.Chance_Block -= modifier.chanceBlockDelta;
-        caster->smCharInfo.Life_Regen -= modifier.lifeRegenDelta;
-        caster->smCharInfo.Mana_Regen -= modifier.manaRegenDelta;
-        for(int r = 0; r < 8; ++r)
-            caster->smCharInfo.Resistance[r] = (short)(caster->smCharInfo.Resistance[r] - modifier.resistanceDelta[r]);
-        caster->smCharInfo.Life[1] = (short)std::max(1, (int)caster->smCharInfo.Life[1] - modifier.maxLifeDelta);
-        if(caster->smCharInfo.Life[0] > caster->smCharInfo.Life[1])
-            caster->smCharInfo.Life[0] = caster->smCharInfo.Life[1];
-        if(caster->smCharInfo.Attack_Damage[0] < 1) caster->smCharInfo.Attack_Damage[0] = 1;
-        if(caster->smCharInfo.Attack_Damage[1] < caster->smCharInfo.Attack_Damage[0])
-            caster->smCharInfo.Attack_Damage[1] = caster->smCharInfo.Attack_Damage[0];
-        if(caster->smCharInfo.Attack_Rating < 0) caster->smCharInfo.Attack_Rating = 0;
-        if(caster->smCharInfo.Defence < 0) caster->smCharInfo.Defence = 0;
-        if(caster->smCharInfo.Attack_Speed < 1) caster->smCharInfo.Attack_Speed = 1;
-        if(caster->smCharInfo.Shooting_Range < 0) caster->smCharInfo.Shooting_Range = 0;
-        if(caster->smCharInfo.Absorption < 0) caster->smCharInfo.Absorption = 0;
-        if(caster->smCharInfo.Chance_Block < 0) caster->smCharInfo.Chance_Block = 0;
-        if(caster->smCharInfo.Life_Regen < 0.0f) caster->smCharInfo.Life_Regen = 0.0f;
-        if(caster->smCharInfo.Mana_Regen < 0.0f) caster->smCharInfo.Mana_Regen = 0.0f;
+        combat::legacy::ServerLegacyCombatBuffAdapter().Remove(
+            EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)), ToCombatBuffDelta(modifier));
     }
     modifier.Reset();
 }
@@ -2026,12 +1973,10 @@ static void DropDistantTargetsForVanish(smCHAR *caster, int point)
             continue;
         if(monster->lpTargetChar == caster && !IsWithinVanishSight(caster, monster, point))
         {
-            monster->lpTargetChar = NULL;
-            if(monster->lpCompulsionChar == caster)
-            {
-                monster->lpCompulsionChar = NULL;
-                monster->dwCompulsionTime = 0;
-            }
+            combat::legacy::ServerLegacyTargetingAdapter().ReleaseTarget(
+                EntityId(static_cast<std::uint32_t>(monster->dwObjectSerial)),
+                EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)),
+                combat::TargetReleaseMode::AcquiredAndForced);
         }
     }
 }
@@ -2049,27 +1994,20 @@ static bool ApplyBuffModifier(smCHAR *caster, CompanionBuffModifier &modifier,
     {
         case SKILL_PHYSICAL_ABSORB:
             modifier.absorptionDelta = RandomBetween(P_Absorb[p][0], P_Absorb[p][1]);
-            caster->smCharInfo.Absorption += modifier.absorptionDelta;
             break;
         case SKILL_MAXIMIZE:
             modifier.attackMaxDelta = (caster->smCharInfo.Attack_Damage[1] * Maximize_Damage[p]) / 100;
-            caster->smCharInfo.Attack_Damage[1] += modifier.attackMaxDelta;
             break;
         case SKILL_AUTOMATION:
             modifier.attackMinDelta = (caster->smCharInfo.Attack_Damage[0] * Automation_Damage[p]) / 100;
             modifier.attackMaxDelta = (caster->smCharInfo.Attack_Damage[1] * Automation_Damage[p]) / 100;
             modifier.attackSpeedDelta = Automation_Speed[p];
-            caster->smCharInfo.Attack_Damage[0] += modifier.attackMinDelta;
-            caster->smCharInfo.Attack_Damage[1] += modifier.attackMaxDelta;
-            caster->smCharInfo.Attack_Speed += modifier.attackSpeedDelta;
             break;
         case SKILL_CONCENTRATION:
             modifier.attackRatingDelta = Concentration_AttackRate[p];
-            caster->smCharInfo.Attack_Rating += modifier.attackRatingDelta;
             break;
         case SKILL_SWIFT_AXE:
             modifier.attackSpeedDelta = (caster->smCharInfo.Attack_Speed * Swift_Axe_Speed[p]) / 100;
-            caster->smCharInfo.Attack_Speed += modifier.attackSpeedDelta;
             break;
         case SKILL_BERSERKER:
             // Legacy inventory code applies Berserker_AddAttack as a flat
@@ -2079,23 +2017,16 @@ static bool ApplyBuffModifier(smCHAR *caster, CompanionBuffModifier &modifier,
             modifier.attackMinDelta = Berserker_AddAttack[p];
             modifier.attackMaxDelta = Berserker_AddAttack[p];
             modifier.absorptionDelta = std::max(-(int)caster->smCharInfo.Absorption, Berserker_SubAbsorb[p]);
-            caster->smCharInfo.Attack_Damage[0] += modifier.attackMinDelta;
-            caster->smCharInfo.Attack_Damage[1] += modifier.attackMaxDelta;
-            caster->smCharInfo.Absorption += modifier.absorptionDelta;
             break;
         case SKILL_DRASTIC_SPIRIT:
             modifier.defenceDelta = (caster->smCharInfo.Defence * Drastic_Spirit_Defense[p]) / 100;
-            caster->smCharInfo.Defence += modifier.defenceDelta;
             break;
         case SKILL_SCOUT_HAWK:
             modifier.attackRatingDelta = (caster->smCharInfo.Attack_Rating * Scout_Hawk_Attack_Rate[p]) / 100;
-            caster->smCharInfo.Attack_Rating += modifier.attackRatingDelta;
             break;
         case SKILL_WINDY:
             modifier.attackRatingDelta = (caster->smCharInfo.Attack_Rating * Windy_Attack_Rating[p]) / 100;
             modifier.shootingRangeDelta = 30;
-            caster->smCharInfo.Attack_Rating += modifier.attackRatingDelta;
-            caster->smCharInfo.Shooting_Range += modifier.shootingRangeDelta;
             break;
         case SKILL_VIRTUAL_LIFE:
         {
@@ -2106,14 +2037,12 @@ static bool ApplyBuffModifier(smCHAR *caster, CompanionBuffModifier &modifier,
             // The legacy incoming-damage path also uses the Virtual Life
             // parameter as a percentage reduction while the buff is active.
             modifier.incomingDamageReductionPercent = ClampPercent(Virtual_Life_Percent[p]);
-            caster->smCharInfo.Life[1] = (short)newMax;
             break;
         }
         case SKILL_METAL_ARMOR:
         {
             const int baseDefence = caster->smCharInfo.Defence;
             modifier.defenceDelta = (baseDefence * Metal_Armor_Defense[p]) / 100;
-            caster->smCharInfo.Defence += modifier.defenceDelta;
             // Server legacy Metal Armor additionally subtracts the Physical
             // Absorption roll average as a flat amount on incoming attacks.
             if(runtime)
@@ -2149,8 +2078,6 @@ static bool ApplyBuffModifier(smCHAR *caster, CompanionBuffModifier &modifier,
             modifier.attackMinDelta = Magnetic_Sphere_AddDamage[p][0];
             modifier.attackMaxDelta = Magnetic_Sphere_AddDamage[p][1];
             modifier.genericDamagePercent = Magnetic_Sphere_AddDamagePercent[p];
-            caster->smCharInfo.Attack_Damage[0] += modifier.attackMinDelta;
-            caster->smCharInfo.Attack_Damage[1] += modifier.attackMaxDelta;
             break;
         case SKILL_VANISH:
             // Vanish keeps no sheet delta. Its point is consumed by target
@@ -2164,9 +2091,6 @@ static bool ApplyBuffModifier(smCHAR *caster, CompanionBuffModifier &modifier,
             modifier.attackMinDelta = Force_Of_Nature_AddDamage[p];
             modifier.attackMaxDelta = Force_Of_Nature_AddDamage[p];
             modifier.attackRatingDelta = Force_Of_Nature_AddHit[p];
-            caster->smCharInfo.Attack_Damage[0] += modifier.attackMinDelta;
-            caster->smCharInfo.Attack_Damage[1] += modifier.attackMaxDelta;
-            caster->smCharInfo.Attack_Rating += modifier.attackRatingDelta;
             break;
         case SKILL_HOLY_BODY:
             modifier.undeadDamageReductionPercent = ClampPercent(HolyBody_Absorb[p]);
@@ -2185,12 +2109,10 @@ static bool ApplyBuffModifier(smCHAR *caster, CompanionBuffModifier &modifier,
             break;
         case SKILL_TRIUMPH_OF_VALHALLA:
             modifier.attackMaxDelta = T_Of_Valhalla_Damage[p];
-            caster->smCharInfo.Attack_Damage[1] += modifier.attackMaxDelta;
             break;
         case SKILL_HALL_OF_VALHALLA:
             modifier.evadePercent = Hall_Of_Valhalla_AddEvation[p];
             modifier.attackMaxDelta = T_Of_Valhalla_Damage[p];
-            caster->smCharInfo.Attack_Damage[1] += modifier.attackMaxDelta;
             break;
         case SKILL_FROST_JAVELIN:
             // The elemental damage/slow is evaluated on each normal javelin
@@ -2203,14 +2125,10 @@ static bool ApplyBuffModifier(smCHAR *caster, CompanionBuffModifier &modifier,
         case SKILL_REGENERATION_FIELD:
             modifier.lifeRegenDelta = Regeneration_Field_LifeRegen[p];
             modifier.manaRegenDelta = Regeneration_Field_ManaRegen[p];
-            caster->smCharInfo.Life_Regen += modifier.lifeRegenDelta;
-            caster->smCharInfo.Mana_Regen += modifier.manaRegenDelta;
             break;
         case SKILL_ENCHANT_WEAPON:
             modifier.attackMinDelta = Enchant_Weapon_Damage[p];
             modifier.attackMaxDelta = Enchant_Weapon_Damage[p];
-            caster->smCharInfo.Attack_Damage[0] += modifier.attackMinDelta;
-            caster->smCharInfo.Attack_Damage[1] += modifier.attackMaxDelta;
             break;
         case SKILL_ENERGY_SHIELD:
             modifier.energyShieldPercent = ClampPercent(Energy_Shield_DecDamage[p]);
@@ -2218,36 +2136,24 @@ static bool ApplyBuffModifier(smCHAR *caster, CompanionBuffModifier &modifier,
         case SKILL_FALCON:
             modifier.attackMinDelta = Falcon_Damage[p][0];
             modifier.attackMaxDelta = Falcon_Damage[p][1];
-            caster->smCharInfo.Attack_Damage[0] += modifier.attackMinDelta;
-            caster->smCharInfo.Attack_Damage[1] += modifier.attackMaxDelta;
             break;
         case SKILL_GOLDEN_FALCON:
             modifier.attackMinDelta = Golden_Falcon_Damage[p];
             modifier.attackMaxDelta = Golden_Falcon_Damage[p];
             modifier.lifeRegenDelta = Golden_Falcon_LifeRegen[p];
-            caster->smCharInfo.Attack_Damage[0] += modifier.attackMinDelta;
-            caster->smCharInfo.Attack_Damage[1] += modifier.attackMaxDelta;
-            caster->smCharInfo.Life_Regen += modifier.lifeRegenDelta;
             break;
         case SKILL_DANCING_SWORD:
             modifier.attackMinDelta = Dancing_Sword_Damage[p][0];
             modifier.attackMaxDelta = Dancing_Sword_Damage[p][1];
-            caster->smCharInfo.Attack_Damage[0] += modifier.attackMinDelta;
-            caster->smCharInfo.Attack_Damage[1] += modifier.attackMaxDelta;
             break;
         case SKILL_SUMMON_MUSPELL:
             modifier.attackMinDelta = Summon_Muspell_Damage[p][0];
             modifier.attackMaxDelta = Summon_Muspell_Damage[p][1];
             modifier.chanceBlockDelta = Summon_Muspell_BlockPercent[p];
             modifier.absorptionDelta = Summon_Muspell_UndeadAbsorbPercent[p];
-            caster->smCharInfo.Attack_Damage[0] += modifier.attackMinDelta;
-            caster->smCharInfo.Attack_Damage[1] += modifier.attackMaxDelta;
-            caster->smCharInfo.Chance_Block += modifier.chanceBlockDelta;
-            caster->smCharInfo.Absorption += modifier.absorptionDelta;
             break;
         case SKILL_EXTREME_SHIELD:
             modifier.chanceBlockDelta = E_Shield_BlockRate[p];
-            caster->smCharInfo.Chance_Block += modifier.chanceBlockDelta;
             break;
         case SKILL_ZENITH:
         {
@@ -2257,20 +2163,16 @@ static bool ApplyBuffModifier(smCHAR *caster, CompanionBuffModifier &modifier,
             {
                 const int r = elements[i];
                 modifier.resistanceDelta[r] = add;
-                caster->smCharInfo.Resistance[r] = (short)(caster->smCharInfo.Resistance[r] + add);
             }
             break;
         }
         case SKILL_SPIRIT_ELEMENTAL:
             modifier.manaRegenDelta = Spirit_Elemental_RegenMana[p];
             modifier.magicSkillDamagePercent = Spirit_Elemental_Damage[p];
-            caster->smCharInfo.Mana_Regen += modifier.manaRegenDelta;
             break;
         case SKILL_T5_HARDENING_SHIELD:
             modifier.absorptionDelta = Hardening_Shield_DamageReduction[p];
             modifier.attackRatingDelta = -(caster->smCharInfo.Attack_Rating * Hardening_Shield_AttackRateReduction[p]) / 100;
-            caster->smCharInfo.Absorption += modifier.absorptionDelta;
-            caster->smCharInfo.Attack_Rating += modifier.attackRatingDelta;
             break;
         case SKILL_T5_RUTHLESS_OF_ZECRAM:
             // Ruthless is not a continuous damage multiplier: every attack
@@ -2285,49 +2187,47 @@ static bool ApplyBuffModifier(smCHAR *caster, CompanionBuffModifier &modifier,
             // compatible with that contract.
             modifier.attackMinDelta = -Pike_T5_Focus_MinAttackReduction[p];
             modifier.attackMaxDelta = Pike_T5_Focus_MaxAttackIncrease[p];
-            caster->smCharInfo.Attack_Damage[0] += modifier.attackMinDelta;
-            caster->smCharInfo.Attack_Damage[1] += modifier.attackMaxDelta;
             break;
         case SKILL_T5_DEATH_MASTER:
             modifier.genericDamagePercent = Pike_T5_Death_DamageBoost[p];
             modifier.attackRatingDelta = (caster->smCharInfo.Attack_Rating * Pike_T5_Death_AttackRateBoost[p]) / 100;
-            caster->smCharInfo.Attack_Rating += modifier.attackRatingDelta;
             break;
         case SKILL_T5_LETHAL_SIGHT:
             modifier.shootingRangeDelta = Archer_T5_Lethal_RangeAdd[p];
             modifier.genericDamagePercent = Archer_T5_Lethal_DamageBoost[p];
             modifier.criticalChancePercent = Archer_T5_Lethal_CriticalRate[p];
             modifier.consumeOnAttack = true;
-            caster->smCharInfo.Shooting_Range += modifier.shootingRangeDelta;
             break;
         case SKILL_T5_HOLY_CONVICTION:
             modifier.undeadDamagePercent = Knight_T5_HolyConviction_UndeadBoost[p];
             break;
         case SKILL_T5_GLORIOUS_SHIELD:
             modifier.defenceDelta = (caster->smCharInfo.Defence * Knight_T5_GloriousShield_DefenseBoost[p]) / 100;
-            caster->smCharInfo.Defence += modifier.defenceDelta;
             break;
         case SKILL_T5_CONSECRATION:
             modifier.defenceDelta = (caster->smCharInfo.Defence * Priestess_T5_Consecration_DefenseBoost[p]) / 100;
             modifier.absorptionDelta = Priestess_T5_Consecration_Absorption[p];
-            caster->smCharInfo.Defence += modifier.defenceDelta;
-            caster->smCharInfo.Absorption += modifier.absorptionDelta;
             break;
         case SKILL_T5_WIZARD_TRANCE:
             modifier.chanceBlockDelta = Magician_T5_WizardTrance_BlockBoost[p];
             modifier.attackRatingDelta = -(caster->smCharInfo.Attack_Rating * Magician_T5_WizardTrance_AttackRateReduction[p]) / 100;
-            caster->smCharInfo.Chance_Block += modifier.chanceBlockDelta;
-            caster->smCharInfo.Attack_Rating += modifier.attackRatingDelta;
             break;
         case SKILL_T5_STONE_SKIN:
             // Companion monsters do not have rsPLAYINFO's no-death timer; use the
             // same combat stat path to make the window authoritative without global state.
             modifier.absorptionDelta = std::max(0, 100 - (int)caster->smCharInfo.Absorption);
-            caster->smCharInfo.Absorption += modifier.absorptionDelta;
             break;
         default:
             modifier.Reset();
             return false;
+    }
+
+    const combat::CombatBuffResult buffResult = combat::legacy::ServerLegacyCombatBuffAdapter().Apply(
+        EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)), ToCombatBuffDelta(modifier));
+    if(!buffResult.Ok())
+    {
+        modifier.Reset();
+        return false;
     }
 
     int duration = BuffDurationSeconds(skillCode, point);
@@ -2966,6 +2866,7 @@ const char *CompanionSkillRejectReasonName(CompanionSkillRejectReason reason)
         case COMPANION_SKILL_MIN_TARGETS: return "MIN_TARGETS";
         case COMPANION_SKILL_NOT_NEEDED: return "NOT_NEEDED";
         case COMPANION_SKILL_EFFECT_FAILED: return "EFFECT_FAILED";
+        case COMPANION_SKILL_INVALID_TARGET: return "INVALID_TARGET";
         default: return "UNKNOWN";
     }
 }
@@ -3758,12 +3659,10 @@ bool UpdateCompanionPersistentEffect(smCHAR *caster, rsPLAYINFO *owner,
                 applied = ApplySkillDamage(caster, owner, target, damage);
             if(applied && runtime.persistentEffectElement == 0)
             {
-                int resistance = ClampLegacyResistance(target->smCharInfo.Resistance[sITEMINFO_ICE]);
-                int slowCount = 16 * 5;
-                slowCount -= (slowCount * resistance) / 100;
-                target->PlaySlowCount = std::max(0, slowCount);
-                target->PlaySlowSpeed = 230 - 10 * runtime.persistentEffectPoint;
-                target->PlayDistortion = 0;
+                const int resistance = ClampLegacyResistance(target->smCharInfo.Resistance[sITEMINFO_ICE]);
+                combat::legacy::ServerLegacyStatusEffectAdapter().ApplyElementalSlow16Hz(
+                    EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)),
+                    5, 230 - 10 * runtime.persistentEffectPoint, resistance);
             }
         }
     }
@@ -4185,13 +4084,10 @@ void ApplyCompanionIncomingDamageModifiers(smCHAR *target, smCHAR *attacker, rsP
     const int vanishPoint = ActiveVanishPoint(runtime, now);
     if(vanishPoint > 0 && attacker && !IsWithinVanishSight(target, attacker, vanishPoint))
     {
-        if(attacker->lpTargetChar == target)
-            attacker->lpTargetChar = NULL;
-        if(attacker->lpCompulsionChar == target)
-        {
-            attacker->lpCompulsionChar = NULL;
-            attacker->dwCompulsionTime = 0;
-        }
+        combat::legacy::ServerLegacyTargetingAdapter().ReleaseTarget(
+            EntityId(static_cast<std::uint32_t>(attacker->dwObjectSerial)),
+            EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)),
+            combat::TargetReleaseMode::AcquiredAndForced);
         *damage = 0;
         return;
     }
@@ -4387,12 +4283,10 @@ void ApplyCompanionOutgoingBasicDamageModifiers(smCHAR *caster, smCHAR *target,
             if(iceDamage < 0) iceDamage = 0;
             value += iceDamage;
 
-            int slowCount = 16 * Frost_Javelin_IceTime[p];
-            slowCount -= (slowCount * resistance) / 100;
-            target->PlaySlowCount = slowCount;
-            target->PlaySlowSpeed = 240 -
-                (240 * Frost_Javelin_SpeedSubPercent[p]) / 100;
-            target->PlayDistortion = 0;
+            combat::legacy::ServerLegacyStatusEffectAdapter().ApplyElementalSlow16Hz(
+                EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)),
+                Frost_Javelin_IceTime[p],
+                240 - (240 * Frost_Javelin_SpeedSubPercent[p]) / 100, resistance);
             break;
         }
     }
@@ -4449,13 +4343,12 @@ static int ApplyCompanionCompulsionTaunt(smCHAR *caster, int point, DWORD now)
         const int dz = (target->pZ - caster->pZ) >> FLOATNS;
         if(dx * dx + dz * dz > rangeSquared || abs(dy) >= 128)
             continue;
-        target->lpTargetPlayInfo = NULL;
-        target->lpTargetChar = caster;
-        target->lpCompulsionPlayInfo = NULL;
-        target->lpCompulsionChar = caster;
-        target->dwCompulsionTime = expiresAt;
-        target->SetNextTarget(caster->pX, caster->pY, caster->pZ);
-        ++affected;
+        const combat::TargetingResult targeting = combat::legacy::ServerLegacyTargetingAdapter().ForceTarget(
+            EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)),
+            EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)),
+            static_cast<std::uint32_t>(expiresAt));
+        if(targeting.Ok())
+            ++affected;
     }
     return affected;
 }
@@ -4617,10 +4510,8 @@ bool TryExecuteCompanionSupportLoadout(smCHAR *caster, rsPLAYINFO *owner,
             if(resurrected)
             {
                 deadTarget->smCharInfo.Life[0] = (short)std::max(1, (int)deadTarget->smCharInfo.Life[1] / 2);
-                deadTarget->lpTargetChar = NULL;
-                deadTarget->lpTargetPlayInfo = NULL;
-                deadTarget->TargetMoveCount = 0;
-                deadTarget->AutoMoveStep = 0;
+                combat::legacy::ServerLegacyTargetingAdapter().ClearAcquiredTarget(
+                    EntityId(static_cast<std::uint32_t>(deadTarget->dwObjectSerial)));
                 deadTarget->SetMotionFromCode(CHRMOTION_STATE_RESTART);
             }
             BeginCast(caster, runtime, descriptor.skillCode, descriptor.point, deadTarget->dwObjectSerial, now, 750U,
@@ -4996,9 +4887,17 @@ bool TryExecuteCompanionSupportLoadout(smCHAR *caster, rsPLAYINFO *owner,
                 if(attempt) *attempt = current;
                 continue;
             }
+            const combat::LifeCommandResult lifeResult = combat::legacy::ServerLegacyLifeAdapter().ConsumeNonLethal(
+                EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)), lifeCost);
+            if(!lifeResult.Ok())
+            {
+                runtime.nextBuffSkillTime[slot] = now + 2000U;
+                current.reason = COMPANION_SKILL_NOT_NEEDED;
+                if(attempt) *attempt = current;
+                continue;
+            }
             caster->smCharInfo.Mana[0] = (short)std::max(0, (int)caster->smCharInfo.Mana[0] - mana);
             caster->smCharInfo.Stamina[0] = (short)std::max(0, (int)caster->smCharInfo.Stamina[0] - stamina);
-            caster->smCharInfo.Life[0] = (short)((int)caster->smCharInfo.Life[0] - lifeCost);
             caster->smCharInfo.Mana[0] = (short)std::min((int)caster->smCharInfo.Mana[1], (int)caster->smCharInfo.Mana[0] + manaGain);
             BeginCast(caster, runtime, descriptor.skillCode, descriptor.point, caster->dwObjectSerial, now, 700U);
             runtime.nextBuffSkillTime[slot] = now + (DWORD)intervalSeconds * 1000U;
@@ -5038,9 +4937,15 @@ bool TryExecuteCompanionSupportLoadout(smCHAR *caster, rsPLAYINFO *owner,
             }
             const int p = descriptor.point - 1;
             const int percent = std::max(1, std::min(100, Resurrection_Percent[p]));
-            reviveTarget->smCharInfo.Life[0] = (short)std::max(1,
-                ((int)reviveTarget->smCharInfo.Life[1] * percent) / 100);
-            reviveTarget->SetMotionFromCode(CHRMOTION_STATE_STAND);
+            const combat::LifeCommandResult reviveResult = combat::legacy::ServerLegacyLifeAdapter().Revive(
+                EntityId(static_cast<std::uint32_t>(reviveTarget->dwObjectSerial)), percent);
+            if(!reviveResult.Ok())
+            {
+                runtime.nextBuffSkillTime[slot] = now + 1000U;
+                current.reason = COMPANION_SKILL_INVALID_TARGET;
+                if(attempt) *attempt = current;
+                continue;
+            }
             caster->smCharInfo.Mana[0] = (short)std::max(0, (int)caster->smCharInfo.Mana[0] - mana);
             caster->smCharInfo.Stamina[0] = (short)std::max(0, (int)caster->smCharInfo.Stamina[0] - stamina);
             BeginCast(caster, runtime, descriptor.skillCode, descriptor.point, reviveTarget->dwObjectSerial,
@@ -5093,12 +4998,11 @@ bool TryExecuteCompanionSupportLoadout(smCHAR *caster, rsPLAYINFO *owner,
                 const int dz = (owner->Position.z - caster->pZ) >> FLOATNS;
                 if(dx * dx + dz * dz <= range * range && owner->smCharInfo.Life[0] < owner->smCharInfo.Life[1])
                 {
-                    smTRANS_COMMAND command; ZeroMemory(&command, sizeof(command));
-                    command.size = sizeof(command); command.code = OpCode::OPCODE_HEALING;
-                    command.WParam = heal; command.SParam = owner->dwObjectSerial; command.EParam = caster->dwObjectSerial;
-                    rsPlayHealing(&command);
-                    owner->smCharInfo.Life[0] = (short)std::min((int)owner->smCharInfo.Life[1], (int)owner->smCharInfo.Life[0] + heal);
-                    applied = true;
+                    const combat::HealingResult healResult = combat::legacy::ServerLegacyHealingAdapter().Heal(
+                        EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)),
+                        PlayerId(static_cast<std::uint32_t>(owner->dwObjectSerial)), heal);
+                    if(healResult.Accepted())
+                        applied = true;
                 }
             }
             for(int i = 0; i < companionCount; ++i)
@@ -5108,10 +5012,10 @@ bool TryExecuteCompanionSupportLoadout(smCHAR *caster, rsPLAYINFO *owner,
                     continue;
                 if(candidate->smCharInfo.Life[0] >= candidate->smCharInfo.Life[1])
                     continue;
-                smTRANS_COMMAND command; ZeroMemory(&command, sizeof(command));
-                command.size = sizeof(command); command.code = OpCode::OPCODE_HEALING;
-                command.WParam = heal; command.SParam = candidate->dwObjectSerial; command.EParam = caster->dwObjectSerial;
-                if(rsPlayHealing(&command)) applied = true;
+                const combat::HealingResult healResult = combat::legacy::ServerLegacyHealingAdapter().Heal(
+                    EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)),
+                    EntityId(static_cast<std::uint32_t>(candidate->dwObjectSerial)), heal);
+                if(healResult.Accepted()) applied = true;
             }
             if(!applied)
             {
@@ -5137,7 +5041,8 @@ bool TryExecuteCompanionHeal(smCHAR *caster, rsPLAYINFO *owner, smCHAR *const *c
     CompanionSkillAttempt *attempt)
 {
     if(attempt) attempt->Reset();
-    if(!caster || !owner || caster->smCharInfo.JOB_CODE != JOBCODE_PRIESTESS)
+    if(!caster || !owner || !HasCompanionHealingRole(
+        static_cast<classes::PlayableClassId>(caster->smCharInfo.JOB_CODE)))
     {
         if(attempt) attempt->reason = COMPANION_SKILL_INVALID;
         return false;
@@ -5228,25 +5133,20 @@ bool TryExecuteCompanionHeal(smCHAR *caster, rsPLAYINFO *owner, smCHAR *const *c
         return false;
     }
 
-    smTRANS_COMMAND command;
-    ZeroMemory(&command, sizeof(command));
-    command.size = sizeof(command);
-    command.code = OpCode::OPCODE_HEALING;
-    command.WParam = heal;
-    command.LParam = 0;
-    command.SParam = targetSerial;
-    command.EParam = caster->dwObjectSerial;
-    if(!rsPlayHealing(&command))
+    combat::HealingResult healResult;
+    if(ownerTarget)
+        healResult = combat::legacy::ServerLegacyHealingAdapter().Heal(
+            EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)),
+            PlayerId(static_cast<std::uint32_t>(targetSerial)), heal);
+    else
+        healResult = combat::legacy::ServerLegacyHealingAdapter().Heal(
+            EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)),
+            EntityId(static_cast<std::uint32_t>(targetSerial)), heal);
+    if(!healResult.Accepted())
     {
         if(attempt) attempt->reason = COMPANION_SKILL_EFFECT_FAILED;
         return false;
     }
-
-    // rsPlayHealing sends owner heals to the client. Keep the server-side owner
-    // snapshot coherent as well so the companion does not recast every cooldown
-    // while waiting for the next client status update.
-    if(ownerTarget)
-        owner->smCharInfo.Life[0] = (short)std::min((int)owner->smCharInfo.Life[1], (int)owner->smCharInfo.Life[0] + heal);
 
     caster->smCharInfo.Mana[0] = (short)std::max(0, (int)caster->smCharInfo.Mana[0] - mana);
     caster->smCharInfo.Stamina[0] = (short)std::max(0, (int)caster->smCharInfo.Stamina[0] - stamina);

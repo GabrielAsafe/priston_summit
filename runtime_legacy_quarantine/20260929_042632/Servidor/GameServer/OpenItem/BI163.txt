@@ -1,0 +1,17 @@
+//ID
+*코드 "BI163"
+
+//Korean Name
+*이름 "Mestre do Aging E"
+
+//English Name
+*Name "Mestre do Aging E"
+
+//Weight
+*무게 1
+
+//Price
+*가격 80000
+
+//Name File
+*연결파일 "Name\BI163.zhoon"

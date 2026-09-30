@@ -1,0 +1,44 @@
+//ID
+*코드 "OA223"
+
+//Korean Name
+*이름 "Bracelete Frenesi"
+
+//English Name
+*Name "Bracelete Frenesi"
+
+//AttackRating
+*명중력 140 151
+
+//Defense
+*방어력 136 150
+
+//PotionStorage
+*보유공간 90
+
+//Integrity
+*내구력 153 165
+
+//Level
+*레벨 105
+
+//Strength
+*힘 95
+
+//Agility
+*민첩성 88
+
+//SpecAttackRating
+**명중력 1 3
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//Weight
+*무게 58
+
+//Price
+*가격 950000
+
+//Name File
+*연결파일 "Name\OA223.zhoon"

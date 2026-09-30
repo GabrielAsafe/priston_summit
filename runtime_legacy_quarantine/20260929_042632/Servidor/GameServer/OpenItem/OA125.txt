@@ -1,0 +1,50 @@
+//ID
+*코드 "OA125"
+
+//Korean Name
+*이름 "Colar do Kelvezu"
+
+//English Name
+*Name "Colar do Kelvezu"
+
+//AttackRating
+//*명중력 50 50
+
+//HP
+*생명력추가 55 55
+
+//MP
+*기력추가 55 55
+
+//STM
+*근력추가 45 45
+
+//HPRegen
+*생명력재생 3.4 3.9
+
+//MPRegen
+*기력재생 2.6 3.5
+
+//Level
+*레벨 80
+
+//Spirit
+*정신력 70
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecHPRegen
+**생명력재생 1.6 1.8
+
+//SpecMPRegen
+**기력재생 1.6 1.8
+
+//Weight
+*무게 10
+
+//Price
+*가격 90000
+
+//Name File
+*연결파일 "Name\OA125.zhoon"

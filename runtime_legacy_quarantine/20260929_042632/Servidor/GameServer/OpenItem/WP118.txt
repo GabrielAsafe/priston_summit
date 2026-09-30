@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "WP118"
+
+//Korean Name
+*ÀÌ¸§ "Foice Oráculo"
+
+//English Name
+*Name "Foice Oráculo"
+
+//AttackPower
+*°ø°Ý·Â 32 35 68 71
+
+//AttackRating
+*¸íÁß·Â 158 178
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 17
+
+//Block
+*ºí·°À² 14.0 14.0
+
+//Integrity
+*³»±¸·Â 108 128
+
+//Level
+*·¹º§ 80
+
+//Strength
+*Èû 152
+
+//Talent
+*Àç´É 90
+
+//PrimarySpec
+**Æ¯È­ Pikeman
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Atalanta
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 3
+
+//Weight
+*¹«°Ô 51
+
+//Price
+*°¡°Ý 460000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WP118.zhoon"

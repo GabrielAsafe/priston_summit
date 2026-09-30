@@ -1,0 +1,65 @@
+//ID
+*코드 "DS113"
+
+//Korean Name
+*이름 "Escudo Grandioso"
+
+//English Name
+*Name "Escudo Grandioso"
+
+//Defense
+*방어력 80 112
+
+//Absorption
+*흡수력 4.5 4.9
+
+//Block
+*블럭율 16.0 19.0
+
+//OrganicResistance
+*생체 2 4
+
+//FireResistance
+*불 2 4
+
+//FrostResistance
+*냉기 2 4
+
+//LightningResistance
+*번개 2 4
+
+//PoisonResistance
+*독 2 4
+
+//Integrity
+*내구력 90 125
+
+//Level
+*레벨 65
+
+//Strength
+*힘 120
+
+//Talent
+*재능 64
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**방어력 16 24
+
+//SpecAbsorption
+**흡수력 0.7 0.9
+
+//SpecBlock
+**블럭율 3.0
+
+//Weight
+*무게 41
+
+//Price
+*가격 61000
+
+//Name File
+*연결파일 "Name\DS113.zhoon"

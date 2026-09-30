@@ -1,0 +1,59 @@
+//ID
+*ÄÚµå "WS103"
+
+//Korean Name
+*ÀÌ¸§ "Arco de Mão"
+
+//English Name
+*Name "Arco de Mão"
+
+//AttackPower
+*°ø°Ý·Â 3 3 5 7
+
+//AttackRating
+*¸íÁß·Â 24 34
+
+//AttackRange
+*»çÁ¤°Å¸® 190
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 3
+
+//Integrity
+*³»±¸·Â 23 38
+
+//Agility
+*¹ÎÃ¸¼º 32
+
+//PrimarySpec
+**Æ¯È­ Archer
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Atalanta
+
+//SpecAttackPower
+**°ø°Ý·Â 7 7
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SpecAttackRange
+**»çÁ¤°Å¸® 15
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 4
+
+//Weight
+*¹«°Ô 7
+
+//Price
+*°¡°Ý 720
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WS103.zhoon"

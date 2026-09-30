@@ -1,0 +1,17 @@
+//ID
+*코드 "GB103"
+
+//Korean Name
+*이름 "Barra de Bronze"
+
+//English Name
+*Name "Barra de Bronze"
+
+//Weight
+*무게 1
+
+//Price
+*가격 10000
+
+//Name File
+*연결파일 "Name\GB103.zhoon"

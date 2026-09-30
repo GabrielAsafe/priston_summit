@@ -7,10 +7,20 @@
  Shared/gameplay/covenants/v2/CovenantModifierEvaluation.h \
  Shared/gameplay/modifiers/v2/GameplayModifier.h \
  Shared/gameplay/gathering/v2/GatheringTypes.h \
- Shared/gameplay/professions/v2/ProfessionService.h \
+ Shared/gameplay/professions/v2/ProfessionTypes.h \
+ Shared/gameplay/mining/v2/IMiningService.h \
+ Shared/gameplay/professions/v2/IProfessionService.h \
  SrcServer/src/systems/gameplay/gathering/v2/GatheringService.h \
+ Shared/gameplay/gathering/v2/IGatheringService.h \
  SrcServer/src/systems/gameplay/events/v2/GameplayEventRuntime.h \
+ Shared/gameplay/events/v2/MonsterDefeatedEvent.h \
+ Shared/gameplay/core/v2/GameplayIds.h \
+ SrcServer/src/systems/gameplay/events/v2/MonsterKilledEvent.h \
+ Shared/gameplay/events/v2/WorldEventLifecycleEvents.h \
  SrcServer/src/systems/gameplay/professions/v2/ProfessionRuntime.h \
+ Shared/gameplay/professions/v2/ProfessionService.h \
+ Shared/gameplay/professions/v2/IProfessionRepository.h \
+ Shared/gameplay/events/v2/ProfessionProgressedEvent.h \
  SrcServer/src/systems/gameplay/progression/v2/ProgressionRuntime.h \
  Shared/gameplay/covenants/v2/CovenantService.h \
  Shared/gameplay/conditions/v2/Condition.h \
@@ -37,10 +47,20 @@ Shared/gameplay/covenants/v2/ICovenantGameplayBridge.h:
 Shared/gameplay/covenants/v2/CovenantModifierEvaluation.h:
 Shared/gameplay/modifiers/v2/GameplayModifier.h:
 Shared/gameplay/gathering/v2/GatheringTypes.h:
-Shared/gameplay/professions/v2/ProfessionService.h:
+Shared/gameplay/professions/v2/ProfessionTypes.h:
+Shared/gameplay/mining/v2/IMiningService.h:
+Shared/gameplay/professions/v2/IProfessionService.h:
 SrcServer/src/systems/gameplay/gathering/v2/GatheringService.h:
+Shared/gameplay/gathering/v2/IGatheringService.h:
 SrcServer/src/systems/gameplay/events/v2/GameplayEventRuntime.h:
+Shared/gameplay/events/v2/MonsterDefeatedEvent.h:
+Shared/gameplay/core/v2/GameplayIds.h:
+SrcServer/src/systems/gameplay/events/v2/MonsterKilledEvent.h:
+Shared/gameplay/events/v2/WorldEventLifecycleEvents.h:
 SrcServer/src/systems/gameplay/professions/v2/ProfessionRuntime.h:
+Shared/gameplay/professions/v2/ProfessionService.h:
+Shared/gameplay/professions/v2/IProfessionRepository.h:
+Shared/gameplay/events/v2/ProfessionProgressedEvent.h:
 SrcServer/src/systems/gameplay/progression/v2/ProgressionRuntime.h:
 Shared/gameplay/covenants/v2/CovenantService.h:
 Shared/gameplay/conditions/v2/Condition.h:

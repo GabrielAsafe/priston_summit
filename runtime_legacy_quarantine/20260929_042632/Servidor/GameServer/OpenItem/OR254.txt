@@ -1,0 +1,47 @@
+//ID
+*코드 "OR254"
+
+//Korean Name
+*이름 "Anel Silrape 7d"
+
+//English Name
+*Name "Anel Silrape 7d"
+
+//AttackRating
+*명중력 30 30
+
+//Defense
+*방어력 20 20
+
+//Absorption
+*흡수력 2.0 2.0
+
+//HP
+*생명력추가 40 40
+
+//MP
+*기력추가 40 40
+
+//STM
+*근력추가 40 40
+
+//HPRegen
+*생명력재생 3.0 3.0
+
+//MPRegen
+*기력재생 3.0 3.0
+
+//STMRegen
+*근력재생 3.0 3.0
+
+//Level
+*레벨 10
+
+//Spirit
+*정신력 64
+
+//Weight
+*무게 5
+
+//Name File
+*연결파일 "Name\OR254.zhoon"

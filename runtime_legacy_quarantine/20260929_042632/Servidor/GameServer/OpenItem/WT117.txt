@@ -1,0 +1,65 @@
+//ID
+*ÄÚµå "WT117"
+
+//Korean Name
+*ÀÌ¸§ "Lança Mística"
+
+//English Name
+*Name "Lança Mística"
+
+//AttackPower
+*°ø°Ý·Â 28 30 40 43
+
+//AttackRange
+*»çÁ¤°Å¸® 240
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackRating
+*¸íÁß·Â 104 124
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 12
+
+//Integrity
+*³»±¸·Â 85 103
+
+//Level
+*·¹º§ 80
+
+//Strength
+*Èû 72
+
+//Talent
+*Àç´É 84
+
+//Agility
+*¹ÎÃ¸¼º 112
+
+//PrimarySpec
+**Æ¯È­ Atalanta
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Archer
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 5
+
+//SpecAttackRange
+**»çÁ¤°Å¸® 10
+
+//Weight
+*¹«°Ô 15
+
+//Price
+*°¡°Ý 250000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WT117.zhoon"

@@ -1,0 +1,38 @@
+//ID
+*코드 "WH109"
+
+//Korean Name
+*이름 "Martelo Meteoro"
+
+//English Name
+*Name "Martelo Meteoro"
+
+//Effect
+*이펙트설정 1
+
+//Quest
+*유니크 2
+
+//AttackPower
+*공격력 19 19 25 25
+
+//AttackRating
+*명중력 125 125
+
+//AttackSpeed
+*공격속도 8
+
+//AttackCritical
+*크리티컬 7
+
+//Integrity
+*내구력 100 100
+
+//Level
+*레벨 40
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\ZQuest_WH109.zhoon"

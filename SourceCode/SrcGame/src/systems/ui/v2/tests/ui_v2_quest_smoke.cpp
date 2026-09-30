@@ -90,8 +90,28 @@ public:
         finalized.progressGroup = true;
         finalized.finalizedGroup = true;
 
+        QuestSectionSnapshot codex;
+        codex.id = 0x7020;
+        codex.title = "Codex PT-BR";
+        codex.codexGroup = true;
+
+        QuestEntrySnapshot codexQuest;
+        codexQuest.id = 303;
+        codexQuest.kind = -2;
+        codexQuest.sectionId = 0x7020;
+        codexQuest.title = "Quest do Level 30 - Por Ela";
+        codexQuest.name = codexQuest.title;
+        codexQuest.codex.available = true;
+        codexQuest.codex.guideId = "level-30-por-ela";
+        codexQuest.codex.stages = {"Tempskrons", "Morions"};
+        codexQuest.codex.objectives = {"[Tempskrons] Falar com Allya em Ricarten.", "[Tempskrons] Cacar 20 Bargons em Terra Esquecida e retornar."};
+        codexQuest.codex.npcs = {"Allya", "Phillya"};
+        codexQuest.codex.locations = {"Ricarten", "Pillai", "Terra Esquecida"};
+        codexQuest.codex.rewards = {"+5 Pontos de Status"};
+        codex.quests.push_back(codexQuest);
+
         snapshot.valid = true;
-        snapshot.sections = {quests, emptyDaily, progress, finalized};
+        snapshot.sections = {quests, emptyDaily, progress, finalized, codex};
     }
 
     QuestJournalSnapshot GetSnapshot() const override
@@ -234,8 +254,15 @@ int main()
     assert(gateway.selectedSection == 9 && gateway.selectedQuest == 101);
     rawRenderer->ClearText();
     runtime.Render();
-    assert(rawRenderer->HasText("OBJETIVOS"));
-    assert(rawRenderer->HasText("RECOMPENSAS"));
+    assert(rawRenderer->HasText("Primeira Jornada"));
+    Click(runtime, 102 + 492 + 36, 99 + 86 + 12);
+    rawRenderer->ClearText();
+    runtime.Render();
+    assert(rawRenderer->HasText("PROGRESSO ATUAL"));
+    Click(runtime, 102 + 723 + 36, 99 + 86 + 12);
+    rawRenderer->ClearText();
+    runtime.Render();
+    assert(rawRenderer->HasText("RECOMPENSA DO RUNTIME"));
 
     // Accept action goes through IQuestGateway; the V2 does not mutate the
     // underlying quest object directly.
@@ -279,6 +306,21 @@ int main()
     UIEvent detailWheel = listWheel;
     detailWheel.pointer = {500, 300};
     assert(runtime.HandleEvent(detailWheel));
+
+    // Codex is read-only and exposes structured guide metadata independently
+    // from live quest progression.
+    Click(runtime, 102 + 250 + 46, 99 + 40 + 15);
+    rawRenderer->ClearText();
+    runtime.Render();
+    assert(rawRenderer->HasText("Codex PT-BR"));
+    assert(rawRenderer->HasText("Quest do Level 30 - Por Ela"));
+    Click(runtime, 130, 218);
+    assert(gateway.selectedSection == 0x7020 && gateway.selectedQuest == 303);
+    Click(runtime, 102 + 569 + 36, 99 + 86 + 12);
+    rawRenderer->ClearText();
+    runtime.Render();
+    assert(rawRenderer->HasText("PERSONAGENS / NPCS"));
+    assert(rawRenderer->HasText("- Allya"));
 
     // Closing the V2 window must not destroy the independent tracked state.
     assert(runtime.Windows().Close(JournalId));

@@ -1,0 +1,62 @@
+//ID
+*코드 "WP120"
+
+//Korean Name
+*이름 "Foice Extrema"
+
+//English Name
+*Name "Foice Extrema"
+
+//AttackPower
+*공격력 41 43 78 82
+
+//AttackRating
+*명중력 170 192
+
+//AttackSpeed
+*공격속도 7
+
+//AttackCritical
+*크리티컬 17
+
+//Block
+*블럭율 14.0 14.0
+
+//Integrity
+*내구력 127 146
+
+//Level
+*레벨 80
+
+//Strength
+*힘 162
+
+//Talent
+*재능 90
+
+//PrimarySpec
+**특화 Pikeman
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Atalanta
+
+//SpecAttackPower
+**공격력 6 6
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 4
+
+//Weight
+*무게 59
+
+//Price
+*가격 850000
+
+//Name File
+*연결파일 "Name\WP120.zhoon"

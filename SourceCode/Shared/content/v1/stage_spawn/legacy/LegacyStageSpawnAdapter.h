@@ -5,6 +5,7 @@
 #include <string>
 
 #include "content/v1/stage_spawn/content/CompiledStageSpawnContentSource.h"
+#include "content/v1/field_runtime/content/CompiledFieldRuntimeSource.h"
 #include "content/v1/stage_spawn/content/LegacyStageSpawnContentSource.h"
 #include "content/v1/stage_spawn/content/StageSpawnService.h"
 #include "content/v1/text_resource/legacy/LegacyContentIdRegistry.h"
@@ -102,11 +103,14 @@ inline bool DecodeOpenMonsterViaContent(const char *sourceFile,
                                         int characterCount)
 {
     if(!sourceFile || !output) return false;
-    static const std::string packPath=summit::content::runtime::ResolveRuntimePackPath("stage_spawns.sspb");
-    const char *pack=packPath.c_str();
+    static const std::string packPath=summit::content::runtime::ResolveRuntimePackPath("field_runtime.sfld");
     StageSpawnDefinition definition;
     std::string error;
-    CompiledStageSpawnContentSource compiled(pack);
+    summit::content::field_runtime::CompiledFieldRuntimeSource field(packPath.c_str());
+    if(!field.IsValid()) return false;
+    std::vector<unsigned char> spawnSection;
+    if(!field.LoadStageSpawnSection(spawnSection,&error)) return false;
+    CompiledStageSpawnContentSource compiled(spawnSection);
     if(!compiled.IsValid()) return false;
     StageSpawnService service(compiled);
     if(!service.Load(sourceFile,definition,&error)) return false;

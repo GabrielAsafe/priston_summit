@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "WP124"
+
+//Korean Name
+*ÀÌ¸§ "Foice Dragão"
+
+//English Name
+*Name "Foice Dragão"
+
+//AttackPower
+*°ø°Ý·Â 60 63 106 109
+
+//AttackRating
+*¸íÁß·Â 193 216
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 8
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 19
+
+//Block
+*ºí·°À² 17.0 17.0
+
+//Integrity
+*³»±¸·Â 165 185
+
+//Level
+*·¹º§ 105
+
+//Strength
+*Èû 191
+
+//Talent
+*Àç´É 90
+
+//PrimarySpec
+**Æ¯È­ Pikeman
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Atalanta
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 4
+
+//Weight
+*¹«°Ô 80
+
+//Price
+*°¡°Ý 1200000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WP124.zhoon"

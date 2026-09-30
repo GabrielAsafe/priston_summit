@@ -7,46 +7,32 @@
 #include "gameplay/events/v2/GameplayEventHub.h"
 #include "gameplay/covenants/v2/ICovenantGameplayBridge.h"
 #include "gameplay/gathering/v2/GatheringTypes.h"
-#include "gameplay/professions/v2/ProfessionService.h"
+#include "gameplay/mining/v2/IMiningService.h"
+#include "gameplay/professions/v2/IProfessionService.h"
 #include "systems/gameplay/gathering/v2/GatheringService.h"
 
 namespace gameplay
 {
 namespace mining
 {
-struct MiningRequest
-{
-    std::string playerName;
-    std::uint32_t nodeId;
-    int area;
-    int x;
-    int y;
-    int z;
-    std::uint64_t nowMilliseconds;
-    std::uint32_t roll;
-
-    MiningRequest()
-        : nodeId(0), area(-1), x(0), y(0), z(0), nowMilliseconds(0), roll(0) {}
-};
-
-class MiningService
+class MiningService : public IMiningService
 {
 public:
-    MiningService(professions::ProfessionService& professions,
+    MiningService(professions::IProfessionService& professions,
                   events::GameplayEventHub* eventHub = 0,
                   covenants::ICovenantGameplayBridge* covenantBridge = 0);
 
-    bool RegisterResource(const gathering::ResourceDefinition& definition);
-    bool RegisterNode(const gathering::GatheringNodeDefinition& definition);
-    gathering::HarvestResult Harvest(const MiningRequest& request);
-    void ListResources(std::vector<gathering::ResourceDefinition>& out) const;
-    void ListNodes(std::vector<gathering::GatheringNodeDefinition>& out) const;
+    bool RegisterResource(const gathering::ResourceDefinition& definition) override;
+    bool RegisterNode(const gathering::GatheringNodeDefinition& definition) override;
+    gathering::HarvestResult Harvest(const MiningRequest& request) override;
+    void ListResources(std::vector<gathering::ResourceDefinition>& out) const override;
+    void ListNodes(std::vector<gathering::GatheringNodeDefinition>& out) const override;
 
     gathering::GatheringService& Gathering() { return gathering_; }
     const gathering::GatheringService& Gathering() const { return gathering_; }
 
 private:
-    professions::ProfessionService& professions_;
+    professions::IProfessionService& professions_;
     events::GameplayEventHub* eventHub_;
     covenants::ICovenantGameplayBridge* covenantBridge_;
     gathering::GatheringService gathering_;

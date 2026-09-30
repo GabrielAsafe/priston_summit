@@ -1,0 +1,14 @@
+//ID
+*코드 "GP115"
+
+//Korean Name
+*이름 "Guarda de Ricarten"
+
+//English Name
+*Name "Guarda de Ricarten"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\GP115.zhoon"

@@ -1,0 +1,65 @@
+//ID
+*ÄÚµå "WT108"
+
+//Korean Name
+*ÀÌ¸§ "Lança de Metal"
+
+//English Name
+*Name "Lança de Metal"
+
+//AttackPower
+*°ø°Ý·Â 9 11 13 16
+
+//AttackRange
+*»çÁ¤°Å¸® 205
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackRating
+*¸íÁß·Â 52 58
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 5
+
+//Integrity
+*³»±¸·Â 37 52
+
+//Level
+*·¹º§ 30
+
+//Strength
+*Èû 50
+
+//Talent
+*Àç´É 55
+
+//Agility
+*¹ÎÃ¸¼º 50
+
+//PrimarySpec
+**Æ¯È­ Atalanta
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Archer
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 3
+
+//SpecAttackRange
+**»çÁ¤°Å¸® 10
+
+//Weight
+*¹«°Ô 8
+
+//Price
+*°¡°Ý 18000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WT108.zhoon"

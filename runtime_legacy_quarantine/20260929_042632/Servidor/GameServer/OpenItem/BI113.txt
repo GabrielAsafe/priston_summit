@@ -1,0 +1,17 @@
+//ID
+*ÄÚµå "BI113"
+
+//Korean Name
+*ÀÌ¸§ "Poção da Experiência 30% 12h"
+
+//English Name
+*Name "Poção da Experiência 30% 12h"
+
+//Weight
+*¹«°Ô 1
+
+//Price
+*°¡°Ý 2500000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\BI113.zhoon"

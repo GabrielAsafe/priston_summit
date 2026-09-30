@@ -136,7 +136,10 @@
  Dependency/DirectX9/Include/d3dx9math.h \
  SrcGame/src/systems/commerce/restoration/cRestaureWindow.h \
  SrcGame/src/systems/commerce/coin_shop/CoinShop.h Shared/skillsPacket.h \
- Shared/items.h
+ Shared/items.h \
+ SrcGame/src/systems/network/v2/legacy/LegacyClientCommandSender.h \
+ Shared/network/v2/ClientCommandSender.h Shared/network/v2/PacketSender.h \
+ Shared/gameplay/core/v2/GameplayIds.h
 SrcGame/src/../../Shared/opcodes.h:
 SrcGame/src/compat/legacy/sin/sinLinkHeader.h:
 SrcGame/src/systems/rendering/legacy_3d/smd3d.h:
@@ -277,3 +280,7 @@ SrcGame/src/systems/commerce/restoration/cRestaureWindow.h:
 SrcGame/src/systems/commerce/coin_shop/CoinShop.h:
 Shared/skillsPacket.h:
 Shared/items.h:
+SrcGame/src/systems/network/v2/legacy/LegacyClientCommandSender.h:
+Shared/network/v2/ClientCommandSender.h:
+Shared/network/v2/PacketSender.h:
+Shared/gameplay/core/v2/GameplayIds.h:

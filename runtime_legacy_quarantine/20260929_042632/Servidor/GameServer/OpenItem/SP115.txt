@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "SP115"
+
+//Korean Name
+*ÀÌ¸§ "Songpyon Místico"
+
+//English Name
+*Name "Songpyon Místico"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\SP115.zhoon"

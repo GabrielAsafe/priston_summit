@@ -1,0 +1,276 @@
+==== cliente/Summit Tale Client Full/cliente/Game.exe ====
+
+[PATH]
+cliente/Summit Tale Client Full/cliente/Game.exe
+
+[SHA256]
+d765be95451f9ada75d6c3e9abdb43e08f50c353c8641e7fa54d64596549605f  cliente/Summit Tale Client Full/cliente/Game.exe
+
+[MD5]
+b788db68582974b6a62b592473a6e5ee  cliente/Summit Tale Client Full/cliente/Game.exe
+
+[FILE]
+cliente/Summit Tale Client Full/cliente/Game.exe: PE32 executable for MS Windows 6.00 (GUI), Intel i386, 4 sections
+
+[STAT]
+  Ficheiro: cliente/Summit Tale Client Full/cliente/Game.exe
+  Tamanho: 5583872   	Blocos: 10912      IO Bloco: 4096   ficheiro normal
+Dispositivo: 0,41	Inode: 8493094     Ligações: 1
+Accesso: (0644/-rw-r--r--)  Uid: ( 1000/ gabriel)   Gid: ( 1000/ gabriel)
+Contexto: unconfined_u:object_r:user_home_t:s0
+Accesso: 2026-07-06 16:16:16.917300628 +0100
+Modificado: 2026-07-01 16:47:31.816272214 +0100
+Alterado: 2026-07-01 16:47:31.816272214 +0100
+ Nascimento: 2026-06-30 08:41:13.952796556 +0100
+
+[PE HEADER]
+
+cliente/Summit Tale Client Full/cliente/Game.exe:     formato de ficheiro pei-i386
+cliente/Summit Tale Client Full/cliente/Game.exe
+arquitectura: i386, bandeiras 0x0000012e:
+EXEC_P, HAS_LINENO, HAS_DEBUG, HAS_LOCALS, D_PAGED
+endereço inicial 0x00b20737
+
+Características 0x103
+	relocations stripped
+	executable
+	32 bit words
+
+Time/Date		Wed Aug 27 02:32:40 2025
+Magic			010b	(PE32)
+MajorLinkerVersion	14
+MinorLinkerVersion	44
+SizeOfCode		0037cc00
+SizeOfInitializedData	06019a00
+SizeOfUninitializedData	00000000
+AddressOfEntryPoint	002b0737
+BaseOfCode		00001000
+BaseOfData		0037e000
+ImageBase		00870000
+SectionAlignment	00001000
+FileAlignment		00000200
+MajorOSystemVersion	6
+MinorOSystemVersion	0
+MajorImageVersion	0
+MinorImageVersion	0
+MajorSubsystemVersion	6
+MinorSubsystemVersion	0
+Win32Version		00000000
+SizeOfImage		06398000
+SizeOfHeaders		00000400
+CheckSum		00000000
+Subsystem		00000002	(Windows GUI)
+DllCharacteristics	00008100
+					NX_COMPAT
+					TERMINAL_SERVICE_AWARE
+SizeOfStackReserve	00100000
+SizeOfStackCommit	00001000
+SizeOfHeapReserve	00100000
+SizeOfHeapCommit	00001000
+LoaderFlags		00000000
+NumberOfRvaAndSizes	00000010
+
+The Data Directory
+Entry 0 00000000 00000000 Export Directory [.edata (or where ever we found it)]
+Entry 1 003ee074 0000017c Import Directory [parts of .idata]
+Entry 2 06387000 00010d98 Resource Directory [.rsrc]
+Entry 3 00000000 00000000 Exception Directory [.pdata]
+Entry 4 00000000 00000000 Security Directory
+Entry 5 00000000 00000000 Base Relocation Directory [.reloc]
+Entry 6 003da7d8 00000054 Debug Directory
+Entry 7 00000000 00000000 Description Directory
+Entry 8 00000000 00000000 Special Directory
+Entry 9 003da8c0 00000018 Thread Storage Directory [.tls]
+Entry a 003da718 00000040 Load Configuration Directory
+Entry b 00000000 00000000 Bound Import Directory
+Entry c 0037e000 00000568 Import Address Table Directory
+Entry d 00000000 00000000 Delay Import Directory
+Entry e 00000000 00000000 CLR Runtime Header
+Entry f 00000000 00000000 Reserved
+
+Há uma tabela de importação em .rdata em 0xc5e074
+
+As tabelas de importação (interpretado .rdata conteúdo de secção)
+ vma:            Dica    Hora      Avanço   DLL       Prim.
+                 Tabela  Selo      Cadeia   Nome      Thunk
+ 003ee074	003ee228 00000000 00000000 003ee758 0037e038
+
+	Nome DLL: DSOUND.dll
+	vma:     Ordinal  Dica  Nome-Membro  Ligado-a
+	0037e038      1  <none> <none>
+
+ 003ee088	003ee2a8 00000000 00000000 003eedbc 0037e0b8
+
+	Nome DLL: KERNEL32.dll
+	vma:     Ordinal  Dica  Nome-Membro  Ligado-a
+	0037e0b8  <none>  02aa  GetPrivateProfileStringA
+	0037e0bc  <none>  062f  lstrcmpA
+	0037e0c0  <none>  0632  lstrcmpiA
+	0037e0c4  <none>  0179  FindFirstFileA
+	0037e0c8  <none>  0473  ReadFile
+	0037e0cc  <none>  024b  GetFileSize
+	0037e0d0  <none>  02df  GetSystemDirectoryA
+	0037e0d4  <none>  015e  ExitProcess
+	0037e0d8  <none>  0175  FindClose
+	0037e0dc  <none>  018a  FindNextFileA
+	0037e0e0  <none>  0210  GetCurrentDirectoryA
+	0037e0e4  <none>  02a4  GetPrivateProfileIntA
+	0037e0e8  <none>  00b5  CreateDirectoryA
+	0037e0ec  <none>  0612  WriteFile
+	0037e0f0  <none>  0418  OutputDebugStringA
+	0037e0f4  <none>  00e0  CreateProcessA
+	0037e0f8  <none>  0617  WritePrivateProfileStringA
+	0037e0fc  <none>  0522  SetFilePointer
+	0037e100  <none>  05cc  VirtualProtect
+	0037e104  <none>  032d  GlobalAlloc
+	0037e108  <none>  01dc  GetComputerNameA
+	0037e10c  <none>  0585  SuspendThread
+	0037e110  <none>  04cd  ResumeThread
+	0037e114  <none>  00a8  CopyFileA
+	0037e118  <none>  035f  InitializeCriticalSectionAndSpinCount
+	0037e11c  <none>  05d7  WaitForSingleObject
+	0037e120  <none>  055e  SetThreadPriority
+	0037e124  <none>  058d  TerminateThread
+	0037e128  <none>  023d  GetExitCodeThread
+	0037e12c  <none>  0628  _lopen
+	0037e130  <none>  0626  _lcreat
+	0037e134  <none>  0629  _lread
+	0037e138  <none>  062a  _lwrite
+	0037e13c  <none>  0625  _lclose
+	0037e140  <none>  0097  CompareFileTime
+	0037e144  <none>  033f  GlobalUnlock
+	0037e148  <none>  0338  GlobalLock
+	0037e14c  <none>  0337  GlobalHandle
+	0037e150  <none>  0334  GlobalFree
+	0037e154  <none>  03ef  MultiByteToWideChar
+	0037e158  <none>  05fe  WideCharToMultiByte
+	0037e15c  <none>  037d  IsDBCSLeadByte
+	0037e160  <none>  03ca  LocalAlloc
+	0037e164  <none>  03cf  LocalFree
+	0037e168  <none>  03de  MapViewOfFile
+	0037e16c  <none>  05b0  UnmapViewOfFile
+	0037e170  <none>  00c4  CreateFileMappingA
+	0037e174  <none>  058c  TerminateProcess
+	0037e178  <none>  031a  GetVersionExA
+	0037e17c  <none>  0510  SetEndOfFile
+	0037e180  <none>  00cb  CreateFileW
+	0037e184  <none>  054a  SetStdHandle
+	0037e188  <none>  04e9  SetConsoleCtrlHandler
+	0037e18c  <none>  0514  SetEnvironmentVariableW
+	0037e190  <none>  01aa  FreeEnvironmentStringsW
+	0037e194  <none>  0237  GetEnvironmentStringsW
+	0037e198  <none>  01d7  GetCommandLineW
+	0037e19c  <none>  01d6  GetCommandLineA
+	0037e1a0  <none>  0297  GetOEMCP
+	0037e1a4  <none>  01b2  GetACP
+	0037e1a8  <none>  015f  ExitThread
+	0037e1ac  <none>  018c  FindNextFileW
+	0037e1b0  <none>  017b  FindFirstFileExW
+	0037e1b4  <none>  0242  GetFileAttributesExW
+	0037e1b8  <none>  00e5  CreateProcessW
+	0037e1bc  <none>  023c  GetExitCodeProcess
+	0037e1c0  <none>  030e  GetTimeZoneInformation
+	0037e1c4  <none>  0470  ReadConsoleW
+	0037e1c8  <none>  0523  SetFilePointerEx
+	0037e1cc  <none>  024c  GetFileSizeEx
+	0037e1d0  <none>  01fc  GetConsoleMode
+	0037e1d4  <none>  01ea  GetConsoleCP
+	0037e1d8  <none>  019f  FlushFileBuffers
+	0037e1dc  <none>  024e  GetFileType
+	0037e1e0  <none>  0154  EnumSystemLocalesW
+	0037e1e4  <none>  0312  GetUserDefaultLCID
+	0037e1e8  <none>  038d  IsValidLocale
+	0037e1ec  <none>  0265  GetLocaleInfoW
+	0037e1f0  <none>  03b1  LCMapStringW
+	0037e1f4  <none>  009b  CompareStringW
+	0037e1f8  <none>  030c  GetTimeFormatW
+	0037e1fc  <none>  0221  GetDateFormatW
+	0037e200  <none>  02d2  GetStdHandle
+	0037e204  <none>  0274  GetModuleFileNameW
+	0037e208  <none>  0277  GetModuleHandleExW
+	0037e20c  <none>  03c3  LoadLibraryExW
+	0037e210  <none>  059f  TlsFree
+	0037e214  <none>  05a1  TlsSetValue
+	0037e218  <none>  05a0  TlsGetValue
+	0037e21c  <none>  059e  TlsAlloc
+	0037e220  <none>  0532  SetLastError
+	0037e224  <none>  036c  InterlockedFlushSList
+	0037e228  <none>  036f  InterlockedPushEntrySList
+	0037e22c  <none>  04d3  RtlUnwind
+	0037e230  <none>  0462  RaiseException
+	0037e234  <none>  0419  OutputDebugStringW
+	0037e238  <none>  01c1  GetCPInfo
+	0037e23c  <none>  0099  CompareStringEx
+	0037e240  <none>  02d7  GetStringTypeW
+	0037e244  <none>  03b0  LCMapStringEx
+	0037e248  <none>  012d  EncodePointer
+	0037e24c  <none>  0264  GetLocaleInfoEx
+	0037e250  <none>  01a6  FormatMessageA
+	0037e254  <none>  0363  InitializeSListHead
+	0037e258  <none>  02e9  GetSystemTimeAsFileTime
+	0037e25c  <none>  044d  QueryPerformanceCounter
+	0037e260  <none>  0278  GetModuleHandleW
+	0037e264  <none>  021b  GetCurrentThread
+	0037e268  <none>  03e4  Module32Next
+	0037e26c  <none>  03e2  Module32First
+	0037e270  <none>  059d  Thread32Next
+	0037e274  <none>  059c  Thread32First
+	0037e278  <none>  00fc  CreateToolhelp32Snapshot
+	0037e27c  <none>  063b  lstrlenA
+	0037e280  <none>  0635  lstrcpyA
+	0037e284  <none>  0638  lstrcpynA
+	0037e288  <none>  03c1  LoadLibraryA
+	0037e28c  <none>  02ae  GetProcAddress
+	0037e290  <none>  0275  GetModuleHandleA
+	0037e294  <none>  0273  GetModuleFileNameA
+	0037e298  <none>  01ac  FreeLibraryAndExitThread
+
+[IMPORTS / DLLS]
+MajorLinkerVersion	14
+MinorLinkerVersion	44
+MajorOSystemVersion	6
+MinorOSystemVersion	0
+MajorImageVersion	0
+MinorImageVersion	0
+MajorSubsystemVersion	6
+MinorSubsystemVersion	0
+Win32Version		00000000
+Entry 1 003ee074 0000017c Import Directory [parts of .idata]
+Entry b 00000000 00000000 Bound Import Directory
+Entry c 0037e000 00000568 Import Address Table Directory
+Entry d 00000000 00000000 Delay Import Directory
+Há uma tabela de importação em .rdata em 0xc5e074
+As tabelas de importação (interpretado .rdata conteúdo de secção)
+	Nome DLL: DSOUND.dll
+	Nome DLL: KERNEL32.dll
+	0037e178  <none>  031a  GetVersionExA
+	0037e188  <none>  04e9  SetConsoleCtrlHandler
+	0037e1c4  <none>  0470  ReadConsoleW
+	0037e1d0  <none>  01fc  GetConsoleMode
+	0037e1d4  <none>  01ea  GetConsoleCP
+	0037e2d0  <none>  0611  WriteConsoleW
+	Nome DLL: USER32.dll
+	Nome DLL: ADVAPI32.dll
+	Nome DLL: ole32.dll
+	Nome DLL: ODBC32.dll
+	Nome DLL: WINMM.dll
+	0037e088  <none>  0078  ImmSetConversionStatus
+	0037e08c  <none>  003e  ImmGetConversionStatus
+
+[EXPORTS]
+
+[TIMESTAMP / IMAGE INFO]
+Time/Date		Wed Aug 27 02:32:40 2025
+Magic			010b	(PE32)
+MajorLinkerVersion	14
+MinorLinkerVersion	44
+AddressOfEntryPoint	002b0737
+ImageBase		00870000
+MajorOSystemVersion	6
+MinorOSystemVersion	0
+MajorImageVersion	0
+MinorImageVersion	0
+MajorSubsystemVersion	6
+MinorSubsystemVersion	0
+SizeOfImage		06398000
+Subsystem		00000002	(Windows GUI)

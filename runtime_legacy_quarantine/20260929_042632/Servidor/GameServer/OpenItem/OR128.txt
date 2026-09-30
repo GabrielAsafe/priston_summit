@@ -1,0 +1,53 @@
+//ID
+*코드 "OR128"
+
+//Korean Name
+*이름 "Anel Evento 10x"
+
+//English Name
+*Name "Anel Evento 10x"
+
+//AttackRating
+*명중력 35 35
+
+//Defense
+*방어력 30 30
+
+//Absorption
+*흡수력 2.3 2.3
+
+//HP
+*생명력추가 40 40
+
+//MP
+*기력추가 40 40
+
+//STM
+*근력추가 40 40
+
+//HPRegen
+*생명력재생 1.8 1.8
+
+//MPRegen
+*기력재생 1.3 1.3
+
+//STMRegen
+*근력재생 1.3 1.3
+
+//Level
+*레벨 100
+
+//Spirit
+//*정신력 45
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecHPRegen
+**생명력재생 1.0 1.0
+
+//Weight
+*무게 5
+
+//Name File
+*연결파일 "Name\OR128.zhoon"

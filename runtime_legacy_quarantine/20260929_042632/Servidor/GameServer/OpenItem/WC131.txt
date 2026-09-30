@@ -1,0 +1,65 @@
+//ID
+*코드 "WC131"
+
+//Korean Name
+*이름 "Garra Hades"
+
+//English Name
+*Name "Garra Hades"
+
+//AttackPower
+*공격력 94 97 110 113
+
+//AttackRating
+*명중력 254 273
+
+//AttackSpeed
+*공격속도 8
+
+//AttackCritical
+*크리티컬 19
+
+//Defense
+*방어력 138 143
+
+//Integrity
+*내구력 252 376
+
+//Level
+*레벨 110
+
+//Strength
+*힘 214
+
+//Talent
+*재능 100
+
+//Agility
+*민첩성 80
+
+//PrimarySpec
+**특화 Mechanician
+
+//SecondarySpec
+**특화랜덤 Fighter Pikeman Knight Atalanta
+
+//SpecAttackPower
+**공격력 7 7
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 4
+
+//Weight
+*무게 122
+
+//Price
+*가격 1890000
+
+//Name File
+*연결파일 "Name\WC131.zhoon"

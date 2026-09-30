@@ -15,7 +15,8 @@ enum class SettingsTab
     Video,
     Audio,
     General,
-    Loot
+    Loot,
+    Commands
 };
 
 class SettingsWindow final : public Window
@@ -65,8 +66,11 @@ private:
     void BuildAudioPage();
     void BuildGeneralPage();
     void BuildLootPage();
+    void BuildCommandsPage();
     void Layout();
     void SetActiveTab(SettingsTab tab);
+    void SetCommandGroup(int group);
+    void RefreshCommandPage();
     void RefreshLabels();
     void Save();
     void ResetDefaults();
@@ -81,6 +85,7 @@ private:
     Button* audioTab_ = nullptr;
     Button* generalTab_ = nullptr;
     Button* lootTab_ = nullptr;
+    Button* commandsTab_ = nullptr;
     Button* closeButton_ = nullptr;
     Button* saveButton_ = nullptr;
     Button* resetButton_ = nullptr;
@@ -89,10 +94,14 @@ private:
     Container* audioPage_ = nullptr;
     Container* generalPage_ = nullptr;
     Container* lootPage_ = nullptr;
+    Container* commandsPage_ = nullptr;
 
     std::array<Button*, 8> videoButtons_{};
     std::array<Button*, 6> audioButtons_{};
     std::array<Button*, 8> generalButtons_{};
     std::array<Button*, 23> lootButtons_{};
+    std::array<Button*, 4> commandGroupButtons_{};
+    std::array<Label*, 24> commandLabels_{};
+    int commandGroup_ = 0;
 };
 }

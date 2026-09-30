@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "BI143"
+
+//Korean Name
+*ÀÌ¸§ "Poção da Experiência 100% 6h"
+
+//English Name
+*Name "Poção da Experiência 100% 6h"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\BI143.zhoon"

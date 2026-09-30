@@ -18,7 +18,14 @@
  Shared/gameplay/story/v2/StoryService.h \
  Shared/gameplay/story/v2/StoryEvents.h \
  Shared/gameplay/progression/v2/ProgressionCustomHandlers.h \
- SrcServer/src/systems/gameplay/progression/v2/LegacyQuestContract.h \
+ Shared/gameplay/inventory/v2/Inventory.h \
+ Shared/gameplay/core/v2/GameplayIds.h \
+ Shared/gameplay/inventory/v2/ItemCatalog.h \
+ Shared/gameplay/quests/v2/QuestService.h \
+ Shared/gameplay/quests/v2/QuestCommands.h \
+ Shared/gameplay/quests/v2/QuestStateQuery.h \
+ Shared/gameplay/quests/v2/QuestCatalog.h \
+ SrcServer/src/systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h \
  SrcServer/src/systems/gameplay/progression/v2/ProgressionTriggerRuntime.h \
  SrcServer/src/core/server/legacy_runtime/onserver.h \
  SrcServer/src/core/data/legacy_loader/fileread.h \
@@ -30,9 +37,7 @@
  SrcServer/src/systems/localization/config/language.h \
  SrcServer/src/systems/inventory/legacy/sinItem.h \
  Shared/inventory/legacy/sinItem_legacy_server.h \
- SrcServer/src/systems/rendering/legacy_3d/smDsx.h \
- Shared/persistence/database/Database_sqlite_server.h \
- SrcServer/src/systems/gameplay/quests/server/cQuestHandler.h
+ SrcServer/src/systems/rendering/legacy_3d/smDsx.h
 SrcServer/src/systems/gameplay/progression/v2/LegacyProgressionGateways.h:
 Shared/gameplay/progression/v2/ProgressionGateways.h:
 Shared/gameplay/covenants/v2/CovenantService.h:
@@ -51,7 +56,14 @@ Shared/gameplay/story/v2/StoryTypes.h:
 Shared/gameplay/story/v2/StoryService.h:
 Shared/gameplay/story/v2/StoryEvents.h:
 Shared/gameplay/progression/v2/ProgressionCustomHandlers.h:
-SrcServer/src/systems/gameplay/progression/v2/LegacyQuestContract.h:
+Shared/gameplay/inventory/v2/Inventory.h:
+Shared/gameplay/core/v2/GameplayIds.h:
+Shared/gameplay/inventory/v2/ItemCatalog.h:
+Shared/gameplay/quests/v2/QuestService.h:
+Shared/gameplay/quests/v2/QuestCommands.h:
+Shared/gameplay/quests/v2/QuestStateQuery.h:
+Shared/gameplay/quests/v2/QuestCatalog.h:
+SrcServer/src/systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h:
 SrcServer/src/systems/gameplay/progression/v2/ProgressionTriggerRuntime.h:
 SrcServer/src/core/server/legacy_runtime/onserver.h:
 SrcServer/src/core/data/legacy_loader/fileread.h:
@@ -65,5 +77,3 @@ SrcServer/src/systems/localization/config/language.h:
 SrcServer/src/systems/inventory/legacy/sinItem.h:
 Shared/inventory/legacy/sinItem_legacy_server.h:
 SrcServer/src/systems/rendering/legacy_3d/smDsx.h:
-Shared/persistence/database/Database_sqlite_server.h:
-SrcServer/src/systems/gameplay/quests/server/cQuestHandler.h:

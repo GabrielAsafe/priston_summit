@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "BI239"
+
+//Korean Name
+*ÀÌ¸§ "Baú de Esmeralda 24h"
+
+//English Name
+*Name "Baú de Esmeralda 24h"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\BI239.zhoon"

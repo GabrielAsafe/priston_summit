@@ -1,3 +1,25 @@
+// =============================================================================
+// MAPA DO MONOLITO LEGACY - CLIENT INVENTORY
+//
+// Este mapa e apenas documental. O ficheiro permanece RED e no mesmo local;
+// os separadores abaixo nao alteram ownership, ordem de execucao ou ABI.
+// FUNCIONAMENTO GERAL: UI e regras legacy de inventario. Os services modernos isolam grants/transfers/snapshots, mas esta apresentacao/input permanece RED.
+//
+// AREAS PRINCIPAIS:
+//   AREA 01 - INIT / LOAD / DRAW
+//   AREA 02 - MOUSE / KEY INPUT
+//   AREA 03 - RIGHT-CLICK ROUTING
+//   AREA 04 - POTIONS
+//   AREA 05 - GRID / PICKUP / DROP
+//   AREA 06 - EQUIPMENT / TWO-HAND
+//   AREA 07 - REQUIREMENTS / CHARACTER APPLY
+//   AREA 08 - PRICE / REPAIR / WEIGHT
+//   AREA 09 - PARTICLES / UI
+//   AREA 10 - SERVER SYNC / ANTI-CHEAT
+//
+// Desenvolvimento novo deve usar contracts/ports/adapters AMBER existentes.
+// =============================================================================
+
 #include "opcodes.h"
 #include "compat/legacy/sin/sinLinkHeader.h"
 
@@ -1673,6 +1695,14 @@ int cINVENTORY::GetMaxGold(bool Warehouse)
 	return 0;*/
 }
 extern int AgingEvento;
+// =============================================================================
+// AREA 03 - RIGHT-CLICK ROUTING
+// TIPO: inventario + UI
+// FUNCIONAMENTO: Despacha clique direito conforme janela ativa: aging, mix, craft, trade, warehouse, personal shop, merchant e consumiveis.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
+
 void cINVENTORY::RButtonDown(int x, int y)
 {
 	if(MouseItem.Flag || sinItemPickUpDelayFlag)
@@ -4752,15 +4782,16 @@ void cINVENTORY::KeyDown()
 	}
 	
 	//Traje
-	if(sinGetKeyClick('T'))
+	// SUMMIT_COMMAND_HOTKEYS_V17: player single-key commands never fire through modifiers.
+	if(sinGetKeyClick('T') && !VRKeyBuff[VK_CONTROL] && !VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_MENU])
 	{
 		setCostumer();
 	}
 
-/*	if (sinGetKeyClick('L'))
+	if (sinGetKeyClick('L') && !VRKeyBuff[VK_CONTROL] && !VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_MENU])
 	{
 		setLock();
-	}*/
+	}
 
 	int TempPotionCount = 0;
 
@@ -4769,7 +4800,7 @@ void cINVENTORY::KeyDown()
 
 	for(int i = 0; i < 3; i++)
 	{
-		if(sinGetKeyClick(szKeyBuff[i]))
+		if(sinGetKeyClick(szKeyBuff[i]) && !VRKeyBuff[VK_CONTROL] && !VRKeyBuff[VK_MENU])
 		{
 			if(SelectPotionIndex)
 			{
@@ -4871,7 +4902,7 @@ void cINVENTORY::KeyDown()
 	if(!cTrade.OpenFlag && !sinUsePotionDelayFlag)
 	{
 
-		if(sinGetKeyClick('E'))
+		if(sinGetKeyClick('E') && !VRKeyBuff[VK_CONTROL] && !VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_MENU])
 		{
 			if(ArrowState[0] == 0)
 			{
@@ -4885,7 +4916,7 @@ void cINVENTORY::KeyDown()
 			SelectInvenItemIndex = 0;
 			ChangeABItem(sArrowPosi);
 		}
-		if (sinGetKeyClick('W'))
+		if (sinGetKeyClick('W') && !VRKeyBuff[VK_CONTROL] && !VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_MENU])
 		{
 			if (ArrowState[1] == 0) {
 				sArrowPosi = 4;
@@ -5590,6 +5621,14 @@ int cINVENTORY::LastSetInvenItem(sITEM *pItem, int AutoSet)
 
 
 
+// =============================================================================
+// AREA 04 - POTIONS
+// TIPO: inventario + consumiveis
+// FUNCIONAMENTO: Resolve uso/atalho de potion e mantem os side effects/timers legacy.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
+
 int cINVENTORY::UsePotion(int x, int y)
 {
 	for(int i = 0; i < INVENTORY_MAXITEM; i++)
@@ -6093,6 +6132,14 @@ int cINVENTORY::ClearTwoHandPosiAndItem(sITEM *pItem)
 	return TRUE;
 }
 
+// =============================================================================
+// AREA 06 - EQUIPMENT / TWO-HAND
+// TIPO: inventario + equipamento
+// FUNCIONAMENTO: Mantem regras historicas de RHAND/LHAND e espelhamento de arma two-hand.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
+
 int cINVENTORY::SetTwoHandItem(sITEM *pItem)
 {
 
@@ -6209,6 +6256,14 @@ int cINVENTORY::InvenNotOpenCheck(sITEM *pItem)
 			return FALSE;
 	return TRUE;
 }
+
+// =============================================================================
+// AREA 05 - GRID / PICKUP / DROP
+// TIPO: inventario
+// FUNCIONAMENTO: Move itens entre cursor/grid e aplica colisao/ocupacao conforme layout legacy.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 int cINVENTORY::PickUpInvenItem(int x, int y, int PickUpFlag)
 {
@@ -7513,6 +7568,14 @@ int cINVENTORY::SearchJobAndSetting()
 
 extern BOOL bTopLevel;
 extern BOOL bReiPVP;
+
+// =============================================================================
+// AREA 07 - APPLY EQUIPMENT TO CHARACTER
+// TIPO: inventario + character
+// FUNCIONAMENTO: Recalcula/aplica equipamentos do inventario ao character e executa validacoes legacy associadas.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 int cINVENTORY::SetItemToChar(int CheckHackFlag)
 {
@@ -10626,6 +10689,14 @@ int cINVENTORY::CheckSetEmptyArea(sITEM *pItem)
 
 }
 
+
+// =============================================================================
+// AREA 10 - SERVER SYNC / SECURITY
+// TIPO: inventario + rede
+// FUNCIONAMENTO: Sincroniza correcao/remocao de item com o servidor e preserva checksums/anti-dup legacy.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 int cINVENTORY::ResetInvenItemToServer(DWORD CODE, DWORD Head, DWORD CheckSum, DWORD Time)
 {

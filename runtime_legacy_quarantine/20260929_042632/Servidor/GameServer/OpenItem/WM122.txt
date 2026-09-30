@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "WM122"
+
+//Korean Name
+*ÀÌ¸§ "Varinha Oráculo"
+
+//English Name
+*Name "Varinha Oráculo"
+
+//AttackPower
+*°ø°Ý·Â 36 40 43 45
+
+//AttackRating
+*¸íÁß·Â 164 174
+
+//AttackRange
+*»çÁ¤°Å¸® 195
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 12
+
+//Integrity
+*³»±¸·Â 140 160
+
+//Level
+*·¹º§ 100
+
+//Strength
+*Èû 70
+
+//Spirit
+*Á¤½Å·Â 185
+
+//Talent
+*Àç´É 90
+
+//SecondarySpec
+**Æ¯È­·£´ý Priestess Magician
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecMPRegen
+**±â·ÂÀç»ý 1.1 1.4
+
+//SpecSkillTraining
+**¸¶¹ý¼÷·Ãµµ 10 14
+
+//Weight
+*¹«°Ô 32
+
+//Price
+*°¡°Ý 1000000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WM122.zhoon"

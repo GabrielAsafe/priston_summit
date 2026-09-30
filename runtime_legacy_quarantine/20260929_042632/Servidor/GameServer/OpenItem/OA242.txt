@@ -1,0 +1,44 @@
+//ID
+*코드 "OA242"
+
+//Korean Name
+*이름 "Bracelete Mitril"
+
+//English Name
+*Name "Bracelete Mitril"
+
+//AttackRating
+*명중력 220 250
+
+//Defense
+*방어력 370 400
+
+//PotionStorage
+*보유공간 200
+
+//Integrity
+*내구력 243 255
+
+//Level
+*레벨 1
+
+//Strength
+*힘 1
+
+//Agility
+*민첩성 1
+
+//SpecAttackRating
+**명중력 1 3
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//Weight
+*무게 1
+
+//Price
+*가격 1690000
+
+//Name File
+*연결파일 "Name\OA242.zhoon"

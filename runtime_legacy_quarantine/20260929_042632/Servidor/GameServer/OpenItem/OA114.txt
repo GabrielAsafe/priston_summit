@@ -1,0 +1,35 @@
+//ID
+*코드 "OA114"
+
+//Korean Name
+*이름 "Colar Encantado +1"
+
+//English Name
+*Name "Colar Encantado +1"
+
+//HP
+*생명력추가 4 7
+
+//MP
+*기력추가 11 17
+
+//Level
+*레벨 50
+
+//Spirit
+*정신력 56
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecMPRegen
+**기력재생 0.2 0.5
+
+//Weight
+*무게 4
+
+//Price
+*가격 20000
+
+//Name File
+*연결파일 "Name\OA114.zhoon"

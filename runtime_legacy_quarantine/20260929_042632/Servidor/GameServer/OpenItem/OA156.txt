@@ -1,0 +1,38 @@
+//ID
+*코드 "OA156"
+
+//Korean Name
+*이름 "Colar do Selamento 7d"
+
+//English Name
+*Name "Colar do Selamento 7d"
+
+//HP
+*생명력추가 50 50
+
+//MP
+*기력추가 50 50
+
+//STM
+*근력추가 50 50
+
+//HPRegen
+*생명력재생 3.0 3.0
+
+//MPRegen
+*기력재생 3.0 3.0
+
+//STMRegen
+*근력재생 3.0 3.0
+
+//Level
+*레벨 10
+
+//Spirit
+*정신력 64
+
+//Weight
+*무게 5
+
+//Name File
+*연결파일 "Name\OA156.zhoon"

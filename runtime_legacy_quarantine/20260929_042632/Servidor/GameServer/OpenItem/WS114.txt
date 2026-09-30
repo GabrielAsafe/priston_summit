@@ -1,0 +1,71 @@
+//ID
+*ÄÚµå "WS114"
+
+//Korean Name
+*ÀÌ¸§ "Arco Titã"
+
+//English Name
+*Name "Arco Titã"
+
+//AttackPower
+*°ø°Ý·Â 18 20 28 31
+
+//AttackRating
+*¸íÁß·Â 74 98
+
+//AttackRange
+*»çÁ¤°Å¸® 240
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 14
+
+//Block
+*ºí·°À² 5.0 5.0
+
+//Integrity
+*³»±¸·Â 83 102
+
+//Level
+*·¹º§ 59
+
+//Strength
+*Èû 70
+
+//Talent
+*Àç´É 70
+
+//Agility
+*¹ÎÃ¸¼º 114
+
+//PrimarySpec
+**Æ¯È­ Archer
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Atalanta
+
+//SpecAttackPower
+**°ø°Ý·Â 7 7
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SpecAttackRange
+**»çÁ¤°Å¸® 10
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 5
+
+//Weight
+*¹«°Ô 39
+
+//Price
+*°¡°Ý 58000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WS114.zhoon"

@@ -1,0 +1,20 @@
+//ID
+*ÄÚµå "FO107"
+
+//Korean Name
+*ÀÌ¸§ "Força Murki"
+
+//English Name
+*Name "Força Murki"
+
+//Weight
+*¹«°Ô 2
+
+//Price
+*°¡°Ý 1000
+
+//Level
+*·¹º§ 50
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\FO107.zhoon"

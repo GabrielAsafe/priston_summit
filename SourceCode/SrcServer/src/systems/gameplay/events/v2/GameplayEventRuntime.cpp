@@ -1,14 +1,9 @@
 #include "systems/gameplay/events/v2/GameplayEventRuntime.h"
 
-#include <cstdint>
 #include <cstdlib>
 #include <sstream>
 
-#include "systems/rendering/legacy_3d/smd3d.h"
-#include "systems/gameplay/character/core/character.h"
-#include "systems/gameplay/events/v2/MonsterKilledEvent.h"
 #include "systems/gameplay/hunting/v2/HuntingService.h"
-#include "systems/gameplay/quests/server/cQuestHandler.h"
 #include "systems/gameplay/progression/v2/ProgressionRuntime.h"
 #include "gameplay/covenants/v2/CovenantCatalog.h"
 
@@ -20,14 +15,6 @@ namespace
 {
 void EnsureCoreConsumersRegistered()
 {
-    static const GameplayEventHub::SubscriptionId legacyQuestSubscription =
-        ServerGameplayEventHub().Subscribe<MonsterKilledEvent>(
-            [](const MonsterKilledEvent& event)
-            {
-                if (event.player && event.monster)
-                    cQuestHandler.KillMonster(event.player, event.monster, event.partyCredit ? 1 : 0);
-            });
-
     static const GameplayEventHub::SubscriptionId huntingSubscription =
         ServerGameplayEventHub().Subscribe<MonsterKilledEvent>(
             [](const MonsterKilledEvent& event)
@@ -42,24 +29,17 @@ void EnsureCoreConsumersRegistered()
                 if (event.playerName.empty())
                     return;
 
-                // Fortune/Ascendants progress on ordinary monster kills. Hunters
-                // use boss/special monsters as the V1 Hunt Target bootstrap until
-                // the data-driven Hunt catalog provides explicit target tags.
                 (void)progression::RecordServerCovenantActivity(
                     event.playerName, "monster.kill", 1);
-                if (event.monster &&
-                    event.monster->smCharInfo.wPlayClass[0] == MONSTER_CLASS_BOSS)
+                if (event.monsterBoss)
                 {
                     (void)progression::RecordServerCovenantActivity(
                         event.playerName, "hunt.kill", 1);
 
-                    // Hunter trophies live in the Covenant inventory until an
-                    // explicit legacy-item adapter is configured. This makes the
-                    // economy/progression functional without inventing item IDs.
                     covenants::CovenantModifierAggregate trophyChance;
                     if (progression::GetServerCovenantModifierAggregate(
                             event.playerName, "hunt.trophy_chance", "hunt_target",
-                            trophyChance, true, event.monster->dwObjectSerial) &&
+                            trophyChance, true, event.monster.value) &&
                         trophyChance.matched)
                     {
                         double chance = trophyChance.flat + trophyChance.additivePercent;
@@ -77,7 +57,6 @@ void EnsureCoreConsumersRegistered()
                 }
             });
 
-    (void)legacyQuestSubscription;
     (void)huntingSubscription;
     (void)covenantSubscription;
 }
@@ -89,25 +68,41 @@ GameplayEventHub& ServerGameplayEventHub()
     return hub;
 }
 
-void PublishMonsterKilled(rsPLAYINFO* player, smCHAR* monster, bool partyCredit)
+void PublishMonsterDefeated(const MonsterDefeatedEvent& event)
 {
-    if (!player || !monster)
+    if (!event.monster.Valid())
+        return;
+    ServerGameplayEventHub().Publish(event);
+}
+
+void PublishMonsterKilled(const MonsterKilledEvent& event)
+{
+    if (!event.player.Valid() || !event.monster.Valid())
         return;
 
     EnsureCoreConsumersRegistered();
-
-    const char* playerName = player->getName();
-    const char* monsterName = monster->smCharInfo.szName;
-    const MonsterKilledEvent event(
-        player,
-        monster,
-        partyCredit,
-        playerName ? playerName : "",
-        monsterName ? monsterName : "",
-        static_cast<std::uint32_t>(monster->smMonsterInfo.dwAutoCharCode),
-        player->Position.Area);
-
     ServerGameplayEventHub().Publish(event);
 }
+void PublishWorldEventStarted(const WorldEventStarted& event)
+{
+    if(event.eventKey.empty())
+        return;
+    ServerGameplayEventHub().Publish(event);
+}
+
+void PublishEventScoreChanged(const EventScoreChanged& event)
+{
+    if(event.eventKey.empty() || !event.player.Valid())
+        return;
+    ServerGameplayEventHub().Publish(event);
+}
+
+void PublishWorldEventEnded(const WorldEventEnded& event)
+{
+    if(event.eventKey.empty())
+        return;
+    ServerGameplayEventHub().Publish(event);
+}
+
 }
 }

@@ -1,0 +1,25 @@
+{
+  "format": "SFLD",
+  "version": 1,
+  "sections": {
+    "stage_spawns": {
+      "tag": "SSPB",
+      "bytes": 15604,
+      "sha256": "d079d04fc47274eba19fd48062b4be3debfb202306f54caeac653134a248b328"
+    },
+    "stage_start_points": {
+      "maps": 65,
+      "points": 6604,
+      "bytes": 110265,
+      "sha256": "4697a79262b68bb6a23a3b1b6c0125b3d102ceb07a20c9737bf36fcb18d5c06f"
+    },
+    "fixed_npcs": {
+      "maps": 24,
+      "npcs": 113,
+      "bytes": 11274,
+      "sha256": "a044edf5392fb8245aa32afc2c6aeed139872431e2a98dfa384839f3266b0fa6"
+    }
+  },
+  "bytes": 137351,
+  "sha256": "193ddde79ff0a08e5fc1188c5a224433975fe31d42439811f627c54d3622b068"
+}

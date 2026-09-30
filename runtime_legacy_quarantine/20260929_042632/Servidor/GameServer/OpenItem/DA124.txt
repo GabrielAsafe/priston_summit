@@ -1,0 +1,59 @@
+//ID
+*코드 "DA124"
+
+//Korean Name
+*이름 "Armadura Frenesi"
+
+//English Name
+*Name "Armadura Frenesi"
+
+//Defense
+*방어력 440 460
+
+//Absorption
+*흡수력 26.2 26.5
+
+//OrganicResistance
+*생체 11 17
+
+//FireResistance
+*불 11 17
+
+//FrostResistance
+*냉기 11 17
+
+//LightningResistance
+*번개 11 17
+
+//PoisonResistance
+*독 11 17
+
+//Integrity
+*내구력 200 230
+
+//Level
+*레벨 102
+
+//Strength
+*힘 216
+
+//Talent
+*재능 90
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**방어력 52 64
+
+//SpecAbsorption
+**흡수력 1.4 1.7
+
+//Weight
+*무게 144
+
+//Price
+*가격 1200000
+
+//Name File
+*연결파일 "Name\DA124.zhoon"

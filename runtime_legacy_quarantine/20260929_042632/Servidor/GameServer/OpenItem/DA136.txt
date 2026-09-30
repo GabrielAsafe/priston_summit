@@ -1,0 +1,44 @@
+//ID
+*코드 "DA136"
+
+//Korean Name
+*이름 "Armadura Idhas M (3d)"
+
+//English Name
+*Name "Armadura Idhas M (3d)"
+
+//Defense
+*방어력 340 340
+
+//Absorption
+*흡수력 7.6 7.6
+
+//OrganicResistance
+*생체 5 5
+
+//FireResistance
+*불 5 5
+
+//FrostResistance
+*냉기 5 5
+
+//LightningResistance
+*번개 5 5
+
+//PoisonResistance
+*독 5 5
+
+//HP
+*생명력추가 30 30
+
+//Integrity
+*내구력 150 150
+
+//Weight
+*무게 100
+
+//Price
+*가격 500000
+
+//Name File
+*연결파일 "Name\DA136.zhoon"

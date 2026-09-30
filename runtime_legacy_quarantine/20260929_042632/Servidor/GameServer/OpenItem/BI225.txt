@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "BI225"
+
+//Korean Name
+*ÀÌ¸§ "Baú Superior 24h"
+
+//English Name
+*Name "Baú Superior 24h"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\BI225.zhoon"

@@ -1,6 +1,28 @@
+// =============================================================================
+// MAPA DO MONOLITO LEGACY - SERVER ONSERVER
+//
+// Este mapa e apenas documental. O ficheiro permanece RED e no mesmo local;
+// os separadores abaixo nao alteram ownership, ordem de execucao ou ABI.
+// FUNCIONAMENTO GERAL: Inicializa authorities legacy do servidor, recebe trafego e mantem os hooks minimos que alimentam adapters modernos.
+//
+// AREAS PRINCIPAIS:
+//   AREA 01 - BOOTSTRAP / CONFIG / CONTEUDO CANONICO
+//   AREA 02 - MONSTROS / NPC / STAGE / SPAWN
+//   AREA 03 - ITEMS / RECORDS / PERSISTENCIA
+//   AREA 04 - SESSAO / PLAYER / SOCKETS
+//   AREA 05 - COMPANION HOOKS E SPAWN LEGACY
+//   AREA 06 - PACKET INGRESS E ROUTING
+//   AREA 07 - COMANDOS PLAYER / VIP / MOD / GM / ADMIN
+//   AREA 08 - DIAGNOSTICO / COMPATIBILIDADE
+//
+// Desenvolvimento novo deve usar contracts/ports/adapters AMBER existentes.
+// =============================================================================
+
 #include "content/v1/text_resource/content/TextResourceRuntime.h"
 #include "content/v1/definition/content/DefinitionRuntime.h"
 #include "content/v1/text_resource/legacy/LegacyContentIdRegistry.h"
+#include "content/v1/field_runtime/content/CompiledFieldRuntimeSource.h"
+#include "content/v1/runtime/RuntimeContentPath.h"
 #ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN
 #endif
@@ -52,6 +74,13 @@ static FILE *SummitServerRuntimeTraceFile(const char *path)
 
 #include "systems/commerce/coin_shop/CoinShop.h"
 #include "systems/commerce/coin_shop/CoinShop_T.h"
+#include "systems/commerce/v2/legacy/LegacyTradeAdapter.h"
+#include "systems/commerce/v2/legacy/LegacyShopAdapter.h"
+#include "systems/commerce/v2/legacy/LegacyPersonalShopAdapter.h"
+#include "systems/commerce/v2/legacy/LegacyCraftingAdapter.h"
+#include "systems/commerce/v2/legacy/LegacyAgingAdapter.h"
+#include "systems/commerce/v2/legacy/LegacyMixingAdapter.h"
+#include "systems/community/chat/v2/legacy/LegacyChatDeliveryAdapter.h"
 
 #include "systems/combat/skills/legacy/sinSkill_InfoIni.h"
 #include "systems/rendering/legacy_3d/smd3d.h"
@@ -82,8 +111,8 @@ static FILE *SummitServerRuntimeTraceFile(const char *path)
 #include "core/server/legacy_runtime/onserver.h"
 #include "systems/gameplay/progression/v2/ProgressionRuntime.h"
 #include "systems/gameplay/covenants/v2/CovenantChatCommand.h"
-#include "systems/gameplay/covenants/v2/CovenantUIHandler.h"
-#include "gameplay/covenants/v2/CovenantUIProtocol.h"
+#include "systems/network/v2/legacy/LegacyGameplayPacketRouter.h"
+#include "systems/network/v2/legacy/LegacyPacketSender.h"
 #include "systems/gameplay/mining/v2/MiningRuntime.h"
 #include "systems/gameplay/mining/v2/MiningInteractionRuntime.h"
 #include "systems/gameplay/gathering/v2/GatheringRuntime.h"
@@ -109,9 +138,26 @@ static FILE *SummitServerRuntimeTraceFile(const char *path)
 #include "systems/combat/skills/server_support/SkillSub.h"
 #endif
 
-#include "systems/gameplay/quests/server/cQuestHandler.h"
+#include "systems/gameplay/quests/v2/legacy/LegacyQuestObjectiveService.h"
+#include "systems/gameplay/quests/v2/legacy/LegacyQuestRepository.h"
+#include "systems/gameplay/quests/v2/legacy/LegacyQuestQueryIngressAdapter.h"
+#include "systems/gameplay/quests/v2/legacy/LegacyQuestLifecycleService.h"
+#include "systems/gameplay/quests/v2/legacy/LegacyQuestAdminService.h"
+#include "systems/gameplay/quests/v2/legacy/LegacyQuestProgressService.h"
+#include "systems/gameplay/events/v2/legacy/LegacyGameplayEventAdapter.h"
 #include "systems/gameplay/events/v2/GameplayEventRuntime.h"
-#include "systems/gameplay/companions/CompanionSystem.h"
+#include "gameplay/companions/v2/CompanionQuery.h"
+#include "systems/gameplay/companions/v2/legacy/CompanionLegacyExperienceRuntime.h"
+#include "systems/gameplay/companions/v2/legacy/LegacyCompanionQueryAdapter.h"
+#include "systems/gameplay/companions/v2/legacy/LegacyCompanionCommandsAdapter.h"
+#include "systems/gameplay/companions/v2/legacy/LegacyCompanionLifecycleAdapter.h"
+#include "systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h"
+#include "systems/gameplay/pets/v2/legacy/LegacyPetRuntimeAdapter.h"
+#include "systems/social/clan/v2/legacy/LegacyClanChatAdapter.h"
+#include "systems/social/clan/v2/legacy/LegacyClanQueryAdapter.h"
+#include "systems/social/clan/v2/legacy/LegacyClanUpdateNotifier.h"
+#include "systems/social/party/v2/legacy/LegacyPartyCommandsAdapter.h"
+#include "systems/social/party/v2/legacy/LegacyPartyRelayRuntime.h"
 #include "systems/commerce/restoration/cRestaureHandler.h"
 #include "systems/authentication/protocol/Login.h"
 #include "systems/gameplay/loot/alerts/Alerta.h"
@@ -650,46 +696,24 @@ srCRISTAL_MONSTER srGuardiaoCristalMonster[GUARDIAO_MAXI] = {
 
 int rsSendMessageAll(char* szText, DWORD dwColor)
 {
-
-	TRANS_CHATMESSAGE	TransChatMessage;
-
-	wsprintf(TransChatMessage.szMessage, "%s", szText);
-	TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
-	TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
-	TransChatMessage.dwIP = dwColor;
-	TransChatMessage.dwObjectSerial = 0;
-
-	for (int cnt = 0; cnt < CONNECTMAX; cnt++) {
-		if (rsPlayInfo[cnt].lpsmSock)
-			rsPlayInfo[cnt].lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
-	}
+	gameplay::social::legacy::ServerLegacyChatDeliveryAdapter().Broadcast(
+		gameplay::social::ChatMessage(szText ? szText : "",
+			static_cast<int>(dwColor), gameplay::social::ChatDeliveryKind::Whisper));
 
 	return TRUE;
 }
 
 int	rsSendServerChatMessageToUser2(int Color, char* msg, ...)
 {
-	TRANS_CHATMESSAGE	TransChatMessage;
-
-
 	va_list vl;
-
 	char szMessage[2048];
 
 	va_start(vl, msg);
 	_vsnprintf_s(szMessage, _countof(szMessage), _TRUNCATE, msg, vl);
 	va_end(vl);
 
-	lstrcpy(TransChatMessage.szMessage, szMessage);
-	TransChatMessage.code = OpCode::SEND_ALERT;
-	TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
-	TransChatMessage.dwIP = Color;
-	TransChatMessage.dwObjectSerial = 0;
-
-	for (int cnt = 0; cnt < CONNECTMAX; cnt++) {
-		if (rsPlayInfo[cnt].lpsmSock)
-			rsPlayInfo[cnt].lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
-	}
+	gameplay::social::legacy::ServerLegacyChatDeliveryAdapter().Broadcast(
+		gameplay::social::ChatMessage(szMessage, Color, gameplay::social::ChatDeliveryKind::Alert));
 
 	return TRUE;
 }
@@ -698,25 +722,15 @@ int	rsSendServerChatMessageToUser2(int Color, char* msg, ...)
 
 int	rsSendServerChatMessageToUser(rsPLAYINFO *lpPlayInfo, int Color, char * msg, ...)
 {
-	TRANS_CHATMESSAGE	TransChatMessage;
-
-
 	va_list vl;
-
 	char szMessage[2048];
 
 	va_start(vl, msg);
 	_vsnprintf_s(szMessage, _countof(szMessage), _TRUNCATE, msg, vl);
 	va_end(vl);
 
-	lstrcpy(TransChatMessage.szMessage, szMessage);
-	TransChatMessage.code = OpCode::SEND_ALERT;
-	TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
-	TransChatMessage.dwIP = Color;
-	TransChatMessage.dwObjectSerial = 0;
-
-	if (lpPlayInfo->lpsmSock)
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+	gameplay::social::legacy::ServerLegacyChatDeliveryAdapter().SendToLegacyPlayer(
+		lpPlayInfo, gameplay::social::ChatMessage(szMessage, Color, gameplay::social::ChatDeliveryKind::Alert));
 
 	return TRUE;
 }
@@ -724,25 +738,15 @@ int	rsSendServerChatMessageToUser(rsPLAYINFO *lpPlayInfo, int Color, char * msg,
 
 int	rsSendServerChatMessageToUser1(rsPLAYINFO* lpPlayInfo, int Color, char* msg, ...)
 {
-	TRANS_CHATMESSAGE	TransChatMessage;
-
-
 	va_list vl;
-
 	char szMessage[2048];
 
 	va_start(vl, msg);
 	_vsnprintf_s(szMessage, _countof(szMessage), _TRUNCATE, msg, vl);
 	va_end(vl);
 
-	lstrcpy(TransChatMessage.szMessage, szMessage);
-	TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
-	TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
-	TransChatMessage.dwIP = Color;
-	TransChatMessage.dwObjectSerial = 0;
-
-	if (lpPlayInfo->lpsmSock)
-		lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+	gameplay::social::legacy::ServerLegacyChatDeliveryAdapter().SendToLegacyPlayer(
+		lpPlayInfo, gameplay::social::ChatMessage(szMessage, Color, gameplay::social::ChatDeliveryKind::Whisper));
 
 	return TRUE;
 }
@@ -1985,6 +1989,14 @@ int rsLogOut(rsPLAYINFO *lpPlayInfo)
 
 
 
+// =============================================================================
+// AREA 01 - CONTEUDO / MONSTROS / NPC
+// TIPO: conteudo + world
+// FUNCIONAMENTO: Carrega definicoes de monstros/NPC, liga metadados runtime e prepara referencias usadas pelo world legacy.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
+
 int InitMonster()
 {
 
@@ -2015,6 +2027,13 @@ int InitMonster()
 					continue;
 				}
 				summit::content::text_resource::RegisterLegacyContentPointer(entries[index].contentId, &chrMonsterList[chrMonsterCnt]);
+
+				// Navisko nightmare replacement: bind directly while the compiled
+				// definition and its stable content id are in hand.  Do not rely on
+				// localized display-name matching or on a later registry lookup.
+				if(entries[index].contentId == "monster.35_minigue_prateado")
+					chrNpcMonsterInfo = &chrMonsterList[chrMonsterCnt];
+
 				chrMonInfoList[chrMonsterCnt].dwAutoCharCode = GetSpeedSum(chrMonsterList[chrMonsterCnt].szName);
 				if(rsServerConfig.TestSeverMode) { chrMonsterList[chrMonsterCnt].Exp *= 4; chrMonInfoList[chrMonsterCnt].GetExp *= 4; }
 				ReformCharForm(&chrMonsterList[chrMonsterCnt]);
@@ -2049,6 +2068,15 @@ int InitMonster()
 
 	int cnt, cnt2;
 
+
+	// Compatibility fallback only.  The compiled path above now binds the
+	// replacement directly while loading monster.35_minigue_prateado.
+	if(!chrNpcMonsterInfo && summit::content::definition::CompiledDefinitionsEnabled())
+	{
+		void *boundNightmareMonster = summit::content::text_resource::FindLegacyContentPointer("monster.35_minigue_prateado");
+		if(boundNightmareMonster)
+			chrNpcMonsterInfo = static_cast<smCHAR_INFO *>(boundNightmareMonster);
+	}
 
 	rsInitHardCoreEvent();
 
@@ -2234,6 +2262,16 @@ int InitMonster()
 	}
 
 
+	if(summit::content::definition::CompiledDefinitionsEnabled())
+	{
+		fprintf(stderr,
+			"[NAVISKO][NIGHTMARE] init replacement=%p name=%s monsters=%d\n",
+			(void *)chrNpcMonsterInfo,
+			chrNpcMonsterInfo ? chrNpcMonsterInfo->szName : "<missing>",
+			chrMonsterCnt);
+		fflush(stderr);
+	}
+
 	return TRUE;
 }
 
@@ -2292,6 +2330,14 @@ int rsCheckActiveFile(char *szFile)
 
 
 
+
+// =============================================================================
+// AREA 02 - CONTEUDO / ITEMS
+// TIPO: conteudo + inventario
+// FUNCIONAMENTO: Materializa o catalogo legacy de items e os dados comprimidos usados pelo protocolo e inventario historicos.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 int InitItems()
 {
@@ -3990,8 +4036,8 @@ static void UpdateT5CryMeARiver()
 			ClearT5CryPickupToken(lpPlayInfo);
 		}
 
-		if(!cQuestHandler.IsQuestInProgress(lpPlayInfo, QUESTID_T5_CRY_ME_A_RIVER) ||
-			!cQuestHandler.HasPendingQuestObjectives(lpPlayInfo, QUESTID_T5_CRY_ME_A_RIVER))
+		if(!gameplay::quests::legacy::ServerLegacyQuestObjectiveService().IsInProgress(gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo), gameplay::QuestId(QUESTID_T5_CRY_ME_A_RIVER)) ||
+			!gameplay::quests::legacy::ServerLegacyQuestObjectiveService().HasPendingObjectives(gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo), gameplay::QuestId(QUESTID_T5_CRY_ME_A_RIVER)))
 			continue;
 
 		if(g_T5CryNextSpawn[i] && (int)(dwPlayServTime - g_T5CryNextSpawn[i]) < 0)
@@ -4390,7 +4436,7 @@ static void FinishT5ArenaQuest(rsPLAYINFO* lpPlayInfo, T5_ARENA_STATE& state)
 	if(!lpPlayInfo)
 		return;
 
-	if(!cQuestHandler.CompleteQuestObjectives(lpPlayInfo, QUESTID_T5_QUEST_ARENA))
+	if(!gameplay::quests::legacy::ServerLegacyQuestObjectiveService().CompleteObjectives(gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo), gameplay::QuestId(QUESTID_T5_QUEST_ARENA)))
 	{
 		FailT5ArenaQuest(lpPlayInfo, state, "QuestDB nao confirmou o objetivo final");
 		return;
@@ -4400,7 +4446,7 @@ static void FinishT5ArenaQuest(rsPLAYINFO* lpPlayInfo, T5_ARENA_STATE& state)
 	ZeroMemory(&state, sizeof(T5_ARENA_STATE));
 
 	rsSendServerChatMessageToUser1(lpPlayInfo, 3, "> Tier 5 Arena concluida. Resgate a recompensa da quest para promover ao Rank 5.");
-	cQuestHandler.GetSpoilerInfo(lpPlayInfo, 9);
+	gameplay::quests::legacy::ServerLegacyQuestQueryIngressAdapter().SendSpoilerInfo(gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo), 9);
 	if(lpPlayInfo->Position.Area == QUEST_ARENA_FIELD)
 		WarpT5ArenaExit(lpPlayInfo);
 }
@@ -4420,13 +4466,13 @@ static void UpdateT5ArenaQuest()
 			KillT5ArenaUnits(state, true);
 
 			if(lpPlayInfo->dwObjectSerial == state.dwOwnerCode)
-				cQuestHandler.CancelQuestProgressSilent(lpPlayInfo, QUESTID_T5_QUEST_ARENA);
+				gameplay::quests::legacy::ServerLegacyQuestObjectiveService().CancelProgress(gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo), gameplay::QuestId(QUESTID_T5_QUEST_ARENA));
 
 			ZeroMemory(&state, sizeof(T5_ARENA_STATE));
 			continue;
 		}
 
-		if(!cQuestHandler.IsQuestInProgress(lpPlayInfo, QUESTID_T5_QUEST_ARENA))
+		if(!gameplay::quests::legacy::ServerLegacyQuestObjectiveService().IsInProgress(gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo), gameplay::QuestId(QUESTID_T5_QUEST_ARENA)))
 		{
 			KillT5ArenaUnits(state, true);
 			ZeroMemory(&state, sizeof(T5_ARENA_STATE));
@@ -4449,7 +4495,7 @@ static void UpdateT5ArenaQuest()
 		if(lpPlayInfo->Position.Area != QUEST_ARENA_FIELD)
 		{
 			KillT5ArenaUnits(state, true);
-			cQuestHandler.CancelQuestProgressSilent(lpPlayInfo, QUESTID_T5_QUEST_ARENA);
+			gameplay::quests::legacy::ServerLegacyQuestObjectiveService().CancelProgress(gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo), gameplay::QuestId(QUESTID_T5_QUEST_ARENA));
 			ZeroMemory(&state, sizeof(T5_ARENA_STATE));
 			continue;
 		}
@@ -5231,31 +5277,86 @@ static void rsRestoreCompanionEquippedHands(smCHAR *companion, const TRANS_RECOR
 // valid smCHAR_MONSTER_INFO template, so we borrow only that AI metadata from
 // an initialized crystal monster while preserving the saved player's actual
 // character stats/model/name in smCHAR_INFO.
+// =============================================================================
+// AREA 03 - COMPANION / SPAWN LEGACY
+// TIPO: companion + world
+// FUNCIONAMENTO: Converte o record persistido num smCHAR server-side, escolhe stage/template e cria a entidade legacy do companion.
+// FRONTEIRA: Consumidores modernos entram pelos adapters de Companion; esta funcao e entrypoint RED.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
+
 smCHAR *OpenCharacterCompanionFromRecord(rsPLAYINFO *owner, const TRANS_RECORD_DATA *recordData)
 {
 #ifdef _W_SERVER
     if(!owner || !owner->lpsmSock || !recordData || recordData->size <= 0)
         return NULL;
 
-    STG_AREA *area = FindStageField(owner->Position.x, owner->Position.z);
-    if(!area || !area->lpField || !area->lpStage)
-        return NULL;
-
-    // Companions are party members, not consumable monster crystals. They may
-    // exist in villages/castle maps and must spawn beside their owner instead
-    // of depending on the field's monster start-point table.
-    smCHAR_INFO *templateInfo = NULL;
-    for(int i = 0; i < srCRISTAL_MAX; ++i)
+    // The authenticated session already carries the authoritative field index.
+    // Prefer it to a coordinate lookup, which can miss near field boundaries
+    // or immediately after a character enters the world.
+    STG_AREA *area = NULL;
+    if(owner->Position.Area >= 0 && owner->Position.Area < STAGE_AREA_MAX)
     {
-        if(srCristalMonster[i].lpCharInfo && srCristalMonster[i].lpCharInfo->lpMonInfo)
+        STG_AREA *indexedArea = &StageArea[owner->Position.Area];
+        if(indexedArea->lpField && indexedArea->lpStage)
+            area = indexedArea;
+    }
+    if(!area)
+        area = FindStageField(owner->Position.x, owner->Position.z);
+    if(!area || !area->lpField || !area->lpStage)
+    {
+        FILE *fpCompanionFail = fopen("LOGS\\companion_spawn_failure.txt", "a");
+        if(fpCompanionFail)
         {
-            templateInfo = srCristalMonster[i].lpCharInfo;
+            fprintf(fpCompanionFail, "reason=stage area=%d x=%d y=%d z=%d name='%s'\n",
+                owner->Position.Area, owner->Position.x, owner->Position.y, owner->Position.z,
+                recordData->smCharInfo.szName);
+            fclose(fpCompanionFail);
+        }
+        return NULL;
+    }
+
+    // SUMMIT_COMPANION_TEMPLATE_FROM_MONSTER_CATALOG_V13B
+    // The companion is a saved player rendered through the legacy monster
+    // container. It needs valid monster runtime metadata, but it must not
+    // depend on the legacy crystal table being linked by localized display names.
+    // Use the initialized executable monster catalogue directly instead.
+    smCHAR_INFO *templateInfo = NULL;
+    smCHAR_INFO *eventFallback = NULL;
+    for(int i = 0; i < chrMonsterCnt; ++i)
+    {
+        smCHAR_INFO *candidate = &chrMonsterList[i];
+        if(!candidate->lpMonInfo || !candidate->szModelName[0])
+            continue;
+
+        if(!eventFallback)
+            eventFallback = candidate;
+
+        // Prefer ordinary monsters so event-specific metadata is not borrowed
+        // by a player companion. The companion-specific AI fields are reset
+        // below after the template is copied.
+        if(candidate->lpMonInfo->EventCode == 0)
+        {
+            templateInfo = candidate;
             break;
         }
     }
 
+    if(!templateInfo)
+        templateInfo = eventFallback;
+
     if(!templateInfo || !templateInfo->lpMonInfo)
+    {
+        FILE *fpCompanionFail = fopen("LOGS\\companion_spawn_failure.txt", "a");
+        if(fpCompanionFail)
+        {
+            fprintf(fpCompanionFail,
+                "reason=template_catalog_empty area=%d monsters=%d name='%s'\n",
+                owner->Position.Area, chrMonsterCnt, recordData->smCharInfo.szName);
+            fclose(fpCompanionFail);
+        }
         return NULL;
+    }
 
     STG_CHAR_INFO stageInfo;
     ZeroMemory(&stageInfo, sizeof(stageInfo));
@@ -5289,7 +5390,16 @@ smCHAR *OpenCharacterCompanionFromRecord(rsPLAYINFO *owner, const TRANS_RECORD_D
 
     smCHAR *companion = srFindEmptyChar();
     if(!companion)
+    {
+        FILE *fpCompanionFail = fopen("LOGS\\companion_spawn_failure.txt", "a");
+        if(fpCompanionFail)
+        {
+            fprintf(fpCompanionFail, "reason=entity_pool area=%d name='%s'\n",
+                owner->Position.Area, recordData->smCharInfo.szName);
+            fclose(fpCompanionFail);
+        }
         return NULL;
+    }
 
     int x = owner->Position.x;
     int y = owner->Position.y;
@@ -5459,7 +5569,7 @@ smCHAR *OpenCharacterCompanionFromRecord(rsPLAYINFO *owner, const TRANS_RECORD_D
     // Do not register this as one of the legacy 20 crystal buffs on the client.
     // The companion lifetime is server-authoritative and may use any configured item code.
     warp.LxParam = FALSE;
-    warp.WxParam = gameplay::companions::GetConfiguredCrystalItemCode();
+    warp.WxParam = gameplay::companions::legacy::ServerLegacyCompanionQueryAdapter().ConfiguredCrystalItemCode();
     warp.ExParam = companion->dwObjectSerial;
     warp.SxParam = owner->dwObjectSerial;
     rsSendCommandUser(owner, &warp);
@@ -7517,6 +7627,11 @@ int rsSoD_CatchItem_SD207(rsPLAYINFO *lpPlayInfo, int StagePos, STG_AREA	*lpStgA
         //Saco de Pontos
 		lpPlayInfo->EventScore += 5000;
 		rsSodTeamScore[team] += 5000;
+		gameplay::events::PublishEventScoreChanged(
+			gameplay::events::EventScoreChanged(
+				"bellatra",
+				gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo),
+				5000, lpPlayInfo->EventScore, team, rsSodTeamScore[team]));
 
 
 		rsTransUpdateSod(lpPlayInfo);
@@ -8291,79 +8406,78 @@ smTRNAS_PLAYERINFO *STG_AREA::FindCharInfoFixed(smTRNAS_PLAYERINFO *lpTransPlaye
 
 int STG_AREA::AddCharInfoFixed(smTRNAS_PLAYERINFO *lpTransPlayerInfo)
 {
-	smTRNAS_PLAYERINFO	*lpFindPlayerInfo;
-
-	lpFindPlayerInfo = FindCharInfoFixed(lpTransPlayerInfo);
-	if(lpFindPlayerInfo) return FALSE;
-
-	lpFindPlayerInfo = FindCharInfoFixed(0);
-	if(lpFindPlayerInfo)
-	{
-		rsOpenNPC_RandomPos = -1;
-		memcpy(lpFindPlayerInfo, lpTransPlayerInfo, sizeof(smTRNAS_PLAYERINFO));
-		OpenNpc(lpFindPlayerInfo);
-		SaveCharInfoFixed(szCharFixedFile);
-		return TRUE;
-	}
-
+	// Field placement authoring is canonical-JSON-only. Runtime mutation would
+	// diverge from field_runtime.sfld and would disappear after restart.
+	(void)lpTransPlayerInfo;
 	return FALSE;
 }
 
 
 int STG_AREA::DeleteCharInfoFixed(smTRNAS_PLAYERINFO *lpTransPlayerInfo)
 {
-	smTRNAS_PLAYERINFO	*lpFindPlayerInfo;
-	smCHAR	*lpChar;
-
-	lpFindPlayerInfo = FindCharInfoFixed(lpTransPlayerInfo);
-	if(lpFindPlayerInfo)
-	{
-		lpFindPlayerInfo->code = 0;
-
-		lpChar = srFindCharFromSerial(lpTransPlayerInfo->dwObjectSerial);
-		if(lpChar)
-		{
-			lpChar->Close();
-		}
-		SaveCharInfoFixed(szCharFixedFile);
-		return TRUE;
-	}
-
+	// Persistent fixed-NPC edits belong to canonical fixed_npcs JSON.
+	(void)lpTransPlayerInfo;
 	return FALSE;
 }
 
 
-
 int STG_AREA::LoadCharInfoFixed(char *szFile)
 {
-	FILE *fp;
+	if(!szFile) return FALSE;
+	ZeroMemory(TransCharFixed, sizeof(TransCharFixed));
 
-	fp = fopen(szFile, "rb");
-	if(fp)
+	static const std::string fieldPackPath = summit::content::runtime::ResolveRuntimePackPath("field_runtime.sfld");
+	summit::content::field_runtime::CompiledFieldRuntimeSource source(fieldPackPath.c_str());
+	summit::content::field_runtime::FixedNpcSet placements;
+	std::string fieldError;
+	if(!source.IsValid() || !source.LoadFixedNpcs(szFile, placements, &fieldError))
+		return FALSE;
+
+	for(std::size_t i=0; i<placements.npcs.size(); ++i)
 	{
-		fread(TransCharFixed, sizeof(smTRNAS_PLAYERINFO)*FIX_CHAR_MAX, 1, fp);
-		fclose(fp);
-		return TRUE;
+		const summit::content::field_runtime::FixedNpcPlacement &src = placements.npcs[i];
+		if(src.slot >= FIX_CHAR_MAX || src.definitionPath.empty() || src.definitionPath.size() >= sizeof(TransCharFixed[0].smCharInfo.szModelName2))
+			return FALSE;
+
+		smTRNAS_PLAYERINFO &dst = TransCharFixed[src.slot];
+		ZeroMemory(&dst, sizeof(dst));
+		dst.size = sizeof(smTRNAS_PLAYERINFO);
+		// Match the packet marker used by the legacy SPC records.  The loader only
+		// needs a non-zero value to open the slot, but keeping the canonical opcode
+		// avoids changing legacy semantics for code that inspects the fixed record.
+		dst.code = smTRANSCODE_ADD_NPC;
+		dst.x = src.x; dst.y = src.y; dst.z = src.z;
+		dst.ax = src.ax; dst.ay = src.ay; dst.az = src.az; dst.state = src.state;
+
+		// A legacy SPC stores a pre-materialized smCHAR_INFO snapshot.  NPC
+		// definitions usually do not contain a Life directive, so zeroing the whole
+		// record made the reconstructed NPC arrive at the client with Life=0.  The
+		// client rejects mouse interaction with any character whose current life is
+		// non-positive.  Seed the historical neutral-NPC baseline before smCharDecode;
+		// an explicit definition directive still overrides these values.
+		dst.smCharInfo.State = smCHAR_STATE_NPC;
+		dst.smCharInfo.Life[0] = 100;
+		dst.smCharInfo.Life[1] = 100;
+		std::memcpy(dst.smCharInfo.szModelName2, src.definitionPath.c_str(), src.definitionPath.size() + 1);
+
+		// Preserve the one pre-open field still consulted by legacy day/night logic.
+		smCHAR_INFO decodedInfo = {};
+		smCHAR_MONSTER_INFO decodedMonster = {};
+		char decodedDialog[256] = {0};
+		if(!smCharDecode(dst.smCharInfo.szModelName2, &decodedInfo, &decodedMonster, decodedDialog, sizeof(decodedDialog)))
+			return FALSE;
+		dst.smCharInfo.dwCharSoundCode = decodedInfo.dwCharSoundCode;
 	}
-	return FALSE;
+	return TRUE;
 }
 
 
 int STG_AREA::SaveCharInfoFixed(char *szFile)
 {
-	FILE *fp;
-
-	fp = fopen(szFile, "wb");
-	if(fp)
-	{
-		fwrite(TransCharFixed, sizeof(smTRNAS_PLAYERINFO)*FIX_CHAR_MAX, 1, fp);
-		fclose(fp);
-	}
-
-	return TRUE;
+	// Legacy .spc persistence is intentionally disabled after the field pack port.
+	(void)szFile;
+	return FALSE;
 }
-
-
 
 
 int STG_AREA::OpenNpc(smTRNAS_PLAYERINFO *lpTransPlayerInfo)
@@ -9112,38 +9226,34 @@ int STG_AREA::SendStartPos(rsPLAYINFO *lpPlayInfo)
 
 int STG_AREA::LoadStartPoint(char *szFile)
 {
-	FILE *fp;
+	if(!szFile) return FALSE;
+	ZeroMemory(StartPoint, sizeof(StartPoint));
 
-	fp = fopen(szFile, "rb");
-	if(fp)
+	static const std::string fieldPackPath = summit::content::runtime::ResolveRuntimePackPath("field_runtime.sfld");
+	summit::content::field_runtime::CompiledFieldRuntimeSource source(fieldPackPath.c_str());
+	summit::content::field_runtime::StageStartPointSet points;
+	std::string fieldError;
+	if(!source.IsValid() || !source.LoadStartPoints(szFile, points, &fieldError))
+		return FALSE;
+
+	for(std::size_t i=0; i<points.points.size(); ++i)
 	{
-		fread(StartPoint, sizeof(STG_START_POINT)*STG_START_POINT_MAX, 1, fp);
-		fclose(fp);
-		dwActiveMode |= 1;
+		const summit::content::field_runtime::StageStartPointPlacement &src = points.points[i];
+		if(src.slot >= STG_START_POINT_MAX || src.state == 0) return FALSE;
+		StartPoint[src.slot].state = src.state;
+		StartPoint[src.slot].x = src.x;
+		StartPoint[src.slot].z = src.z;
 	}
-
+	dwActiveMode |= 1;
 	return TRUE;
 }
 
 int STG_AREA::SaveStartPoint(char *szFile)
 {
-	FILE *fp;
-
-	fp = fopen(szFile, "wb");
-	if(fp)
-	{
-		fwrite(StartPoint, sizeof(STG_START_POINT)*STG_START_POINT_MAX, 1, fp);
-		fclose(fp);
-		dwActiveMode |= 1;
-	}
-
-	return TRUE;
+	// Legacy .spp persistence is intentionally disabled after the field pack port.
+	(void)szFile;
+	return FALSE;
 }
-
-
-
-
-
 
 
 int	STG_AREA::FindEmptyMonTable()
@@ -9779,11 +9889,44 @@ int STG_AREA::Main()
 
 	if (FieldNightDay != dwServ_NightDay)
 	{
+		// One-shot diagnostic on each Navisko day/night transition.  This is kept
+		// deliberately small so a failed gate can be identified without flooding
+		// the server console/log.
+		if(lpField && lpField->FieldCode == 9)
+		{
+			int summitNaviskoNpcCount = 0;
+			int summitNaviskoEligibleCount = 0;
+			int summitNaviskoEventNpcCount = 0;
+			for(int summitNpcIndex = 0; summitNpcIndex < AUTOPLAYER_MAX; ++summitNpcIndex)
+			{
+				if(!chrAutoPlayer[summitNpcIndex].Flag || chrAutoPlayer[summitNpcIndex].lpExt1 != this)
+					continue;
+				if(chrAutoPlayer[summitNpcIndex].smCharInfo.State != smCHAR_STATE_NPC)
+					continue;
+				++summitNaviskoNpcCount;
+				if(chrAutoPlayer[summitNpcIndex].smMonsterInfo.EventNPC)
+					++summitNaviskoEventNpcCount;
+				else
+					++summitNaviskoEligibleCount;
+			}
+			fprintf(stderr,
+				"[NAVISKO][NIGHTMARE] old=%lu new=%lu fieldEvent=%d replacement=%p npcs=%d eligible=%d eventNpc=%d\n",
+				(unsigned long)FieldNightDay,
+				(unsigned long)dwServ_NightDay,
+				lpField->FieldEvent,
+				(void *)chrNpcMonsterInfo,
+				summitNaviskoNpcCount,
+				summitNaviskoEligibleCount,
+				summitNaviskoEventNpcCount);
+			fflush(stderr);
+		}
+
 		if (lpField->FieldEvent == FIELD_EVENT_NIGHTMARE)
 		{
 			if (dwServ_NightDay)
 			{
 
+				int summitNaviskoTransformed = 0;
 				for (cnt = 0; cnt < AUTOPLAYER_MAX; cnt++)
 				{
 					if (chrAutoPlayer[cnt].Flag && chrAutoPlayer[cnt].lpExt1 == this &&
@@ -9814,7 +9957,13 @@ int STG_AREA::Main()
 
 						chrAutoPlayer[cnt].smCharInfo.bUpdateInfo[0] = rnd + 1;
 						chrAutoPlayer[cnt].dwObjectSerial = OsCode;
+						++summitNaviskoTransformed;
 					}
+				}
+				if(lpField && lpField->FieldCode == 9)
+				{
+					fprintf(stderr, "[NAVISKO][NIGHTMARE] transformed=%d\n", summitNaviskoTransformed);
+					fflush(stderr);
 				}
 			}
 			else
@@ -10035,43 +10184,19 @@ int STG_AREA::FindStartPoint(int x, int z)
 
 int STG_AREA::AddStartPoint(int x, int z, int state)
 {
-	int cnt;
-
-
-	cnt = FindStartPoint(x, z);
-	if(cnt >= 0) return FALSE;
-
-	for(cnt = 0; cnt < STG_START_POINT_MAX; cnt++)
-	{
-		if(!StartPoint[cnt].state)
-		{
-			StartPoint[cnt].state = state;
-			StartPoint[cnt].x = x;
-			StartPoint[cnt].z = z;
-			StartPointMonCount[cnt] = 0;
-			SaveStartPoint(szStartPointFile);
-			return TRUE;
-		}
-	}
-
+	// Start-point authoring is canonical-JSON-only.
+	(void)x; (void)z; (void)state;
 	return FALSE;
 }
 
 
 int STG_AREA::DeleteStartPoint(int x, int z)
 {
-	int cnt;
-
-	cnt = FindStartPoint(x, z);
-	if(cnt >= 0)
-	{
-		StartPoint[cnt].state = 0;
-		StartPointMonCount[cnt] = 0;
-		SaveStartPoint(szStartPointFile);
-		return TRUE;
-	}
+	// Start-point authoring is canonical-JSON-only.
+	(void)x; (void)z;
 	return FALSE;
 }
+
 
 int STG_AREA::StartPosRandomize()
 {
@@ -11166,7 +11291,10 @@ int rsOpen_MonsterItemExp(smCHAR *lpChar, rsPLAYINFO *lprsPlayInfo)
 	int			DmgPlayUse = FALSE;
 	TRANS_CHATMESSAGE Trans_ChatMessage;
 
-	cHg.MonsterKilled(lpChar);
+	gameplay::events::PublishMonsterDefeated(
+		gameplay::events::MonsterDefeatedEvent(
+			lpChar ? gameplay::EntityId(static_cast<std::uint32_t>(lpChar->dwObjectSerial))
+			       : gameplay::EntityId()));
 
 	if (count_monsters == 10) {
 		SendSaveClientData(lprsPlayInfo);
@@ -11278,7 +11406,19 @@ int rsOpen_MonsterItemExp(smCHAR *lpChar, rsPLAYINFO *lprsPlayInfo)
 		}
 	}
 
-	cQuestHandler.HandleTier5MonsterKill(lprsPlayInfo, lpChar, lpDamagePlayInfo, 10);
+	std::vector<gameplay::PlayerId> tier5QuestDamageUsers;
+	tier5QuestDamageUsers.reserve(10);
+	for(cnt = 0; cnt < 10; cnt++)
+	{
+		const gameplay::PlayerId damagePlayerId =
+			gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpDamagePlayInfo[cnt]);
+		if(damagePlayerId.Valid())
+			tier5QuestDamageUsers.push_back(damagePlayerId);
+	}
+	gameplay::quests::legacy::ServerLegacyQuestProgressService().RecordTier5MonsterKill(
+		gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lprsPlayInfo),
+		gameplay::EntityId(static_cast<std::uint32_t>(lpChar->dwObjectSerial)),
+		tier5QuestDamageUsers);
 
 	if(lpChar->smMonsterInfo.dwEvnetItem)
 	{
@@ -11719,11 +11859,14 @@ int rsOpen_MonsterItemExp(smCHAR *lpChar, rsPLAYINFO *lprsPlayInfo)
 	}
 	else
 	{
-		gameplay::events::PublishMonsterKilled(lprsPlayInfo, lpChar, false);
+		gameplay::events::legacy::ServerLegacyGameplayEventAdapter().PublishMonsterKilled(lprsPlayInfo, lpChar, false);
 
 		INT64 PlayerEXP = srGetTotalExp(lpChar->smMonsterInfo.GetExp, lpChar->smCharInfo.Level - lprsPlayInfo->smCharInfo.Level, lprsPlayInfo);
 
-		int companionCount = gameplay::companions::GetActiveCount(lprsPlayInfo);
+		const gameplay::PlayerId companionOwnerId =
+			gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lprsPlayInfo);
+		int companionCount = static_cast<int>(
+			gameplay::companions::legacy::ServerLegacyCompanionQueryAdapter().ActiveCount(companionOwnerId));
 		float companionPartyRate = 0.0f;
 		if(companionCount > 0)
 		{
@@ -12108,8 +12251,16 @@ int srAutoCharMain(smCHAR *lpChar)
 
 							lprsPlayInfo->EventScore += score;
 							lprsPlayInfo->EventCount++;
-							if(lprsPlayInfo->sEventParam[0] >= 0 && lprsPlayInfo->sEventParam[0] < 4)
-								rsSodTeamScore[lprsPlayInfo->sEventParam[0]] += score;
+							const int scoreTeam = lprsPlayInfo->sEventParam[0];
+							const bool scoreTeamValid = scoreTeam >= 0 && scoreTeam < 4;
+							if(scoreTeamValid)
+								rsSodTeamScore[scoreTeam] += score;
+							gameplay::events::PublishEventScoreChanged(
+								gameplay::events::EventScoreChanged(
+									"bellatra",
+									gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lprsPlayInfo),
+									score, lprsPlayInfo->EventScore, scoreTeam,
+									scoreTeamValid ? rsSodTeamScore[scoreTeam] : 0));
 
 							rsShowHardCoreEventScore(lprsPlayInfo);
 
@@ -15371,25 +15522,33 @@ int	rsTradeInvenItem(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, TRANS_TRAD
 	int cnt;
 	int money;
 	smTRANS_COMMAND_EX	smTransCommand;
-	DWORD	dwTradeCode;
-	DWORD	dwTradeTime;
 	int	PotionCount;
 
 	if(!lpPlayInfo || !lpPlayInfo2) return FALSE;
 
 
-	dwTradeCode = (lpTransTradeItemKey->Money * lpPlayInfo->dwObjectSerial + lpPlayInfo2->dwObjectSerial);
+	gameplay::commerce::TradeCommitGuardRequest tradeGuardRequest;
+	tradeGuardRequest.fingerprint.sender =
+		gameplay::PlayerId(static_cast<std::uint32_t>(lpPlayInfo->dwObjectSerial));
+	tradeGuardRequest.fingerprint.receiver =
+		gameplay::PlayerId(static_cast<std::uint32_t>(lpPlayInfo2->dwObjectSerial));
+	tradeGuardRequest.fingerprint.encodedMoney = static_cast<std::int32_t>(lpTransTradeItemKey->Money);
 	for(cnt = 0; cnt < MAX_TRADE_ITEM; cnt++)
 	{
-		if(lpTransTradeItemKey->dwItemCode[cnt])
-		{
-			dwTradeCode += (lpTransTradeItemKey->dwItemCode[cnt] + lpTransTradeItemKey->dwItemKey[cnt] +
-				lpTransTradeItemKey->dwItemSum[cnt])*(cnt + 2);
-		}
+		tradeGuardRequest.fingerprint.items[cnt].itemCode =
+			static_cast<std::uint32_t>(lpTransTradeItemKey->dwItemCode[cnt]);
+		tradeGuardRequest.fingerprint.items[cnt].itemKey =
+			static_cast<std::uint32_t>(lpTransTradeItemKey->dwItemKey[cnt]);
+		tradeGuardRequest.fingerprint.items[cnt].itemChecksum =
+			static_cast<std::uint32_t>(lpTransTradeItemKey->dwItemSum[cnt]);
 	}
-	dwTradeTime = dwPlayServTime;
+	tradeGuardRequest.nowMs = static_cast<std::uint32_t>(dwPlayServTime);
+	const gameplay::commerce::TradeCommitGuardResult tradeGuard =
+		gameplay::commerce::legacy::ServerLegacyTradeAdapter().CheckCommitReplay(tradeGuardRequest);
+	if(!tradeGuard.Fresh() && !tradeGuard.Duplicate())
+		return FALSE;
 
-	if((dwTradeTime - lpPlayInfo->dwLastTradeTime) < 8000 && lpPlayInfo->dwLastTradeChksum == dwTradeCode)
+	if(tradeGuard.Duplicate())
 	{
 
 		for(cnt = 0; cnt < MAX_TRADE_ITEM; cnt++)
@@ -15398,10 +15557,14 @@ int	rsTradeInvenItem(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, TRANS_TRAD
 			{
 				if((lpTransTradeItemKey->dwItemCode[cnt] & sinITEM_MASK1) != (sinPM1&sinITEM_MASK1))
 				{
-					if(rsDeleteInvenItem(lpPlayInfo,
-						lpTransTradeItemKey->dwItemCode[cnt],
-						lpTransTradeItemKey->dwItemKey[cnt],
-						lpTransTradeItemKey->dwItemSum[cnt]) >= 0)
+					const gameplay::inventory::InventoryMutationResult duplicateRemoval =
+						gameplay::commerce::legacy::ServerLegacyTradeAdapter().RemoveItem(
+							gameplay::PlayerId(static_cast<std::uint32_t>(lpPlayInfo->dwObjectSerial)),
+							gameplay::inventory::ItemInstanceId(
+								gameplay::ItemId(static_cast<std::uint32_t>(lpTransTradeItemKey->dwItemCode[cnt])),
+								static_cast<std::uint32_t>(lpTransTradeItemKey->dwItemKey[cnt]),
+								static_cast<std::uint32_t>(lpTransTradeItemKey->dwItemSum[cnt])));
+					if(duplicateRemoval.Applied())
 					{
 
 
@@ -15421,45 +15584,144 @@ int	rsTradeInvenItem(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, TRANS_TRAD
 
 	lpPlayInfo->TradePotionInfoCount = 0;
 
-	if (lpTransTradeItemKey->Coin)
+	// Fully coordinated path for exact-item trades. Potion stacks retain their
+	// dedicated legacy quantity semantics and fall through to the compatibility path below.
+	bool exactTradeEligible = true;
+	gameplay::commerce::TradeExactCommitRequest exactTradeRequest;
+	exactTradeRequest.sender = gameplay::PlayerId(static_cast<std::uint32_t>(lpPlayInfo->dwObjectSerial));
+	exactTradeRequest.receiver = gameplay::PlayerId(static_cast<std::uint32_t>(lpPlayInfo2->dwObjectSerial));
+	exactTradeRequest.coins = static_cast<gameplay::commerce::CoinAmount>(lpTransTradeItemKey->Coin);
+
+	if(lpTransTradeItemKey->Money)
 	{
-		if (cCoinShop.GetPlayerCoin(lpPlayInfo) < lpTransTradeItemKey->Coin || lpTransTradeItemKey->Coin < 0)
+		const int decodedGold = lpTransTradeItemKey->Money - 193;
+		if(decodedGold < 0)
+			exactTradeEligible = false;
+		else
+			exactTradeRequest.gold = static_cast<gameplay::commerce::CurrencyAmount>(decodedGold);
+	}
+
+	for(cnt = 0; cnt < MAX_TRADE_ITEM && exactTradeEligible; cnt++)
+	{
+		if(!lpTransTradeItemKey->dwItemCode[cnt])
+			continue;
+
+		if((lpTransTradeItemKey->dwItemCode[cnt] & sinITEM_MASK1) == (sinPM1&sinITEM_MASK1))
 		{
-			smTransCommand.WParam = 8010;
-			smTransCommand.LParam = 85;
-			smTransCommand.SParam = cCoinShop.GetPlayerCoin(lpPlayInfo);
-			smTransCommand.EParam = lpTransTradeItemKey->Coin;
+			int encodedPotionCount = 0x5cbc ^ (lpTransTradeItemKey->dwItemSum[cnt] >> 16) ^
+				lpTransTradeItemKey->dwItemSum[cnt];
+			encodedPotionCount &= 0xFFFF;
+			if(encodedPotionCount <= 0)
+			{
+				exactTradeEligible = false;
+				break;
+			}
+			exactTradeRequest.potionStacks[cnt] = gameplay::commerce::TradePotionStackOffer(
+				gameplay::ItemId(static_cast<std::uint32_t>(lpTransTradeItemKey->dwItemCode[cnt])),
+				static_cast<gameplay::inventory::PotionQuantity>(encodedPotionCount));
+			continue;
+		}
+
+		if(!lpTransTradeItemKey->dwItemKey[cnt])
+		{
+			exactTradeEligible = false;
+			break;
+		}
+		exactTradeRequest.items[cnt] = gameplay::inventory::ItemInstanceId(
+			gameplay::ItemId(static_cast<std::uint32_t>(lpTransTradeItemKey->dwItemCode[cnt])),
+			static_cast<std::uint32_t>(lpTransTradeItemKey->dwItemKey[cnt]),
+			static_cast<std::uint32_t>(lpTransTradeItemKey->dwItemSum[cnt]));
+	}
+
+	if(exactTradeEligible)
+	{
+		const gameplay::commerce::TradeExactCommitResult exactCommit =
+			gameplay::commerce::legacy::ServerLegacyTradeAdapter().CommitExactTrade(exactTradeRequest);
+		if(!exactCommit.Committed())
+		{
+			smTransCommand.WParam = exactCommit.code == gameplay::commerce::TradeExactCommitCode::ItemTransferRejected ? 8000 : 8010;
+			smTransCommand.WxParam = exactCommit.code == gameplay::commerce::TradeExactCommitCode::ItemTransferRejected ? 30 : 0;
+			smTransCommand.LParam = exactCommit.code == gameplay::commerce::TradeExactCommitCode::CoinRejected ? 85 : 30;
+			smTransCommand.SParam = static_cast<int>(exactCommit.failingItemIndex);
+			smTransCommand.EParam = lpTransTradeItemKey->Money;
 			RecordHackLogFile(lpPlayInfo, &smTransCommand);
-
-
 			return FALSE;
 		}
 
-		cCoinShop.AddPlayerCoin(lpPlayInfo, -lpTransTradeItemKey->Coin);
-		cCoinShop.AddPlayerCoin(lpPlayInfo2, lpTransTradeItemKey->Coin);
-//		RecordLog("TradeCoins", (char*)FormatString("[%s] Enviou %d coins para [%s]", lpPlayInfo->getAccount(), lpPlayInfo2->getAccount(), lpTransTradeItemKey->Coin));
+		for(cnt = 0; cnt < MAX_TRADE_ITEM; cnt++)
+		{
+			if(!lpTransTradeItemKey->dwItemCode[cnt])
+				continue;
+			if((lpTransTradeItemKey->dwItemCode[cnt] & sinITEM_MASK1) == (sinPM1&sinITEM_MASK1))
+			{
+				rsAddTradePotionInfo(lpPlayInfo, lpTransTradeItemKey->dwItemCode[cnt]);
+			}
+			else if(lpTransTradeItemKey->dwItemKey[cnt])
+			{
+				SaveThrowItem2(lpPlayInfo, lpTransTradeItemKey->dwItemCode[cnt],
+					lpTransTradeItemKey->dwItemKey[cnt], lpTransTradeItemKey->dwItemSum[cnt]);
+			}
+		}
+
+		gameplay::commerce::legacy::ServerLegacyTradeAdapter().MarkCommitted(tradeGuardRequest);
+		rsRecord_ItemLog_Trade(lpPlayInfo, lpPlayInfo2, lpTransTradeItemKey);
+		return TRUE;
+	}
+
+	if(lpTransTradeItemKey->Coin)
+	{
+		const gameplay::commerce::TradeCoinCommitResult coinCommit =
+			gameplay::commerce::legacy::ServerLegacyTradeAdapter().CommitCoins(
+				gameplay::commerce::TradeCoinCommitRequest(
+					gameplay::PlayerId(static_cast<std::uint32_t>(lpPlayInfo->dwObjectSerial)),
+					gameplay::PlayerId(static_cast<std::uint32_t>(lpPlayInfo2->dwObjectSerial)),
+					static_cast<gameplay::commerce::CoinAmount>(lpTransTradeItemKey->Coin)));
+
+		if(!coinCommit.Committed())
+		{
+			smTransCommand.WParam = 8010;
+			smTransCommand.LParam = 85;
+			smTransCommand.SParam = static_cast<int>(coinCommit.senderBefore);
+			smTransCommand.EParam = lpTransTradeItemKey->Coin;
+			RecordHackLogFile(lpPlayInfo, &smTransCommand);
+			return FALSE;
+		}
 	}
 
 	if(lpTransTradeItemKey->Money)
 	{
 
 		money = lpTransTradeItemKey->Money - 193;
-		if(lpPlayInfo->ServerMoney < money)
+		if(money < 0)
 		{
-
-
 			smTransCommand.WParam = 8010;
 			smTransCommand.LParam = 30;
 			smTransCommand.SParam = lpPlayInfo->ServerMoney;
 			smTransCommand.EParam = money;
 			RecordHackLogFile(lpPlayInfo, &smTransCommand);
-
-
 			return FALSE;
 		}
 
-		lpPlayInfo->SubServerMoney(money, WHERE_TRADE);
-		lpPlayInfo2->AddServerMoney(money, WHERE_TRADE);
+		// Money==193 is the legacy zero-gold sentinel and must remain a no-op.
+		if(money > 0)
+		{
+			const gameplay::commerce::TradeGoldCommitResult goldCommit =
+				gameplay::commerce::legacy::ServerLegacyTradeAdapter().CommitGold(
+					gameplay::commerce::TradeGoldCommitRequest(
+						gameplay::PlayerId(static_cast<std::uint32_t>(lpPlayInfo->dwObjectSerial)),
+						gameplay::PlayerId(static_cast<std::uint32_t>(lpPlayInfo2->dwObjectSerial)),
+						static_cast<gameplay::commerce::CurrencyAmount>(money)));
+
+			if(!goldCommit.Committed())
+			{
+				smTransCommand.WParam = 8010;
+				smTransCommand.LParam = 30;
+				smTransCommand.SParam = static_cast<int>(goldCommit.senderBefore);
+				smTransCommand.EParam = money;
+				RecordHackLogFile(lpPlayInfo, &smTransCommand);
+				return FALSE;
+			}
+		}
 	}
 
 	for(cnt = 0; cnt < MAX_TRADE_ITEM; cnt++)
@@ -15469,12 +15731,32 @@ int	rsTradeInvenItem(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, TRANS_TRAD
 
 			if((lpTransTradeItemKey->dwItemCode[cnt] & sinITEM_MASK1) != (sinPM1&sinITEM_MASK1))
 			{
-				if(rsDeleteInvenItem(lpPlayInfo, lpTransTradeItemKey->dwItemCode[cnt],
-					lpTransTradeItemKey->dwItemKey[cnt],
-					lpTransTradeItemKey->dwItemSum[cnt]) < 0)
+				const gameplay::inventory::ItemInstanceId tradeItem(
+					gameplay::ItemId(static_cast<std::uint32_t>(lpTransTradeItemKey->dwItemCode[cnt])),
+					static_cast<std::uint32_t>(lpTransTradeItemKey->dwItemKey[cnt]),
+					static_cast<std::uint32_t>(lpTransTradeItemKey->dwItemSum[cnt]));
+
+				bool itemTransferred = false;
+				if(lpTransTradeItemKey->dwItemKey[cnt])
 				{
+					const gameplay::inventory::InventoryTransferResult transfer =
+						gameplay::commerce::legacy::ServerLegacyTradeAdapter().TransferItem(
+							gameplay::commerce::TradeItemTransferRequest(
+								gameplay::PlayerId(static_cast<std::uint32_t>(lpPlayInfo->dwObjectSerial)),
+								gameplay::PlayerId(static_cast<std::uint32_t>(lpPlayInfo2->dwObjectSerial)),
+								tradeItem));
+					itemTransferred = transfer.Applied();
+				}
+				else
+				{
+					const gameplay::inventory::InventoryMutationResult removal =
+						gameplay::commerce::legacy::ServerLegacyTradeAdapter().RemoveItem(
+							gameplay::PlayerId(static_cast<std::uint32_t>(lpPlayInfo->dwObjectSerial)), tradeItem);
+					itemTransferred = removal.Applied();
+				}
 
-
+				if(!itemTransferred)
+				{
 					smTransCommand.WParam = 8000;
 					smTransCommand.WxParam = 30;
 					smTransCommand.LxParam = (int)"*TRADE ITEM*";
@@ -15482,10 +15764,12 @@ int	rsTradeInvenItem(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, TRANS_TRAD
 					smTransCommand.SParam = lpTransTradeItemKey->dwItemKey[cnt];
 					smTransCommand.EParam = lpTransTradeItemKey->dwItemSum[cnt];
 					RecordHackLogFile(lpPlayInfo, &smTransCommand);
-
-
 					lpTransTradeItemKey->dwItemKey[cnt] = 0;
-
+				}
+				else if(lpTransTradeItemKey->dwItemKey[cnt])
+				{
+					SaveThrowItem2(lpPlayInfo, lpTransTradeItemKey->dwItemCode[cnt],
+						lpTransTradeItemKey->dwItemKey[cnt], lpTransTradeItemKey->dwItemSum[cnt]);
 				}
 			}
 			else
@@ -15508,21 +15792,20 @@ int	rsTradeInvenItem(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, TRANS_TRAD
 				rsAddTradePotionInfo(lpPlayInfo, lpTransTradeItemKey->dwItemCode[cnt]);
 			}
 
-			if(lpTransTradeItemKey->dwItemKey[cnt])
+			if((lpTransTradeItemKey->dwItemCode[cnt] & sinITEM_MASK1) == (sinPM1&sinITEM_MASK1) &&
+				lpTransTradeItemKey->dwItemKey[cnt])
 			{
 				rsAddInvenItem(lpPlayInfo2, lpTransTradeItemKey->dwItemCode[cnt],
 					lpTransTradeItemKey->dwItemKey[cnt],
 					lpTransTradeItemKey->dwItemSum[cnt]);
-
-
-				SaveThrowItem2(lpPlayInfo, lpTransTradeItemKey->dwItemCode[cnt], lpTransTradeItemKey->dwItemKey[cnt], lpTransTradeItemKey->dwItemSum[cnt]);
+				SaveThrowItem2(lpPlayInfo, lpTransTradeItemKey->dwItemCode[cnt],
+					lpTransTradeItemKey->dwItemKey[cnt], lpTransTradeItemKey->dwItemSum[cnt]);
 			}
 
 		}
 	}
 
-	lpPlayInfo->dwLastTradeTime = dwTradeTime;
-	lpPlayInfo->dwLastTradeChksum = dwTradeCode;
+	gameplay::commerce::legacy::ServerLegacyTradeAdapter().MarkCommitted(tradeGuardRequest);
 
 
 	rsRecord_ItemLog_Trade(lpPlayInfo, lpPlayInfo2, lpTransTradeItemKey);
@@ -18753,7 +19036,16 @@ int rsRecvUseLinkCore(rsPLAYINFO *lpPlayInfo, TRANS_ITEMINFO *lpTransItemInfo)
 
 	lpPlayInfo2 = FindUserFromName(szName);
 
-	if(!lpPlayInfo2 || !lpPlayInfo2->dwObjectSerial || !lpPlayInfo->dwClanCode || lpPlayInfo->EventMode || lpPlayInfo2->EventMode ||
+	gameplay::social::clan::ClanMembershipSnapshot sourceClan;
+	gameplay::social::clan::ClanMembershipSnapshot targetClan;
+	const gameplay::social::clan::legacy::LegacyClanQueryAdapter& clanQuery =
+		gameplay::social::clan::legacy::ServerLegacyClanQueryAdapter();
+	const bool sourceClanKnown = clanQuery.TryGetMembership(
+		gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo), sourceClan);
+	const bool targetClanKnown = lpPlayInfo2 && clanQuery.TryGetMembership(
+		gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo2), targetClan);
+
+	if(!lpPlayInfo2 || !lpPlayInfo2->dwObjectSerial || !sourceClanKnown || !sourceClan.IsMember() || lpPlayInfo->EventMode || lpPlayInfo2->EventMode ||
 		rsCheckHardCoreEventArea(lpPlayInfo2->Position.x, lpPlayInfo2->Position.y, lpPlayInfo2->Position.z) == TRUE ||
 		lpPlayInfo->Position.Area == QUEST_ARENA_FIELD || lpPlayInfo2->Position.Area == rsCASTLE_FIELD)
 	{
@@ -18768,7 +19060,7 @@ int rsRecvUseLinkCore(rsPLAYINFO *lpPlayInfo, TRANS_ITEMINFO *lpTransItemInfo)
 		return FALSE;
 	}
 
-	if(lpPlayInfo2->dwClanCode != lpPlayInfo->dwClanCode)
+	if(!targetClanKnown || !gameplay::social::clan::SameClan(sourceClan, targetClan))
 	{
 		strcpy_s(TransChatMessage.szMessage, szNotLinkCore2);
 		TransChatMessage.code = OpCode::OPCODE_MESSAGEBOX;
@@ -19808,77 +20100,108 @@ int rsRecvBuyShopItem(rsPLAYINFO *lpPlayInfo, TRANS_BUY_SHOPITEM *lpTransBuyShop
 {
 	int money;
 
+	if(!lpPlayInfo || !lpTransBuyShopItem || !lpPlayInfo->lpsmSock)
+		return FALSE;
+
 	if(!rsServerConfig.ServerInventoryMode)
 	{
 		lpPlayInfo->ServerMoney = 90000000;
 	}
 
-
 	if(CheckItemForm(&lpTransBuyShopItem->sItem.sItemInfo) == TRUE &&
-		lpTransBuyShopItem->sItem.sItemInfo.Price <= lpPlayInfo->ServerMoney &&
 		lpTransBuyShopItem->sItem.sItemInfo.dwCreateTime == 0)
 	{
-
+		const bool isPotionPurchase =
+			lpTransBuyShopItem->ItemCount > 0 &&
+			(lpTransBuyShopItem->sItem.sItemInfo.CODE&sinITEM_MASK1) == (sinPM1&sinITEM_MASK1);
+		const int purchaseQuantity = isPotionPurchase ? lpTransBuyShopItem->ItemCount : 1;
+		const gameplay::PlayerId playerId(static_cast<std::uint32_t>(lpPlayInfo->dwObjectSerial));
+		const gameplay::commerce::CurrencyAmount unitPrice =
+			static_cast<gameplay::commerce::CurrencyAmount>(lpTransBuyShopItem->sItem.sItemInfo.Price);
 
 		ReformItem(&lpTransBuyShopItem->sItem.sItemInfo);
-		if(lpPlayInfo && lpPlayInfo->lpsmSock)
+
+		gameplay::commerce::CurrencyAmount purchaseBefore = 0;
+		gameplay::commerce::CurrencyAmount purchaseTotal = unitPrice;
+		bool purchased = false;
+
+		if(isPotionPurchase)
 		{
-
-
-			rsAddInvenItem(lpPlayInfo, lpTransBuyShopItem->sItem.sItemInfo.CODE,
-				lpTransBuyShopItem->sItem.sItemInfo.ItemHeader.Head,
-				lpTransBuyShopItem->sItem.sItemInfo.ItemHeader.dwChkSum);
-
-
-
-			rsRecord_ItemLog(lpPlayInfo,
-				lpTransBuyShopItem->sItem.sItemInfo.CODE,
-				lpTransBuyShopItem->sItem.sItemInfo.ItemHeader.Head,
-				lpTransBuyShopItem->sItem.sItemInfo.ItemHeader.dwChkSum,
-				ITEMLOG_BUYSHOP);
-
-
-			if(lpTransBuyShopItem->ItemCount > 0 && (lpTransBuyShopItem->sItem.sItemInfo.CODE&sinITEM_MASK1) == (sinPM1&sinITEM_MASK1))
-			{
-
-				money = lpTransBuyShopItem->sItem.sItemInfo.Price*lpTransBuyShopItem->ItemCount;
-				lpPlayInfo->SubServerMoney(money, WHERE_BUY_POTION);
-				rsAddServerPotion(lpPlayInfo, lpTransBuyShopItem->sItem.sItemInfo.CODE, lpTransBuyShopItem->ItemCount);
-
-				switch((lpTransBuyShopItem->sItem.sItemInfo.CODE&sinITEM_MASK2))
-				{
-				case sinPL1:
-					CurrencyLog.int64_ShopPotionMoney[0] += money;
-					break;
-				case sinPM1:
-					CurrencyLog.int64_ShopPotionMoney[1] += money;
-					break;
-				case sinPS1:
-					CurrencyLog.int64_ShopPotionMoney[2] += money;
-					break;
-				}
-
-			}
-			else
-			{
-				lpPlayInfo->SubServerMoney(lpTransBuyShopItem->sItem.sItemInfo.Price, WHERE_BUY_ITEM);
-				CurrencyLog.int64_ShopMoney += lpTransBuyShopItem->sItem.sItemInfo.Price;
-			}
-
-			return lpPlayInfo->lpsmSock->Send((char *)lpTransBuyShopItem, lpTransBuyShopItem->size, TRUE);
+			const gameplay::commerce::ShopPotionPurchaseResult purchase =
+				gameplay::commerce::legacy::ServerLegacyShopAdapter().PurchasePotion(
+					gameplay::commerce::ShopPotionPurchaseRequest(
+						playerId,
+						gameplay::ItemId(static_cast<std::uint32_t>(lpTransBuyShopItem->sItem.sItemInfo.CODE)),
+						unitPrice,
+						static_cast<gameplay::inventory::PotionQuantity>(purchaseQuantity)));
+			purchased = purchase.Purchased();
+			purchaseBefore = purchase.before;
+			purchaseTotal = purchase.total;
 		}
-	}
+		else if(rsServerConfig.ServerInventoryMode)
+		{
+			const gameplay::inventory::ItemInstanceId item(
+				gameplay::ItemId(static_cast<std::uint32_t>(lpTransBuyShopItem->sItem.sItemInfo.CODE)),
+				static_cast<std::uint32_t>(lpTransBuyShopItem->sItem.sItemInfo.ItemHeader.Head),
+				static_cast<std::uint32_t>(lpTransBuyShopItem->sItem.sItemInfo.ItemHeader.dwChkSum));
+			const gameplay::commerce::ShopItemPurchaseResult purchase =
+				gameplay::commerce::legacy::ServerLegacyShopAdapter().PurchaseItem(
+					gameplay::commerce::ShopItemPurchaseRequest(playerId, item, unitPrice));
+			purchased = purchase.Purchased();
+			purchaseBefore = purchase.before;
+			purchaseTotal = purchase.price;
+		}
+		else
+		{
+			const gameplay::commerce::ShopPurchaseResult purchase =
+				gameplay::commerce::legacy::ServerLegacyShopAdapter().Purchase(
+					gameplay::commerce::ShopPurchaseRequest(
+						playerId, unitPrice, purchaseQuantity, gameplay::commerce::ShopPurchaseKind::Item));
+			purchased = purchase.Purchased();
+			purchaseBefore = purchase.before;
+			purchaseTotal = purchase.total;
+		}
 
-	if(lpTransBuyShopItem->sItem.sItemInfo.Price > lpPlayInfo->ServerMoney)
-	{
-		smTRANS_COMMAND	smTransCommand;
+		if(!purchased)
+		{
+			smTRANS_COMMAND smTransCommand;
+			smTransCommand.WParam = 8010;
+			smTransCommand.LParam = 10;
+			smTransCommand.SParam = static_cast<int>(purchaseBefore);
+			smTransCommand.EParam = lpTransBuyShopItem->sItem.sItemInfo.Price;
+			RecordHackLogFile(lpPlayInfo, &smTransCommand);
+			return FALSE;
+		}
 
-		smTransCommand.WParam = 8010;
-		smTransCommand.LParam = 10;
-		smTransCommand.SParam = lpPlayInfo->ServerMoney;
-		smTransCommand.EParam = lpTransBuyShopItem->sItem.sItemInfo.Price;
-		RecordHackLogFile(lpPlayInfo, &smTransCommand);
+		rsRecord_ItemLog(lpPlayInfo,
+			lpTransBuyShopItem->sItem.sItemInfo.CODE,
+			lpTransBuyShopItem->sItem.sItemInfo.ItemHeader.Head,
+			lpTransBuyShopItem->sItem.sItemInfo.ItemHeader.dwChkSum,
+			ITEMLOG_BUYSHOP);
 
+		if(isPotionPurchase)
+		{
+			money = static_cast<int>(purchaseTotal);
+
+			switch((lpTransBuyShopItem->sItem.sItemInfo.CODE&sinITEM_MASK2))
+			{
+			case sinPL1:
+				CurrencyLog.int64_ShopPotionMoney[0] += money;
+				break;
+			case sinPM1:
+				CurrencyLog.int64_ShopPotionMoney[1] += money;
+				break;
+			case sinPS1:
+				CurrencyLog.int64_ShopPotionMoney[2] += money;
+				break;
+			}
+		}
+		else
+		{
+			CurrencyLog.int64_ShopMoney += lpTransBuyShopItem->sItem.sItemInfo.Price;
+		}
+
+		return lpPlayInfo->lpsmSock->Send((char *)lpTransBuyShopItem, lpTransBuyShopItem->size, TRUE);
 	}
 
 	return FALSE;
@@ -19895,126 +20218,127 @@ int rsRecvSellShopItem(rsPLAYINFO *lpPlayInfo, TRANS_ITEMINFO *lpTransItemInfo)
 	int	  Price2, PriceMax;
 	int	  PriceDiv;
 
-
 	if((lpTransItemInfo->Item.CODE&sinITEM_MASK1) == (sinPM1&sinITEM_MASK1) || lpTransItemInfo->Item.CODE == (sinGF1 | sin01))
 	{
-
 		return FALSE;
 	}
 
-
 	if(CheckItemForm(&lpTransItemInfo->Item) == FALSE)
 	{
-
-
 		smTransCommandEx.WParam = 8830;
 		smTransCommandEx.LParam = lpTransItemInfo->Item.CODE;
 		smTransCommandEx.SParam = lpTransItemInfo->Item.Price;
 		smTransCommandEx.EParam = 0;
 		RecordHackLogFile(lpPlayInfo, &smTransCommandEx);
-
 		return FALSE;
 	}
 
+	Dur[0] = lpTransItemInfo->Item.Durability[0];
+	Dur[1] = lpTransItemInfo->Item.Durability[1];
+	Price = (float)lpTransItemInfo->Item.Price;
 
-	if(rsDeleteInvenItem(lpPlayInfo, lpTransItemInfo->Item.CODE,
-		lpTransItemInfo->Item.ItemHeader.Head,
-		lpTransItemInfo->Item.ItemHeader.dwChkSum) >= 0)
-	{
+	if(Dur[0] == 0)Dur[0] = 1;
+	if(Dur[1] == 0)Dur[1] = 1;
 
+	PriceDiv = 5;
 
+	Price2 = (int)((Price*(Dur[0] / Dur[1])) + (Price - (Price*(Dur[0] / Dur[1])))*0.25);
+	Price2 = Price2 / PriceDiv;
+	PriceMax = lpTransItemInfo->Item.Price / PriceDiv;
 
-		Dur[0] = lpTransItemInfo->Item.Durability[0];
-		Dur[1] = lpTransItemInfo->Item.Durability[1];
-		Price = (float)lpTransItemInfo->Item.Price;
+	smTransCommand.code = OpCode::OPCODE_SHOP_SELLITEM;
+	smTransCommand.size = sizeof(smTRANS_COMMAND);
+	smTransCommand.WParam = lpTransItemInfo->Item.CODE;
+	smTransCommand.LParam = lpTransItemInfo->Item.ItemHeader.Head;
+	smTransCommand.SParam = lpTransItemInfo->Item.ItemHeader.dwChkSum;
 
-		if(Dur[0] == 0)Dur[0] = 1;
-		if(Dur[1] == 0)Dur[1] = 1;
-
-		PriceDiv = 5;
-
-		Price2 = (int)((Price*(Dur[0] / Dur[1])) + (Price - (Price*(Dur[0] / Dur[1])))*0.25);
-		Price2 = Price2 / PriceDiv;
-		PriceMax = lpTransItemInfo->Item.Price / PriceDiv;
-
-		smTransCommand.code = OpCode::OPCODE_SHOP_SELLITEM;
-		smTransCommand.size = sizeof(smTRANS_COMMAND);
-		smTransCommand.WParam = lpTransItemInfo->Item.CODE;
-		smTransCommand.LParam = lpTransItemInfo->Item.ItemHeader.Head;
-		smTransCommand.SParam = lpTransItemInfo->Item.ItemHeader.dwChkSum;
-
-
-		if(PriceMax < Price2)
-			smTransCommand.EParam = PriceMax;
-		else
-			smTransCommand.EParam = Price2;
-
-		if ((lpTransItemInfo->Item.CODE & sinITEM_MASK2) == sinGB1) {
-			smTransCommand.EParam = (int)Price;
-		}
-
-		// Artisan Tier II+: equipment sold through the authoritative blacksmith
-		// path receives the data-driven vendor value modifier. Apply this after
-		// all legacy durability/cap calculations so the Covenant bonus is not
-		// accidentally clipped by PriceMax. The server remains authoritative.
-		if(smTransCommand.EParam > 0 && lpPlayInfo->getName())
-		{
-			const double covenantSellValue = gameplay::progression::ApplyServerCovenantModifierValue(
-				lpPlayInfo->getName(), "vendor.blacksmith_sell_value", "blacksmith",
-				static_cast<double>(smTransCommand.EParam));
-			if(covenantSellValue > 0.0)
-			{
-				const double maxServerMoneyDelta = 2147483647.0;
-				smTransCommand.EParam = static_cast<int>(
-					covenantSellValue > maxServerMoneyDelta ? maxServerMoneyDelta : covenantSellValue);
-			}
-		}
-
-
-		if(lpPlayInfo->lpsmSock)
-		{
-			lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
-		}
-
-		lpPlayInfo->UnsaveMoney = lpTransItemInfo->y - smTransCommand.EParam;
-		lpPlayInfo->AddServerMoney(smTransCommand.EParam, WHERE_SELL_ITEM);
-
-		SaveThrowItem(lpPlayInfo, lpTransItemInfo->Item.CODE,
-			lpTransItemInfo->Item.ItemHeader.Head,
-			lpTransItemInfo->Item.ItemHeader.dwChkSum);
-
-
-		rsRecord_ItemLog(lpPlayInfo,
-			lpTransItemInfo->Item.CODE,
-			lpTransItemInfo->Item.ItemHeader.Head,
-			lpTransItemInfo->Item.ItemHeader.dwChkSum,
-			ITEMLOG_SELLSHOP);
-
-		char accountIdLog[32] = { 0 };
-		char nameLog[32] = { 0 };
-		sprintf_s(accountIdLog, sizeof(accountIdLog), lpPlayInfo->getAccount());
-		sprintf_s(nameLog, sizeof(nameLog), lpPlayInfo->getName());
-
-		RecordLog("LogFerreiro", FormatString("Login[%s],NickName[%s],NomeItem[%s],Code[%d],Checksum[%d]", accountIdLog, nameLog, lpTransItemInfo->Item.ItemName, lpTransItemInfo->Item.CODE, lpTransItemInfo->Item.ItemHeader.dwChkSum));
-
-	}
+	if(PriceMax < Price2)
+		smTransCommand.EParam = PriceMax;
 	else
-	{
+		smTransCommand.EParam = Price2;
 
-
-		smTransCommandEx.WParam = 8000;
-		smTransCommandEx.WxParam = 10;
-		smTransCommandEx.LxParam = (int)lpTransItemInfo->Item.ItemName;
-		smTransCommandEx.LParam = lpTransItemInfo->Item.CODE;
-		smTransCommandEx.SParam = lpTransItemInfo->Item.ItemHeader.Head;
-		smTransCommandEx.EParam = lpTransItemInfo->Item.ItemHeader.dwChkSum;
-		RecordHackLogFile(lpPlayInfo, &smTransCommandEx);
-
+	if ((lpTransItemInfo->Item.CODE & sinITEM_MASK2) == sinGB1) {
+		smTransCommand.EParam = (int)Price;
 	}
+
+	// Artisan Tier II+: equipment sold through the authoritative blacksmith
+	// path receives the data-driven vendor value modifier. Apply this after
+	// all legacy durability/cap calculations so the Covenant bonus is not
+	// accidentally clipped by PriceMax. The server remains authoritative.
+	if(smTransCommand.EParam > 0 && lpPlayInfo->getName())
+	{
+		const double covenantSellValue = gameplay::progression::ApplyServerCovenantModifierValue(
+			lpPlayInfo->getName(), "vendor.blacksmith_sell_value", "blacksmith",
+			static_cast<double>(smTransCommand.EParam));
+		if(covenantSellValue > 0.0)
+		{
+			const double maxServerMoneyDelta = 2147483647.0;
+			smTransCommand.EParam = static_cast<int>(
+				covenantSellValue > maxServerMoneyDelta ? maxServerMoneyDelta : covenantSellValue);
+		}
+	}
+
+	const gameplay::PlayerId sellerId(static_cast<std::uint32_t>(lpPlayInfo->dwObjectSerial));
+	const gameplay::inventory::ItemInstanceId soldItem(
+		gameplay::ItemId(static_cast<std::uint32_t>(lpTransItemInfo->Item.CODE)),
+		static_cast<std::uint32_t>(lpTransItemInfo->Item.ItemHeader.Head),
+		static_cast<std::uint32_t>(lpTransItemInfo->Item.ItemHeader.dwChkSum));
+	const gameplay::commerce::ShopItemSaleResult sale =
+		gameplay::commerce::legacy::ServerLegacyShopAdapter().SellItem(
+			gameplay::commerce::ShopItemSaleRequest(
+				sellerId,
+				soldItem,
+				static_cast<gameplay::commerce::CurrencyAmount>(smTransCommand.EParam)));
+
+	if(!sale.Sold())
+	{
+		if(sale.code == gameplay::commerce::ShopItemSaleCode::ItemNotFound)
+		{
+			smTransCommandEx.WParam = 8000;
+			smTransCommandEx.WxParam = 10;
+			smTransCommandEx.LxParam = (int)lpTransItemInfo->Item.ItemName;
+			smTransCommandEx.LParam = lpTransItemInfo->Item.CODE;
+			smTransCommandEx.SParam = lpTransItemInfo->Item.ItemHeader.Head;
+			smTransCommandEx.EParam = lpTransItemInfo->Item.ItemHeader.dwChkSum;
+			RecordHackLogFile(lpPlayInfo, &smTransCommandEx);
+			return TRUE;
+		}
+
+		smTransCommandEx.WParam = sale.code == gameplay::commerce::ShopItemSaleCode::RollbackFailed ? 8000 : 8010;
+		smTransCommandEx.WxParam = sale.code == gameplay::commerce::ShopItemSaleCode::RollbackFailed ? 12 : 11;
+		smTransCommandEx.LParam = lpTransItemInfo->Item.CODE;
+		smTransCommandEx.SParam = static_cast<int>(sale.before);
+		smTransCommandEx.EParam = smTransCommand.EParam;
+		RecordHackLogFile(lpPlayInfo, &smTransCommandEx);
+		return FALSE;
+	}
+
+	if(lpPlayInfo->lpsmSock)
+	{
+		lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+	}
+
+	lpPlayInfo->UnsaveMoney = lpTransItemInfo->y - smTransCommand.EParam;
+
+	SaveThrowItem(lpPlayInfo, lpTransItemInfo->Item.CODE,
+		lpTransItemInfo->Item.ItemHeader.Head,
+		lpTransItemInfo->Item.ItemHeader.dwChkSum);
+
+	rsRecord_ItemLog(lpPlayInfo,
+		lpTransItemInfo->Item.CODE,
+		lpTransItemInfo->Item.ItemHeader.Head,
+		lpTransItemInfo->Item.ItemHeader.dwChkSum,
+		ITEMLOG_SELLSHOP);
+
+	char accountIdLog[32] = { 0 };
+	char nameLog[32] = { 0 };
+	sprintf_s(accountIdLog, sizeof(accountIdLog), lpPlayInfo->getAccount());
+	sprintf_s(nameLog, sizeof(nameLog), lpPlayInfo->getName());
+
+	RecordLog("LogFerreiro", FormatString("Login[%s],NickName[%s],NomeItem[%s],Code[%d],Checksum[%d]", accountIdLog, nameLog, lpTransItemInfo->Item.ItemName, lpTransItemInfo->Item.CODE, lpTransItemInfo->Item.ItemHeader.dwChkSum));
 
 	return TRUE;
 }
-
 
 
 int	rsCompareItems(sITEMINFO	*lpItem1, sITEMINFO	*lpItem2)
@@ -20662,86 +20986,18 @@ int rsRecvGameServer_PrimeItem4(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND_EX *lpTr
 
 int rsSendAreaServer_PCBangPet(rsPLAYINFO *lpPlayInfo)
 {
-	smTRANS_COMMAND	smTransCommand;
-	DWORD	dwCodeKey;
-	DWORD	dwMaskKey;
-
-	if(lpPlayInfo->dwObjectSerial && lpPlayInfo->dwPCBang_Pet_NextSetTime < dwPlayServTime && rsHasPCBangGameplayEntitlement(lpPlayInfo))
-	{
-
-
-
-		if(!lpPlayInfo->dwPCBang_Pet_NextSetTime)
-		{
-
-			ZeroMemory(&smTransCommand, sizeof(smTRANS_COMMAND));
-			smTransCommand.code = OpCode::OPCODE_PCBANG_PET;
-			smTransCommand.size = sizeof(smTRANS_COMMAND);
-			lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
-		}
-
-
-		dwCodeKey = dwPlayServTime & 0x3FFFFFFF;
-		lpPlayInfo->dwPCBang_Pet_NextSetTime = dwPlayServTime + 1000 * 17;
-
-		dwMaskKey = lpPlayInfo->dwObjectSerial*(lpPlayInfo->dwCode_Name << 3);
-		dwMaskKey ^= dwCodeKey;
-
-
-
-		smTransCommand.code = OpCode::OPCODE_PCBANG_PET;
-		smTransCommand.size = sizeof(smTRANS_COMMAND);
-		smTransCommand.WParam = (lpPlayInfo->Bl_RNo) ^ dwMaskKey;
-		smTransCommand.LParam = (lpPlayInfo->dwPCBang_Pet_NextSetTime) ^ dwMaskKey;
-		smTransCommand.SParam = (lpPlayInfo->Bl_RNo + lpPlayInfo->dwPCBang_Pet_NextSetTime + smTransCommand.code) ^ dwMaskKey;
-		smTransCommand.EParam = dwCodeKey;
-
-		rsSendAGameServer(lpPlayInfo->lpsmSock, &smTransCommand);
-	}
-
+	gameplay::pets::legacy::ServerLegacyPetRuntimeAdapter().PublishAreaSync(
+		gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo),
+		gameplay::pets::PetRuntimeKind::PcBang);
 	return TRUE;
 }
 
 
-
-
 int rsSendAreaServer_PhenixPet(rsPLAYINFO *lpPlayInfo)
 {
-	smTRANS_COMMAND	smTransCommand;
-	DWORD	dwCodeKey;
-	DWORD	dwMaskKey;
-
-	if(lpPlayInfo->dwObjectSerial && lpPlayInfo->dwPCBang_Pet_NextSetTime < dwPlayServTime && lpPlayInfo->dwTime_PrimeItem_PhenixPet > 0)
-	{
-
-		if(!lpPlayInfo->dwPCBang_Pet_NextSetTime)
-		{
-
-			ZeroMemory(&smTransCommand, sizeof(smTRANS_COMMAND));
-			smTransCommand.code = OpCode::OPCODE_PHENIX_PET;
-			smTransCommand.size = sizeof(smTRANS_COMMAND);
-			lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
-		}
-
-
-		dwCodeKey = dwPlayServTime & 0x3FFFFFFF;
-		lpPlayInfo->dwPCBang_Pet_NextSetTime = dwPlayServTime + 1000 * 17;
-
-		dwMaskKey = lpPlayInfo->dwObjectSerial*(lpPlayInfo->dwCode_Name << 3);
-		dwMaskKey ^= dwCodeKey;
-
-
-
-		smTransCommand.code = OpCode::OPCODE_PHENIX_PET;
-		smTransCommand.size = sizeof(smTRANS_COMMAND);
-		smTransCommand.WParam = (lpPlayInfo->dwTime_PrimeItem_PhenixPet) ^ dwMaskKey;
-		smTransCommand.LParam = (lpPlayInfo->dwPCBang_Pet_NextSetTime) ^ dwMaskKey;
-		smTransCommand.SParam = (lpPlayInfo->dwTime_PrimeItem_PhenixPet + lpPlayInfo->dwPCBang_Pet_NextSetTime + smTransCommand.code) ^ dwMaskKey;
-		smTransCommand.EParam = dwCodeKey;
-
-		rsSendAGameServer(lpPlayInfo->lpsmSock, &smTransCommand);
-	}
-
+	gameplay::pets::legacy::ServerLegacyPetRuntimeAdapter().PublishAreaSync(
+		gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo),
+		gameplay::pets::PetRuntimeKind::Phoenix);
 	return TRUE;
 }
 
@@ -20804,41 +21060,9 @@ int rsRecvAreaServer_PCBangPet(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransC
 
 int rsSendAreaServer_HelpPet(rsPLAYINFO *lpPlayInfo)
 {
-	smTRANS_COMMAND	smTransCommand;
-	DWORD	dwCodeKey;
-	DWORD	dwMaskKey;
-
-	if(lpPlayInfo->dwObjectSerial && lpPlayInfo->dwHelp_Pet_NextSetTime < dwPlayServTime && lpPlayInfo->dwTime_PrimeItem_HelpPet > 0)
-	{
-
-		if(!lpPlayInfo->dwHelp_Pet_NextSetTime)
-		{
-
-			ZeroMemory(&smTransCommand, sizeof(smTRANS_COMMAND));
-			smTransCommand.code = OpCode::OPCODE_HELP_PET;
-			smTransCommand.size = sizeof(smTRANS_COMMAND);
-			lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
-		}
-
-
-		dwCodeKey = dwPlayServTime & 0x3FFFFFFF;
-		lpPlayInfo->dwHelp_Pet_NextSetTime = dwPlayServTime + 1000 * 17;
-
-		dwMaskKey = lpPlayInfo->dwObjectSerial*(lpPlayInfo->dwCode_Name << 3);
-		dwMaskKey ^= dwCodeKey;
-
-
-
-		smTransCommand.code = OpCode::OPCODE_HELP_PET;
-		smTransCommand.size = sizeof(smTRANS_COMMAND);
-		smTransCommand.WParam = (lpPlayInfo->dwTime_PrimeItem_HelpPet) ^ dwMaskKey;
-		smTransCommand.LParam = (lpPlayInfo->dwHelp_Pet_NextSetTime) ^ dwMaskKey;
-		smTransCommand.SParam = (lpPlayInfo->dwTime_PrimeItem_HelpPet + lpPlayInfo->dwHelp_Pet_NextSetTime + smTransCommand.code) ^ dwMaskKey;
-		smTransCommand.EParam = dwCodeKey;
-
-		rsSendAGameServer_PrimeItem3(lpPlayInfo->lpsmSock, &smTransCommand);
-	}
-
+	gameplay::pets::legacy::ServerLegacyPetRuntimeAdapter().PublishAreaSync(
+		gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo),
+		gameplay::pets::PetRuntimeKind::Help);
 	return TRUE;
 }
 
@@ -20918,16 +21142,8 @@ int rsSendAreaServerForceOrb(rsPLAYINFO *lpPlayInfo)
 		rsSendAreaServer_PCBangPet(lpPlayInfo);
 	}
 
-	if(lpPlayInfo->dwTime_PrimeItem_PhenixPet > 0)
-	{
-		rsSendAreaServer_PhenixPet(lpPlayInfo);
-	}
-
-
-	if(lpPlayInfo->dwTime_PrimeItem_HelpPet > 0)
-	{
-		rsSendAreaServer_HelpPet(lpPlayInfo);
-	}
+	rsSendAreaServer_PhenixPet(lpPlayInfo);
+	rsSendAreaServer_HelpPet(lpPlayInfo);
 
 	return TRUE;
 }
@@ -23012,17 +23228,6 @@ int SendQuickMessage(rsPLAYINFO *lpPlayInfo, char *szMessage)
 
 }
 
-void SendWarpField(rsPLAYINFO* lpPlayInfo, int Field, int x, int z)
-{
-	smTRANS_COMMAND sPacket;
-	sPacket.code = OpCode::OPCODE_WARPFIELD;
-	sPacket.size = sizeof(smTRANS_COMMAND);
-	sPacket.WParam = Field;
-	sPacket.SParam = x * fONE;
-	sPacket.LParam = z * fONE;
-	lpPlayInfo->lpsmSock->Send((char*)&sPacket, sPacket.size, TRUE);
-}
-
 int SendQuickMessage2(rsPLAYINFO* lpPlayInfo, char* szMessage)
 {
 
@@ -23108,6 +23313,14 @@ static const char* SummitGatheringStatusText(gameplay::gathering::HarvestStatus 
     return "unknown harvest error";
 }
 
+// =============================================================================
+// AREA 04 - CHAT / COMMAND DISPATCH
+// TIPO: rede + comandos
+// FUNCIONAMENTO: Interpreta comandos de texto legacy, aplica autorizacao e delega para os handlers historicos ou services modernos ja ligados.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
+
 int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 {
 	int cnt = 0;
@@ -23125,6 +23338,14 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 	smCHAR *lpChar = nullptr;
 	rsRECORD_DBASE *lpRecordBase = nullptr;
 
+
+// =============================================================================
+// AREA 04.1 - COMANDOS DE PLAYER
+// TIPO: rede + gameplay
+// FUNCIONAMENTO: Comandos normais de jogador; inclui interacoes de gathering/mining e utilitarios expostos pelo chat.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 #pragma region Player Commands
 
@@ -23247,9 +23468,9 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 		gameplay::gathering::HarvestResult harvest;
 		if(summitMiningCommand)
-			harvest=gameplay::mining::HarvestMiningNodeForPlayer(lpPlayInfo,nodeId,(std::uint64_t)dwPlayServTime,(std::uint32_t)rand());
+			harvest=gameplay::mining::HarvestMiningNodeForPlayer(gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo),nodeId,(std::uint64_t)dwPlayServTime,(std::uint32_t)rand());
 		else
-			harvest=gameplay::gathering::HarvestGatheringNodeForPlayer(lpPlayInfo,nodeId,(std::uint64_t)dwPlayServTime,(std::uint32_t)rand());
+			harvest=gameplay::gathering::HarvestGatheringNodeForPlayer(gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo),nodeId,(std::uint64_t)dwPlayServTime,(std::uint32_t)rand());
 		if(!harvest.Succeeded())
 		{
 			sprintf_s(szTempBuff,sizeof(szTempBuff),"Harvest failed: %s",SummitGatheringStatusText(harvest.status));
@@ -23367,17 +23588,23 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 	{
 		lpBuff = szChatCommand + len;
 		lpBuff = rsGetWord(szCmdBuff, lpBuff);
+		const gameplay::PlayerId companionOwnerId =
+			gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo);
+		gameplay::companions::legacy::LegacyCompanionCommandsAdapter& companionCommands =
+			gameplay::companions::legacy::ServerLegacyCompanionCommandsAdapter();
 
 		if(!szCmdBuff[0] || lstrcmpi(szCmdBuff, "status") == 0)
 		{
-			const char *selected = gameplay::companions::GetSelectedName(lpPlayInfo);
+			gameplay::companions::CompanionStateSnapshot companionState;
+			gameplay::companions::legacy::ServerLegacyCompanionQueryAdapter().TryGetState(
+				gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo), companionState);
 			sprintf_s(szTempBuff, sizeof(szTempBuff),
 				"Companions: %d/%d | selected: %s | mode: %d | crystal: %u",
-				gameplay::companions::GetActiveCount(lpPlayInfo),
+				static_cast<int>(companionState.activeCount),
 				gameplay::companions::COMPANION_MAX_ACTIVE,
-				selected && selected[0] ? selected : "none",
-				(int)gameplay::companions::GetMode(lpPlayInfo),
-				(unsigned int)gameplay::companions::GetConfiguredCrystalItemCode());
+				companionState.selectedName.empty() ? "none" : companionState.selectedName.c_str(),
+				static_cast<int>(companionState.mode),
+				(unsigned int)gameplay::companions::legacy::ServerLegacyCompanionQueryAdapter().ConfiguredCrystalItemCode());
 			SendQuickMessage(lpPlayInfo, szTempBuff);
 			return TRUE;
 		}
@@ -23413,7 +23640,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				SendQuickMessage(lpPlayInfo, "Usage: /companion select <character>");
 				return TRUE;
 			}
-			const int result = gameplay::companions::Select(lpPlayInfo, szTempBuff);
+			const int result = companionCommands.Select(companionOwnerId, szTempBuff);
 			sprintf_s(szCmdBuff, sizeof(szCmdBuff), result == TRUE ?
 				"Selected companion: %s" : "Could not select companion: %s", szTempBuff);
 			SendQuickMessage(lpPlayInfo, szCmdBuff);
@@ -23424,8 +23651,8 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		{
 			lpBuff = rsGetWord(szTempBuff, lpBuff);
 			const int result = szTempBuff[0] ?
-				gameplay::companions::Summon(lpPlayInfo, szTempBuff) :
-				gameplay::companions::SummonSelected(lpPlayInfo);
+				companionCommands.Summon(companionOwnerId, szTempBuff) :
+				companionCommands.SummonSelected(companionOwnerId);
 			sprintf_s(szCmdBuff, sizeof(szCmdBuff), "Companion summon result: %d", result);
 			SendQuickMessage(lpPlayInfo, szCmdBuff);
 			return TRUE;
@@ -23436,9 +23663,9 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			lpBuff = rsGetWord(szTempBuff, lpBuff);
 			int result = TRUE;
 			if(!szTempBuff[0] || lstrcmpi(szTempBuff, "all") == 0)
-				result = gameplay::companions::DismissAll(lpPlayInfo);
+				result = companionCommands.DismissAll(companionOwnerId);
 			else
-				result = gameplay::companions::Dismiss(lpPlayInfo, szTempBuff);
+				result = companionCommands.Dismiss(companionOwnerId, szTempBuff);
 			sprintf_s(szCmdBuff, sizeof(szCmdBuff), "Companion dismiss result: %d", result);
 			SendQuickMessage(lpPlayInfo, szCmdBuff);
 			return TRUE;
@@ -23447,17 +23674,17 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		if(lstrcmpi(szCmdBuff, "mode") == 0)
 		{
 			lpBuff = rsGetWord(szTempBuff, lpBuff);
-			gameplay::companions::CompanionMode mode = gameplay::companions::COMPANION_MODE_AGGRESSIVE;
+			gameplay::companions::CompanionBehaviorMode modernMode = gameplay::companions::CompanionBehaviorMode::Aggressive;
 			if(lstrcmpi(szTempBuff, "follow") == 0)
-				mode = gameplay::companions::COMPANION_MODE_FOLLOW;
+				modernMode = gameplay::companions::CompanionBehaviorMode::Follow;
 			else if(lstrcmpi(szTempBuff, "passive") == 0)
-				mode = gameplay::companions::COMPANION_MODE_PASSIVE;
+				modernMode = gameplay::companions::CompanionBehaviorMode::Passive;
 			else if(lstrcmpi(szTempBuff, "aggressive") != 0)
 			{
 				SendQuickMessage(lpPlayInfo, "Usage: /companion mode aggressive|follow|passive");
 				return TRUE;
 			}
-			gameplay::companions::SetMode(lpPlayInfo, mode);
+			companionCommands.SetMode(companionOwnerId, modernMode);
 			SendQuickMessage(lpPlayInfo, "Companion mode updated.");
 			return TRUE;
 		}
@@ -23835,37 +24062,24 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 	}
 
-	if(lpPlayInfo->dwClanCode)
+	len = rsCompString("/CLAN>", szChatCommand);
+	if(len)
 	{
-		len = rsCompString("/CLAN>", szChatCommand);
-		if(len)
+		for(cnt = len; cnt < 100; cnt++)
 		{
-			for(cnt = len; cnt < 100; cnt++)
-			{
-				if(szChatCommand[cnt] == 0)
-					return TRUE;
+			if(szChatCommand[cnt] == 0)
+				return TRUE;
 
-				if(szChatCommand[cnt] != ' ')
-				{
-					len = cnt;
-					break;
-				}
-			}
-			wsprintf(TransChatMessage.szMessage, "%s> %s", lpPlayInfo->smCharInfo.szName, szChatCommand + len);
-			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
-			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
-			TransChatMessage.dwIP = 5;
-			TransChatMessage.dwObjectSerial = 0;
-
-			for(cnt = 0; cnt < CONNECTMAX; cnt++)
+			if(szChatCommand[cnt] != ' ')
 			{
-				if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].dwClanCode == lpPlayInfo->dwClanCode)
-				{
-					rsPlayInfo[cnt].lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
-				}
+				len = cnt;
+				break;
 			}
-			return TRUE;
 		}
+		gameplay::social::clan::legacy::ServerLegacyClanChatAdapter().Broadcast(
+			gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo),
+			std::string(szChatCommand + len));
+		return TRUE;
 	}
 
 	len = rsCompString("/thevoid", szChatCommand);
@@ -24027,6 +24241,14 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			return FALSE;
 	}
 
+// =============================================================================
+// AREA 04.2 - COMANDOS VIP
+// TIPO: rede + permissoes
+// FUNCIONAMENTO: Comandos condicionados ao nivel VIP; preserva verificacoes e efeitos legacy.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
+
 #pragma region VIP Commands
 
 
@@ -24036,6 +24258,14 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		if (lpPlayInfo->getSecurity() < AccountTypes::SEC_MODERATOR)
 			return FALSE;
 	}
+
+// =============================================================================
+// AREA 04.3 - COMANDOS DE MODERADOR
+// TIPO: rede + administracao
+// FUNCIONAMENTO: Comandos de moderacao com validacao de security level antes de mutar world/player state.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 #pragma region Moderator Commands
 
@@ -24064,7 +24294,9 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			int failedQuestID = 0;
 			for (int i = 0; i < (int)(sizeof(tier5QuestIDs) / sizeof(tier5QuestIDs[0])); i++)
 			{
-				if (!cQuestHandler.MarkSingleQuestCompletedForTesting(lpPlayInfo, tier5QuestIDs[i]))
+				if (!gameplay::quests::legacy::ServerLegacyQuestAdminService().MarkCompletedForTesting(
+					gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo),
+					gameplay::QuestId(static_cast<std::uint32_t>(tier5QuestIDs[i]))))
 				{
 					completed = false;
 					failedQuestID = tier5QuestIDs[i];
@@ -24075,7 +24307,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			if (completed)
 			{
 				lpPlayInfo->smCharInfo.ChangeJob = CHARACTER_RANK5;
-				cQuestHandler.GetSpoilerInfo(lpPlayInfo, 9);
+				gameplay::quests::legacy::ServerLegacyQuestQueryIngressAdapter().SendSpoilerInfo(gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo), 9);
 
 				int freeTier5Points = 0;
 				if (GetTier5FreeSkillPointsForPlayer(lpPlayInfo, &freeTier5Points))
@@ -24598,6 +24830,14 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 	if(lpPlayInfo->getSecurity() < AccountTypes::SEC_GAMEMASTER)
 		return FALSE;
 
+// =============================================================================
+// AREA 04.4 - COMANDOS DE GAME MASTER
+// TIPO: rede + administracao
+// FUNCIONAMENTO: Ferramentas de GM para operacao do world, diagnostico e manutencao de jogadores.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
+
 #pragma region Game Master Commands
 	len = rsCompString("/get_money", szChatCommand);
 	if(len && lpPlayInfo->ServerMoney)
@@ -25091,6 +25331,14 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 	if(lpPlayInfo->getSecurity() < AccountTypes::SEC_ADMINISTRATOR)
 		return FALSE;
+
+// =============================================================================
+// AREA 04.5 - COMANDOS DE ADMINISTRADOR
+// TIPO: rede + administracao
+// FUNCIONAMENTO: Operacoes de maior privilegio; muitos efeitos sao diretos no kernel e por isso permanecem RED.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 #pragma region Administrator Commands
 
@@ -26095,6 +26343,14 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 	if(lpPlayInfo->getSecurity() < AccountTypes::SEC_MODERATOR)
 		return FALSE;
 
+// =============================================================================
+// AREA 04.6 - COMANDOS DE CONSOLE
+// TIPO: operacao
+// FUNCIONAMENTO: Entrada reservada ao console/operacao; nao e API moderna de feature.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
+
 #pragma region Console Commands
 
 
@@ -26188,6 +26444,16 @@ bool initialize(smTHREADSOCK *SockInfo)
 
 bool handlePlayerLoginOpcode(smTHREADSOCK* SockInfo)
 {
+	{
+		FILE *fp = fopen("LOGS\\mingw_login_handshake_server.txt", "a");
+		if(fp)
+		{
+			fprintf(fp, "[LOGIN_HANDLER_ENTER] sockInfo=%p\n", (void *)SockInfo);
+			fflush(fp);
+			fclose(fp);
+		}
+	}
+
 	try
 	{
 		if (SockInfo)
@@ -26203,6 +26469,23 @@ bool handlePlayerLoginOpcode(smTHREADSOCK* SockInfo)
 					bool recordAttack(rsPLAYINFO * player, const std::string & log);
 
 					LoginPacket* command = (LoginPacket*)SockInfo->Buff;
+
+				{
+					FILE *fp = fopen("LOGS\\mingw_login_handshake_server.txt", "a");
+					if(fp)
+					{
+						fprintf(fp,
+							"[LOGIN_HANDLER_PACKET] playInfo=%p command=%p size=%d code=0x%08X accountLen=%u hashLen=%u\n",
+							(void *)playInfo,
+							(void *)command,
+							command ? command->size : -1,
+							command ? (unsigned)command->code : 0u,
+							command ? (unsigned)strnlen(command->account, ACCOUNT_SIZE) : 0u,
+							command ? (unsigned)strnlen(command->hash, sizeof(command->hash)) : 0u);
+						fflush(fp);
+						fclose(fp);
+					}
+				}
 
                     {
                         FILE *fpProbe =
@@ -26335,6 +26618,19 @@ bool handlePlayerLoginOpcode(smTHREADSOCK* SockInfo)
                         }
 
 						bool request_login = rsLogAccount(playInfo, command->account, command->password, command->mac, command->szPath, command->szPCName);
+
+						{
+							FILE *fp = fopen("LOGS\\mingw_login_handshake_server.txt", "a");
+							if(fp)
+							{
+								fprintf(fp,
+									"[AUTH_RESULT] requestLogin=%d sqlReady=%d\n",
+									request_login ? 1 : 0,
+									Server_SqlReady);
+								fflush(fp);
+								fclose(fp);
+							}
+						}
 
                         {
                             FILE *fpAuth = SummitServerRuntimeTraceFile("LOGS\\mingw_auth_direct.txt");
@@ -26797,7 +27093,6 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 	DWORD dwTransSize = 0;
 	char *lpBuff = nullptr;
 	DWORD dwDataKey = 0;
-	BOOL IsConnected = FALSE;
 
 
 	EnterCriticalSection(&cSerSection);
@@ -26918,6 +27213,14 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			char									szParam[256];
 		};
 
+		if(gameplay::network::legacy::RouteServerGameplayPacket(
+			gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo),
+			static_cast<std::uint32_t>(dwTransCode), SockInfo->Buff, static_cast<std::size_t>(dwTransSize)) !=
+			gameplay::network::RouteStatus::UnknownOpcode)
+		{
+			goto quit;
+		}
+
 		switch(dwTransCode)
 		{
 
@@ -26926,59 +27229,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			break;
 
 
-		case gameplay::covenants::protocol::OPCODE_COVENANT_UI_ACTION:
-		{
-			if(dwTransSize == sizeof(gameplay::covenants::protocol::CovenantUIActionPacket))
-			{
-				const gameplay::covenants::protocol::CovenantUIActionPacket *packet =
-					reinterpret_cast<const gameplay::covenants::protocol::CovenantUIActionPacket *>(SockInfo->Buff);
-				gameplay::covenants::HandleCovenantUIAction(lpPlayInfo, packet);
-			}
-		}
-		break;
 
-		case gameplay::companions::protocol::OPCODE_COMPANION_UI_ACTION:
-		{
-			if(dwTransSize == sizeof(gameplay::companions::protocol::CompanionUIActionPacket))
-			{
-				const gameplay::companions::protocol::CompanionUIActionPacket *packet =
-					reinterpret_cast<const gameplay::companions::protocol::CompanionUIActionPacket *>(SockInfo->Buff);
-				gameplay::companions::HandleUIAction(lpPlayInfo, packet);
-			}
-		}
-		break;
-
-		case OpCode::OPCODE_OPEN_HG:
-
-			for (int i = 0; i < CONNECTMAX; i++)
-			{
-				if (rsPlayInfo[i].lpsmSock)
-				{
-					if (lstrcmpi(rsPlayInfo[i].lpsmSock->szIPAddr, lpPlayInfo->lpsmSock->szIPAddr) == 0)
-					{
-						if (rsPlayInfo[i].Position.Area == 23)
-							IsConnected = TRUE;
-						break;
-					}
-				}
-			}
-
-			if (IsConnected)
-			{
-				TRANS_CHATMESSAGE	TransChatMessage;
-				wsprintf(TransChatMessage.szMessage, "HG> M\341ximo 1 personagem por pessoa!");
-				TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
-				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
-				TransChatMessage.dwIP = 3;
-				TransChatMessage.dwObjectSerial = 0;
-				if (lpPlayInfo->lpsmSock)
-					lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
-			}
-			else {
-				cHg.RecvJoinHg(lpPlayInfo);
-			}
-
-			break;
 		case smTRANSCODE_OPEN_RANK:
 			Rank::GetInstance()->SendRankclassToGame(lpPlayInfo);
 			SendOpenRank(lpPlayInfo->lpsmSock);
@@ -27041,35 +27292,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			break;
 		#endif /* SUMMIT_DISABLED_MISSING_OPCODE */
 
-		case OpCode::OPCODE_SPOILER_INFO:
-			lpTransCommand = (smTRANS_COMMAND*)SockInfo->Buff;
 
-			cQuestHandler.GetSpoilerInfo(lpPlayInfo, lpTransCommand->WParam);
-			break;
-
-		case OpCode::OPCODE_QUEST_INFO:
-			lpTransCommand = (smTRANS_COMMAND*)SockInfo->Buff;
-
-			cQuestHandler.GetQuestInfo(lpPlayInfo, lpTransCommand->WParam, lpTransCommand->LParam, lpTransCommand->SParam);
-			break;
-
-		case OpCode::OPCODE_START_QUEST:
-			lpTransCommand = (smTRANS_COMMAND*)SockInfo->Buff;
-
-			cQuestHandler.StartQuest(lpPlayInfo, lpTransCommand->WParam, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
-			break;
-
-		case OpCode::OPCODE_CANCEL_QUEST:
-			lpTransCommand = (smTRANS_COMMAND*)SockInfo->Buff;
-
-			cQuestHandler.CancelQuest(lpPlayInfo, lpTransCommand->WParam, lpTransCommand->LParam, lpTransCommand->SParam);
-			break;
-
-		case OpCode::OPCODE_GET_REWARD:
-			lpTransCommand = (smTRANS_COMMAND*)SockInfo->Buff;
-
-			cQuestHandler.GetReward(lpPlayInfo, lpTransCommand->WParam, lpTransCommand->LParam, lpTransCommand->SParam);
-			break;
 		case OpCode::OPCODE_GET_OPENCOINSHOP:
 			SendCoinShop(lpPlayInfo->lpsmSock);
 			break;
@@ -28568,7 +28791,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 				// Never trust a Rank5 value coming from the client save. QuestDB is authoritative.
 				bool rank5QuestComplete = false;
 				DWORD &incomingRank = lpPlayInfo->lpRecordBase->TransRecordData.smCharInfo.ChangeJob;
-				if(cQuestHandler.QueryCompletedQuest(lpPlayInfo->getName(), QUESTID_T5_QUEST_ARENA, &rank5QuestComplete))
+				if(gameplay::quests::legacy::ServerLegacyQuestRepository().TryIsCompleted(lpPlayInfo->getName(), gameplay::QuestId(QUESTID_T5_QUEST_ARENA), rank5QuestComplete))
 				{
 					if(rank5QuestComplete && incomingRank < CHARACTER_RANK5)
 						incomingRank = CHARACTER_RANK5;
@@ -29822,7 +30045,7 @@ if(cnt >= CONNECTMAX)
 				lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
 			}
 
-			cQuestHandler.VerifyLevel(lpPlayInfo);
+			gameplay::quests::legacy::ServerLegacyQuestLifecycleService().VerifyPlayerLevel(gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo));
 
 			initialize(SockInfo);
 			VIPHANDLER->IsVIp(lpPlayInfo);
@@ -30127,15 +30350,16 @@ if(cnt >= CONNECTMAX)
 			// a legacy unbraced switch case; a declaration in the case scope makes
 			// every following case label an illegal jump over initialization.
 			{
-				const DWORD companionCrystalCode = gameplay::companions::GetConfiguredCrystalItemCode();
+				const DWORD companionCrystalCode = gameplay::companions::legacy::ServerLegacyCompanionQueryAdapter().ConfiguredCrystalItemCode();
 				if(companionCrystalCode &&
 					lpTransItemInfo->Item.CODE == companionCrystalCode &&
 					lpTransItemInfo->Item.PotionCount == 100)
 				{
 					if(CheckItemForm(&lpTransItemInfo->Item) == TRUE)
 					{
-						cnt = gameplay::companions::HandleCrystalUse(
-							lpPlayInfo, lpTransItemInfo->Item.CODE);
+						cnt = gameplay::companions::legacy::ServerLegacyCompanionCommandsAdapter().UseCrystal(
+							gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo),
+							static_cast<std::uint32_t>(lpTransItemInfo->Item.CODE));
 						if(cnt == TRUE) break;
 						if(cnt == -1)
 						{
@@ -31830,7 +32054,7 @@ if(cnt >= CONNECTMAX)
 						SQL::GetInstance()->LeaveSqlSection();
 					}
 				}
-                cQuestHandler.VerifyLevel(lpPlayInfo);
+                gameplay::quests::legacy::ServerLegacyQuestLifecycleService().VerifyPlayerLevel(gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo));
 				break;
 
 			case 1:
@@ -32035,100 +32259,80 @@ if(cnt >= CONNECTMAX)
 		case OpCode::OPCODE_TRADE_REQUST:
 
 			lpTransCommand = (smTRANS_COMMAND *)SockInfo->Buff;
-			lpPlayInfo2 = srFindUserFromSerial(lpTransCommand->WParam);
-			if(lpPlayInfo2 && lpPlayInfo2->lpsmSock)
 			{
-				if(lpPlayInfo->dwFuncChkErrorFlag || lpPlayInfo2->dwFuncChkErrorFlag) break;
-				if(lpPlayInfo->szServerID[0] || rsServerConfig.DisableThrowItem) break;
-				cCoinShop.RecvGetItemCoin(lpPlayInfo);
-				cCoinShop.RecvGetItemCoin(lpPlayInfo2);
-				lpPlayInfo2->lpsmSock->Send((char *)lpTransCommand, lpTransCommand->size, TRUE);
+				const gameplay::PlayerId senderId =
+					gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo);
+				const gameplay::PlayerId receiverId(static_cast<std::uint32_t>(lpTransCommand->WParam));
+				const gameplay::commerce::TradeIngressRequest tradeRequest(
+					senderId,
+					receiverId,
+					gameplay::commerce::TradeActionFromLegacyFlag(lpTransCommand->LParam),
+					lpTransCommand->LParam);
+				const gameplay::commerce::TradeIngressResult tradeResult =
+					gameplay::commerce::legacy::ServerLegacyTradeAdapter().EvaluateIngress(tradeRequest);
+				if(!tradeResult.ShouldRelay())
+					break;
+
+				lpPlayInfo2 = gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().Resolve(tradeResult.receiver);
+				if(lpPlayInfo2 && lpPlayInfo2->lpsmSock)
+					lpPlayInfo2->lpsmSock->Send((char *)lpTransCommand, lpTransCommand->size, TRUE);
 			}
 			break;
 
 		case OpCode::OPCODE_PARTY_JOIN:
 
 			lpTransCommand = (smTRANS_COMMAND *)SockInfo->Buff;
-			lpPlayInfo2 = srFindUserFromSerial(lpTransCommand->WParam);
-			if(lpPlayInfo2)
-			{
-				if(lpPlayInfo2->lpPartyMaster)
-				{
-					if(!lpPlayInfo->lpPartyMaster)
-					{
-
-
-						lpPlayInfo->JoinParty(lpPlayInfo2->lpPartyMaster);
-					}
-				}
-				else
-				{
-					if(lpPlayInfo->lpPartyMaster)
-					{
-
-
-						lpPlayInfo2->JoinParty(lpPlayInfo->lpPartyMaster);
-					}
-					else
-					{
-
-						lpPlayInfo2->CreateParty(lpPlayInfo);
-					}
-				}
-			}
+			gameplay::social::party::legacy::ServerLegacyPartyCommandsAdapter().Join(
+				gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo),
+				gameplay::PlayerId(static_cast<std::uint32_t>(lpTransCommand->WParam)));
 			break;
 
 
 		case OpCode::OPCODE_PARTY_COMMAND:
 
 			lpTransCommand = (smTRANS_COMMAND *)SockInfo->Buff;
-			lpPlayInfo2 = srFindUserFromSerial(lpTransCommand->WParam);
 			TransChatMessage.szMessage[0] = 0;
-			if(!lpPlayInfo->dwPartyInfo || !lpPlayInfo->lpPartyMaster) break;
 
 #ifdef _W_SERVER
-
-			switch(lpTransCommand->LParam)
 			{
-			case 0:
+				const gameplay::PlayerId requesterId =
+					gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo);
+				const gameplay::PlayerId targetId(
+					static_cast<std::uint32_t>(lpTransCommand->WParam));
+				const gameplay::social::party::legacy::LegacyPartyCommandsAdapter& partyCommands =
+					gameplay::social::party::legacy::ServerLegacyPartyCommandsAdapter();
 
-				if(lpPlayInfo2 && lpPlayInfo->LeavePartyMaster(lpPlayInfo2))
+				switch(lpTransCommand->LParam)
 				{
-
-					wsprintf(TransChatMessage.szMessage, srMsg_026, lpPlayInfo2->smCharInfo.szName);
+				case 0:
+					if(partyCommands.TransferLeadership(requesterId, targetId))
+					{
+						lpPlayInfo2 = gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().Resolve(targetId);
+						if(lpPlayInfo2)
+							wsprintf(TransChatMessage.szMessage, srMsg_026, lpPlayInfo2->smCharInfo.szName);
+					}
+					break;
+				case 1:
+					if(partyCommands.Release(requesterId))
+						wsprintf(TransChatMessage.szMessage, srMsg_025);
+					break;
+				case 2:
+					if(partyCommands.Kick(requesterId, targetId))
+					{
+						lpPlayInfo2 = gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().Resolve(targetId);
+						if(lpPlayInfo2)
+						{
+							wsprintf(TransChatMessage.szMessage, srMsg_023, lpPlayInfo2->smCharInfo.szName);
+							lpPlayInfo->SendPartyMessage(TransChatMessage.szMessage, 2);
+						}
+						TransChatMessage.szMessage[0] = 0;
+					}
+					break;
+				case 3:
+					if(partyCommands.Leave(requesterId))
+						wsprintf(TransChatMessage.szMessage, srMsg_022);
+					break;
 				}
-				break;
-			case 1:
-
-				if(lpPlayInfo->ReleaseParty())
-				{
-
-					wsprintf(TransChatMessage.szMessage, srMsg_025);
-
-				}
-				break;
-
-			case 2:
-
-				if(lpPlayInfo2 && lpPlayInfo2->SecedeParty())
-				{
-
-
-					wsprintf(TransChatMessage.szMessage, srMsg_023, lpPlayInfo2->smCharInfo.szName);
-					lpPlayInfo->SendPartyMessage(TransChatMessage.szMessage, 2);
-					TransChatMessage.szMessage[0] = 0;
-				}
-				break;
-
-			case 3:
-
-				if(lpPlayInfo->SecedeParty())
-				{
-
-					wsprintf(TransChatMessage.szMessage, srMsg_022);
-				}
-				break;
-
 			}
 #endif
 
@@ -32142,22 +32346,40 @@ if(cnt >= CONNECTMAX)
 			}
 			break;
 
+
 		case OpCode::OPCODE_PARTY_PLAYUPDATE:
 
-			lpPlayInfo->UpdateServerPartyPlayer((TRANS_PARTY_PLAYINFO *)SockInfo->Buff);
+			{
+				TRANS_PARTY_PLAYINFO* partyUpdate = (TRANS_PARTY_PLAYINFO *)SockInfo->Buff;
+				if(partyUpdate->PartyUserCount >= 0 && partyUpdate->PartyUserCount < PARTY_PLAYER_MAX)
+				{
+					gameplay::social::party::PartyMembershipSync sync;
+					sync.members.reserve(static_cast<std::size_t>(partyUpdate->PartyUserCount));
+					for(int partyIndex = 0; partyIndex < partyUpdate->PartyUserCount; ++partyIndex)
+						sync.members.push_back(gameplay::PlayerId(static_cast<std::uint32_t>(
+							partyUpdate->PlayInfo[partyIndex].dwObjectSerial)));
+					gameplay::social::party::legacy::ServerLegacyPartyCommandsAdapter().SynchronizeMembership(
+						gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo), sync);
+				}
+			}
 			break;
 
 		case OpCode::OPCODE_PARTY_POTION:
 
-			if(lpPlayInfo->lpPartyMaster)
-				lpPlayInfo->lpPartyMaster->SendPartyData(lpPlayInfo, SockInfo->Buff);
+			{
+				smTRANS_COMMAND* partyPacket = (smTRANS_COMMAND*)SockInfo->Buff;
+				gameplay::social::party::legacy::ServerLegacyPartyRelayService().Relay(
+					gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo),
+					gameplay::network::PacketView(SockInfo->Buff, static_cast<std::size_t>(partyPacket->size),
+						static_cast<std::uint32_t>(partyPacket->code)));
+			}
 			break;
 
 
 		case OpCode::OPCODE_PARTY_RELEASE:
 
-			lpPlayInfo->dwPartyInfo = 0;
-			lpPlayInfo->lpPartyMaster = 0;
+			gameplay::social::party::legacy::ServerLegacyPartyCommandsAdapter().ClearMembership(
+				gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo));
 			break;
 
 		case OpCode::OPCODE_WAREHOUSE:
@@ -32629,34 +32851,69 @@ if(cnt >= CONNECTMAX)
 					break;
 
 		case OpCode::OPCODE_CRAFTITEM:
-
-			rsRecvCraftItem(lpPlayInfo, (sCRAFTITEM_SERVER *)SockInfo->Buff);
+		{
+			gameplay::commerce::CraftRequest request;
+			request.player = gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo);
+			const std::uint8_t* first = reinterpret_cast<const std::uint8_t*>(SockInfo->Buff);
+			request.requestBytes.assign(first, first + sizeof(sCRAFTITEM_SERVER));
+			gameplay::commerce::legacy::ServerLegacyCraftingAdapter().Craft(request);
 			break;
+		}
 
 		case OpCode::OPCODE_AGINGITEM:
-
-			rsRecvAgingItem(lpPlayInfo, (sCRAFTITEM_SERVER *)SockInfo->Buff);
+		{
+			gameplay::commerce::AgingRequest request;
+			request.player = gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo);
+			request.operation = gameplay::commerce::AgingOperation::Apply;
+			const std::uint8_t* first = reinterpret_cast<const std::uint8_t*>(SockInfo->Buff);
+			request.requestBytes.assign(first, first + sizeof(sCRAFTITEM_SERVER));
+			gameplay::commerce::legacy::ServerLegacyAgingAdapter().Process(request);
 			break;
+		}
 
 		case OpCode::OPCODE_AGING_UPGRADE:
-
-			rsRecvAgingUpgradeItem(lpPlayInfo, (TRANS_ITEMINFO *)SockInfo->Buff);
+		{
+			gameplay::commerce::AgingRequest request;
+			request.player = gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo);
+			request.operation = gameplay::commerce::AgingOperation::Upgrade;
+			const std::uint8_t* first = reinterpret_cast<const std::uint8_t*>(SockInfo->Buff);
+			request.requestBytes.assign(first, first + sizeof(TRANS_ITEMINFO));
+			gameplay::commerce::legacy::ServerLegacyAgingAdapter().Process(request);
 			break;
+		}
 
 		case OpCode::OPCODE_MAKE_LINKCORE:
-
-			rsRecvMakeLinkCore(lpPlayInfo, (TRANS_ITEMINFO *)SockInfo->Buff);
+		{
+			gameplay::commerce::CraftingAuxiliaryRequest request;
+			request.player = gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo);
+			request.operation = gameplay::commerce::CraftingAuxiliaryOperation::MakeLinkCore;
+			const std::uint8_t* first = reinterpret_cast<const std::uint8_t*>(SockInfo->Buff);
+			request.requestBytes.assign(first, first + sizeof(TRANS_ITEMINFO));
+			gameplay::commerce::legacy::ServerLegacyCraftingAdapter().ProcessAuxiliary(request);
 			break;
+		}
 
 		case OpCode::OPCODE_USE_LINKCORE:
-
-			rsRecvUseLinkCore(lpPlayInfo, (TRANS_ITEMINFO *)SockInfo->Buff);
+		{
+			gameplay::commerce::CraftingAuxiliaryRequest request;
+			request.player = gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo);
+			request.operation = gameplay::commerce::CraftingAuxiliaryOperation::UseLinkCore;
+			const std::uint8_t* first = reinterpret_cast<const std::uint8_t*>(SockInfo->Buff);
+			request.requestBytes.assign(first, first + sizeof(TRANS_ITEMINFO));
+			gameplay::commerce::legacy::ServerLegacyCraftingAdapter().ProcessAuxiliary(request);
 			break;
+		}
 
 		case OpCode::OPCODE_WINGITEM:
-
-			rsRecvWingItem(lpPlayInfo, (sCRAFTITEM_SERVER *)SockInfo->Buff);
+		{
+			gameplay::commerce::CraftingAuxiliaryRequest request;
+			request.player = gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo);
+			request.operation = gameplay::commerce::CraftingAuxiliaryOperation::Wing;
+			const std::uint8_t* first = reinterpret_cast<const std::uint8_t*>(SockInfo->Buff);
+			request.requestBytes.assign(first, first + sizeof(sCRAFTITEM_SERVER));
+			gameplay::commerce::legacy::ServerLegacyCraftingAdapter().ProcessAuxiliary(request);
 			break;
+		}
 
 		case OpCode::OPCODE_SHOPTITEM:
 
@@ -32852,7 +33109,7 @@ if(cnt >= CONNECTMAX)
 
 			if(lpTransCommandEx->WParam == sinQT136 &&
 				(!IsT5CryPickupToken(lpPlayInfo, lpTransCommandEx->WParam, lpTransCommandEx->LParam, lpTransCommandEx->SParam) ||
-				 !cQuestHandler.IsQuestInProgress(lpPlayInfo, QUESTID_T5_CRY_ME_A_RIVER)))
+				 !gameplay::quests::legacy::ServerLegacyQuestObjectiveService().IsInProgress(gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo), gameplay::QuestId(QUESTID_T5_CRY_ME_A_RIVER))))
 				break;
 
 			cnt = lpTransCommandEx->EParam^OpCode::OPCODE_GETITEM^lpTransCommandEx->SParam;
@@ -32893,7 +33150,7 @@ if(cnt >= CONNECTMAX)
 					if(lpTransCommandEx->WParam == sinQT136 && invenResult >= 0 &&
 						IsT5CryPickupToken(lpPlayInfo, lpTransCommandEx->WParam, lpTransCommandEx->LParam, lpTransCommandEx->SParam))
 					{
-						if(cQuestHandler.CompleteQuestObjectives(lpPlayInfo, QUESTID_T5_CRY_ME_A_RIVER))
+						if(gameplay::quests::legacy::ServerLegacyQuestObjectiveService().CompleteObjectives(gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo), gameplay::QuestId(QUESTID_T5_CRY_ME_A_RIVER)))
 							ClearT5CryPickupToken(lpPlayInfo);
 					}
 
@@ -33149,11 +33406,11 @@ if(cnt >= CONNECTMAX)
 		case OpCode::OPCODE_CLAN_SERVICE:
 
 			lpTransCharCommand2 = (smTRANS_CHAR_COMMAND2 *)SockInfo->Buff;
-			lpPlayInfo2 = srFindUserFromSerial(lpTransCharCommand2->LParam);
-			if(lpPlayInfo2 && lpPlayInfo2->lpsmSock)
-			{
-				lpPlayInfo2->lpsmSock->Send((char *)lpTransCharCommand2, lpTransCharCommand2->size, TRUE);
-			}
+			gameplay::network::legacy::ServerLegacyPacketSender().Send(
+				gameplay::PlayerId(static_cast<std::uint32_t>(lpTransCharCommand2->LParam)),
+				gameplay::network::PacketView(lpTransCharCommand2,
+					static_cast<std::size_t>(lpTransCharCommand2->size),
+					static_cast<std::uint32_t>(lpTransCharCommand2->code)));
 			break;
 
 		case OpCode::OPCODE_CLAN_UPDATE:
@@ -33438,64 +33695,96 @@ if(cnt >= CONNECTMAX)
 			break;
 
 		case OpCode::OPCODE_OPEN_MYSHOP:
+		{
 			lpTransChatMessage = (TRANS_CHATMESSAGE *)SockInfo->Buff;
-			if(lpPlayInfo->szServerID[0] || rsServerConfig.DisableThrowItem) break;
 			lpTransChatMessage->szMessage[127] = 0;
-			strcpy_s(lpPlayInfo->szTradeMessage, lpTransChatMessage->szMessage);
-			lpPlayInfo->dwTradeMsgCode = lpTransChatMessage->dwIP;
+
+			gameplay::commerce::PersonalShopIngressRequest request(
+				gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo),
+				gameplay::PlayerId(), gameplay::commerce::PersonalShopIngressAction::OpenListing);
+			request.listingMessage = lpTransChatMessage->szMessage;
+			request.listingCode = static_cast<std::uint32_t>(lpTransChatMessage->dwIP);
+			gameplay::commerce::legacy::ServerLegacyPersonalShopAdapter().HandleIngress(request);
 			break;
+		}
 
 		case OpCode::OPCODE_CALL_MYSHOP:
+		{
 			lpTransCommand = (smTRANS_COMMAND *)SockInfo->Buff;
-
-			if(lpPlayInfo->szServerID[0] || rsServerConfig.DisableThrowItem) break;
-			lpPlayInfo2 = srFindUserFromSerial(lpTransCommand->LParam);
-			if(lpPlayInfo2 && lpPlayInfo2->lpsmSock)
+			const gameplay::commerce::PersonalShopIngressResult ingress =
+				gameplay::commerce::legacy::ServerLegacyPersonalShopAdapter().HandleIngress(
+					gameplay::commerce::PersonalShopIngressRequest(
+						gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo),
+						gameplay::PlayerId(static_cast<std::uint32_t>(lpTransCommand->LParam)),
+						gameplay::commerce::PersonalShopIngressAction::CallListing));
+			if(ingress.Allowed())
 			{
-				lpPlayInfo2->lpsmSock->Send((char *)lpTransCommand, lpTransCommand->size, TRUE);
+				lpPlayInfo2 = gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().Resolve(ingress.receiver);
+				if(lpPlayInfo2 && lpPlayInfo2->lpsmSock)
+					lpPlayInfo2->lpsmSock->Send((char *)lpTransCommand, lpTransCommand->size, TRUE);
 			}
 			break;
+		}
 
 		case OpCode::OPCODE_MYSHOP_ITEM:
+		{
 			lpTransTradeItems = (TRANS_TRADEITEMS *)SockInfo->Buff;
-			lpPlayInfo2 = srFindUserFromSerial(lpTransTradeItems->dwRecver);
-			if(lpPlayInfo2 && lpPlayInfo2->lpsmSock)
+			const gameplay::commerce::PersonalShopIngressResult ingress =
+				gameplay::commerce::legacy::ServerLegacyPersonalShopAdapter().HandleIngress(
+					gameplay::commerce::PersonalShopIngressRequest(
+						gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo),
+						gameplay::PlayerId(static_cast<std::uint32_t>(lpTransTradeItems->dwRecver)),
+						gameplay::commerce::PersonalShopIngressAction::RelayItem));
+			if(ingress.Allowed())
 			{
-				lpPlayInfo2->lpsmSock->Send((char *)lpTransTradeItems, lpTransTradeItems->size, TRUE);
+				lpPlayInfo2 = gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().Resolve(ingress.receiver);
+				if(lpPlayInfo2 && lpPlayInfo2->lpsmSock)
+					lpPlayInfo2->lpsmSock->Send((char *)lpTransTradeItems, lpTransTradeItems->size, TRUE);
 			}
 			break;
+		}
 
 		case OpCode::OPCODE_MYSHOP_TRADE:
-
+		{
 			lpTransCommand = (smTRANS_COMMAND *)SockInfo->Buff;
-			if(lpPlayInfo->szServerID[0] || rsServerConfig.DisableThrowItem) break;
-			lpPlayInfo2 = srFindUserFromSerial(lpTransCommand->LParam);
-			if(lpPlayInfo2 && lpPlayInfo2->lpsmSock)
+			const gameplay::commerce::PersonalShopIngressResult ingress =
+				gameplay::commerce::legacy::ServerLegacyPersonalShopAdapter().HandleIngress(
+					gameplay::commerce::PersonalShopIngressRequest(
+						gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo),
+						gameplay::PlayerId(static_cast<std::uint32_t>(lpTransCommand->LParam)),
+						gameplay::commerce::PersonalShopIngressAction::TradeRequest));
+			if(ingress.Allowed())
 			{
-
-				if(rsTrade_PersonalShop(lpPlayInfo, lpPlayInfo2, (smTRANS_COMMAND_BUFF *)SockInfo->Buff) == TRUE)
+				lpPlayInfo2 = gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().Resolve(ingress.receiver);
+				if(lpPlayInfo2 && lpPlayInfo2->lpsmSock &&
+					rsTrade_PersonalShop(lpPlayInfo, lpPlayInfo2, (smTRANS_COMMAND_BUFF *)SockInfo->Buff) == TRUE)
 				{
 					lpPlayInfo2->lpsmSock->Send((char *)lpTransCommand, lpTransCommand->size, TRUE);
 				}
 			}
 			break;
+		}
 
 		case OpCode::OPCODE_MYSHOP_MESSAGE:
-
+		{
 			lpTransCommand = (smTRANS_COMMAND *)SockInfo->Buff;
-			lpPlayInfo2 = srFindUserFromSerial(lpTransCommand->LParam);
-
-			if(lpPlayInfo->szServerID[0] || rsServerConfig.DisableThrowItem) break;
-			if(lpPlayInfo2 && lpPlayInfo2->dwTradeMsgCode && lpPlayInfo2->dwTradeMsgCode == lpTransCommand->SParam)
+			const gameplay::commerce::PersonalShopMessageResult message =
+				gameplay::commerce::legacy::ServerLegacyPersonalShopAdapter().ReadListingMessage(
+					gameplay::commerce::PersonalShopMessageRequest(
+						gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo),
+						gameplay::PlayerId(static_cast<std::uint32_t>(lpTransCommand->LParam)),
+						static_cast<std::uint32_t>(lpTransCommand->SParam)));
+			if(message.Available())
 			{
-				strcpy_s(TransChatMessage.szMessage, lpPlayInfo2->szTradeMessage);
+				strcpy_s(TransChatMessage.szMessage, message.message.c_str());
 				TransChatMessage.code = OpCode::OPCODE_MYSHOP_MESSAGE;
 				TransChatMessage.dwIP = 0;
-				TransChatMessage.dwObjectSerial = lpTransCommand->LParam;
+				TransChatMessage.dwObjectSerial = message.target.value;
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
 			}
 			break;
+		}
 
 		#if 0 /* SUMMIT_DISABLED_MISSING_OPCODE: OPCODE_FORCEORB_DATA */
 		case OpCode::OPCODE_FORCEORB_DATA:
@@ -33541,15 +33830,25 @@ if(cnt >= CONNECTMAX)
 
 
 		case OpCode::OPCODE_PCBANG_PET:
-			rsRecvAreaServer_PCBangPet(lpPlayInfo, (smTRANS_COMMAND *)SockInfo->Buff);
-			break;
-
 		case OpCode::OPCODE_PHENIX_PET:
-			rsRecvAreaServer_PhenixPet(lpPlayInfo, (smTRANS_COMMAND *)SockInfo->Buff);
-			break;
-
 		case OpCode::OPCODE_HELP_PET:
-			rsRecvAreaServer_HelpPet(lpPlayInfo, (smTRANS_COMMAND *)SockInfo->Buff);
+			{
+				lpTransCommand = (smTRANS_COMMAND *)SockInfo->Buff;
+				gameplay::pets::PetRuntimeKind petKind = gameplay::pets::PetRuntimeKind::PcBang;
+				if(lpTransCommand->code == OpCode::OPCODE_PHENIX_PET)
+					petKind = gameplay::pets::PetRuntimeKind::Phoenix;
+				else if(lpTransCommand->code == OpCode::OPCODE_HELP_PET)
+					petKind = gameplay::pets::PetRuntimeKind::Help;
+				gameplay::pets::legacy::ServerLegacyPetRuntimeAdapter().ApplyAreaSync(
+					gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo),
+					gameplay::pets::PetAreaSync(
+						petKind,
+						static_cast<std::uint32_t>(lpTransCommand->code),
+						static_cast<std::uint32_t>(lpTransCommand->WParam),
+						static_cast<std::uint32_t>(lpTransCommand->LParam),
+						static_cast<std::uint32_t>(lpTransCommand->SParam),
+						static_cast<std::uint32_t>(lpTransCommand->EParam)));
+			}
 			break;
 
 		case OpCode::OPCODE_QUEST_COMMAND:
@@ -33620,23 +33919,47 @@ if(cnt >= CONNECTMAX)
 			rsRecvHackTrap(lpPlayInfo, (smTRANS_COMMAND *)SockInfo->Buff);
 			break;
 		case OpCode::OPCODE_MIXTURE_RESET_ITEM:
-
-			rsRecvMixtureResetItem(lpPlayInfo, (sMIXTURE_RESET_ITEM_SERVER *)SockInfo->Buff);
+		{
+			gameplay::commerce::MixingRequest request;
+			request.player = gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo);
+			request.operation = gameplay::commerce::MixingOperation::Reset;
+			const std::uint8_t* first = reinterpret_cast<const std::uint8_t*>(SockInfo->Buff);
+			request.requestBytes.assign(first, first + sizeof(sMIXTURE_RESET_ITEM_SERVER));
+			gameplay::commerce::legacy::ServerLegacyMixingAdapter().Process(request);
 			break;
+		}
 
 		case OpCode::OPCODE_SKIN_CHANGE_ITEM:
-
-			rsRecvSkinChangeItem(lpPlayInfo, (sSKIN_CHANGE_SERVER*)SockInfo->Buff);
+		{
+			gameplay::commerce::CraftingAuxiliaryRequest request;
+			request.player = gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo);
+			request.operation = gameplay::commerce::CraftingAuxiliaryOperation::SkinChange;
+			const std::uint8_t* first = reinterpret_cast<const std::uint8_t*>(SockInfo->Buff);
+			request.requestBytes.assign(first, first + sizeof(sSKIN_CHANGE_SERVER));
+			gameplay::commerce::legacy::ServerLegacyCraftingAdapter().ProcessAuxiliary(request);
 			break;
+		}
 
 		case OpCode::OPCODE_SMELTINGITEM:
-
-			rsRecvSmeltingItem(lpPlayInfo, (sSMELTINGITEM_SERVER *)SockInfo->Buff);
+		{
+			gameplay::commerce::CraftingAuxiliaryRequest request;
+			request.player = gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo);
+			request.operation = gameplay::commerce::CraftingAuxiliaryOperation::Smelting;
+			const std::uint8_t* first = reinterpret_cast<const std::uint8_t*>(SockInfo->Buff);
+			request.requestBytes.assign(first, first + sizeof(sSMELTINGITEM_SERVER));
+			gameplay::commerce::legacy::ServerLegacyCraftingAdapter().ProcessAuxiliary(request);
 			break;
+		}
 		case OpCode::OPCODE_MANUFACTURE:
-
-			rsRecvManufactureItem(lpPlayInfo, (SManufactureItem_Server *)SockInfo->Buff);
+		{
+			gameplay::commerce::CraftingAuxiliaryRequest request;
+			request.player = gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo);
+			request.operation = gameplay::commerce::CraftingAuxiliaryOperation::Manufacture;
+			const std::uint8_t* first = reinterpret_cast<const std::uint8_t*>(SockInfo->Buff);
+			request.requestBytes.assign(first, first + sizeof(SManufactureItem_Server));
+			gameplay::commerce::legacy::ServerLegacyCraftingAdapter().ProcessAuxiliary(request);
 			break;
+		}
 
 		#if 0 /* SUMMIT_DISABLED_MISSING_OPCODE: OPCODE_EVENT_GAME */
 		case OpCode::OPCODE_EVENT_GAME:
@@ -33940,7 +34263,11 @@ int Serv_DisconnectPlayer(smWINSOCK *lpsmSock)
 	tpInfo = (rsPLAYINFO *)lpsmSock->ExtData1;
 
 	if(tpInfo)
-		gameplay::companions::OnOwnerDisconnect(tpInfo);
+	{
+		const gameplay::PlayerHandle companionOwnerHandle =
+			gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().HandleOf(tpInfo);
+		gameplay::companions::legacy::ServerLegacyCompanionLifecycleAdapter().OwnerDisconnected(companionOwnerHandle);
+	}
 
 	if(LoginServer && tpInfo)
 	{
@@ -34011,7 +34338,7 @@ int Serv_DisconnectPlayer(smWINSOCK *lpsmSock)
 	if(IsTier5ArenaQuestActive(tpInfo))
 	{
 		StopTier5ArenaQuest(tpInfo, false);
-		cQuestHandler.CancelQuestProgressSilent(tpInfo, QUESTID_T5_QUEST_ARENA);
+		gameplay::quests::legacy::ServerLegacyQuestObjectiveService().CancelProgress(gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(tpInfo), gameplay::QuestId(QUESTID_T5_QUEST_ARENA));
 	}
 
 	tpInfo->DisconnectPartyUser();
@@ -34220,7 +34547,7 @@ int DisconnectUser(smWINSOCK *lpsmSock)
 		if(IsTier5ArenaQuestActive(tpInfo))
 		{
 			StopTier5ArenaQuest(tpInfo, false);
-			cQuestHandler.CancelQuestProgressSilent(tpInfo, QUESTID_T5_QUEST_ARENA);
+			gameplay::quests::legacy::ServerLegacyQuestObjectiveService().CancelProgress(gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(tpInfo), gameplay::QuestId(QUESTID_T5_QUEST_ARENA));
 		}
 
 		tpInfo->DisconnectPartyUser();
@@ -40327,27 +40654,21 @@ int rsProcessAttack_SkillHolyReflection(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar)
 int rsClanUpdate(rsPLAYINFO *lpPlayInfo, TRANS_CLAN_COMMAND_USER *lpTransClanUser)
 {
 	rsCLAN_INFOMATION	ClanInfomation;
-	smTRANS_COMMAND		smTransCommand;
 	int	cnt;
-	rsPLAYINFO	*lpPlayInfo2;
 
 
 	if(RecvClanCommand(lpTransClanUser, ClanInfomation.ClanUserInfo) == TRUE)
 	{
-		ZeroMemory(&smTransCommand, sizeof(smTRANS_COMMAND));
-		smTransCommand.code = OpCode::OPCODE_CLAN_UPDATE;
-		smTransCommand.size = sizeof(smTRANS_COMMAND);
-		smTransCommand.WParam = lpPlayInfo->dwObjectSerial;
-
+		std::vector<gameplay::social::clan::ClanUpdateRecipient> recipients;
+		recipients.reserve(static_cast<std::size_t>(lpTransClanUser->UserCount));
 		for(cnt = 0; cnt < lpTransClanUser->UserCount; cnt++)
 		{
-			lpPlayInfo2 = FindUserFromCodeName(ClanInfomation.ClanUserInfo[cnt].szName, ClanInfomation.ClanUserInfo[cnt].dwSpeedSum);
-			if(lpPlayInfo2)
-			{
-
-				lpPlayInfo2->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
-			}
+			recipients.push_back(gameplay::social::clan::ClanUpdateRecipient(
+				ClanInfomation.ClanUserInfo[cnt].szName,
+				static_cast<std::uint32_t>(ClanInfomation.ClanUserInfo[cnt].dwSpeedSum)));
 		}
+		gameplay::social::clan::legacy::ServerLegacyClanUpdateNotifier().Notify(
+			gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo), recipients);
 	}
 
 	return TRUE;
@@ -41574,133 +41895,52 @@ int rsDebugMessageToClient(rsPLAYINFO *lpPlayInfo, char *szDmgMsg)
 int	rsTrade_PersonalShop(rsPLAYINFO* lpPlayInfo, rsPLAYINFO* lpPlayInfo2, smTRANS_COMMAND_BUFF* lpTransCommandBuff)
 {
 	sMYSHOP_ITEM_SERVER* lpMyShopItem = (sMYSHOP_ITEM_SERVER*)lpTransCommandBuff->Buff;
-	int	cnt, mCnt;
-	int PotionFlag;
 
 
 	switch (lpMyShopItem->SendFlag)
 	{
 
 	case 1:
-		if (lpMyShopItem->Price > MAX_MONEY) return FALSE;
-		if (lpPlayInfo->dwMyShopTradeTime > dwPlayServTime)
-		{
-			return FALSE;
-		}
+	{
+		gameplay::commerce::PersonalShopPrepareRequest request;
+		request.buyer = gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo);
+		request.seller = gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo2);
+		request.itemCode = static_cast<std::uint32_t>(lpMyShopItem->CODE);
+		request.head = static_cast<std::uint32_t>(lpMyShopItem->Head);
+		request.checksum = static_cast<std::uint32_t>(lpMyShopItem->CkSum);
+		request.quantity = static_cast<std::uint32_t>(lpMyShopItem->sTime);
+		request.goldPrice = static_cast<std::int64_t>(lpMyShopItem->Price);
+		request.coinPrice = static_cast<std::int64_t>(lpMyShopItem->Temp[0]);
 
-		PotionFlag = TRUE;
-
-
-		if ((lpMyShopItem->CODE & sinITEM_MASK1) == (sinPM1 & sinITEM_MASK1))
-		{
-			if (rsGetServerPotion(lpPlayInfo2, lpMyShopItem->CODE) < (int)lpMyShopItem->sTime)
-			{
-
-				PotionFlag = FALSE;
-			}
-		}
-
-		if (rsFindInvenItem(lpPlayInfo2, lpMyShopItem->CODE, lpMyShopItem->Head, lpMyShopItem->CkSum) >= 0 &&
-			lpPlayInfo->ServerMoney >= (int)lpMyShopItem->Price && PotionFlag == TRUE && cCoinShop.GetPlayerCoin(lpPlayInfo) >= lpMyShopItem->Temp[0])
-		{
-
-			lpPlayInfo->dwMyShopTradeTime = dwPlayServTime + 500;
-
-			if (lpPlayInfo->MyShopListCount == 0)
-			{
-				ZeroMemory(lpPlayInfo->sMyShopList, sizeof(sMYSHOP_SELL_INFO) * MYSHOP_LIST_MAX);
-			}
-			else
-			{
-				for (cnt = 0; cnt < MYSHOP_LIST_MAX; cnt++)
-				{
-					if (lpPlayInfo->sMyShopList[cnt].dwCode &&
-						lpMyShopItem->CODE == lpPlayInfo->sMyShopList[cnt].dwCode &&
-						lpMyShopItem->Head == lpPlayInfo->sMyShopList[cnt].dwHead &&
-						lpMyShopItem->CkSum == lpPlayInfo->sMyShopList[cnt].dwChkSum &&
-						lpMyShopItem->Price == lpPlayInfo->sMyShopList[cnt].Price)
-					{
-						return TRUE;
-					}
-				}
-				}
-
-			mCnt = lpPlayInfo->MyShopListCount & MYSHOP_LIST_MASK;
-			lpPlayInfo->sMyShopList[mCnt].dwCode = lpMyShopItem->CODE;
-			lpPlayInfo->sMyShopList[mCnt].dwHead = lpMyShopItem->Head;
-			lpPlayInfo->sMyShopList[mCnt].dwChkSum = lpMyShopItem->CkSum;
-			lpPlayInfo->sMyShopList[mCnt].Price = lpMyShopItem->Price;
-			// SUMMIT_DISABLED_MISSING_COINPRICE: lpPlayInfo->sMyShopList[mCnt].CoinPrice = lpMyShopItem->Temp[0];
-			lpPlayInfo->MyShopListCount++;
+		const gameplay::commerce::PersonalShopPrepareResult prepared =
+			gameplay::commerce::legacy::ServerLegacyPersonalShopAdapter().PrepareTrade(request);
+		if(prepared.Prepared())
 			return TRUE;
-		}
 
-		if (lpPlayInfo->ServerMoney >= (int)lpMyShopItem->Price && cCoinShop.GetPlayerCoin(lpPlayInfo) >= lpMyShopItem->Temp[0])
+		if(prepared.sendUnavailableReply)
 		{
 			lpTransCommandBuff->smTransCommand.LParam = lpPlayInfo2->dwObjectSerial;
 			lpTransCommandBuff->smTransCommand.SParam = lpPlayInfo->dwObjectSerial;
 			lpMyShopItem->SendFlag = 3;
-			if (lpPlayInfo->lpsmSock)
+			if(lpPlayInfo->lpsmSock)
 				lpPlayInfo->lpsmSock->Send((char*)lpTransCommandBuff, lpTransCommandBuff->smTransCommand.size, TRUE);
 		}
 		return FALSE;
+	}
 
 	case 2:
-		if (lpMyShopItem->Price > MAX_MONEY || (!lpMyShopItem->Price && !lpMyShopItem->Temp[0])) return FALSE;
-
-		for (cnt = 0; cnt < MYSHOP_LIST_MAX; cnt++)
-		{
-			if (lpPlayInfo2->sMyShopList[cnt].dwCode &&
-				lpMyShopItem->CODE == lpPlayInfo2->sMyShopList[cnt].dwCode &&
-				lpMyShopItem->Head == lpPlayInfo2->sMyShopList[cnt].dwHead &&
-				lpMyShopItem->CkSum == lpPlayInfo2->sMyShopList[cnt].dwChkSum &&
-				lpMyShopItem->Price == lpPlayInfo2->sMyShopList[cnt].Price)
-			{
-				if (lpPlayInfo2->ServerMoney >= (int)lpMyShopItem->Price && cCoinShop.GetPlayerCoin(lpPlayInfo2) >= lpMyShopItem->Temp[0])
-				{
-
-
-					if ((lpMyShopItem->CODE & sinITEM_MASK1) == (sinPM1 & sinITEM_MASK1))
-					{
-						if (rsAddServerPotion(lpPlayInfo, lpMyShopItem->CODE, -(int)(lpMyShopItem->sTime)) < 0)
-						{
-
-							rsServerPotionErrorLog(lpPlayInfo, lpMyShopItem->CODE, -(int)lpMyShopItem->sTime, 310);
-							return FALSE;
-						}
-						rsAddServerPotion(lpPlayInfo2, lpMyShopItem->CODE, lpMyShopItem->sTime);
-					}
-
-					if (rsDeleteInvenItem(lpPlayInfo, lpMyShopItem->CODE, lpMyShopItem->Head, lpMyShopItem->CkSum) >= 0)
-					{
-
-						lpPlayInfo2->SubServerMoney(lpMyShopItem->Price, WHERE_PERSONAL_SHOP);
-						lpPlayInfo->AddServerMoney(lpMyShopItem->Price, WHERE_PERSONAL_SHOP);
-						cCoinShop.AddPlayerCoin(lpPlayInfo2, -(int)lpMyShopItem->Temp[0]);
-						cCoinShop.AddPlayerCoin(lpPlayInfo, lpMyShopItem->Temp[0]);
-
-						rsAddInvenItem(lpPlayInfo2, lpMyShopItem->CODE, lpMyShopItem->Head, lpMyShopItem->CkSum);
-
-						if ((lpMyShopItem->CODE & sinITEM_MASK1) == (sinPM1 & sinITEM_MASK1))
-						{
-							rsRecord_ItemLog_MyShop(lpPlayInfo, lpPlayInfo2,
-								lpMyShopItem->CODE, lpMyShopItem->sTime, 0,
-								lpMyShopItem->Price);
-						}
-						else
-						{
-							rsRecord_ItemLog_MyShop(lpPlayInfo, lpPlayInfo2,
-								lpMyShopItem->CODE, lpMyShopItem->Head, lpMyShopItem->CkSum,
-								lpMyShopItem->Price);
-						}
-
-						return TRUE;
-					}
-				}
-				break;
-			}
-		}
-		return FALSE;
+	{
+		gameplay::commerce::PersonalShopTradeRequest request;
+		request.seller = gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo);
+		request.buyer = gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo2);
+		request.itemCode = static_cast<std::uint32_t>(lpMyShopItem->CODE);
+		request.head = static_cast<std::uint32_t>(lpMyShopItem->Head);
+		request.checksum = static_cast<std::uint32_t>(lpMyShopItem->CkSum);
+		request.quantity = static_cast<std::uint32_t>(lpMyShopItem->sTime);
+		request.goldPrice = static_cast<std::int64_t>(lpMyShopItem->Price);
+		request.coinPrice = static_cast<std::int64_t>(lpMyShopItem->Temp[0]);
+		return gameplay::commerce::legacy::ServerLegacyPersonalShopAdapter().CommitTrade(request).Committed() ? TRUE : FALSE;
+	}
 
 	}
 

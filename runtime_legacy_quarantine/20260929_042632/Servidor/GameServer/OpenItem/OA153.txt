@@ -1,0 +1,38 @@
+//ID
+*코드 "OA153"
+
+//Korean Name
+*이름 "Colar Silrape 1d"
+
+//English Name
+*Name "Colar Silrape 1d"
+
+//HP
+*생명력추가 60 60
+
+//MP
+*기력추가 60 60
+
+//STM
+*근력추가 60 60
+
+//HPRegen
+*생명력재생 4.0 4.0
+
+//MPRegen
+*기력재생 4.0 4.0
+
+//STMRegen
+*근력재생 4.0 4.0
+
+//Level
+*레벨 10
+
+//Spirit
+*정신력 64
+
+//Weight
+*무게 5
+
+//Name File
+*연결파일 "Name\OA153.zhoon"

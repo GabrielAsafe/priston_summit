@@ -1,0 +1,41 @@
+//ID
+*ÄÚµå "OA129"
+
+//Korean Name
+*ÀÌ¸§ "Colar Anúbis"
+
+//English Name
+*Name "Colar Anúbis"
+
+//Defense
+*¹æ¾î·Â 100 100
+
+//HP
+*»ý¸í·ÂÃß°¡ 100 100
+
+//MP
+*±â·ÂÃß°¡ 100 100
+
+//STM
+*±Ù·ÂÃß°¡ 100 100
+
+//Level
+*·¹º§ 100
+
+//Spirit
+*Á¤½Å·Â 60
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecHPRegen
+**»ý¸í·ÂÀç»ý 4.9 5.2
+
+//Weight
+*¹«°Ô 7
+
+//Price
+*°¡°Ý 90000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\OA129.zhoon"

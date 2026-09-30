@@ -1,0 +1,42 @@
+{
+  "description": "Maximum executable-code feature-identifier counts permitted in frozen RED ingress monoliths. Comments and string/character literals are ignored; counts may decrease without updating this file, while increases require architectural review.",
+  "files": {
+    "Shared/server/legacy_runtime/OnSever_legacy_server.inl": {
+      "companion": 172,
+      "covenant": 72,
+      "futurefeature": 0,
+      "gathering": 43,
+      "hunting": 0,
+      "mining": 6,
+      "story": 0
+    },
+    "SrcGame/src/systems/network/client/netplay.cpp": {
+      "companion": 32,
+      "covenant": 9,
+      "futurefeature": 0,
+      "gathering": 0,
+      "hunting": 0,
+      "mining": 0,
+      "story": 0
+    },
+    "SrcServer/src/systems/network/server_gameplay/netplay.cpp": {
+      "companion": 0,
+      "covenant": 0,
+      "futurefeature": 0,
+      "gathering": 0,
+      "hunting": 0,
+      "mining": 0,
+      "story": 0
+    }
+  },
+  "schema_version": 1,
+  "tokens": [
+    "companion",
+    "covenant",
+    "story",
+    "hunting",
+    "mining",
+    "gathering",
+    "futurefeature"
+  ]
+}

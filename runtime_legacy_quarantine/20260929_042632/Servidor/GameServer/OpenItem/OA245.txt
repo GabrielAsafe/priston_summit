@@ -1,0 +1,44 @@
+//ID
+*ÄÚµå "OA245"
+
+//Korean Name
+*ÀÌ¸§ "Bracelete Anúbis"
+
+//English Name
+*Name "Bracelete Anúbis"
+
+//AttackRating
+*¸íÁß·Â 250 260
+
+//Defense
+*¹æ¾î·Â 251 265
+
+//PotionStorage
+*º¸À¯°ø°£ 100
+
+//Integrity
+*³»±¸·Â 273 285
+
+//Level
+*·¹º§ 130
+
+//Strength
+*Èû 95
+
+//Agility
+*¹ÎÃ¸¼º 92
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//Weight
+*¹«°Ô 89
+
+//Price
+*°¡°Ý 1990000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\OA245.zhoon"

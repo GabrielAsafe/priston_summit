@@ -16,6 +16,7 @@ client_item_header_path = ROOT / "Shared/inventory/legacy/sinItem_legacy_client.
 server_item_header_path = ROOT / "Shared/inventory/legacy/sinItem_legacy_server.h"
 companion_path = ROOT / "SrcServer/src/systems/gameplay/companions/CompanionSystem.cpp"
 server_bridge_path = ROOT / "Shared/server/legacy_runtime/OnSever_legacy_server.inl"
+character_record_adapter_path = ROOT / "SrcServer/src/systems/gameplay/player/v2/legacy/LegacyCharacterRecordAdapter.cpp"
 
 paths = [
     client_inventory_path,
@@ -23,6 +24,7 @@ paths = [
     server_item_header_path,
     companion_path,
     server_bridge_path,
+    character_record_adapter_path,
 ]
 missing = [str(path.relative_to(ROOT)) for path in paths if not path.exists()]
 if missing:
@@ -35,6 +37,7 @@ client_item_header = client_item_header_path.read_text(encoding="latin1", errors
 server_item_header = server_item_header_path.read_text(encoding="latin1", errors="replace")
 companion = companion_path.read_text(encoding="latin1", errors="replace")
 server_bridge = server_bridge_path.read_text(encoding="latin1", errors="replace")
+character_record_adapter = character_record_adapter_path.read_text(encoding="latin1", errors="replace")
 
 failures = []
 
@@ -82,12 +85,13 @@ for label, text in (("client item header", client_item_header), ("server item he
     require(text, "#define ITEM_CLASS_SHIELDS", label)
     require(text, "#define ITEM_CLASS_MAGICIAL_STUFFS", label)
 
-# Offline companion snapshot and spawn bridge must use the same primary-inventory
-# boundary and ItemPosition 1/2 persisted slots, with the two-hand duplicate
-# removed from the visual left hand.
-require(companion, "int primaryItemCount = recordData.ItemSubStart;", "companion snapshot primary inventory")
-require(companion, "recordItem.ItemPosition == 1", "companion snapshot right slot")
-require(companion, "recordItem.ItemPosition == 2", "companion snapshot left slot")
+# The persistence adapter now owns the packed-record boundary while Companion
+# consumes a record-free DTO. Keep guarding the same ItemSubStart primary cut
+# and ItemPosition 1/2 slot semantics across that boundary.
+require(character_record_adapter, "int primaryItemCount = record.ItemSubStart;", "character repository primary inventory")
+require(character_record_adapter, "translated.position = legacyItem.ItemPosition;", "character repository persisted slot translation")
+require(companion, "recordItem.position == 1", "companion snapshot right slot")
+require(companion, "recordItem.position == 2", "companion snapshot left slot")
 require(companion, "(itemClass & INVENTORY_POS_LHAND) != 0", "companion left-hand class mask")
 require(companion, "itemClass != ITEM_CLASS_WEAPON_TWO", "companion two-hand picker exclusion")
 require(server_bridge, "int primaryItemCount = recordData->ItemSubStart;", "spawn bridge primary inventory")

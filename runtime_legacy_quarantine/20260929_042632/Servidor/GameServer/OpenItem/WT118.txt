@@ -1,0 +1,65 @@
+//ID
+*ÄÚµå "WT118"
+
+//Korean Name
+*ÀÌ¸§ "Lança Extrema"
+
+//English Name
+*Name "Lança Extrema"
+
+//AttackPower
+*°ø°Ý·Â 31 33 45 48
+
+//AttackRange
+*»çÁ¤°Å¸® 240
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackRating
+*¸íÁß·Â 112 130
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 11
+
+//Integrity
+*³»±¸·Â 87 105
+
+//Level
+*·¹º§ 80
+
+//Strength
+*Èû 74
+
+//Talent
+*Àç´É 86
+
+//Agility
+*¹ÎÃ¸¼º 117
+
+//PrimarySpec
+**Æ¯È­ Atalanta
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Archer
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 5
+
+//SpecAttackRange
+**»çÁ¤°Å¸® 15
+
+//Weight
+*¹«°Ô 18
+
+//Price
+*°¡°Ý 400000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WT118.zhoon"

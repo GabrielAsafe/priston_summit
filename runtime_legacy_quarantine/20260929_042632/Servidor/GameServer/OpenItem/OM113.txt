@@ -1,0 +1,65 @@
+//ID
+*코드 "OM113"
+
+//Korean Name
+*이름 "Orbital Anjo"
+
+//English Name
+*Name "Orbital Anjo"
+
+//OrganicResistance
+*생체 3 7
+
+//FireResistance
+*불 3 7
+
+//FrostResistance
+*냉기 3 7
+
+//LightningResistance
+*번개 3 7
+
+//PoisonResistance
+*독 3 7
+
+//Defense
+*방어력 44 70
+
+//Absorption
+*흡수력 2.0 2.5
+
+//Block
+*블럭율 8.0 9.0
+
+//HP
+*생명력추가 45 60
+
+//MP
+*기력추가 30 40
+
+//Integrity
+*내구력 65 75
+
+//Level
+*레벨 60
+
+//Spirit
+*정신력 108
+
+//SecondarySpec
+**특화랜덤 Priestess Magician
+
+//SpecAbsorption
+**흡수력 0.7 1.0
+
+//SpecMPRegen
+**기력재생 0.7 1.0
+
+//Weight
+*무게 14
+
+//Price
+*가격 56000
+
+//Name File
+*연결파일 "Name\OM113.zhoon"

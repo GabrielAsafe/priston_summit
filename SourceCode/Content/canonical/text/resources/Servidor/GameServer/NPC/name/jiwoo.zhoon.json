@@ -10,8 +10,8 @@
   ],
   "source": {
     "legacy_path": "Servidor/GameServer/NPC/name/jiwoo.zhoon",
-    "legacy_sha256": "235826e1a88513b44fa1f09872cd718773360f79293ce28c2fd73905d0a512c3",
-    "legacy_size": 462
+    "legacy_sha256": "4d2442ac5f93da969191b349d1f43516dcdda8c3b7d1f677683e212a52fd46d5",
+    "legacy_size": 449
   },
   "semantic": {
     "entries": [
@@ -19,7 +19,7 @@
         "line": 4,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Enzo, o Restaurador de Itens"
+        "text": "Instrutora Amanda"
       },
       {
         "line": 7,
@@ -55,6 +55,6 @@
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9qaV93b28ubnBjDQoNCg0KKkpfTmFtZQkiRW56bywgbyBSZXN0YXVyYWRvciBkZSBJdGVucyINCg0KDQoqSl9DaGF0CSJWb3UgbGhlIGFycmFuamFyIHVucyBib25zIGl0ZW5zIHNlIHZvY+ogYXRlbmRlciBtZXVzIHBlZGlkb3MuIg0KDQoqSl9DaGF0CSJTZSB2b2PqIGFqdWRhciBhbyBwb3ZvIGRhIGNpZGFkZSwgZWxlcyBwcm92YXZlbG1lbnRlIHRlIGRhcuNvIHbhcmlvcyBpdGVucy4iDQoNCipKX0NoYXQJIkRlcG9pcyBxdWUgdm9j6iBjaGVnYXIgYSBsZXZlbCA0MCwgbuNvIHRlcuEgbWFpcyBxdWUgZmFsYXIgY29taWdvLiINCg0KKkpfQ2hhdAkiRXN0b3UgYXF1aSBwYXJhIGFqdWRhciBvcyBpbmljaWFudGVzIGEgdml2ZXIgbm8gY29udGluZW50ZSBkZSBQcmlzdG9uLiINCg0KKkpfQ2hhdAkiRSBz8yB2b2PqIHBhcmEgdHJhemVyIGRlIHZvbHRhIGFzIGNvbnNwaXJh5/VlcyBlIElnb2xhbm9zLiINCg0K"
+    "legacy_payload_base64": "Ly9qaV93b28ubnBjDQoNCg0KKkpfTmFtZQkiSW5zdHJ1dG9yYSBBbWFuZGEiDQoNCipKX0NoYXQJIlZvdSBsaGUgYXJyYW5qYXIgdW5zIGJvbnMgaXRlbnMgc2Ugdm9j6iBhdGVuZGVyIG1ldXMgcGVkaWRvcy4iDQoNCipKX0NoYXQJIlNlIHZvY+ogYWp1ZGFyIGFvIHBvdm8gZGEgY2lkYWRlLCBlbGVzIHByb3ZhdmVsbWVudGUgdGUgZGFy428gduFyaW9zIGl0ZW5zLiINCg0KKkpfQ2hhdAkiRGVwb2lzIHF1ZSB2b2PqIGNoZWdhciBhIGxldmVsIDQwLCBu428gdGVy4SBtYWlzIHF1ZSBmYWxhciBjb21pZ28uIg0KDQoqSl9DaGF0CSJFc3RvdSBhcXVpIHBhcmEgYWp1ZGFyIG9zIGluaWNpYW50ZXMgYSB2aXZlciBubyBjb250aW5lbnRlIGRlIFByaXN0b24uIg0KDQoqSl9DaGF0CSJFIHPzIHZvY+ogcGFyYSB0cmF6ZXIgZGUgdm9sdGEgYXMgY29uc3BpcmHn9WVzIGUgSWdvbGFub3MuIg0KDQo="
   }
 }

@@ -1,0 +1,62 @@
+//ID
+*코드 "DG115"
+
+//Korean Name
+*이름 "Luvas de Marfim"
+
+//English Name
+*Name "Luvas de Marfim"
+
+//Defense
+*방어력 86 96
+
+//Absorption
+*흡수력 4.1 4.4
+
+//OrganicResistance
+*생체 2 6
+
+//FireResistance
+*불 2 6
+
+//FrostResistance
+*냉기 2 6
+
+//LightningResistance
+*번개 2 6
+
+//PoisonResistance
+*독 2 6
+
+//Integrity
+*내구력 90 116
+
+//Level
+*레벨 75
+
+//Strength
+*힘 90
+
+//Talent
+*재능 70
+
+//Agility
+*민첩성 70
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecDefense
+**방어력 30 36
+
+//SpecAbsorption
+**흡수력 0.5 0.7
+
+//Weight
+*무게 28
+
+//Price
+*가격 90000
+
+//Name File
+*연결파일 "Name\DG115.zhoon"

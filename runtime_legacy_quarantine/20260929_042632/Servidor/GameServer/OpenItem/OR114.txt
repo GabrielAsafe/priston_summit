@@ -1,0 +1,35 @@
+//ID
+*코드 "OR114"
+
+//Korean Name
+*이름 "Anel Encantado +1"
+
+//English Name
+*Name "Anel Encantado +1"
+
+//HP
+*생명력추가 3 6
+
+//STM
+*근력추가 32 43
+
+//Level
+*레벨 50
+
+//Spirit
+*정신력 56
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecHPRegen
+**생명력재생 0.2 0.3
+
+//Weight
+*무게 4
+
+//Price
+*가격 20000
+
+//Name File
+*연결파일 "Name\OR114.zhoon"

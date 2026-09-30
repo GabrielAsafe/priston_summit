@@ -59,9 +59,9 @@ for needle in ('COMPANION_UI_TOGGLE_CUSTOM_TACTICS','COMPANION_UI_TOGGLE_TACTIC_
                'COMPANION_UI_CYCLE_TACTIC_THRESHOLD','COMPANION_UI_MOVE_TACTIC_RULE',
                'packet.customTacticsEnabled','packet.tacticRules'):
     req('gateway v6 mapping','gateway',needle)
-for needle in ('Taticas custom','TACTICS CUSTOM','CustomConditionName','CustomActionName',
+for needle in ('Taticas custom','Regras 1 -> 4; executor valida skills.','CustomConditionName','CustomActionName',
                'ToggleCustomTactics','ToggleTacticRule','CycleTacticCondition','CycleTacticAction',
-               'CycleTacticThreshold','MoveTacticRule','Prioridade: regra 1 -> 4'):
+               'CycleTacticThreshold','MoveTacticRule'):
     req('rule editor UI','page',needle)
 
 if errors:

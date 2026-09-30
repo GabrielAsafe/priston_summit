@@ -21,6 +21,7 @@
 #include "systems/security/legacy/process_integrity/cracker.h"
 #include "systems/network/transport/legacy/smwsock.h"
 #include "systems/gameplay/character/core/character.h"
+#include "authentication/character_selection/CharacterSelectionTrace.h"
 #include "systems/media/video/legacy_avi/avictrl.h"
 #include "core/gameplay/runtime/playmain.h"
 #include "systems/audio/playback/legacy/Dxwav.h"
@@ -496,7 +497,12 @@ static void SummitRequestBootstrapTextureSet(const std::vector<smTEXTUREHANDLE *
     for (std::size_t index = 0; index < textures.size(); ++index)
     {
         smTEXTUREHANDLE *texture = textures[index];
-        if (!texture || texture->lpD3DTexture || AssetLoadV3IsTexturePending(texture))
+        if (!texture)
+            continue;
+        const int readiness = AssetLoadV3GetTextureReadiness(texture);
+        if (readiness == ASSET_LOAD_V3_TEXTURE_RESIDENT ||
+            readiness == ASSET_LOAD_V3_TEXTURE_PENDING ||
+            readiness == ASSET_LOAD_V3_TEXTURE_FAILED_PERMANENT)
             continue;
         AssetLoadV3RequestTexture(texture, 1, 0);
     }
@@ -3961,6 +3967,10 @@ int PlayPat3D()
 
 
 
+	// SUMMIT_V17_2_DISABLED_PATTERN_HOTKEYS
+	// Shift+F3/F4 changed live player/NPC patterns and could leave AdminChar/PatLoading
+	// state inconsistent. Keep the legacy code for reference, but no keyboard path.
+	/*
 	if(smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR && VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_CONTROL])
 	{
 
@@ -3975,6 +3985,7 @@ int PlayPat3D()
 			VRKeyBuff[VK_F3] = 0;
 		}
 	}
+	*/
 #endif
 
 
@@ -5523,40 +5534,150 @@ int FindBipPoint(smPAT3D *lpPat, char *szObjNodeName, int frame, int *nX, int *n
 
 int OpenEachPlayer(smCHAR *lpChar)
 {
-	if(!lpChar || !lpChar->Flag || !lpChar->DisplayFlag) return FALSE;
-	if(EachTradeButton) return FALSE;
+	// SUMMIT_OPEN_EACH_TRACE_V14
+	SummitCharacterSelectionTrace("EACH",
+		"OPEN attempt char=%p flag=%d display=%d loading=%d pattern=%p serial=%lu trade=%d master=%p eachFlag=%d eachPattern=%p",
+		(void *)lpChar,
+		lpChar ? lpChar->Flag : -1,
+		lpChar ? lpChar->DisplayFlag : -1,
+		lpChar ? lpChar->PatLoading : -1,
+		lpChar ? (void *)lpChar->Pattern : NULL,
+		lpChar ? static_cast<unsigned long>(lpChar->dwObjectSerial) : 0ul,
+		EachTradeButton, (void *)chrEachMaster, chrEachPlayer.Flag, (void *)chrEachPlayer.Pattern);
+
+	if(!lpChar)
+	{
+		SummitCharacterSelectionTrace("EACH", "OPEN reject reason=null");
+		return FALSE;
+	}
+	if(!lpChar->Flag)
+	{
+		SummitCharacterSelectionTrace("EACH", "OPEN reject reason=flag0 char=%p", (void *)lpChar);
+		return FALSE;
+	}
+	if(!lpChar->DisplayFlag)
+	{
+		SummitCharacterSelectionTrace("EACH",
+			"OPEN reject reason=display0 char=%p loading=%d pattern=%p",
+			(void *)lpChar, lpChar->PatLoading, (void *)lpChar->Pattern);
+		return FALSE;
+	}
+	if(EachTradeButton)
+	{
+		SummitCharacterSelectionTrace("EACH", "OPEN reject reason=trade_button char=%p", (void *)lpChar);
+		return FALSE;
+	}
 
 	memcpy(&chrEachPlayer, lpChar, sizeof(smCHAR));
 	chrEachPlayer.SetMotionFromCode(CHRMOTION_STATE_STAND);
 	chrEachPlayer.ActionPattern = 101;
 	chrEachMaster = lpChar;
-
 	chrEachPlayer.Flag = TRUE;
 
-	if(FindBipPoint(chrEachPlayer.AnimPattern, "Bip01 Head", chrEachPlayer.frame,
-		&EachCameraPos.x, &EachCameraPos.y, &EachCameraPos.z) == NULL)
+	// SUMMIT_EACH_CAMERA_STABLE_LATCH_V15_2
+	// Async Pattern publish can expose the new model before Bip01 Head
+	// is ready to write coordinates. Probe with impossible sentinels;
+	// on a transient miss, keep the last real head camera for the same height.
+	const int summitFallbackCameraX = 0;
+	const int summitFallbackCameraY = chrEachPlayer.PatHeight - 10 * fONE;
+	const int summitFallbackCameraZ = 0;
+
+	static bool summitHaveLastGoodEachCamera = false;
+	static int summitLastGoodEachCameraX = 0;
+	static int summitLastGoodEachCameraY = 0;
+	static int summitLastGoodEachCameraZ = 0;
+	static int summitLastGoodEachCameraPatHeight = 0;
+
+	// These values are deliberately outside the accepted camera range.
+	// If FindBipPoint leaves any component untouched, validation below catches it.
+	const int summitCameraProbeX = 0x3F3F3F3F;
+	const int summitCameraProbeY = 0x3E3E3E3E;
+	const int summitCameraProbeZ = 0x3D3D3D3D;
+
+	EachCameraPos.x = summitCameraProbeX;
+	EachCameraPos.y = summitCameraProbeY;
+	EachCameraPos.z = summitCameraProbeZ;
+
+	FindBipPoint(chrEachPlayer.AnimPattern, "Bip01 Head", chrEachPlayer.frame,
+		&EachCameraPos.x, &EachCameraPos.y, &EachCameraPos.z);
+
+	const long long summitCameraLimit = 134217728LL;
+	const bool summitInvalidEachCamera =
+		static_cast<long long>(EachCameraPos.x) < -summitCameraLimit ||
+		static_cast<long long>(EachCameraPos.x) >  summitCameraLimit ||
+		static_cast<long long>(EachCameraPos.y) < -summitCameraLimit ||
+		static_cast<long long>(EachCameraPos.y) >  summitCameraLimit ||
+		static_cast<long long>(EachCameraPos.z) < -summitCameraLimit ||
+		static_cast<long long>(EachCameraPos.z) >  summitCameraLimit;
+
+	if(!summitInvalidEachCamera)
 	{
-
-		EachCameraPos.y = chrEachPlayer.PatHeight - 10 * fONE;
-		EachCameraPos.x = 0;
-		EachCameraPos.z = 0;
+		summitHaveLastGoodEachCamera = true;
+		summitLastGoodEachCameraX = EachCameraPos.x;
+		summitLastGoodEachCameraY = EachCameraPos.y;
+		summitLastGoodEachCameraZ = EachCameraPos.z;
+		summitLastGoodEachCameraPatHeight = chrEachPlayer.PatHeight;
+		SummitCharacterSelectionTrace("EACH",
+			"CAMERA real_after_bip x=%d y=%d z=%d height=%d",
+			EachCameraPos.x, EachCameraPos.y, EachCameraPos.z, chrEachPlayer.PatHeight);
 	}
+	else if(summitHaveLastGoodEachCamera &&
+		summitLastGoodEachCameraPatHeight == chrEachPlayer.PatHeight)
+	{
+		SummitCharacterSelectionTrace("EACH",
+			"CAMERA transient_after_bip probe=%d,%d,%d -> reuse_last_good=%d,%d,%d height=%d",
+			EachCameraPos.x, EachCameraPos.y, EachCameraPos.z,
+			summitLastGoodEachCameraX, summitLastGoodEachCameraY, summitLastGoodEachCameraZ,
+			chrEachPlayer.PatHeight);
 
+		EachCameraPos.x = summitLastGoodEachCameraX;
+		EachCameraPos.y = summitLastGoodEachCameraY;
+		EachCameraPos.z = summitLastGoodEachCameraZ;
+	}
+	else
+	{
+		SummitCharacterSelectionTrace("EACH",
+			"CAMERA invalid_after_bip probe=%d,%d,%d -> fallback=%d,%d,%d height=%d",
+			EachCameraPos.x, EachCameraPos.y, EachCameraPos.z,
+			summitFallbackCameraX, summitFallbackCameraY, summitFallbackCameraZ,
+			chrEachPlayer.PatHeight);
+
+		EachCameraPos.x = summitFallbackCameraX;
+		EachCameraPos.y = summitFallbackCameraY;
+		EachCameraPos.z = summitFallbackCameraZ;
+	}
 
 	if(lpChar->smCharInfo.State == smCHAR_STATE_ENEMY || lpChar->smCharInfo.State == smCHAR_STATE_NPC)
 	{
 		EachCameraPos.y += lpChar->smCharInfo.ArrowPosi[0] * fONE;
 		EachCameraPos.z += lpChar->smCharInfo.ArrowPosi[1] * fONE;
-
-
 	}
 
+	SummitCharacterSelectionTrace("EACH",
+		"OPEN success master=%p serial=%lu pattern=%p eachPattern=%p camera=%d,%d,%d",
+		(void *)chrEachMaster,
+		static_cast<unsigned long>(chrEachMaster ? chrEachMaster->dwObjectSerial : 0),
+		chrEachMaster ? (void *)chrEachMaster->Pattern : NULL,
+		(void *)chrEachPlayer.Pattern,
+		EachCameraPos.x, EachCameraPos.y, EachCameraPos.z);
 	return TRUE;
 }
 
 
 int CloseEachPlayer()
 {
+	// SUMMIT_CLOSE_EACH_TRACE_V14
+	SummitCharacterSelectionTrace("EACH",
+		"CLOSE master=%p masterFlag=%d masterDisplay=%d masterLoading=%d masterPattern=%p masterSerial=%lu eachFlag=%d eachPattern=%p eachSerial=%lu",
+		(void *)chrEachMaster,
+		chrEachMaster ? chrEachMaster->Flag : -1,
+		chrEachMaster ? chrEachMaster->DisplayFlag : -1,
+		chrEachMaster ? chrEachMaster->PatLoading : -1,
+		chrEachMaster ? (void *)chrEachMaster->Pattern : NULL,
+		chrEachMaster ? static_cast<unsigned long>(chrEachMaster->dwObjectSerial) : 0ul,
+		chrEachPlayer.Flag, (void *)chrEachPlayer.Pattern,
+		static_cast<unsigned long>(chrEachPlayer.dwObjectSerial));
+
 	chrEachPlayer.Flag = 0;
 	chrEachMaster = 0;
 	EachTradeButton = 0;
@@ -5567,9 +5688,36 @@ int CloseEachPlayer()
 
 int EachPlayerMain()
 {
-	if(!chrEachMaster || !chrEachMaster->Flag || chrEachMaster->dwObjectSerial != chrEachPlayer.dwObjectSerial ||
+	// SUMMIT_FACE_PREVIEW_ASYNC_REBIND_V12B2
+	// Character face/body patterns are streamed asynchronously. If the selected
+	// master publishes a new Pattern, refresh the copied central preview instead
+	// of allowing the legacy mismatch guard below to close it.
+	if(chrEachMaster && chrEachMaster->Flag &&
+		chrEachMaster->dwObjectSerial == chrEachPlayer.dwObjectSerial &&
+		chrEachMaster->Pattern != chrEachPlayer.Pattern && !EachTradeButton)
+	{
+		smCHAR *changedMaster = chrEachMaster;
+		OpenEachPlayer(changedMaster);
+		return TRUE;
+	}
+
+	// SUMMIT_EACH_MAIN_CLOSE_REASON_V14
+	if(!chrEachMaster || !chrEachMaster->Flag ||
+		chrEachMaster->dwObjectSerial != chrEachPlayer.dwObjectSerial ||
 		chrEachMaster->Pattern != chrEachPlayer.Pattern)
 	{
+		SummitCharacterSelectionTrace("EACH",
+			"MAIN close_reason master=%p masterFlag=%d masterDisplay=%d masterLoading=%d masterPattern=%p masterSerial=%lu eachFlag=%d eachPattern=%p eachSerial=%lu serialMismatch=%d patternMismatch=%d",
+			(void *)chrEachMaster,
+			chrEachMaster ? chrEachMaster->Flag : -1,
+			chrEachMaster ? chrEachMaster->DisplayFlag : -1,
+			chrEachMaster ? chrEachMaster->PatLoading : -1,
+			chrEachMaster ? (void *)chrEachMaster->Pattern : NULL,
+			chrEachMaster ? static_cast<unsigned long>(chrEachMaster->dwObjectSerial) : 0ul,
+			chrEachPlayer.Flag, (void *)chrEachPlayer.Pattern,
+			static_cast<unsigned long>(chrEachPlayer.dwObjectSerial),
+			chrEachMaster ? (chrEachMaster->dwObjectSerial != chrEachPlayer.dwObjectSerial) : -1,
+			chrEachMaster ? (chrEachMaster->Pattern != chrEachPlayer.Pattern) : -1);
 		CloseEachPlayer();
 		return TRUE;
 	}
@@ -5640,6 +5788,33 @@ int DrawClanMark_EachBox(LPDIRECT3DTEXTURE9 clanMark, int x, int y)
 
 int DrawEachPlayer(float fx, float fy, int SizeMode)
 {
+	// SUMMIT_DRAW_EACH_STATE_TRACE_V14
+	{
+		static smCHAR *s_lastDrawMaster = reinterpret_cast<smCHAR *>(~static_cast<std::uintptr_t>(0));
+		static int s_lastDrawMasterFlag = -10000;
+		static int s_lastDrawEachFlag = -10000;
+		static smPAT3D *s_lastDrawPattern = reinterpret_cast<smPAT3D *>(~static_cast<std::uintptr_t>(0));
+		if(s_lastDrawMaster != chrEachMaster ||
+			s_lastDrawMasterFlag != (chrEachMaster ? chrEachMaster->Flag : -1) ||
+			s_lastDrawEachFlag != chrEachPlayer.Flag ||
+			s_lastDrawPattern != chrEachPlayer.Pattern)
+		{
+			SummitCharacterSelectionTrace("EACH",
+				"DRAW state master=%p masterFlag=%d masterDisplay=%d masterLoading=%d masterPattern=%p eachFlag=%d eachPattern=%p sizeMode=%d fx=%.3f fy=%.3f",
+				(void *)chrEachMaster,
+				chrEachMaster ? chrEachMaster->Flag : -1,
+				chrEachMaster ? chrEachMaster->DisplayFlag : -1,
+				chrEachMaster ? chrEachMaster->PatLoading : -1,
+				chrEachMaster ? (void *)chrEachMaster->Pattern : NULL,
+				chrEachPlayer.Flag, (void *)chrEachPlayer.Pattern,
+				SizeMode, fx, fy);
+			s_lastDrawMaster = chrEachMaster;
+			s_lastDrawMasterFlag = chrEachMaster ? chrEachMaster->Flag : -1;
+			s_lastDrawEachFlag = chrEachPlayer.Flag;
+			s_lastDrawPattern = chrEachPlayer.Pattern;
+		}
+	}
+
 	int x, y, z, w, h;
 	int mx, my, he;
 	POINT3D angle;

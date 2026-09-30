@@ -1,0 +1,65 @@
+//ID
+*ÄÚµå "WC111"
+
+//Korean Name
+*ÀÌ¸§ "Garra Leviatã"
+
+//English Name
+*Name "Garra Leviatã"
+
+//AttackPower
+*°ø°Ý·Â 17 20 26 28
+
+//AttackRating
+*¸íÁß·Â 88 100
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 11
+
+//Defense
+*¹æ¾î·Â 35 40
+
+//Integrity
+*³»±¸·Â 62 85
+
+//Level
+*·¹º§ 55
+
+//Strength
+*Èû 80
+
+//Talent
+*Àç´É 65
+
+//Agility
+*¹ÎÃ¸¼º 65
+
+//PrimarySpec
+**Æ¯È­ Mechanician
+
+//SecondarySpec
+**Æ¯È­·£´ý Fighter Pikeman Knight Atalanta
+
+//SpecAttackPower
+**°ø°Ý·Â 7 7
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 3
+
+//Weight
+*¹«°Ô 26
+
+//Price
+*°¡°Ý 39000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WC111.zhoon"

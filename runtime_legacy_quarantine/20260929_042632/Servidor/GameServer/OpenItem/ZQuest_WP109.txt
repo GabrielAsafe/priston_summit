@@ -1,0 +1,41 @@
+//ID
+*ÄÚµå "WP109"
+
+//Korean Name
+*ÀÌ¸§ "Foice Demônio"
+
+//English Name
+*Name "Foice Demônio"
+
+//Effect
+*ÀÌÆåÆ®¼³Á¤ 1
+
+//Quest
+*À¯´ÏÅ© 2
+
+//AttackPower
+*°ø°Ý·Â 18 18 35 35
+
+//AttackRating
+*¸íÁß·Â 135 135
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 8
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 13
+
+//Block
+*ºí·°À² 9.0 9.0
+
+//Integrity
+*³»±¸·Â 100 100
+
+//Level
+*·¹º§ 40
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\ZQuest_WP109.zhoon"

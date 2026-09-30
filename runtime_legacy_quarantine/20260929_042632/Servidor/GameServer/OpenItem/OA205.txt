@@ -1,0 +1,44 @@
+//ID
+*코드 "OA205"
+
+//Korean Name
+*이름 "Bracelete de Escamas"
+
+//English Name
+*Name "Bracelete de Escamas"
+
+//AttackRating
+*명중력 24 30
+
+//Defense
+*방어력 10 17
+
+//PotionStorage
+*보유공간 30
+
+//Integrity
+*내구력 40 70
+
+//Level
+*레벨 16
+
+//Strength
+*힘 48
+
+//Agility
+*민첩성 26
+
+//SpecAttackRating
+**명중력 1 3
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//Weight
+*무게 12
+
+//Price
+*가격 5000
+
+//Name File
+*연결파일 "Name\OA205.zhoon"

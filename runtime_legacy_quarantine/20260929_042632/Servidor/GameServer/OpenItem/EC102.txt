@@ -1,0 +1,17 @@
+//ID
+*코드 "EC102"
+
+//Korean Name
+*이름 "Pergaminho para Navisko"
+
+//English Name
+*Name "Pergaminho para Navisko"
+
+//Weight
+*무게 1
+
+//Price
+*가격 5000
+
+//Name File
+*연결파일 "Name\EC102.zhoon"

@@ -1,0 +1,59 @@
+//ID
+*ÄÚµå "WM111"
+
+//Korean Name
+*ÀÌ¸§ "Varinha da Fé"
+
+//English Name
+*Name "Varinha da Fé"
+
+//AttackPower
+*°ø°Ý·Â 10 12 14 16
+
+//AttackRating
+*¸íÁß·Â 50 70
+
+//AttackRange
+*»çÁ¤°Å¸® 155
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 6
+
+//Integrity
+*³»±¸·Â 54 72
+
+//Level
+*·¹º§ 50
+
+//Spirit
+*Á¤½Å·Â 90
+
+//Talent
+*Àç´É 60
+
+//SecondarySpec
+**Æ¯È­·£´ý Priestess Magician
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecMPRegen
+**±â·ÂÀç»ý 0.4 0.8
+
+//SpecSkillTraining
+**¸¶¹ý¼÷·Ãµµ 4 6
+
+//Weight
+*¹«°Ô 9
+
+//Price
+*°¡°Ý 46000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WM111.zhoon"

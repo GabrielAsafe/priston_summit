@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "WP122"
+
+//Korean Name
+*ÀÌ¸§ "Foice Implacável"
+
+//English Name
+*Name "Foice Implacável"
+
+//AttackPower
+*°ø°Ý·Â 49 52 92 95
+
+//AttackRating
+*¸íÁß·Â 181 199
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 18
+
+//Block
+*ºí·°À² 15.0 15.0
+
+//Integrity
+*³»±¸·Â 145 165
+
+//Level
+*·¹º§ 100
+
+//Strength
+*Èû 178
+
+//Talent
+*Àç´É 90
+
+//PrimarySpec
+**Æ¯È­ Pikeman
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Atalanta
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 4
+
+//Weight
+*¹«°Ô 71
+
+//Price
+*°¡°Ý 1100000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WP122.zhoon"

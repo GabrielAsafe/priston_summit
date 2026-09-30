@@ -1,0 +1,65 @@
+//ID
+*코드 "DS140"
+
+//Korean Name
+*이름 "Escudo Infernal"
+
+//English Name
+*Name "Escudo Infernal"
+
+//Defense
+*방어력 318 338
+
+//Absorption
+*흡수력 19.2 19.5
+
+//Block
+*블럭율 21.0 24.0
+
+//OrganicResistance
+*생체 7 10
+
+//FireResistance
+*불 7 10
+
+//FrostResistance
+*냉기 7 10
+
+//LightningResistance
+*번개 7 10
+
+//PoisonResistance
+*독 7 10
+
+//Integrity
+*내구력 250 270
+
+//Level
+*레벨 130
+
+//Strength
+*힘 160
+
+//Talent
+*재능 80
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**방어력 59 66
+
+//SpecAbsorption
+**흡수력 1.8 2.2
+
+//SpecBlock
+**블럭율 6.0
+
+//Weight
+*무게 126
+
+//Price
+*가격 1320000
+
+//Name File
+*연결파일 "Name\DS140.zhoon"

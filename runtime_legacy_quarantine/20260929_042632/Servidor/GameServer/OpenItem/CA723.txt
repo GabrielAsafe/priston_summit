@@ -1,0 +1,23 @@
+//ID
+*内靛 "CA723"
+
+//Korean Name
+*捞抚 "Traje M醙ico Cuepi 2d"
+
+//English Name
+*Name "Traje M醙ico Cuepi 2d"
+
+//Weight
+*公霸 1
+
+//Absorption
+*软荐仿 15.0 15.0
+
+//HP
+*积疙仿眠啊 250 250
+
+//HPRegen
+*积疙仿犁积 5.0 5.0
+
+//Name File
+*楷搬颇老 "Name\CA723.zhoon"

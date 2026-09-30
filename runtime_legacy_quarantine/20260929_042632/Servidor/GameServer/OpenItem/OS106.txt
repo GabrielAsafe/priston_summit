@@ -1,0 +1,38 @@
+//ID
+*코드 "OS106"
+
+//Korean Name
+*이름 "Transparo"
+
+//English Name
+*Name "Transparo"
+
+//HPRegen
+*생명력재생 0.4 0.7
+
+//MPRegen
+*기력재생 0.5 0.8
+
+//Level
+*레벨 45
+
+//Spirit
+*정신력 65
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecHPRegen
+**생명력재생 0.2 0.4
+
+//SpecMPRegen
+**기력재생 0.3 0.6
+
+//Weight
+*무게 2
+
+//Price
+*가격 50000
+
+//Name File
+*연결파일 "Name\OS106.zhoon"

@@ -1,0 +1,29 @@
+//ID
+*코드 "OA231"
+
+//Korean Name
+*이름 "Bracelete Especial 7d"
+
+//English Name
+*Name "Bracelete Especial 7d"
+
+//AttackRating
+*명중력 100 100
+
+//Defense
+*방어력 100 100
+
+//PotionStorage
+*보유공간 100
+
+//Level
+*레벨 10
+
+//Weight
+*무게 1
+
+//Price
+*가격 100000
+
+//Name File
+*연결파일 "Name\OA231.zhoon"

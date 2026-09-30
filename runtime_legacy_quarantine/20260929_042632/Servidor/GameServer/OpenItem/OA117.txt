@@ -1,0 +1,35 @@
+//ID
+*코드 "OA117"
+
+//Korean Name
+*이름 "Colar Selado"
+
+//English Name
+*Name "Colar Selado"
+
+//HP
+*생명력추가 12 15
+
+//MP
+*기력추가 18 24
+
+//Level
+*레벨 65
+
+//Spirit
+*정신력 70
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecMPRegen
+**기력재생 0.3 0.6
+
+//Weight
+*무게 5
+
+//Price
+*가격 35000
+
+//Name File
+*연결파일 "Name\OA117.zhoon"

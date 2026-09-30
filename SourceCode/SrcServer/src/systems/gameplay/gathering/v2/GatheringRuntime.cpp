@@ -7,9 +7,8 @@
 #include "gameplay/covenants/v2/CovenantCatalog.h"
 #include "systems/gameplay/mining/v2/MiningRuntime.h"
 #include "systems/gameplay/professions/v2/ProfessionRuntime.h"
+#include "systems/gameplay/gathering/v2/legacy/LegacyHarvestPlayerQueryAdapter.h"
 #include "systems/gameplay/progression/v2/ProgressionRuntime.h"
-#include "systems/rendering/legacy_3d/smd3d.h"
-#include "core/server/legacy_runtime/onserver.h"
 
 namespace gameplay
 {
@@ -145,29 +144,31 @@ bool InitializeServerGatheringRuntime(std::string* error)
     return true;
 }
 
-HarvestResult HarvestGatheringNodeForPlayer(rsPLAYINFO* player,
+HarvestResult HarvestGatheringNodeForPlayer(PlayerId playerId,
                                              std::uint32_t nodeId,
                                              std::uint64_t nowMilliseconds,
                                              std::uint32_t roll)
 {
     HarvestResult invalid;
     invalid.nodeId = nodeId;
-    if (!player || !player->getName()) { invalid.status = HarvestStatus::InvalidPlayer; return invalid; }
+    HarvestPlayerSnapshot player;
+    if (!legacy::ServerLegacyHarvestPlayerQueryAdapter().TryGet(playerId, player))
+    { invalid.status = HarvestStatus::InvalidPlayer; return invalid; }
     ResourceDefinition resource;
     GatheringNodeDefinition node;
     if (!ServerGatheringService().GetNode(nodeId,node) || !ServerGatheringService().GetResource(node.resourceId,resource))
     { invalid.status = HarvestStatus::UnknownNode; return invalid; }
 
     HarvestRequest request;
-    request.playerName = player->getName();
+    request.playerName = player.playerName;
     request.profession = ProfessionFor(resource);
     request.professionLevel = request.profession == professions::ProfessionType::None ? 0 :
         professions::ServerProfessionService().GetLevel(request.playerName, request.profession);
     request.nodeId = nodeId;
-    request.area = player->Position.Area;
-    request.x = player->Position.x >> FLOATNS;
-    request.y = player->Position.y >> FLOATNS;
-    request.z = player->Position.z >> FLOATNS;
+    request.area = player.area;
+    request.x = player.x;
+    request.y = player.y;
+    request.z = player.z;
     request.nowMilliseconds = nowMilliseconds;
     request.roll = roll;
     HarvestResult result = ServerGatheringService().Harvest(request);

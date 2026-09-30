@@ -1,0 +1,17 @@
+//ID
+*ÄÚµå "OS126"
+
+//Korean Name
+*ÀÌ¸§ "Transparo Mágico"
+
+//English Name
+*Name "Transparo Mágico"
+
+//Weight
+*¹«°Ô 2
+
+//Price
+*°¡°İ 1000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\OS126.zhoon"

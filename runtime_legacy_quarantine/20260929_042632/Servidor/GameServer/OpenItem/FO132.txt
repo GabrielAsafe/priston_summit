@@ -1,0 +1,20 @@
+//ID
+*ÄÚµå "FO132"
+
+//Korean Name
+*ÀÌ¸§ "Força Mágica Enigma"
+
+//English Name
+*Name "Força Mágica Enigma"
+
+//Weight
+*¹«°Ô 2
+
+//Price
+*°¡°Ý 1000
+
+//Level
+*·¹º§ 90
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\FO132.zhoon"

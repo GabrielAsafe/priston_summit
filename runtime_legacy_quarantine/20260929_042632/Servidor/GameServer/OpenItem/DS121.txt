@@ -1,0 +1,65 @@
+//ID
+*ÄÚµå "DS121"
+
+//Korean Name
+*ÀÌ¸§ "Escudo Fênix"
+
+//English Name
+*Name "Escudo Fênix"
+
+//Defense
+*¹æ¾î·Â 198 218
+
+//Absorption
+*Èí¼ö·Â 11.2 11.5
+
+//Block
+*ºí·°À² 17.0 20.0
+
+//OrganicResistance
+*»ýÃ¼ 3 6
+
+//FireResistance
+*ºÒ 3 6
+
+//FrostResistance
+*³Ã±â 3 6
+
+//LightningResistance
+*¹ø°³ 3 6
+
+//PoisonResistance
+*µ¶ 3 6
+
+//Integrity
+*³»±¸·Â 170 190
+
+//Level
+*·¹º§ 100
+
+//Strength
+*Èû 130
+
+//Talent
+*Àç´É 75
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**¹æ¾î·Â 36 42
+
+//SpecAbsorption
+**Èí¼ö·Â 1.0 1.3
+
+//SpecBlock
+**ºí·°À² 4.0
+
+//Weight
+*¹«°Ô 80
+
+//Price
+*°¡°Ý 700000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DS121.zhoon"

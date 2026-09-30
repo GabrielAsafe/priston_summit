@@ -1,0 +1,122 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\headcut\headcutaxe.ini"
+
+//Name
+*이름 "Carniceiro"
+
+//Level
+*레벨 52
+
+//Size
+*모델크기 1.0
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 400
+
+//HP
+*생명력 1000
+
+//AttackPower
+*공격력 68 86
+
+//AttackRating
+*명중력 900
+
+//AttackSpeed
+*공격속도 7
+
+//AttackRange
+*공격범위 100
+
+//SkillPower
+*기술공격력 90 100
+
+//SkillRating
+*기술공격률 20
+
+//SkillRange
+*기술공격범위 60
+
+//SkillDistance
+*기술공격거리 80
+
+//Defense
+*방어력 520
+
+//Absorption
+*흡수율 15
+
+//Block
+*블럭율 12
+
+//MoveSpeed
+*이동력 3
+
+//Race
+*몬스터종족 디먼
+
+//ShadowSize
+*크기 중대형
+
+//Experience
+*경험치 46082
+
+//Sound
+*효과음 HEADCUTTER
+
+//Potions
+*물약보유수 1
+
+//PotionChance
+*물약보유률 15
+
+//DropsNumber
+*아이템카운터 1
+
+//DropGold
+*아이템 2500 돈 1800 2200
+
+//DropPotion
+*아이템 2500 PS103 PL103 PM103 PM103
+
+//Drop
+//*아이템 100 SE102 SE104
+
+//Drop
+*아이템 30 GP106 GP109 GP107
+
+//Drop
+*아이템 80 OS104 OS123
+
+//Drop
+*아이템 40 OS105 OS123
+
+//Drop
+*아이템 20 OS106 OS125
+
+//Drop
+*아이템 102 EC101 EC102 EC104
+
+//Drop
+*아이템 3812 WA106 WC106 WH107 WM107 WP107 WS108 WS209 WT107 OA110 OA206 OM107 OR110 DA108 DA208 DB106 DG106 DS106
+
+//Drop
+*아이템 378 WA107 WC107 WH108 WM108 WP108 WS109 WS210 WT108 OA111 OA207 OM108 OR111 DA109 DA209 DB107 DG107 DS107
+
+//Drop
+*아이템 252 WA108 WC108 WH109 WM109 WP109 WS110 WS211 WT109 OA112 OA208 OM109 OR112 DA110 DA210 DB108 DG108 DS108
+
+//Drop
+*아이템 126 WA109 WC109 WH110 WM110 WP110 WS111 WS212 WT110 OA113 OA209 OM110 OR113 DA111 DA211 DB109 DG109 DS109
+
+//Drop
+*아이템 42 WA110 WC110 WH111 WM111 WP111 WS112 WS213 WT111 OA114 OA210 OM111 OR114 DA112 DA212 DB110 DG110 DS110
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

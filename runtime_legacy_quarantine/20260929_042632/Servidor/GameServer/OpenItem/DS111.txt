@@ -1,0 +1,65 @@
+//ID
+*코드 "DS111"
+
+//Korean Name
+*이름 "Escudo Grande"
+
+//English Name
+*Name "Escudo Grande"
+
+//Defense
+*방어력 70 95
+
+//Absorption
+*흡수력 3.8 4.3
+
+//Block
+*블럭율 17.0 20.0
+
+//OrganicResistance
+*생체 2 4
+
+//FireResistance
+*불 2 4
+
+//FrostResistance
+*냉기 2 4
+
+//LightningResistance
+*번개 2 4
+
+//PoisonResistance
+*독 2 4
+
+//Integrity
+*내구력 80 115
+
+//Level
+*레벨 55
+
+//Strength
+*힘 105
+
+//Talent
+*재능 56
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**방어력 14 20
+
+//SpecAbsorption
+**흡수력 0.6 0.8
+
+//SpecBlock
+**블럭율 3.0
+
+//Weight
+*무게 30
+
+//Price
+*가격 48000
+
+//Name File
+*연결파일 "Name\DS111.zhoon"

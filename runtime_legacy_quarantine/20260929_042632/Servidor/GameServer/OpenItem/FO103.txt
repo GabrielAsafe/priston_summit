@@ -1,0 +1,20 @@
+//ID
+*ÄÚµå "FO103"
+
+//Korean Name
+*ÀÌ¸§ "Força Fadeo"
+
+//English Name
+*Name "Força Fadeo"
+
+//Weight
+*¹«°Ô 2
+
+//Price
+*°¡°Ý 1000
+
+//Level
+*·¹º§ 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\FO103.zhoon"

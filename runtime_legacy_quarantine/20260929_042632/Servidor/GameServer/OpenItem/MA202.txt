@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "MA202"
+
+//Korean Name
+*ÀÌ¸§ "Óleo"
+
+//English Name
+*Name "Óleo"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\MA202.zhoon"

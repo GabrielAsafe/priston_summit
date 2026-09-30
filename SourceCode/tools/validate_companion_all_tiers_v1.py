@@ -12,6 +12,7 @@ adapter=rd('Shared/gameplay/skills/v2/legacy/LegacySkillAdapter.h')
 exe=rd('SrcServer/src/systems/gameplay/companions/CompanionSkillExecutor.cpp')
 hdr=rd('SrcServer/src/systems/gameplay/companions/CompanionSkillExecutor.h')
 syscpp=rd('SrcServer/src/systems/gameplay/companions/CompanionSystem.cpp')
+statuscpp=rd('SrcServer/src/systems/gameplay/combat/v2/legacy/LegacyStatusEffectAdapter.cpp')
 proto=rd('Shared/gameplay/companions/CompanionProtocol.h')
 client=rd('Shared/gameplay/character/character_legacy_client.inl')
 pat=re.compile(r'MakeSkill\((0x[0-9A-Fa-f]+)u,\s*(\d+),\s*(\d+),\s*(\d+),\s*SkillBehavior::([A-Za-z]+),\s*(true|false),\s*"([^"]*)",\s*(0x[0-9A-Fa-f]+)u,\s*(0x[0-9A-Fa-f]+)u,')
@@ -43,7 +44,7 @@ req('service_.LegacyPlayCode' in adapter and 'service_.PresentationPlayCode' in 
 for token in ['DamageForSkill','ApplyBuffModifier','VenomSpear_Time','AssassinEyeParam','PlayHolyMind','PlayDistortion',
               'Soul_Sucker_Absorb','Extinction_Amount','OpenMonsterFromSkill','Resurrection_Percent',
               'reactiveDamagePercent','GetReactiveDamage']:
-    req(token in exe or token in syscpp or token in hdr,'legacy behavior bridge lost token '+token)
+    req(token in exe or token in syscpp or token in hdr or token in statuscpp,'legacy behavior bridge lost token '+token)
 req('COMPANION_VISUAL_PROTOCOL_VERSION = 4' in proto,'visual protocol not v4')
 req('logicalSkillCode' in proto and 'skillPlayCode' in proto,'logical/presentation identity not split')
 req('SummitT5PrepareRemoteCompanionVisual' in client,'client companion visual bridge missing')

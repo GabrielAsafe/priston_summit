@@ -398,7 +398,7 @@ def main() -> int:
     ap.add_argument('--archive-root', type=Path, default=Path.home() / 'armazem/priston')
     ap.add_argument('--source-code', type=Path, default=source_default)
     ap.add_argument('--canonical-root', type=Path, required=True, help='Canonical root containing stage_spawns/ and text/.')
-    ap.add_argument('--apply', action='store_true', help='Install recovered canonical JSON and stage_spawns.sspb after all monster IDs resolve.')
+    ap.add_argument('--apply', action='store_true', help='Install recovered canonical JSON and rebuild field_runtime.sfld after all monster IDs resolve.')
     ap.add_argument('--report', type=Path, default=None)
     args = ap.parse_args()
 
@@ -407,7 +407,7 @@ def main() -> int:
     canonical_root = args.canonical_root.expanduser().resolve()
     canonical = canonical_root / 'stage_spawns'
     canonical_text = canonical_root / 'text'
-    pack = source / 'Content/packs/stage_spawns.sspb'
+    pack = source / 'Content/packs/field_runtime.sfld'
     tools = source / 'tools/content_port'
     report_path = (args.report.expanduser().resolve() if args.report else source / 'Content/forever_fall_recovery_report.json')
 
@@ -419,8 +419,9 @@ def main() -> int:
     print(f'PACK_OUTPUT={pack}')
     for required in (
         canonical / 'index.json', canonical_text / 'index.json',
+        canonical_root / 'stage_start_points/index.json', canonical_root / 'fixed_npcs/index.json',
         tools / 'import_corpus.py', tools / 'canonicalize_stage_spawns.py',
-        tools / 'compile_stage_spawns_canonical.py', tools / 'inspect_stage_spawns.py',
+        tools / 'compile_field_runtime.py', tools / 'inspect_field_runtime.py',
         tools / 'legacy_text.py', tools / 'source_tokens.py',
     ):
         if not required.exists():
@@ -449,7 +450,7 @@ def main() -> int:
         shadow = tmp / 'shadow'
         recovered = tmp / 'recovered_canonical'
         merged = tmp / 'merged_canonical'
-        candidate_pack = tmp / 'stage_spawns.sspb'
+        candidate_pack = tmp / 'field_runtime.sfld'
 
         run(sys.executable, tools / 'import_corpus.py', '--corpus', corpus, '--source-root', source, '--out', shadow)
         run(sys.executable, tools / 'canonicalize_stage_spawns.py', '--shadow', shadow, '--canonical-text', canonical_text, '--out', recovered)
@@ -496,8 +497,15 @@ def main() -> int:
             shutil.copy2(src_doc, dst_doc)
             replacements.append({'logical_path': e['logical_path'], 'json_path': dst_entry['json_path']})
 
-        run(sys.executable, tools / 'compile_stage_spawns_canonical.py', merged, candidate_pack)
-        run(sys.executable, tools / 'inspect_stage_spawns.py', candidate_pack)
+        run(
+            sys.executable, tools / 'compile_field_runtime.py',
+            '--canonical-spawns', merged,
+            '--canonical-start-points', canonical_root / 'stage_start_points',
+            '--canonical-fixed-npcs', canonical_root / 'fixed_npcs',
+            '--canonical-text', canonical_text,
+            candidate_pack,
+        )
+        run(sys.executable, tools / 'inspect_field_runtime.py', candidate_pack)
 
         merged_counts = spawn_counts(merged)
         still_empty = [t for t in TARGETS if t not in merged_counts or merged_counts[t]['actors'] + merged_counts[t]['bosses'] == 0]
@@ -537,7 +545,15 @@ def main() -> int:
                 dst_entry = actual_index[e['logical_path'].casefold()]
                 shutil.copy2(recovered / e['json_path'], canonical / dst_entry['json_path'])
             pack.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(candidate_pack, pack)
+            run(
+                sys.executable, tools / 'compile_field_runtime.py',
+                '--canonical-spawns', canonical,
+                '--canonical-start-points', canonical_root / 'stage_start_points',
+                '--canonical-fixed-npcs', canonical_root / 'fixed_npcs',
+                '--canonical-text', canonical_text,
+                pack,
+            )
+            run(sys.executable, tools / 'inspect_field_runtime.py', pack)
             report['installed_pack'] = {'path': str(pack), 'bytes': pack.stat().st_size, 'sha256': sha256_file(pack)}
 
         report_path.parent.mkdir(parents=True, exist_ok=True)

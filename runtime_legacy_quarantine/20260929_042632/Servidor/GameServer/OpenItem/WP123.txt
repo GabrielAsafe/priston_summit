@@ -1,0 +1,62 @@
+//ID
+*코드 "WP123"
+
+//Korean Name
+*이름 "Foice da Morte"
+
+//English Name
+*Name "Foice da Morte"
+
+//AttackPower
+*공격력 53 56 99 102
+
+//AttackRating
+*명중력 187 210
+
+//AttackSpeed
+*공격속도 7
+
+//AttackCritical
+*크리티컬 18
+
+//Block
+*블럭율 16.0 16.0
+
+//Integrity
+*내구력 155 175
+
+//Level
+*레벨 102
+
+//Strength
+*힘 184
+
+//Talent
+*재능 90
+
+//PrimarySpec
+**특화 Pikeman
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Atalanta
+
+//SpecAttackPower
+**공격력 6 6
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 3
+
+//Weight
+*무게 76
+
+//Price
+*가격 1150000
+
+//Name File
+*연결파일 "Name\WP123.zhoon"

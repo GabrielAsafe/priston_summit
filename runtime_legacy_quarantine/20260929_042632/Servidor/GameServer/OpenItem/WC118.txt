@@ -1,0 +1,65 @@
+//ID
+*ÄÚµå "WC118"
+
+//Korean Name
+*ÀÌ¸§ "Garra Fênix"
+
+//English Name
+*Name "Garra Fênix"
+
+//AttackPower
+*°ø°Ý·Â 39 42 54 57
+
+//AttackRating
+*¸íÁß·Â 135 154
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 15
+
+//Defense
+*¹æ¾î·Â 55 65
+
+//Integrity
+*³»±¸·Â 110 120
+
+//Level
+*·¹º§ 80
+
+//Strength
+*Èû 125
+
+//Talent
+*Àç´É 86
+
+//Agility
+*¹ÎÃ¸¼º 80
+
+//PrimarySpec
+**Æ¯È­ Mechanician
+
+//SecondarySpec
+**Æ¯È­·£´ý Fighter Pikeman Knight Atalanta
+
+//SpecAttackPower
+**°ø°Ý·Â 7 7
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 3
+
+//Weight
+*¹«°Ô 49
+
+//Price
+*°¡°Ý 690000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WC118.zhoon"

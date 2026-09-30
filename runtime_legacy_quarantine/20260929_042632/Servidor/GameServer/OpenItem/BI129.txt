@@ -1,0 +1,14 @@
+//ID
+*코드 "BI129"
+
+//Korean Name
+*이름 "Po豫o Redutora de Mana 30% 1d"
+
+//English Name
+*Name "Po豫o Redutora de Mana 30% 1d"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\BI129.zhoon"

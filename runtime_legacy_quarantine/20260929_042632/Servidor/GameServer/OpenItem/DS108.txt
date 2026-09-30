@@ -1,0 +1,65 @@
+//ID
+*코드 "DS108"
+
+//Korean Name
+*이름 "Escudo Chama"
+
+//English Name
+*Name "Escudo Chama"
+
+//Defense
+*방어력 60 84
+
+//Absorption
+*흡수력 2.6 3.3
+
+//Block
+*블럭율 13.0 19.0
+
+//OrganicResistance
+*생체 2 4
+
+//FireResistance
+*불 2 4
+
+//FrostResistance
+*냉기 2 4
+
+//LightningResistance
+*번개 -3 -3
+
+//PoisonResistance
+*독 2 4
+
+//Integrity
+*내구력 60 80
+
+//Level
+*레벨 37
+
+//Strength
+*힘 82
+
+//Talent
+*재능 46
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**방어력 12 18
+
+//SpecAbsorption
+**흡수력 0.4 0.7
+
+//SpecBlock
+**블럭율 3.0
+
+//Weight
+*무게 27
+
+//Price
+*가격 28000
+
+//Name File
+*연결파일 "Name\DS108.zhoon"

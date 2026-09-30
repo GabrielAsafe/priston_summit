@@ -1,0 +1,65 @@
+//ID
+*ÄÚµå "WT125"
+
+//Korean Name
+*ÀÌ¸§ "Lança Cronus"
+
+//English Name
+*Name "Lança Cronus"
+
+//AttackPower
+*°ø°Ý·Â 77 81 97 100
+
+//AttackRange
+*»çÁ¤°Å¸® 255
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 8
+
+//AttackRating
+*¸íÁß·Â 168 188
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 16
+
+//Integrity
+*³»±¸·Â 167 191
+
+//Level
+*·¹º§ 108
+
+//Strength
+*Èû 82
+
+//Talent
+*Àç´É 95
+
+//Agility
+*¹ÎÃ¸¼º 162
+
+//PrimarySpec
+**Æ¯È­ Atalanta
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Archer
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 6
+
+//SpecAttackRange
+**»çÁ¤°Å¸® 25
+
+//Weight
+*¹«°Ô 43
+
+//Price
+*°¡°Ý 1280000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WT125.zhoon"

@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <string>
 
-#include "systems/gameplay/mining/v2/MiningService.h"
+#include "gameplay/mining/v2/IMiningService.h"
 
 namespace gameplay
 {
@@ -23,7 +23,7 @@ struct MiningActorState
 class MiningInteractionService
 {
 public:
-    explicit MiningInteractionService(MiningService& mining) : mining_(mining) {}
+    explicit MiningInteractionService(IMiningService& mining) : mining_(mining) {}
 
     gathering::HarvestResult Harvest(const MiningActorState& actor,
                                      std::uint32_t nodeId,
@@ -43,7 +43,7 @@ public:
     }
 
 private:
-    MiningService& mining_;
+    IMiningService& mining_;
 };
 }
 }

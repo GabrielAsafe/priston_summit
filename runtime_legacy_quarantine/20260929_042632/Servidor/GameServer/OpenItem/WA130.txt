@@ -1,0 +1,62 @@
+//ID
+*코드 "WA130"
+
+//Korean Name
+*이름 "Machado Abissal"
+
+//English Name
+*Name "Machado Abissal"
+
+//AttackPower
+*공격력 148 151 160 163
+
+//AttackRating
+*명중력 282 292
+
+//AttackSpeed
+*공격속도 8
+
+//AttackCritical
+*크리티컬 22
+
+//Block
+*블럭율 13.0 13.0
+
+//Integrity
+*내구력 234 296
+
+//Level
+*레벨 130
+
+//Strength
+*힘 235
+
+//Talent
+*재능 100
+
+//PrimarySpec
+**특화 Fighter
+
+//SecondarySpec
+**특화랜덤 Mechanician Pikeman
+
+//SpecAttackPower
+**공격력 7 7
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 4
+
+//Weight
+*무게 132
+
+//Price
+*가격 1510000
+
+//Name File
+*연결파일 "Name\WA130.zhoon"

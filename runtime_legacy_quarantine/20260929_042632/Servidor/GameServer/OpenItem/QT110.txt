@@ -1,0 +1,14 @@
+//ID
+*코드 "QT110"
+
+//Korean Name
+*이름 "Pedra Vampira de Prata"
+
+//English Name
+*Name "Pedra Vampira de Prata"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\QT110.zhoon"

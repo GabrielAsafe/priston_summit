@@ -1,0 +1,20 @@
+//ID
+*ÄÚµå "GP146"
+
+//Korean Name
+*ÀÌ¸§ "Cristal do Cão Infernal"
+
+//English Name
+*Name "Cristal do Cão Infernal"
+
+//Level
+*·¹º§ 65
+
+//Weight
+*¹«°Ô 1
+
+//Price
+*°¡°Ý 50000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\GP146.zhoon"

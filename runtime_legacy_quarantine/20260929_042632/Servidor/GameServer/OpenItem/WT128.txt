@@ -1,0 +1,65 @@
+//ID
+*ÄÚµå "WT128"
+
+//Korean Name
+*ÀÌ¸§ "Lança Mortal"
+
+//English Name
+*Name "Lança Mortal"
+
+//AttackPower
+*°ø°Ý·Â 108 111 127 130
+
+//AttackRange
+*»çÁ¤°Å¸® 255
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 8
+
+//AttackRating
+*¸íÁß·Â 192 212
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 17
+
+//Integrity
+*³»±¸·Â 183 207
+
+//Level
+*·¹º§ 120
+
+//Strength
+*Èû 82
+
+//Talent
+*Àç´É 100
+
+//Agility
+*¹ÎÃ¸¼º 183
+
+//PrimarySpec
+**Æ¯È­ Atalanta
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Archer
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 6
+
+//SpecAttackRange
+**»çÁ¤°Å¸® 25
+
+//Weight
+*¹«°Ô 58
+
+//Price
+*°¡°Ý 1580000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WT128.zhoon"

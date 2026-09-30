@@ -1,0 +1,3864 @@
+!This program cannot be run in DOS mode.
+Rich
+.text
+`.rdata
+@.data
+.reloc
+TSVW
+DSVW
+DSVW
+uKjP
+@SVW
+HSVW
+@SVW
+@SVW
+DSVW
+HSVW
+DSVW
+@SVW
+@SVWh
+DSVWh
+@SVW
+SVWh
+j j j
+LSVW
+TSVW
+DSVWh
+DSVWh
+t.h4
+t,h|
+@SVWj
+DSVW
+TSVW
+t.h4
+t%h|
+HSVW
+DSVW
+@SVW
+@SVW
+HSVW
+LSVW
+DSVW
+DSVW
+DSVW
+lSVW
+lSVW
+PSVW
+HSVW
+DSVW
+DSVW
+DSVW
+DSVW
+DSVW
+PSVW
+DSVW
+@SVW
+DSVW
+@SVW
+LSVW
+DSVW
+DSVW
+DSVW
+DSVW
+DSVW
+DSVW
+PSVW
+@SVW
+HSVW
+@SVW
+LSVW
+LSVW
+lSVW
+HSVW
+LSVW
+HSVW
+XSVW
+HSVW
+PSVW
+DSVW
+HSVW
+DSVW
+DSVW
+DSVW
+\SVW
+HSVW
+u:j,
+DSVW
+HSVW
+HSVW
+DSVW
+B$_^[
+LSVW
+B$Ph
+LSVW
+DSVW
+@SVWh@
+DSVW
+HSVW
+HSVW
+HSVW
+DSVW
+DSVW
+DSVW
+LSVW
+@SVW
+u=h@
+DSVW
+@SVW
+HSVW
+DSVWj\
+DSVW
+@SVW
+@SVW
+DSVW
+DSVW
+TSVWj
+PSVW
+DSVW
+@SVW
+@SVW
+@SVW
+Ph`$
+DSVW
+DSVW
+@SVW
+Qh`%
+TSVW
+Qh0&
+t)h4
+PSVW
+t8h|
+Phd&
+t6h|
+RhP&
+@SVW
+PSVW
+Qh0&
+PSVW
+Qh0&
+@SVW
+u1j0h
+@SVW
+LSVW
+TSVW
+Rh0&
+Rh0&
+Ph@(
+t|h|
+t2h|
+PhH'
+Qh<'
+t,h4'
+Rh '
+t?h|
+@SVW
+HSVWh
+HSVWh
+Qh0&
+tBh4
+Rh0&
+PSVW
+t-h|
+Qh0&
+TSVW
+Qh0&
+t)h4
+PhP)
+PSVW
+Qh0&
+@SVW
+`SVW
+Qh0&
+t)h4
+Rhx)
+DSVW
+DSVW
+\SVW
+Qh0&
+tSVW
+Rh0&
+j0j(
+t/h4'
+Qh0&
+t%h|
+TSVW
+Qh0&
+TSVW
+Qh0&
+@SVW
+TSVW
+Qh0&
+TSVW
+TSVW
+B8_^[
+LSVW
+Rhd*
+DSVW
+DSVW
+Qh0&
+Phx*
+@SVW
+Qh0&
+Qh0&
+tKh4
+j0jH
+\SVW
+Qh0&
+PSVW
+Qh0&
+t)h4
+PSVW
+Qh0&
+t)h4
+PSVW
+Qh0&
+TSVW
+Qh0&
+\SVW
+Qh0&
+PSVW
+Qh0&
+PSVW
+Qh0&
+PSVW
+Qh0&
+@SVW
+@SVW
+@SVW
+@SVW
+TSVW
+Qh0&
+t)h4
+@SVW
+@SVW
+@SVW
+@@_^[
+@SVW
+@SVW
+@SVW
+@SVW
+@SVW
+@SVW
+@SVW
+@SVW
+@SVW
+@SVW
+@SVW
+@SVW
+@SVW
+@SVW
+LSVW
+LSVW
+DSVW
+@SVW
+@SVW
+DSVW
+DSVWj
+DSVW
+DSVW
+DSVW
+@SVWj
+@SVW
+@SVW
+@SVW
+@SVW
+@SVW
+XSVW
+DSVW
+HSVW
+@SVW
+@SVW
+HSVW
+HSVWj:
+XSVW
+t)h4
+HSVW
+t5h4
+PhP,
+t7h|
+Qh,,
+XSVW
+tKh4
+\t4h
+t)h4'
+Qh$-
+t)h4'
+Qh$-
+t)h4
+PhD-
+\uXj
+t)h4'
+Qh$-
+@SVW
+Qh$-
+@SVWh
+@SVW
+\SVW
+hSVW
+@SVW
+TSVW
+XSVW
+HSVW
+DSVW
+DSVW
+HSVW
+DSVW
+TSVW
+QhT.
+t5h<(
+Rj$j
+TSVW
+t-h<(
+Qht.
+PSVW
+Qh /
+t5h<(
+@SVW
+dSVW
+t1h<(
+Rhd/
+t)h4'
+PhX/
+t-h|
+Ph@/
+XSVW
+t-h<(
+Pj$j
+\SVW
+t1h<(
+Pj$j
+t)h4'
+PhX/
+DSVW
+TSVW
+Qh40
+t1h<(
+Rj$j
+`SVW
+Qh40
+t-h<(
+QhX0
+Qj$j
+DSVW
+XSVW
+t+h4'
+Ph|0
+DSVW
+t*h|
+PSVW
+DSVW
+PSVW
+t-h<(
+Pj$j
+@SVW
+PSVW
+t-h<(
+Qh,2
+TSVW
+t1h<(
+RhL2
+Pj$j
+TSVW
+t-h<(
+Rj$j
+t)h4'
+Rh|2
+PSVW
+t)h<(
+Ph|2
+DSVW
+HSVW
+PSVW
+t)h4
+DSVWh 
+TSVW
+Pj$j
+XSVW
+QhL3
+TSVW
+Qh|3
+t1h<(
+Rhd/
+t#j@
+t)h4'
+Qhl3
+t-h|
+Qh@/
+Qj$j
+TSVW
+Qh|3
+t-h<(
+Pj$j
+@SVW3
+@SVW
+XSVW
+Qh 4
+t5h<(
+Pj$j
+Pj$j	
+TSVW
+Qhl4
+t1h<(
+Rh@4
+Pj$j
+t)h4'
+Rh|2
+:u#h
+@SVW
+@SVW
+DSVWh
+yjLj
+DSVW
+DSVW
+@SVW
+<_^[
+@SVW
+@SVW
+@SVW
+TSVW
+DSVW
+DSVW
+@SVW
+@SVW
+@SVW
+@SVWj
+DSVW
+dSVW
+Qh(5
+t)h|
+HSVW
+@SVW
+@SVW
+\SVW
+t5h<(
+Ph`5
+t)h|
+QhL5
+PjDj
+Pj$j
+@SVWj
+@SVW
+HSVW
+DSVW
+HSVW
+TSVW
+DSVW
+hSVW
+LSVW
+lSVW
+t4h|
+tAh|
+Ph<6
+tIh|
+@SVW
+HSVW
+t)h|
+HSVW
+HSVW
+PSVW
+5W0P
+HSVW
+LSVW
+HSVW
+@SVW
+pSVW
+HSVW
+|SVW
+t)h4
+PhL7
+t3h|
+Ph 7
+t3h4'
+Qh|2
+\SVW
+PhH8
+TSVW
+t)h4
+Ph|2
+Rhd8
+@SVW
+Rh89
+TSVW
+Php:
+RhD:
+Qh\9
+PSVW
+LSVW
+Qht;
+Ph\;
+Rh8;
+DSVW
+HSVW
+DSVW
+DSVW
+LSVW
+DSVW
+DSVW
+DSVW
+QhL<
+QhD<
+DSVW
+DSVW
+DSVW
+DSVW
+DSVW
+DSVW
+DSVW
+DSVW
+DSVW
+DSVW
+DSVW
+\SVW
+\SVW
+HSVW
+`SVW
+XSVW
+DSVW
+@SVW3
+LSVW
+@SVW3
+LSVW
+@SVW
+DSVW
+@SVW
+@SVW
+TSVW
+Qhh<
+TSVW
+Qhh<
+PSVW
+Qhh<
+LSVW
+@SVW
+LSVW
+@SVW
+@SVW
+@SVW
+DSVW
+dSVW
+t-h4
+t%h4'
+t%h4'
+t%h4'
+PSVW
+@SVW
+TSVW
+QhD=
+t)h4
+Ph4=
+Ph(=
+@SVWjTj
+TSVW
+QhD=
+@SVW
+@SVW
+XSVW
+QhD=
+t3h4
+t+h|
+t)h4'
+Ph|=
+XSVW
+QhD=
+t3h4
+t+h|
+t)h4'
+Ph|=
+TSVW
+QhD=
+t*h4
+TSVW
+QhD=
+t*h4'
+Rh|=
+TSVW
+QhD=
+t*h4
+t)h4'
+Rh|=
+XSVW
+QhD=
+t0h4
+Rh8>
+HSVW
+TSVW
+QhD=
+t+h|
+Phd>
+@SVW
+4_^[
+@SVW
+@0_^[
+@SVW
+TSVW
+QhD=
+t+h4
+Qh4=
+t+h4'
+t)h4'
+PSVW
+QhD=
+@SVWj
+@SVW
+ _^[
+LSVW
+}$8t
+PSVW
+DSVW
+LSVW
+Q|;U
+TSVW
+@SVW
+DSVW
+DSVW
+LSVW
+@SVW
+TSVW
+Qd;U
+Hd+M
+Pd+QTR
+Pd+QT
+Pd+QTR
+Jd+HTQ
+\SVW
+J4+Hl
+Bh+E
+Bd+E
+BT+E
+DSVW
+`SVW
+Ad#B,
+Bd+E
+Jd+Hhf
+Al+BX
+JX;Hx
+Ad#B,
+Jd+HTQ
+Ad+BTP
+tSVW
+9Jdv
+;Qlv	
+;Blw
+Al_^[
+lSVW
+Ad#B,
+Pp;Qxsv
+Hd+M
+Jd+Hh
+AX;Bp
++A\f
+Hd;M
+Ad#B,
+Pd+QTR
+Jd+HTQ
+Ad+BTP
+@SVW
+@SVW
+@SVW
+@SVW
+LSVW
+DSVW
+;A0t
+TSVW
+@SVW
+@SVW
+@SVW
+@SVW
+@SVW
+PSVW
+@SVW
+@SVW_^[
+DSVW
+HSVW
+`SVW
+\SVW
+dSVW
+HSVW
+tSVW
+tSVWf
+DSVW
+\SVW
+dSVW
+DSVW
+LSVW
+DSVW
+@SVW
+@SVW
+@SVW
+@SVW
+J0_^[
+DSVWj@j
+;Q0s
+H0+M
+B,+E
+;Q,uE
+P0;Q(t7
+;B0s
+Q0+U
+H,+M
+;Q0s
+H0+M
+B,+E
+;B,uE
+A0;B(t7
+;H0s
+B0+E
+Q,+U
+;H0s
+B0+E
+Q,+U
+;B0s
+Q0+U
+H,+M
+P0;Q4t[
+@SVWj
+@SVW
+A0_^[
+@SVW
+DSVWj
+;H0s
+B0+E
+Q,+U
+;Q0s
+H0+M
+B,+E
+;Q,uE
+P0;Q(t7
+;B0s
+Q0+U
+H,+M
+;Q0s
+H0+M
+B,+E
+;B,uE
+A0;B(t7
+;H0s
+B0+E
+Q,+U
+;Q,u	
+;H,uE
+J0;H(t7
+;Q0s
+H0+M
+B,+E
+;H0s
+B0+E
+Q,+U
+;Q,uE
+P0;Q(t7
+;B0s
+Q0+U
+H,+M
+;Q0s
+H0+M
+B,+E
+J0;H4t[
+@SVW
+LSVW
+LSVW
+QhDL
+E Ph8M
+@SVW
+PSVW
+;Q4w
+J4;H,u
+B4+E
+;Q0s
+H0+M
+B,+E
++B(;E
+B,+E
+QhdO
+&h@O
+ _^[
+Rh$Q
+t!hdP
+t!h(P
+QSVW
+u+hlR
+t!hDR
+t!htQ
+t!h\Q
+t!hDR
+QSVWj	
+t!hDR
+QSVW
+NhpS
+&hDS
+u+h$T
+H0j	
+u.hLT
+A,+B,
+J0+H0
+Ph0U
+Rh$U
+\SVW
+RhhU
+QhXU
+4SVW
+t7hpU
+QSVW
+Q,Rh
+Q0Rh
+t&:a
+j/h4V
+j0h4V
+0SVW
+j]h<V
+j^h<V
+QSVW
+^_[3
+uIh3
+QXRj
+uRFGHt
+,SVW
+Rh,W
+u%h Y
+}FhxY
+_^[]
+w.j	
+uZj^h
+QSVW
+]jah
+$SVW
+																								
+													
+													
+										
+					
+jjUh
+j0hT^
+_^[]
+hj=h`^
+@ht^
+QXRj
+0SVW
+j]h<V
+j^h<V
+,SVW
+tzVS
+GIt%
+t/Ku
+ Rj*
+$Rj+
+(Rj,
+,Rj-
+0Rj.
+4Rj/
+8RjD
+<RjE
+@RjF
+DRjG
+HRjH
+LRjI
+PRjJ
+TRjK
+XRjL
+\RjM
+`RjN
+dRjO
+hRj8
+lRj9
+pRj:
+tRj;
+xRj<
+|Rj=
+ QjP
+$RjQ
+*RjT
++RjU
+,RjV
+-RjW
+.RjR
+/RjS
+u&hH
+PPPPPPPP
+PPPPPPPP
+j@h 
+tYj@
+8hpe
+u"jGh
+SVWUj
+]_^[
+t.;t$$t(
+VC20XC00U
+SVWU
+tEVU
+t3x<
+]_^[
+QSVW
+QSVW
+=tGjyh
+QSVW
+t[hO
+jXhTk
+^jchTk
+FGQPS
+u	Iu
+QSVW
+QSVW
+t_h@l
+t?h8l
+t*h0l
+\u&j\
+t\hO
+kj<h`l
+init_dynamic_array
+m:\mysql-3.23\mysys\array.c
+To big array idx: %d, array size is %d
+warning
+Index
+charsets dir='%s'
+info
+charsets/
+get_charsets_dir
+m:\mysql-3.23\mysys\charset.c
+share\
+file name: %s
+cs_number: %d
+enter
+read_charset_file
+get_word failed, expecting %d more words
+error
+.conf
+Couldn't set default character set
+character set: %d
+set_default_charset
+ *,.39;=EGMWY[aioy{}
+)+-28:<DFLVXZ`hnxz|~
+"(&$57
+KIOQUS
+_sqwu
+!'%#46
+JHNPTR
+^rpvt
+ *,.39;=EGMWY[aioy{}
+)+-28:<DFLVXZ`hnxz|~
+"(&$57
+KIOQUS
+_sqwu
+!'%#46
+JHNPTR
+^rpvt
+FGHIJKLMNO
+#$',-.158=>?@B
+#$',-.158=>?@B
+246D
+246D
+&%()+*
+0:9<;A7
+&%()+*
+0:9<;A7
+#$%&'()*+,
+tis620
+sjis
+ujis
+win1251ukr
+win1251
+win1250
+usa7
+swe7
+latin2
+koi8_ukr
+koi8_ru
+hungarian
+hebrew
+greek
+german1
+gb2312
+euc_kr
+estonia
+dec8
+danish
+czech
+croat
+cp1257
+cp1251
+big5
+latin1
+dbug
+?file
+?func
+%s: missing DBUG_RETURN or DBUG_VOID_RETURN macro in function "%s"
+%s: 
+%s: Memory: %lx  Bytes: (%d)
+%4d: 
+%14s: 
+%5d: 
+%-7s: 
+%s: can't open debug output stream "%s": 
+%s: can't close debug file: 
+out of memory
+%s: debugger aborting because %s
+Program aborted
+%s would have been started with the following arguments:
+--print-defaults
+.ini
+.cnf
+defaults
+--defaults-file=
+--no-defaults
+load_defaults
+m:\mysql-3.23\mysys\default.c
+error: Found option without preceding group in config file: %s at line: %d
+error: Wrong group definition in config file: %s at line %d
+The following options may be given as the first argument:
+--print-defaults	Print the program argument list and exit
+--no-defaults		Don't read default options from any options file
+--defaults-file=#	Only read default options from the given file #
+The following groups are read:
+%s\%s%s 
+Default options are read from the following files in the given order:
+LIBMYSQL_LOG
+libmysql_init
+m:\mysql-3.23\libmysql\dll.c
+Can't set state of named pipe to host: %-.64s  pipe: %-.32s (%lu)
+Can't open named pipe to host: %-.64s  pipe: %-.32s (%lu)
+Can't wait for named pipe to host: %-.64s  pipe: %-.32s (%lu)
+%s via named pipe
+Commands out of sync;  You can't run this command now
+Lost connection to MySQL server during query
+Error in server handshake
+%s via TCP/IP
+Localhost via UNIX socket
+Wrong host info
+MySQL client run out of memory
+Protocol mismatch. Server Version = %d Client Version = %d
+MySQL server has gone away
+Unknown MySQL Server Host '%-.64s' (%d)
+Can't create TCP/IP socket (%d)
+Can't connect to MySQL server on '%-.64s' (%d)
+Can't connect to local MySQL server through socket '%-.64s' (%d)
+Can't create UNIX socket (%d)
+Unknown MySQL error
+Character set is not a compiled character set and is not specified in the %s file
+Can't create directory '%s' (Errcode: %d)
+Disk is full writing '%s'. Waiting for someone to free space...
+%d files and %d streams is left open
+Warning: '%s' had %d links
+Can't change dir to '%s' (Errcode: %d)
+Can't get working dirctory (Errcode: %d)
+Can't open stream from handle (Errcode: %d)
+Can't change size of file (Errcode: %d)
+Can't get stat of '%s' (Errcode: %d)
+Can't read dir of '%s' (Errcode: %d)
+Can't unlock file (Errcode: %d)
+Can't lock file (Errcode: %d)
+Unexpected eof found when reading file '%s' (Errcode: %d)
+Error on rename of '%s' to '%s' (Errcode: %d)
+Error on delete of '%s' (Errcode: %d)
+Out of memory (Needed %u bytes)
+Error on close of '%s' (Errcode: %d)
+Error writing file '%s' (Errcode: %d)
+Error reading file '%s' (Errcode: %d)
+Can't create/write to file '%s' (Errcode: %d)
+File '%s' not found (Errcode: %d)
+Enter password: 
+get_tty_password
+m:\mysql-3.23\client\get_password.c
+options
+default-character-set
+character-set-dir
+ssl_capath
+ssl_ca
+ssl_cert
+ssl_key
+return-found-rows
+debug
+database
+host
+init-command
+user
+timeout
+pipe
+password
+compress
+socket
+port
+Server name: '%s'.  Named Pipe: %s
+\\%s\pipe\%s
+localhost
+Debugging variable MYSQL_DEBUG used
+libmysql: 
+MYSQL_DEBUG
+Not all rows in set were read; Ignoring rows
+mysql_res: %lx
+mysql_free_result
+m:\mysql-3.23\client\libmysql.c
+Got error: %d (%s)
+Wrong connection or packet. fd: %s  len: %d
+Net: %s
+end_server
+free_old_query
+Hit by signal %d
+MYSQL_UNIX_PORT
+MySQL
+MYSQL_TCP_PORT
+mysql
+mysql_connect
+message: %u (%s)
+Mysql handler: %lx
+exit
+user: %s
+Server version = '%s'  capabilites: %ld
+mysql protocol version %d, server=%d
+packet
+Got error %d on connect to '%s'
+Server name: '%s'.  TCP sock: %d
+host: '%s'  socket: '%s'  named_pipe: %d  have_tcpip: %d
+<null>
+MYSQL_PWD
+default
+host: %s  db: %s  user: %s
+(Null)
+mysql_real_connect
+ODBC
+USER
+Windows_NT
+unknown option: %s
+d:t:o,/tmp/client.trace
+client
+file: %s  group: %s
+NULL
+mysql_read_default_options
+mysql_change_user
+Can't send command to server. Error: %d
+mysql_reconnect
+db: '%s'
+mysql_select_db
+mysql_close
+Query = "%s"
+query
+handle: %lx
+mysql_real_query
+unpack_fields
+Got %d rows
+read_rows
+Lost connection to MySQL server during LOAD DATA of local file
+send_file_to_server
+mysql_store_result
+mysql_use_result
+mysql_fetch_row
+mysql_data_seek(%d)
+show databases
+mysql_list_dbs
+ like '
+show tables
+mysql_list_tables
+table: '%s'  wild: '%s'
+mysql_list_fields
+mysql_list_processes
+db: %s
+mysql_createdb
+mysql_drop_db
+mysql_shutdown
+mysql_refresh
+mysql_kill
+mysql_dump_debug_info
+mysql_stat
+mysql_ping
+3.23.14-alpha
+option: %d
+mysql_option
+'%s'
+dirname_part
+m:\mysql-3.23\mysys\mf_dirname.c
+name: '%s'
+mfunkt
+fn_ext
+m:\mysql-3.23\mysys\mf_fn_ext.c
+dev: '%s'  ext: '%s'  length: %d
+name: %s  dsk: %s  form: %s  flag: %d
+fn_format
+m:\mysql-3.23\mysys\mf_format.c
+strlength
+to: %s
+path: %s  prefix: %s
+my_load_path
+m:\mysql-3.23\mysys\mf_loadpath.c
+to: '%s'
+pack_dirname
+m:\mysql-3.23\mysys\mf_pack.c
+from: '%s'
+cleanup_dirname
+unpack_dirname
+unpack_filename
+wild_compare
+m:\mysql-3.23\mysys\mf_wcomp.c
+my_multi_malloc
+m:\mysql-3.23\mysys\mulalloc.c
+free_root
+m:\mysql-3.23\mysys\my_alloc.c
+Name: '%s' CreateFlags: %d  AccessFlags: %d  MyFlags: %d
+my_create
+m:\mysql-3.23\mysys\my_create.c
+name %s MyFlags %d
+my_delete
+m:\mysql-3.23\mysys\my_delete.c
+UNOPENED
+UNKNOWN
+my_filename
+m:\mysql-3.23\mysys\my_div.c
+nr: %d  MyFlags: %d  errno: %d
+my_error
+m:\mysql-3.23\mysys\my_error.c
+Got error %d on open
+stream: %lx
+Name: '%s'  Flags: %d  MyFlags: %d
+my_fopen
+m:\mysql-3.23\mysys\my_fopen.c
+stream: %lx  MyFlags: %d
+my_fclose
+Fd: %d  Flags: %d  MyFlags: %d
+my_fdopen
+buf: %lx  size: %d  MyFlags %d
+my_getwd
+m:\mysql-3.23\mysys\my_getwd.c
+dir: '%s'  MyFlags %d
+my_setwd
+home: '%s'
+UMASK_DIR
+UMASK
+HOME
+unknown
+my_init
+m:\mysql-3.23\mysys\my_init.c
+setEnvString
+my_win_init
+Software\MySQL
+HAVE_TCPIP
+SYSTEM\CurrentControlSet\Services\Winsock\Parameters
+SYSTEM\CurrentControlSet\Services\Winsock2\Parameters
+SYSTEM\CurrentControlSet\Services\Tcpip\Parameters
+my_dirend
+m:\mysql-3.23\mysys\my_lib.c
+eof: %d  errno: %d
+test
+path: '%s' stat: %d  MyFlags: %d
+my_dir
+fd: %d MyFlags: %d
+my_fstat
+path: '%s', stat_area: %lx, MyFlags: %d
+my_stat
+ptr: %lx
+Size: %u  MyFlags: %d
+my_malloc
+m:\mysql-3.23\mysys\my_malloc.c
+my_free
+message: %s
+my_message_no_curses
+m:\mysql-3.23\mysys\my_messnc.c
+my_once_malloc %u byte malloced
+my_once_free
+m:\mysql-3.23\mysys\my_once.c
+fd: %d
+my_open
+m:\mysql-3.23\mysys\my_open.c
+fd: %d  MyFlags: %d
+my_close
+Read only %ld bytes off %ld from %d, errno: %d
+Fd: %d  Buffer: %lx  Count: %u  MyFlags: %d
+my_read
+m:\mysql-3.23\mysys\my_read.c
+ptr: %lx  Size: %u  MyFlags: %d
+my_realloc
+m:\mysql-3.23\mysys\my_realloc.c
+01230120022455012623010202
+Can't initialize threads: error %d
+T@%ld
+Can't create thread to handle request (error %ld)
+hThread=%lu
+pthread_create
+m:\mysql-3.23\mysys\my_winthread.c
+Write only %d bytes
+Fd: %d  Buffer: %lx  Count: %d  MyFlags: %d
+my_write
+m:\mysql-3.23\mysys\my_write.c
+skipped %d bytes from file: %s
+Compression error; Continuing without compression
+Packets out of order (Found: %d, expected %d)
+Couldn't read packet: remain: %d  errno: %d  length: %d  alarmed: %d
+fcntl returned error %d, aborting thread
+vio_read returned %d,  errno: %d
+Packet too large (%ld)
+Packet too large (%ld)
+%08lx%08lx
+?@Out of memory, in use: %ld at line %d, '%s'
+needed %d byte (%ldk), memory in use: %ld bytes (%ldk)
+Out of memory at line %d, '%s'
+Size: %u
+_mymalloc
+m:\mysql-3.23\mysys\safemalloc.c
+Reallocating unallocated data at line %d, '%s'
+safe
+Reallocating unallocated data at line %d, '%s'
+Reallocating
+_myrealloc
+Unallocated data at line %d, '%s'
+Freeing unallocated data at line %d, '%s'
+Freeing
+_myfree
+Pointer out of range at line %d '%s'
+%s pointer out of range at line %d, '%s'
+Null pointer at line %d '%s'
+%s NULL pointer at line %d, '%s'
+Maximum memory usage: %ld bytes (%ldk)
+Maximum memory usage: %ld bytes (%ldk)
+%6u bytes at 0x%09lx, allocated at line %4d in '%s'
+	%6u bytes at 0x%09lx, allocated at line %4u in '%s'
+Memory that was not free'ed (%ld bytes):
+Memory that was not free'ed (%ld bytes):
+cNewCount: %d
+cNewCount: %d
+TERMINATE
+Safemalloc link list destroyed, discovered at '%s:%d'
+Overrun at %lx, allocated at %s:%d
+ discovered at '%s:%d'
+Memory allocated at %s:%d was overrun,
+Underrun at %lx, allocated at %s:%d
+ discovered at %s:%d
+Memory allocated at %s:%d was underrun,
+Couldn't get result from %s
+Query failed (%s)
+select name from test where num = %d
+Couldn't connect to engine!
+usage : select_test <dbname> <num>
+%.*f
+%.14g
+init_dynamic_string
+m:\mysql-3.23\mysys\string.c
+dynstr_set
+dynstr_realloc
+Too many possybilities
+Couldn't find type
+no count
+x: '%s'  lib: %lx
+find_type
+m:\mysql-3.23\mysys\typelib.c
+make_type
+socket (%d)
+sd=%d
+vio_new
+m:\mysql-3.23\sql\violite.c
+named pipe
+vio_new_handle
+Got error %d during read
+sd=%d, buf=%p, size=%d
+vio_read
+Got error on write: %d
+vio_write
+set_blocking_mode: %d
+vio_blocking
+vio_is_blocking
+onoff:%d
+vio_fastsend
+sd=%d, set_keep_alive=%d
+vio_keepalive
+close() failed, error: %d
+vio_close
+addr=%s
+getpeername, error: %d
+127.0.0.1
+vio_peer_addr
+vio_in_addr
+1.1.2
+ deflate 1.1.2 Copyright 1995-1998 Jean-loup Gailly 
+incorrect data check
+need dictionary
+incorrect header check
+invalid window size
+unknown compression method
+incompatible version
+buffer error
+insufficient memory
+data error
+stream error
+file error
+stream end
+								
+invalid bit length repeat
+too many length or distance symbols
+invalid stored block lengths
+invalid block type
+invalid distance code
+invalid literal/length code
+ inflate 1.1.2 Copyright 1995-1998 Mark Adler 
+incomplete dynamic bit lengths tree
+oversubscribed dynamic bit lengths tree
+empty distance tree with lengths
+incomplete distance tree
+oversubscribed distance tree
+incomplete literal/length tree
+oversubscribed literal/length tree
+str != NULL
+fgets.c
+string != NULL
+Client
+Ignore
+Normal
+Free
+Error: memory allocation: bad memory block type.
+Invalid allocation size: %u bytes.
+Client hook allocation failure.
+Client hook allocation failure at file %hs line %d.
+dbgheap.c
+_CrtCheckMemory()
+_pFirstBlock == pOldBlock
+_pLastBlock == pOldBlock
+fRealloc || (!fRealloc && pNewBlock == pOldBlock)
+_BLOCK_TYPE(pOldBlock->nBlockUse)==_BLOCK_TYPE(nBlockUse)
+pOldBlock->nLine == IGNORE_LINE && pOldBlock->lRequest == IGNORE_REQ
+_CrtIsValidHeapPointer(pUserData)
+Allocation too large or negative: %u bytes.
+Client hook re-allocation failure.
+Client hook re-allocation failure at file %hs line %d.
+_pFirstBlock == pHead
+_pLastBlock == pHead
+pHead->nBlockUse == nBlockUse
+pHead->nLine == IGNORE_LINE && pHead->lRequest == IGNORE_REQ
+DAMAGE: after %hs block (#%d) at 0x%08X.
+DAMAGE: before %hs block (#%d) at 0x%08X.
+_BLOCK_TYPE_IS_VALID(pHead->nBlockUse)
+Client hook free failure.
+memory check error at 0x%08X = 0x%02X, should be 0x%02X.
+%hs located at 0x%08X is %u bytes long.
+%hs allocated at file %hs(%d).
+DAMAGE: on top of Free block at 0x%08X.
+DAMAGED
+_heapchk fails with unknown return value!
+_heapchk fails with _HEAPBADPTR.
+_heapchk fails with _HEAPBADEND.
+_heapchk fails with _HEAPBADNODE.
+_heapchk fails with _HEAPBADBEGIN.
+Bad memory block found at 0x%08X.
+_CrtMemCheckPoint: NULL state pointer.
+_CrtMemDifference: NULL state pointer.
+Object dump complete.
+crt block at 0x%08X, subtype %x, %u bytes long.
+normal block at 0x%08X, %u bytes long.
+client block at 0x%08X, subtype %x, %u bytes long.
+{%ld} 
+%hs(%d) : 
+#File Error#(%d) : 
+Dumping objects ->
+ Data: <%s> %s
+%.2X 
+Detected memory leaks!
+Total allocations: %ld bytes.
+Largest number used: %ld bytes.
+%ld bytes in %ld %hs Blocks.
+_file.c
+format != NULL
+fprintf.c
+fputc.c
+vfprintf.c
+stream != NULL
+fputs.c
+sprintf.c
+*mode != _T('\0')
+mode != NULL
+*file != _T('\0')
+fopen.c
+file != NULL
+fclose.c
+*filename != _T('\0')
+freopen.c
+filename != NULL
+puts.c
+printf.c
+winsig.c
+vsprintf.c
+Assertion Failed
+Error
+Warning
+%s(%d) : %s
+Assertion failed!
+Assertion failed: 
+_CrtDbgReport: String too long or IO Error
+Second Chance Assertion Failed: File %s, Line %d
+wsprintfA
+user32.dll
+Microsoft Visual C++ Debug Library
+Debug %s!
+Program: %s%s%s%s%s%s%s%s%s%s%s
+(Press Retry to debug the application)
+Module: 
+File: 
+Line: 
+Expression: 
+For information on how your program can cause an assertion
+failure, see the Visual C++ documentation on asserts.
+<program name unknown>
+dbgrpt.c
+szUserMessage != NULL
+LC_TIME
+LC_NUMERIC
+LC_MONETARY
+LC_CTYPE
+LC_COLLATE
+LC_ALL
+setlocal.c
+thread.c
+?_filbuf.c
+mlock.c
+ioinit.c
+_sftbuf.c
+flag == 0 || flag == 1
+ (8PX
+700WP
+`h````
+ppxxxx
+(null)
+output.c
+ch != _T('\0')
+tidtable.c
+("inconsistent IOB fields", stream->_ptr - stream->_base >= 0)
+_flsbuf.c
+_open.c
+stream.c
+osfinfo.c
+Illegal byte sequence
+Directory not empty
+Function not implemented
+No locks available
+Filename too long
+Resource deadlock avoided
+Result too large
+Domain error
+Broken pipe
+Too many links
+Read-only file system
+Invalid seek
+No space left on device
+File too large
+Inappropriate I/O control operation
+Too many open files
+Too many open files in system
+Invalid argument
+Is a directory
+Not a directory
+No such device
+Improper link
+File exists
+Resource device
+Unknown error
+Bad address
+Permission denied
+Not enough space
+Resource temporarily unavailable
+No child processes
+Bad file descriptor
+Exec format error
+Arg list too long
+No such device or address
+Input/output error
+Interrupted function call
+No such process
+No such file or directory
+Operation not permitted
+No error
+_freebuf.c
+wtombenv.c
+CONIN$
+CONOUT$
+GetLastActivePopup
+GetActiveWindow
+MessageBoxA
+inittime.c
+initnum.c
+initmon.c
+initctyp.c
+Paraguay
+Uruguay
+Chile
+Ecuador
+Argentina
+Peru
+Colombia
+Venezuela
+Dominican Republic
+South Africa
+Panama
+Luxembourg
+Costa Rica
+Switzerland
+Guatemala
+Canada
+Spanish - Modern Sort
+Australia
+English
+Austria
+German
+Belgium
+Mexico
+Spanish
+Basque
+Sweden
+Swedish
+Iceland
+Icelandic
+France
+French
+Finland
+Finnish
+Spain
+Spanish - Traditional Sort
+united-states
+united-kingdom
+trinidad & tobago
+south-korea
+south-africa
+south korea
+south africa
+slovak
+puerto-rico
+pr-china
+pr china
+new-zealand
+hong-kong
+holland
+great britain
+england
+china
+britain
+america
+swiss
+swedish-finland
+spanish-venezuela
+spanish-uruguay
+spanish-puerto rico
+spanish-peru
+spanish-paraguay
+spanish-panama
+spanish-nicaragua
+spanish-modern
+spanish-mexican
+spanish-honduras
+spanish-guatemala
+spanish-el salvador
+spanish-ecuador
+spanish-dominican republic
+spanish-costa rica
+spanish-colombia
+spanish-chile
+spanish-bolivia
+spanish-argentina
+portuguese-brazilian
+norwegian-nynorsk
+norwegian-bokmal
+norwegian
+italian-swiss
+irish-english
+german-swiss
+german-luxembourg
+german-lichtenstein
+german-austrian
+french-swiss
+french-luxembourg
+french-canadian
+french-belgian
+english-usa
+english-us
+english-uk
+english-trinidad y tobago
+english-south africa
+english-nz
+english-jamaica
+english-ire
+english-caribbean
+english-can
+english-belize
+english-aus
+english-american
+dutch-belgian
+chinese-traditional
+chinese-singapore
+chinese-simplified
+chinese-hongkong
+chinese
+canadian
+belgian
+australian
+american-english
+american english
+american
+SunMonTueWedThuFriSat
+JanFebMarAprMayJunJulAugSepOctNovDec
+tzset.c
+gmtime.c
+IsProcessorFeaturePresent
+KERNEL32
+e+000
+frexp
+fmod
+_hypot
+_cabs
+ldexp
+modf
+fabs
+floor
+ceil
+sqrt
+atan2
+atan
+acos
+asin
+tanh
+cosh
+sinh
+log10
+stdenvp.c
+stdargv.c
+a_env.c
+runtime error 
+TLOSS error
+SING error
+DOMAIN error
+R6028
+- unable to initialize heap
+R6027
+- not enough space for lowio initialization
+R6026
+- not enough space for stdio initialization
+R6025
+- pure virtual function call
+R6024
+- not enough space for _onexit/atexit table
+R6019
+- unable to open console device
+R6018
+- unexpected heap error
+R6017
+- unexpected multithread lock error
+R6016
+- not enough space for thread data
+abnormal program termination
+R6009
+- not enough space for environment
+R6008
+- not enough space for arguments
+R6002
+- floating point not loaded
+Microsoft Visual C++ Runtime Library
+Runtime Error!
+Program: 
+_getbuf.c
+a_cmp.c
+cchCount1==0 && cchCount2==1 || cchCount1==1 && cchCount2==0
+setenv.c
+H:mm:ss
+dddd, MMMM dd, yyyy
+M/d/yy
+December
+November
+October
+September
+August
+July
+June
+April
+March
+February
+January
+Saturday
+Friday
+Thursday
+Wednesday
+Tuesday
+Monday
+Sunday
+am/pm
+inithelp.c
+chsize.c
+size >= 0
+1#QNAN
+1#INF
+1#IND
+1#SNAN
+_osfile(filedes) & FOPEN
+(unsigned)filedes < (unsigned)_nhandle
+fdopen.c
+putenv.c
+.com
+.bat
+.cmd
+.exe
+tempnam.c
+mbtowenv.c
+WSOCK32.dll
+LeaveCriticalSection
+EnterCriticalSection
+InitializeCriticalSection
+GetWindowsDirectoryA
+GetCurrentThreadId
+CloseHandle
+SetNamedPipeHandleState
+WaitNamedPipeA
+GetLastError
+CreateFileA
+DeleteCriticalSection
+TlsAlloc
+TlsFree
+TlsSetValue
+TlsGetValue
+CreateSemaphoreA
+InterlockedDecrement
+WaitForSingleObject
+InterlockedIncrement
+ReleaseSemaphore
+SetThreadPriority
+Sleep
+ReadFile
+WriteFile
+KERNEL32.dll
+MessageBoxA
+USER32.dll
+RegCloseKey
+RegEnumValueA
+RegOpenKeyExA
+ADVAPI32.dll
+IsBadWritePtr
+IsBadReadPtr
+HeapValidate
+ExitProcess
+TerminateProcess
+GetCurrentProcess
+WriteConsoleA
+ReadConsoleInputA
+SetConsoleMode
+GetConsoleMode
+PeekConsoleInputA
+GetNumberOfConsoleInputEvents
+SetConsoleCtrlHandler
+DebugBreak
+GetStdHandle
+OutputDebugStringA
+GetProcAddress
+LoadLibraryA
+GetModuleFileNameA
+FindFirstFileA
+FindNextFileA
+FindClose
+FileTimeToSystemTime
+FileTimeToLocalFileTime
+GetFullPathNameA
+GetTimeZoneInformation
+GetSystemTimeAsFileTime
+ResumeThread
+CreateThread
+ExitThread
+GetCommandLineA
+GetVersion
+MultiByteToWideChar
+GetStringTypeA
+GetStringTypeW
+FatalAppExitA
+HeapAlloc
+HeapReAlloc
+HeapFree
+HeapDestroy
+HeapCreate
+VirtualFree
+VirtualAlloc
+SetHandleCount
+GetFileType
+GetStartupInfoA
+SetLastError
+GetCurrentThread
+FlushFileBuffers
+SetStdHandle
+WideCharToMultiByte
+UnhandledExceptionFilter
+LCMapStringA
+LCMapStringW
+GetCPInfo
+IsValidLocale
+IsValidCodePage
+GetLocaleInfoA
+EnumSystemLocalesA
+GetUserDefaultLCID
+GetVersionExA
+GetCurrentDirectoryA
+GetDriveTypeA
+RtlUnwind
+GetModuleHandleA
+RaiseException
+FreeEnvironmentStringsA
+FreeEnvironmentStringsW
+GetEnvironmentStrings
+GetEnvironmentStringsW
+SetFilePointer
+CompareStringA
+CompareStringW
+GetACP
+GetOEMCP
+SetEnvironmentVariableA
+SetEndOfFile
+GetLocaleInfoW
+DeleteFileA
+SetCurrentDirectoryA
+GetFileInformationByHandle
+PeekNamedPipe
+SetEnvironmentVariableW
+GetFileAttributesA
+LIBMYSQL.dll
+_dig_vec
+bmove_upp
+delete_dynamic
+init_dynamic_array
+insert_dynamic
+int2str
+is_prefix
+list_add
+list_delete
+max_allowed_packet
+my_casecmp
+my_end
+my_init
+my_malloc
+my_memdup
+my_no_flags_free
+my_realloc
+my_strdup
+my_thread_end
+my_thread_init
+myodbc_remove_escape
+mysql_affected_rows
+mysql_close
+mysql_connect
+mysql_create_db
+mysql_data_seek
+mysql_debug
+mysql_drop_db
+mysql_dump_debug_info
+mysql_eof
+mysql_errno
+mysql_error
+mysql_escape_string
+mysql_fetch_field
+mysql_fetch_field_direct
+mysql_fetch_fields
+mysql_fetch_lengths
+mysql_fetch_row
+mysql_field_count
+mysql_field_seek
+mysql_field_tell
+mysql_free_result
+mysql_get_client_info
+mysql_get_host_info
+mysql_get_proto_info
+mysql_get_server_info
+mysql_info
+mysql_init
+mysql_insert_id
+mysql_kill
+mysql_list_dbs
+mysql_list_fields
+mysql_list_processes
+mysql_list_tables
+mysql_num_fields
+mysql_num_rows
+mysql_odbc_escape_string
+mysql_options
+mysql_ping
+mysql_query
+mysql_real_connect
+mysql_real_query
+mysql_refresh
+mysql_row_seek
+mysql_row_tell
+mysql_select_db
+mysql_shutdown
+mysql_stat
+mysql_store_result
+mysql_thread_id
+mysql_thread_safe
+mysql_use_result
+net_buffer_length
+set_dynamic
+strcend
+strdup_root
+strfill
+strinstr
+strmake
+strmov
+strxmov
+         (((((                  H
+ !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\][^_EABCDEFGHIJKLMNOPQRSTUVWXYZ{|}Y
+         (((((                  H
+         (((((                  H
+ !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@AGHLNSTUVZ[\`adijknruz{|}
+AGHLNSTUVZ[\`adijknruz{|}
+lCDEF_IKJOQRPYWM
+bcefgh
+mwvxy~t
+lCDEF_IKJOQRPYXM
+bcefgh
+mwvxy~t
+         (((((                  H
+ !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+         (((((                  H
+ !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\][^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}Y
+         (((((                  H
+ !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\][^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}Y
+4c&(L
+@)	'&J
+9fLz:Y;
+HQLL
+9	j2
+"Rr/iL
+"N=	
+Ro4Q
+%E 8
+#XI%
+F_R&6%
+B\EY
+**<d
+cQGTT)
+HA7]3
+	x2\6UR
+PL>!
+KwH\<
+;HHY
+32Gn
+D'(&
+C_<bK
+T%1n$
+IT!a.
++{A5.
+?p-e&wL
+\=	1
+'Jl*`5BG`*
+!SI.+'9
+*d c"
+D~+	<#
+,-'$R
+/n7Y"
+TV,D%
+2"gD
+R\,c$
+H=?KD
+(z0E93
+ 0>~ ;
+%V	k5#5 N
+?kD(
+6&@UP5
+zO0/X
+o@}6'
+)S5>
+>NEEL
+}Cg$
+0p&$
+2:NL]
+c>%C
+%F4A	
+=B"f&^$)7ET
+F?0T
+1`Pg&0C
+q)y-
+MePoRi
+L6H?4
+=/4A
+Pw,Q<#
+!`<p7h
+YD)(
+)\5o$]D=
+T7.3
+@0xR
+*U=O(
+rP2%
+/->,
+'Q,w
+R	$!.R5
+G0$N
+4x"61
+LJ+)6)
+L-2.2
+-],`
+/u<v4`Q
+!HmDn9
+KF!H
+?j j)
+28W-f>
+LV*@
+	}>25DR
+p=oA
+:=(V
+I"SN
+3,"MJ
+F,$gB
+"e(nGC<a@r
+6kS/I
+En#{9D*3
+~9CIx
+>;E51'
+Mb*V
+<|G~
+,)H	.
+MR%N
+MV>!C
+2'#Tb5]7
+PyC&
+GLOG'8
+CFAPGlA
+ATG~L
+ST1*C
+JiR^-
+^6z3%
+A|2x
+vIXR
+K	FA
+D+?>&w*f5T:I0v@G?<
+EN>S
+5&,#K
+<5/<$Y-
+:04J/M.F
+vA+3.?
++:C;C
+EAIR
+	CNJ
+X9i;
+_8DE
+5`+B%-)tG
+;BLFS
+%fFU
+.AK.)
+HTIJ
+k+d"
+"3.x 
+84.Y8U@
+U!_J
+&ZC[CV#
+&#CR
+x?k2w1
+UBHT )
+>`F4
+i+P%
+@IL~
+A-S%
+!RC+5
++J#K#
+X)Y)G'[
+Tw"Z
+S4+H
+"[G\G?@LTI
+j>>(
+>B0M
+8Gp$
+OPJgFI-
+'wK)B4 
+#oGO-
+57	W
+.uGvG
+1^48Q*PkI
+4Rq7W
+=.O9
+Cr>z
+*-L]
++		wA
+&f((
+N(I=
+7sMi
+S'?t
+Q}0!=
+Lx1v
++`/a"
+K`,D")9~B
+L1MDQ:
+dIOE
+^3E=|
+U1I"
+4.<I=
+X-_N
+Ju	{*(2
+G_6nT
+Dz!!Q
+Fn8*
+<cN4,
+uQ+(
+ h1c1<M
+K`BaBn
+Cd.o
+."8KRJ
+'	7V!h
+4F{5
+8P&+-D+
+!sSB
+9<=c*
+WLo">
+QFNz?f-
+\ w#
+Qy#t
+	*76"
+6sD5
+ ~?}
+=e>K
+9H2H'
+aG&-A
+-A9oT
+Dz2:
+#k4\C
+(?(sT
+0a$7
+N?J=C
+'"Q5
+#O,d
+&$<a
+:P(J)
+-kC^!
+xKg(
+(]2^2c2
+N0)%<
+X>VDh
+S`J/&
+8%`DaD[F}1
+$g@{8{
+KG1O
+e8] #H
+{T-9
+8bPcPI
+7F}IdN*
+3|* -
+&T<W
+&bBSJ
+%<<7>ED
+]8LP
+)1)S7
+Jf38
+>[1 KRT
+?8>Y$r$
+n%:4
+J662mL(A
+.*QB
+<PXN
+T}8W
+QZOX
+Sb/#9
+)6nIu"
+={#p
+	;M40L
+/oSa
+A " 
+OQ 5
+7wI68x
+~I;B
+#bGI
+HFIH
+M5T+,
+?(3[H
+6BB?
+.@JO
+)lPgS
+$V${	
++.(+	%;
+/%S67
+9GnFG
+J,|A
+$?N,:8
+.0?A.o69>GOQ
+4h5/
+TbJ>1
+-<.GIg
+Rl(qG
+L 2Dw'FK
+K$L~K
+Cl.M
+$N 	:
+!!xG%$
+$g%T
+4-hMz'7
+(#9$
+"9:^
+D	I6Ad<
+/dB^D
+^ s2$
+7ERc;d;
+WPa,b,
+ &2N4
+"E3zH
+HI7D
+M*N*
+.j/# ]
+,#%:>
+LH:N
+>**;4
+012#A$A
+Q72K
+s6*!Q
+#R(/
+E'N~GU
+*e+v
+/|SyN
+>z%Q+[II
+e=N:
+ wF~8
+$3IS+
+"`3W 
+,+A{4
+&G43@%
+6*	L
+J!>j$J
+Ch8t#
+-d>RD
+@Ew9
+(n+r
+J'[)
+Y+S*
+*o=.
+V4h<
+4cSu&
+Q(Kv
+WD&MvE
+i"s8
+F)	]B
+H?By+
+&L?1
+Qm?"<
+DDMY9hFe'
+UJj;?0
++I.pKqK	+
+3-$Y!u
+/`8f
+,D{KV;d@k
+9q'|K_+1
+G>%a+
+$9-q?7)
+HlM$
+1*RA
+`EaETC
+J.AeRtH49
+?">{F
+N	41
+S$f7
+ApSM!b
+!#FR
+*y@tO
+Z4e;1H
+N"-H9w&P
+&hKqA 
+/J;CJ
+ XT 
+BDJ_Dl
+n:EM
+mKdJiF
+B?5vT
+N/$*
+ X	C+
+R&${'nM5P
+4>T8*8"F2
+6~@$%9
+;>13
+.k0J
+HCLxFD
+Z Z!Z"Z#Z$Z%Z&Z'Z(Z)Z*Z+Z,Z-Z.Z/Z0Z1Z2Z3Z4Z5Z6Z7Z8Z9Z:Z;Z<Z=Z>Z
+?Z@ZAZBZCZDZEZFZGZHZIZJZKZLZMZNZOZPZQZRZSZTZUZVZWZXZYZZZ[Z\Z]Z^Z_Z`ZaZbZcZdZeZfZgZhZiZjZkZlZmZnZoZpZqZrZsZtZuZvZwZxZyZzZ{Z|Z}Z~Z
+\'I<
+6|:ZA
+[ [!["[#[$[%[&['[([)[*[+[,[-[.[/[0[1[2[3[4[5[6[7[8[9[:[;[<[=[>[?[@[A[B[C[D[E[F[G[H[I[J[K[L[M[N[O[P[Q[R[S[T[U[V[W[X[Y[Z[[[\[][^[
+\_[`[a[b[c[d[e[f[g[h[i[j[k[l[m[n[o[p[q[r[s[t[u[v[w[x[y[z[{[|[}[~[
+\ \!\"\#\$\%\&\'\(\)\*\+\,\-\.\/\0\1\2\3\4\5\6\7\8\9\:\;\<\=\>\?\@\A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z\[\\\]\^\_\`\a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z\{\|\}\~\B
+] ]!]"]#]$]%]&]'](]}"OC
+>e$7*
+QQG,7G
+G{DR
+"dCeC:.
+U U!U"U#U$U%U&U'U(U)U*U+U,U-U.U/U0U1U2U3U4U5U6U7U8U9U:U;U<U=U>U?U@UAUBUCUDUEUFUGUHUIUJUKULUMUNUOUPUQURUSUTUUUVUWUXUYUZU[U\U]U^U_U`UaUbUcUdUeUfUgUhUiUjUkUlUmUnUoUpUqUrUsUtUuUvU
+&J-<
+CA+m5P-
+BfR(GzE'H
+=nAwUxUyUzU{U|U}U~U
+,FVGCF}E'
+K@`6
+V V!V"V#V$V%V&V'V(V)V*V+V,V-V.V/V0V1V2V\#<S
+4-;_
+7p;y=
+#lB#
+3Fg6
+4V=h
+%1$GKF+
++T?3V4V5V6V7V8V9V:V;V<V=V>V?V@VAVBVCVDVEVFVGVHVIVJVKVLVMVNVOVPVQVRVSVTVUVVVWVXVYVZV[V\V]V^V_V`VaVbVcVdVeVfVgVhViVjVkVlVmVnVoVpVqVrVsVtVuVvVwVxVyVzV{V|V}V~V
+28CA(|
+.=S!'}Au
+Gl=.
+/5IQ
+|TTFHQT
+Dh><*
+y9+JY
+q8HR
+3H|	
+$Pu8F
+I(J(
+W W!W"W#W$W%W&W'W(W)W*W+W,W-W.W/W0W1W2W3W4W5W6W7W8W9W:W;W<W=W>W?W@WAWBWCWDWEWFWGWHWIWJWKWLW
+'s$DC 
+?q.SM!@
+):);)
+?'j,
+Y/W445cO
+7!8!
+RgOhO
+,09,N
+r*{C59
+-@T4	
+g-#,DF
+P(Hq,VRl,
+*&3Q
+B4E1
+!O&PXJ
+B*1^8
+&W	^
+O"!P8
+AXPq",
+YP[;U?
+0@'Z/
+3r@#3)
+9".5
+KC	Q	
+G27k#
+	&	*	,	$	2	3	<	E	T	P	J	U	Z	d	g	c	q	e	f	h	
+1_)G-c6dGC
+"Q@A:
+ =\-t=
+/$#v=
+7t$KO`
+""$O
+TMh6]/
+D5^/HK
+ORPR1I
+j+9;
+BIQp
+MPA]C
+2HRQ<I
+*Z:o
+1PMM
+q;`%g.?+
+5'TC
+-NAQ&
+TJQ` 
+4O":l#
+=|>!Gg)
+T(ME)F)?I
+IRUT
+G&	T=M
+5k;	6
+$D+1
+)s;i.
+SF%Y
+G[L+8O
+	g"g
+AM?"G
+=-	w=
+0!%HS&
+|/L'
+9i*;9
+;-60
+%F$B 
+&Q!C
+V2R!o
+)8Ai
+k3&4
+O7)S
+0t0VM
+>"OP7
+$R&%DF
+;u$-D
+60S0
+(s3$&
+#8ZP,8
+J^PV+
+f r,
+&dS^
+=3$K:
+SW>V.
+P.7a
+82R,C
+)GFV
+D>V:
+=R;"
+SQ^G
+5VT^	|
++g1h3u=WT
+TBEk&
++5MtT
+k:'4
+V@T>-
+DH&YTA
+ : > = < { V m Q Z o 
+ w b P l _ e 
+ )!3!.!'!(!G!
+"7nK
+2!*zQ
+&PFwTT
+x7t;
+E_5QFx;
+C!P!J!D!L!a!`!b!
+'h!j!{!o!w!
+"%")"'"("5"3"E"R"Q"S"V"]"`"e"s"t"z"~"
+qJm.y;rJ=7<62
+)oB'$
+$Q&S
+CDP8
+$H<s(}:"
+0#,#-#D#E#f#s#x#v#
+$($)$?$A$:$=$6$P$\$_$b$d$|$}$
+%*%+%
+%V%M%N%^%K%
+%o%j%q%
+%i%p%
+%v%~%Q5%8_
++QP})"0f
+4)N+
+%H.L,LD
+C.JMH
+|74&s.
+47B}D
+DI7p
+%t%}%h%
+%&&(&A&:&9&7&[&U&W&\&S&d&r&v&t&o&q&
+'+'<'S'^'_'C','O'>'.'D'3'
+#O3(Y
+32N+
+eQfQ
+PO		Q1LW?
+.{QA
+=.V3k
+(((!(<(B(F(D(S(Q(_(R(W(
+(}(~(
+)#)$)")()=)>)A)B)K)S)N)M)P)Q)i)t)|)p)u)x)y)z)
+I<4$"
+a/*/
+4j=(T
+*tDuD
+)vD'.
+@dEu
+V-,0
+Pa;F
+*+*3*/*
+*)*A*I*Q*X*K*L*h*a*p*q*x*
++&+%+X+8+@+;+1+4+/+M+l+h+g+|+m+q+
+,6,9,=,^)P0
+*a6M
+9eNGR
+2Z?z9
+CU;l
+NC,R,D,E,K,H,U,X,[,p,
+,d,z,y,f,
+-0-@-T-R-]-_-i-k-
+,s-t-z-
+-~-{-
+-)./...6.+.
+EE`#
+#?Go(	
+PQfE
+;wC4
+<Q9b<C1D1
+[(R'
+1-.E.K.O.U.R.^.].Z.n.}.
+/'/1/3/>/B/C/G/F/K/N/U/W/_/c/i/m/k/g/{/t/s/
+IS3+0X
+&JAY
+C*QR
+/'0-0>050C0K0H0F0]0e0c0o0x0
+1"1 1$1210111513191F1E1\1^1P1V1K1G1O1f1M1J1{1
+1|1~1
+4@	%
+JNE;
+	m	KA
+So,bS
+*=E*
+B	/!SG
+>u-B*
+-M#!1
+;$2%2>202<2C2*232N2+2I2w2
+2u2v2p2
+3"333
+3;3L3J3F3B3?3D3R3U3W3Z3\3v3u3t3
+4P4=464E4?4
+4w4u4
+'N<n=
+aK}#~#y
+5%5$5'5(57595/5-5L5N5Z5^5a5d5p5v5w5u5z5
+6!6(6=61656%6E6D6B6G6R6Z6X6m6x6w6
+6fH~M
+g5UF/#E@5L
+*M	/#1
+,<BI
+'=Be
+#;8U$Z'
+>M:J) 
+7/7(7#7'7$7%7>7C7H7N7R7d7
+7Z7T7X7r7_7}7~7
+838-8$8G8N8O8V8f8c8o8j8z8w8
+*eGa'
+>8LF
+\+,(5R
+37j"
+O&%W@
+9#+:
+l:!D
+;f'GM
+FmN?M
+9+9S999!9,9F9W929
+9 9D9&9
+9*9(9$9%9j9k9o9m9q9v9u9r9|9t9
+R=m<
+0\@;.
+-sK&
+4n3aCFC/;
+:%:#:&:/:(:):1:::7:6:U:h:e:P:L:J:I:x:
+;7;<;=;@;O;P;N;X;g;Z;r;b;h;\;};
+%'!F
+Aq6r6
+>@*uN
+"F/4
+n5zJmC\M5 5&6&
+'\>5
+<#< <(<?<2<8<4<+<K<O<L<a<[<X<Y<f<|<~<w<z<
+=&=(=
+=6=K=S=F=B=>===[=^=q=c=m=f=
+7^L!
+W5P/
+&;I3C
+?u,e3
+>D	0
+^CH$
+M7Ly
+> >->=>
+>(>B>A>C>@>H>K>R>Q>]>^>`>b>o>s>x>v>y>
+?,?(?3?5?A?>?I?B???P?V?^?b?n?e?j?{?
+16MS!b:a)
+<X#1
+-S@l&_
+R\T%=
+(4CB
+4kK~
+@,@<@-@'@(@)@*@i@{@k@m@n@u@
+@j@w@t@q@|@h@
+A)A'A-A A%A,A*A=ACAGAAA@A>AeAYAjA[AuA]AgA^A
+@'D"*qP
+Tq:,4
+K-.D
+3}Kp
+%8O#F
+R(OfDG*
+AFB8B6B4B:BWBVBSBuB
+BsBzB
+B$C#C/C-C C'C"C6CPCQCuC
+CxCvC
+COD+D
+C<D@Di4 .u(
+(A%	(</
+H&01-
+.d/ZR
+4U'EF
+tL]I
+EQwDU5FQ,!n
+AF_P~4?DIDQDJDTDSDPDcDbDdDeD
+DhDrD
+DjDyDlDzD
+E E(E#E"E!E5E9E7E:E8EGEFEREIEMEUEVE[E]EbEtE
+E~ExE|E{E
+F*F+F'F
+Jf!.E
+m#Z%
+fS$:O5W%
+M['H
+j&n/
+1"`1N=R9D
+85F9F@F?FVFWF^FZFmFtF
+G-G$G/G'G,GUGEGRG_GJGCGHGfGZGMGLG
+HEH>HFHCHXH\HjHhHaH
+u;j.|
+9[?c9b
+$xP!
+ Y0v*o+p+
+Q9!@B
+HvH{HpH
+H&I8I-I9I7I0I+I,I
+IRI|ItIOIpI
+IVIYIaI
+I0J(JAJ
+3?/ 
+0,tKS
+)"$a87
+RjF"
+G2BIG;
+C4D4
+K+KYKZK[KXKiKTKvKVK
+L+L'L&L>L@LSLLL=L?LYL`LeLrL
+LjLvL
+L,MdH
+ =Dh-r	
+		8XG
+S-QH
+ZHF- /
+!Jn 
+6+8,
+cGTE
+LvMzMrM
+N.N!NINCNWNkN]N[NgNVNxN
+O	O5O;ODOEOAOSOlO]O_OmOoO
+B	>h
+UL<"G3}3
+>Dl;
+??C	
+j19<
+Sy&R
+Bl)Z8y
+E\0Z9
+sOqO|O
+P+P,P6P7P?PFPGP:PIP9PTPVP\PgPpPzP{P
+Q$Q*Q
+TASfB
+AC#-
+uK7+GD
+2b	~F*=0;
+Z2`9
+0%M,N,
+7sP<,
+#*1	d
+7)Q+Q(Q&Q6Q:Q3Q7QUQ;Q=QKQ5Q2Q<QjQaQkQlQ^QdQ_Q
+Q!R-R(R/R1R+R@R?RSRKRLR]R`R\RbR^RpR
+S%BiO*
+1QM-
+WSS,=OyO
+963D<>O@1
+ &t.KIx
+{J|J
+7|5|.
+wP&F
+5KEWE
+dRU8
+S-S2S3S5S8SESQSPSRSaS\SeS[SrSjSlSwSxSuS
+S T2T!T8T?T7TcTNT^TFTHTjTzT
+U)]*]+],]-]B2f
+,RLv,
+>_HkH4Q9
+#2MM
+r1O+
+FQ?\A
+RC.c!
+={I+
+&nJo
+NTOx
+%A4O%
+F"c f
+?kT"(
+GSF (
+ABKP!;
+J+ T
+NZ=:
+17?"JB
+:b+AR!,AGT
+.R d-{
+;Ps4WI
+E@3m
+^;s	8
+SZ0@,
+;B9r+iP
+<O)3
+A,2G
+=@EB
+"'*&A
+3++U
+ 	.b)
+Tl3k1D
+1;kB%#$
+C<R<
+	0,<
+	G:-
+?!Ay
+"*0QIs%u1
+T(K	?
+q!a7
+3|&<
+ Q3@
+#%!)'/
+, M"N"
+OKiM>	pOx
+1T*]6
+"{2GS@
+K]&0
+v?JE
+GG)N
+Qt6tC
+2y1\72
+Kf*UK
+2gI~5
+7x&8M
+I5kP
+-b'nP
+.a&f6
+5HBC<
+-Z1:
+?\Kc
+2.#ZB
+8P6{,	
+>:]$fK+M
+^B-&?
+/	IS
+qFvP0
+%v(*'
+gRZ&
+`.b.
+8I6r
+II1VO
+'RL	
+-iIc
+LJ4^
+FfCf
+>Y	[
+Im)H!
+)'KrQV
+5X28FAM
+1V7hL$6
+8r"jP
+106E
+$UOR
+JzN_!
+^E2I
+EA[O
+&KS0P
+&E5BV
+.I$NG
+DA8$e
+4:DS1
+:{<%,
+Kz*'	
+%	#>
+{0b1&KZ
+3M("
+/'FL
+TU*0
+U<d4
+XM1%
+0k.}J
+Gx'I+J+
+-	E4
+=9d95%
+0L49
+PgQ+
+k7<3
+*"PF
+152v1r4
+)Q.GN
+"s9~;
+Jf"E
+L2AN
+.G2R49
+w	0E
+5 	X.6
+$J3R[B
+M`(w-
+=s 5;4I
+C@x@
+:B,hE
+6SS3-(0`Ao
+I/_E
+IZIG>%G
+;JF1P
+Ok*O2>
+,P<I8
+1>1Es
+J:!sR
+C2>},
+_B2E
+C9CjE;!<
+.0/6]+@I
+4a3?E
+`N+#
+'!+}=:
+s=65
+'V(	H
+6'e*
+2c:x-
+{6V9="c4
+D>N6
+(;BM
+SH)3E
+3t83
+1(%#/|6
+e)!"g'
+8E*eK71
+<-/',
+(/F	
+9i:t7
+P,=xO#
+3K;_%p
+&66)1
+f+HLk	F.P2S2
+O^I-
+U%K4
+DC=H5
+.R+-
+cMI	5:
+FG_A
+O>xT
+T;A<K
+PM$oJ
+.HB^
+RFM&
+J.kL
+~R^7Y3
+0C?)C
+A,90
+CH:XL
+p<$*
+	A#u:
+49Hq<
+&q3x$+
+!{.Y=B1
+_M"&(N
+PO6^
+T^HA
+)TB"
+KKC#>.
+N&.&!
+/E;*
+@O@fN
+Q4??Q;'6
+l7m!
+64CD
+vO`-
+B]'?
+,!7q#X$
+=L7- 
+97r#;G
+#@5v)k
+p8!-aOC&
+0D #4
+C IF
+7~=KN<&r03
+%rH89
+x8f/%
+\LE!A3+E
+ROA0
+H*B7-=
+#Q42
+0S;:MbCK
+'6%$-kF
+,/4Nd
+,}	wOc'm1vRz
+An'o'|
+e!Y(z
+4DQf
+LPT@
+#IBtJy
+//;H$@%@
+=NFT"c
+&"'nL
+A:IG7
+#qLx/R*
+H.@E
+7hNBJFM
+o;hC
+U0+@Q
+SeBo5
+-4.4
+#r<9(
+93YFc
+oCi2
+Z@M34
+# 6sN
+:KvN
+5WH=T,5M2
+E@	G
+'}O#>F
+-E9*
++X">
+8uMoIF;AT
+#@<b
+KCSlGiC
+$y$w0c?
+I;<0z6
+!.,s0
+$-%U
+8::9BF
+s:c@8H
+'l0m0
+rE H
+H3>07
++6m$
+<:"POX%r
+Ti3~!d:
+'GJZ
+n< *{)
+#?1P
+SpJU
+6RR8
+*Tn,
+[MpE
+6B#XS
+N5-8
+eE&))
+$M5C
+S)FK
+2C17
+LcL4
+F!SVQ
+@sQM
+R| 'S
+)wRs
+3?*j
+L*IS
+2;6%/
+$+T:	
+Q'0.
+(zS|R
+8X0a#
+#bT#"
+2;6D
+'%?'
+t2>4
+0v6VC
+O 4T'
+-HW*r8RP
+5l?J$
+5*-H
+L L1(b4
+*F*C
+:9 PB
+Ex3IT
+:>@F@G@
+LW;K
+/D@/L
+&:(3D
+"y(H
+!>3z$
+6Q#+
+kE[5k
+<7/_9
+@P-T
+YC]G
+Q6!J9?
+Og3#S
+QeT0:
+&f2g22-
+jMkM
+>o1n&
+j377j
+,!L^0I,
+RsLzL{
+]447
+BT+'
+fJc+nQ
+N%-|Px
+RrIj
+/i' ?N
+ @NP
+!nEn
+?!0=
+Ln-uP
+:UAg4z7
+=a%;7<7
+$]#e/
+<w$e
+3eFI
+JRJ m
+|,gE
+-uJb#
+f)s'
+T:%#+gT
+#hT%
+G0414
+<A;/
+6J8#&
+M$?tS
+6OBj4
+34DS
++mBOO
+!4>7O
+1B8t
+@JB'
+S>{"u
+8()2
+Gm&"D
+T#Z*]5
+&G,8
+VLVA
+G/Bf4
+MWQ!
+!00w
+26k'
+8RKM
+=MMx=5K
+R7H.=}
+oEMWNWOWPWQWRWSWTWUWVWWWXWYWZW[W\W]W^W_W`WaWbWcWdWeWfWgWhWiWjWkWlWmWnWoWpWqWrWsWtWuWvWwWxWyWzW{W|W}W~W
+ YMI
+[!\!v
+#B]!1 l>=
+~AD8
+/h4b2
+1;% I{SP"
+vJwJ@
+244=
+XM0d#
+A6 d
+%{=n"
+)4DV
+LWA !
+JI<v:
+NK4;
+KCLC
+TfMPK
+>MClF
+)1B	X
+X X!X"X#X$X%X&X'X(X)X*X+X,X-X.X/X0X1X2X3X4X5X6X7X8X9X:X;X<X=X>X?X@XAXBXCXDXEXFXGXHXIXJXKXLXMXNXOXPXQXRXSXTXUXVXWXXXYXZX[X\X]X^X_X`XaXbXcXdXeXfX
+O#I<HE0@.+
+K+QK
+NRK!
+4J%<)
+DE'dF-
+nRNAU#Q2
+%4HJ
+IJEI
+T/+S
+CrG_
+1|'{G7
++gXhXiXjXkXlXmXnXoXpXqXrXsXtXuXvXwXxXyXzX{X|X}X~X
++F,Z,
+a=[>^
+40	N?
+R\Q$+
+(	}+3
+"?;R
+=7 B
+Y Y!Y"Y
+Gm>w:
+@kOr.;-
+)Of9
+=v'p'
+N7$V&
+&#Y$Y%Y&Y'Y(Y)Y*Y+Y,Y-Y.Y/Y0Y1Y2Y3Y4Y5Y6Y7Y8Y9Y:Y;Y<Y=Y>Y?Y@YAYBYCYDYEYFYGYHYIYJYKYLYMYNYOYPYQYRYSYTYUYVYWYXYYYZY[Y\Y]Y^Y_Y`YaYbYcYdYeYfYgYhYiYjYkYlYmYnYoYpYqYrYsYtYuYvYwYxYyYzY{Y|Y}Y~Y
+G L%v
+\DCE
+.]/]0]1]2]3]4]5]6]7]8]9]:];]<]=]>]?]@]A]B]C]D]E]F]G]H]I]J]K]L]M]N]O]P]Q]R]S]T]U]V]W]X]Y]Z][]\]]]^]_]`]a]b]c]d]e]f]g]h]i]j]k]l]m]n]o]p]q]r]s]t]u]v]w]x]y]z]{]|]}]
+         (((((                  H
+ !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+         (((((                  H
+ !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\][^_EABCDEFGHIJKLMNOPQRSTUVWXYZ{|}Y
+         (((((                  H
+ !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+         (((((                  H
+ !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+AAAA\[\CEEEEIIIIDNOOOO]
+UUUYY
+AAAA\[\CEEEEIIIIDNOOOO]
+UUUYY
+         (((((                  H
+ !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ|}~
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+[\]^_`bcdefghijklmnopqrstuvwxyz{[\]^_`bcdefghijklmnopqrstuvwxyz{
+         (((((                  H
+ !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ACDFGJKLMPQRSTUVWXY[\_`aN
+bcdefgACDFGJKLMPQRSTUVWXY[\_`aN
+hijk
+         (((((                  H
+ !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCFHIJKLMNOPQRSTUVXYZ[\]^[\]^_`ABCFHIJKLMNOPQRSTUVXYZ[\]^{|}~
+AAAA\[ECDEEEIIIIGNOOOO]
+UUUYY
+AAAA\[ECDEEEIIIIGNOOOO]
+UUUYY
+         (((((                  H
+ !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+AAAA[][CEEEEIIIIDNOOOO\
+\UUUYY
+AAAA[][CEEEEIIIIDNOOOO\
+\UUUYY
+         (((((                  H
+ !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+AAAA\[\CEEEEIIIIDNOOOO]
+UUUYY
+AAAA\[\CEEEEIIIIDNOOOO]
+UUUYY
+ 000000  (((((000000000000 00000H
+ !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+EEEIII
+OUUY
+AIOU
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+CYEA\A[CEEEIII\[E\\O]OUUY]Y$$$$$AIOUNN
+         (((((                  H
+ !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+	./012
+,345678'9:;]<(=>vz|~
+?@^_`AB
+CDEFGH
+IJKL
+Ztqr
+u [!NRQ"UVXYs*+#
+$\%OT&-
+bk)l
+Pnop
+cwxy
+         (((((                  H
+ !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+AAAAAAACEEEEIIIIDNOOOOO
+UUUUY
+AAAAAAACEEEEIIIIDNOOOOO
+UUUUY
+         (((((                  H
+ !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+         (((((                  H
+ !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+         (((((                  H
+                                  
+    
+ !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\][^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+         (((((                  H
+         (((((                  H
+ !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@AGHLNSTUVZ[\`adijknruz{|}
+AGHLNSTUVZ[\`adijknruz{|}
+ggVV
+ggdxuxgx
+AVdu^o
+lADEF_IKJNQRPVWM
+bcdfgg
+mwuxx~t
+dADEF_IKJNQxPVXM
+bcdfgg
+mwuxx~t
+         (((((                  H
+ !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+         (((((                  H
+ !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_ abcdefghijklmnopqrstuvwxyz{|}~
+                                   
+     
+     
+     
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_ ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+                                   
+     
+     
+     
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_ ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+         (((((                  H
+ !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ADEHIKLMNOPQSTVXYZ[^_`abcdhijklmADEHIKLMNOPQSTVXYZ[^_`abcdnopq
+][^e
+][^e
+gfZCCCCQFEGIJIINNH
+UTWVVV
+Z____c^
+ZCCCCQFEGIJIINNH
+UTWVVV
+Z____c^
+         (((((                  H
+ !"#$%&'()*+,-./0123456789:;<=>?`abcdefghijklmnopqrstuvwxyz{|}~_`abcdefghijklmnopqrstuvwxyz{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^
+ !"#$%&'()*+,-./0123456789:;<=>?EABCDEFGHIJKLMNOPQRSTUVWXYZ\][Y_EABCDEFGHIJKLMNOPQRSTUVWXYZ\][Y
+         (((((                  H
+ !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\][^_EABCDEFGHIJKLMNOPQRSTUVWXYZ{|}Y
+         (((((                  H
+ !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCFIJKLMNOPRSUVWXY[\]^_`acdefghABCFIJKLMNOPRSUVWXY[\]^_`a{|}~
+Z[bb
+Z[bb 
+PbXAAAAPECDIIIIMMFGSSUUUU
+X\\\\`[YXAAAAPECDIIIIMMFGSSUUUU
+X\\\\`[
+         (((((                  H
+ !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+         (((((                  H
+ !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_ abcdefghijklmnopqrstuvwxyz{|}~
+                                     
+    
+    
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_ ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+                                     
+    
+    
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_ ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ
+040a
+1252
+040b
+1252
+040c
+1252
+040f
+1252
+041d
+1252
+042d
+1252
+080a
+1252
+080c
+1252
+0c07
+1252
+0c09
+1252
+0c0a
+1252
+0c0c
+1252
+100a
+1252
+100c
+1252
+140a
+1252
+140c
+1252
+180a
+1252
+1c09
+1252
+1c0a
+1252
+200a
+1252
+240a
+1252
+280a
+1252
+2c0a
+1252
+300a
+1252
+340a
+1252
+380a
+1252
+3c0a
+1252
+kU'9
+HMXB
+?Zd;
+?/L[
+S;uD
+z?aUY
+D?$?
+U>c{
+zc%C1
+.:3q
+-64OS
+NKeb
+0%0*0
+656[6m6~6
+8'9M9
+:(:-:F:K:T:Y:w:
+;2;Z;`;
+=;>i>q>x>
+0 0'0?0
+0<1E1J1X1`1g1
+01?1e1w1
+0T152
+449C9i9y9
+2X7t7
+8,8J8h8
+9c=}=
+1&1r1
+3T3e3p3}3
+5(555S5W5[5_5c5g5k5o5s5w5{5
+5 6*6Z6
+6S7b7n7
+8"8I8O8
+9X9]9":(:=:f:l:
+:";(;9;a;t;
+<b<z<
+=:>I>j>p>
+0A0S0
+2 2/2A2G2U2j2p2
+3$313R3[3~3
+4#4_4
+565?5H5`5h5n5
+6"686>6C6P6^6b6g6m6v6
+7L7R7
+8.979q9
+<@=E=
+>e?j?
+3E4I4M4Q4U4Y4]4
+6-6K6Y6y6
+7*7/777@7L7T7Z7o7x7~7
+8R8[8`8}8
+929`9
+=+=H=[=p=x=
+>7>f>}>
+>(?6?I?h?
+060>0l0u0z0
+2B2s2K3a3i3p3
+40484?4_4
+6#6*6?6L6|6
+727x7
+7>8G8L8Z8f8m8
+:C:g:
+<'<.<M<n<
+=*=2=9=T=
+0'0/060U0
+0-1:142
+6*7@7
+:#;=;A;E;I;M;Q;U;Y;];a;e;i;m;q;u;y;};
+0$0)0g0
+5%5*585@5G5\5j5r5y5
+<E<h<_=
+?_?h?m?|?
+0J1`1h1o1
+142o2
+3<3|3
+616n6
+7\8e8j8
+8,9X9
+263|3
+3<4E4J4X4`4g4|4
+5%5|5
+6+6|6
+9>9_:
+<i=p=
+5Y5j6
+6,84:H:
+:';?;
+<^=/>8>=>K>S>Z>o>
+>+?4?9?G?O?V?w?
+2%2*2
+3'3/363]3m3
+5$5)5<6E6V6
+8$8)878?8F8[8
+<[<d<i<
+0.1f1
+2,2c2
+2(3C3n3
+:(:0:7:X:
+;$;.;E;
+< <'<@<
+=,=>=T=j=
+>:>a>
+171l1u1z1
+2&2,2Q2j2r2
+2+333:3S3
+404=4C4
+5<5E5J5X5`5g5
+6'6,62686@6G6\6w6
+9 9U9
+:R:[:
+;!;';8;E;K;T;Z;g;l;
+<:<J<[<c<i<r<y<
+<A=G=L=R=W=]=
+=5>X>a>f>s>
+1,1\1e1j1
+7 7;7
+9 9'9@9
+:\:e:j:x:
+<,<1<><O<^<y<
+=n=y=
+=l>u>z>
+?(?0?7?T?
+0)02080>0F0M0b0}0
+041l1u1z1
+1#2+232=2P2Y2_2r2
+5$5O5
+6&6A6m6@7l7
+8:8A8Z8`8e8l8u8{8
+8a9u9|9
+;$<l=u=z=
+>4>Q>W>m>u>|>
+>1?7?I?O?
+1,2S2Y2a2g2o2
+7*<2<9<]<
+=O>W>^>
+0B2w3/4C4r4
+7 7K7r7
+7#8?8O8`8q8
+9!9E9[9c9j9|9
+:<:E:J:u:
+;,;1;?;G;N;g;t;
+;1<x<
+=>=]=z=
+>B>a>j>o>w>|>
+?'?.?G?T?o?z?
+0%0*070=0C0R0X0v0~0
+191M1k1s1z1
+2)2A2G2T2Z2m2
+3!3.3=3K3S3Z3
+4=4J4k4
+5%5E5R53686
+7[7`7n:
+2A2Y2
+4*5?5
+5$676
+9?9R9C:
+1%1*1K1
+1<5E5J5X5`5g5
+6I7Q7X7i7
+7/8l8u8z8
+9<9E9J9X9`9g9|9
+9l:u:z:
+:l;u;z;
+; <X<`<g<~<
+=(=0=7=V=
+>,>4>;>P>k>
+?L?U?Z?y?
+0'0.0D0R0Z0a0v0
+1!1o1
+2(2w2
+2l3u3z3
+4$4?4h4p4w4
+9l=~=
+0-0}0
+77>W>
+=t>i?
+5M7z8
+6K8e8
+4?6|7v;r=
+7"7&7*7
+5[6u6/>4>j>|>
+?*?~?
+6%7~8
+9 9&9,92989>9D9J9P9V9\9b9h9n9t9z9
+9%:K:e:l:p:t:x:|:
+:J;U;p;w;|;
+< <j<p<t<x<|<h=
+> >$>(>r>x>|>
+? ?$?A?k?
+161?1H2n263`3x4
+8T8|8
+9 9u9~9
+:3:R:
+<#<=<`<e<
+=#=r=~=
+=N>W>e>m>s>|>
+>G?S?
+0&0,050E0N0c0X1m1y1
+2[2g2
+20363u3
+4%4N4X4d4
+4!5j5
+5"6.6s6
+6=7I7
+9 9C9H9z9
+:H:z:
+;T<l<
+>!>@>E>y>
+>L?v?
+2Y2{2
+2!3]3b3
+4P4}4
+4`5|5
+6!7@7
+7I8h8
+9)9/989F9P9^9d9
+:6:?:I:g:
+;&;/;P;Y;
+=P>Y>z>
+>,?5?V?_?
+1>1G1h1q1
+494c4y4
+5<5O5\5
+5]6f6
+7%7*7
+82878D8I8W8q8
+8@9I9n9w9
+;*;3;:;S;d;
+<'=0=F=_=	>
+>6>=>
+?&?-?4?C?J?
+2@2[2v2
+4;4B4H4T4[4g4o4z4
+7j8n8r8v8z8~8
+:8:>:D:L:R:
+<$<,<2<r<x<
+0 0*0:0D0S0e0q0
+1#171D1I1O1g1t1
+172C2W2
+3#3P3W3a3u3
+4$404^4g4
+5$505O5i5u5
+6$676C6
+6N7V7\7g7
+8_8h8
+8%9.9B:
+<1<=<P<k<t<
+= =4=:=R=_=
+=%>>>x>
+0&1Q1
+364H4
+9 9,969
+9@:F:]:
+<F<R<j<y<
+=%>)>/>3>9>=>C>G>M>Q>W>[>u>
+0F0e0
+1(1V1u1
+1&2H2v2
+2(3J3
+4!4-434<4B4G4T4o4t4~4
+435O5d5
+6%6.676V6p6y6
+7V8[8x8
+:+:D:U:
+;*;1;7;>;D;K;P;W;j;w;
+<+<6<D<
+=%=~=
+90@0
+171U1n1
+2*20262@2J2g2p2{2
+8$8/888N8X8^8j8q8w8
+:,:r:
+>5>;>C>P>X>_>x>~>
+> ?(?
+&727;7W7b7i7t7|7
+8&858>8D8Z8d8k8}8
+>d?w?
+X0r0
+2*2n2|2
+20393v3
+576C6
+8d96:
+D1H1L1P1T1X1\1`1d1h1l1p1t1x1
+4&4Z4b4i4o4
+5-5E5W5^5
+6:6A6U6e6
+7^8l8Z;v;
+> >m>q>u>y>}>
+?+?C?\?t?
+0I1a1
+4"5=5^5
+5I6e6q6
+6	7%7K7W7~7
+869v9
+:):A:
+:#;];f;
+<G<p<
+=3=9=>=U=^=f=m=s=|=
+0F0K0h0v0
+1 1G1
+9*9C9V:d:
+;A;M;
+404N4d4u4
+5#5,555;5N5_5o5~5
+6!636<6L6X6b6h6
+8"8A8
+;k<r<
+>(>.>9>K>
+0%01080L0R0Z0f0m0{0
+1'1.1H1U1z1
+1e2|2
+3=3X3b3z3
+4#4+464H4O4X4^4m4w4
+5#5,525:5B5H5T5\5e5t5
+6!6-626U6l6r6
+7*7=7[7a7g7l7s7{7
+8+8]8x8
+979X9_9t9
+9B:g:x:
+;9<j<
+>4>P>G?^?
+.0U0h0u0}0
+1)121;1D1M1U1^1h1q1z1
+2'2?2H2o2
+4!4'454D4P4
+5>5G5Q5[5d5r5
+7V7a7w7
+7C8R8|8
+9!9'909<9B9K9S9^9h9n9w9
+9F:s:>;G;
+<9>g>m>{>
+6q6'7
+>)>L>Y>a>l>
+6\6}6
+7*7=7X7j7r7x7|7
+<9=I=j=
+='>H>j>
+?)?F?O?X?k?
+0B0[0u0
+2@2i2s2}2
+3:3V3r3
+667<7e7
+9c:j:
+;a<p<
+=V>s>
+?#?-?:?A?K?U?
+,0T0`0
+4[4a4j4|4
+4&51575
+6'6D6
+7074787<7@7
+:^:m:
+<&<3<D<J<[<g<
+6'6j6
+687?7
+8"9(9g9m9
+9-:3:V:\:m:s:
+;$;y;
+;G<}<
+?m?t?
+-0T0{0
+0<1"2
+2`3d3h3l3p3t3x3|3
+5$6;6
+7 797D7V7x7
+9f9l9z9
+9T:Z:h:
+:-;9;
+=&>+>H>Y>c>w>
+>P?t?
+0!040M0X0k0
+1C1H5w5
+6\6c6
+6'7T7
+9!9^9
+9&;S;
+?L?P?T?
+:r;x;~;
+< <&<,<2<8<><D<J<P<V<\<b<h<n<t<z<
+="=(=.=4=:=@=Z=d=
+>D>U>^>}>
+?k?r?
+"0+0N0R0V0Z0^0
+0N1\1
+202H2~2
+3*3k3u364@4
+4K5]5
+5e6w6
+8-9E9
+9H:`:j:
+;&;0;F;
+0Z1q1
+1G2M2U2c2i2|2
+3K4h4
+4S5c5
+6]7v7
+7a8z8
+;);j;};
+=+=C=\=n=
+?1?i?
+0&0,020:0@0`0z0
+161;1X1b1i1s1}1
+1'2H2S2f2
+3y4K5Q5W5_5e5
+8.8;8E8q8
+8R9w9
+ ?,?8?D?P?\?h?t?
+:d;h;p;t;
+;t<x<
+0 0$0`4d4h4l4p4t4x4|4
+4 4$4(4,4\4`4d4h4l4t4x4|4
+5 5$5(5,5\5`5d5h5l5t5x5|5
+6 6$6(6,6\6`6d6h6l6
+7 7$7(7,74787<7@7D7L7P7T7\7`7d7h7l7
+8 8$8(8,8\8`8d8h8l8
+9 9$9(9,9\9`9d9h9l9
+: :$:(:,:\:`:d:h:l:
+; ;$;(;,;4;8;<;@;D;X;\;`;p;t;x;|;
+<H<L<P<T<X<\<`<d<h<l<p<t<x<|<
+=t>x>|>
+@0D0h2l2p2t2x2
+; ;$;(;,;0;4;8;<;L;P;T;\;d;
+; <T<X<`<d<h<l<p<t<x<|<
+>@>H>l>t>
+?$?H?P?t?|?
+0$0,0P0X0|0
+1,141X1`1
+242<2h2p2x2
+3 3(30383@3H3P3X3`3h3p3x3
+4 4(40484@4H4P4X4`4h4p4x4
+6$6,646<6D6L6T6\6d6l6t6|6
+6$7,747<7D7L7T7\7d7l7t7|7
+9 9$9(9,9094989<9@9D9H9L9P9T9X9h9l9p9t9x9|9
+NB10
+M:\MYSQL-3.23\libmysql\debug\libmySQL.pdb
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+jjjj
+(null)
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOP
+FHDv
+KLMNmpXZ\^`bdfrshj
+023459
+<>@E
+nqY[]_aceg
+ik=A
+STUV678
+!#*',
+;?lo
+         (((((                  H
+    
+;T^h<U_i=V`j>Wak?Xbl@YcmAZdnB[eoC\fpD]gq

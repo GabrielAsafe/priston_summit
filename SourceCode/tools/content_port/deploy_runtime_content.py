@@ -8,15 +8,17 @@ import shutil
 from pathlib import Path
 
 COMMON_PACKS = (
-    'stage_spawns.sspb',
+    'field_runtime.sfld',
     'text_resources.sres',
     'localization.sloc',
     'gameplay_config.sgcf',
+    'gameplay_reference.sgrf',
 )
 ROLE_PACKS = {
     'client': ('definitions_client.scfg', 'maps_client.smap') + COMMON_PACKS,
     'server': ('definitions_server.scfg', 'maps_server.smap') + COMMON_PACKS,
 }
+STALE_COMMON_PACKS = ('stage_spawns.sspb',)
 KNOWN_ROLE_SPECIFIC = {
     'client': ('definitions_server.scfg', 'maps_server.smap'),
     'server': ('definitions_client.scfg', 'maps_client.smap'),
@@ -35,7 +37,7 @@ def deploy_role(source_packs: Path, destination_root: Path, role: str) -> dict:
     destination = destination_root / 'Content' / 'packs'
     destination.mkdir(parents=True, exist_ok=True)
 
-    for stale_name in KNOWN_ROLE_SPECIFIC[role]:
+    for stale_name in STALE_COMMON_PACKS + KNOWN_ROLE_SPECIFIC[role]:
         stale = destination / stale_name
         if stale.exists():
             stale.unlink()

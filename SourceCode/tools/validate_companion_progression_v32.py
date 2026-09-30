@@ -11,11 +11,11 @@ def req(label,text,needle):
 for needle in ('ReformCharStatePoint(', 'recordData.smCharInfo.Next_Exp', 'ReformCharForm(&recordData.smCharInfo)', 'CopyFile(szFile, szBackupFile'):
     req('offline persistence contract', record, needle)
 for needle in ('const int previousLevel = slot.cachedLevel', 'SetExp64(&slot.entity->smCharInfo, newExperience)',
-               'if(newLevel != previousLevel)', 'rsLoadAccountCharacterRecord(state.owner->getAccount(), slot.characterName, &refreshed)',
-               'slot.entity->smCharInfo.StatePoint = refreshed.smCharInfo.StatePoint',
-               'slot.entity->smCharInfo.Next_Exp = refreshed.smCharInfo.Next_Exp',
-               'slot.entity->smCharInfo.ChangeJob = refreshed.smCharInfo.ChangeJob',
-               'slot.entity->smCharInfo.JobBitMask = refreshed.smCharInfo.JobBitMask',
+               'if(newLevel != previousLevel)', 'ServerLegacyCharacterRecordAdapter().TryLoadProgression',
+               'slot.entity->smCharInfo.StatePoint = refreshed.statePoint',
+               'slot.entity->smCharInfo.Next_Exp = refreshed.nextExperience',
+               'slot.entity->smCharInfo.ChangeJob = refreshed.changeJob',
+               'slot.entity->smCharInfo.JobBitMask = refreshed.jobBitMask',
                '"LEVEL_UP name='):
     req('live progression sync', server, needle)
 

@@ -1,0 +1,53 @@
+//ID
+*ÄÚµå "WT102"
+
+//Korean Name
+*ÀÌ¸§ "Lança de Guerra"
+
+//English Name
+*Name "Lança de Guerra"
+
+//AttackPower
+*°ø°Ý·Â 2 3 4 5
+
+//AttackRange
+*»çÁ¤°Å¸® 185
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackRating
+*¸íÁß·Â 30 38
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 3
+
+//Integrity
+*³»±¸·Â 23 30
+
+//PrimarySpec
+**Æ¯È­ Atalanta
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Archer
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 1
+
+//SpecAttackRange
+**»çÁ¤°Å¸® 10
+
+//Weight
+*¹«°Ô 2
+
+//Price
+*°¡°Ý 280
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WT102.zhoon"

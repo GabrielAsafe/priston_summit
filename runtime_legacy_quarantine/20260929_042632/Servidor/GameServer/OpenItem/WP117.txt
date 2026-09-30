@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "WP117"
+
+//Korean Name
+*ÀÌ¸§ "Foice Híper"
+
+//English Name
+*Name "Foice Híper"
+
+//AttackPower
+*°ø°Ý·Â 29 31 63 66
+
+//AttackRating
+*¸íÁß·Â 150 169
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 18
+
+//Block
+*ºí·°À² 13.0 13.0
+
+//Integrity
+*³»±¸·Â 100 118
+
+//Level
+*·¹º§ 80
+
+//Strength
+*Èû 146
+
+//Talent
+*Àç´É 90
+
+//PrimarySpec
+**Æ¯È­ Pikeman
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Atalanta
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 3
+
+//Weight
+*¹«°Ô 47
+
+//Price
+*°¡°Ý 280000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WP117.zhoon"

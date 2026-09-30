@@ -1,0 +1,14 @@
+//ID
+*코드 "BI253"
+
+//Korean Name
+*이름 "Po豫o Natal"
+
+//English Name
+*Name "Po豫o Natal"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\BI253.zhoon"

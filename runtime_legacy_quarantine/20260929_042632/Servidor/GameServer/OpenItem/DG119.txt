@@ -1,0 +1,62 @@
+//ID
+*코드 "DG119"
+
+//Korean Name
+*이름 "Luvas Antigas"
+
+//English Name
+*Name "Luvas Antigas"
+
+//Defense
+*방어력 127 146
+
+//Absorption
+*흡수력 7.4 7.7
+
+//OrganicResistance
+*생체 3 7
+
+//FireResistance
+*불 3 7
+
+//FrostResistance
+*냉기 3 7
+
+//LightningResistance
+*번개 3 7
+
+//PoisonResistance
+*독 3 7
+
+//Integrity
+*내구력 120 146
+
+//Level
+*레벨 80
+
+//Strength
+*힘 100
+
+//Talent
+*재능 72
+
+//Agility
+*민첩성 74
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecDefense
+**방어력 42 47
+
+//SpecAbsorption
+**흡수력 0.6 0.9
+
+//Weight
+*무게 39
+
+//Price
+*가격 380000
+
+//Name File
+*연결파일 "Name\DG119.zhoon"

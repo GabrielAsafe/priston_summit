@@ -1,0 +1,17 @@
+//ID
+*코드 "QW103"
+
+//Korean Name
+*이름 "Asa de Ouro"
+
+//English Name
+*Name "Asa de Ouro"
+
+//Weight
+*무게 1
+
+//Price
+*가격 80000
+
+//Name File
+*연결파일 "Name\QW103.zhoon"

@@ -1,0 +1,71 @@
+//ID
+*코드 "WS119"
+
+//Korean Name
+*이름 "Arco Onda"
+
+//English Name
+*Name "Arco Onda"
+
+//AttackPower
+*공격력 33 36 51 54
+
+//AttackRating
+*명중력 96 130
+
+//AttackRange
+*사정거리 255
+
+//AttackSpeed
+*공격속도 7
+
+//AttackCritical
+*크리티컬 16
+
+//Block
+*블럭율 6.0 6.0
+
+//Integrity
+*내구력 116 140
+
+//Level
+*레벨 80
+
+//Strength
+*힘 76
+
+//Talent
+*재능 84
+
+//Agility
+*민첩성 150
+
+//PrimarySpec
+**특화 Archer
+
+//SecondarySpec
+**특화랜덤 Mechanician Atalanta
+
+//SpecAttackPower
+**공격력 7 7
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackRange
+**사정거리 10
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 3
+
+//Weight
+*무게 51
+
+//Price
+*가격 410000
+
+//Name File
+*연결파일 "Name\WS119.zhoon"

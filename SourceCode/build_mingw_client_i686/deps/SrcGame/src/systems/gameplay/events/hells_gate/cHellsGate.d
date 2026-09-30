@@ -134,7 +134,10 @@
  SrcGame/src/platform/database/odbc/SQL.h \
  Dependency/DirectX9/Include/d3dx9math.h \
  SrcGame/src/systems/world/field/field.h \
- SrcGame/src/systems/gameplay/events/hells_gate/cHellsGate.h
+ SrcGame/src/systems/gameplay/events/hells_gate/cHellsGate.h \
+ SrcGame/src/systems/network/v2/legacy/LegacyClientCommandSender.h \
+ Shared/network/v2/ClientCommandSender.h Shared/network/v2/PacketSender.h \
+ Shared/gameplay/core/v2/GameplayIds.h
 Shared/opcodes.h:
 SrcGame/src/compat/legacy/sin/sinLinkHeader.h:
 SrcGame/src/systems/rendering/legacy_3d/smd3d.h:
@@ -273,3 +276,7 @@ SrcGame/src/platform/database/odbc/SQL.h:
 Dependency/DirectX9/Include/d3dx9math.h:
 SrcGame/src/systems/world/field/field.h:
 SrcGame/src/systems/gameplay/events/hells_gate/cHellsGate.h:
+SrcGame/src/systems/network/v2/legacy/LegacyClientCommandSender.h:
+Shared/network/v2/ClientCommandSender.h:
+Shared/network/v2/PacketSender.h:
+Shared/gameplay/core/v2/GameplayIds.h:

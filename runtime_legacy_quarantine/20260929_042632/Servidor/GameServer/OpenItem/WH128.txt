@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "WH128"
+
+//Korean Name
+*ÀÌ¸§ "Martelo Mitológico"
+
+//English Name
+*Name "Martelo Mitológico"
+
+//AttackPower
+*°ø°Ý·Â 112 116 124 126
+
+//AttackRating
+*¸íÁß·Â 241 249
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 8
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 22
+
+//Block
+*ºí·°À² 15.0 15.0
+
+//Integrity
+*³»±¸·Â 210 230
+
+//Level
+*·¹º§ 118
+
+//Strength
+*Èû 182
+
+//Talent
+*Àç´É 100
+
+//PrimarySpec
+**Æ¯È­ Mechanician
+
+//SecondarySpec
+**Æ¯È­·£´ý Fighter Pikeman Knight
+
+//SpecAttackPower
+**°ø°Ý·Â 7 7
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 5
+
+//Weight
+*¹«°Ô 99
+
+//Price
+*°¡°Ý 1480000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WH128.zhoon"

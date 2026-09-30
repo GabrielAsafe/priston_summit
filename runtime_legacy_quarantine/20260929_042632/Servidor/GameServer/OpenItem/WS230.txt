@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "WS230"
+
+//Korean Name
+*ÀÌ¸§ "Espada Mitológica"
+
+//English Name
+*Name "Espada Mitológica"
+
+//AttackPower
+*°ø°Ý·Â 102 105 122 126
+
+//AttackRating
+*¸íÁß·Â 211 235
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 8
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 23
+
+//Block
+*ºí·°À² 16.0 16.0
+
+//Integrity
+*³»±¸·Â 196 225
+
+//Level
+*·¹º§ 118
+
+//Strength
+*Èû 217
+
+//Talent
+*Àç´É 100
+
+//PrimarySpec
+**Æ¯È­ Knight
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Pikeman
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 6
+
+//Weight
+*¹«°Ô 89
+
+//Price
+*°¡°Ý 1490000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WS230.zhoon"

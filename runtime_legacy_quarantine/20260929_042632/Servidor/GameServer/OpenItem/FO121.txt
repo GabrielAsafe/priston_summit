@@ -1,0 +1,20 @@
+//ID
+*ÄÚµå "FO121"
+
+//Korean Name
+*ÀÌ¸§ "Força Mágica Lucidi"
+
+//English Name
+*Name "Força Mágica Lucidi"
+
+//Weight
+*¹«°Ô 2
+
+//Price
+*°¡°Ý 1000
+
+//Level
+*·¹º§ 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\FO121.zhoon"

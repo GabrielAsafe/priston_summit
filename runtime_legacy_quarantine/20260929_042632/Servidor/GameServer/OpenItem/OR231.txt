@@ -1,0 +1,11 @@
+//ID
+*코드 "OR231"
+
+//Korean Name
+*이름 "Anel do Babel"
+
+//English Name
+*Name "Anel do Babel"
+
+//Name File
+*연결파일 "Name\OR231.zhoon"

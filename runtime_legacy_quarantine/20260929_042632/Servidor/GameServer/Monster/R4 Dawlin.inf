@@ -1,0 +1,69 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\mondawlin\mondawlin.ini"
+
+//Name
+*이름 "R4 Dawlin"
+
+//Level
+*레벨 75
+
+//Size
+*모델크기 1.0
+
+//QuestCode
+*구별코드 32
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 360
+
+//HP
+*생명력 2600
+
+//AttackPower
+*공격력 100 130
+
+//AttackRating
+*명중력 1300
+
+//AttackSpeed
+*공격속도 7
+
+//AttackRange
+*공격범위 75
+
+//Defense
+*방어력 700
+
+//Absorption
+*흡수율 17
+
+//Block
+*블럭율 10
+
+//Stun
+*스턴율 70
+
+//MoveSpeed
+*이동력 4
+
+//Race
+*몬스터종족 뮤턴트
+
+//ShadowSize
+*크기 중대형
+
+//Experience
+*경험치 72000
+
+//Sound
+*효과음 DAWLIN
+
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

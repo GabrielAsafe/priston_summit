@@ -1,0 +1,35 @@
+//ID
+*코드 "OA119"
+
+//Korean Name
+*이름 "Colar Selado +2"
+
+//English Name
+*Name "Colar Selado +2"
+
+//HP
+*생명력추가 16 21
+
+//MP
+*기력추가 26 32
+
+//Level
+*레벨 75
+
+//Spirit
+*정신력 70
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecMPRegen
+**기력재생 0.3 0.6
+
+//Weight
+*무게 5
+
+//Price
+*가격 45000
+
+//Name File
+*연결파일 "Name\OA119.zhoon"

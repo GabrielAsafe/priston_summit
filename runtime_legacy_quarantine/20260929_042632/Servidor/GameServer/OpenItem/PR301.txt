@@ -1,0 +1,14 @@
+//ID
+*코드 "PR301"
+
+//Korean Name
+*이름 "Runa de Ametista A"
+
+//English Name
+*Name "Runa de Ametista A"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\PR301.zhoon"

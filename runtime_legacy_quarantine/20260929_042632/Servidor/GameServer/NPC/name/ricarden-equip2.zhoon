@@ -1,0 +1,14 @@
+//ricarden-equip2.NPC
+
+
+*J_Name	"Ferreiro Gus"
+
+
+*J_Chat	"Não consegue achar nada interessante? Experimente a Loja do Ferreiro Goden, depois da ponte..."
+
+*J_Chat	"Temos armas e armaduras. Venha ver!"
+
+*J_Chat	"Não temos armas tão avançadas quanto as dos Guardas da Cidade. Ao invés disso, experimente estas armas mais simples..."
+
+*J_Chat	"Nós temos vários equipamentos para aprendizes. Aproxime-se, guerreiro!"
+

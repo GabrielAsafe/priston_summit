@@ -19,7 +19,7 @@
 #include "systems/presentation/opening/legacy_runtime/HoLinkHeader.h"
 
 #include "systems/persistence/character_record/record.h"
-#include "systems/gameplay/quests/server/cQuestHandler.h"
+#include "systems/gameplay/quests/v2/legacy/LegacyQuestRepository.h"
 #include "core/gameplay/legacy_support/playsub.h"
 
 #include "systems/world/field/field.h"
@@ -248,7 +248,7 @@ static int QueryTier5PointBudget(const char *szPlayerName, int level, int *lpBud
 	*lpBudget = 0;
 
 	bool arenaComplete = false;
-	if(!cQuestHandler.QueryCompletedQuest(szPlayerName, QUESTID_T5_QUEST_ARENA, &arenaComplete))
+	if(!gameplay::quests::legacy::ServerLegacyQuestRepository().TryIsCompleted(szPlayerName, gameplay::QuestId(QUESTID_T5_QUEST_ARENA), arenaComplete))
 		return FALSE;
 	if(!arenaComplete)
 		return TRUE;
@@ -268,13 +268,13 @@ static int QueryTier5PointBudget(const char *szPlayerName, int level, int *lpBud
 	for(int i = 0; i < (int)(sizeof(onePointQuestIDs) / sizeof(onePointQuestIDs[0])); i++)
 	{
 		bool complete = false;
-		if(!cQuestHandler.QueryCompletedQuest(szPlayerName, onePointQuestIDs[i], &complete))
+		if(!gameplay::quests::legacy::ServerLegacyQuestRepository().TryIsCompleted(szPlayerName, gameplay::QuestId(onePointQuestIDs[i]), complete))
 			return FALSE;
 		if(complete) points++;
 	}
 
 	bool greenLiquidStep2 = false;
-	if(!cQuestHandler.QueryCompletedQuest(szPlayerName, QUESTID_T5_GREEN_LIQUID_STEP2, &greenLiquidStep2))
+	if(!gameplay::quests::legacy::ServerLegacyQuestRepository().TryIsCompleted(szPlayerName, gameplay::QuestId(QUESTID_T5_GREEN_LIQUID_STEP2), greenLiquidStep2))
 		return FALSE;
 	if(greenLiquidStep2) points += 2;
 
@@ -347,7 +347,7 @@ static int ValidateTier5RecordFromClient(sGAME_SAVE_INFO *lpGameSaveInfo, rsPLAY
 	if(!valid) return FALSE;
 
 	bool arenaComplete = false;
-	if(!cQuestHandler.QueryCompletedQuest(lpPlayInfo->getName(), QUESTID_T5_QUEST_ARENA, &arenaComplete))
+	if(!gameplay::quests::legacy::ServerLegacyQuestRepository().TryIsCompleted(lpPlayInfo->getName(), gameplay::QuestId(QUESTID_T5_QUEST_ARENA), arenaComplete))
 	{
 		// QuestDB unavailable: never permit a point escalation and never erase an
 		// already allocated T5 record by accepting a legacy/no-extension save.
@@ -2462,7 +2462,7 @@ int rsRECORD_DBASE::SendRecordDataToClient(rsPLAYINFO *lpPlayInfo, char *szName,
 	// Rank5 is server-authoritative. Only normalize it when QuestDB was queried successfully;
 	// a temporary database failure must never demote a legitimate character.
 	bool rank5QuestComplete = false;
-	if(cQuestHandler.QueryCompletedQuest(szName, QUESTID_T5_QUEST_ARENA, &rank5QuestComplete))
+	if(gameplay::quests::legacy::ServerLegacyQuestRepository().TryIsCompleted(szName, gameplay::QuestId(QUESTID_T5_QUEST_ARENA), rank5QuestComplete))
 	{
 		if(rank5QuestComplete && lpTransRecord->smCharInfo.ChangeJob < CHARACTER_RANK5)
 			lpTransRecord->smCharInfo.ChangeJob = CHARACTER_RANK5;

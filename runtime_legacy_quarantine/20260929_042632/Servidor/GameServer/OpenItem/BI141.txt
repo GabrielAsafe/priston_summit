@@ -1,0 +1,17 @@
+//ID
+*코드 "BI141"
+
+//Korean Name
+*이름 "Mestre das Habilidades C"
+
+//English Name
+*Name "Mestre das Habilidades C"
+
+//Weight
+*무게 1
+
+//Price
+*가격 200000
+
+//Name File
+*연결파일 "Name\BI141.zhoon"

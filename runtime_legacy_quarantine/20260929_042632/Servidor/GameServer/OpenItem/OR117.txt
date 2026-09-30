@@ -1,0 +1,35 @@
+//ID
+*코드 "OR117"
+
+//Korean Name
+*이름 "Anel Selado"
+
+//English Name
+*Name "Anel Selado"
+
+//HP
+*생명력추가 9 12
+
+//STM
+*근력추가 38 52
+
+//Level
+*레벨 65
+
+//Spirit
+*정신력 70
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecHPRegen
+**생명력재생 0.3 0.4
+
+//Weight
+*무게 5
+
+//Price
+*가격 35000
+
+//Name File
+*연결파일 "Name\OR117.zhoon"

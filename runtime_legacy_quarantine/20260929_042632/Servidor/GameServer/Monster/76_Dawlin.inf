@@ -1,0 +1,110 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\mondawlin\mondawlin.ini"
+
+//Name
+*이름 "Dawlin"
+
+//Level
+*레벨 75
+
+//Size
+*모델크기 1.0
+
+//QuestCode
+*구별코드 32
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 360
+
+//HP
+*생명력 2600
+
+//AttackPower
+*공격력 100 130
+
+//AttackRating
+*명중력 1300
+
+//AttackSpeed
+*공격속도 7
+
+//AttackRange
+*공격범위 75
+
+//Defense
+*방어력 700
+
+//Absorption
+*흡수율 17
+
+//Block
+*블럭율 10
+
+//Stun
+*스턴율 70
+
+//MoveSpeed
+*이동력 4
+
+//Race
+*몬스터종족 뮤턴트
+
+//ShadowSize
+*크기 중대형
+
+//Experience
+*경험치 76369
+
+//Sound
+*효과음 DAWLIN
+
+//DropsNumber
+*아이템카운터 1
+
+//DropGold
+*아이템 2500 돈 2200 2900
+
+//DropPotion
+*아이템 2500 PS104 PL104 PM104 PM104
+
+//Drop
+//*아이템 100 SE102 SE104
+
+//Drop
+*아이템 30 GP112 GP109 GP110
+
+//Drop
+*아이템 80 OS106 OS225
+
+//Drop
+//*아이템 40 OS107 OS226
+
+//Drop
+//*아이템 20 OS108 OS227
+
+//Drop
+*아이템 101 EC101 EC102 EC104 F0105 FO125 FO106 FO126
+
+//Drop
+*아이템 3841 WA111 WC111 WH112 WM112 WP112 WS113 WS214 WT112 OA115 OA211 OM112 OR115 DA113 DA213 DB111 DG111 DS111
+
+//Drop
+*아이템 369 WA112 WC112 WH113 WM113 WP113 WS114 WS215 WT113 OA116 OA212 OM113 OR116 DA114 DA214 DB112 DG112 DS112
+
+//Drop
+*아이템 246 WA113 WC113 WH114 WM114 WP114 WS115 WS216 WT114 OA117 OA213 OM114 OR117 DA115 DA215 DB113 DG113 DS113
+
+//Drop
+*아이템 123 WA114 WC114 WH115 WM115 WP115 WS116 WS217 WT115 OA118 OA214 OM115 OR118 DA116 DA216 DB114 DG114 DS114
+
+//Drop
+*아이템 41 WA115 WC115 WH116 WM116 WP116 WS117 WS218 WT116 OA119 OA215 OM116 OR119 DA117 DA217 DB115 DG115 DS115
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

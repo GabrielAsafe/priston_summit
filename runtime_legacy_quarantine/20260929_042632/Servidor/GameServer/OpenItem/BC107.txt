@@ -1,0 +1,17 @@
+//ID
+*코드 "BC107"
+
+//Korean Name
+*이름 "Pedra da Revolta Gelo"
+
+//English Name
+*Name "Pedra da Revolta Gelo"
+
+//Weight
+*무게 1
+
+//Price
+*가격 10000
+
+//Name File
+*연결파일 "Name\BC107.zhoon"

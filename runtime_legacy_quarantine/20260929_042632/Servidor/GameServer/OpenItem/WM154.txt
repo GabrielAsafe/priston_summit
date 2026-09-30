@@ -1,0 +1,65 @@
+//ID
+*코드 "WM154"
+
+//Korean Name
+*이름 "Cajado Vert"
+
+//English Name
+*Name "Cajado Vert"
+
+//AttackPower
+*공격력 380 380 400 400
+
+//AttackRating
+*명중력 370 370
+
+//AttackRange
+*사정거리 225
+
+//AttackSpeed
+*공격속도 8
+
+//AttackCritical
+*크리티컬 30
+
+//Block
+*블럭율 12.0 12.0
+
+//Integrity
+*내구력 260 280
+
+//Level
+*레벨 1
+
+//Strength
+*힘 1
+
+//Spirit
+*정신력 1
+
+//Talent
+*재능 1
+
+//SecondarySpec
+**특화랜덤 Priestess Magician
+
+//SpecAttackPower
+**공격력 6 6
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecMPRegen
+**기력재생 4.0 4.3
+
+//SpecSkillTraining
+**마법숙련도 19 32
+
+//Weight
+*무게 1
+
+//Price
+*가격 2000000
+
+//Name File
+*연결파일	"name\WM154.zhoon"

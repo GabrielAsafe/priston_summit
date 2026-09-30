@@ -112,7 +112,31 @@
  SrcServer/src/systems/progression/class_rank/Rank.h \
  SrcServer/src/systems/persistence/database/core/Database.h \
  Shared/persistence/database/Database_sqlite_server.h \
- SrcServer/src/systems/gameplay/events/hells_gate/cHellsGate.h
+ SrcServer/src/systems/gameplay/events/hells_gate/cHellsGate.h \
+ Shared/gameplay/core/v2/GameplayIds.h \
+ SrcServer/src/systems/gameplay/events/v2/GameplayEventRuntime.h \
+ Shared/gameplay/events/v2/GameplayEventHub.h \
+ Shared/gameplay/events/v2/MonsterDefeatedEvent.h \
+ SrcServer/src/systems/gameplay/events/v2/MonsterKilledEvent.h \
+ Shared/gameplay/events/v2/WorldEventLifecycleEvents.h \
+ SrcServer/src/systems/gameplay/events/v2/legacy/LegacyWorldEventRewardGateway.h \
+ Shared/gameplay/rewards/v2/Reward.h \
+ SrcServer/src/systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h \
+ SrcServer/src/systems/gameplay/events/v2/legacy/LegacyWorldEventAdmissionAdapter.h \
+ Shared/gameplay/events/v2/WorldEventAdmission.h \
+ Shared/gameplay/player/v2/IPlayerQuery.h \
+ Shared/gameplay/player/v2/PlayerSnapshot.h \
+ Shared/gameplay/world/v2/WorldPosition.h \
+ Shared/network/v2/ConnectionQuery.h \
+ SrcServer/src/systems/gameplay/player/v2/legacy/LegacyPlayerAdapter.h \
+ Shared/gameplay/world/v2/ITeleportService.h \
+ Shared/gameplay/world/v2/ISpawnService.h \
+ Shared/gameplay/social/v2/ChatDelivery.h \
+ Shared/network/v2/PacketSender.h \
+ SrcServer/src/systems/community/chat/v2/legacy/LegacyChatDeliveryAdapter.h \
+ SrcServer/src/systems/network/v2/legacy/LegacyPacketSender.h \
+ SrcServer/src/systems/gameplay/world/v2/legacy/LegacyTeleportAdapter.h \
+ SrcServer/src/systems/gameplay/world/v2/legacy/LegacySpawnAdapter.h
 SrcServer/src/systems/network/protocol/server/opcodes.h:
 SrcServer/src/core/server/legacy_sin_runtime/sinLinkHeader.h:
 SrcServer/src/systems/rendering/legacy_3d/smd3d.h:
@@ -228,3 +252,27 @@ SrcServer/src/systems/progression/class_rank/Rank.h:
 SrcServer/src/systems/persistence/database/core/Database.h:
 Shared/persistence/database/Database_sqlite_server.h:
 SrcServer/src/systems/gameplay/events/hells_gate/cHellsGate.h:
+Shared/gameplay/core/v2/GameplayIds.h:
+SrcServer/src/systems/gameplay/events/v2/GameplayEventRuntime.h:
+Shared/gameplay/events/v2/GameplayEventHub.h:
+Shared/gameplay/events/v2/MonsterDefeatedEvent.h:
+SrcServer/src/systems/gameplay/events/v2/MonsterKilledEvent.h:
+Shared/gameplay/events/v2/WorldEventLifecycleEvents.h:
+SrcServer/src/systems/gameplay/events/v2/legacy/LegacyWorldEventRewardGateway.h:
+Shared/gameplay/rewards/v2/Reward.h:
+SrcServer/src/systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h:
+SrcServer/src/systems/gameplay/events/v2/legacy/LegacyWorldEventAdmissionAdapter.h:
+Shared/gameplay/events/v2/WorldEventAdmission.h:
+Shared/gameplay/player/v2/IPlayerQuery.h:
+Shared/gameplay/player/v2/PlayerSnapshot.h:
+Shared/gameplay/world/v2/WorldPosition.h:
+Shared/network/v2/ConnectionQuery.h:
+SrcServer/src/systems/gameplay/player/v2/legacy/LegacyPlayerAdapter.h:
+Shared/gameplay/world/v2/ITeleportService.h:
+Shared/gameplay/world/v2/ISpawnService.h:
+Shared/gameplay/social/v2/ChatDelivery.h:
+Shared/network/v2/PacketSender.h:
+SrcServer/src/systems/community/chat/v2/legacy/LegacyChatDeliveryAdapter.h:
+SrcServer/src/systems/network/v2/legacy/LegacyPacketSender.h:
+SrcServer/src/systems/gameplay/world/v2/legacy/LegacyTeleportAdapter.h:
+SrcServer/src/systems/gameplay/world/v2/legacy/LegacySpawnAdapter.h:

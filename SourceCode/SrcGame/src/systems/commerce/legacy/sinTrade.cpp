@@ -1,3 +1,22 @@
+// =============================================================================
+// MAPA DO MONOLITO LEGACY - CLIENT TRADE / CRAFT / AGING
+//
+// Este mapa e apenas documental. O ficheiro permanece RED e no mesmo local;
+// os separadores abaixo nao alteram ownership, ordem de execucao ou ABI.
+// FUNCIONAMENTO GERAL: Agrupa varias telas e regras comerciais legacy no mesmo arquivo. Services V2 encapsulam transacoes novas; este kernel preserva formulas e UI historicas.
+//
+// AREAS PRINCIPAIS:
+//   AREA 01 - TRADE UI / INPUT
+//   AREA 02 - TRADE ITEM GRID / VALIDATION
+//   AREA 03 - WAREHOUSE
+//   AREA 04 - CRAFT / MIX
+//   AREA 05 - AGING
+//   AREA 06 - NETWORK RESULT HANDLERS
+//   AREA 07 - FORM / CHECKSUM / SECURITY
+//
+// Desenvolvimento novo deve usar contracts/ports/adapters AMBER existentes.
+// =============================================================================
+
 
 #include "gameplay/commerce/legacy/LegacyClassCommerceAdapter.h"
 
@@ -1143,6 +1162,14 @@ bool cTRADE::GetEmptyArea(sITEM * pItem, POINT * EmptyPos)
 	return false;
 }
 
+
+// =============================================================================
+// AREA 01 - TRADE UI / INPUT
+// TIPO: commerce + UI
+// FUNCIONAMENTO: Atualiza janela de trade, estado dos participantes, botoes e feedback legacy.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 void cTRADE::Main()
 {
@@ -3082,6 +3109,14 @@ void cTRADE::DrawTradeText()
 
 
 
+// =============================================================================
+// AREA 02 - TRADE GRID / VALIDATION
+// TIPO: commerce + inventario
+// FUNCIONAMENTO: Valida/posiciona item no grid de trade e preserva restricoes historicas.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
+
 int cTRADE::SetTradeItemAreaCheck(sITEM *pItem)
 {
 
@@ -3891,6 +3926,14 @@ int cTRADE::GetWeight()
 
 
 
+// =============================================================================
+// AREA 03 - WAREHOUSE
+// TIPO: storage + inventario
+// FUNCIONAMENTO: Valida e posiciona itens no armazem legacy.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
+
 int cWAREHOUSE::SetWareHouseItemAreaCheck(sITEM *pItem)
 {
 	int i, j;
@@ -4466,6 +4509,14 @@ int cWAREHOUSE::RestoreInvenItem()
 
 
 
+
+// =============================================================================
+// AREA 04 - CRAFT / MIX
+// TIPO: crafting + inventario
+// FUNCIONAMENTO: Classifica ingredientes/slots e prepara o fluxo legacy de mix/craft.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 int cCRAFTITEM::SetCraftItemAreaCheck(sITEM *pItem, int Kind)
 {
@@ -5980,6 +6031,14 @@ int cWAREHOUSE::ReFormWareHouse()
 
 
 
+// =============================================================================
+// AREA 05 - AGING
+// TIPO: crafting + progression
+// FUNCIONAMENTO: Executa regras/formulas e estado da janela legacy de aging; preservar formulas e probabilidades.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
+
 int cAGING::AgingItem(int MakeItemFlag) {
 
 	int ResultCount = 0;
@@ -6990,6 +7049,14 @@ int cAGING::sinSendAgingItem()
 	SendSaveMoney();
 	return TRUE;
 }
+
+// =============================================================================
+// AREA 06 - NETWORK RESULTS
+// TIPO: crafting + rede
+// FUNCIONAMENTO: Aplica respostas do servidor ao fluxo de craft/aging e atualiza UI/inventario.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 int cCRAFTITEM::sinRecvCraftItem(sCRAFTITEM_SERVER *pCraftItem_Server)
 {

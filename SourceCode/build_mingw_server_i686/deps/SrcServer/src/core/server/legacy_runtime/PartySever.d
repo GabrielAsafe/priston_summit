@@ -117,8 +117,16 @@
  SrcServer/src/core/server/legacy_runtime/PartyMsg.h \
  SrcServer/src/systems/localization/locales/Brazil/b_PartyMsg.h \
  SrcServer/src/core/server/legacy_runtime/onserver.h \
- SrcServer/src/systems/gameplay/companions/CompanionSystem.h \
- Shared/gameplay/companions/CompanionProtocol.h \
+ SrcServer/src/systems/gameplay/companions/v2/legacy/CompanionLegacyExperienceRuntime.h \
+ Shared/gameplay/companions/v2/PartyCompanionQuery.h \
+ Shared/gameplay/companions/v2/CompanionQuery.h \
+ Shared/gameplay/core/v2/GameplayIds.h \
+ Shared/gameplay/social/party/v2/PartyQuery.h \
+ SrcServer/src/systems/gameplay/companions/v2/legacy/LegacyCompanionQueryAdapter.h \
+ SrcServer/src/systems/social/party/v2/legacy/LegacyPartyQueryAdapter.h \
+ SrcServer/src/systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h \
+ SrcServer/src/systems/gameplay/pets/v2/legacy/LegacyPetRuntimeAdapter.h \
+ Shared/gameplay/pets/v2/PetRuntime.h \
  SrcServer/src/systems/gameplay/progression/v2/ProgressionRuntime.h \
  Shared/gameplay/covenants/v2/CovenantService.h \
  Shared/gameplay/conditions/v2/Condition.h \
@@ -142,8 +150,7 @@
  Shared/gameplay/progression/v2/ProgressionSnapshot.h \
  SrcServer/src/systems/gameplay/progression/v2/ServerProgressionConditionContext.h \
  modules/File/File.h \
- SrcServer/src/systems/gameplay/quests/server/cQuestHandler.h \
- SrcServer/src/systems/gameplay/events/v2/GameplayEventRuntime.h
+ SrcServer/src/systems/gameplay/events/v2/legacy/LegacyGameplayEventAdapter.h
 SrcServer/src/compat/server_build/server_compat_packets.h:
 SrcServer/src/systems/network/protocol/server/opcodes.h:
 SrcServer/src/platform/windows/resources/legacy_runtime/resource.h:
@@ -264,8 +271,16 @@ Shared/persistence/database/Database_sqlite_server.h:
 SrcServer/src/core/server/legacy_runtime/PartyMsg.h:
 SrcServer/src/systems/localization/locales/Brazil/b_PartyMsg.h:
 SrcServer/src/core/server/legacy_runtime/onserver.h:
-SrcServer/src/systems/gameplay/companions/CompanionSystem.h:
-Shared/gameplay/companions/CompanionProtocol.h:
+SrcServer/src/systems/gameplay/companions/v2/legacy/CompanionLegacyExperienceRuntime.h:
+Shared/gameplay/companions/v2/PartyCompanionQuery.h:
+Shared/gameplay/companions/v2/CompanionQuery.h:
+Shared/gameplay/core/v2/GameplayIds.h:
+Shared/gameplay/social/party/v2/PartyQuery.h:
+SrcServer/src/systems/gameplay/companions/v2/legacy/LegacyCompanionQueryAdapter.h:
+SrcServer/src/systems/social/party/v2/legacy/LegacyPartyQueryAdapter.h:
+SrcServer/src/systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h:
+SrcServer/src/systems/gameplay/pets/v2/legacy/LegacyPetRuntimeAdapter.h:
+Shared/gameplay/pets/v2/PetRuntime.h:
 SrcServer/src/systems/gameplay/progression/v2/ProgressionRuntime.h:
 Shared/gameplay/covenants/v2/CovenantService.h:
 Shared/gameplay/conditions/v2/Condition.h:
@@ -289,5 +304,4 @@ Shared/gameplay/progression/v2/ProgressionPlayerRuntime.h:
 Shared/gameplay/progression/v2/ProgressionSnapshot.h:
 SrcServer/src/systems/gameplay/progression/v2/ServerProgressionConditionContext.h:
 modules/File/File.h:
-SrcServer/src/systems/gameplay/quests/server/cQuestHandler.h:
-SrcServer/src/systems/gameplay/events/v2/GameplayEventRuntime.h:
+SrcServer/src/systems/gameplay/events/v2/legacy/LegacyGameplayEventAdapter.h:

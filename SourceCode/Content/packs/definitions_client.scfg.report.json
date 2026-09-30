@@ -3,7 +3,7 @@
   "version": 1,
   "profile": "client",
   "definitions": 2182,
-  "directives": 36285,
+  "directives": 36286,
   "flattened_links": 1737,
   "filtered_open_items": 300,
   "filtered_open_item_rows": [
@@ -3181,6 +3181,6 @@
       "target": "gameserver/openitem/name/ca652.zhoon"
     }
   ],
-  "bytes": 755235,
-  "sha256": "51f2995a65d848ab7649177c6a42167bd31c6ac66122640c0b9129ca3ed687ce"
+  "bytes": 755043,
+  "sha256": "36c40ad3ee58e72253c7a57386223b302a2bfa34cf9c3225a05fc3302f270e01"
 }

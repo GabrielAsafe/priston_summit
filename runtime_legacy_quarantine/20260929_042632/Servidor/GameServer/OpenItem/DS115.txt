@@ -1,0 +1,65 @@
+//ID
+*코드 "DS115"
+
+//Korean Name
+*이름 "Escudo Gladiador"
+
+//English Name
+*Name "Escudo Gladiador"
+
+//Defense
+*방어력 116 133
+
+//Absorption
+*흡수력 5.4 5.7
+
+//Block
+*블럭율 17.0 20.0
+
+//OrganicResistance
+*생체 2 5
+
+//FireResistance
+*불 2 5
+
+//FrostResistance
+*냉기 2 5
+
+//LightningResistance
+*번개 2 5
+
+//PoisonResistance
+*독 2 5
+
+//Integrity
+*내구력 110 140
+
+//Level
+*레벨 75
+
+//Strength
+*힘 128
+
+//Talent
+*재능 72
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**방어력 20 26
+
+//SpecAbsorption
+**흡수력 0.8 1.0
+
+//SpecBlock
+**블럭율 3.0
+
+//Weight
+*무게 51
+
+//Price
+*가격 100000
+
+//Name File
+*연결파일 "Name\DS115.zhoon"

@@ -46,6 +46,8 @@ struct smTRANS_QUEST_INFO
     smQUEST_PACKET_INFO QuestInfo[MAX_QUEST_PACKET_INFO];
 };
 
+constexpr int QUEST_FULL_ENTRY_MAX = 10;
+
 struct smTRANS_QUEST_FULL
 {
     int size;
@@ -60,13 +62,13 @@ struct smTRANS_QUEST_FULL
     int LevelMin;
     int LevelMax;
     int MonsterCount;
-    char MonsterNames[10][64];
-    int MonsterCounts[10];
-    int MonsterKilled[10];
-    int MonsterMaps[10];
+    char MonsterNames[QUEST_FULL_ENTRY_MAX][64];
+    int MonsterCounts[QUEST_FULL_ENTRY_MAX];
+    int MonsterKilled[QUEST_FULL_ENTRY_MAX];
+    int MonsterMaps[QUEST_FULL_ENTRY_MAX];
     int RewardCount;
-    char RewardNames[10][64];
-    int RewardCounts[10];
+    char RewardNames[QUEST_FULL_ENTRY_MAX][64];
+    int RewardCounts[QUEST_FULL_ENTRY_MAX];
     int RewardGold;
     __int64 RewardExp;
     __int64 RewardClanExp;

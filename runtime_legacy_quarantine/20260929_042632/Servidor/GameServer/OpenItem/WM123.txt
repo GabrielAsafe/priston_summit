@@ -1,0 +1,65 @@
+//ID
+*코드 "WM123"
+
+//Korean Name
+*이름 "Cajado Celestial"
+
+//English Name
+*Name "Cajado Celestial"
+
+//AttackPower
+*공격력 48 51 56 58
+
+//AttackRating
+*명중력 173 183
+
+//AttackRange
+*사정거리 205
+
+//AttackSpeed
+*공격속도 7
+
+//AttackCritical
+*크리티컬 14
+
+//Block
+*블럭율 8.0 8.0
+
+//Integrity
+*내구력 150 170
+
+//Level
+*레벨 102
+
+//Strength
+*힘 70
+
+//Spirit
+*정신력 195
+
+//Talent
+*재능 90
+
+//SecondarySpec
+**특화랜덤 Priestess Magician
+
+//SpecAttackPower
+**공격력 6 6
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecMPRegen
+**기력재생 2.2 2.5
+
+//SpecSkillTraining
+**마법숙련도 11 16
+
+//Weight
+*무게 46
+
+//Price
+*가격 1100000
+
+//Name File
+*연결파일 "Name\WM123.zhoon"

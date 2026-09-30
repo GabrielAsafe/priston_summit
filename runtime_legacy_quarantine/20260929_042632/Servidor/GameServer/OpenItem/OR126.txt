@@ -1,0 +1,56 @@
+//ID
+*코드 "OR126"
+
+//Korean Name
+*이름 "Anel do Shy"
+
+//English Name
+*Name "Anel do Shy"
+
+//AttackRating
+*명중력 52 66
+
+//Defense
+*방어력 42 49
+
+//Absorption
+*흡수력 2.6 3.9
+
+//HP
+*생명력추가 55 55
+
+//MP
+*기력추가 55 55
+
+//STM
+*근력추가 40 40
+
+//HPRegen
+*생명력재생 3.1 3.6
+
+//MPRegen
+*기력재생 2.6 3.3
+
+//STMRegen
+*근력재생 2.3 2.8
+
+//Level
+*레벨 100
+
+//Spirit
+*정신력 80
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecHPRegen
+**생명력재생 2.4 2.4
+
+//Weight
+*무게 10
+
+//Price
+*가격 1090000
+
+//Name File
+*연결파일 "Name\OR126.zhoon"

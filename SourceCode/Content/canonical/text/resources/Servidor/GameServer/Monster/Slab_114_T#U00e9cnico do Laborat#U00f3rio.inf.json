@@ -17,7 +17,7 @@
     "fields": {
       "state": "적",
       "model_file": "char\\monster\\ITechnician\\ITechnician.ini",
-      "name": "T?nico do Laborat?io",
+      "name": "Técnico do Laboratório",
       "level": 114,
       "model_scale": 1.0,
       "generate_group": [

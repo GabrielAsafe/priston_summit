@@ -1,0 +1,56 @@
+//ID
+*코드 "WA111"
+
+//Korean Name
+*이름 "Machado Afiado"
+
+//English Name
+*Name "Machado Afiado"
+
+//AttackPower
+*공격력 14 16 26 29
+
+//AttackRating
+*명중력 75 94
+
+//AttackSpeed
+*공격속도 6
+
+//AttackCritical
+*크리티컬 8
+
+//Integrity
+*내구력 86 120
+
+//Level
+*레벨 55
+
+//Strength
+*힘 110
+
+//Talent
+*재능 70
+
+//PrimarySpec
+**특화 Fighter
+
+//SecondarySpec
+**특화랜덤 Mechanician Pikeman
+
+//SpecAttackPower
+**공격력 7 7
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackCritical
+**크리티컬 2
+
+//Weight
+*무게 42
+
+//Price
+*가격 40000
+
+//Name File
+*연결파일 "Name\WA111.zhoon"

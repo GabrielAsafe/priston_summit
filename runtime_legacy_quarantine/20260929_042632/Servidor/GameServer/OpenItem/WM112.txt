@@ -1,0 +1,62 @@
+//ID
+*코드 "WM112"
+
+//Korean Name
+*이름 "Cajado Leve"
+
+//English Name
+*Name "Cajado Leve"
+
+//AttackPower
+*공격력 15 18 20 23
+
+//AttackRating
+*명중력 72 90
+
+//AttackRange
+*사정거리 170
+
+//AttackSpeed
+*공격속도 7
+
+//AttackCritical
+*크리티컬 8
+
+//Block
+*블럭율 7.0 7.0
+
+//Integrity
+*내구력 64 82
+
+//Level
+*레벨 55
+
+//Spirit
+*정신력 100
+
+//Talent
+*재능 70
+
+//SecondarySpec
+**특화랜덤 Priestess Magician
+
+//SpecAttackPower
+**공격력 6 6
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecMPRegen
+**기력재생 1.2 1.5
+
+//SpecSkillTraining
+**마법숙련도 4 7
+
+//Weight
+*무게 12
+
+//Price
+*가격 54000
+
+//Name File
+*연결파일 "Name\WM112.zhoon"

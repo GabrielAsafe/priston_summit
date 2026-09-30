@@ -1,0 +1,14 @@
+//ID
+*코드 "SP128"
+
+//Korean Name
+*이름 "R"
+
+//English Name
+*Name "R"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\SP128.zhoon"

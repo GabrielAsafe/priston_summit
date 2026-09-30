@@ -42,6 +42,8 @@ def main() -> None:
     ap.add_argument('--canonical-text', type=Path, required=True)
     ap.add_argument('--canonical-spawns', type=Path, required=True)
     ap.add_argument('--canonical-maps', type=Path, required=True)
+    ap.add_argument('--canonical-start-points', type=Path, required=True)
+    ap.add_argument('--canonical-fixed-npcs', type=Path, required=True)
     ap.add_argument('--canonical-item-profiles', type=Path, required=True)
     ap.add_argument('--out-root', type=Path, required=True)
     args = ap.parse_args()
@@ -51,14 +53,18 @@ def main() -> None:
     text = args.canonical_text.resolve()
     spawns = args.canonical_spawns.resolve()
     maps = args.canonical_maps.resolve()
+    start_points = args.canonical_start_points.resolve()
+    fixed_npcs = args.canonical_fixed_npcs.resolve()
     item_profiles = args.canonical_item_profiles.resolve()
+    gameplay_reference = (text.parent / 'gameplay_reference').resolve()
     out = args.out_root.resolve()
     invocation_root = Path.cwd().resolve()
     packs = out / 'packs'
     packs.mkdir(parents=True, exist_ok=True)
 
+    run(py, here / 'materialize_localization_catalog.py', text)
     run(py, here / 'validate_canonical_text.py', text)
-    run(py, here / 'validate_canonical_schemas.py', '--canonical-text', text, '--canonical-spawns', spawns, '--canonical-maps', maps)
+    run(py, here / 'validate_canonical_schemas.py', '--canonical-text', text, '--canonical-spawns', spawns, '--canonical-maps', maps, '--canonical-start-points', start_points, '--canonical-fixed-npcs', fixed_npcs)
 
     outputs = {
         'text_resources': packs / 'text_resources.sres',
@@ -66,7 +72,8 @@ def main() -> None:
         'definitions_server': packs / 'definitions_server.scfg',
         'localization': packs / 'localization.sloc',
         'gameplay_config': packs / 'gameplay_config.sgcf',
-        'stage_spawns': packs / 'stage_spawns.sspb',
+        'gameplay_reference': packs / 'gameplay_reference.sgrf',
+        'field_runtime': packs / 'field_runtime.sfld',
         'maps_client': packs / 'maps_client.smap',
         'maps_server': packs / 'maps_server.smap',
     }
@@ -85,8 +92,16 @@ def main() -> None:
     run(py, here / 'inspect_localization.py', outputs['localization'])
     run(py, here / 'compile_gameplay_config.py', text, outputs['gameplay_config'])
     run(py, here / 'inspect_gameplay_config.py', outputs['gameplay_config'])
-    run(py, here / 'compile_stage_spawns_canonical.py', spawns, outputs['stage_spawns'])
-    run(py, here / 'inspect_stage_spawns.py', outputs['stage_spawns'])
+    if not gameplay_reference.is_dir():
+        raise SystemExit(f'missing canonical gameplay reference root: {gameplay_reference}')
+    run(py, here / 'compile_gameplay_reference.py', gameplay_reference, outputs['gameplay_reference'])
+    run(py, here / 'inspect_gameplay_reference.py', outputs['gameplay_reference'])
+    run(py, here / 'compile_field_runtime.py', '--canonical-spawns', spawns, '--canonical-start-points', start_points, '--canonical-fixed-npcs', fixed_npcs, '--canonical-text', text, outputs['field_runtime'])
+    run(py, here / 'inspect_field_runtime.py', outputs['field_runtime'])
+    for stale_name in ('stage_spawns.sspb', 'stage_spawns.sspb.report.json'):
+        stale = packs / stale_name
+        if stale.exists():
+            stale.unlink()
 
     for profile in ('client', 'server'):
         catalog = maps / f'{profile}.maps.json'
@@ -102,7 +117,10 @@ def main() -> None:
             'canonical_text': portable_input_path(text, invocation_root),
             'canonical_spawns': portable_input_path(spawns, invocation_root),
             'canonical_maps': portable_input_path(maps, invocation_root),
+            'canonical_start_points': portable_input_path(start_points, invocation_root),
+            'canonical_fixed_npcs': portable_input_path(fixed_npcs, invocation_root),
             'canonical_item_profiles': portable_input_path(item_profiles, invocation_root),
+            'canonical_gameplay_reference': portable_input_path(gameplay_reference, invocation_root),
         },
         'packs': {
             name: {

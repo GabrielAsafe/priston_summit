@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "DB145"
+
+//Korean Name
+*ÀÌ¸§ "Botas Anúbis"
+
+//English Name
+*Name "Botas Anúbis"
+
+//Defense
+*¹æ¾î·Â 249 261
+
+//Absorption
+*Èí¼ö·Â 16.9 17.4
+
+//Speed
+*ÀÌµ¿¼Óµµ 4.3 4.7
+
+//OrganicResistance
+*»ýÃ¼ 18 21
+
+//FireResistance
+*ºÒ 18 21
+
+//FrostResistance
+*³Ã±â 18 21
+
+//LightningResistance
+*¹ø°³ 18 21
+
+//PoisonResistance
+*µ¶ 18 21
+
+//Integrity
+*³»±¸·Â 286 295
+
+//Level
+*·¹º§ 130
+
+//Strength
+*Èû 100
+
+//Agility
+*¹ÎÃ¸¼º 100
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecAbsorption
+**Èí¼ö·Â 1.9 2.3
+
+//SpecSpeed
+**ÀÌµ¿¼Óµµ 1.8 2
+
+//Weight
+*¹«°Ô 98
+
+//Price
+*°¡°Ý 1990000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DB145.zhoon"

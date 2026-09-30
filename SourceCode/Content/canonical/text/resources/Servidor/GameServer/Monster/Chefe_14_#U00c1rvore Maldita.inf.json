@@ -17,7 +17,7 @@
     "fields": {
       "state": "적",
       "model_file": "char\\monster\\monplant\\monplant-d.ini",
-      "name": "햞vore Maldita",
+      "name": "Árvore Maldita",
       "level": 14,
       "model_scale": 2.0,
       "all_see_item": true,

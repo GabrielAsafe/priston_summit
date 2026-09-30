@@ -1,0 +1,71 @@
+//ID
+*코드 "WS123"
+
+//Korean Name
+*이름 "Arco Wyvern"
+
+//English Name
+*Name "Arco Wyvern"
+
+//AttackPower
+*공격력 51 54 74 77
+
+//AttackRating
+*명중력 128 138
+
+//AttackRange
+*사정거리 255
+
+//AttackSpeed
+*공격속도 7
+
+//AttackCritical
+*크리티컬 18
+
+//Block
+*블럭율 7.0 7.0
+
+//Integrity
+*내구력 146 165
+
+//Level
+*레벨 100
+
+//Strength
+*힘 80
+
+//Talent
+*재능 80
+
+//Agility
+*민첩성 172
+
+//PrimarySpec
+**특화 Archer
+
+//SecondarySpec
+**특화랜덤 Mechanician Atalanta
+
+//SpecAttackPower
+**공격력 7 7
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackRange
+**사정거리 20
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 4
+
+//Weight
+*무게 63
+
+//Price
+*가격 990000
+
+//Name File
+*연결파일 "Name\WS123.zhoon"

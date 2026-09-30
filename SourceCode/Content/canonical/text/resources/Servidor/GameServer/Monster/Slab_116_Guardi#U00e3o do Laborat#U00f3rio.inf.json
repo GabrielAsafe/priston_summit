@@ -17,7 +17,7 @@
     "fields": {
       "state": "적",
       "model_file": "char\\monster\\lguardian\\lguardian.ini",
-      "name": "Guardi? do Laborat?io",
+      "name": "Guardião do Laboratório",
       "level": 116,
       "model_scale": 1.0,
       "generate_group": [

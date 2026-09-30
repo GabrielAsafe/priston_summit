@@ -1,0 +1,65 @@
+//ID
+*코드 "WC132"
+
+//Korean Name
+*이름 "Garra Mitril"
+
+//English Name
+*Name "Garra Mitril"
+
+//AttackPower
+*공격력 150 150 170 170
+
+//AttackRating
+*명중력 290 290
+
+//AttackSpeed
+*공격속도 9
+
+//AttackCritical
+*크리티컬 20
+
+//Defense
+*방어력 150 150
+
+//Integrity
+*내구력 264 404
+
+//Level
+*레벨 1
+
+//Strength
+*힘 1
+
+//Talent
+*재능 1
+
+//Agility
+*민첩성 1
+
+//PrimarySpec
+**특화 Mechanician
+
+//SecondarySpec
+**특화랜덤 Fighter Pikeman Knight Atalanta
+
+//SpecAttackPower
+**공격력 7 7
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 4
+
+//Weight
+*무게 1
+
+//Price
+*가격 1990000
+
+//Name File
+*연결파일 "Name\WC132.zhoon"

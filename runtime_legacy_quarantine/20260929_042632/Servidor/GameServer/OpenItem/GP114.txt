@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "GP114"
+
+//Korean Name
+*ÀÌ¸§ "Mercenário"
+
+//English Name
+*Name "Mercenário"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\GP114.zhoon"

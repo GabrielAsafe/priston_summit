@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <string>
 
-#include "gameplay/professions/v2/ProfessionService.h"
+#include "gameplay/professions/v2/ProfessionTypes.h"
 
 namespace gameplay
 {

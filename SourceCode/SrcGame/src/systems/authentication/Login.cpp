@@ -1,6 +1,7 @@
 #include "opcodes.h"
 #include "Login.h"
 #include <string>
+#include <stdio.h>
 #include <smPacket.h>
 #include <systems/network/client/netplay.h>
 #include <systems/security/client_integrity/Security.h>
@@ -12,6 +13,18 @@
 LoginResult	requestLogin(const std::string &username, const std::string &password)
 {
 	LoginPacket	packet;
+
+	FILE *fpHandshake = fopen("LOGS\\mingw_login_handshake_client.txt", "a");
+	if(fpHandshake)
+	{
+		fprintf(fpHandshake,
+			"[REQUEST_LOGIN_ENTER] accountLen=%u passwordLen=%u dataSocket=%p\n",
+			(unsigned)username.size(),
+			(unsigned)password.size(),
+			(void *)smWsockDataServer);
+		fflush(fpHandshake);
+		fclose(fpHandshake);
+	}
 
 	PIP_ADAPTER_INFO AdapterInfo;
 	DWORD dwBufLen = sizeof(AdapterInfo);
@@ -48,8 +61,29 @@ LoginResult	requestLogin(const std::string &username, const std::string &passwor
 
 	if(smWsockDataServer)
 	{
-		smWsockDataServer->Send((char *)&packet, packet.size, TRUE);
-		return LoginResult::OK;
+		const int sendResult = smWsockDataServer->Send((char *)&packet, packet.size, TRUE);
+		FILE *fpSend = fopen("LOGS\\mingw_login_handshake_client.txt", "a");
+		if(fpSend)
+		{
+			fprintf(fpSend,
+				"[REQUEST_LOGIN_SEND] size=%d code=0x%08X hashLen=%u macLen=%u sendResult=%d\n",
+				packet.size,
+				(unsigned)packet.code,
+				(unsigned)strnlen(packet.hash, sizeof(packet.hash)),
+				(unsigned)strnlen(packet.mac, sizeof(packet.mac)),
+				sendResult);
+			fflush(fpSend);
+			fclose(fpSend);
+		}
+		return sendResult ? LoginResult::OK : LoginResult::FAILED_CONNECTION;
+	}
+
+	FILE *fpFail = fopen("LOGS\\mingw_login_handshake_client.txt", "a");
+	if(fpFail)
+	{
+		fprintf(fpFail, "[REQUEST_LOGIN_FAIL] dataSocket=NULL\n");
+		fflush(fpFail);
+		fclose(fpFail);
 	}
 
 	return LoginResult::FAILED_CONNECTION;

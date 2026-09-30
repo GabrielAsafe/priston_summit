@@ -1,6 +1,8 @@
+#include "gameplay/professions/v2/ProfessionService.h"
 #include <cassert>
 
 #include "systems/gameplay/mining/v2/MiningInteractionService.h"
+#include "systems/gameplay/mining/v2/MiningService.h"
 
 int main()
 {

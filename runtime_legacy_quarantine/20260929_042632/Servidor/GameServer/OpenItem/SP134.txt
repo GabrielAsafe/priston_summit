@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "SP134"
+
+//Korean Name
+*ÀÌ¸§ "Cápsula de Tigre"
+
+//English Name
+*Name "Cápsula de Tigre"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\SP134.zhoon"

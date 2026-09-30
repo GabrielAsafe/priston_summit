@@ -181,9 +181,11 @@ def main() -> int:
     ap.add_argument('--archive-root', type=Path, default=Path.home() / 'armazem/priston')
     ap.add_argument('--source-code', type=Path, default=source)
     ap.add_argument('--canonical-root', type=Path, default=None, help='Canonical root containing stage_spawns/ and text/. Defaults to SourceCode/Content/canonical when present.')
-    ap.add_argument('--apply', action='store_true', help='Install recovered canonical JSON and stage_spawns.sspb after validation.')
+    ap.add_argument('--apply', action='store_true', help='Deprecated: standalone SSPB install is disabled; use v4 for field_runtime.sfld.')
     ap.add_argument('--report', type=Path, default=None)
     args = ap.parse_args()
+    if args.apply:
+        raise SystemExit('APPLY_DISABLED_OBSOLETE_STAGE_SPAWN_PACK: use recover_forever_fall_spawns_v4.py with field_runtime.sfld')
 
     source = args.source_code.expanduser().resolve()
     archive_root = args.archive_root.expanduser().resolve()

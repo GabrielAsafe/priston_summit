@@ -1,0 +1,44 @@
+//ID
+*코드 "OA215"
+
+//Korean Name
+*이름 "Bracelete Minotauro"
+
+//English Name
+*Name "Bracelete Minotauro"
+
+//AttackRating
+*명중력 64 78
+
+//Defense
+*방어력 54 60
+
+//PotionStorage
+*보유공간 50
+
+//Integrity
+*내구력 70 90
+
+//Level
+*레벨 75
+
+//Strength
+*힘 90
+
+//Agility
+*민첩성 64
+
+//SpecAttackRating
+**명중력 1 3
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//Weight
+*무게 28
+
+//Price
+*가격 80000
+
+//Name File
+*연결파일 "Name\OA215.zhoon"

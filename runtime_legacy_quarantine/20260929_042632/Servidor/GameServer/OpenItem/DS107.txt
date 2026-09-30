@@ -1,0 +1,65 @@
+//ID
+*코드 "DS107"
+
+//Korean Name
+*이름 "Escudo Antigo"
+
+//English Name
+*Name "Escudo Antigo"
+
+//Defense
+*방어력 55 70
+
+//Absorption
+*흡수력 2.2 2.8
+
+//Block
+*블럭율 11.0 17.0
+
+//OrganicResistance
+*생체 1 4
+
+//FireResistance
+*불 1 4
+
+//FrostResistance
+*냉기 1 4
+
+//LightningResistance
+*번개 -3 -3
+
+//PoisonResistance
+*독 1 4
+
+//Integrity
+*내구력 55 90
+
+//Level
+*레벨 30
+
+//Strength
+*힘 78
+
+//Talent
+*재능 42
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**방어력 8 14
+
+//SpecAbsorption
+**흡수력 0.4 0.7
+
+//SpecBlock
+**블럭율 4.0
+
+//Weight
+*무게 23
+
+//Price
+*가격 20000
+
+//Name File
+*연결파일 "Name\DS107.zhoon"

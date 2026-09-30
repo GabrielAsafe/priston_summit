@@ -1,0 +1,62 @@
+//ID
+*코드 "DG141"
+
+//Korean Name
+*이름 "Luvas Hades"
+
+//English Name
+*Name "Luvas Hades"
+
+//Defense
+*방어력 238 255
+
+//Absorption
+*흡수력 16.1 16.4
+
+//OrganicResistance
+*생체 5 8
+
+//FireResistance
+*불 5 8
+
+//FrostResistance
+*냉기 5 8
+
+//LightningResistance
+*번개 5 8
+
+//PoisonResistance
+*독 5 8
+
+//Integrity
+*내구력 256 265
+
+//Level
+*레벨 110
+
+//Strength
+*힘 100
+
+//Talent
+*재능 83
+
+//Agility
+*민첩성 83
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecDefense
+**방어력 75 83
+
+//SpecAbsorption
+**흡수력 1.5 1.8
+
+//Weight
+*무게 110
+
+//Price
+*가격 1500000
+
+//Name File
+*연결파일 "Name\DG141.zhoon"

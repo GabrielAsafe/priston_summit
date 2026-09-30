@@ -1,0 +1,11 @@
+//ID
+*ÄÚµå "OR232"
+
+//Korean Name
+*ÀÌ¸§ "Anel do Fúria"
+
+//English Name
+*Name "Anel do Fúria"
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\OR232.zhoon"

@@ -1,0 +1,77 @@
+[
+  {
+    "file": "00_README_E_INDICE.md",
+    "bytes": 4290,
+    "sha256": "89d5a27d939b271ba259baf893354841e3e055b9bf08796ace2d9c7172afcb98"
+  },
+  {
+    "file": "01_ARQUITETURA_E_ESTADO_ATUAL.md",
+    "bytes": 5142,
+    "sha256": "1250dc709b98f1855d171aecd6df0c4435dffe10eac3677263f1cac984152f42"
+  },
+  {
+    "file": "02_RUNTIME_DEPLOY_BACKUP_E_OPERACAO.md",
+    "bytes": 3431,
+    "sha256": "aaee2d2fbbdd79bdc716fa6db91d1c36fdbdca0b1ed33cbca056d43f8da43240"
+  },
+  {
+    "file": "03_CONTAS_AUTH_GM_E_PERSONAGENS.md",
+    "bytes": 4801,
+    "sha256": "8afd2e47d89c4d9c273292d9227f30405af67099908b63ff43c96705d71a8c1a"
+  },
+  {
+    "file": "04_QUESTDB_E_CRIACAO_DE_QUESTS.md",
+    "bytes": 5622,
+    "sha256": "b195d116973272a417baef8d7ff8362d3f43112195e3be57bc24fef39d4823e0"
+  },
+  {
+    "file": "05_COINSHOP_TIMESHOP_E_ECONOMIA.md",
+    "bytes": 4098,
+    "sha256": "849834e86e9cb336af4db8bff3bcea6f04237ccfb998bd395129e26da5005cfe"
+  },
+  {
+    "file": "06_MIGRATIONS_SCHEMA_E_EXTENSOES.md",
+    "bytes": 4668,
+    "sha256": "05e14565ce2434247196249a13480e5283db502470fced3ee497ceae990e0a43"
+  },
+  {
+    "file": "07_SQL_COMPAT_E_PADROES_DE_CODIGO.md",
+    "bytes": 3438,
+    "sha256": "f0eb364dc8da43d95c9fcc977f5fb183895725407f1479605b9795d8414866af"
+  },
+  {
+    "file": "08_RISCOS_BUGS_E_TROUBLESHOOTING.md",
+    "bytes": 4978,
+    "sha256": "0f5fb15c1455c4aab709e13f483d2d1affb38a778892c11926496ea9671e1439"
+  },
+  {
+    "file": "09_HISTORICO_DA_MIGRACAO_E_MUDANCAS.md",
+    "bytes": 4586,
+    "sha256": "59c8e77e0e143af7a0beba6fc8739fce1e454778811ccabb5d2dfdd96777fcef"
+  },
+  {
+    "file": "10_CHECKLIST_DE_DESENVOLVIMENTO.md",
+    "bytes": 2745,
+    "sha256": "4a098cc8a736490f6ede8a7c48e4776e5e39e358eb9c579d0cd7be0b8023f047"
+  },
+  {
+    "file": "11_SQLITE_CHEATSHEET.md",
+    "bytes": 3411,
+    "sha256": "3e88bdb282ef2ef36f1c2f8b45a85b1526d95a47d67ecef1839f55aa5dce2c48"
+  },
+  {
+    "file": "12_CATALOGO_DE_DOMINIOS_DA_BD.md",
+    "bytes": 3002,
+    "sha256": "20609c6a28e0df3c7a453fcd8382699f97972484c270095dbef36f2134100aa6"
+  },
+  {
+    "file": "13_REFERENCIAS_DE_CODIGO.md",
+    "bytes": 3101,
+    "sha256": "d7acac118f06d52c80998a961561cef89944c4e3ff4ea7709c23dde6f1a6d580"
+  },
+  {
+    "file": "14_TAKEOFF_RAPIDO_PARA_DEV.md",
+    "bytes": 2800,
+    "sha256": "5212f001d339299603a3f69298b99d762d33e9c46e335a828e36d9c6b7cb3d7e"
+  }
+]

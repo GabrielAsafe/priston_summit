@@ -1,0 +1,997 @@
+[NETWORK STRINGS]
+1611:Game
+9789:game.txt
+9790:server.txt
+9795:GAME: 
+9796:SERVER: 
+9800:smTRANSCODE_CONNECTED
+9810:smTRANSCODE_VERSION
+9813:smTRANSCODE_SET_OBJSERIAL
+9841:smTRANSCODE_UPDATE_CINFO
+9860:smTRANSCODE_FAILCONNECT
+9881:smTRANSCODE_PARTY_UPDATE
+9884:smTRANSCODE_PARTY_PLAYUPDATE
+9891:smTRANSCODE_SERVER_INFO
+9919:smTRANSCODE_CONT_OBJSERIAL
+9933:smTRANSCODE_ENCODE_PACKET
+9934:smTRANSCODE_ENCODE_PACKET2
+9959:smTRANSCODE_SEND_DATASERVER
+9960:smTRANSCODE_SEND_GAMESERVER
+9961:smTRANSCODE_SEND_AREASERVER
+9962:smTRANSCODE_SEND_AGAME_SERVER
+9963:smTRANSCODE_SEND_AGAME_PRIMEITEM_DATA2
+9964:smTRANSCODE_SEND_AGAME_PRIMEITEM_DATA3
+9965:smTRANSCODE_SEND_AGAME_PRIMEITEM_DATA4
+9988:smTRANSCODE_GAMEGUARD_AUTH
+9997:smTRANSCODE_UPDATEL_SKILL
+10026:smTRANSCODE_UPDATE_SERVER_PARAM
+10027:smUPDATE_PARAM_LOWUSER_PRESENT
+10031:smTRANSCODE_PACKET_DYNFUNC
+10032:smTRANSCODE_AREA_SERVER_MAP
+10072:Game Master
+10077:Game
+10086:Area shutdown server (%s)
+10087:Region Server Connection (%s)
+10088:Local server settings (%d)
+10091:game\images\battlepass\Resgate\%d.bmp
+10092:game\images\battlepass\Select_Item_Free.PNG
+10093:game\images\battlepass\btnclose.png
+10094:game\images\battlepass\btnclose_.png
+10095:game\images\battlepass\Select_Item_Premium.PNG
+10096:game\images\battlepass\Page_1-6.png
+10097:game\images\battlepass\Page_2-6.png
+10098:game\images\battlepass\Page_3-6.png
+10099:game\images\battlepass\Page_4-6.png
+10100:game\images\battlepass\Page_5-6.png
+10101:game\images\battlepass\Page_6-6.png
+10102:game\images\battlepass\Page_Left.png
+10103:game\images\battlepass\Page_Left_1.png
+10104:game\images\battlepass\Page_Right.png
+10105:game\images\battlepass\Page_Right_1.png
+10106:game\images\battlepass\Resgate\0.PNG
+10107:game\images\battlepass\Resgate\1.PNG
+10108:game\images\battlepass\Resgate\2.PNG
+10109:game\images\battlepass\Resgate\3.PNG
+10110:game\images\battlepass\Resgate\4.PNG
+10111:game\images\battlepass\Resgate\5.PNG
+10112:game\images\battlepass\Resgate\6.PNG
+10113:game\images\battlepass\Resgate\7.PNG
+10114:game\images\battlepass\Resgate\8.PNG
+10115:game\images\battlepass\Resgate\9.PNG
+10116:game\images\battlepass\Resgate\10.PNG
+10117:game\images\battlepass\Resgate\11.PNG
+10118:game\images\battlepass\Resgate\12.PNG
+10119:game\images\battlepass\Resgate\13.PNG
+10120:game\images\battlepass\Resgate\14.PNG
+10121:game\images\battlepass\Resgate\15.PNG
+10122:game\images\battlepass\Resgate\16.PNG
+10123:game\images\battlepass\Resgate\17.PNG
+10124:game\images\battlepass\Resgate\18.PNG
+10125:game\images\battlepass\Resgate\19.PNG
+10126:game\images\battlepass\Resgate\20.PNG
+10127:game\images\battlepass\Resgate\21.PNG
+10128:game\images\battlepass\Resgate\22.PNG
+10129:game\images\battlepass\Resgate\23.PNG
+10130:game\images\battlepass\Resgate\24.PNG
+10131:game\images\battlepass\Resgate\25.PNG
+10132:game\images\battlepass\Resgate\26.PNG
+10133:game\images\battlepass\Resgate\27.PNG
+10134:game\images\battlepass\Resgate\28.PNG
+10135:game\images\battlepass\Resgate\29.PNG
+10136:game\images\battlepass\Resgate\30.PNG
+10137:game\images\battlepass\Resgate\31.PNG
+10138:game\images\battlepass\Resgate\32.PNG
+10139:game\images\battlepass\Resgate\33.PNG
+10140:game\images\battlepass\Resgate\34.PNG
+10141:game\images\battlepass\Resgate\35.PNG
+10142:game\images\battlepass\Resgate\36.PNG
+10143:game\images\battlepass\Resgate\37.PNG
+10144:game\images\battlepass\Resgate\38.PNG
+10145:game\images\battlepass\Resgate\39.PNG
+10146:game\images\battlepass\Resgate\0_.PNG
+10147:game\images\battlepass\Resgate\1_.PNG
+10148:game\images\battlepass\Resgate\2_.PNG
+10149:game\images\battlepass\Resgate\3_.PNG
+10150:game\images\battlepass\Resgate\4_.PNG
+10151:game\images\battlepass\Resgate\5_.PNG
+10152:game\images\battlepass\Resgate\6_.PNG
+10153:game\images\battlepass\Resgate\7_.PNG
+10154:game\images\battlepass\Resgate\8_.PNG
+10155:game\images\battlepass\Resgate\9_.PNG
+10156:game\images\battlepass\Resgate\10_.PNG
+10157:game\images\battlepass\Resgate\11_.PNG
+10158:game\images\battlepass\Resgate\12_.PNG
+10159:game\images\battlepass\Resgate\13_.PNG
+10160:game\images\battlepass\Resgate\14_.PNG
+10161:game\images\battlepass\Resgate\15_.PNG
+10162:game\images\battlepass\Resgate\16_.PNG
+10163:game\images\battlepass\Resgate\17_.PNG
+10164:game\images\battlepass\Resgate\18_.PNG
+10165:game\images\battlepass\Resgate\19_.PNG
+10166:game\images\battlepass\Resgate\20_.PNG
+10167:game\images\battlepass\Resgate\21_.PNG
+10168:game\images\battlepass\Resgate\22_.PNG
+10169:game\images\battlepass\Resgate\23_.PNG
+10170:game\images\battlepass\Resgate\24_.PNG
+10171:game\images\battlepass\Resgate\25_.PNG
+10172:game\images\battlepass\Resgate\26_.PNG
+10173:game\images\battlepass\Resgate\27_.PNG
+10174:game\images\battlepass\Resgate\28_.PNG
+10175:game\images\battlepass\Balao_Info_BP.PNG
+10176:game\images\battlepass\HUD_PRINCIPAL_PASSE_BATALHA.PNG
+10177:game\images\battlepass\EXP_BAR.PNG
+10178:game\images\battlepass\BUTTON_REDEEN.PNG
+10179:game\images\battlepass\BUTTON_REDEEN_1.PNG
+10180:game\images\battlepass\0.PNG
+10181:game\images\battlepass\1.PNG
+10182:game\images\battlepass\2.PNG
+10183:game\images\battlepass\3.PNG
+10184:game\images\battlepass\4.PNG
+10185:game\images\battlepass\5.PNG
+10186:game\images\battlepass\6.PNG
+10187:game\images\battlepass\7.PNG
+10188:game\images\battlepass\8.PNG
+10189:game\images\battlepass\9.PNG
+10190:game\images\battlepass\Resgate\29_.PNG
+10191:game\images\battlepass\Resgate\30_.PNG
+10192:game\images\battlepass\Resgate\31_.PNG
+10193:game\images\battlepass\Resgate\32_.PNG
+10194:game\images\battlepass\Resgate\33_.PNG
+10195:game\images\battlepass\Resgate\34_.PNG
+10196:game\images\battlepass\Resgate\35_.PNG
+10197:game\images\battlepass\Resgate\36_.PNG
+10198:game\images\battlepass\Resgate\37_.PNG
+10199:game\images\battlepass\Resgate\38_.PNG
+10200:game\images\battlepass\Resgate\39_.PNG
+10233:.\game\Font\Config.ini
+10283:Older attack packets - ::SendTransAttack 
+10286:Agame.exe
+10290:game\images\Crown\BMP\it%s.bmp
+10291:game\images\Crown\TAGS\%s.bmp
+10293:game\images\Crown\main.png
+10294:game\images\Crown\btnclose.png
+10295:game\images\Crown\btnclose_.png
+10296:game\images\Crown\buy.png
+10297:game\images\Crown\buy_.png
+10298:game\images\Crown\Page_Left.png
+10299:game\images\Crown\Page_Left_1.png
+10300:game\images\Crown\Page_Right.png
+10301:game\images\Crown\Page_Right_1.png
+10302:game\images\Crown\coroas.png
+10303:game\images\Crown\select.png
+10304:game\images\Crown\tags.png
+10307:game\mix\window.png
+10308:game\mix\btnok.png
+10309:game\mix\combobox\drop.png
+10310:game\mix\combobox\dropon.png
+10311:game\mix\combobox\drop_.png
+10312:game\mix\combobox\dropdown.png
+10313:game\mix\combobox\dropbg.png
+10314:game\mix\Sheltoms\Transparo.png
+10315:game\mix\Sheltoms\Devine.png
+10316:game\mix\Sheltoms\Celesto.png
+10317:game\mix\Sheltoms\Mirage.png
+10318:game\mix\Sheltoms\Inferna.png
+10319:game\mix\Sheltoms\enigma.png
+10320:game\mix\Sheltoms\Murki.png
+10321:game\mix\Sheltoms\Bellum.png
+10322:game\mix\Mix.png
+10368:game\shop\background.tga
+10369:game\shop\armas.tga
+10370:game\shop\defesas.tga
+10371:game\shop\trajes.tga
+10372:game\shop\acessorio.tga
+10373:game\shop\sheltons.tga
+10374:game\shop\itenspremiuns.tga
+10375:game\shop\servico.tga
+10376:game\shop\itembox.tga
+10377:game\shop\armas_.tga
+10378:game\shop\defesas_.tga
+10379:game\shop\trajes_.tga
+10380:game\shop\acessorio_.tga
+10381:game\shop\sheltons_.tga
+10382:game\shop\itenspremiuns_.tga
+10383:game\shop\servico_.tga
+10384:game\shop\itembox_.tga
+10385:game\shop\buy.tga
+10386:game\shop\left.tga
+10387:game\shop\right.tga
+10388:game\shop\close.tga
+10400:game\timeshop\background.tga
+10401:game\timeshop\armas.tga
+10402:game\timeshop\defesas.tga
+10403:game\timeshop\trajes.tga
+10404:game\timeshop\acessorio.tga
+10405:game\timeshop\sheltons.tga
+10406:game\timeshop\itenspremiuns.tga
+10407:game\timeshop\servico.tga
+10408:game\timeshop\itembox.tga
+10409:game\timeshop\armas_.tga
+10410:game\timeshop\defesas_.tga
+10411:game\timeshop\trajes_.tga
+10412:game\timeshop\acessorio_.tga
+10413:game\timeshop\sheltons_.tga
+10414:game\timeshop\itenspremiuns_.tga
+10415:game\timeshop\servico_.tga
+10416:game\timeshop\itembox_.tga
+10417:game\timeshop\buy.tga
+10418:game\timeshop\left.tga
+10419:game\timeshop\right.tga
+10420:game\timeshop\close.tga
+10489:game\GUI\Quest\images\background.tga
+10490:game\GUI\Quest\images\close.tga
+10491:game\GUI\Quest\images\progress_tab.tga
+10492:game\GUI\Quest\images\progress_tab_.tga
+10493:game\GUI\Quest\images\list_tab.tga
+10494:game\GUI\Quest\images\list_tab_.tga
+10495:game\GUI\Quest\images\spoiler_daily.tga
+10496:game\GUI\Quest\images\spoiler_repeat.tga
+10497:game\GUI\Quest\images\spoiler_quests.tga
+10498:game\GUI\Quest\images\spoiler_progress.tga
+10499:game\GUI\Quest\images\spoiler_finalized.tga
+10500:game\GUI\Quest\images\spoiler_open.tga
+10501:game\GUI\Quest\images\spoiler_close.tga
+10502:game\GUI\Quest\images\accept.tga
+10503:game\GUI\Quest\images\accept_.tga
+10504:game\GUI\Quest\images\cancel.tga
+10505:game\GUI\Quest\images\cancel_.tga
+10506:game\GUI\Quest\images\get_reward.tga
+10507:game\GUI\Quest\images\get_reward_.tga
+10524:Game Mas
+10525:GameHack
+10530:game\GUI\Restaure\background.tga
+10531:game\GUI\Restaure\close.tga
+10532:game\GUI\Restaure\left.tga
+10533:game\GUI\Restaure\right.tga
+10534:game\GUI\Restaure\restaure.tga
+10539:game\settings\window.png
+10540:game\settings\btnclose_.png
+10541:game\settings\btnclose.png
+10542:game\settings\btnreset_.png
+10543:game\settings\btnreset.png
+10544:game\settings\btnsave_.png
+10545:game\settings\btnsave.png
+10546:game\settings\video_.png
+10547:game\settings\video.png
+10548:game\settings\title.png
+10549:game\settings\screen.png
+10552:game\settings\checkbox_.png
+10553:game\settings\checkbox.png
+10568:game\settings\graphics.png
+10575:game\settings\camera.png
+10581:game\settings\audio_.png
+10582:game\settings\audio.png
+10583:game\settings\bgmusic.png
+10585:game\settings\bgcontroller.png
+10587:game\settings\bgsound.png
+10589:game\settings\general_.png
+10590:game\settings\general.png
+10591:game\settings\social.png
+10595:game\settings\personalization.png
+10621:game\settings\keyboard.png
+10623:game\settings\textbox.png
+10632:game\target\targetoverlay.tga
+10633:game\target\targetbackground.tga
+10634:game\target\targetoverlay_Clan.png
+10635:game\target\targethp.tga
+10636:game\target\type\demon.tga
+10637:game\target\type\mechanic.tga
+10638:game\target\type\mutant.tga
+10639:game\target\type\normal.tga
+10640:game\target\type\npc.tga
+10641:game\target\type\player.tga
+10642:game\target\type\undead.tga
+10643:game\target\type\player_.png
+10644:game\target\menu\topleft.tga
+10645:game\target\menu\middle.tga
+10646:game\target\menu\bottom.tga
+10660:SEND ATTACK DATA
+10661:SEND ATTACK DATA - static encode
+10684:wav\Effects\monster\D-Machine\
+10703:wav\Effects\monster\Hypermachine\
+10712:wav\Effects\monster\VampiricMachine\
+11535:Fall_Game\fall_game.ASE
+11648:D-MACHINE
+11667:HYPERMACHINE
+11676:VAMPIRICMACHINE
+11765:S_D-Machine
+11974:*GAME_SERVER
+11975:*CLAN_SERVER
+11996:game\roll\background.png
+11998:game\roll\roll_.png
+11999:game\roll\roll.png
+12000:game\roll\skip_.png
+12001:game\roll\skip.png
+12443:Effect\ObjAnimationData\GameStart\GameStart1.ini
+12551:DMachineParticle1
+12554:DMachineParticle2
+12731:Effect\Particle\Script\DMachineParticle1.part
+12732:Effect\Particle\Script\DMachineParticle2.part
+13100:StartImage\login\CharacterSelect.wav
+13101:cSelect\login.ASE
+13102:StartImage\login\CharSelect\Bt_select.tga
+13103:StartImage\login\CharSelect\Bt_back.tga
+13104:StartImage\login\CharSelect\bt-NewChar.tga
+13105:StartImage\login\CharSelect\Bt_exit.tga
+13106:StartImage\login\CharSelect\Bt_delet.tga
+13107:StartImage\login\UserCharacterInfo.tga
+13108:StartImage\login\CharacterInfo.tga
+13109:StartImage\login\CharSelect\mark_T.tga
+13110:StartImage\login\CharSelect\T-tempscron.tga
+13111:StartImage\login\CharSelect\mark_M.tga
+13112:StartImage\login\CharSelect\T-Morion.tga
+13113:StartImage\login\CharSelect\SelectFace.bmp
+13114:StartImage\login\TmA01-01.tga
+13115:StartImage\login\TmA01-02.tga
+13116:StartImage\login\TmA02-01.tga
+13117:StartImage\login\TmA02-02.tga
+13118:StartImage\login\TmA03-01.tga
+13119:StartImage\login\TmA03-02.tga
+13120:StartImage\login\TmB01-01.tga
+13121:StartImage\login\TmB01-02.tga
+13122:StartImage\login\TmB02-01.tga
+13123:StartImage\login\TmB02-02.tga
+13124:StartImage\login\TmB03-01.tga
+13125:StartImage\login\TmB03-02.tga
+13126:StartImage\login\TmC01-01.tga
+13127:StartImage\login\TmC01-02.tga
+13128:StartImage\login\TmC02-01.tga
+13129:StartImage\login\TmC02-02.tga
+13130:StartImage\login\TmC03-01.tga
+13131:StartImage\login\TmC03-02.tga
+13132:StartImage\login\TfD01-01.tga
+13133:StartImage\login\TfD01-02.tga
+13134:StartImage\login\TfD02-01.tga
+13135:StartImage\login\TfD02-02.tga
+13136:StartImage\login\TfD03-01.tga
+13137:StartImage\login\TfD03-02.tga
+13138:StartImage\login\TfE01-a.tga
+13139:StartImage\login\TfE01-b.tga
+13140:StartImage\login\TfE02-a.tga
+13141:StartImage\login\TfE02-b.tga
+13142:StartImage\login\TfE03-a.tga
+13143:StartImage\login\TfE03-b.tga
+13144:StartImage\login\Moryon\MmA01-a.tga
+13145:StartImage\login\Moryon\MmA01-b.tga
+13146:StartImage\login\Moryon\MmA02-a.tga
+13147:StartImage\login\Moryon\MmA02-b.tga
+13148:StartImage\login\Moryon\MmA03-a.tga
+13149:StartImage\login\Moryon\MmA03-b.tga
+13150:StartImage\login\Moryon\MfB02-a.tga
+13151:StartImage\login\Moryon\MfB02-b.tga
+13152:StartImage\login\Moryon\MfB01-a.tga
+13153:StartImage\login\Moryon\MfB01-b.tga
+13154:StartImage\login\Moryon\MfB03-a.tga
+13155:StartImage\login\Moryon\MfB03-b.tga
+13156:StartImage\login\Moryon\Mfc01-a.tga
+13157:StartImage\login\Moryon\Mfc01-b.tga
+13158:StartImage\login\Moryon\Mfc02-a.tga
+13159:StartImage\login\Moryon\Mfc02-b.tga
+13160:StartImage\login\Moryon\Mfc03-a.tga
+13161:StartImage\login\Moryon\Mfc03-b.tga
+13162:StartImage\login\Moryon\Mmd01-a.tga
+13163:StartImage\login\Moryon\Mmd01-b.tga
+13164:StartImage\login\Moryon\Mmd02-a.tga
+13165:StartImage\login\Moryon\Mmd02-b.tga
+13166:StartImage\login\Moryon\Mmd03-a.tga
+13167:StartImage\login\Moryon\Mmd03-b.tga
+13168:StartImage\login\Moryon\Mme01-a.tga
+13169:StartImage\login\Moryon\Mme01-b.tga
+13170:StartImage\login\Moryon\Mme02-a.tga
+13171:StartImage\login\Moryon\Mme02-b.tga
+13172:StartImage\login\Moryon\Mme03-a.tga
+13173:StartImage\login\Moryon\Mme03-b.tga
+13174:StartImage\login\BlackBox.tga
+13175:StartImage\login\CharSelect\mainbox_L.tga
+13176:StartImage\login\CharSelect\mainbox_T.tga
+13177:StartImage\login\CharSelect\mainbox_R.tga
+13178:StartImage\login\CharSelect\mainbox_D.tga
+13179:StartImage\login\CharSelect\mainbox_CN1.tga
+13180:StartImage\login\CharSelect\mainbox_CN2.tga
+13181:StartImage\login\CharSelect\mainbox_CN3.tga
+13182:StartImage\login\CharSelect\mainbox_CN4.tga
+13183:StartImage\login\CharSelect\title-box.tga
+13184:StartImage\login\CharSelect\title-txt30.tga
+13185:StartImage\login\CharSelect\T-ex_tscr.tga
+13186:StartImage\login\CharSelect\T-ex_mrin.tga
+13187:StartImage\login\CharSelect\mark_box1.tga
+13188:StartImage\login\CharSelect\mark_box2.tga
+13189:StartImage\login\CharSelect\T_cls-box1.tga
+13190:StartImage\login\CharSelect\T_cls-box2.tga
+13191:StartImage\login\CharSelect\T_cls-meca_.tga
+13192:StartImage\login\CharSelect\T_cls-ft_.tga
+13193:StartImage\login\CharSelect\T_cls-pkm_.tga
+13194:StartImage\login\CharSelect\T_cls-ac_.tga
+13195:StartImage\login\CharSelect\T_cls-assa_.tga
+13196:StartImage\login\CharSelect\T_cls-meca.tga
+13197:StartImage\login\CharSelect\T_cls-ft.tga
+13198:StartImage\login\CharSelect\T_cls-pkm.tga
+13199:StartImage\login\CharSelect\T_cls-ac.tga
+13200:StartImage\login\CharSelect\T_cls-assa.tga
+13201:StartImage\login\CharSelect\T-cls-knt_.tga
+13202:StartImage\login\CharSelect\T_cls-atlt_.tga
+13203:StartImage\login\CharSelect\T_cls-prts_.tga
+13204:StartImage\login\CharSelect\T_cls-mgc_.tga
+13205:StartImage\login\CharSelect\T_cls-sha_.tga
+13206:StartImage\login\CharSelect\T-cls-knt.tga
+13207:StartImage\login\CharSelect\T_cls-atlt.tga
+13208:StartImage\login\CharSelect\T_cls-prts.tga
+13209:StartImage\login\CharSelect\T_cls-mgc.tga
+13210:StartImage\login\CharSelect\T_cls-sha.tga
+13211:StartImage\login\CharSelect\T_chr-meca.tga
+13212:StartImage\login\CharSelect\T_chr-ft.tga
+13213:StartImage\login\CharSelect\T_chr-pkm.tga
+13214:StartImage\login\CharSelect\T_chr-ac.tga
+13215:StartImage\login\CharSelect\T_chr-assa.tga
+13216:StartImage\login\CharSelect\T_chr-knt.tga
+13217:StartImage\login\CharSelect\T_chr-atlt.tga
+13218:StartImage\login\CharSelect\T_chr-prts.tga
+13219:StartImage\login\CharSelect\T_chr-mgc.tga
+13220:StartImage\login\CharSelect\T_chr-sha.tga
+13221:StartImage\login\CharSelect\face_bigbox1.tga
+13222:StartImage\login\CharSelect\face_bigbox2.tga
+13223:StartImage\login\CharSelect\face_box_.tga
+13224:StartImage\login\CharSelect\face_box.tga
+13225:StartImage\login\CharSelect\face_box2.tga
+13226:StartImage\login\CharSelect\New_char.tga
+13227:StartImage\Login\Map.bmp
+13345:game\GUI\Opening\Login\UI\Intro.wav
+13347:LastAccount
+13348:game\GUI\Opening\Login\UI\OpeningField.txt
+13360:game\Login\UI\cad.png
+13361:game\Login\UI\cad_.png
+13362:game\Login\UI\S_Exit_.tga
+13363:game\Login\UI\S_Exit.tga
+13364:game\UI\insertbox.png
+13365:game\UI\btn_play.png
+13366:game\UI\btn_play_.png
+13367:game\UI\btn_exit.png
+13368:game\UI\btn_exit_.png
+13369:game\UI\bg.jpg
+13370:game\UI\logo.png
+13371:game\Login\UI\priston_txt.tga
+13372:game\Login\UI\BlackBox.tga
+13373:game\Login\UI\WhiteBox.tga
+13374:Game.exe
+13378:game.ini
+13388:Game\messagebox\background_normal.png
+13389:Game\messagebox\btnno.png
+13390:Game\messagebox\btnno_.png
+13391:Game\messagebox\btnyes.png
+13392:Game\messagebox\btnyes_.png
+13548:ada do continente de Priston, sendo capazes de controlar todos os tipos de equipamentos, at
+13557: a luta com Machados...
+13712:game\images\Jobs\main.PNG
+13713:game\images\Jobs\1.PNG
+13714:game\images\Jobs\2.PNG
+13715:game\images\Jobs\3.PNG
+13716:game\images\Jobs\job1_1.PNG
+13717:game\images\Jobs\job1_2.PNG
+13718:game\images\Jobs\job1_3.PNG
+13719:game\images\Jobs\job2_1.PNG
+13720:game\images\Jobs\job2_2.PNG
+13721:game\images\Jobs\job2_3.PNG
+13722:game\images\Jobs\job3_1.PNG
+13723:game\images\Jobs\job3_2.PNG
+13724:game\images\Jobs\job3_3.PNG
+13725:game\images\Jobs\job4_1.PNG
+13726:game\images\Jobs\job4_2.PNG
+13727:game\images\Jobs\job4_3.PNG
+13728:game\images\Jobs\job5_1.PNG
+13729:game\images\Jobs\job5_2.PNG
+13730:game\images\Jobs\job5_3.PNG
+13731:game\images\Jobs\xpbar.PNG
+13732:game\images\Jobs\nojob.PNG
+13733:game\images\Jobs\3_1.PNG
+13734:game\images\Jobs\3_2.PNG
+13735:game\images\battlepass\Balao_Info_BP.png
+13736:game\images\Jobs\bt1.PNG
+13737:game\images\Jobs\4.PNG
+13738:game\images\Jobs\5.PNG
+13739:game\images\Jobs\6.PNG
+13740:game\images\Jobs\7.PNG
+13741:game\images\Jobs\8.PNG
+13742:game\images\Jobs\m1.PNG
+13743:game\images\Jobs\m2.PNG
+13744:game\images\Jobs\m3.PNG
+13745:game\images\Jobs\m4.PNG
+13746:game\images\Jobs\m5.PNG
+13747:game\images\Jobs\venda.PNG
+13748:game\images\Jobs\sell.PNG
+13749:game\images\Jobs\sell_.PNG
+13750:game\images\Jobs\mercado.PNG
+13751:game\images\Jobs\Page_Left.png
+13752:game\images\Jobs\Page_Left_1.png
+13753:game\images\Jobs\Page_Right.png
+13754:game\images\Jobs\Page_Right_1.png
+13755:game\images\Jobs\buy.png
+13756:game\images\Jobs\buy_.png
+13769:?game\kill\class%d.png
+13770:game\kill\kt%d.png
+13772:211.50.44.170
+13841:Connection lost to Server
+13842:Connection lost to Dataserver
+13843:Disconnect Area Server (%s)
+13844:Scoop Recv Route(Main)
+13845:Error Server(Main)
+13846:Scoop Recv Route(User)
+13847:Error Server(User)
+13848:Scoop Recv Route(Extend)
+13849:Error Server(Extend)
+13850:Scoop Recv Route(Data)
+13857:Reconnect Server(Extend)
+13858:Reconnect Server Area (%d)
+13861: - QuickSendTransAttack 
+13863:game\images\Infos\MAINS\AGE.png
+13864:game\images\Infos\MAINS\AGE_.png
+13865:game\images\Infos\MAINS\BATTLEPASS.png
+13866:game\images\Infos\MAINS\BATTLEPASS_.png
+13867:game\images\Infos\MAINS\BLESS.png
+13868:game\images\Infos\MAINS\BLESS_.png
+13869:game\images\Infos\MAINS\DISCORD.png
+13870:game\images\Infos\MAINS\DISCORD_.png
+13871:game\images\Infos\MAINS\Jogo.png
+13872:game\images\Infos\MAINS\Jogo_.png
+13873:game\images\Infos\MAINS\MAIN.png
+13874:game\images\Infos\MAINS\MIX.png
+13875:game\images\Infos\MAINS\MIX_.png
+13876:game\images\Infos\BOSS.png
+13877:game\images\Infos\BOSS_.png
+13878:game\images\Infos\COROACUSTOM.png
+13879:game\images\Infos\COROACUSTOM_.png
+13880:game\images\Infos\DROPBOSS.png
+13881:game\images\Infos\DROPBOSS_.png
+13882:game\images\Infos\DURACAO.png
+13883:game\images\Infos\DURACAO_.png
+13884:game\images\Infos\FALHA.png
+13885:game\images\Infos\FALHA_.png
+13886:game\images\Infos\FREE.png
+13887:game\images\Infos\FREE_.png
+13888:game\images\Infos\ITEMBOSS.png
+13889:game\images\Infos\ITEMBOSS_.png
+13890:game\images\Infos\ITENS.png
+13891:game\images\Infos\ITENS_.png
+13892:game\images\Infos\LIDERBLESS.png
+13893:game\images\Infos\LIDERBLESS_.png
+13894:game\images\Infos\LIDERCLASSE.png
+13895:game\images\Infos\LIDERCLASSE_.png
+13896:game\images\Infos\line.png
+13897:game\images\Infos\line2.png
+13898:game\images\Infos\line3.png
+13899:game\images\Infos\LINK.png
+13900:game\images\Infos\LINK_.png
+13901:game\images\Infos\MAINS
+13902:game\images\Infos\MIXES.png
+13903:game\images\Infos\MIXES_.png
+13904:game\images\Infos\pageage.png
+13905:game\images\Infos\pageboss.png
+13906:game\images\Infos\pageclanwin.png
+13907:game\images\Infos\pagecoroacustom.png
+13908:game\images\Infos\pagedropboss.png
+13909:game\images\Infos\pageduracaobp.png
+13910:game\images\Infos\pagefalha.png
+13911:game\images\Infos\pagefreebp.png
+13912:game\images\Infos\pageitemboss.png
+13913:game\images\Infos\pageitens.png
+13914:game\images\Infos\pagelink.png
+13915:game\images\Infos\pagemixes.png
+13916:game\images\Infos\pagepedraperf.png
+13917:game\images\Infos\pagepedras.png
+13918:game\images\Infos\pagepedrasage.png
+13919:game\images\Infos\pagepremiumbp.png
+13920:game\images\Infos\pagerecompensas.png
+13921:game\images\Infos\pagerecompensasbp.png
+13922:game\images\Infos\pagereiclasse.png
+13923:game\images\Infos\pagereidobc.png
+13924:game\images\Infos\pagereipvp.png
+13925:game\images\Infos\pagerespec.png
+13926:game\images\Infos\pagerestaure.png
+13927:game\images\Infos\pagereuniao.png
+13928:game\images\Infos\pagesala.png
+13929:game\images\Infos\pagesistemabp.png
+13930:game\images\Infos\pagetoys.png
+13931:game\images\Infos\pagetraje.png
+13932:game\images\Infos\pagevalelvl.png
+13933:game\images\Infos\PEDRAPERF.png
+13934:game\images\Infos\PEDRAPERF_.png
+13935:game\images\Infos\PEDRAS.png
+13936:game\images\Infos\PEDRAS_.png
+13937:game\images\Infos\PREMIOS.png
+13938:game\images\Infos\PREMIOS_.png
+13939:game\images\Infos\PREMIUM.png
+13940:game\images\Infos\PREMIUM_.png
+13941:game\images\Infos\PROCESSO.png
+13942:game\images\Infos\PROCESSO_.png
+13943:game\images\Infos\REIDOBC.png
+13944:game\images\Infos\REIDOBC_.png
+13945:game\images\Infos\REIPVP.png
+13946:game\images\Infos\REIPVP_.png
+13947:game\images\Infos\RESPEC.png
+13948:game\images\Infos\RESPEC_.png
+13949:game\images\Infos\RESTAURE.png
+13950:game\images\Infos\RESTAURE_.png
+13951:game\images\Infos\REUNIAO.png
+13952:game\images\Infos\REUNIAO_.png
+13953:game\images\Infos\SALAS.png
+13954:game\images\Infos\SALAS_.png
+13955:game\images\Infos\SISTEMA.png
+13956:game\images\Infos\SISTEMA_.png
+13957:game\images\Infos\TOYS.png
+13958:game\images\Infos\TOYS_.png
+13959:game\images\Infos\TRAJES.png
+13960:game\images\Infos\TRAJES_.png
+13961:game\images\Infos\VALELEVEL.png
+13962:game\images\Infos\VALELVEL_.png
+13963:game\images\Infos\btnclose.png
+13964:game\images\Infos\btnclose_.png
+14049:StartImage\login\CharSelect\Bt_ok.tga
+14050:StartImage\login\CharSelect\Bt_cancel.tga
+14051:?Game\Party\Class\Fighter.tga
+14052:Game\Party\Class\Mechanician.tga
+14053:Game\Party\Class\Archer.tga
+14054:Game\Party\Class\Pikeman.tga
+14055:Game\Party\Class\Atalanta.tga
+14056:Game\Party\Class\Knight.tga
+14057:Game\Party\Class\Magician.tga
+14058:Game\Party\Class\Priestess.tga
+14059:Game\Party\Class\Fighter_.tga
+14060:Game\Party\Class\Mechanician_.tga
+14061:Game\Party\Class\Archer_.tga
+14062:Game\Party\Class\Pikeman_.tga
+14063:Game\Party\Class\Atalanta_.tga
+14064:Game\Party\Class\Knight_.tga
+14065:Game\Party\Class\Magician_.tga
+14066:Game\Party\Class\Priestess_.tga
+14067:Game\Party\Members\member1.tga
+14068:Game\Party\Members\member2.tga
+14069:Game\Party\Members\member3.tga
+14070:Game\Party\Members\member4.tga
+14071:Game\Party\Members\member5.tga
+14072:Game\Party\Members\member6.tga
+14073:Game\Party\background.tga
+14074:Game\Party\expand.tga
+14075:Game\Party\expand_.tga
+14076:Game\Party\leader.tga
+14077:Game\Party\lifebar.tga
+14078:Game\Party\manabar.tga
+14079:Game\Party\Menu\top.tga
+14080:Game\Party\Menu\mid.tga
+14081:Game\Party\Menu\bot.tga
+14082:Game\Party\Menu\main.tga
+14182:SaveGame TimeOut / Retry SaveGame
+14183:SaveGame Failed over times
+14185:game.log
+15672:game\sky\rain\ll.bmp
+15673:game\sky\rain\45rain01.tga
+15674:game\sky\rain\45rain02.tga
+15675:game\sky\rain\45rain03.tga
+15676:game\sky\rain\45rain04.tga
+15677:game\sky\rain\45rain05.tga
+15678:game\sky\rain\45rain06.tga
+15679:game\sky\rain\80rain01.tga
+15680:game\sky\rain\80rain02.tga
+15681:game\sky\rain\80rain03.tga
+15682:game\sky\rain\80rain04.tga
+15683:game\sky\rain\80rain05.tga
+15684:game\sky\rain\80rain06.tga
+15685:game\sky\rain\90rain01.tga
+15686:game\sky\rain\90rain02.tga
+15687:game\sky\rain\90rain03.tga
+15688:game\sky\rain\90rain04.tga
+15689:game\sky\rain\90rain05.tga
+15690:game\sky\rain\90rain06.tga
+15692:game\boss\nextboss.png
+15714:game\Rank\main.PNG
+15715:game\Rank\Alllvl.PNG
+15716:game\Rank\Allpvp.PNG
+15717:game\Rank\lvl1.PNG
+15718:game\Rank\lvl2.PNG
+15719:game\Rank\lvl3.PNG
+15720:game\Rank\lvl4.PNG
+15721:game\Rank\lvl5.PNG
+15722:game\Rank\lvl6.PNG
+15723:game\Rank\lvl7.PNG
+15724:game\Rank\lvl8.PNG
+15725:game\Rank\pvp1.PNG
+15726:game\Rank\pvp2.PNG
+15727:game\Rank\pvp3.PNG
+15728:game\Rank\pvp4.PNG
+15729:game\Rank\pvp5.PNG
+15730:game\Rank\pvp6.PNG
+15731:game\Rank\pvp7.PNG
+15732:game\Rank\pvp8.PNG
+15733:game\Rank\t1.PNG
+15734:game\Rank\t2.PNG
+15735:game\Rank\t3.PNG
+15736:game\Rank\t4.PNG
+15737:game\Rank\t5.PNG
+15738:game\Rank\t6.PNG
+15739:game\Rank\t7.PNG
+15740:game\Rank\t8.PNG
+15741:game\Rank\btnclose.png
+15742:game\Rank\btnclose_.png
+15743:game\Rank\Page_Left.png
+15744:game\Rank\Page_Left_1.png
+15745:game\Rank\Page_Right.png
+15746:game\Rank\Page_Right_1.png
+15747:game\Rank\t0.PNG
+15748:game\Rank\icon\Fighter.PNG
+15749:game\Rank\icon\Mechanician.PNG
+15750:game\Rank\icon\Archer.PNG
+15751:game\Rank\icon\Pikeman.PNG
+15752:game\Rank\icon\Atalanta.PNG
+15753:game\Rank\icon\Knight.PNG
+15754:game\Rank\icon\Magician.PNG
+15755:game\Rank\icon\Priestess_.PNG
+15756:j@game\ranking\background.TGA
+15757:game\ranking\btn_ranklvl.tga
+15758:game\ranking\btn_rankbp.tga
+15759:game\ranking\btn_ranksodclan.tga
+15760:game\ranking\btn_ranksodplayer.tga
+15761:game\ranking\btn_clanlist.tga
+15762:game\ranking\close.tga
+15763:game\ranking\Class\ps.bmp
+15764:game\ranking\Class\ms.bmp
+15765:game\ranking\Class\fs.bmp
+15766:game\ranking\Class\as.BMP
+15767:game\ranking\Class\ata.bmp
+15768:game\ranking\Class\mg.bmp
+15769:game\ranking\Class\ks.bmp
+15770:game\ranking\Class\prs.bmp
+15771:game\ranking\line.tga
+15788:DataServer\%s\%d\?%s.dat
+15789:DataServer\%s\%d\%s.dat
+15790:%s\DataServer\%s\%d\?%s.dat
+15791:%s\DataServer\%s\%d\%s.dat
+15792:DataServer\%s\%s.dat
+15793:DataServer\%s\%d\%s.war
+15798:DataServer
+15799:DataServer\%s
+15800:DataServer\%s\%d
+15806:DataServer\LastError.dat
+15823:DataServer\UserData\%d\*.dat
+15825:DataServer\WareHouse\%d\*.war
+15827:DataServer\WareHouse\%d\%s
+15851:GameServer\monster\
+15852:GameServer\OpenItem\
+15853:GameServer\npc\
+15854:GameServer\Field\
+15861:[OUT OF RANGE]: setAccountId(int value): value < 0 [%d]
+15862:[OVERFLOW]: setAccount(const char* value): strlen(value) > (ACCOUNT_SIZE - 1) [%s]
+15863:[OVERFLOW]: setPassword(const char* value): strlen(value) > (PASSWORD_SIZE - 1) [%s]
+15872:Socket IP( %s ) TimeOut Message
+15873:Alloc Failed - Hotuk Server
+15897:%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Debug Login ( %d )
+15898:%d:%d:%d - Name:( %s ) / IP ( %s ) Debug Login ( %d )
+16015:192.168.1.111
+16037:Macro
+16302:game\Images\settings\checkbox.tga
+16303:game\Images\settings\checkbox_.tga
+16478:MrLee: Clear 90_2nd Quest ~(re-connect) 
+16497:MrLee:Reconnect again!! 
+17106:Aging Packet +10
+17108:Aging Packet +11
+17110:Aging Packet +12
+17112:Aging Packet +13
+17114:Aging Packet +14
+17116:Aging Packet +15
+17118:Aging Packet +16
+17120:Aging Packet +17
+17122:Aging Packet +18
+17124:Aging Packet +19
+17126:Aging Packet +20
+17656:War Mac
+17658:Pole Mace
+17660:Gothic Mace
+17684:SinBaRam Mace
+18384:Machado Skin
+18580:Skin Machado
+19578:Duende Macabro, Decoy, Bargon,
+19876:Checksum: %d
+19881:game\global\Main.png
+19882:game\GUI\messagebox\background_normal.png
+19883:game\GUI\messagebox\btnno.png
+19884:game\GUI\messagebox\btnno_.png
+19885:game\GUI\messagebox\btnyes.png
+19886:game\GUI\messagebox\btnyes_.png
+19887:game\GUI\messagebox\btncancel.png
+19888:game\GUI\messagebox\btncancel_.png
+19889:game\GUI\messagebox\btnok.png
+19890:game\GUI\messagebox\btnok_.png
+19891:game\GUI\messagebox\sell.png
+19892:game\GUI\messagebox\sell_.png
+20451:Duende Macabro
+20456:Machado Minotauro
+21297:socket() failed
+21302:Error on WSAAsyncSelect()
+21316:wav\GameStart.wav
+21317:wav\Login.wav
+21318:game\kill\sound\DoubleKill.wav
+21319:game\kill\sound\TripleKill.wav
+21320:game\kill\sound\QuadraKill.wav
+21321:game\kill\sound\PentaKill.wav
+21322:game\kill\sound\Shutdown.wav
+21323:game\kill\sound\Rampage.wav
+21324:game\kill\sound\Unstoppable.wav
+21330:DRIVER={SQL Server};SERVER=%s;UID=%s;PWD=%s;
+21349:game\teleport\window.png
+21350:game\teleport\btnteleport.png
+21351:game\teleport\btnteleport_.png
+21352:game\teleport\close.png
+21353:game\teleport\close_.png
+21354:game\teleport\exp.png
+21355:game\teleport\hunt.png
+21356:game\teleport\gold.png
+21357:game\teleport\town.png
+21358:game\teleport\sheltons.png
+21359:game\teleport\pvp.png
+21360:game\teleport\huntpvp.png
+21361:game\teleport\Mapas\border.png
+21362:game\teleport\page1.png
+21363:game\teleport\page1_.png
+21364:game\teleport\page2.png
+21365:game\teleport\page2_.png
+21366:game\teleport\page3.png
+21367:game\teleport\page3_.png
+21368:game\teleport\expdrop.png
+21369:game\teleport\Mapas\estrada-dos-ventos.png
+21370:game\teleport\Mapas\vale-tranquilo.png
+21371:game\teleport\Mapas\floresta-espirito.png
+21372:game\teleport\Mapas\mata-acacias.png
+21373:game\teleport\Mapas\jardim-liberdade.png
+21374:game\teleport\Mapas\refugio-ancioes.png
+21375:game\teleport\Mapas\castelo-perdidos.png
+21376:game\teleport\Mapas\terra-maldita.png
+21377:game\teleport\Mapas\terra-esquecida.png
+21378:game\teleport\Mapas\oasis.png
+21379:game\teleport\Mapas\cba.png
+21380:game\teleport\Mapas\terra-proibida.png
+21381:game\teleport\Mapas\bcave.png
+21382:game\teleport\Mapas\mcave.png
+21383:game\teleport\Mapas\ds.png
+21384:game\teleport\Mapas\dun1.png
+21385:game\teleport\Mapas\dun2.png
+21386:game\teleport\Mapas\dun3.png
+21387:game\teleport\Mapas\s1.png
+21388:game\teleport\Mapas\s2.png
+21389:game\teleport\Mapas\s3.png
+21390:game\teleport\Mapas\gl.png
+21391:game\teleport\Mapas\iron1.png
+21392:game\teleport\Mapas\iron2.png
+21393:game\teleport\Mapas\eura.png
+21394:game\teleport\Mapas\ice1.png
+21395:game\teleport\Mapas\ice2.png
+21396:game\teleport\Mapas\kcave.png
+21397:game\teleport\Mapas\lost1.png
+21398:game\teleport\Mapas\lost2.png
+21399:game\teleport\Mapas\et1.png
+21400:game\teleport\Mapas\et2.png
+21401:game\teleport\Mapas\et3.png
+21402:game\teleport\Mapas\mine-ice.png
+21403:game\teleport\Mapas\slab.png
+21404:game\teleport\Mapas\AncientW.png
+21405:game\teleport\Mapas\SeaA.png
+21406:game\teleport\Mapas\Stemple.png
+21722:Updatecldata : %d 
+21972:szServerConnectErrorMsg
+22004:ClanServerInspect
+22058:Err PASSWORD
+22073:http://%s/login.php?UserID=%s&PassWord=%s
+22075:From server: ---from--
+22077:WSAStartup()
+22078:connect() 
+22079: recv() 
+22081:account=
+22082:http://%s/LoginCheck.php?UserID=%s&StartTime=%d
+22084:http://%s/InsertUser.php?UserID=%s&PassWord=%s&UserName=%s
+22086:http://%s/Login_End.php?UserID=%s&IP=%s&EndTime=%d&UseTime=%d
+22087:http://%s//ServerMain//isCheckClanJang.asp?userid=%s&gserver=%s&ticket=%d
+22095:http://%s//ServerMain//isCheckClanName.asp?ClName=%s&gserver=%s&ticket=%d
+22102:http://%s//ServerMain//isCheckClanNum.asp?num=%s&ticket=%d
+22109:http://%s//ServerMain//isCheckClanwon.asp?gserver=%s&clwon=%s
+22111:http://%s//ServerMain//isClanMember.asp?userid=%s&gserver=%s&chname=%s&ticket=%d
+22118:http://%s//ServerMain//clanInsertClanWon.asp?userid=%s&gserver=%s&chname=%s&clName=%s&clwon=%s&clwonUserid=%s&lv=%d&ticket=%d&chtype=%d&chlv=%d&chipflag=%s
+22125:http://%s/Clan/clanInsert.aspx?userid=%s&gserver=%s&chname=%s&clName=%s&expl=%s&ticket=%d&chtype=%d&lv=%d
+22144:account:
+22145:http://%s//ServerMain//GetAllMyClanMember.asp?userid=%s&gserver=%s&chname=%s&ticket=%d
+22152:http://%s//ServerMain//clanRemove.asp?userid=%s&gserver=%s&chname=%s&clName=%s&ticket=%d
+22153:%s?userid=%s&gserver=%s&chname=%s&ticket=%d
+22160:http://%s//ServerMain//clanWonRelease.asp?userid=%s&gserver=%s&chname=%s&clName=%s&%s&ticket=%d
+22167:http://%s//ServerMain//ClanSubChipUpdate.asp?chname=%s&gserver=%s&ticket=%d
+22174:http://%s//ServerMain//ClanSubChipRelease.asp?chname=%s&gserver=%s&ticket=%d
+22181:http://%s//ServerMain//clanChipChange.asp?chname=%s&gserver=%s&clName=%s&ticket=%d
+22188:http://%s//ServerMain//clanWonSelfLeave.asp?userid=%s&gserver=%s&chname=%s&clName=%s&ticket=%d
+22191:http://%s//ServerMain//isKflag.asp?userid=%s&clName=%s&chName=%s&gserver=%s&KFlag=%s&Gubun=%s&ticket=%d
+22198:http://%s//ServerMain//isPFlag.asp?userid=%s&clName=%s&chName=%s&gserver=%s&PFlag=%s&Gubun=%s&ticket=%d
+22202:http://%s/tjboyh/updateFlag.php?clName=%s&ticket=%d
+22203:updateFlag() 
+22205:211.39.144.158/NPCSound
+22231:POST http://%s/tjboyh/ktj_login.php
+22232:74.122.192.107
+22233:http://%s/ServerMain/sod2info.asp?userid=%s&chname=%s&gserver=%s&index=%d
+22238: connect
+22239: disconnect
+22247:INITGAME
+22249:gameServerIP
+22250:gameServerPORT
+22255:211.44.231.13
+22260:game_debug.txt
+22262: WSACancelBlockingCall 
+22270:socket
+22273: UDP socket
+22282:WSAELOOP ERROR
+22283:WSAENAMETOOLONG ERROR
+22284:(WSAStartup()
+22285: WSAStartup 
+22288:game\Settings\scroll\barbg.png
+22289:game\Settings\scroll\bar.png
+22290:game\Settings\scroll\icon.png
+22291:game\settings\scroll\barbg_v.png
+22292:game\settings\scroll\icon_2.png
+22294:game\Warmode\window.png
+22295:game\Warmode\Button_ativar.png
+22296:game\Warmode\Button_desativar.png
+22305:http://211.39.144.158/NPCSound/
+22308:211.61.248.221
+22311:SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\3D Studio MAX R3.1L
+22312:SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\3D Studio MAX R3.1
+22313:SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Adobe Photoshop 6.0
+22314:SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ACDSee
+22315:game\Settings\window.tga
+22316:game\mash\bp_system.tga
+22317:game\UI\settings.png
+22318:game\UI\settings_.png
+22319:game\Settings\help_.tga
+22320:game\Settings\save_.tga
+22321:game\Settings\checkbox.tga
+22322:game\Settings\checkbox_.tga
+22323:game\bellatra\window.tga
+22324:game\bellatra\ok.tga
+22331:189.79.242.5,31220
+22344:game\Audio\bgm\Field - Desert - Pilgrim.bgm
+22351:Area Server[0]: (%s)
+22352:Area Server[1]: (%s)
+22360:game/warning/lowhpwarning.png
+22361:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts
+22362:SOFTWARE\Microsoft\Windows\CurrentVersion\Fonts
+22374:regex_error(error_space): There was insufficient memory to convert the expression into a finite state machine.
+22385:already connected
+22392:connection aborted
+22393:connection already in progress
+22394:connection refused
+22395:connection reset
+22432:not a socket
+22434:not connected
+22615:virtual machine mismatch in %s: size of %s is %d but read %d
+22616:%s too new: read version %d.%d; expected at most %d.%d
+22617:%s too old: read version %d.%d; expected at least %d.%d
+23322:C:\@@ADM PRISTON\Source Summit Tale\Source Summit Tale\SrcGame\src\Release\game.pdb
+23469:GetVersionExA
+23485:SendMessageA
+23492:DispatchMessageA
+23501:UpdateWindow
+23591:ICSendMessage
+23620:ImmGetConversionStatus
+23621:ImmSetConversionStatus
+23642:GetCPInfo
+23703:Unnamed Server
+23837: sendo usada agora    
+23869: sendo usada nas Habilidades
+24002: sendo usada agora    
+24034: sendo usada nas Habilidades
+24244:ncia de Machados, Martelos e Espadas.
+24267:Machado Veloz
+24268:Aumenta a Velocidade de Machados temporariamente.
+24310:o sendo percebido pelos monstros. O primeiro ataque ap
+24643:Cristal de Duende Macabro
+25202:_VERSION
+25325:.?AVHoEtcPrimitiveBillboardMove@@
+25416:.?AVCUpdateCldata@@
+25482:<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+25483:<assembly xmlns='urn:schemas-microsoft-com:asm.v1' manifestVersion='1.0'>
+
+[UTF16 NETWORK STRINGS]
+1828:VS_VERSION_INFO
+1835:FileVersion
+1842:Game.exe
+1845:ProductVersion

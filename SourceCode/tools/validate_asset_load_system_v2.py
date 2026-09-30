@@ -17,9 +17,9 @@ def require(rel, *tokens):
 require('Shared/rendering/assets/v2/AssetLoadRegistry.h',
         'ASSET_UNLOADED', 'ASSET_LOADING', 'ASSET_LOADED',
         'ASSET_FAILED_TRANSIENT', 'ASSET_FAILED_PERMANENT', 'ASSET_WAITING_DEVICE', 'ASSET_EVICTED',
-        'maxTransientFailures = 3u', 'residentBudgetBytes = 512ull * 1024ull * 1024ull',
+        'maxTransientFailures = 3u', 'residentBudgetBytes = 1024ull * 1024ull * 1024ull',
         'maxRuntimeDimension = 4096u', 'maxExternalRuntimeDimension = 2048u',
-        'globalPrewarmLimit = 64u', 'scopedPrewarmLimit = 128u',
+        'globalPrewarmLimit = 32u', 'scopedPrewarmLimit = 32u',
         'MarkWaitingForDevice', 'SelectEvictionCandidate', 'ComputeTargetDimensions')
 
 require('Shared/rendering/legacy_3d/material/smTexture_legacy_client.inl',
@@ -37,9 +37,10 @@ require('Shared/rendering/legacy_3d/material/smTexture_legacy_client.inl',
 
 require('link_client_mingw_i686.sh', '-Wl,--large-address-aware')
 require('SrcGame/src/core/gameplay/runtime/playmain.cpp',
-        'AssetLoadV2TrimToBudget("PRE_STAGE_PREWARM")',
-        'AssetLoadV2ReadMaterialGroup(lpstg->smMaterialGroup, SMASSET_OWNER_STAGE)',
-        'AssetLoadV2DumpTelemetry("POST_STAGE_PREWARM")')
+        'RequestStageFromFieldAsync(lpField, lpSecondField)',
+        'void PumpStageTexturePrewarm()',
+        'AssetLoadV2PrewarmMaterialGroupStep(',
+        'AssetLoadV3SetLoadingBoost(true)')
 require('Shared/rendering/effects/legacy_new/HoEffectResMgrLegacyCommon.inl',
         '#ifndef _SERVER', 'AssetLoadV2ReleaseMaterial', 'AssetLoadV2ReadMaterialGroup')
 require('Shared/rendering/effects/legacy_sin/AssaUtil_legacy_client.inl',

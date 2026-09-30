@@ -1,0 +1,65 @@
+//ID
+*코드 "WC106"
+
+//Korean Name
+*이름 "Garra Afiada"
+
+//English Name
+*Name "Garra Afiada"
+
+//AttackPower
+*공격력 7 9 13 15
+
+//AttackRating
+*명중력 54 66
+
+//AttackSpeed
+*공격속도 7
+
+//AttackCritical
+*크리티컬 6
+
+//Defense
+*방어력 15 20
+
+//Integrity
+*내구력 40 52
+
+//Level
+*레벨 22
+
+//Strength
+*힘 54
+
+//Talent
+*재능 40
+
+//Agility
+*민첩성 40
+
+//PrimarySpec
+**특화 Mechanician
+
+//SecondarySpec
+**특화랜덤 Fighter Pikeman Knight Atalanta
+
+//SpecAttackPower
+**공격력 7 7
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 5
+
+//Weight
+*무게 16
+
+//Price
+*가격 9200
+
+//Name File
+*연결파일 "Name\WC106.zhoon"

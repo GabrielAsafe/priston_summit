@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "WP112"
+
+//Korean Name
+*ÀÌ¸§ "Foice Titã"
+
+//English Name
+*Name "Foice Titã"
+
+//AttackPower
+*°ø°Ý·Â 16 19 40 44
+
+//AttackRating
+*¸íÁß·Â 95 110
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 15
+
+//Block
+*ºí·°À² 14.0 14.0
+
+//Integrity
+*³»±¸·Â 82 96
+
+//Level
+*·¹º§ 55
+
+//Strength
+*Èû 110
+
+//Talent
+*Àç´É 90
+
+//PrimarySpec
+**Æ¯È­ Pikeman
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Atalanta
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 6
+
+//Weight
+*¹«°Ô 36
+
+//Price
+*°¡°Ý 54000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WP112.zhoon"

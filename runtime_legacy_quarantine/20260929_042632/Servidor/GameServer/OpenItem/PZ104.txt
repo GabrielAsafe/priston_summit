@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "PZ104"
+
+//Korean Name
+*ÀÌ¸§ "Quebra-Cabeça A4"
+
+//English Name
+*Name "Quebra-Cabeça A4"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\PZ104.zhoon"

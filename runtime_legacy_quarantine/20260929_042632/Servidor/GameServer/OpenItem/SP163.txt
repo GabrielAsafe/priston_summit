@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "SP163"
+
+//Korean Name
+*ÀÌ¸§ "Símbolo 4"
+
+//English Name
+*Name "Símbolo 4"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\SP163.zhoon"

@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "PR202"
+
+//Korean Name
+*ÀÌ¸§ "Relíquia de Prata"
+
+//English Name
+*Name "Relíquia de Prata"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\PR202.zhoon"

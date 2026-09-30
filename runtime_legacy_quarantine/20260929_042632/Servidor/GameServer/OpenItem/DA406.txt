@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "DA406"
+
+//Korean Name
+*ÀÌ¸§ "Roupão Mitril"
+
+//English Name
+*Name "Roupão Mitril"
+
+//Defense
+*¹æ¾î·Â 615 635
+
+//Absorption
+*Èí¼ö·Â 45.8 46.2
+
+//OrganicResistance
+*»ýÃ¼ 11 17
+
+//FireResistance
+*ºÒ 11 17
+
+//FrostResistance
+*³Ã±â 11 17
+
+//LightningResistance
+*¹ø°³ 11 17
+
+//PoisonResistance
+*µ¶ 11 17
+
+//Integrity
+*³»±¸·Â 140 160
+
+//Level
+*·¹º§ 138
+
+//Spirit
+*Á¤½Å·Â 249
+
+//Talent
+*Àç´É 90
+
+//SecondarySpec
+**Æ¯È­·£´ý Priestess Magician
+
+//SpecDefense
+**¹æ¾î·Â 65 70
+
+//SpecAbsorption
+**Èí¼ö·Â 1.8 2.4
+
+//SpecMPRegen
+**±â·ÂÀç»ý 5.3 5.6
+
+//Weight
+*¹«°Ô 188
+
+//Price
+*°¡°Ý 1400000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DA406.zhoon"

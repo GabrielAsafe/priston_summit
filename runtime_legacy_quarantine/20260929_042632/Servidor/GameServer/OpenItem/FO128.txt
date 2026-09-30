@@ -1,0 +1,20 @@
+//ID
+*ÄÚµå "FO128"
+
+//Korean Name
+*ÀÌ¸§ "Força Mágica Devine"
+
+//English Name
+*Name "Força Mágica Devine"
+
+//Weight
+*¹«°Ô 2
+
+//Price
+*°¡°Ý 1000
+
+//Level
+*·¹º§ 50
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\FO128.zhoon"

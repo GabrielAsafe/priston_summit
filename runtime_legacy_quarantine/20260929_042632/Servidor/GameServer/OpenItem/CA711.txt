@@ -1,0 +1,56 @@
+//ID
+*ÄÚµå "CA711"
+
+//Korean Name
+*ÀÌ¸§ "Roupão Lucy Khan"
+
+//English Name
+*Name "Roupão Lucy Khan"
+
+//Defense
+*¹æ¾î·Â 180 210
+
+//Absorption
+*Èí¼ö·Â 9.0 9.5
+
+//OrganicResistance
+*»ýÃ¼ 5 8
+
+//FireResistance
+*ºÒ 5 8
+
+//FrostResistance
+*³Ã±â 5 8
+
+//LightningResistance
+*¹ø°³ 1 2
+
+//PoisonResistance
+*µ¶ 5 8
+
+//Level
+*·¹º§ 55
+
+//Spirit
+*Á¤½Å·Â 140
+
+//Talent
+*Àç´É 70
+
+//SecondarySpec
+**Æ¯È­·£´ý Priestess Magician
+
+//SpecDefense
+**¹æ¾î·Â 35 45
+
+//SpecAbsorption
+**Èí¼ö·Â 0.4 1.0
+
+//Weight
+*¹«°Ô 35
+
+//Price
+*°¡°Ý 100000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\CA711.zhoon"

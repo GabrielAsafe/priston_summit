@@ -1,0 +1,14 @@
+//ID
+*코드 "GF102"
+
+//Korean Name
+*이름 "Chifre do Babel"
+
+//English Name
+*Name "Chifre do Babel"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\GF102.zhoon"

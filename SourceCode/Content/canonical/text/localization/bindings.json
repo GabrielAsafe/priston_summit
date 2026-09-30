@@ -16189,7 +16189,8 @@
         "npc.amanda.chat.1",
         "npc.amanda.chat.2",
         "npc.amanda.chat.3",
-        "npc.amanda.chat.4"
+        "npc.amanda.chat.4",
+        "npc.amanda.chat.5"
       ],
       "linked_resource_id": "text.amanda"
     },

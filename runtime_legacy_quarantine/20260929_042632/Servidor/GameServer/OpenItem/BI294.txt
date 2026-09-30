@@ -1,0 +1,14 @@
+//ID
+*코드 "BI294"
+
+//Korean Name
+*이름 "Pedra do Acesso - Craft"
+
+//English Name
+*Name "Pedra do Acesso - Craft"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\BI294.zhoon"

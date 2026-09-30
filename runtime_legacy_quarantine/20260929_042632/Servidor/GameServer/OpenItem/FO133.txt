@@ -1,0 +1,20 @@
+//ID
+*ÄÚµå "FO133"
+
+//Korean Name
+*ÀÌ¸§ "Força Mágica Bellum"
+
+//English Name
+*Name "Força Mágica Bellum"
+
+//Weight
+*¹«°Ô 2
+
+//Price
+*°¡°Ý 1000
+
+//Level
+*·¹º§ 95
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\FO133.zhoon"

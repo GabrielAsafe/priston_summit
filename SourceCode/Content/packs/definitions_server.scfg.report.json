@@ -3,7 +3,7 @@
   "version": 1,
   "profile": "server",
   "definitions": 2350,
-  "directives": 41804,
+  "directives": 41805,
   "flattened_links": 1836,
   "filtered_open_items": 132,
   "filtered_open_item_rows": [
@@ -2605,6 +2605,6 @@
       "target": "gameserver/openitem/name/ws260.zhoon"
     }
   ],
-  "bytes": 838226,
-  "sha256": "fed4d9cfe568b4ddd5c5b69da795581bb9e16d2368ef8c583bc2f0bc9f9b1cec"
+  "bytes": 838034,
+  "sha256": "f3dcb9c18755280f72299355e213694e4b223d0c017c0137d24e8de13b4f6bba"
 }

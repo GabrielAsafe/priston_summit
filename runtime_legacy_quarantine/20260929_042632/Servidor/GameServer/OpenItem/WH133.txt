@@ -1,0 +1,62 @@
+//ID
+*코드 "WH133"
+
+//Korean Name
+*이름 "Martelo Hades"
+
+//English Name
+*Name "Martelo Hades"
+
+//AttackPower
+*공격력 140 140 180 180
+
+//AttackRating
+*명중력 310 310
+
+//AttackSpeed
+*공격속도 9
+
+//AttackCritical
+*크리티컬 25
+
+//Block
+*블럭율 15.0 15.0
+
+//Integrity
+*내구력 260 280
+
+//Level
+*레벨 1
+
+//Strength
+*힘 1
+
+//Talent
+*재능 1
+
+//PrimarySpec
+**특화 Mechanician
+
+//SecondarySpec
+**특화랜덤 Fighter Pikeman Knight
+
+//SpecAttackPower
+**공격력 7 7
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 5
+
+//Weight
+*무게 1
+
+//Price
+*가격 1880000
+
+//Name File
+*연결파일 "Name\WH133.zhoon"

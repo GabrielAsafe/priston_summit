@@ -1,0 +1,65 @@
+//ID
+*ÄÚµå "WT124"
+
+//Korean Name
+*ÀÌ¸§ "Lança Salamandra"
+
+//English Name
+*Name "Lança Salamandra"
+
+//AttackPower
+*°ø°Ý·Â 67 71 87 90
+
+//AttackRange
+*»çÁ¤°Å¸® 250
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 8
+
+//AttackRating
+*¸íÁß·Â 160 180
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 15
+
+//Integrity
+*³»±¸·Â 155 179
+
+//Level
+*·¹º§ 105
+
+//Strength
+*Èû 82
+
+//Talent
+*Àç´É 90
+
+//Agility
+*¹ÎÃ¸¼º 155
+
+//PrimarySpec
+**Æ¯È­ Atalanta
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Archer
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 6
+
+//SpecAttackRange
+**»çÁ¤°Å¸® 25
+
+//Weight
+*¹«°Ô 39
+
+//Price
+*°¡°Ý 1180000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WT124.zhoon"

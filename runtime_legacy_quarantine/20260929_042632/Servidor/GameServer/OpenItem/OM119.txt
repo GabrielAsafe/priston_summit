@@ -1,0 +1,65 @@
+//ID
+*코드 "OM119"
+
+//Korean Name
+*이름 "Orbital Salamandra"
+
+//English Name
+*Name "Orbital Salamandra"
+
+//OrganicResistance
+*생체 4 8
+
+//FireResistance
+*불 4 8
+
+//FrostResistance
+*냉기 4 8
+
+//LightningResistance
+*번개 4 8
+
+//PoisonResistance
+*독 4 8
+
+//Defense
+*방어력 110 120
+
+//Absorption
+*흡수력 4.7 5.0
+
+//Block
+*블럭율 9.0 11.0
+
+//HP
+*생명력추가 73 93
+
+//MP
+*기력추가 49 62
+
+//Integrity
+*내구력 95 115
+
+//Level
+*레벨 80
+
+//Spirit
+*정신력 138
+
+//SecondarySpec
+**특화랜덤 Priestess Magician
+
+//SpecAbsorption
+**흡수력 1.0 1.4
+
+//SpecMPRegen
+**기력재생 1.0 1.3
+
+//Weight
+*무게 28
+
+//Price
+*가격 330000
+
+//Name File
+*연결파일 "Name\OM119.zhoon"

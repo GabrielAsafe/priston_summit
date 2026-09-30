@@ -1,0 +1,38 @@
+//ID
+*코드 "OS114"
+
+//Korean Name
+*이름 "Ordo"
+
+//English Name
+*Name "Ordo"
+
+//HPRegen
+*생명력재생 2.3 2.5
+
+//MPRegen
+*기력재생 2.1 2.4
+
+//Level
+*레벨 100
+
+//Spirit
+*정신력 150
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecHPRegen
+**생명력재생 1.0 1.6
+
+//SpecMPRegen
+**기력재생 1.6 1.9
+
+//Weight
+*무게 2
+
+//Price
+*가격 1000
+
+//Name File
+*연결파일 "Name\OS114.zhoon"

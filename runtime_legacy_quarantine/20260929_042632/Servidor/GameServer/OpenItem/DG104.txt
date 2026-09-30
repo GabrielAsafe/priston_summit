@@ -1,0 +1,59 @@
+//ID
+*코드 "DG104"
+
+//Korean Name
+*이름 "Luvas Rijas"
+
+//English Name
+*Name "Luvas Rijas"
+
+//Defense
+*방어력 20 32
+
+//Absorption
+*흡수력 0.7 0.9
+
+//OrganicResistance
+*생체 3 4
+
+//FireResistance
+*불 3 4
+
+//FrostResistance
+*냉기 3 4
+
+//LightningResistance
+*번개 -2 -1
+
+//PoisonResistance
+*독 3 4
+
+//Integrity
+*내구력 44 60
+
+//Level
+*레벨 9
+
+//Strength
+*힘 40
+
+//Talent
+*재능 30
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecDefense
+**방어력 8 12
+
+//SpecAbsorption
+**흡수력 0.2 0.3
+
+//Weight
+*무게 12
+
+//Price
+*가격 2500
+
+//Name File
+*연결파일 "Name\DG104.zhoon"

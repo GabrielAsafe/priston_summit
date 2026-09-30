@@ -12,6 +12,7 @@ ON=(ROOT/'Shared/legacy_oracle/server/core/server/legacy_runtime/OnSever.cpp.inl
 CLIENT=(ROOT/'Shared/legacy_oracle/client/systems/rendering/effects/legacy_new/core/HoEffectManager.cpp.inl').read_text(errors='ignore')
 ASSA=(ROOT/'Shared/legacy_oracle/client/systems/rendering/effects/assa/AssaParticle.cpp.inl').read_text(errors='ignore')
 CHAR=(ROOT/'Shared/gameplay/character/character_legacy_client.inl').read_text(errors='ignore')
+STATUS=(ROOT/'SrcServer/src/systems/gameplay/combat/v2/legacy/LegacyStatusEffectAdapter.cpp').read_text(errors='ignore')
 err=[]
 for code in ('SKILL_MAGNETIC_SPHERE','SKILL_DANCING_SWORD','SKILL_SUMMON_MUSPELL'):
     line=next((ln for ln in CAT.splitlines() if '{ '+code+',' in ln),'')
@@ -32,8 +33,10 @@ if 'SkillMetalionSphere(this, (float)Magnetic_Sphere_Time[point - 1], (float)Mag
     err.append('Magnetic Sphere client cadence oracle missing')
 # Dancing Sword: random Ice/Fire chosen at cast, server 900ms delay validation, ice slow.
 for tok in ('runtime.persistentEffectElement = rand() % 2','Dancing_Sword_Damage[p][0]','Dancing_Sword_AttackDelay[p]) * 900U',
-            'runtime.persistentEffectElement == 0 ? sITEMINFO_ICE : sITEMINFO_FIRE','int slowCount = 16 * 5'):
+            'runtime.persistentEffectElement == 0 ? sITEMINFO_ICE : sITEMINFO_FIRE','ServerLegacyStatusEffectAdapter().ApplyElementalSlow16Hz(', '5, 230 - 10 * runtime.persistentEffectPoint, resistance'):
     if tok not in CPP: err.append('Dancing Sword semantics missing '+tok)
+for tok in ('int durationTicks = durationSeconds * 16','resolved->PlayDistortion = 0'):
+    if tok not in STATUS: err.append('Dancing Sword slow adapter missing '+tok)
 for tok in ('cnt = rand() % 2','SendProcessSKillToServer(SKILL_PLAY_DANCING_SWORD, lpSkill->Point, cnt, 0)'):
     if tok not in SUB: err.append('Dancing Sword cast oracle missing '+tok)
 for tok in ('Dancing_Sword_AttackDelay[pow1] * 900','Dancing_Sword_Damage[pow1][0]'):

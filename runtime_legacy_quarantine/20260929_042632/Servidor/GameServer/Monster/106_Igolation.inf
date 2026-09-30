@@ -1,0 +1,121 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\igolation\igolation.ini"
+
+//Name
+*이름 "Igolation"
+
+//Level
+*레벨 106
+
+//Size
+*모델크기 1.0
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 390
+
+//HP
+*생명력 19000
+
+//AttackPower
+*공격력 300 400
+
+//AttackRating
+*명중력 1400
+
+//AttackSpeed
+*공격속도 8
+
+//AttackRange
+*공격범위 100
+
+//SkillPower
+*기술공격력 400 500
+
+//SkillRating
+*기술공격률 30
+
+//SkillRange
+*기술공격범위 100
+
+//Defense
+*방어력 1400
+
+//Block
+*블럭율 30
+
+//Stun
+*스턴율 20
+
+//MoveSpeed
+*이동력 4
+
+//Race
+*몬스터종족 노멀
+
+//ShadowSize
+*크기 중대형
+
+//Experience
+*경험치 3349000
+
+//Sound
+*효과음 IGOLATION
+
+//DropsNumber
+*아이템카운터 1
+
+//Drop Gold
+*아이템 5000 돈 2000 20000
+
+//Drop Potion
+*아이템 3000 PM104 PM104
+
+//Drop Jera
+*아이템 20 SE101
+
+//Drop Mirage Celesto Devine
+*아이템 200 OS110 OS109 OS108
+
+//Drop Enigma Inferna
+*아이템 30 OS112 OS111
+
+//Drop Ordo Bellum
+*아이템 10 OS114 OS113
+
+//Drop Force
+*아이템 1000 F0108 FO128 FO109 FO129
+
+//Drop Itens 90
+*아이템 2000 OA220 DB120 DG120 DS120 WA120 WC120 WH121 WM121 WP121 WS122 WS223 WT121
+
+//Drop Itens 100
+*아이템 1000 WA121 WC121 WH122 WM122 WP122 WS123 WS224 WT122 OA124 OA221 OM124 OR124 DA123 DA223 DB121 DG121 DS121
+
+//Drop Itens 102
+*아이템 500 WA122 WC122 WH123 WM123 WP123 WS124 WS225 WT123 OA124 OA222 OM125 OR124 DA124 DA224 DB122 DG122 DS122
+
+//Drop Itens 105
+*아이템 100 WA123 WC123 WH124 WM124 WP124 WS125 WS226 WT124 OA124 OA223 OM125 OR124 DA125 DA225 DB123 DG123 DS123
+
+//Drop Itens 108
+*아이템 50 DA127 DA227 DS124 DB124 DG124 OA224 OM125 WA124 WA125 WC124 WH125 WH126 WM125 WM126 WP125 WS126 WS227 WS228 WT125
+
+//Drop Especiais
+*아이템 50 OR201 OS117 OS116 OS118 OR127 OA127 OA128 OE101 OE102 OE103
+
+// 10000 - 100%
+// 1000 - 10%
+// 500 - 5%
+// 100 - 1%
+// 50 - 0,5%
+// 10 - 0,1%
+// 5 - 0,05%
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

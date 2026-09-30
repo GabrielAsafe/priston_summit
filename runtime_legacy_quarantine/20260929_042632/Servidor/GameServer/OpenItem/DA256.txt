@@ -1,0 +1,32 @@
+//ID
+*ÄÚµå "DA256"
+
+//Korean Name
+*ÀÌ¸§ "Roupão de Noivo"
+
+//English Name
+*Name "Roupão de Noivo"
+
+//Defense
+*¹æ¾î·Â 400 400
+
+//Absorption
+*Èí¼ö·Â 11.6 11.6
+
+//HP
+*»ý¸í·ÂÃß°¡ 30 30
+
+//MP
+*±â·ÂÃß°¡ 30 30
+
+//Level
+*·¹º§ 20
+
+//Weight
+*¹«°Ô 35
+
+//Price
+*°¡°Ý 100000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DA256.zhoon"

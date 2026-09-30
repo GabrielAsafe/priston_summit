@@ -1,0 +1,133 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\chimera\kimera_a.ini"
+
+//Name
+*이름	"Quimera2"
+
+//Level
+*레벨	99
+
+//Size
+*모델크기	1.3
+
+//SpawnQuantity
+*조직	1 1
+
+//ViewRange
+*시야	380
+
+//HP
+*생명력	15000
+
+//Absorption
+*흡수율	20
+
+//AttackPower
+*공격력	210 310
+
+//AttackRating
+*명중력	1450
+
+//AttackSpeed
+*공격속도	8
+
+//AttackRange
+*공격범위 100
+
+//SkillPower
+*기술공격력	255 335
+
+//SkillRating
+*기술공격률 30
+
+//SkillRange
+*기술공격범위 20
+
+//SkillDistance
+*기술공격거리	100
+
+//Defense
+*방어력	960
+
+//Block
+*블럭율	24
+
+//Stun
+*스턴율 20
+
+//MoveSpeed
+*이동력 1
+
+//Race
+*몬스터종족	뮤턴트
+
+//ShadowSize
+*크기 중대형
+
+//Experience
+*경험치	1662000
+
+//Sound
+*효과음	CHIMERA
+
+//DropsNumber
+*아이템카운터	1
+
+//DropGold
+*아이템 5000 돈 5200 5900
+
+//DropPotion
+*아이템 4000 PM104 PM104
+
+//Drop
+*아이템 20 SE101
+
+//Drop
+*아이템 1000 GP111 
+
+//DropJera
+*아이템 20 SE101
+
+//Drop Mirage Celesto Devine
+*아이템 200 OS110 OS109 OS108
+
+//DropInferna
+*아이템 500 OS111
+
+//DropEnigma
+*아이템 300 OS112
+
+//DropBellum
+*아이템 100 OS113
+
+//Drop Force
+*아이템 1000 F0108 FO128 FO109 FO129
+
+//Drop
+*아이템 5000 WA117 WC117 WH118 WM118 WP118 WS119 WS220 WT118 OA121 OA217 OM118 OR121 DA119 DA219 DB117 DG117 DS117
+
+//Drop
+*아이템 3000 WA116 WC116 WH117 WM117 WP117 WS118 WS219 WT117 OA120 OA216 OM117 OR120 DA118 DA218 DB116 DG116 DS116
+
+//Drop
+*아이템 2000 WA117 WC117 WH118 WM118 WP118 WS119 WS220 WT118 OA121 OA217 OM118 OR121 DA119 DA219 DB117 DG117 DS117
+
+//Drop
+*아이템 100 WA118 WC118 WH119 WM119 WP119 WS120 WS221 WT119 OA122 OA218 OM119 OR122 DA120 DA220 DB118 DG118 DS118
+
+//Drop
+*아이템 50 WA119 WC119 WH120 WM120 WP120 WS121 WS222 WT120 OA123 OA219 OM120 OR123 DA121 DA221 DB119 DG119 DS119
+
+// 10000 - 100%
+// 1000 - 10%
+// 500 - 5%
+// 100 - 1%
+// 50 - 0,5%
+// 10 - 0,1%
+// 5 - 0,05%
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

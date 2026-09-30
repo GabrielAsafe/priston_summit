@@ -13,6 +13,7 @@
 #include "systems/inventory/legacy/sinItem.h"
 #include "systems/combat/skills/legacy_sin/sinSkill.h"
 #include "systems/network/client/netplay.h"
+#include "systems/network/v2/legacy/LegacyClientCommandSender.h"
 
 namespace ui::v2
 {
@@ -209,7 +210,8 @@ void LegacyCompanionGateway::RequestRefresh()
 void LegacyCompanionGateway::Execute(CompanionUiAction action, const std::string& characterName, int value)
 {
     using namespace gameplay::companions::protocol;
-    if (!smWsockServer)
+    auto& sender = gameplay::network::legacy::ClientLegacyCommandSender();
+    if (!sender.Available())
         return;
 
     CompanionUIActionPacket packet{};
@@ -221,7 +223,7 @@ void LegacyCompanionGateway::Execute(CompanionUiAction action, const std::string
     if (!characterName.empty())
         std::strncpy(packet.characterName, characterName.c_str(), sizeof(packet.characterName) - 1);
 
-    smWsockServer->Send(reinterpret_cast<char*>(&packet), packet.size, TRUE);
+    sender.Send(gameplay::network::PacketView(&packet, packet.size, packet.code));
 }
 
 void LegacyCompanionGateway::ApplyState(const gameplay::companions::protocol::CompanionUIStatePacket& packet)

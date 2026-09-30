@@ -1,0 +1,65 @@
+//ID
+*ÄÚµå "DS118"
+
+//Korean Name
+*ÀÌ¸§ "Escudo Místico"
+
+//English Name
+*Name "Escudo Místico"
+
+//Defense
+*¹æ¾î·Â 158 180
+
+//Absorption
+*Èí¼ö·Â 8.1 8.4
+
+//Block
+*ºí·°À² 17.0 20.0
+
+//OrganicResistance
+*»ýÃ¼ 3 5
+
+//FireResistance
+*ºÒ 3 5
+
+//FrostResistance
+*³Ã±â 3 5
+
+//LightningResistance
+*¹ø°³ 3 5
+
+//PoisonResistance
+*µ¶ 3 5
+
+//Integrity
+*³»±¸·Â 142 168
+
+//Level
+*·¹º§ 80
+
+//Strength
+*Èû 130
+
+//Talent
+*Àç´É 75
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**¹æ¾î·Â 30 36
+
+//SpecAbsorption
+**Èí¼ö·Â 0.9 1.1
+
+//SpecBlock
+**ºí·°À² 3.0
+
+//Weight
+*¹«°Ô 64
+
+//Price
+*°¡°Ý 310000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DS118.zhoon"

@@ -72,6 +72,7 @@
  Shared/content/v1/definition/content/CompiledDefinitionSource.h \
  Shared/content/v1/localization/content/LocalizationRuntime.h \
  Shared/content/v1/localization/content/CompiledLocalizationSource.h \
+ Shared/content/v1/localization/legacy/LocalizationLegacyEncoding.h \
  Shared/formats/character_config/CharacterConfigReader.inl \
  Shared/formats/character_config/CharacterCoreReader.h \
  Shared/formats/character_config/CharacterConfigCommon.h \
@@ -92,6 +93,9 @@
  Shared/content/v1/stage_spawn/content/IStageSpawnContentSource.h \
  Shared/content/v1/stage_spawn/domain/StageSpawnDefinition.h \
  Shared/content/v1/stage_spawn/content/StageSpawnPath.h \
+ Shared/content/v1/field_runtime/content/CompiledFieldRuntimeSource.h \
+ Shared/content/v1/field_runtime/content/FieldRuntimePack.h \
+ Shared/content/v1/field_runtime/domain/FieldPlacementDefinition.h \
  Shared/content/v1/stage_spawn/content/LegacyStageSpawnContentSource.h \
  Shared/content/v1/stage_spawn/content/StageSpawnService.h \
  Shared/content/v1/text_resource/legacy/LegacyContentIdRegistry.h \
@@ -175,6 +179,7 @@ Shared/content/v1/definition/content/DefinitionRuntime.h:
 Shared/content/v1/definition/content/CompiledDefinitionSource.h:
 Shared/content/v1/localization/content/LocalizationRuntime.h:
 Shared/content/v1/localization/content/CompiledLocalizationSource.h:
+Shared/content/v1/localization/legacy/LocalizationLegacyEncoding.h:
 Shared/formats/character_config/CharacterConfigReader.inl:
 Shared/formats/character_config/CharacterCoreReader.h:
 Shared/formats/character_config/CharacterConfigCommon.h:
@@ -196,6 +201,9 @@ Shared/content/v1/stage_spawn/content/CompiledStageSpawnContentSource.h:
 Shared/content/v1/stage_spawn/content/IStageSpawnContentSource.h:
 Shared/content/v1/stage_spawn/domain/StageSpawnDefinition.h:
 Shared/content/v1/stage_spawn/content/StageSpawnPath.h:
+Shared/content/v1/field_runtime/content/CompiledFieldRuntimeSource.h:
+Shared/content/v1/field_runtime/content/FieldRuntimePack.h:
+Shared/content/v1/field_runtime/domain/FieldPlacementDefinition.h:
 Shared/content/v1/stage_spawn/content/LegacyStageSpawnContentSource.h:
 Shared/content/v1/stage_spawn/content/StageSpawnService.h:
 Shared/content/v1/text_resource/legacy/LegacyContentIdRegistry.h:

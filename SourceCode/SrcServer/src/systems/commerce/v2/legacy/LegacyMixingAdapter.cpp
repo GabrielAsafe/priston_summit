@@ -1,0 +1,56 @@
+#include "systems/commerce/v2/legacy/LegacyMixingAdapter.h"
+
+#include <cstring>
+
+#include "systems/network/transport/legacy/smwsock.h"
+#include "systems/rendering/legacy_3d/smd3d.h"
+#include "systems/gameplay/character/core/character.h"
+#include "core/server/legacy_runtime/onserver.h"
+#include "systems/commerce/legacy/sinTrade.h"
+
+int rsRecvMixtureResetItem(rsPLAYINFO* lpPlayInfo, sMIXTURE_RESET_ITEM_SERVER* pMixtureResetItem_Server);
+
+namespace gameplay
+{
+namespace commerce
+{
+namespace legacy
+{
+LegacyMixingAdapter::LegacyMixingAdapter(const player::legacy::LegacyOnlinePlayerRegistry& registry)
+    : registry_(registry)
+{
+}
+
+MixingResult LegacyMixingAdapter::Process(const MixingRequest& request)
+{
+    MixingResult result;
+    result.player = request.player;
+    result.operation = request.operation;
+
+    rsPLAYINFO* player = registry_.Resolve(request.player);
+    if(!player)
+    {
+        result.code = MixingCode::InvalidPlayer;
+        return result;
+    }
+    if(request.operation != MixingOperation::Reset ||
+       request.requestBytes.size() != sizeof(sMIXTURE_RESET_ITEM_SERVER))
+    {
+        result.code = MixingCode::InvalidPayload;
+        return result;
+    }
+
+    sMIXTURE_RESET_ITEM_SERVER packet;
+    std::memcpy(&packet, request.requestBytes.data(), sizeof(packet));
+    result.code = rsRecvMixtureResetItem(player, &packet) == TRUE ? MixingCode::Processed : MixingCode::Rejected;
+    return result;
+}
+
+LegacyMixingAdapter& ServerLegacyMixingAdapter()
+{
+    static LegacyMixingAdapter adapter(player::legacy::ServerLegacyOnlinePlayerRegistry());
+    return adapter;
+}
+}
+}
+}

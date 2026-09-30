@@ -1,0 +1,53 @@
+//ID
+*ÄÚµå "WS122"
+
+//Korean Name
+*ÀÌ¸§ "Arco da Vingança"
+
+//English Name
+*Name "Arco da Vingança"
+
+//Quest
+*À¯´ÏÅ© 2
+
+//Color
+*À¯´ÏÅ©»ö»ó 0 180 255 0 9
+
+//AttackPower
+*°ø°Ý·Â 60 60 81 81
+
+//AttackRating
+*¸íÁß·Â 240 240
+
+//AttackRange
+*»çÁ¤°Å¸® 270
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 8
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 25
+
+//Block
+*ºí·°À² 7.0 7.0
+
+//HP
+*»ý¸í·ÂÃß°¡ 50 50
+
+//MP
+*±â·ÂÃß°¡ 50 50
+
+//STM
+*±Ù·ÂÃß°¡ 50 50
+
+//Integrity
+*³»±¸·Â 70 70
+
+//Level
+*·¹º§ 100
+
+//Weight
+*¹«°Ô 30
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\ZQuest_WS122.zhoon"

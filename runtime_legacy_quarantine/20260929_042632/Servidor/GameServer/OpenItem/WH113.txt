@@ -1,0 +1,59 @@
+//ID
+*코드 "WH113"
+
+//Korean Name
+*이름 "Martelo Solar"
+
+//English Name
+*Name "Martelo Solar"
+
+//AttackPower
+*공격력 16 19 30 36
+
+//AttackRating
+*명중력 90 110
+
+//AttackSpeed
+*공격속도 7
+
+//AttackCritical
+*크리티컬 9
+
+//Integrity
+*내구력 64 82
+
+//Level
+*레벨 60
+
+//Strength
+*힘 115
+
+//Talent
+*재능 75
+
+//PrimarySpec
+**특화 Mechanician
+
+//SecondarySpec
+**특화랜덤 Fighter Pikeman Knight
+
+//SpecAttackPower
+**공격력 7 7
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 3
+
+//Weight
+*무게 41
+
+//Price
+*가격 54000
+
+//Name File
+*연결파일 "Name\WH113.zhoon"

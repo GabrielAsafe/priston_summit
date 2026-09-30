@@ -1,0 +1,20 @@
+//ID
+*ÄÚµå "FO115"
+
+//Korean Name
+*ÀÌ¸§ "Força Saphire"
+
+//English Name
+*Name "Força Saphire"
+
+//Weight
+*¹«°Ô 2
+
+//Price
+*°¡°Ý 1000
+
+//Level
+*·¹º§ 10
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\FO115.zhoon"

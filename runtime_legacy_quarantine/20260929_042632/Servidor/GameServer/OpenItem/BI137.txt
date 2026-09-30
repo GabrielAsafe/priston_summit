@@ -1,0 +1,17 @@
+//ID
+*코드 "BI137"
+
+//Korean Name
+*이름 "Mestre do Aging B"
+
+//English Name
+*Name "Mestre do Aging B"
+
+//Weight
+*무게 1
+
+//Price
+*가격 80000
+
+//Name File
+*연결파일 "Name\BI137.zhoon"

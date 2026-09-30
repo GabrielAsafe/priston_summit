@@ -1,0 +1,11 @@
+//ID
+*코드 "OR227"
+
+//Korean Name
+*이름 "Anel de Natal"
+
+//English Name
+*Name "Anel de Natal"
+
+//Name File
+*연결파일 "Name\OR227.zhoon"

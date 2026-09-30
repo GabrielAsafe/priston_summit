@@ -642,7 +642,7 @@ void sinProc(int Message)
 			else ExitButtonClick = 0;
 			cInterFace.CheckAllBox(SIN_SYSTEM);
 		}
-		if (sinGetKeyClick('K'))
+		if (sinGetKeyClick('K') && !VRKeyBuff[VK_CONTROL] && !VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_MENU])
 		{
 			if (!WarMode.fOpen)
 				WarMode.Open();
@@ -689,33 +689,36 @@ void sinProc(int Message)
 		}
 		if (smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR)
 		{
-			if (sinGetKeyClick('T') && sinGetKeyClick(VK_CONTROL))
+			if (sinGetKeyClick('T') && VRKeyBuff[VK_CONTROL] && !VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_MENU])
 			{
 				if (sinTestFlag)sinTestFlag = 0;
 				else sinTestFlag = 1;
 			}
 
-			if (sinGetKeyClick('F') && sinGetKeyClick(VK_CONTROL))
+			if (sinGetKeyClick('F') && VRKeyBuff[VK_CONTROL] && !VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_MENU])
 			{
 				if (cShop.OpenFlag == SIN_CLOSE)cShop.OpenFlag = SIN_OPEN;
 				else cShop.OpenFlag = SIN_CLOSE;
 
 			}
-			if (sinGetKeyClick('G') && sinGetKeyClick(VK_CONTROL))
+			if (sinGetKeyClick('G') && VRKeyBuff[VK_CONTROL] && !VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_MENU])
 			{
 				if (cCraftItem.OpenFlag == SIN_CLOSE)cCraftItem.OpenFlag = SIN_OPEN;
 				else cCraftItem.OpenFlag = SIN_CLOSE;
 			}
-			if (sinGetKeyClick('H') && sinGetKeyClick(VK_CONTROL))
+			if (sinGetKeyClick('H') && VRKeyBuff[VK_CONTROL] && !VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_MENU])
 			{
 				if (cAging.OpenFlag == SIN_CLOSE)cAging.OpenFlag = SIN_OPEN;
 				else cAging.OpenFlag = SIN_CLOSE;
 			}
-			if (sinGetKeyClick('J') && sinGetKeyClick(VK_CONTROL))
+			if (sinGetKeyClick('J') && VRKeyBuff[VK_CONTROL] && !VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_MENU])
 			{
 				if (cMixtureReset.OpenFlag == SIN_CLOSE)cMixtureReset.OpenFlag = SIN_OPEN;
 				else cMixtureReset.OpenFlag = SIN_CLOSE;
 			}
+			// SUMMIT_COMMAND_HOTKEYS_SAFETY_V17_1: legacy Manufacture/Smelting
+			// keyboard toggles stay disabled. These surfaces assume NPC/context state and
+			// are not safe to open/close repeatedly from a global hotkey.
 			/*if (sinGetKeyClick('K') && sinGetKeyClick(VK_CONTROL))
 			{
 				if (ManufactureItem.m_OpenFlag == SIN_CLOSE)ManufactureItem.m_OpenFlag = SIN_OPEN;

@@ -1,0 +1,17 @@
+//ID
+*코드 "BI140"
+
+//Korean Name
+*이름 "Mestre das Habilidades B"
+
+//English Name
+*Name "Mestre das Habilidades B"
+
+//Weight
+*무게 1
+
+//Price
+*가격 200000
+
+//Name File
+*연결파일 "Name\BI140.zhoon"

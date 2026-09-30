@@ -1,0 +1,84 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\t_crystal_b\t_crystal_b.ini"
+
+//Name
+*이름 "Cristal de Gelo"
+
+//Level
+*레벨 100
+
+//Size
+*모델크기 1.0
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 600
+
+//HP
+*생명력 30000
+
+//AttackPower
+*공격력 300 300
+
+//AttackRating
+*명중력 1400
+
+//AttackSpeed
+*공격속도 8
+
+//AttackRange
+*공격범위 400
+
+//SkillPower
+*기술공격력 300 350
+
+//SkillRating
+*기술공격률 15
+
+//SkillRange
+*기술공격범위 200
+
+//Defense
+*방어력 1200
+
+//Absorption
+*흡수율 96
+
+//MoveSpeed
+*이동력 1
+
+//Lightning
+*번개 70
+
+//Ice
+*얼음 100
+
+//Fire
+*불 70
+
+//Poison
+*독 70
+
+//Race
+*몬스터종족 노멀
+
+//ShadowSize
+*크기 중대형
+
+//Sound
+*효과음 T_CRYSTAL_B
+
+//Potions
+*물약보유수 3
+
+//PotionChance
+*물약보유률 10
+
+//Drop
+*아이템 10000//Extern File
+*연결파일 "Name\Name.zhoon"

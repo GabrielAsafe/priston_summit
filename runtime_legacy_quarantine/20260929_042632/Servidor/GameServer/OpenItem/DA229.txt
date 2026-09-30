@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "DA229"
+
+//Korean Name
+*ÀÌ¸§ "Roupão Mortal"
+
+//English Name
+*Name "Roupão Mortal"
+
+//Defense
+*¹æ¾î·Â 550 570
+
+//Absorption
+*Èí¼ö·Â 30.8 31.2
+
+//OrganicResistance
+*»ýÃ¼ 11 17
+
+//FireResistance
+*ºÒ 11 17
+
+//FrostResistance
+*³Ã±â 11 17
+
+//LightningResistance
+*¹ø°³ 11 17
+
+//PoisonResistance
+*µ¶ 11 17
+
+//Integrity
+*³»±¸·Â 210 230
+
+//Level
+*·¹º§ 120
+
+//Spirit
+*Á¤½Å·Â 242
+
+//Talent
+*Àç´É 90
+
+//SecondarySpec
+**Æ¯È­·£´ý Priestess Magician
+
+//SpecDefense
+**¹æ¾î·Â 55 60
+
+//SpecAbsorption
+**Èí¼ö·Â 1.3 1.9
+
+//SpecMPRegen
+**±â·ÂÀç»ý 4.3 4.6
+
+//Weight
+*¹«°Ô 105
+
+//Price
+*°¡°Ý 900000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DA229.zhoon"

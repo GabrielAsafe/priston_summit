@@ -1,0 +1,39 @@
+[NETWORK STRINGS]
+374:*TestVersion %d 
+375:*Version %d 
+376:*ServerName %s 
+377:*Server3 %s 
+378:*Server2 %s 
+379:*Server1 %s 
+391:NoServerName
+392:0.0.0.0
+393:*TestVersion
+394:*Version
+395:*ServerName
+396:*Server3
+397:*Server2
+398:*Server1
+412:Game.exe
+415:psupdate.patch.exe
+416:psupdate.exe
+417:ServerName
+422:Version
+424:SERVER
+425:SERVER_NAME=
+432:SERVER1=
+433:*SERVER_NAME=
+437:Update file not find
+438:UPDATE_VERSION=
+440:PsTale
+443:Unable to connect to server.
+462:Server3
+463:Server2
+464:Server1
+522:d:\Working\PristonTale Wolrd\Launcher & Update\Launcher&Update ver 2\PSLauncher_English(IE)\Release\PSLauncher.pdb
+548:SendMessageA
+557:UpdateWindow
+579:DispatchMessageA
+642:GetVersionExA
+677:GetCPInfo
+
+[UTF16 NETWORK STRINGS]

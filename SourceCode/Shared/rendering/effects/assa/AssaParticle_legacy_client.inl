@@ -1,3 +1,21 @@
+// =============================================================================
+// MAPA DO MONOLITO LEGACY - CLIENT ASSA PARTICLES
+//
+// Este mapa e apenas documental. O ficheiro permanece RED e no mesmo local;
+// os separadores abaixo nao alteram ownership, ordem de execucao ou ABI.
+// FUNCIONAMENTO GERAL: Implementa familias historicas de particulas e attachments. Efeitos novos devem entrar pela presentation boundary quando possivel.
+//
+// AREAS PRINCIPAIS:
+//   AREA 01 - CHARACTER RANK / STATUS PARTICLES
+//   AREA 02 - PROJECTILES / TRACES
+//   AREA 03 - WEAPON ATTACHMENT
+//   AREA 04 - CHARACTER/ITEM PARTICLES
+//   AREA 05 - MOTION BLUR / TWO-POINT ANIMATION
+//   AREA 06 - SKILL-SPECIFIC PARTICLES
+//
+// Desenvolvimento novo deve usar contracts/ports/adapters AMBER existentes.
+// =============================================================================
+
 #include "compat/legacy/sin/sinLinkHeader.h"
 #include "systems/rendering/effects/assa/hoAssaParticleEffect.h"
 #include "systems/rendering/effects/assa/AssaParticle.h"
@@ -403,6 +421,14 @@ void cASSAPARTSHOT::Draw(POINT3D *pPosi, POINT3D *pAngle)
 	d3ddev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 }
 
+
+// =============================================================================
+// AREA 02 - PROJECTILES / TRACES
+// TIPO: efeitos + projectile
+// FUNCIONAMENTO: Atualiza trajetoria, lifetime e impacto dos projectiles/trace particles legacy.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 void cASSAPARTSHOT::Main()
 {
@@ -1312,6 +1338,14 @@ void cASSAPARTSPARK::Draw(POINT3D *pPosi, POINT3D *pAngle)
 }
 
 
+// =============================================================================
+// AREA 03 - WEAPON ATTACHMENT
+// TIPO: efeitos + character
+// FUNCIONAMENTO: Resolve pontos/bones da arma para prender particulas e trails.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
+
 bool HoGetWeaponPos(smCHAR *character, WEAPON_PART_POS *partPos)
 {
 	if(character == NULL)
@@ -1565,6 +1599,14 @@ cASSAChar::~cASSAChar()
 {
 
 }
+
+// =============================================================================
+// AREA 04 - CHARACTER PARTICLES
+// TIPO: efeitos + character
+// FUNCIONAMENTO: Atualiza particulas anexadas ao character e encerra efeitos expirados.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 void cASSAChar::Main()
 {

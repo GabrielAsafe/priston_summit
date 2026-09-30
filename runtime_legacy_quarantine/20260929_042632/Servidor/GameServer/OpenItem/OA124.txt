@@ -1,0 +1,35 @@
+//ID
+*ÄÚµå "OA124"
+
+//Korean Name
+*ÀÌ¸§ "Colar Místico +3"
+
+//English Name
+*Name "Colar Místico +3"
+
+//HP
+*»ý¸í·ÂÃß°¡ 29 40
+
+//MP
+*±â·ÂÃß°¡ 49 55
+
+//Level
+*·¹º§ 100
+
+//Spirit
+*Á¤½Å·Â 90
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecMPRegen
+**±â·ÂÀç»ý 0.7 1.0
+
+//Weight
+*¹«°Ô 6
+
+//Price
+*°¡°Ý 90000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\OA124.zhoon"

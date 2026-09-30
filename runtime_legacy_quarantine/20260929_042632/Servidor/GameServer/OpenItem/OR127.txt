@@ -1,0 +1,35 @@
+//ID
+*코드 "OR127"
+
+//Korean Name
+*이름 "Anel Hades"
+
+//English Name
+*Name "Anel Hades"
+
+//HP
+*생명력추가 70 70
+
+//STM
+*근력추가 68 85
+
+//Level
+*레벨 100
+
+//Spirit
+*정신력 60
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecHPRegen
+**생명력재생 0.8 0.8
+
+//Weight
+*무게 7
+
+//Price
+*가격 1090000
+
+//Name File
+*연결파일 "Name\OR127.zhoon"

@@ -1,6 +1,6 @@
-# Summit Text Content Port
+# Summit Content Port
 
-Offline migration toolchain for legacy textual content. Model/stage geometry formats
+Offline migration toolchain for legacy gameplay/content data. Model/stage geometry formats
 (`SMD`, `SMB`, `INX`, `ASE`) are deliberately outside this project; paths to those
 assets are treated as opaque references only.
 
@@ -8,30 +8,56 @@ The implementation follows the same horizontal-migration pattern used by the new
 Summit systems: a neutral domain model, an interface boundary, a legacy source and a
 compiled source can coexist. Calls are switched only after parity is demonstrated.
 
-## Current vertical slice
+## Field runtime pack
 
-Stage spawn (`GameServer/Field/*.spm`) is the first end-to-end slice:
+Field authoring is split into three editable canonical JSON families and compiled into
+one runtime binary:
 
 ```
-legacy SPM ───────────> LegacyStageSpawnContentSource ─┐
-                                                       ├─> IStageSpawnContentSource
-UTF-8 JSON -> asset compiler -> SSPB v2 -> Compiled... ┘
-                                                       ↓
-                                              StageSpawnDefinition
-                                                       ↓
-                                             legacy materializer
-                                                       ↓
-                                           rsSTG_MONSTER_LIST
+stage_spawns/*.json        (legacy SPM semantics)
+stage_start_points/*.json  (legacy SPP semantics)
+fixed_npcs/*.json          (legacy SPC semantics, canonical npc_id references)
+              \
+               +-- compile_field_runtime.py
+              /
+Content/text index --------+
+               |
+               +--> Content/packs/field_runtime.sfld
+                    sections: SSPB + SPPT + SPCN
 ```
 
-By default the active `DecodeOpenMonster()` bridge still uses the legacy source. Set
-`SUMMIT_STAGE_SPAWN_PACK=<path>` to A/B-test the compiled source. If the pack/path is
-not usable it falls back to legacy. `SUMMIT_STAGE_SPAWN_STRICT=1` disables that
-fallback for validation runs.
+`DecodeOpenMonster()` reads the embedded SSPB section. `STG_AREA::LoadStartPoint()`
+reads SPPT and `STG_AREA::LoadCharInfoFixed()` reads SPCN. These runtime reads are
+strict and executable-relative; they do not fall back to physical `.spm`, `.spp` or
+`.spc` files. SPP/SPC slot numbers are preserved so legacy iteration/randomization
+behavior remains stable. Fixed NPC JSON stores `npc_id`; the compiler resolves that
+ID against canonical NPC definitions and places the logical definition path in the
+pack for the existing `smCharDecode()` bridge.
 
-SSPB v2 carries both stable monster IDs when the current corpus permits an exact
-resolution and the exact legacy monster-name bytes needed while `smCHAR_INFO::szName`
-is still the runtime join key.
+One-time import from an existing server tree:
+
+```bash
+python3 tools/content_port/import_field_runtime_legacy.py --repo-root /path/to/summit
+```
+
+Then rebuild the normal standalone runtime content:
+
+```bash
+python3 tools/content_port/consolidate_canonical_content.py --repo-root /path/to/summit
+```
+
+The old standalone `stage_spawns.sspb` is now only an internal compiler intermediate;
+it is removed from the canonical build output and deployment.
+
+Binary layout and migration invariants are documented in `FIELD_RUNTIME_SFLD_V1.md`.
+
+### Field authoring policy
+
+After migration, `.spm`, `.spp` and `.spc` are import-only legacy formats. Runtime
+loads are pack-only. Persistent field edits must be made in canonical JSON and rebuilt.
+The old GM start-point/fixed-NPC mutators are disabled so a live server cannot create a
+second, ignored source of truth. Use `migrate_field_runtime.py --prune-legacy` only after
+a successful build/deploy; it archives the legacy field files before removing them.
 
 ## Map catalog slice
 
@@ -46,11 +72,7 @@ field 53 (`smConfig`) intentionally remains on the legacy runtime path. The stat
 compiled path preserves reciprocal `AddGate()` behavior, feature-gated
 `WORLDCUP_FIELD` stage objects and the four orphan warp `LimitLevel` writes.
 
-`InitField()` remains legacy by default for rollout safety. Set
-`SUMMIT_MAP_PACK=<path>` to A/B-test the compiled source. An unusable/wrong-profile
-pack falls back to legacy; `SUMMIT_MAP_STRICT=1` disables fallback for validation
-runs. The source-derived compiler reproduces the handoff client/server packs
-byte-for-byte. Format details are in `SMAP_V1.md`.
+The static map catalog is also resolved from executable-relative compiled packs in the current runtime. The source-derived compiler reproduces the handoff client/server packs byte-for-byte. Format details are in `SMAP_V1.md`.
 
 ```bash
 python3 tools/content_port/semanticize_maps.py \
@@ -58,7 +80,6 @@ python3 tools/content_port/semanticize_maps.py \
   --output /tmp/client.maps.json
 python3 tools/content_port/compile_maps.py /tmp/client.maps.json /tmp/maps_client.smap
 python3 tools/content_port/inspect_maps.py /tmp/maps_client.smap
-SUMMIT_MAP_PACK=/tmp/maps_client.smap SUMMIT_MAP_STRICT=1 ./your-client
 ```
 
 ## Shadow JSON
@@ -89,7 +110,8 @@ This performs:
 4. extraction of all 54 hardcoded maps from both client and server `InitField()`;
 5. client/server map semantic comparison;
 6. semanticization of static fields 0..52 and compilation of client/server SMAP v1;
-7. compilation of all SPM data into SSPB v2.
+7. compilation of field runtime data into one `field_runtime.sfld` container:
+   SPM -> SSPB v2, SPP -> SPPT v1, and SPC -> SPCN v1.
 
 Individual commands remain available:
 
@@ -97,10 +119,44 @@ Individual commands remain available:
 python3 tools/content_port/import_corpus.py --corpus ... --source-root . --out ...
 python3 tools/content_port/validate_shadow.py ...
 python3 tools/content_port/validate_relations.py --shadow ... --corpus ... --out .../RELATIONS.json
-python3 tools/content_port/compile_stage_spawns.py .../content_shadow .../stage_spawns.sspb
-python3 tools/content_port/inspect_stage_spawns.py .../stage_spawns.sspb
+python3 tools/content_port/compile_field_runtime.py \
+  --canonical-spawns SourceCode/Content/canonical/stage_spawns \
+  --canonical-start-points SourceCode/Content/canonical/stage_start_points \
+  --canonical-fixed-npcs SourceCode/Content/canonical/fixed_npcs \
+  --canonical-text SourceCode/Content/canonical/text \
+  /tmp/field_runtime.sfld
+python3 tools/content_port/inspect_field_runtime.py /tmp/field_runtime.sfld
 ```
 
 `compile_shadow.py`/`inspect_binary.py` provide a generic audit container for the
 whole shadow tree. It is not the final domain runtime format; runtime families get
 explicit versioned packs such as SSPB.
+
+## Gameplay reference / Quest Codex / Mix Guide
+
+Player-facing reference data that must not become authoritative quest state lives in
+`Content/canonical/gameplay_reference/`. The first slice imports the supplied PT-BR
+quest guide, an explicit conservative runtime-binding manifest, and the supplied PT-BR mix table.
+
+`compile_gameplay_reference.py` emits `Content/packs/gameplay_reference.sgrf`. The
+pack is deployed to both client and server, but the initial consumer is the V2 client
+Quest Journal. The journal exposes a read-only Codex and enriches live/classic quest
+rows when a verified runtime ID or a live title matches the guide. The same pack also feeds the client Mix Guide opened by the existing NPC mix-guide opcode; no HTTP request is required at runtime.
+
+Static guide data includes objectives, NPCs, maps/locations, quest items, documented
+rewards, prerequisites, class/faction restrictions, stages, notes and source
+provenance. Accepted/completed state, kill counters, cooldowns and reward grants stay
+server-authoritative and are never inferred from the guide.
+
+Mix reference data remains static: recipe category, exact sheltom ingredients, minimum level, source notation, bonuses, rules and source provenance. The canonical JSON is stored unchanged under `gameplay_reference/mix/`, while SGRF v2 provides a structured runtime view for the client.
+
+The Level 80 PT-BR Tier-5 guide entry is intentionally present in canonical data but
+is not marked supported until the current Summit Rank5 chain is proven equivalent.
+
+```bash
+python3 tools/content_port/compile_gameplay_reference.py \
+  Content/canonical/gameplay_reference \
+  Content/packs/gameplay_reference.sgrf
+python3 tools/content_port/inspect_gameplay_reference.py \
+  Content/packs/gameplay_reference.sgrf
+```

@@ -1,0 +1,38 @@
+//ID
+*코드 "OS112"
+
+//Korean Name
+*이름 "Enigma"
+
+//English Name
+*Name "Enigma"
+
+//HPRegen
+*생명력재생 1.7 1.9
+
+//MPRegen
+*기력재생 1.7 2.0
+
+//Level
+*레벨 90
+
+//Spirit
+*정신력 130
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecHPRegen
+**생명력재생 0.8 1.2
+
+//SpecMPRegen
+**기력재생 1.2 1.7
+
+//Weight
+*무게 2
+
+//Price
+*가격 1000
+
+//Name File
+*연결파일 "Name\OS112.zhoon"

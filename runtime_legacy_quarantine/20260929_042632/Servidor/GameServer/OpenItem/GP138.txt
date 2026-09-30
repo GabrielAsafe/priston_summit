@@ -1,0 +1,17 @@
+//ID
+*코드 "GP138"
+
+//Korean Name
+*이름 "Cristal do Kelvezu"
+
+//English Name
+*Name "Cristal do Kelvezu"
+
+//Level
+*레벨 90
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\GP138.zhoon"

@@ -1,0 +1,62 @@
+//ID
+*코드 "DB129"
+
+//Korean Name
+*이름 "Botas Abissais"
+
+//English Name
+*Name "Botas Abissais"
+
+//Defense
+*방어력 393 405
+
+//Absorption
+*흡수력 18.4 18.9
+
+//Speed
+*이동속도 4.4 4.8
+
+//OrganicResistance
+*생체 4 7
+
+//FireResistance
+*불 4 7
+
+//FrostResistance
+*냉기 4 7
+
+//LightningResistance
+*번개 4 7
+
+//PoisonResistance
+*독 4 7
+
+//Integrity
+*내구력 226 235
+
+//Level
+*레벨 130
+
+//Strength
+*힘 100
+
+//Agility
+*민첩성 100
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecAbsorption
+**흡수력 1.3 1.7
+
+//SpecSpeed
+**이동속도 1.2 2
+
+//Weight
+*무게 80
+
+//Price
+*가격 1390000
+
+//Name File
+*연결파일 "Name\DB129.zhoon"

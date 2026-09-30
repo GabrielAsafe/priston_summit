@@ -6,6 +6,9 @@ namespace gameplay
 {
 namespace professions
 {
+class SQLiteProfessionRepository;
+
 ProfessionService& ServerProfessionService();
+SQLiteProfessionRepository& ServerProfessionRepository();
 }
 }

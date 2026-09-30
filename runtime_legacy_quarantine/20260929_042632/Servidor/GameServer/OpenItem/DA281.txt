@@ -1,0 +1,41 @@
+//ID
+*ÄÚµå "DA281"
+
+//Korean Name
+*ÀÌ¸§ "Roupão Prateada"
+
+//English Name
+*Name "Roupão Prateada"
+
+//Defense
+*¹æ¾î·Â 200 200
+
+//Absorption
+*Èí¼ö·Â 6.0 6.0
+
+//Block
+*ºí·°À² 2.0 2.0
+
+//OrganicResistance
+*»ýÃ¼ 5 5
+
+//FireResistance
+*ºÒ 5 5
+
+//FrostResistance
+*³Ã±â 5 5
+
+//LightningResistance
+*¹ø°³ 5 5
+
+//PoisonResistance
+*µ¶ 5 5
+
+//Weight
+*¹«°Ô 35
+
+//Price
+*°¡°Ý 100000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DA281.zhoon"

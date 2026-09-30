@@ -1,0 +1,14 @@
+//ID
+*코드 "QT102"
+
+//Korean Name
+*이름 "Cauda do Wolverine"
+
+//English Name
+*Name "Cauda do Wolverine"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\QT102.zhoon"

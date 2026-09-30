@@ -1,0 +1,11 @@
+//Max monsters per map
+*MAX_ACTOR_POS 100
+//Time between spawns (in seconds)
+*DELAY 3 3
+//Max monster per flag
+*MAX_ACTOR 1
+
+
+//		몬스터 이름          출현빈도
+
+*ACTOR 	"Itens 165"		10

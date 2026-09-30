@@ -21,7 +21,7 @@ for name in ('Bomb Shot','Flame Wave','Perforation','Piercing'):
     if not re.search(r'SkillBehavior::[A-Za-z]+,\s*true,\s*"'+re.escape(name)+r'"',cat): err.append('canonical skill not executable: '+name)
 ready=len(re.findall(r'MakeSkill\([^\n]+SkillBehavior::[A-Za-z]+,\s*true,',cat))
 if ready!=142: err.append(f'expected 142 canonical executable skills, got {ready}')
-if 'status > 0 ? status : 1' not in exec_cpp: err.append('potion source status is not preserved in ITEM_CHECK telemetry')
+if 'result.legacyStatus > 0 ? result.legacyStatus : 1' not in exec_cpp: err.append('potion source status is not preserved in ITEM_CHECK telemetry')
 if err:
     print('Companion movement/potion/skill V6: FAIL'); [print(' -',e) for e in err]; sys.exit(1)
 print(f'Companion movement/potion/skill V6: PASS (safe teleport + RUN + PotionMonitor + {ready} executable)')

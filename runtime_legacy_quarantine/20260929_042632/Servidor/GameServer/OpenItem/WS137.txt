@@ -1,0 +1,71 @@
+//ID
+*ÄÚµå "WS137"
+
+//Korean Name
+*ÀÌ¸§ "Arco Anúbis"
+
+//English Name
+*Name "Arco Anúbis"
+
+//AttackPower
+*°ø°Ý·Â 112 115 134 137
+
+//AttackRating
+*¸íÁß·Â 251 273
+
+//AttackRange
+*»çÁ¤°Å¸® 255
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 8
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 20
+
+//Block
+*ºí·°À² 8.0 8.0
+
+//Integrity
+*³»±¸·Â 286 305
+
+//Level
+*·¹º§ 130
+
+//Strength
+*Èû 82
+
+//Talent
+*Àç´É 90
+
+//Agility
+*¹ÎÃ¸¼º 279
+
+//PrimarySpec
+**Æ¯È­ Archer
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Atalanta
+
+//SpecAttackPower
+**°ø°Ý·Â 7 7
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SpecAttackRange
+**»çÁ¤°Å¸® 25
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 5
+
+//Weight
+*¹«°Ô 128
+
+//Price
+*°¡°Ý 2290000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WS137.zhoon"

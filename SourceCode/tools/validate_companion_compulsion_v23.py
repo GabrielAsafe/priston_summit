@@ -6,11 +6,14 @@ cat=(ROOT/'SrcServer/src/systems/gameplay/companions/CompanionSkillCatalog.inl')
 cpp=(ROOT/'SrcServer/src/systems/gameplay/companions/CompanionSkillExecutor.cpp').read_text(errors='ignore')
 h=(ROOT/'SrcServer/src/systems/gameplay/character/core/character.h').read_text(errors='ignore')
 ai=(ROOT/'Shared/server/legacy_runtime/OnSever_legacy_server.inl').read_text(errors='ignore')
+targeting=(ROOT/'SrcServer/src/systems/gameplay/combat/v2/legacy/LegacyTargetingAdapter.cpp').read_text(errors='ignore')
 err=[]
 line=next((x for x in cat.splitlines() if 'SKILL_COMPULSION' in x),'')
 if ', true,' not in line: err.append('Compulsion not READY')
-for tok in ['ApplyCompanionCompulsionTaunt','Compulsion_Area[p]','Compulsion_Time[p]','Compulsion_AddAbsorb[p]','lpCompulsionChar = caster']:
+for tok in ['ApplyCompanionCompulsionTaunt','Compulsion_Area[p]','Compulsion_Time[p]','Compulsion_AddAbsorb[p]','ServerLegacyTargetingAdapter().ForceTarget(']:
  if tok not in cpp: err.append('executor missing '+tok)
+for tok in ['resolvedActor->lpCompulsionChar = resolvedTarget','resolvedActor->dwCompulsionTime = static_cast<DWORD>(expiresAt)']:
+ if tok not in targeting: err.append('targeting adapter missing '+tok)
 if '*lpCompulsionChar;' not in h: err.append('smCHAR companion taunt pointer missing')
 for tok in ['lpChar->lpCompulsionChar','lpChar->lpTargetChar = lpChar->lpCompulsionChar','lpChar->lpCompulsionChar = 0']:
  if tok not in ai: err.append('AI missing '+tok)

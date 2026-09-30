@@ -1,0 +1,101 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\leech\leech.ini"
+
+//Name
+*이름 "Parasita"
+
+//Level
+*레벨 30
+
+//Size
+*모델크기 1.0
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 340
+
+//HP
+*생명력 310
+
+//AttackPower
+*공격력 17 25
+
+//AttackRating
+*명중력 450
+
+//AttackSpeed
+*공격속도 6
+
+//AttackRange
+*공격범위 45
+
+//Defense
+*방어력 160
+
+//Absorption
+*흡수율 7
+
+//MoveSpeed
+*이동력 3
+
+//Race
+*몬스터종족 뮤턴트
+
+//ShadowSize
+*크기 소형
+
+//Experience
+*경험치 2653
+
+//Sound
+*효과음 LEECH
+
+//DropsNumber
+*아이템카운터 1
+
+//DropGold
+*아이템 2500 돈 6000 7000
+
+//DropPotion
+*아이템 2500 PS102 PL102 PM102 PM102
+
+//Drop
+//*아이템 100 SE103 SE104
+
+//Drop
+*아이템 30 GP103 GP109 GP104
+
+//Drop
+*아이템 80 OS102
+
+//Drop
+*아이템 40 OS103
+
+//Drop
+*아이템 20 OS104
+
+//Drop
+*아이템 100 EC101 EC102 EC104
+
+//Drop
+*아이템 3870 WA102 WC102 WH103 WM103 WP103 WS104 WS205 WT103 OA106 OA202 OM103 OR106 DA104 DA204 DB102 DG102 DS102
+
+//Drop
+*아이템 360 WA103 WC103 WH104 WM104 WP104 WS105 WS206 WT104 OA107 OA203 OM104 OR107 DA105 DA205 DB103 DG103 DS103
+
+//Drop
+*아이템 240 WA104 WC104 WH105 WM105 WP105 WS106 WS207 WT105 OA108 OA204 OM105 OR108 DA106 DA206 DB104 DG104 DS104
+
+//Drop
+*아이템 120 WA105 WC105 WH106 WM106 WP106 WS107 WS208 WT106 OA109 OA205 OM106 OR109 DA107 DA207 DB105 DG105 DS105
+
+//Drop
+*아이템 40 WA106 WC106 WH107 WM107 WP107 WS108 WS209 WT107 OA110 OA206 OM107 OR110 DA108 DA208 DB106 DG106 DS106
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

@@ -1,0 +1,74 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\monstonegolem\monstonegolem.ini"
+
+//Name
+*이름 "R3 Golem de Pedra"
+
+//Level
+*레벨 69
+
+//Size
+*모델크기 1.0
+
+//QuestCode
+*구별코드 23
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 380
+
+//HP
+*생명력 2250
+
+//AttackPower
+*공격력 87 114
+
+//AttackRating
+*명중력 1100
+
+//AttackSpeed
+*공격속도 6
+
+//AttackRange
+*공격범위 70
+
+//SkillPower
+*기술공격력 94 125
+
+//SkillRating
+*기술공격률 17
+
+//SkillRange
+*기술공격범위 60
+
+//SkillDistance
+*기술공격거리 70
+
+//Defense
+*방어력 620
+
+//Absorption
+*흡수율 18
+
+//MoveSpeed
+*이동력 3
+
+//Race
+*몬스터종족 디먼
+
+//ShadowSize
+*크기 대형
+
+//Experience
+*경험치 55000
+
+//Sound
+*효과음 STONEGOLEM
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

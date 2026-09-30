@@ -17,7 +17,7 @@
     "fields": {
       "state": "적",
       "model_file": "char\\monster\\monhauntplant\\monhauntmaple.ini",
-      "name": "Planta Mort?era",
+      "name": "Planta Mortífera",
       "level": 17,
       "model_scale": 1.0,
       "generate_group": [

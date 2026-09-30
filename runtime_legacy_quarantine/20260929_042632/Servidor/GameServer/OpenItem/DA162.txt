@@ -1,0 +1,41 @@
+//ID
+*코드 "DA162"
+
+//Korean Name
+*이름 "Armadura Noel Vermelha"
+
+//English Name
+*Name "Armadura Noel Vermelha"
+
+//Defense
+*방어력 200 200
+
+//Absorption
+*흡수력 12.0 12.0
+
+//HP
+*생명력추가 30 30
+
+//MP
+*기력추가 30 30
+
+//Level
+*레벨 20
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Knight
+
+//SpecDefense
+**방어력 50 50
+
+//SpecAbsorption
+**흡수력 5.0 5.0
+
+//Weight
+*무게 50
+
+//Price
+*가격 100000
+
+//Name File
+*연결파일 "Name\DA162.zhoon"

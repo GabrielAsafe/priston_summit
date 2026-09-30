@@ -115,8 +115,12 @@ onserver = require(
 require("SrcServer/src/core/server/legacy_runtime/PartySever.cpp", '"xp.monster_gain"')
 require(
     "SrcServer/src/systems/gameplay/events/v2/GameplayEventRuntime.cpp",
-    '"monster.kill"', '"hunt.kill"', "MONSTER_CLASS_BOSS",
+    '"monster.kill"', '"hunt.kill"', "event.monsterBoss",
     '"hunt.trophy_chance"', '"trophy:"', "AddServerCovenantInventoryItem",
+)
+require(
+    "SrcServer/src/systems/gameplay/events/v2/legacy/LegacyGameplayEventAdapter.cpp",
+    "MONSTER_CLASS_BOSS", "const bool isBoss", "MonsterKilledEvent event",
 )
 require(
     "Shared/gameplay/covenants/v2/ICovenantGameplayBridge.h",

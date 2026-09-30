@@ -1,0 +1,14 @@
+//ID
+*코드 "BI251"
+
+//Korean Name
+*이름 "Po豫o Futebol"
+
+//English Name
+*Name "Po豫o Futebol"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\BI251.zhoon"

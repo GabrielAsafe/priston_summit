@@ -1,0 +1,14 @@
+//ID
+*코드 "BC121"
+
+//Korean Name
+*이름 "HP Booster (1h)"
+
+//English Name
+*Name "HP Booster (1h)"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\BC121.zhoon"

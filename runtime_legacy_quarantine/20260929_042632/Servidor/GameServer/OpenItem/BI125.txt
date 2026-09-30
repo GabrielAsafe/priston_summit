@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "BI125"
+
+//Korean Name
+*ÀÌ¸§ "Poção da Experiência 50% 1d"
+
+//English Name
+*Name "Poção da Experiência 50% 1d"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\BI125.zhoon"

@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "BI111"
+
+//Korean Name
+*ÀÌ¸§ "Ouro Mágico"
+
+//English Name
+*Name "Ouro Mágico"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\BI111.zhoon"

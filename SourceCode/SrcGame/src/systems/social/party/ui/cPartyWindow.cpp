@@ -5,6 +5,7 @@
 #include "systems/commerce/coin_shop/CoinShop_T.h"
 #include "systems/gameplay/quests/ui/cQuestWindow.h"
 #include "gameplay/classes/v2/services/ClassService.h"
+#include "systems/network/v2/legacy/LegacyClientCommandSender.h"
 
 cPARTY cParty;
 
@@ -229,7 +230,8 @@ bool cPARTY::LButtonDown()
 					smTransCommand.LParam = opt->ButtonNum;
 					smTransCommand.SParam = 0;
 
-					smWsockServer->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+					(void)gameplay::network::legacy::ClientLegacyCommandSender().Send(
+						gameplay::network::PacketView(&smTransCommand, smTransCommand.size, static_cast<std::uint32_t>(smTransCommand.code)));
 				}
 
 				delete opt;

@@ -1,0 +1,59 @@
+//ID
+*ÄÚµå "DA122"
+
+//Korean Name
+*ÀÌ¸§ "Armadura Dragão"
+
+//English Name
+*Name "Armadura Dragão"
+
+//Defense
+*¹æ¾î·Â 380 400
+
+//Absorption
+*Èí¼ö·Â 20.9 21.4
+
+//OrganicResistance
+*»ýÃ¼ 8 14
+
+//FireResistance
+*ºÒ 8 14
+
+//FrostResistance
+*³Ã±â 8 14
+
+//LightningResistance
+*¹ø°³ 8 14
+
+//PoisonResistance
+*µ¶ 8 14
+
+//Integrity
+*³»±¸·Â 180 210
+
+//Level
+*·¹º§ 90
+
+//Strength
+*Èû 200
+
+//Talent
+*Àç´É 90
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**¹æ¾î·Â 48 60
+
+//SpecAbsorption
+**Èí¼ö·Â 1.3 1.5
+
+//Weight
+*¹«°Ô 130
+
+//Price
+*°¡°Ý 300000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DA122.zhoon"

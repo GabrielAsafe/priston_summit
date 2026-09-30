@@ -27,8 +27,10 @@ assign=char.find('lpStage = ownerArea->lpStage;', block_start)
 if block_start < 0 or apply < 0 or assign < 0 or not (assign < apply):
     errors.append('map transition stage recovery does not precede ApplyAI')
 
+if 'if(owner->smCharInfo.Life[0] <= 0)' not in sys and 'if(!ownerSnapshot.alive)' not in sys:
+    errors.append('owner-dead hold policy: missing legacy or snapshot alive gate')
+
 for needle in (
-    'if(owner->smCharInfo.Life[0] <= 0)',
     'managedSlot->skillRuntime.multiHitRemaining = 0',
     'managedSlot->skillRuntime.chargedStrikeTargetSerial = 0',
     'character->lpTargetChar = NULL',

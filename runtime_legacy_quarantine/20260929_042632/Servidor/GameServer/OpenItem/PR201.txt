@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "PR201"
+
+//Korean Name
+*ÀÌ¸§ "Relíquia de Ametista"
+
+//English Name
+*Name "Relíquia de Ametista"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\PR201.zhoon"

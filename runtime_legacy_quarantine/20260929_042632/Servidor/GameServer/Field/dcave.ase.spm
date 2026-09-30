@@ -1,0 +1,19 @@
+//몬스터 출현 비율
+
+*최대동시출현수	 300
+//출현간격 범위 9-1 1차이당 2배씩 빨라짐
+*출현간격	 1 2
+*출현수	 1
+
+//		몬스터 이름          출현빈도
+
+*출연자	"Cavaleiro Negro"		10
+*출연자	"Caramujo Espinhoso"		15
+*출연자	"Pesadelo"		10
+*출연자	"Bruxa"		9
+*출연자	"Duende Guerreiro"		12
+*출연자	"Golem de Pedra"		8
+*출연자	"Guardiao de Lama"		25
+*출연자	"Guardiao Maldito"		11
+
+

@@ -1,0 +1,178 @@
+74.122.192.107
+Account[%s] Wrong Version
+ada do continente de Priston, sendo capazes de controlar todos os tipos de equipamentos, at
+*AREA_SERVER
+Area Server[0]: (%s)
+Area Server[1]: (%s)
+Area shutdown server (%s)
+<assembly xmlns='urn:schemas-microsoft-com:asm.v1' manifestVersion='1.0'>
+atlTraceDBClient
+C:\@@ADM PRISTON\Source Summit Tale\Source Summit Tale\Executaveis\Server\Server.pdb
+*CLAN_SERVER
+ClanServerInspect
+*CLIENT_CHECK_FUNC
+*CLIENT_CHECK_PROCESS_TIME
+*CLIENT_PROCESS_TIME_OUT
+ClientToScreen
+Conectando-se ao Banco de Dados: ServerDB
+*CONNECT_CLIENT_CODE
+Connection lost to Dataserver
+Connection lost to Server
+Consiga uma namorada aqui no Priston e passe um tempo com ela!
+DataServer
+DataServer\LastError.dat
+DataServer\%s
+DataServer\%s\%d
+DataServer\%s\%d\
+DataServer\%s\%d\%s.dat
+DataServer\%s\%d\%s.war
+DataServer\%s\%s.dat
+DataServer\UserData\%d\*.dat
+DataServer\WareHouse\%d\%s
+DataServer\WareHouse\%d\*.war
+%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Attack/Defence Error ( %d )( %d )( %d )
+%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Checksum Error ( %d )
+%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Damage Packet Error ( %d )( %d )
+%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Energy Bar Error ( %d )( %d )( %d )
+%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client EXP Error ( %d )/( %dk )( %dk )
+%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Function Checking Count Error ( %d )( %d )
+%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Function Checking Error ( %d )( %d )
+%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Process Time Out ( %d )( %d )
+%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Warning [Motion Speed] ( %d )
+%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Warning [Skill Attack] ( %d )
+%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Warning [Skill Forgery - 2] ( %d )( %d )( %d )
+%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Warning [Skill Forgery] ( %d )( %d )
+%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Game Server IP Error ( %d )( %s )
+%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Reconnect Server ( %d )
+%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server and Client Exp Error ( %d )( %d ) - %d
+%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server and Client Moeny Error ( %d )( %d ) - %d
+%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server EXP Error ( %dk )( %dk )
+%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server Inventory [Item] Error ( %d ) - ( %s )( %d )( %d / %d )
+%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server Inventory Loading Found [Copied Item] ( %d ) - ( %s )( %d )( %d / %d )
+%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server Inventory [Money] Error ( %d ) - ( %d )( %d )
+%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server Inventory Used Full ( %d )( %d )( %d )
+%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server Money Error2 ( %d )( %d )
+%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server Money Error3 ( %d )( %d )
+%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server Money Error ( %d )( %d )
+%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) *Server Money overflow( %d ) - ( %s ) (%d)(%d) = (%d)
+%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server Potion Error ( %d )( %d )( %d )
+%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server Potion Moving Error ( [%d]  %d )/( %d )
+%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server To Server Moving Item Error ( %d ) - ( %d )( %d )
+Disconnect Area Server (%s)
+*DISCONNECT_CLIENT_BADCODE
+DRIVER={SQL Server};SERVER=%s;UID=%s;PWD=%s;
+*ENABLE_SERVER_EXP
+Error Record Memory: Alloc Failed - Hotuk Server
+*EVENT_PRISTON_ALPHABET
+From server: ---from--
+*GAME_SERVER
+GameServer\Field\
+gameServerIP
+Game Server IP Error OverFlow
+Game Server IP Error OverFlow [
+GameServer: Mapas (Estavel) Verificando.
+GameServer\monster\
+GameServer\npc\
+GameServer\OpenItem\
+gameServerPORT
+GetClientRect
+GetVersionExA
+http://info.pristontale.com/blackWarning/warning.asp?id=%s&name=%s
+http://%s/Clan/clanInsert.aspx?userid=%s&gserver=%s&chname=%s&clName=%s&expl=%s&ticket=%d&chtype=%d&lv=%d
+http://%s//ServerMain//clanChipChange.asp?chname=%s&gserver=%s&clName=%s&ticket=%d
+http://%s//ServerMain//clanInsertClanWon.asp?userid=%s&gserver=%s&chname=%s&clName=%s&clwon=%s&clwonUserid=%s&lv=%d&ticket=%d&chtype=%d&chlv=%d&chipflag=%s
+http://%s//ServerMain//clanRemove.asp?userid=%s&gserver=%s&chname=%s&clName=%s&ticket=%d
+http://%s//ServerMain//ClanSubChipRelease.asp?chname=%s&gserver=%s&ticket=%d
+http://%s//ServerMain//ClanSubChipUpdate.asp?chname=%s&gserver=%s&ticket=%d
+http://%s//ServerMain//clanWonRelease.asp?userid=%s&gserver=%s&chname=%s&clName=%s&%s&ticket=%d
+http://%s//ServerMain//clanWonSelfLeave.asp?userid=%s&gserver=%s&chname=%s&clName=%s&ticket=%d
+http://%s//ServerMain//GetAllMyClanMember.asp?userid=%s&gserver=%s&chname=%s&ticket=%d
+http://%s//ServerMain//isCheckClanJang.asp?userid=%s&gserver=%s&ticket=%d
+http://%s//ServerMain//isCheckClanName.asp?ClName=%s&gserver=%s&ticket=%d
+http://%s//ServerMain//isCheckClanNum.asp?num=%s&ticket=%d
+http://%s//ServerMain//isCheckClanwon.asp?gserver=%s&clwon=%s
+http://%s//ServerMain//isClanMember.asp?userid=%s&gserver=%s&chname=%s&ticket=%d
+http://%s//ServerMain//isKflag.asp?userid=%s&clName=%s&chName=%s&gserver=%s&KFlag=%s&Gubun=%s&ticket=%d
+http://%s//ServerMain//isPFlag.asp?userid=%s&clName=%s&chName=%s&gserver=%s&PFlag=%s&Gubun=%s&ticket=%d
+http://%s/ServerMain/sod2info.asp?userid=%s&chname=%s&gserver=%s&index=%d
+http://www.pristontale.com
+image\Sinimage\Quest\Priston.sin
+Inicializando logs SQL SERVER...
+INSERT INTO Security ([AccountId], [IP], [Date], [Protocol]) VALUES ('?', '?', GETDATE(), '?')
+Local server settings (%d)
+no protocol option
+o do cliente foi bloqueada
+Ola %s, Bem Vindo ao Priston Tale.
+o para o cliente %d foi adicionado ( %d )
+OPCODE_SAVETHROWITEMS
+Os Morions residem na parte Norte do continente de Priston. S
+Persist Security Info=False; Integrated Security=False; Driver=%s; Server=%s; Database=%s; Uid=%s; Pwd=%s;
+Priston Tale
+protocol error
+protocol not supported
+Reborn Priston Tale-pc
+Reborn Priston Tale(): %s
+Reconnect Server Area (%d)
+Region Server Connection (%s)
+rsRecvUserID_MainServer
+rsRecvUserID_MainServer - [
+%s\DataServer\%s\%d\
+%s\DataServer\%s\%d\%s.dat
+Seja Bem Vindo ao Summit Tale. Os comandos terminam com ;
+SELECT * FROM [PristonDB].[dbo].[Coroa]
+SELECT * FROM [PristonDB].[dbo].[Coroas]
+SELECT * FROM [PristonDB].[dbo].[Coroas] WHERE [Name]='%s'
+SELECT * FROM [PristonDB].[dbo].[Tags]
+SELECT * FROM [PristonDB].[dbo].[Tags] WHERE [Clan]='%s'
+server> 
+Server
+SERVER: 
+*SERVER_AUTOPLAY
+*SERVER_CODE
+ServerDB
+ServerDown
+ServerExit
+*SERVER_INVENTORY
+> Server Money ( %d )( %d )
+*SERVER_NAME
+*SERVER_RECORD_MEM
+server.txt
+smTRANSCODE_AREA_SERVER_MAP
+smTRANSCODE_CLIENT_ERROR
+smTRANSCODE_CLIENT_FUNCPOS
+smTRANSCODE_CLIENTINFO
+smTRANSCODE_CLOSECLIENT
+smTRANSCODE_GETCLIENT_FUNCPOS
+smTRANSCODE_SAVECLIENT
+smTRANSCODE_SEND_AGAME_SERVER
+smTRANSCODE_SEND_AREASERVER
+smTRANSCODE_SEND_DATASERVER
+smTRANSCODE_SEND_GAMESERVER
+smTRANSCODE_SERVER_INFO
+smTRANSCODE_UPDATE_SERVER_PARAM
+smTRANSCODE_VERSION
+smTRANSCODE_WARNING_CLIENT
+SOFTWARE\Microsoft\Windows\CurrentVersion\Fonts
+SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\3D Studio MAX R3.1
+SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\3D Studio MAX R3.1L
+SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ACDSee
+SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Adobe Photoshop 6.0
+SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts
+SOFTWARE\Triglow Pictures\PristonTale
+SQLDATA: Unable to set ODBC version.
+Summit Tale - Console
+%s?userid=%s&gserver=%s&chname=%s&ticket=%d
+szServerConnectErrorMsg
+*TEST_SERVER
+*TT_DATA_SERVER
+Unnamed Server
+UPDATE  [PristonDB].[dbo].[Coroa] SET ID=1
+UPDATE  [PristonDB].[dbo].[Coroa] SET ID=2
+UPDATE  [PristonDB].[dbo].[Coroa] SET ID=3
+UPDATE  [PristonDB].[dbo].[Coroa] SET ID=4
+UPDATE [PristonDB].[dbo].[Tags] SET Clan='%s' WHERE [CodeIT]='%s'
+UPDATE [PristonDB].[dbo].[Tags] SET Slot='%d' WHERE [CodeIT]='%s'
+UPDATE [ServerDB].[dbo].[PVP] SET Lvl=%d,Class=%d WHERE Name='%s'
+*VERSION
+wrong protocol type
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>

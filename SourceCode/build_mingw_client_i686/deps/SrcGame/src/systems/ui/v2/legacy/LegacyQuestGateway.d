@@ -136,6 +136,10 @@
  SrcGame/src/systems/progression/rankings/general/Ranking.h \
  SrcGame/src/platform/database/odbc/SQL.h \
  Dependency/DirectX9/Include/d3dx9math.h \
+ Shared/content/v1/gameplay_reference/content/GameplayReferenceRuntime.h \
+ Shared/content/v1/gameplay_reference/content/CompiledGameplayReferenceSource.h \
+ Shared/content/v1/common/Sha256.h \
+ Shared/content/v1/runtime/RuntimeContentPath.h \
  SrcGame/src/systems/gameplay/quests/ui/cQuestWindow.h \
  Shared/skillsPacket.h Shared/items.h
 SrcGame/src/systems/ui/v2/legacy/LegacyQuestGateway.h:
@@ -276,6 +280,10 @@ SrcGame/src/systems/progression/rankings/class_rank/Rank.h:
 SrcGame/src/systems/progression/rankings/general/Ranking.h:
 SrcGame/src/platform/database/odbc/SQL.h:
 Dependency/DirectX9/Include/d3dx9math.h:
+Shared/content/v1/gameplay_reference/content/GameplayReferenceRuntime.h:
+Shared/content/v1/gameplay_reference/content/CompiledGameplayReferenceSource.h:
+Shared/content/v1/common/Sha256.h:
+Shared/content/v1/runtime/RuntimeContentPath.h:
 SrcGame/src/systems/gameplay/quests/ui/cQuestWindow.h:
 Shared/skillsPacket.h:
 Shared/items.h:

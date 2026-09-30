@@ -1,0 +1,65 @@
+//ID
+*코드 "WM131"
+
+//Korean Name
+*이름 "Cajado Abissal"
+
+//English Name
+*Name "Cajado Abissal"
+
+//AttackPower
+*공격력 136 139 155 158
+
+//AttackRating
+*명중력 243 253
+
+//AttackRange
+*사정거리 241
+
+//AttackSpeed
+*공격속도 8
+
+//AttackCritical
+*크리티컬 12
+
+//Block
+*블럭율 12.0 12.0
+
+//Integrity
+*내구력 230 250
+
+//Level
+*레벨 130
+
+//Strength
+*힘 75
+
+//Spirit
+*정신력 240
+
+//Talent
+*재능 100
+
+//SecondarySpec
+**특화랜덤 Priestess Magician
+
+//SpecAttackPower
+**공격력 6 6
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecMPRegen
+**기력재생 3.4 3.7
+
+//SpecSkillTraining
+**마법숙련도 16 26
+
+//Weight
+*무게 92
+
+//Price
+*가격 1700000
+
+//Name File
+*연결파일 "Name\WM131.zhoon"

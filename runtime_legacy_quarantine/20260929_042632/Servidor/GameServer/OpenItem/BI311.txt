@@ -1,0 +1,14 @@
+//ID
+*코드 "BI311"
+
+//Korean Name
+*이름 "HP Booster 12h"
+
+//English Name
+*Name "HP Booster 12h"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\BI311.zhoon"

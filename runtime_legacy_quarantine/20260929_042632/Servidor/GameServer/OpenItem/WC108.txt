@@ -1,0 +1,65 @@
+//ID
+*ÄÚµå "WC108"
+
+//Korean Name
+*ÀÌ¸§ "Garra Faraó"
+
+//English Name
+*Name "Garra Faraó"
+
+//AttackPower
+*°ø°Ý·Â 11 13 17 20
+
+//AttackRating
+*¸íÁß·Â 67 80
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 9
+
+//Defense
+*¹æ¾î·Â 22 28
+
+//Integrity
+*³»±¸·Â 44 62
+
+//Level
+*·¹º§ 37
+
+//Strength
+*Èû 70
+
+//Talent
+*Àç´É 50
+
+//Agility
+*¹ÎÃ¸¼º 50
+
+//PrimarySpec
+**Æ¯È­ Mechanician
+
+//SecondarySpec
+**Æ¯È­·£´ý Fighter Pikeman Knight Atalanta
+
+//SpecAttackPower
+**°ø°Ý·Â 7 7
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 6
+
+//Weight
+*¹«°Ô 17
+
+//Price
+*°¡°Ý 18000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WC108.zhoon"

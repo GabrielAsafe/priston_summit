@@ -1,0 +1,14 @@
+//ID
+*코드 "BI161"
+
+//Korean Name
+*이름 "Super Pedra do Aging"
+
+//English Name
+*Name "Super Pedra do Aging"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\BI161.zhoon"

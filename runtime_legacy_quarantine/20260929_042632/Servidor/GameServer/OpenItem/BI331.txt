@@ -1,0 +1,6 @@
+//		아이템 정보		//
+// 리카르텐으로 가세!!			//
+
+*이름	"Caravana 7dias"
+"Caravana 7dias"
+*코드	"BI331"

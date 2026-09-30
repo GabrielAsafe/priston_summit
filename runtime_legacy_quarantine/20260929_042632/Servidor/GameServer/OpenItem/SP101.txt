@@ -1,0 +1,14 @@
+//ID
+*코드 "SP101"
+
+//Korean Name
+*이름 "Songpyon Pequeno"
+
+//English Name
+*Name "Songpyon Pequeno"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\SP101.zhoon"

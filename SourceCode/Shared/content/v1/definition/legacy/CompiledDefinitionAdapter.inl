@@ -5,41 +5,12 @@
 #include <vector>
 #include "content/v1/definition/content/DefinitionRuntime.h"
 #include "content/v1/localization/content/LocalizationRuntime.h"
+#include "content/v1/localization/legacy/LocalizationLegacyEncoding.h"
 #include "formats/character_config/CharacterConfigReader.inl"
 #include "formats/character_config/CharacterConfigLegacyAdapter.inl"
 #include "formats/item_config/ItemDefinitionReader.inl"
 
 namespace summit { namespace content { namespace definition {
-
-inline UINT SummitLegacyLocalizationCodePage()
-{
-#ifdef _LANGUAGE_BRAZIL
- return 1252u; // Legacy PT-BR assets are byte-oriented Windows-1252.
-#else
- return CP_ACP;
-#endif
-}
-
-inline bool SummitEncodeLocalizedText(const std::string &utf8,std::string &legacyBytes)
-{
- legacyBytes.clear();
- if(utf8.empty()) return true;
- const UINT codePage=SummitLegacyLocalizationCodePage();
- if(codePage==CP_UTF8){legacyBytes=utf8;return true;}
-
- const int wideCount=MultiByteToWideChar(CP_UTF8,MB_ERR_INVALID_CHARS,utf8.c_str(),static_cast<int>(utf8.size()),0,0);
- if(wideCount<=0)return false;
- std::vector<wchar_t> wide(static_cast<std::size_t>(wideCount));
- if(MultiByteToWideChar(CP_UTF8,MB_ERR_INVALID_CHARS,utf8.c_str(),static_cast<int>(utf8.size()),&wide[0],wideCount)!=wideCount)return false;
-
- BOOL usedDefault=FALSE;
- const int byteCount=WideCharToMultiByte(codePage,WC_NO_BEST_FIT_CHARS,&wide[0],wideCount,0,0,0,&usedDefault);
- if(byteCount<=0||usedDefault)return false;
- legacyBytes.resize(static_cast<std::size_t>(byteCount));
- usedDefault=FALSE;
- if(WideCharToMultiByte(codePage,WC_NO_BEST_FIT_CHARS,&wide[0],wideCount,&legacyBytes[0],byteCount,0,&usedDefault)!=byteCount||usedDefault){legacyBytes.clear();return false;}
- return true;
-}
 
 inline bool SummitCopyLegacyBytes(char *destination,std::size_t capacity,const std::string &value)
 {
@@ -50,7 +21,7 @@ inline bool SummitCopyLegacyBytes(char *destination,std::size_t capacity,const s
 inline bool SummitCopyLocalizedText(char *destination,std::size_t capacity,const std::string &value)
 {
  std::string legacyBytes;
- return SummitEncodeLocalizedText(value,legacyBytes)&&SummitCopyLegacyBytes(destination,capacity,legacyBytes);
+ return summit::content::localization::EncodeLocalizationUtf8ForLegacy(value,legacyBytes)&&SummitCopyLegacyBytes(destination,capacity,legacyBytes);
 }
 
 inline bool ApplyCompiledCharacterLocalization(
@@ -73,7 +44,7 @@ inline bool ApplyCompiledCharacterLocalization(
   for(int i=1;i<=NPC_MESSAGE_MAX;++i){char suffix[32];std::sprintf(suffix,".chat.%d",i);std::string key=contentId+suffix;if(!GetLocalizationValue(key.c_str(),value))break;chats.push_back(value);}
   if(!chats.empty()){
    std::vector<std::string> legacyChats;legacyChats.reserve(chats.size());bool encodable=true;
-   for(std::size_t i=0;i<chats.size();++i){std::string encoded;if(!SummitEncodeLocalizedText(chats[i],encoded)){encodable=false;break;}legacyChats.push_back(encoded);}
+   for(std::size_t i=0;i<chats.size();++i){std::string encoded;if(!summit::content::localization::EncodeLocalizationUtf8ForLegacy(chats[i],encoded)){encodable=false;break;}legacyChats.push_back(encoded);}
    if(!encodable){if(LocalizationStrictMode())return false;}
    else{
     monster->NpcMsgCount=0;

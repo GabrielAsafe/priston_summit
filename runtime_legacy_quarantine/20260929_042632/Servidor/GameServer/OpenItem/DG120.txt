@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "DG120"
+
+//Korean Name
+*ÀÌ¸§ "Luvas Dragão"
+
+//English Name
+*Name "Luvas Dragão"
+
+//Defense
+*¹æ¾î·Â 146 155
+
+//Absorption
+*Èí¼ö·Â 5.4 5.7
+
+//OrganicResistance
+*»ýÃ¼ 4 7
+
+//FireResistance
+*ºÒ 4 7
+
+//FrostResistance
+*³Ã±â 4 7
+
+//LightningResistance
+*¹ø°³ 4 7
+
+//PoisonResistance
+*µ¶ 4 7
+
+//Integrity
+*³»±¸·Â 146 155
+
+//Level
+*·¹º§ 90
+
+//Strength
+*Èû 100
+
+//Talent
+*Àç´É 75
+
+//Agility
+*¹ÎÃ¸¼º 75
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecDefense
+**¹æ¾î·Â 45 50
+
+//SpecAbsorption
+**Èí¼ö·Â 0.7 0.9
+
+//Weight
+*¹«°Ô 42
+
+//Price
+*°¡°Ý 560000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DG120.zhoon"

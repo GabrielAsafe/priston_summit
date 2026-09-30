@@ -1,0 +1,71 @@
+//ID
+*ÄÚµå "WS118"
+
+//Korean Name
+*ÀÌ¸§ "Arco do Trovão"
+
+//English Name
+*Name "Arco do Trovão"
+
+//AttackPower
+*°ø°Ý·Â 29 32 46 49
+
+//AttackRating
+*¸íÁß·Â 89 124
+
+//AttackRange
+*»çÁ¤°Å¸® 250
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 16
+
+//Block
+*ºí·°À² 6.0 6.0
+
+//Integrity
+*³»±¸·Â 110 132
+
+//Level
+*·¹º§ 80
+
+//Strength
+*Èû 76
+
+//Talent
+*Àç´É 80
+
+//Agility
+*¹ÎÃ¸¼º 146
+
+//PrimarySpec
+**Æ¯È­ Archer
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Atalanta
+
+//SpecAttackPower
+**°ø°Ý·Â 7 7
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SpecAttackRange
+**»çÁ¤°Å¸® 10
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 4
+
+//Weight
+*¹«°Ô 48
+
+//Price
+*°¡°Ý 260000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WS118.zhoon"

@@ -1,0 +1,65 @@
+//ID
+*ÄÚµå "WM138"
+
+//Korean Name
+*ÀÌ¸§ "Varinha Anúbis"
+
+//English Name
+*Name "Varinha Anúbis"
+
+//AttackPower
+*°ø°Ý·Â 100 103 119 122
+
+//AttackRating
+*¸íÁß·Â 268 278
+
+//AttackRange
+*»çÁ¤°Å¸® 225
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 8
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 24
+
+//Block
+*ºí·°À² 12.0 12.0
+
+//Integrity
+*³»±¸·Â 280 300
+
+//Level
+*·¹º§ 130
+
+//Strength
+*Èû 75
+
+//Spirit
+*Á¤½Å·Â 275
+
+//Talent
+*Àç´É 100
+
+//SecondarySpec
+**Æ¯È­·£´ý Priestess Magician
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecMPRegen
+**±â·ÂÀç»ý 4.4 4.7
+
+//SpecSkillTraining
+**¸¶¹ý¼÷·Ãµµ 21 36
+
+//Weight
+*¹«°Ô 122
+
+//Price
+*°¡°Ý 2200000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WM138.zhoon"

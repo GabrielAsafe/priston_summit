@@ -1,0 +1,17 @@
+//ID
+*코드 "QW105"
+
+//Korean Name
+*이름 "Asa do Caos"
+
+//English Name
+*Name "Asa do Caos"
+
+//Weight
+*무게 1
+
+//Price
+*가격 150000
+
+//Name File
+*연결파일 "Name\QW105.zhoon"

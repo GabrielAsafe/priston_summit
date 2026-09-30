@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "DA221"
+
+//Korean Name
+*ÀÌ¸§ "Roupão Archon"
+
+//English Name
+*Name "Roupão Archon"
+
+//Defense
+*¹æ¾î·Â 290 310
+
+//Absorption
+*Èí¼ö·Â 16.1 16.5
+
+//OrganicResistance
+*»ýÃ¼ 8 15
+
+//FireResistance
+*ºÒ 8 15
+
+//FrostResistance
+*³Ã±â 8 15
+
+//LightningResistance
+*¹ø°³ 8 15
+
+//PoisonResistance
+*µ¶ 8 15
+
+//Integrity
+*³»±¸·Â 130 150
+
+//Level
+*·¹º§ 80
+
+//Spirit
+*Á¤½Å·Â 193
+
+//Talent
+*Àç´É 90
+
+//SecondarySpec
+**Æ¯È­·£´ý Priestess Magician
+
+//SpecDefense
+**¹æ¾î·Â 35 40
+
+//SpecAbsorption
+**Èí¼ö·Â 1.0 1.5
+
+//SpecMPRegen
+**±â·ÂÀç»ý 2.6 2.9
+
+//Weight
+*¹«°Ô 80
+
+//Price
+*°¡°Ý 200000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DA221.zhoon"

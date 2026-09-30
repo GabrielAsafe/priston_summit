@@ -1,6 +1,7 @@
 #include "opcodes.h"
 #include "compat/legacy/sin/sinLinkHeader.h"
 #include "systems/gameplay/loot/roll/CRollWindow.h"
+#include "systems/network/v2/legacy/LegacyClientCommandSender.h"
 
 CRollWindow::CRollWindow(DWORD iRollID, int x, int y, sITEMINFO * lpItemInfo)
 {
@@ -62,7 +63,8 @@ void CRollWindow::OnClickRollButton()
 	sPacket.code = OpCode::OPCODE_ROLL;
 	sPacket.WParam = pWindow1->getID();
 	sPacket.LParam = 1;
-	smWsockServer->Send((char*)&sPacket, sPacket.size, TRUE);
+	(void)gameplay::network::legacy::ClientLegacyCommandSender().Send(
+		gameplay::network::PacketView(&sPacket, sPacket.size, static_cast<std::uint32_t>(sPacket.code)));
 
 	pWindow1->hide();
 }
@@ -74,7 +76,8 @@ void CRollWindow::OnClickSkipButton()
 	sPacket.code = OpCode::OPCODE_ROLL;
 	sPacket.WParam = pWindow1->getID();
 	sPacket.LParam = 0;
-	smWsockServer->Send((char*)&sPacket, sPacket.size, TRUE);
+	(void)gameplay::network::legacy::ClientLegacyCommandSender().Send(
+		gameplay::network::PacketView(&sPacket, sPacket.size, static_cast<std::uint32_t>(sPacket.code)));
 
 	pWindow1->hide();
 }

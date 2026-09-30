@@ -1,0 +1,62 @@
+//ID
+*코드 "WH134"
+
+//Korean Name
+*이름 "Martelo Wr"
+
+//English Name
+*Name "Martelo Wr"
+
+//AttackPower
+*공격력 169 172 182 185
+
+//AttackRating
+*명중력 309 318
+
+//AttackSpeed
+*공격속도 8
+
+//AttackCritical
+*크리티컬 22
+
+//Block
+*블럭율 15.0 15.0
+
+//Integrity
+*내구력 270 290
+
+//Level
+*레벨 1
+
+//Strength
+*힘 1
+
+//Talent
+*재능 1
+
+//PrimarySpec
+**특화 Mechanician
+
+//SecondarySpec
+**특화랜덤 Fighter Pikeman Knight
+
+//SpecAttackPower
+**공격력 7 7
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 5
+
+//Weight
+*무게 1
+
+//Price
+*가격 1980000
+
+//Name File
+*연결파일 "Name\WH140.zhoon"

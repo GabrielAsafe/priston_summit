@@ -123,7 +123,13 @@
  Shared/gameplay/classes/v2/domain/ClassDefinition.h \
  SrcServer/src/systems/gameplay/events/server_legacy/SvrCaravan.h \
  SrcServer/src/systems/gameplay/events/hells_gate/cHellsGate.h \
- SrcServer/src/systems/gameplay/quests/server/cQuestHandler.h
+ Shared/gameplay/core/v2/GameplayIds.h \
+ SrcServer/src/systems/gameplay/world/v2/legacy/LegacyInteractionAdapter.h \
+ Shared/gameplay/world/v2/IInteractionService.h \
+ SrcServer/src/systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h \
+ SrcServer/src/systems/gameplay/quests/v2/legacy/LegacyQuestStateQuery.h \
+ Shared/gameplay/quests/v2/QuestStateQuery.h \
+ Shared/gameplay/quests/v2/IQuestRepository.h
 Shared/gameplay/combat/Svr_Damge_legacy_server.inl:
 SrcServer/src/systems/network/protocol/server/opcodes.h:
 SrcServer/src/systems/network/transport/legacy/smwsock.h:
@@ -250,4 +256,10 @@ Shared/gameplay/classes/v2/PlayableClassRegistry.h:
 Shared/gameplay/classes/v2/domain/ClassDefinition.h:
 SrcServer/src/systems/gameplay/events/server_legacy/SvrCaravan.h:
 SrcServer/src/systems/gameplay/events/hells_gate/cHellsGate.h:
-SrcServer/src/systems/gameplay/quests/server/cQuestHandler.h:
+Shared/gameplay/core/v2/GameplayIds.h:
+SrcServer/src/systems/gameplay/world/v2/legacy/LegacyInteractionAdapter.h:
+Shared/gameplay/world/v2/IInteractionService.h:
+SrcServer/src/systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h:
+SrcServer/src/systems/gameplay/quests/v2/legacy/LegacyQuestStateQuery.h:
+Shared/gameplay/quests/v2/QuestStateQuery.h:
+Shared/gameplay/quests/v2/IQuestRepository.h:

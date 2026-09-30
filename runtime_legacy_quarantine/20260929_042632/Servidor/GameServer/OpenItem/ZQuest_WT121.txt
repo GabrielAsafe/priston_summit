@@ -1,0 +1,50 @@
+//ID
+*ÄÚµå "WT121"
+
+//Korean Name
+*ÀÌ¸§ "Lança da Justiça"
+
+//English Name
+*Name "Lança da Justiça"
+
+//Quest
+*À¯´ÏÅ© 2
+
+//Color
+*À¯´ÏÅ©»ö»ó 80 50 100 0 9
+
+//AttackPower
+*°ø°Ý·Â 58 58 73 73
+
+//AttackRange
+*»çÁ¤°Å¸® 265
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 8
+
+//AttackRating
+*¸íÁß·Â 265 265
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 22
+
+//HP
+*»ý¸í·ÂÃß°¡ 50 50
+
+//MP
+*±â·ÂÃß°¡ 50 50
+
+//STM
+*±Ù·ÂÃß°¡ 50 50
+
+//Integrity
+*³»±¸·Â 111 135
+
+//Level
+*·¹º§ 100
+
+//Weight
+*¹«°Ô 30
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\ZQuest_WT121.zhoon"

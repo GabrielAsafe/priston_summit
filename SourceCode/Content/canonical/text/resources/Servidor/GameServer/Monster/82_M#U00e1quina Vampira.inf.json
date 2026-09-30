@@ -17,7 +17,7 @@
     "fields": {
       "state": "적",
       "model_file": "char\\monster\\vampiric\\vemp.ini",
-      "name": "M?uina Vampira",
+      "name": "Máquina Vampira",
       "level": 80,
       "model_scale": 1.0,
       "generate_group": [

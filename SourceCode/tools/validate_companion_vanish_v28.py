@@ -6,6 +6,7 @@ exe=(root/'SrcServer/src/systems/gameplay/companions/CompanionSkillExecutor.cpp'
 hdr=(root/'SrcServer/src/systems/gameplay/companions/CompanionSkillExecutor.h').read_text(errors='ignore')
 syscpp=(root/'SrcServer/src/systems/gameplay/companions/CompanionSystem.cpp').read_text(errors='ignore')
 sysh=(root/'SrcServer/src/systems/gameplay/companions/CompanionSystem.h').read_text(errors='ignore')
+sysh += (root/'SrcServer/src/systems/gameplay/companions/v2/legacy/CompanionLegacyCharacterHooks.h').read_text(errors='ignore')
 char=(root/'SrcServer/src/systems/gameplay/character/core/character.cpp').read_text(errors='ignore')
 cat=(root/'SrcServer/src/systems/gameplay/companions/CompanionSkillCatalog.inl').read_text(errors='ignore')
 legacy=(root/'Shared/gameplay/combat/LegacyDamagePolicy.inl').read_text(errors='ignore')
@@ -24,7 +25,7 @@ checks={
  'attack loop gate': r'CanMonsterTargetCompanion\(this,\s*lpTargetChar\)',
  'legacy single oracle': r'lpTransAttackData->Power\s*\+=\s*\(lpTransAttackData->Power\*Vanish_Damage',
  'legacy range cancel oracle': r'rsSetSkillRangeAttack[\s\S]{0,5000}?dwSkill_Vanish_Time\s*=\s*0',
- 'legacy sight oracle': r'Real_Sight\*Vanish_Range',
+ 'legacy sight oracle': r'(Real_Sight\*Vanish_Range|SummitVanishHidesPlayerFromMonster)',
 }
 texts={
  'catalog ready':cat,'buff support':exe,'visual play code':exe,'duration table':exe,

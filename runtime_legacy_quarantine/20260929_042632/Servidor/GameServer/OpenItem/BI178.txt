@@ -1,0 +1,17 @@
+//ID
+*ÄÚµå "BI178"
+
+//Korean Name
+*ÀÌ¸§ "Olho Mágico 50% 6h"
+
+//English Name
+*Name "Olho Mágico 50% 6h"
+
+//Weight
+*¹«°Ô 1
+
+//Price
+*°¡°Ý 2500000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\BI178.zhoon"

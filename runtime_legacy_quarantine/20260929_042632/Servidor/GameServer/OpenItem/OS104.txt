@@ -1,0 +1,38 @@
+//ID
+*코드 "OS104"
+
+//Korean Name
+*이름 "Sparki"
+
+//English Name
+*Name "Sparki"
+
+//HPRegen
+*생명력재생 0.3 0.5
+
+//MPRegen
+*기력재생 0.4 0.7
+
+//Level
+*레벨 30
+
+//Spirit
+*정신력 40
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecHPRegen
+**생명력재생 0.1 0.3
+
+//SpecMPRegen
+**기력재생 0.2 0.4
+
+//Weight
+*무게 2
+
+//Price
+*가격 15000
+
+//Name File
+*연결파일 "Name\OS104.zhoon"

@@ -1,0 +1,14 @@
+//ID
+*코드 "GF108"
+
+//Korean Name
+*이름 "Investigador 2"
+
+//English Name
+*Name "Investigador 2"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\GF108.zhoon"

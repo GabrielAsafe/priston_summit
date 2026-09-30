@@ -1,0 +1,65 @@
+//ID
+*코드 "OM123"
+
+//Korean Name
+*이름 "Orbital Avernus"
+
+//English Name
+*Name "Orbital Avernus"
+
+//OrganicResistance
+*생체 5 9
+
+//FireResistance
+*불 5 9
+
+//FrostResistance
+*냉기 5 9
+
+//LightningResistance
+*번개 5 9
+
+//PoisonResistance
+*독 5 9
+
+//Defense
+*방어력 150 160
+
+//Absorption
+*흡수력 7.1 7.4
+
+//Block
+*블럭율 10.0 12.0
+
+//HP
+*생명력추가 105 118
+
+//MP
+*기력추가 66 76
+
+//Integrity
+*내구력 134 154
+
+//Level
+*레벨 102
+
+//Spirit
+*정신력 162
+
+//SecondarySpec
+**특화랜덤 Priestess Magician
+
+//SpecAbsorption
+**흡수력 1.2 1.6
+
+//SpecMPRegen
+**기력재생 1.1 1.6
+
+//Weight
+*무게 50
+
+//Price
+*가격 740000
+
+//Name File
+*연결파일 "Name\OM123.zhoon"

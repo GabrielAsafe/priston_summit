@@ -1,0 +1,71 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\strider\strider.ini"
+
+//Name
+*이름 "R5 Sereia Profana"
+
+//Level
+*레벨 73
+
+//Size
+*모델크기 1.0
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 350
+
+//HP
+*생명력 3300
+
+//AttackPower
+*공격력 95 115
+
+//AttackRating
+*명중력 1300
+
+//AttackSpeed
+*공격속도 9
+
+//AttackRange
+*공격범위 80
+
+//SkillPower
+*기술공격력 150 160
+
+//SkillRating
+*기술공격률 17
+
+//Defense
+*방어력 720
+
+//Absorption
+*흡수율 14
+
+//Block
+*블럭율 8
+
+//Stun
+*스턴율 50
+
+//MoveSpeed
+*이동력 5
+
+//Race
+*몬스터종족 디먼
+
+//ShadowSize
+*크기 중대형
+
+//Experience
+*경험치 72400
+
+//Sound
+*효과음 STRIDER
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

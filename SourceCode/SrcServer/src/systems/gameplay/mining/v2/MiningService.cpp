@@ -7,7 +7,7 @@ namespace gameplay
 {
 namespace mining
 {
-MiningService::MiningService(professions::ProfessionService& professions,
+MiningService::MiningService(professions::IProfessionService& professions,
                              events::GameplayEventHub* eventHub,
                              covenants::ICovenantGameplayBridge* covenantBridge)
     : professions_(professions), eventHub_(eventHub), covenantBridge_(covenantBridge)

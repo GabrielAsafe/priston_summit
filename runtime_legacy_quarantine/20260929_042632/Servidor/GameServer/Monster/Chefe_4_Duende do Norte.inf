@@ -1,0 +1,107 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\goblinchief\noschief.ini"
+
+//Name
+*이름 "Duende do Norte"
+
+//Level
+*레벨 4
+
+//Size
+*모델크기 2.0
+
+//ShowAllDrops
+*아이템모두
+
+//EventCode
+*계급 1
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 340
+
+//HP
+*생명력 330
+
+//AttackPower
+*공격력 18 24
+
+//AttackRating
+*명중력 480
+
+//AttackSpeed
+*공격속도 8
+
+//AttackRange
+*공격범위 55
+
+//Defense
+*방어력 160
+
+//Absorption
+*흡수율 8
+
+//Block
+*블럭율 15
+
+//MoveSpeed
+*이동력 1
+
+//Organic
+*생체 100
+
+//Fire
+*불 10
+
+//Poison
+*독 10
+
+//Race
+*몬스터종족 노멀
+
+//ShadowSize
+*크기 중형
+
+//Experience
+*경험치 2900
+
+//Sound
+*효과음 HOBGOBLIN
+
+//DropsNumber
+*아이템카운터 8
+
+//Drop
+//*아이템 204 SE103 SE104
+
+//Drop
+*아이템 44 OS102
+
+//Drop
+//*아이템 3768 WA101 WC101 WH101 WM101 WP101 WS101 WS102 WS201 WS202 WS203 WT101 OA101 OA102 OA103 OA104 OA201 OM101 OR101 OR102 OR103 OR104 DA102 DA202 DB101 DG101 DS101
+
+//Drop
+//*아이템 2736 WA101 WC101 WH101 WM101 WP101 WS101 WS102 WS201 WS202 WS203 WT101 OA101 OA102 OA103 OA104 OA201 OM101 OR101 OR102 OR103 OR104 DA102 DA202 DB101 DG101 DS101
+
+//Drop
+//*아이템 1824 WA101 WC101 WH101 WM101 WP101 WS101 WS102 WS201 WS202 WS203 WT101 OA101 OA102 OA103 OA104 OA201 OM101 OR101 OR102 OR103 OR104 DA102 DA202 DB101 DG101 DS101
+
+//Drop
+*아이템 912 WA101 WC101 WH101 WM101 WP101 WS101 WS102 WS201 WS202 WS203 WT101 OA101 OA102 OA103 OA104 OA201 OM101 OR101 OR102 OR103 OR104 DA102 DA202 DB101 DG101 DS101
+
+//Drop
+*아이템 304 WA101 WC101 WH101 WM101 WP101 WS101 WS102 WS201 WS202 WS203 WT101 OA101 OA102 OA103 OA104 OA201 OM101 OR101 OR102 OR103 OR104 DA102 DA202 DB101 DG101 DS101
+
+//Drop
+*아이템 20 RS101 RS102 RS103 RS104 RS105 RS106 RS107 RS108
+
+//QuestDrop
+*이벤트아이템 QT111
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

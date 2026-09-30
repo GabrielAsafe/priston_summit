@@ -557,16 +557,20 @@ BOOL CChatBox::OnKeyPress( class CKeyboard * pcKeyboard )
 		return TRUE;
 	}
 
-	if( pcKeyboard->GetEvent() == KeyDown && pcKeyboard->IsKeyDown(VK_CONTROL) && (pcKeyboard->GetKey() >= VK_F1 && pcKeyboard->GetKey() <= VK_F10) )
+	// SUMMIT_COMMAND_HOTKEYS_V17: Ctrl+1..0 are the ten chat macros.
+	if( pcKeyboard->GetEvent() == KeyDown && pcKeyboard->IsKeyDown(VK_CONTROL) &&
+		!pcKeyboard->IsKeyDown(VK_SHIFT) && !pcKeyboard->IsKeyDown(VK_MENU) &&
+		pcKeyboard->GetKey() >= '0' && pcKeyboard->GetKey() <= '9' )
 	{
-		char * pszMacroText = SETTINGSHANDLER->GetModel()->GetSettings().szaMacro[(pcKeyboard->GetKey() & 0x0F)];
+		const int macroIndex = pcKeyboard->GetKey() == '0' ? 0 : (pcKeyboard->GetKey() - '0');
+		char * pszMacroText = SETTINGSHANDLER->GetModel()->GetSettings().szaMacro[macroIndex];
 
 		if( pszMacroText[0] != NULL )
 		{
 			OnEnableChatBox();
 			auto pInputField = pWindow1->GetElement<UI::InputField>( INPUTFIELDID_Message );
 			if( pInputField )
-				pInputField->AddInput( SETTINGSHANDLER->GetModel()->GetSettings().szaMacro[(pcKeyboard->GetKey() & 0x0F)] );
+				pInputField->AddInput( SETTINGSHANDLER->GetModel()->GetSettings().szaMacro[macroIndex] );
 
 			pWindow1->Show();
 			return TRUE;

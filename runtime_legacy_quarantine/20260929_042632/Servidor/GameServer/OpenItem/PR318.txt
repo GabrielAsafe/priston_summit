@@ -1,0 +1,14 @@
+//ID
+*코드 "PR318"
+
+//Korean Name
+*이름 "Receita"
+
+//English Name
+*Name "Receita"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\PR318.zhoon"

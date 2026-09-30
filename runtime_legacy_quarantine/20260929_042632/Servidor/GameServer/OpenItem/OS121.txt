@@ -1,0 +1,17 @@
+//ID
+*ÄÚµå "OS121"
+
+//Korean Name
+*ÀÌ¸§ "Lucidi Mágico"
+
+//English Name
+*Name "Lucidi Mágico"
+
+//Weight
+*¹«°Ô 2
+
+//Price
+*°¡°Ý 1000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\OS121.zhoon"

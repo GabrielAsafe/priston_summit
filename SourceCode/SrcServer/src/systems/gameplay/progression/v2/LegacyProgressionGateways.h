@@ -4,6 +4,11 @@
 
 #include "gameplay/progression/v2/ProgressionGateways.h"
 #include "gameplay/progression/v2/ProgressionCustomHandlers.h"
+#include "gameplay/inventory/v2/Inventory.h"
+#include "gameplay/inventory/v2/ItemCatalog.h"
+#include "gameplay/quests/v2/QuestService.h"
+#include "gameplay/quests/v2/QuestCatalog.h"
+#include "systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h"
 
 namespace gameplay
 {
@@ -15,7 +20,10 @@ public:
     LegacyProgressionRewardGateway(story::IStoryRepository& storyRepository,
                                    covenants::CovenantService& covenantService,
                                    reputation::ReputationService& reputationService,
-                                   ProgressionCustomHandlerRegistry& customHandlers);
+                                   ProgressionCustomHandlerRegistry& customHandlers,
+                                   const inventory::IItemCatalog& itemCatalog,
+                                   inventory::IInventoryCommands& inventoryCommands,
+                                   const player::legacy::LegacyOnlinePlayerRegistry& players);
 
     bool Supports(rewards::RewardType type) const;
     bool Validate(const rewards::RewardDefinition& reward) const;
@@ -28,10 +36,13 @@ public:
     void SetItemCatalogReady(bool ready);
 
 private:
-    unsigned long ResolveItemCode(const std::string& shortCode) const;
+    bool ResolveGrantableItem(const std::string& contentKey, inventory::ItemDefinition& out) const;
 
     ProgressionRewardGateway core_;
     ProgressionCustomHandlerRegistry& customHandlers_;
+    const inventory::IItemCatalog& itemCatalog_;
+    inventory::IInventoryCommands& inventoryCommands_;
+    const player::legacy::LegacyOnlinePlayerRegistry& players_;
     bool itemCatalogReady_;
 };
 
@@ -39,7 +50,10 @@ class LegacyProgressionStoryCommandGateway : public story::IStoryCommandGateway
 {
 public:
     LegacyProgressionStoryCommandGateway(covenants::CovenantService& covenantService,
-                                         ProgressionCustomHandlerRegistry& customHandlers);
+                                         ProgressionCustomHandlerRegistry& customHandlers,
+                                         const player::legacy::LegacyOnlinePlayerRegistry& players,
+                                         const quests::IQuestCatalog& questCatalog,
+                                         quests::QuestService& questService);
 
     bool Supports(story::StoryActionType type) const;
     bool ValidateAction(const story::StoryActionDefinition& action) const;
@@ -54,21 +68,12 @@ public:
                              const story::StoryActionDefinition& action,
                              const std::string& sourceKey);
 
-public:
-    struct QuestDefinition
-    {
-        int kind;
-        int type;
-        int partyFlag;
-
-        QuestDefinition() : kind(0), type(0), partyFlag(0) {}
-    };
-
 private:
-    bool ResolveQuestDefinition(int questId, QuestDefinition& definition) const;
-
     ProgressionStoryCommandGateway core_;
     ProgressionCustomHandlerRegistry& customHandlers_;
+    const player::legacy::LegacyOnlinePlayerRegistry& players_;
+    const quests::IQuestCatalog& questCatalog_;
+    quests::QuestService& questService_;
 };
 }
 }

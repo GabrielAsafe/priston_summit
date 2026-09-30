@@ -1,0 +1,113 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\IElite\IElite.ini"
+
+//Name
+*이름 "Elite Invasor"
+
+//Level
+*레벨 116
+
+//Size
+*모델크기 1.0
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 250
+
+//HP
+*생명력 22000
+
+//AttackPower
+*공격력 450 500
+
+//AttackRating
+*명중력 1700
+
+//AttackSpeed
+*공격속도 8
+
+//AttackRange
+*공격범위 35
+
+//SkillPower
+*기술공격력 450 550
+
+//SkillRating
+*기술공격률 40
+
+//SkillRange
+*기술공격범위 70
+
+//Defense
+*방어력 1500
+
+//MoveSpeed
+*이동력 1
+
+//Ice
+*얼음 5
+
+//Fire
+*불 10
+
+//Poison
+*독 10
+
+//Race
+*몬스터종족 노멀
+
+//ShadowSize
+*크기 소형
+
+//Experience
+*경험치 10178000
+
+//Sound
+*효과음 IELITE
+
+//DropsNumber
+*아이템카운터 1
+
+//DropGold
+*아이템 2000 돈 2000 20000
+
+//DropPotion
+*아이템 2000 PM104 PM104
+
+//DropJera
+*아이템 20 SE101 SE113
+
+//DropInferna
+*아이템 100 OS111 OS110 OS109
+
+//DropEnigma
+*아이템 55 OS112
+
+//DropBellum
+*아이템 35 OS113
+
+//DropOrdo
+*아이템 15 OS114
+
+//Drop
+*아이템 200 F0110 FO130 FO109 FO129
+
+//Drop102
+*아이템 4000 WA122 WC122 WH123 WM123 WP123 WS124 WS225 WT123 OA124 OA222 OM125 OR124 DA124 DA224 DB122 DG122 DS122 BI108
+
+//Drop105
+*아이템 2400 WA123 WC123 WH124 WM124 WP124 WS125 WS226 WT124 OA124 OA223 OM125 OR124 DA125 DA225 DB123 DG123 DS123
+
+//Drop110
+*아이템 80 DA127 DA227 DS124 DB124 DG124 OA224 OM125 OR127 OA127 OS114 WA124 WA125 WC124 WH125 WH126 WM125 WM126 WP125 WS126 WS227 WS228 WT125
+
+//Drop115
+*아이템 20 DA128 DA228 DS125 DB125 DG125 OA225 OM125 OR127 OA127 OS118 WA127 WC126 WH128 WM128 WP127 WS128 WS230 WT127 oe101 oe102 oe103
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

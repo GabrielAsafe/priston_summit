@@ -1,0 +1,17 @@
+//ID
+*ÄÚµå "BI145"
+
+//Korean Name
+*ÀÌ¸§ "Pedra da Força"
+
+//English Name
+*Name "Pedra da Força"
+
+//Weight
+*¹«°Ô 1
+
+//Price
+*°¡°İ 100000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\BI145.zhoon"

@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "WT114"
+
+//Korean Name
+*ÀÌ¸§ "Lança Retorcida"
+
+//English Name
+*Name "Lança Retorcida"
+
+//AttackPower
+*°ø°Ý·Â 18 22 27 31
+
+//AttackRange
+*»çÁ¤°Å¸® 225
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackRating
+*¸íÁß·Â 70 96
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 9
+
+//Integrity
+*³»±¸·Â 58 87
+
+//Level
+*·¹º§ 65
+
+//Strength
+*Èû 70
+
+//Talent
+*Àç´É 80
+
+//Agility
+*¹ÎÃ¸¼º 100
+
+//PrimarySpec
+**Æ¯È­ Atalanta
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Archer
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 7
+
+//Weight
+*¹«°Ô 10
+
+//Price
+*°¡°Ý 70000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WT114.zhoon"

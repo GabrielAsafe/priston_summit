@@ -140,7 +140,14 @@
  Shared/gameplay/classes/v2/services/ClassService.h \
  Shared/gameplay/classes/v2/PlayableClassRegistry.h \
  Shared/gameplay/classes/v2/domain/ClassDefinition.h \
- SrcGame/src/systems/ui/v2/legacy/LegacyUIV2Bridge.h
+ SrcGame/src/systems/ui/v2/legacy/LegacyUIV2Bridge.h \
+ SrcGame/src/systems/presentation/v2/legacy/LegacyAudioAdapter.h \
+ Shared/presentation/v2/AudioService.h \
+ Shared/gameplay/core/v2/GameplayIds.h \
+ Shared/presentation/v2/PresentationIds.h \
+ SrcGame/src/systems/presentation/v2/legacy/LegacyVisualEffectAdapter.h \
+ Shared/presentation/v2/VisualEffectService.h \
+ Shared/presentation/v2/PresentationTarget.h
 SrcGame/src/compat/legacy/sin/sinLinkHeader.h:
 SrcGame/src/systems/rendering/legacy_3d/smd3d.h:
 SrcGame/src/systems/rendering/legacy_3d/smDsx.h:
@@ -284,3 +291,10 @@ Shared/gameplay/classes/v2/services/ClassService.h:
 Shared/gameplay/classes/v2/PlayableClassRegistry.h:
 Shared/gameplay/classes/v2/domain/ClassDefinition.h:
 SrcGame/src/systems/ui/v2/legacy/LegacyUIV2Bridge.h:
+SrcGame/src/systems/presentation/v2/legacy/LegacyAudioAdapter.h:
+Shared/presentation/v2/AudioService.h:
+Shared/gameplay/core/v2/GameplayIds.h:
+Shared/presentation/v2/PresentationIds.h:
+SrcGame/src/systems/presentation/v2/legacy/LegacyVisualEffectAdapter.h:
+Shared/presentation/v2/VisualEffectService.h:
+Shared/presentation/v2/PresentationTarget.h:

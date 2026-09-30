@@ -1,0 +1,57 @@
+[NETWORK STRINGS]
+5:)System.Resources.ResourceReader, mscorlibsSystem.Resources.RuntimeResourceSet, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+6:mSystem.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089^System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089iSystem.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3aiSystem.Drawing.Icon, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3apSystem.Globalization.CultureInfo, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]System.String, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089PADPA
+9:LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+14:TSystem.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+18:TSystem.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+96:LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+101:LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+104:LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+109:LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+112:LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+117:LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+120:LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+125:LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+128:LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+133:LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+136:LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+141:LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+144:LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+149:LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+152:LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+157:LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+160:LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+165:LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+195:_txtPassword
+217:get_txtPassword
+218:set_txtPassword
+233:strPassword
+234:connectionString
+248:bUPDATE
+251:sender
+259:UpdateUserLevel
+268:txtPassword
+315:set_PasswordChar
+335:Conversion
+343:SqlConnection
+395:AssemblyVersionAttribute
+408:txtPassword
+
+[UTF16 NETWORK STRINGS]
+30:txtPassword.DefaultModifiers
+31:txtPassword.Locked
+32:txtPassword.Modifiers
+40:C:\rPT\rPT-Server\DataServer\userdata\
+45:txtPassword
+60:Server=
+69:server='
+71:'; password='
+73:SELECT CharName, ServerTime, TotalPoint, SuccessUser FROM SOD2RecBySandurr
+75:SELECT CharName, Point FROM SOD2RecBySandurr WHERE ServerTime='
+80:UPDATE CL SET Cpoint='
+82:UPDATE CL SET SiegeMoney='
+84:UPDATE UL SET ChLv='
+100:VS_VERSION_INFO
+108:FileVersion
+117:ProductVersion
+119:Assembly Version

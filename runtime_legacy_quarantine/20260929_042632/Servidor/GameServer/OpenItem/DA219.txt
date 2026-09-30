@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "DA219"
+
+//Korean Name
+*ÀÌ¸§ "Roupão Alquimista"
+
+//English Name
+*Name "Roupão Alquimista"
+
+//Defense
+*¹æ¾î·Â 255 270
+
+//Absorption
+*Èí¼ö·Â 12.2 12.6
+
+//OrganicResistance
+*»ýÃ¼ 8 15
+
+//FireResistance
+*ºÒ 8 15
+
+//FrostResistance
+*³Ã±â 8 15
+
+//LightningResistance
+*¹ø°³ 8 15
+
+//PoisonResistance
+*µ¶ 8 15
+
+//Integrity
+*³»±¸·Â 110 130
+
+//Level
+*·¹º§ 80
+
+//Spirit
+*Á¤½Å·Â 182
+
+//Talent
+*Àç´É 90
+
+//SecondarySpec
+**Æ¯È­·£´ý Priestess Magician
+
+//SpecDefense
+**¹æ¾î·Â 35 40
+
+//SpecAbsorption
+**Èí¼ö·Â 1.0 1.5
+
+//SpecMPRegen
+**±â·ÂÀç»ý 2.3 2.6
+
+//Weight
+*¹«°Ô 72
+
+//Price
+*°¡°Ý 180000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DA219.zhoon"

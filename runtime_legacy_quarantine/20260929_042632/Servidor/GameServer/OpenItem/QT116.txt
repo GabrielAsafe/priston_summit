@@ -1,0 +1,14 @@
+//ID
+*코드 "QT116"
+
+//Korean Name
+*이름 "Martelo Umph"
+
+//English Name
+*Name "Martelo Umph"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\QT116.zhoon"

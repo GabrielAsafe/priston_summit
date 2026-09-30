@@ -1,0 +1,17 @@
+//ID
+*코드 "GP141"
+
+//Korean Name
+*이름 "Cristal do DevilShy"
+
+//English Name
+*Name "Cristal do DevilShy"
+
+//Level
+*레벨 90
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\GP141.zhoon"

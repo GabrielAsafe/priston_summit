@@ -240,6 +240,8 @@ def main() -> None:
     ap.add_argument('--canonical-text', type=Path, required=True)
     ap.add_argument('--canonical-spawns', type=Path, required=True)
     ap.add_argument('--canonical-maps', type=Path, required=True)
+    ap.add_argument('--canonical-start-points', type=Path, required=True)
+    ap.add_argument('--canonical-fixed-npcs', type=Path, required=True)
     a = ap.parse_args()
 
     schema_root = Path(__file__).resolve().parent / 'schemas'
@@ -247,6 +249,8 @@ def main() -> None:
     spawn_schema = load(schema_root / 'stage_spawn.schema.json')
     map_schema = load(schema_root / 'map_catalog.schema.json')
     localization_schema = load(schema_root / 'localization_catalog.schema.json')
+    start_point_schema = load(schema_root / 'stage_start_points.schema.json')
+    fixed_npc_schema = load(schema_root / 'fixed_npcs.schema.json')
     family_schemas = {
         'monster_definition': load(schema_root / 'monster_definition.schema.json'),
         'npc_definition': load(schema_root / 'npc_definition.schema.json'),
@@ -260,12 +264,16 @@ def main() -> None:
         'map_catalog': map_schema,
         'localization_catalog': localization_schema,
         'gameplay_config': gameplay_schema,
+        'stage_start_points': start_point_schema,
+        'fixed_npcs': fixed_npc_schema,
         **family_schemas,
     }.items():
         _validate_schema_shape(schema, f'schema:{schema_name}')
 
     text_idx = load(a.canonical_text / 'index.json')['documents']
     spawn_idx = load(a.canonical_spawns / 'index.json')['documents']
+    start_idx = load(a.canonical_start_points / 'index.json')['documents']
+    fixed_idx = load(a.canonical_fixed_npcs / 'index.json')['documents']
 
     family_counts = {k: 0 for k in family_schemas}
     gameplay_count = 0
@@ -286,6 +294,14 @@ def main() -> None:
         path = a.canonical_spawns / e['json_path']
         validate(load(path), spawn_schema, str(path))
 
+    for e in start_idx:
+        path = a.canonical_start_points / e['json_path']
+        validate(load(path), start_point_schema, str(path))
+
+    for e in fixed_idx:
+        path = a.canonical_fixed_npcs / e['json_path']
+        validate(load(path), fixed_npc_schema, str(path))
+
     for profile in ('client', 'server'):
         path = a.canonical_maps / f'{profile}.maps.json'
         validate(load(path), map_schema, str(path))
@@ -300,6 +316,8 @@ def main() -> None:
         'validator': 'stdlib_jsonschema_subset',
         'canonical_text': len(text_idx),
         'stage_spawns': len(spawn_idx),
+        'stage_start_points': len(start_idx),
+        'fixed_npc_maps': len(fixed_idx),
         'map_catalogs': 2,
         'localization_catalogs': len(loc_index['catalogs']),
         'definition_families': family_counts,

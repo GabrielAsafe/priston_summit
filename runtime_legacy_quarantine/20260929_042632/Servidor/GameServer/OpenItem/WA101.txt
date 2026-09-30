@@ -1,0 +1,47 @@
+//ID
+*코드 "WA101"
+
+//Korean Name
+*이름 "Machado de Pedra"
+
+//English Name
+*Name "Machado de Pedra"
+
+//AttackPower
+*공격력 1 2 3 4
+
+//AttackRating
+*명중력 30 38
+
+//AttackSpeed
+*공격속도 6
+
+//AttackCritical
+*크리티컬 3
+
+//Integrity
+*내구력 30 36
+
+//PrimarySpec
+**특화 Fighter
+
+//SecondarySpec
+**특화랜덤 Mechanician Pikeman
+
+//SpecAttackPower
+**공격력 7 7
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackCritical
+**크리티컬 1
+
+//Weight
+*무게 5
+
+//Price
+*가격 60
+
+//Name File
+*연결파일 "Name\WA101.zhoon"

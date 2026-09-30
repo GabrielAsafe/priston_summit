@@ -1,0 +1,113 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\hopy\hopy.ini"
+
+//Name
+*이름 "Zzangpi"
+
+//Level
+*레벨 1
+
+//Size
+*모델크기 2.0
+
+//ShowAllDrops
+*아이템모두
+
+//EventCode
+*계급 1
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 240
+
+//HP
+*생명력 150
+
+//AttackPower
+*공격력 5 10
+
+//AttackRating
+*명중력 200
+
+//AttackSpeed
+*공격속도 8
+
+//AttackRange
+*공격범위 30
+
+//Defense
+*방어력 20
+
+//Absorption
+*흡수율 2
+
+//Block
+*블럭율 2
+
+//Stun
+*스턴율 2
+
+//MoveSpeed
+*이동력 1
+
+//Organic
+*생체 100
+
+//Ice
+*얼음 5
+
+//Fire
+*불 10
+
+//Poison
+*독 10
+
+//Race
+*몬스터종족 노멀
+
+//ShadowSize
+*크기 소형
+
+//Experience
+*경험치 1300
+
+//Sound
+*효과음 HOPT
+
+//DropsNumber
+*아이템카운터 8
+
+//Drop
+//*아이템 201 SE103 SE104
+
+//Drop
+*아이템 41 OS101
+
+//Drop
+//*아이템 3837 WA101 WC101 WH101 WM101 WP101 WS101 WS102 WS201 WS202 WS203 WT101 OA101 OA102 OA103 OA104 OA201 OM101 OR101 OR102 OR103 OR104 DA102 DA202 DB101 DG101 DS101
+
+//Drop
+//*아이템 2709 WA101 WC101 WH101 WM101 WP101 WS101 WS102 WS201 WS202 WS203 WT101 OA101 OA102 OA103 OA104 OA201 OM101 OR101 OR102 OR103 OR104 DA102 DA202 DB101 DG101 DS101
+
+//Drop
+//*아이템 1806 WA101 WC101 WH101 WM101 WP101 WS101 WS102 WS201 WS202 WS203 WT101 OA101 OA102 OA103 OA104 OA201 OM101 OR101 OR102 OR103 OR104 DA102 DA202 DB101 DG101 DS101
+
+//Drop
+*아이템 903 WA101 WC101 WH101 WM101 WP101 WS101 WS102 WS201 WS202 WS203 WT101 OA101 OA102 OA103 OA104 OA201 OM101 OR101 OR102 OR103 OR104 DA102 DA202 DB101 DG101 DS101
+
+//Drop
+*아이템 301 WA101 WC101 WH101 WM101 WP101 WS101 WS102 WS201 WS202 WS203 WT101 OA101 OA102 OA103 OA104 OA201 OM101 OR101 OR102 OR103 OR104 DA102 DA202 DB101 DG101 DS101
+
+//Drop
+*아이템 20 RS101 RS102 RS103 RS104 RS105 RS106 RS107 RS108
+
+//QuestDrop
+*이벤트아이템 QT111
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

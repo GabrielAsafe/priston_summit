@@ -1,0 +1,65 @@
+//ID
+*코드 "OM108"
+
+//Korean Name
+*이름 "Orbital Arch"
+
+//English Name
+*Name "Orbital Arch"
+
+//OrganicResistance
+*생체 3 5
+
+//FireResistance
+*불 3 5
+
+//FrostResistance
+*냉기 3 5
+
+//LightningResistance
+*번개 3 5
+
+//PoisonResistance
+*독 3 5
+
+//Defense
+*방어력 22 45
+
+//Absorption
+*흡수력 0.8 1.2
+
+//Block
+*블럭율 6.0 8.0
+
+//HP
+*생명력추가 21 36
+
+//MP
+*기력추가 14 24
+
+//Integrity
+*내구력 50 64
+
+//Level
+*레벨 37
+
+//Spirit
+*정신력 70
+
+//SecondarySpec
+**특화랜덤 Priestess Magician
+
+//SpecAbsorption
+**흡수력 0.5 0.7
+
+//SpecMPRegen
+**기력재생 0.5 0.7
+
+//Weight
+*무게 7
+
+//Price
+*가격 25000
+
+//Name File
+*연결파일 "Name\OM108.zhoon"

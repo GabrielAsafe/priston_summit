@@ -1,0 +1,65 @@
+//ID
+*코드 "WM127"
+
+//Korean Name
+*이름 "Cajado Negro"
+
+//English Name
+*Name "Cajado Negro"
+
+//AttackPower
+*공격력 85 88 103 105
+
+//AttackRating
+*명중력 203 213
+
+//AttackRange
+*사정거리 220
+
+//AttackSpeed
+*공격속도 8
+
+//AttackCritical
+*크리티컬 12
+
+//Block
+*블럭율 11.0 11.0
+
+//Integrity
+*내구력 190 210
+
+//Level
+*레벨 115
+
+//Strength
+*힘 75
+
+//Spirit
+*정신력 219
+
+//Talent
+*재능 95
+
+//SecondarySpec
+**특화랜덤 Priestess Magician
+
+//SpecAttackPower
+**공격력 6 6
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecMPRegen
+**기력재생 2.8 3.1
+
+//SpecSkillTraining
+**마법숙련도 12 19
+
+//Weight
+*무게 68
+
+//Price
+*가격 1400000
+
+//Name File
+*연결파일 "Name\WM127.zhoon"

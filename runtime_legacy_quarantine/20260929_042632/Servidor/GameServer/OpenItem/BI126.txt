@@ -1,0 +1,14 @@
+//ID
+*코드 "BI126"
+
+//Korean Name
+*이름 "Pedra da Gravidade 300 12h"
+
+//English Name
+*Name "Pedra da Gravidade 300 12h"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\BI126.zhoon"

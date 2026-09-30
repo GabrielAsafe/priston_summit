@@ -183,6 +183,12 @@ DWORD WINAPI smTransRecvThreadProc(void *pInfo)
 			SockInfo = ThreadRoute->smThreadSock;
 			ThreadRoute->Sleep = FALSE;
 
+			/* A suspended pooled receive worker can be resumed without a route
+			 * during teardown/compatibility runtimes (notably Wine).  The send
+			 * worker already tolerates this state; receive must do the same. */
+			if(!SockInfo)
+				continue;
+
 			if(!ThreadRoute->TimeOut)
 			{
 				SockInfo->Sucess = FALSE;

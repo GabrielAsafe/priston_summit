@@ -9,14 +9,18 @@ POL=(ROOT/'Shared/gameplay/combat/LegacyDamagePolicy.inl').read_text(errors='ign
 SUB=(ROOT/'Shared/gameplay/skills/SkillSub_legacy_server.inl').read_text(errors='ignore')
 ONS=(ROOT/'Shared/legacy_oracle/server/core/server/legacy_runtime/OnSever.cpp.inl').read_text(errors='ignore')
 SIN=(ROOT/'SrcServer/src/core/server/legacy_sin_runtime/sinSubMain.cpp').read_text(errors='ignore')
+STATUS=(ROOT/'SrcServer/src/systems/gameplay/combat/v2/legacy/LegacyStatusEffectAdapter.cpp').read_text(errors='ignore')
+MONSTER=(ROOT/'SrcServer/src/systems/gameplay/monsters/v2/legacy/LegacyMonsterAdapter.cpp').read_text(errors='ignore')
 err=[]
 for code in ('SKILL_HOLY_MIND','SKILL_ASSASSIN_EYE','SKILL_HOLY_INCANTATION','SKILL_SPLIT_JAVELIN'):
     line=next((ln for ln in CAT.splitlines() if '{ '+code+',' in ln),'')
     if ', true,' not in line: err.append(code+' not READY')
     if ('case '+code+':') not in CPP and ('skillCode == '+code) not in CPP: err.append(code+' missing executor dispatch')
 # Holy Mind exact 15-second command -> <<4 native status, Bionic resistance.
-for tok in ('HolyMind_DecDamage[p]','(15 << 4) * (100 - resistance) / 100','PlayHolyMind[0]','PlayHolyMind[1]'):
+for tok in ('HolyMind_DecDamage[p]','(15 << 4) * (100 - resistance) / 100','ServerLegacyStatusEffectAdapter().ApplyHolyMind('):
     if tok not in CPP: err.append('Holy Mind runtime missing '+tok)
+for tok in ('resolved->PlayHolyMind[0] = static_cast<short>(damageReduction)','resolved->PlayHolyMind[1] = static_cast<short>(durationTicks)'):
+    if tok not in STATUS: err.append('Holy Mind adapter missing '+tok)
 for tok in ('smTransCommand.WParam = HolyMind_DecDamage[lpSkill->Point - 1]','smTransCommand.LParam = 15'):
     if tok not in SUB: err.append('Holy Mind cast oracle missing '+tok)
 for tok in ('time = lpTransCommand->LParam << 4','PlayHolyMind[0] = lpTransCommand->WParam','PlayHolyMind[1] = time'):
@@ -24,13 +28,17 @@ for tok in ('time = lpTransCommand->LParam << 4','PlayHolyMind[0] = lpTransComma
 if 'TransAttackData.Power -= ((TransAttackData.Power*PlayHolyMind[0]) / 100);' not in CHAR:
     err.append('native Holy Mind damage-reduction hook missing')
 # Assassin Eye uses the native target fields already read by legacy critical calculation.
-for tok in ('dwAssassinEyeTime = dwPlayServTime + (DWORD)Assassin_Eye_Time[p] * 1000U','AssassinEyeParam = Assassin_Eye_M_SubCritical[p]'):
+for tok in ('ServerLegacyStatusEffectAdapter().ApplyAssassinEye(', 'dwPlayServTime + (DWORD)Assassin_Eye_Time[p] * 1000U','Assassin_Eye_M_SubCritical[p]'):
     if tok not in CPP: err.append('Assassin Eye runtime missing '+tok)
+for tok in ('resolved->dwAssassinEyeTime = static_cast<DWORD>(expiresAt)','resolved->AssassinEyeParam = subCritical'):
+    if tok not in STATUS: err.append('Assassin Eye adapter missing '+tok)
 for tok in ('dwAssassinEyeTime = lpPlayInfo->dwSkill_AssassinEye_Time','AssassinEyeParam = Assassin_Eye_M_SubCritical[Point]'):
     if tok not in POL: err.append('Assassin Eye oracle missing '+tok)
 # Holy Incantation must rely on the native conversion lifetime and restore path.
-for tok in ('H_Incantation_Success[p]','H_Incantation_Time[p] * 17','H_Incantation_AddLife[p]','smCHAR_MONSTER_USER','lpMasterPlayInfo = owner'):
+for tok in ('H_Incantation_Success[p]','H_Incantation_Time[p] * 17','H_Incantation_AddLife[p]','ServerLegacyMonsterAdapter().ConvertToFollower('):
     if tok not in CPP: err.append('Holy Incantation runtime missing '+tok)
+for tok in ('target->lpMasterPlayInfo = owner','target->PlayHolyIncantation[1] = static_cast<short>(request.durationTicks)','target->smCharInfo.Brood = smCHAR_MONSTER_USER'):
+    if tok not in MONSTER: err.append('Holy Incantation adapter missing '+tok)
 for tok in ('PlayHolyIncantation[1]--','smCharInfo.Brood = PlayHolyIncantation[0]','lpMasterPlayInfo = 0'):
     if tok not in CHAR: err.append('native Holy Incantation cleanup missing '+tok)
 # Split Javelin: current legacy accuracy helper hard-returns 100, then server sums independent rolls.

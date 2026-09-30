@@ -1,0 +1,59 @@
+//ID
+*코드 "DA307"
+
+//Korean Name
+*이름 "Armadura Imperial"
+
+//English Name
+*Name "Armadura Imperial"
+
+//Defense
+*방어력 755 775
+
+//Absorption
+*흡수력 41.4 41.7
+
+//OrganicResistance
+*생체 11 17
+
+//FireResistance
+*불 11 17
+
+//FrostResistance
+*냉기 11 17
+
+//LightningResistance
+*번개 11 17
+
+//PoisonResistance
+*독 11 17
+
+//Integrity
+*내구력 320 350
+
+//Level
+*레벨 120
+
+//Strength
+*힘 110
+
+//Talent
+*재능 95
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**방어력 68 80
+
+//SpecAbsorption
+**흡수력 2.4 2.8
+
+//Weight
+*무게 232
+
+//Price
+*가격 1500000
+
+//Name File
+*연결파일 "Name\DA307.zhoon"

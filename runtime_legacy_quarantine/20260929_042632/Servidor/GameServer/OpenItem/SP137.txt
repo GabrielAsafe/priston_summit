@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "SP137"
+
+//Korean Name
+*ÀÌ¸§ "Evento Mágico 1"
+
+//English Name
+*Name "Evento Mágico 1"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\SP137.zhoon"

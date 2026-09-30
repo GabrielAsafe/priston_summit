@@ -1,0 +1,65 @@
+//ID
+*코드 "WC125"
+
+//Korean Name
+*이름 "Garra Negra"
+
+//English Name
+*Name "Garra Negra"
+
+//AttackPower
+*공격력 93 96 110 113
+
+//AttackRating
+*명중력 201 220
+
+//AttackSpeed
+*공격속도 8
+
+//AttackCritical
+*크리티컬 19
+
+//Defense
+*방어력 98 103
+
+//Integrity
+*내구력 180 220
+
+//Level
+*레벨 115
+
+//Strength
+*힘 179
+
+//Talent
+*재능 95
+
+//Agility
+*민첩성 80
+
+//PrimarySpec
+**특화 Mechanician
+
+//SecondarySpec
+**특화랜덤 Fighter Pikeman Knight Atalanta
+
+//SpecAttackPower
+**공격력 7 7
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 4
+
+//Weight
+*무게 86
+
+//Price
+*가격 1390000
+
+//Name File
+*연결파일 "Name\WC125.zhoon"

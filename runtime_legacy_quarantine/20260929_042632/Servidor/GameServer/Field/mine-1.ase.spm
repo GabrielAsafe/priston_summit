@@ -1,0 +1,20 @@
+//몬스터 출현 비율
+
+*최대동시출현수	 300
+//출현간격 범위 9-1 1차이당 2배씩 빨라짐
+*출현간격	 1 2
+*출현수	 1
+
+//		몬스터 이름          출현빈도
+
+*출연자	"Capataz das Cinzas"		20
+*출연자	"Mineiro das Cinzas"		20
+*출연자	"Explos? Selada"		8
+*출연자	"Verme de Gelo"		20
+*출연자	"Morcego da Mina"		20
+*출연자	"Golem Minerador"		20
+*출연자	"Tarantulika"		10
+*출연자	"Serpente de Gelo"		5
+
+*출연자두목	"Tulla"	"Morcego da Mina"	4	3 11 19
+

@@ -1,0 +1,65 @@
+//ID
+*코드 "WM130"
+
+//Korean Name
+*이름 "Cajado Verus"
+
+//English Name
+*Name "Cajado Verus"
+
+//AttackPower
+*공격력 124 127 143 146
+
+//AttackRating
+*명중력 233 243
+
+//AttackRange
+*사정거리 233
+
+//AttackSpeed
+*공격속도 8
+
+//AttackCritical
+*크리티컬 12
+
+//Block
+*블럭율 12.0 12.0
+
+//Integrity
+*내구력 220 240
+
+//Level
+*레벨 125
+
+//Strength
+*힘 75
+
+//Spirit
+*정신력 233
+
+//Talent
+*재능 100
+
+//SecondarySpec
+**특화랜덤 Priestess Magician
+
+//SpecAttackPower
+**공격력 6 6
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecMPRegen
+**기력재생 3.2 3.5
+
+//SpecSkillTraining
+**마법숙련도 15 24
+
+//Weight
+*무게 86
+
+//Price
+*가격 1600000
+
+//Name File
+*연결파일 "Name\WM130.zhoon"

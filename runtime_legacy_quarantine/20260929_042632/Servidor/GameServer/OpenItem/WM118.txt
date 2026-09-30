@@ -1,0 +1,65 @@
+//ID
+*코드 "WM118"
+
+//Korean Name
+*이름 "Cajado Antigo"
+
+//English Name
+*Name "Cajado Antigo"
+
+//AttackPower
+*공격력 28 30 35 38
+
+//AttackRating
+*명중력 130 148
+
+//AttackRange
+*사정거리 190
+
+//AttackSpeed
+*공격속도 7
+
+//AttackCritical
+*크리티컬 10
+
+//Block
+*블럭율 8.0 8.0
+
+//Integrity
+*내구력 98 116
+
+//Level
+*레벨 80
+
+//Strength
+*힘 60
+
+//Spirit
+*정신력 154
+
+//Talent
+*재능 88
+
+//SecondarySpec
+**특화랜덤 Priestess Magician
+
+//SpecAttackPower
+**공격력 6 6
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecMPRegen
+**기력재생 1.7 2.1
+
+//SpecSkillTraining
+**마법숙련도 5 9
+
+//Weight
+*무게 28
+
+//Price
+*가격 420000
+
+//Name File
+*연결파일 "Name\WM118.zhoon"

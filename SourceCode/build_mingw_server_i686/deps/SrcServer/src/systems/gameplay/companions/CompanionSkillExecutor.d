@@ -34,7 +34,6 @@
  Shared/rendering/legacy_3d/smJpeg.h \
  SrcServer/src/systems/rendering/legacy_3d/FilterEffect.h \
  SrcServer/src/systems/gameplay/character/core/character.h \
- SrcServer/src/systems/persistence/character_record/record.h \
  SrcServer/src/systems/audio/effects/legacy/effectsnd.h \
  Shared/audio/effects/effectsnd_legacy_server.h \
  SrcServer/src/core/server/gameplay_runtime/playmain.h \
@@ -48,7 +47,33 @@
  Shared/gameplay/skills/v2/legacy/LegacySkillAdapter.h \
  Shared/gameplay/skills/v2/services/SkillService.h \
  Shared/gameplay/skills/v2/SkillRegistry.h \
- Shared/gameplay/skills/v2/domain/SkillDefinition.h Shared/opcodes.h \
+ Shared/gameplay/skills/v2/domain/SkillDefinition.h \
+ Shared/gameplay/companions/v2/CompanionSkillProfile.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
+ Shared/gameplay/skills/v2/runtime/SkillRuntime.h \
+ Shared/gameplay/core/v2/GameplayIds.h \
+ Shared/gameplay/combat/v2/DamageContracts.h \
+ Shared/gameplay/combat/v2/LifeCommands.h \
+ Shared/gameplay/combat/v2/HealingService.h \
+ Shared/gameplay/combat/v2/TargetingService.h \
+ Shared/gameplay/combat/v2/StatusEffectService.h \
+ Shared/gameplay/combat/v2/CombatBuffService.h \
+ Shared/gameplay/inventory/v2/PotionService.h \
+ Shared/gameplay/monsters/v2/MonsterCommands.h \
+ Shared/gameplay/monsters/v2/MonsterQuery.h \
+ Shared/gameplay/world/v2/MovementCommands.h \
+ SrcServer/src/systems/gameplay/combat/v2/legacy/LegacyDamageAdapter.h \
+ SrcServer/src/systems/gameplay/combat/v2/legacy/LegacyLifeAdapter.h \
+ SrcServer/src/systems/gameplay/combat/v2/legacy/LegacyHealingAdapter.h \
+ SrcServer/src/systems/gameplay/combat/v2/legacy/LegacyTargetingAdapter.h \
+ SrcServer/src/systems/gameplay/combat/v2/legacy/LegacyStatusEffectAdapter.h \
+ SrcServer/src/systems/gameplay/combat/v2/legacy/LegacyCombatBuffAdapter.h \
+ SrcServer/src/systems/gameplay/inventory/v2/legacy/LegacyPotionAdapter.h \
+ SrcServer/src/systems/gameplay/monsters/v2/legacy/LegacyMonsterAdapter.h \
+ SrcServer/src/systems/gameplay/world/v2/legacy/LegacyMovementAdapter.h \
+ SrcServer/src/systems/gameplay/skills/v2/legacy/LegacySkillRuntimeAdapter.h \
+ SrcServer/src/systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h \
+ Shared/opcodes.h \
  Shared/gameplay/skills/v2/legacy/LegacyExtendedSkillMetadata.inl
 SrcServer/src/systems/gameplay/companions/CompanionSkillExecutor.h:
 Shared/content/v1/gameplay_config/content/GameplayConfigRuntime.h:
@@ -86,7 +111,6 @@ SrcServer/src/systems/rendering/legacy_3d/smJpeg.h:
 Shared/rendering/legacy_3d/smJpeg.h:
 SrcServer/src/systems/rendering/legacy_3d/FilterEffect.h:
 SrcServer/src/systems/gameplay/character/core/character.h:
-SrcServer/src/systems/persistence/character_record/record.h:
 SrcServer/src/systems/audio/effects/legacy/effectsnd.h:
 Shared/audio/effects/effectsnd_legacy_server.h:
 SrcServer/src/core/server/gameplay_runtime/playmain.h:
@@ -101,5 +125,30 @@ Shared/gameplay/skills/v2/legacy/LegacySkillAdapter.h:
 Shared/gameplay/skills/v2/services/SkillService.h:
 Shared/gameplay/skills/v2/SkillRegistry.h:
 Shared/gameplay/skills/v2/domain/SkillDefinition.h:
+Shared/gameplay/companions/v2/CompanionSkillProfile.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
+Shared/gameplay/skills/v2/runtime/SkillRuntime.h:
+Shared/gameplay/core/v2/GameplayIds.h:
+Shared/gameplay/combat/v2/DamageContracts.h:
+Shared/gameplay/combat/v2/LifeCommands.h:
+Shared/gameplay/combat/v2/HealingService.h:
+Shared/gameplay/combat/v2/TargetingService.h:
+Shared/gameplay/combat/v2/StatusEffectService.h:
+Shared/gameplay/combat/v2/CombatBuffService.h:
+Shared/gameplay/inventory/v2/PotionService.h:
+Shared/gameplay/monsters/v2/MonsterCommands.h:
+Shared/gameplay/monsters/v2/MonsterQuery.h:
+Shared/gameplay/world/v2/MovementCommands.h:
+SrcServer/src/systems/gameplay/combat/v2/legacy/LegacyDamageAdapter.h:
+SrcServer/src/systems/gameplay/combat/v2/legacy/LegacyLifeAdapter.h:
+SrcServer/src/systems/gameplay/combat/v2/legacy/LegacyHealingAdapter.h:
+SrcServer/src/systems/gameplay/combat/v2/legacy/LegacyTargetingAdapter.h:
+SrcServer/src/systems/gameplay/combat/v2/legacy/LegacyStatusEffectAdapter.h:
+SrcServer/src/systems/gameplay/combat/v2/legacy/LegacyCombatBuffAdapter.h:
+SrcServer/src/systems/gameplay/inventory/v2/legacy/LegacyPotionAdapter.h:
+SrcServer/src/systems/gameplay/monsters/v2/legacy/LegacyMonsterAdapter.h:
+SrcServer/src/systems/gameplay/world/v2/legacy/LegacyMovementAdapter.h:
+SrcServer/src/systems/gameplay/skills/v2/legacy/LegacySkillRuntimeAdapter.h:
+SrcServer/src/systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h:
 Shared/opcodes.h:
 Shared/gameplay/skills/v2/legacy/LegacyExtendedSkillMetadata.inl:

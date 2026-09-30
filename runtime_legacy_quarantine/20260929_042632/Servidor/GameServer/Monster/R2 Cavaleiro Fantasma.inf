@@ -1,0 +1,68 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\mongknight\mongknight.ini"
+
+//Name
+*이름 "Cavaleiro Fantasma"
+
+//Level
+*레벨 60
+
+//Size
+*모델크기 1.0
+
+//QuestCode
+*구별코드 28
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 400
+
+//HP
+*생명력 1060
+
+//AttackPower
+*공격력 72 80
+
+//AttackRating
+*명중력 1050
+
+//AttackSpeed
+*공격속도 8
+
+//AttackRange
+*공격범위 65
+
+//Defense
+*방어력 520
+
+//Absorption
+*흡수율 16
+
+//Block
+*블럭율 12
+
+//MoveSpeed
+*이동력 4
+
+//Race
+*몬스터종족 언데드
+
+//ShadowSize
+*크기 중형
+
+//Experience
+*경험치 32400
+
+//Sound
+*효과음 ILLUSIONKNIGHT
+
+//DropsNumber
+*아이템카운터 1
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

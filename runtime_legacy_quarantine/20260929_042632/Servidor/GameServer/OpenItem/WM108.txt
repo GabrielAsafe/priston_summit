@@ -1,0 +1,65 @@
+//ID
+*코드 "WM108"
+
+//Korean Name
+*이름 "Cajado da Medita豫o"
+
+//English Name
+*Name "Cajado da Medita豫o"
+
+//AttackPower
+*공격력 8 10 12 15
+
+//AttackRating
+*명중력 43 54
+
+//AttackRange
+*사정거리 165
+
+//AttackSpeed
+*공격속도 7
+
+//AttackCritical
+*크리티컬 6
+
+//Block
+*블럭율 5.0 5.0
+
+//Integrity
+*내구력 44 58
+
+//Level
+*레벨 30
+
+//Strength
+*힘 35
+
+//Spirit
+*정신력 65
+
+//Talent
+*재능 36
+
+//SecondarySpec
+**특화랜덤 Priestess Magician
+
+//SpecAttackPower
+**공격력 6 6
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecMPRegen
+**기력재생 0.8 1.0
+
+//SpecSkillTraining
+**마법숙련도 4 6
+
+//Weight
+*무게 7
+
+//Price
+*가격 19000
+
+//Name File
+*연결파일 "Name\WM108.zhoon"

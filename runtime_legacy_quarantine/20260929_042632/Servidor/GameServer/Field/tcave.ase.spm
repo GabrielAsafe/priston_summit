@@ -1,0 +1,19 @@
+//몬스터 출현 비율
+
+*최대동시출현수	 300
+//출현간격 범위 9-1 1차이당 2배씩 빨라짐
+*출현간격	 1 2
+*출현수	 1
+
+//		몬스터 이름          출현빈도
+
+*출연자	"Patrulheiro do Mal"		12
+*출연자	"Caramujo do Mal"		15
+*출연자	"Muffin"		22
+*출연자	"Morcego Vampiro"		10
+*출연자	"Planta das Trevas"		15
+*출연자	"Caramujo Espinhoso"		10
+*출연자	"Cavaleiro Negro"		6
+*출연자	"Guardiao de Lama"		20
+
+

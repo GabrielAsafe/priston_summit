@@ -119,7 +119,9 @@
  SrcServer/src/systems/progression/class_rank/Rank.h \
  SrcServer/src/systems/persistence/database/core/Database.h \
  Shared/persistence/database/Database_sqlite_server.h \
- SrcServer/src/systems/gameplay/quests/server/cQuestHandler.h \
+ SrcServer/src/systems/gameplay/quests/v2/legacy/LegacyQuestRepository.h \
+ Shared/gameplay/quests/v2/IQuestRepository.h \
+ Shared/gameplay/core/v2/GameplayIds.h \
  SrcServer/src/systems/world/field/field.h \
  SrcServer/src/systems/localization/messages/TextMessage.h \
  SrcServer/src/core/server/legacy_runtime/onserver.h \
@@ -251,7 +253,9 @@ SrcServer/src/systems/crafting/professions/JOBS.h:
 SrcServer/src/systems/progression/class_rank/Rank.h:
 SrcServer/src/systems/persistence/database/core/Database.h:
 Shared/persistence/database/Database_sqlite_server.h:
-SrcServer/src/systems/gameplay/quests/server/cQuestHandler.h:
+SrcServer/src/systems/gameplay/quests/v2/legacy/LegacyQuestRepository.h:
+Shared/gameplay/quests/v2/IQuestRepository.h:
+Shared/gameplay/core/v2/GameplayIds.h:
 SrcServer/src/systems/world/field/field.h:
 SrcServer/src/systems/localization/messages/TextMessage.h:
 SrcServer/src/core/server/legacy_runtime/onserver.h:

@@ -1,0 +1,11 @@
+{
+  "schema": "summit.stage-start-points/v1",
+  "id": "start_points.stemple",
+  "logical_path": "GameServer/Field/Stemple.ASE.spp",
+  "points": [],
+  "provenance": {
+    "source": "GameServer/Field/Stemple.ASE.spp",
+    "legacy_size": 2400,
+    "legacy_sha256": "f835b2afb1d7b1219f592650c06b16dd156322aeead793bb11dcd633045e2147"
+  }
+}

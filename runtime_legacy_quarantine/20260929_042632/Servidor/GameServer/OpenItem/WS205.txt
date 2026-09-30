@@ -1,0 +1,62 @@
+//ID
+*코드 "WS205"
+
+//Korean Name
+*이름 "Espada Longa"
+
+//English Name
+*Name "Espada Longa"
+
+//AttackPower
+*공격력 7 8 11 13
+
+//AttackRating
+*명중력 40 45
+
+//AttackSpeed
+*공격속도 7
+
+//AttackCritical
+*크리티컬 7
+
+//Block
+*블럭율 4.0 4.0
+
+//Integrity
+*내구력 48 55
+
+//Level
+*레벨 9
+
+//Strength
+*힘 40
+
+//Talent
+*재능 30
+
+//PrimarySpec
+**특화 Knight
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman
+
+//SpecAttackPower
+**공격력 6 6
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 4
+
+//Weight
+*무게 6
+
+//Price
+*가격 2600
+
+//Name File
+*연결파일 "Name\WS205.zhoon"

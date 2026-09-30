@@ -7,7 +7,7 @@ def req(label, needle):
     if needle not in s: errors.append(f"{label}: missing {needle!r}")
 
 for needle in ('ScoreHostileForCompanion', 'FindBestHostile', 'candidate == currentTarget',
-               'candidate->lpTargetPlayInfo == owner', 'state.slots[slot].entity == candidate->lpTargetChar'):
+               'ThreatTargetsOwner(threat, owner)', 'threat.targetEntity == EntityId'):
     req('target scoring', needle)
 for needle in ('score -= 40000', 'score -= 50000', 'score -= 35000'):
     req('bounded retention/threat weights', needle)

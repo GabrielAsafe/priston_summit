@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "WS239"
+
+//Korean Name
+*ÀÌ¸§ "Espada Anúbis"
+
+//English Name
+*Name "Espada Anúbis"
+
+//AttackPower
+*°ø°Ý·Â 119 122 140 143
+
+//AttackRating
+*¸íÁß·Â 299 323
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 8
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 23
+
+//Block
+*ºí·°À² 16.0 16.0
+
+//Integrity
+*³»±¸·Â 286 315
+
+//Level
+*·¹º§ 130
+
+//Strength
+*Èû 273
+
+//Talent
+*Àç´É 100
+
+//PrimarySpec
+**Æ¯È­ Knight
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Pikeman
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 6
+
+//Weight
+*¹«°Ô 143
+
+//Price
+*°¡°Ý 2290000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WS239.zhoon"

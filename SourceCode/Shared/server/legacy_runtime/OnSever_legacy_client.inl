@@ -1,6 +1,26 @@
+// =============================================================================
+// MAPA DO MONOLITO LEGACY - CLIENT LEGACY SERVER SUPPORT
+//
+// Este mapa e apenas documental. O ficheiro permanece RED e no mesmo local;
+// os separadores abaixo nao alteram ownership, ordem de execucao ou ABI.
+// FUNCIONAMENTO GERAL: Espelho/support legacy compilado no lado client; mantem estruturas e comportamentos historicos necessarios ao binario antigo.
+//
+// AREAS PRINCIPAIS:
+//   AREA 01 - BOOTSTRAP / CONFIG
+//   AREA 02 - MONSTROS / NPC
+//   AREA 03 - ITEMS / RECORDS
+//   AREA 04 - SESSION SUPPORT
+//   AREA 05 - COMMAND PARSING
+//   AREA 06 - COMPATIBILIDADE CLIENT/SERVER
+//
+// Desenvolvimento novo deve usar contracts/ports/adapters AMBER existentes.
+// =============================================================================
+
 #include "content/v1/definition/content/DefinitionRuntime.h"
 #include "content/v1/text_resource/content/TextResourceRuntime.h"
 #include "content/v1/text_resource/legacy/LegacyContentIdRegistry.h"
+#include "content/v1/field_runtime/content/CompiledFieldRuntimeSource.h"
+#include "content/v1/runtime/RuntimeContentPath.h"
 #include "compat/client_server/server_legacy/protocol/opcodes.h"
 #define _WIN32_WINNT    0x0403  
 #define _WIN32_WINDOWS  0x0403
@@ -1372,6 +1392,14 @@ int rsLogOut(rsPLAYINFO *lpPlayInfo)
 
 
 
+// =============================================================================
+// AREA 01 - MONSTROS / NPC
+// TIPO: conteudo + world
+// FUNCIONAMENTO: Prepara tabelas legacy de monstros/NPC usadas pelo suporte client-side.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
+
 int InitMonster()
 {
 
@@ -1660,6 +1688,14 @@ int rsCheckActiveFile(char *szFile)
 
 
 
+
+// =============================================================================
+// AREA 02 - ITEMS
+// TIPO: conteudo + inventario
+// FUNCIONAMENTO: Prepara definitions/items no formato esperado pelas rotinas legacy.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 int InitItems()
 {
@@ -6328,79 +6364,78 @@ smTRNAS_PLAYERINFO *STG_AREA::FindCharInfoFixed(smTRNAS_PLAYERINFO *lpTransPlaye
 
 int STG_AREA::AddCharInfoFixed(smTRNAS_PLAYERINFO *lpTransPlayerInfo)
 {
-	smTRNAS_PLAYERINFO	*lpFindPlayerInfo;
-
-	lpFindPlayerInfo = FindCharInfoFixed(lpTransPlayerInfo);
-	if(lpFindPlayerInfo) return FALSE;
-
-	lpFindPlayerInfo = FindCharInfoFixed(0);
-	if(lpFindPlayerInfo)
-	{
-		rsOpenNPC_RandomPos = -1;
-		memcpy(lpFindPlayerInfo, lpTransPlayerInfo, sizeof(smTRNAS_PLAYERINFO));
-		OpenNpc(lpFindPlayerInfo);
-		SaveCharInfoFixed(szCharFixedFile);
-		return TRUE;
-	}
-
+	// Field placement authoring is canonical-JSON-only. Runtime mutation would
+	// diverge from field_runtime.sfld and would disappear after restart.
+	(void)lpTransPlayerInfo;
 	return FALSE;
 }
 
 
 int STG_AREA::DeleteCharInfoFixed(smTRNAS_PLAYERINFO *lpTransPlayerInfo)
 {
-	smTRNAS_PLAYERINFO	*lpFindPlayerInfo;
-	smCHAR	*lpChar;
-
-	lpFindPlayerInfo = FindCharInfoFixed(lpTransPlayerInfo);
-	if(lpFindPlayerInfo)
-	{
-		lpFindPlayerInfo->code = 0;
-
-		lpChar = srFindCharFromSerial(lpTransPlayerInfo->dwObjectSerial);
-		if(lpChar)
-		{
-			lpChar->Close();
-		}
-		SaveCharInfoFixed(szCharFixedFile);
-		return TRUE;
-	}
-
+	// Persistent fixed-NPC edits belong to canonical fixed_npcs JSON.
+	(void)lpTransPlayerInfo;
 	return FALSE;
 }
 
 
-
 int STG_AREA::LoadCharInfoFixed(char *szFile)
 {
-	FILE *fp;
+	if(!szFile) return FALSE;
+	ZeroMemory(TransCharFixed, sizeof(TransCharFixed));
 
-	fp = fopen(szFile, "rb");
-	if(fp)
+	static const std::string fieldPackPath = summit::content::runtime::ResolveRuntimePackPath("field_runtime.sfld");
+	summit::content::field_runtime::CompiledFieldRuntimeSource source(fieldPackPath.c_str());
+	summit::content::field_runtime::FixedNpcSet placements;
+	std::string fieldError;
+	if(!source.IsValid() || !source.LoadFixedNpcs(szFile, placements, &fieldError))
+		return FALSE;
+
+	for(std::size_t i=0; i<placements.npcs.size(); ++i)
 	{
-		fread(TransCharFixed, sizeof(smTRNAS_PLAYERINFO)*FIX_CHAR_MAX, 1, fp);
-		fclose(fp);
-		return TRUE;
+		const summit::content::field_runtime::FixedNpcPlacement &src = placements.npcs[i];
+		if(src.slot >= FIX_CHAR_MAX || src.definitionPath.empty() || src.definitionPath.size() >= sizeof(TransCharFixed[0].smCharInfo.szModelName2))
+			return FALSE;
+
+		smTRNAS_PLAYERINFO &dst = TransCharFixed[src.slot];
+		ZeroMemory(&dst, sizeof(dst));
+		dst.size = sizeof(smTRNAS_PLAYERINFO);
+		// Match the packet marker used by the legacy SPC records.  The loader only
+		// needs a non-zero value to open the slot, but keeping the canonical opcode
+		// avoids changing legacy semantics for code that inspects the fixed record.
+		dst.code = smTRANSCODE_ADD_NPC;
+		dst.x = src.x; dst.y = src.y; dst.z = src.z;
+		dst.ax = src.ax; dst.ay = src.ay; dst.az = src.az; dst.state = src.state;
+
+		// A legacy SPC stores a pre-materialized smCHAR_INFO snapshot.  NPC
+		// definitions usually do not contain a Life directive, so zeroing the whole
+		// record made the reconstructed NPC arrive at the client with Life=0.  The
+		// client rejects mouse interaction with any character whose current life is
+		// non-positive.  Seed the historical neutral-NPC baseline before smCharDecode;
+		// an explicit definition directive still overrides these values.
+		dst.smCharInfo.State = smCHAR_STATE_NPC;
+		dst.smCharInfo.Life[0] = 100;
+		dst.smCharInfo.Life[1] = 100;
+		std::memcpy(dst.smCharInfo.szModelName2, src.definitionPath.c_str(), src.definitionPath.size() + 1);
+
+		// Preserve the one pre-open field still consulted by legacy day/night logic.
+		smCHAR_INFO decodedInfo = {};
+		smCHAR_MONSTER_INFO decodedMonster = {};
+		char decodedDialog[256] = {0};
+		if(!smCharDecode(dst.smCharInfo.szModelName2, &decodedInfo, &decodedMonster, decodedDialog, sizeof(decodedDialog)))
+			return FALSE;
+		dst.smCharInfo.dwCharSoundCode = decodedInfo.dwCharSoundCode;
 	}
-	return FALSE;
+	return TRUE;
 }
 
 
 int STG_AREA::SaveCharInfoFixed(char *szFile)
 {
-	FILE *fp;
-
-	fp = fopen(szFile, "wb");
-	if(fp)
-	{
-		fwrite(TransCharFixed, sizeof(smTRNAS_PLAYERINFO)*FIX_CHAR_MAX, 1, fp);
-		fclose(fp);
-	}
-
-	return TRUE;
+	// Legacy .spc persistence is intentionally disabled after the field pack port.
+	(void)szFile;
+	return FALSE;
 }
-
-
 
 
 int STG_AREA::OpenNpc(smTRNAS_PLAYERINFO *lpTransPlayerInfo)
@@ -7044,38 +7079,34 @@ int STG_AREA::SendStartPos(rsPLAYINFO *lpPlayInfo)
 
 int STG_AREA::LoadStartPoint(char *szFile)
 {
-	FILE *fp;
+	if(!szFile) return FALSE;
+	ZeroMemory(StartPoint, sizeof(StartPoint));
 
-	fp = fopen(szFile, "rb");
-	if(fp)
+	static const std::string fieldPackPath = summit::content::runtime::ResolveRuntimePackPath("field_runtime.sfld");
+	summit::content::field_runtime::CompiledFieldRuntimeSource source(fieldPackPath.c_str());
+	summit::content::field_runtime::StageStartPointSet points;
+	std::string fieldError;
+	if(!source.IsValid() || !source.LoadStartPoints(szFile, points, &fieldError))
+		return FALSE;
+
+	for(std::size_t i=0; i<points.points.size(); ++i)
 	{
-		fread(StartPoint, sizeof(STG_START_POINT)*STG_START_POINT_MAX, 1, fp);
-		fclose(fp);
-		dwActiveMode |= 1;
+		const summit::content::field_runtime::StageStartPointPlacement &src = points.points[i];
+		if(src.slot >= STG_START_POINT_MAX || src.state == 0) return FALSE;
+		StartPoint[src.slot].state = src.state;
+		StartPoint[src.slot].x = src.x;
+		StartPoint[src.slot].z = src.z;
 	}
-
+	dwActiveMode |= 1;
 	return TRUE;
 }
 
 int STG_AREA::SaveStartPoint(char *szFile)
 {
-	FILE *fp;
-
-	fp = fopen(szFile, "wb");
-	if(fp)
-	{
-		fwrite(StartPoint, sizeof(STG_START_POINT)*STG_START_POINT_MAX, 1, fp);
-		fclose(fp);
-		dwActiveMode |= 1;
-	}
-
-	return TRUE;
+	// Legacy .spp persistence is intentionally disabled after the field pack port.
+	(void)szFile;
+	return FALSE;
 }
-
-
-
-
-
 
 
 int	STG_AREA::FindEmptyMonTable()
@@ -7864,43 +7895,19 @@ int STG_AREA::FindStartPoint(int x, int z)
 
 int STG_AREA::AddStartPoint(int x, int z, int state)
 {
-	int cnt;
-
-
-	cnt = FindStartPoint(x, z);
-	if(cnt >= 0) return FALSE;
-
-	for(cnt = 0; cnt < STG_START_POINT_MAX; cnt++)
-	{
-		if(!StartPoint[cnt].state)
-		{
-			StartPoint[cnt].state = state;
-			StartPoint[cnt].x = x;
-			StartPoint[cnt].z = z;
-			StartPointMonCount[cnt] = 0;
-			SaveStartPoint(szStartPointFile);
-			return TRUE;
-		}
-	}
-
+	// Start-point authoring is canonical-JSON-only.
+	(void)x; (void)z; (void)state;
 	return FALSE;
 }
 
 
 int STG_AREA::DeleteStartPoint(int x, int z)
 {
-	int cnt;
-
-	cnt = FindStartPoint(x, z);
-	if(cnt >= 0)
-	{
-		StartPoint[cnt].state = 0;
-		StartPointMonCount[cnt] = 0;
-		SaveStartPoint(szStartPointFile);
-		return TRUE;
-	}
+	// Start-point authoring is canonical-JSON-only.
+	(void)x; (void)z;
 	return FALSE;
 }
+
 
 int STG_AREA::StartPosRandomize()
 {
@@ -18384,6 +18391,14 @@ int	SendFindCrack(smWINSOCK *lpsmSock)
 {
 	return TRUE;
 }
+
+// =============================================================================
+// AREA 03 - COMMAND PARSING
+// TIPO: rede + comandos
+// FUNCIONAMENTO: Mantem parser/dispatch legacy deste build; nao deve receber feature logic nova.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 {

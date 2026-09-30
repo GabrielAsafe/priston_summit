@@ -1,0 +1,20 @@
+//몬스터 출현 비율
+
+*최대동시출현수	 300
+//출현간격 범위 9-1 1차이당 2배씩 빨라짐
+*출현간격	 1 2
+*출현수	 1
+
+//		몬스터 이름          출현빈도
+
+*출연자	"Omega"		15
+*출연자	"Montanha"		15
+*출연자	"Morgon"		15
+*출연자	"Metron"		15
+*출연자	"Guardiao Antigo"		10
+*출연자	"Ogro Mecanico"		14
+*출연자	"Maquina-D"		11
+*출연자	"Punhos de Aco"		5
+
+*출연자두목	"Babel"	"Punhos de Aco"	5	0 3 6 9 12 15 18 21
+

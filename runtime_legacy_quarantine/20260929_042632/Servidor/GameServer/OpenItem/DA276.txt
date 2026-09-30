@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "DA276"
+
+//Korean Name
+*ÀÌ¸§ "Roupão Noel Verde"
+
+//English Name
+*Name "Roupão Noel Verde"
+
+//Defense
+*¹æ¾î·Â 220 230
+
+//Absorption
+*Èí¼ö·Â 10.0 10.5
+
+//OrganicResistance
+*»ýÃ¼ 11 11
+
+//FireResistance
+*ºÒ 11 11
+
+//FrostResistance
+*³Ã±â 11 11
+
+//LightningResistance
+*¹ø°³ 11 11
+
+//PoisonResistance
+*µ¶ 11 11
+
+//Integrity
+*³»±¸·Â 140 140
+
+//HP
+*»ý¸í·ÂÃß°¡ 50 50
+
+//MP
+*±â·ÂÃß°¡ 50 50
+
+//STM
+*±Ù·ÂÃß°¡ 50 50
+
+//Level
+*·¹º§ 20
+
+//SecondarySpec
+**Æ¯È­·£´ý Magician
+
+//SpecDefense
+**¹æ¾î·Â 35 35
+
+//SpecAbsorption
+**Èí¼ö·Â 3.0 3.0
+
+//Weight
+*¹«°Ô 35
+
+//Price
+*°¡°Ý 100000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DA276.zhoon"

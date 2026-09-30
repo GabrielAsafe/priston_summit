@@ -1,59 +1,77 @@
 #include <cstring>
+#include <cstdio>
 #include "systems/network/protocol/server/opcodes.h"
 #include "systems/community/news/News.h"
 #include "modules/File/File.h"
 #include "smPacket.h"
 #include <string>
+#include "content/v1/localization/content/LocalizationRuntime.h"
+#include "content/v1/localization/legacy/LocalizationLegacyEncoding.h"
 #include "systems/persistence/database/core/Database.h"
 #include "systems/commerce/coin_shop/CoinShop.h"
 #include "systems/commerce/coin_shop/CoinShop_T.h"
 
 extern int OpenBossTimeMin;
 
+namespace
+{
+bool SummitNewsLegacyFormat(std::string &legacyFormat, const char *key)
+{
+    return summit::content::localization::GetLocalizationLegacyValue(key, legacyFormat);
+}
+
+bool SummitNewsFormatName(char *destination, std::size_t capacity, const char *key, const char *name)
+{
+    if(!destination || capacity == 0)
+        return false;
+    std::string format;
+    if(!SummitNewsLegacyFormat(format, key))
+        return false;
+    const int written = std::snprintf(destination, capacity, format.c_str(), name ? name : "");
+    if(written < 0 || static_cast<std::size_t>(written) >= capacity)
+    {
+        destination[0] = 0;
+        return false;
+    }
+    return true;
+}
+
+bool SummitNewsFormatNumber(char *destination, std::size_t capacity, const char *key, int value)
+{
+    if(!destination || capacity == 0)
+        return false;
+    std::string format;
+    if(!SummitNewsLegacyFormat(format, key))
+        return false;
+    const int written = std::snprintf(destination, capacity, format.c_str(), value);
+    if(written < 0 || static_cast<std::size_t>(written) >= capacity)
+    {
+        destination[0] = 0;
+        return false;
+    }
+    return true;
+}
+}
+
+
 void News::welcome()
 {
-	TRANS_CHATMESSAGE TransChatMessage;
-	//nick na msg de boas vindas
-	/*wsprintf(TransChatMessage.szMessage, "> Ol\341 %s", player->getName());
-	TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
-	TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
-	TransChatMessage.dwIP = 16;
-	TransChatMessage.dwObjectSerial = 0;
-	player->lpsmSock->Send((char*)& TransChatMessage, TransChatMessage.size, TRUE);*/
+    if(!player || !player->lpsmSock)
+        return;
 
+    TRANS_CHATMESSAGE packet = {};
+    if(!SummitNewsFormatName(
+        packet.szMessage,
+        sizeof(packet.szMessage),
+        "news.welcome",
+        player->getName()))
+        return;
 
-	//nick na msg de boas vindas
-	wsprintf(TransChatMessage.szMessage, "Ola %s, Bem Vindo ao Priston Tale.", player->getName());
-	TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
-	TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
-	TransChatMessage.dwIP = 3;
-	TransChatMessage.dwObjectSerial = 0;
-	player->lpsmSock->Send((char*)& TransChatMessage, TransChatMessage.size, TRUE);
-
-	/*try
-	{
-		File file("Configs//Sistemas.ini");
-
-		std::string message = file.readString("Welcome", "message");
-
-		if (player && player->lpsmSock)
-		{
-			TRANS_CHATMESSAGE packet;
-
-			packet.code = OpCode::OPCODE_WHISPERMESSAGE;
-
-			strcpy_s(packet.szMessage, sizeof(packet.szMessage), message.c_str());
-
-			packet.size = 32 + lstrlen(packet.szMessage);
-			packet.dwIP = 16;
-			packet.dwObjectSerial = 0;
-
-			player->lpsmSock->Send((char *)&packet, packet.size, TRUE);
-		}
-	}
-	catch (FileException)
-	{
-	}*/
+    packet.code = OpCode::OPCODE_WHISPERMESSAGE;
+    packet.size = 32 + lstrlen(packet.szMessage);
+    packet.dwIP = 3;
+    packet.dwObjectSerial = 0;
+    player->lpsmSock->Send((char*)&packet, packet.size, TRUE);
 }
 
 void News::title()
@@ -86,30 +104,36 @@ void News::title()
 
 void News::msgCoinShop()
 {
-	try
-	{
-		TRANS_CHATMESSAGE TransChatMessage;
+    if(!player || !player->lpsmSock)
+        return;
 
-		wsprintf(TransChatMessage.szMessage, "> Voc\352 Possui %d CoinShop", cCoinShop.GetPlayerCoin(player));
-		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
-		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
-		TransChatMessage.dwIP = 3;
-		TransChatMessage.dwObjectSerial = 0;
-		player->lpsmSock->Send((char*)& TransChatMessage, TransChatMessage.size, TRUE);
-		
-	
-		wsprintf(TransChatMessage.szMessage, "> Voc\352 Possui %d TimeShop", cCoinShop_T.GetPlayerCoin(player));
-		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
-		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
-		TransChatMessage.dwIP = 3;
-		TransChatMessage.dwObjectSerial = 0;
-		player->lpsmSock->Send((char*)& TransChatMessage, TransChatMessage.size, TRUE);
-		
-	}
-	catch (FileException)
-	{
+    TRANS_CHATMESSAGE packet = {};
+    if(SummitNewsFormatNumber(
+        packet.szMessage,
+        sizeof(packet.szMessage),
+        "news.coin_shop_balance",
+        cCoinShop.GetPlayerCoin(player)))
+    {
+        packet.code = OpCode::OPCODE_WHISPERMESSAGE;
+        packet.size = 32 + lstrlen(packet.szMessage);
+        packet.dwIP = 3;
+        packet.dwObjectSerial = 0;
+        player->lpsmSock->Send((char*)&packet, packet.size, TRUE);
+    }
 
-	}
+    ZeroMemory(&packet, sizeof(packet));
+    if(SummitNewsFormatNumber(
+        packet.szMessage,
+        sizeof(packet.szMessage),
+        "news.time_shop_balance",
+        cCoinShop_T.GetPlayerCoin(player)))
+    {
+        packet.code = OpCode::OPCODE_WHISPERMESSAGE;
+        packet.size = 32 + lstrlen(packet.szMessage);
+        packet.dwIP = 3;
+        packet.dwObjectSerial = 0;
+        player->lpsmSock->Send((char*)&packet, packet.size, TRUE);
+    }
 }
 
 void News::msgNotice()
@@ -164,27 +188,22 @@ void News::msgNotice()
 
 void News::msgPlayerLogado(rsPLAYINFO *jogadores)
 {
-	TRANS_CHATMESSAGE TransChatMessage;
-	int cnt;
+    if(!player || !player->lpsmSock || !jogadores || !jogadores->lpsmSock)
+        return;
 
-	if (player && player->lpsmSock)
-	{
+    TRANS_CHATMESSAGE packet = {};
+    if(!SummitNewsFormatName(
+        packet.szMessage,
+        sizeof(packet.szMessage),
+        "news.player_online",
+        player->getName()))
+        return;
 
-		wsprintf(TransChatMessage.szMessage, "> Player [%s] Est\341 Online", player->getName());
-		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
-		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
-		TransChatMessage.dwIP = 9;
-		TransChatMessage.dwObjectSerial = 0;
-
-
-		for (cnt = 0; cnt < CONNECTMAX; cnt++)
-		{
-			if (jogadores[cnt].lpsmSock)
-			{
-				jogadores[cnt].lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
-			}
-		}
-	}
+    packet.code = OpCode::OPCODE_WHISPERMESSAGE;
+    packet.size = 32 + lstrlen(packet.szMessage);
+    packet.dwIP = 9;
+    packet.dwObjectSerial = 0;
+    jogadores->lpsmSock->Send((char*)&packet, packet.size, TRUE);
 }
 
 

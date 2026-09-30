@@ -9,11 +9,13 @@ import subprocess
 import sys
 from pathlib import Path
 
-IMPORT_FAMILIES = ("maps", "stage_spawns", "text")
+IMPORT_FAMILIES = ("maps", "stage_spawns", "stage_start_points", "fixed_npcs", "text")
 REQUIRED_INTERNAL = (
     "maps/client.maps.json",
     "maps/server.maps.json",
     "stage_spawns/index.json",
+    "stage_start_points/index.json",
+    "fixed_npcs/index.json",
     "text/index.json",
     "item_profiles/client.items.json",
     "item_profiles/server.items.json",
@@ -121,7 +123,7 @@ def main() -> int:
         "--import-root",
         type=Path,
         default=None,
-        help="Optional one-time external canonical root. maps/, stage_spawns/ and text/ are copied into SourceCode/Content/canonical before building. Runtime never uses this path.",
+        help="Optional one-time external canonical root. maps/, stage_spawns/, stage_start_points/, fixed_npcs/ and text/ are copied into SourceCode/Content/canonical before building. Runtime never uses this path.",
     )
     ap.add_argument("--no-deploy", action="store_true", help="Build and validate SourceCode packs without copying them to cliente/ and Servidor/.")
     args = ap.parse_args()
@@ -155,6 +157,8 @@ def main() -> int:
         "--canonical-text", canonical / "text",
         "--canonical-spawns", canonical / "stage_spawns",
         "--canonical-maps", canonical / "maps",
+        "--canonical-start-points", canonical / "stage_start_points",
+        "--canonical-fixed-npcs", canonical / "fixed_npcs",
         "--canonical-item-profiles", canonical / "item_profiles",
         "--out-root", content,
     )
@@ -167,7 +171,7 @@ def main() -> int:
         run(sys.executable, tools / "validate_runtime_pack_resolution.py", "--repo-root", repo)
 
     family_manifest = {}
-    for family in ("maps", "stage_spawns", "text", "item_profiles"):
+    for family in ("maps", "stage_spawns", "stage_start_points", "fixed_npcs", "text", "item_profiles"):
         digest, files, total = tree_digest(canonical / family)
         family_manifest[family] = {"files": files, "bytes": total, "sha256": digest}
 

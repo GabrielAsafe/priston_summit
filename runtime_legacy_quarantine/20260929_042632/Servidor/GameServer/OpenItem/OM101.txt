@@ -1,0 +1,59 @@
+//ID
+*ÄÚµå "OM101"
+
+//Korean Name
+*ÀÌ¸§ "Orbital Pérola"
+
+//English Name
+*Name "Orbital Pérola"
+
+//OrganicResistance
+*»ýÃ¼ 1 3
+
+//FireResistance
+*ºÒ 1 3
+
+//FrostResistance
+*³Ã±â 1 3
+
+//LightningResistance
+*¹ø°³ 1 3
+
+//PoisonResistance
+*µ¶ 1 3
+
+//Defense
+*¹æ¾î·Â 2 5
+
+//Absorption
+*Èí¼ö·Â 0.2 0.4
+
+//Block
+*ºí·°À² 5.0 6.0
+
+//HP
+*»ý¸í·ÂÃß°¡ 7 15
+
+//MP
+*±â·ÂÃß°¡ 5 10
+
+//Integrity
+*³»±¸·Â 20 35
+
+//SecondarySpec
+**Æ¯È­·£´ý Priestess Magician
+
+//SpecAbsorption
+**Èí¼ö·Â 0.3 0.4
+
+//SpecMPRegen
+**±â·ÂÀç»ý 0.3 0.5
+
+//Weight
+*¹«°Ô 2
+
+//Price
+*°¡°Ý 150
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\OM101.zhoon"

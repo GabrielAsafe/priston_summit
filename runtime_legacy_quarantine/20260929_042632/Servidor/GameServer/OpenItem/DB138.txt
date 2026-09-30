@@ -1,0 +1,48 @@
+// NOME E CODIGO DO ITEM
+*이름		"Botas Draxos"
+*코드		"DB138"
+
+// INTEGRIDADE DO ITEM
+*내구력		190	210
+// PESO DO ITEM
+*무게		80
+// PRECO DO ITEM
+*가격		643075
+
+// RESISTENCIA ORGANICA
+*생체 12 14
+// RESISTENCIA A FOGO
+*불 12 14
+// RESISTENCIA A GELO
+*냉기 12 14
+// RESISTENCIA A RAIO
+*번개 12 14
+// RESISTENCIA A VENENO
+*독 12 14
+
+// ABSOR플O
+*흡수력 17.5 20.5
+// TAXA DE DEFESA
+*방어력		393 405
+// VELOCIDADE
+*이동속도	15.0
+
+// LEVEL DO ITEM
+*레벨 140
+// FORCA REQUIRIDA
+*힘 100
+// INTELIGENCIA
+*정신력 40
+// TALENTO
+*재능
+// AGILIDADE
+*민첩성 100
+// VITALIDADE	
+*건강		
+
+// SPECS
+**특화랜덤 Knight Atalanta Mechanician Fighter Pikeman Archer Priestess Magician
+// ABS ADICIONAL
+**흡수력	1.3 2.0
+// VELOCIDADE ADICIONAL
+**이동속도	2.0

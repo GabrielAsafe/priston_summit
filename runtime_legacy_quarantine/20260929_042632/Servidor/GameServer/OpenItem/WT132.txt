@@ -1,0 +1,65 @@
+//ID
+*ÄÚµå "WT132"
+
+//Korean Name
+*ÀÌ¸§ "Lança Hades"
+
+//English Name
+*Name "Lança Hades"
+
+//AttackPower
+*°ø°Ý·Â 87 91 107 110
+
+//AttackRange
+*»çÁ¤°Å¸® 255
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 8
+
+//AttackRating
+*¸íÁß·Â 220 240
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 17
+
+//Integrity
+*³»±¸·Â 215 239
+
+//Level
+*·¹º§ 110
+
+//Strength
+*Èû 82
+
+//Talent
+*Àç´É 100
+
+//Agility
+*¹ÎÃ¸¼º 201
+
+//PrimarySpec
+**Æ¯È­ Atalanta
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Archer
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 6
+
+//SpecAttackRange
+**»çÁ¤°Å¸® 25
+
+//Weight
+*¹«°Ô 78
+
+//Price
+*°¡°Ý 1880000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WT132.zhoon"

@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "WR106"
+
+//Korean Name
+*ÀÌ¸§ "Receita de Ataque Nível 80D"
+
+//English Name
+*Name "Receita de Ataque Nível 80D"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WR106.zhoon"

@@ -1,0 +1,14 @@
+//ID
+*코드 "BI110"
+
+//Korean Name
+*이름 "Pedra do Aging"
+
+//English Name
+*Name "Pedra do Aging"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\BI110.zhoon"

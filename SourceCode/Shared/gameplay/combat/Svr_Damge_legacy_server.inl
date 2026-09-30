@@ -32,8 +32,10 @@
 
 #include "systems/gameplay/events/server_legacy/SvrCaravan.h"
 #include "systems/gameplay/events/hells_gate/cHellsGate.h"
+#include "systems/gameplay/world/v2/legacy/LegacyInteractionAdapter.h"
+#include "systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h"
 #include "systems/progression/class_rank/Rank.h"
-#include "systems/gameplay/quests/server/cQuestHandler.h"
+#include "systems/gameplay/quests/v2/legacy/LegacyQuestStateQuery.h"
 
 #define	PK_POWER_DIVIDE	5
 #define	PK_SCORE_DIVIDE	10
@@ -628,10 +630,10 @@ int rsRecvAttackData_Old(rsPLAYINFO *lpPlayInfo, TRANS_ATTACKDATA *lpTransAttack
 						SendShopItemList(lpsmSock, lpChar);
 					}
 
-					if (lpChar->smMonsterInfo.EventCode == 988)
-					{
-						cHg.SendOpenNpc(lpPlayInfo);
-					}
+					gameplay::world::legacy::ServerLegacyInteractionAdapter().Interact(
+						gameplay::world::InteractionRequest(
+							gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo),
+							gameplay::EntityId(static_cast<std::uint32_t>(lpChar->dwObjectSerial))));
 
 					if (lpChar->smMonsterInfo.EventCode == 1001)
 					{ 
@@ -3388,7 +3390,12 @@ int rsCheckSkillLevel(rsPLAYINFO *lpPlayInfo, DWORD dwSkillCode)
 			SummitTraceT5ServerAuthority(lpPlayInfo, dwSkillCode, -1, "reject-rank");
 			return FALSE;
 		}
-		if(!cQuestHandler.HasCompletedRank5Quest(lpPlayInfo))
+		gameplay::quests::QuestStateSnapshot rank5QuestState;
+		const char* playerName = lpPlayInfo->getName();
+		if(!playerName || !playerName[0] ||
+		   !gameplay::quests::legacy::ServerLegacyQuestStateQuery().TryGetState(
+			playerName, gameplay::QuestId(QUESTID_T5_QUEST_ARENA), rank5QuestState) ||
+		   !rank5QuestState.completed)
 		{
 			SummitTraceT5ServerAuthority(lpPlayInfo, dwSkillCode, -1, "reject-rank5-quest");
 			return FALSE;

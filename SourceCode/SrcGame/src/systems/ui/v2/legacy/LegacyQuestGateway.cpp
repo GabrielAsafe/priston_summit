@@ -2,8 +2,10 @@
 
 #include <algorithm>
 #include <string>
+#include <vector>
 
 #include "compat/legacy/sin/sinLinkHeader.h"
+#include "content/v1/gameplay_reference/content/GameplayReferenceRuntime.h"
 #include "systems/gameplay/quests/ui/cQuestWindow.h"
 #include "systems/ui/messages/legacy_sin/sinMsg.h"
 
@@ -11,6 +13,11 @@ namespace ui::v2::legacy
 {
 namespace
 {
+using summit::content::gameplay_reference::QuestGuideEntry;
+
+constexpr int ClassicQuestSectionId = 0x7010;
+constexpr int CodexQuestSectionId = 0x7020;
+
 struct QuestRef
 {
     sSPOILER* section = nullptr;
@@ -41,9 +48,67 @@ std::string SectionTitle(int id)
     }
 }
 
+int CodexQuestId(const std::string& guideId)
+{
+    std::uint32_t hash = 2166136261u;
+    for (std::size_t i = 0; i < guideId.size(); ++i)
+    {
+        hash ^= static_cast<unsigned char>(guideId[i]);
+        hash *= 16777619u;
+    }
+    return static_cast<int>(0x60000000u | (hash & 0x0fffffffu));
+}
+
+void CopyGuide(QuestEntrySnapshot& out, const QuestGuideEntry& guide)
+{
+    out.codex.available = true;
+    out.codex.guideId = guide.guideId;
+    out.codex.type = guide.type;
+    out.codex.category = guide.category;
+    out.codex.source = guide.source;
+    out.codex.lore = guide.lore;
+    out.codex.repeatable = guide.repeatable;
+    out.codex.prerequisites = guide.prerequisites;
+    out.codex.classes = guide.classes;
+    out.codex.factions = guide.factions;
+    out.codex.stages = guide.stages;
+    out.codex.objectives = guide.objectives;
+    out.codex.npcs = guide.npcs;
+    out.codex.locations = guide.locations;
+    out.codex.questItems = guide.questItems;
+    out.codex.rewards = guide.rewards;
+    out.codex.notes = guide.notes;
+}
+
+void EnrichWithGuide(QuestEntrySnapshot& out, int runtimeId)
+{
+    auto& source = summit::content::gameplay_reference::GameplayReferenceRuntime();
+    if (!source.IsValid())
+        return;
+
+    QuestGuideEntry guide;
+    bool found = runtimeId != 0 && source.FindByRuntimeId(runtimeId, guide);
+    if (!found && !out.name.empty())
+        found = source.FindByName(out.name.c_str(), guide);
+    if (!found && !out.title.empty())
+        found = source.FindByName(out.title.c_str(), guide);
+    if (!found)
+        return;
+
+    CopyGuide(out, guide);
+    // Classic mirrors historically had placeholder names/descriptions. Once a
+    // verified guide binding exists, prefer the user-facing quest name while
+    // retaining the live counters/rewards from the runtime snapshot.
+    if (out.sectionId == ClassicQuestSectionId)
+    {
+        out.title = guide.name;
+        out.name = guide.name;
+    }
+}
+
 bool ComputeComplete(sQUEST& quest)
 {
-    const int count = std::clamp(quest.QuestInfo.MonsterCount, 0, 4);
+    const int count = std::clamp(quest.QuestInfo.MonsterCount, 0, QUEST_FULL_ENTRY_MAX);
     if (count <= 0)
         return quest.Complete;
 
@@ -78,7 +143,7 @@ QuestEntrySnapshot MakeQuestSnapshot(sSPOILER& section, sQUEST& quest, int track
     out.selected = section.pSelectedQuest == &quest;
     out.tracked = trackedSectionId == section.ID && trackedQuestId == quest.ID;
 
-    const int monsterCount = std::clamp(quest.QuestInfo.MonsterCount, 0, 4);
+    const int monsterCount = std::clamp(quest.QuestInfo.MonsterCount, 0, QUEST_FULL_ENTRY_MAX);
     out.objectives.reserve(static_cast<std::size_t>(monsterCount));
     for (int i = 0; i < monsterCount; ++i)
     {
@@ -92,7 +157,7 @@ QuestEntrySnapshot MakeQuestSnapshot(sSPOILER& section, sQUEST& quest, int track
         out.objectives.push_back(std::move(objective));
     }
 
-    const int rewardCount = std::clamp(quest.QuestInfo.RewardCount, 0, 4);
+    const int rewardCount = std::clamp(quest.QuestInfo.RewardCount, 0, QUEST_FULL_ENTRY_MAX);
     out.rewards.reserve(static_cast<std::size_t>(rewardCount));
     for (int i = 0; i < rewardCount; ++i)
     {
@@ -106,10 +171,9 @@ QuestEntrySnapshot MakeQuestSnapshot(sSPOILER& section, sQUEST& quest, int track
     out.rewardClanExp = static_cast<std::int64_t>(quest.QuestInfo.RewardClanExp);
     out.rewardCoin = quest.QuestInfo.RewardCoin;
     out.rewardTCoin = quest.QuestInfo.RewardTCoin;
+    EnrichWithGuide(out, quest.ID);
     return out;
 }
-
-constexpr int ClassicQuestSectionId = 0x7010;
 
 QuestEntrySnapshot MakeClassicChangeJobQuest(int id, int level, const char* title, const sQUEST_CHANGEJOB& quest, bool selected)
 {
@@ -119,12 +183,12 @@ QuestEntrySnapshot MakeClassicChangeJobQuest(int id, int level, const char* titl
     out.sectionId = ClassicQuestSectionId;
     out.title = title;
     out.name = out.title;
-    out.description = "Quest classica de mudanca de classe. Estado legado: " + std::to_string(quest.State) +
-                      ". Dialogo, progressao e recompensa continuam usando as regras originais.";
+    out.description = "Estado atual da quest classica: " + std::to_string(quest.State) + ".";
     out.levelMin = level;
-    out.active = false; // read-only mirror; master/NPC owns state transitions
+    out.active = false;
     out.complete = false;
     out.selected = selected;
+    EnrichWithGuide(out, id);
     return out;
 }
 
@@ -136,10 +200,9 @@ QuestEntrySnapshot MakeClassicChangeJobQuest(int id, int level, const char* titl
     out.sectionId = ClassicQuestSectionId;
     out.title = title;
     out.name = out.title;
-    out.description = "Quest classica de mudanca de classe. Estado legado: " + std::to_string(quest.State) +
-                      ". Dialogo, progressao e recompensa continuam usando as regras originais.";
+    out.description = "Estado atual da quest classica: " + std::to_string(quest.State) + ".";
     out.levelMin = level;
-    out.active = false; // read-only mirror; master/NPC owns state transitions
+    out.active = false;
     out.complete = false;
     out.selected = selected;
 
@@ -152,6 +215,7 @@ QuestEntrySnapshot MakeClassicChangeJobQuest(int id, int level, const char* titl
         objective.complete = objective.required > 0 && objective.current >= objective.required;
         out.objectives.push_back(std::move(objective));
     }
+    EnrichWithGuide(out, id);
     return out;
 }
 
@@ -163,9 +227,9 @@ QuestEntrySnapshot MakeClassicLevelQuest(int id, int level, const char* monsterN
     out.sectionId = ClassicQuestSectionId;
     out.title = "Missao classica - Nivel " + std::to_string(level);
     out.name = out.title;
-    out.description = "Quest mantida pelo sistema classico. Interacao, aceite e recompensa continuam usando as regras originais.";
+    out.description = "Estado atual da quest classica: " + std::to_string(quest.State) + ".";
     out.levelMin = level;
-    out.active = false; // read-only mirror; NPC/dialog owns state transitions
+    out.active = false;
     out.complete = quest.State >= SIN_QUEST_COMPLETE;
     out.selected = selected;
 
@@ -178,6 +242,7 @@ QuestEntrySnapshot MakeClassicLevelQuest(int id, int level, const char* monsterN
         objective.complete = objective.required > 0 && objective.current >= objective.required;
         out.objectives.push_back(std::move(objective));
     }
+    EnrichWithGuide(out, id);
     return out;
 }
 
@@ -200,7 +265,7 @@ void AddClassicLevelQuests(QuestJournalSnapshot& out, int selectedClassicQuestId
 
     addChangeJob(11001, 20, "Mudanca de classe - etapa 1", sinQuest_ChangeJob);
     addChangeJob(11002, 20, "Mudanca de classe - etapa 1 (rota alternativa)", sinQuest_ChangeJob2);
-    addChangeJob(11003, 40, "Mudanca de classe - etapa 2", sinQuest_ChangeJob3);
+    addChangeJob(11003, 40, "Mudanca de classe - etapa 2 (consulte Codex por classe)", sinQuest_ChangeJob3);
     addChangeJob(11004, 60, "Mudanca de classe - etapa 3", sinQuest_ChangeJob4);
 
     add(10030, 30, sinLevelQuestMonster[0], sinQuest_Level30);
@@ -227,6 +292,87 @@ void AddClassicLevelQuests(QuestJournalSnapshot& out, int selectedClassicQuestId
         out.sections.push_back(std::move(section));
     }
 }
+
+QuestEntrySnapshot MakeCodexQuest(const QuestGuideEntry& guide, bool selected)
+{
+    QuestEntrySnapshot out;
+    out.id = CodexQuestId(guide.guideId);
+    out.kind = -2;
+    out.sectionId = CodexQuestSectionId;
+    out.title = guide.name;
+    out.name = guide.name;
+    out.description = "Dados do Codex vinculados a uma quest existente no runtime Summit.";
+    out.levelMin = guide.levelMin > 0 ? guide.levelMin : 0;
+    out.levelMax = guide.levelMax > 0 ? guide.levelMax : 0;
+    out.active = false;
+    out.complete = false;
+    out.selected = selected;
+    CopyGuide(out, guide);
+    return out;
+}
+
+bool ContainsGuide(const std::vector<QuestGuideEntry>& quests, const std::string& guideId)
+{
+    for (std::size_t i = 0; i < quests.size(); ++i)
+        if (quests[i].guideId == guideId)
+            return true;
+    return false;
+}
+
+void AddCodexQuests(QuestJournalSnapshot& out, int selectedCodexQuestId)
+{
+    auto& source = summit::content::gameplay_reference::GameplayReferenceRuntime();
+    if (!source.IsValid())
+        return;
+
+    std::vector<QuestGuideEntry> guides;
+    if (!source.SupportedQuests(guides))
+        return;
+
+    // Generic QuestDB rows may represent daily/weekly entries which are not
+    // statically bound. If the live title matches the supplied guide, include
+    // that guide in the Codex only because the server proved it exists.
+    for (std::size_t s = 0; s < out.sections.size(); ++s)
+    {
+        if (out.sections[s].codexGroup)
+            continue;
+        for (std::size_t q = 0; q < out.sections[s].quests.size(); ++q)
+        {
+            const QuestEntrySnapshot& runtimeQuest = out.sections[s].quests[q];
+            if (!runtimeQuest.codex.available || ContainsGuide(guides, runtimeQuest.codex.guideId))
+                continue;
+            QuestGuideEntry guide;
+            if (source.FindByName(runtimeQuest.codex.guideId.c_str(), guide))
+                guides.push_back(guide);
+        }
+    }
+
+    std::sort(guides.begin(), guides.end(), [](const QuestGuideEntry& a, const QuestGuideEntry& b)
+    {
+        const int al = a.levelMin < 0 ? 100000 : a.levelMin;
+        const int bl = b.levelMin < 0 ? 100000 : b.levelMin;
+        if (al != bl)
+            return al < bl;
+        if (a.name != b.name)
+            return a.name < b.name;
+        return a.guideId < b.guideId;
+    });
+
+    QuestSectionSnapshot section;
+    section.id = CodexQuestSectionId;
+    section.title = "Codex PT-BR";
+    section.codexGroup = true;
+    for (std::size_t i = 0; i < guides.size(); ++i)
+        section.quests.push_back(MakeCodexQuest(guides[i], CodexQuestId(guides[i].guideId) == selectedCodexQuestId));
+    if (section.quests.empty())
+        return;
+    if (selectedCodexQuestId)
+    {
+        out.selectedSectionId = CodexQuestSectionId;
+        out.selectedQuestId = selectedCodexQuestId;
+    }
+    out.sections.push_back(std::move(section));
+}
 }
 
 QuestJournalSnapshot LegacyQuestGateway::GetSnapshot() const
@@ -236,7 +382,7 @@ QuestJournalSnapshot LegacyQuestGateway::GetSnapshot() const
     out.trackedSectionId = trackedSectionId_;
     out.trackedQuestId = trackedQuestId_;
 
-    if (cQuestWindow.pSelectedSpoiler && cQuestWindow.pSelectedSpoiler->pSelectedQuest)
+    if (cQuestWindow.pSelectedSpoiler && cQuestWindow.pSelectedSpoiler->pSelectedQuest && !selectedClassicQuestId_ && !selectedCodexQuestId_)
     {
         out.selectedSectionId = cQuestWindow.pSelectedSpoiler->ID;
         out.selectedQuestId = cQuestWindow.pSelectedSpoiler->pSelectedQuest->ID;
@@ -263,6 +409,7 @@ QuestJournalSnapshot LegacyQuestGateway::GetSnapshot() const
         }
     }
     AddClassicLevelQuests(out, selectedClassicQuestId_);
+    AddCodexQuests(out, selectedCodexQuestId_);
     out.valid = out.valid || !out.sections.empty();
     return out;
 }
@@ -277,6 +424,22 @@ QuestEntrySnapshot LegacyQuestGateway::GetTrackedQuest() const
 
 bool LegacyQuestGateway::SelectQuest(int sectionId, int questId)
 {
+    if (sectionId == CodexQuestSectionId)
+    {
+        QuestJournalSnapshot snapshot;
+        AddCodexQuests(snapshot, questId);
+        for (const auto& section : snapshot.sections)
+            for (const auto& quest : section.quests)
+                if (quest.id == questId)
+                {
+                    selectedCodexQuestId_ = questId;
+                    selectedClassicQuestId_ = 0;
+                    return true;
+                }
+        return false;
+    }
+    selectedCodexQuestId_ = 0;
+
     if (sectionId == ClassicQuestSectionId)
     {
         QuestJournalSnapshot snapshot;
@@ -295,15 +458,14 @@ bool LegacyQuestGateway::SelectQuest(int sectionId, int questId)
     if (!ref.section || !ref.quest)
         return false;
 
-    // cQUESTWINDOW::handlePacket(full) historically applies the response to
-    // pSelectedSpoiler. Keep this pointer synchronized before sending the
-    // legacy request so the asynchronous response has the correct target.
     cQuestWindow.pSelectedSpoiler = ref.section;
     return ref.section->SetQuest(ref.quest);
 }
 
 bool LegacyQuestGateway::RequestAcceptSelected()
 {
+    if (selectedCodexQuestId_ || selectedClassicQuestId_)
+        return false;
     sSPOILER* section = cQuestWindow.pSelectedSpoiler;
     if (!section || !section->pSelectedQuest ||
         section->ID == cQUESTWINDOW::SPOILER_PROGRESS ||
@@ -316,6 +478,8 @@ bool LegacyQuestGateway::RequestAcceptSelected()
 
 bool LegacyQuestGateway::RequestCancelSelected()
 {
+    if (selectedCodexQuestId_ || selectedClassicQuestId_)
+        return false;
     sSPOILER* section = cQuestWindow.pSelectedSpoiler;
     if (!section || section->ID != cQUESTWINDOW::SPOILER_PROGRESS || !section->pSelectedQuest)
         return false;
@@ -327,6 +491,8 @@ bool LegacyQuestGateway::RequestCancelSelected()
 
 bool LegacyQuestGateway::ClaimSelectedReward()
 {
+    if (selectedCodexQuestId_ || selectedClassicQuestId_)
+        return false;
     sSPOILER* section = cQuestWindow.pSelectedSpoiler;
     if (!section || section->ID != cQUESTWINDOW::SPOILER_PROGRESS || !section->pSelectedQuest)
         return false;
@@ -345,6 +511,8 @@ bool LegacyQuestGateway::ClaimSelectedReward()
 
 bool LegacyQuestGateway::TrackSelected()
 {
+    if (selectedCodexQuestId_ || selectedClassicQuestId_)
+        return false;
     sSPOILER* section = cQuestWindow.pSelectedSpoiler;
     if (!section || section->ID != cQUESTWINDOW::SPOILER_PROGRESS || !section->pSelectedQuest)
         return false;
@@ -364,9 +532,6 @@ bool LegacyQuestGateway::EnsureBackendOpen()
 
 void LegacyQuestGateway::HideBackend()
 {
-    // Keep the populated vectors alive for the tracker and for asynchronous
-    // progress packets, but release the legacy modal/open state so gameplay is
-    // not blocked after the V2 journal closes.
     cQuestWindow.OpenFlag = false;
 }
 
@@ -379,5 +544,6 @@ void LegacyQuestGateway::ShutdownBackend()
     trackedSectionId_ = 0;
     trackedQuestId_ = 0;
     selectedClassicQuestId_ = 0;
+    selectedCodexQuestId_ = 0;
 }
 }

@@ -1,0 +1,62 @@
+//ID
+*코드 "DG143"
+
+//Korean Name
+*이름 "Luvas Imperiais"
+
+//English Name
+*Name "Luvas Imperiais"
+
+//Defense
+*방어력 258 275
+
+//Absorption
+*흡수력 17.1 17.4
+
+//OrganicResistance
+*생체 5 8
+
+//FireResistance
+*불 5 8
+
+//FrostResistance
+*냉기 5 8
+
+//LightningResistance
+*번개 5 8
+
+//PoisonResistance
+*독 5 8
+
+//Integrity
+*내구력 276 285
+
+//Level
+*레벨 120
+
+//Strength
+*힘 100
+
+//Talent
+*재능 83
+
+//Agility
+*민첩성 83
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecDefense
+**방어력 81 89
+
+//SpecAbsorption
+**흡수력 1.7 2.0
+
+//Weight
+*무게 132
+
+//Price
+*가격 1700000
+
+//Name File
+*연결파일 "Name\DG143.zhoon"

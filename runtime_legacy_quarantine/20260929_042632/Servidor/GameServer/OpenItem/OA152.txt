@@ -1,0 +1,38 @@
+//ID
+*코드 "OA152"
+
+//Korean Name
+*이름 "Colar Eliot 30d"
+
+//English Name
+*Name "Colar Eliot 30d"
+
+//HP
+*생명력추가 50 50
+
+//MP
+*기력추가 50 50
+
+//STM
+*근력추가 50 50
+
+//HPRegen
+*생명력재생 1.5 1.5
+
+//MPRegen
+*기력재생 1.5 1.5
+
+//STMRegen
+*근력재생 1.5 1.5
+
+//Level
+*레벨 10
+
+//Spirit
+*정신력 45
+
+//Weight
+*무게 5
+
+//Name File
+*연결파일 "Name\OA152.zhoon"

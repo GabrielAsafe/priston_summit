@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "DG122"
+
+//Korean Name
+*ÀÌ¸§ "Luvas Fênix"
+
+//English Name
+*Name "Luvas Fênix"
+
+//Defense
+*¹æ¾î·Â 154 170
+
+//Absorption
+*Èí¼ö·Â 10.0 10.3
+
+//OrganicResistance
+*»ýÃ¼ 5 8
+
+//FireResistance
+*ºÒ 5 8
+
+//FrostResistance
+*³Ã±â 5 8
+
+//LightningResistance
+*¹ø°³ 5 8
+
+//PoisonResistance
+*µ¶ 5 8
+
+//Integrity
+*³»±¸·Â 166 175
+
+//Level
+*·¹º§ 102
+
+//Strength
+*Èû 100
+
+//Talent
+*Àç´É 80
+
+//Agility
+*¹ÎÃ¸¼º 77
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecDefense
+**¹æ¾î·Â 51 56
+
+//SpecAbsorption
+**Èí¼ö·Â 0.7 1.1
+
+//Weight
+*¹«°Ô 48
+
+//Price
+*°¡°Ý 700000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DG122.zhoon"

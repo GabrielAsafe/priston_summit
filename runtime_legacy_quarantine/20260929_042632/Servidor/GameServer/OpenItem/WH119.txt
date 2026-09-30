@@ -1,0 +1,62 @@
+//ID
+*코드 "WH119"
+
+//Korean Name
+*이름 "Martelo Archon"
+
+//English Name
+*Name "Martelo Archon"
+
+//AttackPower
+*공격력 42 45 69 72
+
+//AttackRating
+*명중력 153 173
+
+//AttackSpeed
+*공격속도 7
+
+//AttackCritical
+*크리티컬 19
+
+//Block
+*블럭율 12.0 12.0
+
+//Integrity
+*내구력 114 140
+
+//Level
+*레벨 80
+
+//Strength
+*힘 130
+
+//Talent
+*재능 86
+
+//PrimarySpec
+**특화 Mechanician
+
+//SecondarySpec
+**특화랜덤 Fighter Pikeman Knight
+
+//SpecAttackPower
+**공격력 7 7
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 2
+
+//Weight
+*무게 61
+
+//Price
+*가격 680000
+
+//Name File
+*연결파일 "Name\WH119.zhoon"

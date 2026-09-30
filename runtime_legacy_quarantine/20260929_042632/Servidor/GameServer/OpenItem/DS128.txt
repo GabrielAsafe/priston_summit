@@ -1,0 +1,65 @@
+//ID
+*코드 "DS128"
+
+//Korean Name
+*이름 "Escudo Abissal"
+
+//English Name
+*Name "Escudo Abissal"
+
+//Defense
+*방어력 282 302
+
+//Absorption
+*흡수력 18.2 18.5
+
+//Block
+*블럭율 20.0 25.0
+
+//OrganicResistance
+*생체 3 6
+
+//FireResistance
+*불 3 6
+
+//FrostResistance
+*냉기 3 6
+
+//LightningResistance
+*번개 3 6
+
+//PoisonResistance
+*독 3 6
+
+//Integrity
+*내구력 240 260
+
+//Level
+*레벨 130
+
+//Strength
+*힘 155
+
+//Talent
+*재능 80
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**방어력 56 63
+
+//SpecAbsorption
+**흡수력 1.7 2.1
+
+//SpecBlock
+**블럭율 6.0
+
+//Weight
+*무게 120
+
+//Price
+*가격 1260000
+
+//Name File
+*연결파일 "Name\DS128.zhoon"

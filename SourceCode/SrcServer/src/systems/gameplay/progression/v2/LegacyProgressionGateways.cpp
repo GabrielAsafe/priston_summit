@@ -1,15 +1,7 @@
 #include "systems/gameplay/progression/v2/LegacyProgressionGateways.h"
-#include "systems/gameplay/progression/v2/LegacyQuestContract.h"
 #include "systems/gameplay/progression/v2/ProgressionTriggerRuntime.h"
 
-#include <cctype>
-#include <cstring>
-#include <memory>
-
 #include "core/server/legacy_runtime/onserver.h"
-#include "persistence/database/Database_sqlite_server.h"
-#include "systems/gameplay/quests/server/cQuestHandler.h"
-#include "systems/inventory/legacy/sinItem.h"
 
 int rsSendMoneyToUser(rsPLAYINFO* lpPlayInfo, int Money);
 
@@ -17,95 +9,16 @@ namespace gameplay
 {
 namespace progression
 {
-namespace
-{
-bool EqualsIgnoreCase(const char* left, const std::string& right)
-{
-    if (!left)
-        return false;
-
-    const std::size_t length = std::strlen(left);
-    if (length != right.size())
-        return false;
-
-    for (std::size_t i = 0; i < length; ++i)
-    {
-        const unsigned char a = static_cast<unsigned char>(left[i]);
-        const unsigned char b = static_cast<unsigned char>(right[i]);
-        if (std::tolower(a) != std::tolower(b))
-            return false;
-    }
-    return true;
-}
-
-rsPLAYINFO* FindOnlinePlayer(const std::string& playerKey)
-{
-    if (playerKey.empty())
-        return 0;
-
-    for (int i = 0; i < CONNECTMAX; ++i)
-    {
-        rsPLAYINFO* player = &rsPlayInfo[i];
-        if (player->lpsmSock && EqualsIgnoreCase(player->getName(), playerKey))
-            return player;
-    }
-    return 0;
-}
-
-bool ReadQuestRows(const char* tableName,
-                   int questKind,
-                   int questId,
-                   int& matchCount,
-                   LegacyProgressionStoryCommandGateway::QuestDefinition& match)
-{
-    std::shared_ptr<SQLConnection> db = SQLConnection::GetConnection(DATABASEID_QuestDB);
-    if (!db->Open())
-        return false;
-
-    std::string query = "SELECT PartyFlag,QuestType FROM ";
-    query += tableName;
-    query += " WHERE QuestID=?";
-
-    if (!db->Prepare(query.c_str()))
-    {
-        db->Close();
-        return false;
-    }
-
-    int id = questId;
-    db->BindInputParameter(&id, 1, PARAMTYPE_Integer);
-    if (!db->Execute(false))
-    {
-        db->Close();
-        return false;
-    }
-
-    while (db->NextRow())
-    {
-        int partyFlag = 0;
-        int questType = 0;
-        db->GetData(&partyFlag, 4, 1, PARAMTYPE_Integer);
-        db->GetData(&questType, 4, 2, PARAMTYPE_Integer);
-        ++matchCount;
-        if (matchCount == 1)
-        {
-            match.kind = questKind;
-            match.type = questType;
-            match.partyFlag = partyFlag;
-        }
-    }
-
-    db->Close();
-    return true;
-}
-}
-
 LegacyProgressionRewardGateway::LegacyProgressionRewardGateway(
     story::IStoryRepository& storyRepository,
     covenants::CovenantService& covenantService,
     reputation::ReputationService& reputationService,
-    ProgressionCustomHandlerRegistry& customHandlers)
-    : core_(storyRepository, covenantService, reputationService), customHandlers_(customHandlers), itemCatalogReady_(false)
+    ProgressionCustomHandlerRegistry& customHandlers,
+    const inventory::IItemCatalog& itemCatalog,
+    inventory::IInventoryCommands& inventoryCommands,
+    const player::legacy::LegacyOnlinePlayerRegistry& players)
+    : core_(storyRepository, covenantService, reputationService), customHandlers_(customHandlers),
+      itemCatalog_(itemCatalog), inventoryCommands_(inventoryCommands), players_(players), itemCatalogReady_(false)
 {
 }
 
@@ -132,9 +45,14 @@ bool LegacyProgressionRewardGateway::Validate(const rewards::RewardDefinition& r
     case rewards::RewardType::Experience:
         return reward.amount > 0;
     case rewards::RewardType::Item:
+    {
         if (reward.key.empty() || reward.amount != 1)
             return false;
-        return !itemCatalogReady_ || ResolveItemCode(reward.key) != 0;
+        if(!itemCatalogReady_)
+            return true;
+        inventory::ItemDefinition definition;
+        return ResolveGrantableItem(reward.key, definition);
+    }
     case rewards::RewardType::Custom:
         return customHandlers_.ValidateReward(reward);
     case rewards::RewardType::Reputation:
@@ -171,7 +89,7 @@ rewards::RewardResult LegacyProgressionRewardGateway::Grant(
         return Supports(reward.type) ? rewards::RewardResult::Rejected
                                      : rewards::RewardResult::Unsupported;
 
-    rsPLAYINFO* player = FindOnlinePlayer(playerKey);
+    rsPLAYINFO* player = players_.ResolveByPlayerKey(playerKey);
     if (!player || !player->lpsmSock)
         return rewards::RewardResult::Failed;
 
@@ -185,12 +103,16 @@ rewards::RewardResult LegacyProgressionRewardGateway::Grant(
         player->AddExp(static_cast<INT64>(reward.amount), 0, false);
         // AddExp may change PlayerLevelAtLeast conditions. Reentrant processing is
         // coalesced by ProgressionRuntime, so this never recursively walks Story.
-        NotifyServerProgressionPlayerStateChanged(player);
+        NotifyServerProgressionPlayerStateChanged(players_.IdOf(player));
         return rewards::RewardResult::Granted;
     case rewards::RewardType::Item:
     {
-        const unsigned long itemCode = ResolveItemCode(reward.key);
-        return itemCode != 0 && rsPutItemChecked(player, static_cast<DWORD>(itemCode))
+        inventory::ItemDefinition definition;
+        if(!ResolveGrantableItem(reward.key, definition))
+            return rewards::RewardResult::Failed;
+        const PlayerId playerId(static_cast<std::uint32_t>(player->dwObjectSerial));
+        return inventoryCommands_.Grant(
+                   inventory::ItemGrant(playerId, definition.id, 1u)).Granted()
                    ? rewards::RewardResult::Granted
                    : rewards::RewardResult::Failed;
     }
@@ -209,36 +131,21 @@ void LegacyProgressionRewardGateway::SetItemCatalogReady(bool ready)
     itemCatalogReady_ = ready;
 }
 
-unsigned long LegacyProgressionRewardGateway::ResolveItemCode(const std::string& shortCode) const
+bool LegacyProgressionRewardGateway::ResolveGrantableItem(
+    const std::string& contentKey,
+    inventory::ItemDefinition& out) const
 {
-    if (shortCode.empty() || DefaultItemCount <= 0)
-        return 0;
-
-    unsigned long code = 0;
-    for (int i = 0; i < MAX_ITEM; ++i)
-    {
-        if (sItem[i].CODE && EqualsIgnoreCase(sItem[i].LastCategory, shortCode))
-        {
-            code = static_cast<unsigned long>(sItem[i].CODE);
-            break;
-        }
-    }
-    if (code == 0)
-        return 0;
-
-    for (int i = 0; i < DefaultItemCount; ++i)
-    {
-        if (static_cast<unsigned long>(DefaultItems[i].Item.CODE) == code &&
-            !DefaultItems[i].Item.UniqueItem)
-            return code;
-    }
-    return 0;
+    return itemCatalog_.TryGetDefinitionByContentKey(contentKey, out) && out.defaultGrantable;
 }
 
 LegacyProgressionStoryCommandGateway::LegacyProgressionStoryCommandGateway(
     covenants::CovenantService& covenantService,
-    ProgressionCustomHandlerRegistry& customHandlers)
-    : core_(covenantService), customHandlers_(customHandlers)
+    ProgressionCustomHandlerRegistry& customHandlers,
+    const player::legacy::LegacyOnlinePlayerRegistry& players,
+    const quests::IQuestCatalog& questCatalog,
+    quests::QuestService& questService)
+    : core_(covenantService), customHandlers_(customHandlers), players_(players),
+      questCatalog_(questCatalog), questService_(questService)
 {
 }
 
@@ -256,8 +163,8 @@ bool LegacyProgressionStoryCommandGateway::ValidateAction(
 
     if (action.type == story::StoryActionType::StartQuest && action.id > 0)
     {
-        QuestDefinition definition;
-        return ResolveQuestDefinition(action.id, definition);
+        quests::QuestDefinition definition;
+        return questCatalog_.TryGetDefinition(QuestId(static_cast<std::uint32_t>(action.id)), definition);
     }
     if (action.type == story::StoryActionType::Custom)
         return customHandlers_.ValidateAction(action);
@@ -284,25 +191,20 @@ bool LegacyProgressionStoryCommandGateway::StartQuest(const std::string& playerK
     if (questId <= 0)
         return false;
 
-    QuestDefinition definition;
-    if (!ResolveQuestDefinition(questId, definition))
+    quests::QuestDefinition definition;
+    if (!questCatalog_.TryGetDefinition(QuestId(static_cast<std::uint32_t>(questId)), definition))
         return false;
 
-    rsPLAYINFO* player = FindOnlinePlayer(playerKey);
+    rsPLAYINFO* player = players_.ResolveByPlayerKey(playerKey);
     if (!player || !player->lpsmSock)
         return false;
 
-    bool completed = false;
-    if (!cQuestHandler.QueryCompletedQuest(player->getName(), questId, &completed))
-        return false;
-    if (completed)
-        return false;
-    if (cQuestHandler.IsQuestInProgress(player, questId))
-        return true;
-
-    cQuestHandler.StartQuest(player, questId, definition.kind, definition.type,
-                             definition.partyFlag);
-    return cQuestHandler.IsQuestInProgress(player, questId);
+    quests::QuestStartCommand command;
+    command.quest = QuestId(static_cast<std::uint32_t>(questId));
+    command.kind = definition.kind;
+    command.type = definition.type;
+    command.partyFlag = definition.partyFlag;
+    return questService_.EnsureStarted(players_.IdOf(player), player->getName(), command);
 }
 
 bool LegacyProgressionStoryCommandGateway::AddCovenantReputation(
@@ -324,24 +226,6 @@ bool LegacyProgressionStoryCommandGateway::ExecuteCustomAction(
     return customHandlers_.ExecuteAction(playerKey, action, sourceKey);
 }
 
-bool LegacyProgressionStoryCommandGateway::ResolveQuestDefinition(
-    int questId,
-    QuestDefinition& definition) const
-{
-    if (questId <= 0)
-        return false;
 
-    int matches = 0;
-    QuestDefinition match;
-    if (!ReadQuestRows("RepeatedQuest", legacy_quest::kRepeatedQuestKind, questId, matches, match) ||
-        !ReadQuestRows("DailyQuest", legacy_quest::kDailyQuestKind, questId, matches, match) ||
-        !ReadQuestRows("SingleQuest", legacy_quest::kSingleQuestKind, questId, matches, match))
-        return false;
-
-    if (matches != 1)
-        return false;
-    definition = match;
-    return true;
-}
 }
 }

@@ -1,0 +1,65 @@
+//ID
+*ÄÚµå "WT135"
+
+//Korean Name
+*ÀÌ¸§ "Lança Drax"
+
+//English Name
+*Name "Lança Drax"
+
+//AttackPower
+*°ø°Ý·Â 155 158 175 178
+
+//AttackRange
+*»çÁ¤°Å¸® 255
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 8
+
+//AttackRating
+*¸íÁß·Â 244 264
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 17
+
+//Integrity
+*³»±¸·Â 239 263
+
+//Level
+*·¹º§ 146
+
+//Strength
+*Èû 82
+
+//Talent
+*Àç´É 100
+
+//Agility
+*¹ÎÃ¸¼º 219
+
+//PrimarySpec
+**Æ¯È­ Atalanta
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Archer
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 6
+
+//SpecAttackRange
+**»çÁ¤°Å¸® 25
+
+//Weight
+*¹«°Ô 93
+
+//Price
+*°¡°Ý 2180000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WT135.zhoon"

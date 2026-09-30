@@ -1,0 +1,65 @@
+//ID
+*코드 "DS144"
+
+//Korean Name
+*이름 "Escudo Drax"
+
+//English Name
+*Name "Escudo Drax"
+
+//Defense
+*방어력 414 434
+
+//Absorption
+*흡수력 23.2 23.5
+
+//Block
+*블럭율 21.0 24.0
+
+//OrganicResistance
+*생체 15 18
+
+//FireResistance
+*불 15 18
+
+//FrostResistance
+*냉기 15 18
+
+//LightningResistance
+*번개 15 18
+
+//PoisonResistance
+*독 15 18
+
+//Integrity
+*내구력 290 310
+
+//Level
+*레벨 146
+
+//Strength
+*힘 180
+
+//Talent
+*재능 80
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**방어력 71 78
+
+//SpecAbsorption
+**흡수력 2.2 2.6
+
+//SpecBlock
+**블럭율 6.0
+
+//Weight
+*무게 150
+
+//Price
+*가격 1560000
+
+//Name File
+*연결파일 "Name\DS144.zhoon"

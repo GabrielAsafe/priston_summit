@@ -1,0 +1,53 @@
+//ID
+*코드 "OR125"
+
+//Korean Name
+*이름 "Anel do Valento"
+
+//English Name
+*Name "Anel do Valento"
+
+//AttackRating
+*명중력 42 56
+
+//Defense
+*방어력 32 39
+
+//Absorption
+*흡수력 1.6 2.9
+
+//HP
+*생명력추가 40 46
+
+//MP
+*기력추가 42 46
+
+//STM
+*근력추가 34 38
+
+//HPRegen
+*생명력재생 2.1 2.6
+
+//MPRegen
+*기력재생 1.6 2.3
+
+//Level
+*레벨 80
+
+//Spirit
+*정신력 80
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecHPRegen
+**생명력재생 1.4 1.4
+
+//Weight
+*무게 10
+
+//Price
+*가격 1000000
+
+//Name File
+*연결파일 "Name\OR125.zhoon"

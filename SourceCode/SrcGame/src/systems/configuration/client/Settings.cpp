@@ -1,5 +1,6 @@
 #include "systems/configuration/client/Settings.h"
 #include <windows.h>
+#include <stdio.h>
 #include "File/File.h"
 #include "Helper/common.h"
 #include "systems/gameplay/loot/filter/CLootHandler.h"
@@ -97,7 +98,7 @@ void Settings::readConfig()
 		GetPrivateProfileStringA(
 			"Network", "Server", "",
 			networkServer, sizeof(networkServer),
-			".\game.ini"
+			"game.ini"
 		);
 
 		if(networkServer[0])
@@ -111,19 +112,19 @@ void Settings::readConfig()
 			GetPrivateProfileStringA(
 				"Network", "Server1", "127.0.0.1",
 				networkServer1, sizeof(networkServer1),
-				".\game.ini"
+				"game.ini"
 			);
 
 			GetPrivateProfileStringA(
 				"Network", "Server2", "",
 				networkServer2, sizeof(networkServer2),
-				".\game.ini"
+				"game.ini"
 			);
 
 			GetPrivateProfileStringA(
 				"Network", "Server3", "",
 				networkServer3, sizeof(networkServer3),
-				".\game.ini"
+				"game.ini"
 			);
 
 			if(!networkServer2[0])
@@ -134,7 +135,7 @@ void Settings::readConfig()
 		}
 
 		int networkPort = static_cast<int>(
-			GetPrivateProfileIntA("Network", "Port", 1997, ".\game.ini")
+			GetPrivateProfileIntA("Network", "Port", 1997, "game.ini")
 		);
 
 		if(networkPort <= 0 || networkPort > 65535)
@@ -144,6 +145,19 @@ void Settings::readConfig()
 		setServer2(networkServer2);
 		setServer3(networkServer3);
 		setPort(networkPort);
+
+		/* MINGW_LOGIN_HANDSHAKE_TRACE_V1: runtime network authority, no credentials. */
+		{
+			FILE *fp = fopen("LOGS\\mingw_login_handshake_client.txt", "a");
+			if(fp)
+			{
+				fprintf(fp,
+					"[CONFIG] Server1=%s Server2=%s Server3=%s Port=%d\n",
+					networkServer1, networkServer2, networkServer3, networkPort);
+				fflush(fp);
+				fclose(fp);
+			}
+		}
 		setWheater(file.readInt("Game", "Weather") != 0);
 		setRememberID(file.readInt("Game", "RememberID") != 0);
 

@@ -1,0 +1,44 @@
+//ID
+*ÄÚµå "WS110"
+
+//Korean Name
+*ÀÌ¸§ "Arco Névoa"
+
+//English Name
+*Name "Arco Névoa"
+
+//Effect
+*ÀÌÆåÆ®¼³Á¤ 1
+
+//Quest
+*À¯´ÏÅ© 2
+
+//AttackPower
+*°ø°Ý·Â 19 19 23 23
+
+//AttackRating
+*¸íÁß·Â 100 100
+
+//AttackRange
+*»çÁ¤°Å¸® 245
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 8
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 12
+
+//Block
+*ºí·°À² 5.0 5.0
+
+//Integrity
+*³»±¸·Â 100 100
+
+//Level
+*·¹º§ 40
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\ZQuest_WS110.zhoon"

@@ -1,0 +1,71 @@
+//ID
+*ÄÚµå "WS122"
+
+//Korean Name
+*ÀÌ¸§ "Arco Dragão"
+
+//English Name
+*Name "Arco Dragão"
+
+//AttackPower
+*°ø°Ý·Â 50 60 71 81
+
+//AttackRating
+*¸íÁß·Â 120 150
+
+//AttackRange
+*»çÁ¤°Å¸® 255
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 17
+
+//Block
+*ºí·°À² 7.0 7.0
+
+//Integrity
+*³»±¸·Â 136 155
+
+//Level
+*·¹º§ 90
+
+//Strength
+*Èû 80
+
+//Talent
+*Àç´É 80
+
+//Agility
+*¹ÎÃ¸¼º 166
+
+//PrimarySpec
+**Æ¯È­ Archer
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Atalanta
+
+//SpecAttackPower
+**°ø°Ý·Â 7 7
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SpecAttackRange
+**»çÁ¤°Å¸® 20
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 5
+
+//Weight
+*¹«°Ô 60
+
+//Price
+*°¡°Ý 890000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WS122.zhoon"

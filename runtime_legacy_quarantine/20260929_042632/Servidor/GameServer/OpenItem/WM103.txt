@@ -1,0 +1,53 @@
+//ID
+*코드 "WM103"
+
+//Korean Name
+*이름 "Varinha Obi"
+
+//English Name
+*Name "Varinha Obi"
+
+//AttackPower
+*공격력 3 4 6 7
+
+//AttackRating
+*명중력 30 36
+
+//AttackRange
+*사정거리 145
+
+//AttackSpeed
+*공격속도 7
+
+//AttackCritical
+*크리티컬 4
+
+//Integrity
+*내구력 27 44
+
+//Spirit
+*정신력 40
+
+//SecondarySpec
+**특화랜덤 Priestess Magician
+
+//SpecAttackPower
+**공격력 6 6
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecMPRegen
+**기력재생 0.2 0.5
+
+//SpecSkillTraining
+**마법숙련도 2 4
+
+//Weight
+*무게 3
+
+//Price
+*가격 800
+
+//Name File
+*연결파일 "Name\WM103.zhoon"

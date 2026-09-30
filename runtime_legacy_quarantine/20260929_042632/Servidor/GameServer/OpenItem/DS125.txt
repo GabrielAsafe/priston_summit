@@ -1,0 +1,65 @@
+//ID
+*ÄÚµå "DS125"
+
+//Korean Name
+*ÀÌ¸§ "Escudo Mitológico"
+
+//English Name
+*Name "Escudo Mitológico"
+
+//Defense
+*¹æ¾î·Â 246 266
+
+//Absorption
+*Èí¼ö·Â 15.2 15.5
+
+//Block
+*ºí·°À² 19.0 22.0
+
+//OrganicResistance
+*»ýÃ¼ 3 6
+
+//FireResistance
+*ºÒ 3 6
+
+//FrostResistance
+*³Ã±â 3 6
+
+//LightningResistance
+*¹ø°³ 3 6
+
+//PoisonResistance
+*µ¶ 3 6
+
+//Integrity
+*³»±¸·Â 210 230
+
+//Level
+*·¹º§ 118
+
+//Strength
+*Èû 140
+
+//Talent
+*Àç´É 75
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**¹æ¾î·Â 47 54
+
+//SpecAbsorption
+**Èí¼ö·Â 1.4 1.8
+
+//SpecBlock
+**ºí·°À² 5.0
+
+//Weight
+*¹«°Ô 102
+
+//Price
+*°¡°Ý 1050000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DS125.zhoon"

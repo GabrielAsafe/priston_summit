@@ -122,6 +122,31 @@ def build_catalog(canonical_root: Path) -> dict:
     bindings = []
     stats = Counter()
 
+    # Source-controlled runtime/UI messages. Runtime-visible strings live in
+    # canonical JSON and are materialized into the same SLOC catalogue.
+    runtime_messages_path = root / 'runtime_messages.json'
+    if runtime_messages_path.is_file():
+        runtime_messages = json.loads(runtime_messages_path.read_text(encoding='utf-8'))
+        if runtime_messages.get('schema') != 'summit.runtime-localization-source/v1':
+            raise ValueError(f'unsupported runtime message schema: {runtime_messages.get("schema")!r}')
+        seen_runtime_keys = set()
+        for item in runtime_messages.get('entries', []):
+            key = item.get('key')
+            locales = item.get('locales')
+            if not isinstance(key, str) or not key or key in seen_runtime_keys:
+                raise ValueError(f'invalid/duplicate runtime localization key: {key!r}')
+            if not isinstance(locales, dict) or not isinstance(locales.get('en'), str) or not locales.get('en'):
+                raise ValueError(f'runtime localization key {key!r} requires an English value')
+            seen_runtime_keys.add(key)
+            for locale, text in locales.items():
+                if locale not in LOCALES:
+                    raise ValueError(f'unsupported runtime locale {locale!r} for key {key!r}')
+                if not isinstance(text, str) or not text:
+                    raise ValueError(f'empty runtime localization value for {locale}:{key}')
+                add_entry(entries, locale, key, text, 'translated', 'runtime_messages')
+            if 'pt-BR' not in locales:
+                add_entry(entries, 'pt-BR', key, locales['en'], 'untranslated_fallback', 'runtime_messages')
+
     definition_kinds = {'monster_definition', 'npc_definition', 'open_item_definition'}
     for d in sorted((x for x in docs if x.get('kind') in definition_kinds), key=lambda x: x['id']):
         fields = d.get('semantic', {}).get('fields', {})

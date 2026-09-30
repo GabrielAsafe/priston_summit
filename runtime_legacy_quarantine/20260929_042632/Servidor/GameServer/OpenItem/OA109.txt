@@ -1,0 +1,32 @@
+//ID
+*ÄÚµå "OA109"
+
+//Korean Name
+*ÀÌ¸§ "Colar Mágico"
+
+//English Name
+*Name "Colar Mágico"
+
+//MP
+*±â·ÂÃß°¡ 8 17
+
+//Level
+*·¹º§ 25
+
+//Spirit
+*Á¤½Å·Â 36
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecMPRegen
+**±â·ÂÀç»ý 0.2 0.4
+
+//Weight
+*¹«°Ô 3
+
+//Price
+*°¡°Ý 4000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\OA109.zhoon"

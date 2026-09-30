@@ -1,0 +1,35 @@
+//ID
+*ÄÚµå "OR122"
+
+//Korean Name
+*ÀÌ¸§ "Anel Místico +1"
+
+//English Name
+*Name "Anel Místico +1"
+
+//HP
+*»ý¸í·ÂÃß°¡ 20 23
+
+//STM
+*±Ù·ÂÃß°¡ 53 70
+
+//Level
+*·¹º§ 80
+
+//Spirit
+*Á¤½Å·Â 80
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecHPRegen
+**»ý¸í·ÂÀç»ý 0.5 0.5
+
+//Weight
+*¹«°Ô 6
+
+//Price
+*°¡°Ý 70000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\OR122.zhoon"

@@ -1,0 +1,50 @@
+// NOME DO ITEM E CODIGO
+*이름 "Escudo Legion XIV"
+*코드 "DS139"
+
+// INTEGRIDADE
+*내구력 210	230
+// PESO DO ITEM
+*무게 100
+// PRECO DO ITEM
+*가격 623588
+
+// RESISTENCIA ORGANICA
+*생체 12 15
+// RESISTENCIA A FOGO
+*불 12 15
+// RESISTENCIA A GELO
+*냉기 12 15
+// RESISTENCIA A RAIO
+*번개 12 15
+// RESISTENCIA A VENENO
+*독 12 15
+
+// ABSORCAO
+*흡수력 18.2 18.5
+// TAXA DE DEFESA
+*방어력 282 302
+// TAXA DE BLOCK
+*블럭율 20 25
+
+// LEVEL DO ITEM
+*레벨 140
+// FORCA REQUIRIDA
+*힘 100
+// INTELIGENCIA
+*정신력
+// TALENTO
+*재능 75
+// AGILIDADE
+*민첩성
+// VITALIDADE	
+*건강	
+
+// SPECS
+**특화랜덤 Pikeman Mechanician Archer Atalanta Knight Fighter Archer Knight Atalanta
+// ABSOR플O POR SPEC
+**흡수력	1.7 2.1
+// BLOQUEIO POR SPEC
+**블럭율	6
+// DEFESA POR SPEC
+**방어력	56 63

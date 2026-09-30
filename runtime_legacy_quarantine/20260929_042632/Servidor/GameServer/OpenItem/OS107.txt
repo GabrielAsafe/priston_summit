@@ -1,0 +1,38 @@
+//ID
+*코드 "OS107"
+
+//Korean Name
+*이름 "Murki"
+
+//English Name
+*Name "Murki"
+
+//HPRegen
+*생명력재생 0.5 0.9
+
+//MPRegen
+*기력재생 0.6 0.9
+
+//Level
+*레벨 50
+
+//Spirit
+*정신력 80
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecHPRegen
+**생명력재생 0.3 0.6
+
+//SpecMPRegen
+**기력재생 0.4 0.9
+
+//Weight
+*무게 2
+
+//Price
+*가격 70000
+
+//Name File
+*연결파일 "Name\OS107.zhoon"

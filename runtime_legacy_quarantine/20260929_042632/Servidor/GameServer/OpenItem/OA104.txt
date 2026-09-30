@@ -1,0 +1,26 @@
+//ID
+*코드 "OA104"
+
+//Korean Name
+*이름 "Colar Comum +3"
+
+//English Name
+*Name "Colar Comum +3"
+
+//MP
+*기력추가 3 7
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecMPRegen
+**기력재생 0.1 0.2
+
+//Weight
+*무게 1
+
+//Price
+*가격 500
+
+//Name File
+*연결파일 "Name\OA104.zhoon"

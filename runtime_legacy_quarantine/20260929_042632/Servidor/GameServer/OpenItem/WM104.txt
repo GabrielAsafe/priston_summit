@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "WM104"
+
+//Korean Name
+*ÀÌ¸§ "Cajado de Raízes"
+
+//English Name
+*Name "Cajado de Raízes"
+
+//AttackPower
+*°ø°Ý·Â 5 6 8 9
+
+//AttackRating
+*¸íÁß·Â 32 38
+
+//AttackRange
+*»çÁ¤°Å¸® 160
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 5
+
+//Block
+*ºí·°À² 3.0 3.0
+
+//Integrity
+*³»±¸·Â 38 55
+
+//Level
+*·¹º§ 7
+
+//Spirit
+*Á¤½Å·Â 40
+
+//Talent
+*Àç´É 27
+
+//SecondarySpec
+**Æ¯È­·£´ý Priestess Magician
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecMPRegen
+**±â·ÂÀç»ý 0.6 0.8
+
+//SpecSkillTraining
+**¸¶¹ý¼÷·Ãµµ 2 4
+
+//Weight
+*¹«°Ô 5
+
+//Price
+*°¡°Ý 1500
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WM104.zhoon"

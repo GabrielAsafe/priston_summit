@@ -1,0 +1,65 @@
+//ID
+*ÄÚµå "WC122"
+
+//Korean Name
+*ÀÌ¸§ "Garra da Justiça"
+
+//English Name
+*Name "Garra da Justiça"
+
+//AttackPower
+*°ø°Ý·Â 60 63 77 80
+
+//AttackRating
+*¸íÁß·Â 171 190
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 16
+
+//Defense
+*¹æ¾î·Â 76 81
+
+//Integrity
+*³»±¸·Â 144 166
+
+//Level
+*·¹º§ 102
+
+//Strength
+*Èû 155
+
+//Talent
+*Àç´É 90
+
+//Agility
+*¹ÎÃ¸¼º 80
+
+//PrimarySpec
+**Æ¯È­ Mechanician
+
+//SecondarySpec
+**Æ¯È­·£´ý Fighter Pikeman Knight Atalanta
+
+//SpecAttackPower
+**°ø°Ý·Â 7 7
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 3
+
+//Weight
+*¹«°Ô 71
+
+//Price
+*°¡°Ý 1090000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WC122.zhoon"

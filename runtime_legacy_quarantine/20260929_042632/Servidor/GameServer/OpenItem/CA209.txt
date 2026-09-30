@@ -1,0 +1,25 @@
+// NOME E CODIGO DO ITEM
+*이름 "Vampire Costume (F)"
+*코드 "CA209"
+
+// can nang
+*무게 1
+
+// ATK POW 
+*공격력		3 3	5 5
+// Speed atk
+*공격속도	1
+// Crit
+*크리티컬	5
+// ABS
+*흡수력 3.0
+// DEF
+*방어력 200
+// run speed
+*이동속도 2.0
+// KHANG TAT CA
+*생체	3
+*불	3
+*냉기	3
+*번개	3
+*독	3

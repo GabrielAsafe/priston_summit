@@ -6,6 +6,7 @@ CPP=(ROOT/'SrcServer/src/systems/gameplay/companions/CompanionSkillExecutor.cpp'
 H=(ROOT/'SrcServer/src/systems/gameplay/companions/CompanionSkillExecutor.h').read_text(errors='ignore')
 SYS=(ROOT/'SrcServer/src/systems/gameplay/companions/CompanionSystem.cpp').read_text(errors='ignore')
 SYSH=(ROOT/'SrcServer/src/systems/gameplay/companions/CompanionSystem.h').read_text(errors='ignore')
+SYSH += (ROOT/'SrcServer/src/systems/gameplay/companions/v2/legacy/CompanionLegacyCharacterHooks.h').read_text(errors='ignore')
 CHAR=(ROOT/'SrcServer/src/systems/gameplay/character/core/character.cpp').read_text(errors='ignore')
 CAT=(ROOT/'SrcServer/src/systems/gameplay/companions/CompanionSkillCatalog.inl').read_text(errors='ignore')
 ORACLE=(ROOT/'Shared/server/legacy_runtime/OnSever_legacy_server.inl').read_text(errors='ignore')

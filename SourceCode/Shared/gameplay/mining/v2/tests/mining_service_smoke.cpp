@@ -2,6 +2,7 @@
 #include <map>
 #include <string>
 
+#include "gameplay/professions/v2/ProfessionService.h"
 #include "gameplay/covenants/v2/ICovenantGameplayBridge.h"
 
 #include "gameplay/events/v2/MiningNodeHarvestedEvent.h"

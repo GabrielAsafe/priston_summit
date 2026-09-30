@@ -1,0 +1,50 @@
+//ID
+*ÄÚµå "WM102"
+
+//Korean Name
+*ÀÌ¸§ "Varinha Esférica"
+
+//English Name
+*Name "Varinha Esférica"
+
+//AttackPower
+*°ø°Ý·Â 2 2 4 5
+
+//AttackRating
+*¸íÁß·Â 26 31
+
+//AttackRange
+*»çÁ¤°Å¸® 140
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 3
+
+//Integrity
+*³»±¸·Â 30 48
+
+//SecondarySpec
+**Æ¯È­·£´ý Priestess Magician
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecMPRegen
+**±â·ÂÀç»ý 0.2 0.4
+
+//SpecSkillTraining
+**¸¶¹ý¼÷·Ãµµ 2 4
+
+//Weight
+*¹«°Ô 3
+
+//Price
+*°¡°Ý 480
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WM102.zhoon"

@@ -1,8 +1,23 @@
 #include "content/v1/gameplay_config/content/GameplayConfigRuntime.h"
 #include "systems/gameplay/companions/CompanionSystem.h"
+#include "systems/gameplay/companions/v2/legacy/CompanionLegacyCommandsRuntime.h"
+#include "systems/gameplay/companions/v2/legacy/CompanionLegacyLifecycleRuntime.h"
+#include "systems/gameplay/companions/v2/legacy/CompanionLegacyUIRuntime.h"
+#include "systems/gameplay/companions/v2/legacy/CompanionLegacyCharacterHooks.h"
+#include "systems/gameplay/companions/v2/legacy/CompanionLegacyExperienceRuntime.h"
+#include "gameplay/companions/CompanionProtocol.h"
+#include "gameplay/companions/v2/CompanionSkillProfile.h"
+#include "systems/gameplay/companions/v2/CompanionRuntimeQuery.h"
 #include "systems/gameplay/companions/CompanionProfileStore.h"
 #include "systems/gameplay/companions/CompanionTacticsStore.h"
 #include "systems/gameplay/companions/CompanionSkillExecutor.h"
+#include "systems/gameplay/player/v2/legacy/LegacyPlayerAdapter.h"
+#include "systems/gameplay/player/v2/legacy/LegacyCharacterRecordAdapter.h"
+#include "systems/gameplay/loot/v2/legacy/LegacyLootAdapter.h"
+#include "systems/social/party/v2/legacy/LegacyPartyQueryAdapter.h"
+#include "systems/gameplay/companions/v2/legacy/LegacyCompanionQueryAdapter.h"
+#include "systems/gameplay/combat/v2/legacy/LegacyThreatService.h"
+#include "systems/network/v2/legacy/LegacyPacketSender.h"
 #include "opcodes.h"
 
 #include <algorithm>
@@ -47,7 +62,29 @@ namespace
 
 // Used by early AI/loot helpers; definition lives later with the other
 // companion target helpers.
+struct OwnerState;
 bool IsValidHostile(smCHAR *candidate);
+
+bool TryReadThreat(smCHAR *actor, combat::ThreatSnapshot &out)
+{
+    if(!actor || !actor->dwObjectSerial)
+        return false;
+    return combat::legacy::ServerLegacyThreatService().TryGetThreat(
+        EntityId(static_cast<std::uint32_t>(actor->dwObjectSerial)), out);
+}
+
+bool ThreatTargetsOwner(const combat::ThreatSnapshot &threat, const rsPLAYINFO *owner)
+{
+    return owner && threat.targetPlayer == PlayerId(static_cast<std::uint32_t>(owner->dwObjectSerial));
+}
+
+bool ThreatTargetsCompanion(const combat::ThreatSnapshot &threat, const smCHAR *companion)
+{
+    return companion && companion->dwObjectSerial &&
+        threat.targetEntity == EntityId(static_cast<std::uint32_t>(companion->dwObjectSerial));
+}
+
+bool ThreatTargetsParty(const combat::ThreatSnapshot &threat, const rsPLAYINFO *owner, const OwnerState &state);
 
 static int SummitCompanionConfigInt(const char *key, int fallback)
 {
@@ -245,14 +282,14 @@ struct LoadoutOverride
 struct OwnerState
 {
     OwnerState()
-        : owner(NULL), connectCount(0), mode(COMPANION_MODE_AGGRESSIVE),
+        : owner(NULL), ownerHandle(), mode(COMPANION_MODE_AGGRESSIVE),
           lastRuntimeSendTime(0), lastVisualSendTime(0)
     {
         selectedName[0] = 0;
     }
 
     rsPLAYINFO *owner;
-    DWORD connectCount;
+    PlayerHandle ownerHandle;
     CompanionMode mode;
     DWORD lastRuntimeSendTime;
     DWORD lastVisualSendTime;
@@ -261,15 +298,39 @@ struct OwnerState
     LoadoutOverride loadouts[protocol::COMPANION_UI_MAX_CHARACTERS];
 };
 
+bool ThreatTargetsParty(const combat::ThreatSnapshot &threat, const rsPLAYINFO *owner, const OwnerState &state)
+{
+    if(ThreatTargetsOwner(threat, owner))
+        return true;
+    if(!threat.targetEntity.Valid())
+        return false;
+
+    for(int slot = 0; slot < COMPANION_MAX_ACTIVE; ++slot)
+    {
+        const smCHAR *entity = state.slots[slot].entity;
+        if(entity && entity->Flag && entity->dwObjectSerial &&
+           threat.targetEntity == EntityId(static_cast<std::uint32_t>(entity->dwObjectSerial)))
+            return true;
+    }
+    return false;
+}
+
 std::mutex g_mutex;
 std::map<rsPLAYINFO *, OwnerState> g_states;
 
 bool IsOwnerValid(const OwnerState &state)
 {
-    return state.owner &&
-        state.owner->lpsmSock &&
-        state.owner->dwObjectSerial &&
-        state.owner->dwConnectCount == state.connectCount;
+    if(!state.owner || !state.ownerHandle.Valid())
+        return false;
+
+    return player::legacy::ServerLegacyOnlinePlayerRegistry().Resolve(state.ownerHandle) == state.owner;
+}
+
+network::SendResult SendOwnerPacket(rsPLAYINFO *owner, const void *data, std::size_t size, std::uint32_t opcode)
+{
+    const PlayerId playerId = player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(owner);
+    return network::legacy::ServerLegacyPacketSender().Send(
+        playerId, network::PacketView(data, size, opcode));
 }
 
 bool IsSlotActive(const OwnerState &state, const CompanionSlot &slot)
@@ -365,14 +426,17 @@ bool FlushSlotExperience(OwnerState &state, CompanionSlot &slot)
 
         if(newLevel != previousLevel)
         {
-            TRANS_RECORD_DATA refreshed;
-            ZeroMemory(&refreshed, sizeof(refreshed));
-            if(rsLoadAccountCharacterRecord(state.owner->getAccount(), slot.characterName, &refreshed))
+            player::CharacterProgressionRecord refreshed;
+            const player::CharacterRecordKey recordKey(
+                state.owner->getAccount() ? state.owner->getAccount() : "",
+                slot.characterName);
+            if(player::legacy::ServerLegacyCharacterRecordAdapter().TryLoadProgression(
+                    recordKey, refreshed))
             {
-                slot.entity->smCharInfo.StatePoint = refreshed.smCharInfo.StatePoint;
-                slot.entity->smCharInfo.Next_Exp = refreshed.smCharInfo.Next_Exp;
-                slot.entity->smCharInfo.ChangeJob = refreshed.smCharInfo.ChangeJob;
-                slot.entity->smCharInfo.JobBitMask = refreshed.smCharInfo.JobBitMask;
+                slot.entity->smCharInfo.StatePoint = refreshed.statePoint;
+                slot.entity->smCharInfo.Next_Exp = refreshed.nextExperience;
+                slot.entity->smCharInfo.ChangeJob = refreshed.changeJob;
+                slot.entity->smCharInfo.JobBitMask = refreshed.jobBitMask;
             }
 
             CompanionDebugLog(
@@ -451,11 +515,14 @@ void PruneState(OwnerState &state)
 OwnerState &GetOrCreateState(rsPLAYINFO *owner)
 {
     OwnerState &state = g_states[owner];
-    if(state.owner != owner || state.connectCount != owner->dwConnectCount)
+    const PlayerHandle handle = player::legacy::ServerLegacyOnlinePlayerRegistry().HandleOf(owner);
+    if(state.owner != owner ||
+       state.ownerHandle.id != handle.id ||
+       state.ownerHandle.generation != handle.generation)
     {
         state = OwnerState();
         state.owner = owner;
-        state.connectCount = owner->dwConnectCount;
+        state.ownerHandle = handle;
     }
     return state;
 }
@@ -474,6 +541,28 @@ OwnerState *FindState(rsPLAYINFO *owner)
 
     PruneState(it->second);
     return &it->second;
+}
+
+OwnerState *FindState(PlayerId owner)
+{
+    if(!owner.Valid())
+        return NULL;
+
+    for(std::map<rsPLAYINFO *, OwnerState>::iterator it = g_states.begin(); it != g_states.end();)
+    {
+        if(!IsOwnerValid(it->second))
+        {
+            it = g_states.erase(it);
+            continue;
+        }
+        if(it->second.ownerHandle.id == owner)
+        {
+            PruneState(it->second);
+            return &it->second;
+        }
+        ++it;
+    }
+    return NULL;
 }
 
 
@@ -539,20 +628,8 @@ smCHAR *FindNearestThreatToParty(smCHAR *character, rsPLAYINFO *owner, const Own
         if(!IsValidHostile(candidate))
             continue;
 
-        bool threatensParty = candidate->lpTargetPlayInfo == owner;
-        if(!threatensParty && candidate->lpTargetChar)
-        {
-            for(int slot = 0; slot < COMPANION_MAX_ACTIVE; ++slot)
-            {
-                if(state.slots[slot].entity == candidate->lpTargetChar &&
-                   state.slots[slot].entity && state.slots[slot].entity->Flag)
-                {
-                    threatensParty = true;
-                    break;
-                }
-            }
-        }
-        if(!threatensParty)
+        combat::ThreatSnapshot threat;
+        if(!TryReadThreat(candidate, threat) || !ThreatTargetsParty(threat, owner, state))
             continue;
 
         const long long dx = (candidate->pX - character->pX) >> FLOATNS;
@@ -585,18 +662,23 @@ long long ScoreHostileForCompanion(smCHAR *character, rsPLAYINFO *owner,
         score -= 40000;
     if(candidate == ownerTarget)
         score -= 60000;
-    if(candidate->lpTargetPlayInfo == owner)
-        score -= 50000;
-
-    if(candidate->lpTargetChar)
+    combat::ThreatSnapshot threat;
+    if(TryReadThreat(candidate, threat))
     {
-        for(int slot = 0; slot < COMPANION_MAX_ACTIVE; ++slot)
+        if(ThreatTargetsOwner(threat, owner))
+            score -= 50000;
+
+        if(threat.targetEntity.Valid())
         {
-            if(state.slots[slot].entity == candidate->lpTargetChar &&
-               state.slots[slot].entity && state.slots[slot].entity->Flag)
+            for(int slot = 0; slot < COMPANION_MAX_ACTIVE; ++slot)
             {
-                score -= 35000;
-                break;
+                const smCHAR *entity = state.slots[slot].entity;
+                if(entity && entity->Flag && entity->dwObjectSerial &&
+                   threat.targetEntity == EntityId(static_cast<std::uint32_t>(entity->dwObjectSerial)))
+                {
+                    score -= 35000;
+                    break;
+                }
             }
         }
     }
@@ -716,12 +798,16 @@ int EvaluateCustomTactic(const CompanionTacticsConfig &config, smCHAR *character
 
 bool HasOtherCompanionTargeting(const OwnerState &state, smCHAR *character, smCHAR *target)
 {
-    if(!target)
+    if(!target || !target->dwObjectSerial)
         return false;
+    const EntityId targetId(static_cast<std::uint32_t>(target->dwObjectSerial));
     for(int slot = 0; slot < COMPANION_MAX_ACTIVE; ++slot)
     {
         smCHAR *entity = state.slots[slot].entity;
-        if(entity && entity != character && entity->Flag && entity->lpTargetChar == target)
+        if(!entity || entity == character || !entity->Flag)
+            continue;
+        combat::ThreatSnapshot threat;
+        if(TryReadThreat(entity, threat) && threat.targetEntity == targetId)
             return true;
     }
     return false;
@@ -1236,12 +1322,14 @@ static bool TryHandleCompanionLoot(smCHAR *character, rsPLAYINFO *owner,
         const DWORD code = item->Item.ItemInfo.CODE;
         char itemName[32] = { 0 };
         strncpy_s(itemName, sizeof(itemName), item->Item.ItemInfo.ItemName, _TRUNCATE);
-        const int result = rsCompanionPickupStageItem(owner, area, item);
+        const loot::LootDropHandle drop = loot::legacy::LegacyLootAdapter::MakeHandle(area, item);
+        const PlayerId ownerId = player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(owner);
+        const loot::LootPickupResult result = loot::legacy::ServerLegacyLootAdapter().Pickup(ownerId, drop);
         CompanionDebugLog("LOOT_PICKUP name='%s' serial=%lu code=0x%08lX item='%s' result=%d",
             slot.characterName, (unsigned long)character->dwObjectSerial,
-            (unsigned long)code, itemName, result);
+            (unsigned long)code, itemName, static_cast<int>(result.code));
         ReleaseCompanionLootTarget(slot);
-        return result == TRUE;
+        return result.PickedUp();
     }
 
     DisengageTarget(character);
@@ -1343,45 +1431,33 @@ void ReadCompanionLogicalSkillPoints(const TRANS_RECORD_DATA &recordData, BYTE *
     }
 }
 
-bool ReadEquipmentSnapshot(const TRANS_RECORD_DATA &recordData, CharacterEquipmentSnapshot &snapshot)
+bool ReadEquipmentSnapshot(const player::CharacterPersistentSnapshot &recordData,
+                           CharacterEquipmentSnapshot &snapshot)
 {
     snapshot = CharacterEquipmentSnapshot();
     snapshot.valid = true;
-    CopyText32(snapshot.characterName, recordData.smCharInfo.szName);
-    snapshot.level = recordData.smCharInfo.Level;
-    snapshot.jobCode = recordData.smCharInfo.JOB_CODE;
-    snapshot.life = recordData.smCharInfo.Life[0];
-    snapshot.maxLife = recordData.smCharInfo.Life[1];
-    snapshot.mana = recordData.smCharInfo.Mana[0];
-    snapshot.maxMana = recordData.smCharInfo.Mana[1];
-    ReadCompanionLogicalSkillPoints(recordData, snapshot.skillPoints, COMPANION_MAX_SKILL_SLOTS);
+    CopyText32(snapshot.characterName, recordData.characterName.c_str());
+    snapshot.level = recordData.level;
+    snapshot.jobCode = recordData.legacyJobCode;
+    snapshot.life = recordData.life;
+    snapshot.maxLife = recordData.maxLife;
+    snapshot.mana = recordData.mana;
+    snapshot.maxMana = recordData.maxMana;
+    const int skillCount = std::min(
+        static_cast<int>(recordData.logicalSkillPoints.size()),
+        COMPANION_MAX_SKILL_SLOTS);
+    for(int i = 0; i < skillCount; ++i)
+        snapshot.skillPoints[i] = static_cast<BYTE>(recordData.logicalSkillPoints[static_cast<std::size_t>(i)]);
 
     // Always allow an empty hand from the UI. It is a visual/combat loadout
     // override only and never deletes or moves an inventory record.
     AddChoice(snapshot.right, snapshot.rightCount, 0, "Nenhum");
     AddChoice(snapshot.left, snapshot.leftCount, 0, "Nenhum");
 
-    if(recordData.DataSize <= 0)
-        return true;
-
-    const BYTE *cursor = recordData.Data;
-    const BYTE *end = recordData.Data + recordData.DataSize;
-    int primaryItemCount = recordData.ItemSubStart;
-    if(primaryItemCount <= 0 || primaryItemCount > recordData.ItemCount)
-        primaryItemCount = recordData.ItemCount;
-
-    for(int item = 0; item < primaryItemCount && cursor + sizeof(int) <= end; ++item)
+    for(std::size_t item = 0; item < recordData.items.size(); ++item)
     {
-        const int packedSize = *(const int *)cursor;
-        if(packedSize <= (int)sizeof(int) || cursor + packedSize > end)
-            break;
-
-        sRECORD_ITEM recordItem;
-        ZeroMemory(&recordItem, sizeof(recordItem));
-        DecodeCompress((BYTE *)cursor, (BYTE *)&recordItem, sizeof(recordItem));
-        cursor += packedSize;
-
-        const DWORD code = recordItem.sItemInfo.CODE;
+        const player::CharacterRecordItem &recordItem = recordData.items[item];
+        const DWORD code = static_cast<DWORD>(recordItem.itemCode);
         if(!code)
             continue;
 
@@ -1390,7 +1466,7 @@ bool ReadEquipmentSnapshot(const TRANS_RECORD_DATA &recordData, CharacterEquipme
             itemIndex >= 0 && itemIndex < MAX_ITEM ? sItem[itemIndex].Class : 0;
 
         if(itemClass == ITEM_CLASS_WEAPON_ONE || itemClass == ITEM_CLASS_WEAPON_TWO)
-            AddChoice(snapshot.right, snapshot.rightCount, code, recordItem.sItemInfo.ItemName);
+            AddChoice(snapshot.right, snapshot.rightCount, code, recordItem.itemName.c_str());
 
         // The login inventory accepts an item in a slot when the slot's
         // Position bit intersects the item's Class. Slot 2 is LHAND, so keep
@@ -1404,25 +1480,23 @@ bool ReadEquipmentSnapshot(const TRANS_RECORD_DATA &recordData, CharacterEquipme
             (itemClass & INVENTORY_POS_LHAND) != 0 &&
             itemClass != ITEM_CLASS_WEAPON_TWO;
         if(leftHandClass ||
-            (itemClass == ITEM_CLASS_WEAPON_ONE && recordItem.ItemPosition == 2))
+            (itemClass == ITEM_CLASS_WEAPON_ONE && recordItem.position == 2))
         {
-            AddChoice(snapshot.left, snapshot.leftCount, code, recordItem.sItemInfo.ItemName);
+            AddChoice(snapshot.left, snapshot.leftCount, code, recordItem.itemName.c_str());
         }
 
         // This is intentionally the same persisted-slot contract used by the
         // real client inventory: sInven[0] is RHAND, sInven[1] is LHAND, and
-        // load/restore assigns sInven[ItemPosition - 1]. The source validator
-        // tools/validate_companion_equipment_contract.py guards all three
-        // sides of that contract so this does not drift back into guesswork.
-        if(recordItem.ItemPosition == 1 && !snapshot.defaultRight)
+        // load/restore assigns sInven[ItemPosition - 1].
+        if(recordItem.position == 1 && !snapshot.defaultRight)
         {
             snapshot.defaultRight = code;
-            CopyText32(snapshot.defaultRightName, recordItem.sItemInfo.ItemName);
+            CopyText32(snapshot.defaultRightName, recordItem.itemName.c_str());
         }
-        else if(recordItem.ItemPosition == 2 && !snapshot.defaultLeft)
+        else if(recordItem.position == 2 && !snapshot.defaultLeft)
         {
             snapshot.defaultLeft = code;
-            CopyText32(snapshot.defaultLeftName, recordItem.sItemInfo.ItemName);
+            CopyText32(snapshot.defaultLeftName, recordItem.itemName.c_str());
         }
     }
 
@@ -1450,12 +1524,12 @@ bool LoadCharacterSnapshot(rsPLAYINFO *owner, const char *characterName, Charact
     if(!owner || !owner->getAccount() || !owner->getAccount()[0] || !characterName || !characterName[0])
         return false;
 
-    TRANS_RECORD_DATA recordData;
-    ZeroMemory(&recordData, sizeof(recordData));
-    if(!rsLoadAccountCharacterRecord(owner->getAccount(), characterName, &recordData))
+    player::CharacterPersistentSnapshot persisted;
+    const player::CharacterRecordKey key(owner->getAccount(), characterName);
+    if(!player::legacy::ServerLegacyCharacterRecordAdapter().TryLoadSnapshot(key, persisted))
         return false;
 
-    return ReadEquipmentSnapshot(recordData, snapshot);
+    return ReadEquipmentSnapshot(persisted, snapshot);
 }
 
 LoadoutOverride *FindLoadoutOverride(OwnerState &state, const char *characterName, bool create)
@@ -1598,7 +1672,9 @@ bool HasIncomingCompanionThreat(smCHAR *companion)
     for(int i = 0; i < area->MonsterLastPoint; ++i)
     {
         smCHAR *candidate = area->lpCharMonster[i];
-        if(IsValidHostile(candidate) && candidate->lpTargetChar == companion)
+        combat::ThreatSnapshot threat;
+        if(IsValidHostile(candidate) && TryReadThreat(candidate, threat) &&
+           ThreatTargetsCompanion(threat, companion))
             return true;
     }
     return false;
@@ -1706,7 +1782,7 @@ void SendRuntimeStateLocked(OwnerState &state, bool force)
             CopyText32(entry.targetName, slot.entity->lpTargetChar->smCharInfo.szName);
     }
 
-    state.owner->lpsmSock->Send((char *)&packet, packet.size, TRUE);
+    (void)SendOwnerPacket(state.owner, &packet, packet.size, packet.code);
     state.lastRuntimeSendTime = dwPlayServTime;
 }
 
@@ -1819,7 +1895,7 @@ void SendVisualStateLocked(OwnerState &state, bool force)
             entry.flags |= protocol::COMPANION_VISUAL_FLAG_DEAD;
     }
 
-    state.owner->lpsmSock->Send((char *)&packet, packet.size, TRUE);
+    (void)SendOwnerPacket(state.owner, &packet, packet.size, packet.code);
     state.lastVisualSendTime = dwPlayServTime;
 }
 
@@ -1837,7 +1913,7 @@ void SendFullCompanionInfo(rsPLAYINFO *owner, smCHAR *companion)
     info.x = companion->pX;
     info.y = companion->pY;
     info.z = companion->pZ;
-    owner->lpsmSock->Send((char *)&info, info.size, TRUE);
+    (void)SendOwnerPacket(owner, &info, info.size, info.code);
 }
 
 void ApplyEquipmentCodes(rsPLAYINFO *owner, smCHAR *companion, DWORD rightCode, DWORD leftCode)
@@ -2576,59 +2652,45 @@ void OnOwnerDisconnect(rsPLAYINFO *owner)
     g_states.erase(it);
 }
 
-int GetActiveCount(rsPLAYINFO *owner)
+std::uint32_t runtime::ActiveCount(PlayerId owner)
 {
-    if(!owner)
-        return 0;
+    CompanionStateSnapshot state;
+    return runtime::TryGetState(owner, state) ? state.activeCount : 0u;
+}
+
+bool runtime::TryGetState(PlayerId owner, CompanionStateSnapshot& out)
+{
+    out = CompanionStateSnapshot();
+    if(!owner.Valid())
+        return false;
 
     std::lock_guard<std::mutex> guard(g_mutex);
     OwnerState *state = FindState(owner);
     if(!state)
-        return 0;
-
-    int count = 0;
-    for(int i = 0; i < COMPANION_MAX_ACTIVE; ++i)
-    {
-        if(IsSlotActive(*state, state->slots[i]))
-            ++count;
-    }
-    return count;
-}
-
-int GetPartyActiveCount(rsPLAYINFO *partyMaster, int area)
-{
-    if(!partyMaster)
-        return 0;
-
-    int count = 0;
-    for(int i = 0; i < PARTY_PLAYER_MAX; ++i)
-    {
-        rsPLAYINFO *member = partyMaster->lpPartyPlayers[i];
-        if(member && member->lpsmSock && member->Position.Area == area)
-            count += GetActiveCount(member);
-    }
-    return count;
-}
-
-bool IsManagedCompanion(smCHAR *character)
-{
-    if(!character)
         return false;
 
-    std::lock_guard<std::mutex> guard(g_mutex);
-    for(std::map<rsPLAYINFO *, OwnerState>::iterator it = g_states.begin();
-        it != g_states.end(); ++it)
+    for(int slot = 0; slot < COMPANION_MAX_ACTIVE; ++slot)
     {
-        OwnerState &state = it->second;
-        if(!IsOwnerValid(state))
-            continue;
-        for(int i = 0; i < COMPANION_MAX_ACTIVE; ++i)
-        {
-            if(IsSlotActive(state, state.slots[i]) && state.slots[i].entity == character)
-                return true;
-        }
+        if(IsSlotActive(*state, state->slots[slot]))
+            ++out.activeCount;
     }
-    return false;
+
+    CompanionMode mode = state->mode;
+    if(state->selectedName[0])
+    {
+        out.selectedName = state->selectedName;
+        LoadoutOverride *profile = FindLoadoutOverride(*state, state->selectedName, true);
+        if(profile)
+            mode = profile->mode;
+    }
+
+    switch(mode)
+    {
+        case COMPANION_MODE_FOLLOW: out.mode = CompanionBehaviorMode::Follow; break;
+        case COMPANION_MODE_PASSIVE: out.mode = CompanionBehaviorMode::Passive; break;
+        default: out.mode = CompanionBehaviorMode::Aggressive; break;
+    }
+    return true;
 }
 
 int GetPassiveEvadePercent(smCHAR *character)
@@ -2833,6 +2895,9 @@ void ApplyAI(smCHAR *character)
         return;
 
     rsPLAYINFO *owner = state->owner;
+    player::PlayerSnapshot ownerSnapshot;
+    if(!player::legacy::ServerLegacyPlayerAdapter().TryGet(state->ownerHandle, ownerSnapshot))
+        return;
 
     // The summon path already rejects an alt that is online as a real player.
     // Re-check periodically so a later login cannot leave the same character
@@ -2891,7 +2956,7 @@ void ApplyAI(smCHAR *character)
     // is dead.  Cancel delayed offensive events so they cannot land after a
     // later owner revive; persistent timed buffs/familiars keep their absolute
     // expiry and simply resume if still valid.
-    if(owner->smCharInfo.Life[0] <= 0)
+    if(!ownerSnapshot.alive)
     {
         managedSlot->skillRuntime.multiHitSkillCode = 0;
         managedSlot->skillRuntime.multiHitTargetSerial = 0;
@@ -2934,9 +2999,9 @@ void ApplyAI(smCHAR *character)
     // Consumables belong to the offline alt itself. The persistence helper
     // validates the restore payload first, then decrements and persists the DAT
     // stack before applying HP/MP/Stamina so a failed write cannot duplicate it.
-    if(owner->getAccount() && owner->getAccount()[0])
+    if(!ownerSnapshot.accountKey.empty())
     {
-        if(TryUseCompanionConsumable(owner->getAccount(), managedSlot->characterName,
+        if(TryUseCompanionConsumable(ownerSnapshot.accountKey.c_str(), managedSlot->characterName,
             character, managedSlot->skillRuntime, dwPlayServTime))
         {
             CompanionDebugLog("ITEM_USE name='%s' serial=%lu life=%d/%d mana=%d/%d stamina=%d/%d",
@@ -3065,7 +3130,8 @@ void ApplyAI(smCHAR *character)
             SendVisualStateLocked(*state, true);
             return;
         }
-        else if(character->smCharInfo.JOB_CODE == JOBCODE_PRIESTESS &&
+        else if(HasCompanionHealingRole(static_cast<classes::PlayableClassId>(
+                    character->smCharInfo.JOB_CODE)) &&
                 healAttempt.reason != COMPANION_SKILL_NO_TARGET &&
                 healAttempt.reason != COMPANION_SKILL_COOLDOWN &&
                 healAttempt.reason != COMPANION_SKILL_LOCKED &&
@@ -3087,7 +3153,8 @@ void ApplyAI(smCHAR *character)
         // outside that range, spend this AI tick closing the distance instead
         // of immediately returning to offensive target selection. Resource or
         // cooldown rejects do not trigger repositioning.
-        if(character->smCharInfo.JOB_CODE == JOBCODE_PRIESTESS &&
+        if(HasCompanionHealingRole(static_cast<classes::PlayableClassId>(
+               character->smCharInfo.JOB_CODE)) &&
            GetCompanionSkillPoint(managedSlot->skillRuntime, 1) > 0 &&
            healAttempt.reason == COMPANION_SKILL_NO_TARGET)
         {
@@ -3129,8 +3196,8 @@ void ApplyAI(smCHAR *character)
             int offsetZ = 0;
             FormationOffset(profile ? profile->formationSlot : 0, offsetX, offsetZ);
             character->SetTargetPosi2(
-                (owner->Position.x + offsetX) >> FLOATNS,
-                (owner->Position.z + offsetZ) >> FLOATNS);
+                (ownerSnapshot.position.x + offsetX) >> FLOATNS,
+                (ownerSnapshot.position.z + offsetZ) >> FLOATNS);
             character->TargetMoveCount = 2;
             character->TragetTraceMode = FALSE;
             if(character->MotionInfo &&
@@ -3178,8 +3245,8 @@ void ApplyAI(smCHAR *character)
         int offsetZ = 0;
         FormationOffset(profile ? profile->formationSlot : 0, offsetX, offsetZ);
         character->SetTargetPosi2(
-            (owner->Position.x + offsetX) >> FLOATNS,
-            (owner->Position.z + offsetZ) >> FLOATNS);
+            (ownerSnapshot.position.x + offsetX) >> FLOATNS,
+            (ownerSnapshot.position.z + offsetZ) >> FLOATNS);
         character->TargetMoveCount = 2;
         character->TragetTraceMode = FALSE;
         if(character->MotionInfo &&
@@ -3225,8 +3292,8 @@ void ApplyAI(smCHAR *character)
                     int offsetX = 0;
                     int offsetZ = 0;
                     FormationOffset(profile ? profile->formationSlot : 0, offsetX, offsetZ);
-                    const int dx = (candidate->pX - (owner->Position.x + offsetX)) >> FLOATNS;
-                    const int dz = (candidate->pZ - (owner->Position.z + offsetZ)) >> FLOATNS;
+                    const int dx = (candidate->pX - (ownerSnapshot.position.x + offsetX)) >> FLOATNS;
+                    const int dz = (candidate->pZ - (ownerSnapshot.position.z + offsetZ)) >> FLOATNS;
                     if(dx * dx + dz * dz <= (260 * 260))
                         target = candidate;
                 }
@@ -3257,8 +3324,9 @@ void ApplyAI(smCHAR *character)
                 // Prefer an enemy that is actually threatening the owner/party,
                 // not merely the geometrically nearest monster. Retain a current
                 // retaliating target first to avoid target thrash.
-                if(currentTarget &&
-                    (currentTarget->lpTargetChar == character || currentTarget->lpTargetPlayInfo == owner))
+                combat::ThreatSnapshot currentThreat;
+                if(currentTarget && TryReadThreat(currentTarget, currentThreat) &&
+                    (ThreatTargetsCompanion(currentThreat, character) || ThreatTargetsOwner(currentThreat, owner)))
                     target = currentTarget;
                 else
                     target = FindNearestThreatToParty(character, owner, *state);
@@ -3284,8 +3352,8 @@ void ApplyAI(smCHAR *character)
                     int offsetX = 0;
                     int offsetZ = 0;
                     FormationOffset(profile ? profile->formationSlot : 0, offsetX, offsetZ);
-                    const int dx = (candidate->pX - (owner->Position.x + offsetX)) >> FLOATNS;
-                    const int dz = (candidate->pZ - (owner->Position.z + offsetZ)) >> FLOATNS;
+                    const int dx = (candidate->pX - (ownerSnapshot.position.x + offsetX)) >> FLOATNS;
+                    const int dz = (candidate->pZ - (ownerSnapshot.position.z + offsetZ)) >> FLOATNS;
                     if(dx * dx + dz * dz <= (260 * 260))
                         target = candidate;
                 }
@@ -3421,6 +3489,10 @@ bool GetFollowPosition(smCHAR *character, int *x, int *z)
     if(!state)
         return false;
 
+    player::PlayerSnapshot ownerSnapshot;
+    if(!player::legacy::ServerLegacyPlayerAdapter().TryGet(state->ownerHandle, ownerSnapshot))
+        return false;
+
     for(int i = 0; i < COMPANION_MAX_ACTIVE; ++i)
     {
         CompanionSlot &slot = state->slots[i];
@@ -3441,8 +3513,8 @@ bool GetFollowPosition(smCHAR *character, int *x, int *z)
             tactic != COMPANION_TACTIC_HOLD_POSITION &&
             IsValidHostile(character->lpTargetChar))
         {
-            const int ownerDx = (character->pX - state->owner->Position.x) >> FLOATNS;
-            const int ownerDz = (character->pZ - state->owner->Position.z) >> FLOATNS;
+            const int ownerDx = (character->pX - ownerSnapshot.position.x) >> FLOATNS;
+            const int ownerDz = (character->pZ - ownerSnapshot.position.z) >> FLOATNS;
             if(ownerDx * ownerDx + ownerDz * ownerDz < (475 * 475))
             {
                 *x = character->pX;
@@ -3454,8 +3526,8 @@ bool GetFollowPosition(smCHAR *character, int *x, int *z)
         int offsetX = 0;
         int offsetZ = 0;
         FormationOffset(profile ? profile->formationSlot : i, offsetX, offsetZ);
-        *x = state->owner->Position.x + offsetX;
-        *z = state->owner->Position.z + offsetZ;
+        *x = ownerSnapshot.position.x + offsetX;
+        *z = ownerSnapshot.position.z + offsetZ;
         return true;
     }
     return false;
@@ -3525,15 +3597,15 @@ INT64 AwardExperience(rsPLAYINFO *owner, smCHAR *killedMonster, float partyShare
     return totalAwarded;
 }
 
-DWORD GetConfiguredCrystalItemCode()
+std::uint32_t runtime::ConfiguredCrystalItemCode()
 {
     // Decimal item code. 0 disables item interception while keeping commands.
-    return (DWORD)SummitCompanionConfigInt("CrystalItemCode", 0);
+    return static_cast<std::uint32_t>(SummitCompanionConfigInt("CrystalItemCode", 0));
 }
 
-int HandleCrystalUse(rsPLAYINFO *owner, DWORD itemCode)
+int HandleCrystalUse(rsPLAYINFO *owner, std::uint32_t itemCode)
 {
-    const DWORD configuredCode = GetConfiguredCrystalItemCode();
+    const std::uint32_t configuredCode = runtime::ConfiguredCrystalItemCode();
     if(!configuredCode || configuredCode != itemCode)
         return 0;
 
@@ -3732,40 +3804,6 @@ int SetMode(rsPLAYINFO *owner, CompanionMode mode)
     return TRUE;
 }
 
-CompanionMode GetMode(rsPLAYINFO *owner)
-{
-    if(!owner)
-        return COMPANION_MODE_AGGRESSIVE;
-
-    std::lock_guard<std::mutex> guard(g_mutex);
-    OwnerState *state = FindState(owner);
-    if(!state)
-        return COMPANION_MODE_AGGRESSIVE;
-
-    if(state->selectedName[0])
-    {
-        LoadoutOverride *profile = FindLoadoutOverride(*state, state->selectedName, true);
-        if(profile)
-            return profile->mode;
-    }
-    return state->mode;
-}
-
-const char *GetSelectedName(rsPLAYINFO *owner)
-{
-    static thread_local char result[32];
-    result[0] = 0;
-
-    if(!owner)
-        return result;
-
-    std::lock_guard<std::mutex> guard(g_mutex);
-    OwnerState *state = FindState(owner);
-    if(state && state->selectedName[0])
-        strcpy_s(result, sizeof(result), state->selectedName);
-    return result;
-}
-
 void SendUIState(rsPLAYINFO *owner, int lastResult)
 {
     if(!owner || !owner->lpsmSock || !owner->getAccount() || !owner->getAccount()[0])
@@ -3921,7 +3959,7 @@ void SendUIState(rsPLAYINFO *owner, int lastResult)
         }
     }
 
-    owner->lpsmSock->Send((char *)&packet, packet.size, TRUE);
+    (void)SendOwnerPacket(owner, &packet, packet.size, packet.code);
 }
 
 namespace
@@ -3935,9 +3973,13 @@ const char *ResolveActionName(rsPLAYINFO *owner, const protocol::CompanionUIActi
         return buffer;
     }
 
-    const char *selected = GetSelectedName(owner);
-    if(selected && selected[0])
-        CopyText32(buffer, selected);
+    if(owner)
+    {
+        std::lock_guard<std::mutex> guard(g_mutex);
+        OwnerState *state = FindState(owner);
+        if(state && state->selectedName[0])
+            CopyText32(buffer, state->selectedName);
+    }
     return buffer;
 }
 

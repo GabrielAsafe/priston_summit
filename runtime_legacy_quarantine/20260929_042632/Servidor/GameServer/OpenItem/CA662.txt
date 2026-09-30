@@ -1,0 +1,27 @@
+// NOME E COD DO ITEM
+*ÀÌ¸§		"Uniforme Japão "
+*ÄÚµå		"CA662"
+
+// PESO NO INVETARIO
+*¹«°Ô	100
+// PRECO DO ITEM
+*°¡°Ý	100000
+// RESISTENCIA ORGANICA
+*»ýÃ¼	5 5
+// RESISTENCIA A FOGO
+*ºÒ	5 5
+// RESISTENCIA A GELO
+*³Ã±â	5 5
+// RESISTENCIA A RAIO
+*¹ø°³	5 5
+// RESISTENCIA A VENENO
+*µ¶	5 5
+// ABSORCAO
+*Èí¼ö·Â	6 6
+// TAXA DE DEFESA
+*¹æ¾î·Â	200 200
+// BLOQUEIO
+*ºí·°À²	2 2
+
+// LEVEL DO ITEM
+*·¹º§	

@@ -1,0 +1,17 @@
+//ID
+*코드 "BI305"
+
+//Korean Name
+*이름 "ViP 07 Dias"
+
+//English Name
+*Name "ViP 07 Dias"
+
+//Weight
+*무게 1
+
+//Price
+*가격 1
+
+//Name File
+*연결파일 "Name\BI305.zhoon"

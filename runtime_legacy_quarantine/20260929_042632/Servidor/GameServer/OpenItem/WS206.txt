@@ -1,0 +1,59 @@
+//ID
+*코드 "WS206"
+
+//Korean Name
+*이름 "Espada Larga"
+
+//English Name
+*Name "Espada Larga"
+
+//AttackPower
+*공격력 5 8 10 12
+
+//AttackRating
+*명중력 45 53
+
+//AttackSpeed
+*공격속도 7
+
+//AttackCritical
+*크리티컬 5
+
+//Integrity
+*내구력 52 63
+
+//Level
+*레벨 13
+
+//Strength
+*힘 50
+
+//Talent
+*재능 36
+
+//PrimarySpec
+**특화 Knight
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman
+
+//SpecAttackPower
+**공격력 6 6
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 2
+
+//Weight
+*무게 9
+
+//Price
+*가격 3500
+
+//Name File
+*연결파일 "Name\WS206.zhoon"

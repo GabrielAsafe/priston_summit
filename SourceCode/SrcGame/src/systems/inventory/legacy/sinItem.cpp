@@ -1,3 +1,22 @@
+// =============================================================================
+// MAPA DO MONOLITO LEGACY - CLIENT ITEM PRESENTATION
+//
+// Este mapa e apenas documental. O ficheiro permanece RED e no mesmo local;
+// os separadores abaixo nao alteram ownership, ordem de execucao ou ABI.
+// FUNCIONAMENTO GERAL: Monta tooltip/texto legacy de items. Nao e authority de inventory; deve apenas apresentar os dados recebidos/materializados.
+//
+// AREAS PRINCIPAIS:
+//   AREA 01 - ITEM UI LIFECYCLE
+//   AREA 02 - SHOWITEMINFO - HEADER/IDENTIDADE
+//   AREA 03 - SHOWITEMINFO - REQUISITOS / STATS
+//   AREA 04 - SHOWITEMINFO - MIX/AGING/SPECIAL MODIFIERS
+//   AREA 05 - SHOWITEMINFO - DESCRICOES / TIMERS
+//   AREA 06 - TEXT LAYOUT / DRAW
+//   AREA 07 - ITEM TABLE / LIMIT TIME
+//
+// Desenvolvimento novo deve usar contracts/ports/adapters AMBER existentes.
+// =============================================================================
+
 
 
 #include "systems/commerce/coin_shop/CoinShop.h"
@@ -415,6 +434,14 @@ struct MixTypeColor
 
 MixTypeColor sMixTypeColor = { 0 };
 
+// =============================================================================
+// AREA 02-05 - SHOWITEMINFO
+// TIPO: UI + item presentation
+// FUNCIONAMENTO: Constroi linhas, cores, requisitos, stats, mix/aging e descricoes do tooltip a partir do item concreto e metadata legacy.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
+
 int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 {
 	int   cnt = 0;
@@ -697,6 +724,14 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 
 
 
+// =============================================================================
+// AREA 02 - IDENTIDADE / NOME
+// TIPO: UI
+// FUNCIONAMENTO: Resolve e escreve nome/cabecalho do item no buffer de tooltip.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
+
 	//Nome do Item
 	if (tWeaponClass)
 		wsprintf(szInfoBuff, "%s%s/r", sInfo.ItemName, "");
@@ -756,6 +791,14 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 
 
 	}
+
+// =============================================================================
+// AREA 04 - MIX / AGING / MODIFIERS
+// TIPO: UI + crafting metadata
+// FUNCIONAMENTO: Apresenta modificadores provenientes de mix/aging e estados especiais gravados no item.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 	//Tipo do Mix no Item
 	if (sInfo.ItemKindCode == ITEM_KIND_CRAFT && pItem->sItemInfo.iMixType > 0)
@@ -879,6 +922,14 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		ItemInfoCol++;
 	}
 	trajeM = 0;
+// =============================================================================
+// AREA 05 - DESCRICOES / DURACAO / ESPECIAIS
+// TIPO: UI
+// FUNCIONAMENTO: Acrescenta texto descritivo, duracoes e informacao especifica por familia de item.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
+
 	//descrição dos itens
 	if (pItem->CODE == (sinCA1 | sin31) || pItem->CODE == (sinCA1 | sin35) || pItem->CODE == (sinCA1 | sin43) ||
 		pItem->CODE == (sinCA1 | sin54) || pItem->CODE == (sinCA1 | sin66) || pItem->CODE == (sinCA1 | sin67) ||
@@ -7945,6 +7996,14 @@ int cITEM::GetInfoBoxSize(sITEM* pItem, int Col)
 
 	return TRUE;
 }
+
+// =============================================================================
+// AREA 06 - TEXT LAYOUT / DRAW
+// TIPO: UI + render 2D
+// FUNCIONAMENTO: Desenha as linhas calculadas por ShowItemInfo respeitando colunas, cores e limites do layout legacy.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 int cITEM::DrawItemText()
 {

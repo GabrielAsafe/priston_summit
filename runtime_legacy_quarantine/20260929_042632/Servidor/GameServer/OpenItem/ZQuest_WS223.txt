@@ -1,0 +1,50 @@
+//ID
+*코드 "WS223"
+
+//Korean Name
+*이름 "Espada Imortal"
+
+//English Name
+*Name "Espada Imortal"
+
+//Quest
+*유니크 2
+
+//Color
+*유니크색상 50 100 255 0 9
+
+//AttackPower
+*공격력 71 71 86 86
+
+//AttackRating
+*명중력 285 285
+
+//AttackSpeed
+*공격속도 8
+
+//AttackCritical
+*크리티컬 24
+
+//Block
+*블럭율 10.0 10.0
+
+//HP
+*생명력추가 50 50
+
+//MP
+*기력추가 50 50
+
+//STM
+*근력추가 50 50
+
+//Integrity
+*내구력 70 70
+
+//Level
+*레벨 100
+
+//Weight
+*무게 50
+
+//Name File
+*연결파일 "Name\ZQuest_WS223.zhoon"

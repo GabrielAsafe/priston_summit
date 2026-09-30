@@ -1,0 +1,14 @@
+//ID
+*코드 "QT103"
+
+//Korean Name
+*이름 "Chifre do Wolverine"
+
+//English Name
+*Name "Chifre do Wolverine"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\QT103.zhoon"

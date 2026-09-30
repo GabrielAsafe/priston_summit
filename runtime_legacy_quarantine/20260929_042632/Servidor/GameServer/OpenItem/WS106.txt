@@ -1,0 +1,71 @@
+//ID
+*코드 "WS106"
+
+//Korean Name
+*이름 "Arco Grande"
+
+//English Name
+*Name "Arco Grande"
+
+//AttackPower
+*공격력 5 7 10 13
+
+//AttackRating
+*명중력 42 53
+
+//AttackRange
+*사정거리 215
+
+//AttackSpeed
+*공격속도 7
+
+//AttackCritical
+*크리티컬 6
+
+//Block
+*블럭율 3.0 3.0
+
+//Integrity
+*내구력 43 66
+
+//Level
+*레벨 15
+
+//Strength
+*힘 33
+
+//Talent
+*재능 40
+
+//Agility
+*민첩성 46
+
+//PrimarySpec
+**특화 Archer
+
+//SecondarySpec
+**특화랜덤 Mechanician Atalanta
+
+//SpecAttackPower
+**공격력 7 7
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackRange
+**사정거리 20
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 5
+
+//Weight
+*무게 16
+
+//Price
+*가격 4800
+
+//Name File
+*연결파일 "Name\WS106.zhoon"

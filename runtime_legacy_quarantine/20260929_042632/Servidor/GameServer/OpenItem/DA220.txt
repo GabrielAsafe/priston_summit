@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "DA220"
+
+//Korean Name
+*ÀÌ¸§ "Roupão Astral"
+
+//English Name
+*Name "Roupão Astral"
+
+//Defense
+*¹æ¾î·Â 270 290
+
+//Absorption
+*Èí¼ö·Â 14.0 14.4
+
+//OrganicResistance
+*»ýÃ¼ 8 15
+
+//FireResistance
+*ºÒ 8 15
+
+//FrostResistance
+*³Ã±â 8 15
+
+//LightningResistance
+*¹ø°³ 8 15
+
+//PoisonResistance
+*µ¶ 8 15
+
+//Integrity
+*³»±¸·Â 120 140
+
+//Level
+*·¹º§ 80
+
+//Spirit
+*Á¤½Å·Â 188
+
+//Talent
+*Àç´É 90
+
+//SecondarySpec
+**Æ¯È­·£´ý Priestess Magician
+
+//SpecDefense
+**¹æ¾î·Â 35 40
+
+//SpecAbsorption
+**Èí¼ö·Â 1.0 1.5
+
+//SpecMPRegen
+**±â·ÂÀç»ý 2.5 2.8
+
+//Weight
+*¹«°Ô 76
+
+//Price
+*°¡°Ý 190000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DA220.zhoon"

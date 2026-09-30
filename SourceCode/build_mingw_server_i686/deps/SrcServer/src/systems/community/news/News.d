@@ -10,6 +10,11 @@
  SrcServer/src/systems/inventory/legacy/sinItem.h \
  Shared/inventory/legacy/sinItem_legacy_server.h \
  SrcServer/src/systems/rendering/legacy_3d/smDsx.h \
+ Shared/content/v1/localization/content/LocalizationRuntime.h \
+ Shared/content/v1/localization/content/CompiledLocalizationSource.h \
+ Shared/content/v1/common/Sha256.h \
+ Shared/content/v1/runtime/RuntimeContentPath.h \
+ Shared/content/v1/localization/legacy/LocalizationLegacyEncoding.h \
  SrcServer/src/systems/persistence/database/core/Database.h \
  Shared/persistence/database/Database_sqlite_server.h \
  SrcServer/src/systems/commerce/coin_shop/CoinShop.h \
@@ -128,6 +133,11 @@ SrcServer/src/systems/localization/config/language.h:
 SrcServer/src/systems/inventory/legacy/sinItem.h:
 Shared/inventory/legacy/sinItem_legacy_server.h:
 SrcServer/src/systems/rendering/legacy_3d/smDsx.h:
+Shared/content/v1/localization/content/LocalizationRuntime.h:
+Shared/content/v1/localization/content/CompiledLocalizationSource.h:
+Shared/content/v1/common/Sha256.h:
+Shared/content/v1/runtime/RuntimeContentPath.h:
+Shared/content/v1/localization/legacy/LocalizationLegacyEncoding.h:
 SrcServer/src/systems/persistence/database/core/Database.h:
 Shared/persistence/database/Database_sqlite_server.h:
 SrcServer/src/systems/commerce/coin_shop/CoinShop.h:

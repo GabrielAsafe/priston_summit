@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "DB122"
+
+//Korean Name
+*ÀÌ¸§ "Botas Fênix"
+
+//English Name
+*Name "Botas Fênix"
+
+//Defense
+*¹æ¾î·Â 158 167
+
+//Absorption
+*Èí¼ö·Â 11.9 12.4
+
+//Speed
+*ÀÌµ¿¼Óµµ 3.8 4.2
+
+//OrganicResistance
+*»ýÃ¼ 4 7
+
+//FireResistance
+*ºÒ 4 7
+
+//FrostResistance
+*³Ã±â 4 7
+
+//LightningResistance
+*¹ø°³ 4 7
+
+//PoisonResistance
+*µ¶ 4 7
+
+//Integrity
+*³»±¸·Â 156 165
+
+//Level
+*·¹º§ 102
+
+//Strength
+*Èû 90
+
+//Agility
+*¹ÎÃ¸¼º 90
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecAbsorption
+**Èí¼ö·Â 0.8 1.1
+
+//SpecSpeed
+**ÀÌµ¿¼Óµµ 0.7 1
+
+//Weight
+*¹«°Ô 53
+
+//Price
+*°¡°Ý 800000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DB122.zhoon"

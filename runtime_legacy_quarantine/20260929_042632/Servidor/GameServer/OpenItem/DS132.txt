@@ -1,0 +1,41 @@
+//ID
+*코드 "DS132"
+
+//Korean Name
+*이름 "Escudo Anjo 1d"
+
+//English Name
+*Name "Escudo Anjo 1d"
+
+//Defense
+*방어력 200 200
+
+//Absorption
+*흡수력 8.0 8.0
+
+//Block
+*블럭율 24.0 24.0
+
+//Integrity
+*내구력 170 190
+
+//Level
+*레벨 10
+
+//Weight
+*무게 50
+
+//Price
+*가격 500000
+
+//HP
+*생명력추가 20 20
+
+//MP
+*기력추가 20 20
+
+//STM
+*근력추가 20 20
+
+//Name File
+*연결파일 "Name\DS132.zhoon"

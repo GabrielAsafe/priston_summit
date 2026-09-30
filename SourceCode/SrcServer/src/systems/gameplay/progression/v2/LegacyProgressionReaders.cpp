@@ -1,12 +1,10 @@
 #include "systems/gameplay/progression/v2/LegacyProgressionReaders.h"
-#include "systems/gameplay/progression/v2/LegacyQuestContract.h"
 
 #include <cctype>
 #include <cstring>
 #include <string>
 
 #include "core/server/legacy_runtime/onserver.h"
-#include "systems/gameplay/quests/server/cQuestHandler.h"
 #include "persistence/database/Database_sqlite_server.h"
 
 namespace gameplay
@@ -58,17 +56,13 @@ int LegacyQuestStateReader::QuestState(const std::string& playerKey, int questId
     if (playerKey.empty() || questId <= 0)
         return kProgressionUnavailableValue;
 
-    bool completed = false;
-    if (!cQuestHandler.QueryCompletedQuest(playerKey.c_str(), questId, &completed))
+    quests::QuestStateSnapshot state;
+    if (!quests_.TryGetState(playerKey, QuestId(static_cast<std::uint32_t>(questId)), state))
         return kProgressionUnavailableValue;
-    if (completed)
+    if (state.completed)
         return static_cast<int>(conditions::QuestProgressState::Completed);
-
-    bool inProgress = false;
-    if (!cQuestHandler.QueryQuestInProgress(playerKey.c_str(), questId, &inProgress))
-        return kProgressionUnavailableValue;
-    return inProgress ? static_cast<int>(conditions::QuestProgressState::InProgress)
-                      : static_cast<int>(conditions::QuestProgressState::NotActive);
+    return state.inProgress ? static_cast<int>(conditions::QuestProgressState::InProgress)
+                            : static_cast<int>(conditions::QuestProgressState::NotActive);
 }
 
 int LegacyProfessionLevelReader::ProfessionLevel(const std::string& playerKey,

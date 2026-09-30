@@ -18,3 +18,6 @@ Este arquivo registra trabalho adiado. Os itens abaixo ficam atrás da consolida
 - Criar comparação de item ao fazer hover.
 - Comparar o item sob o cursor com o item atualmente equipado no slot correspondente.
 - Mostrar com clareza as diferenças de status/atributos sem alterar o comportamento de equipar.
+
+## UI / Inventário
+- [ ] Inventário: jogar/arrastar itens para o chão não funciona quando a ação parte do lado direito do inventário.

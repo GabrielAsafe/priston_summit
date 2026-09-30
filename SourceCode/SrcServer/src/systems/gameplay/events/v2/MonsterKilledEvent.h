@@ -3,8 +3,7 @@
 #include <cstdint>
 #include <string>
 
-class rsPLAYINFO;
-class smCHAR;
+#include "gameplay/core/v2/GameplayIds.h"
 
 namespace gameplay
 {
@@ -12,27 +11,27 @@ namespace events
 {
 struct MonsterKilledEvent
 {
-    rsPLAYINFO* player;
-    smCHAR* monster;
+    PlayerId player;
+    EntityId monster;
     bool partyCredit;
-
-    // Stable event snapshot for new systems. Consumers that do not need the
-    // legacy objects can use these values and stay decoupled from smPacket.
+    bool monsterBoss;
     std::string playerName;
     std::string monsterName;
     std::uint32_t monsterCode;
     int area;
 
-    MonsterKilledEvent(rsPLAYINFO* playerValue,
-                       smCHAR* monsterValue,
-                       bool partyCreditValue,
-                       const std::string& playerNameValue,
-                       const std::string& monsterNameValue,
-                       std::uint32_t monsterCodeValue,
-                       int areaValue)
+    MonsterKilledEvent(PlayerId playerValue = PlayerId(),
+                       EntityId monsterValue = EntityId(),
+                       bool partyCreditValue = false,
+                       bool monsterBossValue = false,
+                       const std::string& playerNameValue = std::string(),
+                       const std::string& monsterNameValue = std::string(),
+                       std::uint32_t monsterCodeValue = 0u,
+                       int areaValue = -1)
         : player(playerValue),
           monster(monsterValue),
           partyCredit(partyCreditValue),
+          monsterBoss(monsterBossValue),
           playerName(playerNameValue),
           monsterName(monsterNameValue),
           monsterCode(monsterCodeValue),

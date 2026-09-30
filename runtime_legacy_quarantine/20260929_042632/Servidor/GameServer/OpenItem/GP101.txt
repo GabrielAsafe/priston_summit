@@ -1,0 +1,20 @@
+//ID
+*코드 "GP101"
+
+//Korean Name
+*이름 "Cristal de Hopi"
+
+//English Name
+*Name "Cristal de Hopi"
+
+//Level
+*레벨 1
+
+//Weight
+*무게 1
+
+//Price
+*가격 500
+
+//Name File
+*연결파일 "Name\GP101.zhoon"

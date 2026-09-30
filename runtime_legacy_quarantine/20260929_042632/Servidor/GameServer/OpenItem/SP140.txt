@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "SP140"
+
+//Korean Name
+*ÀÌ¸§ "Poção Chapéu de Futebol"
+
+//English Name
+*Name "Poção Chapéu de Futebol"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\SP140.zhoon"

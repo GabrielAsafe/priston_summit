@@ -1,0 +1,62 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\cavemush\cmush.ini"
+
+//Name
+*이름 "R1 Muffin"
+
+//Level
+*레벨 56
+
+//Size
+*모델크기 1.0
+
+//QuestCode
+*구별코드 7
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 360
+
+//HP
+*생명력 660
+
+//AttackPower
+*공격력 42 50
+
+//AttackRating
+*명중력 750
+
+//AttackSpeed
+*공격속도 7
+
+//AttackRange
+*공격범위 60
+
+//Defense
+*방어력 280
+
+//Absorption
+*흡수율 9
+
+//MoveSpeed
+*이동력 3
+
+//Race
+*몬스터종족 뮤턴트
+
+//ShadowSize
+*크기 중대형
+
+//Experience
+*경험치 19800
+
+//Sound
+*효과음 MUFFIN
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

@@ -1,0 +1,14 @@
+//ID
+*코드 "SP126"
+
+//Korean Name
+*이름 "Melancia"
+
+//English Name
+*Name "Melancia"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\SP126.zhoon"

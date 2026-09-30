@@ -1,0 +1,65 @@
+//ID
+*코드 "DS124"
+
+//Korean Name
+*이름 "Escudo Cronus"
+
+//English Name
+*Name "Escudo Cronus"
+
+//Defense
+*방어력 234 254
+
+//Absorption
+*흡수력 14.2 14.5
+
+//Block
+*블럭율 18.0 21.0
+
+//OrganicResistance
+*생체 3 6
+
+//FireResistance
+*불 3 6
+
+//FrostResistance
+*냉기 3 6
+
+//LightningResistance
+*번개 3 6
+
+//PoisonResistance
+*독 3 6
+
+//Integrity
+*내구력 200 220
+
+//Level
+*레벨 108
+
+//Strength
+*힘 135
+
+//Talent
+*재능 75
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**방어력 44 50
+
+//SpecAbsorption
+**흡수력 1.3 1.7
+
+//SpecBlock
+**블럭율 5.0
+
+//Weight
+*무게 96
+
+//Price
+*가격 1010000
+
+//Name File
+*연결파일 "Name\DS124.zhoon"

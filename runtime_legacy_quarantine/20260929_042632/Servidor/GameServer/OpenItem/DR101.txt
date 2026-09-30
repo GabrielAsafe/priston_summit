@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "DR101"
+
+//Korean Name
+*ÀÌ¸§ "Receita de Defesa Nível 70"
+
+//English Name
+*Name "Receita de Defesa Nível 70"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DR101.zhoon"

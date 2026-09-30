@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "PZ202"
+
+//Korean Name
+*ÀÌ¸§ "Quebra-Cabeça B2"
+
+//English Name
+*Name "Quebra-Cabeça B2"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\PZ202.zhoon"

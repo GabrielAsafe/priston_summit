@@ -1,0 +1,11 @@
+//ID
+*코드 "OR229"
+
+//Korean Name
+*이름 "Anel do Evento 1h"
+
+//English Name
+*Name "Anel do Evento 1h"
+
+//Name File
+*연결파일 "Name\OR229.zhoon"

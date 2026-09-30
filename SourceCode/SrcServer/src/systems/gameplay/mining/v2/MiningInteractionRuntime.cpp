@@ -1,20 +1,21 @@
 #include "systems/gameplay/mining/v2/MiningInteractionRuntime.h"
 
-#include "systems/rendering/legacy_3d/smd3d.h"
 #include "systems/gameplay/mining/v2/MiningInteractionService.h"
 #include "systems/gameplay/mining/v2/MiningRuntime.h"
 #include "systems/gameplay/gathering/v2/GatheringRuntime.h"
+#include "systems/gameplay/gathering/v2/legacy/LegacyHarvestPlayerQueryAdapter.h"
 
 namespace gameplay
 {
 namespace mining
 {
-gathering::HarvestResult HarvestMiningNodeForPlayer(rsPLAYINFO* player,
+gathering::HarvestResult HarvestMiningNodeForPlayer(PlayerId playerId,
                                                      std::uint32_t nodeId,
                                                      std::uint64_t nowMilliseconds,
                                                      std::uint32_t roll)
 {
-    if (!player)
+    gathering::HarvestPlayerSnapshot player;
+    if (!gathering::legacy::ServerLegacyHarvestPlayerQueryAdapter().TryGet(playerId, player))
     {
         gathering::HarvestResult invalid;
         invalid.status = gathering::HarvestStatus::InvalidPlayer;
@@ -23,12 +24,11 @@ gathering::HarvestResult HarvestMiningNodeForPlayer(rsPLAYINFO* player,
     }
 
     MiningActorState actor;
-    const char* name = player->getName();
-    actor.playerName = name ? name : "";
-    actor.area = player->Position.Area;
-    actor.x = player->Position.x >> FLOATNS;
-    actor.y = player->Position.y >> FLOATNS;
-    actor.z = player->Position.z >> FLOATNS;
+    actor.playerName = player.playerName;
+    actor.area = player.area;
+    actor.x = player.x;
+    actor.y = player.y;
+    actor.z = player.z;
 
     static MiningInteractionService interaction(ServerMiningService());
     gathering::HarvestResult result = interaction.Harvest(actor, nodeId, nowMilliseconds, roll);

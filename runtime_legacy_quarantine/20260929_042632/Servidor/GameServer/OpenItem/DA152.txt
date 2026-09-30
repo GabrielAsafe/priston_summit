@@ -1,0 +1,59 @@
+//ID
+*코드 "DA152"
+
+//Korean Name
+*이름 "Armadura Negra Gaia"
+
+//English Name
+*Name "Armadura Negra Gaia"
+
+//Defense
+*방어력 2000 2200
+
+//Absorption
+*흡수력 50.0 55.0
+
+//OrganicResistance
+*생체 11 17
+
+//FireResistance
+*불 11 17
+
+//FrostResistance
+*냉기 11 17
+
+//LightningResistance
+*번개 11 17
+
+//PoisonResistance
+*독 11 17
+
+//HP
+*생명력추가 300 300
+
+//MP
+*기력추가 300 300
+
+//Integrity
+*내구력 300 350
+
+//Level
+*레벨 1
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**방어력 100 200
+
+//SpecAbsorption
+**흡수력 4.0 7.0
+
+//Weight
+*무게 1
+
+//Price
+*가격 4200000
+
+//Name File
+*연결파일 "Name\DA152.zhoon"

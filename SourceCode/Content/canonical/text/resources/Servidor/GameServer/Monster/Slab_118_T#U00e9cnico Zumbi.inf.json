@@ -17,7 +17,7 @@
     "fields": {
       "state": "적",
       "model_file": "char\\monster\\TTechnician\\TTechnician.ini",
-      "name": "T?nico Zumbi",
+      "name": "Técnico Zumbi",
       "level": 118,
       "model_scale": 1.0,
       "generate_group": [

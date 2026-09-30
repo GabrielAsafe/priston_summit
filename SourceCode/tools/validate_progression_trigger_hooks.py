@@ -68,7 +68,7 @@ def main() -> None:
     gateways = GATEWAYS.read_text(encoding="utf-8")
     grant = function_body(gateways, "rewards::RewardResult LegacyProgressionRewardGateway::Grant")
     require(grant, "player->AddExp", "LegacyProgressionRewardGateway::Grant")
-    require(grant, "NotifyServerProgressionPlayerStateChanged(player);",
+    require(grant, "NotifyServerProgressionPlayerStateChanged(players_.IdOf(player));",
             "LegacyProgressionRewardGateway::Grant XP path")
 
     runtime = RUNTIME.read_text(encoding="utf-8")
@@ -87,15 +87,21 @@ def main() -> None:
     require(finalize, "RegisterServerProgressionEventTriggers();", "FinalizeServerProgressionRuntimeAfterItems")
 
     trigger = TRIGGER.read_text(encoding="utf-8")
+    snapshot = function_body(trigger, "bool ProcessSnapshot")
+    require(snapshot, "IsServerProgressionRuntimeReady()", "ProcessSnapshot")
+    require(snapshot, "ProcessServerProgressionPlayer", "ProcessSnapshot")
+
     online = function_body(trigger, "bool ProcessServerProgressionOnlinePlayer")
-    require(online, "IsServerProgressionRuntimeReady()", "ProcessServerProgressionOnlinePlayer")
-    require(online, "ProcessServerProgressionPlayer", "ProcessServerProgressionOnlinePlayer")
+    require(online, "ServerLegacyPlayerAdapter().TryGet(playerId", "ProcessServerProgressionOnlinePlayer")
+    require(online, "ProcessSnapshot", "ProcessServerProgressionOnlinePlayer")
     notify = function_body(trigger, "void NotifyServerProgressionPlayerStateChanged")
     require(notify, "ProcessServerProgressionOnlinePlayer", "NotifyServerProgressionPlayerStateChanged")
 
     world = function_body(trigger, "void NotifyServerProgressionWorldStateChanged")
     require(world, "WorldProcessingCoordinator().Request", "NotifyServerProgressionWorldStateChanged")
-    require(world, "ProcessServerProgressionOnlinePlayer", "NotifyServerProgressionWorldStateChanged")
+    require(world, "ServerLegacyOnlinePlayerRegistry().OnlineHandles()", "NotifyServerProgressionWorldStateChanged")
+    require(world, "ServerLegacyPlayerAdapter().TryGet", "NotifyServerProgressionWorldStateChanged")
+    require(world, "ProcessSnapshot", "NotifyServerProgressionWorldStateChanged")
     registration = function_body(trigger, "void RegisterServerProgressionEventTriggers")
     require(registration, "StoryWorldFlagChangedEvent", "RegisterServerProgressionEventTriggers")
     require(registration, "CovenantJoinedEvent", "RegisterServerProgressionEventTriggers")

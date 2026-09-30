@@ -1,0 +1,113 @@
+//FileType
+*속성 적
+
+//Model
+*모양파일 "char\monster\WLord\WLord.ini"
+
+//Name
+*이름 "Bruxa da Noite"
+
+//Level
+*레벨 129
+
+//Size
+*모델크기 1.0
+
+//SpawnQuantity
+*조직 1 1
+
+//ViewRange
+*시야 350
+
+//HP
+*생명력 30000
+
+//AttackPower
+*공격력 800 950
+
+//AttackRating
+*명중력 2400
+
+//AttackSpeed
+*공격속도 8
+
+//AttackRange
+*공격범위 35
+
+//SkillPower
+*기술공격력 850 980
+
+//SkillRating
+*기술공격률 30
+
+//SkillRange
+*기술공격범위 120
+
+//Defense
+*방어력 2700
+
+//MoveSpeed
+*이동력 1
+
+//Ice
+*얼음 5
+
+//Fire
+*불 10
+
+//Poison
+*독 10
+
+//Race
+*몬스터종족 노멀
+
+//ShadowSize
+*크기 소형
+
+//Experience
+*경험치 44114000
+
+//Sound
+*효과음 WLORD
+
+//DropsNumber
+*아이템카운터 3
+
+//DropGold
+*아이템 1000 돈 2000 20000
+
+//DropPotion
+*아이템 1000 PM104 PM104
+
+//DropJera
+*아이템 20 SE101 SE113
+
+//DropInferna
+*아이템 400 OS111
+
+//DropEnigma
+*아이템 200 OS112
+
+//DropBellum
+*아이템 100 OS113
+
+//DropOrdo
+*아이템 50 OS114
+
+//Drop
+*아이템 800 F0112 FO132
+
+//Drop120
+*아이템 2000 DA129 DA229 DS126 DB126 DG126 OA226 OM125 OR127 OA127 OS115 WA128 WC127 WH129 WM129 WP128 WS129 WS231 WT128 BI108
+
+//Drop125
+*아이템 300 DA302 DA402 DS127 DB127 DB128 DG127 DG128 OA227 OA228 OM125 OR201 OA128 OS116 WA129 WC128 WH130 WM130 WP129 WS130 WS232 WT129
+
+//Drop130
+*아이템 40 DA303 DA403 DS128 DB129 DG130 OA229 OM125 OR201 OA128 OS117 WA130 WC129 WH131 WM131 WP130 WS131 WS233 WT130
+
+//Drop135
+*아이템 10 WA126 WC125 WH127 WM127 WP126 WS127 WS229 WT126 DA126 DA226
+
+//Extern File
+*연결파일 "Name\Name.zhoon"

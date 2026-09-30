@@ -1,0 +1,26 @@
+//ID
+*코드 "OR103"
+
+//Korean Name
+*이름 "Anel Comum +2"
+
+//English Name
+*Name "Anel Comum +2"
+
+//STM
+*근력추가 8 13
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecHPRegen
+**생명력재생 0.1 0.1
+
+//Weight
+*무게 1
+
+//Price
+*가격 300
+
+//Name File
+*연결파일 "Name\OR103.zhoon"

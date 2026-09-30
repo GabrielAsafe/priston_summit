@@ -1,0 +1,47 @@
+//ID
+*ÄÚµå "DA250"
+
+//Korean Name
+*ÀÌ¸§ "Roupão Iris (F)"
+
+//English Name
+*Name "Roupão Iris (F)"
+
+//Defense
+*¹æ¾î·Â 330 330
+
+//Absorption
+*Èí¼ö·Â 11.6 11.9
+
+//OrganicResistance
+*»ýÃ¼ 1 5
+
+//FireResistance
+*ºÒ 1 5
+
+//FrostResistance
+*³Ã±â 1 5
+
+//LightningResistance
+*¹ø°³ 1 5
+
+//PoisonResistance
+*µ¶ 1 5
+
+//HP
+*»ý¸í·ÂÃß°¡ 30 30
+
+//MP
+*±â·ÂÃß°¡ 30 30
+
+//Integrity
+*³»±¸·Â 50 50
+
+//Weight
+*¹«°Ô 50
+
+//Price
+*°¡°Ý 4200000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DA250.zhoon"

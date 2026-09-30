@@ -17,7 +17,7 @@
     "fields": {
       "state": "적",
       "model_file": "char\\monster\\monmummy\\monmummy.ini",
-      "name": "M?ia",
+      "name": "Múmia",
       "level": 42,
       "model_scale": 1.0,
       "class_code": 19,

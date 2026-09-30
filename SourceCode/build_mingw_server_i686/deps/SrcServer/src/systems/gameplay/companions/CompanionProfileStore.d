@@ -2,9 +2,9 @@
  SrcServer/src/systems/gameplay/companions/CompanionProfileStore.cpp \
  SrcServer/src/systems/gameplay/companions/CompanionProfileStore.h \
  SrcServer/src/systems/gameplay/companions/CompanionSkillExecutor.h \
- SrcServer/src/systems/gameplay/companions/CompanionSystem.h \
- Shared/gameplay/companions/CompanionProtocol.h
+ Shared/gameplay/companions/v2/CompanionQuery.h \
+ Shared/gameplay/core/v2/GameplayIds.h
 SrcServer/src/systems/gameplay/companions/CompanionProfileStore.h:
 SrcServer/src/systems/gameplay/companions/CompanionSkillExecutor.h:
-SrcServer/src/systems/gameplay/companions/CompanionSystem.h:
-Shared/gameplay/companions/CompanionProtocol.h:
+Shared/gameplay/companions/v2/CompanionQuery.h:
+Shared/gameplay/core/v2/GameplayIds.h:

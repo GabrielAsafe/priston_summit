@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "DB115"
+
+//Korean Name
+*ÀÌ¸§ "Botas Titã"
+
+//English Name
+*Name "Botas Titã"
+
+//Defense
+*¹æ¾î·Â 72 95
+
+//Absorption
+*Èí¼ö·Â 4.2 4.5
+
+//Speed
+*ÀÌµ¿¼Óµµ 3.0 3.4
+
+//OrganicResistance
+*»ýÃ¼ 2 5
+
+//FireResistance
+*ºÒ 2 5
+
+//FrostResistance
+*³Ã±â 2 5
+
+//LightningResistance
+*¹ø°³ 2 5
+
+//PoisonResistance
+*µ¶ 2 5
+
+//Integrity
+*³»±¸·Â 85 100
+
+//Level
+*·¹º§ 75
+
+//Strength
+*Èû 90
+
+//Agility
+*¹ÎÃ¸¼º 90
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecAbsorption
+**Èí¼ö·Â 0.5 0.7
+
+//SpecSpeed
+**ÀÌµ¿¼Óµµ 0.5 1
+
+//Weight
+*¹«°Ô 28
+
+//Price
+*°¡°Ý 90000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DB115.zhoon"

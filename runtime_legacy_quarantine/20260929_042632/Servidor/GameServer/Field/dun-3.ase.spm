@@ -1,0 +1,18 @@
+//몬스터 출현 비율
+
+*최대동시출현수	 300
+//출현간격 범위 9-1 1차이당 2배씩 빨라짐
+*출현간격	 1 2
+*출현수	 1
+
+//		몬스터 이름          출현빈도
+
+*출연자	"Carniceiro"		22
+*출연자	"Rei Hopi"		3
+*출연자	"Figon"		10
+*출연자	"Cavaleiro Fantasma"		22
+*출연자	"Cavaleiro do Mal"		20
+*출연자	"M?ia"		20
+
+*출연자두목	"Rosa Sangrenta"	"Cavaleiro Fantasma"		6
+

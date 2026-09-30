@@ -21,6 +21,27 @@ struct QuestRewardSnapshot
     int count = 0;
 };
 
+struct QuestCodexSnapshot
+{
+    bool available = false;
+    std::string guideId;
+    std::string type;
+    std::string category;
+    std::string source;
+    std::string lore;
+    bool repeatable = false;
+    std::vector<std::string> prerequisites;
+    std::vector<std::string> classes;
+    std::vector<std::string> factions;
+    std::vector<std::string> stages;
+    std::vector<std::string> objectives;
+    std::vector<std::string> npcs;
+    std::vector<std::string> locations;
+    std::vector<std::string> questItems;
+    std::vector<std::string> rewards;
+    std::vector<std::string> notes;
+};
+
 struct QuestEntrySnapshot
 {
     int id = 0;
@@ -44,6 +65,7 @@ struct QuestEntrySnapshot
     std::int64_t rewardClanExp = 0;
     int rewardCoin = 0;
     int rewardTCoin = 0;
+    QuestCodexSnapshot codex;
 };
 
 struct QuestSectionSnapshot
@@ -52,6 +74,7 @@ struct QuestSectionSnapshot
     std::string title;
     bool progressGroup = false;
     bool finalizedGroup = false;
+    bool codexGroup = false;
     std::vector<QuestEntrySnapshot> quests;
 };
 

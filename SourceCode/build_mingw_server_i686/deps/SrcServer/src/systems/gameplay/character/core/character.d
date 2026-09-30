@@ -30,8 +30,7 @@
  Shared/rendering/legacy_3d/smJpeg.h \
  SrcServer/src/systems/rendering/legacy_3d/FilterEffect.h \
  SrcServer/src/systems/gameplay/character/core/character.h \
- SrcServer/src/systems/gameplay/companions/CompanionSystem.h \
- Shared/gameplay/companions/CompanionProtocol.h \
+ SrcServer/src/systems/gameplay/companions/v2/legacy/CompanionLegacyCharacterHooks.h \
  SrcServer/src/systems/audio/playback/legacy/Dxwav.h Shared/compat_sal.h \
  SrcServer/src/systems/rendering/effects/particle_legacy/particle.h \
  SrcServer/src/core/data/legacy_loader/fileread.h \
@@ -159,8 +158,7 @@ SrcServer/src/systems/rendering/legacy_3d/smJpeg.h:
 Shared/rendering/legacy_3d/smJpeg.h:
 SrcServer/src/systems/rendering/legacy_3d/FilterEffect.h:
 SrcServer/src/systems/gameplay/character/core/character.h:
-SrcServer/src/systems/gameplay/companions/CompanionSystem.h:
-Shared/gameplay/companions/CompanionProtocol.h:
+SrcServer/src/systems/gameplay/companions/v2/legacy/CompanionLegacyCharacterHooks.h:
 SrcServer/src/systems/audio/playback/legacy/Dxwav.h:
 Shared/compat_sal.h:
 SrcServer/src/systems/rendering/effects/particle_legacy/particle.h:

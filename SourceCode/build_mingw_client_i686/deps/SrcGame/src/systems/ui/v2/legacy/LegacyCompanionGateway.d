@@ -48,7 +48,10 @@
  Shared/rendering/legacy_3d/smJpeg.h \
  SrcGame/src/core/data/legacy_loader/fileread.h \
  SrcGame/src/systems/combat/skills/legacy_sin/sinSkill.h \
- SrcGame/src/systems/network/client/netplay.h
+ SrcGame/src/systems/network/client/netplay.h \
+ SrcGame/src/systems/network/v2/legacy/LegacyClientCommandSender.h \
+ Shared/network/v2/ClientCommandSender.h Shared/network/v2/PacketSender.h \
+ Shared/gameplay/core/v2/GameplayIds.h
 SrcGame/src/systems/ui/v2/legacy/LegacyCompanionGateway.h:
 SrcGame/src/systems/ui/v2/domain/ICompanionGateway.h:
 SrcGame/src/systems/ui/v2/domain/CompanionUIModels.h:
@@ -101,3 +104,7 @@ Shared/rendering/legacy_3d/smJpeg.h:
 SrcGame/src/core/data/legacy_loader/fileread.h:
 SrcGame/src/systems/combat/skills/legacy_sin/sinSkill.h:
 SrcGame/src/systems/network/client/netplay.h:
+SrcGame/src/systems/network/v2/legacy/LegacyClientCommandSender.h:
+Shared/network/v2/ClientCommandSender.h:
+Shared/network/v2/PacketSender.h:
+Shared/gameplay/core/v2/GameplayIds.h:

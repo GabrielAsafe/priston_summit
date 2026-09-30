@@ -19,6 +19,7 @@
 
 #include "systems/configuration/client/Settings.h"
 #include "authentication/character_selection/ClassSelectionAdapter.h"
+#include "authentication/character_selection/CharacterSelectionTrace.h"
 #include "core/concurrency/JobSystem.h"
 #include "core/concurrency/SourceAssetLock.h"
 #include "systems/rendering/legacy_3d/smRead3d.h"
@@ -178,6 +179,7 @@ static void LoadClassSelectionAssets(const char *faceRoot,
 HoNewCharInfo	NewCharInfo;
 
 extern smCHAR chrPlayer;
+extern smCHAR chrEachPlayer;
 extern smCHAR *chrEachMaster;
 extern int MatEachBox;
 
@@ -799,13 +801,33 @@ int HoLogin::LoadSelectableJobCharacters()
 
 int HoLogin::ApplySelectedClassFace(int faceIndex)
 {
+	// SUMMIT_APPLY_FACE_TRACE_V14
+	SummitCharacterSelectionTrace("HOLOGIN",
+		"APPLY_FACE begin body=%d face=%d tribe=%d count=%d",
+		JobBodySelectNum, faceIndex, tribeNum, JobCharacterCount);
+
 	gameplay::classes::CharacterCreationTemplate creation;
 	if(!authentication::character_selection::DefaultClassSelectionAdapter().BuildCreation(
 		tribeNum, JobBodySelectNum, 0u, static_cast<std::size_t>(faceIndex), false, creation))
+	{
+		SummitCharacterSelectionTrace("HOLOGIN",
+			"APPLY_FACE build_creation_failed body=%d face=%d tribe=%d",
+			JobBodySelectNum, faceIndex, tribeNum);
 		return FALSE;
-	return SetChangeJobFace(const_cast<char*>(creation.bodyModel.c_str()),
-	                        const_cast<char*>(creation.faceModel.c_str()),
-	                        JobBodySelectNum);
+	}
+
+	SummitCharacterSelectionTrace("HOLOGIN",
+		"APPLY_FACE models body=%d face=%d bodyModel='%s' faceModel='%s'",
+		JobBodySelectNum, faceIndex, creation.bodyModel.c_str(), creation.faceModel.c_str());
+
+	const int result = SetChangeJobFace(
+		const_cast<char*>(creation.bodyModel.c_str()),
+		const_cast<char*>(creation.faceModel.c_str()),
+		JobBodySelectNum);
+	SummitCharacterSelectionTrace("HOLOGIN",
+		"APPLY_FACE end body=%d face=%d result=%d",
+		JobBodySelectNum, faceIndex, result);
+	return result;
 }
 
 int HoLogin::GetCurrentFaceCount() const
@@ -980,6 +1002,12 @@ static void MINGW_CharCreateTraceV4(
 
 int HoLogin::SetChangeJobFace(char *charFile1, char *chrFile2, int jobIndex)
 {
+	// SUMMIT_SET_CHANGE_FACE_TRACE_V14
+	SummitCharacterSelectionTrace("HOLOGIN",
+		"SET_CHANGE_FACE enter job=%d count=%d body='%s' face='%s'",
+		jobIndex, JobCharacterCount,
+		charFile1 ? charFile1 : "", chrFile2 ? chrFile2 : "");
+
 #ifdef __MINGW32__
 	MINGW_CharCreateTraceV4(
 		"SetChangeJobFace ENTER V3", jobIndex, JobCharacterCount,
@@ -992,7 +1020,16 @@ int HoLogin::SetChangeJobFace(char *charFile1, char *chrFile2, int jobIndex)
 	const int posX = JobCharacter[jobIndex].pX;
 	const int posY = JobCharacter[jobIndex].pY;
 	const int posZ = JobCharacter[jobIndex].pZ;
-	if (!AddJobCharacter(charFile1, chrFile2, jobIndex))
+	const int summitFaceQueueResult = AddJobCharacter(charFile1, chrFile2, jobIndex);
+	SummitCharacterSelectionTrace("HOLOGIN",
+		"SET_CHANGE_FACE queued job=%d result=%d char=%p flag=%d display=%d loading=%d pattern=%p",
+		jobIndex, summitFaceQueueResult,
+		(jobIndex >= 0 && jobIndex < JobCharacterCount) ? (void *)&JobCharacter[jobIndex] : NULL,
+		(jobIndex >= 0 && jobIndex < JobCharacterCount) ? JobCharacter[jobIndex].Flag : -1,
+		(jobIndex >= 0 && jobIndex < JobCharacterCount) ? JobCharacter[jobIndex].DisplayFlag : -1,
+		(jobIndex >= 0 && jobIndex < JobCharacterCount) ? JobCharacter[jobIndex].PatLoading : -1,
+		(jobIndex >= 0 && jobIndex < JobCharacterCount) ? (void *)JobCharacter[jobIndex].Pattern : NULL);
+	if (!summitFaceQueueResult)
 		return FALSE;
 
 	// AddLoaderPattern publishes asynchronously. Preserve the current preview
@@ -1085,6 +1122,59 @@ int HoLogin::CameraUpDown()
 
 int HoLogin::Main()
 {
+	// SUMMIT_HOLOGIN_STATE_TRACE_V14
+	{
+		static int s_lastCur = -10000;
+		static int s_lastNext = -10000;
+		static int s_lastSub = -10000;
+		static int s_lastErr = -10000;
+		static int s_lastBody = -10000;
+		static int s_lastFace = -10000;
+		static int s_lastFaceFirst = -10000;
+		static int s_lastFlag = -10000;
+		static int s_lastDisplay = -10000;
+		static int s_lastLoading = -10000;
+		static smPAT3D *s_lastPattern = reinterpret_cast<smPAT3D *>(~static_cast<std::uintptr_t>(0));
+		static DWORD s_lastSerial = 0xFFFFFFFFu;
+
+		smCHAR *traceSelected =
+			(JobBodySelectNum >= 0 && JobBodySelectNum < JobCharacterCount) ?
+			&JobCharacter[JobBodySelectNum] : NULL;
+		const int traceFlag = traceSelected ? traceSelected->Flag : -1;
+		const int traceDisplay = traceSelected ? traceSelected->DisplayFlag : -1;
+		const int traceLoading = traceSelected ? traceSelected->PatLoading : -1;
+		smPAT3D *tracePattern = traceSelected ? traceSelected->Pattern : NULL;
+		const DWORD traceSerial = traceSelected ? traceSelected->dwObjectSerial : 0;
+
+		if(s_lastCur != SelectCurrentState || s_lastNext != SelectNextState ||
+			s_lastSub != SelectSubState || s_lastErr != ErrorSelect ||
+			s_lastBody != JobBodySelectNum || s_lastFace != JobFaceSelectNum ||
+			s_lastFaceFirst != FaceSelectFirstFlag || s_lastFlag != traceFlag ||
+			s_lastDisplay != traceDisplay || s_lastLoading != traceLoading ||
+			s_lastPattern != tracePattern || s_lastSerial != traceSerial)
+		{
+			SummitCharacterSelectionTrace("HOLOGIN",
+				"STATE cur=%d next=%d sub=%d err=%d body=%d/%d face=%d faceFirst=%d selected=%p flag=%d display=%d loading=%d pattern=%p serial=%lu master=%p eachFlag=%d eachPattern=%p",
+				SelectCurrentState, SelectNextState, SelectSubState, ErrorSelect,
+				JobBodySelectNum, JobCharacterCount, JobFaceSelectNum, FaceSelectFirstFlag,
+				(void *)traceSelected, traceFlag, traceDisplay, traceLoading,
+				(void *)tracePattern, static_cast<unsigned long>(traceSerial),
+				(void *)chrEachMaster, chrEachPlayer.Flag, (void *)chrEachPlayer.Pattern);
+			s_lastCur = SelectCurrentState;
+			s_lastNext = SelectNextState;
+			s_lastSub = SelectSubState;
+			s_lastErr = ErrorSelect;
+			s_lastBody = JobBodySelectNum;
+			s_lastFace = JobFaceSelectNum;
+			s_lastFaceFirst = FaceSelectFirstFlag;
+			s_lastFlag = traceFlag;
+			s_lastDisplay = traceDisplay;
+			s_lastLoading = traceLoading;
+			s_lastPattern = tracePattern;
+			s_lastSerial = traceSerial;
+		}
+	}
+
 	PumpPreloadStage();
     if (Stage && Stage->smMaterialGroup)
     {
@@ -1263,8 +1353,26 @@ int HoLogin::Main()
 		}
 		else if (SelectCurrentState == FACE_SELECT_STATE)
 		{
-			if (chrEachMaster != NULL)
-				chrEachMaster->Flag = 1;
+			// SUMMIT_FACE_PREVIEW_READY_REBIND_V13A
+			// Face models arrive asynchronously. OpenEachPlayer rejects a character
+			// until DisplayFlag is ready, so retry/rebind automatically every frame
+			// instead of requiring the user to click another face.
+			smCHAR *facePreview =
+				(JobBodySelectNum >= 0 && JobBodySelectNum < JobCharacterCount) ?
+				&JobCharacter[JobBodySelectNum] : NULL;
+
+			if (facePreview && facePreview->Flag && facePreview->DisplayFlag)
+			{
+				if (chrEachMaster != facePreview || !chrEachPlayer.Flag ||
+					chrEachPlayer.Pattern != facePreview->Pattern)
+				{
+					OpenEachPlayer(facePreview);
+				}
+
+				if (chrEachMaster != NULL)
+					chrEachMaster->Flag = 1;
+			}
+
 			EachPlayerMain();
 		}
 		else if (SelectCurrentState == COMPLETE_SELECT_STATE)
@@ -1457,12 +1565,9 @@ int HoLogin::MainDefaultButton()
 		// Character creation depends on free account slots, not on the account
 		// being completely empty.  The old userCount == 0 guard made the
 		// button stop receiving input as soon as one character existed.
-		if (UserCharacterCount < CHARACTER_USER_MAX &&
-			NewCharButton.Main(pCursorPos.x, pCursorPos.y, MouseButton[0]))
-		{
-			SelectNextState = RACE_SELECT_STATE;
-			PlayWav2(9 - 1);
-		}
+				// SUMMIT_NO_LOWER_NEW_CHARACTER_INPUT_V13A
+		// Bottom New Character action intentionally removed.
+
 	}
 
 
@@ -2884,17 +2989,13 @@ int HoLogin::Draw()
 
 			if (userCount == 0)
 			{
-				NewCharButton.Draw(twoButtonStartPos, SETTINGSHANDLER->getHeight() - 40);
-				QuitButton.Draw(twoButtonStartPos + 110, SETTINGSHANDLER->getHeight() - 40);
-			}
-			else if (UserCharacterCount < CHARACTER_USER_MAX)
-			{
-				OkButton.Draw(threeButtonStartPos, SETTINGSHANDLER->getHeight() - 40);
-				NewCharButton.Draw(threeButtonStartPos + 100, SETTINGSHANDLER->getHeight() - 40);
-				QuitButton.Draw(threeButtonStartPos + 200, SETTINGSHANDLER->getHeight() - 40);
+				// SUMMIT_NO_LOWER_NEW_CHARACTER_DRAW_V13A
+				// The character-card action owns creation; only Sair remains below.
+				QuitButton.Draw(m_ScreenHalf - 64, SETTINGSHANDLER->getHeight() - 40);
 			}
 			else
 			{
+				// Existing characters keep only Select + Sair in the lower bar.
 				OkButton.Draw(twoButtonStartPos, SETTINGSHANDLER->getHeight() - 40);
 				QuitButton.Draw(twoButtonStartPos + 110, SETTINGSHANDLER->getHeight() - 40);
 			}
@@ -3151,6 +3252,16 @@ int HoLogin::Draw()
 
 								JobFaceSelectNum = index;
 
+								// SUMMIT_FACE_CLICK_TRACE_V14
+								SummitCharacterSelectionTrace("HOLOGIN",
+									"FACE_CLICK body=%d face=%d char=%p flag=%d display=%d loading=%d pattern=%p",
+									JobBodySelectNum, JobFaceSelectNum,
+									(JobBodySelectNum >= 0 && JobBodySelectNum < JobCharacterCount) ? (void *)&JobCharacter[JobBodySelectNum] : NULL,
+									(JobBodySelectNum >= 0 && JobBodySelectNum < JobCharacterCount) ? JobCharacter[JobBodySelectNum].Flag : -1,
+									(JobBodySelectNum >= 0 && JobBodySelectNum < JobCharacterCount) ? JobCharacter[JobBodySelectNum].DisplayFlag : -1,
+									(JobBodySelectNum >= 0 && JobBodySelectNum < JobCharacterCount) ? JobCharacter[JobBodySelectNum].PatLoading : -1,
+									(JobBodySelectNum >= 0 && JobBodySelectNum < JobCharacterCount) ? (void *)JobCharacter[JobBodySelectNum].Pattern : NULL);
+
 								JobCharacter[JobBodySelectNum].Flag = 1;
 								#ifdef __MINGW32__
 								MINGW_CharCreateTraceV4(
@@ -3191,72 +3302,35 @@ int HoLogin::Draw()
 					}
 
 
-					if (JobFaceSelectNum == index)
+					// SUMMIT_FACE_THUMBNAILS_STABLE_V13A
+					const bool selectedFace = (JobFaceSelectNum == index);
+					const bool hoveredFace = (mouseMoveFace == index);
+					const int faceBoxAlpha = selectedFace ? 255 : (hoveredFace ? 180 : 255);
+					const int faceImageAlpha = selectedFace ? 255 : (hoveredFace ? 200 : 150);
+					const int faceImageVariant = (selectedFace || hoveredFace) ? 1 : 0;
+
+					dsDrawTexImage(
+						FaceBoxSmallImage[(selectedFace || hoveredFace) ? 1 : 0],
+						GetCurrentFacePositionX(index) + addX,
+						SETTINGSHANDLER->getHeight() - (50 + 128),
+						128, 128, faceBoxAlpha);
+
+					switch (tribeNum)
 					{
-						dsDrawTexImage(FaceBoxSmallImage[1], GetCurrentFacePositionX(JobFaceSelectNum) + addX, SETTINGSHANDLER->getHeight() - (50 + 128), 128, 128, 255);
-
-
-						switch (tribeNum)
-						{
-						case TRIBE_Tempscron:
-							dsDrawTexImage(TempFaceImage[JobBodySelectNum][JobFaceSelectNum][1], GetCurrentFacePositionX(JobFaceSelectNum) + addX, SETTINGSHANDLER->getHeight() - (50 + 128) + 4, 128, 128, 255);
-							break;
-						case TRIBE_Moryon:
-							dsDrawTexImage(MorFaceImage[JobBodySelectNum][JobFaceSelectNum][1], GetCurrentFacePositionX(JobFaceSelectNum) + addX, SETTINGSHANDLER->getHeight() - (50 + 128), 128, 128, 255);
-							break;
-						}
+					case TRIBE_Tempscron:
+						dsDrawTexImage(TempFaceImage[JobBodySelectNum][index][faceImageVariant],
+							GetCurrentFacePositionX(index) + addX,
+							SETTINGSHANDLER->getHeight() - (50 + 128) + 4,
+							128, 128, faceImageAlpha);
+						break;
+					case TRIBE_Moryon:
+						dsDrawTexImage(MorFaceImage[JobBodySelectNum][index][faceImageVariant],
+							GetCurrentFacePositionX(index) + addX,
+							SETTINGSHANDLER->getHeight() - (50 + 128),
+							128, 128, faceImageAlpha);
+						break;
 					}
-					else
-					{
-						if (mouseMoveFace != -1 && mouseMoveFace == index)
-						{
-							dsDrawTexImage(FaceBoxSmallImage[1], GetCurrentFacePositionX(index) + addX, SETTINGSHANDLER->getHeight() - (50 + 128), 128, 128, 180);
 
-
-							switch (tribeNum)
-							{
-							case TRIBE_Tempscron:
-								dsDrawTexImage(TempFaceImage[JobBodySelectNum][JobFaceSelectNum][1], GetCurrentFacePositionX(JobFaceSelectNum) + addX, SETTINGSHANDLER->getHeight() - (50 + 128) + 4, 128, 128, 255);
-								break;
-							case TRIBE_Moryon:
-								dsDrawTexImage(MorFaceImage[JobBodySelectNum][JobFaceSelectNum][1], GetCurrentFacePositionX(JobFaceSelectNum) + addX, SETTINGSHANDLER->getHeight() - (50 + 128), 128, 128, 255);
-								break;
-							}
-						}
-						else
-						{
-							if (mouseMoveFace != -1 && mouseMoveFace == index)
-							{
-								dsDrawTexImage(FaceBoxSmallImage[1], GetCurrentFacePositionX(index) + addX, SETTINGSHANDLER->getHeight() - (50 + 128), 128, 128, 180);
-
-
-								switch (tribeNum)
-								{
-								case TRIBE_Tempscron:
-									dsDrawTexImage(TempFaceImage[JobBodySelectNum][index][0], GetCurrentFacePositionX(index) + addX, SETTINGSHANDLER->getHeight() - (50 + 128) + 4, 128, 128, 200);
-									break;
-								case TRIBE_Moryon:
-									dsDrawTexImage(MorFaceImage[JobBodySelectNum][index][0], GetCurrentFacePositionX(index) + addX, SETTINGSHANDLER->getHeight() - (50 + 128), 128, 128, 200);
-									break;
-								}
-							}
-							else
-							{
-								dsDrawTexImage(FaceBoxSmallImage[0], GetCurrentFacePositionX(index) + addX, SETTINGSHANDLER->getHeight() - (50 + 128), 128, 128, 255);
-
-
-								switch (tribeNum)
-								{
-								case TRIBE_Tempscron:
-									dsDrawTexImage(TempFaceImage[JobBodySelectNum][index][0], GetCurrentFacePositionX(index) + addX, SETTINGSHANDLER->getHeight() - (50 + 128) + 4, 128, 128, 150);
-									break;
-								case TRIBE_Moryon:
-									dsDrawTexImage(MorFaceImage[JobBodySelectNum][index][0], GetCurrentFacePositionX(index) + addX, SETTINGSHANDLER->getHeight() - (50 + 128), 128, 128, 150);
-									break;
-								}
-							}
-						}
-					}
 				}
 
 				dsDrawTexImage(FaceBoxSmallImage[2], 305 + addX, SETTINGSHANDLER->getHeight() - (66), 64, 16, 255);

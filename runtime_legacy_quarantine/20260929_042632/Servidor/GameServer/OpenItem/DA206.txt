@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "DA206"
+
+//Korean Name
+*ÀÌ¸§ "Roupão Druída"
+
+//English Name
+*Name "Roupão Druída"
+
+//Defense
+*¹æ¾î·Â 27 40
+
+//Absorption
+*Èí¼ö·Â 2.3 2.8
+
+//OrganicResistance
+*»ýÃ¼ 4 10
+
+//FireResistance
+*ºÒ 4 10
+
+//FrostResistance
+*³Ã±â 4 10
+
+//LightningResistance
+*¹ø°³ 4 10
+
+//PoisonResistance
+*µ¶ 4 10
+
+//Integrity
+*³»±¸·Â 30 46
+
+//Level
+*·¹º§ 23
+
+//Spirit
+*Á¤½Å·Â 70
+
+//Talent
+*Àç´É 35
+
+//SecondarySpec
+**Æ¯È­·£´ý Priestess Magician
+
+//SpecDefense
+**¹æ¾î·Â 7 12
+
+//SpecAbsorption
+**Èí¼ö·Â 0.3 0.5
+
+//SpecMPRegen
+**±â·ÂÀç»ý 0.6 0.9
+
+//Weight
+*¹«°Ô 18
+
+//Price
+*°¡°Ý 12000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DA206.zhoon"

@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "WS240"
+
+//Korean Name
+*ÀÌ¸§ "Espada Anúbis 1H"
+
+//English Name
+*Name "Espada Anúbis 1H"
+
+//AttackPower
+*°ø°Ý·Â 82 85 104 108
+
+//AttackRating
+*¸íÁß·Â 240 260
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 8
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 23
+
+//Block
+*ºí·°À² 16.0 16.0
+
+//Integrity
+*³»±¸·Â 276 305
+
+//Level
+*·¹º§ 140
+
+//Strength
+*Èû 266
+
+//Talent
+*Àç´É 100
+
+//PrimarySpec
+**Æ¯È­ Knight
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Pikeman
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 6
+
+//Weight
+*¹«°Ô 137
+
+//Price
+*°¡°Ý 2190000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WS240.zhoon"

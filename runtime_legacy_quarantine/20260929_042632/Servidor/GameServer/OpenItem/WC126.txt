@@ -1,0 +1,65 @@
+//ID
+*ÄÚµå "WC126"
+
+//Korean Name
+*ÀÌ¸§ "Garra Mitológica"
+
+//English Name
+*Name "Garra Mitológica"
+
+//AttackPower
+*°ø°Ý·Â 105 108 121 124
+
+//AttackRating
+*¸íÁß·Â 209 228
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 8
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 19
+
+//Defense
+*¹æ¾î·Â 98 103
+
+//Integrity
+*³»±¸·Â 192 242
+
+//Level
+*·¹º§ 118
+
+//Strength
+*Èû 186
+
+//Talent
+*Àç´É 100
+
+//Agility
+*¹ÎÃ¸¼º 80
+
+//PrimarySpec
+**Æ¯È­ Mechanician
+
+//SecondarySpec
+**Æ¯È­·£´ý Fighter Pikeman Knight Atalanta
+
+//SpecAttackPower
+**°ø°Ý·Â 7 7
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 4
+
+//Weight
+*¹«°Ô 92
+
+//Price
+*°¡°Ý 1490000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WC126.zhoon"

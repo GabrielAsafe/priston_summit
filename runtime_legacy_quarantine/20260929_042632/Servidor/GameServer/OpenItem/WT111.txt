@@ -1,0 +1,65 @@
+//ID
+*ÄÚµå "WT111"
+
+//Korean Name
+*ÀÌ¸§ "Lança Sagrada"
+
+//English Name
+*Name "Lança Sagrada"
+
+//AttackPower
+*°ø°Ý·Â 13 15 19 23
+
+//AttackRange
+*»çÁ¤°Å¸® 215
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackRating
+*¸íÁß·Â 70 80
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 7
+
+//Integrity
+*³»±¸·Â 45 67
+
+//Level
+*·¹º§ 50
+
+//Strength
+*Èû 55
+
+//Talent
+*Àç´É 70
+
+//Agility
+*¹ÎÃ¸¼º 55
+
+//PrimarySpec
+**Æ¯È­ Atalanta
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Archer
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 2
+
+//SpecAttackRange
+**»çÁ¤°Å¸® 15
+
+//Weight
+*¹«°Ô 5
+
+//Price
+*°¡°Ý 44000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WT111.zhoon"

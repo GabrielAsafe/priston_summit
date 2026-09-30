@@ -1,0 +1,63 @@
+{
+  "snapshot": "2026-09-30",
+  "baseline": "REC174 + login hotfix + field runtime + gameplay reference + Amanda/Enzo identity fix",
+  "confirmed_in_game": [
+    "login after PacketRouter pre-auth fix",
+    "Amanda visible and instructor behavior works",
+    "Enzo visible and item-restorer behavior works"
+  ],
+  "validated_content": {
+    "canonical_text_resources": 5604,
+    "npc_definitions": 175,
+    "stage_spawn_maps": 54,
+    "stage_start_point_maps": 65,
+    "stage_start_points": 6604,
+    "fixed_npc_maps": 24,
+    "fixed_npc_placements": 113,
+    "static_maps": 53,
+    "quest_catalog": 88,
+    "supported_quest_bindings": 13,
+    "mix_recipes": 127
+  },
+  "packs": [
+    "text_resources.sres",
+    "definitions_client.scfg",
+    "definitions_server.scfg",
+    "localization.sloc",
+    "gameplay_config.sgcf",
+    "gameplay_reference.sgrf",
+    "field_runtime.sfld",
+    "maps_client.smap",
+    "maps_server.smap"
+  ],
+  "pending": [
+    "Quest Codex in-game UI end-to-end validation",
+    "Mix Guide in-game UI end-to-end validation",
+    "Tier5 end-to-end validation",
+    "Wine client crash root cause",
+    "full Asset Tool canonical JSON authoring migration"
+  ],
+  "asset_tool": {
+    "canonical_v2_patch": "SUMMIT_ASSET_TOOL_CANONICAL_V2_0.patch",
+    "status": "prepared_and_tested_but_not_fully_integrated",
+    "canonical_first_scope": [
+      "stage_spawns",
+      "stage_start_points",
+      "fixed_npcs"
+    ],
+    "not_done": [
+      "npc_definition editor",
+      "monster_definition editor",
+      "open_item_definition editor",
+      "localization/text editor",
+      "gameplay_reference editor",
+      "rebase onto latest tool line"
+    ]
+  },
+  "do_not_reapply": [
+    "SUMMIT_QUEST_RUNTIME_V1_7_FULL_DATA_REWARDS.patch",
+    "SUMMIT_QUEST_CODEX_V1_8_PTBR.patch",
+    "SUMMIT_MIX_GUIDE_V1_9_COMPILED_REFERENCE.patch",
+    "SUMMIT_REC174_REBASE_FIELD_QUEST_CODEX_MIX_AMANDA_2026-09-29.patch"
+  ]
+}

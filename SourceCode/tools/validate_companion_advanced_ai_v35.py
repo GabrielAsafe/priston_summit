@@ -9,8 +9,8 @@ def req(label, needle):
 
 for needle in ('lastProgressCheckTime', 'lastProgressX', 'lastProgressZ', 'stuckTicks'):
     req('stuck slot state', needle)
-for needle in ('FindNearestThreatToParty', 'candidate->lpTargetPlayInfo == owner',
-               'state.slots[slot].entity == candidate->lpTargetChar',
+for needle in ('FindNearestThreatToParty', 'ThreatTargetsParty(threat, owner, state)',
+               'TryReadThreat(candidate, threat)',
                'target = FindNearestThreatToParty(character, owner, *state)'):
     req('defensive threat scoring', needle)
 for needle in ('const int innerRange = preferredRange > 0', '(range * 55) / 100',

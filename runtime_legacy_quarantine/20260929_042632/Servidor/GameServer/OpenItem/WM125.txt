@@ -1,0 +1,65 @@
+//ID
+*코드 "WM125"
+
+//Korean Name
+*이름 "Cajado Freyja"
+
+//English Name
+*Name "Cajado Freyja"
+
+//AttackPower
+*공격력 74 77 92 94
+
+//AttackRating
+*명중력 193 203
+
+//AttackRange
+*사정거리 215
+
+//AttackSpeed
+*공격속도 8
+
+//AttackCritical
+*크리티컬 16
+
+//Block
+*블럭율 10.0 10.0
+
+//Integrity
+*내구력 170 190
+
+//Level
+*레벨 108
+
+//Strength
+*힘 75
+
+//Spirit
+*정신력 212
+
+//Talent
+*재능 95
+
+//SecondarySpec
+**특화랜덤 Priestess Magician
+
+//SpecAttackPower
+**공격력 6 6
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecMPRegen
+**기력재생 2.6 2.9
+
+//SpecSkillTraining
+**마법숙련도 12 18
+
+//Weight
+*무게 62
+
+//Price
+*가격 1300000
+
+//Name File
+*연결파일 "Name\WM125.zhoon"

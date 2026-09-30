@@ -150,7 +150,10 @@
  SrcGame/src/systems/ui/core/UICombobox.h \
  SrcGame/src/systems/ui/core/UIItemFrame.h \
  SrcGame/src/systems/ui/core/UIPlaceholder.h \
- SrcGame/src/systems/gameplay/loot/roll/roll.h Shared/roll.h
+ SrcGame/src/systems/gameplay/loot/roll/roll.h Shared/roll.h \
+ SrcGame/src/systems/network/v2/legacy/LegacyClientCommandSender.h \
+ Shared/network/v2/ClientCommandSender.h Shared/network/v2/PacketSender.h \
+ Shared/gameplay/core/v2/GameplayIds.h
 Shared/opcodes.h:
 SrcGame/src/compat/legacy/sin/sinLinkHeader.h:
 SrcGame/src/systems/rendering/legacy_3d/smd3d.h:
@@ -306,3 +309,7 @@ SrcGame/src/systems/ui/core/UIItemFrame.h:
 SrcGame/src/systems/ui/core/UIPlaceholder.h:
 SrcGame/src/systems/gameplay/loot/roll/roll.h:
 Shared/roll.h:
+SrcGame/src/systems/network/v2/legacy/LegacyClientCommandSender.h:
+Shared/network/v2/ClientCommandSender.h:
+Shared/network/v2/PacketSender.h:
+Shared/gameplay/core/v2/GameplayIds.h:

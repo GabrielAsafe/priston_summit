@@ -1,0 +1,17 @@
+//ID
+*코드 "EC104"
+
+//Korean Name
+*이름 "Pergaminho para Pilai"
+
+//English Name
+*Name "Pergaminho para Pilai"
+
+//Weight
+*무게 1
+
+//Price
+*가격 1000
+
+//Name File
+*연결파일 "Name\EC104.zhoon"

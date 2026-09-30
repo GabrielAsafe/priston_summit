@@ -1,0 +1,59 @@
+//ID
+*ÄÚµå "WA120"
+
+//Korean Name
+*ÀÌ¸§ "Machado Fúria"
+
+//English Name
+*Name "Machado Fúria"
+
+//AttackPower
+*°ø°Ý·Â 56 58 76 80
+
+//AttackRating
+*¸íÁß·Â 170 180
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 19
+
+//Block
+*ºí·°À² 10.0 10.0
+
+//Integrity
+*³»±¸·Â 154 186
+
+//Level
+*·¹º§ 90
+
+//Strength
+*Èû 180
+
+//Talent
+*Àç´É 90
+
+//PrimarySpec
+**Æ¯È­ Fighter
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Pikeman
+
+//SpecAttackPower
+**°ø°Ý·Â 7 7
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 3
+
+//Weight
+*¹«°Ô 75
+
+//Price
+*°¡°Ý 870000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WA120.zhoon"

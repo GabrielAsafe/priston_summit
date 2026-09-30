@@ -1,0 +1,32 @@
+//ID
+*코드 "OR107"
+
+//Korean Name
+*이름 "Anel Precioso +2"
+
+//English Name
+*Name "Anel Precioso +2"
+
+//STM
+*근력추가 18 25
+
+//Level
+*레벨 15
+
+//Spirit
+*정신력 28
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecHPRegen
+**생명력재생 0.1 0.2
+
+//Weight
+*무게 2
+
+//Price
+*가격 2400
+
+//Name File
+*연결파일 "Name\OR107.zhoon"

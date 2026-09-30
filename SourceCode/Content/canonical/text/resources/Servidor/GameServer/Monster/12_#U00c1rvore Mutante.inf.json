@@ -17,7 +17,7 @@
     "fields": {
       "state": "적",
       "model_file": "char\\monster\\monburntree\\monburntree.ini",
-      "name": "?vore Mutante",
+      "name": "Árvore Mutante",
       "level": 12,
       "model_scale": 1.0,
       "generate_group": [

@@ -1,0 +1,65 @@
+//ID
+*ÄÚµå "WT126"
+
+//Korean Name
+*ÀÌ¸§ "Lança Negra"
+
+//English Name
+*Name "Lança Negra"
+
+//AttackPower
+*°ø°Ý·Â 87 91 107 110
+
+//AttackRange
+*»çÁ¤°Å¸® 255
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 8
+
+//AttackRating
+*¸íÁß·Â 178 198
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 17
+
+//Integrity
+*³»±¸·Â 171 195
+
+//Level
+*·¹º§ 115
+
+//Strength
+*Èû 82
+
+//Talent
+*Àç´É 95
+
+//Agility
+*¹ÎÃ¸¼º 169
+
+//PrimarySpec
+**Æ¯È­ Atalanta
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Archer
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 6
+
+//SpecAttackRange
+**»çÁ¤°Å¸® 25
+
+//Weight
+*¹«°Ô 48
+
+//Price
+*°¡°Ý 1380000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WT126.zhoon"

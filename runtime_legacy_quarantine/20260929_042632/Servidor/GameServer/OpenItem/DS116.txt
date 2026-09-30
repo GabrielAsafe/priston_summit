@@ -1,0 +1,65 @@
+//ID
+*ÄÚµå "DS116"
+
+//Korean Name
+*ÀÌ¸§ "Escudo Sintético"
+
+//English Name
+*Name "Escudo Sintético"
+
+//Defense
+*¹æ¾î·Â 130 145
+
+//Absorption
+*Èí¼ö·Â 6.3 6.8
+
+//Block
+*ºí·°À² 17.0 20.0
+
+//OrganicResistance
+*»ýÃ¼ 2 5
+
+//FireResistance
+*ºÒ 2 5
+
+//FrostResistance
+*³Ã±â 2 5
+
+//LightningResistance
+*¹ø°³ 2 5
+
+//PoisonResistance
+*µ¶ 2 5
+
+//Integrity
+*³»±¸·Â 120 150
+
+//Level
+*·¹º§ 80
+
+//Strength
+*Èû 130
+
+//Talent
+*Àç´É 75
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**¹æ¾î·Â 24 32
+
+//SpecAbsorption
+**Èí¼ö·Â 0.8 1.1
+
+//SpecBlock
+**ºí·°À² 3.0
+
+//Weight
+*¹«°Ô 56
+
+//Price
+*°¡°Ý 150000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DS116.zhoon"

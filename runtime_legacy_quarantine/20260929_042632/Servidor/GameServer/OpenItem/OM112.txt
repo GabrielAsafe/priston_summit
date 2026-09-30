@@ -1,0 +1,65 @@
+//ID
+*ÄÚµå "OM112"
+
+//Korean Name
+*ÀÌ¸§ "Orbital Harmônico"
+
+//English Name
+*Name "Orbital Harmônico"
+
+//OrganicResistance
+*»ýÃ¼ 4 7
+
+//FireResistance
+*ºÒ 4 7
+
+//FrostResistance
+*³Ã±â 4 7
+
+//LightningResistance
+*¹ø°³ 4 7
+
+//PoisonResistance
+*µ¶ 4 7
+
+//Defense
+*¹æ¾î·Â 38 68
+
+//Absorption
+*Èí¼ö·Â 1.7 2.2
+
+//Block
+*ºí·°À² 7.0 9.0
+
+//HP
+*»ý¸í·ÂÃß°¡ 37 49
+
+//MP
+*±â·ÂÃß°¡ 25 33
+
+//Integrity
+*³»±¸·Â 60 70
+
+//Level
+*·¹º§ 55
+
+//Spirit
+*Á¤½Å·Â 100
+
+//SecondarySpec
+**Æ¯È­·£´ý Priestess Magician
+
+//SpecAbsorption
+**Èí¼ö·Â 0.9 1.1
+
+//SpecMPRegen
+**±â·ÂÀç»ý 0.7 0.9
+
+//Weight
+*¹«°Ô 13
+
+//Price
+*°¡°Ý 47000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\OM112.zhoon"

@@ -1,0 +1,59 @@
+//ID
+*코드 "WM106"
+
+//Korean Name
+*이름 "Varinha dos Elfos"
+
+//English Name
+*Name "Varinha dos Elfos"
+
+//AttackPower
+*공격력 6 7 9 11
+
+//AttackRating
+*명중력 34 44
+
+//AttackRange
+*사정거리 150
+
+//AttackSpeed
+*공격속도 7
+
+//AttackCritical
+*크리티컬 4
+
+//Integrity
+*내구력 32 44
+
+//Level
+*레벨 16
+
+//Spirit
+*정신력 62
+
+//Talent
+*재능 36
+
+//SecondarySpec
+**특화랜덤 Priestess Magician
+
+//SpecAttackPower
+**공격력 6 6
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecMPRegen
+**기력재생 0.3 0.6
+
+//SpecSkillTraining
+**마법숙련도 3 5
+
+//Weight
+*무게 5
+
+//Price
+*가격 7000
+
+//Name File
+*연결파일 "Name\WM106.zhoon"

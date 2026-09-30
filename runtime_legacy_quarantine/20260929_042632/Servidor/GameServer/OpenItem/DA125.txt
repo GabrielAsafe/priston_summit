@@ -1,0 +1,59 @@
+//ID
+*코드 "DA125"
+
+//Korean Name
+*이름 "Armadura Highlander"
+
+//English Name
+*Name "Armadura Highlander"
+
+//Defense
+*방어력 470 490
+
+//Absorption
+*흡수력 29.1 29.4
+
+//OrganicResistance
+*생체 11 17
+
+//FireResistance
+*불 11 17
+
+//FrostResistance
+*냉기 11 17
+
+//LightningResistance
+*번개 11 17
+
+//PoisonResistance
+*독 11 17
+
+//Integrity
+*내구력 210 240
+
+//Level
+*레벨 105
+
+//Strength
+*힘 224
+
+//Talent
+*재능 90
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta
+
+//SpecDefense
+**방어력 54 66
+
+//SpecAbsorption
+**흡수력 1.5 1.8
+
+//Weight
+*무게 152
+
+//Price
+*가격 600000
+
+//Name File
+*연결파일 "Name\DA125.zhoon"

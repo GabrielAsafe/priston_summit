@@ -1,0 +1,50 @@
+//ID
+*코드 "WS202"
+
+//Korean Name
+*이름 "Espada Celta"
+
+//English Name
+*Name "Espada Celta"
+
+//AttackPower
+*공격력 2 2 4 5
+
+//AttackRating
+*명중력 55 62
+
+//AttackSpeed
+*공격속도 7
+
+//AttackCritical
+*크리티컬 1
+
+//Integrity
+*내구력 18 31
+
+//PrimarySpec
+**특화 Knight
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman
+
+//SpecAttackPower
+**공격력 6 6
+
+//SpecAttackRating
+**명중력 1 3
+
+//SpecAttackSpeed
+**공격속도 1
+
+//SpecAttackCritical
+**크리티컬 1
+
+//Weight
+*무게 3
+
+//Price
+*가격 250
+
+//Name File
+*연결파일 "Name\WS202.zhoon"

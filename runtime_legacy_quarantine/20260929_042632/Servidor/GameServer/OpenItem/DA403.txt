@@ -1,0 +1,62 @@
+//ID
+*ÄÚµå "DA403"
+
+//Korean Name
+*ÀÌ¸§ "Roupão Abissal"
+
+//English Name
+*Name "Roupão Abissal"
+
+//Defense
+*¹æ¾î·Â 1330 1350
+
+//Absorption
+*Èí¼ö·Â 35.2 35.7
+
+//OrganicResistance
+*»ýÃ¼ 11 17
+
+//FireResistance
+*ºÒ 11 17
+
+//FrostResistance
+*³Ã±â 11 17
+
+//LightningResistance
+*¹ø°³ 11 17
+
+//PoisonResistance
+*µ¶ 11 17
+
+//Integrity
+*³»±¸·Â 140 160
+
+//Level
+*·¹º§ 130
+
+//Spirit
+*Á¤½Å·Â 249
+
+//Talent
+*Àç´É 90
+
+//SecondarySpec
+**Æ¯È­·£´ý Priestess Magician
+
+//SpecDefense
+**¹æ¾î·Â 59 64
+
+//SpecAbsorption
+**Èí¼ö·Â 1.5 2.1
+
+//SpecMPRegen
+**±â·ÂÀç»ý 4.7 5.0
+
+//Weight
+*¹«°Ô 152
+
+//Price
+*°¡°Ý 1100000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DA403.zhoon"

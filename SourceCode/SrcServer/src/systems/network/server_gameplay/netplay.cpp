@@ -1,3 +1,21 @@
+// =============================================================================
+// MAPA DO MONOLITO LEGACY - SERVER NETPLAY
+//
+// Este mapa e apenas documental. O ficheiro permanece RED e no mesmo local;
+// os separadores abaixo nao alteram ownership, ordem de execucao ou ABI.
+// FUNCIONAMENTO GERAL: Implementacao legacy de transporte/gameplay no servidor. O ingress moderno deve passar pelos routers/ports antes de chegar a este kernel.
+//
+// AREAS PRINCIPAIS:
+//   AREA 01 - VALIDACAO / HELPERS
+//   AREA 02 - SESSAO / CONEXAO
+//   AREA 03 - CHAT SUPPORT
+//   AREA 04 - PLAYER REPLICATION
+//   AREA 05 - ITEM / WORLD COMMANDS
+//   AREA 06 - SAVE / ADMIN / SECURITY
+//
+// Desenvolvimento novo deve usar contracts/ports/adapters AMBER existentes.
+// =============================================================================
+
 #include "compat/server_build/server_build_compat.h"
 #include <cstring>
 #include "systems/network/protocol/server/opcodes.h"
@@ -1171,6 +1189,14 @@ int rsTRANS_SERVER::RecvMessageQue()
 DWORD	dwGetCharInfoTime = 0;
 
 
+// =============================================================================
+// AREA 03 - RECEIVE SUPPORT
+// TIPO: rede
+// FUNCIONAMENTO: Recebe dados no formato legacy deste build; os packets de feature modernizados sao roteados antes/ao redor deste kernel.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
+
 int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 {
 	return 1;
@@ -1496,6 +1522,14 @@ char *rsGetWord(char *q, char *p);
 
 extern int WaveCameraMode;
 
+
+// =============================================================================
+// AREA 04 - CHAT SUPPORT
+// TIPO: rede + social
+// FUNCIONAMENTO: Mantem compatibilidade de chat/comandos no suporte server-side.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 int SendChatMessageToServer(char *szChatMessage)
 {
@@ -2873,12 +2907,28 @@ extern int GameMode;
 DWORD	NetScoopTime = 2000;
 
 
+// =============================================================================
+// AREA 05 - PLAYER REPLICATION
+// TIPO: rede + world
+// FUNCIONAMENTO: Executa o tick de sincronizacao legacy para players/conexoes.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
+
 int NetWorkPlay()
 {
 	return NULL;
 }
 
 
+
+// =============================================================================
+// AREA 06 - ITEMS / WORLD
+// TIPO: inventario + rede
+// FUNCIONAMENTO: Mantem mensagens e validacoes historicas de item no world.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 int ThrowPutItem(sITEM *lpItem, int x, int y, int z)
 {
@@ -3808,6 +3858,14 @@ static DWORD dwCheckNetCount = 0;
 static DWORD dwLastTransCheckTime = 0;
 static int	ReconnectCount = 0;
 
+
+// =============================================================================
+// AREA 07 - NETWORK CHECKS / ADMIN
+// TIPO: rede + operacao
+// FUNCIONAMENTO: Checks e comandos auxiliares do protocolo antigo.
+// FRONTEIRA: RED congelado; nao adicionar feature nova aqui.
+// REGRA: manter ordem, fall-through, timers, efeitos colaterais e protocolo.
+// =============================================================================
 
 int	TransCheckNetwork()
 {

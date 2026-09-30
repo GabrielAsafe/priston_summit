@@ -1,9 +1,11 @@
 /home/gabriel/Área\ de\ Trabalho/summit/SourceCode/build_mingw_server_i686/objects/SrcServer/src/systems/gameplay/gathering/v2/GatheringRuntime.o: \
  SrcServer/src/systems/gameplay/gathering/v2/GatheringRuntime.cpp \
  SrcServer/src/systems/gameplay/gathering/v2/GatheringRuntime.h \
+ Shared/gameplay/core/v2/GameplayIds.h \
  Shared/gameplay/gathering/v2/GatheringTypes.h \
- Shared/gameplay/professions/v2/ProfessionService.h \
+ Shared/gameplay/professions/v2/ProfessionTypes.h \
  SrcServer/src/systems/gameplay/gathering/v2/GatheringService.h \
+ Shared/gameplay/gathering/v2/IGatheringService.h \
  SrcServer/src/systems/gameplay/gathering/v2/SQLiteGatheringRepository.h \
  Shared/gameplay/covenants/v2/CovenantCatalog.h \
  Shared/gameplay/covenants/v2/CovenantTypes.h \
@@ -15,7 +17,15 @@
  Shared/gameplay/events/v2/GameplayEventHub.h \
  Shared/gameplay/covenants/v2/ICovenantGameplayBridge.h \
  Shared/gameplay/covenants/v2/CovenantModifierEvaluation.h \
+ Shared/gameplay/mining/v2/IMiningService.h \
+ Shared/gameplay/professions/v2/IProfessionService.h \
  SrcServer/src/systems/gameplay/professions/v2/ProfessionRuntime.h \
+ Shared/gameplay/professions/v2/ProfessionService.h \
+ Shared/gameplay/professions/v2/IProfessionRepository.h \
+ Shared/gameplay/events/v2/ProfessionProgressedEvent.h \
+ SrcServer/src/systems/gameplay/gathering/v2/legacy/LegacyHarvestPlayerQueryAdapter.h \
+ Shared/gameplay/gathering/v2/HarvestPlayerQuery.h \
+ SrcServer/src/systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h \
  SrcServer/src/systems/gameplay/progression/v2/ProgressionRuntime.h \
  Shared/gameplay/covenants/v2/CovenantService.h \
  Shared/gameplay/covenants/v2/CovenantEvents.h \
@@ -31,41 +41,13 @@
  Shared/gameplay/progression/v2/ProgressionCustomHandlers.h \
  Shared/gameplay/progression/v2/ProgressionPlayerRuntime.h \
  Shared/gameplay/progression/v2/ProgressionSnapshot.h \
- SrcServer/src/systems/gameplay/progression/v2/ServerProgressionConditionContext.h \
- SrcServer/src/systems/rendering/legacy_3d/smd3d.h \
- SrcServer/src/systems/rendering/legacy_3d/smDsx.h \
- SrcServer/src/systems/rendering/legacy_3d/smSin.h \
- SrcServer/src/systems/rendering/legacy_3d/smType.h Shared/smPacket.h \
- Shared/global_def.h \
- SrcServer/src/systems/network/transport/legacy/smwsock.h \
- Shared/network/transport/legacy/smwsock_legacy_server.h \
- SrcServer/src/systems/network/transport/legacy/NetType.h \
- SrcServer/src/systems/localization/config/language.h \
- SrcServer/src/systems/inventory/legacy/sinItem.h \
- Shared/inventory/legacy/sinItem_legacy_server.h \
- SrcServer/src/systems/rendering/legacy_3d/smTexture.h \
- SrcServer/src/systems/rendering/legacy_3d/smObj3d.h \
- Shared/rendering/legacy_3d/object/smObj3d_legacy_server.h \
- SrcServer/src/systems/rendering/legacy_3d/smStgObj.h \
- SrcServer/src/systems/rendering/legacy_3d/smStage3d.h \
- Shared/rendering/legacy_3d/stage/smStage3d_legacy_server.h \
- SrcServer/src/systems/rendering/legacy_3d/smrend3d.h \
- Shared/rendering/legacy_3d/SmRend3dLegacyCommon.h \
- SrcServer/src/systems/rendering/legacy_3d/smMap3d.h \
- SrcServer/src/systems/rendering/legacy_3d/smRead3d.h \
- Shared/rendering/legacy_3d/smRead3d.h \
- SrcServer/src/systems/rendering/legacy_3d/smmatrix.h \
- Shared/rendering/legacy_3d/smmatrix.h \
- SrcServer/src/systems/rendering/legacy_3d/smGeosub.h \
- SrcServer/src/systems/rendering/legacy_3d/smJpeg.h \
- Shared/rendering/legacy_3d/smJpeg.h \
- SrcServer/src/systems/rendering/legacy_3d/FilterEffect.h \
- SrcServer/src/core/server/legacy_runtime/onserver.h \
- SrcServer/src/core/data/legacy_loader/fileread.h
+ SrcServer/src/systems/gameplay/progression/v2/ServerProgressionConditionContext.h
 SrcServer/src/systems/gameplay/gathering/v2/GatheringRuntime.h:
+Shared/gameplay/core/v2/GameplayIds.h:
 Shared/gameplay/gathering/v2/GatheringTypes.h:
-Shared/gameplay/professions/v2/ProfessionService.h:
+Shared/gameplay/professions/v2/ProfessionTypes.h:
 SrcServer/src/systems/gameplay/gathering/v2/GatheringService.h:
+Shared/gameplay/gathering/v2/IGatheringService.h:
 SrcServer/src/systems/gameplay/gathering/v2/SQLiteGatheringRepository.h:
 Shared/gameplay/covenants/v2/CovenantCatalog.h:
 Shared/gameplay/covenants/v2/CovenantTypes.h:
@@ -77,7 +59,15 @@ SrcServer/src/systems/gameplay/mining/v2/MiningService.h:
 Shared/gameplay/events/v2/GameplayEventHub.h:
 Shared/gameplay/covenants/v2/ICovenantGameplayBridge.h:
 Shared/gameplay/covenants/v2/CovenantModifierEvaluation.h:
+Shared/gameplay/mining/v2/IMiningService.h:
+Shared/gameplay/professions/v2/IProfessionService.h:
 SrcServer/src/systems/gameplay/professions/v2/ProfessionRuntime.h:
+Shared/gameplay/professions/v2/ProfessionService.h:
+Shared/gameplay/professions/v2/IProfessionRepository.h:
+Shared/gameplay/events/v2/ProfessionProgressedEvent.h:
+SrcServer/src/systems/gameplay/gathering/v2/legacy/LegacyHarvestPlayerQueryAdapter.h:
+Shared/gameplay/gathering/v2/HarvestPlayerQuery.h:
+SrcServer/src/systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h:
 SrcServer/src/systems/gameplay/progression/v2/ProgressionRuntime.h:
 Shared/gameplay/covenants/v2/CovenantService.h:
 Shared/gameplay/covenants/v2/CovenantEvents.h:
@@ -94,34 +84,3 @@ Shared/gameplay/progression/v2/ProgressionCustomHandlers.h:
 Shared/gameplay/progression/v2/ProgressionPlayerRuntime.h:
 Shared/gameplay/progression/v2/ProgressionSnapshot.h:
 SrcServer/src/systems/gameplay/progression/v2/ServerProgressionConditionContext.h:
-SrcServer/src/systems/rendering/legacy_3d/smd3d.h:
-SrcServer/src/systems/rendering/legacy_3d/smDsx.h:
-SrcServer/src/systems/rendering/legacy_3d/smSin.h:
-SrcServer/src/systems/rendering/legacy_3d/smType.h:
-Shared/smPacket.h:
-Shared/global_def.h:
-SrcServer/src/systems/network/transport/legacy/smwsock.h:
-Shared/network/transport/legacy/smwsock_legacy_server.h:
-SrcServer/src/systems/network/transport/legacy/NetType.h:
-SrcServer/src/systems/localization/config/language.h:
-SrcServer/src/systems/inventory/legacy/sinItem.h:
-Shared/inventory/legacy/sinItem_legacy_server.h:
-SrcServer/src/systems/rendering/legacy_3d/smTexture.h:
-SrcServer/src/systems/rendering/legacy_3d/smObj3d.h:
-Shared/rendering/legacy_3d/object/smObj3d_legacy_server.h:
-SrcServer/src/systems/rendering/legacy_3d/smStgObj.h:
-SrcServer/src/systems/rendering/legacy_3d/smStage3d.h:
-Shared/rendering/legacy_3d/stage/smStage3d_legacy_server.h:
-SrcServer/src/systems/rendering/legacy_3d/smrend3d.h:
-Shared/rendering/legacy_3d/SmRend3dLegacyCommon.h:
-SrcServer/src/systems/rendering/legacy_3d/smMap3d.h:
-SrcServer/src/systems/rendering/legacy_3d/smRead3d.h:
-Shared/rendering/legacy_3d/smRead3d.h:
-SrcServer/src/systems/rendering/legacy_3d/smmatrix.h:
-Shared/rendering/legacy_3d/smmatrix.h:
-SrcServer/src/systems/rendering/legacy_3d/smGeosub.h:
-SrcServer/src/systems/rendering/legacy_3d/smJpeg.h:
-Shared/rendering/legacy_3d/smJpeg.h:
-SrcServer/src/systems/rendering/legacy_3d/FilterEffect.h:
-SrcServer/src/core/server/legacy_runtime/onserver.h:
-SrcServer/src/core/data/legacy_loader/fileread.h:

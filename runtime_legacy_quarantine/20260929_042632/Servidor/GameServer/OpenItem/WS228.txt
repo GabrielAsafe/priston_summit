@@ -1,0 +1,59 @@
+//ID
+*ÄÚµå "WS228"
+
+//Korean Name
+*ÀÌ¸§ "Espada Lendária"
+
+//English Name
+*Name "Espada Lendária"
+
+//AttackPower
+*°ø°Ý·Â 72 75 95 99
+
+//AttackRating
+*¸íÁß·Â 187 211
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 7
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 20
+
+//Integrity
+*³»±¸·Â 176 205
+
+//Level
+*·¹º§ 108
+
+//Strength
+*Èû 196
+
+//Talent
+*Àç´É 95
+
+//PrimarySpec
+**Æ¯È­ Knight
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Fighter Pikeman
+
+//SpecAttackPower
+**°ø°Ý·Â 6 6
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SpecAttackSpeed
+**°ø°Ý¼Óµµ 1
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 5
+
+//Weight
+*¹«°Ô 60
+
+//Price
+*°¡°Ý 1290000
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WS228.zhoon"

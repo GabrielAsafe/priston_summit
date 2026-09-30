@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "WR102"
+
+//Korean Name
+*ÀÌ¸§ "Receita de Ataque Nível 75"
+
+//English Name
+*Name "Receita de Ataque Nível 75"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WR102.zhoon"

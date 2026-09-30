@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "BI233"
+
+//Korean Name
+*ÀÌ¸§ "Baú de Ouro Up 12h"
+
+//English Name
+*Name "Baú de Ouro Up 12h"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\BI233.zhoon"

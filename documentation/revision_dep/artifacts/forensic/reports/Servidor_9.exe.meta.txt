@@ -1,0 +1,266 @@
+==== Servidor/9.exe ====
+
+[PATH]
+Servidor/9.exe
+
+[SHA256]
+75e8e10f67a5fd3c04d5daeb67d1f39330f10490cf736a7321037174aa1a640e  Servidor/9.exe
+
+[MD5]
+4ded0c88a4fe78f758af8ee3779321c1  Servidor/9.exe
+
+[FILE]
+Servidor/9.exe: PE32 executable for MS Windows 4.00 (GUI), Intel i386, UPX compressed, 3 sections
+
+[STAT]
+  Ficheiro: Servidor/9.exe
+  Tamanho: 171520    	Blocos: 336        IO Bloco: 4096   ficheiro normal
+Dispositivo: 0,41	Inode: 8505006     Ligações: 1
+Accesso: (0444/-r--r--r--)  Uid: ( 1000/ gabriel)   Gid: ( 1000/ gabriel)
+Contexto: unconfined_u:object_r:user_home_t:s0
+Accesso: 2026-07-06 17:49:19.632182425 +0100
+Modificado: 2025-07-31 23:21:36.688691000 +0100
+Alterado: 2026-06-30 08:44:59.524018848 +0100
+ Nascimento: 2026-06-30 08:44:59.521794065 +0100
+
+[PE HEADER]
+
+Servidor/9.exe:     formato de ficheiro pei-i386
+Servidor/9.exe
+arquitectura: i386, bandeiras 0x0000010a:
+EXEC_P, HAS_DEBUG, D_PAGED
+endereço inicial 0x004702f0
+
+Características 0x818f
+	relocations stripped
+	executable
+	line numbers stripped
+	symbols stripped
+	little endian
+	32 bit words
+	big endian
+
+Time/Date		Fri Jun 19 23:22:17 1992
+Magic			010b	(PE32)
+MajorLinkerVersion	2
+MinorLinkerVersion	25
+SizeOfCode		00029000
+SizeOfInitializedData	00002000
+SizeOfUninitializedData	00047000
+AddressOfEntryPoint	000702f0
+BaseOfCode		00048000
+BaseOfData		00071000
+ImageBase		00400000
+SectionAlignment	00001000
+FileAlignment		00000200
+MajorOSystemVersion	4
+MinorOSystemVersion	0
+MajorImageVersion	0
+MinorImageVersion	0
+MajorSubsystemVersion	4
+MinorSubsystemVersion	0
+Win32Version		00000000
+SizeOfImage		00073000
+SizeOfHeaders		00001000
+CheckSum		00000000
+Subsystem		00000002	(Windows GUI)
+DllCharacteristics	00000000
+SizeOfStackReserve	00100000
+SizeOfStackCommit	00004000
+SizeOfHeapReserve	00100000
+SizeOfHeapCommit	00001000
+LoaderFlags		00000000
+NumberOfRvaAndSizes	00000010
+
+The Data Directory
+Entry 0 00000000 00000000 Export Directory [.edata (or where ever we found it)]
+Entry 1 00072088 000001b0 Import Directory [parts of .idata]
+Entry 2 00071000 00001088 Resource Directory [.rsrc]
+Entry 3 00000000 00000000 Exception Directory [.pdata]
+Entry 4 00000000 00000000 Security Directory
+Entry 5 00000000 00000000 Base Relocation Directory [.reloc]
+Entry 6 00000000 00000000 Debug Directory
+Entry 7 00000000 00000000 Description Directory
+Entry 8 00000000 00000000 Special Directory
+Entry 9 00070460 00000018 Thread Storage Directory [.tls]
+Entry a 00000000 00000000 Load Configuration Directory
+Entry b 00000000 00000000 Bound Import Directory
+Entry c 00000000 00000000 Import Address Table Directory
+Entry d 00000000 00000000 Delay Import Directory
+Entry e 00000000 00000000 CLR Runtime Header
+Entry f 00000000 00000000 Reserved
+
+Há uma tabela de importação em .rsrc em 0x472088
+
+As tabelas de importação (interpretado .rsrc conteúdo de secção)
+ vma:            Dica    Hora      Avanço   DLL       Prim.
+                 Tabela  Selo      Cadeia   Nome      Thunk
+ 00072088	00000000 00000000 00000000 00072168 00072128
+
+	Nome DLL: KERNEL32.DLL
+	vma:     Ordinal  Dica  Nome-Membro  Ligado-a
+	00072128  <none>  0000  LoadLibraryA
+	0007212c  <none>  0000  GetProcAddress
+	00072130  <none>  0000  ExitProcess
+
+ 0007209c	00000000 00000000 00000000 00072175 00072138
+
+	Nome DLL: advapi32.dll
+	vma:     Ordinal  Dica  Nome-Membro  Ligado-a
+	00072138  <none>  0000  RegCloseKey
+
+ 000720b0	00000000 00000000 00000000 00072182 00072140
+
+	Nome DLL: comctl32.dll
+	vma:     Ordinal  Dica  Nome-Membro  Ligado-a
+	00072140  <none>  0000  ImageList_Add
+
+ 000720c4	00000000 00000000 00000000 0007218f 00072148
+
+	Nome DLL: gdi32.dll
+	vma:     Ordinal  Dica  Nome-Membro  Ligado-a
+	00072148  <none>  0000  SaveDC
+
+ 000720d8	00000000 00000000 00000000 00072199 00072150
+
+	Nome DLL: oleaut32.dll
+	vma:     Ordinal  Dica  Nome-Membro  Ligado-a
+	00072150  <none>  0000  VariantCopy
+
+ 000720ec	00000000 00000000 00000000 000721a6 00072158
+
+	Nome DLL: user32.dll
+	vma:     Ordinal  Dica  Nome-Membro  Ligado-a
+	00072158  <none>  0000  GetDC
+
+ 00072100	00000000 00000000 00000000 000721b1 00072160
+
+	Nome DLL: version.dll
+	vma:     Ordinal  Dica  Nome-Membro  Ligado-a
+	00072160  <none>  0000  VerQueryValueA
+
+ 00072114	00000000 00000000 00000000 00000000 00000000
+
+The .rsrc Resource Directory section:
+000  Type Tabela: Car.: 0, Hora: 3662989b, Ver: 0/0, Nomes Núm: 0, IDs: 9
+010   Entrada: ID: 0x000001, Valor: 0x80000058
+058    Name Tabela: Car.: 0, Hora: 3662989b, Ver: 0/0, Nomes Núm: 0, IDs: 7
+068     Entrada: ID: 0x000001, Valor: 0x800000a0
+0a0      Language Tabela: Car.: 0, Hora: 3662989b, Ver: 0/0, Nomes Núm: 0, IDs: 1
+0b0       Entrada: ID: 00000000, Valor: 0x0000b8
+0b8        Folha: End.: 0x068af0, Tamanho: 0x000134, Codepage: 0
+070     Entrada: ID: 0x000002, Valor: 0x800000c8
+0c8      Language Tabela: Car.: 0, Hora: 3662989b, Ver: 0/0, Nomes Núm: 0, IDs: 1
+0d8       Entrada: ID: 00000000, Valor: 0x0000e0
+0e0        Folha: End.: 0x068c24, Tamanho: 0x000134, Codepage: 0
+078     Entrada: ID: 0x000003, Valor: 0x800000f0
+0f0      Language Tabela: Car.: 0, Hora: 3662989b, Ver: 0/0, Nomes Núm: 0, IDs: 1
+100       Entrada: ID: 00000000, Valor: 0x000108
+108        Folha: End.: 0x068d58, Tamanho: 0x000134, Codepage: 0
+080     Entrada: ID: 0x000004, Valor: 0x80000118
+118      Language Tabela: Car.: 0, Hora: 3662989b, Ver: 0/0, Nomes Núm: 0, IDs: 1
+128       Entrada: ID: 00000000, Valor: 0x000130
+130        Folha: End.: 0x068e8c, Tamanho: 0x000134, Codepage: 0
+088     Entrada: ID: 0x000005, Valor: 0x80000140
+140      Language Tabela: Car.: 0, Hora: 3662989b, Ver: 0/0, Nomes Núm: 0, IDs: 1
+150       Entrada: ID: 00000000, Valor: 0x000158
+158        Folha: End.: 0x068fc0, Tamanho: 0x000134, Codepage: 0
+090     Entrada: ID: 0x000006, Valor: 0x80000168
+168      Language Tabela: Car.: 0, Hora: 3662989b, Ver: 0/0, Nomes Núm: 0, IDs: 1
+178       Entrada: ID: 00000000, Valor: 0x000180
+180        Folha: End.: 0x0690f4, Tamanho: 0x000134, Codepage: 0
+098     Entrada: ID: 0x000007, Valor: 0x80000190
+190      Language Tabela: Car.: 0, Hora: 3662989b, Ver: 0/0, Nomes Núm: 0, IDs: 1
+1a0       Entrada: ID: 00000000, Valor: 0x0001a8
+1a8        Folha: End.: 0x069228, Tamanho: 0x000134, Codepage: 0
+018   Entrada: ID: 0x000002, Valor: 0x800001b8
+1b8    Name Tabela: Car.: 0, Hora: 3662989b, Ver: 0/0, Nomes Núm: 11, IDs: 0
+1c8     Entrada: nome: [val: 800009e8 tam 7]: BBABORT, Valor: 0x80000220
+220      Language Tabela: Car.: 0, Hora: 3662989b, Ver: 0/0, Nomes Núm: 0, IDs: 1
+230       Entrada: ID: 00000000, Valor: 0x000238
+238        Folha: End.: 0x06935c, Tamanho: 0x0001d0, Codepage: 0
+1d0     Entrada: nome: [val: 800009f8 tam 5]: BBALL, Valor: 0x80000248
+248      Language Tabela: Car.: 0, Hora: 3662989b, Ver: 0/0, Nomes Núm: 0, IDs: 1
+258       Entrada: ID: 00000000, Valor: 0x000260
+260        Folha: End.: 0x06952c, Tamanho: 0x0001e4, Codepage: 0
+1d8     Entrada: nome: [val: 80000a04 tam 8]: BBCANCEL, Valor: 0x80000270
+270      Language Tabela: Car.: 0, Hora: 3662989b, Ver: 0/0, Nomes Núm: 0, IDs: 1
+280       Entrada: ID: 00000000, Valor: 0x000288
+288        Folha: End.: 0x069710, Tamanho: 0x0001d0, Codepage: 0
+1e0     Entrada: nome: [val: 80000a16 tam 7]: BBCLOSE, Valor: 0x80000298
+298      Language Tabela: Car.: 0, Hora: 3662989b, Ver: 0/0, Nomes Núm: 0, IDs: 1
+2a8       Entrada: ID: 00000000, Valor: 0x0002b0
+2b0        Folha: End.: 0x0698e0, Tamanho: 0x0001d0, Codepage: 0
+1e8     Entrada: nome: [val: 80000a26 tam 6]: BBHELP, Valor: 0x800002c0
+2c0      Language Tabela: Car.: 0, Hora: 3662989b, Ver: 0/0, Nomes Núm: 0, IDs: 1
+2d0       Entrada: ID: 00000000, Valor: 0x0002d8
+2d8        Folha: End.: 0x069ab0, Tamanho: 0x0001d0, Codepage: 0
+1f0     Entrada: nome: [val: 80000a34 tam 8]: BBIGNORE, Valor: 0x800002e8
+2e8      Language Tabela: Car.: 0, Hora: 3662989b, Ver: 0/0, Nomes Núm: 0, IDs: 1
+2f8       Entrada: ID: 00000000, Valor: 0x000300
+300        Folha: End.: 0x069c80, Tamanho: 0x0001d0, Codepage: 0
+1f8     Entrada: nome: [val: 80000a46 tam 4]: BBNO, Valor: 0x80000310
+310      Language Tabela: Car.: 0, Hora: 3662989b, Ver: 0/0, Nomes Núm: 0, IDs: 1
+320       Entrada: ID: 00000000, Valor: 0x000328
+328        Folha: End.: 0x069e50, Tamanho: 0x0001d0, Codepage: 0
+200     Entrada: nome: [val: 80000a50 tam 4]: BBOK, Valor: 0x80000338
+338      Language Tabela: Car.: 0, Hora: 3662989b, Ver: 0/0, Nomes Núm: 0, IDs: 1
+348       Entrada: ID: 00000000, Valor: 0x000350
+350        Folha: End.: 0x06a020, Tamanho: 0x0001d0, Codepage: 0
+208     Entrada: nome: [val: 80000a5a tam 7]: BBRETRY, Valor: 0x80000360
+360      Language Tabela: Car.: 0, Hora: 3662989b, Ver: 0/0, Nomes Núm: 0, IDs: 1
+370       Entrada: ID: 00000000, Valor: 0x000378
+378        Folha: End.: 0x06a1f0, Tamanho: 0x0001d0, Codepage: 0
+210     Entrada: nome: [val: 80000a6a tam 5]: BBYES, Valor: 0x80000388
+388      Language Tabela: Car.: 0, Hora: 3662989b, Ver: 0/0, Nomes Núm: 0, IDs: 1
+398       Entrada: ID: 00000000, Valor: 0x0003a0
+3a0        Folha: End.: 0x06a3c0, Tamanho: 0x0001d0, Codepage: 0
+218     Entrada: nome: [val: 80000a76 tam 12]: PREVIEWGLYPH, Valor: 0x800003b0
+3b0      Language Tabela: Car.: 0, Hora: 3662989b, Ver: 0/0, Nomes Núm: 0, IDs: 1
+3c0       Entrada: ID: 00000000, Valor: 0x0003c8
+3c8        Folha: End.: 0x06a590, Tamanho: 0x0000e8, Codepage: 0
+020   Entrada: ID: 0x000003, Valor: 0x800003d8
+3d8    Name Tabela: Car.: 0, Hora: 3662989b, Ver: 0/0, Nomes Núm: 0, IDs: 1
+3e8     Entrada: ID: 0x000001, Valor: 0x800003f0
+3f0      Language Tabela: Car.: 0, Hora: 3662989b, Ver: 0/0, Nomes Núm: 0, IDs: 1
+400       Entrada: ID: 0x000416, Valor: 0x000408
+
+[IMPORTS / DLLS]
+MajorLinkerVersion	2
+MinorLinkerVersion	25
+MajorOSystemVersion	4
+MinorOSystemVersion	0
+MajorImageVersion	0
+MinorImageVersion	0
+MajorSubsystemVersion	4
+MinorSubsystemVersion	0
+Win32Version		00000000
+Entry 1 00072088 000001b0 Import Directory [parts of .idata]
+Entry b 00000000 00000000 Bound Import Directory
+Entry c 00000000 00000000 Import Address Table Directory
+Entry d 00000000 00000000 Delay Import Directory
+Há uma tabela de importação em .rsrc em 0x472088
+As tabelas de importação (interpretado .rsrc conteúdo de secção)
+	Nome DLL: KERNEL32.DLL
+	Nome DLL: advapi32.dll
+	Nome DLL: oleaut32.dll
+	Nome DLL: user32.dll
+	Nome DLL: version.dll
+
+[EXPORTS]
+
+[TIMESTAMP / IMAGE INFO]
+Time/Date		Fri Jun 19 23:22:17 1992
+Magic			010b	(PE32)
+MajorLinkerVersion	2
+MinorLinkerVersion	25
+AddressOfEntryPoint	000702f0
+ImageBase		00400000
+MajorOSystemVersion	4
+MinorOSystemVersion	0
+MajorImageVersion	0
+MinorImageVersion	0
+MajorSubsystemVersion	4
+MinorSubsystemVersion	0
+SizeOfImage		00073000
+Subsystem		00000002	(Windows GUI)

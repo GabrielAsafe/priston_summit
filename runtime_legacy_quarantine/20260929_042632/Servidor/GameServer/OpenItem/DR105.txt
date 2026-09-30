@@ -1,0 +1,14 @@
+//ID
+*ÄÚµå "DR105"
+
+//Korean Name
+*ÀÌ¸§ "Receita de Defesa Nível 80C"
+
+//English Name
+*Name "Receita de Defesa Nível 80C"
+
+//Weight
+*¹«°Ô 1
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\DR105.zhoon"

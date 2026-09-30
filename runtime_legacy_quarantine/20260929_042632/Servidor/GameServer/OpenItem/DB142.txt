@@ -1,0 +1,62 @@
+//ID
+*코드 "DB142"
+
+//Korean Name
+*이름 "Botas Mitril"
+
+//English Name
+*Name "Botas Mitril"
+
+//Defense
+*방어력 250 300
+
+//Absorption
+*흡수력 25.0 30.0
+
+//Speed
+*이동속도 12.0 12.0
+
+//OrganicResistance
+*생체 12 15
+
+//FireResistance
+*불 12 15
+
+//FrostResistance
+*냉기 12 15
+
+//LightningResistance
+*번개 12 15
+
+//PoisonResistance
+*독 12 15
+
+//Integrity
+*내구력 256 265
+
+//Level
+*레벨 1
+
+//Strength
+*힘 1
+
+//Agility
+*민첩성 1
+
+//SecondarySpec
+**특화랜덤 Mechanician Fighter Pikeman Archer Knight Atalanta Priestess Magician
+
+//SpecAbsorption
+**흡수력 1.6 2.0
+
+//SpecSpeed
+**이동속도 2.0 2
+
+//Weight
+*무게 1
+
+//Price
+*가격 1690000
+
+//Name File
+*연결파일 "Name\DB142.zhoon"

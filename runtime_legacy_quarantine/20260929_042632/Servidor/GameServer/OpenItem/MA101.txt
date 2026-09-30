@@ -1,0 +1,14 @@
+//ID
+*코드 "MA101"
+
+//Korean Name
+*이름 "Jarra Vazia"
+
+//English Name
+*Name "Jarra Vazia"
+
+//Weight
+*무게 1
+
+//Name File
+*연결파일 "Name\MA101.zhoon"

@@ -1,4 +1,4 @@
-﻿#define _SINBARAM
+#define _SINBARAM
 
 // STL INCLUDES
 #include <memory>
@@ -1391,7 +1391,8 @@ switch (messg)
 			}
 		}
 
-		if (wParam == VK_F9 && !VRKeyBuff[VK_CONTROL] && !VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_MENU])
+		// SUMMIT_COMMAND_HOTKEYS_V17: CoinShop moved off plain F9 to avoid the legacy F-key collision set.
+		if (wParam == VK_F9 && VRKeyBuff[VK_CONTROL] && !VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_MENU])
 		{
 			if (!cCoinShop.isOpen())
 				cCoinShop.Open();
@@ -1434,14 +1435,12 @@ switch (messg)
 
 		if (!hFocusWnd)
 		{
-			if (!VRKeyBuff[VK_SHIFT] && VRKeyBuff[VK_CONTROL] && !sinMessageBoxShowFlag && VRKeyBuff[wParam] == 0)
+			if (!VRKeyBuff[VK_SHIFT] && VRKeyBuff[VK_CONTROL] && !VRKeyBuff[VK_MENU] &&
+				!sinMessageBoxShowFlag && VRKeyBuff[wParam] == 0)
 			{
-
-				if (wParam == VK_F1 || wParam == VK_F2 || wParam == VK_F3 || wParam == VK_F4 || wParam == VK_F5 ||
-					wParam == VK_F6 || wParam == VK_F7 || wParam == VK_F8 || wParam == VK_F9 || wParam == VK_F10)
-				{
+				// SUMMIT_COMMAND_HOTKEYS_V17: chat macros use Ctrl+1..0.
+				if (wParam >= '0' && wParam <= '9')
 					SetChatingLine("");
-				}
 			}
 		}
 
@@ -1452,18 +1451,18 @@ switch (messg)
 			lpString = 0;
 			CrCode = 0;
 
-			if (!VRKeyBuff[VK_SHIFT] && VRKeyBuff[VK_CONTROL] && !sinMessageBoxShowFlag)
+			if (!VRKeyBuff[VK_SHIFT] && VRKeyBuff[VK_CONTROL] && !VRKeyBuff[VK_MENU] && !sinMessageBoxShowFlag)
 			{
-				if (wParam == VK_F1 && szShotCutMessage[1][0]) lpString = szShotCutMessage[1];
-				if (wParam == VK_F2 && szShotCutMessage[2][0]) lpString = szShotCutMessage[2];
-				if (wParam == VK_F3 && szShotCutMessage[3][0]) lpString = szShotCutMessage[3];
-				if (wParam == VK_F4 && szShotCutMessage[4][0]) lpString = szShotCutMessage[4];
-				if (wParam == VK_F5 && szShotCutMessage[5][0]) lpString = szShotCutMessage[5];
-				if (wParam == VK_F6 && szShotCutMessage[6][0]) lpString = szShotCutMessage[6];
-				if (wParam == VK_F7 && szShotCutMessage[7][0]) lpString = szShotCutMessage[7];
-				if (wParam == VK_F8 && szShotCutMessage[8][0]) lpString = szShotCutMessage[8];
-				if (wParam == VK_F9 && szShotCutMessage[9][0]) lpString = szShotCutMessage[9];
-				if (wParam == VK_F10 && szShotCutMessage[0][0]) lpString = szShotCutMessage[0];
+				if (wParam == '1' && szShotCutMessage[1][0]) lpString = szShotCutMessage[1];
+				if (wParam == '2' && szShotCutMessage[2][0]) lpString = szShotCutMessage[2];
+				if (wParam == '3' && szShotCutMessage[3][0]) lpString = szShotCutMessage[3];
+				if (wParam == '4' && szShotCutMessage[4][0]) lpString = szShotCutMessage[4];
+				if (wParam == '5' && szShotCutMessage[5][0]) lpString = szShotCutMessage[5];
+				if (wParam == '6' && szShotCutMessage[6][0]) lpString = szShotCutMessage[6];
+				if (wParam == '7' && szShotCutMessage[7][0]) lpString = szShotCutMessage[7];
+				if (wParam == '8' && szShotCutMessage[8][0]) lpString = szShotCutMessage[8];
+				if (wParam == '9' && szShotCutMessage[9][0]) lpString = szShotCutMessage[9];
+				if (wParam == '0' && szShotCutMessage[0][0]) lpString = szShotCutMessage[0];
 
 				if (lpString)
 				{
@@ -3066,6 +3065,9 @@ void PlayD3D()
 		anz = 0;
 	}
 
+	// SUMMIT_V17_2_DISABLED_DARKLEVEL_HOTKEYS
+	// Shift+Home/End mutated global lighting state every frame while held.
+	/*
 	if (smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR && VRKeyBuff[VK_SHIFT])
 	{
 		if (VRKeyBuff[VK_HOME])
@@ -3073,6 +3075,7 @@ void PlayD3D()
 		if (VRKeyBuff[VK_END])
 			DarkLevel = 0;
 	}
+	*/
 
 
 	LockSpeedProtect(lpCurPlayer);
@@ -5202,7 +5205,7 @@ DWORD GameWindowMessage(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 				SetMessageFrameSelect(HoMsgBoxMode);
 			}*/
 
-			if (wParam == 'M' && VRKeyBuff[wParam] == 0)
+			if (wParam == 'M' && VRKeyBuff[wParam] == 0 && !VRKeyBuff[VK_CONTROL] && !VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_MENU])
 			{
 
 				sinCheck_ShowHelpMap();
@@ -5257,17 +5260,20 @@ DWORD GameWindowMessage(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 
 #ifdef GAME_GM
 
+			// SUMMIT_COMMAND_HOTKEYS_V17: Shift+F9 owns the local coordinate/debug overlay.
+			// Keep it outside the moderator account gate: this is a local developer display,
+			// while administrative actions below remain permission protected.
+			if (VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_CONTROL] && !VRKeyBuff[VK_MENU] &&
+				wParam == VK_F9 && VRKeyBuff[VK_F9] == 0)
+			{
+				DisplayDebug = DisplayDebug ? FALSE : TRUE;
+			}
+
+
 			if (smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR)
 			{
 
-				// F9 is the player CoinShop shortcut. Keep the GM debug overlay on
-				// Ctrl+F9 so one key press cannot open two unrelated surfaces.
-				if (VRKeyBuff[VK_CONTROL] && wParam == VK_F9 && VRKeyBuff[VK_F9] == 0)
-				{
-					if (DisplayDebug) DisplayDebug = FALSE;
-					else DisplayDebug = TRUE;
-				}
-
+				// SUMMIT_COMMAND_HOTKEYS_SAFETY_V17_1: keep the legacy SOD test disabled.
 				/*if (VRKeyBuff[VK_CONTROL] && wParam == 'E' && VRKeyBuff['E'] == 0)
 				{
 					strcpy_s(szSOD_String, "Score up 5000 pts");
@@ -5298,6 +5304,9 @@ DWORD GameWindowMessage(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 					}
 
 
+					// SUMMIT_V17_2_DISABLED_MATERIAL_MASK_HOTKEY
+					// Shift+F7 could expose hidden helper materials and corrupt the visible scene.
+					/*
 					if (wParam == VK_F7 && VRKeyBuff[VK_F7] == 0)
 					{
 						if (smRender.dwMatDispMask)
@@ -5305,6 +5314,7 @@ DWORD GameWindowMessage(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 						else
 							smRender.dwMatDispMask = sMATS_SCRIPT_NOTVIEW;
 					}
+					*/
 
 
 					if (wParam == VK_F8 && VRKeyBuff[wParam] == 0)
@@ -5321,14 +5331,18 @@ DWORD GameWindowMessage(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 					DispInterface = !DispInterface;
 				}
 
+				// SUMMIT_V17_2_DISABLED_PERSISTENT_WORLD_EDIT_HOTKEYS
+				// These commands can mutate server NPC/start-point data. Keep code only as
+				// historical/admin reference; no keyboard shortcut may dispatch them.
+				/*
 				if (AdminCharMode)
 				{
-					if (wParam == VK_INSERT && VRKeyBuff[wParam] == 0 && VRKeyBuff[VK_CONTROL])
+					if (wParam == VK_INSERT && VRKeyBuff[wParam] == 0 && VRKeyBuff[VK_CONTROL] && VRKeyBuff[VK_SHIFT])
 					{
 
 						SendAdd_Npc(lpCurPlayer, 0);
 					}
-					if (wParam == VK_DELETE && VRKeyBuff[wParam] == 0 && VRKeyBuff[VK_CONTROL])
+					if (wParam == VK_DELETE && VRKeyBuff[wParam] == 0 && VRKeyBuff[VK_CONTROL] && VRKeyBuff[VK_SHIFT])
 					{
 
 						if (lpCharSelPlayer)
@@ -5340,13 +5354,13 @@ DWORD GameWindowMessage(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 				}
 				else
 				{
-					if (wParam == VK_INSERT && VRKeyBuff[wParam] == 0 && VRKeyBuff[VK_CONTROL])
+					if (wParam == VK_INSERT && VRKeyBuff[wParam] == 0 && VRKeyBuff[VK_CONTROL] && VRKeyBuff[VK_SHIFT])
 					{
 
 						SendAddStartPoint(lpCurPlayer->pX, lpCurPlayer->pZ);
 					}
 
-					if (wParam == VK_DELETE && VRKeyBuff[wParam] == 0 && VRKeyBuff[VK_CONTROL])
+					if (wParam == VK_DELETE && VRKeyBuff[wParam] == 0 && VRKeyBuff[VK_CONTROL] && VRKeyBuff[VK_SHIFT])
 					{
 
 						if (lpSelItem)
@@ -5355,6 +5369,7 @@ DWORD GameWindowMessage(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 						}
 					}
 				}
+				*/
 			}
 #endif
 

@@ -1,0 +1,47 @@
+//ID
+*ÄÚµå "WA102"
+
+//Korean Name
+*ÀÌ¸§ "Machado de Aço"
+
+//English Name
+*Name "Machado de Aço"
+
+//AttackPower
+*°ø°Ý·Â 2 3 4 5
+
+//AttackRating
+*¸íÁß·Â 35 43
+
+//AttackSpeed
+*°ø°Ý¼Óµµ 6
+
+//AttackCritical
+*Å©¸®Æ¼ÄÃ 3
+
+//Integrity
+*³»±¸·Â 34 45
+
+//PrimarySpec
+**Æ¯È­ Fighter
+
+//SecondarySpec
+**Æ¯È­·£´ý Mechanician Pikeman
+
+//SpecAttackPower
+**°ø°Ý·Â 7 7
+
+//SpecAttackRating
+**¸íÁß·Â 1 3
+
+//SpecAttackCritical
+**Å©¸®Æ¼ÄÃ 1
+
+//Weight
+*¹«°Ô 8
+
+//Price
+*°¡°Ý 420
+
+//Name File
+*¿¬°áÆÄÀÏ "Name\WA102.zhoon"

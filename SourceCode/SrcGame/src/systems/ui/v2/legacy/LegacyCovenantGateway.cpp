@@ -3,8 +3,7 @@
 #include <algorithm>
 #include <cstring>
 
-#include "systems/network/client/netplay.h"
-#include "systems/network/transport/legacy/smwsock.h"
+#include "systems/network/v2/legacy/LegacyClientCommandSender.h"
 
 namespace ui::v2
 {
@@ -51,7 +50,8 @@ void LegacyCovenantGateway::RequestRefresh()
 void LegacyCovenantGateway::Execute(CovenantUiAction action, int value, const std::string& key)
 {
     using namespace gameplay::covenants::protocol;
-    if (!smWsockServer)
+    auto& sender = gameplay::network::legacy::ClientLegacyCommandSender();
+    if (!sender.Available())
         return;
 
     CovenantUIActionPacket packet{};
@@ -64,7 +64,7 @@ void LegacyCovenantGateway::Execute(CovenantUiAction action, int value, const st
     if (!key.empty())
         std::strncpy(packet.key, key.c_str(), sizeof(packet.key) - 1);
 
-    smWsockServer->Send(reinterpret_cast<char*>(&packet), packet.size, TRUE);
+    sender.Send(gameplay::network::PacketView(&packet, packet.size, packet.code));
 }
 
 void LegacyCovenantGateway::ApplyState(const gameplay::covenants::protocol::CovenantUIStatePacket& packet)
@@ -194,7 +194,7 @@ void LegacyCovenantGateway::ApplyState(const gameplay::covenants::protocol::Cove
 
 void LegacyCovenantGateway::Tick(unsigned long nowMilliseconds)
 {
-    if (!smWsockServer)
+    if (!gameplay::network::legacy::ClientLegacyCommandSender().Available())
     {
         lastRefreshTick_ = 0;
         return;

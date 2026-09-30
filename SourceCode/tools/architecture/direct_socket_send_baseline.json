@@ -1,0 +1,576 @@
+{
+  "description": "Maximum direct legacy socket Send counts by file/channel. Counts may decrease. New files/channels or increases require explicit architectural review.",
+  "files": {
+    "Shared/gameplay/character/character_legacy_client.inl": {
+      "max_counts": {
+        "lpsmSock": 9,
+        "smWsockDataServer": 1,
+        "smWsockServer": 1
+      },
+      "role": "RED"
+    },
+    "Shared/gameplay/combat/LegacyDamageCommon.inl": {
+      "max_counts": {
+        "lpsmSock": 1
+      },
+      "role": "RED"
+    },
+    "Shared/gameplay/combat/LegacyDamagePacket.inl": {
+      "max_counts": {
+        "lpsmSock": 3
+      },
+      "role": "RED"
+    },
+    "Shared/gameplay/combat/LegacyDamagePolicy.inl": {
+      "max_counts": {
+        "lpsmSock": 32
+      },
+      "role": "RED"
+    },
+    "Shared/gameplay/combat/Svr_Damge_legacy_client.inl": {
+      "max_counts": {
+        "lpsmSock": 35
+      },
+      "role": "RED"
+    },
+    "Shared/gameplay/combat/Svr_Damge_legacy_server.inl": {
+      "max_counts": {
+        "lpsmSock": 42
+      },
+      "role": "RED"
+    },
+    "Shared/gameplay/legacy_support/PlaySubInventoryIntegrityLegacyCommon.inl": {
+      "max_counts": {
+        "smWsockDataServer": 2
+      },
+      "role": "RED"
+    },
+    "Shared/gameplay/legacy_support/PlaySubInventoryTimingLegacyCommon.inl": {
+      "max_counts": {
+        "smWsockDataServer": 2
+      },
+      "role": "RED"
+    },
+    "Shared/gameplay/legacy_support/PlaySubStartupModelLegacyCommon.inl": {
+      "max_counts": {
+        "smWsockDataServer": 1
+      },
+      "role": "RED"
+    },
+    "Shared/gameplay/quests/cQuestWindow_legacy_client.inl": {
+      "max_counts": {
+        "smWsockServer": 5
+      },
+      "role": "RED"
+    },
+    "Shared/gameplay/skills/LegacySkillSubCommon.inl": {
+      "max_counts": {
+        "lpsmSock": 1,
+        "smWsockDataServer": 2
+      },
+      "role": "RED"
+    },
+    "Shared/gameplay/skills/SkillSub_legacy_client.inl": {
+      "max_counts": {
+        "lpsmSock": 1,
+        "smWsockDataServer": 2
+      },
+      "role": "RED"
+    },
+    "Shared/gameplay/skills/SkillSub_legacy_server.inl": {
+      "max_counts": {
+        "lpsmSock": 1,
+        "smWsockDataServer": 2
+      },
+      "role": "RED"
+    },
+    "Shared/legacy_oracle/client/compat/client_server/server_legacy/ClientFuncPos.cpp.inl": {
+      "max_counts": {
+        "lpsmSock": 2
+      },
+      "role": "RED"
+    },
+    "Shared/legacy_oracle/client/compat/client_server/server_legacy/OnSever.cpp.inl": {
+      "max_counts": {
+        "lpsmSock": 173
+      },
+      "role": "RED"
+    },
+    "Shared/legacy_oracle/client/compat/client_server/server_legacy/Svr_Damge.cpp.inl": {
+      "max_counts": {
+        "lpsmSock": 35
+      },
+      "role": "RED"
+    },
+    "Shared/legacy_oracle/client/core/gameplay/legacy_support/playsub.cpp.inl": {
+      "max_counts": {
+        "smWsockDataServer": 5
+      },
+      "role": "RED"
+    },
+    "Shared/legacy_oracle/client/systems/combat/skills/client/SkillSub.cpp.inl": {
+      "max_counts": {
+        "lpsmSock": 1,
+        "smWsockDataServer": 2
+      },
+      "role": "RED"
+    },
+    "Shared/legacy_oracle/client/systems/gameplay/character/core/character.cpp.inl": {
+      "max_counts": {
+        "lpsmSock": 9,
+        "smWsockDataServer": 1,
+        "smWsockServer": 1
+      },
+      "role": "RED"
+    },
+    "Shared/legacy_oracle/client/systems/gameplay/quests/ui/cQuestWindow.cpp.inl": {
+      "max_counts": {
+        "smWsockServer": 5
+      },
+      "role": "RED"
+    },
+    "Shared/legacy_oracle/client/systems/network/region/AreaServer.cpp.inl": {
+      "max_counts": {
+        "lpsmSock": 1
+      },
+      "role": "RED"
+    },
+    "Shared/legacy_oracle/client/systems/network/transport/legacy/smwsock.cpp.inl": {
+      "max_counts": {
+        "lpsmSock": 1
+      },
+      "role": "RED"
+    },
+    "Shared/legacy_oracle/client/systems/persistence/character_record/record.cpp.inl": {
+      "max_counts": {
+        "lpsmSock": 6
+      },
+      "role": "RED"
+    },
+    "Shared/legacy_oracle/client/systems/security/legacy/process_integrity/cracker.cpp.inl": {
+      "max_counts": {
+        "smWsockDataServer": 1
+      },
+      "role": "RED"
+    },
+    "Shared/legacy_oracle/server/core/gameplay/legacy_support/playsub.cpp.inl": {
+      "max_counts": {
+        "smWsockDataServer": 5
+      },
+      "role": "RED"
+    },
+    "Shared/legacy_oracle/server/core/server/legacy_runtime/ClientFuncPos.cpp.inl": {
+      "max_counts": {
+        "lpsmSock": 2
+      },
+      "role": "RED"
+    },
+    "Shared/legacy_oracle/server/core/server/legacy_runtime/OnSever.cpp.inl": {
+      "max_counts": {
+        "lpsmSock": 379
+      },
+      "role": "RED"
+    },
+    "Shared/legacy_oracle/server/systems/combat/server_legacy/Svr_Damge.cpp.inl": {
+      "max_counts": {
+        "lpsmSock": 42
+      },
+      "role": "RED"
+    },
+    "Shared/legacy_oracle/server/systems/combat/skills/server_support/SkillSub.cpp.inl": {
+      "max_counts": {
+        "lpsmSock": 1,
+        "smWsockDataServer": 2
+      },
+      "role": "RED"
+    },
+    "Shared/legacy_oracle/server/systems/network/region/AreaServer.cpp.inl": {
+      "max_counts": {
+        "lpsmSock": 1
+      },
+      "role": "RED"
+    },
+    "Shared/legacy_oracle/server/systems/network/transport/legacy/smwsock.cpp.inl": {
+      "max_counts": {
+        "lpsmSock": 1
+      },
+      "role": "RED"
+    },
+    "Shared/legacy_oracle/server/systems/persistence/character_record/record.cpp.inl": {
+      "max_counts": {
+        "lpsmSock": 9
+      },
+      "role": "RED"
+    },
+    "Shared/legacy_oracle/server/systems/security/legacy/process_integrity/cracker.cpp.inl": {
+      "max_counts": {
+        "smWsockDataServer": 1
+      },
+      "role": "RED"
+    },
+    "Shared/network/region/AreaServer_legacy_client.inl": {
+      "max_counts": {
+        "lpsmSock": 1
+      },
+      "role": "RED"
+    },
+    "Shared/network/region/AreaServer_legacy_server.inl": {
+      "max_counts": {
+        "lpsmSock": 1
+      },
+      "role": "RED"
+    },
+    "Shared/network/transport/legacy/SmWSockPacketSendQueueLegacyCommon.inl": {
+      "max_counts": {
+        "lpsmSock": 1
+      },
+      "role": "RED"
+    },
+    "Shared/persistence/character_record/record_legacy_client.inl": {
+      "max_counts": {
+        "lpsmSock": 6
+      },
+      "role": "RED"
+    },
+    "Shared/persistence/character_record/record_legacy_server.inl": {
+      "max_counts": {
+        "lpsmSock": 9
+      },
+      "role": "RED"
+    },
+    "Shared/security/integrity/ClientFuncPos_legacy_client.inl": {
+      "max_counts": {
+        "lpsmSock": 2
+      },
+      "role": "RED"
+    },
+    "Shared/security/integrity/ClientFuncPos_legacy_server.inl": {
+      "max_counts": {
+        "lpsmSock": 2
+      },
+      "role": "RED"
+    },
+    "Shared/security/integrity/CrackerLegacyCommon.inl": {
+      "max_counts": {
+        "smWsockDataServer": 1
+      },
+      "role": "RED"
+    },
+    "Shared/server/legacy_runtime/OnSever_legacy_client.inl": {
+      "max_counts": {
+        "lpsmSock": 173
+      },
+      "role": "RED"
+    },
+    "Shared/server/legacy_runtime/OnSever_legacy_server.inl": {
+      "max_counts": {
+        "lpsmSock": 371
+      },
+      "role": "RED"
+    },
+    "SrcGame/src/compat/client_server/server_legacy/PartySever.cpp": {
+      "max_counts": {
+        "lpsmSock": 10
+      },
+      "role": "RED"
+    },
+    "SrcGame/src/compat/client_server/server_legacy/svrEventGame.h": {
+      "max_counts": {
+        "lpsmSock": 4
+      },
+      "role": "RED"
+    },
+    "SrcGame/src/compat/client_server/server_legacy/svrEventSpawn.cpp": {
+      "max_counts": {
+        "lpsmSock": 4
+      },
+      "role": "RED"
+    },
+    "SrcGame/src/core/gameplay/runtime/playmain.cpp": {
+      "max_counts": {
+        "lpsmSock": 2
+      },
+      "role": "RED"
+    },
+    "SrcGame/src/systems/authentication/Login.cpp": {
+      "max_counts": {
+        "smWsockDataServer": 1
+      },
+      "role": "RED"
+    },
+    "SrcGame/src/systems/combat/damage/Damage.cpp": {
+      "max_counts": {
+        "smWsockDataServer": 2,
+        "smWsockExtendServer": 2,
+        "smWsockServer": 2,
+        "smWsockUserServer": 2
+      },
+      "role": "RED"
+    },
+    "SrcGame/src/systems/combat/pvp/Score.cpp": {
+      "max_counts": {
+        "smWsockDataServer": 1
+      },
+      "role": "RED"
+    },
+    "SrcGame/src/systems/commerce/coin_shop/CoinShop.cpp": {
+      "max_counts": {
+        "smWsockDataServer": 3
+      },
+      "role": "RED"
+    },
+    "SrcGame/src/systems/commerce/coin_shop/CoinShop_T.cpp": {
+      "max_counts": {
+        "smWsockDataServer": 3
+      },
+      "role": "RED"
+    },
+    "SrcGame/src/systems/commerce/legacy/sinShop.cpp": {
+      "max_counts": {
+        "smWsockDataServer": 1
+      },
+      "role": "RED"
+    },
+    "SrcGame/src/systems/commerce/premium/HaPremiumItem.cpp": {
+      "max_counts": {
+        "smWsockDataServer": 1
+      },
+      "role": "RED"
+    },
+    "SrcGame/src/systems/inventory/legacy/sinInvenTory.cpp": {
+      "max_counts": {
+        "smWsockDataServer": 16,
+        "smWsockUserServer": 1
+      },
+      "role": "RED"
+    },
+    "SrcGame/src/systems/network/client/netplay.cpp": {
+      "max_counts": {
+        "lpsmSock": 43,
+        "smWsockDataServer": 51,
+        "smWsockExtendServer": 12,
+        "smWsockServer": 30,
+        "smWsockUserServer": 24
+      },
+      "role": "RED"
+    },
+    "SrcGame/src/systems/network/v2/legacy/LegacyClientCommandSender.cpp": {
+      "max_counts": {
+        "smWsockServer": 1
+      },
+      "role": "AMBER"
+    },
+    "SrcGame/src/systems/progression/battle_pass/BattlePass.cpp": {
+      "max_counts": {
+        "smWsockUserServer": 1
+      },
+      "role": "RED"
+    },
+    "SrcGame/src/systems/progression/rankings/class_rank/Rank.cpp": {
+      "max_counts": {
+        "smWsockUserServer": 1
+      },
+      "role": "RED"
+    },
+    "SrcGame/src/systems/progression/rankings/general/Ranking.cpp": {
+      "max_counts": {
+        "smWsockDataServer": 1
+      },
+      "role": "RED"
+    },
+    "SrcGame/src/systems/security/anticheat/AntiCheat.cpp": {
+      "max_counts": {
+        "smWsockDataServer": 3
+      },
+      "role": "RED"
+    },
+    "SrcGame/src/systems/ui/hud/legacy_sin/sinInterFace.cpp": {
+      "max_counts": {
+        "lpsmSock": 1,
+        "smWsockServer": 1
+      },
+      "role": "RED"
+    },
+    "SrcGame/src/systems/ui/messages/legacy_sin/sinMessageBox.cpp": {
+      "max_counts": {
+        "smWsockDataServer": 1,
+        "smWsockUserServer": 4
+      },
+      "role": "RED"
+    },
+    "SrcServer/src/core/server/gameplay_runtime/playmain.cpp": {
+      "max_counts": {
+        "lpsmSock": 2
+      },
+      "role": "RED"
+    },
+    "SrcServer/src/core/server/legacy_runtime/DllServer.cpp": {
+      "max_counts": {
+        "lpsmSock": 3
+      },
+      "role": "RED"
+    },
+    "SrcServer/src/core/server/legacy_runtime/PartySever.cpp": {
+      "max_counts": {
+        "lpsmSock": 10
+      },
+      "role": "RED"
+    },
+    "SrcServer/src/systems/combat/damage/Damage.cpp": {
+      "max_counts": {
+        "smWsockDataServer": 2,
+        "smWsockExtendServer": 2,
+        "smWsockServer": 2,
+        "smWsockUserServer": 2
+      },
+      "role": "RED"
+    },
+    "SrcServer/src/systems/combat/server_legacy/CRollHandler.cpp": {
+      "max_counts": {
+        "lpsmSock": 5
+      },
+      "role": "RED"
+    },
+    "SrcServer/src/systems/combat/skills/legacy/sinSkill_Info.cpp": {
+      "max_counts": {
+        "lpsmSock": 8
+      },
+      "role": "RED"
+    },
+    "SrcServer/src/systems/commerce/coin_shop/CoinShop.cpp": {
+      "max_counts": {
+        "lpsmSock": 4
+      },
+      "role": "RED"
+    },
+    "SrcServer/src/systems/commerce/coin_shop/CoinShop_T.cpp": {
+      "max_counts": {
+        "lpsmSock": 4
+      },
+      "role": "RED"
+    },
+    "SrcServer/src/systems/commerce/legacy/sinShop.cpp": {
+      "max_counts": {
+        "smWsockDataServer": 1
+      },
+      "role": "RED"
+    },
+    "SrcServer/src/systems/commerce/restoration/cRestaureHandler.cpp": {
+      "max_counts": {
+        "lpsmSock": 2
+      },
+      "role": "RED"
+    },
+    "SrcServer/src/systems/commerce/vip/cVipHandler.cpp": {
+      "max_counts": {
+        "lpsmSock": 2
+      },
+      "role": "RED"
+    },
+    "SrcServer/src/systems/community/chat/v2/legacy/LegacyChatDeliveryAdapter.cpp": {
+      "max_counts": {
+        "lpsmSock": 2
+      },
+      "role": "AMBER"
+    },
+    "SrcServer/src/systems/community/news/News.cpp": {
+      "max_counts": {
+        "lpsmSock": 8
+      },
+      "role": "RED"
+    },
+    "SrcServer/src/systems/crafting/professions/JOBS.cpp": {
+      "max_counts": {
+        "lpsmSock": 21
+      },
+      "role": "RED"
+    },
+    "SrcServer/src/systems/gameplay/character/core/character.cpp": {
+      "max_counts": {
+        "lpsmSock": 10,
+        "smWsockDataServer": 1
+      },
+      "role": "RED"
+    },
+    "SrcServer/src/systems/gameplay/events/server_legacy/svrEventGame.h": {
+      "max_counts": {
+        "lpsmSock": 4
+      },
+      "role": "RED"
+    },
+    "SrcServer/src/systems/gameplay/events/server_legacy/svrEventSpawn.cpp": {
+      "max_counts": {
+        "lpsmSock": 4
+      },
+      "role": "RED"
+    },
+    "SrcServer/src/systems/gameplay/pets/v2/legacy/LegacyPetRuntimeAdapter.cpp": {
+      "max_counts": {
+        "lpsmSock": 1
+      },
+      "role": "AMBER"
+    },
+    "SrcServer/src/systems/gameplay/quests/server/cQuestHandler.cpp": {
+      "max_counts": {
+        "lpsmSock": 7
+      },
+      "role": "RED"
+    },
+    "SrcServer/src/systems/inventory/legacy/sinInvenTory.cpp": {
+      "max_counts": {
+        "smWsockDataServer": 1,
+        "smWsockUserServer": 1
+      },
+      "role": "RED"
+    },
+    "SrcServer/src/systems/network/server_gameplay/netplay.cpp": {
+      "max_counts": {
+        "lpsmSock": 36,
+        "smWsockDataServer": 47,
+        "smWsockExtendServer": 9,
+        "smWsockServer": 17,
+        "smWsockUserServer": 22
+      },
+      "role": "RED"
+    },
+    "SrcServer/src/systems/network/v2/legacy/LegacyPacketSender.cpp": {
+      "max_counts": {
+        "lpsmSock": 1
+      },
+      "role": "AMBER"
+    },
+    "SrcServer/src/systems/progression/battle_pass/BattlePass.cpp": {
+      "max_counts": {
+        "lpsmSock": 29
+      },
+      "role": "RED"
+    },
+    "SrcServer/src/systems/progression/class_rank/Rank.cpp": {
+      "max_counts": {
+        "lpsmSock": 4
+      },
+      "role": "RED"
+    },
+    "SrcServer/src/systems/social/clan/customization/ClanCustom.cpp": {
+      "max_counts": {
+        "lpsmSock": 12
+      },
+      "role": "RED"
+    },
+    "SrcServer/src/systems/ui/hud/legacy_sin/sinInterFace.cpp": {
+      "max_counts": {
+        "lpsmSock": 1
+      },
+      "role": "RED"
+    }
+  },
+  "schema_version": 1,
+  "source_suffixes": [
+    ".cpp",
+    ".cc",
+    ".cxx",
+    ".h",
+    ".hpp",
+    ".inl"
+  ]
+}
