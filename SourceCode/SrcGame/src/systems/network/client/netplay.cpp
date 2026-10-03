@@ -24,30 +24,17 @@
 #include "systems/rendering/legacy_3d/smd3d.h"
 
 #include "systems/network/transport/legacy/smwsock.h"
+#include "systems/network/v2/legacy/LegacyClientCommandSender.h"
+#include "systems/network/v2/legacy/LegacyClientGameplayPacketRouter.h"
 #include "systems/gameplay/character/core/character.h"
 #include "core/gameplay/runtime/playmain.h"
 #include "gameplay/classes/v2/services/ClassService.h"
 #include "core/data/legacy_loader/fileread.h"
 #include "persistence/character_record/WarehouseRecordValidation.h"
-#include "gameplay/companions/CompanionProtocol.h"
-#include "gameplay/covenants/v2/CovenantUIProtocol.h"
-#include "systems/ui/v2/legacy/LegacyCompanionGateway.h"
-#include "systems/ui/v2/legacy/LegacyCovenantGateway.h"
 #include "systems/presentation/v2/legacy/LegacyAnimationAdapter.h"
 #include "systems/presentation/v2/legacy/LegacyAudioAdapter.h"
 #include "systems/presentation/v2/legacy/LegacyVisualEffectAdapter.h"
 #include "systems/presentation/v2/legacy/LegacyLightingAdapter.h"
-
-namespace gameplay
-{
-namespace companions
-{
-namespace client_visual
-{
-void ApplyPacket(const protocol::CompanionVisualStatePacket &packet);
-}
-}
-}
 
 #include "systems/rendering/effects/particle/legacy/particle.h"
 #include "compat/legacy/sin/sinLinkHeader.h"
@@ -1247,7 +1234,7 @@ int	SendTotalExpMoney()
 	{
 		memcpy(&TransTotalExpMoney.sServerExp, &sServerExp[0], sizeof(sSERVER_EXP));
 		memcpy(&TransTotalExpMoney.sServerMoney, &sServerMoney[0], sizeof(sSERVER_MONEY));
-		smWsockServer->Send((char *)&TransTotalExpMoney, TransTotalExpMoney.size, TRUE);
+		gameplay::network::legacy::SendPrimaryLegacyPacket((char *)&TransTotalExpMoney, TransTotalExpMoney.size, TRUE);
 	}
 	if(smWsockUserServer && smWsockUserServer != smWsockServer)
 	{
@@ -1876,6 +1863,11 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 	}
 	#endif
 
+
+	if(gameplay::network::legacy::RouteClientGameplayPacket(
+		static_cast<std::uint32_t>(IPData[1]), pData->Buff,
+		IPData[0] > 0 ? static_cast<std::size_t>(IPData[0]) : 0u))
+		return TRUE;
 
 	switch(IPData[1])
 	{
@@ -2755,60 +2747,6 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 	case OpCode::OPCODE_PLAYLIST:
 		break;
 
-
-	case gameplay::covenants::protocol::OPCODE_COVENANT_UI_STATE:
-	{
-		const gameplay::covenants::protocol::CovenantUIStatePacket *packet =
-			reinterpret_cast<const gameplay::covenants::protocol::CovenantUIStatePacket *>(pData->Buff);
-		if(packet &&
-			packet->size == sizeof(gameplay::covenants::protocol::CovenantUIStatePacket) &&
-			packet->version == gameplay::covenants::protocol::COVENANT_UI_PROTOCOL_VERSION)
-		{
-			ui::v2::ApplyLegacyCovenantStatePacket(*packet);
-		}
-	}
-	break;
-
-	case gameplay::companions::protocol::OPCODE_COMPANION_UI_STATE:
-	{
-		const gameplay::companions::protocol::CompanionUIStatePacket *packet =
-			reinterpret_cast<const gameplay::companions::protocol::CompanionUIStatePacket *>(pData->Buff);
-		if(packet &&
-			packet->size == sizeof(gameplay::companions::protocol::CompanionUIStatePacket) &&
-			packet->version == gameplay::companions::protocol::COMPANION_UI_PROTOCOL_VERSION)
-		{
-			ui::v2::ApplyLegacyCompanionStatePacket(*packet);
-		}
-	}
-	break;
-
-	case gameplay::companions::protocol::OPCODE_COMPANION_RUNTIME_STATE:
-	{
-		const gameplay::companions::protocol::CompanionRuntimeStatePacket *packet =
-			reinterpret_cast<const gameplay::companions::protocol::CompanionRuntimeStatePacket *>(pData->Buff);
-		if(packet &&
-			packet->size == sizeof(gameplay::companions::protocol::CompanionRuntimeStatePacket) &&
-			packet->version == gameplay::companions::protocol::COMPANION_RUNTIME_PROTOCOL_VERSION)
-		{
-			ui::v2::ApplyLegacyCompanionRuntimePacket(*packet);
-		}
-	}
-	break;
-
-	case gameplay::companions::protocol::OPCODE_COMPANION_VISUAL_STATE:
-	{
-		const gameplay::companions::protocol::CompanionVisualStatePacket *packet =
-			reinterpret_cast<const gameplay::companions::protocol::CompanionVisualStatePacket *>(pData->Buff);
-		if(packet &&
-			packet->size == sizeof(gameplay::companions::protocol::CompanionVisualStatePacket) &&
-			packet->version == gameplay::companions::protocol::COMPANION_VISUAL_PROTOCOL_VERSION &&
-			packet->entryCount >= 0 &&
-			packet->entryCount <= gameplay::companions::protocol::COMPANION_VISUAL_MAX_ACTIVE)
-		{
-			gameplay::companions::client_visual::ApplyPacket(*packet);
-		}
-	}
-	break;
 
 	case OpCode::OPCODE_PLAYERINFO:
 
@@ -4491,7 +4429,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 
 			if(smWsockServer && smWsockServer != smWsockUserServer)
 			{
-				smWsockServer->Send((char *)lpTransPartyPlayInfo, lpTransPartyPlayInfo->size, TRUE);
+				gameplay::network::legacy::SendPrimaryLegacyPacket((char *)lpTransPartyPlayInfo, lpTransPartyPlayInfo->size, TRUE);
 			}
 			if(smWsockExtendServer && smWsockExtendServer != smWsockServer)
 			{
@@ -4512,7 +4450,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 
 		if(smWsockServer && smWsockServer != smWsockUserServer)
 		{
-			smWsockServer->Send((char *)lpTransCommand, lpTransCommand->size, TRUE);
+			gameplay::network::legacy::SendPrimaryLegacyPacket((char *)lpTransCommand, lpTransCommand->size, TRUE);
 		}
 
 		if(smWsockExtendServer && smWsockExtendServer != smWsockServer)
@@ -4788,7 +4726,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 
 		if(smWsockServer)
 		{
-			smWsockServer->Send(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff, ((smTRANS_COMMAND *)(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff))->size, TRUE);
+			gameplay::network::legacy::SendPrimaryLegacyPacket(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff, ((smTRANS_COMMAND *)(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff))->size, TRUE);
 		}
 		if(smWsockUserServer && smWsockUserServer != smWsockServer)
 		{
@@ -4806,7 +4744,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 		if(lpsmSock)
 			lpsmSock->Send(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff, ((smTRANS_COMMAND *)(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff))->size, TRUE);
 		else
-			smWsockServer->Send(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff, ((smTRANS_COMMAND *)(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff))->size, TRUE);
+			gameplay::network::legacy::SendPrimaryLegacyPacket(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff, ((smTRANS_COMMAND *)(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff))->size, TRUE);
 
 		break;
 
@@ -4886,10 +4824,10 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 			lpsmSock->Send(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff, ((smTRANS_COMMAND *)(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff))->size, TRUE);
 
 			if(lpsmSock != smWsockServer)
-				smWsockServer->Send(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff, ((smTRANS_COMMAND *)(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff))->size, TRUE);
+				gameplay::network::legacy::SendPrimaryLegacyPacket(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff, ((smTRANS_COMMAND *)(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff))->size, TRUE);
 		}
 		else
-			smWsockServer->Send(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff, ((smTRANS_COMMAND *)(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff))->size, TRUE);
+			gameplay::network::legacy::SendPrimaryLegacyPacket(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff, ((smTRANS_COMMAND *)(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff))->size, TRUE);
 
 		break;
 
@@ -5794,10 +5732,10 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 			lpsmSock->Send(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff, ((smTRANS_COMMAND *)(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff))->size, TRUE);
 
 			if(lpsmSock != smWsockServer)
-				smWsockServer->Send(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff, ((smTRANS_COMMAND *)(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff))->size, TRUE);
+				gameplay::network::legacy::SendPrimaryLegacyPacket(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff, ((smTRANS_COMMAND *)(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff))->size, TRUE);
 		}
 		else
-			smWsockServer->Send(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff, ((smTRANS_COMMAND *)(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff))->size, TRUE);
+			gameplay::network::legacy::SendPrimaryLegacyPacket(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff, ((smTRANS_COMMAND *)(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff))->size, TRUE);
 		break;
 
 
@@ -5880,10 +5818,10 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 			lpsmSock->Send(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff, ((smTRANS_COMMAND *)(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff))->size, TRUE);
 
 			if(lpsmSock != smWsockServer)
-				smWsockServer->Send(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff, ((smTRANS_COMMAND *)(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff))->size, TRUE);
+				gameplay::network::legacy::SendPrimaryLegacyPacket(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff, ((smTRANS_COMMAND *)(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff))->size, TRUE);
 		}
 		else
-			smWsockServer->Send(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff, ((smTRANS_COMMAND *)(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff))->size, TRUE);
+			gameplay::network::legacy::SendPrimaryLegacyPacket(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff, ((smTRANS_COMMAND *)(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff))->size, TRUE);
 
 		break;
 
@@ -5906,10 +5844,10 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 			lpsmSock->Send(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff, ((smTRANS_COMMAND *)(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff))->size, TRUE);
 
 			if(lpsmSock != smWsockServer)
-				smWsockServer->Send(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff, ((smTRANS_COMMAND *)(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff))->size, TRUE);
+				gameplay::network::legacy::SendPrimaryLegacyPacket(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff, ((smTRANS_COMMAND *)(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff))->size, TRUE);
 		}
 		else
-			smWsockServer->Send(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff, ((smTRANS_COMMAND *)(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff))->size, TRUE);
+			gameplay::network::legacy::SendPrimaryLegacyPacket(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff, ((smTRANS_COMMAND *)(((TRANS_SEND_DATASERVER *)pData->Buff)->szBuff))->size, TRUE);
 		break;
 
 
@@ -6127,7 +6065,7 @@ int rsTRANS_SERVER::SendChat(char *szMessage)
 		strcpy_s(TransBuff + 8, sizeof(TransBuff) - 8, szMessage + 1);
 		((int *)TransBuff)[0] = len;
 		((int *)TransBuff)[1] = OpCode::OPCODE_CHATMESSAGE;
-		if(smWsockServer) smWsockServer->Send(TransBuff, len, TRUE);
+		if(smWsockServer) gameplay::network::legacy::SendPrimaryLegacyPacket(TransBuff, len, TRUE);
 		if(smWsockServer != smWsockUserServer && smWsockUserServer) smWsockUserServer->Send(TransBuff, len, TRUE);
 		if(smWsockServer != smWsockExtendServer && smWsockExtendServer) smWsockExtendServer->Send(TransBuff, len, TRUE);
 		if(AreaServerMode)
@@ -6149,7 +6087,7 @@ int rsTRANS_SERVER::SendChat(char *szMessage)
 			((int *)TransBuff)[0] = len;
 			((int *)TransBuff)[1] = OpCode::OPCODE_PARTY_CHATMSG;
 
-			if(smWsockServer) smWsockServer->Send(TransBuff, len, TRUE);
+			if(smWsockServer) gameplay::network::legacy::SendPrimaryLegacyPacket(TransBuff, len, TRUE);
 			AddChatBuff(TransBuff + 8, 4);
 			return TRUE;
 		}
@@ -6178,7 +6116,7 @@ int rsTRANS_SERVER::SendChat(char *szMessage)
 			}
 			else
 			{
-				if(smWsockServer) smWsockServer->Send(TransBuff, len, TRUE);
+				if(smWsockServer) gameplay::network::legacy::SendPrimaryLegacyPacket(TransBuff, len, TRUE);
 			}
 
 			return TRUE;
@@ -6244,7 +6182,7 @@ int rsTRANS_SERVER::SendPlayData(smCHAR *lpChar)
 	lpTransPlayPos->Hp[1] = lpChar->smCharInfo.Life[1];
 
 	if(smWsockServer)
-		smWsockServer->Send((char *)lpTransPlayPos, lpTransPlayPos->size, TRUE);
+		gameplay::network::legacy::SendPrimaryLegacyPacket((char *)lpTransPlayPos, lpTransPlayPos->size, TRUE);
 
 	if(smWsockExtendServer && smWsockExtendServer != smWsockServer)
 		smWsockExtendServer->Send((char *)lpTransPlayPos, lpTransPlayPos->size, TRUE);
@@ -8726,7 +8664,7 @@ int ThrowItemToServer(smTRANS_COMMAND_EX *lpTransCommand)
 				if(lpsmSock)
 					lpsmSock->Send((char *)&TransThrowItem, TransThrowItem.size, TRUE);
 				else
-					smWsockServer->Send((char *)&TransThrowItem, TransThrowItem.size, TRUE);
+					gameplay::network::legacy::SendPrimaryLegacyPacket((char *)&TransThrowItem, TransThrowItem.size, TRUE);
 
 				if(dwItemCodeMask == sinFO1)
 				{
@@ -9172,7 +9110,7 @@ int ThrowItemToServer(smTRANS_COMMAND_EX *lpTransCommand)
 			}
 			else
 			{
-				smWsockServer->Send((char *)&TransThrowItem, TransThrowItem.size, TRUE);
+				gameplay::network::legacy::SendPrimaryLegacyPacket((char *)&TransThrowItem, TransThrowItem.size, TRUE);
 			}
 		}
 
@@ -9577,7 +9515,7 @@ int ModoPVP()
 	smTransCommand.code = WARMODE;
 	smTransCommand.size = sizeof(smTRANS_COMMAND);
 	smTransCommand.WParam = PLayerPvP;
-	smWsockServer->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+	gameplay::network::legacy::SendPrimaryLegacyPacket((char*)&smTransCommand, smTransCommand.size, TRUE);
 
 	return TRUE;
 }
@@ -9734,7 +9672,7 @@ int	TransCheckNetwork()
 
 	dwCheckNetCount++;
 
-	if(smWsockServer) smWsockServer->Send((char *)&TransCommand, TransCommand.size, TRUE);
+	if(smWsockServer) gameplay::network::legacy::SendPrimaryLegacyPacket((char *)&TransCommand, TransCommand.size, TRUE);
 
 	if(smWsockDataServer && smWsockServer != smWsockDataServer)
 	{
@@ -9914,7 +9852,7 @@ int SendAdminMode(AccountTypes type)
 		smWsockExtendServer->Send((char *)&TransCommand, TransCommand.size, TRUE);
 
 
-	return smWsockServer->Send((char *)&TransCommand, TransCommand.size, TRUE);
+	return gameplay::network::legacy::SendPrimaryLegacyPacket((char *)&TransCommand, TransCommand.size, TRUE);
 }
 
 
@@ -9934,7 +9872,7 @@ int SendNetworkQuality(DWORD NetworkQuality)
 	if(smWsockExtendServer && smWsockServer != smWsockExtendServer)
 		smWsockExtendServer->Send((char *)&TransCommand, TransCommand.size, TRUE);
 
-	return smWsockServer->Send((char *)&TransCommand, TransCommand.size, TRUE);
+	return gameplay::network::legacy::SendPrimaryLegacyPacket((char *)&TransCommand, TransCommand.size, TRUE);
 }
 
 
@@ -9968,7 +9906,7 @@ int SendSetObjectSerial(DWORD dwObjectSerial)
 	TransPlayerInfo.y = lpCurPlayer->pY;
 	TransPlayerInfo.z = lpCurPlayer->pZ;
 
-	smWsockServer->Send((char *)&TransPlayerInfo, TransPlayerInfo.size, TRUE);
+	gameplay::network::legacy::SendPrimaryLegacyPacket((char *)&TransPlayerInfo, TransPlayerInfo.size, TRUE);
 
 	if(smWsockServer != smWsockUserServer)
 		smWsockUserServer->Send((char *)&TransPlayerInfo, TransPlayerInfo.size, TRUE);
@@ -10133,7 +10071,7 @@ int SendCrackWindow(HWND hWnd)
 		((int *)TransBuff)[0] = len;
 		((int *)TransBuff)[1] = OpCode::OPCODE_FINDCRACK2;
 
-		smWsockServer->Send(TransBuff, len, TRUE);
+		gameplay::network::legacy::SendPrimaryLegacyPacket(TransBuff, len, TRUE);
 	}
 	return TRUE;
 }
@@ -10375,7 +10313,7 @@ int SendPlayUpdateInfo()
 	TransCommand.SParam = 0;
 	TransCommand.EParam = 0;
 
-	return smWsockServer->Send((char *)&TransCommand, TransCommand.size, TRUE);
+	return gameplay::network::legacy::SendPrimaryLegacyPacket((char *)&TransCommand, TransCommand.size, TRUE);
 }
 
 
@@ -10391,7 +10329,7 @@ int SendUpdateClanInfo()
 	TransCommand.EParam = lpCurPlayer->smCharInfo.bUpdateInfo[0];
 
 	if(smWsockServer)
-		smWsockServer->Send((char *)&TransCommand, TransCommand.size, TRUE);
+		gameplay::network::legacy::SendPrimaryLegacyPacket((char *)&TransCommand, TransCommand.size, TRUE);
 
 	if(smWsockUserServer && smWsockServer != smWsockUserServer)
 		smWsockUserServer->Send((char *)&TransCommand, TransCommand.size, TRUE);
@@ -10978,7 +10916,7 @@ int SendTradeItem(sTRADE *lpTrade, DWORD dwSender)
 	TransTradeItems.Temp[3] = 0;
 
 	if(smWsockUserServer)
-		return smWsockServer->Send((char *)&TransTradeItems, TransTradeItems.size, TRUE);
+		return gameplay::network::legacy::SendPrimaryLegacyPacket((char *)&TransTradeItems, TransTradeItems.size, TRUE);
 
 	return FALSE;
 }
@@ -11265,7 +11203,7 @@ int SendTradeCheckItem(DWORD dwSender)
 
 
 	if(smWsockServer)
-		smWsockServer->Send((char *)&TransTradeCheckItem, TransTradeCheckItem.size, TRUE);
+		gameplay::network::legacy::SendPrimaryLegacyPacket((char *)&TransTradeCheckItem, TransTradeCheckItem.size, TRUE);
 
 	if(smWsockUserServer && smWsockServer != smWsockUserServer)
 		smWsockUserServer->Send((char *)&TransTradeCheckItem, TransTradeCheckItem.size, TRUE);
@@ -11782,7 +11720,7 @@ int SendLinkCoreToServer(sITEMINFO *lpItem)
 		}
 
 		if(smWsockServer)
-			return smWsockServer->Send((char *)&TransItemInfo, TransItemInfo.size, TRUE);
+			return gameplay::network::legacy::SendPrimaryLegacyPacket((char *)&TransItemInfo, TransItemInfo.size, TRUE);
 	}
 
 	if(smWsockDataServer)

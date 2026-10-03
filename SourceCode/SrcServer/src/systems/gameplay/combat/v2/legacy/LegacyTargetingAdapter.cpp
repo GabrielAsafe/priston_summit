@@ -44,6 +44,19 @@ TargetingResult LegacyTargetingAdapter::ClearAcquiredTarget(EntityId actor)
     return Result(TargetingCode::Ok, changed);
 }
 
+TargetingResult LegacyTargetingAdapter::ClearPlayerTarget(EntityId actor)
+{
+    if(!actor.Valid())
+        return Result(TargetingCode::InvalidRequest);
+    smCHAR* resolved = Resolve(actor);
+    if(!resolved)
+        return Result(TargetingCode::ActorNotFound);
+
+    const bool changed = resolved->lpTargetPlayInfo != 0;
+    resolved->lpTargetPlayInfo = 0;
+    return Result(TargetingCode::Ok, changed);
+}
+
 TargetingResult LegacyTargetingAdapter::ReleaseTarget(EntityId actor, EntityId expectedTarget,
                                                         TargetReleaseMode mode)
 {

@@ -144,6 +144,7 @@ enum class PersonalShopTradeCode
     PotionTransferRejected,
     ItemDeleteRejected,
     BuyerInventoryRejected,
+    InventoryReservationRejected,
     WalletRejected,
     RollbackFailed
 };

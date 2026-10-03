@@ -102,7 +102,7 @@ void cQUESTWINDOW::AddSpoiler(sTAB* pTab, int ID, int Mat)
 		smTransCommand.WParam = ID;
 
 		if (smWsockServer)
-			smWsockServer->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+			gameplay::network::legacy::SendPrimaryLegacyPacket((char*)&smTransCommand, smTransCommand.size, TRUE);
 	}
 }
 
@@ -669,7 +669,7 @@ bool sSPOILER::SetQuest(sQUEST* pQuest)
 
 
 	if (smWsockServer)
-		smWsockServer->Send((char*)&QuestCommand, QuestCommand.size, TRUE);
+		gameplay::network::legacy::SendPrimaryLegacyPacket((char*)&QuestCommand, QuestCommand.size, TRUE);
 
 	return true;
 }
@@ -695,7 +695,7 @@ void sSPOILER::StartQuest(bool ok)
 	smTransCommand.EParam = pSelectedQuest->QuestInfo.PartyFlag;
 
 	if (smWsockServer)
-		smWsockServer->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+		gameplay::network::legacy::SendPrimaryLegacyPacket((char*)&smTransCommand, smTransCommand.size, TRUE);
 
 	ResetQuests = true;
 	pQuestWindow->GetSpoiler(10)->ResetQuests = true;
@@ -718,7 +718,7 @@ void sSPOILER::CancelQuest(bool ok)
 	smTransCommand.SParam = pSelectedQuest->QuestInfo.QuestType;
 
 	if (smWsockServer)
-		smWsockServer->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+		gameplay::network::legacy::SendPrimaryLegacyPacket((char*)&smTransCommand, smTransCommand.size, TRUE);
 
 	ResetQuests = true;
 	pQuestWindow->GetSpoiler(pSelectedQuest->Kind)->ResetQuests = true;
@@ -735,7 +735,7 @@ void sSPOILER::GetReward()
 	smTransCommand.SParam = pSelectedQuest->QuestInfo.QuestType;
 
 	if (smWsockServer)
-		smWsockServer->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+		gameplay::network::legacy::SendPrimaryLegacyPacket((char*)&smTransCommand, smTransCommand.size, TRUE);
 
 	ResetQuests = true;
 	pQuestWindow->GetSpoiler(pSelectedQuest->Kind)->ResetQuests = true;

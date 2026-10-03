@@ -11,12 +11,8 @@ namespace legacy
 class LegacyShopAdapter final : public IShopService
 {
 public:
-    LegacyShopAdapter(const IWalletQuery& walletQuery,
-                      IWalletCommands& walletCommands,
-                      const inventory::IInventoryQuery& inventoryQuery,
-                      inventory::IInventoryCommands& inventoryCommands,
-                      const inventory::IPotionStackQuery& potionStackQuery,
-                      inventory::IPotionStackCommands& potionStackCommands);
+    explicit LegacyShopAdapter(IShopService& transactionService)
+        : transactionService_(transactionService) {}
 
     ShopPurchaseResult Purchase(const ShopPurchaseRequest& request) override;
     ShopPotionPurchaseResult PurchasePotion(const ShopPotionPurchaseRequest& request) override;
@@ -26,12 +22,7 @@ public:
     ShopSaleResult RollbackSale(const ShopSaleRequest& request) override;
 
 private:
-    const IWalletQuery& walletQuery_;
-    IWalletCommands& walletCommands_;
-    const inventory::IInventoryQuery& inventoryQuery_;
-    inventory::IInventoryCommands& inventoryCommands_;
-    const inventory::IPotionStackQuery& potionStackQuery_;
-    inventory::IPotionStackCommands& potionStackCommands_;
+    IShopService& transactionService_;
 };
 
 LegacyShopAdapter& ServerLegacyShopAdapter();

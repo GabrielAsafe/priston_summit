@@ -24,6 +24,7 @@
 #include "systems/rendering/legacy_3d/smd3d.h"
 
 #include "systems/network/transport/legacy/smwsock.h"
+#include "systems/network/v2/legacy/LegacyPacketSender.h"
 #include "systems/gameplay/character/core/character.h"
 #include "core/server/gameplay_runtime/playmain.h"
 #include "core/data/legacy_loader/fileread.h"
@@ -722,7 +723,7 @@ int	SendTotalExpMoney()
 	{
 		memcpy(&TransTotalExpMoney.sServerExp, &sServerExp[0], sizeof(sSERVER_EXP));
 		memcpy(&TransTotalExpMoney.sServerMoney, &sServerMoney[0], sizeof(sSERVER_MONEY));
-		smWsockServer->Send((char *)&TransTotalExpMoney, TransTotalExpMoney.size, TRUE);
+		gameplay::network::legacy::SendServerPrimaryLegacyPacket((char *)&TransTotalExpMoney, TransTotalExpMoney.size, TRUE);
 	}
 	if(smWsockUserServer && smWsockUserServer != smWsockServer)
 	{
@@ -1253,7 +1254,7 @@ int rsTRANS_SERVER::SendChat(char *szMessage)
 		strcpy_s(TransBuff + 8, sizeof(TransBuff) - 8, szMessage + 1);
 		((int *)TransBuff)[0] = len;
 		((int *)TransBuff)[1] = OpCode::OPCODE_CHATMESSAGE;
-		if(smWsockServer) smWsockServer->Send(TransBuff, len, TRUE);
+		if(smWsockServer) gameplay::network::legacy::SendServerPrimaryLegacyPacket(TransBuff, len, TRUE);
 		if(smWsockServer != smWsockUserServer && smWsockUserServer) smWsockUserServer->Send(TransBuff, len, TRUE);
 		if(smWsockServer != smWsockExtendServer && smWsockExtendServer) smWsockExtendServer->Send(TransBuff, len, TRUE);
 		if(AreaServerMode)
@@ -1275,7 +1276,7 @@ int rsTRANS_SERVER::SendChat(char *szMessage)
 			((int *)TransBuff)[0] = len;
 			((int *)TransBuff)[1] = OpCode::OPCODE_PARTY_CHATMSG;
 
-			if(smWsockServer) smWsockServer->Send(TransBuff, len, TRUE);
+			if(smWsockServer) gameplay::network::legacy::SendServerPrimaryLegacyPacket(TransBuff, len, TRUE);
 			AddChatBuff(TransBuff + 8, 4);
 			return TRUE;
 		}
@@ -1304,7 +1305,7 @@ int rsTRANS_SERVER::SendChat(char *szMessage)
 			}
 			else
 			{
-				if(smWsockServer) smWsockServer->Send(TransBuff, len, TRUE);
+				if(smWsockServer) gameplay::network::legacy::SendServerPrimaryLegacyPacket(TransBuff, len, TRUE);
 			}
 
 			return TRUE;
@@ -1369,7 +1370,7 @@ int rsTRANS_SERVER::SendPlayData(smCHAR *lpChar)
 	lpTransPlayPos->Hp[1] = lpChar->smCharInfo.Life[1];
 
 	if(smWsockServer)
-		smWsockServer->Send((char *)lpTransPlayPos, lpTransPlayPos->size, TRUE);
+		gameplay::network::legacy::SendServerPrimaryLegacyPacket((char *)lpTransPlayPos, lpTransPlayPos->size, TRUE);
 
 	if(smWsockExtendServer && smWsockExtendServer != smWsockServer)
 		smWsockExtendServer->Send((char *)lpTransPlayPos, lpTransPlayPos->size, TRUE);
@@ -1959,7 +1960,7 @@ int SendChatMessageToServer(char *szChatMessage)
 			}
 
 
-			len = rsCompString("/ÇÊµåº¯°æ", szMessage);
+			len = rsCompString("/ï¿½Êµåº¯ï¿½ï¿½", szMessage);
 			if(!len)
 				len = rsCompString("/$city", szMessage);
 
@@ -3087,7 +3088,7 @@ int ThrowItemToServer(smTRANS_COMMAND_EX *lpTransCommand)
 				if(lpsmSock)
 					lpsmSock->Send((char *)&TransThrowItem, TransThrowItem.size, TRUE);
 				else
-					smWsockServer->Send((char *)&TransThrowItem, TransThrowItem.size, TRUE);
+					gameplay::network::legacy::SendServerPrimaryLegacyPacket((char *)&TransThrowItem, TransThrowItem.size, TRUE);
 
 				if(dwItemCodeMask == sinFO1)
 				{
@@ -3528,7 +3529,7 @@ int ThrowItemToServer(smTRANS_COMMAND_EX *lpTransCommand)
 			}
 			else
 			{
-				smWsockServer->Send((char *)&TransThrowItem, TransThrowItem.size, TRUE);
+				gameplay::network::legacy::SendServerPrimaryLegacyPacket((char *)&TransThrowItem, TransThrowItem.size, TRUE);
 			}
 		}
 
@@ -3679,11 +3680,11 @@ int SendGetRecordData(char *szName)
 }
 
 char *szCmdOpenMonster[10] = {
-	"È©°íºí¸°",
-	"È©°íºí¸°",
-	"È©°íºí¸°",
-	"Å·È£ÇÇ",
-	"Å¸ÀÌÅº",
+	"È©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",
+	"È©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",
+	"È©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",
+	"Å·È£ï¿½ï¿½",
+	"Å¸ï¿½ï¿½Åº",
 	0,0,0,0,0
 };
 
@@ -3951,7 +3952,7 @@ int	TransCheckNetwork()
 
 	dwCheckNetCount++;
 
-	if(smWsockServer) smWsockServer->Send((char *)&TransCommand, TransCommand.size, TRUE);
+	if(smWsockServer) gameplay::network::legacy::SendServerPrimaryLegacyPacket((char *)&TransCommand, TransCommand.size, TRUE);
 
 	if(smWsockDataServer && smWsockServer != smWsockDataServer)
 	{
@@ -4124,7 +4125,7 @@ int SendAdminMode(AccountTypes type)
 		smWsockExtendServer->Send((char *)&TransCommand, TransCommand.size, TRUE);
 
 
-	return smWsockServer->Send((char *)&TransCommand, TransCommand.size, TRUE);
+	return gameplay::network::legacy::SendServerPrimaryLegacyPacket((char *)&TransCommand, TransCommand.size, TRUE);
 }
 
 
@@ -4144,7 +4145,7 @@ int SendNetworkQuality(DWORD NetworkQuality)
 	if(smWsockExtendServer && smWsockServer != smWsockExtendServer)
 		smWsockExtendServer->Send((char *)&TransCommand, TransCommand.size, TRUE);
 
-	return smWsockServer->Send((char *)&TransCommand, TransCommand.size, TRUE);
+	return gameplay::network::legacy::SendServerPrimaryLegacyPacket((char *)&TransCommand, TransCommand.size, TRUE);
 }
 
 
@@ -4178,7 +4179,7 @@ int SendSetObjectSerial(DWORD dwObjectSerial)
 	TransPlayerInfo.y = lpCurPlayer->pY;
 	TransPlayerInfo.z = lpCurPlayer->pZ;
 
-	smWsockServer->Send((char *)&TransPlayerInfo, TransPlayerInfo.size, TRUE);
+	gameplay::network::legacy::SendServerPrimaryLegacyPacket((char *)&TransPlayerInfo, TransPlayerInfo.size, TRUE);
 
 	if(smWsockServer != smWsockUserServer)
 		smWsockUserServer->Send((char *)&TransPlayerInfo, TransPlayerInfo.size, TRUE);
@@ -4343,7 +4344,7 @@ int SendCrackWindow(HWND hWnd)
 		((int *)TransBuff)[0] = len;
 		((int *)TransBuff)[1] = OpCode::OPCODE_FINDCRACK2;
 
-		smWsockServer->Send(TransBuff, len, TRUE);
+		gameplay::network::legacy::SendServerPrimaryLegacyPacket(TransBuff, len, TRUE);
 	}
 	return TRUE;
 }
@@ -4557,7 +4558,7 @@ int SendPlayUpdateInfo()
 	TransCommand.SParam = 0;
 	TransCommand.EParam = 0;
 
-	return smWsockServer->Send((char *)&TransCommand, TransCommand.size, TRUE);
+	return gameplay::network::legacy::SendServerPrimaryLegacyPacket((char *)&TransCommand, TransCommand.size, TRUE);
 }
 
 
@@ -4573,7 +4574,7 @@ int SendUpdateClanInfo()
 	TransCommand.EParam = lpCurPlayer->smCharInfo.bUpdateInfo[0];
 
 	if(smWsockServer)
-		smWsockServer->Send((char *)&TransCommand, TransCommand.size, TRUE);
+		gameplay::network::legacy::SendServerPrimaryLegacyPacket((char *)&TransCommand, TransCommand.size, TRUE);
 
 	if(smWsockUserServer && smWsockServer != smWsockUserServer)
 		smWsockUserServer->Send((char *)&TransCommand, TransCommand.size, TRUE);
@@ -4617,7 +4618,7 @@ int Skil_RangeAttack(int x, int y, int z, int range, int power, int TargetState)
 
 
 
-	Record_ClinetLogFile("±¸¹öÀü °ø°ÝÆÐÅ¶ - Skil_RangeAttack ");
+	Record_ClinetLogFile("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¶ - Skil_RangeAttack ");
 	quit = 1;
 	return TRUE;
 
@@ -4782,7 +4783,7 @@ int Skil_RangeBoxAttack(smCHAR *lpCurChar, RECT *lpRect, int power, int TargetSt
 
 
 
-	Record_ClinetLogFile("±¸¹öÀü °ø°ÝÆÐÅ¶ - Skil_RangeBoxAttack ");
+	Record_ClinetLogFile("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¶ - Skil_RangeBoxAttack ");
 	quit = 1;
 	return TRUE;
 
@@ -5015,7 +5016,7 @@ int QuickSendTransAttack(smCHAR *lpChar, int power, int AttackState, int Resista
 	int pow;
 
 
-	Record_ClinetLogFile("±¸¹öÀü °ø°ÝÆÐÅ¶ - QuickSendTransAttack ");
+	Record_ClinetLogFile("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¶ - QuickSendTransAttack ");
 	quit = 1;
 	return TRUE;
 
@@ -5160,7 +5161,7 @@ int SendTradeItem(sTRADE *lpTrade, DWORD dwSender)
 	TransTradeItems.Temp[3] = 0;
 
 	if(smWsockUserServer)
-		return smWsockServer->Send((char *)&TransTradeItems, TransTradeItems.size, TRUE);
+		return gameplay::network::legacy::SendServerPrimaryLegacyPacket((char *)&TransTradeItems, TransTradeItems.size, TRUE);
 
 	return FALSE;
 }
@@ -5447,7 +5448,7 @@ int SendTradeCheckItem(DWORD dwSender)
 
 
 	if(smWsockServer)
-		smWsockServer->Send((char *)&TransTradeCheckItem, TransTradeCheckItem.size, TRUE);
+		gameplay::network::legacy::SendServerPrimaryLegacyPacket((char *)&TransTradeCheckItem, TransTradeCheckItem.size, TRUE);
 
 	if(smWsockUserServer && smWsockServer != smWsockUserServer)
 		smWsockUserServer->Send((char *)&TransTradeCheckItem, TransTradeCheckItem.size, TRUE);
@@ -5964,7 +5965,7 @@ int SendLinkCoreToServer(sITEMINFO *lpItem)
 		}
 
 		if(smWsockServer)
-			return smWsockServer->Send((char *)&TransItemInfo, TransItemInfo.size, TRUE);
+			return gameplay::network::legacy::SendServerPrimaryLegacyPacket((char *)&TransItemInfo, TransItemInfo.size, TRUE);
 	}
 
 	if(smWsockDataServer)
@@ -7128,7 +7129,7 @@ int	SkillPlay_DivineLightning_Select(smCHAR *lpChar, int SkillPoint)
 	smWINSOCK *lpsmSendSock = 0;
 
 
-	Record_ClinetLogFile("±¸¹öÀü °ø°ÝÆÐÅ¶ - SkillPlay_DivineLightning_Select ");
+	Record_ClinetLogFile("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¶ - SkillPlay_DivineLightning_Select ");
 	quit = 1;
 	return TRUE;
 

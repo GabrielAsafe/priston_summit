@@ -10,7 +10,7 @@ checks = [
     (ROOT / "SrcServer/src/systems/gameplay/companions/CompanionSystem.cpp", "100U", "10 Hz visual throttle"),
     (ROOT / "SrcServer/src/systems/gameplay/companions/CompanionSystem.cpp", "kDeadVisualHoldMs", "death visual retention"),
     (ROOT / "SrcServer/src/systems/gameplay/character/core/character.cpp", "PublishVisualState(this)", "post-tick visual publication"),
-    (ROOT / "SrcGame/src/systems/network/client/netplay.cpp", "OPCODE_COMPANION_VISUAL_STATE", "client visual dispatch"),
+    (ROOT / "SrcGame/src/systems/network/v2/legacy/LegacyClientGameplayPacketRouter.h", "OPCODE_COMPANION_VISUAL_STATE", "client visual dispatch"),
     (ROOT / "Shared/gameplay/character/character_legacy_client.inl", "namespace client_visual", "client visual controller"),
     (ROOT / "Shared/gameplay/character/character_legacy_client.inl", "PlayBuffCnt = character->PlayBuffPosi_End", "legacy visual buffer bypass"),
     (ROOT / "Shared/gameplay/character/character_legacy_client.inl", "appliedMotionSequence", "idempotent motion application"),

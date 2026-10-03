@@ -153,6 +153,7 @@ enum class ShopItemSaleCode
     WalletNotFound,
     CapacityExceeded,
     ItemNotFound,
+    InventoryReservationRejected,
     WalletRejected,
     RollbackFailed
 };

@@ -90,6 +90,10 @@ std::vector<DetailVisualLine> BuildDetailLines(const QuestEntrySnapshot& quest, 
         {
             lines.push_back({"", UITheme::Text, false});
             lines.push_back({"CODEX PT-BR", UITheme::TextMuted, true});
+            AddWrapped(lines, quest.codex.runtimeVerified
+                ? "Runtime: binding verificado"
+                : "Runtime: referencia documental (sem binding confirmado)",
+                textWidth, quest.codex.runtimeVerified ? UITheme::Positive : UITheme::TextMuted);
             if (!quest.codex.type.empty())
                 AddWrapped(lines, "Tipo: " + quest.codex.type, textWidth);
             if (!quest.codex.category.empty())

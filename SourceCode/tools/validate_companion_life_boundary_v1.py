@@ -22,7 +22,11 @@ def main() -> None:
     required = [
         "ServerLegacyLifeAdapter().Restore(EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)), rawDamage)",
         "ServerLegacyLifeAdapter().ConsumeNonLethal",
+        "ServerLegacyLifeAdapter().ConsumeLethal",
         "ServerLegacyLifeAdapter().Revive",
+        "const combat::LifeCommandResult restored = combat::legacy::ServerLegacyLifeAdapter().Restore",
+        "EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)), heal",
+        "EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)), totalLife",
     ]
     for token in required:
         if token not in executor:
@@ -31,7 +35,12 @@ def main() -> None:
     forbidden = [
         "caster->smCharInfo.Life[0] = (short)std::min((int)caster->smCharInfo.Life[1], (int)caster->smCharInfo.Life[0] + rawDamage)",
         "caster->smCharInfo.Life[0] = (short)((int)caster->smCharInfo.Life[0] - lifeCost)",
+        "caster->smCharInfo.Life[0] = (short)std::min((int)caster->smCharInfo.Life[1], (int)caster->smCharInfo.Life[0] + totalLife)",
+        "caster->smCharInfo.Life[0] = (short)std::min((int)caster->smCharInfo.Life[1], before + add)",
+        "target->smCharInfo.Life[0] = (short)std::min((int)target->smCharInfo.Life[1]",
+        "target->smCharInfo.Life[0] = (short)std::max(0, (int)target->smCharInfo.Life[0] - life)",
         "reviveTarget->smCharInfo.Life[0] = (short)std::max(1,",
+        "deadTarget->smCharInfo.Life[0] = (short)std::max(1,",
         "reviveTarget->SetMotionFromCode(CHRMOTION_STATE_STAND)",
     ]
     for token in forbidden:
@@ -44,7 +53,8 @@ def main() -> None:
             fail(f"GREEN life contract contains legacy symbol/include: {forbidden_symbol}")
 
     adapter = ADAPTER.read_text(encoding="utf-8", errors="replace")
-    for token in ("std::min(maximum, before + amount)", "before - amount <= 0", "CHRMOTION_STATE_STAND"):
+    for token in ("std::min(maximum, before + amount)", "before - amount <= 0",
+                  "std::max(0, before - amount)", "CHRMOTION_STATE_STAND"):
         if token not in adapter:
             fail(f"life parity token missing from adapter: {token}")
 

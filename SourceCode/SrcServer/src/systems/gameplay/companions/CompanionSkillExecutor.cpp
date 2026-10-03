@@ -20,6 +20,7 @@
 #include "gameplay/skills/v2/legacy/LegacySkillAdapter.h"
 #include "gameplay/companions/v2/CompanionSkillProfile.h"
 #include "gameplay/skills/v2/runtime/SkillRuntime.h"
+#include "gameplay/skills/v2/SkillAnimationCommands.h"
 #include "gameplay/combat/v2/DamageContracts.h"
 #include "gameplay/combat/v2/LifeCommands.h"
 #include "gameplay/combat/v2/HealingService.h"
@@ -29,6 +30,7 @@
 #include "gameplay/inventory/v2/PotionService.h"
 #include "gameplay/monsters/v2/MonsterCommands.h"
 #include "gameplay/monsters/v2/MonsterQuery.h"
+#include "gameplay/monsters/v2/SummonedActorCommands.h"
 #include "gameplay/world/v2/MovementCommands.h"
 #include "systems/gameplay/combat/v2/legacy/LegacyDamageAdapter.h"
 #include "systems/gameplay/combat/v2/legacy/LegacyLifeAdapter.h"
@@ -38,8 +40,11 @@
 #include "systems/gameplay/combat/v2/legacy/LegacyCombatBuffAdapter.h"
 #include "systems/gameplay/inventory/v2/legacy/LegacyPotionAdapter.h"
 #include "systems/gameplay/monsters/v2/legacy/LegacyMonsterAdapter.h"
+#include "systems/gameplay/monsters/v2/legacy/LegacySummonedActorAdapter.h"
 #include "systems/gameplay/world/v2/legacy/LegacyMovementAdapter.h"
 #include "systems/gameplay/skills/v2/legacy/LegacySkillRuntimeAdapter.h"
+#include "systems/gameplay/skills/v2/legacy/LegacySkillResourceAdapter.h"
+#include "systems/gameplay/skills/v2/legacy/LegacySkillAnimationAdapter.h"
 #include "systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h"
 #include "opcodes.h"
 
@@ -922,9 +927,8 @@ static void ApplyCompanionTargetSideEffects(smCHAR *target, DWORD skillCode, int
                 if((rand() % 100) < std::max(0, std::min(100, chance)))
                 {
                     const int life = std::max(1, ((int)target->smCharInfo.Life[0] * Extinction_Amount[p]) / 100);
-                    target->smCharInfo.Life[0] = (short)std::max(0, (int)target->smCharInfo.Life[0] - life);
-                    if(target->smCharInfo.Life[0] <= 0)
-                        target->SetMotionFromCode(CHRMOTION_STATE_DEAD);
+                    (void)combat::legacy::ServerLegacyLifeAdapter().ConsumeLethal(
+                        EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)), life);
                 }
             }
             break;
@@ -1115,23 +1119,17 @@ static int ApplyLegacyResistance(int rawDamage, const smCHAR *target, int resist
 
 static bool ApplyDirectLifeLoss(smCHAR *caster, rsPLAYINFO *owner, smCHAR *target, int damage)
 {
-    if(!caster || !owner || !target || !target->Flag || target->smCharInfo.Life[0] <= 0 || damage <= 0)
+    if(!caster || !owner || !target || damage <= 0)
         return false;
-    if(target->smCharInfo.State != smCHAR_STATE_ENEMY || target->smCharInfo.Brood == smCHAR_MONSTER_USER || target->lpMasterPlayInfo)
-        return false;
-    target->smCharInfo.Life[0] -= damage;
-    if(target->smCharInfo.Life[0] <= 0)
-    {
-        target->smCharInfo.Life[0] = 0;
-        target->SetMotionFromCode(CHRMOTION_STATE_DEAD);
-        target->lpExt2 = owner;
-        target->lpExt3 = caster;
-    }
-    else if(target->MotionInfo && target->MotionInfo->State < 0x100)
-    {
-        target->SetMotionFromCode(CHRMOTION_STATE_DAMAGE);
-    }
-    return true;
+
+    const PlayerId ownerId = player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(owner);
+    const combat::DamageRequest request(
+        EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)),
+        ownerId,
+        EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)),
+        damage,
+        combat::DamageMode::DirectLifeLoss);
+    return combat::legacy::ServerLegacyDamageAdapter().Apply(request).Accepted();
 }
 
 static bool IsLegacyPushImmuneBoss(const smCHAR *target)
@@ -1150,7 +1148,8 @@ static void PushTargetAwayFromCaster(smCHAR *caster, smCHAR *target, int distanc
         EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)),
         EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)), distance);
     if(moved.Ok())
-        target->lpTargetPlayInfo = NULL;
+        (void)combat::legacy::ServerLegacyTargetingAdapter().ClearPlayerTarget(
+            EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)));
 }
 
 static bool ApplyShieldStrikeToTarget(smCHAR *caster, rsPLAYINFO *owner, smCHAR *target, int point,
@@ -1376,7 +1375,8 @@ static bool ApplySoulSucker(smCHAR *caster, rsPLAYINFO *owner, smCHAR *primary, 
         }
     }
     if(totalLife > 0)
-        caster->smCharInfo.Life[0] = (short)std::min((int)caster->smCharInfo.Life[1], (int)caster->smCharInfo.Life[0] + totalLife);
+        (void)combat::legacy::ServerLegacyLifeAdapter().Restore(
+            EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)), totalLife);
     return applied;
 }
 
@@ -1687,6 +1687,40 @@ static bool ConsumeAndApplyPotion(const char *accountName, const char *character
     return true;
 }
 
+static skills::SkillResourceCommandResult InspectCompanionSkillResources(smCHAR *caster)
+{
+    if(!caster)
+        return skills::SkillResourceCommandResult();
+    return skills::legacy::ServerLegacySkillResourceAdapter().Inspect(
+        EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)));
+}
+
+static bool SpendCompanionSkillResources(smCHAR *caster, int mana, int stamina)
+{
+    if(!caster || mana < 0 || stamina < 0)
+        return false;
+    const skills::SkillResourceCommandResult result =
+        skills::legacy::ServerLegacySkillResourceAdapter().Spend(
+            EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)), mana, stamina);
+    return result.Ok();
+}
+
+static skills::SkillResourceCommandResult RestoreCompanionSkillResources(smCHAR *caster, int mana, int stamina)
+{
+    if(!caster || mana < 0 || stamina < 0)
+        return skills::SkillResourceCommandResult();
+    return skills::legacy::ServerLegacySkillResourceAdapter().Restore(
+        EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)), mana, stamina);
+}
+
+static skills::SkillResourceCommandResult DrainCompanionSkillResources(smCHAR *caster, int mana, int stamina)
+{
+    if(!caster || mana < 0 || stamina < 0)
+        return skills::SkillResourceCommandResult();
+    return skills::legacy::ServerLegacySkillResourceAdapter().Drain(
+        EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)), mana, stamina);
+}
+
 static bool CanCast(smCHAR *caster, DWORD rightCode, DWORD leftCode,
     DWORD skillCode, int point, const sSKILL_INFO **outInfo, int *outMana, int *outStamina,
     CompanionSkillAttempt *attempt, bool preserveResourceReserve = false)
@@ -1736,12 +1770,19 @@ static bool CanCast(smCHAR *caster, DWORD rightCode, DWORD leftCode,
         attempt->manaCost = mana;
         attempt->staminaCost = stamina;
     }
-    if(caster->smCharInfo.Mana[0] < mana)
+    const skills::SkillResourceCommandResult resourceResult = InspectCompanionSkillResources(caster);
+    if(!resourceResult.Ok())
+    {
+        if(attempt) attempt->reason = COMPANION_SKILL_EFFECT_FAILED;
+        return false;
+    }
+    const skills::SkillResourceState &resources = resourceResult.after;
+    if(resources.mana < mana)
     {
         if(attempt) attempt->reason = COMPANION_SKILL_MP;
         return false;
     }
-    if(caster->smCharInfo.Stamina[0] < stamina)
+    if(resources.stamina < stamina)
     {
         if(attempt) attempt->reason = COMPANION_SKILL_STAMINA;
         return false;
@@ -1752,9 +1793,9 @@ static bool CanCast(smCHAR *caster, DWORD rightCode, DWORD leftCode,
     if(preserveResourceReserve)
     {
         manaReserve = SkillResourceReserveAmount(
-            caster->smCharInfo.Mana[1], "SkillManaReservePercent", 10);
+            resources.maxMana, "SkillManaReservePercent", 10);
         staminaReserve = SkillResourceReserveAmount(
-            caster->smCharInfo.Stamina[1], "SkillStaminaReservePercent", 10);
+            resources.maxStamina, "SkillStaminaReservePercent", 10);
         if(attempt)
         {
             attempt->manaReserve = manaReserve;
@@ -1765,12 +1806,12 @@ static bool CanCast(smCHAR *caster, DWORD rightCode, DWORD leftCode,
         // real legacy cost. This prevents the regen loop from enabling a single
         // cast at exactly the cost boundary and immediately starving again.
         // Support/heal/resource skills call CanCast with this policy disabled.
-        if(mana > 0 && (int)caster->smCharInfo.Mana[0] - mana < manaReserve)
+        if(mana > 0 && resources.mana - mana < manaReserve)
         {
             if(attempt) attempt->reason = COMPANION_SKILL_MP_RESERVE;
             return false;
         }
-        if(stamina > 0 && (int)caster->smCharInfo.Stamina[0] - stamina < staminaReserve)
+        if(stamina > 0 && resources.stamina - stamina < staminaReserve)
         {
             if(attempt) attempt->reason = COMPANION_SKILL_STAMINA_RESERVE;
             return false;
@@ -2312,47 +2353,60 @@ static bool TryCompanionSummonSkill(smCHAR *caster, rsPLAYINFO *owner, DWORD ski
         return false;
     }
 
-    summon->dwUpdateCharInfoTime = now + (DWORD)std::max(1, duration) * 1000U;
+    monsters::SummonedActorProfile summonProfile;
+    summonProfile.expiresAtMs = now + (DWORD)std::max(1, duration) * 1000U;
+    summonProfile.attackDamageMin = attackPower;
+    summonProfile.attackDamageMax = attackPower;
+    summonProfile.attackRating = attackRating;
+    summonProfile.life = life;
+    summonProfile.overrideVisualSkill = true;
+    summonProfile.visualSkillCode = (int)(tier5Summon ? SKILL_PLAY_T51 : legacyPlayCode);
+    summonProfile.visualSkillMode = 1;
     if(skillCode == SKILL_METAL_GOLEM)
     {
-        summon->smCharInfo.Attack_Damage[0] = Metal_Golem_Damage[p][0];
-        summon->smCharInfo.Attack_Damage[1] = Metal_Golem_Damage[p][1];
-        summon->smCharInfo.Defence = Metal_Golem_Defense[p];
+        summonProfile.attackDamageMin = Metal_Golem_Damage[p][0];
+        summonProfile.attackDamageMax = Metal_Golem_Damage[p][1];
+        summonProfile.overrideDefence = true;
+        summonProfile.defence = Metal_Golem_Defense[p];
+        summonProfile.overridePlayClass = true;
+        summonProfile.playClassPhase = fONE + p * 15;
     }
     else if(skillCode == SKILL_RECALL_WOLVERIN)
     {
-        summon->smCharInfo.Attack_Damage[0] = Recall_Wolverin_Damage[p][0];
-        summon->smCharInfo.Attack_Damage[1] = Recall_Wolverin_Damage[p][1];
-        summon->smCharInfo.Defence = Recall_Wolverin_Defense[p] + owner->smCharInfo.Dexterity * 2;
+        summonProfile.attackDamageMin = Recall_Wolverin_Damage[p][0];
+        summonProfile.attackDamageMax = Recall_Wolverin_Damage[p][1];
+        summonProfile.overrideDefence = true;
+        summonProfile.defence = Recall_Wolverin_Defense[p] + owner->smCharInfo.Dexterity * 2;
+        summonProfile.overridePlayClass = true;
+        summonProfile.playClassPhase = (fONE / 2) + p * 12;
     }
     else if(skillCode == SKILL_FIRE_ELEMENTAL)
     {
-        summon->smCharInfo.Attack_Damage[0] = Fire_Elemental_Damage[p][0];
-        summon->smCharInfo.Attack_Damage[1] = Fire_Elemental_Damage[p][1];
+        summonProfile.attackDamageMin = Fire_Elemental_Damage[p][0];
+        summonProfile.attackDamageMax = Fire_Elemental_Damage[p][1];
     }
-    else
+    else if(skillCode == SKILL_T5_SUMMON_TIGER)
     {
-        summon->smCharInfo.Attack_Damage[0] = attackPower;
-        summon->smCharInfo.Attack_Damage[1] = attackPower;
+        summonProfile.overridePlayClass = true;
+        summonProfile.playClassPhase = fONE + p * 15;
     }
-    summon->smCharInfo.Attack_Rating = attackRating;
-    summon->smCharInfo.Life[0] = (short)std::min(32767, std::max(1, life));
-    summon->smCharInfo.Life[1] = summon->smCharInfo.Life[0];
-    summon->sMoveStepCount[0] = 1;
-    summon->sMoveStepCount[1] = 2;
-    if(skillCode == SKILL_T5_SUMMON_TIGER)
-        summon->smCharInfo.wPlayClass[1] = (WORD)(fONE + p * 15);
     else if(skillCode == SKILL_T5_ICE_ELEMENTAL)
-        summon->smCharInfo.wPlayClass[1] = (WORD)(fONE + (p + 1) * 15);
-    else if(skillCode == SKILL_METAL_GOLEM)
-        summon->smCharInfo.wPlayClass[1] = (WORD)(fONE + p * 15);
-    else if(skillCode == SKILL_RECALL_WOLVERIN)
-        summon->smCharInfo.wPlayClass[1] = (WORD)((fONE / 2) + p * 12);
-    summon->HoSkillCode = (int)(tier5Summon ? SKILL_PLAY_T51 : legacyPlayCode);
-    summon->HoSkillMode = 1;
+    {
+        summonProfile.overridePlayClass = true;
+        summonProfile.playClassPhase = fONE + (p + 1) * 15;
+    }
 
-    caster->smCharInfo.Mana[0] = (short)std::max(0, (int)caster->smCharInfo.Mana[0] - mana);
-    caster->smCharInfo.Stamina[0] = (short)std::max(0, (int)caster->smCharInfo.Stamina[0] - stamina);
+    const monsters::SummonedActorConfigureResult configured =
+        monsters::legacy::ServerLegacySummonedActorAdapter().Configure(
+            monsters::SummonedActorConfigureRequest(
+                EntityId(static_cast<std::uint32_t>(summon->dwObjectSerial)), summonProfile));
+    if(!configured.Ok())
+    {
+        if(attempt) attempt->reason = COMPANION_SKILL_EFFECT_FAILED;
+        return false;
+    }
+
+    (void)SpendCompanionSkillResources(caster, mana, stamina);
     BeginCast(caster, runtime, skillCode, point, summon->dwObjectSerial, now, 850U,
         summon->pX, summon->pY, summon->pZ);
     if(attempt) attempt->reason = COMPANION_SKILL_OK;
@@ -2448,12 +2502,18 @@ static bool ExecuteCompanionChannelTick(smCHAR *caster, rsPLAYINFO *owner, smCHA
 
     int manaDrain = 0, staminaDrain = 0;
     ChannelTickCosts(skillCode, point, manaDrain, staminaDrain);
-    if(manaDrain <= 0 || staminaDrain <= 0 ||
-       caster->smCharInfo.Mana[0] < manaDrain || caster->smCharInfo.Stamina[0] < staminaDrain)
+    const skills::SkillResourceCommandResult channelResources = InspectCompanionSkillResources(caster);
+    if(manaDrain <= 0 || staminaDrain <= 0 || !channelResources.Ok() ||
+       channelResources.after.mana < manaDrain || channelResources.after.stamina < staminaDrain)
     {
         StopCompanionChannel(runtime);
         if(attempt)
-            attempt->reason = caster->smCharInfo.Mana[0] < manaDrain ? COMPANION_SKILL_MP : COMPANION_SKILL_STAMINA;
+        {
+            if(!channelResources.Ok())
+                attempt->reason = COMPANION_SKILL_EFFECT_FAILED;
+            else
+                attempt->reason = channelResources.after.mana < manaDrain ? COMPANION_SKILL_MP : COMPANION_SKILL_STAMINA;
+        }
         return false;
     }
 
@@ -2467,8 +2527,7 @@ static bool ExecuteCompanionChannelTick(smCHAR *caster, rsPLAYINFO *owner, smCHA
     }
     FinishAttackTriggeredBuffs(caster, runtime);
 
-    caster->smCharInfo.Mana[0] = (short)std::max(0, (int)caster->smCharInfo.Mana[0] - manaDrain);
-    caster->smCharInfo.Stamina[0] = (short)std::max(0, (int)caster->smCharInfo.Stamina[0] - staminaDrain);
+    (void)SpendCompanionSkillResources(caster, manaDrain, staminaDrain);
     runtime.channelNextTick = now + 900U;
     runtime.nextDamageSkillTime = runtime.channelNextTick;
     // Legacy channels replay their attack/skill clip every tick. Re-emitting a
@@ -2496,7 +2555,11 @@ static void PrepareAttackTriggeredBuffs(smCHAR *caster, CompanionSkillRuntime &r
             int drain = (int)((float)caster->smCharInfo.Life[1] * modifier.lifeDrainPercent / 100.0f);
             if(drain < 1) drain = 1;
             if(drain >= caster->smCharInfo.Life[0]) drain = caster->smCharInfo.Life[0] - 1;
-            if(drain > 0) caster->smCharInfo.Life[0] = (short)(caster->smCharInfo.Life[0] - drain);
+            if(drain > 0)
+            {
+                (void)combat::legacy::ServerLegacyLifeAdapter().ConsumeNonLethal(
+                    EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)), drain);
+            }
         }
         ++modifier.triggerCounter;
         if(modifier.triggerCounter >= std::max(1, modifier.triggerThreshold))
@@ -2544,9 +2607,14 @@ static void ApplyRavingLifeCost(smCHAR *caster, int point)
         return;
     const int p = point - 1;
     const int cost = ((int)(Raving_UseLife[p] * 10) * (int)caster->smCharInfo.Life[1]) / 1000;
-    if(cost <= 0)
+    if(cost <= 0 || caster->smCharInfo.Life[0] <= 1)
         return;
-    caster->smCharInfo.Life[0] = (short)std::max(1, (int)caster->smCharInfo.Life[0] - cost);
+    const int nonLethalCost = std::min(cost, (int)caster->smCharInfo.Life[0] - 1);
+    if(nonLethalCost > 0)
+    {
+        (void)combat::legacy::ServerLegacyLifeAdapter().ConsumeNonLethal(
+            EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)), nonLethalCost);
+    }
 }
 
 static void StartMultiHitSchedule(smCHAR *caster, CompanionSkillRuntime &runtime,
@@ -2651,8 +2719,7 @@ static bool TryDamageCode(smCHAR *caster, rsPLAYINFO *owner, smCHAR *target,
             if(attempt) attempt->reason = COMPANION_SKILL_EFFECT_FAILED;
             return false;
         }
-        caster->smCharInfo.Mana[0] = (short)std::max(0, (int)caster->smCharInfo.Mana[0] - mana);
-        caster->smCharInfo.Stamina[0] = (short)std::max(0, (int)caster->smCharInfo.Stamina[0] - stamina);
+        (void)SpendCompanionSkillResources(caster, mana, stamina);
         runtime.channelSkillCode = skillCode;
         runtime.channelPoint = (BYTE)point;
         runtime.channelEndTime = now + (DWORD)duration * 1000U;
@@ -2664,18 +2731,19 @@ static bool TryDamageCode(smCHAR *caster, rsPLAYINFO *owner, smCHAR *target,
 
     if(skillCode == SKILL_CHARGING_STRIKE)
     {
-        caster->smCharInfo.Mana[0] = (short)std::max(0, (int)caster->smCharInfo.Mana[0] - mana);
-        caster->smCharInfo.Stamina[0] = (short)std::max(0, (int)caster->smCharInfo.Stamina[0] - stamina);
+        (void)SpendCompanionSkillResources(caster, mana, stamina);
         BeginCast(caster, runtime, skillCode, point, target->dwObjectSerial, now, 700U,
             target->pX, target->pY, target->pZ);
-        caster->MotionLoopSpeed = 60 + (Charging_Strike_Time[point - 1] * 2);
-        caster->MotionLoop = 1;
+        const skills::SkillAnimationLoopResult chargeLoop =
+            skills::legacy::ServerLegacySkillAnimationAdapter().ConfigureLoop(
+                EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)),
+                60 + (Charging_Strike_Time[point - 1] * 2), 1);
 
         DWORD chargeMs = 700U;
-        if(caster->MotionInfo && caster->MotionLoopSpeed > 0 && caster->MotionInfo->EventFrame[2] > 0)
+        if(chargeLoop.Ok() && chargeLoop.loopSpeed > 0 && chargeLoop.eventFrame2 > 0)
         {
-            const DWORD ticks = ((DWORD)caster->MotionInfo->EventFrame[2] +
-                (DWORD)caster->MotionLoopSpeed - 1U) / (DWORD)caster->MotionLoopSpeed;
+            const DWORD ticks = ((DWORD)chargeLoop.eventFrame2 +
+                (DWORD)chargeLoop.loopSpeed - 1U) / (DWORD)chargeLoop.loopSpeed;
             chargeMs = std::max<DWORD>(100U, std::min<DWORD>(4000U, (ticks * 1000U + 69U) / 70U));
         }
         runtime.chargedStrikeTargetSerial = target->dwObjectSerial;
@@ -2714,8 +2782,7 @@ static bool TryDamageCode(smCHAR *caster, rsPLAYINFO *owner, smCHAR *target,
             return false;
         }
         ApplyCompanionFalconStrike(caster, owner, target, runtime, now);
-        caster->smCharInfo.Mana[0] = (short)std::max(0, (int)caster->smCharInfo.Mana[0] - mana);
-        caster->smCharInfo.Stamina[0] = (short)std::max(0, (int)caster->smCharInfo.Stamina[0] - stamina);
+        (void)SpendCompanionSkillResources(caster, mana, stamina);
         BeginCast(caster, runtime, skillCode, point, target->dwObjectSerial, now, 700U,
             target->pX, target->pY, target->pZ);
         CancelMultiHitSchedule(runtime);
@@ -2733,8 +2800,7 @@ static bool TryDamageCode(smCHAR *caster, rsPLAYINFO *owner, smCHAR *target,
             if(attempt) attempt->reason = COMPANION_SKILL_EFFECT_FAILED;
             return false;
         }
-        caster->smCharInfo.Mana[0] = (short)std::max(0, (int)caster->smCharInfo.Mana[0] - mana);
-        caster->smCharInfo.Stamina[0] = (short)std::max(0, (int)caster->smCharInfo.Stamina[0] - stamina);
+        (void)SpendCompanionSkillResources(caster, mana, stamina);
         BeginCast(caster, runtime, skillCode, point, target->dwObjectSerial, now, 700U,
             target->pX, target->pY, target->pZ);
         CancelMultiHitSchedule(runtime);
@@ -2755,9 +2821,21 @@ static bool TryDamageCode(smCHAR *caster, rsPLAYINFO *owner, smCHAR *target,
     }
 
     int damage = DamageForSkill(caster, target, skillCode, point, &runtime);
-    const int savedAttackRating = caster->smCharInfo.Attack_Rating;
+    combat::CombatBuffDelta farinaAttackRating;
+    bool farinaAttackRatingApplied = false;
     if(skillCode == SKILL_FARINA)
-        caster->smCharInfo.Attack_Rating += Farina_AttackRate[point - 1] + caster->smCharInfo.Level;
+    {
+        farinaAttackRating.attackRating = Farina_AttackRate[point - 1] + caster->smCharInfo.Level;
+        const combat::CombatBuffResult farinaResult =
+            combat::legacy::ServerLegacyCombatBuffAdapter().Apply(
+                EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)), farinaAttackRating);
+        if(!farinaResult.Ok())
+        {
+            if(attempt) attempt->reason = COMPANION_SKILL_EFFECT_FAILED;
+            return false;
+        }
+        farinaAttackRatingApplied = true;
+    }
 
     bool damageApplied = false;
     const int vanishPoint = ActiveVanishPoint(runtime, now);
@@ -2783,7 +2861,9 @@ static bool TryDamageCode(smCHAR *caster, rsPLAYINFO *owner, smCHAR *target,
         damageApplied = damage > 0 &&
             ApplyCompanionSkillDamage(caster, owner, target, skillCode, point, runtime);
     }
-    caster->smCharInfo.Attack_Rating = savedAttackRating;
+    if(farinaAttackRatingApplied)
+        (void)combat::legacy::ServerLegacyCombatBuffAdapter().Remove(
+            EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)), farinaAttackRating);
     FinishAttackTriggeredBuffs(caster, runtime);
     if(!damageApplied)
     {
@@ -2792,14 +2872,14 @@ static bool TryDamageCode(smCHAR *caster, rsPLAYINFO *owner, smCHAR *target,
     }
     ApplyCompanionFalconStrike(caster, owner, target, runtime, now);
 
-    caster->smCharInfo.Mana[0] = (short)std::max(0, (int)caster->smCharInfo.Mana[0] - mana);
-    caster->smCharInfo.Stamina[0] = (short)std::max(0, (int)caster->smCharInfo.Stamina[0] - stamina);
+    (void)SpendCompanionSkillResources(caster, mana, stamina);
     BeginCast(caster, runtime, skillCode, point, target->dwObjectSerial, now, 700U,
         target->pX, target->pY, target->pZ, visualParam);
     if(skillCode == SKILL_FARINA)
     {
-        caster->MotionLoopSpeed = GetAttackSpeedFrame(caster->smCharInfo.Attack_Speed, Farina_Speed[point - 1]);
-        caster->MotionLoop = 1;
+        (void)skills::legacy::ServerLegacySkillAnimationAdapter().ConfigureLoop(
+            EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)),
+            GetAttackSpeedFrame(caster->smCharInfo.Attack_Speed, Farina_Speed[point - 1]), 1);
     }
 
     if(skillCode == SKILL_RAVING)
@@ -3223,6 +3303,14 @@ int GetCompanionSkillPoint(const CompanionSkillRuntime &runtime, int useSlot)
     return (int)runtime.skillPoints[useSlot - 1];
 }
 
+static bool ApplyCompanionPassiveDelta(smCHAR *caster, const combat::CombatBuffDelta &delta)
+{
+    if(!caster)
+        return false;
+    return combat::legacy::ServerLegacyCombatBuffAdapter().Apply(
+        EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)), delta).Ok();
+}
+
 void ApplyCompanionPassiveSkills(smCHAR *caster, CompanionSkillRuntime &runtime)
 {
     if(!caster || runtime.passiveStatsApplied)
@@ -3252,17 +3340,29 @@ void ApplyCompanionPassiveSkills(smCHAR *caster, CompanionSkillRuntime &runtime)
         switch(entry.id)
         {
             case SKILL_POISON_ATTRIBUTE:
-                caster->smCharInfo.Resistance[sITEMINFO_POISON] = (short)std::min(32767,
-                    (int)caster->smCharInfo.Resistance[sITEMINFO_POISON] + PlusPoison[p]);
+            {
+                combat::CombatBuffDelta delta;
+                const int current = (int)caster->smCharInfo.Resistance[sITEMINFO_POISON];
+                delta.resistance[sITEMINFO_POISON] = std::min(32767, current + PlusPoison[p]) - current;
+                (void)ApplyCompanionPassiveDelta(caster, delta);
                 break;
+            }
             case SKILL_ICE_ATTRIBUTE:
-                caster->smCharInfo.Resistance[sITEMINFO_ICE] = (short)std::min(32767,
-                    (int)caster->smCharInfo.Resistance[sITEMINFO_ICE] + PlusIce[p]);
+            {
+                combat::CombatBuffDelta delta;
+                const int current = (int)caster->smCharInfo.Resistance[sITEMINFO_ICE];
+                delta.resistance[sITEMINFO_ICE] = std::min(32767, current + PlusIce[p]) - current;
+                (void)ApplyCompanionPassiveDelta(caster, delta);
                 break;
+            }
             case SKILL_FIRE_ATTRIBUTE:
-                caster->smCharInfo.Resistance[sITEMINFO_FIRE] = (short)std::min(32767,
-                    (int)caster->smCharInfo.Resistance[sITEMINFO_FIRE] + PlusFire[p]);
+            {
+                combat::CombatBuffDelta delta;
+                const int current = (int)caster->smCharInfo.Resistance[sITEMINFO_FIRE];
+                delta.resistance[sITEMINFO_FIRE] = std::min(32767, current + PlusFire[p]) - current;
+                (void)ApplyCompanionPassiveDelta(caster, delta);
                 break;
+            }
 
             case SKILL_MELEE_MASTERY:
             case SKILL_SHOOTING_MASTERY:
@@ -3282,25 +3382,38 @@ void ApplyCompanionPassiveSkills(smCHAR *caster, CompanionSkillRuntime &runtime)
                     case SKILL_SWORD_MASTERY: percent = Sword_Mastery_DamagePercent[p]; break;
                     case SKILL_MECHANIC_WEAPON: percent = M_Weapon_Mastey[p]; break;
                 }
-                caster->smCharInfo.Attack_Damage[0] += (caster->smCharInfo.Attack_Damage[0] * percent) / 100;
-                caster->smCharInfo.Attack_Damage[1] += (caster->smCharInfo.Attack_Damage[1] * percent) / 100;
+                combat::CombatBuffDelta delta;
+                delta.attackMin = (caster->smCharInfo.Attack_Damage[0] * percent) / 100;
+                delta.attackMax = (caster->smCharInfo.Attack_Damage[1] * percent) / 100;
+                (void)ApplyCompanionPassiveDelta(caster, delta);
                 break;
             }
 
             case SKILL_WEAPONE_DEFENCE_MASTERY:
                 if(WeaponAllowed(FindSkillInfo(entry.id), rightCode, leftCode))
-                    caster->smCharInfo.Chance_Block += W_D_Mastery_Block[p];
+                {
+                    combat::CombatBuffDelta delta;
+                    delta.chanceBlock = W_D_Mastery_Block[p];
+                    (void)ApplyCompanionPassiveDelta(caster, delta);
+                }
                 break;
 
             case SKILL_DIONS_EYE:
                 if(WeaponAllowed(FindSkillInfo(entry.id), rightCode, leftCode))
-                    caster->smCharInfo.Attack_Rating +=
-                        (caster->smCharInfo.Attack_Rating * D_Eye_Attack_Rate[p]) / 100;
+                {
+                    combat::CombatBuffDelta delta;
+                    delta.attackRating = (caster->smCharInfo.Attack_Rating * D_Eye_Attack_Rate[p]) / 100;
+                    (void)ApplyCompanionPassiveDelta(caster, delta);
+                }
                 break;
 
             case SKILL_CRITICAL_MASTERY:
                 if(WeaponAllowed(FindSkillInfo(entry.id), rightCode, leftCode))
-                    caster->smCharInfo.Critical_Hit += Critical_Mastery_Critical[p];
+                {
+                    combat::CombatBuffDelta delta;
+                    delta.criticalHit = Critical_Mastery_Critical[p];
+                    (void)ApplyCompanionPassiveDelta(caster, delta);
+                }
                 break;
 
             case SKILL_EVASION_MASTERY:
@@ -3313,24 +3426,32 @@ void ApplyCompanionPassiveSkills(smCHAR *caster, CompanionSkillRuntime &runtime)
                 const int oldMax = caster->smCharInfo.Stamina[1];
                 const int add = (oldMax * P_Traning_Stamina[p]) / 100;
                 const int newMax = std::min(32767, std::max(1, oldMax + add));
-                caster->smCharInfo.Stamina[1] = (short)newMax;
-                if(caster->smCharInfo.Stamina[0] >= oldMax)
-                    caster->smCharInfo.Stamina[0] = (short)newMax;
+                const bool wasFull = caster->smCharInfo.Stamina[0] >= oldMax;
+                combat::CombatBuffDelta delta;
+                delta.maxStamina = newMax - oldMax;
+                if(ApplyCompanionPassiveDelta(caster, delta) && wasFull)
+                    (void)RestoreCompanionSkillResources(caster, 0, newMax - oldMax);
                 break;
             }
 
             case SKILL_MEDITATION:
-                caster->smCharInfo.Mana_Regen += Meditation_Regen[p];
+            {
+                combat::CombatBuffDelta delta;
+                delta.manaRegen = Meditation_Regen[p];
+                (void)ApplyCompanionPassiveDelta(caster, delta);
                 break;
+            }
 
             case SKILL_MENTAL_MASTERY:
             {
                 const int oldMax = caster->smCharInfo.Mana[1];
                 const int add = (oldMax * Mental_Mastery_Mana[p]) / 100;
                 const int newMax = std::min(32767, std::max(1, oldMax + add));
-                caster->smCharInfo.Mana[1] = (short)newMax;
-                if(caster->smCharInfo.Mana[0] >= oldMax)
-                    caster->smCharInfo.Mana[0] = (short)newMax;
+                const bool wasFull = caster->smCharInfo.Mana[0] >= oldMax;
+                combat::CombatBuffDelta delta;
+                delta.maxMana = newMax - oldMax;
+                if(ApplyCompanionPassiveDelta(caster, delta) && wasFull)
+                    (void)RestoreCompanionSkillResources(caster, newMax - oldMax, 0);
                 break;
             }
 
@@ -3338,9 +3459,12 @@ void ApplyCompanionPassiveSkills(smCHAR *caster, CompanionSkillRuntime &runtime)
             {
                 const int oldMax = caster->smCharInfo.Life[1];
                 const int newMax = std::min(32767, std::max(1, oldMax + Boost_Health_Life[p]));
-                caster->smCharInfo.Life[1] = (short)newMax;
-                if(caster->smCharInfo.Life[0] >= oldMax)
-                    caster->smCharInfo.Life[0] = (short)newMax;
+                const bool wasFull = caster->smCharInfo.Life[0] >= oldMax;
+                combat::CombatBuffDelta delta;
+                delta.maxLife = newMax - oldMax;
+                if(ApplyCompanionPassiveDelta(caster, delta) && wasFull)
+                    (void)combat::legacy::ServerLegacyLifeAdapter().Restore(
+                        EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)), newMax - oldMax);
                 break;
             }
 
@@ -3348,19 +3472,25 @@ void ApplyCompanionPassiveSkills(smCHAR *caster, CompanionSkillRuntime &runtime)
             {
                 const int oldMax = caster->smCharInfo.Life[1];
                 const int newMax = std::min(32767, std::max(1, oldMax + Fighter_T5_Survival_Life[p]));
-                caster->smCharInfo.Life[1] = (short)newMax;
-                if(caster->smCharInfo.Life[0] >= oldMax)
-                    caster->smCharInfo.Life[0] = (short)newMax;
-                caster->smCharInfo.Life_Regen += (float)Fighter_T5_Survival_Regen[p];
+                const bool wasFull = caster->smCharInfo.Life[0] >= oldMax;
+                combat::CombatBuffDelta delta;
+                delta.maxLife = newMax - oldMax;
+                delta.lifeRegen = (float)Fighter_T5_Survival_Regen[p];
+                if(ApplyCompanionPassiveDelta(caster, delta) && wasFull)
+                    (void)combat::legacy::ServerLegacyLifeAdapter().Restore(
+                        EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)), newMax - oldMax);
                 break;
             }
 
             case SKILL_T5_GOLDEN_APPLE:
-                caster->smCharInfo.Move_Speed +=
-                    (caster->smCharInfo.Move_Speed * Atalanta_T5_GoldenApple_Speed[p]) / 100;
+            {
+                combat::CombatBuffDelta delta;
+                delta.moveSpeed = (caster->smCharInfo.Move_Speed * Atalanta_T5_GoldenApple_Speed[p]) / 100;
+                (void)ApplyCompanionPassiveDelta(caster, delta);
                 runtime.passiveEvadePercent = (BYTE)std::max((int)runtime.passiveEvadePercent,
                     std::max(0, std::min(100, Atalanta_T5_GoldenApple_Evade[p])));
                 break;
+            }
 
             default:
                 break;
@@ -3477,10 +3607,10 @@ bool UpdateCompanionResourceRegeneration(smCHAR *caster, CompanionSkillRuntime &
         const int add = (int)runtime.lifeRegenAccumulator;
         if(add > 0)
         {
-            const int before = caster->smCharInfo.Life[0];
-            caster->smCharInfo.Life[0] = (short)std::min((int)caster->smCharInfo.Life[1], before + add);
+            const combat::LifeCommandResult restored = combat::legacy::ServerLegacyLifeAdapter().Restore(
+                EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)), add);
             runtime.lifeRegenAccumulator -= (float)add;
-            changed = caster->smCharInfo.Life[0] != before || changed;
+            changed = (restored.Ok() && restored.after != restored.before) || changed;
         }
     }
     else if(caster->smCharInfo.Life[0] >= caster->smCharInfo.Life[1]) runtime.lifeRegenAccumulator = 0.0f;
@@ -3491,10 +3621,10 @@ bool UpdateCompanionResourceRegeneration(smCHAR *caster, CompanionSkillRuntime &
         const int add = (int)runtime.manaRegenAccumulator;
         if(add > 0)
         {
-            const int before = caster->smCharInfo.Mana[0];
-            caster->smCharInfo.Mana[0] = (short)std::min((int)caster->smCharInfo.Mana[1], before + add);
+            const skills::SkillResourceCommandResult restored =
+                RestoreCompanionSkillResources(caster, add, 0);
             runtime.manaRegenAccumulator -= (float)add;
-            changed = caster->smCharInfo.Mana[0] != before || changed;
+            changed = (restored.Ok() && restored.after.mana != restored.before.mana) || changed;
         }
     }
     else if(caster->smCharInfo.Mana[0] >= caster->smCharInfo.Mana[1]) runtime.manaRegenAccumulator = 0.0f;
@@ -3505,10 +3635,10 @@ bool UpdateCompanionResourceRegeneration(smCHAR *caster, CompanionSkillRuntime &
         const int add = (int)runtime.staminaRegenAccumulator;
         if(add > 0)
         {
-            const int before = caster->smCharInfo.Stamina[0];
-            caster->smCharInfo.Stamina[0] = (short)std::min((int)caster->smCharInfo.Stamina[1], before + add);
+            const skills::SkillResourceCommandResult restored =
+                RestoreCompanionSkillResources(caster, 0, add);
             runtime.staminaRegenAccumulator -= (float)add;
-            changed = caster->smCharInfo.Stamina[0] != before || changed;
+            changed = (restored.Ok() && restored.after.stamina != restored.before.stamina) || changed;
         }
     }
     else if(caster->smCharInfo.Stamina[0] >= caster->smCharInfo.Stamina[1]) runtime.staminaRegenAccumulator = 0.0f;
@@ -3737,7 +3867,8 @@ bool UpdateCompanionChargedStrike(smCHAR *caster, rsPLAYINFO *owner,
     runtime.chargedStrikeTargetSerial = 0;
     runtime.chargedStrikeExecuteAt = 0;
     runtime.chargedStrikePoint = 0;
-    caster->MotionLoop = 0;
+    (void)skills::legacy::ServerLegacySkillAnimationAdapter().ClearLoop(
+        EntityId(static_cast<std::uint32_t>(caster->dwObjectSerial)));
     if(!target || target->smCharInfo.Life[0] <= 0 ||
        !InRange(caster, target, SkillRange(SKILL_CHARGING_STRIKE, caster, point)))
         return false;
@@ -4178,8 +4309,8 @@ void ApplyCompanionIncomingDamageModifiers(smCHAR *target, smCHAR *attacker, rsP
                 int heal = (D_Inhalation_Life[divinePoint - 1] * resistance) / 100;
                 heal &= 0xFF; // preserve legacy AttackState low-byte encoding
                 if(heal > 0)
-                    target->smCharInfo.Life[0] = (short)std::min((int)target->smCharInfo.Life[1],
-                        (int)target->smCharInfo.Life[0] + heal);
+                    (void)combat::legacy::ServerLegacyLifeAdapter().Restore(
+                        EntityId(static_cast<std::uint32_t>(target->dwObjectSerial)), heal);
             }
 
             // Spark Shield is triggered by the block event, not by every hit.
@@ -4233,8 +4364,7 @@ void ApplyCompanionIncomingDamageModifiers(smCHAR *target, smCHAR *attacker, rsP
         {
             const int absorbed = (value * ClampPercent(modifier.energyShieldPercent)) / 100;
             value -= absorbed;
-            target->smCharInfo.Mana[0] = (short)std::max(0,
-                (int)target->smCharInfo.Mana[0] - absorbed);
+            (void)DrainCompanionSkillResources(target, absorbed, 0);
         }
     }
 
@@ -4409,8 +4539,7 @@ bool TryExecuteCompanionBuffLoadout(smCHAR *caster, DWORD rightItemCode, DWORD l
             continue;
         }
 
-        caster->smCharInfo.Mana[0] = (short)std::max(0, (int)caster->smCharInfo.Mana[0] - mana);
-        caster->smCharInfo.Stamina[0] = (short)std::max(0, (int)caster->smCharInfo.Stamina[0] - stamina);
+        (void)SpendCompanionSkillResources(caster, mana, stamina);
         BeginCast(caster, runtime, descriptor.skillCode, descriptor.point, 0, now, 700U);
         int interval = (int)buffIntervalSeconds[slot];
         if(interval < 5) interval = 5;
@@ -4504,15 +4633,18 @@ bool TryExecuteCompanionSupportLoadout(smCHAR *caster, rsPLAYINFO *owner,
                 if(attempt) *attempt = current;
                 continue;
             }
-            caster->smCharInfo.Mana[0] = (short)std::max(0, (int)caster->smCharInfo.Mana[0] - mana);
-            caster->smCharInfo.Stamina[0] = (short)std::max(0, (int)caster->smCharInfo.Stamina[0] - stamina);
+            (void)SpendCompanionSkillResources(caster, mana, stamina);
             const bool resurrected = (rand() % 100) < Resurrection_Percent[descriptor.point - 1];
             if(resurrected)
             {
-                deadTarget->smCharInfo.Life[0] = (short)std::max(1, (int)deadTarget->smCharInfo.Life[1] / 2);
-                combat::legacy::ServerLegacyTargetingAdapter().ClearAcquiredTarget(
-                    EntityId(static_cast<std::uint32_t>(deadTarget->dwObjectSerial)));
-                deadTarget->SetMotionFromCode(CHRMOTION_STATE_RESTART);
+                const EntityId deadTargetId(static_cast<std::uint32_t>(deadTarget->dwObjectSerial));
+                const combat::LifeCommandResult reviveResult =
+                    combat::legacy::ServerLegacyLifeAdapter().Revive(deadTargetId, 50);
+                if(reviveResult.Ok())
+                {
+                    combat::legacy::ServerLegacyTargetingAdapter().ClearAcquiredTarget(deadTargetId);
+                    deadTarget->SetMotionFromCode(CHRMOTION_STATE_RESTART);
+                }
             }
             BeginCast(caster, runtime, descriptor.skillCode, descriptor.point, deadTarget->dwObjectSerial, now, 750U,
                 deadTarget->pX, deadTarget->pY, deadTarget->pZ);
@@ -4590,40 +4722,47 @@ bool TryExecuteCompanionSupportLoadout(smCHAR *caster, rsPLAYINFO *owner,
                     if(attempt) *attempt = current;
                     continue;
                 }
-                spawnedSkillPet->dwUpdateCharInfoTime = now + 355U * 1000U;
+                monsters::SummonedActorProfile summonProfile;
+                summonProfile.expiresAtMs = now + 355U * 1000U;
                 if(descriptor.skillCode == SKILL_METAL_GOLEM)
                 {
-                    spawnedSkillPet->smCharInfo.Attack_Damage[0] = Metal_Golem_Damage[p][0];
-                    spawnedSkillPet->smCharInfo.Attack_Damage[1] = Metal_Golem_Damage[p][1];
-                    spawnedSkillPet->smCharInfo.Attack_Rating = Metal_Golem_Hit[p];
-                    spawnedSkillPet->smCharInfo.Defence = Metal_Golem_Defense[p];
-                    spawnedSkillPet->smCharInfo.Life[0] = (short)(Metal_Golem_Life[p] + caster->smCharInfo.Strength * 2);
-                    spawnedSkillPet->smCharInfo.Life[1] = spawnedSkillPet->smCharInfo.Life[0];
-                    spawnedSkillPet->sMoveStepCount[0] = 1;
-                    spawnedSkillPet->sMoveStepCount[1] = 2;
-                    spawnedSkillPet->smCharInfo.wPlayClass[1] = fONE + p * 15;
+                    summonProfile.attackDamageMin = Metal_Golem_Damage[p][0];
+                    summonProfile.attackDamageMax = Metal_Golem_Damage[p][1];
+                    summonProfile.attackRating = Metal_Golem_Hit[p];
+                    summonProfile.overrideDefence = true;
+                    summonProfile.defence = Metal_Golem_Defense[p];
+                    summonProfile.life = Metal_Golem_Life[p] + caster->smCharInfo.Strength * 2;
+                    summonProfile.overridePlayClass = true;
+                    summonProfile.playClassPhase = fONE + p * 15;
                 }
                 else if(descriptor.skillCode == SKILL_RECALL_WOLVERIN)
                 {
-                    spawnedSkillPet->smCharInfo.Attack_Damage[0] = Recall_Wolverin_Damage[p][0];
-                    spawnedSkillPet->smCharInfo.Attack_Damage[1] = Recall_Wolverin_Damage[p][1];
-                    spawnedSkillPet->smCharInfo.Attack_Rating = Recall_Wolverin_Hit[p];
-                    spawnedSkillPet->smCharInfo.Defence = Recall_Wolverin_Defense[p] + caster->smCharInfo.Dexterity * 2;
-                    spawnedSkillPet->smCharInfo.Life[0] = (short)Recall_Wolverin_Life[p];
-                    spawnedSkillPet->smCharInfo.Life[1] = spawnedSkillPet->smCharInfo.Life[0];
-                    spawnedSkillPet->sMoveStepCount[0] = 1;
-                    spawnedSkillPet->sMoveStepCount[1] = 2;
-                    spawnedSkillPet->smCharInfo.wPlayClass[1] = (fONE / 2) + p * 12;
+                    summonProfile.attackDamageMin = Recall_Wolverin_Damage[p][0];
+                    summonProfile.attackDamageMax = Recall_Wolverin_Damage[p][1];
+                    summonProfile.attackRating = Recall_Wolverin_Hit[p];
+                    summonProfile.overrideDefence = true;
+                    summonProfile.defence = Recall_Wolverin_Defense[p] + caster->smCharInfo.Dexterity * 2;
+                    summonProfile.life = Recall_Wolverin_Life[p];
+                    summonProfile.overridePlayClass = true;
+                    summonProfile.playClassPhase = (fONE / 2) + p * 12;
                 }
                 else
                 {
-                    spawnedSkillPet->smCharInfo.Attack_Damage[0] = Fire_Elemental_Damage[p][0];
-                    spawnedSkillPet->smCharInfo.Attack_Damage[1] = Fire_Elemental_Damage[p][1];
-                    spawnedSkillPet->smCharInfo.Attack_Rating = Fire_Elemental_Hit[p];
-                    spawnedSkillPet->smCharInfo.Life[0] = (short)Fire_Elemental_Life[p];
-                    spawnedSkillPet->smCharInfo.Life[1] = spawnedSkillPet->smCharInfo.Life[0];
-                    spawnedSkillPet->sMoveStepCount[0] = 1;
-                    spawnedSkillPet->sMoveStepCount[1] = 2;
+                    summonProfile.attackDamageMin = Fire_Elemental_Damage[p][0];
+                    summonProfile.attackDamageMax = Fire_Elemental_Damage[p][1];
+                    summonProfile.attackRating = Fire_Elemental_Hit[p];
+                    summonProfile.life = Fire_Elemental_Life[p];
+                }
+                const monsters::SummonedActorConfigureResult configured =
+                    monsters::legacy::ServerLegacySummonedActorAdapter().Configure(
+                        monsters::SummonedActorConfigureRequest(
+                            EntityId(static_cast<std::uint32_t>(spawnedSkillPet->dwObjectSerial)), summonProfile));
+                if(!configured.Ok())
+                {
+                    current.reason = COMPANION_SKILL_EFFECT_FAILED;
+                    runtime.nextBuffSkillTime[slot] = now + 5000U;
+                    if(attempt) *attempt = current;
+                    continue;
                 }
             }
             else if(descriptor.skillCode == SKILL_MAGNETIC_SPHERE || descriptor.skillCode == SKILL_DANCING_SWORD ||
@@ -4804,8 +4943,7 @@ bool TryExecuteCompanionSupportLoadout(smCHAR *caster, rsPLAYINFO *owner,
                 }
             }
 
-            caster->smCharInfo.Mana[0] = (short)std::max(0, (int)caster->smCharInfo.Mana[0] - mana);
-            caster->smCharInfo.Stamina[0] = (short)std::max(0, (int)caster->smCharInfo.Stamina[0] - stamina);
+            (void)SpendCompanionSkillResources(caster, mana, stamina);
             BeginCast(caster, runtime, descriptor.skillCode, descriptor.point, caster->dwObjectSerial, now, 700U,
                 caster->pX, caster->pY, caster->pZ, visualParam);
             runtime.nextBuffSkillTime[slot] = now + (DWORD)intervalSeconds * 1000U;
@@ -4832,8 +4970,7 @@ bool TryExecuteCompanionSupportLoadout(smCHAR *caster, rsPLAYINFO *owner,
                 if(attempt) *attempt = current;
                 continue;
             }
-            caster->smCharInfo.Mana[0] = (short)std::max(0, (int)caster->smCharInfo.Mana[0] - mana);
-            caster->smCharInfo.Stamina[0] = (short)std::max(0, (int)caster->smCharInfo.Stamina[0] - stamina);
+            (void)SpendCompanionSkillResources(caster, mana, stamina);
             BeginCast(caster, runtime, descriptor.skillCode, descriptor.point, 0, now, 700U);
             runtime.nextBuffSkillTime[slot] = now + (DWORD)intervalSeconds * 1000U;
             current.reason = COMPANION_SKILL_OK;
@@ -4896,9 +5033,8 @@ bool TryExecuteCompanionSupportLoadout(smCHAR *caster, rsPLAYINFO *owner,
                 if(attempt) *attempt = current;
                 continue;
             }
-            caster->smCharInfo.Mana[0] = (short)std::max(0, (int)caster->smCharInfo.Mana[0] - mana);
-            caster->smCharInfo.Stamina[0] = (short)std::max(0, (int)caster->smCharInfo.Stamina[0] - stamina);
-            caster->smCharInfo.Mana[0] = (short)std::min((int)caster->smCharInfo.Mana[1], (int)caster->smCharInfo.Mana[0] + manaGain);
+            (void)SpendCompanionSkillResources(caster, mana, stamina);
+            (void)RestoreCompanionSkillResources(caster, manaGain, 0);
             BeginCast(caster, runtime, descriptor.skillCode, descriptor.point, caster->dwObjectSerial, now, 700U);
             runtime.nextBuffSkillTime[slot] = now + (DWORD)intervalSeconds * 1000U;
             current.reason = COMPANION_SKILL_OK;
@@ -4946,8 +5082,7 @@ bool TryExecuteCompanionSupportLoadout(smCHAR *caster, rsPLAYINFO *owner,
                 if(attempt) *attempt = current;
                 continue;
             }
-            caster->smCharInfo.Mana[0] = (short)std::max(0, (int)caster->smCharInfo.Mana[0] - mana);
-            caster->smCharInfo.Stamina[0] = (short)std::max(0, (int)caster->smCharInfo.Stamina[0] - stamina);
+            (void)SpendCompanionSkillResources(caster, mana, stamina);
             BeginCast(caster, runtime, descriptor.skillCode, descriptor.point, reviveTarget->dwObjectSerial,
                 now, 900U, reviveTarget->pX, reviveTarget->pY, reviveTarget->pZ);
             runtime.nextBuffSkillTime[slot] = now + (DWORD)intervalSeconds * 1000U;
@@ -5024,8 +5159,7 @@ bool TryExecuteCompanionSupportLoadout(smCHAR *caster, rsPLAYINFO *owner,
                 if(attempt) *attempt = current;
                 continue;
             }
-            caster->smCharInfo.Mana[0] = (short)std::max(0, (int)caster->smCharInfo.Mana[0] - mana);
-            caster->smCharInfo.Stamina[0] = (short)std::max(0, (int)caster->smCharInfo.Stamina[0] - stamina);
+            (void)SpendCompanionSkillResources(caster, mana, stamina);
             BeginCast(caster, runtime, descriptor.skillCode, descriptor.point, caster->dwObjectSerial, now, 750U);
             runtime.nextBuffSkillTime[slot] = now + (DWORD)intervalSeconds * 1000U;
             current.reason = COMPANION_SKILL_OK;
@@ -5148,8 +5282,7 @@ bool TryExecuteCompanionHeal(smCHAR *caster, rsPLAYINFO *owner, smCHAR *const *c
         return false;
     }
 
-    caster->smCharInfo.Mana[0] = (short)std::max(0, (int)caster->smCharInfo.Mana[0] - mana);
-    caster->smCharInfo.Stamina[0] = (short)std::max(0, (int)caster->smCharInfo.Stamina[0] - stamina);
+    (void)SpendCompanionSkillResources(caster, mana, stamina);
     BeginCast(caster, runtime, SKILL_HEALING, point, targetSerial, now, 750U,
         targetX, targetY, targetZ);
     runtime.nextHealSkillTime = now + 2000U;

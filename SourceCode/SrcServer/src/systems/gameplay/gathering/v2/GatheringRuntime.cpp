@@ -6,6 +6,7 @@
 
 #include "gameplay/covenants/v2/CovenantCatalog.h"
 #include "systems/gameplay/mining/v2/MiningRuntime.h"
+#include "systems/gameplay/fishing/v2/FishingRuntime.h"
 #include "systems/gameplay/professions/v2/ProfessionRuntime.h"
 #include "systems/gameplay/gathering/v2/legacy/LegacyHarvestPlayerQueryAdapter.h"
 #include "systems/gameplay/progression/v2/ProgressionRuntime.h"
@@ -129,6 +130,8 @@ bool InitializeServerGatheringRuntime(std::string* error)
     {
         if (r->kind == GatheringKind::Mining)
             (void)mining::ServerMiningService().RegisterResource(*r);
+        else if (r->kind == GatheringKind::Fishing)
+            (void)fishing::ServerFishingService().RegisterResource(*r);
         else
             (void)ServerGatheringService().RegisterResource(*r);
     }
@@ -137,6 +140,8 @@ bool InitializeServerGatheringRuntime(std::string* error)
         ResourceDefinition resource;
         if (mining::ServerMiningService().Gathering().GetResource(n->resourceId, resource))
             (void)mining::ServerMiningService().RegisterNode(*n);
+        else if (fishing::ServerFishingService().Gathering().GetResource(n->resourceId, resource))
+            (void)fishing::ServerFishingService().RegisterNode(*n);
         else if (ServerGatheringService().GetResource(n->resourceId, resource))
             (void)ServerGatheringService().RegisterNode(*n);
     }
@@ -192,6 +197,11 @@ bool FindNearestGatheringNode(int area, int x, int y, int z,
         mining::ServerMiningService().ListNodes(nodes);
         mining::ServerMiningService().ListResources(resources);
     }
+    else if (kind == GatheringKind::Fishing)
+    {
+        fishing::ServerFishingService().ListNodes(nodes);
+        fishing::ServerFishingService().ListResources(resources);
+    }
     else
     {
         ServerGatheringService().ListNodes(nodes);
@@ -236,6 +246,8 @@ bool AddServerGatheringNode(const std::string& resourceKey,
     if (!ServerGatheringRepository().AddNode(node)) { if(error)*error="failed to persist gathering node"; return false; }
     if (resource.kind == GatheringKind::Mining)
         (void)mining::ServerMiningService().RegisterNode(node);
+    else if (resource.kind == GatheringKind::Fishing)
+        (void)fishing::ServerFishingService().RegisterNode(node);
     else
         (void)ServerGatheringService().RegisterNode(node);
     outNode=node;

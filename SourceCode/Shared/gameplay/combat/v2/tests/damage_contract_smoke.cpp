@@ -30,9 +30,16 @@ int main()
     FakeDamageService service;
     gameplay::combat::DamageRequest request(gameplay::EntityId(10u), gameplay::PlayerId(20u),
                                             gameplay::EntityId(30u), 40);
+    assert(request.mode == gameplay::combat::DamageMode::Standard);
     const gameplay::combat::DamageResult accepted = service.Apply(request);
     assert(accepted.Accepted());
     assert(accepted.finalDamage == 40);
+
+    gameplay::combat::DamageRequest direct(gameplay::EntityId(10u), gameplay::PlayerId(20u),
+                                           gameplay::EntityId(30u), 15,
+                                           gameplay::combat::DamageMode::DirectLifeLoss);
+    assert(direct.mode == gameplay::combat::DamageMode::DirectLifeLoss);
+    assert(service.Apply(direct).Accepted());
 
     const gameplay::combat::DamageResult rejected = service.Apply(gameplay::combat::DamageRequest());
     assert(!rejected.Accepted());

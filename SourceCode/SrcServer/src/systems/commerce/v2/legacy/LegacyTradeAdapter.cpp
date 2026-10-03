@@ -8,7 +8,10 @@
 #include "systems/commerce/v2/legacy/LegacyWalletAdapter.h"
 #include "systems/commerce/v2/legacy/LegacyCoinWalletAdapter.h"
 #include "systems/inventory/v2/legacy/LegacyInventoryRuntime.h"
+#include "systems/inventory/v2/legacy/LegacyInventoryReservationRuntime.h"
 #include "systems/gameplay/inventory/v2/legacy/LegacyPotionStackAdapter.h"
+#include "gameplay/commerce/v2/TradeSessionService.h"
+#include "gameplay/commerce/v2/TradeTransactionService.h"
 
 namespace gameplay
 {
@@ -33,12 +36,17 @@ LegacyTradeAdapter::LegacyTradeAdapter(const player::legacy::LegacyOnlinePlayerR
                                            const IWalletQuery& walletQuery,
                                            IWalletCommands& walletCommands,
                                            inventory::IInventoryCommands& inventoryCommands,
+                                           inventory::IInventoryReservationService& inventoryReservations,
                                            const ICoinWalletQuery& coinQuery,
                                            ICoinWalletCommands& coinCommands,
-                                           inventory::IPotionStackCommands& potionStackCommands)
+                                           inventory::IPotionStackCommands& potionStackCommands,
+                                           ITradeReplayGuard& replayGuard,
+                                           ITradeTransactionService& transactionService)
     : registry_(registry), walletQuery_(walletQuery), walletCommands_(walletCommands),
-      inventoryCommands_(inventoryCommands), coinQuery_(coinQuery), coinCommands_(coinCommands),
-      potionStackCommands_(potionStackCommands)
+      inventoryCommands_(inventoryCommands), inventoryReservations_(inventoryReservations),
+      coinQuery_(coinQuery), coinCommands_(coinCommands),
+      potionStackCommands_(potionStackCommands), replayGuard_(replayGuard),
+      transactionService_(transactionService)
 {
 }
 
@@ -89,24 +97,17 @@ TradeIngressResult LegacyTradeAdapter::EvaluateIngress(const TradeIngressRequest
 
 TradeCommitGuardResult LegacyTradeAdapter::CheckCommitReplay(const TradeCommitGuardRequest& request)
 {
-    static const std::uint32_t kLegacyDuplicateWindowMs = 8000u;
-
-    TradeCommitGuardResult result;
-    result.tradeId = BuildTradeId(request.fingerprint);
-
     rsPLAYINFO* sender = registry_.Resolve(request.fingerprint.sender);
     if(!sender)
     {
+        TradeCommitGuardResult result;
+        result.tradeId = BuildTradeId(request.fingerprint);
         result.code = TradeCommitGuardCode::SenderNotFound;
         return result;
     }
 
-    const std::uint32_t elapsed = request.nowMs - static_cast<std::uint32_t>(sender->dwLastTradeTime);
-    result.code = elapsed < kLegacyDuplicateWindowMs &&
-                  static_cast<std::uint32_t>(sender->dwLastTradeChksum) == result.tradeId.value
-                      ? TradeCommitGuardCode::Duplicate
-                      : TradeCommitGuardCode::Fresh;
-    return result;
+    return replayGuard_.Check(
+        registry_.HandleOf(sender), request.fingerprint, request.nowMs);
 }
 
 void LegacyTradeAdapter::MarkCommitted(const TradeCommitGuardRequest& request)
@@ -115,8 +116,8 @@ void LegacyTradeAdapter::MarkCommitted(const TradeCommitGuardRequest& request)
     if(!sender)
         return;
 
-    sender->dwLastTradeTime = static_cast<DWORD>(request.nowMs);
-    sender->dwLastTradeChksum = static_cast<DWORD>(BuildTradeId(request.fingerprint).value);
+    replayGuard_.MarkCommitted(
+        registry_.HandleOf(sender), request.fingerprint, request.nowMs);
 }
 
 TradeGoldCommitResult LegacyTradeAdapter::CommitGold(const TradeGoldCommitRequest& request)
@@ -262,146 +263,7 @@ TradeCoinCommitResult LegacyTradeAdapter::CommitCoins(const TradeCoinCommitReque
 
 TradeExactCommitResult LegacyTradeAdapter::CommitExactTrade(const TradeExactCommitRequest& request)
 {
-    static const CurrencyAmount kLegacyGoldMax = 1000000000LL;
-    static const CoinAmount kLegacyCoinMax = 2147483647LL;
-
-    TradeExactCommitResult result;
-    if(!request.sender.Valid() || !request.receiver.Valid() || request.sender == request.receiver ||
-       request.gold < 0 || request.gold > kLegacyGoldMax ||
-       request.coins < 0 || request.coins > kLegacyCoinMax)
-    {
-        result.code = TradeExactCommitCode::InvalidRequest;
-        return result;
-    }
-
-    std::array<bool, kTradeOfferItemSlots> itemTransferred = {};
-    std::array<bool, kTradeOfferItemSlots> potionTransferred = {};
-    const auto rollbackAssets = [&]() -> bool
-    {
-        bool ok = true;
-        for(std::size_t index = kTradeOfferItemSlots; index > 0; --index)
-        {
-            const std::size_t slot = index - 1u;
-            if(potionTransferred[slot])
-            {
-                const TradePotionStackOffer& offer = request.potionStacks[slot];
-                const inventory::PotionStackTransferResult rollback = potionStackCommands_.TransferStack(
-                    inventory::PotionStackTransferRequest(
-                        request.receiver, request.sender, offer.potion, offer.quantity));
-                ok = rollback.Applied() && ok;
-                potionTransferred[slot] = false;
-            }
-        }
-        for(std::size_t index = kTradeOfferItemSlots; index > 0; --index)
-        {
-            const std::size_t slot = index - 1u;
-            if(!itemTransferred[slot])
-                continue;
-            const inventory::InventoryTransferResult rollback =
-                inventoryCommands_.Transfer(request.receiver, request.sender, request.items[slot]);
-            ok = rollback.Applied() && ok;
-            itemTransferred[slot] = false;
-        }
-        return ok;
-    };
-
-    for(std::size_t index = 0; index < request.items.size(); ++index)
-    {
-        if(!request.items[index].Valid())
-            continue;
-        const inventory::InventoryTransferResult transfer =
-            inventoryCommands_.Transfer(request.sender, request.receiver, request.items[index]);
-        if(!transfer.Applied())
-        {
-            result.failingItemIndex = index;
-            result.code = rollbackAssets()
-                              ? TradeExactCommitCode::ItemTransferRejected
-                              : TradeExactCommitCode::RollbackFailed;
-            return result;
-        }
-        itemTransferred[index] = true;
-    }
-
-    for(std::size_t index = 0; index < request.potionStacks.size(); ++index)
-    {
-        const TradePotionStackOffer& offer = request.potionStacks[index];
-        if(!offer.potion.Valid())
-            continue;
-        if(offer.quantity <= 0)
-        {
-            result.failingItemIndex = index;
-            result.code = rollbackAssets()
-                              ? TradeExactCommitCode::InvalidRequest
-                              : TradeExactCommitCode::RollbackFailed;
-            return result;
-        }
-        const inventory::PotionStackTransferResult transfer = potionStackCommands_.TransferStack(
-            inventory::PotionStackTransferRequest(
-                request.sender, request.receiver, offer.potion, offer.quantity));
-        if(!transfer.Applied())
-        {
-            result.failingItemIndex = index;
-            result.code = rollbackAssets()
-                              ? TradeExactCommitCode::PotionTransferRejected
-                              : TradeExactCommitCode::RollbackFailed;
-            return result;
-        }
-        potionTransferred[index] = true;
-    }
-
-    bool goldCommitted = false;
-    if(request.gold > 0)
-    {
-        const TradeGoldCommitResult gold =
-            CommitGold(TradeGoldCommitRequest(request.sender, request.receiver, request.gold));
-        if(!gold.Committed())
-        {
-            const bool assetRollbackOk = rollbackAssets();
-            result.code = gold.code == TradeGoldCommitCode::RollbackFailed || !assetRollbackOk
-                              ? TradeExactCommitCode::RollbackFailed
-                              : TradeExactCommitCode::GoldRejected;
-            return result;
-        }
-        goldCommitted = true;
-    }
-
-    const auto rollbackGold = [&]() -> bool
-    {
-        if(!goldCommitted)
-            return true;
-        const WalletMutationResult undoReceiver =
-            walletCommands_.Debit(request.receiver, request.gold, WalletReason::Trade);
-        if(!undoReceiver.Ok())
-            return false;
-        const WalletMutationResult undoSender =
-            walletCommands_.Credit(request.sender, request.gold, WalletReason::Trade);
-        if(!undoSender.Ok())
-        {
-            walletCommands_.Credit(request.receiver, request.gold, WalletReason::Trade);
-            return false;
-        }
-        goldCommitted = false;
-        return true;
-    };
-
-    if(request.coins > 0)
-    {
-        const TradeCoinCommitResult coins =
-            CommitCoins(TradeCoinCommitRequest(request.sender, request.receiver, request.coins));
-        if(!coins.Committed())
-        {
-            const bool goldRollbackOk = rollbackGold();
-            const bool assetRollbackOk = rollbackAssets();
-            result.code = coins.code == TradeCoinCommitCode::RollbackFailed ||
-                          !goldRollbackOk || !assetRollbackOk
-                              ? TradeExactCommitCode::RollbackFailed
-                              : TradeExactCommitCode::CoinRejected;
-            return result;
-        }
-    }
-
-    result.code = TradeExactCommitCode::Committed;
-    return result;
+    return transactionService_.CommitExactTrade(request);
 }
 
 inventory::InventoryTransferResult LegacyTradeAdapter::TransferItem(
@@ -424,8 +286,14 @@ LegacyTradeAdapter& ServerLegacyTradeAdapter()
     LegacyCoinWalletAdapter& coin = ServerLegacyCoinWalletAdapter();
     inventory::legacy::LegacyPotionStackAdapter& potionStacks =
         inventory::legacy::ServerLegacyPotionStackAdapter();
+    static TradeReplayGuardService replayGuard(8000u);
+    static TradeTransactionService transactionService(
+        wallet, wallet, inventory, inventory::legacy::ServerInventoryReservationService(),
+        coin, coin, potionStacks);
     static LegacyTradeAdapter adapter(
-        player::legacy::ServerLegacyOnlinePlayerRegistry(), wallet, wallet, inventory, coin, coin, potionStacks);
+        player::legacy::ServerLegacyOnlinePlayerRegistry(), wallet, wallet, inventory,
+        inventory::legacy::ServerInventoryReservationService(),
+        coin, coin, potionStacks, replayGuard, transactionService);
     return adapter;
 }
 }

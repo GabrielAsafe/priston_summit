@@ -36,16 +36,46 @@ run python3 tools/architecture/validate_zero_legacy_debt.py
 run python3 tools/validate_green_transport_boundary_v1.py
 run python3 tools/validate_client_gameplay_socket_freeze_v1.py
 run python3 tools/validate_red_feature_ingress_freeze_v1.py
+run python3 tools/validate_red_ingress_retired_v2.py
 run python3 tools/validate_direct_socket_send_budget_v1.py
+run python3 tools/validate_quest_codex_exposure_v1.py
+run python3 tools/validate_mixing_kernel_ownership_v1.py
+run python3 tools/validate_aging_kernel_ownership_v1.py
+run python3 tools/validate_crafting_kernel_ownership_v1.py
 run python3 tools/validate_onserver_packet_router_freeze_v1.py
 run python3 tools/validate_presentation_renderer_boundary_v1.py
 run python3 tools/validate_server_shared_gameplay_manifest.py
 run python3 tools/validate_character_repository_boundary_v1.py
 run python3 tools/validate_companion_status_cleanup_v2.py
 run python3 tools/validate_companion_class_skill_profile_v1.py
-run bash -n build_client_mingw_i686_multicore.sh build_server_mingw_i686_j8.sh \
-    link_client_mingw_i686.sh link_server_mingw_i686.sh
-run bash tools/verify_mingw_build_fix_v2.sh
+run python3 tools/validate_companion_skill_resources_v2.py
+run python3 tools/validate_companion_damage_boundary_v1.py
+run python3 tools/validate_companion_life_boundary_v1.py
+build_scripts=(
+    build_client_mingw_i686_multicore.sh
+    build_server_mingw_i686_j8.sh
+    link_client_mingw_i686.sh
+    link_server_mingw_i686.sh
+)
+missing_build_scripts=()
+for script in "${build_scripts[@]}"; do
+    [[ -f "$script" ]] || missing_build_scripts+=("$script")
+done
+if ((${#missing_build_scripts[@]} == 0)); then
+    run bash -n "${build_scripts[@]}"
+    if [[ -f tools/verify_mingw_build_fix_v2.sh ]]; then
+        run bash tools/verify_mingw_build_fix_v2.sh
+    fi
+elif [[ "$MODE" == "native" ]]; then
+    printf 'NATIVE_BUILD_BLOCKED: source archive is missing build scripts:' >&2
+    printf ' %s' "${missing_build_scripts[@]}" >&2
+    printf '\n' >&2
+    exit 2
+else
+    printf 'PORTABLE_NOTE: source archive omits native build scripts:'
+    printf ' %s' "${missing_build_scripts[@]}"
+    printf '\n'
+fi
 
 if [[ "$MODE" == "native" ]]; then
     required=(i686-w64-mingw32-g++ i686-w64-mingw32-windres)

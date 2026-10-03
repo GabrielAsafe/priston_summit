@@ -14,6 +14,7 @@ public:
     LifeCommandResult Restore(EntityId target, int amount) override;
     LifeCommandResult Restore(PlayerId target, int amount) override;
     LifeCommandResult ConsumeNonLethal(EntityId target, int amount) override;
+    LifeCommandResult ConsumeLethal(EntityId target, int amount) override;
     LifeCommandResult Revive(EntityId target, int percentOfMaximum) override;
 };
 

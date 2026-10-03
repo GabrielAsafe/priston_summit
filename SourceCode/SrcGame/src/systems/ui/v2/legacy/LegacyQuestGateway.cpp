@@ -62,6 +62,7 @@ int CodexQuestId(const std::string& guideId)
 void CopyGuide(QuestEntrySnapshot& out, const QuestGuideEntry& guide)
 {
     out.codex.available = true;
+    out.codex.runtimeVerified = guide.supported;
     out.codex.guideId = guide.guideId;
     out.codex.type = guide.type;
     out.codex.category = guide.category;
@@ -301,7 +302,9 @@ QuestEntrySnapshot MakeCodexQuest(const QuestGuideEntry& guide, bool selected)
     out.sectionId = CodexQuestSectionId;
     out.title = guide.name;
     out.name = guide.name;
-    out.description = "Dados do Codex vinculados a uma quest existente no runtime Summit.";
+    out.description = guide.supported
+        ? "Entrada do Codex com binding runtime verificado no Summit."
+        : "Referencia documental do Codex; binding runtime ainda nao foi comprovado.";
     out.levelMin = guide.levelMin > 0 ? guide.levelMin : 0;
     out.levelMax = guide.levelMax > 0 ? guide.levelMax : 0;
     out.active = false;
@@ -326,7 +329,11 @@ void AddCodexQuests(QuestJournalSnapshot& out, int selectedCodexQuestId)
         return;
 
     std::vector<QuestGuideEntry> guides;
-    if (!source.SupportedQuests(guides))
+    // The Codex is a read-only reference surface, so it can expose the full
+    // canonical guide pack. Runtime authority remains separate: CopyGuide
+    // carries guide.supported into runtimeVerified and action paths still use
+    // live quest/runtime bindings only.
+    if (!source.Quests(guides))
         return;
 
     // Generic QuestDB rows may represent daily/weekly entries which are not

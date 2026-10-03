@@ -11,7 +11,7 @@ line=next((x for x in cat.splitlines() if 'SKILL_FARINA' in x),'')
 if ', true,' not in line: err.append('Farina not READY')
 for tok in ['case SKILL_FARINA:', 'Farina_AttackRate[point - 1] + caster->smCharInfo.Level',
             'GetAttackSpeedFrame(caster->smCharInfo.Attack_Speed, Farina_Speed[point - 1])',
-            'caster->MotionLoop = 1']:
+            'ServerLegacySkillAnimationAdapter().ConfigureLoop(']:
     if tok not in cpp: err.append('server missing '+tok)
 for tok in ['SKILL_PLAY_FARINA', 'GetAttackSpeedFrame(character->smCharInfo.Attack_Speed, Farina_Speed[point - 1])',
             'character->MotionLoop = 1']:

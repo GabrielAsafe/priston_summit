@@ -14,8 +14,8 @@ line=next((x for x in cat.splitlines() if 'SKILL_CHARGING_STRIKE' in x),'')
 if ', true,' not in line: err.append('Charging Strike not READY')
 for tok in ['chargedStrikeTargetSerial','chargedStrikeExecuteAt','chargedStrikePoint','UpdateCompanionChargedStrike']:
  if tok not in h: err.append('runtime/API missing '+tok)
-for tok in ['Charging_Strike_CharingDamagePercent[p]','MotionLoopSpeed = 60 + (Charging_Strike_Time[point - 1] * 2)',
-            'MotionInfo->EventFrame[2]','ticks * 1000U + 69U','UpdateCompanionChargedStrike(smCHAR *caster']:
+for tok in ['Charging_Strike_CharingDamagePercent[p]', 'ServerLegacySkillAnimationAdapter().ConfigureLoop(','60 + (Charging_Strike_Time[point - 1] * 2), 1)',
+            'chargeLoop.eventFrame2','ticks * 1000U + 69U','UpdateCompanionChargedStrike(smCHAR *caster']:
  if tok not in cpp: err.append('server missing '+tok)
 if 'UpdateCompanionChargedStrike(character, owner, managedSlot->skillRuntime' not in syscpp: err.append('system pump missing')
 for tok in ['SKILL_PLAY_CHARGING_STRIKE','Charging_Strike_Time[point - 1] * 2','character->MotionLoop = 1']:

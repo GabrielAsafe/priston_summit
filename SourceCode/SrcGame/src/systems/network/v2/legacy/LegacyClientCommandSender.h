@@ -16,6 +16,11 @@ public:
 };
 
 LegacyClientCommandSender& ClientLegacyCommandSender();
+
+// Compatibility bridge for frozen RED call sites. New feature code should use
+// IClientCommandSender directly. The third argument preserves the legacy Send
+// call shape while transport ownership stays inside this AMBER adapter.
+int SendPrimaryLegacyPacket(const void* data, int size, int legacyWaitFlag);
 }
 }
 }

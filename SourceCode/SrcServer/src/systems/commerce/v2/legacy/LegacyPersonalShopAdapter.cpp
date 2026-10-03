@@ -9,7 +9,10 @@
 #include "systems/commerce/v2/legacy/LegacyCoinWalletAdapter.h"
 #include "systems/inventory/legacy/sinItem.h"
 #include "systems/inventory/v2/legacy/LegacyInventoryRuntime.h"
+#include "systems/inventory/v2/legacy/LegacyInventoryReservationRuntime.h"
 #include "systems/gameplay/inventory/v2/legacy/LegacyPotionStackAdapter.h"
+#include "gameplay/commerce/v2/PersonalShopSessionService.h"
+#include "gameplay/commerce/v2/PersonalShopTransactionService.h"
 
 int rsServerPotionErrorLog(rsPLAYINFO* lpPlayInfo, DWORD dwCode, int Count, int Position);
 int rsRecord_ItemLog_MyShop(rsPLAYINFO* lpPlayInfo, rsPLAYINFO* lpPlayInfo2, DWORD dwItemCode, DWORD dwHead, DWORD dwChkSum, int Price);
@@ -36,17 +39,14 @@ bool RequiresReceiver(PersonalShopIngressAction action)
 LegacyPersonalShopAdapter::LegacyPersonalShopAdapter(
     const player::legacy::LegacyOnlinePlayerRegistry& registry,
     const IWalletQuery& walletQuery,
-    IWalletCommands& walletCommands,
     const inventory::IInventoryQuery& inventoryQuery,
-    inventory::IInventoryCommands& inventoryCommands,
+    IPersonalShopSessionService& sessionService,
     const ICoinWalletQuery& coinQuery,
-    ICoinWalletCommands& coinCommands,
     const inventory::IPotionStackQuery& potionStackQuery,
-    inventory::IPotionStackCommands& potionStackCommands)
-    : registry_(registry), walletQuery_(walletQuery), walletCommands_(walletCommands),
-      inventoryQuery_(inventoryQuery), inventoryCommands_(inventoryCommands),
-      coinQuery_(coinQuery), coinCommands_(coinCommands),
-      potionStackQuery_(potionStackQuery), potionStackCommands_(potionStackCommands)
+    IPersonalShopTransactionService& transactionService)
+    : registry_(registry), walletQuery_(walletQuery), inventoryQuery_(inventoryQuery),
+      sessionService_(sessionService), coinQuery_(coinQuery),
+      potionStackQuery_(potionStackQuery), transactionService_(transactionService)
 {
 }
 
@@ -129,7 +129,8 @@ PersonalShopPrepareResult LegacyPersonalShopAdapter::PrepareTrade(const Personal
         return result;
     }
 
-    if(buyer->dwMyShopTradeTime > dwPlayServTime)
+    const PlayerHandle buyerHandle = registry_.HandleOf(buyer);
+    if(sessionService_.CooldownActive(buyerHandle, static_cast<std::uint32_t>(dwPlayServTime)))
     {
         result.code = PersonalShopPrepareCode::CooldownActive;
         return result;
@@ -166,33 +167,15 @@ PersonalShopPrepareResult LegacyPersonalShopAdapter::PrepareTrade(const Personal
         return result;
     }
 
-    buyer->dwMyShopTradeTime = dwPlayServTime + 500;
-    if(buyer->MyShopListCount == 0)
+    const PersonalShopSessionRecordResult session = sessionService_.RecordPrepared(
+        buyerHandle,
+        static_cast<std::uint32_t>(dwPlayServTime),
+        PersonalShopSessionFingerprint(request.itemCode, request.head, request.checksum, request.goldPrice));
+    if(!session.Accepted())
     {
-        ZeroMemory(buyer->sMyShopList, sizeof(sMYSHOP_SELL_INFO) * MYSHOP_LIST_MAX);
+        result.code = PersonalShopPrepareCode::InvalidRequest;
+        return result;
     }
-    else
-    {
-        for(int cnt = 0; cnt < MYSHOP_LIST_MAX; ++cnt)
-        {
-            if(buyer->sMyShopList[cnt].dwCode &&
-               request.itemCode == buyer->sMyShopList[cnt].dwCode &&
-               request.head == buyer->sMyShopList[cnt].dwHead &&
-               request.checksum == buyer->sMyShopList[cnt].dwChkSum &&
-               request.goldPrice == static_cast<std::int64_t>(buyer->sMyShopList[cnt].Price))
-            {
-                result.code = PersonalShopPrepareCode::Prepared;
-                return result;
-            }
-        }
-    }
-
-    const int slot = buyer->MyShopListCount & MYSHOP_LIST_MASK;
-    buyer->sMyShopList[slot].dwCode = request.itemCode;
-    buyer->sMyShopList[slot].dwHead = request.head;
-    buyer->sMyShopList[slot].dwChkSum = request.checksum;
-    buyer->sMyShopList[slot].Price = static_cast<int>(request.goldPrice);
-    buyer->MyShopListCount++;
 
     result.code = PersonalShopPrepareCode::Prepared;
     return result;
@@ -285,237 +268,24 @@ PersonalShopTradeResult LegacyPersonalShopAdapter::CommitTrade(const PersonalSho
         return result;
     }
 
-    WalletSnapshot buyerWallet;
-    WalletSnapshot sellerWallet;
-    if(!walletQuery_.TryGetWallet(request.buyer, buyerWallet) || buyerWallet.gold < request.goldPrice)
-    {
-        result.code = PersonalShopTradeCode::InsufficientGold;
-        return result;
-    }
-    if(!walletQuery_.TryGetWallet(request.seller, sellerWallet) ||
-       sellerWallet.gold < 0 || sellerWallet.gold > kLegacyWalletMax - request.goldPrice)
-    {
-        result.code = PersonalShopTradeCode::SellerWalletCapacityExceeded;
-        return result;
-    }
-    CoinWalletSnapshot buyerCoinWallet;
-    if(!coinQuery_.TryGetCoinWallet(request.buyer, buyerCoinWallet) ||
-       buyerCoinWallet.coins < request.coinPrice)
-    {
-        result.code = PersonalShopTradeCode::InsufficientCoin;
-        return result;
-    }
-    CoinWalletSnapshot sellerCoinWallet;
-    if(!coinQuery_.TryGetCoinWallet(request.seller, sellerCoinWallet) ||
-       sellerCoinWallet.coins < 0 ||
-       sellerCoinWallet.coins > 0x7fffffffLL - request.coinPrice)
-    {
-        result.code = PersonalShopTradeCode::SellerCoinCapacityExceeded;
-        return result;
-    }
-
-    const inventory::ItemInstanceId item(ItemId(request.itemCode), request.head, request.checksum);
-    if(!inventoryQuery_.Contains(request.seller, item).Present())
-    {
-        result.code = PersonalShopTradeCode::ListingNotFound;
-        return result;
-    }
-
     const bool potion = (request.itemCode & sinITEM_MASK1) == (sinPM1 & sinITEM_MASK1);
-    bool buyerItemAdded = false;
-    bool sellerItemRemoved = false;
-    bool potionMoved = false;
-    bool buyerGoldDebited = false;
-    bool sellerGoldCredited = false;
-    bool buyerCoinDebited = false;
-    bool sellerCoinCredited = false;
+    const PersonalShopTransactionResult transaction = transactionService_.Commit(
+        PersonalShopTransactionRequest(request, potion));
 
-    const auto rollbackInventory = [&]() -> bool
-    {
-        bool ok = true;
-        if(sellerItemRemoved)
-        {
-            const inventory::InventoryMutationResult restored = inventoryCommands_.Add(request.seller, item);
-            ok = restored.Applied() && ok;
-            sellerItemRemoved = false;
-        }
-        if(buyerItemAdded)
-        {
-            const inventory::InventoryMutationResult removed = inventoryCommands_.Remove(request.buyer, item);
-            ok = removed.code == inventory::InventoryMutationCode::Applied && ok;
-            buyerItemAdded = false;
-        }
-        if(potionMoved)
-        {
-            const inventory::PotionStackTransferResult potionRollback =
-                potionStackCommands_.TransferStack(inventory::PotionStackTransferRequest(
-                    request.buyer, request.seller, ItemId(request.itemCode),
-                    static_cast<inventory::PotionQuantity>(request.quantity)));
-            ok = potionRollback.Applied() && ok;
-            potionMoved = false;
-        }
-        return ok;
-    };
+    if(transaction.potionTransferFailed)
+        rsServerPotionErrorLog(seller, request.itemCode, -static_cast<int>(request.quantity), 310);
 
-    const auto rollbackGold = [&]() -> bool
+    if(transaction.trade.Committed())
     {
-        bool ok = true;
-        if(sellerGoldCredited)
-        {
-            const WalletMutationResult undoSeller =
-                walletCommands_.Debit(request.seller, request.goldPrice, WalletReason::PersonalShop);
-            ok = undoSeller.Ok() && ok;
-            sellerGoldCredited = false;
-        }
-        if(buyerGoldDebited)
-        {
-            const WalletMutationResult undoBuyer =
-                walletCommands_.Credit(request.buyer, request.goldPrice, WalletReason::PersonalShop);
-            ok = undoBuyer.Ok() && ok;
-            buyerGoldDebited = false;
-        }
-        return ok;
-    };
-
-    const auto rollbackCoin = [&]() -> bool
-    {
-        bool ok = true;
-        if(sellerCoinCredited)
-        {
-            const CoinMutationResult undoSeller =
-                coinCommands_.DebitCoins(request.seller, request.coinPrice, CoinReason::PersonalShop);
-            ok = undoSeller.Ok() && ok;
-            sellerCoinCredited = false;
-        }
-        if(buyerCoinDebited)
-        {
-            const CoinMutationResult undoBuyer =
-                coinCommands_.CreditCoins(request.buyer, request.coinPrice, CoinReason::PersonalShop);
-            ok = undoBuyer.Ok() && ok;
-            buyerCoinDebited = false;
-        }
-        return ok;
-    };
-
-    // Non-potion transfers reserve buyer capacity first. This closes the old
-    // item-loss path where seller/gold mutation completed before buyer add was checked.
-    if(!potion)
-    {
-        const inventory::InventoryMutationResult buyerAdd = inventoryCommands_.Add(request.buyer, item);
-        if(buyerAdd.code != inventory::InventoryMutationCode::Applied)
-        {
-            result.code = PersonalShopTradeCode::BuyerInventoryRejected;
-            return result;
-        }
-        buyerItemAdded = true;
-    }
-    else
-    {
-        const inventory::PotionStackTransferResult potionTransfer =
-            potionStackCommands_.TransferStack(inventory::PotionStackTransferRequest(
-                request.seller, request.buyer, ItemId(request.itemCode),
-                static_cast<inventory::PotionQuantity>(request.quantity)));
-        if(!potionTransfer.Applied())
-        {
-            rsServerPotionErrorLog(seller, request.itemCode, -static_cast<int>(request.quantity), 310);
-            result.code = potionTransfer.code == inventory::PotionStackTransferCode::RollbackFailed
-                              ? PersonalShopTradeCode::RollbackFailed
-                              : PersonalShopTradeCode::PotionTransferRejected;
-            return result;
-        }
-        potionMoved = true;
+        if(potion)
+            rsRecord_ItemLog_MyShop(seller, buyer, request.itemCode, request.quantity, 0,
+                                    static_cast<int>(request.goldPrice));
+        else
+            rsRecord_ItemLog_MyShop(seller, buyer, request.itemCode, request.head, request.checksum,
+                                    static_cast<int>(request.goldPrice));
     }
 
-    const inventory::InventoryMutationResult sellerRemove = inventoryCommands_.Remove(request.seller, item);
-    if(sellerRemove.code != inventory::InventoryMutationCode::Applied)
-    {
-        const bool rollbackOk = rollbackInventory();
-        result.code = rollbackOk ? PersonalShopTradeCode::ItemDeleteRejected
-                                 : PersonalShopTradeCode::RollbackFailed;
-        return result;
-    }
-    sellerItemRemoved = true;
-
-    if(request.goldPrice > 0)
-    {
-        const WalletMutationResult debit =
-            walletCommands_.Debit(request.buyer, request.goldPrice, WalletReason::PersonalShop);
-        if(!debit.Ok())
-        {
-            const bool rollbackOk = rollbackInventory();
-            result.code = rollbackOk ? PersonalShopTradeCode::WalletRejected
-                                     : PersonalShopTradeCode::RollbackFailed;
-            return result;
-        }
-        buyerGoldDebited = true;
-
-        const WalletMutationResult credit =
-            walletCommands_.Credit(request.seller, request.goldPrice, WalletReason::PersonalShop);
-        if(!credit.Ok())
-        {
-            const bool goldRollbackOk = rollbackGold();
-            const bool inventoryRollbackOk = rollbackInventory();
-            const bool rollbackOk = goldRollbackOk && inventoryRollbackOk;
-            result.code = rollbackOk ? PersonalShopTradeCode::WalletRejected
-                                     : PersonalShopTradeCode::RollbackFailed;
-            return result;
-        }
-        sellerGoldCredited = true;
-    }
-
-    if(request.coinPrice > 0)
-    {
-        const CoinMutationResult debit =
-            coinCommands_.DebitCoins(request.buyer, request.coinPrice, CoinReason::PersonalShop);
-        if(!debit.Ok())
-        {
-            const bool goldRollbackOk = rollbackGold();
-            const bool inventoryRollbackOk = rollbackInventory();
-            result.code = goldRollbackOk && inventoryRollbackOk
-                              ? PersonalShopTradeCode::CoinWalletRejected
-                              : PersonalShopTradeCode::RollbackFailed;
-            return result;
-        }
-        buyerCoinDebited = true;
-
-        const CoinMutationResult credit =
-            coinCommands_.CreditCoins(request.seller, request.coinPrice, CoinReason::PersonalShop);
-        if(!credit.Ok())
-        {
-            const bool coinRollbackOk = rollbackCoin();
-            const bool goldRollbackOk = rollbackGold();
-            const bool inventoryRollbackOk = rollbackInventory();
-            result.code = coinRollbackOk && goldRollbackOk && inventoryRollbackOk
-                              ? PersonalShopTradeCode::CoinWalletRejected
-                              : PersonalShopTradeCode::RollbackFailed;
-            return result;
-        }
-        sellerCoinCredited = true;
-    }
-
-    if(potion)
-    {
-        // Exact-item inventory metadata is intentionally a no-op for legacy potion stacks.
-        const inventory::InventoryMutationResult buyerAdd = inventoryCommands_.Add(request.buyer, item);
-        if(!buyerAdd.Applied())
-        {
-            const bool coinRollbackOk = rollbackCoin();
-            const bool goldRollbackOk = rollbackGold();
-            const bool inventoryRollbackOk = rollbackInventory();
-            const bool rollbackOk = coinRollbackOk && goldRollbackOk && inventoryRollbackOk;
-            result.code = rollbackOk ? PersonalShopTradeCode::BuyerInventoryRejected
-                                     : PersonalShopTradeCode::RollbackFailed;
-            return result;
-        }
-    }
-
-    if(potion)
-        rsRecord_ItemLog_MyShop(seller, buyer, request.itemCode, request.quantity, 0, static_cast<int>(request.goldPrice));
-    else
-        rsRecord_ItemLog_MyShop(seller, buyer, request.itemCode, request.head, request.checksum, static_cast<int>(request.goldPrice));
-
-    result.code = PersonalShopTradeCode::Committed;
-    return result;
+    return transaction.trade;
 }
 
 LegacyPersonalShopAdapter& ServerLegacyPersonalShopAdapter()
@@ -526,16 +296,18 @@ LegacyPersonalShopAdapter& ServerLegacyPersonalShopAdapter()
     LegacyCoinWalletAdapter& coin = ServerLegacyCoinWalletAdapter();
     inventory::legacy::LegacyPotionStackAdapter& potionStacks =
         inventory::legacy::ServerLegacyPotionStackAdapter();
+    static PersonalShopSessionService sessionService(MYSHOP_LIST_MAX, 500u);
+    static PersonalShopTransactionService transactionService(
+        wallet, wallet, inventoryRuntime, inventoryRuntime,
+        inventory::legacy::ServerInventoryReservationService(), coin, coin, potionStacks);
     static LegacyPersonalShopAdapter adapter(
         player::legacy::ServerLegacyOnlinePlayerRegistry(),
         wallet,
-        wallet,
         inventoryRuntime,
-        inventoryRuntime,
-        coin,
+        sessionService,
         coin,
         potionStacks,
-        potionStacks);
+        transactionService);
     return adapter;
 }
 }

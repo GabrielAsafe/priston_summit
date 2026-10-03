@@ -102,6 +102,7 @@ public:
         codexQuest.title = "Quest do Level 30 - Por Ela";
         codexQuest.name = codexQuest.title;
         codexQuest.codex.available = true;
+        codexQuest.codex.runtimeVerified = true;
         codexQuest.codex.guideId = "level-30-por-ela";
         codexQuest.codex.stages = {"Tempskrons", "Morions"};
         codexQuest.codex.objectives = {"[Tempskrons] Falar com Allya em Ricarten.", "[Tempskrons] Cacar 20 Bargons em Terra Esquecida e retornar."};
@@ -316,6 +317,9 @@ int main()
     assert(rawRenderer->HasText("Quest do Level 30 - Por Ela"));
     Click(runtime, 130, 218);
     assert(gateway.selectedSection == 0x7020 && gateway.selectedQuest == 303);
+    rawRenderer->ClearText();
+    runtime.Render();
+    assert(rawRenderer->HasText("Runtime: binding verificado"));
     Click(runtime, 102 + 569 + 36, 99 + 86 + 12);
     rawRenderer->ClearText();
     runtime.Render();

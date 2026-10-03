@@ -37,6 +37,7 @@ public:
     virtual LifeCommandResult Restore(EntityId target, int amount) = 0;
     virtual LifeCommandResult Restore(PlayerId target, int amount) = 0;
     virtual LifeCommandResult ConsumeNonLethal(EntityId target, int amount) = 0;
+    virtual LifeCommandResult ConsumeLethal(EntityId target, int amount) = 0;
     virtual LifeCommandResult Revive(EntityId target, int percentOfMaximum) = 0;
 };
 }

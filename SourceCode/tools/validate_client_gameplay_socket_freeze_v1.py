@@ -11,9 +11,6 @@ pattern = re.compile(r'\bsmWsockServer\s*->\s*Send\s*\(')
 # generic allowlist: netplay/Damage/legacy_sin are frozen RED, while the V2
 # sender is the single AMBER entrypoint used by modernized feature paths.
 allowed = {
-    'SrcGame/src/systems/network/client/netplay.cpp': 'RED network kernel',
-    'SrcGame/src/systems/combat/damage/Damage.cpp': 'RED combat kernel',
-    'SrcGame/src/systems/ui/hud/legacy_sin/sinInterFace.cpp': 'RED legacy UI kernel',
     'SrcGame/src/systems/network/v2/legacy/LegacyClientCommandSender.cpp': 'AMBER command sender adapter',
 }
 

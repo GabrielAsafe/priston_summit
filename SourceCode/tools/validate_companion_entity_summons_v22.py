@@ -11,7 +11,7 @@ err=[]
 for code in ('SKILL_METAL_GOLEM','SKILL_RECALL_WOLVERIN','SKILL_FIRE_ELEMENTAL'):
     line=next((ln for ln in CAT.splitlines() if '{ '+code+',' in ln),'')
     if ', true,' not in line: err.append(code+' not READY')
-for tok in ('OpenMonsterFromSkill(SkillPlayCode(descriptor.skillCode)','owner, caster','spawnedSkillPet->dwUpdateCharInfoTime = now + 355U * 1000U'):
+for tok in ('OpenMonsterFromSkill(SkillPlayCode(descriptor.skillCode)','owner, caster','summonProfile.expiresAtMs = now + 355U * 1000U','ServerLegacySummonedActorAdapter().Configure'):
     if tok not in CPP: err.append('companion summon execution missing '+tok)
 # Exact legacy stat shaping for each entity summon.
 for tok in ('Metal_Golem_Damage[p][0]','Metal_Golem_Hit[p]','Metal_Golem_Defense[p]','Metal_Golem_Life[p] + caster->smCharInfo.Strength * 2','fONE + p * 15',

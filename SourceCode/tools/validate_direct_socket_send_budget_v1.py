@@ -61,6 +61,9 @@ expected_amber = {
     'SrcServer/src/systems/community/chat/v2/legacy/LegacyChatDeliveryAdapter.cpp',
     'SrcServer/src/systems/gameplay/pets/v2/legacy/LegacyPetRuntimeAdapter.cpp',
     'SrcServer/src/systems/network/v2/legacy/LegacyPacketSender.cpp',
+    'SrcServer/src/systems/commerce/v2/legacy/LegacyMixtureResetKernel.inl',
+    'SrcServer/src/systems/commerce/v2/legacy/LegacyAgingKernel.inl',
+    'SrcServer/src/systems/commerce/v2/legacy/LegacyCraftingKernel.inl',
 }
 if set(amber) != expected_amber:
     failures.append('AMBER direct socket ownership set changed without validator review')

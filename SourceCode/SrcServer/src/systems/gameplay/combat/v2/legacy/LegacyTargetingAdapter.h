@@ -12,6 +12,7 @@ class LegacyTargetingAdapter final : public ITargetingService
 {
 public:
     TargetingResult ClearAcquiredTarget(EntityId actor) override;
+    TargetingResult ClearPlayerTarget(EntityId actor) override;
     TargetingResult ReleaseTarget(EntityId actor, EntityId expectedTarget,
                                   TargetReleaseMode mode) override;
     TargetingResult ForceTarget(EntityId actor, EntityId target,

@@ -24,6 +24,7 @@ struct QuestRewardSnapshot
 struct QuestCodexSnapshot
 {
     bool available = false;
+    bool runtimeVerified = false;
     std::string guideId;
     std::string type;
     std::string category;

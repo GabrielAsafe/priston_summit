@@ -47,6 +47,28 @@ public:
         return result;
     }
 
+    gameplay::combat::LifeCommandResult ConsumeLethal(gameplay::EntityId target, int amount) override
+    {
+        gameplay::combat::LifeCommandResult result;
+        auto it = entities.find(target.value);
+        if(!target.Valid() || amount <= 0 || it == entities.end())
+            return result;
+        result.before = it->second.current;
+        result.maximum = it->second.maximum;
+        if(result.before <= 0 || result.maximum <= 0)
+        {
+            result.code = gameplay::combat::LifeCommandCode::InvalidState;
+            result.after = result.before;
+            return result;
+        }
+        it->second.current -= amount;
+        if(it->second.current < 0)
+            it->second.current = 0;
+        result.after = it->second.current;
+        result.code = gameplay::combat::LifeCommandCode::Ok;
+        return result;
+    }
+
     gameplay::combat::LifeCommandResult Revive(gameplay::EntityId target, int percentOfMaximum) override
     {
         gameplay::combat::LifeCommandResult result;
@@ -106,6 +128,7 @@ int main()
     assert(life.Restore(gameplay::EntityId(1u), 70).after == 100);
     assert(life.ConsumeNonLethal(gameplay::EntityId(1u), 99).Ok());
     assert(life.ConsumeNonLethal(gameplay::EntityId(1u), 1).code == gameplay::combat::LifeCommandCode::WouldKill);
+    assert(life.ConsumeLethal(gameplay::EntityId(1u), 5).after == 0);
     assert(life.Revive(gameplay::EntityId(2u), 50).after == 50);
     assert(life.Restore(gameplay::PlayerId(3u), 30).after == 100);
     return 0;

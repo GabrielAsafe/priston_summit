@@ -38,6 +38,10 @@ int main()
     gameplay::combat::CombatBuffDelta delta;
     delta.attackMin = 10;
     delta.absorption = -5;
+    delta.criticalHit = 3;
+    delta.moveSpeed = 2;
+    delta.maxMana = 11;
+    delta.maxStamina = 13;
     delta.resistance[2] = 7;
 
     FakeCombatBuffService service;

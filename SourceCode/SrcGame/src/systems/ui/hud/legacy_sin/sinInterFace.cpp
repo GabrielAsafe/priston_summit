@@ -1,4 +1,5 @@
 ﻿#include "opcodes.h"
+#include "systems/network/v2/legacy/LegacyClientCommandSender.h"
 #include "gameplay/classes/v2/services/ClassService.h"
 #include "compat/legacy/sin/sinLinkHeader.h"
 #include "systems/social/clan/tjclan.h"
@@ -3426,7 +3427,7 @@ int cINTERFACE::SetStringEffect(int Index)
 	smTransCommand.LParam = Index;
 
 	if (smWsockServer)
-		smWsockServer->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+		gameplay::network::legacy::SendPrimaryLegacyPacket((char*)&smTransCommand, smTransCommand.size, TRUE);
 
 	/*if(!HA_EffectIndex[Index])
 	{

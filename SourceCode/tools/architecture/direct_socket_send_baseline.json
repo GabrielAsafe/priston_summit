@@ -5,7 +5,7 @@
       "max_counts": {
         "lpsmSock": 9,
         "smWsockDataServer": 1,
-        "smWsockServer": 1
+        "smWsockServer": 0
       },
       "role": "RED"
     },
@@ -59,7 +59,7 @@
     },
     "Shared/gameplay/quests/cQuestWindow_legacy_client.inl": {
       "max_counts": {
-        "smWsockServer": 5
+        "smWsockServer": 0
       },
       "role": "RED"
     },
@@ -264,7 +264,7 @@
     },
     "Shared/server/legacy_runtime/OnSever_legacy_server.inl": {
       "max_counts": {
-        "lpsmSock": 371
+        "lpsmSock": 351
       },
       "role": "RED"
     },
@@ -302,7 +302,7 @@
       "max_counts": {
         "smWsockDataServer": 2,
         "smWsockExtendServer": 2,
-        "smWsockServer": 2,
+        "smWsockServer": 0,
         "smWsockUserServer": 2
       },
       "role": "RED"
@@ -349,7 +349,7 @@
         "lpsmSock": 43,
         "smWsockDataServer": 51,
         "smWsockExtendServer": 12,
-        "smWsockServer": 30,
+        "smWsockServer": 0,
         "smWsockUserServer": 24
       },
       "role": "RED"
@@ -387,7 +387,7 @@
     "SrcGame/src/systems/ui/hud/legacy_sin/sinInterFace.cpp": {
       "max_counts": {
         "lpsmSock": 1,
-        "smWsockServer": 1
+        "smWsockServer": 0
       },
       "role": "RED"
     },
@@ -420,7 +420,7 @@
       "max_counts": {
         "smWsockDataServer": 2,
         "smWsockExtendServer": 2,
-        "smWsockServer": 2,
+        "smWsockServer": 0,
         "smWsockUserServer": 2
       },
       "role": "RED"
@@ -460,6 +460,24 @@
         "lpsmSock": 2
       },
       "role": "RED"
+    },
+    "SrcServer/src/systems/commerce/v2/legacy/LegacyAgingKernel.inl": {
+      "max_counts": {
+        "lpsmSock": 3
+      },
+      "role": "AMBER"
+    },
+    "SrcServer/src/systems/commerce/v2/legacy/LegacyCraftingKernel.inl": {
+      "max_counts": {
+        "lpsmSock": 16
+      },
+      "role": "AMBER"
+    },
+    "SrcServer/src/systems/commerce/v2/legacy/LegacyMixtureResetKernel.inl": {
+      "max_counts": {
+        "lpsmSock": 1
+      },
+      "role": "AMBER"
     },
     "SrcServer/src/systems/commerce/vip/cVipHandler.cpp": {
       "max_counts": {
@@ -528,14 +546,15 @@
         "lpsmSock": 36,
         "smWsockDataServer": 47,
         "smWsockExtendServer": 9,
-        "smWsockServer": 17,
+        "smWsockServer": 0,
         "smWsockUserServer": 22
       },
       "role": "RED"
     },
     "SrcServer/src/systems/network/v2/legacy/LegacyPacketSender.cpp": {
       "max_counts": {
-        "lpsmSock": 1
+        "lpsmSock": 1,
+        "smWsockServer": 1
       },
       "role": "AMBER"
     },

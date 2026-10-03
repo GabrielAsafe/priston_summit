@@ -6,6 +6,12 @@ namespace gameplay
 {
 namespace combat
 {
+enum class DamageMode
+{
+    Standard = 0,
+    DirectLifeLoss
+};
+
 enum class DamageRejectReason
 {
     None = 0,
@@ -26,12 +32,15 @@ struct DamageRequest
     PlayerId owner;
     EntityId target;
     int rawDamage;
+    DamageMode mode;
 
     DamageRequest(EntityId sourceValue = EntityId(),
                   PlayerId ownerValue = PlayerId(),
                   EntityId targetValue = EntityId(),
-                  int rawDamageValue = 0)
-        : source(sourceValue), owner(ownerValue), target(targetValue), rawDamage(rawDamageValue) {}
+                  int rawDamageValue = 0,
+                  DamageMode modeValue = DamageMode::Standard)
+        : source(sourceValue), owner(ownerValue), target(targetValue), rawDamage(rawDamageValue),
+          mode(modeValue) {}
 };
 
 struct DamageResult

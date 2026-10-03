@@ -11119,7 +11119,7 @@ int SendShowDmg(int Dmg, int Type, DWORD dwObjectSerial) // Potato
 	smTransCommand.EParam = dwObjectSerial;
 
 
-	smWsockServer->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+	gameplay::network::legacy::SendPrimaryLegacyPacket((char*)&smTransCommand, smTransCommand.size, TRUE);
 
 	cSHOW_DMG::getInstance()->AddDmg(Dmg, lpCurPlayer->smCharInfo.dwObjectSerial, Type);
 	return TRUE;

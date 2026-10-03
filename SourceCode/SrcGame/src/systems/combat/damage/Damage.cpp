@@ -1,6 +1,7 @@
 #include "opcodes.h"
 #include "systems/rendering/legacy_3d/smd3d.h"
 #include "systems/network/transport/legacy/smwsock.h"
+#include "systems/network/v2/legacy/LegacyClientCommandSender.h"
 
 #include "systems/gameplay/character/core/character.h"
 #include "systems/audio/playback/legacy/Dxwav.h"
@@ -975,7 +976,7 @@ int	SendMaxDamageToServer(WORD MinDamage, WORD MaxDamage, WORD Critical)
 			fnEncodeDamagePacket(&smTransCommand);
 
 			if (smWsockServer)
-				smWsockServer->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+				gameplay::network::legacy::SendPrimaryLegacyPacket((char *)&smTransCommand, smTransCommand.size, TRUE);
 			if (smWsockUserServer && smWsockServer != smWsockUserServer)
 				smWsockUserServer->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
 			if (smWsockExtendServer && smWsockServer != smWsockExtendServer)
@@ -992,7 +993,7 @@ int	SendMaxDamageToServer(WORD MinDamage, WORD MaxDamage, WORD Critical)
 		dm_EncodePacket(&smTransCommand);
 
 		if (smWsockServer)
-			smWsockServer->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+			gameplay::network::legacy::SendPrimaryLegacyPacket((char *)&smTransCommand, smTransCommand.size, TRUE);
 		if (smWsockUserServer && smWsockServer != smWsockUserServer)
 			smWsockUserServer->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
 		if (smWsockExtendServer && smWsockServer != smWsockExtendServer)

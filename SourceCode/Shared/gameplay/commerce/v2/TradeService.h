@@ -105,6 +105,7 @@ enum class TradeExactCommitCode
 {
     Committed,
     InvalidRequest,
+    InventoryReservationRejected,
     ItemTransferRejected,
     PotionTransferRejected,
     GoldRejected,

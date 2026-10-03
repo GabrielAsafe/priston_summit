@@ -8,7 +8,7 @@ checks = [
     ("server 1Hz throttle", "SrcServer/src/systems/gameplay/companions/CompanionSystem.cpp", "lastRuntimeSendTime) < 1000U"),
     ("server runtime sender", "SrcServer/src/systems/gameplay/companions/CompanionSystem.cpp", "SendRuntimeStateLocked"),
     ("no DAT runtime sender", "SrcServer/src/systems/gameplay/companions/CompanionSystem.cpp", "Compact 1 Hz HUD telemetry"),
-    ("client packet dispatch", "SrcGame/src/systems/network/client/netplay.cpp", "ApplyLegacyCompanionRuntimePacket"),
+    ("client packet dispatch", "SrcGame/src/systems/network/v2/legacy/LegacyClientGameplayPacketRouter.h", "ApplyLegacyCompanionRuntimePacket"),
     ("gateway runtime snapshot", "SrcGame/src/systems/ui/v2/legacy/LegacyCompanionGateway.cpp", "ApplyRuntimeState"),
     ("combat HUD", "SrcGame/src/systems/ui/v2/hud/CompanionPartyHud.cpp", "CompanionPartyHud::OnRender"),
     ("quick mode", "SrcGame/src/systems/ui/v2/hud/CompanionPartyHud.cpp", "CompanionUiAction::SetMode"),

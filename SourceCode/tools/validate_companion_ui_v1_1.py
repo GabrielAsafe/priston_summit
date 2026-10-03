@@ -12,7 +12,7 @@ checks = [
     ("DAT equipment scan", ROOT / "SrcServer/src/systems/gameplay/companions/CompanionSystem.cpp", "ReadEquipmentSnapshot"),
     ("client companions page", ROOT / "SrcGame/src/systems/ui/v2/pages/CompanionsPage.cpp", "COMPANIONS DA CONTA"),
     ("structured gateway", ROOT / "SrcGame/src/systems/ui/v2/legacy/LegacyCompanionGateway.cpp", "CompanionUIActionPacket"),
-    ("client packet handler", ROOT / "SrcGame/src/systems/network/client/netplay.cpp", "OPCODE_COMPANION_UI_STATE"),
+    ("client packet handler", ROOT / "SrcGame/src/systems/network/v2/legacy/LegacyClientGameplayPacketRouter.h", "OPCODE_COMPANION_UI_STATE"),
     ("server packet handler", ROOT / "SrcServer/src/systems/network/v2/legacy/LegacyGameplayPacketRouter.cpp", "OPCODE_COMPANION_UI_ACTION"),
     ("quick body preservation", ROOT / "Shared/gameplay/character/character_legacy_client.inl", "previousBody"),
     ("quick head preservation", ROOT / "Shared/gameplay/character/character_legacy_client.inl", "companionModelNameCode2"),

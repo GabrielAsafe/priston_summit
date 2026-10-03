@@ -37,6 +37,14 @@ LegacyClientCommandSender& ClientLegacyCommandSender()
     static LegacyClientCommandSender sender;
     return sender;
 }
+
+int SendPrimaryLegacyPacket(const void* data, int size, int /*legacyWaitFlag*/)
+{
+    if (size <= 0)
+        return 0;
+    return ClientLegacyCommandSender().Send(
+        PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded() ? 1 : 0;
+}
 }
 }
 }

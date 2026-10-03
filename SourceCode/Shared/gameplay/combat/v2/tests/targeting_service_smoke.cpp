@@ -12,6 +12,11 @@ public:
         return Make(actor.Valid());
     }
 
+    gameplay::combat::TargetingResult ClearPlayerTarget(gameplay::EntityId actor) override
+    {
+        return Make(actor.Valid());
+    }
+
     gameplay::combat::TargetingResult ReleaseTarget(gameplay::EntityId actor,
         gameplay::EntityId target, gameplay::combat::TargetReleaseMode) override
     {
@@ -42,6 +47,7 @@ int main()
 {
     FakeTargetingService service;
     assert(service.ClearAcquiredTarget(gameplay::EntityId(1u)).Ok());
+    assert(service.ClearPlayerTarget(gameplay::EntityId(1u)).Ok());
     assert(service.ReleaseTarget(gameplay::EntityId(1u), gameplay::EntityId(2u),
         gameplay::combat::TargetReleaseMode::AcquiredAndForced).changed);
     assert(service.ForceTarget(gameplay::EntityId(1u), gameplay::EntityId(2u), 1000u).Ok());

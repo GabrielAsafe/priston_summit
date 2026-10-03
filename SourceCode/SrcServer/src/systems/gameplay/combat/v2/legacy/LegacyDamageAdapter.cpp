@@ -53,10 +53,14 @@ DamageResult LegacyDamageAdapter::Apply(const DamageRequest& request)
     if(target->lpMasterPlayInfo)
         return Reject(request, DamageRejectReason::TargetIsOwnedMonster, target->smCharInfo.Life[0]);
 
+    const bool directLifeLoss = request.mode == DamageMode::DirectLifeLoss;
     int damage = request.rawDamage;
-    damage -= (damage * target->smCharInfo.Absorption) / 100;
-    if(damage < 1)
-        damage = 1;
+    if(!directLifeLoss)
+    {
+        damage -= (damage * target->smCharInfo.Absorption) / 100;
+        if(damage < 1)
+            damage = 1;
+    }
 
     target->smCharInfo.Life[0] -= damage;
 
@@ -68,7 +72,7 @@ DamageResult LegacyDamageAdapter::Apply(const DamageRequest& request)
 
     if(target->smCharInfo.Life[0] <= 0)
     {
-        if(target->UseObject_VirtualLife && target->sObject_VirtualLife[0] > 0)
+        if(!directLifeLoss && target->UseObject_VirtualLife && target->sObject_VirtualLife[0] > 0)
         {
             target->smCharInfo.Life[0] = std::max(1, target->smCharInfo.Life[1] / 100);
             result.virtualLifeTriggered = true;
@@ -77,7 +81,7 @@ DamageResult LegacyDamageAdapter::Apply(const DamageRequest& request)
         {
             target->smCharInfo.Life[0] = 0;
             target->SetMotionFromCode(CHRMOTION_STATE_DEAD);
-            if(owner->dwObjectSerial && owner->dwObjectSerial == caster->smCharInfo.Next_Exp)
+            if(!directLifeLoss && owner->dwObjectSerial && owner->dwObjectSerial == caster->smCharInfo.Next_Exp)
                 target->smMonsterInfo.GetExp >>= 1;
             target->lpExt2 = owner;
             target->lpExt3 = caster;

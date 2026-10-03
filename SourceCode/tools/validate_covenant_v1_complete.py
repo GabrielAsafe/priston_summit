@@ -97,8 +97,12 @@ require(
     "GetServerCovenantSwitchCooldown", "GetServerCovenantPowerState",
 )
 require(
-    "Shared/server/legacy_runtime/OnSever_legacy_server.inl",
+    "SrcServer/src/systems/network/v2/legacy/LegacyModernChatIngressAdapter.inl",
     "HandleServerCovenantChatCommand", 'rsCompString("/covenant"',
+)
+require(
+    "Shared/server/legacy_runtime/OnSever_legacy_server.inl",
+    "RouteModernChatIngress",
 )
 
 # Authoritative gameplay hooks. Keep these very explicit: losing any of these makes

@@ -292,7 +292,8 @@ struct SQLiteConnection::Impl
 			{ 42, "042_covenant_inventory.sql" },
 			{ 43, "043_covenant_artisan_mode.sql" },
 			{ 44, "044_gathering_mining_runtime.sql" },
-			{ 45, "045_gathering_serverdb_namespace_fix.sql" }
+			{ 45, "045_gathering_serverdb_namespace_fix.sql" },
+			{ 46, "046_fishing_vertical.sql" }
 		};
 
 		int currentVersion = 0;

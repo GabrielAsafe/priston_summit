@@ -39,6 +39,7 @@ public:
     virtual ~ITargetingService() {}
 
     virtual TargetingResult ClearAcquiredTarget(EntityId actor) = 0;
+    virtual TargetingResult ClearPlayerTarget(EntityId actor) = 0;
     virtual TargetingResult ReleaseTarget(EntityId actor, EntityId expectedTarget,
                                           TargetReleaseMode mode) = 0;
     virtual TargetingResult ForceTarget(EntityId actor, EntityId target,

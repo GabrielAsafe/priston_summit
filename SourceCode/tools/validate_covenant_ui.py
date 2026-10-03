@@ -32,7 +32,7 @@ require_any(['SrcServer/src/systems/gameplay/covenants/v2/CovenantUIHandler.cpp'
 require_any(['SrcServer/src/systems/gameplay/covenants/v2/CovenantUIHandler.cpp','SrcServer/src/systems/gameplay/covenants/v2/legacy/LegacyCovenantUIIngressAdapter.cpp'],'SetServerCovenantArtisanMode','server artisan uses runtime')
 require_any(['SrcServer/src/systems/gameplay/covenants/v2/CovenantUIHandler.cpp','SrcServer/src/systems/gameplay/covenants/v2/legacy/LegacyCovenantUIIngressAdapter.cpp'],'RefineServerCovenantTrophy','server refine uses runtime')
 require_any(['Shared/server/legacy_runtime/OnSever_legacy_server.inl','SrcServer/src/systems/network/v2/legacy/LegacyGameplayPacketRouter.cpp'],'HandleCovenantUIAction','legacy server dispatch wired')
-require('SrcGame/src/systems/network/client/netplay.cpp','ApplyLegacyCovenantStatePacket','client packet dispatch wired')
+require('SrcGame/src/systems/network/v2/legacy/LegacyClientGameplayPacketRouter.h','ApplyLegacyCovenantStatePacket','client packet dispatch wired')
 require('SrcGame/src/systems/ui/v2/legacy/LegacyCovenantGateway.cpp','OPCODE_COVENANT_UI_ACTION','client gateway sends structured action')
 require('SrcGame/src/systems/ui/v2/windows/CharacterWindow.cpp','CharacterTab::Covenants','character shell has Covenant tab')
 require('SrcGame/src/systems/ui/v2/legacy/LegacyUIV2Bridge.cpp',"sinGetKeyClick('N')",'N hotkey wired')

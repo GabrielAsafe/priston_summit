@@ -5,6 +5,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "Shared/gameplay/commerce/v2/ShopService.h"
 ADAPTER = ROOT / "SrcServer/src/systems/commerce/v2/legacy/LegacyShopAdapter.cpp"
+KERNEL = ROOT / "Shared/gameplay/commerce/v2/ShopTransactionService.h"
 SERVER = ROOT / "Shared/server/legacy_runtime/OnSever_legacy_server.inl"
 ORACLE = ROOT / "Shared/legacy_oracle/server/core/server/legacy_runtime/OnSever.cpp.inl"
 
@@ -25,12 +26,13 @@ def section(text: str, start_token: str, end_token: str) -> str:
 
 
 def main() -> None:
-    for path in (CONTRACT, ADAPTER, SERVER, ORACLE):
+    for path in (CONTRACT, ADAPTER, KERNEL, SERVER, ORACLE):
         if not path.is_file():
             fail(f"missing {path.relative_to(ROOT)}")
 
     contract = CONTRACT.read_text(encoding="utf-8", errors="replace")
     adapter = ADAPTER.read_text(encoding="utf-8", errors="replace")
+    kernel = KERNEL.read_text(encoding="utf-8", errors="replace")
     buy = section(
         SERVER.read_text(encoding="utf-8", errors="replace"),
         "int rsRecvBuyShopItem(",
@@ -68,8 +70,8 @@ def main() -> None:
         "WalletReason::NpcBuyItem",
         "walletCommands_.Debit(request.player, result.total, reason)",
     ):
-        if token not in adapter:
-            fail(f"shop purchase adapter token missing: {token}")
+        if token not in kernel:
+            fail(f"shop purchase kernel token missing: {token}")
 
     for token in (
         "ServerLegacyShopAdapter().Purchase(",

@@ -60,13 +60,19 @@ CombatBuffResult LegacyCombatBuffAdapter::Apply(EntityId target, const CombatBuf
     resolved->smCharInfo.Shooting_Range += delta.shootingRange;
     resolved->smCharInfo.Absorption += delta.absorption;
     resolved->smCharInfo.Chance_Block += delta.chanceBlock;
+    resolved->smCharInfo.Critical_Hit += delta.criticalHit;
+    resolved->smCharInfo.Move_Speed += delta.moveSpeed;
     resolved->smCharInfo.Life_Regen += delta.lifeRegen;
     resolved->smCharInfo.Mana_Regen += delta.manaRegen;
     for(int r = 0; r < 8; ++r)
         resolved->smCharInfo.Resistance[r] = static_cast<short>(
             static_cast<int>(resolved->smCharInfo.Resistance[r]) + delta.resistance[r]);
-    resolved->smCharInfo.Life[1] = static_cast<short>(
-        static_cast<int>(resolved->smCharInfo.Life[1]) + delta.maxLife);
+    resolved->smCharInfo.Life[1] = static_cast<short>(std::max(1, std::min(32767,
+        static_cast<int>(resolved->smCharInfo.Life[1]) + delta.maxLife)));
+    resolved->smCharInfo.Mana[1] = static_cast<short>(std::max(1, std::min(32767,
+        static_cast<int>(resolved->smCharInfo.Mana[1]) + delta.maxMana)));
+    resolved->smCharInfo.Stamina[1] = static_cast<short>(std::max(1, std::min(32767,
+        static_cast<int>(resolved->smCharInfo.Stamina[1]) + delta.maxStamina)));
 
     return Result(CombatBuffCode::Ok, true);
 }
@@ -86,6 +92,8 @@ CombatBuffResult LegacyCombatBuffAdapter::Remove(EntityId target, const CombatBu
     resolved->smCharInfo.Shooting_Range -= delta.shootingRange;
     resolved->smCharInfo.Absorption -= delta.absorption;
     resolved->smCharInfo.Chance_Block -= delta.chanceBlock;
+    resolved->smCharInfo.Critical_Hit -= delta.criticalHit;
+    resolved->smCharInfo.Move_Speed -= delta.moveSpeed;
     resolved->smCharInfo.Life_Regen -= delta.lifeRegen;
     resolved->smCharInfo.Mana_Regen -= delta.manaRegen;
     for(int r = 0; r < 8; ++r)
@@ -93,8 +101,16 @@ CombatBuffResult LegacyCombatBuffAdapter::Remove(EntityId target, const CombatBu
             static_cast<int>(resolved->smCharInfo.Resistance[r]) - delta.resistance[r]);
     resolved->smCharInfo.Life[1] = static_cast<short>(std::max(1,
         static_cast<int>(resolved->smCharInfo.Life[1]) - delta.maxLife));
+    resolved->smCharInfo.Mana[1] = static_cast<short>(std::max(1,
+        static_cast<int>(resolved->smCharInfo.Mana[1]) - delta.maxMana));
+    resolved->smCharInfo.Stamina[1] = static_cast<short>(std::max(1,
+        static_cast<int>(resolved->smCharInfo.Stamina[1]) - delta.maxStamina));
     if(resolved->smCharInfo.Life[0] > resolved->smCharInfo.Life[1])
         resolved->smCharInfo.Life[0] = resolved->smCharInfo.Life[1];
+    if(resolved->smCharInfo.Mana[0] > resolved->smCharInfo.Mana[1])
+        resolved->smCharInfo.Mana[0] = resolved->smCharInfo.Mana[1];
+    if(resolved->smCharInfo.Stamina[0] > resolved->smCharInfo.Stamina[1])
+        resolved->smCharInfo.Stamina[0] = resolved->smCharInfo.Stamina[1];
 
     if(resolved->smCharInfo.Attack_Damage[0] < 1)
         resolved->smCharInfo.Attack_Damage[0] = 1;
@@ -106,6 +122,8 @@ CombatBuffResult LegacyCombatBuffAdapter::Remove(EntityId target, const CombatBu
     if(resolved->smCharInfo.Shooting_Range < 0) resolved->smCharInfo.Shooting_Range = 0;
     if(resolved->smCharInfo.Absorption < 0) resolved->smCharInfo.Absorption = 0;
     if(resolved->smCharInfo.Chance_Block < 0) resolved->smCharInfo.Chance_Block = 0;
+    if(resolved->smCharInfo.Critical_Hit < 0) resolved->smCharInfo.Critical_Hit = 0;
+    if(resolved->smCharInfo.Move_Speed < 1) resolved->smCharInfo.Move_Speed = 1;
     if(resolved->smCharInfo.Life_Regen < 0.0f) resolved->smCharInfo.Life_Regen = 0.0f;
     if(resolved->smCharInfo.Mana_Regen < 0.0f) resolved->smCharInfo.Mana_Regen = 0.0f;
 

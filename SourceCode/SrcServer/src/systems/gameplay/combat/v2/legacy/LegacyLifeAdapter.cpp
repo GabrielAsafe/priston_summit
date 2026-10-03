@@ -101,6 +101,28 @@ LifeCommandResult LegacyLifeAdapter::ConsumeNonLethal(EntityId target, int amoun
     return SnapshotResult(LifeCommandCode::Ok, before, after, maximum);
 }
 
+LifeCommandResult LegacyLifeAdapter::ConsumeLethal(EntityId target, int amount)
+{
+    if(!target.Valid() || amount <= 0)
+        return InvalidResult();
+    smCHAR* entity = ResolveEntity(target);
+    if(!entity)
+        return InvalidResult(LifeCommandCode::NotFound);
+    if(!entity->Flag)
+        return InvalidResult(LifeCommandCode::Inactive);
+
+    const int before = entity->smCharInfo.Life[0];
+    const int maximum = entity->smCharInfo.Life[1];
+    if(before <= 0 || maximum <= 0)
+        return SnapshotResult(LifeCommandCode::InvalidState, before, before, maximum);
+
+    const int after = std::max(0, before - amount);
+    entity->smCharInfo.Life[0] = static_cast<short>(after);
+    if(after <= 0)
+        entity->SetMotionFromCode(CHRMOTION_STATE_DEAD);
+    return SnapshotResult(LifeCommandCode::Ok, before, after, maximum);
+}
+
 LifeCommandResult LegacyLifeAdapter::Revive(EntityId target, int percentOfMaximum)
 {
     if(!target.Valid() || percentOfMaximum < 1 || percentOfMaximum > 100)

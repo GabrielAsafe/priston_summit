@@ -1,8 +1,11 @@
 #pragma once
 
 #include "gameplay/commerce/v2/TradeService.h"
+#include "gameplay/commerce/v2/TradeSession.h"
+#include "gameplay/commerce/v2/TradeTransaction.h"
 #include "gameplay/inventory/v2/Inventory.h"
 #include "gameplay/inventory/v2/PotionStack.h"
+#include "gameplay/inventory/v2/InventoryReservation.h"
 #include "gameplay/commerce/v2/CoinWallet.h"
 #include "systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h"
 
@@ -19,9 +22,12 @@ public:
                        const IWalletQuery& walletQuery,
                        IWalletCommands& walletCommands,
                        inventory::IInventoryCommands& inventoryCommands,
+                       inventory::IInventoryReservationService& inventoryReservations,
                        const ICoinWalletQuery& coinQuery,
                        ICoinWalletCommands& coinCommands,
-                       inventory::IPotionStackCommands& potionStackCommands);
+                       inventory::IPotionStackCommands& potionStackCommands,
+                       ITradeReplayGuard& replayGuard,
+                       ITradeTransactionService& transactionService);
 
     TradeIngressResult EvaluateIngress(const TradeIngressRequest& request) override;
     TradeCommitGuardResult CheckCommitReplay(const TradeCommitGuardRequest& request) override;
@@ -37,9 +43,12 @@ private:
     const IWalletQuery& walletQuery_;
     IWalletCommands& walletCommands_;
     inventory::IInventoryCommands& inventoryCommands_;
+    inventory::IInventoryReservationService& inventoryReservations_;
     const ICoinWalletQuery& coinQuery_;
     ICoinWalletCommands& coinCommands_;
     inventory::IPotionStackCommands& potionStackCommands_;
+    ITradeReplayGuard& replayGuard_;
+    ITradeTransactionService& transactionService_;
 };
 
 LegacyTradeAdapter& ServerLegacyTradeAdapter();
