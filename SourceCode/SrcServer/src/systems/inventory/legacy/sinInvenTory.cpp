@@ -34,6 +34,7 @@
 
 #include "gameplay/classes/v2/services/ClassService.h"
 #include "gameplay/inventory/v2/InventoryUseDelayPolicy.h"
+#include "gameplay/inventory/v2/InventoryIntegrityService.h"
 #include "systems/network/v2/legacy/LegacyBackendChannelSender.h"
 
 #ifdef _XTRAP_GUARD_4_CLIENT 
@@ -7884,86 +7885,57 @@ int cINVENTORY::ResetMouseItem()
 }
 
 
+namespace
+{
+gameplay::inventory::InventoryIntegritySnapshot CaptureLegacyInventoryIntegritySnapshot(
+	const sITEM* inventory,
+	const sITEM* temporary)
+{
+	gameplay::inventory::InventoryIntegritySnapshot snapshot;
+	snapshot.inventory.reserve(INVENTORY_MAXITEM);
+	snapshot.temporary.reserve(INVENTORY_MAXITEM);
+
+	for(int i = 0; i < INVENTORY_MAXITEM; ++i)
+	{
+		gameplay::inventory::InventoryIntegritySlot slot;
+		slot.index = static_cast<std::uint32_t>(i);
+		slot.active = inventory[i].Flag != 0;
+		slot.potion = inventory[i].Class == ITEM_CLASS_POTION;
+		slot.y = inventory[i].y;
+		slot.itemClass = inventory[i].Class;
+		slot.checksum = static_cast<std::uint32_t>(inventory[i].sItemInfo.ItemHeader.dwChkSum);
+		slot.head = static_cast<std::uint32_t>(inventory[i].sItemInfo.ItemHeader.Head);
+		snapshot.inventory.push_back(slot);
+
+		slot.active = temporary[i].Flag != 0;
+		slot.potion = temporary[i].Class == ITEM_CLASS_POTION;
+		slot.y = temporary[i].y;
+		slot.itemClass = temporary[i].Class;
+		slot.checksum = static_cast<std::uint32_t>(temporary[i].sItemInfo.ItemHeader.dwChkSum);
+		slot.head = static_cast<std::uint32_t>(temporary[i].sItemInfo.ItemHeader.Head);
+		snapshot.temporary.push_back(slot);
+	}
+	return snapshot;
+}
+}
+
 int cINVENTORY::CheckInvenItemForm()
 {
-
-	DWORD TempCheckDataSum = 0;
-
-	for(int i = 0; i < INVENTORY_MAXITEM; i++)
-	{
-		if(InvenItem[i].Flag)
-		{
-			if(InvenItem[i].Class != ITEM_CLASS_POTION)
-			{
-
-				TempCheckDataSum += (i + 1)*InvenItem[i].y;
-				TempCheckDataSum += (i + 1)*InvenItem[i].Class;
-				TempCheckDataSum += InvenItem[i].sItemInfo.ItemHeader.dwChkSum;
-				TempCheckDataSum += InvenItem[i].sItemInfo.ItemHeader.Head;
-			}
-
-		}
-		if(InvenItemTemp[i].Flag)
-		{
-			if(InvenItemTemp[i].Class != ITEM_CLASS_POTION)
-			{
-
-				TempCheckDataSum += (i + 1)*InvenItemTemp[i].y;
-				TempCheckDataSum += (i + 1)*InvenItemTemp[i].Class;
-				TempCheckDataSum += InvenItemTemp[i].sItemInfo.ItemHeader.dwChkSum;
-				TempCheckDataSum += InvenItemTemp[i].sItemInfo.ItemHeader.Head;
-			}
-
-		}
-
-	}
-	if(TempCheckDataSum != InvenDataCheckSum)
-	{
+	const DWORD currentFingerprint = static_cast<DWORD>(
+		gameplay::inventory::InventoryIntegrityService::ComputeFingerprint(
+			CaptureLegacyInventoryIntegritySnapshot(InvenItem, InvenItemTemp)));
+	if(currentFingerprint != InvenDataCheckSum)
 		SendSetHackUser(2);
-
-
-	}
 	return TRUE;
 }
 
 
 int cINVENTORY::ReFormInvenItem()
 {
-	DWORD Temp = 0;
-	InvenDataCheckSum = 0;
-
-	for(int i = 0; i < INVENTORY_MAXITEM; i++)
-	{
-		if(InvenItem[i].Flag)
-		{
-			if(InvenItem[i].Class != ITEM_CLASS_POTION)
-			{
-
-				InvenDataCheckSum += (i + 1)*InvenItem[i].y;
-				InvenDataCheckSum += (i + 1)*InvenItem[i].Class;
-				InvenDataCheckSum += InvenItem[i].sItemInfo.ItemHeader.dwChkSum;
-				InvenDataCheckSum += InvenItem[i].sItemInfo.ItemHeader.Head;
-			}
-
-		}
-		if(InvenItemTemp[i].Flag)
-		{
-			if(InvenItemTemp[i].Class != ITEM_CLASS_POTION)
-			{
-
-				InvenDataCheckSum += (i + 1)*InvenItemTemp[i].y;
-				InvenDataCheckSum += (i + 1)*InvenItemTemp[i].Class;
-				InvenDataCheckSum += InvenItemTemp[i].sItemInfo.ItemHeader.dwChkSum;
-				InvenDataCheckSum += InvenItemTemp[i].sItemInfo.ItemHeader.Head;
-			}
-
-		}
-
-	}
-	Temp = InvenDataCheckSum;
-
+	InvenDataCheckSum = static_cast<DWORD>(
+		gameplay::inventory::InventoryIntegrityService::ComputeFingerprint(
+			CaptureLegacyInventoryIntegritySnapshot(InvenItem, InvenItemTemp)));
 	return TRUE;
-
 }
 
 
