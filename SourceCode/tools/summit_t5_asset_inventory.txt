@@ -1,0 +1,378 @@
+SUMMIT T5 ASSET INVENTORY
+root=/home/gabriel/Área de Trabalho/summit
+generated=2026-09-19 18:25:17 +0100
+
+== GAME EXECUTABLES ==
+/home/gabriel/Área de Trabalho/summit/documentation/artifacts/forensic/bin/cliente_Summit_Tale_Client_Full_cliente_Game.exe
+/home/gabriel/Área de Trabalho/summit/OLD_EXECUTABLE_FOR_RESEARCH/Game.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/Misc/Bin/x64/GameStatisticsExample.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/Misc/Bin/x86/GameStatisticsExample.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/XACT/Bin/x64/XACTGame.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/XACT/Bin/x86/XACTGame.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/XInput/Bin/x64/XInputGame.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/XInput/Bin/x86/XInputGame.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/dist_mingw_client_i686/Game.exe
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Game.exe
+
+== DYNAMIC CONFIG EXACT ==
+
+== BIP SOURCE/CACHE FILES ==
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/M1Bip.inx	96 KiB
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/M2Bip.inx	96 KiB
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/M3Bip.inx	96 KiB
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/M4Bip.inx	96 KiB
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/M5Bip.inx	96 KiB
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/M6bip.inx	96 KiB
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/M7Bip.inx	96 KiB
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/M1Bip.inx	96 KiB
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/M2Bip.inx	96 KiB
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/M3Bip.inx	96 KiB
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/M4Bip.inx	96 KiB
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/M5Bip.inx	96 KiB
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/M6bip.inx	96 KiB
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/M7Bip.inx	96 KiB
+
+== T5-NAMED FILE CANDIDATES ==
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-18/patches/0003-t5-defer-Rupture-hits-to-animation-events.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-18/patches/0004-t5-fix-Rupture-attack-rating-percentage.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-18/patches/0005-t5-defer-Seismic-Impact-to-animation-events.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-18/patches/0006-t5-defer-Fierce-Wind-attack-to-animation-events.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-18/patches/0007-t5-align-Fierce-Wind-range-geometry-with-EU.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-18/patches/0008-t5-route-Wizard-Trance-sound-through-MotionEvent.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-18/patches/0012-t5-attach-Holy-Conviction-particle-to-owner.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-18/patches/0013-t5-attach-Lethal-Sight-keep-particle-to-owner.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-18/patches/0014-t5-route-Ring-of-Spears-sound-through-MotionEvent.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-18/patches/0017-t5-spawn-Fierce-Wind-projectile-from-bow.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-18/patches/0018-t5-restore-Fierce-Wind-animation-end-sound.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-18/patches/0019-t5-restore-Fierce-Wind-cast-visual.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-18/patches/0020-t5-keep-Fierce-state-through-animation-end.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-18/patches/0023-t5-attach-Holy-Conviction-visual-to-party-owners.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches/0003-t5-defer-Rupture-hits-to-animation-events.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches/0004-t5-fix-Rupture-attack-rating-percentage.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches/0005-t5-defer-Seismic-Impact-to-animation-events.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches/0006-t5-defer-Fierce-Wind-attack-to-animation-events.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches/0007-t5-align-Fierce-Wind-range-geometry-with-EU.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches/0008-t5-route-Wizard-Trance-sound-through-MotionEvent.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches/0012-t5-attach-Holy-Conviction-particle-to-owner.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches/0013-t5-attach-Lethal-Sight-keep-particle-to-owner.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches/0014-t5-route-Ring-of-Spears-sound-through-MotionEvent.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches/0017-t5-spawn-Fierce-Wind-projectile-from-bow.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches/0018-t5-restore-Fierce-Wind-animation-end-sound.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches/0019-t5-restore-Fierce-Wind-cast-visual.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches/0020-t5-keep-Fierce-state-through-animation-end.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches/0023-t5-attach-Holy-Conviction-visual-to-party-owners.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches_source_root/0003-t5-defer-Rupture-hits-to-animation-events.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches_source_root/0004-t5-fix-Rupture-attack-rating-percentage.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches_source_root/0005-t5-defer-Seismic-Impact-to-animation-events.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches_source_root/0006-t5-defer-Fierce-Wind-attack-to-animation-events.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches_source_root/0007-t5-align-Fierce-Wind-range-geometry-with-EU.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches_source_root/0008-t5-route-Wizard-Trance-sound-through-MotionEvent.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches_source_root/0012-t5-attach-Holy-Conviction-particle-to-owner.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches_source_root/0013-t5-attach-Lethal-Sight-keep-particle-to-owner.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches_source_root/0014-t5-route-Ring-of-Spears-sound-through-MotionEvent.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches_source_root/0017-t5-spawn-Fierce-Wind-projectile-from-bow.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches_source_root/0018-t5-restore-Fierce-Wind-animation-end-sound.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches_source_root/0019-t5-restore-Fierce-Wind-cast-visual.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches_source_root/0020-t5-keep-Fierce-state-through-animation-end.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches_source_root/0023-t5-attach-Holy-Conviction-visual-to-party-owners.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_ALIAS_ISOLATION_2026-09-19_v1/patches/0001-t5-isolate-Ice-Elemental-animation-alias.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_ALIAS_ISOLATION_2026-09-19_v1/patches/0002-t5-isolate-Summon-Tiger-animation-alias.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_ALIAS_ISOLATION_2026-09-19_v1/patches/0003-t5-isolate-Holy-Conviction-animation-alias.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_ALIAS_ISOLATION_2026-09-19_v1/patches/0004-t5-keep-Stone-Skin-animation-alias-isolated.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_ALIAS_ISOLATION_2026-09-19_v1/patches/0005-t5-isolate-Red-Ray-visual-and-network-skill-ids.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_ALIAS_ISOLATION_2026-09-19_v1/patches/0006-t5-isolate-Combo-Javelin-animation-alias.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_EFFECTS_2026-09-19_v3/patches/0002-t5-restore-Ring-of-Spears-layered-Lua-effect.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_EFFECTS_2026-09-19_v3/patches_source_root/0002-t5-restore-Ring-of-Spears-layered-Lua-effect.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_KNIGHT_EFFECTS_2026-09-19_v1/patches/0001-t5-align-Holy-Conviction-animation-speed-with-EU.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_KNIGHT_EFFECTS_2026-09-19_v1/patches/0002-t5-align-Lethal-Sight-animation-speed-with-EU.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_KNIGHT_EFFECTS_2026-09-19_v1/patches/0003-t5-enforce-Holy-Conviction-buff-replacement-locally.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_KNIGHT_EFFECTS_2026-09-19_v1/patches/0006-t5-enforce-Holy-Conviction-replacement-on-server.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_KNIGHT_EFFECTS_2026-09-19_v1/patches_source_root/0001-t5-align-Holy-Conviction-animation-speed-with-EU.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_KNIGHT_EFFECTS_2026-09-19_v1/patches_source_root/0002-t5-align-Lethal-Sight-animation-speed-with-EU.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_KNIGHT_EFFECTS_2026-09-19_v1/patches_source_root/0003-t5-enforce-Holy-Conviction-buff-replacement-locally.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_KNIGHT_EFFECTS_2026-09-19_v1/patches_source_root/0006-t5-enforce-Holy-Conviction-replacement-on-server.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_TIMING_CLEANUP_2026-09-19_v1/patches/0001-t5-align-Holy-Conviction-party-radius-with-EU.patch
+/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_TIMING_CLEANUP_2026-09-19_v1/patches/0002-t5-apply-Stone-Skin-no-death-at-animation-end.patch
+/home/gabriel/Área de Trabalho/summit/Servidor/char/monster/IceElemental/ice-b.bmp
+/home/gabriel/Área de Trabalho/summit/Servidor/char/monster/IceElemental/iceelemental.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/monster/IceElemental/iceelemental.ini
+/home/gabriel/Área de Trabalho/summit/Servidor/char/monster/IceElemental/IceElemental.inx
+/home/gabriel/Área de Trabalho/summit/Servidor/char/monster/IceElemental/iceelemental.inx.sidx
+/home/gabriel/Área de Trabalho/summit/Servidor/char/monster/IceElemental/iceelemental.smb
+/home/gabriel/Área de Trabalho/summit/Servidor/char/monster/IceElemental/iceelemental.smd
+/home/gabriel/Área de Trabalho/summit/Servidor/char/monster/IceElemental/ice-h.bmp
+/home/gabriel/Área de Trabalho/summit/Servidor/char/monster/IceElemental/ref.bmp
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/T5_IceElemental.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/T5_SummonTiger.inf
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/monster/IceElemental/ice-b.bmp
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/monster/IceElemental/iceelemental.ASE
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/monster/IceElemental/iceelemental.ini
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/monster/IceElemental/IceElemental.inx
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/monster/IceElemental/iceelemental.smb
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/monster/IceElemental/iceelemental.smd
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/monster/IceElemental/ice-h.bmp
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/monster/IceElemental/ref.bmp
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Effect/Particle/HolyConvictionDown.bmp
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/skills/timers/Ac5_LethalSight.tga
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/skills/timers/Ata5_SummonTiger.tga
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/skills/timers/Kn5_HolyConviction.tga
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/skills/timers/Mg5_WizardTrance.tga
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/skills/timers/Pr5_IceElemental.tga
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/scripts/particles/Ac5FierceWindKeep.part
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/scripts/particles/Ac5FierceWind.part
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/scripts/particles/Ac5FierceWindProjectile.part
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/scripts/particles/Ac5LethalSightKeep.part
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/scripts/particles/Ac5LethalSight.part
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/scripts/particles/IceElementalBody.part
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/scripts/particles/IceElementalHand.part
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/scripts/particles/KS5HolyConviction.part
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/scripts/particles/MC5RuptureFinalHit.part
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/scripts/particles/MC5RuptureHit.part
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/scripts/particles/MG5WizardTrance.luac
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/scripts/particles/PS5RingOfSpears.lua
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/scripts/particles/PS5RingOfSpears.part
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/scripts/particles/R5SesmicImpact.part
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/scripts/particles/SkillFighterT5SesmicImpact.lua
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/sounds/skills/Ring Of Spears.wav
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/sounds/skills/Rupture 1.wav
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/sounds/skills/Rupture 2.wav
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/image/Sinimage/skill/Archer/Button/TA100 Lethal_Sight.bmp
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/image/Sinimage/skill/Archer/Button/TA100 Lethal_Sight_.bmp
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/image/Sinimage/skill/Archer/Button/TA103 Fierce_Wind.bmp
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/image/Sinimage/skill/Archer/Button/TA103 Fierce_Wind_.bmp
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/image/Sinimage/skill/Atalanta/Button/MA110 Combo_Javelin.bmp
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/image/Sinimage/skill/Atalanta/Button/MA110 Combo_Javelin_.bmp
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/image/Sinimage/skill/Fighter/Button/TF103 Sesmic_Impact.bmp
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/image/Sinimage/skill/Fighter/Button/TF103 Sesmic_Impact_.bmp
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/image/Sinimage/skill/Knight/Button/MN100 Holy_Conviction.bmp
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/image/Sinimage/skill/Knight/Button/MN100 Holy_Conviction_.bmp
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/image/Sinimage/skill/Magician/Button/MM100 WizardTrance.bmp
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/image/Sinimage/skill/Magician/Button/MM100 WizardTrance_.bmp
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/image/Sinimage/skill/Magician/Button/MM103 Stone_Skin.bmp
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/image/Sinimage/skill/Magician/Button/MM103 Stone_Skin_.bmp
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/image/Sinimage/skill/Magician/Button/MM106 RedRay.bmp
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/image/Sinimage/skill/Magician/Button/MM106 RedRay_.bmp
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/image/Sinimage/skill/Magician/Button/MM110 Cataclysm.bmp
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/image/Sinimage/skill/Magician/Button/MM110 Cataclysm_.bmp
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/image/Sinimage/skill/Mechanician/Button/TM100 Rupture.bmp
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/image/Sinimage/skill/Mechanician/Button/TM100 Rupture_.bmp
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/image/Sinimage/skill/Priestess/Button/MP100 Ice_Elemental.bmp
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/image/Sinimage/skill/Priestess/Button/MP100 Ice_Elemental_.bmp
+
+== GAME/OBJECTS ANIMATION-LIKE FILES ==
+
+== TEXT CONFIG REFERENCES ==
+--- /home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/monster/IceElemental/iceelemental.ini
+4:*�������	iceelemental.ASE
+6:*��������	iceelemental.ASE
+7:*���۸���	"iceelemental.ASE"
+--- /home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/LOGS/mingw_model_decode_trace.txt
+126:input=[char\monster\IceElemental\iceelemental.inx] canonical=[char\monster\IceElemental\iceelemental.inx] size=95268 code=0x802B0527 keyword=1 model=[char\monster\IceElemental\iceelemental.ASE] link=[] motionCount=17
+1172:input=[char\monster\IceElemental\iceelemental.inx] canonical=[char\monster\IceElemental\iceelemental.inx] size=95268 code=0x802B0527 keyword=1 model=[char\monster\IceElemental\iceelemental.ASE] link=[] motionCount=17
+--- /home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/LOGS/mingw_missing_particle_scripts.txt
+2:game//scripts//particles//R5StoneSkin.part
+6:game//scripts//particles//R5StoneSkin.part
+10:game//scripts//particles//R5StoneSkin.part
+14:game//scripts//particles//R5StoneSkin.part
+18:game//scripts//particles//R5StoneSkin.part
+22:game//scripts//particles//R5StoneSkin.part
+26:game//scripts//particles//R5StoneSkin.part
+30:game//scripts//particles//R5StoneSkin.part
+34:game//scripts//particles//R5StoneSkin.part
+38:game//scripts//particles//R5StoneSkin.part
+42:game//scripts//particles//R5StoneSkin.part
+46:game//scripts//particles//R5StoneSkin.part
+50:game//scripts//particles//R5StoneSkin.part
+54:game//scripts//particles//R5StoneSkin.part
+58:game//scripts//particles//R5StoneSkin.part
+61:OPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//toppvp.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=Effect//Particle//Script//Bam.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//MG5OrbMastery.part exists=0 readonly=0 attributes=0xFFFFFFFF\nOPEN_FAIL path=game//scripts//particles//R5StoneSkin.part exists=0 readonly=0 attributes=0xFFFFFFFF\n
+--- /home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/LOGS/summit_t5_motion_lookup.txt
+1:DYNAMIC_CONFIG path="game\objects\animskills.ini" readable=0 count=-1
+10:MOTION idx=57 frames=2354..2404 events=5760,0,0,0 itemCount=24 jobBits=0x00000040 map=0x00000003 skills={raw=119 name="DivineInquisition" cur=-1 legacy=137 temp=137 euT5=-1},{raw=117 name="HolyConviction" cur=-1 legacy=135 temp=135 euT5=-1},{raw=121 name="GloriousShield" cur=-1 legacy=139 temp=139 euT5=-1},{raw=123 name="DivineCross" cur=-1 legacy=141 temp=141 euT5=-1}
+28:MOTION idx=57 frames=2354..2404 events=5760,0,0,0 itemCount=24 jobBits=0x00000040 map=0x00000003 skills={raw=119 name="DivineInquisition" cur=-1 legacy=137 temp=137 euT5=-1},{raw=117 name="HolyConviction" cur=-1 legacy=135 temp=135 euT5=-1},{raw=121 name="GloriousShield" cur=-1 legacy=139 temp=139 euT5=-1},{raw=123 name="DivineCross" cur=-1 legacy=141 temp=141 euT5=-1}
+46:MOTION idx=57 frames=2354..2404 events=5760,0,0,0 itemCount=24 jobBits=0x00000040 map=0x00000003 skills={raw=119 name="DivineInquisition" cur=-1 legacy=137 temp=137 euT5=-1},{raw=117 name="HolyConviction" cur=-1 legacy=135 temp=135 euT5=-1},{raw=121 name="GloriousShield" cur=-1 legacy=139 temp=139 euT5=-1},{raw=123 name="DivineCross" cur=-1 legacy=141 temp=141 euT5=-1}
+64:MOTION idx=57 frames=2354..2404 events=5760,0,0,0 itemCount=24 jobBits=0x00000040 map=0x00000003 skills={raw=119 name="DivineInquisition" cur=-1 legacy=137 temp=137 euT5=-1},{raw=117 name="HolyConviction" cur=-1 legacy=135 temp=135 euT5=-1},{raw=121 name="GloriousShield" cur=-1 legacy=139 temp=139 euT5=-1},{raw=123 name="DivineCross" cur=-1 legacy=141 temp=141 euT5=-1}
+82:MOTION idx=57 frames=2354..2404 events=5760,0,0,0 itemCount=24 jobBits=0x00000040 map=0x00000003 skills={raw=119 name="DivineInquisition" cur=-1 legacy=137 temp=137 euT5=-1},{raw=117 name="HolyConviction" cur=-1 legacy=135 temp=135 euT5=-1},{raw=121 name="GloriousShield" cur=-1 legacy=139 temp=139 euT5=-1},{raw=123 name="DivineCross" cur=-1 legacy=141 temp=141 euT5=-1}
+100:MOTION idx=57 frames=2354..2404 events=5760,0,0,0 itemCount=24 jobBits=0x00000040 map=0x00000003 skills={raw=119 name="DivineInquisition" cur=-1 legacy=137 temp=137 euT5=-1},{raw=117 name="HolyConviction" cur=-1 legacy=135 temp=135 euT5=-1},{raw=121 name="GloriousShield" cur=-1 legacy=139 temp=139 euT5=-1},{raw=123 name="DivineCross" cur=-1 legacy=141 temp=141 euT5=-1}
+--- /home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/meu_atual:summitcli.txt
+946:│   │   ├── IceElemental
+948:│   │   │   ├── iceelemental.ASE
+949:│   │   │   ├── iceelemental.ini
+950:│   │   │   ├── IceElemental.inx
+951:│   │   │   ├── iceelemental.smb
+952:│   │   │   ├── iceelemental.smd
+9228:│   │   ├── HolyConvictionDown.bmp
+19023:│   │           ├── Ac5_LethalSight.tga
+19024:│   │           ├── Ata5_SummonTiger.tga
+19025:│   │           ├── Kn5_HolyConviction.tga
+19027:│   │           ├── Mg5_WizardTrance.tga
+19030:│   │           └── Pr5_IceElemental.tga
+19923:│   │       ├── Ac5FierceWindKeep.part
+19924:│   │       ├── Ac5FierceWind.part
+19925:│   │       ├── Ac5FierceWindProjectile.part
+19926:│   │       ├── Ac5LethalSightKeep.part
+19927:│   │       ├── Ac5LethalSight.part
+19928:│   │       ├── IceElementalBody.part
+19929:│   │       ├── IceElementalHand.part
+19930:│   │       ├── KS5HolyConviction.part
+19931:│   │       ├── MC5RuptureFinalHit.part
+19932:│   │       ├── MC5RuptureHit.part
+19933:│   │       ├── MG5WizardTrance.luac
+19934:│   │       ├── PS5RingOfSpears.lua
+19935:│   │       ├── PS5RingOfSpears.part
+19936:│   │       ├── R5SesmicImpact.part
+19937:│   │       └── SkillFighterT5SesmicImpact.lua
+20003:│   │       ├── Ring Of Spears.wav
+20004:│   │       ├── Rupture 1.wav
+20005:│   │       └── Rupture 2.wav
+27364:│   │   │   │   │   ├── TA100 Lethal_Sight.bmp
+27365:│   │   │   │   │   ├── TA100 Lethal_Sight_.bmp
+27366:│   │   │   │   │   ├── TA103 Fierce_Wind.bmp
+27367:│   │   │   │   │   ├── TA103 Fierce_Wind_.bmp
+27479:│   │   │   │   │   ├── MA110 Combo_Javelin.bmp
+27480:│   │   │   │   │   ├── MA110 Combo_Javelin_.bmp
+27532:│   │   │   │   │   ├── TF103 Sesmic_Impact.bmp
+27533:│   │   │   │   │   ├── TF103 Sesmic_Impact_.bmp
+27765:│   │   │   │   │   ├── MN100 Holy_Conviction.bmp
+27766:│   │   │   │   │   ├── MN100 Holy_Conviction_.bmp
+--- /home/gabriel/Área de Trabalho/summit/bugfixes/Solved/Configs_SUMMIT_T5_DEV_2026-09-04/Configs/Skill/Mech.ini
+94:// Rupture (T5-1 / E1)
+96:Rupture_DamageBoost = 60, 70, 80, 90, 100, 110, 120, 130, 140, 150 ;
+98:// FIX 093 requires exactly 10 POSITIVE mana values before Rupture is enabled.
+102:// Rupture_UseMana = <10 positive values>;
+--- /home/gabriel/Área de Trabalho/summit/bugfixes/asset_merge_reports/Mecha_to_Mechanician_20260914_092303.txt
+11:Button/TM100 Rupture.bmp
+12:Button/TM100 Rupture_.bmp
+--- /home/gabriel/Área de Trabalho/summit/bugfixes/abertos.txt
+128:| `T5-FIX15-RUPTURE-01`             | FIX15 colocou áudio de Rupture fora do timing MotionEvent correto      | **CONFIRMADO — FIX15 não é baseline final** |
+129:| `T5-WIZARD-TRANCE-VISUAL-01`      | Wizard Trance sem visual principal                                     | **BLOCKED por asset/engine**                |
+130:| `T5-STONE-SKIN-VISUAL-01`         | Stone Skin sem visual                                                  | **BLOCKED por asset ausente**               |
+135:Sobre Rupture, o relatório confirma que PT-EU usa os sons nos MotionEvents 1 e 3 e que FIX15 colocou isso no sítio errado. 
+152:game/scripts/particles/R5StoneSkin.part
+--- /home/gabriel/Área de Trabalho/summit/bugfixes/RUNTIME_PIKE_CROWN_ASSET_AUDIT.txt
+29:ASSET R5StoneSkin.part: COUNT=0
+--- /home/gabriel/Área de Trabalho/summit/bugfixes/PIKE_CROWN_DEEP_AUDIT.txt
+177:PARTICLE R5StoneSkin.part: COUNT=0
+--- /home/gabriel/Área de Trabalho/summit/bugfixes/PIKEMAN_GIT_REGRESSION_AUDIT.txt
+327:+	   sinSkill.UseSkill[20].CODE != SKILL_T5_CATACLYSM || sinSkill.UseSkill[20].Point != gSummitCataclysmPoint ||
+328:+	lpCurPlayer->AttackSkil = SKILL_PLAY_T54 | (gSummitCataclysmPoint << 8);
+329:+	int summitCatBegin = lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, gSummitCataclysmTarget, 0, 0, 0);
+330:+	int result = dm_SendTransDamage(gSummitCataclysmTarget, 0, 0, 0, 0, lpCurPlayer->AttackSkil, TRUE);
+539:+		case SKILL_T5_RUPTURE:
+541:+			int summitRuptureBegin = lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
+547:+		case SKILL_T5_RING_OF_SPEARS:
+552:+			SummitT5VisualProbe("Pikeman/RingOfSpears", "cast-motion-control", lpCurPlayer, lpChar, summitRingBegin, summitRingMotion);
+--- /home/gabriel/Área de Trabalho/summit/bugfixes/PIKEMAN_FIX15_46B_AUDIT.txt
+37:+			// EU reference event 1: Rupture 1.wav (0x4855).
+38:+				if(ruptureHit == 1)
+39:+			// EU Ring of Spears event 1: Ring Of Spears.wav (0x4857).
+52:+	{	"game//sounds//skills//Rupture 1.wav",					0x4855	},
+53:+	{	"game//sounds//skills//Rupture 2.wav",					0x4856	},
+54:+	{	"game//sounds//skills//Ring Of Spears.wav",				0x4857	},
+--- /home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-18/PATCH_ORDER.txt
+3:b746575  t5: defer Rupture hits to animation events
+4:37ea860  t5: fix Rupture attack rating percentage
+5:16171d4  t5: defer Seismic Impact to animation events
+6:da03c09  t5: defer Fierce Wind attack to animation events
+7:c1b189e  t5: align Fierce Wind range geometry with EU
+8:3c9facb  t5: route Wizard Trance sound through MotionEvent
+12:e6d6e30  t5: attach Holy Conviction particle to owner
+13:87eced0  t5: attach Lethal Sight keep particle to owner
+14:ccada42  t5: route Ring of Spears sound through MotionEvent
+17:a967849  t5: spawn Fierce Wind projectile from bow
+18:21c816f  t5: restore Fierce Wind animation-end sound
+19:7cc8853  t5: restore Fierce Wind cast visual
+20:8262510  t5: keep Fierce state through animation end
+23:73aa82a  t5: attach Holy Conviction visual to party owners
+--- /home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/PATCH_ORDER.txt
+3:b746575  t5: defer Rupture hits to animation events
+4:37ea860  t5: fix Rupture attack rating percentage
+5:16171d4  t5: defer Seismic Impact to animation events
+6:da03c09  t5: defer Fierce Wind attack to animation events
+7:c1b189e  t5: align Fierce Wind range geometry with EU
+8:3c9facb  t5: route Wizard Trance sound through MotionEvent
+12:e6d6e30  t5: attach Holy Conviction particle to owner
+13:87eced0  t5: attach Lethal Sight keep particle to owner
+14:ccada42  t5: route Ring of Spears sound through MotionEvent
+17:a967849  t5: spawn Fierce Wind projectile from bow
+18:21c816f  t5: restore Fierce Wind animation-end sound
+19:7cc8853  t5: restore Fierce Wind cast visual
+20:8262510  t5: keep Fierce state through animation end
+23:73aa82a  t5: attach Holy Conviction visual to party owners
+--- /home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_TIMING_CLEANUP_2026-09-19_v1/SUBJECTS.txt
+1:t5: align Holy Conviction party radius with EU
+2:t5: apply Stone Skin no-death at animation end
+--- /home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_ALIAS_ISOLATION_2026-09-19_v1/SUBJECTS.txt
+1:t5: isolate Ice Elemental animation alias
+2:t5: isolate Summon Tiger animation alias
+3:t5: isolate Holy Conviction animation alias
+4:t5: keep Stone Skin animation alias isolated
+5:t5: isolate Red Ray visual and network skill ids
+6:t5: isolate Combo Javelin animation alias
+--- /home/gabriel/Área de Trabalho/summit/SourceCode/summit_t5_asset_inventory.txt
+36:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-18/patches/0003-t5-defer-Rupture-hits-to-animation-events.patch
+37:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-18/patches/0004-t5-fix-Rupture-attack-rating-percentage.patch
+38:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-18/patches/0005-t5-defer-Seismic-Impact-to-animation-events.patch
+39:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-18/patches/0006-t5-defer-Fierce-Wind-attack-to-animation-events.patch
+40:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-18/patches/0007-t5-align-Fierce-Wind-range-geometry-with-EU.patch
+41:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-18/patches/0008-t5-route-Wizard-Trance-sound-through-MotionEvent.patch
+42:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-18/patches/0012-t5-attach-Holy-Conviction-particle-to-owner.patch
+43:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-18/patches/0013-t5-attach-Lethal-Sight-keep-particle-to-owner.patch
+44:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-18/patches/0014-t5-route-Ring-of-Spears-sound-through-MotionEvent.patch
+45:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-18/patches/0017-t5-spawn-Fierce-Wind-projectile-from-bow.patch
+46:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-18/patches/0018-t5-restore-Fierce-Wind-animation-end-sound.patch
+47:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-18/patches/0019-t5-restore-Fierce-Wind-cast-visual.patch
+48:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-18/patches/0020-t5-keep-Fierce-state-through-animation-end.patch
+49:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-18/patches/0023-t5-attach-Holy-Conviction-visual-to-party-owners.patch
+50:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches/0003-t5-defer-Rupture-hits-to-animation-events.patch
+51:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches/0004-t5-fix-Rupture-attack-rating-percentage.patch
+52:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches/0005-t5-defer-Seismic-Impact-to-animation-events.patch
+53:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches/0006-t5-defer-Fierce-Wind-attack-to-animation-events.patch
+54:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches/0007-t5-align-Fierce-Wind-range-geometry-with-EU.patch
+55:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches/0008-t5-route-Wizard-Trance-sound-through-MotionEvent.patch
+56:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches/0012-t5-attach-Holy-Conviction-particle-to-owner.patch
+57:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches/0013-t5-attach-Lethal-Sight-keep-particle-to-owner.patch
+58:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches/0014-t5-route-Ring-of-Spears-sound-through-MotionEvent.patch
+59:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches/0017-t5-spawn-Fierce-Wind-projectile-from-bow.patch
+60:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches/0018-t5-restore-Fierce-Wind-animation-end-sound.patch
+61:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches/0019-t5-restore-Fierce-Wind-cast-visual.patch
+62:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches/0020-t5-keep-Fierce-state-through-animation-end.patch
+63:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches/0023-t5-attach-Holy-Conviction-visual-to-party-owners.patch
+64:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches_source_root/0003-t5-defer-Rupture-hits-to-animation-events.patch
+65:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches_source_root/0004-t5-fix-Rupture-attack-rating-percentage.patch
+66:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches_source_root/0005-t5-defer-Seismic-Impact-to-animation-events.patch
+67:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches_source_root/0006-t5-defer-Fierce-Wind-attack-to-animation-events.patch
+68:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches_source_root/0007-t5-align-Fierce-Wind-range-geometry-with-EU.patch
+69:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches_source_root/0008-t5-route-Wizard-Trance-sound-through-MotionEvent.patch
+70:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches_source_root/0012-t5-attach-Holy-Conviction-particle-to-owner.patch
+71:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches_source_root/0013-t5-attach-Lethal-Sight-keep-particle-to-owner.patch
+72:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches_source_root/0014-t5-route-Ring-of-Spears-sound-through-MotionEvent.patch
+73:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches_source_root/0017-t5-spawn-Fierce-Wind-projectile-from-bow.patch
+74:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches_source_root/0018-t5-restore-Fierce-Wind-animation-end-sound.patch
+75:/home/gabriel/Área de Trabalho/summit/bugfixes/SUMMIT_PATCH_BATCH_T5_2026-09-19_ROOTFIX/patches_source_root/0019-t5-restore-Fierce-Wind-cast-visual.patch
+--- /home/gabriel/Área de Trabalho/summit/Servidor/char/monster/IceElemental/iceelemental.ini
+4:*�������	iceelemental.ASE
+6:*��������	iceelemental.ASE
+7:*���۸���	"iceelemental.ASE"
+--- /home/gabriel/Área de Trabalho/summit/servidorSummit.txt
+891:│   │   ├── IceElemental
+893:│   │   │   ├── iceelemental.ASE
+894:│   │   │   ├── iceelemental.ini
+895:│   │   │   ├── IceElemental.inx
+896:│   │   │   ├── iceelemental.smb
+897:│   │   │   ├── iceelemental.smd
+25205:│   │   ├── T5_IceElemental.inf
+25206:│   │   └── T5_SummonTiger.inf
+
+== ANIMATION FILE COUNTS ==
+ase=136
+smb=1963
+smd=6685
+inx=4621
+ini=276
+
+== DIRECTORY HINTS ==
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmabcd
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/scripts/particles

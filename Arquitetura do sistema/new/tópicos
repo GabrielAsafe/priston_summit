@@ -1,0 +1,50 @@
+tópicos
+    expansão da história
+        pesquisar como eu poderia fazer um sistema de quest do mundo
+            imagina que os jogadores avançam na história em conjunto
+            e quando uma parte da história avança o mundo/modelos/mobs mudam 
+            a cidade se destroi/constroi, monstros novos aparece e antigos desaparecem  tipo bully quando muda de estação do antigos
+
+            isso poderia funcionar por servidor e uma vez avançado não tem como voltar. 
+
+    conteúdo novo
+
+        validar o placement de npc no mundo, associar a eles opções. 
+            por exemplo os altares das covenants
+            meter um em cada mapa 
+
+        validar como criar novos personagens, as pastas que tenho que ter, os ícones, as animações e modelos, os efeitos, os audios
+
+        criar novos mapas e descobrir como ligo eles ao jogo e como faço os warping gates para esse novo mapa. já tem um mapa criado que não é do jogo original e os gm pode chegar lá
+
+        validar como seria possível criar um sistema de capacetes/mascaras
+
+        criar novos monstros
+
+        dar buff por set de armadura completo. uma peça 0 buff, todas as peças x buff
+
+
+    balanceamento
+        decobrir como balancear o jogo. eu sei que o json deve ter os detalhes do dinheiro/items que dropam mas eu preciso descobrir quais são 
+        preciso balancear exp
+
+
+
+
+
+[07:13, 9/30/2026] Gab: Loadout compartilhado
+[07:13, 9/30/2026] Gab: E atribuir skill points
+[07:14, 9/30/2026] Gab: Descobrir se eu criar items como associo eles a um vendedor
+[07:14, 9/30/2026] Gab: Como descobrir quais items não carregam nas coinshops e remover ou criar algo para aparecer no lugar deles
+[07:14, 9/30/2026] Gab: Fazer as asas voltarem a ser por quest e não por créditos
+[07:15, 9/30/2026] Gab: Balancear xp e dinheiro
+[07:15, 9/30/2026] Gab: Balancear xp e dinheiro
+Relacionado a valor das coisas em cada mapa
+[07:20, 9/30/2026] Gab: Como descobrir quais items não carregam nas coinshops e remover ou criar algo para aparecer no lugar deles
+E se eles estiverem na db, tirar de lá e unificar no json
+[07:22, 9/30/2026] Gab: Gerenciar os eventos. Tornar eles por season e acho que os eventos deveriam vir da bd ou melhoro o sistema para gerenciar eles
+[09:50, 9/30/2026] Gab: Para os companions. Ainda falta decidir em quem eles vão aplicar os buffs. Se em mim ou em outros companions
+[09:51, 9/30/2026] Gab: Tem que verificar todo o backlog do refactor para as outras mecanicas do jogo
+[09:52, 9/30/2026] Gab: Tem que integrar mineração e “lapidação” para o sistema de sheltons e aging já existente
+[09:52, 9/30/2026] Gab: Minera para conseguir o bruto e lapida para conseguir as pedras
+[09:53, 9/30/2026] Gab: Falta corrigir todo texto do json. Ainda tem coisa que vem em ingles tipo o pardal do inicio e a amanda fala em ingles. Personagens de ricartem tem o nome quebrado, etc
