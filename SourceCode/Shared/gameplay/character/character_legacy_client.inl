@@ -33,6 +33,7 @@
 #include "gameplay/classes/v2/services/ClassService.h"
 #include "gameplay/companions/CompanionProtocol.h"
 #include "gameplay/world/v2/ActorNavigationPolicy.h"
+#include "gameplay/world/v2/ActorLifecycleService.h"
 #include "gameplay/skills/v2/SkillMultiHitPolicy.h"
 #include "gameplay/combat/v2/DeathLifecyclePolicy.h"
 #include "systems/rendering/2d/legacy/drawsub.h"
@@ -8400,22 +8401,19 @@ int smCHAR::Main()
 		}
 
 		frame += SERVER_CHAR_FRAME_STEP;
+		const gameplay::world::ActorAnimationCompletion motionCompletion =
+			gameplay::world::ActorLifecycleService::ResolveAnimationCompletion(
+				frame, MotionInfo->StartFrame * 160, MotionInfo->EndFrame * 160,
+				MotionInfo->State == CHRMOTION_STATE_DEAD, MotionInfo->Repeat == TRUE);
 
-		if (frame > MotionInfo->EndFrame * 160)
+		if (motionCompletion.completed)
 		{
+			frame = motionCompletion.nextFrame;
 
-			if (MotionInfo->State == CHRMOTION_STATE_DEAD)
+			if (motionCompletion.action != gameplay::world::ActorAnimationCompletionAction::HoldFinalFrame)
 			{
-				frame = MotionInfo->EndFrame * 160;
-			}
-			else
-			{
-
-				if (MotionInfo->Repeat == TRUE)
-				{
-					frame = (MotionInfo->StartFrame * 160) + (frame - MotionInfo->EndFrame * 160);
-				}
-				else SetMotionFromCode(CHRMOTION_STATE_STAND);
+				if (motionCompletion.action == gameplay::world::ActorAnimationCompletionAction::ReturnToStand)
+					SetMotionFromCode(CHRMOTION_STATE_STAND);
 
 
 
@@ -8486,9 +8484,11 @@ int smCHAR::Main()
 
 			if (MotionInfo->State == CHRMOTION_STATE_WARP)
 			{
-
-				frame += SERVER_CHAR_FRAME_STEP;
-				if (frame > MotionInfo->EndFrame * 160)
+				const gameplay::world::ActorAnimationAdvance warpAdvance =
+					gameplay::world::ActorLifecycleService::AdvanceOneShot(
+						frame, MotionInfo->EndFrame * 160, SERVER_CHAR_FRAME_STEP);
+				frame = warpAdvance.nextFrame;
+				if (warpAdvance.finished)
 				{
 					Close();
 					return TRUE;
@@ -8559,10 +8559,11 @@ int smCHAR::Main()
 		{
 			if (MotionInfo->State == CHRMOTION_STATE_WARP)
 			{
-
-				frame += SERVER_CHAR_FRAME_STEP;
-
-				if (frame > MotionInfo->EndFrame * 160)
+				const gameplay::world::ActorAnimationAdvance warpAdvance =
+					gameplay::world::ActorLifecycleService::AdvanceOneShot(
+						frame, MotionInfo->EndFrame * 160, SERVER_CHAR_FRAME_STEP);
+				frame = warpAdvance.nextFrame;
+				if (warpAdvance.finished)
 				{
 					Close();
 					return TRUE;
@@ -8595,22 +8596,19 @@ int smCHAR::Main()
 			}
 
 			frame += SERVER_CHAR_FRAME_STEP;
+			const gameplay::world::ActorAnimationCompletion motionCompletion =
+				gameplay::world::ActorLifecycleService::ResolveAnimationCompletion(
+					frame, MotionInfo->StartFrame * 160, MotionInfo->EndFrame * 160,
+					MotionInfo->State == CHRMOTION_STATE_DEAD, MotionInfo->Repeat == TRUE);
 
-			if (frame > MotionInfo->EndFrame * 160)
+			if (motionCompletion.completed)
 			{
+				frame = motionCompletion.nextFrame;
 
-				if (MotionInfo->State == CHRMOTION_STATE_DEAD)
+				if (motionCompletion.action != gameplay::world::ActorAnimationCompletionAction::HoldFinalFrame)
 				{
-					frame = MotionInfo->EndFrame * 160;
-				}
-				else
-				{
-
-					if (MotionInfo->Repeat == TRUE)
-					{
-						frame = (MotionInfo->StartFrame * 160) + (frame - MotionInfo->EndFrame * 160);
-					}
-					else SetMotionFromCode(CHRMOTION_STATE_STAND);
+					if (motionCompletion.action == gameplay::world::ActorAnimationCompletionAction::ReturnToStand)
+						SetMotionFromCode(CHRMOTION_STATE_STAND);
 
 
 
