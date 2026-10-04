@@ -55,6 +55,7 @@
 #include "systems/gameplay/combat/v2/legacy/LegacyScopedCombatBuff.h"
 #include "systems/gameplay/combat/v2/legacy/LegacyLifeAdapter.h"
 #include "systems/gameplay/combat/v2/legacy/LegacyTargetingAdapter.h"
+#include "gameplay/combat/v2/DeathAttributionPolicy.h"
 #include "systems/gameplay/skills/v2/legacy/LegacySkillAnimationAdapter.h"
 #include "systems/gameplay/monsters/v2/legacy/LegacyMonsterAdapter.h"
 #include "core/server/legacy_runtime/onserver.h"
@@ -9882,9 +9883,11 @@ int smCHAR::PlayAttack(int EventFlag)
 						dwWeaponEffectTime = 0;
 
 #ifdef LOG_THE_PK
-						if(smCharInfo.State != smCHAR_STATE_USER && PkMode_CharState != smCHAR_STATE_USER)
+						if(gameplay::combat::DeathAttributionPolicy::ShouldApplyDeathExperiencePenalty(
+							smCharInfo.State == smCHAR_STATE_USER, PkMode_CharState == smCHAR_STATE_USER))
 #else
-						if(smCharInfo.State != smCHAR_STATE_USER)
+						if(gameplay::combat::DeathAttributionPolicy::ShouldApplyDeathExperiencePenalty(
+							smCharInfo.State == smCHAR_STATE_USER, false))
 #endif
 						{
 							DeadPlayerExp(lpCurPlayer);
@@ -9896,9 +9899,11 @@ int smCHAR::PlayAttack(int EventFlag)
 						SaveGameData();
 
 #ifdef LOG_THE_PK
-						if(smCharInfo.State == smCHAR_STATE_USER || PkMode_CharState == smCHAR_STATE_USER)
+						if(gameplay::combat::DeathAttributionPolicy::ShouldRecordPlayerKill(
+							smCharInfo.State == smCHAR_STATE_USER, PkMode_CharState == smCHAR_STATE_USER))
 #else
-						if(smCharInfo.State == smCHAR_STATE_USER)
+						if(gameplay::combat::DeathAttributionPolicy::ShouldRecordPlayerKill(
+							smCharInfo.State == smCHAR_STATE_USER, false))
 #endif
 						{
 
