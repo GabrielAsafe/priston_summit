@@ -1,3 +1,5 @@
+#include "gameplay/commerce/v2/AgingResultLogPolicy.h"
+
 // AMBER ownership extraction from the frozen OnServer monolith.
 // Byte-equivalent Aging kernels remain in the same server translation unit.
 // New orchestration belongs behind IAgingService.
@@ -341,63 +343,43 @@ int rsRecvAgingItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server
 			RecordAgingItem(lpPlayInfo, &sItemInfo, &sAging_Recv.DesCraftItem.sItemInfo, FALSE);
 
 			AgingCnt = sAging_Recv.DesCraftItem.sItemInfo.ItemAgingNum[0] - sItemInfo.ItemAgingNum[0];
-			AgingLog = ITEMLOG_AGING;
-			char szMsgAging[256];
-			int AgeNum = 0;
+			gameplay::commerce::AgingResultLogConfig resultLogConfig;
+			resultLogConfig.oneLevelDownLog = ITEMLOG_AGING_1DOWN;
+			resultLogConfig.twoLevelsDownLog = ITEMLOG_AGING_2DOWN;
+			resultLogConfig.successLog = ITEMLOG_AGING;
+			resultLogConfig.twoLevelsUpLog = ITEMLOG_AGING_2UP;
+			const gameplay::commerce::AgingResultLogPlan resultLogPlan =
+				gameplay::commerce::AgingResultLogPolicy::Plan(
+					sAging_Recv.Result,
+					sAging_Recv.DesCraftItem.sItemInfo.ItemAgingNum[0],
+					pedraDireto > 0, resultLogConfig);
+			AgingLog = resultLogPlan.logCode;
 
-			if (pedraDireto > 0) {
-				AgeNum = sAging_Recv.DesCraftItem.sItemInfo.ItemAgingNum[0];
-			}
-			else {
-				AgeNum = sAging_Recv.DesCraftItem.sItemInfo.ItemAgingNum[0] + 1;
-			}
-
-			switch (sAging_Recv.Result)
+			if(resultLogPlan.announce)
 			{
-			case 1:
-				AgingLog = ITEMLOG_AGING_1DOWN;
-
-				if (AgeNum >= 10)
+				char szMsgAging[256];
+				switch(resultLogPlan.announcement)
 				{
+				case gameplay::commerce::AgingAnnouncementKind::OneLevelDown:
 					wsprintf(szMsgAging, "> Moriph: %s falhou no aging (+%d) no item (%s) (-1)!",
-						lpPlayInfo->getName(), AgeNum, sAging_Recv.DesCraftItem.sItemInfo.ItemName);
-					rsSendMessageAll(szMsgAging, 3);
-				}
-
-				break;
-			case 2:
-				AgingLog = ITEMLOG_AGING_2DOWN;
-
-				if (AgeNum >= 10)
-				{
+						lpPlayInfo->getName(), resultLogPlan.ageNumber, sAging_Recv.DesCraftItem.sItemInfo.ItemName);
+					break;
+				case gameplay::commerce::AgingAnnouncementKind::TwoLevelsDown:
 					wsprintf(szMsgAging, "> Moriph: %s falhou no aging (+%d) no item (%s) (-2)!",
-						lpPlayInfo->getName(), AgeNum, sAging_Recv.DesCraftItem.sItemInfo.ItemName);
-					rsSendMessageAll(szMsgAging, 3);
+						lpPlayInfo->getName(), resultLogPlan.ageNumber, sAging_Recv.DesCraftItem.sItemInfo.ItemName);
+					break;
+				case gameplay::commerce::AgingAnnouncementKind::Success:
+					wsprintf(szMsgAging, "> Moriph: %s conquistou o nível (+%d) de aging no item (%s). gzzzz!",
+						lpPlayInfo->getName(), resultLogPlan.ageNumber, sAging_Recv.DesCraftItem.sItemInfo.ItemName);
+					break;
+				case gameplay::commerce::AgingAnnouncementKind::TwoLevelsUp:
+					wsprintf(szMsgAging, "> Moriph: %s conquistou +2 no nível [+%d] de aging no item (%s). gzzzz!",
+						lpPlayInfo->getName(), resultLogPlan.ageNumber, sAging_Recv.DesCraftItem.sItemInfo.ItemName);
+					break;
+				default:
+					break;
 				}
-
-				break;
-			case 3:
-				AgingLog = ITEMLOG_AGING;
-
-				if (AgeNum >= 10)
-				{
-					wsprintf(szMsgAging, "> Moriph: %s conquistou o n\355vel (+%d) de aging no item (%s). gzzzz!",
-						lpPlayInfo->getName(), AgeNum, sAging_Recv.DesCraftItem.sItemInfo.ItemName);
-					rsSendMessageAll(szMsgAging, 3);
-				}
-
-				break;
-			case 4:
-				AgingLog = ITEMLOG_AGING_2UP;
-
-				if (AgeNum >= 10)
-				{
-					wsprintf(szMsgAging, "> Moriph: %s conquistou +2 no n\355vel [+%d] de aging no item (%s). gzzzz!",
-						lpPlayInfo->getName(), AgeNum, sAging_Recv.DesCraftItem.sItemInfo.ItemName);
-					rsSendMessageAll(szMsgAging, 3);
-				}
-
-				break;
+				rsSendMessageAll(szMsgAging, 3);
 			}
 
 
