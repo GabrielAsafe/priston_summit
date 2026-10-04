@@ -1,5 +1,0 @@
-//ID
-*코드 "BS103"
-
-//Name File
-*연결파일 "Name\BS103.zhoon"

@@ -1,5 +1,0 @@
-//ID
-*코드 "BC130"
-
-//Name File
-*연결파일 "Name\BC130.zhoon"

@@ -1,0 +1,69 @@
+digraph Audit2 {
+  graph [rankdir=LR, splines=ortho, nodesep=0.4, ranksep=0.7, bgcolor="white"];
+  node [shape=box, style="rounded", fontname="DejaVu Sans", fontsize=10];
+  edge [fontname="DejaVu Sans", fontsize=9];
+
+  subgraph cluster_client {
+    label="CLIENT — SrcGame";
+    WinMain [label="Winmain.cpp\nWinMain()"];
+    SinMain [label="sinbaram/sinMain.cpp\ncomposition root"];
+    UI [label="UI / Inventory / Skills\nsinbaram + UI* + Settings"];
+    CoinClient [label="CoinShop / CoinShop_T"];
+    Pet [label="Pet systems\nLowLevel + PCBang"];
+    Effects [label="Effects / Particles\nHoBaram + NewEffect"];
+    FeatureUI [label="Rank / BattlePass / JOBS\nClanCustom / NPCinfo"];
+    SecurityClient [label="AntiCheat / Security / Hooks"];
+    WinMain -> SinMain;
+    SinMain -> UI;
+    SinMain -> CoinClient;
+    SinMain -> Pet;
+    SinMain -> FeatureUI;
+    UI -> Effects;
+  }
+
+  subgraph cluster_shared {
+    label="BACKBONE / ESTRUTURA ESPELHADA";
+    Protocol [label="Protocol\nopcodes.h (~290 nomes)"];
+    Sockets [label="Network\nsmwsock + netplay"];
+    Packet [label="Shared/smPacket.h"];
+    Render [label="smLib3d / field / character"];
+    Umbrella [label="Umbrella headers\nsinLinkHeader / HoLinkHeader"];
+    Lang [label="Language/*"];
+    Sockets -> Protocol;
+    Protocol -> Packet;
+    Umbrella -> Render;
+    Umbrella -> Lang;
+  }
+
+  subgraph cluster_server {
+    label="SERVER — SrcServer";
+    Main [label="Winmain.cpp\nmain()"];
+    OnServer [label="Server/OnSever.cpp\nserver hotspot"];
+    DB [label="Database/Database.*\nSQLConnection"];
+    DBIDs [label="17 conexões criadas\nBattlePass DB não criada"];
+    Quest [label="cQuestHandler"];
+    CoinServer [label="CoinShop / CoinShop_T"];
+    Admin [label="CLI / GameMasters / News / Alerta"];
+    Defense [label="Firewall / PacketFilter"];
+    ServerSystems [label="STG_AREA / ROLLHANDLER\ncharacters / handlers"];
+    Main -> DB [label="openDatabase()"];
+    Main -> OnServer;
+    DB -> DBIDs;
+    OnServer -> ServerSystems;
+    OnServer -> CoinServer;
+    OnServer -> Quest;
+    OnServer -> Admin;
+    OnServer -> Defense;
+    CoinServer -> DB;
+    Quest -> DB;
+    Admin -> DB;
+  }
+
+  CoinClient -> Protocol;
+  FeatureUI -> Protocol;
+  Pet -> Protocol;
+  SecurityClient -> Protocol;
+  Protocol -> OnServer;
+  Sockets -> OnServer;
+  Render -> OnServer [style=dashed, label="estrutura espelhada"];
+}

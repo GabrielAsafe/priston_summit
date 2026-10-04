@@ -1,7 +1,0 @@
-//Max monsters per map
-*최대동시출현수 300
-//Time between spawns (in seconds)
-*출현간격 1 2
-//Max monster per flag
-*출현수 2
-

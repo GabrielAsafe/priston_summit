@@ -1,8 +1,0 @@
-// NOME E COD DO ITEM
-*이름	"Elixir da Ira"
-*코드	"CX114"
-
-// PESO DO ITEM
-//*무게	1
-// PRE? DO ITEM
-*가격	

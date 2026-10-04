@@ -1,5 +1,0 @@
-//ID
-*코드 "FO135"
-
-//Name File
-*연결파일 "Name\FO135.zhoon"

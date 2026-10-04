@@ -1,6 +1,0 @@
-//		아이템 정보		//
-// 리카르텐으로 가세!!			//
-
-*이름	"Caravana 3 dias"
-"Caravana 3 dias"
-*코드	"BI330"

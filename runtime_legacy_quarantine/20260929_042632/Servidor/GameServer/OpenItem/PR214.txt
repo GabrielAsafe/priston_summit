@@ -1,8 +1,0 @@
-//ID
-*코드 "PR214"
-
-//Weight
-*무게 1
-
-//Name File
-*연결파일 "Name\PR214.zhoon"

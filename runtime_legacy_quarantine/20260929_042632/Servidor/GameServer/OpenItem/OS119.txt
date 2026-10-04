@@ -1,8 +1,0 @@
-// NOME E COD DO ITEM
-*ÀÌ¸§	"Barra de Bronze"
-*ÄÚµå	"OS119"
-
-// PESO DO ITEM
-*¹«°Ô	2
-// PREÇO DO ITEM
-*°¡°Ý	1000

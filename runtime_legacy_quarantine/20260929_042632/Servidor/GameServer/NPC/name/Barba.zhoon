@@ -1,8 +1,0 @@
-//Barba.npc
-
-*J_NAME		"Barba"
-
-*J_CHAT		"There's a way to protect your equipment in this chaotic time." 
-*J_CHAT		"Imprinting on your equipment will decrease the risk of losing them."
-*J_CHAT		"If you want to remove the imprint, you'll need a Brush of Oblivion."
-*J_CHAT		"Imprinted items cannot be moved from your inventory to other's."

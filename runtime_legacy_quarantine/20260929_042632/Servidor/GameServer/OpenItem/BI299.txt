@@ -1,8 +1,0 @@
-// NOME E COD DO ITEM
-*ÀÌ¸§	"Vale Crédito"
-*ÄÚµå	"BI299"
-
-// PESO DO ITEM
-*¹«°Ô	2
-// PREÇO DO ITEM
-*°¡°Ý	

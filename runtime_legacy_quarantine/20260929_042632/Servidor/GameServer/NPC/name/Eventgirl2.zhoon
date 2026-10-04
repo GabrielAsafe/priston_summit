@@ -1,9 +1,0 @@
-//Eventgirl2.npc
-
-*J_NAME		" Event Girl "
-
-
-*J_CHAT		"If you tell me the cheering phrase, I will give you an item."
-*J_CHAT		"You can get a 'Victory Capsule' from distribution NPC."
-*J_CHAT		"Wish you best of luck"
-*J_CHAT         "Way to go"

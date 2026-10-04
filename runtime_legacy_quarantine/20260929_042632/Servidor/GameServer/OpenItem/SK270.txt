@@ -1,3 +1,0 @@
-// NOME E COD DO ITEM
-*이름	"Skin Espada"
-*코드	"SK270"
