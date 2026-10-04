@@ -57,6 +57,7 @@
 #include "systems/gameplay/combat/v2/legacy/LegacyTargetingAdapter.h"
 #include "gameplay/world/v2/ActorNavigationPolicy.h"
 #include "gameplay/combat/v2/DeathAttributionPolicy.h"
+#include "gameplay/combat/v2/DeathLifecyclePolicy.h"
 #include "systems/gameplay/skills/v2/legacy/LegacySkillAnimationAdapter.h"
 #include "gameplay/skills/v2/SkillMultiHitPolicy.h"
 #include "systems/gameplay/monsters/v2/legacy/LegacyMonsterAdapter.h"
@@ -9864,8 +9865,9 @@ int smCHAR::PlayAttack(int EventFlag)
 					if(sinGetLife() <= 0)
 					{
 
-						if(sinQuest_ChangeJob4.CODE == SIN_QUEST_CODE_CHANGEJOB4 &&
-							lpCurPlayer->OnStageField >= 0 && StageField[lpCurPlayer->OnStageField]->FieldCode == QUEST_ARENA_FIELD)
+						if(gameplay::combat::DeathLifecyclePolicy::ShouldResolveChangeJobArenaDeath(
+							sinQuest_ChangeJob4.CODE == SIN_QUEST_CODE_CHANGEJOB4,
+							lpCurPlayer->OnStageField >= 0 && StageField[lpCurPlayer->OnStageField]->FieldCode == QUEST_ARENA_FIELD))
 						{
 
 							OpenEachPlayer(this);

@@ -34,6 +34,7 @@
 #include "gameplay/companions/CompanionProtocol.h"
 #include "gameplay/world/v2/ActorNavigationPolicy.h"
 #include "gameplay/skills/v2/SkillMultiHitPolicy.h"
+#include "gameplay/combat/v2/DeathLifecyclePolicy.h"
 #include "systems/rendering/2d/legacy/drawsub.h"
 #include "systems/network/client/netplay.h"
 #include "systems/world/field/field.h"
@@ -11656,8 +11657,9 @@ int smCHAR::PlayAttack(int EventFlag)
 					if (sinGetLife() <= 0)
 					{
 
-						if (sinQuest_ChangeJob4.CODE == SIN_QUEST_CODE_CHANGEJOB4 &&
-							SummitCharacterCurrentPlayerField() && SummitCharacterCurrentPlayerField()->FieldCode == QUEST_ARENA_FIELD)
+						if (gameplay::combat::DeathLifecyclePolicy::ShouldResolveChangeJobArenaDeath(
+							sinQuest_ChangeJob4.CODE == SIN_QUEST_CODE_CHANGEJOB4,
+							SummitCharacterCurrentPlayerField() && SummitCharacterCurrentPlayerField()->FieldCode == QUEST_ARENA_FIELD))
 						{
 
 							OpenEachPlayer(this);
