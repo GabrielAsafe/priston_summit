@@ -11630,11 +11630,10 @@ int PlayerKilling(DWORD dwObjectSerial)
 
 	cKill.handleDeath();
 
-	if(smWsockUserServer)
-	{
-		return smWsockUserServer->Send((char *)&TransCommand, TransCommand.size, TRUE);
-	}
-	return FALSE;
+	return gameplay::network::legacy::ClientLegacyBackendChannelSender().Send(
+		gameplay::network::BackendChannel::User,
+		gameplay::network::PacketView(
+			&TransCommand, static_cast<std::size_t>(TransCommand.size), TransCommand.code)).Succeeded() ? TRUE : FALSE;
 }
 
 

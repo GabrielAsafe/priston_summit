@@ -5873,11 +5873,10 @@ int PlayerKilling(DWORD dwObjectSerial)
 	TransCommand.LParam = lpCurPlayer->dwObjectSerial;
 	TransCommand.SParam = 0;
 
-	if(smWsockUserServer)
-	{
-		return smWsockUserServer->Send((char *)&TransCommand, TransCommand.size, TRUE);
-	}
-	return FALSE;
+	return gameplay::network::legacy::ServerLegacyBackendChannelSender().Send(
+		gameplay::network::BackendChannel::User,
+		gameplay::network::PacketView(
+			&TransCommand, static_cast<std::size_t>(TransCommand.size), TransCommand.code)).Succeeded() ? TRUE : FALSE;
 }
 
 
