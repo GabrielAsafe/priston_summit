@@ -33,6 +33,7 @@
 
 
 #include "gameplay/classes/v2/services/ClassService.h"
+#include "gameplay/inventory/v2/InventoryUseDelayPolicy.h"
 #include "systems/network/v2/legacy/LegacyBackendChannelSender.h"
 
 #ifdef _XTRAP_GUARD_4_CLIENT 
@@ -1078,12 +1079,10 @@ void cINVENTORY::Main()
 
 	if(sinUseCristalDelayFlag)
 	{
-		dwUseCristalDelayTime++;
-		if(dwUseCristalDelayTime > 70)
-		{
-			sinUseCristalDelayFlag = 0;
-			dwUseCristalDelayTime = 0;
-		}
+		const gameplay::inventory::InventoryUseDelayState delayState =
+			gameplay::inventory::InventoryUseDelayPolicy::AdvanceCrystal(dwUseCristalDelayTime);
+		dwUseCristalDelayTime = delayState.elapsedTicks;
+		sinUseCristalDelayFlag = delayState.active ? 1 : 0;
 	}
 
 	UnionCoreParticleProcess();
@@ -1099,14 +1098,10 @@ void cINVENTORY::Main()
 
 	if(sinUsePotionDelayFlag)
 	{
-		dwUsePotionDelayTime++;
-		if(dwUsePotionDelayTime > 50)
-		{
-			dwUsePotionDelayTime = 0;
-			sinUsePotionDelayFlag = 0;
-
-		}
-
+		const gameplay::inventory::InventoryUseDelayState delayState =
+			gameplay::inventory::InventoryUseDelayPolicy::AdvancePotion(dwUsePotionDelayTime);
+		dwUsePotionDelayTime = delayState.elapsedTicks;
+		sinUsePotionDelayFlag = delayState.active ? 1 : 0;
 	}
 
 	if(SetDelayFlag)
