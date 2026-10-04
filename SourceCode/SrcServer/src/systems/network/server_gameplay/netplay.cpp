@@ -6625,9 +6625,11 @@ int	SendCommandUser(int wParam, int lParam, int sParam, int eParam)
 	smTransCommandEx.SxParam = 0;
 	smTransCommandEx.ExParam = 0;
 
-	if(smWsockUserServer)
+	if(gameplay::network::legacy::ServerLegacyBackendChannelSender().Available(gameplay::network::BackendChannel::User))
 	{
-		return smWsockUserServer->Send((char *)&smTransCommandEx, smTransCommandEx.size, TRUE);
+		return gameplay::network::legacy::ServerLegacyBackendChannelSender().Send(
+			gameplay::network::BackendChannel::User,
+			gameplay::network::PacketView(&smTransCommandEx, static_cast<std::size_t>(smTransCommandEx.size), smTransCommandEx.code)).Succeeded() ? TRUE : FALSE;
 	}
 	return FALSE;
 }
