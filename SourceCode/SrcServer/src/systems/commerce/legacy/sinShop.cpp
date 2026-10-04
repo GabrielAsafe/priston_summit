@@ -1,5 +1,6 @@
 #include <cstring>
 #include "systems/network/protocol/server/opcodes.h"
+#include "systems/network/v2/legacy/LegacyBackendChannelSender.h"
 
 
 #include "core/server/legacy_sin_runtime/sinLinkHeader.h"
@@ -1551,11 +1552,9 @@ int cSHOP::SendBuyItemToServer(sITEM *pItem, int ItemCount)
 	TransBuyShopItem.size = sizeof(TRANS_BUY_SHOPITEM);
 	TransBuyShopItem.ItemCount = ItemCount;
 	memcpy(&TransBuyShopItem.sItem, pItem, sizeof(sITEM));
-	if(smWsockDataServer)
-	{
-		return smWsockDataServer->Send((char *)&TransBuyShopItem, TransBuyShopItem.size, TRUE);
-	}
-	return FALSE;
+	return gameplay::network::legacy::ServerLegacyBackendChannelSender().Send(
+		gameplay::network::BackendChannel::Data,
+		gameplay::network::PacketView(&TransBuyShopItem, TransBuyShopItem.size, TransBuyShopItem.code)).Succeeded() ? TRUE : FALSE;
 	}
 
 

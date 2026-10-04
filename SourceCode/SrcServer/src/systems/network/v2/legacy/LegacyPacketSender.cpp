@@ -33,8 +33,18 @@ SendResult LegacyPacketSender::Send(PlayerId playerId, const PacketView& packet)
     if (!player || !player->lpsmSock)
         return SendResult(SendStatus::Disconnected, 0u);
 
+    return SendToLegacySocket(player->lpsmSock, packet);
+}
+
+SendResult LegacyPacketSender::SendToLegacySocket(smWINSOCK* socket, const PacketView& packet)
+{
+    if (!packet.Valid() || packet.size > static_cast<std::size_t>(std::numeric_limits<int>::max()))
+        return SendResult(SendStatus::InvalidPacket, 0u);
+    if (!socket)
+        return SendResult(SendStatus::Disconnected, 0u);
+
     const int size = static_cast<int>(packet.size);
-    if (!player->lpsmSock->Send(reinterpret_cast<char*>(const_cast<void*>(packet.data)), size, TRUE))
+    if (!socket->Send(reinterpret_cast<char*>(const_cast<void*>(packet.data)), size, TRUE))
         return SendResult(SendStatus::TransportFailure, 0u);
 
     return SendResult(SendStatus::Sent, packet.size);

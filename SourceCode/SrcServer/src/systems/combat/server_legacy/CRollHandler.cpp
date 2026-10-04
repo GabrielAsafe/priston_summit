@@ -3,11 +3,26 @@
 #include "core/server/legacy_sin_runtime/sinLinkHeader.h"
 #include "core/server/legacy_runtime/onserver.h"
 #include "systems/combat/server_legacy/CRollHandler.h"
+#include "systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h"
+#include "systems/network/v2/legacy/LegacyPacketSender.h"
 
 #include <iostream>
 using namespace std;
 
 CRollHandler cRollHandler;
+
+namespace
+{
+bool SummitRollSend(rsPLAYINFO *recipient, const void *data, int size)
+{
+	if(!recipient || !data || size <= 0)
+		return false;
+	const gameplay::PlayerId playerId =
+		gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(recipient);
+	return gameplay::network::legacy::ServerLegacyPacketSender().Send(
+		playerId, gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded();
+}
+}
 
 CRollHandler * CRollHandler::getInstance()
 {
@@ -42,7 +57,7 @@ void CRollHandler::CreateRoll(psITEM * lpItemInfo, vector<DWORD> vSerials, int x
 		if (lpPlayInfo)
 		{
 			sRoll.vPlayers.push_back({ Serial, 0 });
-			lpPlayInfo->lpsmSock->Send((char*)&sPacket, sPacket.size, TRUE);
+			(void)SummitRollSend(lpPlayInfo, &sPacket, sPacket.size);
 		}
 	}
 
@@ -101,7 +116,7 @@ void CRollHandler::HandlePacket(rsPLAYINFO * lpPlayInfo, smTRANS_COMMAND * psPac
 
 					//cout << Player.first << " | " << Player.second << endl;
 					
-					lpPlayInfo->lpsmSock->Send((char*)&sPacket, sPacket.size, TRUE);
+					(void)SummitRollSend(lpPlayInfo, &sPacket, sPacket.size);
 
 					if(val > 0)
 						Roll.bRolled = true;
@@ -112,7 +127,7 @@ void CRollHandler::HandlePacket(rsPLAYINFO * lpPlayInfo, smTRANS_COMMAND * psPac
 					rsPLAYINFO* playerInfo = FindUserFromCode(Player.first);
 					if (playerInfo)
 					{
-						playerInfo->lpsmSock->Send((char*)&sPacket, sPacket.size, TRUE);
+						(void)SummitRollSend(playerInfo, &sPacket, sPacket.size);
 					}
 				}
 			}
@@ -179,8 +194,8 @@ void CRollHandler::EndRoll(RollItem* pRoll)
 		rsPLAYINFO* lpPlayInfo = FindUserFromCode(p.first);
 		if (lpPlayInfo)
 		{
-			lpPlayInfo->lpsmSock->Send((char*)&sPacket, sPacket.size, TRUE);
-			lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+			(void)SummitRollSend(lpPlayInfo, &sPacket, sPacket.size);
+			(void)SummitRollSend(lpPlayInfo, &TransChatMessage, TransChatMessage.size);
 		}
 	}
 }

@@ -4,6 +4,11 @@
 #include "modules/File/File.h"
 #include "core/server/legacy_runtime/onserver.h"
 #include "systems/progression/battle_pass/BattlePass.h"
+#include "systems/network/v2/legacy/LegacyPacketSender.h"
+#include "Shared/gameplay/progression/v2/BattlePassClaimPolicy.h"
+#include "Shared/gameplay/progression/v2/BattlePassProgressService.h"
+#include "Shared/gameplay/progression/v2/BattlePassProgressApplicationService.h"
+#include "systems/progression/battle_pass/v2/legacy/LegacyBattlePassProgressMutationPort.h"
 
 #include <time.h>
 
@@ -12,6 +17,19 @@ int CreateItem(psITEM* lpsItem, char* dwCode, int JobCode);
 int	rsAddInvenItem(rsPLAYINFO* lpPlayInfo, DWORD dwCode, DWORD dwHead, DWORD dwChkSum);
 int	rsSendMoneyToUser(rsPLAYINFO* lpPlayInfo, int Money);
 DWORD GetServerTime();
+
+
+namespace
+{
+bool SummitBattlePassSend(rsPLAYINFO* recipient, const void* data, int size)
+{
+	if(!recipient || !data || size <= 0)
+		return false;
+	return gameplay::network::legacy::ServerLegacyPacketSender().Send(
+		gameplay::PlayerId(static_cast<std::uint32_t>(recipient->dwObjectSerial)),
+		gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded();
+}
+}
 
 //ENVIA AS INFORMAÇÕES DAS RECOMPENSAS DO PASSE AO CLIENTE
 void BattlePass::SendItemToClient(rsPLAYINFO* Player)
@@ -50,7 +68,7 @@ void BattlePass::SendItemToClient(rsPLAYINFO* Player)
 				if (i > 69) break;
 			}
 
-			Player->lpsmSock->Send((char*)&packet, packet.size, true);
+			SummitBattlePassSend(Player, &packet, packet.size);
 		}
 		SQL::GetInstance()->LeaveSqlSection();
 	}
@@ -78,7 +96,7 @@ void BattlePass::SendBPInfoToGame(rsPLAYINFO* Player)
 				packet.size = sizeof(BP_INFO);
 				packet.code = BP_PACKET_SEND_BPINFO_GAME;
 				if (Player->lpsmSock)
-					Player->lpsmSock->Send((char*)&packet, packet.size, TRUE);
+					SummitBattlePassSend(Player, &packet, packet.size);
 			}
 			/*else
 			{
@@ -91,7 +109,7 @@ void BattlePass::SendBPInfoToGame(rsPLAYINFO* Player)
 					packet.itemResg[i] = 1;
 				}
 				if (Player->lpsmSock)
-					Player->lpsmSock->Send((char *)&packet, packet.size, TRUE);
+					SummitBattlePassSend(Player, &packet, packet.size);
 			}*/
 		}
 		SQL::GetInstance()->LeaveSqlSection();
@@ -149,11 +167,15 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 			}
 			//
 			//
-			if (((Shop->item.Tag % 2 == 0) && BP_Info > 0) || ((Shop->item.Tag % 2 > 0) && BP_Info == 2))
+			const gameplay::progression::BattlePassClaimContext claimContext{
+				Shop->item.Tag, BP_Info, UserBP_Level, Item_Level_Req, Item_Info_Resgate != 0};
+			const gameplay::progression::BattlePassClaimDecision claimDecision =
+				gameplay::progression::BattlePassClaimPolicy::Evaluate(claimContext);
+			if (claimDecision != gameplay::progression::BattlePassClaimDecision::PassNotEntitled)
 			{
-				if (UserBP_Level >= Item_Level_Req)
+				if (claimDecision != gameplay::progression::BattlePassClaimDecision::LevelTooLow)
 				{
-					if (Item_Info_Resgate == 0)
+					if (claimDecision != gameplay::progression::BattlePassClaimDecision::AlreadyClaimed)
 					{
 						wsprintf(szQuery, "UPDATE [BattlePass].[dbo].[BP_Info] SET BP_Resg%d=1 WHERE [ID]='%s'", Shop->item.Tag + 1, Player->getAccount());
 						if (SQL::GetInstance()->Execute(szQuery))
@@ -170,7 +192,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 								TransChatMessage.dwObjectSerial = 0;
 
 								if (Player->lpsmSock)
-									Player->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+									SummitBattlePassSend(Player, &TransChatMessage, TransChatMessage.size);
 
 								BattlePass::GetInstance()->SendItemToClient(Player);
 								BattlePass::GetInstance()->SendBPInfoToGame(Player);
@@ -216,7 +238,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 								TransChatMessage.dwObjectSerial = 0;
 
 								if (Player->lpsmSock)
-									Player->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+									SummitBattlePassSend(Player, &TransChatMessage, TransChatMessage.size);
 
 								BattlePass::GetInstance()->SendItemToClient(Player);
 								BattlePass::GetInstance()->SendBPInfoToGame(Player);
@@ -280,7 +302,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 									rsRegist_ItemSecCode(Player, &TransItemInfo, 1);
 									rsAddInvenItem(Player, TransItemInfo.Item.CODE, TransItemInfo.Item.ItemHeader.Head, TransItemInfo.Item.ItemHeader.dwChkSum);
 									if (Player->lpsmSock)
-										Player->lpsmSock->Send((char*)&TransItemInfo, TransItemInfo.size, TRUE);
+										SummitBattlePassSend(Player, &TransItemInfo, TransItemInfo.size);
 								}
 
 								TRANS_CHATMESSAGE	TransChatMessage;
@@ -291,7 +313,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 								TransChatMessage.dwObjectSerial = 0;
 
 								if (Player->lpsmSock)
-									Player->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+									SummitBattlePassSend(Player, &TransChatMessage, TransChatMessage.size);
 
 								//Criar log na pasta do server do resgate do BP
 								HANDLE	hFile;
@@ -351,7 +373,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 									rsRegist_ItemSecCode(Player, &TransItemInfo, 1);
 									rsAddInvenItem(Player, TransItemInfo.Item.CODE, TransItemInfo.Item.ItemHeader.Head, TransItemInfo.Item.ItemHeader.dwChkSum);
 									if (Player->lpsmSock)
-										Player->lpsmSock->Send((char*)&TransItemInfo, TransItemInfo.size, TRUE);
+										SummitBattlePassSend(Player, &TransItemInfo, TransItemInfo.size);
 								}
 
 								TRANS_CHATMESSAGE	TransChatMessage;
@@ -362,7 +384,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 								TransChatMessage.dwObjectSerial = 0;
 
 								if (Player->lpsmSock)
-									Player->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+									SummitBattlePassSend(Player, &TransChatMessage, TransChatMessage.size);
 
 								//Criar log na pasta do server do resgate do BP
 								HANDLE	hFile;
@@ -422,7 +444,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 									rsRegist_ItemSecCode(Player, &TransItemInfo, 1);
 									rsAddInvenItem(Player, TransItemInfo.Item.CODE, TransItemInfo.Item.ItemHeader.Head, TransItemInfo.Item.ItemHeader.dwChkSum);
 									if (Player->lpsmSock)
-										Player->lpsmSock->Send((char*)&TransItemInfo, TransItemInfo.size, TRUE);
+										SummitBattlePassSend(Player, &TransItemInfo, TransItemInfo.size);
 								}
 
 								TRANS_CHATMESSAGE	TransChatMessage;
@@ -433,7 +455,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 								TransChatMessage.dwObjectSerial = 0;
 
 								if (Player->lpsmSock)
-									Player->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+									SummitBattlePassSend(Player, &TransChatMessage, TransChatMessage.size);
 
 								//Criar log na pasta do server do resgate do BP
 								HANDLE	hFile;
@@ -508,7 +530,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 									rsRegist_ItemSecCode(Player, &TransItemInfo, 1);
 									rsAddInvenItem(Player, TransItemInfo.Item.CODE, TransItemInfo.Item.ItemHeader.Head, TransItemInfo.Item.ItemHeader.dwChkSum);
 									if (Player->lpsmSock)
-										Player->lpsmSock->Send((char*)&TransItemInfo, TransItemInfo.size, TRUE);
+										SummitBattlePassSend(Player, &TransItemInfo, TransItemInfo.size);
 								}
 
 								TRANS_CHATMESSAGE	TransChatMessage;
@@ -519,7 +541,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 								TransChatMessage.dwObjectSerial = 0;
 
 								if (Player->lpsmSock)
-									Player->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+									SummitBattlePassSend(Player, &TransChatMessage, TransChatMessage.size);
 
 								//Criar log na pasta do server do resgate do BP
 								HANDLE	hFile;
@@ -594,7 +616,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 									rsRegist_ItemSecCode(Player, &TransItemInfo, 1);
 									rsAddInvenItem(Player, TransItemInfo.Item.CODE, TransItemInfo.Item.ItemHeader.Head, TransItemInfo.Item.ItemHeader.dwChkSum);
 									if (Player->lpsmSock)
-										Player->lpsmSock->Send((char*)&TransItemInfo, TransItemInfo.size, TRUE);
+										SummitBattlePassSend(Player, &TransItemInfo, TransItemInfo.size);
 								}
 
 								TRANS_CHATMESSAGE	TransChatMessage;
@@ -605,7 +627,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 								TransChatMessage.dwObjectSerial = 0;
 
 								if (Player->lpsmSock)
-									Player->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+									SummitBattlePassSend(Player, &TransChatMessage, TransChatMessage.size);
 
 								//Criar log na pasta do server do resgate do BP
 								HANDLE	hFile;
@@ -693,7 +715,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 										rsRegist_ItemSecCode(Player, &TransItemInfo, 1);
 										rsAddInvenItem(Player, TransItemInfo.Item.CODE, TransItemInfo.Item.ItemHeader.Head, TransItemInfo.Item.ItemHeader.dwChkSum);
 										if (Player->lpsmSock)
-											Player->lpsmSock->Send((char*)&TransItemInfo, TransItemInfo.size, TRUE);
+											SummitBattlePassSend(Player, &TransItemInfo, TransItemInfo.size);
 									}
 
 									TRANS_CHATMESSAGE	TransChatMessage;
@@ -704,7 +726,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 									TransChatMessage.dwObjectSerial = 0;
 
 									if (Player->lpsmSock)
-										Player->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+										SummitBattlePassSend(Player, &TransChatMessage, TransChatMessage.size);
 
 									//Criar log na pasta do server do resgate do BP
 									HANDLE	hFile;
@@ -793,7 +815,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 										rsRegist_ItemSecCode(Player, &TransItemInfo, 1);
 										rsAddInvenItem(Player, TransItemInfo.Item.CODE, TransItemInfo.Item.ItemHeader.Head, TransItemInfo.Item.ItemHeader.dwChkSum);
 										if (Player->lpsmSock)
-											Player->lpsmSock->Send((char*)&TransItemInfo, TransItemInfo.size, TRUE);
+											SummitBattlePassSend(Player, &TransItemInfo, TransItemInfo.size);
 									}
 
 									TRANS_CHATMESSAGE	TransChatMessage;
@@ -804,7 +826,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 									TransChatMessage.dwObjectSerial = 0;
 
 									if (Player->lpsmSock)
-										Player->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+										SummitBattlePassSend(Player, &TransChatMessage, TransChatMessage.size);
 
 									//Criar log na pasta do server do resgate do BP
 									HANDLE	hFile;
@@ -891,7 +913,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 									rsRegist_ItemSecCode(Player, &TransItemInfo, 1);
 									rsAddInvenItem(Player, TransItemInfo.Item.CODE, TransItemInfo.Item.ItemHeader.Head, TransItemInfo.Item.ItemHeader.dwChkSum);
 									if (Player->lpsmSock)
-										Player->lpsmSock->Send((char*)&TransItemInfo, TransItemInfo.size, TRUE);
+										SummitBattlePassSend(Player, &TransItemInfo, TransItemInfo.size);
 								}
 
 								TRANS_CHATMESSAGE	TransChatMessage;
@@ -902,7 +924,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 								TransChatMessage.dwObjectSerial = 0;
 
 								if (Player->lpsmSock)
-									Player->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+									SummitBattlePassSend(Player, &TransChatMessage, TransChatMessage.size);
 
 								//Criar log na pasta do server do resgate do BP
 								HANDLE	hFile;
@@ -947,7 +969,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 											rsRegist_ItemSecCode(Player, &TransItemInfo, 1);
 											rsAddInvenItem(Player, TransItemInfo.Item.CODE, TransItemInfo.Item.ItemHeader.Head, TransItemInfo.Item.ItemHeader.dwChkSum);
 											if (Player->lpsmSock)
-												Player->lpsmSock->Send((char*)&TransItemInfo, TransItemInfo.size, TRUE);
+												SummitBattlePassSend(Player, &TransItemInfo, TransItemInfo.size);
 
 											BattlePass::GetInstance()->SendItemToClient(Player);
 											BattlePass::GetInstance()->SendBPInfoToGame(Player);
@@ -965,7 +987,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 											rsRegist_ItemSecCode(Player, &TransItemInfo, 1);
 											rsAddInvenItem(Player, TransItemInfo.Item.CODE, TransItemInfo.Item.ItemHeader.Head, TransItemInfo.Item.ItemHeader.dwChkSum);
 											if (Player->lpsmSock)
-												Player->lpsmSock->Send((char*)&TransItemInfo, TransItemInfo.size, TRUE);
+												SummitBattlePassSend(Player, &TransItemInfo, TransItemInfo.size);
 
 											BattlePass::GetInstance()->SendItemToClient(Player);
 											BattlePass::GetInstance()->SendBPInfoToGame(Player);
@@ -982,7 +1004,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 									TransChatMessage.dwObjectSerial = 0;
 
 									if (Player->lpsmSock)
-										Player->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+										SummitBattlePassSend(Player, &TransChatMessage, TransChatMessage.size);
 
 									//Criar log na pasta do server do resgate do BP
 									HANDLE	hFile;
@@ -1025,7 +1047,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 						TransChatMessage.dwObjectSerial = 0;
 
 						if (Player->lpsmSock)
-							Player->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+							SummitBattlePassSend(Player, &TransChatMessage, TransChatMessage.size);
 					}
 
 				}
@@ -1039,7 +1061,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 					TransChatMessage.dwObjectSerial = 0;
 
 					if (Player->lpsmSock)
-						Player->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+						SummitBattlePassSend(Player, &TransChatMessage, TransChatMessage.size);
 				}
 			}
 			else {
@@ -1051,7 +1073,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 				TransChatMessage.dwObjectSerial = 0;
 
 				if (Player->lpsmSock)
-					Player->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+					SummitBattlePassSend(Player, &TransChatMessage, TransChatMessage.size);
 			}
 		}
 
@@ -1063,75 +1085,38 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 //ADICIONA EXPERIÊNCIA NO PASSE DE BATALHA (USADO AO MATAR MONSTROS E OUTROS JOGADORES)
 void BattlePass::AddExpBattlePass(rsPLAYINFO* Player, int valor)
 {
-	if (SQL::GetInstance()->IsConnected())
+	if(!Player)
+		return;
+
+	gameplay::progression::BattlePassProgressResult progress;
+	if(!gameplay::progression::BattlePassProgressApplicationService::AddExperience(
+		gameplay::progression::legacy::ServerLegacyBattlePassProgressMutationPort(),
+		Player->getAccount() ? Player->getAccount() : "", valor, progress))
+		return;
+
+	if(!progress.changed)
+		return;
+
+	if(progress.levelsGained > 0)
 	{
-		int UserBP_Exp = 0;
-		int UserBP_Level = 0;
-		int Userativo = 0;
-		char szQuery[512];
-		SQL::GetInstance()->EnterSqlSection();
-		wsprintf(szQuery, "SELECT * FROM [BattlePass].[dbo].[BP_Info] WHERE [ID]='%s'", Player->getAccount());
-		if (SQL::GetInstance()->Execute(szQuery))
-		{
-			if (SQL::GetInstance()->Fetch())
-			{
-				SQL::GetInstance()->GetDataValue(2, &UserBP_Exp);
-				SQL::GetInstance()->GetDataValue(3, &UserBP_Level);
-				SQL::GetInstance()->GetDataValue(4, &Userativo);
-			}
+		TRANS_CHATMESSAGE TransChatMessage;
+		wsprintf(TransChatMessage.szMessage, "Parab\351ns voc\352 atingiu o n\355vel %d do seu Passe de Batalha", progress.state.level);
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
+		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
+		TransChatMessage.dwIP = 3;
+		TransChatMessage.dwObjectSerial = 0;
 
-			if (Userativo > 0)
-			{
-
-				// Calculo feito para saber se o usuário já atingiu à experiência necessária para evoluir o nível do passe de batalha
-				UserBP_Exp = UserBP_Exp + valor;
-
-				if ((UserBP_Exp >= 999) && (UserBP_Level < 20))
-				{
-					UserBP_Exp = UserBP_Exp - 999;
-					UserBP_Level++;
-
-					//ENVIA MENSAGEM PARA O JOGADOR ASSIM QUE ELE UPA DE NIVEL
-					TRANS_CHATMESSAGE	TransChatMessage;
-					wsprintf(TransChatMessage.szMessage, "Parab\351ns voc\352 atingiu o n\355vel %d do seu Passe de Batalha", UserBP_Level);
-					TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
-					TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
-					TransChatMessage.dwIP = 3;
-					TransChatMessage.dwObjectSerial = 0;
-
-					if (Player->lpsmSock)
-						Player->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
-				}
-				else if (UserBP_Level > 19) {
-					UserBP_Exp = 999;
-				}
-
-				TRANS_CHATMESSAGE pvp;
-
-				wsprintf(pvp.szMessage, "Passe de Batalha > Exp: %d/999", UserBP_Exp);
-				pvp.code = OpCode::OPCODE_WHISPERMESSAGE;
-				pvp.size = 32 + lstrlen(pvp.szMessage);
-				pvp.dwIP = 9;
-				pvp.dwObjectSerial = 0;
-
-				if (Player->lpsmSock)
-					Player->lpsmSock->Send((char*)&pvp, pvp.size, TRUE);
-				//
-				//
-				if (UserBP_Exp < 999) {
-					wsprintf(szQuery, "UPDATE [BattlePass].[dbo].[BP_Info] SET BP_Exp=%d WHERE [ID]='%s'", UserBP_Exp, Player->getAccount());
-					if (SQL::GetInstance()->Execute(szQuery))
-					{
-					}
-					wsprintf(szQuery, "UPDATE [BattlePass].[dbo].[BP_Info] SET BP_Level=%d WHERE [ID]='%s'", UserBP_Level, Player->getAccount());
-					if (SQL::GetInstance()->Execute(szQuery))
-					{
-					}
-				}
-			}
-		}
-		SQL::GetInstance()->LeaveSqlSection();
+		if(Player->lpsmSock)
+			SummitBattlePassSend(Player, &TransChatMessage, TransChatMessage.size);
 	}
+
+	TRANS_CHATMESSAGE pvp;
+	wsprintf(pvp.szMessage, "Passe de Batalha > Exp: %d/999", progress.state.experience);
+	pvp.code = OpCode::OPCODE_WHISPERMESSAGE;
+	pvp.size = 32 + lstrlen(pvp.szMessage);
+	pvp.dwIP = 9;
+	pvp.dwObjectSerial = 0;
+
+	if(Player->lpsmSock)
+		SummitBattlePassSend(Player, &pvp, pvp.size);
 }
-
-

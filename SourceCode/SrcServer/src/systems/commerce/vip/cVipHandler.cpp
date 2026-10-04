@@ -3,99 +3,68 @@
 #include "core/server/legacy_runtime/onserver.h"
 #include "systems/commerce/vip/cVipHandler.h"
 #include "systems/persistence/database/core/Database.h"
+#include "systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h"
+#include "systems/network/v2/legacy/LegacyPacketSender.h"
+#include "systems/commerce/v2/legacy/LegacyVipEntitlementRepository.h"
 
 extern int SendQuickMessage(rsPLAYINFO* lpPlayInfo, char* szMessage);
 
-void cVipHandler::InsertDB(rsPLAYINFO* lpPlayInfo, int IdVip , int time)
+namespace
 {
-	std::shared_ptr<SQLConnection> db = SQLConnection::GetConnection(DATABASEID_ServerDB);
+bool SummitVipSend(rsPLAYINFO *recipient, const void *data, int size)
+{
+	if(!recipient || !data || size <= 0)
+		return false;
 
-	if (db->Open())
-	{
-		char query[255] = { 0 };
+	const gameplay::PlayerId playerId =
+		gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(recipient);
+	return gameplay::network::legacy::ServerLegacyPacketSender().Send(
+		playerId, gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded();
+}
+}
 
-		wsprintf(query, "INSERT INTO Vip  ([PlayerName],[IdVIp],[DateStart],[DateEnd]) values (?,?,GetDate(),DATEADD(DAY, %d, Getdate()))", time);
+void cVipHandler::InsertDB(rsPLAYINFO* lpPlayInfo, int IdVip, int time)
+{
+	const gameplay::PlayerId playerId =
+		gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo);
+	const gameplay::commerce::VipGrantCode grant =
+		gameplay::commerce::legacy::ServerPremiumEntitlementService().GrantVip(
+			gameplay::commerce::VipGrantRequest(playerId, IdVip, time));
 
-		if (db->Prepare(query))
-		{
-			char playerName[32];  lstrcpy(playerName, lpPlayInfo->getName());
-			db->BindInputParameter(playerName, 1, PARAMTYPE_String);
-			db->BindInputParameter(&IdVip, 2, PARAMTYPE_Integer);
-			db->Execute(false);
-		}
-		db->Close();
-	}
+	if(grant != gameplay::commerce::VipGrantCode::Granted)
+		return;
 
-	smTRANS_VIP sPacket;
+	smTRANS_VIP sPacket = {};
 	sPacket.code = OpCode::OPCODE_VIP;
 	sPacket.size = sizeof(sPacket);
 	sPacket.Ativo = TRUE;
-
-	lpPlayInfo->lpsmSock->Send((char*)&sPacket, sPacket.size, TRUE);
-
+	(void)SummitVipSend(lpPlayInfo, &sPacket, sPacket.size);
 	SendQuickMessage(lpPlayInfo, "/comandos para ver suas recompensas do VIP.");
 }
 
 void cVipHandler::IsVIp(rsPLAYINFO* lpPlayInfo)
 {
-	std::shared_ptr<SQLConnection> db = SQLConnection::GetConnection(DATABASEID_ServerDB);
+	const gameplay::PlayerId playerId =
+		gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo);
+	gameplay::commerce::VipEntitlementSnapshot entitlement;
+	if(!gameplay::commerce::legacy::ServerPremiumEntitlementService().TryGetVip(playerId, entitlement) ||
+	   !entitlement.active)
+		return;
 
-	smTRANS_VIP sPacket;
+	smTRANS_VIP sPacket = {};
 	sPacket.code = OpCode::OPCODE_VIP;
 	sPacket.size = sizeof(sPacket);
-
-	if (db->Open())
-	{
-		if (db->Prepare("DELETE FROM Vip Where PlayerName = ? And GetDate() >= DateEnd"))
-		{
-			char playerName[32];  lstrcpy(playerName, lpPlayInfo->getName());
-
-			db->BindInputParameter(playerName, 1, PARAMTYPE_String);
-			db->Execute(false);
-		}
-
-		if (db->Prepare("SELECT * FROM Vip Where PlayerName = ?"))
-		{
-			char playerName[32];  lstrcpy(playerName, lpPlayInfo->getName());
-
-			db->BindInputParameter(playerName, 1, PARAMTYPE_String);
-
-			if (db->Execute())
-			{
-
-				db->GetData(&IdVip, 4, 2, PARAMTYPE_Integer);
-
-				sPacket.Ativo = TRUE;
-				lpPlayInfo->lpsmSock->Send((char*)&sPacket, sPacket.size, TRUE);
-				SendQuickMessage(lpPlayInfo, "/comandos para ver suas recompensas do VIP.");
-			}
-		}
-
-		db->Close();
-	}
-
+	sPacket.Ativo = TRUE;
+	(void)SummitVipSend(lpPlayInfo, &sPacket, sPacket.size);
+	SendQuickMessage(lpPlayInfo, "/comandos para ver suas recompensas do VIP.");
 }
 
 bool cVipHandler::returnVip(rsPLAYINFO* lpPlayInfo)
 {
-	std::shared_ptr<SQLConnection> db = SQLConnection::GetConnection(DATABASEID_ServerDB);
-
-	if (db->Open())
-	{
-
-		if (db->Prepare("SELECT * FROM Vip Where PlayerName = ?"))
-		{
-			char playerName[32];  lstrcpy(playerName, lpPlayInfo->getName());
-
-			db->BindInputParameter(playerName, 1, PARAMTYPE_String);
-
-			if (db->Execute()) return true;
-		}
-
-		db->Close();
-	}
-
-	return false;
+	const gameplay::PlayerId playerId =
+		gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo);
+	gameplay::commerce::VipEntitlementSnapshot entitlement;
+	return gameplay::commerce::legacy::ServerPremiumEntitlementService().TryGetVip(playerId, entitlement) &&
+		entitlement.active;
 }
-
 

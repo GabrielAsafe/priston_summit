@@ -29,6 +29,7 @@
 #include "compat/client_server/server_legacy/onserver.h"
 #include "systems/commerce/coin_shop/CoinShop.h"
 #include "systems/ui/v2/legacy/LegacyUIV2Bridge.h"
+#include "systems/network/v2/legacy/LegacyBackendChannelSender.h"
 
 #include "gameplay/classes/v2/services/ClassService.h"
 
@@ -37,6 +38,19 @@
 #endif
 
 #define MAX_MONEY 1000000000
+
+
+namespace
+{
+void SendInventoryBackend(gameplay::network::BackendChannel channel, const void* data, int size, std::uint32_t opcode)
+{
+	if(!data || size <= 0)
+		return;
+	(void)gameplay::network::legacy::ClientLegacyBackendChannelSender().Send(
+		channel,
+		gameplay::network::PacketView(data, static_cast<std::size_t>(size), opcode));
+}
+}
 
 extern int NovatoADD;
 extern int NovatoRegen;
@@ -4088,12 +4102,9 @@ void cINVENTORY::RButtonDown(int x, int y)
 				smPacket.EParam = 0;
 				smPacket.size = sizeof(smPacket);
 
-				extern smWINSOCK* smWsockDataServer;
-
-				if (smWsockDataServer)
-				{
-					smWsockDataServer->Send((char*)& smPacket, smPacket.size, TRUE);
-				};
+				SendInventoryBackend(
+					gameplay::network::BackendChannel::Data,
+					&smPacket, smPacket.size, static_cast<std::uint32_t>(smPacket.code));
 			}
 
 			if (InvenItem[SelectInvenItemIndex - 1].sItemInfo.CODE == (sinBI3 | sin03))
@@ -4113,12 +4124,9 @@ void cINVENTORY::RButtonDown(int x, int y)
 				smPacket.EParam = 0;
 				smPacket.size = sizeof(smPacket);
 
-				extern smWINSOCK* smWsockDataServer;
-
-				if (smWsockDataServer)
-				{
-					smWsockDataServer->Send((char*)& smPacket, smPacket.size, TRUE);
-				};
+				SendInventoryBackend(
+					gameplay::network::BackendChannel::Data,
+					&smPacket, smPacket.size, static_cast<std::uint32_t>(smPacket.code));
 			}
 
 			if (InvenItem[SelectInvenItemIndex - 1].sItemInfo.CODE == (sinBI3 | sin04))
@@ -4138,12 +4146,9 @@ void cINVENTORY::RButtonDown(int x, int y)
 				smPacket.EParam = 0;
 				smPacket.size = sizeof(smPacket);
 
-				extern smWINSOCK* smWsockDataServer;
-
-				if (smWsockDataServer)
-				{
-					smWsockDataServer->Send((char*)& smPacket, smPacket.size, TRUE);
-				};
+				SendInventoryBackend(
+					gameplay::network::BackendChannel::Data,
+					&smPacket, smPacket.size, static_cast<std::uint32_t>(smPacket.code));
 			}
 
 			if (InvenItem[SelectInvenItemIndex - 1].sItemInfo.CODE == (sinBI3 | sin05))
@@ -4163,12 +4168,9 @@ void cINVENTORY::RButtonDown(int x, int y)
 				smPacket.EParam = 0;
 				smPacket.size = sizeof(smPacket);
 
-				extern smWINSOCK* smWsockDataServer;
-
-				if (smWsockDataServer)
-				{
-					smWsockDataServer->Send((char*)& smPacket, smPacket.size, TRUE);
-				};
+				SendInventoryBackend(
+					gameplay::network::BackendChannel::Data,
+					&smPacket, smPacket.size, static_cast<std::uint32_t>(smPacket.code));
 			}
 
 			if (InvenItem[SelectInvenItemIndex - 1].sItemInfo.CODE == (sinBI3 | sin06))
@@ -4188,12 +4190,9 @@ void cINVENTORY::RButtonDown(int x, int y)
 				smPacket.EParam = 0;
 				smPacket.size = sizeof(smPacket);
 
-				extern smWINSOCK* smWsockDataServer;
-
-				if (smWsockDataServer)
-				{
-					smWsockDataServer->Send((char*)& smPacket, smPacket.size, TRUE);
-				};
+				SendInventoryBackend(
+					gameplay::network::BackendChannel::Data,
+					&smPacket, smPacket.size, static_cast<std::uint32_t>(smPacket.code));
 			}
 
 			if (InvenItem[SelectInvenItemIndex - 1].sItemInfo.CODE == (sinBI3 | sin07))
@@ -4213,12 +4212,9 @@ void cINVENTORY::RButtonDown(int x, int y)
 				smPacket.EParam = 0;
 				smPacket.size = sizeof(smPacket);
 
-				extern smWINSOCK* smWsockDataServer;
-
-				if (smWsockDataServer)
-				{
-					smWsockDataServer->Send((char*)& smPacket, smPacket.size, TRUE);
-				};
+				SendInventoryBackend(
+					gameplay::network::BackendChannel::Data,
+					&smPacket, smPacket.size, static_cast<std::uint32_t>(smPacket.code));
 			}
 
 			if (InvenItem[SelectInvenItemIndex - 1].sItemInfo.CODE == (sinBI3 | sin08))
@@ -4238,12 +4234,9 @@ void cINVENTORY::RButtonDown(int x, int y)
 				smPacket.EParam = 0;
 				smPacket.size = sizeof(smPacket);
 
-				extern smWINSOCK* smWsockDataServer;
-
-				if (smWsockDataServer)
-				{
-					smWsockDataServer->Send((char*)& smPacket, smPacket.size, TRUE);
-				};
+				SendInventoryBackend(
+					gameplay::network::BackendChannel::Data,
+					&smPacket, smPacket.size, static_cast<std::uint32_t>(smPacket.code));
 			}
 
 			if (InvenItem[SelectInvenItemIndex - 1].sItemInfo.CODE == (sinBI3 | sin09))
@@ -4263,12 +4256,9 @@ void cINVENTORY::RButtonDown(int x, int y)
 				smPacket.EParam = 0;
 				smPacket.size = sizeof(smPacket);
 
-				extern smWINSOCK* smWsockDataServer;
-
-				if (smWsockDataServer)
-				{
-					smWsockDataServer->Send((char*)& smPacket, smPacket.size, TRUE);
-				};
+				SendInventoryBackend(
+					gameplay::network::BackendChannel::Data,
+					&smPacket, smPacket.size, static_cast<std::uint32_t>(smPacket.code));
 			}
 
 			if (InvenItem[SelectInvenItemIndex - 1].sItemInfo.CODE == (sinBI3 | sin10))
@@ -4288,12 +4278,9 @@ void cINVENTORY::RButtonDown(int x, int y)
 				smPacket.EParam = 0;
 				smPacket.size = sizeof(smPacket);
 
-				extern smWINSOCK* smWsockDataServer;
-
-				if (smWsockDataServer)
-				{
-					smWsockDataServer->Send((char*)& smPacket, smPacket.size, TRUE);
-				};
+				SendInventoryBackend(
+					gameplay::network::BackendChannel::Data,
+					&smPacket, smPacket.size, static_cast<std::uint32_t>(smPacket.code));
 			}
 
 			if (InvenItem[SelectInvenItemIndex - 1].sItemInfo.CODE == (sinBI3 | sin11))
@@ -4313,12 +4300,9 @@ void cINVENTORY::RButtonDown(int x, int y)
 				smPacket.EParam = 0;
 				smPacket.size = sizeof(smPacket);
 
-				extern smWINSOCK* smWsockDataServer;
-
-				if (smWsockDataServer)
-				{
-					smWsockDataServer->Send((char*)& smPacket, smPacket.size, TRUE);
-				};
+				SendInventoryBackend(
+					gameplay::network::BackendChannel::Data,
+					&smPacket, smPacket.size, static_cast<std::uint32_t>(smPacket.code));
 			}
 
 			if (InvenItem[SelectInvenItemIndex - 1].sItemInfo.CODE == (sinBI3 | sin12))
@@ -4338,12 +4322,9 @@ void cINVENTORY::RButtonDown(int x, int y)
 				smPacket.EParam = 0;
 				smPacket.size = sizeof(smPacket);
 
-				extern smWINSOCK* smWsockDataServer;
-
-				if (smWsockDataServer)
-				{
-					smWsockDataServer->Send((char*)& smPacket, smPacket.size, TRUE);
-				};
+				SendInventoryBackend(
+					gameplay::network::BackendChannel::Data,
+					&smPacket, smPacket.size, static_cast<std::uint32_t>(smPacket.code));
 			}
 
 			if (InvenItem[SelectInvenItemIndex - 1].sItemInfo.CODE == (sinBI3 | sin13))
@@ -4363,12 +4344,9 @@ void cINVENTORY::RButtonDown(int x, int y)
 				smPacket.EParam = 0;
 				smPacket.size = sizeof(smPacket);
 
-				extern smWINSOCK* smWsockDataServer;
-
-				if (smWsockDataServer)
-				{
-					smWsockDataServer->Send((char*)& smPacket, smPacket.size, TRUE);
-				};
+				SendInventoryBackend(
+					gameplay::network::BackendChannel::Data,
+					&smPacket, smPacket.size, static_cast<std::uint32_t>(smPacket.code));
 			}
 
 			if (InvenItem[SelectInvenItemIndex - 1].sItemInfo.CODE == (sinBI3 | sin14))
@@ -4388,12 +4366,9 @@ void cINVENTORY::RButtonDown(int x, int y)
 				smPacket.EParam = 0;
 				smPacket.size = sizeof(smPacket);
 
-				extern smWINSOCK* smWsockDataServer;
-
-				if (smWsockDataServer)
-				{
-					smWsockDataServer->Send((char*)& smPacket, smPacket.size, TRUE);
-				};
+				SendInventoryBackend(
+					gameplay::network::BackendChannel::Data,
+					&smPacket, smPacket.size, static_cast<std::uint32_t>(smPacket.code));
 			}
 
 			if (InvenItem[SelectInvenItemIndex - 1].sItemInfo.CODE == (sinBI3 | sin15))
@@ -4413,12 +4388,9 @@ void cINVENTORY::RButtonDown(int x, int y)
 				smPacket.EParam = 0;
 				smPacket.size = sizeof(smPacket);
 
-				extern smWINSOCK* smWsockDataServer;
-
-				if (smWsockDataServer)
-				{
-					smWsockDataServer->Send((char*)& smPacket, smPacket.size, TRUE);
-				};
+				SendInventoryBackend(
+					gameplay::network::BackendChannel::Data,
+					&smPacket, smPacket.size, static_cast<std::uint32_t>(smPacket.code));
 			}
 
 			if (InvenItem[SelectInvenItemIndex - 1].sItemInfo.CODE == (sinBI3 | sin16))
@@ -4438,12 +4410,9 @@ void cINVENTORY::RButtonDown(int x, int y)
 				smPacket.EParam = 0;
 				smPacket.size = sizeof(smPacket);
 
-				extern smWINSOCK* smWsockDataServer;
-
-				if (smWsockDataServer)
-				{
-					smWsockDataServer->Send((char*)& smPacket, smPacket.size, TRUE);
-				};
+				SendInventoryBackend(
+					gameplay::network::BackendChannel::Data,
+					&smPacket, smPacket.size, static_cast<std::uint32_t>(smPacket.code));
 			}
 
 			if (InvenItem[SelectInvenItemIndex - 1].sItemInfo.CODE == (sinBI3 | sin17)) 
@@ -10056,8 +10025,10 @@ int cINVENTORY::EatSongPyeun(sITEM *pItem)
 	smTransCommand.SParam = Stamina;
 	smTransCommand.EParam = lpCurPlayer->dwObjectSerial;
 
-	if(smWsockUserServer && InterfaceParty.PartyMemberCount)
-		smWsockUserServer->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+	if(InterfaceParty.PartyMemberCount)
+		SendInventoryBackend(
+			gameplay::network::BackendChannel::User,
+			&smTransCommand, smTransCommand.size, static_cast<std::uint32_t>(smTransCommand.code));
 
 
 	ReFormInvenItem();
@@ -10902,8 +10873,9 @@ int cINVENTORY::HackCharStateCheck(smCHAR_INFO *pChar_Info, smCHAR_INFO *desChar
 		smTransCommand.LParam = pChar_Info->Defence;
 		smTransCommand.SParam = (int)(pChar_Info->Absorption * 256);
 		smTransCommand.EParam = 0;
-		if(smWsockDataServer)
-			smWsockDataServer->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+		SendInventoryBackend(
+			gameplay::network::BackendChannel::Data,
+			&smTransCommand, smTransCommand.size, static_cast<std::uint32_t>(smTransCommand.code));
 
 		return FALSE;
 	}

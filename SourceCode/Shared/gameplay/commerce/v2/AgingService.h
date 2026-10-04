@@ -20,6 +20,8 @@ enum class AgingCode
     Processed,
     InvalidPlayer,
     InvalidPayload,
+    InventoryReservationRejected,
+    RollbackFailed,
     Rejected
 };
 

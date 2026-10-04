@@ -42,7 +42,7 @@
 
 
 
-rsEVENT_SPAWN	rsEventSpawn[STAGE_AREA_MAX];
+rsEVENT_SPAWN	rsEventSpawn[FIELD_MAX];
 int	rsEventSpawnInit = 0;
 
 #include "compat/client_server/server_legacy/Set_EventSpawn.h"
@@ -458,7 +458,7 @@ int rsEVENT_SPAWN::Order(rsPLAYINFO *lpPlayInfo, char *szText)
 int rsEventSpawn_KillMonster(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar)
 {
 
-	if(lpPlayInfo->Position.Area >= 0 && lpPlayInfo->Position.Area < STAGE_AREA_MAX)
+	if(lpPlayInfo->Position.Area >= 0 && lpPlayInfo->Position.Area < StageAreaCount)
 	{
 
 		return rsEventSpawn[lpPlayInfo->Position.Area].Event_KillMonster(lpPlayInfo, lpChar);
@@ -470,7 +470,7 @@ int rsEventSpawn_KillMonster(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar)
 int rsEventSpawn_Order(rsPLAYINFO *lpPlayInfo, char *szText)
 {
 
-	if(lpPlayInfo->Position.Area >= 0 && lpPlayInfo->Position.Area < STAGE_AREA_MAX)
+	if(lpPlayInfo->Position.Area >= 0 && lpPlayInfo->Position.Area < StageAreaCount)
 	{
 
 		return rsEventSpawn[lpPlayInfo->Position.Area].Order(lpPlayInfo, szText);
@@ -485,7 +485,7 @@ int rsEventSpawn_Main(STG_AREA *lpStgArea)
 	if(!rsEventSpawnInit)
 	{
 
-		for(int cnt = 0; cnt < STAGE_AREA_MAX; cnt++)
+		for(int cnt = 0; cnt < StageAreaCount; cnt++)
 		{
 			ZeroMemory(&rsEventSpawn[cnt], sizeof(rsEVENT_SPAWN));
 

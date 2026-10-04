@@ -1,6 +1,7 @@
 #include "systems/community/chat/v2/legacy/LegacyChatDeliveryAdapter.h"
 
 #include "systems/network/protocol/server/opcodes.h"
+#include "systems/network/v2/legacy/LegacyPacketSender.h"
 
 #include <cstdio>
 
@@ -34,8 +35,10 @@ bool BuildPacket(const ChatMessage& message, TRANS_CHATMESSAGE& packet)
 }
 
 LegacyChatDeliveryAdapter::LegacyChatDeliveryAdapter(
-    const player::legacy::LegacyOnlinePlayerRegistry& registry)
-    : registry_(registry)
+    const player::legacy::LegacyOnlinePlayerRegistry& registry,
+    network::IPacketSender& packets)
+    : registry_(registry),
+      packets_(packets)
 {
 }
 
@@ -68,7 +71,11 @@ ChatDeliveryResult LegacyChatDeliveryAdapter::SendToLegacyPlayer(rsPLAYINFO* leg
     }
 
     result.attempted = 1u;
-    if(legacyPlayer->lpsmSock->Send((char*)&packet, packet.size, TRUE) == TRUE)
+    const network::SendResult sent = packets_.Send(
+        PlayerId(static_cast<std::uint32_t>(legacyPlayer->dwObjectSerial)),
+        network::PacketView(&packet, static_cast<std::size_t>(packet.size),
+                            static_cast<std::uint32_t>(packet.code)));
+    if(sent.Succeeded())
     {
         result.delivered = 1u;
         result.code = ChatDeliveryCode::Delivered;
@@ -103,7 +110,11 @@ ChatDeliveryResult LegacyChatDeliveryAdapter::Broadcast(const ChatMessage& messa
             continue;
 
         ++result.attempted;
-        if(legacyPlayer->lpsmSock->Send((char*)&packet, packet.size, TRUE) == TRUE)
+        const network::SendResult sent = packets_.Send(
+            PlayerId(static_cast<std::uint32_t>(legacyPlayer->dwObjectSerial)),
+            network::PacketView(&packet, static_cast<std::size_t>(packet.size),
+                                static_cast<std::uint32_t>(packet.code)));
+        if(sent.Succeeded())
             ++result.delivered;
     }
 
@@ -115,7 +126,9 @@ ChatDeliveryResult LegacyChatDeliveryAdapter::Broadcast(const ChatMessage& messa
 
 LegacyChatDeliveryAdapter& ServerLegacyChatDeliveryAdapter()
 {
-    static LegacyChatDeliveryAdapter adapter(player::legacy::ServerLegacyOnlinePlayerRegistry());
+    static LegacyChatDeliveryAdapter adapter(
+        player::legacy::ServerLegacyOnlinePlayerRegistry(),
+        network::legacy::ServerLegacyPacketSender());
     return adapter;
 }
 }

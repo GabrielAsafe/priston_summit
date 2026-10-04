@@ -18,6 +18,8 @@
 #include "systems/combat/skills/server_support/SkillSub.h"
 #include "systems/combat/damage/damage.h"
 #include "systems/network/region/AreaServer.h"
+#include "systems/gameplay/combat/v2/legacy/LegacyScopedCombatBuff.h"
+#include "systems/gameplay/skills/v2/legacy/LegacySkillAnimationAdapter.h"
 
 
 static sSKILL Skill_ScoutHawk;
@@ -1345,6 +1347,14 @@ int PlaySkillSubLife(int Life)
 
 
 
+static void SummitConfigurePlaySkillLoop(smCHAR* actor, int loopSpeed, int loopCount)
+{
+	if(!actor)
+		return;
+	(void)gameplay::skills::legacy::ServerLegacySkillAnimationAdapter().ConfigureLoop(
+		gameplay::EntityId(static_cast<std::uint32_t>(actor->dwObjectSerial)), loopSpeed, loopCount);
+}
+
 int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 {
 
@@ -1425,7 +1435,8 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 
 			if(lpSkill->Point)
 			{
-				lpCurPlayer->MotionLoop = Ravind_Speed[lpSkill->Point - 1];
+				SummitConfigurePlaySkillLoop(
+					lpCurPlayer, lpCurPlayer->MotionLoopSpeed, Ravind_Speed[lpSkill->Point - 1]);
 
 				cnt = dm_SendTransDamage(lpChar, 0, 0, 0, 0, lpCurPlayer->AttackSkil, TRUE);
 
@@ -1444,11 +1455,12 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			}
 			else
 			{
-				lpCurPlayer->MotionLoop = 1;
+				SummitConfigurePlaySkillLoop(lpCurPlayer, lpCurPlayer->MotionLoopSpeed, 1);
 			}
 
-			lpCurPlayer->MotionLoopSpeed = 90 + (10 * lpCurPlayer->MotionLoop);
-			if(lpCurPlayer->MotionLoopSpeed < 100) lpCurPlayer->MotionLoopSpeed = 100;
+			int ravindLoopSpeed = 90 + (10 * lpCurPlayer->MotionLoop);
+			if(ravindLoopSpeed < 100) ravindLoopSpeed = 100;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, ravindLoopSpeed, lpCurPlayer->MotionLoop);
 
 
 
@@ -1473,11 +1485,11 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 
 			if(lpSkill->Point)
 			{
-				temp = lpCurPlayer->smCharInfo.Attack_Rating;
-				lpCurPlayer->smCharInfo.Attack_Rating += Impact_Attack_Rating[lpSkill->Point - 1];
+				gameplay::combat::legacy::ScopedAttackRatingBuff attackRatingBuff(
+					lpCurPlayer, Impact_Attack_Rating[lpSkill->Point - 1]);
 
 				cnt = dm_SendTransDamage(lpChar, 0, 0, 0, 0, lpCurPlayer->AttackSkil, TRUE);
-				lpCurPlayer->smCharInfo.Attack_Rating = temp;
+				attackRatingBuff.Release();
 
 				if(!cnt)
 					lpCurPlayer->AttackCritcal = -1;
@@ -1510,10 +1522,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			if(cnt < 0) cnt = 0;
 			if(cnt > 6) cnt = 6;
 			cnt += 2;
-			lpCurPlayer->MotionLoopSpeed = (80 * (fONE + 32 * cnt + 32)) >> FLOATNS;
-
-
-			lpCurPlayer->MotionLoop = 2;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, (80 * (fONE + 32 * cnt + 32)) >> FLOATNS, 2);
 			break;
 		}
 
@@ -1535,23 +1544,19 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 
 			if(lpSkill->Point)
 			{
-				temp = lpCurPlayer->smCharInfo.Attack_Rating;
-
-
-
-				lpCurPlayer->smCharInfo.Attack_Rating +=
+				const int attackRatingDelta =
 					(lpCurPlayer->smCharInfo.Attack_Rating * Jumping_Crash_Attack_Rating[lpSkill->Point - 1]) / 100;
+				gameplay::combat::legacy::ScopedAttackRatingBuff attackRatingBuff(lpCurPlayer, attackRatingDelta);
 
 				cnt = dm_SendTransDamage(lpChar, 0, 0, 0, 0, lpCurPlayer->AttackSkil, TRUE);
-				lpCurPlayer->smCharInfo.Attack_Rating = temp;
+				attackRatingBuff.Release();
 
 				if(!cnt)
 					lpCurPlayer->AttackCritcal = -1;
 				else
 					DamageExp(lpChar, cnt);
 			}
-			lpCurPlayer->MotionLoopSpeed = 80;
-			lpCurPlayer->MotionLoop = 1;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, 80, 1);
 			return TRUE;
 		}
 
@@ -1595,9 +1600,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 
 
 
-				lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed, Wind_Arrow_Speed[lpSkill->Point - 1]);
-
-				lpCurPlayer->MotionLoop = 1;
+				SummitConfigurePlaySkillLoop(lpCurPlayer, GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed, Wind_Arrow_Speed[lpSkill->Point - 1]), 1);
 			}
 			return TRUE;
 		}
@@ -1626,14 +1629,9 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->AttackSkil |= (lpSkill->Point << 8);
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 
-			temp = lpCurPlayer->smCharInfo.Attack_Rating;
-
-
-
-
-			lpCurPlayer->smCharInfo.Attack_Rating +=
+			const int attackRatingDelta =
 				(lpCurPlayer->smCharInfo.Attack_Rating * Perfect_Aim_Attack_Rate[lpSkill->Point - 1]) / 100;
-
+			gameplay::combat::legacy::ScopedAttackRatingBuff attackRatingBuff(lpCurPlayer, attackRatingDelta);
 
 			cnt = dm_SendTransDamage(lpChar, 0, 0, 0, 0, lpCurPlayer->AttackSkil, TRUE);
 
@@ -1643,7 +1641,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 				DamageExp(lpChar, cnt);
 
 
-			lpCurPlayer->smCharInfo.Attack_Rating = temp;
+			attackRatingBuff.Release();
 
 
 
@@ -1667,26 +1665,18 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
-			lpCurPlayer->MotionLoopSpeed = 110;
-			lpCurPlayer->MotionLoop = 1;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, 110, 1);
 
 
 			if(lpSkill->Point)
 			{
-				temp = lpCurPlayer->smCharInfo.Attack_Rating;
-
-
-
-
-				lpCurPlayer->smCharInfo.Attack_Rating += G_Smash_Attack_Rate[lpSkill->Point - 1];
-
-
+				gameplay::combat::legacy::ScopedAttackRatingBuff attackRatingBuff(
+					lpCurPlayer, G_Smash_Attack_Rate[lpSkill->Point - 1]);
 
 				dm_SelectRange(lpChar->pX, lpChar->pY, lpChar->pZ, 70, TRUE);
 
 				dm_SendRangeDamage(lpChar->pX, lpChar->pY, lpChar->pZ, lpChar, 0, 0, 0, 0, lpCurPlayer->AttackSkil);
-
-				lpCurPlayer->smCharInfo.Attack_Rating = temp;
+				attackRatingBuff.Release();
 			}
 			return TRUE;
 		}
@@ -1723,16 +1713,13 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
-			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed, 4);
-			lpCurPlayer->MotionLoop = 1;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed, 4), 1);
 
 
 			if(lpSkill->Point)
 			{
-				temp = lpCurPlayer->smCharInfo.Attack_Rating;
-
-
-				lpCurPlayer->smCharInfo.Attack_Rating += Grand_Smash_AttackRate[lpSkill->Point - 1];
+				gameplay::combat::legacy::ScopedAttackRatingBuff attackRatingBuff(
+					lpCurPlayer, Grand_Smash_AttackRate[lpSkill->Point - 1]);
 
 				cnt = dm_SendTransDamage(lpChar, 0, 0, 0, 0, lpCurPlayer->AttackSkil, TRUE);
 				if(!cnt)
@@ -1740,7 +1727,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 					lpCurPlayer->AttackCritcal = -1;
 				}
 
-				lpCurPlayer->smCharInfo.Attack_Rating = temp;
+				attackRatingBuff.Release();
 			}
 
 			return TRUE;
@@ -1799,8 +1786,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
-			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed);
-			lpCurPlayer->MotionLoop = 1;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed), 1);
 
 
 			if(lpSkill->Point)
@@ -1834,8 +1820,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 
-			lpCurPlayer->MotionLoopSpeed = 120;
-			lpCurPlayer->MotionLoop = 1;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, 120, 1);
 		}
 		return TRUE;
 
@@ -1866,8 +1851,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 
 
 
-			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed, Avalanche_Speed[lpSkill->Point - 1]);
-			lpCurPlayer->MotionLoop = Avalanche_ArrowNum[lpSkill->Point - 1];
+			SummitConfigurePlaySkillLoop(lpCurPlayer, GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed, Avalanche_Speed[lpSkill->Point - 1]), Avalanche_ArrowNum[lpSkill->Point - 1]);
 
 			return TRUE;
 		}
@@ -1906,8 +1890,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 				dm_SendRangeDamage(lpChar->pX, lpChar->pY, lpChar->pZ, lpChar, 0, 0, 0, 0, lpCurPlayer->AttackSkil);
 			}
 
-			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed, 3);
-			lpCurPlayer->MotionLoop = 2;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed, 3), 2);
 
 			return TRUE;
 		}
@@ -1933,8 +1916,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 
 			dm_SendRangeDamage(lpChar->pX, lpChar->pY, lpChar->pZ, lpChar, 0, 0, 0, 0, lpCurPlayer->AttackSkil);
 
-			lpCurPlayer->MotionLoopSpeed = (GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed) * 80) / 100;
-			lpCurPlayer->MotionLoop = 2;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, (GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed) * 80) / 100, 2);
 
 			return TRUE;
 		}
@@ -1968,8 +1950,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 
 			dm_SendRangeDamage(lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ, 0, 0, 0, 0, 0, lpCurPlayer->AttackSkil);
 
-			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed);
-			lpCurPlayer->MotionLoop = 1;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed), 1);
 
 			return TRUE;
 		}
@@ -2102,11 +2083,9 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 
-			temp = lpCurPlayer->smCharInfo.Attack_Rating;
-
-
-			lpCurPlayer->smCharInfo.Attack_Rating +=
+			const int attackRatingDelta =
 				(lpCurPlayer->smCharInfo.Attack_Rating * A_Crash_AttackRate[lpSkill->Point - 1]) / 100;
+			gameplay::combat::legacy::ScopedAttackRatingBuff attackRatingBuff(lpCurPlayer, attackRatingDelta);
 
 
 			if(lpSkill->Point)
@@ -2122,7 +2101,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 				}
 			}
 
-			lpCurPlayer->smCharInfo.Attack_Rating = temp;
+			attackRatingBuff.Release();
 
 			return TRUE;
 		}
@@ -2295,8 +2274,8 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 
 
 
-			temp = lpCurPlayer->smCharInfo.Attack_Rating;
-			lpCurPlayer->smCharInfo.Attack_Rating += Piercing_Attack_Rating[lpSkill->Point - 1];
+			gameplay::combat::legacy::ScopedAttackRatingBuff attackRatingBuff(
+				lpCurPlayer, Piercing_Attack_Rating[lpSkill->Point - 1]);
 
 
 
@@ -2313,7 +2292,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			dm_SendRangeDamage(lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ, 0, 0, 0, 0, 0, lpCurPlayer->AttackSkil);
 
 
-			lpCurPlayer->smCharInfo.Attack_Rating = temp;
+			attackRatingBuff.Release();
 			return TRUE;
 		}
 		if(lpSkill == sinSkill.pLeftSkill && RetryPlayAttack(lpChar)) break;
@@ -2346,13 +2325,12 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 
-			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed, 1);
-			lpCurPlayer->MotionLoop = 1;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed, 1), 1);
 
 
-			temp = lpCurPlayer->smCharInfo.Attack_Rating;
-
-			lpCurPlayer->smCharInfo.Attack_Rating += (lpCurPlayer->smCharInfo.Attack_Rating*Grand_Cross_AttackRate[lpSkill->Point - 1]) / 100;
+			const int attackRatingDelta =
+				(lpCurPlayer->smCharInfo.Attack_Rating * Grand_Cross_AttackRate[lpSkill->Point - 1]) / 100;
+			gameplay::combat::legacy::ScopedAttackRatingBuff attackRatingBuff(lpCurPlayer, attackRatingDelta);
 
 			cnt = dm_SendTransDamage(lpChar, 0, 0, 0, 0, lpCurPlayer->AttackSkil, TRUE);
 
@@ -2362,7 +2340,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 				DamageExp(lpChar, cnt);
 
 
-			lpCurPlayer->smCharInfo.Attack_Rating = temp;
+			attackRatingBuff.Release();
 
 			return TRUE;
 		}
@@ -2382,8 +2360,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 
-			lpCurPlayer->MotionLoopSpeed = 90;
-			lpCurPlayer->MotionLoop = 1;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, 90, 1);
 
 
 			rect.left = -50;
@@ -2425,17 +2402,12 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->AttackSkil |= (lpSkill->Point << 8);
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 
-			temp = lpCurPlayer->smCharInfo.Attack_Rating;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed, Farina_Speed[lpSkill->Point - 1]), 1);
 
 
 
-			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed, Farina_Speed[lpSkill->Point - 1]);
-			lpCurPlayer->MotionLoop = 1;
-
-
-
-			lpCurPlayer->smCharInfo.Attack_Rating +=
-				Farina_AttackRate[lpSkill->Point - 1] + lpCurPlayer->smCharInfo.Level;
+			gameplay::combat::legacy::ScopedAttackRatingBuff attackRatingBuff(
+				lpCurPlayer, Farina_AttackRate[lpSkill->Point - 1] + lpCurPlayer->smCharInfo.Level);
 
 
 			cnt = dm_SendTransDamage(lpChar, 0, 0, 0, 0, lpCurPlayer->AttackSkil, TRUE);
@@ -2446,7 +2418,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 				DamageExp(lpChar, cnt);
 
 
-			lpCurPlayer->smCharInfo.Attack_Rating = temp;
+			attackRatingBuff.Release();
 
 
 			return TRUE;
@@ -2510,8 +2482,9 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->AttackSkil |= (lpSkill->Point << 8);
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 
-			temp = lpCurPlayer->smCharInfo.Attack_Rating;
-			lpCurPlayer->smCharInfo.Attack_Rating += (lpCurPlayer->smCharInfo.Attack_Rating*Twist_Javelin_Attack_Rating[lpSkill->Point - 1]) / 100;
+			const int attackRatingDelta =
+				(lpCurPlayer->smCharInfo.Attack_Rating * Twist_Javelin_Attack_Rating[lpSkill->Point - 1]) / 100;
+			gameplay::combat::legacy::ScopedAttackRatingBuff attackRatingBuff(lpCurPlayer, attackRatingDelta);
 
 
 			cnt = dm_SendTransDamage(lpChar, 0, 0, 0, 0, lpCurPlayer->AttackSkil, TRUE);
@@ -2521,7 +2494,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			else
 				DamageExp(lpChar, cnt);
 
-			lpCurPlayer->smCharInfo.Attack_Rating = temp;
+			attackRatingBuff.Release();
 
 			return TRUE;
 		}
@@ -2539,8 +2512,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 
-			lpCurPlayer->MotionLoopSpeed = 90;
-			lpCurPlayer->MotionLoop = 1;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, 90, 1);
 
 			rect.left = -30;
 			rect.right = 30;
@@ -2610,8 +2582,8 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->AttackSkil |= (lpSkill->Point << 8);
 
 
-			temp = lpCurPlayer->smCharInfo.Attack_Rating;
-			lpCurPlayer->smCharInfo.Attack_Rating += Split_Javelin_AttackRate[lpSkill->Point - 1];
+			gameplay::combat::legacy::ScopedAttackRatingBuff attackRatingBuff(
+				lpCurPlayer, Split_Javelin_AttackRate[lpSkill->Point - 1]);
 			z = Split_Javelin_AttackNum[lpSkill->Point - 1];
 			x = 0;
 			y = sinGetAccuracy(lpChar->smCharInfo.Level, lpChar->smCharInfo.Defence);
@@ -2634,14 +2606,14 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			}
 
 			lpCurPlayer->AttackSkil |= (x << 12);
-			lpCurPlayer->smCharInfo.Attack_Rating = temp;
+			attackRatingBuff.Release();
 
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 
-			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed, 1);
-			lpCurPlayer->MotionLoopSpeed -= (lpCurPlayer->MotionLoopSpeed * 20) / 100;
-			lpCurPlayer->MotionLoop = 1;
+			int splitJavelinLoopSpeed = GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed, 1);
+			splitJavelinLoopSpeed -= (splitJavelinLoopSpeed * 20) / 100;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, splitJavelinLoopSpeed, 1);
 
 
 
@@ -2736,8 +2708,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 
 
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
-			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed);
-			lpCurPlayer->MotionLoop = 2;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed), 2);
 
 
 
@@ -2758,8 +2729,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
-			lpCurPlayer->MotionLoopSpeed = 70;
-			lpCurPlayer->MotionLoop = 1;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, 70, 1);
 
 			dm_SendTransDamage(lpChar, wpDamage[0], wpDamage[1], 0, 0, lpCurPlayer->AttackSkil, FALSE);
 
@@ -2781,8 +2751,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 
 
-			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(8);
-			lpCurPlayer->MotionLoop = 1;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, GetAttackSpeedFrame(8), 1);
 
 
 
@@ -2818,8 +2787,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 
 
 
-			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(8);
-			lpCurPlayer->MotionLoop = 1;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, GetAttackSpeedFrame(8), 1);
 
 			cnt = dm_SendTransDamage(lpChar, wpDamage[0], wpDamage[1], 0, 0, lpCurPlayer->AttackSkil, FALSE);
 			if(cnt)
@@ -2838,8 +2806,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
-			lpCurPlayer->MotionLoopSpeed = 70;
-			lpCurPlayer->MotionLoop = 1;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, 70, 1);
 
 			cnt = HolyMind_DecDamage[lpSkill->Point - 1];
 
@@ -2895,8 +2862,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 
-			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(7);
-			lpCurPlayer->MotionLoop = 1;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, GetAttackSpeedFrame(7), 1);
 
 			DamageExp(lpChar, 1);
 
@@ -2917,8 +2883,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 
-			lpCurPlayer->MotionLoopSpeed = 100;
-			lpCurPlayer->MotionLoop = 1;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, 100, 1);
 
 
 			cnt = dm_SendTransDamage(lpChar, wpDamage[0], wpDamage[1], 0, 0, lpCurPlayer->AttackSkil, FALSE);
@@ -2938,8 +2903,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 
-			lpCurPlayer->MotionLoopSpeed = 100;
-			lpCurPlayer->MotionLoop = 1;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, 100, 1);
 
 
 
@@ -2961,8 +2925,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 
-			lpCurPlayer->MotionLoopSpeed = 90;
-			lpCurPlayer->MotionLoop = 1;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, 90, 1);
 
 
 
@@ -2989,8 +2952,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 
-			lpCurPlayer->MotionLoopSpeed = 90;
-			lpCurPlayer->MotionLoop = 1;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, 90, 1);
 			return TRUE;
 
 		}
@@ -3007,8 +2969,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 
-			lpCurPlayer->MotionLoopSpeed = 100;
-			lpCurPlayer->MotionLoop = 1;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, 100, 1);
 
 			cnt = dm_SendTransDamage(lpChar, wpDamage[0], wpDamage[1], 0, 0, lpCurPlayer->AttackSkil, FALSE);
 
@@ -3078,8 +3039,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 				lpCurPlayer->AttackCritcal = -1;
 
 
-			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed, 1);
-			lpCurPlayer->MotionLoop = 1;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed, 1), 1);
 		}
 		return TRUE;
 
@@ -3122,8 +3082,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 
 			SkillChargingFlag = 1;
 
-			lpCurPlayer->MotionLoopSpeed = 60 + (Charging_Strike_Time[lpSkill->Point - 1] * 2);
-			lpCurPlayer->MotionLoop = 1;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, 60 + (Charging_Strike_Time[lpSkill->Point - 1] * 2), 1);
 
 			SkillPlaySound(SKILL_SOUND_SKILL_CHARGING, lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ);
 		}
@@ -3143,8 +3102,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			if(!cnt)
 				lpCurPlayer->AttackCritcal = -1;
 
-			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(7);
-			lpCurPlayer->MotionLoop = 1;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, GetAttackSpeedFrame(7), 1);
 
 		}
 		return TRUE;
@@ -3158,9 +3116,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 
 			SkillChargingFlag = 1;
-			lpCurPlayer->MotionLoopSpeed = 60 + (Phoenix_Shot_Time[lpSkill->Point - 1] * 2);
-
-			lpCurPlayer->MotionLoop = 1;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, 60 + (Phoenix_Shot_Time[lpSkill->Point - 1] * 2), 1);
 
 			SkillPlaySound(SKILL_SOUND_SKILL_CHARGING, lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ);
 		}
@@ -3198,8 +3154,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			if(!cnt)
 				lpCurPlayer->AttackCritcal = -1;
 
-			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(7);
-			lpCurPlayer->MotionLoop = 1;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, GetAttackSpeedFrame(7), 1);
 
 		}
 		return TRUE;
@@ -3252,8 +3207,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 
 
-			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(6);
-			lpCurPlayer->MotionLoop = 1;
+			SummitConfigurePlaySkillLoop(lpCurPlayer, GetAttackSpeedFrame(6), 1);
 
 			cnt = dm_SendTransDamage(lpChar, 0, 0, 0, 0, lpCurPlayer->AttackSkil, TRUE);
 			if(!cnt)

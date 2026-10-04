@@ -27,6 +27,7 @@
 #include "systems/gameplay/companions/v2/legacy/LegacyCompanionQueryAdapter.h"
 #include "systems/social/party/v2/legacy/LegacyPartyQueryAdapter.h"
 #include "systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h"
+#include "systems/network/v2/legacy/LegacyPacketSender.h"
 #include "systems/gameplay/pets/v2/legacy/LegacyPetRuntimeAdapter.h"
 #include "systems/gameplay/progression/v2/ProgressionRuntime.h"
 
@@ -40,7 +41,18 @@ rsPLAYINFO *srFindUserFromSerial(DWORD dwObjectSerial);
 
 int	rsRegist_ItemSecCode(rsPLAYINFO *lpPlayInfo, TRANS_ITEMINFO *lpTransItemInfo, int NewItem);
 
-
+namespace
+{
+bool SummitPartySend(rsPLAYINFO *recipient, const void *data, int size)
+{
+	if(!recipient || !data || size <= 0)
+		return false;
+	const gameplay::PlayerId playerId =
+		gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(recipient);
+	return gameplay::network::legacy::ServerLegacyPacketSender().Send(
+		playerId, gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded();
+}
+}
 
 int rsPLAYINFO::SendPartyData(rsPLAYINFO *lpPlayInfo_From, char *szData)
 {
@@ -54,10 +66,7 @@ int rsPLAYINFO::SendPartyData(rsPLAYINFO *lpPlayInfo_From, char *szData)
 	{
 		if(lpPartyPlayers[cnt] && lpPartyPlayers[cnt] != lpPlayInfo_From)
 		{
-			if(lpPartyPlayers[cnt]->lpsmSock)
-			{
-				lpPartyPlayers[cnt]->lpsmSock->Send(szData, size, TRUE);
-			}
+			(void)SummitPartySend(lpPartyPlayers[cnt], szData, size);
 		}
 	}
 
@@ -81,10 +90,8 @@ int rsPLAYINFO::SendPartyMessage(char *szMessage, DWORD dwCode)
 
 		for(cnt = 0; cnt < PARTY_PLAYER_MAX; cnt++)
 		{
-			if(lpPartyPlayers[cnt] && lpPartyPlayers[cnt]->lpsmSock)
-			{
-				lpPartyPlayers[cnt]->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
-			}
+			if(lpPartyPlayers[cnt])
+				(void)SummitPartySend(lpPartyPlayers[cnt], &TransChatMessage, TransChatMessage.size);
 		}
 	}
 	else
@@ -94,8 +101,7 @@ int rsPLAYINFO::SendPartyMessage(char *szMessage, DWORD dwCode)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 9;
 		TransChatMessage.dwObjectSerial = 0;
-		if(lpsmSock)
-			lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		(void)SummitPartySend(this, &TransChatMessage, TransChatMessage.size);
 	}
 
 	return TRUE;
@@ -178,16 +184,12 @@ int	rsPLAYINFO::DeletePartyPlayer(rsPLAYINFO* lpPlayInfo)
 			UpdatePartyPlayer();
 
 
-			if (lpPlayInfo->lpsmSock)
-			{
-				TransCommand.code = OpCode::OPCODE_PARTY_RELEASE;
-				TransCommand.size = sizeof(smTRANS_COMMAND);
-				TransCommand.WParam = dwObjectSerial;
-				TransCommand.LParam = 0;
-				TransCommand.SParam = 0;
-
-				lpPlayInfo->lpsmSock->Send((char*)&TransCommand, TransCommand.size, TRUE);
-			}
+			TransCommand.code = OpCode::OPCODE_PARTY_RELEASE;
+			TransCommand.size = sizeof(smTRANS_COMMAND);
+			TransCommand.WParam = dwObjectSerial;
+			TransCommand.LParam = 0;
+			TransCommand.SParam = 0;
+			(void)SummitPartySend(lpPlayInfo, &TransCommand, TransCommand.size);
 			return TRUE;
 		}
 	}
@@ -301,10 +303,8 @@ int	rsPLAYINFO::UpdatePartyPlayer()
 
 	for (cnt = 0; cnt < PARTY_PLAYER_MAX; cnt++)
 	{
-		if (lpPartyPlayers[cnt] && lpPartyPlayers[cnt]->lpsmSock)
-		{
-			lpPartyPlayers[cnt]->lpsmSock->Send((char *)&TransPartyUsers, TransPartyUsers.size, TRUE);
-		}
+		if (lpPartyPlayers[cnt])
+			(void)SummitPartySend(lpPartyPlayers[cnt], &TransPartyUsers, TransPartyUsers.size);
 	}
 
 	return TRUE;
@@ -364,10 +364,8 @@ int	rsPLAYINFO::UpdatePartyPlayInfo()
 
 	for (cnt = 0; cnt < PARTY_PLAYER_MAX; cnt++)
 	{
-		if (lpPartyPlayers[cnt] && lpPartyPlayers[cnt]->lpsmSock)
-		{
-			lpPartyPlayers[cnt]->lpsmSock->Send((char*)&TransPartyPlayInfo, TransPartyPlayInfo.size, TRUE);
-		}
+		if (lpPartyPlayers[cnt])
+			(void)SummitPartySend(lpPartyPlayers[cnt], &TransPartyPlayInfo, TransPartyPlayInfo.size);
 	}
 
 	return TRUE;
@@ -703,7 +701,7 @@ int rsPLAYINFO::GetPartyMoney(sITEMINFO *lpDefItemInfo, rsPLAYINFO *lpPlayInfo)
 
 				rsRegist_ItemSecCode(lpPartyPlayers[cnt], &TransItemInfo, 0);
 
-				lpPartyPlayers[cnt]->lpsmSock->Send((char *)&TransItemInfo, TransItemInfo.size, TRUE);
+				(void)SummitPartySend(lpPartyPlayers[cnt], &TransItemInfo, TransItemInfo.size);
 			}
 
 		}
@@ -726,8 +724,7 @@ void rsPLAYINFO::AddExp(INT64 Exp, DWORD dwObjectSerial, bool bParty)
 	sPacket.SParam = Exp;
 	sPacket.LParam = dwObjectSerial;
 
-	if (lpsmSock)
-		lpsmSock->Send((char*)&sPacket, sPacket.size, TRUE);
+	(void)SummitPartySend(this, &sPacket, sPacket.size);
 }
 
 int rsPLAYINFO::PartyChatting(rsPLAYINFO *lpPlayInfo)
@@ -745,11 +742,8 @@ int rsPLAYINFO::PartyChatting(rsPLAYINFO *lpPlayInfo)
 
 	for(cnt = 0; cnt < PARTY_PLAYER_MAX; cnt++)
 	{
-		if(lpPartyPlayers[cnt] && lpPartyPlayers[cnt]->lpsmSock && lpPartyPlayers[cnt] != lpPlayInfo)
-		{
-
-			lpPartyPlayers[cnt]->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
-		}
+		if(lpPartyPlayers[cnt] && lpPartyPlayers[cnt] != lpPlayInfo)
+			(void)SummitPartySend(lpPartyPlayers[cnt], &TransChatMessage, TransChatMessage.size);
 	}
 
 
@@ -846,8 +840,7 @@ int	rsPLAYINFO::ReleaseParty()
 			lpPartyPlayers[cnt]->dwPartyInfo = PARTY_STATE_NONE;
 			lpPartyPlayers[cnt]->lpPartyMaster = NULL;
 
-			if (lpPartyPlayers[cnt]->lpsmSock)
-				lpPartyPlayers[cnt]->lpsmSock->Send((char*)&TransCommand, TransCommand.size, TRUE);
+			(void)SummitPartySend(lpPartyPlayers[cnt], &TransCommand, TransCommand.size);
 
 			lpPartyPlayers[cnt] = 0;
 		}

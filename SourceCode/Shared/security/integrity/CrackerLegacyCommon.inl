@@ -473,12 +473,12 @@ int CheckDLL_Module()
 
 	if(FindFlag[0] == 1 && FindFlag[1] == 0) return TRUE;
 
-	if(FindFlag[1] > 0 && smWsockDataServer)
+	if(FindFlag[1] > 0 && LegacyCrackerDataChannelAvailable())
 	{
 		TransChatMessage.code = OpCode::OPCODE_MODULE_WARNIG;
 		TransChatMessage.size = TransChatMessage.dwIP + 32;
 		TransChatMessage.dwObjectSerial = 0;
-		smWsockDataServer->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		LegacyCrackerSendDataPacket(&TransChatMessage, TransChatMessage.size, TransChatMessage.code);
 	}
 
 	return NULL;

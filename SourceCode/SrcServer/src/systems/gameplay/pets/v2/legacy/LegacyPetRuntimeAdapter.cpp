@@ -1,6 +1,7 @@
 #include "systems/gameplay/pets/v2/legacy/LegacyPetRuntimeAdapter.h"
 
 #include "systems/network/protocol/server/opcodes.h"
+#include "systems/network/v2/legacy/LegacyPacketSender.h"
 
 #include "systems/network/transport/legacy/smwsock.h"
 #include "systems/rendering/legacy_3d/smd3d.h"
@@ -17,8 +18,10 @@ namespace pets
 namespace legacy
 {
 LegacyPetRuntimeAdapter::LegacyPetRuntimeAdapter(
-    const player::legacy::LegacyOnlinePlayerRegistry& players)
-    : players_(players)
+    const player::legacy::LegacyOnlinePlayerRegistry& players,
+    network::IPacketSender& packets)
+    : players_(players),
+      packets_(packets)
 {
 }
 
@@ -107,7 +110,10 @@ PetPublishStatus LegacyPetRuntimeAdapter::PublishAreaSync(PlayerId playerId, Pet
     {
         command.code = opcode;
         command.size = sizeof(command);
-        player->lpsmSock->Send(reinterpret_cast<char*>(&command), command.size, TRUE);
+        (void)packets_.Send(
+            playerId,
+            network::PacketView(&command, static_cast<std::size_t>(command.size),
+                                static_cast<std::uint32_t>(command.code)));
     }
 
     const DWORD codeKey = dwPlayServTime & 0x3FFFFFFF;
@@ -132,7 +138,9 @@ PetPublishStatus LegacyPetRuntimeAdapter::PublishAreaSync(PlayerId playerId, Pet
 
 LegacyPetRuntimeAdapter& ServerLegacyPetRuntimeAdapter()
 {
-    static LegacyPetRuntimeAdapter adapter(player::legacy::ServerLegacyOnlinePlayerRegistry());
+    static LegacyPetRuntimeAdapter adapter(
+        player::legacy::ServerLegacyOnlinePlayerRegistry(),
+        network::legacy::ServerLegacyPacketSender());
     return adapter;
 }
 }

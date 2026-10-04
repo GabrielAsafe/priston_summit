@@ -4,6 +4,12 @@
 #include "systems/persistence/database/core/Database.h"
 #include "core/server/legacy_runtime/onserver.h"
 #include "systems/commerce/coin_shop/CoinShop.h"
+#include "systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h"
+#include "systems/network/v2/legacy/LegacyPacketSender.h"
+#include "Shared/gameplay/commerce/v2/RestorationPricingPolicy.h"
+#include "Shared/gameplay/commerce/v2/RestorationTransactionService.h"
+#include "systems/commerce/v2/legacy/LegacyCoinWalletAdapter.h"
+#include "systems/commerce/restoration/v2/legacy/LegacyRestorationTransactionAdapters.h"
 
 #ifndef SUMMIT_RESTAURE_LIST_DEFINED
 #define SUMMIT_RESTAURE_LIST_DEFINED
@@ -24,6 +30,19 @@ struct RESTAURE_LIST
 
 #endif
 
+namespace
+{
+bool SummitRestorationSend(rsPLAYINFO *recipient, const void *data, int size)
+{
+	if(!recipient || !data || size <= 0)
+		return false;
+
+	const gameplay::PlayerId playerId =
+		gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(recipient);
+	return gameplay::network::legacy::ServerLegacyPacketSender().Send(
+		playerId, gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded();
+}
+}
 
 cRESTAURE cRestaure;
 
@@ -58,14 +77,23 @@ extern int	rsDeleteInvenItem(rsPLAYINFO *lpPlayInfo, DWORD dwCode, DWORD dwHead,
 
 void cRESTAURE::RestaureItem(rsPLAYINFO * lpPlayInfo, DWORD Head, DWORD dwChkSum, int coinType, DWORD StoneCode, DWORD StoneHead, DWORD StoneSum)
 {
-	std::shared_ptr<SQLConnection> db = SQLConnection::GetConnection(DATABASEID_SecurityDB);
+	(void)coinType;
+	(void)StoneCode;
+	(void)StoneHead;
+	(void)StoneSum;
 
-	if (db->Open())
+	char playerID[32] = { 0 };
+	char playerName[32] = { 0 };
+	char itemName[128] = { 0 };
+	int itemAging = 0;
+	int Price = gameplay::commerce::RestorationPricingPolicy::UnsupportedPrice;
+	bool recordLoaded = false;
+
+	std::shared_ptr<SQLConnection> db = SQLConnection::GetConnection(DATABASEID_SecurityDB);
+	if (lpPlayInfo && db && db->Open())
 	{
 		if (db->Prepare("SELECT * FROM AgingFailed WHERE PlayerID=? AND PlayerName=? AND Head=? AND ChkSum=?"))
 		{
-			char playerID[32];
-			char playerName[32];
 			lstrcpy(playerID, lpPlayInfo->getAccount());
 			lstrcpy(playerName, lpPlayInfo->getName());
 			db->BindInputParameter(playerID, 1, PARAMTYPE_String);
@@ -74,56 +102,42 @@ void cRESTAURE::RestaureItem(rsPLAYINFO * lpPlayInfo, DWORD Head, DWORD dwChkSum
 			db->BindInputParameter(&dwChkSum, 4, PARAMTYPE_Integer);
 			if (db->Execute())
 			{
+				db->GetData(itemName, sizeof(itemName), 3, PARAMTYPE_String);
+				db->GetData(&itemAging, 0, 4, PARAMTYPE_Integer);
+
 				char buff[255];
 				wsprintf(buff, "%d@%d", Head, dwChkSum);
-
 				psITEM psItem;
 				if (srSetItemFromLogData(&psItem, buff))
 				{
-					bool canRestaure = false;
-
-					int Price = 0;
-					
-					if (psItem.ItemInfo.ItemAgingNum[0] > 0 && psItem.ItemInfo.ItemAgingNum[0] < 8)
-						Price = 100000;
-					else if (psItem.ItemInfo.ItemAgingNum[0] >= 9 && psItem.ItemInfo.ItemAgingNum[0] < 12)
-						Price = 1000;
-					else if (psItem.ItemInfo.ItemAgingNum[0] >= 12 && psItem.ItemInfo.ItemAgingNum[0] < 14)
-						Price = 2000;
-					else if (psItem.ItemInfo.ItemAgingNum[0] >= 14 && psItem.ItemInfo.ItemAgingNum[0] < 18)
-						Price = 3000;
-					else if (psItem.ItemInfo.ItemAgingNum[0] >= 18 && psItem.ItemInfo.ItemAgingNum[0] < 21)
-						Price = 4000;
-					else if (psItem.ItemInfo.ItemAgingNum[0] >= 20 && psItem.ItemInfo.ItemAgingNum[0] < 27)
-						Price = 5000;
-					else
-						Price = 999999999;
-
-					if (Price >= 0 && Price <= cCoinShop.GetPlayerCoin(lpPlayInfo))
-					{
-						canRestaure = true;
-						cCoinShop.AddPlayerCoin(lpPlayInfo, -Price);
-					}
-
-					if (canRestaure)
-					{
-						if (db->Prepare("DELETE FROM AgingFailed WHERE PlayerID=? AND PlayerName=? AND Head=? AND ChkSum=?"))
-						{
-							db->BindInputParameter(playerID, 1, PARAMTYPE_String);
-							db->BindInputParameter(playerName, 2, PARAMTYPE_String);
-							db->BindInputParameter(&Head, 3, PARAMTYPE_Integer);
-							db->BindInputParameter(&dwChkSum, 4, PARAMTYPE_Integer);
-							db->Execute();
-						}
-
-						char buff2[255];
-						wsprintf(buff2, "@%d@%d", Head, dwChkSum);
-						CreateCommandItem(lpPlayInfo, lpPlayInfo, buff2);
-					}
+					Price = gameplay::commerce::RestorationPricingPolicy::ChargePrice(
+						psItem.ItemInfo.ItemAgingNum[0]);
+					recordLoaded = true;
 				}
 			}
 		}
 		db->Close();
+	}
+
+	if (recordLoaded && Price != gameplay::commerce::RestorationPricingPolicy::UnsupportedPrice)
+	{
+		gameplay::commerce::RestorationTransactionRequest request;
+		request.player = gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo);
+		request.price = Price;
+		request.record.account = playerID;
+		request.record.character = playerName;
+		request.record.itemName = itemName;
+		request.record.itemAging = itemAging;
+		request.record.head = static_cast<std::uint32_t>(Head);
+		request.record.checksum = static_cast<std::uint32_t>(dwChkSum);
+
+		gameplay::commerce::legacy::LegacyRestorationClaimStore claimStore;
+		gameplay::commerce::legacy::LegacyRestorationGrant grant(lpPlayInfo);
+		gameplay::commerce::RestorationTransactionService transaction(
+			gameplay::commerce::legacy::ServerLegacyCoinWalletAdapter(),
+			gameplay::commerce::legacy::ServerLegacyCoinWalletAdapter(),
+			claimStore, grant);
+		(void)transaction.Restore(request);
 	}
 
 	RecvGetRestaure(lpPlayInfo);
@@ -174,26 +188,15 @@ void cRESTAURE::RecvGetRestaure(rsPLAYINFO * lpPlayInfo)
 						restaureList.ItemList[restaureList.Count].psItem.sItemInfo.ItemHeader.dwVersion = 0;
 						restaureList.ItemList[restaureList.Count].psItem.sItemInfo.dwCreateTime = 0;
 
-						if (psItem.ItemInfo.ItemAgingNum[0] > 0 && psItem.ItemInfo.ItemAgingNum[0] < 8)
-							restaureList.ItemList[restaureList.Count].CoinPrice = 0;
-						else if (psItem.ItemInfo.ItemAgingNum[0] >= 9 && psItem.ItemInfo.ItemAgingNum[0] < 12)
-							restaureList.ItemList[restaureList.Count].CoinPrice = 6000;
-						else if (psItem.ItemInfo.ItemAgingNum[0] >= 12 && psItem.ItemInfo.ItemAgingNum[0] < 14)
-							restaureList.ItemList[restaureList.Count].CoinPrice = 8000;
-						else if (psItem.ItemInfo.ItemAgingNum[0] >= 14 && psItem.ItemInfo.ItemAgingNum[0] < 18)
-							restaureList.ItemList[restaureList.Count].CoinPrice = 18000;
-						else if(psItem.ItemInfo.ItemAgingNum[0] >= 18 && psItem.ItemInfo.ItemAgingNum[0] < 22)
-							restaureList.ItemList[restaureList.Count].CoinPrice = 18000;
-						else if(psItem.ItemInfo.ItemAgingNum[0] >= 22 && psItem.ItemInfo.ItemAgingNum[0] < 27)
-							restaureList.ItemList[restaureList.Count].CoinPrice = 1300;
-						else
-							restaureList.ItemList[restaureList.Count].CoinPrice = 999999999;
+						restaureList.ItemList[restaureList.Count].CoinPrice =
+							gameplay::commerce::RestorationPricingPolicy::QuotedPrice(
+								psItem.ItemInfo.ItemAgingNum[0]);
 
 						restaureList.Count++;
 
 						if (restaureList.Count >= 15)
 						{
-							lpPlayInfo->lpsmSock->Send((char*)&restaureList, restaureList.size, TRUE);
+							(void)SummitRestorationSend(lpPlayInfo, &restaureList, restaureList.size);
 
 							restaureList.Count = 0;
 							ZeroMemory(&restaureList.ItemList, sizeof(sITEMINFO) * 15);
@@ -205,7 +208,7 @@ void cRESTAURE::RecvGetRestaure(rsPLAYINFO * lpPlayInfo)
 		db->Close();
 	}
 
-	lpPlayInfo->lpsmSock->Send((char*)&restaureList, restaureList.size, TRUE);
+	(void)SummitRestorationSend(lpPlayInfo, &restaureList, restaureList.size);
 }
 
 

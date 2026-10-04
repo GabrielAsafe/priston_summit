@@ -16,7 +16,9 @@ enum class CoinReason
     PersonalShop,
     QuestReward,
     Pickup,
-    Administration
+    Administration,
+    PremiumPurchase,
+    PremiumPurchaseRollback
 };
 
 enum class CoinMutationCode

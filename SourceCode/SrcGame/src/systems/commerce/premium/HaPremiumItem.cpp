@@ -7,6 +7,7 @@
 #include <string>
 #include "systems/combat/pvp/war_mode/WarMode.h"
 #include "systems/network/v2/legacy/LegacyClientCommandSender.h"
+#include "systems/network/v2/legacy/LegacyBackendChannelSender.h"
 
 using namespace std;
 
@@ -2019,12 +2020,10 @@ int cHaPremiumItem::UsePremiumItem(int kind)
 		smPacket.EParam = 0;
 		smPacket.size = sizeof(smPacket);
 
-		extern smWINSOCK* smWsockDataServer;
-
-		if (smWsockDataServer)
-		{
-			smWsockDataServer->Send((char*)& smPacket, smPacket.size, TRUE);
-		};
+		gameplay::network::legacy::ClientLegacyBackendChannelSender().Send(
+			gameplay::network::BackendChannel::Data,
+			gameplay::network::PacketView(&smPacket, static_cast<std::size_t>(smPacket.size),
+			                              static_cast<std::uint32_t>(smPacket.code)));
 		break;
 
 	case 168:

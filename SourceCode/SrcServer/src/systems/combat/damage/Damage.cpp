@@ -4,6 +4,7 @@
 #include "systems/rendering/legacy_3d/smd3d.h"
 #include "systems/network/transport/legacy/smwsock.h"
 #include "systems/network/v2/legacy/LegacyPacketSender.h"
+#include "systems/network/v2/legacy/LegacyBackendChannelSender.h"
 
 #include "systems/gameplay/character/core/character.h"
 #include "systems/audio/playback/legacy/Dxwav.h"
@@ -966,10 +967,16 @@ int	SendMaxDamageToServer(WORD MinDamage, WORD MaxDamage, WORD Critical)
 
 			if(smWsockServer)
 				gameplay::network::legacy::SendServerPrimaryLegacyPacket((char *)&smTransCommand, smTransCommand.size, TRUE);
-			if(smWsockUserServer && smWsockServer != smWsockUserServer)
-				smWsockUserServer->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
-			if(smWsockExtendServer && smWsockServer != smWsockExtendServer)
-				smWsockExtendServer->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+			if(gameplay::network::legacy::ServerLegacyBackendChannelSender().AvailableAndDistinctFromPrimary(
+				gameplay::network::BackendChannel::User))
+				gameplay::network::legacy::ServerLegacyBackendChannelSender().Send(
+					gameplay::network::BackendChannel::User,
+					gameplay::network::PacketView(&smTransCommand, smTransCommand.size, smTransCommand.code));
+			if(gameplay::network::legacy::ServerLegacyBackendChannelSender().AvailableAndDistinctFromPrimary(
+				gameplay::network::BackendChannel::Extend))
+				gameplay::network::legacy::ServerLegacyBackendChannelSender().Send(
+					gameplay::network::BackendChannel::Extend,
+					gameplay::network::PacketView(&smTransCommand, smTransCommand.size, smTransCommand.code));
 
 			if(lpWSockServer_Area[0])
 				lpWSockServer_Area[0]->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
@@ -983,10 +990,16 @@ int	SendMaxDamageToServer(WORD MinDamage, WORD MaxDamage, WORD Critical)
 
 		if(smWsockServer)
 			gameplay::network::legacy::SendServerPrimaryLegacyPacket((char *)&smTransCommand, smTransCommand.size, TRUE);
-		if(smWsockUserServer && smWsockServer != smWsockUserServer)
-			smWsockUserServer->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
-		if(smWsockExtendServer && smWsockServer != smWsockExtendServer)
-			smWsockExtendServer->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+		if(gameplay::network::legacy::ServerLegacyBackendChannelSender().AvailableAndDistinctFromPrimary(
+			gameplay::network::BackendChannel::User))
+			gameplay::network::legacy::ServerLegacyBackendChannelSender().Send(
+				gameplay::network::BackendChannel::User,
+				gameplay::network::PacketView(&smTransCommand, smTransCommand.size, smTransCommand.code));
+		if(gameplay::network::legacy::ServerLegacyBackendChannelSender().AvailableAndDistinctFromPrimary(
+			gameplay::network::BackendChannel::Extend))
+			gameplay::network::legacy::ServerLegacyBackendChannelSender().Send(
+				gameplay::network::BackendChannel::Extend,
+				gameplay::network::PacketView(&smTransCommand, smTransCommand.size, smTransCommand.code));
 
 		if(lpWSockServer_Area[0])
 			lpWSockServer_Area[0]->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
@@ -1118,13 +1131,15 @@ int UnlockSpeedProtect(smCHAR *lpChar)
 		if(fnEncodeDamagePacket)
 		{
 			fnEncodeDamagePacket(&smTransCommand);
-			if(smWsockDataServer)
-				smWsockDataServer->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+			gameplay::network::legacy::ServerLegacyBackendChannelSender().Send(
+				gameplay::network::BackendChannel::Data,
+				gameplay::network::PacketView(&smTransCommand, smTransCommand.size, smTransCommand.code));
 		}
 	#else
 		dm_EncodePacket(&smTransCommand);
-		if(smWsockDataServer)
-			smWsockDataServer->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+		gameplay::network::legacy::ServerLegacyBackendChannelSender().Send(
+			gameplay::network::BackendChannel::Data,
+			gameplay::network::PacketView(&smTransCommand, smTransCommand.size, smTransCommand.code));
 	#endif
 	}
 

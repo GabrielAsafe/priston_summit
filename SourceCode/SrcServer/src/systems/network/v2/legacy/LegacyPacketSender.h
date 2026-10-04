@@ -5,6 +5,8 @@
 #include "network/v2/ConnectionQuery.h"
 #include "systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h"
 
+class smWINSOCK;
+
 namespace gameplay
 {
 namespace network
@@ -16,6 +18,7 @@ class LegacyPacketSender final : public IPacketSender
 public:
     LegacyPacketSender(const player::legacy::LegacyOnlinePlayerRegistry& players, const IConnectionQuery& connections);
     SendResult Send(PlayerId player, const PacketView& packet) override;
+    SendResult SendToLegacySocket(smWINSOCK* socket, const PacketView& packet);
 
 private:
     const player::legacy::LegacyOnlinePlayerRegistry& players_;

@@ -21,6 +21,17 @@ public:
         result.converted = true;
         return result;
     }
+
+    gameplay::monsters::FollowerReleaseResult ReleaseFollower(
+        const gameplay::monsters::FollowerReleaseRequest& request) override
+    {
+        gameplay::monsters::FollowerReleaseResult result;
+        if(!request.target.Valid())
+            return result;
+        result.code = gameplay::monsters::MonsterCommandCode::Ok;
+        result.released = true;
+        return result;
+    }
 };
 }
 
@@ -37,5 +48,10 @@ int main()
     const gameplay::monsters::FollowerConversionResult rejected = commands.ConvertToFollower(
         gameplay::monsters::FollowerConversionRequest());
     assert(!rejected.Ok());
+
+    const gameplay::monsters::FollowerReleaseResult released = commands.ReleaseFollower(
+        gameplay::monsters::FollowerReleaseRequest(gameplay::EntityId(10u)));
+    assert(released.Ok());
+    assert(!commands.ReleaseFollower(gameplay::monsters::FollowerReleaseRequest()).Ok());
     return 0;
 }

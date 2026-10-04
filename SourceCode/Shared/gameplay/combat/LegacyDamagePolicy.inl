@@ -4116,7 +4116,7 @@ int RecvRangeAttack_User(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransS
 
 	STG_AREA *lpStgArea;
 
-	if(AreaNum < STAGE_AREA_MAX && StageArea[AreaNum].lpStage) lpStgArea = &StageArea[AreaNum];
+	if(StageArea && AreaNum >= 0 && AreaNum < StageAreaCount && StageArea[AreaNum].lpStage) lpStgArea = &StageArea[AreaNum];
 	else
 	{
 		return FALSE;
@@ -4596,7 +4596,7 @@ int RecvRangeAttack(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAt
 
 	STG_AREA *lpStgArea;
 
-	if(AreaNum < STAGE_AREA_MAX && StageArea[AreaNum].lpStage) lpStgArea = &StageArea[AreaNum];
+	if(StageArea && AreaNum >= 0 && AreaNum < StageAreaCount && StageArea[AreaNum].lpStage) lpStgArea = &StageArea[AreaNum];
 	else
 	{
 		return FALSE;

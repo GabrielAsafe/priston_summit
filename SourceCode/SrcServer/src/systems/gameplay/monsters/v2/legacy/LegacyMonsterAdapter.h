@@ -14,6 +14,7 @@ class LegacyMonsterAdapter final : public IMonsterCommands, public IMonsterQuery
 public:
     bool TryGetMonster(EntityId entity, MonsterSnapshot& out) const override;
     FollowerConversionResult ConvertToFollower(const FollowerConversionRequest& request) override;
+    FollowerReleaseResult ReleaseFollower(const FollowerReleaseRequest& request) override;
 };
 
 LegacyMonsterAdapter& ServerLegacyMonsterAdapter();

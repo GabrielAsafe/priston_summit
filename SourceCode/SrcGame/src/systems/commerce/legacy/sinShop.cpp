@@ -4,6 +4,7 @@
 #include "systems/social/clan/clan_Enti.h"
 #include "systems/social/chat/filter/CurseFilter.h"		
 #include "systems/commerce/coin_shop/CoinShop.h"
+#include "systems/network/v2/legacy/LegacyBackendChannelSender.h"
 
 #define MAX_MONEY 1000000000
 
@@ -1689,11 +1690,9 @@ int cSHOP::SendBuyItemToServer(sITEM *pItem, int ItemCount)
 	TransBuyShopItem.size = sizeof(TRANS_BUY_SHOPITEM);
 	TransBuyShopItem.ItemCount = ItemCount;
 	memcpy(&TransBuyShopItem.sItem, pItem, sizeof(sITEM));
-	if(smWsockDataServer)
-	{
-		return smWsockDataServer->Send((char *)&TransBuyShopItem, TransBuyShopItem.size, TRUE);
-	}
-	return FALSE;
+	return gameplay::network::legacy::ClientLegacyBackendChannelSender().Send(
+		gameplay::network::BackendChannel::Data,
+		gameplay::network::PacketView(&TransBuyShopItem, TransBuyShopItem.size, TransBuyShopItem.code)).Succeeded() ? TRUE : FALSE;
 	}
 
 

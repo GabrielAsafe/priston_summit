@@ -26,6 +26,21 @@
 #include "systems/authentication/protocol/Login.h"
 #include "systems/persistence/database/core/Database.h"
 #include "gameplay/classes/v2/services/ClassService.h"
+#include "systems/network/v2/legacy/LegacyPacketSender.h"
+
+
+namespace
+{
+bool SummitDllServerSend(rsPLAYINFO* recipient, const void* data, int size)
+{
+	if(!recipient || !data || size <= 0)
+		return false;
+	const gameplay::PlayerId playerId =
+		gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(recipient);
+	return gameplay::network::legacy::ServerLegacyPacketSender().Send(
+		playerId, gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded();
+}
+}
 
 #define		BILLING_METER_RATE
 
@@ -3661,7 +3676,7 @@ DWORD WINAPI LogEventDataThreadProc(void *pInfo)
 						smTransCommand.LParam = 0;
 						smTransCommand.SParam = 0;
 						smTransCommand.EParam = 0;
-						lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+						(void)SummitDllServerSend(lpPlayInfo, &smTransCommand, smTransCommand.size);
 					}
 					LeaveCriticalSection(&cSerSection);
 
@@ -3826,7 +3841,7 @@ DWORD WINAPI LogEventDataThreadProc(void *pInfo)
 
 						smTransCommand.SParam = sLogEvent->Param[6];
 						smTransCommand.EParam = 0;
-						lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+						(void)SummitDllServerSend(lpPlayInfo, &smTransCommand, smTransCommand.size);
 
 					}
 					LeaveCriticalSection(&cSerSection);
@@ -3939,7 +3954,7 @@ DWORD WINAPI LogEventDataThreadProc(void *pInfo)
 								smTransCommand.LParam = 1;
 							smTransCommand.SParam = 0;
 							smTransCommand.EParam = 0;
-							lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+							(void)SummitDllServerSend(lpPlayInfo, &smTransCommand, smTransCommand.size);
 						}
 						else
 						{

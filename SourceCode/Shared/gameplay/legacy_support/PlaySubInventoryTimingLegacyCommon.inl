@@ -10,8 +10,8 @@ int SendInvenItemError(DWORD dwKind, DWORD dwItemCode, DWORD dwHead, DWORD dwChk
 	smTransCommand.SParam = dwHead;
 	smTransCommand.EParam = dwChkSum;
 
-	if (smWsockDataServer)
-		smWsockDataServer->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+	if (LegacyPlaySubDataChannelAvailable())
+		LegacyPlaySubSendDataPacket(&smTransCommand, smTransCommand.size, smTransCommand.code);
 
 	return TRUE;
 }
@@ -95,9 +95,9 @@ int	CheckInvenMoney()
 		smTransCommand.LParam = dwCode;
 		smTransCommand.SParam = (dwTotal_CheckMoney ^ (dwTotal_CheckMoneyTime^TOTAL_CHECK_MONEY_MASK));
 		smTransCommand.EParam = 0;
-		if (smWsockDataServer)
+		if (LegacyPlaySubDataChannelAvailable())
 		{
-			smWsockDataServer->Send((char *)&smTransCommand, sizeof(smTRANS_COMMAND), TRUE);
+			LegacyPlaySubSendDataPacket(&smTransCommand, sizeof(smTRANS_COMMAND), smTransCommand.code);
 		}
 	}
 

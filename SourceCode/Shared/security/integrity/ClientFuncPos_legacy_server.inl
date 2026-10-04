@@ -29,6 +29,21 @@
 #include "systems/localization/config/language.h"
 
 #include "core/server/legacy_runtime/ClientFuncPos.h"
+#include "systems/network/v2/legacy/LegacyPacketSender.h"
+
+
+namespace
+{
+inline bool SummitIntegrityPacketSend(rsPLAYINFO* recipient, const void* data, int size)
+{
+	if(!recipient || !data || size <= 0)
+		return false;
+	const gameplay::PlayerId playerId =
+		gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(recipient);
+	return gameplay::network::legacy::ServerLegacyPacketSender().Send(
+		playerId, gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded();
+}
+}
 
 extern rsSERVER_CONFIG		rsServerConfig;
 
@@ -250,7 +265,7 @@ int rsSendFuncMemToClient(rsPLAYINFO *lpPlayInfo, DWORD dwFuncMem, DWORD	dwLen)
 
 	if(lpPlayInfo && lpPlayInfo->lpsmSock)
 	{
-		val = lpPlayInfo->lpsmSock->Send((char *)&TransFuncMemory, TransFuncMemory.size, TRUE);
+		val = SummitIntegrityPacketSend(lpPlayInfo, &TransFuncMemory, TransFuncMemory.size) ? TRUE : FALSE;
 	}
 
 	if(val)
@@ -299,7 +314,7 @@ int rsSendFuncMemToClient2(rsPLAYINFO *lpPlayInfo)
 
 	if(lpPlayInfo && lpPlayInfo->lpsmSock)
 	{
-		val = lpPlayInfo->lpsmSock->Send((char *)&TransFuncMemory, TransFuncMemory.size, TRUE);
+		val = SummitIntegrityPacketSend(lpPlayInfo, &TransFuncMemory, TransFuncMemory.size) ? TRUE : FALSE;
 	}
 
 	if(val)

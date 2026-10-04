@@ -3,6 +3,8 @@
 #include "core/server/legacy_sin_runtime/sinLinkHeader.h"
 #include "modules/File/File.h"
 #include "core/server/legacy_runtime/onserver.h"
+#include "systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h"
+#include "systems/network/v2/legacy/LegacyPacketSender.h"
 
 
 
@@ -18,6 +20,16 @@ int	rsRegist_ItemSecCode(rsPLAYINFO *lpPlayInfo, TRANS_ITEMINFO *lpTransItemInfo
 int CreateItem(pssITEM *lpsItem, char  *dwCode, int JobCode);
 int	rsAddInvenItem(rsPLAYINFO *lpPlayInfo, DWORD dwCode, DWORD dwHead, DWORD dwChkSum);
 DWORD GetServerTime();
+
+static bool SummitClanCustomSend(rsPLAYINFO *recipient, const void *data, int size)
+{
+	if(!recipient || !data || size <= 0)
+		return false;
+	const gameplay::PlayerId playerId =
+		gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(recipient);
+	return gameplay::network::legacy::ServerLegacyPacketSender().Send(
+		playerId, gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded();
+}
 
 static bool IsSafeClanAssetCode(const char *value)
 {
@@ -54,16 +66,14 @@ void ClanCustom::SendCrownToClient(rsPLAYINFO * Player)
 				SQL::GetInstance()->GetDataValue(1, &packet.idnumber);
 				packet.size = sizeof(CROWN);
 				packet.code = CCPACKET_SEND_CROWN_GAME;
-				if (Player->lpsmSock)
-					Player->lpsmSock->Send((char *)&packet, packet.size, TRUE);
+				(void)SummitClanCustomSend(Player, &packet, packet.size);
 			}
 			else
 			{
 				packet.size = sizeof(CROWN);
 				packet.code = CCPACKET_SEND_CROWN_GAME;
 				packet.idnumber = 1;
-				if (Player->lpsmSock)
-					Player->lpsmSock->Send((char *)&packet, packet.size, TRUE);
+				(void)SummitClanCustomSend(Player, &packet, packet.size);
 			}
 		}
 		SQL::GetInstance()->LeaveSqlSection();
@@ -100,7 +110,7 @@ void ClanCustom::SendItemToClient(rsPLAYINFO * Player)
 				i++;
 			}
 
-			Player->lpsmSock->Send((char*)&packet, packet.size, true);
+			(void)SummitClanCustomSend(Player, &packet, packet.size);
 		}
 
 		int i2 = 0;
@@ -117,7 +127,7 @@ void ClanCustom::SendItemToClient(rsPLAYINFO * Player)
 				i2++;
 			}
 
-			Player->lpsmSock->Send((char*)&packet, packet.size, TRUE);
+			(void)SummitClanCustomSend(Player, &packet, packet.size);
 		}
 
 		SQL::GetInstance()->LeaveSqlSection();
@@ -180,9 +190,7 @@ void ClanCustom::RecvItemToClient(rsPLAYINFO * Player, CCSHOP_BUY * Shop)
 							TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 							TransChatMessage.dwIP = 3;
 							TransChatMessage.dwObjectSerial = 0;
-
-							if (Player->lpsmSock)
-								Player->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+							(void)SummitClanCustomSend(Player, &TransChatMessage, TransChatMessage.size);
 						}
 					}
 					else if (Price == 102)
@@ -196,9 +204,7 @@ void ClanCustom::RecvItemToClient(rsPLAYINFO * Player, CCSHOP_BUY * Shop)
 							TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 							TransChatMessage.dwIP = 3;
 							TransChatMessage.dwObjectSerial = 0;
-
-							if (Player->lpsmSock)
-								Player->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+							(void)SummitClanCustomSend(Player, &TransChatMessage, TransChatMessage.size);
 						}
 
 					}
@@ -213,9 +219,7 @@ void ClanCustom::RecvItemToClient(rsPLAYINFO * Player, CCSHOP_BUY * Shop)
 							TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 							TransChatMessage.dwIP = 3;
 							TransChatMessage.dwObjectSerial = 0;
-
-							if (Player->lpsmSock)
-								Player->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+							(void)SummitClanCustomSend(Player, &TransChatMessage, TransChatMessage.size);
 						}
 
 					}
@@ -230,9 +234,7 @@ void ClanCustom::RecvItemToClient(rsPLAYINFO * Player, CCSHOP_BUY * Shop)
 							TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 							TransChatMessage.dwIP = 3;
 							TransChatMessage.dwObjectSerial = 0;
-
-							if (Player->lpsmSock)
-								Player->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+							(void)SummitClanCustomSend(Player, &TransChatMessage, TransChatMessage.size);
 						}
 
 					}
@@ -247,9 +249,7 @@ void ClanCustom::RecvItemToClient(rsPLAYINFO * Player, CCSHOP_BUY * Shop)
 					TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 					TransChatMessage.dwIP = 3;
 					TransChatMessage.dwObjectSerial = 0;
-
-					if (Player->lpsmSock)
-						Player->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+							(void)SummitClanCustomSend(Player, &TransChatMessage, TransChatMessage.size);
 				}
 
 			}
@@ -261,9 +261,7 @@ void ClanCustom::RecvItemToClient(rsPLAYINFO * Player, CCSHOP_BUY * Shop)
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 3;
 				TransChatMessage.dwObjectSerial = 0;
-
-				if (Player->lpsmSock)
-					Player->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+							(void)SummitClanCustomSend(Player, &TransChatMessage, TransChatMessage.size);
 			}
 			SQL::GetInstance()->LeaveSqlSection();
 		}
@@ -350,9 +348,7 @@ void ClanCustom::RecvItemToClient(rsPLAYINFO * Player, CCSHOP_BUY * Shop)
 					TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 					TransChatMessage.dwIP = 3;
 					TransChatMessage.dwObjectSerial = 0;
-
-					if (Player->lpsmSock)
-						Player->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+						(void)SummitClanCustomSend(Player, &TransChatMessage, TransChatMessage.size);
 
 				
 					ClanCustom::GetInstance()->SendItemToClient(Player);
@@ -366,9 +362,7 @@ void ClanCustom::RecvItemToClient(rsPLAYINFO * Player, CCSHOP_BUY * Shop)
 					TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 					TransChatMessage.dwIP = 3;
 					TransChatMessage.dwObjectSerial = 0;
-
-					if (Player->lpsmSock)
-						Player->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+						(void)SummitClanCustomSend(Player, &TransChatMessage, TransChatMessage.size);
 				}
 			}			
 			SQL::GetInstance()->LeaveSqlSection();

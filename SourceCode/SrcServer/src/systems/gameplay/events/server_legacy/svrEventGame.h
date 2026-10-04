@@ -1,4 +1,19 @@
 #include <cstring>
+#include "systems/network/v2/legacy/LegacyPacketSender.h"
+
+
+namespace
+{
+inline bool SummitEventGameSend(rsPLAYINFO* recipient, const void* data, int size)
+{
+	if(!recipient || !data || size <= 0)
+		return false;
+	const gameplay::PlayerId playerId =
+		gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(recipient);
+	return gameplay::network::legacy::ServerLegacyPacketSender().Send(
+		playerId, gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded();
+}
+}
 
 #define _EVENT_GAME_
 
@@ -124,7 +139,7 @@ int rsEventGame_State_Init(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransComma
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 1;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		(void)SummitEventGameSend(lpPlayInfo, &TransChatMessage, TransChatMessage.size);
 		return FALSE;
 	}
 
@@ -140,7 +155,7 @@ int rsEventGame_State_Init(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransComma
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 1;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+			(void)SummitEventGameSend(lpPlayInfo, &TransChatMessage, TransChatMessage.size);
 
 			return FALSE;
 		}
@@ -196,13 +211,13 @@ int rsEventGame_State_Init(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransComma
 	TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 	TransChatMessage.dwIP = 1;
 	TransChatMessage.dwObjectSerial = 0;
-	lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+	(void)SummitEventGameSend(lpPlayInfo, &TransChatMessage, TransChatMessage.size);
 
 
 	smTRANS_COMMAND smTransCommand;
 	smTransCommand.size = sizeof(smTRANS_COMMAND);
 	smTransCommand.code = OpCode::OPCODE_YAHOO_MOTION;
-	lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+	(void)SummitEventGameSend(lpPlayInfo, &smTransCommand, smTransCommand.size);
 
 #endif
 

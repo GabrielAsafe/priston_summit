@@ -1,7 +1,18 @@
 #include "opcodes.h"
 #include "systems/commerce/coin_shop/CoinShop.h"
+#include "systems/network/v2/legacy/LegacyBackendChannelSender.h"
+#include "gameplay/commerce/v2/PremiumPurchaseRequestSequence.h"
 
 cCOINSHOP cCoinShop;
+
+namespace
+{
+gameplay::commerce::PremiumPurchaseRequestSequence& SummitPremiumPurchaseRequestSequence()
+{
+	static gameplay::commerce::PremiumPurchaseRequestSequence sequence;
+	return sequence;
+}
+}
 
 bool isMousePos(int x, int y, int w, int h)
 {
@@ -91,8 +102,10 @@ void cCOINSHOP::Open()
 	smTransCommand.code = OpCode::OPCODE_GET_SHOPCOIN;
 	smTransCommand.WParam = 0;
 
-	if (smWsockDataServer)
-		smWsockDataServer->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+	(void)gameplay::network::legacy::ClientLegacyBackendChannelSender().Send(
+		gameplay::network::BackendChannel::Data,
+		gameplay::network::PacketView(&smTransCommand, static_cast<std::size_t>(smTransCommand.size),
+		                              static_cast<std::uint32_t>(smTransCommand.code)));
 
 	// Sections
 	vButton.push_back(new sSHOPBUTTON(MC::WEAPON, Mat[MC::WEAPON], Mat[MC::WEAPON_], 67, 65, 41, 12, false));
@@ -184,8 +197,10 @@ void cCOINSHOP::SetSection(int iID)
 		smTransCommand.code = OpCode::OPCODE_GET_SHOPITEM;
 		smTransCommand.WParam = CurrentSection;
 
-		if (smWsockDataServer)
-			smWsockDataServer->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+		(void)gameplay::network::legacy::ClientLegacyBackendChannelSender().Send(
+			gameplay::network::BackendChannel::Data,
+			gameplay::network::PacketView(&smTransCommand, static_cast<std::size_t>(smTransCommand.size),
+			                              static_cast<std::uint32_t>(smTransCommand.code)));
 	}
 }
 
@@ -355,8 +370,12 @@ void cCOINSHOP::BuySelectedItem()
 	smTRANS_BUYSHOP TransBuy = {};
 	TransBuy.code = OpCode::OPCODE_BUY_SHOPITEM;
 	TransBuy.size = sizeof(smTRANS_BUYSHOP);
+	TransBuy.ItemIndex = static_cast<int>(SummitPremiumPurchaseRequestSequence().Next());
 	lstrcpy(TransBuy.szItemCode, SelectedBox->psItem->LastCategory);
-	smWsockDataServer->Send((char*)&TransBuy, TransBuy.size, TRUE);
+	(void)gameplay::network::legacy::ClientLegacyBackendChannelSender().Send(
+		gameplay::network::BackendChannel::Data,
+		gameplay::network::PacketView(&TransBuy, static_cast<std::size_t>(TransBuy.size),
+		                              static_cast<std::uint32_t>(TransBuy.code)));
 
 	cMessageBox.ShowMessageEvent("Compra feita com sucesso!");
 

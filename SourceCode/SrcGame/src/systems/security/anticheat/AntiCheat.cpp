@@ -1,7 +1,7 @@
 #include "opcodes.h"
 //#include "compat_sal.h"// disabled: conflicts with GCC STL identifiers
 #include "systems/security/anticheat/AntiCheat.h"
-#include "systems/network/transport/legacy/smwsock.h"
+#include "systems/network/v2/legacy/LegacyBackendChannelSender.h"
 #include "smPacket.h"
 
 #include <vector>
@@ -21,8 +21,25 @@ bool bLoadedNTDLL = false;
 
 typedef NTSTATUS(WINAPI* NTQUERYINFOMATIONTHREAD)(HANDLE, LONG, PVOID, ULONG, PULONG);
 
-extern smWINSOCK* smWsockDataServer;
 extern AntiCheat* pcAntiCheat;
+
+namespace
+{
+bool SendAntiCheatDataPacket(const void* data, int size, std::uint32_t opcode)
+{
+	if(!data || size <= 0)
+		return false;
+	return gameplay::network::legacy::ClientLegacyBackendChannelSender().Send(
+		gameplay::network::BackendChannel::Data,
+		gameplay::network::PacketView(data, static_cast<std::size_t>(size), opcode)).Succeeded();
+}
+
+bool AntiCheatDataChannelAvailable()
+{
+	return gameplay::network::legacy::ClientLegacyBackendChannelSender().Available(
+		gameplay::network::BackendChannel::Data);
+}
+}
 
 std::vector<ChecksumFunction> vChecksumFunction;
 
@@ -264,7 +281,7 @@ void AntiCheat::ChecksumFunctionHandler()
  sPacket.EParam = psPacketChecksum->sCheckSum[i].dwCheckSum;
  sPacket.LxParam = dwChecksumRet;
 
- smWsockDataServer->Send((char*)&sPacket, sPacket.iLength, TRUE);
+ SendAntiCheatDataPacket(&sPacket, sPacket.iLength, static_cast<std::uint32_t>(sPacket.iHeader));
 
  break;
  }
@@ -400,9 +417,9 @@ void AntiCheat::WindowFunctionHandler()
  sPacket.iCheatID = 8955;
  lstrcpyA(sPacket.szParam, szTempName);
 
- if (smWsockDataServer)
+ if (AntiCheatDataChannelAvailable())
  {
- smWsockDataServer->Send((char*)&sPacket, sPacket.iLength, TRUE);
+ SendAntiCheatDataPacket(&sPacket, sPacket.iLength, static_cast<std::uint32_t>(sPacket.iHeader));
  }
  else
  exit(0);
@@ -507,7 +524,7 @@ void AntiCheat::CheckThread()
  sPacket.iCheatID = 8720;
  sPacket.LParam = dwThreadID;
 
- smWsockDataServer->Send((char*)&sPacket, sPacket.iLength, TRUE);
+ SendAntiCheatDataPacket(&sPacket, sPacket.iLength, static_cast<std::uint32_t>(sPacket.iHeader));
 	}
 }
 

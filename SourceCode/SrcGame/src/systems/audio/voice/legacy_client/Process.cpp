@@ -95,8 +95,15 @@ BOOL CProcess::Init()
 
 		m_cMemMap->SetMemMapSize(MEMORYMAP_MAX);
 		m_cMemMap->SetName(MEMORYMAP_NAME);
-		m_cMemMap->InitMemoryMap();
+		if (!m_cMemMap->InitMemoryMap())
+		{
+			delete m_cMemMap;
+			m_cMemMap = NULL;
+			m_bIsMemMap = FALSE;
+			return FALSE;
+		}
 		m_bIsMemMap = TRUE;
+		m_voiceLifecycle.MarkIpcReady();
 
 
 
@@ -114,20 +121,26 @@ BOOL CProcess::Init()
 
 VOID CProcess::Clear()
 {
-	if(!m_IsStart) return;
-
-	UserOut();
-
+	if(m_IsStart && m_voiceLifecycle.CanUseIpc())
+		UserOut();
 
 	if(m_hRemoteProcess != NULL)
 		TerminateProcess(m_hRemoteProcess, 0);
 
 	m_Packet.Clear();
-	m_cMemMap->Clear();
-	if((m_cMemMap != NULL) && m_bIsMemMap)
+	if(m_cMemMap != NULL)
 	{
+		if(m_bIsMemMap)
+			m_cMemMap->Clear();
 		delete m_cMemMap;
+		m_cMemMap = NULL;
 	}
+	m_bIsMemMap = FALSE;
+	m_hRemoteProcess = NULL;
+	m_hRemoteWnd = NULL;
+	m_IsStart = FALSE;
+	vrunRuning = 0;
+	m_voiceLifecycle.Close();
 }
 
 
@@ -137,13 +150,14 @@ void PacketParsing()
 }
 VOID CProcess::PacketParsing()
 {
+	if(!m_voiceLifecycle.CanUseIpc() || !m_cMemMap) return;
 	m_cMemMap->ReadMemoryMap((char*)m_Packet.GetData());
 	m_Packet.Parsing();
 }
 
 VOID CProcess::Main()
 {
-	if(!m_IsStart) return;
+	if(!m_IsStart || !m_voiceLifecycle.CanUseIpc() || !m_cMemMap) return;
 
 	switch(m_nStep)
 	{
@@ -358,7 +372,7 @@ VOID CProcess::SetSelectCha(char *id, char *chaname, char *clanname, DWORD clann
 
 VOID CProcess::UserOut()
 {
-	if(!m_IsStart) return;
+	if(!m_IsStart || !m_voiceLifecycle.CanUseIpc() || !m_cMemMap) return;
 
 	P_Out pout;
 	pout.sIndex.dwIndex = INSIDE_GAME_OUT;
@@ -417,6 +431,7 @@ VOID CProcess::CheckIPandPort(char *ip, int port)
 	if(bip_port_error == TRUE)
 	{
 		m_IsStart = FALSE;
+		m_voiceLifecycle.Close();
 		return;
 
 	}
@@ -438,6 +453,8 @@ VOID CProcess::CheckIPandPort(char *ip, int port)
 			if(InitRemoteProcess() == 1)
 			{
 				vrunRuning = 1;
+				m_voiceLifecycle.Close();
+				m_voiceLifecycle.MarkRemoteReady();
 				m_IsStart = TRUE;
 				fd2("CheckIPandPort() 22 OK ");
 			}
@@ -454,6 +471,8 @@ VOID CProcess::CheckIPandPort(char *ip, int port)
 			if(InitRemoteProcess() == 1)
 			{
 				vrunRuning = 1;
+				m_voiceLifecycle.Close();
+				m_voiceLifecycle.MarkRemoteReady();
 				m_IsStart = TRUE;
 
 				fd2("CheckIPandPort() 44 OK ");
@@ -470,6 +489,8 @@ VOID CProcess::CheckIPandPort(char *ip, int port)
 			if(InitRemoteProcess() == 1)
 			{
 				vrunRuning = 1;
+				m_voiceLifecycle.Close();
+				m_voiceLifecycle.MarkRemoteReady();
 				m_IsStart = TRUE;
 				fd2("CheckIPandPort() 66 ok ");
 			}
@@ -477,6 +498,7 @@ VOID CProcess::CheckIPandPort(char *ip, int port)
 		else
 		{
 			m_IsStart = FALSE;
+			m_voiceLifecycle.Close();
 
 			fd2("CheckIPandPort() 77 false ");
 		}

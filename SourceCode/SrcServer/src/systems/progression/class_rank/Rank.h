@@ -3,6 +3,7 @@
 
 #include "core/server/legacy_sin_runtime/sinLinkHeader.h"
 #include "systems/persistence/database/core/Database.h"
+#include "Shared/gameplay/progression/v2/ClassRankQuery.h"
 
 #define	smTRANSCODE_OPEN_RANK		 0x49470046
 #define RANK_PACKET_SEND_RANKCLASS   0x49470047
@@ -42,8 +43,7 @@ public:
 	static              Rank* GetInstance() { static Rank instance; return &instance; }
 	void                RecvRankclassToServer(rsPLAYINFO* Player, Rank_Job* infos);
 	void                SendRankclassToGame(rsPLAYINFO* Player);
-	int	ranktype;
-	int	rankjob_code;
+	void                SendRankclassToGame(rsPLAYINFO* Player, const gameplay::progression::ClassRankQuery& query);
 };
 
 

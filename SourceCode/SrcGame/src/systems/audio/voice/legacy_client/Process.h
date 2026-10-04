@@ -1,6 +1,7 @@
 #include "systems/audio/voice/ipc/memmap.h"
 #include "systems/audio/voice/legacy_client/PacketStruct.h"
 #include "systems/audio/voice/legacy_client/Packet.h"
+#include "presentation/v2/VoiceSessionLifecycle.h"
 
 
 #pragma once
@@ -73,6 +74,7 @@ private:
 	BOOL        m_bIsMemMap;
 
 	BOOL        m_IsStart;
+	presentation::VoiceSessionLifecycle m_voiceLifecycle;
 
 
 	USERINFO	m_userInfo;

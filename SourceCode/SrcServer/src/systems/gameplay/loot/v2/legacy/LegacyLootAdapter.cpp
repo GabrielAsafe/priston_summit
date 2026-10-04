@@ -24,7 +24,7 @@ LootDropHandle LegacyLootAdapter::MakeHandle(const STG_AREA* area, const STG_ITE
         return LootDropHandle();
 
     const std::ptrdiff_t areaIndex = area - StageArea;
-    if(areaIndex < 0 || areaIndex >= STAGE_AREA_MAX)
+    if(areaIndex < 0 || areaIndex >= StageAreaCount)
         return LootDropHandle();
 
     const std::ptrdiff_t slotIndex = item - area->StgItems;
@@ -45,7 +45,7 @@ LootPickupResult LegacyLootAdapter::Pickup(PlayerId player, LootDropHandle drop)
     result.player = player;
     result.drop = drop;
 
-    if(!drop.Valid() || drop.areaIndex >= STAGE_AREA_MAX || drop.slotIndex >= STG_ITEM_MAX || !StageArea)
+    if(!drop.Valid() || !StageArea || StageAreaCount <= 0 || drop.areaIndex >= static_cast<std::uint32_t>(StageAreaCount) || drop.slotIndex >= STG_ITEM_MAX)
     {
         result.code = LootPickupCode::InvalidDrop;
         return result;

@@ -6,6 +6,7 @@
 #include "systems/crafting/professions/JOBS.h"
 #include "systems/gameplay/progression/v2/ProgressionTriggerRuntime.h"
 #include "systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h"
+#include "systems/network/v2/legacy/LegacyPacketSender.h"
 
 #include <time.h>
 
@@ -16,6 +17,19 @@ int	rsAddInvenItem(rsPLAYINFO* lpPlayInfo, DWORD dwCode, DWORD dwHead, DWORD dwC
 int	rsSendMoneyToUser(rsPLAYINFO* lpPlayInfo, int Money);
 DWORD GetServerTime();
 
+
+
+namespace
+{
+bool SummitJobsSend(rsPLAYINFO* recipient, const void* data, int size)
+{
+	if(!recipient || !data || size <= 0)
+		return false;
+	return gameplay::network::legacy::ServerLegacyPacketSender().Send(
+		gameplay::PlayerId(static_cast<std::uint32_t>(recipient->dwObjectSerial)),
+		gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded();
+}
+}
 
 
 //ENVIA AS INFORMAÇÕES DE EXPERIÊNCIA E NIVEL 
@@ -44,7 +58,7 @@ void JOBS::SendJOBInfoToGame(rsPLAYINFO* Player)
 				packet.size = sizeof(JOBS_INFO);
 				packet.code = JOBS_PACKET_SEND_BPINFO_GAME;
 				if (Player->lpsmSock)
-					Player->lpsmSock->Send((char*)&packet, packet.size, TRUE);
+					SummitJobsSend(Player, &packet, packet.size);
 			}
 			/*else
 			{
@@ -53,7 +67,7 @@ void JOBS::SendJOBInfoToGame(rsPLAYINFO* Player)
 				packet.exp = 0;
 				packet.VTNClvl = 0;
 				if (Player->lpsmSock)
-					Player->lpsmSock->Send((char *)&packet, packet.size, TRUE);
+					SummitJobsSend(Player, &packet, packet.size);
 			}*/
 		}
 		SQL::GetInstance()->LeaveSqlSection();
@@ -95,7 +109,7 @@ void JOBS::SendJOBmarketToGame(rsPLAYINFO* Player)
 			{
 				if (rsPlayInfo[cnt].lpsmSock)
 				{
-					rsPlayInfo[cnt].lpsmSock->Send((char*)&packet, packet.size, TRUE);
+					SummitJobsSend(&rsPlayInfo[cnt], &packet, packet.size);
 				}
 			}
 		}
@@ -194,7 +208,7 @@ void JOBS::RecvJOBsellToClient(rsPLAYINFO* Player, JOBS_RESGATE* infos)
 				TransChatMessage.dwObjectSerial = 0;
 
 				if (Player->lpsmSock)
-					Player->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+					SummitJobsSend(Player, &TransChatMessage, TransChatMessage.size);
 			}
 		}
 
@@ -332,7 +346,7 @@ void JOBS::RecvJOBbuyToClient(rsPLAYINFO* Player, JOBS_PACK* Buy)
 
 
 								if (Player->lpsmSock)
-									Player->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+									SummitJobsSend(Player, &TransChatMessage, TransChatMessage.size);
 							}
 						}
 					}
@@ -348,7 +362,7 @@ void JOBS::RecvJOBbuyToClient(rsPLAYINFO* Player, JOBS_PACK* Buy)
 					TransChatMessage.dwObjectSerial = 0;
 
 					if (Player->lpsmSock)
-						Player->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+						SummitJobsSend(Player, &TransChatMessage, TransChatMessage.size);
 				}
 				SQL::GetInstance()->LeaveSqlSection();
 				JOBS::GetInstance()->SendJOBInfoToGame(Player);
@@ -576,7 +590,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 											rsRegist_ItemSecCode(Player, &TransItemInfo, 1);
 											rsAddInvenItem(Player, TransItemInfo.Item.CODE, TransItemInfo.Item.ItemHeader.Head, TransItemInfo.Item.ItemHeader.dwChkSum);
 											if (Player->lpsmSock)
-												Player->lpsmSock->Send((char*)&TransItemInfo, TransItemInfo.size, TRUE);
+												SummitJobsSend(Player, &TransItemInfo, TransItemInfo.size);
 										}
 
 										TRANS_CHATMESSAGE	TransChatMessage;
@@ -587,7 +601,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 										TransChatMessage.dwObjectSerial = 0;
 
 										if (Player->lpsmSock)
-											Player->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+											SummitJobsSend(Player, &TransChatMessage, TransChatMessage.size);
 
 										//Criar log na pasta do server do resgate do BP
 										HANDLE	hFile;
@@ -626,7 +640,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 										TransChatMessage.dwObjectSerial = 0;
 
 										if (Player->lpsmSock)
-											Player->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+											SummitJobsSend(Player, &TransChatMessage, TransChatMessage.size);
 
 										//Criar log na pasta do server do resgate do BP
 										HANDLE	hFile;
@@ -679,7 +693,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 					TransChatMessage.dwObjectSerial = 0;
 
 					if (Player->lpsmSock)
-						Player->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+						SummitJobsSend(Player, &TransChatMessage, TransChatMessage.size);
 				}
 
 
@@ -823,7 +837,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 													rsRegist_ItemSecCode(Player, &TransItemInfo, 1);
 													rsAddInvenItem(Player, TransItemInfo.Item.CODE, TransItemInfo.Item.ItemHeader.Head, TransItemInfo.Item.ItemHeader.dwChkSum);
 													if (Player->lpsmSock)
-														Player->lpsmSock->Send((char*)&TransItemInfo, TransItemInfo.size, TRUE);
+														SummitJobsSend(Player, &TransItemInfo, TransItemInfo.size);
 												}
 
 												TRANS_CHATMESSAGE	TransChatMessage;
@@ -834,7 +848,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 												TransChatMessage.dwObjectSerial = 0;
 
 												if (Player->lpsmSock)
-													Player->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+													SummitJobsSend(Player, &TransChatMessage, TransChatMessage.size);
 
 												//Criar log na pasta do server do resgate do BP
 												HANDLE	hFile;
@@ -873,7 +887,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 												TransChatMessage.dwObjectSerial = 0;
 
 												if (Player->lpsmSock)
-													Player->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+													SummitJobsSend(Player, &TransChatMessage, TransChatMessage.size);
 
 												//Criar log na pasta do server do resgate do BP
 												HANDLE	hFile;
@@ -926,7 +940,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 						TransChatMessage.dwObjectSerial = 0;
 
 						if (Player->lpsmSock)
-							Player->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+							SummitJobsSend(Player, &TransChatMessage, TransChatMessage.size);
 					}
 
 
@@ -1070,7 +1084,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 													rsRegist_ItemSecCode(Player, &TransItemInfo, 1);
 													rsAddInvenItem(Player, TransItemInfo.Item.CODE, TransItemInfo.Item.ItemHeader.Head, TransItemInfo.Item.ItemHeader.dwChkSum);
 													if (Player->lpsmSock)
-														Player->lpsmSock->Send((char*)&TransItemInfo, TransItemInfo.size, TRUE);
+														SummitJobsSend(Player, &TransItemInfo, TransItemInfo.size);
 												}
 
 												TRANS_CHATMESSAGE	TransChatMessage;
@@ -1081,7 +1095,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 												TransChatMessage.dwObjectSerial = 0;
 
 												if (Player->lpsmSock)
-													Player->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+													SummitJobsSend(Player, &TransChatMessage, TransChatMessage.size);
 
 												//Criar log na pasta do server do resgate do BP
 												HANDLE	hFile;
@@ -1120,7 +1134,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 												TransChatMessage.dwObjectSerial = 0;
 
 												if (Player->lpsmSock)
-													Player->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+													SummitJobsSend(Player, &TransChatMessage, TransChatMessage.size);
 
 												//Criar log na pasta do server do resgate do BP
 												HANDLE	hFile;
@@ -1173,7 +1187,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 						TransChatMessage.dwObjectSerial = 0;
 
 						if (Player->lpsmSock)
-							Player->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+							SummitJobsSend(Player, &TransChatMessage, TransChatMessage.size);
 					}
 
 
@@ -1227,7 +1241,7 @@ void JOBS::AddExpJOBS(rsPLAYINFO* Player, int valor)
 				TransChatMessage.dwObjectSerial = 0;
 
 				if (Player->lpsmSock)
-					Player->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+					SummitJobsSend(Player, &TransChatMessage, TransChatMessage.size);
 			}
 			else if (JOB_LVL >= 20) {
 				JOBUser_Exp = 999;
@@ -1242,7 +1256,7 @@ void JOBS::AddExpJOBS(rsPLAYINFO* Player, int valor)
 			pvp.dwObjectSerial = 0;
 
 			if (Player->lpsmSock)
-				Player->lpsmSock->Send((char*)&pvp, pvp.size, TRUE);
+				SummitJobsSend(Player, &pvp, pvp.size);
 			//
 			//
 			if (JOBUser_Exp < 999) {
@@ -1354,7 +1368,7 @@ void JOBS::AddminJOBS(rsPLAYINFO* Player, int valor, int type)
 			pvp.dwObjectSerial = 0;
 
 			if (Player->lpsmSock)
-				Player->lpsmSock->Send((char*)&pvp, pvp.size, TRUE);
+				SummitJobsSend(Player, &pvp, pvp.size);
 			//
 			//
 

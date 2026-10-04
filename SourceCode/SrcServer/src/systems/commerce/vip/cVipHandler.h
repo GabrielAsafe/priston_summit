@@ -9,7 +9,6 @@ public:
 	void IsVIp(rsPLAYINFO* lpPlayInfo);
 
 	bool returnVip(rsPLAYINFO* lpPlayInfo);
-	int IdVip;
 
 };
 

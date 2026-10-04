@@ -38,9 +38,9 @@ int	CheckInvenItemCode()
 		smTransCommand.WParam = 7010;
 		smTransCommand.LParam = dwTotal_InvenItemCode ^ dwTotal_InvenItemPlayTime;
 		smTransCommand.SParam = dwCode;
-		if (smWsockDataServer)
+		if (LegacyPlaySubDataChannelAvailable())
 		{
-			smWsockDataServer->Send((char *)&smTransCommand, sizeof(smTRANS_COMMAND), TRUE);
+			LegacyPlaySubSendDataPacket(&smTransCommand, sizeof(smTRANS_COMMAND), smTransCommand.code);
 		}
 	}
 
@@ -89,8 +89,8 @@ int CheckEnergyGraphError()
 		smTransCommand.SParam = Mana;
 		smTransCommand.EParam = Stamina;
 
-		if (smWsockDataServer)
-			smWsockDataServer->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+		if (LegacyPlaySubDataChannelAvailable())
+			LegacyPlaySubSendDataPacket(&smTransCommand, smTransCommand.size, smTransCommand.code);
 	}
 
 	EnergyGraphErrorCount[3] = lpCurPlayer->pX;

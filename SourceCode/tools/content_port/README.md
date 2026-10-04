@@ -67,9 +67,10 @@ legacy `InitField()` source into profile-specific `summit.map-catalog/v1` UTF-8 
 the canonical layout and SHA-256 before loading neutral `MapDefinition` objects; and
 `LegacyMapAdapter` materializes them into the existing `sFIELD` runtime.
 
-Client/server remain separate because 14 legacy fields differ semantically. Dynamic
-field 53 (`smConfig`) intentionally remains on the legacy runtime path. The static
-compiled path preserves reciprocal `AddGate()` behavior, feature-gated
+Client/server remain separate because 14 legacy fields differ semantically. The `smConfig`
+custom field intentionally remains on the legacy runtime path, but it no longer reserves field 53:
+it is appended at the first free field after the static catalog. The static compiled path
+preserves reciprocal `AddGate()` behavior, feature-gated
 `WORLDCUP_FIELD` stage objects and the four orphan warp `LimitLevel` writes.
 
 The static map catalog is also resolved from executable-relative compiled packs in the current runtime. The source-derived compiler reproduces the handoff client/server packs byte-for-byte. Format details are in `SMAP_V1.md`.

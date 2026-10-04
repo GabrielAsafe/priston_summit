@@ -30,6 +30,19 @@
 
 #include "systems/security/integrity/isaocheck.h"
 #include "persistence/character_record/WarehouseRecordValidation.h"
+#include "systems/network/v2/legacy/LegacyPacketSender.h"
+
+
+namespace
+{
+inline bool SummitRecordSocketSend(smWINSOCK* socket, const void* data, int size)
+{
+	if(!socket || !data || size <= 0)
+		return false;
+	return gameplay::network::legacy::ServerLegacyPacketSender().SendToLegacySocket(
+		socket, gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded();
+}
+}
 
 static char *Local_GetWord(char *q, char *p)
 {
@@ -2618,7 +2631,7 @@ int rsRECORD_DBASE::SendRecordDataToClient(rsPLAYINFO *lpPlayInfo, char *szName,
 
 		memcpy(TransRecord.szData, &lpData[TotalLen], len);
 
-		lpsmSock->Send((char *)&TransRecord, TransRecord.size, TRUE);
+		(void)SummitRecordSocketSend(lpsmSock, &TransRecord, TransRecord.size);
 		cnt++;
 
 		TotalLen += len;
@@ -4169,7 +4182,7 @@ int rsLoadWareHouseData(rsPLAYINFO *lpPlayInfo)
 	if(!CopiedItemFlag)
 	{
 		if(lpPlayInfo->lpsmSock)
-			lpPlayInfo->lpsmSock->Send((char *)&TransWareHouse, TransWareHouse.size, TRUE);
+			(void)SummitRecordSocketSend(lpPlayInfo->lpsmSock, &TransWareHouse, TransWareHouse.size);
 	}
 	else
 	{
@@ -4182,7 +4195,7 @@ int rsLoadWareHouseData(rsPLAYINFO *lpPlayInfo)
 		smTransCommand.EParam = 0;
 
 		if(lpPlayInfo->lpsmSock)
-			lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+			(void)SummitRecordSocketSend(lpPlayInfo->lpsmSock, &smTransCommand, smTransCommand.size);
 
 
 	}
@@ -4304,7 +4317,7 @@ int rsLoadWareHouseData(rsPLAYINFO *lpPlayInfo, int Caravan = 0)
 	if (!CopiedItemFlag)
 	{
 		if (lpPlayInfo->lpsmSock)
-			lpPlayInfo->lpsmSock->Send((char *)&TransWareHouse, TransWareHouse.size, TRUE);
+			(void)SummitRecordSocketSend(lpPlayInfo->lpsmSock, &TransWareHouse, TransWareHouse.size);
 	}
 	else
 	{
@@ -4317,7 +4330,7 @@ int rsLoadWareHouseData(rsPLAYINFO *lpPlayInfo, int Caravan = 0)
 		smTransCommand.EParam = 0;
 
 		if (lpPlayInfo->lpsmSock)
-			lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+			(void)SummitRecordSocketSend(lpPlayInfo->lpsmSock, &smTransCommand, smTransCommand.size);
 
 
 	}
@@ -4347,7 +4360,7 @@ int rsLoadWareHouseData_Admin(rsPLAYINFO *lpPlayInfo, char *szID, int Day)
 	lpPlayInfo->OpenWarehouseInfoFlag = 0;
 
 	if(lpPlayInfo->lpsmSock)
-		lpPlayInfo->lpsmSock->Send((char *)&TransWareHouse, TransWareHouse.size, TRUE);
+		(void)SummitRecordSocketSend(lpPlayInfo->lpsmSock, &TransWareHouse, TransWareHouse.size);
 
 	return TRUE;
 }
@@ -5248,7 +5261,7 @@ int rsLoadServerForce(rsPLAYINFO *lpPlayInfo, sGAME_SAVE_INFO *lpGameSaveInfo)
 	packetc.code = OpCode::BLESS_CROWN;
 	packetc.Silver = GetClanCode(rsBlessCastle.ClanTop10.dwUserCode[1]);
 	packetc.Bronze = GetClanCode(rsBlessCastle.ClanTop10.dwUserCode[2]);
-	lpPlayInfo->lpsmSock->Send((char*)&packetc, packetc.size, true);
+	(void)SummitRecordSocketSend(lpPlayInfo->lpsmSock, &packetc, packetc.size);
 
 	return TRUE;
 

@@ -33,6 +33,7 @@
 
 
 #include "gameplay/classes/v2/services/ClassService.h"
+#include "systems/network/v2/legacy/LegacyBackendChannelSender.h"
 
 #ifdef _XTRAP_GUARD_4_CLIENT 
 #include "../XTrapSrcD5/ClientExt/XTrap4ClientExt1.h"	
@@ -7858,8 +7859,11 @@ int cINVENTORY::EatSongPyeun(sITEM *pItem)
 	smTransCommand.SParam = Stamina;
 	smTransCommand.EParam = lpCurPlayer->dwObjectSerial;
 
-	if(smWsockUserServer && InterfaceParty.PartyMemberCount)
-		smWsockUserServer->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+	if(InterfaceParty.PartyMemberCount)
+		(void)gameplay::network::legacy::ServerLegacyBackendChannelSender().Send(
+			gameplay::network::BackendChannel::User,
+			gameplay::network::PacketView(&smTransCommand, static_cast<std::size_t>(smTransCommand.size),
+			                              static_cast<std::uint32_t>(smTransCommand.code)));
 
 
 	ReFormInvenItem();
@@ -8770,8 +8774,10 @@ int cINVENTORY::HackCharStateCheck(smCHAR_INFO *pChar_Info, smCHAR_INFO *desChar
 		smTransCommand.LParam = pChar_Info->Defence;
 		smTransCommand.SParam = (int)(pChar_Info->Absorption * 256);
 		smTransCommand.EParam = 0;
-		if(smWsockDataServer)
-			smWsockDataServer->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+		(void)gameplay::network::legacy::ServerLegacyBackendChannelSender().Send(
+			gameplay::network::BackendChannel::Data,
+			gameplay::network::PacketView(&smTransCommand, static_cast<std::size_t>(smTransCommand.size),
+			                              static_cast<std::uint32_t>(smTransCommand.code)));
 
 		return FALSE;
 	}

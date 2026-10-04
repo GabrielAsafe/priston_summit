@@ -27,7 +27,7 @@ bool LegacyWorldAdapter::TryGetPosition(EntityId entity, WorldPosition& out) con
     // server-authoritative area first because smCHAR::OnStageField is not a
     // reliable map identity for all server-side player/companion cases.
     rsPLAYINFO* player = players_.Resolve(PlayerId(entity.value));
-    if (player && player->Position.Area >= 0 && player->Position.Area < STAGE_AREA_MAX)
+    if (player && player->Position.Area >= 0 && player->Position.Area < StageAreaCount)
     {
         out = WorldPosition(MapId(static_cast<std::uint32_t>(player->Position.Area)),
                             player->Position.x, player->Position.y, player->Position.z);
@@ -40,7 +40,7 @@ bool LegacyWorldAdapter::TryGetPosition(EntityId entity, WorldPosition& out) con
         return false;
 
     const int fieldCode = StageField[character->OnStageField]->FieldCode;
-    if (fieldCode < 0 || fieldCode >= STAGE_AREA_MAX)
+    if (fieldCode < 0 || fieldCode >= StageAreaCount)
         return false;
     out = WorldPosition(MapId(static_cast<std::uint32_t>(fieldCode)),
                         character->pX, character->pY, character->pZ);

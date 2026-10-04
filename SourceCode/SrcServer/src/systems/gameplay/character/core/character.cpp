@@ -35,6 +35,8 @@
 #include "gameplay/classes/v2/services/ClassService.h"
 #include "systems/rendering/legacy_2d/drawsub.h"
 #include "systems/network/server_gameplay/netplay.h"
+#include "systems/network/v2/legacy/LegacyPacketSender.h"
+#include "systems/network/v2/legacy/LegacyBackendChannelSender.h"
 #include "systems/world/field/field.h"
 #include "systems/presentation/opening/legacy_runtime/HoLinkHeader.h"
 #include "core/server/legacy_sin_runtime/sinLinkHeader.h"
@@ -50,6 +52,11 @@
 
 #include "systems/combat/damage/damage.h"
 #include "systems/combat/server_legacy/svr_Damage.h"
+#include "systems/gameplay/combat/v2/legacy/LegacyScopedCombatBuff.h"
+#include "systems/gameplay/combat/v2/legacy/LegacyLifeAdapter.h"
+#include "systems/gameplay/combat/v2/legacy/LegacyTargetingAdapter.h"
+#include "systems/gameplay/skills/v2/legacy/LegacySkillAnimationAdapter.h"
+#include "systems/gameplay/monsters/v2/legacy/LegacyMonsterAdapter.h"
 #include "core/server/legacy_runtime/onserver.h"
 #include "systems/ui/map/full_zoom/FullZoomMap.h"		
 
@@ -117,6 +124,31 @@ int CastleSoulFountain_Area[4] = { 37040 * fONE, 37158 * fONE, -30286 * fONE, -3
 int DrawMotionBlur();
 
 
+
+static void SummitConfigureCharacterSkillLoop(smCHAR* actor, int loopSpeed, int loopCount)
+{
+	if(!actor)
+		return;
+	(void)gameplay::skills::legacy::ServerLegacySkillAnimationAdapter().ConfigureLoop(
+		gameplay::EntityId(static_cast<std::uint32_t>(actor->dwObjectSerial)), loopSpeed, loopCount);
+}
+
+static void SummitClearCharacterPlayerTarget(smCHAR* actor)
+{
+	if(!actor)
+		return;
+	(void)gameplay::combat::legacy::ServerLegacyTargetingAdapter().ClearPlayerTarget(
+		gameplay::EntityId(static_cast<std::uint32_t>(actor->dwObjectSerial)));
+}
+
+static void SummitSendCharacterPacket(rsPLAYINFO* player, const void* data, int size)
+{
+	if(!player || !data || size <= 0)
+		return;
+	(void)gameplay::network::legacy::ServerLegacyPacketSender().Send(
+		gameplay::PlayerId(static_cast<std::uint32_t>(player->dwObjectSerial)),
+		gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u));
+}
 
 int rsCheckHardCoreEventArea(int x, int y, int z);
 extern int	rsHardCoreEventInterLineZ;
@@ -5705,16 +5737,16 @@ int smCHAR::Main()
 				if(MotionInfo->State == CHRMOTION_STATE_EAT && PotionLog == 1)
 				{
 
-					smCharInfo.Life[0] += (smCharInfo.Life[1] >> 1);
-					if(smCharInfo.Life[0] > smCharInfo.Life[1])
-						smCharInfo.Life[0] = smCharInfo.Life[1];
+					(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().Restore(
+						gameplay::EntityId(static_cast<std::uint32_t>(dwObjectSerial)),
+						(smCharInfo.Life[1] >> 1));
 				}
 
 				if(smMonsterInfo.SkillCurse && smCharInfo.Brood != smCHAR_MONSTER_USER)
 				{
 					if(MotionInfo->State == CHRMOTION_STATE_ATTACK)
 					{
-						lpTargetPlayInfo = 0;
+						SummitClearCharacterPlayerTarget(this);
 					}
 
 					if(lpTargetChar && MotionInfo->State == CHRMOTION_STATE_SKILL)
@@ -5874,11 +5906,11 @@ int smCHAR::Main()
 							smTransCommand.SParam = 0;
 							smTransCommand.EParam = 0;
 							if(lpLinkPlayInfo && lpLinkPlayInfo->lpsmSock)
-								lpLinkPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+								SummitSendCharacterPacket(lpLinkPlayInfo, &smTransCommand, smTransCommand.size);
 
-							smCharInfo.Life[0] += (smCharInfo.Life[1] >> 2);
-							if(smCharInfo.Life[0] > smCharInfo.Life[1])
-								smCharInfo.Life[0] = smCharInfo.Life[1];
+							(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().Restore(
+								gameplay::EntityId(static_cast<std::uint32_t>(dwObjectSerial)),
+								(smCharInfo.Life[1] >> 2));
 
 						}
 						else
@@ -5907,7 +5939,7 @@ int smCHAR::Main()
 					if(cnt < 30 || AttackAnger>80)
 					{
 						SetMotionFromCode(CHRMOTION_STATE_WARP);
-						lpTargetPlayInfo = 0;
+						SummitClearCharacterPlayerTarget(this);
 					}
 				}
 
@@ -5919,7 +5951,7 @@ int smCHAR::Main()
 					if(cnt < 30 || AttackAnger>80)
 					{
 						SetMotionFromCode(CHRMOTION_STATE_WARP);
-						lpTargetPlayInfo = 0;
+						SummitClearCharacterPlayerTarget(this);
 					}
 				}
 
@@ -5929,7 +5961,7 @@ int smCHAR::Main()
 					if(cnt < 20 || AttackAnger > 80)
 					{
 						SetMotionFromCode(CHRMOTION_STATE_WARP);
-						lpTargetPlayInfo = 0;
+						SummitClearCharacterPlayerTarget(this);
 					}
 				}
 
@@ -5958,8 +5990,8 @@ int smCHAR::Main()
 				smCharInfo.State == smCHAR_STATE_USER &&
 				smCharInfo.Brood == smCHAR_MONSTER_USER &&
 				lpMasterPlayInfo != NULL;
-			if(accountCompanion && lpMasterPlayInfo->Position.Area >= 0 &&
-				lpMasterPlayInfo->Position.Area < STAGE_AREA_MAX)
+			if(accountCompanion && StageArea && lpMasterPlayInfo->Position.Area >= 0 &&
+				lpMasterPlayInfo->Position.Area < StageAreaCount)
 			{
 				STG_AREA *ownerArea = &StageArea[lpMasterPlayInfo->Position.Area];
 				if(ownerArea && ownerArea->lpStage && ownerArea->lpStage != lpStage)
@@ -5985,7 +6017,7 @@ int smCHAR::Main()
 					AutoMoveStep = 0;
 					TragetTraceMode = 0;
 					lpTargetChar = 0;
-					lpTargetPlayInfo = 0;
+					SummitClearCharacterPlayerTarget(this);
 				}
 			}
 
@@ -5998,8 +6030,9 @@ int smCHAR::Main()
 
 			if(HoSkillCode && !companionOwnedSkillPet && lpMasterPlayInfo->lpLinkChar != this)
 			{
-				smCharInfo.Life[0] = 0;
-				SetMotionFromCode(CHRMOTION_STATE_DEAD);
+				(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().ConsumeLethal(
+					gameplay::EntityId(static_cast<std::uint32_t>(dwObjectSerial)),
+					std::max(1, static_cast<int>(smCharInfo.Life[0])));
 			}
 			else
 			{
@@ -6025,8 +6058,9 @@ int smCHAR::Main()
 						y = lpStage->GetHeight(followX, followZ);
 						if(y < 0)
 						{
-							smCharInfo.Life[0] = 0;
-							SetMotionFromCode(CHRMOTION_STATE_DEAD);
+							(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().ConsumeLethal(
+								gameplay::EntityId(static_cast<std::uint32_t>(dwObjectSerial)),
+								std::max(1, static_cast<int>(smCharInfo.Life[0])));
 						}
 						else
 						{
@@ -6092,7 +6126,7 @@ int smCHAR::Main()
 				{
 
 					smCharInfo.Life[0] = (smCharInfo.Life[1] >> 4);
-					lpTargetPlayInfo = 0;
+					SummitClearCharacterPlayerTarget(this);
 					lpTargetChar = 0;
 					SetMotionFromCode(CHRMOTION_STATE_STAND);
 
@@ -6234,10 +6268,9 @@ int smCHAR::Main()
 						AttackSkillRange = smMonsterInfo.SkillRange*smMonsterInfo.SkillRange;
 
 
-						smCharInfo.Life[0] += rsGetMonsterLifeRegen(this);
-
-						if(smCharInfo.Life[0] > smCharInfo.Life[1] || smCharInfo.Life[0] < 0)
-							smCharInfo.Life[0] = smCharInfo.Life[1];
+						(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().Restore(
+							gameplay::EntityId(static_cast<std::uint32_t>(dwObjectSerial)),
+							rsGetMonsterLifeRegen(this));
 					}
 				}
 
@@ -6267,7 +6300,7 @@ int smCHAR::Main()
 								if(GetDistanceDbl(pX, pZ, lpTargetChar->lpTargetPlayInfo->Position.x, lpTargetChar->lpTargetPlayInfo->Position.z) > dist)
 								{
 									lpTargetChar->lpTargetChar = this;
-									lpTargetChar->lpTargetPlayInfo = 0;
+									SummitClearCharacterPlayerTarget(lpTargetChar);
 								}
 							}
 
@@ -6333,8 +6366,8 @@ int smCHAR::Main()
 								const int companionReflect = gameplay::companions::GetReactiveDamage(lpTargetChar, cnt);
 								if(companionReflect > 0 && smCharInfo.Life[0] > 0)
 								{
-									smCharInfo.Life[0] = (short)std::max(0, (int)smCharInfo.Life[0] - companionReflect);
-									if(smCharInfo.Life[0] <= 0) SetMotionFromCode(CHRMOTION_STATE_DEAD);
+									(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().ConsumeLethal(
+										gameplay::EntityId(static_cast<std::uint32_t>(dwObjectSerial)), companionReflect);
 								}
 
 								if(smCharInfo.dwCharSoundCode == snCHAR_SOUND_WEB)
@@ -6488,10 +6521,9 @@ int smCHAR::Main()
 				AttackSkillRange = smMonsterInfo.SkillRange*smMonsterInfo.SkillRange;
 
 				
-				smCharInfo.Life[0] += rsGetMonsterLifeRegen(this);
-
-				if (smCharInfo.Life[0] > smCharInfo.Life[1] || smCharInfo.Life[0] < 0)
-					smCharInfo.Life[0] = smCharInfo.Life[1];
+				(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().Restore(
+					gameplay::EntityId(static_cast<std::uint32_t>(dwObjectSerial)),
+					rsGetMonsterLifeRegen(this));
 			}
 		}
 
@@ -6515,7 +6547,7 @@ int smCHAR::Main()
 						dist = GetDistanceDbl(pX, pZ, lpTargetChar->pX, lpTargetChar->pZ);
 						if (GetDistanceDbl(pX, pZ, lpTargetChar->lpTargetPlayInfo->Position.x, lpTargetChar->lpTargetPlayInfo->Position.z) > dist) {
 							lpTargetChar->lpTargetChar = this;
-							lpTargetChar->lpTargetPlayInfo = 0;
+							SummitClearCharacterPlayerTarget(lpTargetChar);
 						}
 					}
 
@@ -6574,8 +6606,8 @@ int smCHAR::Main()
 						const int companionReflect = gameplay::companions::GetReactiveDamage(lpTargetChar, cnt);
 						if(companionReflect > 0 && smCharInfo.Life[0] > 0)
 						{
-							smCharInfo.Life[0] = (short)std::max(0, (int)smCharInfo.Life[0] - companionReflect);
-							if(smCharInfo.Life[0] <= 0) SetMotionFromCode(CHRMOTION_STATE_DEAD);
+							(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().ConsumeLethal(
+								gameplay::EntityId(static_cast<std::uint32_t>(dwObjectSerial)), companionReflect);
 						}
 
 						if (smCharInfo.dwCharSoundCode == snCHAR_SOUND_WEB) {	
@@ -6669,8 +6701,9 @@ int smCHAR::Main()
 			{
 				if(Counter > 16 * 60 * 2)
 				{
-					smCharInfo.Life[0] = 0;
-					SetMotionFromCode(CHRMOTION_STATE_DEAD);
+					(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().ConsumeLethal(
+						gameplay::EntityId(static_cast<std::uint32_t>(dwObjectSerial)),
+						std::max(1, static_cast<int>(smCharInfo.Life[0])));
 					AttackSkillRange = smMonsterInfo.SkillRange*smMonsterInfo.SkillRange;
 					AttackUserFlag = TRUE;
 					FrameCounter = 16;
@@ -6680,12 +6713,9 @@ int smCHAR::Main()
 			{
 				if(FrameCounter == 16 && lpTargetChar->MotionInfo->State != CHRMOTION_STATE_DEAD && lpTargetChar->smCharInfo.Life[0] > 0)
 				{
-					lpTargetChar->smCharInfo.Life[0] -= GetRandomPos(smMonsterInfo.SkillDamage[0], smMonsterInfo.SkillDamage[1]) * 2;
-					if(lpTargetChar->smCharInfo.Life[0] <= 0)
-					{
-						lpTargetChar->smCharInfo.Life[0] = 0;
-						lpTargetChar->SetMotionFromCode(CHRMOTION_STATE_DEAD);
-					}
+					const int mysticDamage = GetRandomPos(smMonsterInfo.SkillDamage[0], smMonsterInfo.SkillDamage[1]) * 2;
+					(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().ConsumeLethal(
+						gameplay::EntityId(static_cast<std::uint32_t>(lpTargetChar->dwObjectSerial)), mysticDamage);
 				}
 				lpTargetChar = 0;
 			}
@@ -6753,7 +6783,7 @@ int smCHAR::Main()
 											if(lpChar)
 											{
 												lpTargetChar = lpChar;
-												lpTargetPlayInfo = 0;
+												SummitClearCharacterPlayerTarget(this);
 												Angle.y = GetRadian2D(pX, pZ, lpTargetChar->pX, lpTargetChar->pZ);
 											}
 											else
@@ -6955,7 +6985,7 @@ int smCHAR::Main()
 									smTransCommand.LParam = 60 * 10;
 									smTransCommand.SParam = 0;
 									smTransCommand.EParam = 0;
-									lpTargetPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+									SummitSendCharacterPacket(lpTargetPlayInfo, &smTransCommand, smTransCommand.size);
 
 									if(smMonsterInfo.UseEventModel && smCharInfo.szModelName2[1])
 									{
@@ -6999,7 +7029,7 @@ int smCHAR::Main()
 								smTransCommand.LParam = 0;
 								smTransCommand.SParam = 0;
 								smTransCommand.EParam = 0;
-								lpTargetPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+								SummitSendCharacterPacket(lpTargetPlayInfo, &smTransCommand, smTransCommand.size);
 								lpTargetPlayInfo->BadPlayer = 2;
 							}
 						}
@@ -7014,10 +7044,9 @@ int smCHAR::Main()
 					if(FrameCounter == EvtFrame)
 					{
 
-						smCharInfo.Life[0] += rsGetMonsterLifeRegen(this);
-
-						if(smCharInfo.Life[0] > smCharInfo.Life[1] || smCharInfo.Life[0] < 0)
-							smCharInfo.Life[0] = smCharInfo.Life[1];
+						(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().Restore(
+							gameplay::EntityId(static_cast<std::uint32_t>(dwObjectSerial)),
+							rsGetMonsterLifeRegen(this));
 
 					}
 				}
@@ -7073,15 +7102,20 @@ int smCHAR::Main()
 			PlayPoison[1]--;
 			if((Counter & 0xF) == 0)
 			{
-				if(smCharInfo.Life[0] > 0 && MotionInfo->State != CHRMOTION_STATE_DEAD)
+				const int lifeBeforePoison = smCharInfo.Life[0];
+				if(lifeBeforePoison > 0 && MotionInfo->State != CHRMOTION_STATE_DEAD)
 				{
-					smCharInfo.Life[0] -= PlayPoison[0];
-					if(smCharInfo.Life[0] < 1)
+					const int poisonAmount = std::max(0, static_cast<int>(PlayPoison[0]));
+					const int nonLethalAmount = std::min(poisonAmount, lifeBeforePoison - 1);
+					if(nonLethalAmount > 0)
 					{
-						smCharInfo.Life[0] = 1;
-
-						PlayPoison[1] = 0;
+						(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().ConsumeNonLethal(
+							gameplay::EntityId(static_cast<std::uint32_t>(dwObjectSerial)),
+							nonLethalAmount);
 					}
+
+					if(poisonAmount >= lifeBeforePoison)
+						PlayPoison[1] = 0;
 				}
 			}
 		}
@@ -7091,9 +7125,9 @@ int smCHAR::Main()
 			PlayHolyIncantation[1]--;
 			if(PlayHolyIncantation[1] == 0 && smCharInfo.Brood == smCHAR_MONSTER_USER)
 			{
-				smCharInfo.Brood = PlayHolyIncantation[0];
-				smCharInfo.bUpdateInfo[0]++;
-				lpMasterPlayInfo = 0;
+				(void)gameplay::monsters::legacy::ServerLegacyMonsterAdapter().ReleaseFollower(
+					gameplay::monsters::FollowerReleaseRequest(
+						gameplay::EntityId(static_cast<std::uint32_t>(dwObjectSerial))));
 			}
 		}
 
@@ -13697,12 +13731,12 @@ int smCHAR::EventSkill()
 		{
 			if(AttackCritcal >= 0)
 			{
-				temp = smCharInfo.Attack_Rating;
-				smCharInfo.Attack_Rating += Impact_Attack_Rating[point - 1];
+				gameplay::combat::legacy::ScopedAttackRatingBuff attackRatingBuff(
+					this, Impact_Attack_Rating[point - 1]);
 
 
 				cnt = dm_SendTransDamage(chrAttackTarget, 0, 0, 0, 0, lpCurPlayer->AttackSkil, TRUE);
-				smCharInfo.Attack_Rating = temp;
+				attackRatingBuff.Release();
 
 				if(cnt > 0)
 				{
@@ -13815,11 +13849,11 @@ int smCHAR::EventSkill()
 
 		if(this == lpCurPlayer && chrAttackTarget && MotionEvent == 1)
 		{
-			temp = smCharInfo.Attack_Rating;
-			smCharInfo.Attack_Rating += Grand_Smash_AttackRate[point - 1];
+			gameplay::combat::legacy::ScopedAttackRatingBuff attackRatingBuff(
+				this, Grand_Smash_AttackRate[point - 1]);
 
 			cnt = dm_SendTransDamage(chrAttackTarget, 0, 0, 0, 0, lpCurPlayer->AttackSkil, TRUE);
-			smCharInfo.Attack_Rating = temp;
+			attackRatingBuff.Release();
 
 			if(!cnt)
 				AttackCritcal = -1;
@@ -14232,9 +14266,9 @@ int smCHAR::EventSkill()
 		if(this == lpCurPlayer && MotionEvent == 1 && chrAttackTarget)
 		{
 
-			x = lpCurPlayer->smCharInfo.Attack_Rating;
-
-			smCharInfo.Attack_Rating += (smCharInfo.Attack_Rating * A_Crash_AttackRate[point - 1]) / 100;
+			const int attackRatingDelta =
+				(smCharInfo.Attack_Rating * A_Crash_AttackRate[point - 1]) / 100;
+			gameplay::combat::legacy::ScopedAttackRatingBuff attackRatingBuff(this, attackRatingDelta);
 
 			cnt = dm_SendTransDamage(chrAttackTarget, cSkill.GetSkillPoint(SKILL_BRUTAL_SWING), 0, 0, 0, AttackSkil, TRUE);
 
@@ -14246,7 +14280,7 @@ int smCHAR::EventSkill()
 				DamageExp(chrAttackTarget, cnt);
 				AttackCritcal = 0;
 			}
-			smCharInfo.Attack_Rating = x;
+			attackRatingBuff.Release();
 		}
 
 		break;
@@ -14420,9 +14454,9 @@ int smCHAR::EventSkill()
 		if(this == lpCurPlayer && chrAttackTarget && MotionEvent == 1)
 		{
 
-			x = smCharInfo.Attack_Rating;
-
-			smCharInfo.Attack_Rating += (smCharInfo.Attack_Rating*Grand_Cross_AttackRate[point - 1]) / 100;
+			const int attackRatingDelta =
+				(smCharInfo.Attack_Rating * Grand_Cross_AttackRate[point - 1]) / 100;
+			gameplay::combat::legacy::ScopedAttackRatingBuff attackRatingBuff(this, attackRatingDelta);
 
 			cnt = dm_SendTransDamage(chrAttackTarget, 0, 0, 0, 0, lpCurPlayer->AttackSkil, TRUE);
 
@@ -14431,7 +14465,7 @@ int smCHAR::EventSkill()
 			else
 				lpCurPlayer->AttackCritcal = -1;
 
-			smCharInfo.Attack_Rating = x;
+			attackRatingBuff.Release();
 		}
 
 		break;
@@ -15061,7 +15095,7 @@ int smCHAR::EventSkill()
 						AttackCritcal = 0;
 
 					SkillEventDamageCount++;
-					MotionLoopSpeed = GetAttackSpeedFrame(7);
+					SummitConfigureCharacterSkillLoop(this, GetAttackSpeedFrame(7), MotionLoop);
 
 					MouseButton[1] = 0;
 					CancelAttack();
@@ -15202,8 +15236,7 @@ int smCHAR::EventSkill()
 
 						dm_SendRangeDamage(lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ, 0, 0, 0, 0, 0, lpCurPlayer->AttackSkil);
 					}
-					lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(7);
-					lpCurPlayer->MotionLoop = 1;
+					SummitConfigureCharacterSkillLoop(lpCurPlayer, GetAttackSpeedFrame(7), 1);
 
 					MouseButton[1] = 0;
 					CancelAttack();
@@ -15640,7 +15673,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 				smTransCommand.LParam = lpPlayInfo->dwSiegeItem_Scroll_Code;
 				smTransCommand.SParam = dwObjectSerial;
 				smTransCommand.EParam = 0;
-				lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+				SummitSendCharacterPacket(lpPlayInfo, &smTransCommand, smTransCommand.size);
 				return FALSE;
 			}
 		}
@@ -15664,7 +15697,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 			smTransCommand.LParam = lpPlayInfo->dwSiegeItem_Scroll_Code;
 			smTransCommand.SParam = dwObjectSerial;
 			smTransCommand.EParam = 0;
-			lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+			SummitSendCharacterPacket(lpPlayInfo, &smTransCommand, smTransCommand.size);
 			return FALSE;
 		}
 	}
@@ -15855,7 +15888,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 				smTransCommand.LParam = SKILL_PLAY_VAGUE;
 				smTransCommand.SParam = dwObjectSerial;
 				smTransCommand.EParam = 0;
-				lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+				SummitSendCharacterPacket(lpPlayInfo, &smTransCommand, smTransCommand.size);
 
 				return FALSE;
 			}
@@ -15894,7 +15927,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 			smTransCommand.LParam = SKILL_PLAY_T52;
 			smTransCommand.SParam = dwObjectSerial;
 			smTransCommand.EParam = 0;
-			lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+			SummitSendCharacterPacket(lpPlayInfo, &smTransCommand, smTransCommand.size);
 			return FALSE;
 		}
 	}
@@ -15920,7 +15953,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 				smTransCommand.LParam = SKILL_PLAY_HALL_OF_VALHALLA;
 				smTransCommand.SParam = dwObjectSerial;
 				smTransCommand.EParam = 0;
-				lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+				SummitSendCharacterPacket(lpPlayInfo, &smTransCommand, smTransCommand.size);
 
 				return FALSE;
 			}
@@ -15952,7 +15985,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 				smTransCommand.LParam = SKILL_PLAY_SUMMON_MUSPELL;
 				smTransCommand.SParam = dwObjectSerial;
 				smTransCommand.EParam = 0;
-				lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+				SummitSendCharacterPacket(lpPlayInfo, &smTransCommand, smTransCommand.size);
 
 				return FALSE;
 			}
@@ -16008,7 +16041,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 					smTransCommand.LParam = SKILL_PLAY_BLESS_EVADE;
 					smTransCommand.SParam = dwObjectSerial;
 					smTransCommand.EParam = 0;
-					lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+					SummitSendCharacterPacket(lpPlayInfo, &smTransCommand, smTransCommand.size);
 
 					return FALSE;
 				}
@@ -16070,11 +16103,12 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 			switch(lpChar->smCharInfo.State)
 			{
 			case smCHAR_STATE_ENEMY:
+			{
 
 				dwBattleTime = dwPlayTime;
 
 
-				temp = smCharInfo.Attack_Rating;
+				int attackRatingDelta = 0;
 
 				if(HoSkillCode)
 				{
@@ -16083,17 +16117,18 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 					case SKILL_SCOUT_HAWK:
 						pow = GetSkillPower(this, lpChar, 0, 0, 0);
 						if(pow)
-						{
-							smCharInfo.Attack_Rating += (smCharInfo.Attack_Rating*pow) / 100;
-						}
+							attackRatingDelta = (smCharInfo.Attack_Rating*pow) / 100;
 						break;
 					}
 				}
+
+				gameplay::combat::legacy::ScopedAttackRatingBuff attackRatingBuff(this, attackRatingDelta);
 				accuracy = sinGetAccuracy(lpChar->smCharInfo.Level, lpChar->smCharInfo.Defence);
-				smCharInfo.Attack_Rating = temp;
+				attackRatingBuff.Release();
 				if((rand() % 100) > accuracy)
 					return FALSE;
 				break;
+			}
 
 			case smCHAR_STATE_NPC:
 				TransAttackData.AttackState = Resistance;
@@ -16671,7 +16706,9 @@ int	Ptect_IncAttackCount(int Flag)
 		smTransCommand.LParam = 0;
 		smTransCommand.SParam = 0;
 		smTransCommand.EParam = 0;
-		if(smWsockDataServer) smWsockDataServer->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+		gameplay::network::legacy::ServerLegacyBackendChannelSender().Send(
+			gameplay::network::BackendChannel::Data,
+			gameplay::network::PacketView(&smTransCommand, smTransCommand.size, smTransCommand.code));
 		rc = 0;
 	}
 

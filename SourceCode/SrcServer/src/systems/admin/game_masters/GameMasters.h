@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include "smPacket.h"
+#include "Shared/admin/v2/AdminAuthorizationService.h"
 
 using namespace std;
 
@@ -36,6 +37,7 @@ private:
 
 	GameMaster* users[MAX_GMS];
 	int cursor;
+	gameplay::admin::AdminAuthorizationService authorization;
 
 public:
 	GameMasters();
@@ -52,6 +54,7 @@ public:
 
 private:
 	void clear();
+	void rebuildAuthorization();
 };
 
 

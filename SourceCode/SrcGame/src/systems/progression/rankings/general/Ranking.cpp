@@ -2,6 +2,7 @@
 #include "systems/rendering/font/FontImage.h"
 #include "compat/legacy/sin/sinLinkHeader.h"
 #include "gameplay/classes/v2/services/ClassService.h"
+#include "systems/network/v2/legacy/LegacyBackendChannelSender.h"
 char NameRank[10][32];
 char NameClanRank[10][32];
 int LevelRank[10];
@@ -288,11 +289,10 @@ void RankGame::Button()
 	smPacket.code = OpCode::OPCODE_RANKINGSEND;
 	smPacket.EParam = 0;
 	smPacket.size = sizeof(smPacket);
-	extern smWINSOCK* smWsockDataServer;
-	if (smWsockDataServer)
-	{
-		smWsockDataServer->Send((char*)&smPacket, smPacket.size, TRUE);
-	};
+	gameplay::network::legacy::ClientLegacyBackendChannelSender().Send(
+		gameplay::network::BackendChannel::Data,
+		gameplay::network::PacketView(&smPacket, static_cast<std::size_t>(smPacket.size),
+		                              static_cast<std::uint32_t>(smPacket.code)));
 }
 
 

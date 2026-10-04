@@ -2,6 +2,7 @@
 
 #include "gameplay/social/v2/ChatDelivery.h"
 #include "systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h"
+#include "network/v2/PacketSender.h"
 
 class rsPLAYINFO;
 
@@ -14,7 +15,8 @@ namespace legacy
 class LegacyChatDeliveryAdapter final : public IChatDeliveryService
 {
 public:
-    explicit LegacyChatDeliveryAdapter(const player::legacy::LegacyOnlinePlayerRegistry& registry);
+    LegacyChatDeliveryAdapter(const player::legacy::LegacyOnlinePlayerRegistry& registry,
+                              network::IPacketSender& packets);
 
     ChatDeliveryResult SendToPlayer(PlayerId player, const ChatMessage& message) override;
     ChatDeliveryResult SendToLegacyPlayer(rsPLAYINFO* player, const ChatMessage& message);
@@ -22,6 +24,7 @@ public:
 
 private:
     const player::legacy::LegacyOnlinePlayerRegistry& registry_;
+    network::IPacketSender& packets_;
 };
 
 LegacyChatDeliveryAdapter& ServerLegacyChatDeliveryAdapter();

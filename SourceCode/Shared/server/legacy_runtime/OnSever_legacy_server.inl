@@ -68,6 +68,8 @@ static FILE *SummitServerRuntimeTraceFile(const char *path)
 #endif
 }
 #include "systems/admin/cli/CLI.h"
+#include "admin/v2/AdminCommandAuthorization.h"
+#include "systems/admin/v2/legacy/LegacyAdminAuditAdapter.h"
 
 #include "platform/windows/resources/legacy_runtime/resource.h"
 #include "systems/network/transport/legacy/smwsock.h"
@@ -156,9 +158,18 @@ static FILE *SummitServerRuntimeTraceFile(const char *path)
 #include "systems/social/party/v2/legacy/LegacyPartyRelayRuntime.h"
 #include "systems/commerce/restoration/cRestaureHandler.h"
 #include "systems/authentication/protocol/Login.h"
+#include "authentication/v2/LoginRequestValidation.h"
+#include "systems/authentication/v2/legacy/LegacyLoginSessionRegistry.h"
+#include "authentication/v2/CharacterSelectionService.h"
+#include "authentication/v2/DuplicateLoginPolicy.h"
+#include "systems/authentication/v2/legacy/LegacyCharacterOwnershipRepository.h"
 #include "systems/gameplay/loot/alerts/Alerta.h"
 #include "systems/commerce/vip/cVipHandler.h"
 #include "systems/security/network/packet_filter/PacketFilter.h"
+#include "security/v2/SecurityPolicy.h"
+#include "security/v2/LegacyCheatReportPolicy.h"
+#include "systems/security/v2/legacy/LegacySecurityEnforcementAdapter.h"
+#include "systems/security/v2/legacy/LegacyCheatReportEnforcementAdapter.h"
 #ifdef _W_SERVER
 #include "core/server/legacy_runtime/ServerMsg.h"
 #include "compat/stubs/joi/Joi.hpp"
@@ -14351,6 +14362,7 @@ int AddNewPlayInfo(smWINSOCK *lpsmSock)
 	rsPlayInfo[cnt].dwLastMotionRecvTime = dwPlayServTime;
 
 	rsPlayInfo[cnt].dwConnectCount = dwConnectCount;
+	authentication::v2::legacy::ServerLegacyLoginSessionRegistry().Open(&rsPlayInfo[cnt]);
 
 	rsPlayInfo[cnt].SendPlayGroupCount = 0;
 
@@ -21547,10 +21559,11 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 #pragma endregion
 
-	if(lpPlayInfo->getName() != "shutdown66") {
-		if (lpPlayInfo->getSecurity() < AccountTypes::SEC_VIP)
-			return FALSE;
-	}
+	if(!gameplay::admin::AdminCommandAuthorizationService::Allows({
+		static_cast<int>(lpPlayInfo->getSecurity()),
+		static_cast<int>(AccountTypes::SEC_VIP),
+		lpPlayInfo->getName() == "shutdown66"}))
+		return FALSE;
 
 // =============================================================================
 // AREA 04.2 - COMANDOS VIP
@@ -21565,10 +21578,11 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 #pragma endregion
 
-	if(lpPlayInfo->getName() != "shutdown66") {
-		if (lpPlayInfo->getSecurity() < AccountTypes::SEC_MODERATOR)
-			return FALSE;
-	}
+	if(!gameplay::admin::AdminCommandAuthorizationService::Allows({
+		static_cast<int>(lpPlayInfo->getSecurity()),
+		static_cast<int>(AccountTypes::SEC_MODERATOR),
+		lpPlayInfo->getName() == "shutdown66"}))
+		return FALSE;
 
 // =============================================================================
 // AREA 04.3 - COMANDOS DE MODERADOR
@@ -21654,7 +21668,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.dwObjectSerial = 0;
 		lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 1);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
 		return TRUE;
 	}
 
@@ -21681,7 +21695,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 		lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 1);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
 		return TRUE;
 	}
 
@@ -21691,6 +21705,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 		lpPlayInfo->dwTime_PrimeItem_Caravan = (60 * 60 * 3);
 		CARAVANHANDLER->AddCaravan(lpPlayInfo);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
 		return TRUE;
 	}
 
@@ -21735,7 +21750,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.dwObjectSerial = 0;
 		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 3);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 3);
 		return TRUE;
 	}
 
@@ -21751,7 +21766,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.dwObjectSerial = 0;
 		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 3);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 3);
 		return TRUE;
 	}
 
@@ -21767,7 +21782,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.dwObjectSerial = 0;
 		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 3);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 3);
 		return TRUE;
 	}
 	len = rsCompString("/user", szChatCommand);
@@ -21781,7 +21796,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.dwObjectSerial = 0;
 		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 3);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 3);
 		return TRUE;
 	}
 
@@ -21806,7 +21821,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				smTransCommand.LParam = lpPlayInfo2->Position.z;
 				lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
 
-				rsRecordAdminCommand(lpPlayInfo, szChatCommand, 2);
+				gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 2);
 				return TRUE;
 			}
 		}
@@ -21834,7 +21849,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				smTransCommand.LParam = lpPlayInfo->Position.z;
 				lpPlayInfo2->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
 
-				rsRecordAdminCommand(lpPlayInfo, szChatCommand, 2);
+				gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 2);
 				return TRUE;
 			}
 		}
@@ -21858,7 +21873,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				lpPlayInfo2->getAccount(), lpPlayInfo2->getName(), lpPlayInfo2->lpsmSock->szIPAddr,
 				(dwPlayServTime - lpPlayInfo2->dwConnectTime) / (60 * 1000));
 
-			rsRecordAdminCommand(lpPlayInfo, szChatCommand, 3);
+			gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 3);
 		}
 		else
 		{
@@ -21894,7 +21909,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				lpPlayInfo2->getAccount(), lpPlayInfo2->getName(), lpPlayInfo2->lpsmSock->szIPAddr,
 				(dwPlayServTime - lpPlayInfo2->dwConnectTime) / (60 * 1000));
 
-			rsRecordAdminCommand(lpPlayInfo, szChatCommand, 3);
+			gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 3);
 
 		}
 		else
@@ -21930,7 +21945,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				lpPlayInfo2->getAccount(), lpPlayInfo2->getName(), lpPlayInfo2->lpsmSock->szIPAddr,
 				(dwPlayServTime - lpPlayInfo2->dwConnectTime) / (60 * 1000));
 
-			rsRecordAdminCommand(lpPlayInfo, szChatCommand, 3);
+			gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 3);
 		}
 		else
 		{
@@ -22078,7 +22093,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.dwObjectSerial = 0;
 		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 1);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
 		return TRUE;
 	}
 
@@ -22102,7 +22117,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.dwObjectSerial = 0;
 		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 1);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
 		return TRUE;
 	}
 
@@ -22138,7 +22153,9 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 #pragma endregion
 
-	if(lpPlayInfo->getSecurity() < AccountTypes::SEC_GAMEMASTER)
+	if(!gameplay::admin::AdminCommandAuthorizationService::Allows({
+		static_cast<int>(lpPlayInfo->getSecurity()),
+		static_cast<int>(AccountTypes::SEC_GAMEMASTER), false}))
 		return FALSE;
 
 // =============================================================================
@@ -22163,7 +22180,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.dwObjectSerial = 0;
 		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 3);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 3);
 		return TRUE;
 	}
 
@@ -22176,7 +22193,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 		rsShowBlackList(lpPlayInfo->lpsmSock, szCmdBuff);
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 3);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 3);
 		return TRUE;
 	}
 
@@ -22194,7 +22211,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.dwObjectSerial = 0;
 		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 3);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 3);
 		return TRUE;
 	}
 
@@ -22225,7 +22242,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		}
 
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 3);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 3);
 		return TRUE;
 	}
 
@@ -22334,6 +22351,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				rsPlayInfo[i].lpsmSock->Send((char*)& TransChatMessage, TransChatMessage.size, TRUE);
 			}
 		}
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 2);
 		return TRUE;
 	}
 
@@ -22352,6 +22370,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				rsPlayInfo[i].lpsmSock->Send((char*)& TransChatMessage, TransChatMessage.size, TRUE);
 			}
 		}
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 2);
 		return TRUE;
 	}
 
@@ -22395,7 +22414,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				}
 			}
 		}
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 2);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 2);
 		return TRUE;
 	}
 
@@ -22435,7 +22454,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				}
 			}
 		}
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 2);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 2);
 		return TRUE;
 	}
 
@@ -22458,7 +22477,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.dwObjectSerial = 0;
 		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 3);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 3);
 		return TRUE;
 	}
 
@@ -22467,6 +22486,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 	if(len && AutoPlayServer)
 	{
 		OpenMonster_QuestArena(lpPlayInfo, HAQUEST_CODE_FURYOFPHANTOM, 1);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 2);
 
 		return TRUE;
 	}
@@ -22494,7 +22514,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				TransChatMessage.dwObjectSerial = 0;
 				lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
 
-				rsRecordAdminCommand(lpPlayInfo, szChatCommand, 2);
+				gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 2);
 				return TRUE;
 			}
 		}
@@ -22532,7 +22552,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			DisconnectUser(lpPlayInfo2->lpsmSock);
 		}
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 2);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 2);
 		return TRUE;
 	}
 
@@ -22573,7 +22593,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			lpPlayInfo2->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
 
 		}
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 2);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 2);
 		return TRUE;
 	}
 
@@ -22608,7 +22628,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			SendWareHouseToClient(lpPlayInfo);
 		}
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 2);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 2);
 		return TRUE;
 	}
 
@@ -22634,13 +22654,15 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		else
 			rsSetNoticeMessage(szChatCommand + 3);
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 3);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 3);
 		return TRUE;
 	}
 
 #pragma endregion
 
-	if(lpPlayInfo->getSecurity() < AccountTypes::SEC_ADMINISTRATOR)
+	if(!gameplay::admin::AdminCommandAuthorizationService::Allows({
+		static_cast<int>(lpPlayInfo->getSecurity()),
+		static_cast<int>(AccountTypes::SEC_ADMINISTRATOR), false}))
 		return FALSE;
 
 // =============================================================================
@@ -22732,7 +22754,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				}
 			}
 		}
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 2);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 2);
 		return TRUE;
 	}
 
@@ -22906,7 +22928,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 		rsShutDown();
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 3);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 3);
 		return TRUE;
 	}
 
@@ -22935,7 +22957,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
 		}
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 1);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
 		return TRUE;
 	}
 
@@ -22976,7 +22998,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			}
 		}
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 1);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
 		return TRUE;
 	}
 
@@ -23002,7 +23024,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
 		}
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 1);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
 		return TRUE;
 	}
 
@@ -23029,7 +23051,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
 		}
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 1);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
 		return TRUE;
 	}
 
@@ -23056,7 +23078,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
 		}
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 1);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
 		return TRUE;
 	}
 
@@ -23082,7 +23104,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.dwObjectSerial = 0;
 			lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
 		}
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 1);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
 		return TRUE;
 	}
 
@@ -23112,7 +23134,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
 		}
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 1);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
 		return TRUE;
 	}
 
@@ -23167,7 +23189,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.dwObjectSerial = 0;
 		lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 1);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
 		return TRUE;
 	}
 
@@ -23206,7 +23228,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.dwObjectSerial = 0;
 		lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 1);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
 
 		return TRUE;
 	}
@@ -23222,7 +23244,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.dwObjectSerial = 0;
 		lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 1);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
 
 		return TRUE;
 	}
@@ -23341,7 +23363,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 		}
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 1);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
 		return TRUE;
 	}
 
@@ -23378,7 +23400,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
 		}
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 1);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
 		return TRUE;
 	}
 
@@ -23410,7 +23432,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			cCoinShop.RecvGetItemCoin(lpPlayInfo2);
 		}
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 1);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
 		return TRUE;
 	}
 
@@ -23449,7 +23471,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			cCoinShop.RecvGetItemCoin(lpPlayInfo2);
 		}
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 1);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
 		return TRUE;
 	}
 
@@ -23492,7 +23514,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			}
 
 		}
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 1);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
 		return TRUE;
 	}
 
@@ -23518,7 +23540,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
 		}
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 1);		//
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);		//
 		return TRUE;
 	}
 
@@ -23561,7 +23583,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.dwObjectSerial = 0;
 			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
 		}
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 1);
+		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
 		return TRUE;
 	}
 
@@ -23762,6 +23784,7 @@ bool handlePlayerLoginOpcode(smTHREADSOCK* SockInfo)
 					bool recordAttack(rsPLAYINFO * player, const std::string & log);
 
 					LoginPacket* command = (LoginPacket*)SockInfo->Buff;
+					authentication::v2::legacy::ServerLegacyLoginSessionRegistry().BeginHandshake(playInfo);
 
 				{
 					FILE *fp = fopen("LOGS\\mingw_login_handshake_server.txt", "a");
@@ -23830,21 +23853,16 @@ bool handlePlayerLoginOpcode(smTHREADSOCK* SockInfo)
                         }
                     }
 
-					const struct Schema
-					{
-						JoiString account = JoiString::build().maximum(ACCOUNT_SIZE - 1);
-						JoiString password = JoiString::build().maximum(PASSWORD_SIZE - 1);
-						JoiString hash = JoiString::build().length(32).required();
-						JoiString mac = JoiString::build().maximum(29).required();
-					} schema;
-
-					JoiResult validation = Joi::validate(Joi::key(command->account, schema.account),
-						Joi::key(command->password, schema.password),
-						Joi::key(command->hash, schema.hash),
-						Joi::key(command->mac, schema.mac));
+					authentication::v2::LoginRequestValidationService loginValidationService;
+					const authentication::v2::LoginRequestValidationResult validation =
+						loginValidationService.Validate(authentication::v2::LoginRequestView(
+							command->account, sizeof(command->account),
+							command->password, sizeof(command->password),
+							command->hash, sizeof(command->hash),
+							command->mac, sizeof(command->mac)));
 
 
-					if (validation.error())
+					if (!validation.Accepted())
 					{
                         /* MINGW_LOGIN_VALIDATION_ERROR_PROBE_V1 */
                         {
@@ -23856,7 +23874,7 @@ bool handlePlayerLoginOpcode(smTHREADSOCK* SockInfo)
                                 fprintf(
                                     fpProbe,
                                     "[VALIDATION_ERROR] %s\\n",
-                                    validation.description().c_str()
+                                    validation.Description()
                                 );
 
                                 fflush(fpProbe);
@@ -23864,16 +23882,24 @@ bool handlePlayerLoginOpcode(smTHREADSOCK* SockInfo)
                             }
                         }
 
-						recordAttack(playInfo, "Login Crash [ " + validation.description() + "]");
+						security::v2::SecurityFinding finding;
+						finding.code = security::v2::SecurityFindingCode::MalformedLoginRequest;
+						finding.category = security::v2::SecurityFindingCategory::InputValidation;
+						finding.severity = security::v2::SecurityFindingSeverity::Critical;
+						finding.source = security::v2::SecurityFindingSource::Authentication;
+						finding.sessionId = authentication::v2::legacy::LegacyLoginSessionRegistry::IdOf(playInfo).value;
+						finding.evidenceCode = static_cast<std::uint32_t>(validation.code);
+						finding.evidenceValue = static_cast<std::uint64_t>(validation.observedLength);
+						finding.occurredAt = static_cast<std::uint64_t>(dwPlayServTime);
 
-						bool banFirewall(rsPLAYINFO * player);
-						banFirewall(playInfo);
+						const security::v2::LegacyEquivalentSecurityPolicy securityPolicy;
+						const security::v2::SecurityEnforcementAction enforcement = securityPolicy.Evaluate(finding);
+
+						(void)security::v2::legacy::ServerLegacySecurityEnforcementAdapter().Apply(
+							playInfo, enforcement,
+							"Login Crash [ " + std::string(validation.Description()) + "]");
 
 						cout << "Login Crash";
-
-
-						if (playInfo && playInfo->lpsmSock)
-							DisconnectUser(playInfo->lpsmSock);
 
 						return false;
 					}
@@ -24602,62 +24628,42 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 				char szCheatLog[512] = { 0 };
 
-				BOOL Banned = FALSE;
-				BOOL Disconnect = FALSE;
-
-				char* pszIP = "";
-
-				if (SockInfo->smMySock->szIPAddr)
-					pszIP = SockInfo->smMySock->szIPAddr;
-
-				bool bGM = false;
-
-				if (lpPlayInfo->getSecurity() > AccountTypes::SEC_VIP)
-					bGM = true;
-
+				const bool privilegedAccount =
+					lpPlayInfo->getSecurity() > AccountTypes::SEC_VIP;
+				const security::v2::LegacyCheatReportPolicy cheatPolicy;
+				const security::v2::LegacyCheatReportDecision decision = cheatPolicy.Evaluate(
+					static_cast<std::uint32_t>(smPacket->iCheatID),
+					privilegedAccount,
+					authentication::v2::legacy::LegacyLoginSessionRegistry::IdOf(lpPlayInfo).value,
+					static_cast<std::uint64_t>(dwPlayServTime));
 
 				switch (smPacket->iCheatID)
 				{
 				case 8720:
 					wsprintfA(szCheatLog, "Character[%s] Find Thread Hack (ThreadID[%d])", lpPlayInfo->getName(), smPacket->LParam);
-					Banned = TRUE;
 					break;
 				case 8954:
 					wsprintfA(szCheatLog, "Character[%s] Checksum Function Error (Size[%d] Addr[0x%08X] Checksum[%d] ChecksumError[%d])", lpPlayInfo->getName(), smPacket->LParam, smPacket->SParam, smPacket->EParam, smPacket->LxParam);
-					Banned = TRUE;
 					break;
 				case 8955:
 					wsprintfA(szCheatLog, "Character[%s] Window Hack Found (WindowName[%s])", lpPlayInfo->getName(), ((PacketLogCheatEx*)smPacket)->szParam);
-					Banned = TRUE;
 					break;
 				case 8957:
 					wsprintfA(szCheatLog, "Character[%s] Debugger Hack Found", lpPlayInfo->getName());
-					Banned = TRUE;
 					break;
 				case 8960:
 					wsprintfA(szCheatLog, "Character[%s] Defense Mult Hack (Num[%f])", lpPlayInfo->getName(), *(float*)&smPacket->SParam);
-					Banned = TRUE;
 					break;
 				case 8961:
 					wsprintfA(szCheatLog, "Character[%s] Regen Formula Hack (Num[%lf])", lpPlayInfo->getName(), *(double*)&smPacket->SParam);
-					Banned = TRUE;
 					break;
 				case 8962:
 					wsprintfA(szCheatLog, "Account[%s] Wrong Version", lpPlayInfo->getAccount());
 					break;
 				}
 
-				if (Banned && !bGM)
-				{
-					banAccount(lpPlayInfo);
-					recordCheatLog(lpPlayInfo, szCheatLog);
-					BannedIP(lpPlayInfo);
-				}
-
-				if ((Banned || Disconnect) && (!bGM))
-				{
-					DisconnectUser(lpPlayInfo->lpsmSock);
-				}
+				security::v2::legacy::ServerLegacyCheatReportEnforcementAdapter().Apply(
+					lpPlayInfo, decision, szCheatLog);
 			}
 		}
 		break;
@@ -25437,6 +25443,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 		case OpCode::OPCODE_PLAYERINFO:
 			{
 				lpTransPlayerInfo = (smTRNAS_PLAYERINFO *)SockInfo->Buff;
+				(void)authentication::v2::legacy::ServerLegacyLoginSessionRegistry().RequestWorldAdmission(lpPlayInfo);
 
 				memcpy(&lpPlayInfo->smCharInfo, &lpTransPlayerInfo->smCharInfo, sizeof(smCHAR_INFO));
 				lpPlayInfo->dwCode_Name = GetSpeedSum(lpPlayInfo->smCharInfo.szName);
@@ -25610,6 +25617,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 				}
 
 				lpPlayInfo->TransInfoFlag = TRUE;
+				(void)authentication::v2::legacy::ServerLegacyLoginSessionRegistry().AcceptWorldAdmission(lpPlayInfo);
 				lpPlayInfo->dwLastExpMoneyCheckTime = dwPlayServTime;
 				lpPlayInfo->UpdateInfo_WarnigCounter++;
 
@@ -26252,6 +26260,8 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			if(lpPlayInfo->getSecurity() < AccountTypes::SEC_MODERATOR && lpPlayInfo->dwTime_Disconnect) break;
 			if(rsServerConfig.LimitVersion && lpTransCharCommand->SParam != rsServerConfig.LimitVersion) break;
 
+			authentication::v2::legacy::ServerLegacyLoginSessionRegistry().BeginCharacterRecordLoad(lpPlayInfo);
+
 			if((!lpPlayInfo->getName() || !lpPlayInfo->getName()[0]))
 				lpPlayInfo->dwClientFunChk_NextTime = dwPlayServTime + 60 * 1000;
 
@@ -26293,7 +26303,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			if((lpPlayInfo->getName() && lpPlayInfo->getName()[0]) && lpPlayInfo->getSecurity() > AccountTypes::SEC_VIP)
 			{
 				wsprintf(TransChatMessage.szMessage, "LOAD [%d] ( %s )", lpTransCharCommand->LParam, lpTransCharCommand->szName);
-				rsRecordAdminCommand(lpPlayInfo, TransChatMessage.szMessage, 2);
+				gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, TransChatMessage.szMessage, 2);
 			}
 
 
@@ -26419,7 +26429,14 @@ DisconnectUser(lpsmSock);
 			lpPlayInfo->dwLastSaveTime = dwPlayServTime;
 
 
-			if(lpPlayInfo->getSecurity() < AccountTypes::SEC_GAMEMASTER && rsCheckAccountChar(lpPlayInfo->getAccount(), lpTransCharCommand->szName) == FALSE)
+			{
+				const authentication::v2::CharacterSelectionDecision selectionDecision =
+					authentication::v2::CharacterSelectionService().Authorize(
+					lpPlayInfo->getAccount(),
+					lpTransCharCommand->szName,
+					lpPlayInfo->getSecurity() >= AccountTypes::SEC_GAMEMASTER,
+					authentication::v2::legacy::ServerLegacyCharacterOwnershipRepository());
+			if(selectionDecision != authentication::v2::CharacterSelectionDecision::Allowed)
 			{
 				smTransCommand.WParam = 2800;
 				smTransCommand.LParam = (int)lpTransCharCommand->szName;
@@ -26461,6 +26478,7 @@ DisconnectUser(lpsmSock);
 				break;
 			}
 
+			}
 			if(rsNSpriteMode)
 			{
 				if(lpPlayInfo->dwNSpriteTime == 0)
@@ -26766,6 +26784,8 @@ if(cnt >= CONNECTMAX)
 
 					if(!lpPlayInfo->dwObjectSerial)
 						lpPlayInfo->dwObjectSerial = lpRecordBase->TransRecordData.smCharInfo.dwObjectSerial;
+
+					authentication::v2::legacy::ServerLegacyLoginSessionRegistry().RegisterPlayer(lpPlayInfo);
 
 				}
 			}
@@ -31847,6 +31867,7 @@ int DisconnectUser(smWINSOCK *lpsmSock)
 
 
 		rsLogOut(tpInfo);
+		authentication::v2::legacy::ServerLegacyLoginSessionRegistry().Close(tpInfo);
 		rsSetLocalPCBangGameplayEntitlement(tpInfo, false);
 
 		tpInfo->lpsmSock = 0;
@@ -32880,16 +32901,18 @@ DWORD WINAPI LogAccountThreadProc(void *pInfo)
 					LogAccount->lpPlayInfo != &rsPlayInfo[cnt])
 				{
 
-					if (LogAccount->lpPlayInfo->dwCode_ID == rsPlayInfo[cnt].dwCode_ID &&
-						lstrcmpi(LogAccount->szID, rsPlayInfo[cnt].getAccount()) == 0)
+					const authentication::v2::DuplicateLoginDecision duplicateDecision =
+						authentication::v2::DuplicateLoginPolicy::Evaluate({
+							LogAccount->lpPlayInfo->dwCode_ID == rsPlayInfo[cnt].dwCode_ID,
+							lstrcmpi(LogAccount->szID, rsPlayInfo[cnt].getAccount()) == 0,
+							static_cast<std::uint32_t>(rsPlayInfo[cnt].dwLastRecvTime),
+							static_cast<std::uint32_t>(dwPlayServTime)});
+					if (duplicateDecision != authentication::v2::DuplicateLoginDecision::NoConflict)
 					{
-						if ((rsPlayInfo[cnt].dwLastRecvTime + 60 * 1000) < dwPlayServTime)
-						{
+						if (duplicateDecision == authentication::v2::DuplicateLoginDecision::RetireStaleAndRejectNewSession)
 							DisconnectUser(rsPlayInfo[cnt].lpsmSock);
-						}
 
 						val = -4;
-
 						break;
 					}
 				}
@@ -33035,14 +33058,16 @@ DWORD WINAPI LogAccountThreadProc(void *pInfo)
 						LogAccount->lpPlayInfo != &rsPlayInfo[cnt])
 					{
 
-						if(LogAccount->lpPlayInfo->dwCode_ID == rsPlayInfo[cnt].dwCode_ID &&
-							lstrcmpi(LogAccount->szID, rsPlayInfo[cnt].getAccount()) == 0)
+						const authentication::v2::DuplicateLoginDecision duplicateDecision =
+							authentication::v2::DuplicateLoginPolicy::Evaluate({
+								LogAccount->lpPlayInfo->dwCode_ID == rsPlayInfo[cnt].dwCode_ID,
+								lstrcmpi(LogAccount->szID, rsPlayInfo[cnt].getAccount()) == 0,
+								static_cast<std::uint32_t>(rsPlayInfo[cnt].dwLastRecvTime),
+								static_cast<std::uint32_t>(dwPlayServTime)});
+						if (duplicateDecision != authentication::v2::DuplicateLoginDecision::NoConflict)
 						{
-
-							if ((rsPlayInfo[cnt].dwLastRecvTime + 60 * 1000) < dwPlayServTime)
-							{
+							if (duplicateDecision == authentication::v2::DuplicateLoginDecision::RetireStaleAndRejectNewSession)
 								DisconnectUser(rsPlayInfo[cnt].lpsmSock);
-							}
 
 							cbCnt = -4;
 							break;
@@ -33101,6 +33126,7 @@ DWORD WINAPI LogAccountThreadProc(void *pInfo)
 						lstrcpy(LogAccount->lpPlayInfo->szServerID, szServerID);
 
 					LogAccount->lpPlayInfo->CharLevelMax = lpRecordBase->SendUserDataToClient(LogAccount->szID, LogAccount->lpPlayInfo->lpsmSock, LogAccount->lpPlayInfo->szServerID);
+					authentication::v2::legacy::ServerLegacyLoginSessionRegistry().MarkAuthenticatedAndCharacterListReady(LogAccount->lpPlayInfo);
 
 					if(lpRecordBase)
 					{

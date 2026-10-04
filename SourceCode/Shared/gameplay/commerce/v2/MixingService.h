@@ -19,6 +19,8 @@ enum class MixingCode
     Processed,
     InvalidPlayer,
     InvalidPayload,
+    InventoryReservationRejected,
+    RollbackFailed,
     Rejected
 };
 

@@ -14,7 +14,21 @@ ________________________________________________________________________________
 #include "systems/combat/skills/legacy/sinSkill_InfoIni.h"
 #include "modules/File/File.h"
 #include "content/v1/gameplay_config/content/GameplayConfigRuntime.h"
+#include "systems/network/v2/legacy/LegacyPacketSender.h"
 
+
+namespace
+{
+bool SummitSkillInfoSend(rsPLAYINFO* recipient, const void* data, int size)
+{
+	if(!recipient || !data || size <= 0)
+		return false;
+	const gameplay::PlayerId playerId =
+		gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(recipient);
+	return gameplay::network::legacy::ServerLegacyPacketSender().Send(
+		playerId, gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded();
+}
+}
 
 char* GetWords(char* q, char* p)
 {
@@ -1692,50 +1706,42 @@ int ReLoadSkillInfo(rsPLAYINFO* lpPlayInfo)
 	MechSkills.size = sizeof(MECH_INFO);
 	MechSkills.code = smTRANSCODE_MECH_INFO;
 
-	if (lpPlayInfo->lpsmSock)
-		lpPlayInfo->lpsmSock->Send((char*)&MechSkills, MechSkills.size, TRUE);
+	(void)SummitSkillInfoSend(lpPlayInfo, &MechSkills, MechSkills.size);
 
 	FighterSkills.size = sizeof(FIGHTER_INFO);
 	FighterSkills.code = smTRANSCODE_FIGHTER_INFO;
 
-	if (lpPlayInfo->lpsmSock)
-		lpPlayInfo->lpsmSock->Send((char*)&FighterSkills, FighterSkills.size, TRUE);
+	(void)SummitSkillInfoSend(lpPlayInfo, &FighterSkills, FighterSkills.size);
 
 	PikeSkills.size = sizeof(PIKE_INFO);
 	PikeSkills.code = smTRANSCODE_PIKE_INFO;
 
-	if (lpPlayInfo->lpsmSock)
-		lpPlayInfo->lpsmSock->Send((char*)&PikeSkills, PikeSkills.size, TRUE);
+	(void)SummitSkillInfoSend(lpPlayInfo, &PikeSkills, PikeSkills.size);
 
 	ArcherSkills.size = sizeof(ARCHER_INFO);
 	ArcherSkills.code = smTRANSCODE_ARCHER_INFO;
 
-	if (lpPlayInfo->lpsmSock)
-		lpPlayInfo->lpsmSock->Send((char*)&ArcherSkills, ArcherSkills.size, TRUE);
+	(void)SummitSkillInfoSend(lpPlayInfo, &ArcherSkills, ArcherSkills.size);
 
 	KinaSkills.size = sizeof(KINA_INFO);
 	KinaSkills.code = smTRANSCODE_KINA_INFO;
 
-	if (lpPlayInfo->lpsmSock)
-		lpPlayInfo->lpsmSock->Send((char*)&KinaSkills, KinaSkills.size, TRUE);
+	(void)SummitSkillInfoSend(lpPlayInfo, &KinaSkills, KinaSkills.size);
 
 	AtaSkills.size = sizeof(ATA_INFO);
 	AtaSkills.code = smTRANSCODE_ATA_INFO;
 
-	if (lpPlayInfo->lpsmSock)
-		lpPlayInfo->lpsmSock->Send((char*)&AtaSkills, AtaSkills.size, TRUE);
+	(void)SummitSkillInfoSend(lpPlayInfo, &AtaSkills, AtaSkills.size);
 
 	SacerSkills.size = sizeof(SACER_INFO);
 	SacerSkills.code = smTRANSCODE_SACER_INFO;
 
-	if (lpPlayInfo->lpsmSock)
-		lpPlayInfo->lpsmSock->Send((char*)&SacerSkills, SacerSkills.size, TRUE);
+	(void)SummitSkillInfoSend(lpPlayInfo, &SacerSkills, SacerSkills.size);
 
 	MageSkills.size = sizeof(MAGE_INFO);
 	MageSkills.code = smTRANSCODE_MAGE_INFO;
 
-	if (lpPlayInfo->lpsmSock)
-		lpPlayInfo->lpsmSock->Send((char*)&MageSkills, MageSkills.size, TRUE);
+	(void)SummitSkillInfoSend(lpPlayInfo, &MageSkills, MageSkills.size);
 
 
 #endif

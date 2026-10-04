@@ -10,7 +10,7 @@ def req(label,text,needle):
 
 for needle in (
     'const bool accountCompanion =',
-    'lpMasterPlayInfo->Position.Area < STAGE_AREA_MAX',
+    'lpMasterPlayInfo->Position.Area < StageAreaCount',
     'STG_AREA *ownerArea = &StageArea[lpMasterPlayInfo->Position.Area]',
     'ownerArea->lpStage != lpStage',
     'lpStage = ownerArea->lpStage',

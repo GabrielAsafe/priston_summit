@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <smPacket.h>
 #include <systems/network/client/netplay.h>
+#include <systems/network/v2/legacy/LegacyBackendChannelSender.h>
 #include <systems/security/client_integrity/Security.h>
 #include <algorithm>
 
@@ -14,14 +15,18 @@ LoginResult	requestLogin(const std::string &username, const std::string &passwor
 {
 	LoginPacket	packet;
 
+	gameplay::network::legacy::LegacyBackendChannelSender& backend =
+		gameplay::network::legacy::ClientLegacyBackendChannelSender();
+	const bool dataAvailable = backend.Available(gameplay::network::BackendChannel::Data);
+
 	FILE *fpHandshake = fopen("LOGS\\mingw_login_handshake_client.txt", "a");
 	if(fpHandshake)
 	{
 		fprintf(fpHandshake,
-			"[REQUEST_LOGIN_ENTER] accountLen=%u passwordLen=%u dataSocket=%p\n",
+			"[REQUEST_LOGIN_ENTER] accountLen=%u passwordLen=%u dataAvailable=%d\n",
 			(unsigned)username.size(),
 			(unsigned)password.size(),
-			(void *)smWsockDataServer);
+			dataAvailable ? 1 : 0);
 		fflush(fpHandshake);
 		fclose(fpHandshake);
 	}
@@ -59,9 +64,13 @@ LoginResult	requestLogin(const std::string &username, const std::string &passwor
 	DWORD size = sizeof(packet.szPCName) / sizeof(packet.szPCName[0]);
 	GetComputerName(packet.szPCName, &size);
 
-	if(smWsockDataServer)
+	if(dataAvailable)
 	{
-		const int sendResult = smWsockDataServer->Send((char *)&packet, packet.size, TRUE);
+		const gameplay::network::SendResult sent = backend.Send(
+			gameplay::network::BackendChannel::Data,
+			gameplay::network::PacketView(&packet, static_cast<std::size_t>(packet.size),
+			                              static_cast<std::uint32_t>(packet.code)));
+		const int sendResult = sent.Succeeded() ? TRUE : FALSE;
 		FILE *fpSend = fopen("LOGS\\mingw_login_handshake_client.txt", "a");
 		if(fpSend)
 		{
@@ -81,7 +90,7 @@ LoginResult	requestLogin(const std::string &username, const std::string &passwor
 	FILE *fpFail = fopen("LOGS\\mingw_login_handshake_client.txt", "a");
 	if(fpFail)
 	{
-		fprintf(fpFail, "[REQUEST_LOGIN_FAIL] dataSocket=NULL\n");
+		fprintf(fpFail, "[REQUEST_LOGIN_FAIL] dataChannel=unavailable\n");
 		fflush(fpFail);
 		fclose(fpFail);
 	}

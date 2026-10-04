@@ -11,11 +11,21 @@
 #include "systems/gameplay/quests/v2/legacy/LegacyQuestRepository.h"
 #include "systems/gameplay/quests/v2/legacy/LegacyQuestViewQuery.h"
 #include "systems/gameplay/quests/v2/legacy/LegacyQuestLifecycleService.h"
+#include "systems/network/v2/legacy/LegacyPacketSender.h"
 
 cQUESTHANDLER cQuestHandler;
 
 namespace
 {
+bool SummitQuestSend(rsPLAYINFO* recipient, const void* data, int size)
+{
+    if(!recipient || !data || size <= 0)
+        return false;
+    return gameplay::network::legacy::ServerLegacyPacketSender().Send(
+        gameplay::PlayerId(static_cast<std::uint32_t>(recipient->dwObjectSerial)),
+        gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded();
+}
+
 struct ProgressionQuestStateSnapshot
 {
     bool readable;
@@ -69,7 +79,7 @@ void cQUESTHANDLER::GetSpoilerInfo(rsPLAYINFO* lpPlayInfo, int SpoilerNum)
 	info.SpoilerNum = SpoilerNum;
 	info.size = sizeof(smTRANS_QUEST_INFO);
 	info.QuestCount = -1;
-	lpPlayInfo->lpsmSock->Send((char*)&info, info.size, TRUE);
+	SummitQuestSend(lpPlayInfo, &info, info.size);
 
 	std::vector<gameplay::quests::QuestSpoilerBatchView> batches;
 	if (!gameplay::quests::legacy::ServerLegacyQuestViewQuery().TryGetSpoilerBatches(
@@ -97,14 +107,14 @@ void cQUESTHANDLER::GetSpoilerInfo(rsPLAYINFO* lpPlayInfo, int SpoilerNum)
 			if (packet.QuestCount == MAX_QUEST_PACKET_INFO)
 			{
 				packet.size = sizeof(smTRANS_QUEST_INFO);
-				lpPlayInfo->lpsmSock->Send((char*)&packet, packet.size, TRUE);
+				SummitQuestSend(lpPlayInfo, &packet, packet.size);
 				packet.QuestCount = 0;
 				ZeroMemory(packet.QuestInfo, sizeof(packet.QuestInfo));
 			}
 		}
 
 		packet.size = sizeof(smTRANS_QUEST_INFO);
-		lpPlayInfo->lpsmSock->Send((char*)&packet, packet.size, TRUE);
+		SummitQuestSend(lpPlayInfo, &packet, packet.size);
 	}
 }
 
@@ -168,7 +178,7 @@ void cQUESTHANDLER::GetQuestInfo(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestK
 	}
 
 	if (lpPlayInfo && lpPlayInfo->lpsmSock)
-		lpPlayInfo->lpsmSock->Send((char*)&TransQuestInfo, TransQuestInfo.size, TRUE);
+		SummitQuestSend(lpPlayInfo, &TransQuestInfo, TransQuestInfo.size);
 }
 
 
@@ -562,7 +572,7 @@ void cQUESTHANDLER::GetReward(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKind
 			smTransCommandQ.size = sizeof(smTRANS_COMMAND_QWORD);
 			smTransCommandQ.SParam = reward.experience;
 
-			lpPlayInfo->lpsmSock->Send((char*)&smTransCommandQ, smTransCommandQ.size, TRUE);
+			SummitQuestSend(lpPlayInfo, &smTransCommandQ, smTransCommandQ.size);
 		}
 
 		if (reward.gold)
@@ -611,7 +621,7 @@ void cQUESTHANDLER::GetReward(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKind
 			Message.code = OpCode::OPCODE_MESSAGEBOX;
 			wsprintf(Message.szMessage, "Itens enviados ao Distribuidor.");
 			Message.size = lstrlen(Message.szMessage) + 32;
-			lpPlayInfo->lpsmSock->Send((char*)&Message, Message.size, TRUE);
+			SummitQuestSend(lpPlayInfo, &Message, Message.size);
 		}
 	}
 
@@ -680,7 +690,7 @@ bool cQUESTHANDLER::KillMonster(rsPLAYINFO* lpPlayInfo, smCHAR* lpChar, int Part
 			msg.size = 32 + lstrlen(msg.szMessage);
 			msg.dwIP = 9;
 			msg.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char*)&msg, msg.size, TRUE);
+			SummitQuestSend(lpPlayInfo, &msg, msg.size);
 		}
 
 		GetQuestInfo(

@@ -12,8 +12,8 @@ extern smCHAR_INFO chrMonsterList[300];
 
 void CCaravanaHandler::AddCaravan(rsPLAYINFO* lpPlayInfo)
 {
-	if (lpPlayInfo->Position.Area < 0 ||
-		lpPlayInfo->Position.Area > STAGE_AREA_MAX ||
+	if (!StageArea || lpPlayInfo->Position.Area < 0 ||
+		lpPlayInfo->Position.Area >= StageAreaCount ||
 		lpPlayInfo->Position.Area == rsCASTLE_FIELD)
 		return;
 

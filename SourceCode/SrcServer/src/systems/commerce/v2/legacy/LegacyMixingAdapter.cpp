@@ -7,6 +7,9 @@
 #include "systems/gameplay/character/core/character.h"
 #include "core/server/legacy_runtime/onserver.h"
 #include "systems/commerce/legacy/sinTrade.h"
+#include "systems/commerce/v2/legacy/LegacyCommerceReservationGuard.h"
+#include "gameplay/inventory/v2/InventorySnapshotRollback.h"
+#include "systems/inventory/v2/legacy/LegacyInventoryRuntime.h"
 
 int rsRecvMixtureResetItem(rsPLAYINFO* lpPlayInfo, sMIXTURE_RESET_ITEM_SERVER* pMixtureResetItem_Server);
 
@@ -42,7 +45,34 @@ MixingResult LegacyMixingAdapter::Process(const MixingRequest& request)
 
     sMIXTURE_RESET_ITEM_SERVER packet;
     std::memcpy(&packet, request.requestBytes.data(), sizeof(packet));
-    result.code = rsRecvMixtureResetItem(player, &packet) == TRUE ? MixingCode::Processed : MixingCode::Rejected;
+    std::vector<inventory::ItemInstanceId> items;
+    AppendLegacyReservationItem(
+        items, packet.DesMixtureResetItem.sItemInfo.CODE,
+        packet.DesMixtureResetItem.sItemInfo.ItemHeader.Head,
+        packet.DesMixtureResetItem.sItemInfo.ItemHeader.dwChkSum);
+    AppendLegacyReservationItem(
+        items, packet.dwMixtureResetStoneItemCode, packet.dwMixtureResetStoneHead,
+        packet.dwMixtureResetStoneCheckSum);
+    LegacyCommerceReservationGuard reservation(request.player, items);
+    if(!reservation.Accepted())
+    {
+        result.code = MixingCode::InventoryReservationRejected;
+        return result;
+    }
+    inventory::legacy::LegacyInventoryRuntime& inventoryRuntime = inventory::legacy::ServerLegacyInventoryRuntime();
+    inventory::InventorySnapshotRollback rollback(inventoryRuntime, inventoryRuntime, request.player);
+    const int legacyProcessed = rsRecvMixtureResetItem(player, &packet);
+    if(legacyProcessed == TRUE && sMixtureReset_Recv.Result == TRUE)
+    {
+        result.code = MixingCode::Processed;
+        return result;
+    }
+    if(rollback.Captured() && !rollback.Restore().Restored())
+    {
+        result.code = MixingCode::RollbackFailed;
+        return result;
+    }
+    result.code = MixingCode::Rejected;
     return result;
 }
 

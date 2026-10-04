@@ -11,6 +11,7 @@
 #include "systems/gameplay/quests/ui/cQuestWindow.h"
 #include "systems/gameplay/events/hells_gate/cHellsGate.h"
 #include "systems/ui/v2/legacy/LegacyUIV2Bridge.h"
+#include "systems/network/v2/legacy/LegacyBackendChannelSender.h"
 
 #define MAX_MONEY 1000000000
 #define rsCASTLE_FIELD 33
@@ -2693,8 +2694,10 @@ int cMESSAGEBOX::CheckOkMessageBox2(int Kind)
 		packet.size = sizeof(CCSHOP_BUY);
 		if (ClanCustom::GetInstance()->IsOpen())
 			packet.code = CCPACKET_SEND_ITEM_SERVER;
-		if (smWsockUserServer)
-			smWsockUserServer->Send((char*)&packet, packet.size, TRUE);
+		gameplay::network::legacy::ClientLegacyBackendChannelSender().Send(
+			gameplay::network::BackendChannel::User,
+			gameplay::network::PacketView(&packet, static_cast<std::size_t>(packet.size),
+			                              static_cast<std::uint32_t>(packet.code)));
 	}
 	break;
 
@@ -2737,8 +2740,10 @@ int cMESSAGEBOX::CheckOkMessageBox2(int Kind)
 
 			if (JOBS::GetInstance()->IsOpen())
 				packet.code = JOBS_PACKET_SEND_ITEM_SERVER;
-			if (smWsockUserServer)
-				smWsockUserServer->Send((char*)&packet, packet.size, TRUE);
+			gameplay::network::legacy::ClientLegacyBackendChannelSender().Send(
+				gameplay::network::BackendChannel::User,
+				gameplay::network::PacketView(&packet, static_cast<std::size_t>(packet.size),
+				                              static_cast<std::uint32_t>(packet.code)));
 		}
 	}
 	break;
@@ -2753,8 +2758,10 @@ int cMESSAGEBOX::CheckOkMessageBox2(int Kind)
 
 		if (JOBS::GetInstance()->IsOpen())
 			packet.code = JOBS_PACKET_SEND_SELL_SERVER;
-		if (smWsockUserServer)
-			smWsockUserServer->Send((char*)&packet, packet.size, TRUE);
+		gameplay::network::legacy::ClientLegacyBackendChannelSender().Send(
+			gameplay::network::BackendChannel::User,
+			gameplay::network::PacketView(&packet, static_cast<std::size_t>(packet.size),
+			                              static_cast<std::uint32_t>(packet.code)));
 
 		JOBS::GetInstance()->contsellprice = 0;
 		JOBS::GetInstance()->contsellqtd = 0;
@@ -2770,8 +2777,10 @@ int cMESSAGEBOX::CheckOkMessageBox2(int Kind)
 		packet.size = sizeof(JOBS_RESGATE);
 		if (JOBS::GetInstance()->IsOpen())
 			packet.code = JOBS_PACKET_SEND_BUY_SERVER;
-		if (smWsockUserServer)
-			smWsockUserServer->Send((char*)&packet, packet.size, TRUE);
+		gameplay::network::legacy::ClientLegacyBackendChannelSender().Send(
+			gameplay::network::BackendChannel::User,
+			gameplay::network::PacketView(&packet, static_cast<std::size_t>(packet.size),
+			                              static_cast<std::uint32_t>(packet.code)));
 	}
 	break;
 
@@ -2811,7 +2820,10 @@ int cMESSAGEBOX::CheckOkMessageBox2(int Kind)
 			smPacket.EParam = 2;
 			smPacket.size = sizeof(smPacket);
 
-			smWsockDataServer->Send((char *)&smPacket, smPacket.size, TRUE);
+			gameplay::network::legacy::ClientLegacyBackendChannelSender().Send(
+			gameplay::network::BackendChannel::Data,
+			gameplay::network::PacketView(&smPacket, static_cast<std::size_t>(smPacket.size),
+			                              static_cast<std::uint32_t>(smPacket.code)));
 
 			lpCurPlayer->sBlessCastle_Damage[1] -= 50;
 

@@ -34,13 +34,26 @@
 #include "systems/combat/server_legacy/svr_Damage.h"
 
 #include "systems/gameplay/events/server_legacy/svrEventSpawn.h"
+#include "systems/network/v2/legacy/LegacyPacketSender.h"
 
 #include "systems/gameplay/events/bellatra/ui/BellatraFontEffect.h"
 
 
 
+namespace
+{
+bool SummitEventSpawnSend(rsPLAYINFO* recipient, const void* data, int size)
+{
+	if(!recipient || !data || size <= 0)
+		return false;
+	const gameplay::PlayerId playerId =
+		gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(recipient);
+	return gameplay::network::legacy::ServerLegacyPacketSender().Send(
+		playerId, gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded();
+}
+}
 
-rsEVENT_SPAWN	rsEventSpawn[STAGE_AREA_MAX];
+rsEVENT_SPAWN	rsEventSpawn[FIELD_MAX];
 int	rsEventSpawnInit = 0;
 
 #include "systems/gameplay/events/server_legacy/Set_EventSpawn.h"
@@ -275,7 +288,7 @@ int	rsEVENT_SPAWN::Event_KillMonster(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar)
 		TransChatMessage.dwObjectSerial = 0;
 		wsprintf(TransChatMessage.szMessage, ">Condition[%d] EventPlayTime[%d] BossTime[%d]", EventCondition, (dwEventPlayTime - dwPlayServTime) / 1000, (dwBossTime - dwPlayServTime) / 1000);
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		(void)SummitEventSpawnSend(lpPlayInfo, &TransChatMessage, TransChatMessage.size);
 	}
 
 	return TRUE;
@@ -302,7 +315,7 @@ int rsEVENT_SPAWN::OpenUserEffect(int FontEffectType, int x, int z, int range)
 			dist = rx*rx + rz*rz;
 			if(dist < drange && rx < range && rz < range)
 			{
-				rsPlayInfo[cnt].lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+				(void)SummitEventSpawnSend(&rsPlayInfo[cnt], &smTransCommand, smTransCommand.size);
 			}
 		}
 	}
@@ -430,14 +443,14 @@ int rsEVENT_SPAWN::Order(rsPLAYINFO *lpPlayInfo, char *szText)
 
 						wsprintf(TransChatMessage.szMessage, szEventSpawn_Order42[cnt][2]);
 						TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
-						lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+						(void)SummitEventSpawnSend(lpPlayInfo, &TransChatMessage, TransChatMessage.size);
 					}
 					else
 					{
 
 						wsprintf(TransChatMessage.szMessage, szEventSpawn_Order42[cnt][1]);
 						TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
-						lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+						(void)SummitEventSpawnSend(lpPlayInfo, &TransChatMessage, TransChatMessage.size);
 					}
 				}
 			}
@@ -456,7 +469,7 @@ int rsEVENT_SPAWN::Order(rsPLAYINFO *lpPlayInfo, char *szText)
 int rsEventSpawn_KillMonster(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar)
 {
 
-	if(lpPlayInfo->Position.Area >= 0 && lpPlayInfo->Position.Area < STAGE_AREA_MAX)
+	if(lpPlayInfo->Position.Area >= 0 && lpPlayInfo->Position.Area < StageAreaCount)
 	{
 
 		return rsEventSpawn[lpPlayInfo->Position.Area].Event_KillMonster(lpPlayInfo, lpChar);
@@ -468,7 +481,7 @@ int rsEventSpawn_KillMonster(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar)
 int rsEventSpawn_Order(rsPLAYINFO *lpPlayInfo, char *szText)
 {
 
-	if(lpPlayInfo->Position.Area >= 0 && lpPlayInfo->Position.Area < STAGE_AREA_MAX)
+	if(lpPlayInfo->Position.Area >= 0 && lpPlayInfo->Position.Area < StageAreaCount)
 	{
 
 		return rsEventSpawn[lpPlayInfo->Position.Area].Order(lpPlayInfo, szText);
@@ -483,7 +496,7 @@ int rsEventSpawn_Main(STG_AREA *lpStgArea)
 	if(!rsEventSpawnInit)
 	{
 
-		for(int cnt = 0; cnt < STAGE_AREA_MAX; cnt++)
+		for(int cnt = 0; cnt < StageAreaCount; cnt++)
 		{
 			ZeroMemory(&rsEventSpawn[cnt], sizeof(rsEVENT_SPAWN));
 

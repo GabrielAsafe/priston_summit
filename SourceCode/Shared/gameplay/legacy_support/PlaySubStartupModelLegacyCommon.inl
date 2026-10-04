@@ -228,8 +228,8 @@ int Send_OftPatSumToDataServer()
 
 	dwOftPatSum = 0;
 
-	if (smWsockDataServer)
-		return smWsockDataServer->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+	if (LegacyPlaySubDataChannelAvailable())
+		return LegacyPlaySubSendDataPacket(&smTransCommand, smTransCommand.size, smTransCommand.code);
 
 	return FALSE;
 }

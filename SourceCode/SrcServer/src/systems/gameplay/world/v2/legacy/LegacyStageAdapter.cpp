@@ -15,7 +15,7 @@ namespace
 {
 bool ValidMap(MapId map)
 {
-    return map.Valid() && map.value < static_cast<std::uint32_t>(STAGE_AREA_MAX);
+    return StageArea && StageAreaCount > 0 && map.Valid() && map.value < static_cast<std::uint32_t>(StageAreaCount);
 }
 }
 

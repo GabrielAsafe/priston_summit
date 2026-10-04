@@ -73,7 +73,8 @@ def main() -> None:
         "registry_.Resolve(player)",
         "for(int index = 0; index < CONNECTMAX; ++index)",
         "rsPLAYINFO* legacyPlayer = &rsPlayInfo[index]",
-        "legacyPlayer->lpsmSock->Send",
+        "packets_.Send(",
+        "network::PacketView(&packet",
         "std::snprintf(packet.szMessage",
     ):
         if token not in adapter:

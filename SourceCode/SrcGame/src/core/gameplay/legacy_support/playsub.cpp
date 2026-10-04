@@ -2,6 +2,7 @@
 #include "systems/rendering/legacy_3d/smd3d.h"
 
 #include "systems/network/transport/legacy/smwsock.h"
+#include "systems/network/v2/legacy/LegacyBackendChannelSender.h"
 #include "systems/gameplay/character/core/character.h"
 #include "systems/media/video/legacy_avi/avictrl.h"
 #include "core/gameplay/runtime/playmain.h"
@@ -73,6 +74,19 @@ static char *szNpcDirectory = "char//npc//";
 
 #include "core/gameplay/legacy_support/playmodel.h"
 #include "gameplay/classes/v2/services/ClassService.h"
+
+static bool LegacyPlaySubDataChannelAvailable()
+{
+	return gameplay::network::legacy::ClientLegacyBackendChannelSender().Available(
+		gameplay::network::BackendChannel::Data);
+}
+
+static int LegacyPlaySubSendDataPacket(const void* data, int size, unsigned int opcode)
+{
+	return gameplay::network::legacy::ClientLegacyBackendChannelSender().Send(
+		gameplay::network::BackendChannel::Data,
+		gameplay::network::PacketView(data, static_cast<std::size_t>(size), opcode)).Succeeded() ? TRUE : FALSE;
+}
 
 #include "gameplay/legacy_support/PlaySubClassModelLegacyCommon.inl"
 

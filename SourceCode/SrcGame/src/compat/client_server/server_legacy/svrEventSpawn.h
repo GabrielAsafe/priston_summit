@@ -31,7 +31,7 @@ public:
 
 #define	rsEVENT_CODE_SPAWN_FLAG		0x200
 
-extern rsEVENT_SPAWN	rsEventSpawn[STAGE_AREA_MAX];
+extern rsEVENT_SPAWN	rsEventSpawn[FIELD_MAX];
 
 
 

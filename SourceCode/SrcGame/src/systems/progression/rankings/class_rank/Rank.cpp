@@ -1,4 +1,5 @@
 #include "compat/legacy/sin/sinLinkHeader.h"
+#include "systems/network/v2/legacy/LegacyBackendChannelSender.h"
 
 Rank_PACK RankList;
 Rank_Class Rselectitem;
@@ -25,8 +26,10 @@ void Rank::SendRankclassToServer(int type, int Job_code)
 		
 		if (Rank::GetInstance()->IsOpen())
 			packet.code = RANK_PACKET_SEND_RANKCLASS;
-		if (smWsockUserServer)
-			smWsockUserServer->Send((char*)&packet, packet.size, TRUE);
+		gameplay::network::legacy::ClientLegacyBackendChannelSender().Send(
+			gameplay::network::BackendChannel::User,
+			gameplay::network::PacketView(&packet, static_cast<std::size_t>(packet.size),
+			                              static_cast<std::uint32_t>(packet.code)));
 	}
 
 }

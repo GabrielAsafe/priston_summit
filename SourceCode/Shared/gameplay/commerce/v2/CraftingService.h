@@ -14,6 +14,8 @@ enum class CraftingCode
     Processed,
     InvalidPlayer,
     InvalidPayload,
+    InventoryReservationRejected,
+    RollbackFailed,
     Rejected
 };
 

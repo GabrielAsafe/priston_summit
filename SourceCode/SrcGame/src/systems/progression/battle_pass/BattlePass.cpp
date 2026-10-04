@@ -1,5 +1,6 @@
 #include "compat/legacy/sin/sinLinkHeader.h"
 #include "systems/progression/battle_pass/BattlePass.h"
+#include "systems/network/v2/legacy/LegacyBackendChannelSender.h"
 #include <string>
 
 BP_PACK BPList;
@@ -60,8 +61,10 @@ void BattlePass::SendItemToServer(BP_ITEM item)
 			packet.size = sizeof(BP_RESGATE);
 			if (BattlePass::GetInstance()->IsOpen())
 				packet.code = BP_PACKET_SEND_ITEM_SERVER;
-			if (smWsockUserServer)
-				smWsockUserServer->Send((char *)&packet, packet.size, TRUE);
+			gameplay::network::legacy::ClientLegacyBackendChannelSender().Send(
+				gameplay::network::BackendChannel::User,
+				gameplay::network::PacketView(&packet, static_cast<std::size_t>(packet.size),
+				                              static_cast<std::uint32_t>(packet.code)));
 		}
 
 }

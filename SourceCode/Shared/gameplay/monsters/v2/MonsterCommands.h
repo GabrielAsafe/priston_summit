@@ -48,11 +48,29 @@ struct FollowerConversionResult
     bool Ok() const { return code == MonsterCommandCode::Ok && converted; }
 };
 
+
+struct FollowerReleaseRequest
+{
+    EntityId target;
+
+    explicit FollowerReleaseRequest(EntityId targetValue = EntityId()) : target(targetValue) {}
+};
+
+struct FollowerReleaseResult
+{
+    MonsterCommandCode code;
+    bool released;
+
+    FollowerReleaseResult() : code(MonsterCommandCode::InvalidRequest), released(false) {}
+    bool Ok() const { return code == MonsterCommandCode::Ok && released; }
+};
+
 class IMonsterCommands
 {
 public:
     virtual ~IMonsterCommands() {}
     virtual FollowerConversionResult ConvertToFollower(const FollowerConversionRequest& request) = 0;
+    virtual FollowerReleaseResult ReleaseFollower(const FollowerReleaseRequest& request) = 0;
 };
 }
 }

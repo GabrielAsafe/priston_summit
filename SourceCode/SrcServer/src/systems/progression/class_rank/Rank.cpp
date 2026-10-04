@@ -1,132 +1,85 @@
 #include "core/server/legacy_sin_runtime/sinLinkHeader.h"
+#include "systems/progression/class_rank/Rank.h"
 #include "core/server/legacy_runtime/onserver.h"
+#include "systems/network/v2/legacy/LegacyPacketSender.h"
+#include "Shared/gameplay/progression/v2/ClassRankReadModel.h"
+#include "systems/progression/class_rank/v2/legacy/LegacyClassRankRepository.h"
 
+#include <limits>
+#include <vector>
+
+
+
+namespace
+{
+bool SummitClassRankSend(rsPLAYINFO* recipient, const void* data, int size)
+{
+	if(!recipient || !data || size <= 0)
+		return false;
+	return gameplay::network::legacy::ServerLegacyPacketSender().Send(
+		gameplay::PlayerId(static_cast<std::uint32_t>(recipient->dwObjectSerial)),
+		gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded();
+}
+}
 
 
 void Rank::RecvRankclassToServer(rsPLAYINFO* Player, Rank_Job* infos)
-{	
-	ranktype = infos->type;
-	rankjob_code = infos->job_code;
+{
+	if (!infos)
+		return;
 
-	Rank::GetInstance()->SendRankclassToGame(Player);
+	gameplay::progression::ClassRankQuery query;
+	if (!gameplay::progression::ClassRankQueryService::TryFromLegacy(infos->type, infos->job_code, query))
+		return;
+
+	SendRankclassToGame(Player, query);
 }
 
 void Rank::SendRankclassToGame(rsPLAYINFO* Player)
 {
-	if (Player == NULL)
+	// UI-open callers do not carry a request-local metric/class selection.
+	// Keep the open path compatible without reviving shared rank state.
+	if (!Player)
 		return;
-	std::shared_ptr<SQLConnection> db = SQLConnection::GetConnection(DATABASEID_ServerDB);
-
-	if (db->Open())
-	{
-		int i = 0;
-		Rank_PACK packet;
-		ZeroMemory(&packet, sizeof(Rank_PACK));
-		packet.size = sizeof(Rank_PACK);
-		packet.code = RANK_PACKET_RECV_RANKCLASS;
-		if (ranktype == 1)
-		{
-			if (rankjob_code == 0)
-			{
-				db->Prepare("SELECT * FROM [PVP] where id not in (Select accountId COLLATE Latin1_General_CI_AI From accountdb..GameMasters where active =1) and class <> 0 Order By LVL Desc");
-				if (db->Execute())
-				{
-					do
-					{
-						db->GetData(packet.infos[i].Name, sizeof(packet.infos[i].Name), 2, PARAMTYPE_String);
-						db->GetData(&packet.infos[i].Job_code, sizeof(packet.infos[i].Job_code), 3, PARAMTYPE_Integer);
-						db->GetData(&packet.infos[i].Level, sizeof(packet.infos[i].Level), 4, PARAMTYPE_Int64);
-						i++;
-
-						if (i > 50) break;
-					} while (db->NextRow());
-
-					if (Player->lpsmSock)
-						Player->lpsmSock->Send((char*)&packet, packet.size, TRUE);
-
-
-				}
-				db->Close();
-			}
-			else
-			{
-				db->Prepare("SELECT * FROM [PVP] WHERE [CLASS]=? and ID not in (Select accountId COLLATE Latin1_General_CI_AI From accountdb.dbo.GameMasters where active =1) Order By LVL Desc");
-				if (!db->BindInputParameter(&rankjob_code, 1, PARAMTYPE_Integer)) return;
-				if (db->Execute())
-				{
-					do
-					{
-
-						db->GetData(packet.infos[i].Name, sizeof(packet.infos[i].Name), 2, PARAMTYPE_String);
-						db->GetData(&packet.infos[i].Job_code, sizeof(packet.infos[i].Job_code), 3, PARAMTYPE_Integer);
-						db->GetData(&packet.infos[i].Level, sizeof(packet.infos[i].Level), 4, PARAMTYPE_Int64);
-
-
-						i++;
-
-						if (i > 50) break;
-					} while (db->NextRow());
-
-					if (Player->lpsmSock)
-						Player->lpsmSock->Send((char*)&packet, packet.size, TRUE);
-				}
-				db->Close();
-			}
-		}
-		else if (ranktype == 2)
-		{
-			if (rankjob_code == 0)
-			{
-
-
-				db->Prepare("SELECT * FROM [PVP] where id not in (Select accountId COLLATE Latin1_General_CI_AI From accountdb.dbo.GameMasters where active =1) AND Kills > 0 Order By Kills Desc");
-				if (db->Execute())
-				{
-					do
-					{
-
-						db->GetData(packet.infos[i].Name, 32, 2, PARAMTYPE_String);
-						db->GetData(&packet.infos[i].Job_code, sizeof(int), 3, PARAMTYPE_Integer);
-						db->GetData(&packet.infos[i].Kills, sizeof(int), 5, PARAMTYPE_Integer);
-
-
-						i++;
-
-						if (i > 50) break;
-					} while (db->NextRow());
-
-					if (Player->lpsmSock)
-						Player->lpsmSock->Send((char*)&packet, packet.size, TRUE);
-				}
-				db->Close();
-			}
-			else
-			{
-				db->Prepare("SELECT * FROM [PVP] WHERE [Class]=? and id not in (Select accountId COLLATE Latin1_General_CI_AI From accountdb.dbo.GameMasters where active =1) AND Kills > 0  Order By Kills Desc");
-				db->BindInputParameter(&rankjob_code, 1, PARAMTYPE_Integer);
-				if (db->Execute())
-				{
-					do
-					{
-						db->GetData(packet.infos[i].Name, 32, 2, PARAMTYPE_String);
-						db->GetData(&packet.infos[i].Job_code, sizeof(int), 3, PARAMTYPE_Integer);
-						db->GetData(&packet.infos[i].Kills, sizeof(int), 5, PARAMTYPE_Integer);
-
-
-						i++;
-
-						if (i > 50) break;
-					} while (db->NextRow());
-
-					if (Player->lpsmSock)
-						Player->lpsmSock->Send((char*)&packet, packet.size, TRUE);
-				}
-				db->Close();
-			}
-		}
-
-	}
-
 }
 
+void Rank::SendRankclassToGame(rsPLAYINFO* Player, const gameplay::progression::ClassRankQuery& query)
+{
+	if (Player == NULL)
+		return;
+
+	std::vector<gameplay::progression::ClassRankEntry> entries;
+	if (!gameplay::progression::ClassRankReadService::LoadTop(
+		gameplay::progression::legacy::ServerLegacyClassRankRepository(), query, entries))
+		return;
+
+	Rank_PACK packet;
+	ZeroMemory(&packet, sizeof(Rank_PACK));
+	packet.size = sizeof(Rank_PACK);
+	packet.code = RANK_PACKET_RECV_RANKCLASS;
+
+	for (std::size_t i = 0; i < entries.size() && i < 100u; ++i)
+	{
+		const gameplay::progression::ClassRankEntry& entry = entries[i];
+		strcpy_s(packet.infos[i].Name, sizeof(packet.infos[i].Name), entry.name.c_str());
+		packet.infos[i].Job_code = entry.classCode;
+
+		if (query.metric == gameplay::progression::RankingMetric::Level)
+		{
+			if (entry.level > static_cast<std::int64_t>(std::numeric_limits<int>::max()))
+				packet.infos[i].Level = std::numeric_limits<int>::max();
+			else if (entry.level < static_cast<std::int64_t>(std::numeric_limits<int>::min()))
+				packet.infos[i].Level = std::numeric_limits<int>::min();
+			else
+				packet.infos[i].Level = static_cast<int>(entry.level);
+		}
+		else
+		{
+			packet.infos[i].Kills = entry.kills;
+		}
+	}
+
+	if (Player->lpsmSock)
+		SummitClassRankSend(Player, &packet, packet.size);
+}
 

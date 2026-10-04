@@ -108,6 +108,38 @@ FollowerConversionResult LegacyMonsterAdapter::ConvertToFollower(const FollowerC
     return result;
 }
 
+FollowerReleaseResult LegacyMonsterAdapter::ReleaseFollower(const FollowerReleaseRequest& request)
+{
+    FollowerReleaseResult result;
+    if(!request.target.Valid())
+        return result;
+
+    smCHAR* target = srFindCharFromSerial(static_cast<DWORD>(request.target.value));
+    if(!target)
+    {
+        result.code = MonsterCommandCode::TargetNotFound;
+        return result;
+    }
+    if(!target->Flag)
+    {
+        result.code = MonsterCommandCode::TargetInactive;
+        return result;
+    }
+    if(target->smCharInfo.Brood != smCHAR_MONSTER_USER)
+    {
+        result.code = MonsterCommandCode::InvalidState;
+        return result;
+    }
+
+    target->smCharInfo.Brood = target->PlayHolyIncantation[0];
+    target->smCharInfo.bUpdateInfo[0]++;
+    target->lpMasterPlayInfo = 0;
+
+    result.code = MonsterCommandCode::Ok;
+    result.released = true;
+    return result;
+}
+
 LegacyMonsterAdapter& ServerLegacyMonsterAdapter()
 {
     static LegacyMonsterAdapter adapter;

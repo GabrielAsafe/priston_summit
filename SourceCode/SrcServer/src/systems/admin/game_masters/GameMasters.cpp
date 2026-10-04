@@ -9,13 +9,14 @@ using namespace std;
 
 GameMasters gms;
 
-GameMasters::GameMasters()
+GameMasters::GameMasters() : cursor(0)
 {
-	clear();
+	ZeroMemory(users, sizeof(users));
 }
 
 GameMasters::~GameMasters()
 {
+	clear();
 }
 
 bool GameMasters::readFromDatabase()
@@ -54,6 +55,7 @@ bool GameMasters::readFromDatabase()
 
 
 		db->Close();
+		rebuildAuthorization();
 		return true;
 	}
 
@@ -62,44 +64,14 @@ bool GameMasters::readFromDatabase()
 
 AccountTypes GameMasters::getGameMaster(const std::string & accountId, const std::string & password) const
 {
-
-	for(unsigned int i = 0; i < MAX_GMS; i++)
-	{
-		if(users[i])
-		{
-			if(accountId.compare(users[i]->accountId) == 0)
-			{
-				if(password.compare(users[i]->password) == 0)
-				{
-					if(users[i]->active)
-						return users[i]->security;
-					else
-						return AccountTypes::SEC_PLAYER;
-				}
-				else
-					return AccountTypes::SEC_PLAYER;
-			}
-		}
-	}
-
-	return AccountTypes::SEC_PLAYER;
+	return static_cast<AccountTypes>(authorization.Authenticate(
+		accountId, password, static_cast<int>(AccountTypes::SEC_PLAYER)));
 }
 
 AccountTypes GameMasters::isGameMaster(const std::string & accountId) const
 {
-
-	for (unsigned int i = 0; i < MAX_GMS; i++)
-	{
-		if (users[i])
-		{
-			if (accountId.compare(users[i]->accountId) == 0)
-			{
-				return users[i]->security;
-			}
-		}
-	}
-
-	return AccountTypes::SEC_PLAYER;
+	return static_cast<AccountTypes>(authorization.ResolveActiveSecurity(
+		accountId, static_cast<int>(AccountTypes::SEC_PLAYER)));
 }
 
 void GameMasters::print() const
@@ -131,15 +103,31 @@ void GameMasters::clear()
 {
 	for(unsigned int i = 0; i < MAX_GMS; i++)
 	{
-		if(users[i])
-		{
-			users[i] = nullptr;
-		}
+		delete users[i];
+		users[i] = nullptr;
 	}
 
 	cursor = 0;
+	authorization.ReplaceAll({});
 
 	ZeroMemory(users, sizeof(users));
+}
+
+void GameMasters::rebuildAuthorization()
+{
+	std::vector<gameplay::admin::AdminIdentity> identities;
+	identities.reserve(static_cast<std::size_t>(cursor));
+	for (int i = 0; i < cursor && i < MAX_GMS; ++i)
+	{
+		if (!users[i])
+			continue;
+		identities.push_back({
+			users[i]->accountId,
+			users[i]->password,
+			static_cast<int>(users[i]->security),
+			users[i]->active});
+	}
+	authorization.ReplaceAll(std::move(identities));
 }
 
 
