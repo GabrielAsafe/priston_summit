@@ -18,8 +18,12 @@ for rel in (
     )
     for token in required:
         assert token in block, f"event skill multi-hit guard: missing {token} in {rel}"
+    assert block.count("SkillMultiHitPolicy::IsWithinHitWindow(MotionEvent, 2)") >= 3, (
+        f"event skill multi-hit guard: first-hit-window timing not fully delegated in {rel}"
+    )
 
     forbidden = (
+        "MotionEvent < 2",
         "MotionEvent < 3 && chrAttackTarget",
         "MotionEvent < T_Impact_Hit[point - 1]",
         "MotionEvent < Divine_Piercing_AttackNum[point - 1]",

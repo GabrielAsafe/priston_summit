@@ -5,6 +5,10 @@ int main()
 {
     using gameplay::skills::SkillMultiHitPolicy;
 
+    assert(SkillMultiHitPolicy::IsWithinHitWindow(0, 2));
+    assert(SkillMultiHitPolicy::IsWithinHitWindow(1, 2));
+    assert(!SkillMultiHitPolicy::IsWithinHitWindow(2, 2));
+
     assert(SkillMultiHitPolicy::IsWithinHitWindow(0, 3));
     assert(SkillMultiHitPolicy::IsWithinHitWindow(2, 3));
     assert(!SkillMultiHitPolicy::IsWithinHitWindow(3, 3));

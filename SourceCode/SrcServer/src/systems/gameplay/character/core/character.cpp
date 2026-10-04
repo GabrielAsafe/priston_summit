@@ -13737,7 +13737,7 @@ int smCHAR::EventSkill()
 
 	case SKILL_PLAY_IMPACT:
 
-		if(this == lpCurPlayer && chrAttackTarget && MotionEvent < 2)
+		if(this == lpCurPlayer && chrAttackTarget && gameplay::skills::SkillMultiHitPolicy::IsWithinHitWindow(MotionEvent, 2))
 		{
 			if(AttackCritcal >= 0)
 			{
@@ -14362,7 +14362,7 @@ int smCHAR::EventSkill()
 		}
 		WeaponPlaySound(this);
 
-		if(this == lpCurPlayer && chrAttackTarget && MotionEvent < 2)
+		if(this == lpCurPlayer && chrAttackTarget && gameplay::skills::SkillMultiHitPolicy::IsWithinHitWindow(MotionEvent, 2))
 		{
 
 
@@ -14900,7 +14900,7 @@ int smCHAR::EventSkill()
 		AssaParticle_Diastrophism(this);
 		SkillPlaySound(SKILL_SOUND_SKILL_DIASTROPHISM, pX, pY, pZ);
 
-		if(this == lpCurPlayer && MotionEvent < 2)
+		if(this == lpCurPlayer && gameplay::skills::SkillMultiHitPolicy::IsWithinHitWindow(MotionEvent, 2))
 		{
 
 			dm_SelectRange(pX, pY, pZ, Diastrophism_Area[point - 1], FALSE);
