@@ -29,6 +29,7 @@ for text, accessor in ((client, 'ClientLegacyBackendChannelSender'), (server, 'S
         ('int\tSendItemExpress(DWORD\tdwItemCode, char *szPassCode)', 'int\tSendItemExpress(DWORD\tdwItemCode)'),
         ('int\tSendStarPointToServer(int Price, int Cash)', 'int\tSendGiveMoneyToServer(int Money)'),
         ('int\tSendGiveMoneyToServer(int Money)', 'int\tSendClanMoneyToServer(int Money, int Flag, int Kind)'),
+        ('int\tSendPaymentMoneyToServer(int Money, int Flag)', 'int\tSend_ShowMyShopItem(smCHAR *lpChar)'),
     ):
         start = text.index(start_anchor)
         end = text.index(end_anchor, start)

@@ -8300,8 +8300,10 @@ int	SendPaymentMoneyToServer(int Money, int Flag)
 	smTransCommand.SParam = 0;
 	smTransCommand.EParam = 0;
 
-	if(smWsockDataServer)
-		return smWsockDataServer->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+	if(gameplay::network::legacy::ServerLegacyBackendChannelSender().Available(gameplay::network::BackendChannel::Data))
+		return gameplay::network::legacy::ServerLegacyBackendChannelSender().Send(
+			gameplay::network::BackendChannel::Data,
+			gameplay::network::PacketView(&smTransCommand, static_cast<std::size_t>(smTransCommand.size), smTransCommand.code)).Succeeded() ? TRUE : FALSE;
 
 	return FALSE;
 }
