@@ -24,6 +24,7 @@
 #include "systems/rendering/legacy_3d/smd3d.h"
 
 #include "systems/network/transport/legacy/smwsock.h"
+#include "systems/network/v2/legacy/LegacyBackendChannelSender.h"
 #include "systems/network/v2/legacy/LegacyClientCommandSender.h"
 #include "systems/network/v2/legacy/LegacyClientGameplayPacketRouter.h"
 #include "systems/gameplay/character/core/character.h"

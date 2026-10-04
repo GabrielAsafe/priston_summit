@@ -8386,6 +8386,7 @@ int smCHAR::Main()
 
 	case 10:
 	case 11:
+	{
 		if (MotionInfo->State && MotionInfo->State < 0x100)
 		{
 			if (MotionInfo->State == CHRMOTION_STATE_WALK)
@@ -8474,8 +8475,10 @@ int smCHAR::Main()
 		SavePlayBuff();
 		FrameCounter += 3;
 		break;
+	}
 
 	case 12:
+	{
 
 
 
@@ -8654,12 +8657,14 @@ int smCHAR::Main()
 		SavePlayBuff();
 		FrameCounter += 3;
 		break;
+	}
 
 
 
 
 
 	case 99:
+	{
 
 		if (gameplay::companions::client_visual::Update(this))
 		{
@@ -9271,6 +9276,7 @@ int smCHAR::Main()
 			dwClanInfoTime = dwPlayTime;
 		}
 		break;
+	}
 
 	case 101:
 
