@@ -1,0 +1,577 @@
+{
+  "client_count": 53,
+  "server_count": 53,
+  "difference_count": 20,
+  "differences": [
+    {
+      "field": 20,
+      "map_id": "map.forever_fall_01",
+      "key": "environment",
+      "client": {
+        "state": {
+          "id": "state.forest",
+          "legacy_value": 512,
+          "legacy_symbol": "FIELD_STATE_FOREST"
+        },
+        "sky": [
+          {
+            "id": "sky.dayfall",
+            "legacy_value": 18,
+            "legacy_symbol": "FIELD_BACKIMAGE_DAYFALL"
+          },
+          {
+            "id": "sky.glowfall",
+            "legacy_value": 19,
+            "legacy_symbol": "FIELD_BACKIMAGE_GLOWFALL"
+          },
+          {
+            "id": "sky.nightfall",
+            "legacy_value": 17,
+            "legacy_symbol": "FIELD_BACKIMAGE_NIGHTFALL"
+          }
+        ],
+        "music": {
+          "id": "music.forest",
+          "legacy_value": 4,
+          "legacy_symbol": "BGM_CODE_FOREST"
+        },
+        "event": {
+          "legacy_value": 0
+        }
+      },
+      "server": {
+        "state": {
+          "id": "state.desert",
+          "legacy_value": 768,
+          "legacy_symbol": "FIELD_STATE_DESERT"
+        },
+        "sky": [
+          {
+            "id": "sky.dayfall",
+            "legacy_value": 18,
+            "legacy_symbol": "FIELD_BACKIMAGE_DAYFALL"
+          },
+          {
+            "id": "sky.glowfall",
+            "legacy_value": 19,
+            "legacy_symbol": "FIELD_BACKIMAGE_GLOWFALL"
+          },
+          {
+            "id": "sky.nightfall",
+            "legacy_value": 17,
+            "legacy_symbol": "FIELD_BACKIMAGE_NIGHTFALL"
+          }
+        ],
+        "music": {
+          "id": "music.forest",
+          "legacy_value": 4,
+          "legacy_symbol": "BGM_CODE_FOREST"
+        },
+        "event": {
+          "legacy_value": 0
+        }
+      }
+    },
+    {
+      "field": 34,
+      "map_id": "map.greedy",
+      "key": "limit_level",
+      "client": 70,
+      "server": 115
+    },
+    {
+      "field": 35,
+      "map_id": "map.ice2",
+      "key": "limit_level",
+      "client": 90,
+      "server": 95
+    },
+    {
+      "field": 36,
+      "map_id": "map.boss",
+      "key": "limit_level",
+      "client": 90,
+      "server": 100
+    },
+    {
+      "field": 37,
+      "map_id": "map.lost",
+      "key": "limit_level",
+      "client": 95,
+      "server": 100
+    },
+    {
+      "field": 38,
+      "map_id": "map.losttemple",
+      "key": "limit_level",
+      "client": 100,
+      "server": 105
+    },
+    {
+      "field": 40,
+      "map_id": "map.dun_7",
+      "key": "limit_level",
+      "client": 102,
+      "server": 110
+    },
+    {
+      "field": 40,
+      "map_id": "map.dun_7",
+      "key": "warp_gates",
+      "client": [
+        {
+          "x": 14242,
+          "z": -40988,
+          "y": 259,
+          "size": 64,
+          "height": 32,
+          "limit_level": 105,
+          "special_effect": 0,
+          "out_gates": [
+            {
+              "target": "map.dun_8",
+              "legacy_target_code": 41,
+              "x": 5255,
+              "z": -37897,
+              "y": 86
+            }
+          ]
+        },
+        {
+          "x": 14246,
+          "z": -38912,
+          "y": 220,
+          "size": 64,
+          "height": 32,
+          "limit_level": 102,
+          "special_effect": 0,
+          "out_gates": [
+            {
+              "target": "map.losttemple",
+              "legacy_target_code": 38,
+              "x": -12272,
+              "z": 11299,
+              "y": 509
+            }
+          ]
+        }
+      ],
+      "server": [
+        {
+          "x": 14242,
+          "z": -40988,
+          "y": 259,
+          "size": 64,
+          "height": 32,
+          "limit_level": 110,
+          "special_effect": 0,
+          "out_gates": [
+            {
+              "target": "map.dun_8",
+              "legacy_target_code": 41,
+              "x": 5255,
+              "z": -37897,
+              "y": 86
+            }
+          ]
+        },
+        {
+          "x": 14246,
+          "z": -38912,
+          "y": 220,
+          "size": 64,
+          "height": 32,
+          "limit_level": 110,
+          "special_effect": 0,
+          "out_gates": [
+            {
+              "target": "map.losttemple",
+              "legacy_target_code": 38,
+              "x": -12272,
+              "z": 11299,
+              "y": 509
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "field": 41,
+      "map_id": "map.dun_8",
+      "key": "warp_gates",
+      "client": [
+        {
+          "x": 5253,
+          "z": -37708,
+          "y": 69,
+          "size": 64,
+          "height": 32,
+          "limit_level": 108,
+          "special_effect": 0,
+          "out_gates": [
+            {
+              "target": "map.dun_7",
+              "legacy_target_code": 40,
+              "x": 14242,
+              "z": -41199,
+              "y": 220
+            }
+          ]
+        },
+        {
+          "x": 5254,
+          "z": -41500,
+          "y": 139,
+          "size": 64,
+          "height": 32,
+          "limit_level": 108,
+          "special_effect": 0,
+          "out_gates": [
+            {
+              "target": "map.dun_9",
+              "legacy_target_code": 43,
+              "x": 4896,
+              "z": -42220,
+              "y": 202
+            },
+            {
+              "target": "map.dun_9",
+              "legacy_target_code": 43,
+              "x": 6408,
+              "z": -42220,
+              "y": 202
+            }
+          ]
+        }
+      ],
+      "server": [
+        {
+          "x": 5253,
+          "z": -37708,
+          "y": 69,
+          "size": 64,
+          "height": 32,
+          "limit_level": 105,
+          "special_effect": 0,
+          "out_gates": [
+            {
+              "target": "map.dun_7",
+              "legacy_target_code": 40,
+              "x": 14242,
+              "z": -41199,
+              "y": 220
+            }
+          ]
+        },
+        {
+          "x": 5254,
+          "z": -41500,
+          "y": 139,
+          "size": 64,
+          "height": 32,
+          "limit_level": 105,
+          "special_effect": 0,
+          "out_gates": [
+            {
+              "target": "map.dun_9",
+              "legacy_target_code": 43,
+              "x": 4896,
+              "z": -42220,
+              "y": 202
+            },
+            {
+              "target": "map.dun_9",
+              "legacy_target_code": 43,
+              "x": 6408,
+              "z": -42220,
+              "y": 202
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "field": 43,
+      "map_id": "map.dun_9",
+      "key": "limit_level",
+      "client": 108,
+      "server": 120
+    },
+    {
+      "field": 43,
+      "map_id": "map.dun_9",
+      "key": "warp_gates",
+      "client": [
+        {
+          "x": 4896,
+          "z": -42090,
+          "y": 230,
+          "size": 64,
+          "height": 32,
+          "limit_level": 108,
+          "special_effect": 0,
+          "out_gates": [
+            {
+              "target": "map.dun_8",
+              "legacy_target_code": 41,
+              "x": 5254,
+              "z": -41361,
+              "y": 139
+            }
+          ]
+        },
+        {
+          "x": 6400,
+          "z": -42120,
+          "y": 230,
+          "size": 64,
+          "height": 32,
+          "limit_level": 108,
+          "special_effect": 0,
+          "out_gates": [
+            {
+              "target": "map.dun_8",
+              "legacy_target_code": 41,
+              "x": 5254,
+              "z": -41361,
+              "y": 139
+            }
+          ]
+        }
+      ],
+      "server": [
+        {
+          "x": 4896,
+          "z": -42090,
+          "y": 230,
+          "size": 64,
+          "height": 32,
+          "limit_level": 120,
+          "special_effect": 0,
+          "out_gates": [
+            {
+              "target": "map.dun_8",
+              "legacy_target_code": 41,
+              "x": 5254,
+              "z": -41361,
+              "y": 139
+            }
+          ]
+        },
+        {
+          "x": 6400,
+          "z": -42120,
+          "y": 230,
+          "size": 64,
+          "height": 32,
+          "limit_level": 120,
+          "special_effect": 0,
+          "out_gates": [
+            {
+              "target": "map.dun_8",
+              "legacy_target_code": 41,
+              "x": 5254,
+              "z": -41361,
+              "y": 139
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "field": 44,
+      "map_id": "map.mine_1",
+      "key": "limit_level",
+      "client": 110,
+      "server": 125
+    },
+    {
+      "field": 44,
+      "map_id": "map.mine_1",
+      "key": "warp_gates",
+      "client": [
+        {
+          "x": 17944,
+          "z": -34641,
+          "y": 246,
+          "size": 64,
+          "height": 32,
+          "limit_level": 110,
+          "special_effect": 0,
+          "out_gates": [
+            {
+              "target": "map.ice1",
+              "legacy_target_code": 31,
+              "x": 35352,
+              "z": 31928,
+              "y": 829
+            }
+          ]
+        }
+      ],
+      "server": [
+        {
+          "x": 17944,
+          "z": -34641,
+          "y": 246,
+          "size": 64,
+          "height": 32,
+          "limit_level": 125,
+          "special_effect": 0,
+          "out_gates": [
+            {
+              "target": "map.ice1",
+              "legacy_target_code": 31,
+              "x": 35352,
+              "z": 31928,
+              "y": 829
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "field": 46,
+      "map_id": "map.slab",
+      "key": "limit_level",
+      "client": 118,
+      "server": 130
+    },
+    {
+      "field": 46,
+      "map_id": "map.slab",
+      "key": "warp_gates",
+      "client": [
+        {
+          "x": -12003,
+          "z": -54164,
+          "y": 374,
+          "size": 64,
+          "height": 32,
+          "limit_level": 0,
+          "special_effect": 0,
+          "out_gates": [
+            {
+              "target": "map.de_3",
+              "legacy_target_code": 11,
+              "x": 12795,
+              "z": -73112,
+              "y": 458
+            }
+          ]
+        },
+        {
+          "x": -12015,
+          "z": -62994,
+          "y": 171,
+          "size": 64,
+          "height": 32,
+          "limit_level": 118,
+          "special_effect": 0,
+          "out_gates": [
+            {
+              "target": "map.de_3",
+              "legacy_target_code": 11,
+              "x": 29551,
+              "z": 2366,
+              "y": 826
+            }
+          ]
+        }
+      ],
+      "server": [
+        {
+          "x": -12003,
+          "z": -54164,
+          "y": 374,
+          "size": 64,
+          "height": 32,
+          "limit_level": 0,
+          "special_effect": 0,
+          "out_gates": [
+            {
+              "target": "map.de_3",
+              "legacy_target_code": 11,
+              "x": 12795,
+              "z": -73112,
+              "y": 458
+            }
+          ]
+        },
+        {
+          "x": -12015,
+          "z": -62994,
+          "y": 171,
+          "size": 64,
+          "height": 32,
+          "limit_level": 130,
+          "special_effect": 0,
+          "out_gates": [
+            {
+              "target": "map.de_3",
+              "legacy_target_code": 11,
+              "x": 29551,
+              "z": 2366,
+              "y": 826
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "field": 47,
+      "map_id": "map.ancientw",
+      "key": "legacy_orphan_warp_properties",
+      "client": [
+        {
+          "property": "LimitLevel",
+          "legacy_value": 118
+        }
+      ],
+      "server": [
+        {
+          "property": "LimitLevel",
+          "legacy_value": 135
+        }
+      ]
+    },
+    {
+      "field": 47,
+      "map_id": "map.ancientw",
+      "key": "limit_level",
+      "client": 118,
+      "server": 135
+    },
+    {
+      "field": 48,
+      "map_id": "map.seaa",
+      "key": "legacy_orphan_warp_properties",
+      "client": [
+        {
+          "property": "LimitLevel",
+          "legacy_value": 125
+        }
+      ],
+      "server": [
+        {
+          "property": "LimitLevel",
+          "legacy_value": 140
+        }
+      ]
+    },
+    {
+      "field": 48,
+      "map_id": "map.seaa",
+      "key": "limit_level",
+      "client": 125,
+      "server": 140
+    },
+    {
+      "field": 52,
+      "map_id": "map.dc1",
+      "key": "limit_level",
+      "client": 1,
+      "server": 100
+    }
+  ]
+}

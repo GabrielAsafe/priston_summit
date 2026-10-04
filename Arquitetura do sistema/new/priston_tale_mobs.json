@@ -1,0 +1,3167 @@
+{
+  "source": {
+    "title": "Guia de Mobs Priston Tale (BPT)",
+    "url": "https://codexage.com.br/guia-de-mobs/",
+    "publisher": "CodexAge",
+    "source_updated_at": "2026-07-19",
+    "extracted_at": "2026-09-28",
+    "notes": [
+      "A tabela informa XP base separadamente para servidores Clássicos/Valento e Cronus.",
+      "XP de Cronus ausente na fonte foi normalizado como null.",
+      "Os mapas foram separados em uma lista para facilitar filtros.",
+      "O mob Centauro-L (nível 61) aparece na seção 51-60 da fonte; source_level_band preserva essa posição original.",
+      "A grafia 'Terra Maltida' em Decoy foi preservada conforme a fonte."
+    ]
+  },
+  "schema": {
+    "id": "slug estável derivado do nome",
+    "name": "nome do mob",
+    "type": "tipo do monstro",
+    "level": "nível do mob",
+    "xp.classicos_valento": "XP base nos servidores Clássicos e Valento",
+    "xp.cronus": "XP base no servidor Cronus; null quando não informado",
+    "maps": "lista de mapas/localizações",
+    "source_level_band": "faixa/seção em que o mob aparece no guia"
+  },
+  "stats": {
+    "total_mobs": 215,
+    "min_level": 4,
+    "max_level": 179,
+    "by_type": {
+      "Demônio": 56,
+      "Mecânico": 16,
+      "Morto-Vivo": 41,
+      "Mutante": 66,
+      "Normal": 36
+    },
+    "by_source_level_band": {
+      "1-10": 12,
+      "11-20": 12,
+      "21-30": 8,
+      "31-40": 9,
+      "41-50": 8,
+      "51-60": 13,
+      "61-70": 10,
+      "71-80": 17,
+      "81-90": 25,
+      "91-100": 15,
+      "101-110": 23,
+      "111-120": 14,
+      "121-130": 12,
+      "131-140": 9,
+      "145-150": 7,
+      "160-165": 7,
+      "165-170": 7,
+      "171-180": 7
+    },
+    "unique_maps": 48
+  },
+  "mobs": [
+    {
+      "id": "hopi",
+      "name": "Hopi",
+      "type": "Normal",
+      "level": 4,
+      "xp": {
+        "classicos_valento": 117,
+        "cronus": 196
+      },
+      "maps": [
+        "Jardim da Liberdade"
+      ],
+      "source_level_band": "1-10"
+    },
+    {
+      "id": "coelho",
+      "name": "Coelho",
+      "type": "Normal",
+      "level": 4,
+      "xp": {
+        "classicos_valento": 235,
+        "cronus": 196
+      },
+      "maps": [
+        "Estrada dos Ventos"
+      ],
+      "source_level_band": "1-10"
+    },
+    {
+      "id": "coelha",
+      "name": "Coelha",
+      "type": "Normal",
+      "level": 4,
+      "xp": {
+        "classicos_valento": 233,
+        "cronus": 233
+      },
+      "maps": [
+        "Estrada dos Ventos"
+      ],
+      "source_level_band": "1-10"
+    },
+    {
+      "id": "cuepi",
+      "name": "Cuepi",
+      "type": "Normal",
+      "level": 5,
+      "xp": {
+        "classicos_valento": 127,
+        "cronus": 212
+      },
+      "maps": [
+        "Jardim da Liberdade"
+      ],
+      "source_level_band": "1-10"
+    },
+    {
+      "id": "zeldi",
+      "name": "Zeldi",
+      "type": "Mutante",
+      "level": 5,
+      "xp": {
+        "classicos_valento": 187,
+        "cronus": 187
+      },
+      "maps": [
+        "Estrada dos Ventos"
+      ],
+      "source_level_band": "1-10"
+    },
+    {
+      "id": "cogumelo",
+      "name": "Cogumelo",
+      "type": "Mutante",
+      "level": 5,
+      "xp": {
+        "classicos_valento": 113,
+        "cronus": 189
+      },
+      "maps": [
+        "Estrada dos Ventos",
+        "Floresta das Ilusões"
+      ],
+      "source_level_band": "1-10"
+    },
+    {
+      "id": "cogumelo-fantasma",
+      "name": "Cogumelo Fantasma",
+      "type": "Mutante",
+      "level": 5,
+      "xp": {
+        "classicos_valento": 117,
+        "cronus": 196
+      },
+      "maps": [
+        "Jardim da Liberdade"
+      ],
+      "source_level_band": "1-10"
+    },
+    {
+      "id": "tatu",
+      "name": "Tatu",
+      "type": "Normal",
+      "level": 6,
+      "xp": {
+        "classicos_valento": 122,
+        "cronus": 122
+      },
+      "maps": [
+        "Jardim da Liberdade"
+      ],
+      "source_level_band": "1-10"
+    },
+    {
+      "id": "sen",
+      "name": "Sen",
+      "type": "Demônio",
+      "level": 7,
+      "xp": {
+        "classicos_valento": 175,
+        "cronus": 293
+      },
+      "maps": [
+        "Floresta das Ilusões",
+        "Vale Tranquilo"
+      ],
+      "source_level_band": "1-10"
+    },
+    {
+      "id": "fantasma",
+      "name": "Fantasma",
+      "type": "Morto-Vivo",
+      "level": 8,
+      "xp": {
+        "classicos_valento": 257,
+        "cronus": 429
+      },
+      "maps": [
+        "Floresta Bamboo"
+      ],
+      "source_level_band": "1-10"
+    },
+    {
+      "id": "duende-magico",
+      "name": "Duende Mágico",
+      "type": "Demônio",
+      "level": 8,
+      "xp": {
+        "classicos_valento": 267,
+        "cronus": 446
+      },
+      "maps": [
+        "Vale Tranquilo",
+        "Floresta das Ilusões"
+      ],
+      "source_level_band": "1-10"
+    },
+    {
+      "id": "minigue",
+      "name": "Minigue",
+      "type": "Mutante",
+      "level": 10,
+      "xp": {
+        "classicos_valento": 383,
+        "cronus": 541
+      },
+      "maps": [
+        "Floresta Bamboo",
+        "Refúgio dos Anciões"
+      ],
+      "source_level_band": "1-10"
+    },
+    {
+      "id": "imp",
+      "name": "Imp",
+      "type": "Demônio",
+      "level": 11,
+      "xp": {
+        "classicos_valento": 383,
+        "cronus": 639
+      },
+      "maps": [
+        "Floresta Bamboo"
+      ],
+      "source_level_band": "11-20"
+    },
+    {
+      "id": "planta-mutante",
+      "name": "Planta Mutante",
+      "type": "Mutante",
+      "level": 12,
+      "xp": {
+        "classicos_valento": 966,
+        "cronus": 966
+      },
+      "maps": [
+        "Vale Tranquilo"
+      ],
+      "source_level_band": "11-20"
+    },
+    {
+      "id": "doral",
+      "name": "Doral",
+      "type": "Mutante",
+      "level": 12,
+      "xp": {
+        "classicos_valento": 571,
+        "cronus": 953
+      },
+      "maps": [
+        "Floresta Bamboo",
+        "Floresta das Ilusões",
+        "Vale Tranquilo"
+      ],
+      "source_level_band": "11-20"
+    },
+    {
+      "id": "duende-selvagem",
+      "name": "Duende Selvagem",
+      "type": "Normal",
+      "level": 14,
+      "xp": {
+        "classicos_valento": 663,
+        "cronus": 1106
+      },
+      "maps": [
+        "Floresta dos Espíritos",
+        "Floresta das Ilusões",
+        "Estrada dos Ventos"
+      ],
+      "source_level_band": "11-20"
+    },
+    {
+      "id": "duende-macabro",
+      "name": "Duende Macabro",
+      "type": "Normal",
+      "level": 14,
+      "xp": {
+        "classicos_valento": 663,
+        "cronus": 1106
+      },
+      "maps": [
+        "Jardim da Liberdade",
+        "Refúgio dos Anciões"
+      ],
+      "source_level_band": "11-20"
+    },
+    {
+      "id": "coelho-mutante",
+      "name": "Coelho Mutante",
+      "type": "Mutante",
+      "level": 15,
+      "xp": {
+        "classicos_valento": 678,
+        "cronus": 1131
+      },
+      "maps": [
+        "Floresta dos Espíritos",
+        "Floresta das Ilusões"
+      ],
+      "source_level_band": "11-20"
+    },
+    {
+      "id": "arvore-mutante",
+      "name": "Árvore Mutante",
+      "type": "Mutante",
+      "level": 16,
+      "xp": {
+        "classicos_valento": 750,
+        "cronus": 1155
+      },
+      "maps": [
+        "Castelo dos Perdidos",
+        "Floresta dos Espíritos",
+        "Vale Tranquilo"
+      ],
+      "source_level_band": "11-20"
+    },
+    {
+      "id": "planta-assassina",
+      "name": "Planta Assassina",
+      "type": "Mutante",
+      "level": 17,
+      "xp": {
+        "classicos_valento": 693,
+        "cronus": 1244
+      },
+      "maps": [
+        "Floresta Bamboo"
+      ],
+      "source_level_band": "11-20"
+    },
+    {
+      "id": "planta-mortifera",
+      "name": "Planta Mortífera",
+      "type": "Mutante",
+      "level": 17,
+      "xp": {
+        "classicos_valento": 746,
+        "cronus": 1244
+      },
+      "maps": [
+        "Floresta das Ilusões",
+        "Vale Tranquilo"
+      ],
+      "source_level_band": "11-20"
+    },
+    {
+      "id": "esqueleto",
+      "name": "Esqueleto",
+      "type": "Morto-Vivo",
+      "level": 18,
+      "xp": {
+        "classicos_valento": 1060,
+        "cronus": 1767
+      },
+      "maps": [
+        "Refúgio dos Anciões",
+        "Castelo dos Perdidos"
+      ],
+      "source_level_band": "11-20"
+    },
+    {
+      "id": "esqueleto-do-mal",
+      "name": "Esqueleto do Mal",
+      "type": "Morto-Vivo",
+      "level": 18,
+      "xp": {
+        "classicos_valento": 1060,
+        "cronus": 1767
+      },
+      "maps": [
+        "Floresta dos Espíritos"
+      ],
+      "source_level_band": "11-20"
+    },
+    {
+      "id": "zumbi",
+      "name": "Zumbi",
+      "type": "Morto-Vivo",
+      "level": 19,
+      "xp": {
+        "classicos_valento": 1155,
+        "cronus": 1925
+      },
+      "maps": [
+        "Refúgio dos Anciões",
+        "Castelo dos Perdidos",
+        "Vila Ruinen"
+      ],
+      "source_level_band": "11-20"
+    },
+    {
+      "id": "barata-gigante",
+      "name": "Barata Gigante",
+      "type": "Mutante",
+      "level": 21,
+      "xp": {
+        "classicos_valento": 1227,
+        "cronus": 2045
+      },
+      "maps": [
+        "Castelo dos Perdidos",
+        "Vila Ruinen"
+      ],
+      "source_level_band": "21-30"
+    },
+    {
+      "id": "cao-abelha",
+      "name": "Cão Abelha",
+      "type": "Mutante",
+      "level": 22,
+      "xp": {
+        "classicos_valento": 1533,
+        "cronus": 2556
+      },
+      "maps": [
+        "Floresta dos Espíritos"
+      ],
+      "source_level_band": "21-30"
+    },
+    {
+      "id": "mephit",
+      "name": "Mephit",
+      "type": "Demônio",
+      "level": 23,
+      "xp": {
+        "classicos_valento": 1386,
+        "cronus": 2310
+      },
+      "maps": [
+        "Castelo dos Perdidos",
+        "Vila Ruinen",
+        "Navisko"
+      ],
+      "source_level_band": "21-30"
+    },
+    {
+      "id": "minigue-prateado",
+      "name": "Minigue Prateado",
+      "type": "Mutante",
+      "level": 25,
+      "xp": {
+        "classicos_valento": 2935,
+        "cronus": 4893
+      },
+      "maps": [
+        "Navisko"
+      ],
+      "source_level_band": "21-30"
+    },
+    {
+      "id": "escorpiao",
+      "name": "Escorpião",
+      "type": "Mutante",
+      "level": 27,
+      "xp": {
+        "classicos_valento": 2043,
+        "cronus": 3406
+      },
+      "maps": [
+        "Terra Maldita"
+      ],
+      "source_level_band": "21-30"
+    },
+    {
+      "id": "lorde-das-arvores",
+      "name": "Lorde das Árvores",
+      "type": "Demônio",
+      "level": 28,
+      "xp": {
+        "classicos_valento": 2334,
+        "cronus": 3890
+      },
+      "maps": [
+        "Refúgio dos Anciões",
+        "Castelo dos Perdidos",
+        "Vila Ruinen"
+      ],
+      "source_level_band": "21-30"
+    },
+    {
+      "id": "arvore-demoniaca",
+      "name": "Árvore Demoníaca",
+      "type": "Demônio",
+      "level": 28,
+      "xp": {
+        "classicos_valento": 3890,
+        "cronus": 3890
+      },
+      "maps": [
+        "Floresta dos Espíritos"
+      ],
+      "source_level_band": "21-30"
+    },
+    {
+      "id": "parasita",
+      "name": "Parasita",
+      "type": "Mutante",
+      "level": 30,
+      "xp": {
+        "classicos_valento": 2653,
+        "cronus": 4422
+      },
+      "maps": [
+        "Terra Maldita"
+      ],
+      "source_level_band": "21-30"
+    },
+    {
+      "id": "decoy",
+      "name": "Decoy",
+      "type": "Demônio",
+      "level": 31,
+      "xp": {
+        "classicos_valento": 2809,
+        "cronus": 4682
+      },
+      "maps": [
+        "Vila Ruinen",
+        "Terra Maltida"
+      ],
+      "source_level_band": "31-40"
+    },
+    {
+      "id": "ghoul",
+      "name": "Ghoul",
+      "type": "Morto-Vivo",
+      "level": 32,
+      "xp": {
+        "classicos_valento": 11207,
+        "cronus": 6512
+      },
+      "maps": [
+        "Terra Esquecida",
+        "Navisko",
+        "Calabouço Antigo 1º Andar"
+      ],
+      "source_level_band": "31-40"
+    },
+    {
+      "id": "ciclope",
+      "name": "Ciclope",
+      "type": "Demônio",
+      "level": 33,
+      "xp": {
+        "classicos_valento": 10291,
+        "cronus": 6180
+      },
+      "maps": [
+        "Mata das Acácias",
+        "Vila Ruinen",
+        "Terra Maldita",
+        "Terra Esquecida"
+      ],
+      "source_level_band": "31-40"
+    },
+    {
+      "id": "aranha",
+      "name": "Aranha",
+      "type": "Mutante",
+      "level": 34,
+      "xp": {
+        "classicos_valento": 12612,
+        "cronus": 6492
+      },
+      "maps": [
+        "Calabouço Antigo 1º Andar",
+        "Calabouço Antigo 2º Andar",
+        "Calabouço Antigo 3º Andar"
+      ],
+      "source_level_band": "31-40"
+    },
+    {
+      "id": "besouro-blindado",
+      "name": "Besouro Blindado",
+      "type": "Mutante",
+      "level": 35,
+      "xp": {
+        "classicos_valento": 11080,
+        "cronus": 6654
+      },
+      "maps": [
+        "Terra Esquecida"
+      ],
+      "source_level_band": "31-40"
+    },
+    {
+      "id": "buma",
+      "name": "Buma",
+      "type": "Mutante",
+      "level": 36,
+      "xp": {
+        "classicos_valento": 12538,
+        "cronus": 7286
+      },
+      "maps": [
+        "Calabouço Antigo 1º Andar",
+        "Terra Esquecida"
+      ],
+      "source_level_band": "31-40"
+    },
+    {
+      "id": "arqueiro-do-mal",
+      "name": "Arqueiro do Mal",
+      "type": "Morto-Vivo",
+      "level": 37,
+      "xp": {
+        "classicos_valento": 12164,
+        "cronus": 7069
+      },
+      "maps": [
+        "Terra Maldita",
+        "Terra Esquecida",
+        "Calabouço Antigo 1º Andar"
+      ],
+      "source_level_band": "31-40"
+    },
+    {
+      "id": "cripto",
+      "name": "Cripto",
+      "type": "Demônio",
+      "level": 38,
+      "xp": {
+        "classicos_valento": 13420,
+        "cronus": 7438
+      },
+      "maps": [
+        "Terra Esquecida",
+        "Terra Proibida"
+      ],
+      "source_level_band": "31-40"
+    },
+    {
+      "id": "bargon",
+      "name": "Bargon",
+      "type": "Demônio",
+      "level": 40,
+      "xp": {
+        "classicos_valento": 13310,
+        "cronus": 7993
+      },
+      "maps": [
+        "Terra Maldita",
+        "Terra Esquecida",
+        "Oasis"
+      ],
+      "source_level_band": "31-40"
+    },
+    {
+      "id": "duende-lider",
+      "name": "Duende Líder",
+      "type": "Normal",
+      "level": 43,
+      "xp": {
+        "classicos_valento": 14293,
+        "cronus": 8584
+      },
+      "maps": [
+        "Oasis"
+      ],
+      "source_level_band": "41-50"
+    },
+    {
+      "id": "patrulheiro-do-mal",
+      "name": "Patrulheiro do Mal",
+      "type": "Morto-Vivo",
+      "level": 44,
+      "xp": {
+        "classicos_valento": 15581,
+        "cronus": 8637
+      },
+      "maps": [
+        "Oasis",
+        "Campo de Batalha dos Anciões",
+        "Calabouço Antigo 2º Andar",
+        "Caverna dos Cogumelos",
+        "Caverna das Abelhas"
+      ],
+      "source_level_band": "41-50"
+    },
+    {
+      "id": "cavaleiro-ciclope",
+      "name": "Cavaleiro Ciclope",
+      "type": "Demônio",
+      "level": 47,
+      "xp": {
+        "classicos_valento": 16129,
+        "cronus": 8941
+      },
+      "maps": [
+        "Oasis",
+        "Campo de Batalha dos Anciões"
+      ],
+      "source_level_band": "41-50"
+    },
+    {
+      "id": "hunki",
+      "name": "Hunki",
+      "type": "Demônio",
+      "level": 48,
+      "xp": {
+        "classicos_valento": 17908,
+        "cronus": 8602
+      },
+      "maps": [
+        "Templo Maldito 1º Andar"
+      ],
+      "source_level_band": "41-50"
+    },
+    {
+      "id": "guerreiro-do-mal",
+      "name": "Guerreiro do Mal",
+      "type": "Morto-Vivo",
+      "level": 49,
+      "xp": {
+        "classicos_valento": 15743,
+        "cronus": 9149
+      },
+      "maps": [
+        "Calabouço Antigo 1º Andar"
+      ],
+      "source_level_band": "41-50"
+    },
+    {
+      "id": "morcego-vampiro",
+      "name": "Morcego Vampiro",
+      "type": "Demônio",
+      "level": 49,
+      "xp": {
+        "classicos_valento": 16506,
+        "cronus": 9149
+      },
+      "maps": [
+        "Caverna dos Cogumelos"
+      ],
+      "source_level_band": "41-50"
+    },
+    {
+      "id": "griven",
+      "name": "Griven",
+      "type": "Mutante",
+      "level": 50,
+      "xp": {
+        "classicos_valento": 17287,
+        "cronus": 9583
+      },
+      "maps": [
+        "Campo de Batalha dos Anciões"
+      ],
+      "source_level_band": "41-50"
+    },
+    {
+      "id": "caramujo-do-mal",
+      "name": "Caramujo do Mal",
+      "type": "Demônio",
+      "level": 50,
+      "xp": {
+        "classicos_valento": 18148,
+        "cronus": 10059
+      },
+      "maps": [
+        "Caverna dos Cogumelos"
+      ],
+      "source_level_band": "41-50"
+    },
+    {
+      "id": "abelha-selvagem",
+      "name": "Abelha Selvagem",
+      "type": "Mutante",
+      "level": 52,
+      "xp": {
+        "classicos_valento": 18577,
+        "cronus": 10297
+      },
+      "maps": [
+        "Caverna das Abelhas"
+      ],
+      "source_level_band": "51-60"
+    },
+    {
+      "id": "muffin",
+      "name": "Muffin",
+      "type": "Mutante",
+      "level": 52,
+      "xp": {
+        "classicos_valento": 19009,
+        "cronus": 10536
+      },
+      "maps": [
+        "Caverna dos Cogumelos"
+      ],
+      "source_level_band": "51-60"
+    },
+    {
+      "id": "titan",
+      "name": "Titan",
+      "type": "Demônio",
+      "level": 53,
+      "xp": {
+        "classicos_valento": 20518,
+        "cronus": 11374
+      },
+      "maps": [
+        "Oasis",
+        "Campo de Batalha dos Anciões"
+      ],
+      "source_level_band": "51-60"
+    },
+    {
+      "id": "cavaleiro-do-mal",
+      "name": "Cavaleiro do Mal",
+      "type": "Morto-Vivo",
+      "level": 54,
+      "xp": {
+        "classicos_valento": 22979,
+        "cronus": 11828
+      },
+      "maps": [
+        "Calabouço Antigo 2º Andar",
+        "Calabouço Antigo 3º Andar"
+      ],
+      "source_level_band": "51-60"
+    },
+    {
+      "id": "golem-de-barro",
+      "name": "Golem de Barro",
+      "type": "Demônio",
+      "level": 54,
+      "xp": {
+        "classicos_valento": 26129,
+        "cronus": 14484
+      },
+      "maps": [
+        "Caverna das Abelhas"
+      ],
+      "source_level_band": "51-60"
+    },
+    {
+      "id": "golem-de-areia",
+      "name": "Golem de Areia",
+      "type": "Mutante",
+      "level": 55,
+      "xp": {
+        "classicos_valento": 24377,
+        "cronus": 13513
+      },
+      "maps": [
+        "Terra Proibida"
+      ],
+      "source_level_band": "51-60"
+    },
+    {
+      "id": "cavaleiro-negro",
+      "name": "Cavaleiro Negro",
+      "type": "Morto-Vivo",
+      "level": 55,
+      "xp": {
+        "classicos_valento": 39325,
+        "cronus": 20240
+      },
+      "maps": [
+        "Caverna dos Cogumelos",
+        "Caverna das Abelhas",
+        "Santuário Sombrio"
+      ],
+      "source_level_band": "51-60"
+    },
+    {
+      "id": "centauro-s",
+      "name": "Centauro-S",
+      "type": "Mutante",
+      "level": 56,
+      "xp": {
+        "classicos_valento": 26128,
+        "cronus": 14482
+      },
+      "maps": [
+        "Campo de Batalha dos Anciões"
+      ],
+      "source_level_band": "51-60"
+    },
+    {
+      "id": "centauro-l",
+      "name": "Centauro-L",
+      "type": "Mutante",
+      "level": 61,
+      "xp": {
+        "classicos_valento": 35374,
+        "cronus": 19608
+      },
+      "maps": [
+        "Terra Proibida"
+      ],
+      "source_level_band": "51-60"
+    },
+    {
+      "id": "guardiao-de-lama",
+      "name": "Guardião de Lama",
+      "type": "Demônio",
+      "level": 57,
+      "xp": {
+        "classicos_valento": 31555,
+        "cronus": 16243
+      },
+      "maps": [
+        "Caverna dos Cogumelos",
+        "Caverna das Abelhas",
+        "Santuário Sombrio"
+      ],
+      "source_level_band": "51-60"
+    },
+    {
+      "id": "decapitador",
+      "name": "Decapitador",
+      "type": "Demônio",
+      "level": 59,
+      "xp": {
+        "classicos_valento": 61580,
+        "cronus": 19785
+      },
+      "maps": [
+        "Oasis",
+        "Campo de Batalha dos Anciões",
+        "Calabouço Antigo 1º Andar",
+        "Calabouço Antigo 2º Andar"
+      ],
+      "source_level_band": "51-60"
+    },
+    {
+      "id": "planta-das-trevas",
+      "name": "Planta das Trevas",
+      "type": "Demônio",
+      "level": 60,
+      "xp": {
+        "classicos_valento": 32041,
+        "cronus": 17761
+      },
+      "maps": [
+        "Caverna dos Cogumelos",
+        "Caverna das Abelhas"
+      ],
+      "source_level_band": "51-60"
+    },
+    {
+      "id": "caramujo-rijo",
+      "name": "Caramujo Rijo",
+      "type": "Demônio",
+      "level": 60,
+      "xp": {
+        "classicos_valento": 34598,
+        "cronus": 19177
+      },
+      "maps": [
+        "Caverna das Abelhas"
+      ],
+      "source_level_band": "51-60"
+    },
+    {
+      "id": "abelha-do-mal",
+      "name": "Abelha do Mal",
+      "type": "Mutante",
+      "level": 62,
+      "xp": {
+        "classicos_valento": 34235,
+        "cronus": 18975
+      },
+      "maps": [
+        "Caverna das Abelhas"
+      ],
+      "source_level_band": "61-70"
+    },
+    {
+      "id": "caramujo-espinhoso",
+      "name": "Caramujo Espinhoso",
+      "type": "Demônio",
+      "level": 62,
+      "xp": {
+        "classicos_valento": 40555,
+        "cronus": 20873
+      },
+      "maps": [
+        "Santuário Sombrio"
+      ],
+      "source_level_band": "61-70"
+    },
+    {
+      "id": "mumia",
+      "name": "Múmia",
+      "type": "Morto-Vivo",
+      "level": 64,
+      "xp": {
+        "classicos_valento": 42276,
+        "cronus": 21758
+      },
+      "maps": [
+        "Calabouço Antigo 2º Andar",
+        "Calabouço Antigo 3º Andar"
+      ],
+      "source_level_band": "61-70"
+    },
+    {
+      "id": "carniceiro",
+      "name": "Carniceiro",
+      "type": "Demônio",
+      "level": 67,
+      "xp": {
+        "classicos_valento": 46082,
+        "cronus": 22138
+      },
+      "maps": [
+        "Calabouço Antigo 2º Andar",
+        "Calabouço Antigo 3º Andar",
+        "Templo Maldito 1º Andar"
+      ],
+      "source_level_band": "61-70"
+    },
+    {
+      "id": "cavaleiro-fantasma",
+      "name": "Cavaleiro Fantasma",
+      "type": "Morto-Vivo",
+      "level": 67,
+      "xp": {
+        "classicos_valento": 44486,
+        "cronus": 22897
+      },
+      "maps": [
+        "Calabouço Antigo 3º Andar"
+      ],
+      "source_level_band": "61-70"
+    },
+    {
+      "id": "pesadelo",
+      "name": "Pesadelo",
+      "type": "Morto-Vivo",
+      "level": 67,
+      "xp": {
+        "classicos_valento": 45224,
+        "cronus": 23276
+      },
+      "maps": [
+        "Santuário Sombrio"
+      ],
+      "source_level_band": "61-70"
+    },
+    {
+      "id": "figon",
+      "name": "Figon",
+      "type": "Demônio",
+      "level": 69,
+      "xp": {
+        "classicos_valento": 95089,
+        "cronus": 27058
+      },
+      "maps": [
+        "Calabouço Antigo 3º Andar",
+        "Terra Proibida"
+      ],
+      "source_level_band": "61-70"
+    },
+    {
+      "id": "guardiao-maldito",
+      "name": "Guardião Maldito",
+      "type": "Morto-Vivo",
+      "level": 69,
+      "xp": {
+        "classicos_valento": 47682,
+        "cronus": 24541
+      },
+      "maps": [
+        "Santuário Sombrio"
+      ],
+      "source_level_band": "61-70"
+    },
+    {
+      "id": "naz",
+      "name": "Naz",
+      "type": "Demônio",
+      "level": 69,
+      "xp": {
+        "classicos_valento": 49770,
+        "cronus": 23909
+      },
+      "maps": [
+        "Templo Maldito 1º Andar"
+      ],
+      "source_level_band": "61-70"
+    },
+    {
+      "id": "lorde-centauro",
+      "name": "Lorde Centauro",
+      "type": "Mutante",
+      "level": 70,
+      "xp": {
+        "classicos_valento": 57935,
+        "cronus": 27830
+      },
+      "maps": [
+        "Templo Maldito 1º Andar"
+      ],
+      "source_level_band": "61-70"
+    },
+    {
+      "id": "bruxa",
+      "name": "Bruxa",
+      "type": "Demônio",
+      "level": 71,
+      "xp": {
+        "classicos_valento": 49157,
+        "cronus": 25300
+      },
+      "maps": [
+        "Santuário Sombrio"
+      ],
+      "source_level_band": "71-80"
+    },
+    {
+      "id": "duende-guerreiro",
+      "name": "Duende Guerreiro",
+      "type": "Mutante",
+      "level": 72,
+      "xp": {
+        "classicos_valento": 53827,
+        "cronus": 27704
+      },
+      "maps": [
+        "Santuário Sombrio"
+      ],
+      "source_level_band": "71-80"
+    },
+    {
+      "id": "grande-griven",
+      "name": "Grande Griven",
+      "type": "Mutante",
+      "level": 72,
+      "xp": {
+        "classicos_valento": 57935,
+        "cronus": 27830
+      },
+      "maps": [
+        "Lago da Ganância"
+      ],
+      "source_level_band": "71-80"
+    },
+    {
+      "id": "lamina",
+      "name": "Lâmina",
+      "type": "Demônio",
+      "level": 72,
+      "xp": {
+        "classicos_valento": 61798,
+        "cronus": 27830
+      },
+      "maps": [
+        "Templo Maldito 1º Andar",
+        "Templo Maldito 2º Andar",
+        "Templo Maldito 3º Andar"
+      ],
+      "source_level_band": "71-80"
+    },
+    {
+      "id": "gigante-de-pedra",
+      "name": "Gigante de Pedra",
+      "type": "Mutante",
+      "level": 73,
+      "xp": {
+        "classicos_valento": 48841,
+        "cronus": 27071
+      },
+      "maps": [
+        "Terra Proibida"
+      ],
+      "source_level_band": "71-80"
+    },
+    {
+      "id": "omu",
+      "name": "Omu",
+      "type": "Normal",
+      "level": 73,
+      "xp": {
+        "classicos_valento": 60569,
+        "cronus": 29095
+      },
+      "maps": [
+        "Lago da Ganância"
+      ],
+      "source_level_band": "71-80"
+    },
+    {
+      "id": "golem-de-pedra",
+      "name": "Golem de Pedra",
+      "type": "Demônio",
+      "level": 74,
+      "xp": {
+        "classicos_valento": 90940,
+        "cronus": 46805
+      },
+      "maps": [
+        "Santuário Sombrio"
+      ],
+      "source_level_band": "71-80"
+    },
+    {
+      "id": "succubus",
+      "name": "Succubus",
+      "type": "Morto-Vivo",
+      "level": 75,
+      "xp": {
+        "classicos_valento": 73735,
+        "cronus": 35420
+      },
+      "maps": [
+        "Templo Maldito 1º Andar"
+      ],
+      "source_level_band": "71-80"
+    },
+    {
+      "id": "dusk",
+      "name": "Dusk",
+      "type": "Demônio",
+      "level": 75,
+      "xp": {
+        "classicos_valento": 63202,
+        "cronus": 30360
+      },
+      "maps": [
+        "Templo Maldito 2º Andar"
+      ],
+      "source_level_band": "71-80"
+    },
+    {
+      "id": "raia-venenosa",
+      "name": "Raia Venenosa",
+      "type": "Normal",
+      "level": 76,
+      "xp": {
+        "classicos_valento": 65836,
+        "cronus": 31625
+      },
+      "maps": [
+        "Lago da Ganância"
+      ],
+      "source_level_band": "71-80"
+    },
+    {
+      "id": "dawlin",
+      "name": "Dawlin",
+      "type": "Mutante",
+      "level": 77,
+      "xp": {
+        "classicos_valento": 76369,
+        "cronus": 36685
+      },
+      "maps": [
+        "Templo Maldito 1º Andar",
+        "Templo Maldito 2º Andar"
+      ],
+      "source_level_band": "71-80"
+    },
+    {
+      "id": "lorde-mumia",
+      "name": "Lorde Múmia",
+      "type": "Morto-Vivo",
+      "level": 79,
+      "xp": {
+        "classicos_valento": 79002,
+        "cronus": 37950
+      },
+      "maps": [
+        "Lago da Ganância"
+      ],
+      "source_level_band": "71-80"
+    },
+    {
+      "id": "sombra",
+      "name": "Sombra",
+      "type": "Demônio",
+      "level": 79,
+      "xp": {
+        "classicos_valento": 80317,
+        "cronus": 38583
+      },
+      "maps": [
+        "Templo Maldito 1º Andar",
+        "Templo Maldito 2º Andar"
+      ],
+      "source_level_band": "71-80"
+    },
+    {
+      "id": "stygian",
+      "name": "Stygian",
+      "type": "Morto-Vivo",
+      "level": 79,
+      "xp": {
+        "classicos_valento": 86903,
+        "cronus": 41745
+      },
+      "maps": [
+        "Templo Maldito 1º Andar"
+      ],
+      "source_level_band": "71-80"
+    },
+    {
+      "id": "omicron",
+      "name": "Omicron",
+      "type": "Demônio",
+      "level": 79,
+      "xp": {
+        "classicos_valento": 89536,
+        "cronus": 43010
+      },
+      "maps": [
+        "Templo Maldito 2º Andar"
+      ],
+      "source_level_band": "71-80"
+    },
+    {
+      "id": "lagarto-do-lago",
+      "name": "Lagarto do Lago",
+      "type": "Demônio",
+      "level": 80,
+      "xp": {
+        "classicos_valento": 84269,
+        "cronus": 40480
+      },
+      "maps": [
+        "Lago da Ganância"
+      ],
+      "source_level_band": "71-80"
+    },
+    {
+      "id": "esqueleto-de-hopi",
+      "name": "Esqueleto de Hopi",
+      "type": "Morto-Vivo",
+      "level": 80,
+      "xp": {
+        "classicos_valento": 224717,
+        "cronus": 44528
+      },
+      "maps": [
+        "Torre sem Fim 1º Andar",
+        "Torre sem Fim 2º Andar"
+      ],
+      "source_level_band": "71-80"
+    },
+    {
+      "id": "guardiao-de-aco",
+      "name": "Guardião de Aço",
+      "type": "Normal",
+      "level": 81,
+      "xp": {
+        "classicos_valento": 108145,
+        "cronus": 48703
+      },
+      "maps": [
+        "Estrada de Ferro do Caos"
+      ],
+      "source_level_band": "81-90"
+    },
+    {
+      "id": "sereia-profana",
+      "name": "Sereia Profana",
+      "type": "Demônio",
+      "level": 82,
+      "xp": {
+        "classicos_valento": 86903,
+        "cronus": 41745
+      },
+      "maps": [
+        "Lago da Ganância"
+      ],
+      "source_level_band": "81-90"
+    },
+    {
+      "id": "centauro-arqueira",
+      "name": "Centauro Arqueira",
+      "type": "Mutante",
+      "level": 82,
+      "xp": {
+        "classicos_valento": 89887,
+        "cronus": 40480
+      },
+      "maps": [
+        "Estrada de Ferro do Caos"
+      ],
+      "source_level_band": "81-90"
+    },
+    {
+      "id": "incubus",
+      "name": "Incubus",
+      "type": "Morto-Vivo",
+      "level": 82,
+      "xp": {
+        "classicos_valento": 106740,
+        "cronus": 48070
+      },
+      "maps": [
+        "Templo Maldito 2º Andar",
+        "Templo Maldito 3º Andar"
+      ],
+      "source_level_band": "81-90"
+    },
+    {
+      "id": "niken",
+      "name": "Niken",
+      "type": "Demônio",
+      "level": 82,
+      "xp": {
+        "classicos_valento": 98058,
+        "cronus": 44160
+      },
+      "maps": [
+        "Templo Maldito 3º Andar"
+      ],
+      "source_level_band": "81-90"
+    },
+    {
+      "id": "mimic",
+      "name": "Mimic",
+      "type": "Normal",
+      "level": 83,
+      "xp": {
+        "classicos_valento": 113124,
+        "cronus": 50945
+      },
+      "maps": [
+        "Templo Maldito 3º Andar"
+      ],
+      "source_level_band": "81-90"
+    },
+    {
+      "id": "golem-de-aco",
+      "name": "Golem de Aço",
+      "type": "Mecânico",
+      "level": 83,
+      "xp": {
+        "classicos_valento": 113762,
+        "cronus": 51233
+      },
+      "maps": [
+        "Estrada de Ferro do Caos"
+      ],
+      "source_level_band": "81-90"
+    },
+    {
+      "id": "destruidor",
+      "name": "Destruidor",
+      "type": "Mutante",
+      "level": 84,
+      "xp": {
+        "classicos_valento": 117977,
+        "cronus": 53130
+      },
+      "maps": [
+        "Estrada de Ferro do Caos"
+      ],
+      "source_level_band": "81-90"
+    },
+    {
+      "id": "hiper-maquina",
+      "name": "Hiper-Máquina",
+      "type": "Mecânico",
+      "level": 84,
+      "xp": {
+        "classicos_valento": 115168,
+        "cronus": 51865
+      },
+      "maps": [
+        "Estrada de Ferro do Caos"
+      ],
+      "source_level_band": "81-90"
+    },
+    {
+      "id": "aranha-rainha",
+      "name": "Aranha Rainha",
+      "type": "Demônio",
+      "level": 85,
+      "xp": {
+        "classicos_valento": 105336,
+        "cronus": 50600
+      },
+      "maps": [
+        "Lago da Ganância"
+      ],
+      "source_level_band": "81-90"
+    },
+    {
+      "id": "tiphoon",
+      "name": "Tiphoon",
+      "type": "Mutante",
+      "level": 85,
+      "xp": {
+        "classicos_valento": 89776,
+        "cronus": 43125
+      },
+      "maps": [
+        "Templo Maldito 1º Andar"
+      ],
+      "source_level_band": "81-90"
+    },
+    {
+      "id": "morcego-mutante",
+      "name": "Morcego Mutante",
+      "type": "Mutante",
+      "level": 85,
+      "xp": {
+        "classicos_valento": 117772,
+        "cronus": 53038
+      },
+      "maps": [
+        "Templo Maldito 3º Andar"
+      ],
+      "source_level_band": "81-90"
+    },
+    {
+      "id": "maquina-vampira",
+      "name": "Máquina Vampira",
+      "type": "Mecânico",
+      "level": 85,
+      "xp": {
+        "classicos_valento": 120785,
+        "cronus": 54395
+      },
+      "maps": [
+        "Estrada de Ferro do Caos"
+      ],
+      "source_level_band": "81-90"
+    },
+    {
+      "id": "morte-subita",
+      "name": "Morte Súbita",
+      "type": "Mecânico",
+      "level": 85,
+      "xp": {
+        "classicos_valento": 116572,
+        "cronus": 52498
+      },
+      "maps": [
+        "Estrada de Ferro do Caos"
+      ],
+      "source_level_band": "81-90"
+    },
+    {
+      "id": "abelha-vampira",
+      "name": "Abelha Vampira",
+      "type": "Mecânico",
+      "level": 85,
+      "xp": {
+        "classicos_valento": 11236,
+        "cronus": 5060
+      },
+      "maps": [
+        "Estrada de Ferro do Caos"
+      ],
+      "source_level_band": "81-90"
+    },
+    {
+      "id": "rei-hopi",
+      "name": "Rei Hopi",
+      "type": "Mutante",
+      "level": 86,
+      "xp": {
+        "classicos_valento": 69312,
+        "cronus": 35673
+      },
+      "maps": [
+        "Calabouço Antigo 3º Andar"
+      ],
+      "source_level_band": "81-90"
+    },
+    {
+      "id": "espectro-negro",
+      "name": "Espectro Negro",
+      "type": "Demônio",
+      "level": 87,
+      "xp": {
+        "classicos_valento": 123594,
+        "cronus": 55660
+      },
+      "maps": [
+        "Templo Maldito 2º Andar",
+        "Templo Maldito 3º Andar"
+      ],
+      "source_level_band": "81-90"
+    },
+    {
+      "id": "duende-xama",
+      "name": "Duende Xamã",
+      "type": "Morto-Vivo",
+      "level": 87,
+      "xp": {
+        "classicos_valento": 120377,
+        "cronus": 54211
+      },
+      "maps": [
+        "Templo Maldito 3º Andar"
+      ],
+      "source_level_band": "81-90"
+    },
+    {
+      "id": "guardiao-antigo",
+      "name": "Guardião Antigo",
+      "type": "Demônio",
+      "level": 87,
+      "xp": {
+        "classicos_valento": 133426,
+        "cronus": 60088
+      },
+      "maps": [
+        "Coração de Perum"
+      ],
+      "source_level_band": "81-90"
+    },
+    {
+      "id": "morgon",
+      "name": "Morgon",
+      "type": "Demônio",
+      "level": 87,
+      "xp": {
+        "classicos_valento": 122190,
+        "cronus": 55028
+      },
+      "maps": [
+        "Coração de Perum"
+      ],
+      "source_level_band": "81-90"
+    },
+    {
+      "id": "omega",
+      "name": "Ômega",
+      "type": "Demônio",
+      "level": 88,
+      "xp": {
+        "classicos_valento": 154493,
+        "cronus": 69575
+      },
+      "maps": [
+        "Coração de Perum"
+      ],
+      "source_level_band": "81-90"
+    },
+    {
+      "id": "metron",
+      "name": "Metron",
+      "type": "Mecânico",
+      "level": 88,
+      "xp": {
+        "classicos_valento": 140448,
+        "cronus": 63250
+      },
+      "maps": [
+        "Coração de Perum"
+      ],
+      "source_level_band": "81-90"
+    },
+    {
+      "id": "ogro-mecanico",
+      "name": "Ogro Mecânico",
+      "type": "Mecânico",
+      "level": 88,
+      "xp": {
+        "classicos_valento": 139044,
+        "cronus": 62618
+      },
+      "maps": [
+        "Coração de Perum"
+      ],
+      "source_level_band": "81-90"
+    },
+    {
+      "id": "montanha",
+      "name": "Montanha",
+      "type": "Mutante",
+      "level": 89,
+      "xp": {
+        "classicos_valento": 174156,
+        "cronus": 78430
+      },
+      "maps": [
+        "Coração de Perum"
+      ],
+      "source_level_band": "81-90"
+    },
+    {
+      "id": "maquina-d",
+      "name": "Máquina-D",
+      "type": "Mecânico",
+      "level": 89,
+      "xp": {
+        "classicos_valento": 146066,
+        "cronus": 65780
+      },
+      "maps": [
+        "Coração de Perum"
+      ],
+      "source_level_band": "81-90"
+    },
+    {
+      "id": "spinel-mistico",
+      "name": "Spinel Místico",
+      "type": "Mutante",
+      "level": 92,
+      "xp": {
+        "classicos_valento": 170118,
+        "cronus": 72105
+      },
+      "maps": [
+        "Vale Gallubia",
+        "Caverna do Kelvezu"
+      ],
+      "source_level_band": "91-100"
+    },
+    {
+      "id": "duende-do-gelo",
+      "name": "Duende do Gelo",
+      "type": "Normal",
+      "level": 93,
+      "xp": {
+        "classicos_valento": 196979,
+        "cronus": 83490
+      },
+      "maps": [
+        "Vale Gallubia"
+      ],
+      "source_level_band": "91-100"
+    },
+    {
+      "id": "olhar-de-gelo",
+      "name": "Olhar de Gelo",
+      "type": "Mecânico",
+      "level": 94,
+      "xp": {
+        "classicos_valento": 191009,
+        "cronus": 80960
+      },
+      "maps": [
+        "Vale Gallubia"
+      ],
+      "source_level_band": "91-100"
+    },
+    {
+      "id": "congelado",
+      "name": "Congelado",
+      "type": "Mutante",
+      "level": 95,
+      "xp": {
+        "classicos_valento": 214885,
+        "cronus": 91080
+      },
+      "maps": [
+        "Vale Gallubia"
+      ],
+      "source_level_band": "91-100"
+    },
+    {
+      "id": "golem-de-gelo",
+      "name": "Golem de Gelo",
+      "type": "Mutante",
+      "level": 96,
+      "xp": {
+        "classicos_valento": 244730,
+        "cronus": 103730
+      },
+      "maps": [
+        "Vale Gallubia",
+        "Santuário Congelado",
+        "Caverna do Kelvezu"
+      ],
+      "source_level_band": "91-100"
+    },
+    {
+      "id": "conjuradora",
+      "name": "Conjuradora",
+      "type": "Morto-Vivo",
+      "level": 96,
+      "xp": {
+        "classicos_valento": 250699,
+        "cronus": 106260
+      },
+      "maps": [
+        "Santuário Congelado"
+      ],
+      "source_level_band": "91-100"
+    },
+    {
+      "id": "gelo",
+      "name": "Gelo",
+      "type": "Mutante",
+      "level": 97,
+      "xp": {
+        "classicos_valento": 262638,
+        "cronus": 111320
+      },
+      "maps": [
+        "Vale Gallubia",
+        "Caverna do Kelvezu",
+        "Santuário Congelado"
+      ],
+      "source_level_band": "91-100"
+    },
+    {
+      "id": "guerreiro-ciclope",
+      "name": "Guerreiro Ciclope",
+      "type": "Demônio",
+      "level": 97,
+      "xp": {
+        "classicos_valento": 256669,
+        "cronus": 108790
+      },
+      "maps": [
+        "Santuário Congelado",
+        "Caverna do Kelvezu"
+      ],
+      "source_level_band": "91-100"
+    },
+    {
+      "id": "tartaruga-blindada",
+      "name": "Tartaruga Blindada",
+      "type": "Mutante",
+      "level": 98,
+      "xp": {
+        "classicos_valento": 269149,
+        "cronus": 114080
+      },
+      "maps": [
+        "Santuário Congelado",
+        "Caverna do Kelvezu"
+      ],
+      "source_level_band": "91-100"
+    },
+    {
+      "id": "nevasca",
+      "name": "Nevasca",
+      "type": "Mutante",
+      "level": 99,
+      "xp": {
+        "classicos_valento": 537214,
+        "cronus": 227700
+      },
+      "maps": [
+        "Santuário Congelado",
+        "Caverna do Kelvezu"
+      ],
+      "source_level_band": "91-100"
+    },
+    {
+      "id": "ratoo",
+      "name": "Ratoo",
+      "type": "Demônio",
+      "level": 100,
+      "xp": {
+        "classicos_valento": 171347,
+        "cronus": 77165
+      },
+      "maps": [
+        "Templo Maldito 2º Andar",
+        "Templo Maldito 3º Andar"
+      ],
+      "source_level_band": "91-100"
+    },
+    {
+      "id": "hest",
+      "name": "Hest",
+      "type": "Mecânico",
+      "level": 100,
+      "xp": {
+        "classicos_valento": 211949,
+        "cronus": 95450
+      },
+      "maps": [
+        "Templo Maldito 3º Andar"
+      ],
+      "source_level_band": "91-100"
+    },
+    {
+      "id": "grotesco",
+      "name": "Grotesco",
+      "type": "Mutante",
+      "level": 100,
+      "xp": {
+        "classicos_valento": 196627,
+        "cronus": 88550
+      },
+      "maps": [
+        "Estrada de Ferro do Caos"
+      ],
+      "source_level_band": "91-100"
+    },
+    {
+      "id": "punhos-de-aco",
+      "name": "Punhos de Aço",
+      "type": "Mecânico",
+      "level": 100,
+      "xp": {
+        "classicos_valento": 252806,
+        "cronus": 113850
+      },
+      "maps": [
+        "Coração de Perum"
+      ],
+      "source_level_band": "91-100"
+    },
+    {
+      "id": "caoscara",
+      "name": "Caoscara",
+      "type": "Morto-Vivo",
+      "level": 100,
+      "xp": {
+        "classicos_valento": 1790000,
+        "cronus": 759000
+      },
+      "maps": [
+        "Vale Gallubia",
+        "Caverna do Kelvezu"
+      ],
+      "source_level_band": "91-100"
+    },
+    {
+      "id": "verme-de-fogo",
+      "name": "Verme de Fogo",
+      "type": "Normal",
+      "level": 101,
+      "xp": {
+        "classicos_valento": 1061000,
+        "cronus": 318780
+      },
+      "maps": [
+        "Ilha Perdida"
+      ],
+      "source_level_band": "101-110"
+    },
+    {
+      "id": "quimera",
+      "name": "Quimera",
+      "type": "Mutante",
+      "level": 102,
+      "xp": {
+        "classicos_valento": 1079000,
+        "cronus": 324245
+      },
+      "maps": [
+        "Ilha Perdida",
+        "Templo Perdido"
+      ],
+      "source_level_band": "101-110"
+    },
+    {
+      "id": "cao-infernal",
+      "name": "Cão Infernal",
+      "type": "Demônio",
+      "level": 102,
+      "xp": {
+        "classicos_valento": 1081000,
+        "cronus": 324548
+      },
+      "maps": [
+        "Ilha Perdida"
+      ],
+      "source_level_band": "101-110"
+    },
+    {
+      "id": "guardiao-sombrio",
+      "name": "Guardião Sombrio",
+      "type": "Morto-Vivo",
+      "level": 103,
+      "xp": {
+        "classicos_valento": 1087000,
+        "cronus": 326370
+      },
+      "maps": [
+        "Ilha Perdida",
+        "Templo Perdido"
+      ],
+      "source_level_band": "101-110"
+    },
+    {
+      "id": "passaro-demoniaco",
+      "name": "Pássaro Demoníaco",
+      "type": "Demônio",
+      "level": 104,
+      "xp": {
+        "classicos_valento": 1899000,
+        "cronus": 805000
+      },
+      "maps": [
+        "Santuário Congelado",
+        "Caverna do Kelvezu"
+      ],
+      "source_level_band": "101-110"
+    },
+    {
+      "id": "mago-negro",
+      "name": "Mago Negro",
+      "type": "Morto-Vivo",
+      "level": 104,
+      "xp": {
+        "classicos_valento": 1112000,
+        "cronus": 333960
+      },
+      "maps": [
+        "Ilha Perdida"
+      ],
+      "source_level_band": "101-110"
+    },
+    {
+      "id": "inquisidor-negro",
+      "name": "Inquisidor Negro",
+      "type": "Morto-Vivo",
+      "level": 105,
+      "xp": {
+        "classicos_valento": 1135000,
+        "cronus": 340791
+      },
+      "maps": [
+        "Ilha Perdida"
+      ],
+      "source_level_band": "101-110"
+    },
+    {
+      "id": "abominacao",
+      "name": "Abominação",
+      "type": "Mutante",
+      "level": 105,
+      "xp": {
+        "classicos_valento": 1314000,
+        "cronus": 394680
+      },
+      "maps": [
+        "Templo Perdido"
+      ],
+      "source_level_band": "101-110"
+    },
+    {
+      "id": "seto",
+      "name": "Seto",
+      "type": "Morto-Vivo",
+      "level": 105,
+      "xp": {
+        "classicos_valento": 1617000,
+        "cronus": 485760
+      },
+      "maps": [
+        "Templo Perdido"
+      ],
+      "source_level_band": "101-110"
+    },
+    {
+      "id": "cavaleiro-sanguinario",
+      "name": "Cavaleiro Sanguinário",
+      "type": "Morto-Vivo",
+      "level": 106,
+      "xp": {
+        "classicos_valento": 1162000,
+        "cronus": 349140
+      },
+      "maps": [
+        "Ilha Perdida",
+        "Templo Perdido"
+      ],
+      "source_level_band": "101-110"
+    },
+    {
+      "id": "lutador-das-cinzas",
+      "name": "Lutador das Cinzas",
+      "type": "Mutante",
+      "level": 107,
+      "xp": {
+        "classicos_valento": 2443000,
+        "cronus": 484242
+      },
+      "maps": [
+        "Torre sem Fim 1º Andar"
+      ],
+      "source_level_band": "101-110"
+    },
+    {
+      "id": "mecanico-das-cinzas",
+      "name": "Mecânico das Cinzas",
+      "type": "Mutante",
+      "level": 107,
+      "xp": {
+        "classicos_valento": 2528000,
+        "cronus": 500940
+      },
+      "maps": [
+        "Torre sem Fim 1º Andar"
+      ],
+      "source_level_band": "101-110"
+    },
+    {
+      "id": "pike-das-cinzas",
+      "name": "Pike das Cinzas",
+      "type": "Mutante",
+      "level": 107,
+      "xp": {
+        "classicos_valento": 2443000,
+        "cronus": 484242
+      },
+      "maps": [
+        "Torre sem Fim 1º Andar"
+      ],
+      "source_level_band": "101-110"
+    },
+    {
+      "id": "arqueira-das-cinzas",
+      "name": "Arqueira das Cinzas",
+      "type": "Mutante",
+      "level": 107,
+      "xp": {
+        "classicos_valento": 2443000,
+        "cronus": 484242
+      },
+      "maps": [
+        "Torre sem Fim 1º Andar"
+      ],
+      "source_level_band": "101-110"
+    },
+    {
+      "id": "atalanta-das-cinzas",
+      "name": "Atalanta das Cinzas",
+      "type": "Mutante",
+      "level": 107,
+      "xp": {
+        "classicos_valento": 2443000,
+        "cronus": 484242
+      },
+      "maps": [
+        "Torre sem Fim 2º Andar"
+      ],
+      "source_level_band": "101-110"
+    },
+    {
+      "id": "mago-das-cinzas",
+      "name": "Mago das Cinzas",
+      "type": "Mutante",
+      "level": 107,
+      "xp": {
+        "classicos_valento": 2443000,
+        "cronus": 484242
+      },
+      "maps": [
+        "Torre sem Fim 2º Andar"
+      ],
+      "source_level_band": "101-110"
+    },
+    {
+      "id": "cavaleiro-das-cinzas",
+      "name": "Cavaleiro das Cinzas",
+      "type": "Mutante",
+      "level": 107,
+      "xp": {
+        "classicos_valento": 2528000,
+        "cronus": 500940
+      },
+      "maps": [
+        "Torre sem Fim 2º Andar"
+      ],
+      "source_level_band": "101-110"
+    },
+    {
+      "id": "sacerdotisa-das-cinzas",
+      "name": "Sacerdotisa das Cinzas",
+      "type": "Mutante",
+      "level": 107,
+      "xp": {
+        "classicos_valento": 2443000,
+        "cronus": 484242
+      },
+      "maps": [
+        "Torre sem Fim 2º Andar"
+      ],
+      "source_level_band": "101-110"
+    },
+    {
+      "id": "esqueleto-de-rei-hopi",
+      "name": "Esqueleto de Rei Hopi",
+      "type": "Morto-Vivo",
+      "level": 108,
+      "xp": {
+        "classicos_valento": 2949000,
+        "cronus": 584430
+      },
+      "maps": [
+        "Torre sem Fim 1º Andar"
+      ],
+      "source_level_band": "101-110"
+    },
+    {
+      "id": "ruca",
+      "name": "Ruca",
+      "type": "Normal",
+      "level": 109,
+      "xp": {
+        "classicos_valento": 3161000,
+        "cronus": 667368
+      },
+      "maps": [
+        "Torre sem Fim 3º Andar"
+      ],
+      "source_level_band": "101-110"
+    },
+    {
+      "id": "naz-das-cinzas",
+      "name": "Naz das Cinzas",
+      "type": "Demônio",
+      "level": 110,
+      "xp": {
+        "classicos_valento": 3200000,
+        "cronus": 675648
+      },
+      "maps": [
+        "Torre sem Fim 3º Andar"
+      ],
+      "source_level_band": "101-110"
+    },
+    {
+      "id": "guardiao-do-templo",
+      "name": "Guardião do Templo",
+      "type": "Mecânico",
+      "level": 110,
+      "xp": {
+        "classicos_valento": 1719000,
+        "cronus": 516120
+      },
+      "maps": [
+        "Templo Perdido"
+      ],
+      "source_level_band": "101-110"
+    },
+    {
+      "id": "golem-robo",
+      "name": "Golem Robô",
+      "type": "Mecânico",
+      "level": 110,
+      "xp": {
+        "classicos_valento": 3033000,
+        "cronus": 522720
+      },
+      "maps": [
+        "Torre sem Fim 1º Andar"
+      ],
+      "source_level_band": "101-110"
+    },
+    {
+      "id": "kakoa",
+      "name": "Kakoa",
+      "type": "Normal",
+      "level": 111,
+      "xp": {
+        "classicos_valento": 3255000,
+        "cronus": 687240
+      },
+      "maps": [
+        "Torre sem Fim 3º Andar"
+      ],
+      "source_level_band": "111-120"
+    },
+    {
+      "id": "igolation",
+      "name": "Igolation",
+      "type": "Normal",
+      "level": 111,
+      "xp": {
+        "classicos_valento": 3349000,
+        "cronus": 707112
+      },
+      "maps": [
+        "Torre sem Fim 3º Andar"
+      ],
+      "source_level_band": "111-120"
+    },
+    {
+      "id": "capataz-das-cinzas",
+      "name": "Capataz das Cinzas",
+      "type": "Morto-Vivo",
+      "level": 111,
+      "xp": {
+        "classicos_valento": 3754000,
+        "cronus": 776995
+      },
+      "maps": [
+        "Mina de Gelo 1º Andar"
+      ],
+      "source_level_band": "111-120"
+    },
+    {
+      "id": "mineiro-das-cinzas",
+      "name": "Mineiro das Cinzas",
+      "type": "Morto-Vivo",
+      "level": 111,
+      "xp": {
+        "classicos_valento": 3694000,
+        "cronus": 767473
+      },
+      "maps": [
+        "Mina de Gelo 1º Andar"
+      ],
+      "source_level_band": "111-120"
+    },
+    {
+      "id": "selamento-explosivo",
+      "name": "Selamento Explosivo",
+      "type": "Mutante",
+      "level": 112,
+      "xp": {
+        "classicos_valento": 3452000,
+        "cronus": 776995
+      },
+      "maps": [
+        "Mina de Gelo 1º Andar"
+      ],
+      "source_level_band": "111-120"
+    },
+    {
+      "id": "sprin",
+      "name": "Sprin",
+      "type": "Mutante",
+      "level": 112,
+      "xp": {
+        "classicos_valento": 3926000,
+        "cronus": 828828
+      },
+      "maps": [
+        "Torre sem Fim 3º Andar"
+      ],
+      "source_level_band": "111-120"
+    },
+    {
+      "id": "gorgon",
+      "name": "Gorgon",
+      "type": "Demônio",
+      "level": 112,
+      "xp": {
+        "classicos_valento": 3202000,
+        "cronus": 551760
+      },
+      "maps": [
+        "Torre sem Fim 2º Andar"
+      ],
+      "source_level_band": "111-120"
+    },
+    {
+      "id": "verme-do-gelo",
+      "name": "Verme do Gelo",
+      "type": "Normal",
+      "level": 113,
+      "xp": {
+        "classicos_valento": 3858000,
+        "cronus": 911710
+      },
+      "maps": [
+        "Mina de Gelo 1º Andar"
+      ],
+      "source_level_band": "111-120"
+    },
+    {
+      "id": "morcego-da-mina",
+      "name": "Morcego da Mina",
+      "type": "Mutante",
+      "level": 115,
+      "xp": {
+        "classicos_valento": 3970000,
+        "cronus": 957295
+      },
+      "maps": [
+        "Mina de Gelo 1º Andar"
+      ],
+      "source_level_band": "111-120"
+    },
+    {
+      "id": "arvore-das-cinzas",
+      "name": "Árvore das Cinzas",
+      "type": "Morto-Vivo",
+      "level": 115,
+      "xp": {
+        "classicos_valento": 3072000,
+        "cronus": 648600
+      },
+      "maps": [
+        "Torre sem Fim 3º Andar"
+      ],
+      "source_level_band": "111-120"
+    },
+    {
+      "id": "xetan",
+      "name": "Xetan",
+      "type": "Demônio",
+      "level": 117,
+      "xp": {
+        "classicos_valento": 3953000,
+        "cronus": 834624
+      },
+      "maps": [
+        "Torre sem Fim 3º Andar"
+      ],
+      "source_level_band": "111-120"
+    },
+    {
+      "id": "golem-minerador",
+      "name": "Golem Minerador",
+      "type": "Normal",
+      "level": 117,
+      "xp": {
+        "classicos_valento": 4056000,
+        "cronus": 986013
+      },
+      "maps": [
+        "Mina de Gelo 1º Andar"
+      ],
+      "source_level_band": "111-120"
+    },
+    {
+      "id": "tarantulika",
+      "name": "Tarantulika",
+      "type": "Demônio",
+      "level": 118,
+      "xp": {
+        "classicos_valento": 4229000,
+        "cronus": 1055000
+      },
+      "maps": [
+        "Mina de Gelo 1º Andar"
+      ],
+      "source_level_band": "111-120"
+    },
+    {
+      "id": "serpente-de-gelo",
+      "name": "Serpente de Gelo",
+      "type": "Normal",
+      "level": 120,
+      "xp": {
+        "classicos_valento": 4488000,
+        "cronus": 1118000
+      },
+      "maps": [
+        "Mina de Gelo 1º Andar"
+      ],
+      "source_level_band": "111-120"
+    },
+    {
+      "id": "tecnico-invasor",
+      "name": "Técnico Invasor",
+      "type": "Morto-Vivo",
+      "level": 121,
+      "xp": {
+        "classicos_valento": 4315000,
+        "cronus": 893544
+      },
+      "maps": [
+        "Laboratório Secreto"
+      ],
+      "source_level_band": "121-130"
+    },
+    {
+      "id": "tecnico-do-laboratorio",
+      "name": "Técnico do Laboratório",
+      "type": "Mutante",
+      "level": 121,
+      "xp": {
+        "classicos_valento": 4315000,
+        "cronus": 893544
+      },
+      "maps": [
+        "Laboratório Secreto"
+      ],
+      "source_level_band": "121-130"
+    },
+    {
+      "id": "engenheiro-do-laboratorio",
+      "name": "Engenheiro do Laboratório",
+      "type": "Mutante",
+      "level": 121,
+      "xp": {
+        "classicos_valento": 4448000,
+        "cronus": 1048000
+      },
+      "maps": [
+        "Laboratório Secreto"
+      ],
+      "source_level_band": "121-130"
+    },
+    {
+      "id": "soldado-invasor",
+      "name": "Soldado Invasor",
+      "type": "Mutante",
+      "level": 123,
+      "xp": {
+        "classicos_valento": 4581000,
+        "cronus": 1100000
+      },
+      "maps": [
+        "Laboratório Secreto"
+      ],
+      "source_level_band": "121-130"
+    },
+    {
+      "id": "bombardeiro-invasor",
+      "name": "Bombardeiro Invasor",
+      "type": "Morto-Vivo",
+      "level": 125,
+      "xp": {
+        "classicos_valento": 4713000,
+        "cronus": 1133000
+      },
+      "maps": [
+        "Laboratório Secreto"
+      ],
+      "source_level_band": "121-130"
+    },
+    {
+      "id": "guardiao-do-laboratorio",
+      "name": "Guardião do Laboratório",
+      "type": "Mecânico",
+      "level": 126,
+      "xp": {
+        "classicos_valento": 4913000,
+        "cronus": 1213000
+      },
+      "maps": [
+        "Laboratório Secreto"
+      ],
+      "source_level_band": "121-130"
+    },
+    {
+      "id": "tecnico-zumbi",
+      "name": "Técnico Zumbi",
+      "type": "Morto-Vivo",
+      "level": 126,
+      "xp": {
+        "classicos_valento": 6310000,
+        "cronus": 1007470
+      },
+      "maps": [
+        "Arma Antiga"
+      ],
+      "source_level_band": "121-130"
+    },
+    {
+      "id": "elite-invasor",
+      "name": "Elite Invasor",
+      "type": "Mecânico",
+      "level": 128,
+      "xp": {
+        "classicos_valento": 5178000,
+        "cronus": 1286000
+      },
+      "maps": [
+        "Laboratório Secreto"
+      ],
+      "source_level_band": "121-130"
+    },
+    {
+      "id": "soldado-zumbi",
+      "name": "Soldado Zumbi",
+      "type": "Morto-Vivo",
+      "level": 128,
+      "xp": {
+        "classicos_valento": 6593000,
+        "cronus": 1007470
+      },
+      "maps": [
+        "Arma Antiga"
+      ],
+      "source_level_band": "121-130"
+    },
+    {
+      "id": "nihil",
+      "name": "Nihil",
+      "type": "Demônio",
+      "level": 129,
+      "xp": {
+        "classicos_valento": 7442000,
+        "cronus": 1241262
+      },
+      "maps": [
+        "Arma Antiga"
+      ],
+      "source_level_band": "121-130"
+    },
+    {
+      "id": "chalybs",
+      "name": "Chalybs",
+      "type": "Normal",
+      "level": 129,
+      "xp": {
+        "classicos_valento": 8413000,
+        "cronus": 1182145
+      },
+      "maps": [
+        "Arma Antiga"
+      ],
+      "source_level_band": "121-130"
+    },
+    {
+      "id": "bombardeiro-zumbi",
+      "name": "Bombardeiro Zumbi",
+      "type": "Morto-Vivo",
+      "level": 130,
+      "xp": {
+        "classicos_valento": 7887000,
+        "cronus": 1278488
+      },
+      "maps": [
+        "Arma Antiga"
+      ],
+      "source_level_band": "121-130"
+    },
+    {
+      "id": "acero",
+      "name": "Acero",
+      "type": "Normal",
+      "level": 131,
+      "xp": {
+        "classicos_valento": 7847000,
+        "cronus": 1367981
+      },
+      "maps": [
+        "Arma Antiga"
+      ],
+      "source_level_band": "131-140"
+    },
+    {
+      "id": "elite-zumbi",
+      "name": "Elite Zumbi",
+      "type": "Demônio",
+      "level": 133,
+      "xp": {
+        "classicos_valento": 9465000,
+        "cronus": 1450059
+      },
+      "maps": [
+        "Arma Antiga"
+      ],
+      "source_level_band": "131-140"
+    },
+    {
+      "id": "inferno",
+      "name": "Inferno",
+      "type": "Demônio",
+      "level": 135,
+      "xp": {
+        "classicos_valento": 9496000,
+        "cronus": 1135246
+      },
+      "maps": [
+        "Estrada Sombria",
+        "Pillai Destruída (Cronus)",
+        "Estrada dos Ventos Destruída (Cronus)",
+        "Vale Tranquilo Destruído (Cronus)"
+      ],
+      "source_level_band": "131-140"
+    },
+    {
+      "id": "guardiao-enferrujado",
+      "name": "Guardião Enferrujado",
+      "type": "Mecânico",
+      "level": 136,
+      "xp": {
+        "classicos_valento": 9922000,
+        "cronus": 1135246
+      },
+      "maps": [
+        "Estrada Sombria",
+        "Pillai Destruída (Cronus)",
+        "Estrada dos Ventos Destruída (Cronus)",
+        "Vale Tranquilo Destruído (Cronus)"
+      ],
+      "source_level_band": "131-140"
+    },
+    {
+      "id": "sombra-misteriosa",
+      "name": "Sombra Misteriosa",
+      "type": "Demônio",
+      "level": 137,
+      "xp": {
+        "classicos_valento": 11200000,
+        "cronus": 1332076
+      },
+      "maps": [
+        "Estrada Sombria",
+        "Pillai Destruída (Cronus)",
+        "Estrada dos Ventos Destruída (Cronus)",
+        "Vale Tranquilo Destruído (Cronus)"
+      ],
+      "source_level_band": "131-140"
+    },
+    {
+      "id": "ignis",
+      "name": "Ignis",
+      "type": "Mutante",
+      "level": 138,
+      "xp": {
+        "classicos_valento": 12661000,
+        "cronus": 1541481
+      },
+      "maps": [
+        "Estrada Sombria",
+        "Pillai Destruída (Cronus)",
+        "Estrada dos Ventos Destruída (Cronus)",
+        "Vale Tranquilo Destruído (Cronus)"
+      ],
+      "source_level_band": "131-140"
+    },
+    {
+      "id": "crios",
+      "name": "Crios",
+      "type": "Normal",
+      "level": 139,
+      "xp": {
+        "classicos_valento": 11809000,
+        "cronus": 1398690
+      },
+      "maps": [
+        "Estrada Sombria",
+        "Pillai Destruída (Cronus)",
+        "Estrada dos Ventos Destruída (Cronus)",
+        "Vale Tranquilo Destruído (Cronus)"
+      ],
+      "source_level_band": "131-140"
+    },
+    {
+      "id": "najan",
+      "name": "Najan",
+      "type": "Normal",
+      "level": 139,
+      "xp": {
+        "classicos_valento": 11870000,
+        "cronus": 1440638
+      },
+      "maps": [
+        "Estrada Sombria",
+        "Pillai Destruída (Cronus)",
+        "Estrada dos Ventos Destruída (Cronus)",
+        "Vale Tranquilo Destruído (Cronus)"
+      ],
+      "source_level_band": "131-140"
+    },
+    {
+      "id": "bruxa-mestre",
+      "name": "Bruxa Mestre",
+      "type": "Morto-Vivo",
+      "level": 140,
+      "xp": {
+        "classicos_valento": 14244000,
+        "cronus": 1633969
+      },
+      "maps": [
+        "Estrada Sombria",
+        "Pillai Destruída (Cronus)",
+        "Estrada dos Ventos Destruída (Cronus)",
+        "Vale Tranquilo Destruído (Cronus)"
+      ],
+      "source_level_band": "131-140"
+    },
+    {
+      "id": "gurkob",
+      "name": "Gurkob",
+      "type": "Demônio",
+      "level": 145,
+      "xp": {
+        "classicos_valento": 14742000,
+        "cronus": null
+      },
+      "maps": [
+        "Abismo do Mar"
+      ],
+      "source_level_band": "145-150"
+    },
+    {
+      "id": "dey",
+      "name": "Dey",
+      "type": "Normal",
+      "level": 145,
+      "xp": {
+        "classicos_valento": 15404000,
+        "cronus": null
+      },
+      "maps": [
+        "Abismo do Mar"
+      ],
+      "source_level_band": "145-150"
+    },
+    {
+      "id": "koon",
+      "name": "Koon",
+      "type": "Normal",
+      "level": 146,
+      "xp": {
+        "classicos_valento": 17388000,
+        "cronus": null
+      },
+      "maps": [
+        "Abismo do Mar"
+      ],
+      "source_level_band": "145-150"
+    },
+    {
+      "id": "faugn",
+      "name": "Faugn",
+      "type": "Mutante",
+      "level": 147,
+      "xp": {
+        "classicos_valento": 19657000,
+        "cronus": null
+      },
+      "maps": [
+        "Abismo do Mar"
+      ],
+      "source_level_band": "145-150"
+    },
+    {
+      "id": "shogoth",
+      "name": "Shogoth",
+      "type": "Morto-Vivo",
+      "level": 148,
+      "xp": {
+        "classicos_valento": 18428000,
+        "cronus": null
+      },
+      "maps": [
+        "Abismo do Mar"
+      ],
+      "source_level_band": "145-150"
+    },
+    {
+      "id": "arhdyra",
+      "name": "Arhdyra",
+      "type": "Mutante",
+      "level": 149,
+      "xp": {
+        "classicos_valento": 18333000,
+        "cronus": null
+      },
+      "maps": [
+        "Abismo do Mar"
+      ],
+      "source_level_band": "145-150"
+    },
+    {
+      "id": "sathla",
+      "name": "Sathla",
+      "type": "Demônio",
+      "level": 150,
+      "xp": {
+        "classicos_valento": 22114000,
+        "cronus": null
+      },
+      "maps": [
+        "Abismo do Mar"
+      ],
+      "source_level_band": "145-150"
+    },
+    {
+      "id": "gurcold",
+      "name": "Gurcold",
+      "type": "Demônio",
+      "level": 160,
+      "xp": {
+        "classicos_valento": 17691000,
+        "cronus": null
+      },
+      "maps": [
+        "Abismo do Mar Congelado"
+      ],
+      "source_level_band": "160-165"
+    },
+    {
+      "id": "kryosdey",
+      "name": "Kryosdey",
+      "type": "Normal",
+      "level": 160,
+      "xp": {
+        "classicos_valento": 18485000,
+        "cronus": null
+      },
+      "maps": [
+        "Abismo do Mar Congelado"
+      ],
+      "source_level_band": "160-165"
+    },
+    {
+      "id": "snowkoon",
+      "name": "Snowkoon",
+      "type": "Normal",
+      "level": 161,
+      "xp": {
+        "classicos_valento": 20866000,
+        "cronus": null
+      },
+      "maps": [
+        "Abismo do Mar Congelado"
+      ],
+      "source_level_band": "160-165"
+    },
+    {
+      "id": "faugelus",
+      "name": "Faugelus",
+      "type": "Mutante",
+      "level": 162,
+      "xp": {
+        "classicos_valento": 23588000,
+        "cronus": null
+      },
+      "maps": [
+        "Abismo do Mar Congelado"
+      ],
+      "source_level_band": "160-165"
+    },
+    {
+      "id": "polusgoth",
+      "name": "Polusgoth",
+      "type": "Morto-Vivo",
+      "level": 163,
+      "xp": {
+        "classicos_valento": 22114000,
+        "cronus": null
+      },
+      "maps": [
+        "Abismo do Mar Congelado"
+      ],
+      "source_level_band": "160-165"
+    },
+    {
+      "id": "coldyhra",
+      "name": "Coldyhra",
+      "type": "Mutante",
+      "level": 164,
+      "xp": {
+        "classicos_valento": 22000000,
+        "cronus": null
+      },
+      "maps": [
+        "Abismo do Mar Congelado"
+      ],
+      "source_level_band": "160-165"
+    },
+    {
+      "id": "gelathla",
+      "name": "Gelathla",
+      "type": "Demônio",
+      "level": 165,
+      "xp": {
+        "classicos_valento": 26536000,
+        "cronus": null
+      },
+      "maps": [
+        "Abismo do Mar Congelado"
+      ],
+      "source_level_band": "160-165"
+    },
+    {
+      "id": "dey-ferido",
+      "name": "Dey Ferido",
+      "type": "Normal",
+      "level": 165,
+      "xp": {
+        "classicos_valento": 83183000,
+        "cronus": null
+      },
+      "maps": [
+        "Santuário do Abismo"
+      ],
+      "source_level_band": "165-170"
+    },
+    {
+      "id": "koon-ferido",
+      "name": "Koon Ferido",
+      "type": "Normal",
+      "level": 165,
+      "xp": {
+        "classicos_valento": 79610000,
+        "cronus": null
+      },
+      "maps": [
+        "Santuário do Abismo"
+      ],
+      "source_level_band": "165-170"
+    },
+    {
+      "id": "crios-insano",
+      "name": "Crios Insano",
+      "type": "Normal",
+      "level": 166,
+      "xp": {
+        "classicos_valento": 93900000,
+        "cronus": null
+      },
+      "maps": [
+        "Santuário do Abismo"
+      ],
+      "source_level_band": "165-170"
+    },
+    {
+      "id": "arhdyra-quebrado",
+      "name": "Arhdyra Quebrado",
+      "type": "Mutante",
+      "level": 167,
+      "xp": {
+        "classicos_valento": 106147000,
+        "cronus": null
+      },
+      "maps": [
+        "Santuário do Abismo"
+      ],
+      "source_level_band": "165-170"
+    },
+    {
+      "id": "sathla-ferido",
+      "name": "Sathla Ferido",
+      "type": "Demônio",
+      "level": 168,
+      "xp": {
+        "classicos_valento": 199027000,
+        "cronus": null
+      },
+      "maps": [
+        "Santuário do Abismo"
+      ],
+      "source_level_band": "165-170"
+    },
+    {
+      "id": "faugn-insano",
+      "name": "Faugn Insano",
+      "type": "Mutante",
+      "level": 169,
+      "xp": {
+        "classicos_valento": 198006000,
+        "cronus": null
+      },
+      "maps": [
+        "Santuário do Abismo"
+      ],
+      "source_level_band": "165-170"
+    },
+    {
+      "id": "bruxa-insana",
+      "name": "Bruxa Insana",
+      "type": "Morto-Vivo",
+      "level": 170,
+      "xp": {
+        "classicos_valento": 119416000,
+        "cronus": null
+      },
+      "maps": [
+        "Santuário do Abismo"
+      ],
+      "source_level_band": "165-170"
+    },
+    {
+      "id": "igniculus",
+      "name": "Igniculus",
+      "type": "Normal",
+      "level": 172,
+      "xp": {
+        "classicos_valento": 183002000,
+        "cronus": null
+      },
+      "maps": [
+        "Coração de Fogo"
+      ],
+      "source_level_band": "171-180"
+    },
+    {
+      "id": "guardiao-de-lava",
+      "name": "Guardião de Lava",
+      "type": "Normal",
+      "level": 174,
+      "xp": {
+        "classicos_valento": 175142000,
+        "cronus": null
+      },
+      "maps": [
+        "Coração de Fogo"
+      ],
+      "source_level_band": "171-180"
+    },
+    {
+      "id": "arqueiro-de-lava",
+      "name": "Arqueiro de Lava",
+      "type": "Normal",
+      "level": 175,
+      "xp": {
+        "classicos_valento": 206580000,
+        "cronus": null
+      },
+      "maps": [
+        "Coração de Fogo"
+      ],
+      "source_level_band": "171-180"
+    },
+    {
+      "id": "insec",
+      "name": "Insec",
+      "type": "Morto-Vivo",
+      "level": 176,
+      "xp": {
+        "classicos_valento": 233523000,
+        "cronus": null
+      },
+      "maps": [
+        "Coração de Fogo"
+      ],
+      "source_level_band": "171-180"
+    },
+    {
+      "id": "golem-de-lava",
+      "name": "Golem de Lava",
+      "type": "Normal",
+      "level": 177,
+      "xp": {
+        "classicos_valento": 497567000,
+        "cronus": null
+      },
+      "maps": [
+        "Coração de Fogo"
+      ],
+      "source_level_band": "171-180"
+    },
+    {
+      "id": "gigante-de-lava",
+      "name": "Gigante de Lava",
+      "type": "Normal",
+      "level": 178,
+      "xp": {
+        "classicos_valento": 435613000,
+        "cronus": null
+      },
+      "maps": [
+        "Coração de Fogo"
+      ],
+      "source_level_band": "171-180"
+    },
+    {
+      "id": "flamo",
+      "name": "Flamo",
+      "type": "Demônio",
+      "level": 179,
+      "xp": {
+        "classicos_valento": 262715000,
+        "cronus": null
+      },
+      "maps": [
+        "Coração de Fogo"
+      ],
+      "source_level_band": "171-180"
+    }
+  ]
+}

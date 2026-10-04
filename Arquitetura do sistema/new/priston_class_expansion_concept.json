@@ -1,0 +1,491 @@
+{
+  "project": "Summit / Priston Tale",
+  "expansion_concept": {
+    "goal": "Expandir o elenco de classes mantendo coerência com o universo, monstros, facções e arquitetura já existentes em Priston Tale.",
+    "principles": [
+      "Evitar duplicar identidades já cobertas pelas classes existentes.",
+      "Recuperar primeiro classes já previstas ou existentes no ecossistema Priston.",
+      "Criar novas classes a partir de famílias de monstros, regiões e sistemas já presentes no mundo.",
+      "Manter estética compatível com Priston Tale: metal, couro, cristais, runas, armas e silhuetas marcantes.",
+      "Evitar estética genérica de outros MMOs quando houver uma solução mais própria do universo."
+    ]
+  },
+  "class_plan": {
+    "assassin": {
+      "name": "Assassina",
+      "origin": "Tempskron",
+      "status": "recuperar_conteudo_existente",
+      "identity": "Burst, mobilidade, evasão, veneno e sombra.",
+      "specialization": "Combate rápido contra alvos isolados, com forte sinergia contra Mutantes.",
+      "resource": "Combo",
+      "buffs": [
+        "Evasão",
+        "Velocidade de ataque",
+        "Chance crítica",
+        "Mobilidade"
+      ],
+      "debuffs": [
+        "Veneno",
+        "Blind",
+        "Redução de ataque",
+        "Stun curto",
+        "Marca para dano aumentado"
+      ],
+      "known_skill_direction": [
+        "Stingger",
+        "RunningHit",
+        "DualSwordMastery",
+        "Wisp",
+        "VenomThrone",
+        "Alas",
+        "SoulShock",
+        "AttackMastery",
+        "SoreSword",
+        "BeatUp",
+        "Inpes",
+        "Blind",
+        "FrostWind",
+        "CriticalMastery",
+        "Polluted",
+        "PastingShadow",
+        "ShadowBomb",
+        "RisingSlash",
+        "ViolenceStab",
+        "Storm"
+      ],
+      "aesthetic": {
+        "materials": [
+          "couro escuro",
+          "metal leve",
+          "bronze escurecido"
+        ],
+        "colors": [
+          "preto",
+          "roxo",
+          "cinza"
+        ],
+        "weapons": [
+          "duas adagas"
+        ],
+        "silhouette": "leve, agressiva e compacta"
+      }
+    },
+    "shaman": {
+      "name": "Xamã",
+      "origin": "Morion",
+      "status": "recuperar_conteudo_existente",
+      "identity": "Espíritos, fantasmas, Migal, Midranda e suporte espiritual.",
+      "specialization": "Controle, magia espiritual, buffs de grupo e invocação.",
+      "resource": "Espíritos",
+      "buffs": [
+        "Poder mágico",
+        "Velocidade",
+        "Absorção",
+        "Regeneração"
+      ],
+      "debuffs": [
+        "Lentidão",
+        "Imobilização",
+        "Maldição espiritual",
+        "Redução de resistência"
+      ],
+      "known_skill_direction": [
+        "DarkBolt",
+        "DarkWave",
+        "CurseLazy",
+        "InnerPeace",
+        "SpiritualFlare",
+        "SoulManacle",
+        "ChasingHunt",
+        "AdventMigal",
+        "RainMaker",
+        "LandOfGhost",
+        "Haunt",
+        "Scratch",
+        "RecallBloodyKnight",
+        "Judgement",
+        "AdventMidranda",
+        "MourningOfPray",
+        "Creed",
+        "PressOfDeity",
+        "GhostyNail",
+        "HighRegeneration"
+      ],
+      "summons": [
+        "Cavaleiro Sanguinário"
+      ],
+      "aesthetic": {
+        "materials": [
+          "metal Morion",
+          "tecido ornamentado",
+          "artefatos espirituais"
+        ],
+        "colors": [
+          "azul fantasmagórico",
+          "roxo",
+          "dourado escurecido"
+        ],
+        "weapons": [
+          "Fantasma / artefato espiritual"
+        ],
+        "silhouette": "mística e ritualística"
+      }
+    },
+    "martial_warrior": {
+      "name": "Guerreira",
+      "origin": "Tempskron",
+      "status": "preferida_no_lugar_de_paladino",
+      "reason": "Paladino sobrepõe demasiado a identidade do Cavaleiro, que já cobre proteção, escudo, dano sagrado e mortos-vivos.",
+      "identity": "Punhos, chutes, combos, mobilidade e impacto.",
+      "specialization": "Melee rápido e técnico, distinto do Lutador de armas pesadas.",
+      "resource": "Combo",
+      "buffs": [
+        "Velocidade de ataque",
+        "Evasão",
+        "Dano de combo",
+        "Mobilidade"
+      ],
+      "debuffs": [
+        "Stagger",
+        "Queda",
+        "Redução de defesa física",
+        "Interrupção"
+      ],
+      "skill_direction": [
+        "Chute Baixo",
+        "Golpe Duplo",
+        "Hiper Direto",
+        "Combinação",
+        "Obstrução",
+        "Tufão",
+        "Quebra de Linha",
+        "Treinamento Árduo"
+      ],
+      "aesthetic": {
+        "materials": [
+          "manoplas blindadas",
+          "botas reforçadas",
+          "armadura curta Tempskron"
+        ],
+        "colors": [
+          "aço",
+          "vermelho escuro",
+          "preto"
+        ],
+        "weapons": [
+          "manoplas",
+          "punhos"
+        ],
+        "silhouette": "atlética, curta e agressiva"
+      }
+    },
+    "druid": {
+      "name": "Druida",
+      "origin": "Morion",
+      "status": "classe_nova_summit",
+      "identity": "Mutação controlada, plantas, regeneração e controle territorial.",
+      "lore": "Uma ordem que estuda a mesma força vital corrompida que produz os Mutantes, aprendendo a manipulá-la sem sucumbir a ela.",
+      "specialization": "Controle de área, sustain e dano contra Mutantes.",
+      "resource": "Essência",
+      "buffs": [
+        "HP máximo",
+        "Regeneração",
+        "DEF",
+        "ABS",
+        "Resistência a poison"
+      ],
+      "debuffs": [
+        "Root",
+        "Poison natural",
+        "Slow",
+        "Redução de defesa",
+        "Vulnerabilidade física"
+      ],
+      "skills": [
+        "Raiz Retorcida",
+        "Esporos",
+        "Casca Ancestral",
+        "Semente Parasita",
+        "Surto de Espinhos",
+        "Purificação Mutante",
+        "Forma do Guardião",
+        "Floresta Viva"
+      ],
+      "aesthetic": {
+        "materials": [
+          "madeira petrificada",
+          "metal Morion",
+          "raízes",
+          "cristais verdes envelhecidos"
+        ],
+        "colors": [
+          "verde escuro",
+          "marrom",
+          "bronze",
+          "verde cristal"
+        ],
+        "silhouette": "armadura orgânica com elementos de monstros florestais"
+      },
+      "new_enemies": [
+        "Broto Corrompido",
+        "Esporo Sombrio",
+        "Guardião Retorcido",
+        "Ent Mutante",
+        "Viúva da Floresta"
+      ],
+      "boss": "Coração da Floresta Corrompida"
+    },
+    "necromancer": {
+      "name": "Necromante",
+      "origin": "Morion dissidente",
+      "status": "classe_nova_summit",
+      "identity": "Cadáveres, ossos, decadência e Mortos-Vivos.",
+      "lore": "Uma escola proibida que estuda matéria morta e deterioração, em contraste com o Xamã, que trabalha com almas e espíritos.",
+      "specialization": "Summons, DOT, sustain e enfraquecimento prolongado.",
+      "resource": "Essência Cadavérica",
+      "buffs": [
+        "Life steal",
+        "Escudo de ossos",
+        "Dano de summons",
+        "Regeneração ao matar inimigos"
+      ],
+      "debuffs": [
+        "Redução de defesa",
+        "Redução de cura",
+        "Decay",
+        "Fear",
+        "DOT",
+        "Redução temporária de HP máximo"
+      ],
+      "skills": [
+        "Servo Ósseo",
+        "Arqueiro Cadáver",
+        "Abominação",
+        "Armadura de Ossos",
+        "Apodrecer",
+        "Marca Mortuária",
+        "Drenar Cadáver",
+        "Praga",
+        "Legião"
+      ],
+      "aesthetic": {
+        "materials": [
+          "metal oxidado",
+          "tecido Morion escuro",
+          "ossos de monstros",
+          "cristais azul-pálido"
+        ],
+        "colors": [
+          "cinza",
+          "azul-pálido",
+          "preto",
+          "ferrugem"
+        ],
+        "silhouette": "ritualística, pesada e fúnebre"
+      },
+      "new_enemies": [
+        "Esqueleto Ritualista",
+        "Coletor de Ossos",
+        "Cadáver Blindado",
+        "Múmia Sacerdotal",
+        "Cavaleiro Oco"
+      ],
+      "boss": "Senhor do Ossário"
+    },
+    "witch": {
+      "name": "Bruxa",
+      "origin": "Escola proibida",
+      "status": "classe_nova_summit",
+      "identity": "Maldições, Demônios, condições e manipulação indireta.",
+      "lore": "Praticantes que estudaram energia demoníaca e sistemas de maldição sem necessariamente servir aos demônios.",
+      "specialization": "Controle, debuffs e manipulação de condições.",
+      "resource": "Hexes",
+      "core_mechanic": "O alvo pode acumular até três Hexes; certas skills consomem as três marcas para efeitos amplificados.",
+      "buffs": [
+        "Spell power",
+        "Resistência mágica",
+        "Mana",
+        "Escudo por familiar",
+        "Fortuna"
+      ],
+      "debuffs": [
+        "Hex da Fraqueza",
+        "Hex do Torpor",
+        "Hex da Ruína",
+        "Blind",
+        "Silence",
+        "Redução de velocidade",
+        "Redução de ataque",
+        "Azar"
+      ],
+      "skills": [
+        "Olho Maldito",
+        "Pacto Rubro",
+        "Círculo Profano",
+        "Familiar",
+        "Azar",
+        "Reflexo da Maldição",
+        "Quebrar Maldição"
+      ],
+      "aesthetic": {
+        "materials": [
+          "metal negro",
+          "couro vinho",
+          "correntes",
+          "gemas vermelhas e roxas"
+        ],
+        "colors": [
+          "vinho",
+          "preto",
+          "roxo",
+          "vermelho escuro"
+        ],
+        "silhouette": "ocultista, sem chapéu de bruxa tradicional"
+      },
+      "new_enemies": [
+        "Familiar Abissal",
+        "Conjuradora Rubra",
+        "Possesso",
+        "Viúva Demoníaca",
+        "Arauto da Ruína"
+      ],
+      "boss": "Matriarca das Maldições"
+    },
+    "herald": {
+      "name": "Arauto",
+      "origin": "Tempskron",
+      "status": "substitui_bardo",
+      "reason": "Mantém a ideia de suporte por ritmo e som, mas com linguagem militar e Bellatra em vez de estética medieval genérica.",
+      "identity": "Guerra, Bellatra, moral, ritmo e ressonância.",
+      "specialization": "Suporte ofensivo, buffs de grupo e controle por ondas de choque.",
+      "resource": "Cadência",
+      "core_mechanic": "Ataques acumulam Cadência I-IV; ao atingir IV, a próxima skill de comando é amplificada.",
+      "buffs": [
+        "Velocidade de movimento",
+        "Velocidade de ataque",
+        "Attack Rating",
+        "DEF",
+        "ABS"
+      ],
+      "debuffs": [
+        "Dissonância",
+        "Redução de attack speed",
+        "Interrupção",
+        "Pânico",
+        "Redução de resistência"
+      ],
+      "skills": [
+        "Marcha de Guerra",
+        "Ritmo de Batalha",
+        "Chamado de Zecram",
+        "Estandarte Tempskron",
+        "Dissonância",
+        "Tremor",
+        "Pânico",
+        "Ruptura",
+        "Impacto Sônico",
+        "Ressonância",
+        "Pulso de Guerra",
+        "Último Chamado"
+      ],
+      "aesthetic": {
+        "materials": [
+          "couro",
+          "metal",
+          "estandartes",
+          "cristais de ressonância"
+        ],
+        "colors": [
+          "bronze",
+          "vermelho",
+          "aço"
+        ],
+        "weapons": [
+          "Resonador",
+          "arma de uma mão + instrumento/offhand"
+        ],
+        "silhouette": "militar e cerimonial"
+      },
+      "new_enemies": [
+        "Arauto Sombrio",
+        "Tambor de Ferro",
+        "Porta-Estandarte Maldito",
+        "Batedor de Guerra"
+      ],
+      "boss": "General da Bellatra Perdida"
+    }
+  },
+  "class_separation_rules": {
+    "knight_vs_martial_warrior": {
+      "knight": "Escudo, proteção, dano sagrado, mortos-vivos, defesa.",
+      "martial_warrior": "Punhos, chutes, combos, mobilidade e pressão melee."
+    },
+    "shaman_vs_necromancer_vs_witch": {
+      "shaman": "Almas, espíritos, Migal, Midranda e fantasmas.",
+      "necromancer": "Cadáveres, ossos, deterioração e Mortos-Vivos.",
+      "witch": "Maldições, Demônios, Hexes e manipulação de condições."
+    },
+    "fighter_vs_martial_warrior": {
+      "fighter": "Força bruta e armas pesadas.",
+      "martial_warrior": "Combate desarmado, combos e velocidade."
+    }
+  },
+  "enemy_families_used_as_design_anchors": [
+    "Normal",
+    "Mutante",
+    "Demônio",
+    "Morto-Vivo",
+    "Mecânico"
+  ],
+  "technical_expansion_plan": [
+    {
+      "phase": 1,
+      "target_class_count": 10,
+      "add": [
+        "Assassina",
+        "Xamã"
+      ],
+      "reason": "Já existem códigos/slots e referências arquiteturais para essas duas classes.",
+      "known_job_codes": {
+        "ASSASSIN": 9,
+        "SHAMAN": 10
+      }
+    },
+    {
+      "phase": 2,
+      "target_class_count": 11,
+      "add": [
+        "Guerreira"
+      ],
+      "reason": "Expande o roster sem duplicar o Cavaleiro; exige aumento de capacidade/protocolo."
+    },
+    {
+      "phase": 3,
+      "target_class_count": 15,
+      "add": [
+        "Druida",
+        "Necromante",
+        "Bruxa",
+        "Arauto"
+      ],
+      "reason": "Classes Summit próprias derivadas de famílias de monstros, regiões e sistemas existentes."
+    }
+  ],
+  "architecture_notes": {
+    "legacy_playable_job_slot_count": 8,
+    "max_job_capacity": 10,
+    "known_extra_job_codes": {
+      "JOBCODE_ASSASSIN": 9,
+      "JOBCODE_SHAMAN": 10
+    },
+    "recommended_order": [
+      "Recuperar Assassina",
+      "Recuperar Xamã",
+      "Expandir capacidade para Guerreira",
+      "Depois introduzir Druida",
+      "Depois introduzir Necromante",
+      "Depois introduzir Bruxa",
+      "Depois introduzir Arauto"
+    ]
+  }
+}

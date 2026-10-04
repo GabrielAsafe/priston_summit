@@ -1,0 +1,145 @@
+﻿currency,code,canonical_code,name_pt_BR,section,price,source_table,exists_client,exists_server,status
+coin,SK101,SK101,Skin Machado 1H,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK102,SK102,Skin Machado 1H,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK103,SK103,Skin Machado 1H,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK106,SK106,Skin Machado 1H,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK107,SK107,Skin Espada 1H,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK108,SK108,Skin Espada 1H,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK109,SK109,Skin Espada 1H,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK110,SK110,Skin Espada 1H,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK111,SK111,Skin Garra,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK112,SK112,Skin Garra,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK113,SK113,Skin Garra,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK114,SK114,Skin Garra,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK115,SK115,Skin Garra,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK116,SK116,Skin Garra,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK117,SK117,Skin Machado 1H,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK172,SK172,Skin Lança,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK173,SK173,Skin Lança,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK174,SK174,Skin Lança,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK175,SK175,Skin Lança,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK176,SK176,Skin Lança,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK201,SK201,Skin Machado 2H,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK202,SK202,Skin Machado 2H,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK203,SK203,Skin Machado 2H,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK204,SK204,Skin Machado 2H,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK205,SK205,Skin Machado 2H,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK221,SK221,Skin Martelo 2H,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK222,SK222,Skin Martelo 2H,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK223,SK223,Skin Martelo 2H,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK224,SK224,Skin Martelo 2H,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK231,SK231,Skin Cajado 2H,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK232,SK232,Skin Cajado 2H,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK233,SK233,Skin Cajado 2H,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK234,SK234,Skin Cajado 2H,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK242,SK242,Skin Foice,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK243,SK243,Skin Foice,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK244,SK244,Skin Foice,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK245,SK245,Skin Foice,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK246,SK246,Skin Foice,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK247,SK247,Skin Foice,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK248,SK248,Skin Foice,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK249,SK249,Skin Foice,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK253,SK253,Skin Arco,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK254,SK254,Skin Arco,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK255,SK255,Skin Arco,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK256,SK256,Skin Arco,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK259,SK259,Skin Arco,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK265,SK265,Skin Espada 2H,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK266,SK266,Skin Espada 2H,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK267,SK267,Skin Espada 2H,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK268,SK268,Skin Espada 2H,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK269,SK269,Skin Espada 2H,1,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK181,SK181,Skin Escudo,2,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK182,SK182,Skin Escudo,2,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK183,SK183,Skin Escudo,2,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK184,SK184,Skin Escudo,2,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK185,SK185,Skin Escudo,2,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK186,SK186,Skin Escudo,2,1000,CoinShopDB__ItemList,True,True,migrated
+coin,SK187,SK187,Skin Escudo,2,1000,CoinShopDB__ItemList,True,True,migrated
+coin,CA507,CA507,Traje Fraque 7d,3,1000,CoinShopDB__ItemList,True,True,migrated
+coin,CA508,CA508,Traje Fraque 7d,3,1000,CoinShopDB__ItemList,True,True,migrated
+coin,CA509,CA509,Traje Vampiro 7d,3,1000,CoinShopDB__ItemList,True,True,migrated
+coin,CA511,CA511,Traje Vampiro 7d,3,1000,CoinShopDB__ItemList,True,True,migrated
+coin,CA543,CA543,Traje Comandante 7d,3,1000,CoinShopDB__ItemList,True,True,migrated
+coin,CA545,CA545,Traje Comandante 7d,3,1000,CoinShopDB__ItemList,True,True,migrated
+coin,CA607,CA607,Traje Mágico Fraque 7d,3,1000,CoinShopDB__ItemList,True,True,migrated
+coin,CA608,CA608,Traje Mágico Fraque 7d,3,1000,CoinShopDB__ItemList,True,True,migrated
+coin,CA609,CA609,Traje Mágico Vampiro 7d,3,1000,CoinShopDB__ItemList,True,True,migrated
+coin,CA611,CA611,Traje Mágico Vampiro 7d,3,1000,CoinShopDB__ItemList,True,True,migrated
+coin,CA643,CA643,Traje Mágico Comandante 7d,3,1000,CoinShopDB__ItemList,True,True,migrated
+coin,CA645,CA645,Traje Mágico Comandante,3,1000,CoinShopDB__ItemList,True,True,migrated
+coin,QW106,QW106,Asa Imperial,4,500,CoinShopDB__ItemList,True,True,excluded_quest_wing
+coin,or250,OR250,Anel Eliot 7d,4,600,CoinShopDB__ItemList,True,True,migrated
+coin,OA231,OA231,Bracelete Especial 7d,4,1000,CoinShopDB__ItemList,True,True,migrated
+coin,db131,DB131,Botas da Velocidade 7d,4,1000,CoinShopDB__ItemList,True,True,migrated
+coin,oa150,OA150,Colar Eliot 7d,4,1000,CoinShopDB__ItemList,True,True,migrated
+coin,or251,OR251,Anel Eliot 14d,4,1000,CoinShopDB__ItemList,True,True,migrated
+coin,oa151,OA151,Colar Eliot 14d,4,1700,CoinShopDB__ItemList,True,True,migrated
+coin,CX113,CX113,Caixa 70 Aging 8,4,2000,CoinShopDB__ItemList,True,True,migrated
+coin,os108,OS108,Devine,5,100,CoinShopDB__ItemList,True,True,migrated
+coin,os109,OS109,Celesto,5,200,CoinShopDB__ItemList,True,True,migrated
+coin,os110,OS110,Mirage,5,300,CoinShopDB__ItemList,True,True,migrated
+coin,se101,SE101,Pedra Mágica Jera,5,500,CoinShopDB__ItemList,True,True,migrated
+coin,fo111,FO111,Força Inferna,5,600,CoinShopDB__ItemList,True,True,migrated
+coin,fo131,FO131,Força Mágica Inferna,5,600,CoinShopDB__ItemList,True,True,migrated
+coin,fo112,FO112,Força Enigma,5,800,CoinShopDB__ItemList,True,True,migrated
+coin,fo132,FO132,Força Mágica Enigma,5,800,CoinShopDB__ItemList,True,True,migrated
+coin,BI104,BI104,Pergaminho da Ressurreição,6,50,CoinShopDB__ItemList,True,True,migrated
+coin,BI108,BI108,Pergaminho Mágico,6,50,CoinShopDB__ItemList,True,True,migrated
+coin,BI184,BI184,Pedra da Gravidade,6,400,CoinShopDB__ItemList,True,True,migrated
+coin,BI283,BI283,Ressurreição Premium 1h,6,500,CoinShopDB__ItemList,True,True,migrated
+coin,BI180,BI180,Poção da Experiência 100% 1h,6,1000,CoinShopDB__ItemList,True,True,migrated
+coin,BI309,BI309,Coletor de Ouro 1d,6,1000,CoinShopDB__ItemList,True,True,migrated
+coin,BI330,BI330,Caravana 3 dias,6,1000,CoinShopDB__ItemList,True,True,migrated
+coin,bi109,BI109,Poção Cabeção 1d,6,1000,CoinShopDB__ItemList,True,True,migrated
+coin,BI302,BI302,Pacote de UP 12h,6,1500,CoinShopDB__ItemList,True,True,migrated
+coin,BI150,BI150,Poção da Experiência 100% 1d,6,2000,CoinShopDB__ItemList,True,True,migrated
+coin,BI303,BI303,Pacote de UP 1d,6,2000,CoinShopDB__ItemList,True,True,migrated
+coin,bi189,BI189,Pedra da Limpeza,6,2000,CoinShopDB__ItemList,True,True,migrated
+coin,RS101,RS101,Pedra de Respec FS,7,200,CoinShopDB__ItemList,True,True,migrated
+coin,RS102,RS102,Pedra de Respec MS,7,200,CoinShopDB__ItemList,True,True,migrated
+coin,RS103,RS103,Pedra de Respec PS,7,200,CoinShopDB__ItemList,True,True,migrated
+coin,RS104,RS104,Pedra de Respec AS,7,200,CoinShopDB__ItemList,True,True,migrated
+coin,RS105,RS105,Pedra de Respec KS,7,200,CoinShopDB__ItemList,True,True,migrated
+coin,RS106,RS106,Pedra de Respec ATS,7,200,CoinShopDB__ItemList,True,True,migrated
+coin,RS107,RS107,Pedra de Respec MGS,7,200,CoinShopDB__ItemList,True,True,migrated
+coin,RS108,RS108,Pedra de Respec PRS,7,200,CoinShopDB__ItemList,True,True,migrated
+coin,BI304,BI304,ViP 03 Dias,7,600,CoinShopDB__ItemList,True,True,migrated
+coin,BI305,BI305,ViP 07 Dias,7,1000,CoinShopDB__ItemList,True,True,migrated
+coin,BI190,BI190,Pedra da Honra,7,2000,CoinShopDB__ItemList,True,True,migrated
+coin,BI306,BI306,ViP 30 Dias,7,2000,CoinShopDB__ItemList,True,True,migrated
+time,BI223,BI223,Baú Superior 6h,1,120,CoinShopDB__ItemList_T,True,True,migrated
+time,BI224,BI224,Baú Superior 12h,1,200,CoinShopDB__ItemList_T,True,True,migrated
+time,BI225,BI225,Baú Superior 24h,1,350,CoinShopDB__ItemList_T,True,True,migrated
+time,os108,OS108,Devine,2,150,CoinShopDB__ItemList_T,True,True,migrated
+time,fo109,FO109,Força Celesto,2,200,CoinShopDB__ItemList_T,True,True,migrated
+time,fo129,FO129,Força Mágica Celesto,2,200,CoinShopDB__ItemList_T,True,True,migrated
+time,BI104,BI104,Pergaminho da Ressurreição,3,120,CoinShopDB__ItemList_T,True,True,migrated
+time,BI142,BI142,Pedra do Acesso - Ferreiro,3,120,CoinShopDB__ItemList_T,True,True,migrated
+time,QW103,QW103,Asa de Ouro,3,300,CoinShopDB__ItemList_T,True,True,excluded_quest_wing
+time,bi109,BI109,Poção Cabeção 1d,3,600,CoinShopDB__ItemList_T,True,True,migrated
+time,CA193,CA193,Traje Caribenho 7d,4,600,CoinShopDB__ItemList_T,True,True,migrated
+time,CA195,CA195,Traje Caribenho 7d,4,600,CoinShopDB__ItemList_T,True,True,migrated
+time,CA293,CA293,Traje Mágico Caribenho 7d,4,600,CoinShopDB__ItemList_T,True,True,migrated
+time,CA295,CA295,Traje Mágico Caribenho 7d,4,600,CoinShopDB__ItemList_T,True,True,migrated
+time,CA539,CA539,Traje Combatente 7d,4,600,CoinShopDB__ItemList_T,True,True,migrated
+time,CA541,CA541,Traje Combatente 7d,4,600,CoinShopDB__ItemList_T,True,True,migrated
+time,CA639,CA639,Traje Mágico Combatente 7d,4,600,CoinShopDB__ItemList_T,True,True,migrated
+time,CA641,CA641,Traje Mágico Combatente 7d,4,600,CoinShopDB__ItemList_T,True,True,migrated
+time,BI110,BI110,Pedra do Aging,5,200,CoinShopDB__ItemList_T,True,True,migrated
+time,BI136,BI136,Mestre do Aging A,5,300,CoinShopDB__ItemList_T,True,True,migrated
+time,BI137,BI137,Mestre do Aging B,5,300,CoinShopDB__ItemList_T,True,True,migrated
+time,BI138,BI138,Mestre do Aging C,5,300,CoinShopDB__ItemList_T,True,True,migrated
+time,RS101,RS101,Pedra de Respec FS,6,100,CoinShopDB__ItemList_T,True,True,migrated
+time,RS102,RS102,Pedra de Respec MS,6,100,CoinShopDB__ItemList_T,True,True,migrated
+time,RS103,RS103,Pedra de Respec PS,6,100,CoinShopDB__ItemList_T,True,True,migrated
+time,RS104,RS104,Pedra de Respec AS,6,100,CoinShopDB__ItemList_T,True,True,migrated
+time,RS105,RS105,Pedra de Respec KS,6,100,CoinShopDB__ItemList_T,True,True,migrated
+time,RS106,RS106,Pedra de Respec ATS,6,100,CoinShopDB__ItemList_T,True,True,migrated
+time,RS107,RS107,Pedra de Respec MGS,6,100,CoinShopDB__ItemList_T,True,True,migrated
+time,RS108,RS108,Pedra de Respec PRS,6,100,CoinShopDB__ItemList_T,True,True,migrated
+time,se101,SE101,Pedra Mágica Jera,6,300,CoinShopDB__ItemList_T,True,True,migrated
+time,BI184,BI184,Pedra da Gravidade,6,900,CoinShopDB__ItemList_T,True,True,migrated
+time,BI189,BI189,Pedra da Limpeza,6,1800,CoinShopDB__ItemList_T,True,True,migrated
+time,BI190,BI190,Pedra da Honra,6,1800,CoinShopDB__ItemList_T,True,True,migrated

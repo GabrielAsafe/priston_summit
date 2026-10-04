@@ -1,0 +1,216 @@
+{
+  "missing_server": [
+    {
+      "id": "model.char.monster.g.wolverin.wolverin.a",
+      "logical_config": "char/monster/g_wolverin/wolverin_a.ini",
+      "server_present": false,
+      "server_path": "",
+      "client_present": true,
+      "client_path": "char/monster/G_Wolverin/Wolverin_A.inx",
+      "consumers": [
+        {
+          "id": "monster.pet_60_wolverine_sombrio",
+          "kind": "monster_definition",
+          "json_path": "text/resources/Servidor/GameServer/Monster/Pet_60_Wolverine Sombrio.inf.json"
+        }
+      ]
+    },
+    {
+      "id": "model.char.monster.hongky.hongky",
+      "logical_config": "char/monster/hongky/hongky.ini",
+      "server_present": false,
+      "server_path": "",
+      "client_present": true,
+      "client_path": "char/monster/hongky/hongky.inx",
+      "consumers": [
+        {
+          "id": "monster.chefe_59_hunki_reverso",
+          "kind": "monster_definition",
+          "json_path": "text/resources/Servidor/GameServer/Monster/Chefe_59_Hunki Reverso.inf.json"
+        }
+      ]
+    },
+    {
+      "id": "model.char.monster.nihil.nihil1",
+      "logical_config": "char/monster/Nihil/Nihil1.ini",
+      "server_present": false,
+      "server_path": "",
+      "client_present": true,
+      "client_path": "char/monster/Nihil/Nihil1.inx",
+      "consumers": [
+        {
+          "id": "npc.soul",
+          "kind": "npc_definition",
+          "json_path": "text/resources/Servidor/GameServer/NPC/Soul.NPC.json"
+        }
+      ]
+    },
+    {
+      "id": "model.char.npc.bt03.battleportal",
+      "logical_config": "char/npc/bt03/battleportal.INI",
+      "server_present": false,
+      "server_path": "",
+      "client_present": false,
+      "client_path": "",
+      "consumers": [
+        {
+          "id": "npc.sod_05",
+          "kind": "npc_definition",
+          "json_path": "text/resources/Servidor/GameServer/NPC/Sod_05.NPC.json"
+        }
+      ]
+    },
+    {
+      "id": "model.char.npc.npc.04",
+      "logical_config": "char/npc/npc-04.ini",
+      "server_present": false,
+      "server_path": "",
+      "client_present": false,
+      "client_path": "",
+      "consumers": [
+        {
+          "id": "npc.ricarden_civilian3",
+          "kind": "npc_definition",
+          "json_path": "text/resources/Servidor/GameServer/NPC/ricarden-civilian3.npc.json"
+        }
+      ]
+    },
+    {
+      "id": "model.char.npc.npc.09",
+      "logical_config": "char/npc/npc-09.ini",
+      "server_present": false,
+      "server_path": "",
+      "client_present": false,
+      "client_path": "",
+      "consumers": [
+        {
+          "id": "npc.ricarden_civilian2",
+          "kind": "npc_definition",
+          "json_path": "text/resources/Servidor/GameServer/NPC/ricarden-civilian2.npc.json"
+        }
+      ]
+    },
+    {
+      "id": "model.char.npc.npc.10",
+      "logical_config": "char/npc/npc-10.ini",
+      "server_present": false,
+      "server_path": "",
+      "client_present": false,
+      "client_path": "",
+      "consumers": [
+        {
+          "id": "npc.navisko_warehouse",
+          "kind": "npc_definition",
+          "json_path": "text/resources/Servidor/GameServer/NPC/navisko-warehouse.npc.json"
+        }
+      ]
+    },
+    {
+      "id": "model.char.npcxms.chtree.longbo",
+      "logical_config": "char/npcXms/ChTree_Longbo.ini",
+      "server_present": false,
+      "server_path": "",
+      "client_present": false,
+      "client_path": "",
+      "consumers": [
+        {
+          "id": "npc.xmasguy",
+          "kind": "npc_definition",
+          "json_path": "text/resources/Servidor/GameServer/NPC/Xmasguy.npc.json"
+        }
+      ]
+    }
+  ],
+  "missing_client": [
+    {
+      "id": "model.char.npc.bt03.battleportal",
+      "logical_config": "char/npc/bt03/battleportal.INI",
+      "server_present": false,
+      "server_path": "",
+      "client_present": false,
+      "client_path": "",
+      "consumers": [
+        {
+          "id": "npc.sod_05",
+          "kind": "npc_definition",
+          "json_path": "text/resources/Servidor/GameServer/NPC/Sod_05.NPC.json"
+        }
+      ]
+    },
+    {
+      "id": "model.char.npc.npc.04",
+      "logical_config": "char/npc/npc-04.ini",
+      "server_present": false,
+      "server_path": "",
+      "client_present": false,
+      "client_path": "",
+      "consumers": [
+        {
+          "id": "npc.ricarden_civilian3",
+          "kind": "npc_definition",
+          "json_path": "text/resources/Servidor/GameServer/NPC/ricarden-civilian3.npc.json"
+        }
+      ]
+    },
+    {
+      "id": "model.char.npc.npc.09",
+      "logical_config": "char/npc/npc-09.ini",
+      "server_present": false,
+      "server_path": "",
+      "client_present": false,
+      "client_path": "",
+      "consumers": [
+        {
+          "id": "npc.ricarden_civilian2",
+          "kind": "npc_definition",
+          "json_path": "text/resources/Servidor/GameServer/NPC/ricarden-civilian2.npc.json"
+        }
+      ]
+    },
+    {
+      "id": "model.char.npc.npc.10",
+      "logical_config": "char/npc/npc-10.ini",
+      "server_present": false,
+      "server_path": "",
+      "client_present": false,
+      "client_path": "",
+      "consumers": [
+        {
+          "id": "npc.navisko_warehouse",
+          "kind": "npc_definition",
+          "json_path": "text/resources/Servidor/GameServer/NPC/navisko-warehouse.npc.json"
+        }
+      ]
+    },
+    {
+      "id": "model.char.npc.phl.phl",
+      "logical_config": "char/npc/phl/phl.INI",
+      "server_present": true,
+      "server_path": "char/npc/phl/phl.inx",
+      "client_present": false,
+      "client_path": "",
+      "consumers": [
+        {
+          "id": "npc.lucy",
+          "kind": "npc_definition",
+          "json_path": "text/resources/Servidor/GameServer/NPC/Lucy.NPC.json"
+        }
+      ]
+    },
+    {
+      "id": "model.char.npcxms.chtree.longbo",
+      "logical_config": "char/npcXms/ChTree_Longbo.ini",
+      "server_present": false,
+      "server_path": "",
+      "client_present": false,
+      "client_path": "",
+      "consumers": [
+        {
+          "id": "npc.xmasguy",
+          "kind": "npc_definition",
+          "json_path": "text/resources/Servidor/GameServer/NPC/Xmasguy.npc.json"
+        }
+      ]
+    }
+  ]
+}

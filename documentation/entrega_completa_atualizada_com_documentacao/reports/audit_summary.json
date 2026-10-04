@@ -1,0 +1,18 @@
+{
+  "database_source": "Database(1).zip/Database/summit.sqlite3",
+  "coinshop_db_rows": 144,
+  "coinshop_json_rows": 142,
+  "coinshop_coin_rows_json": 109,
+  "coinshop_time_rows_json": 33,
+  "coinshop_invalid_codes": 0,
+  "coinshop_wings_removed": [
+    "QW103",
+    "QW106"
+  ],
+  "drops_files": 22,
+  "drops_missing_item_references": 0,
+  "pt_BR_localization_audit_issues": 0,
+  "hardcoded_client_candidates": 2989,
+  "hardcoded_server_candidates": 1960,
+  "hardcoded_full_migration_status": "audit_backlog_only"
+}

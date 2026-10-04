@@ -1,0 +1,8 @@
+{
+  "itemlist_present": false,
+  "itemlist_t_present": false,
+  "userinfo_present": true,
+  "userinfo_t_present": true,
+  "pendingpayments_present": true,
+  "transactions_present": true
+}

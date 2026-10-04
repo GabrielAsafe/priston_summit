@@ -1,0 +1,33 @@
+ao dar tp o personagem deixa de se mexer e trava. é como se eu ficasse preso em cima da pedra de teleporte mas como o dialogo fechou não consigo sair. acho que isso foi resolvido anteriormente então é regressão
+
+
+as quests da amanda ainda abrem a interface antiga ao inves de aparecer na nova. não ta a dar track corretamente na ui nova 
+a antiga não devia mais abrir
+o progresso não da track durante nem depois de terminar(nas missões antigas do jogo, mas funciona para as custom)
+
+sobre as quest, as repetitivas deviam ser as de caça do proprio jogo, mate 20 grotescos, 10 x , 20 y, etc
+as diárias não deviam existir pois elas são as repetitivas
+.
+o que está marcado só como quests são as custom e eu ainda não sei as criar, então preciso de documentaçao para tal.
+
+
+tem que corrigir os assets pequenos da ui pois depois do upscaling eles quebraram. os botões da tela quando morre
+os botões para aceitar o fast travel. acho que o jogo estão a desenhar os assets como fixep position e isso acaba por cropar a imagem ao invés de dar downscale, mas para essas imagens eu deveria restaurar as antigas.
+
+
+
+
+*como a amanda dá os items iniciais, o jogo não devia dar tudo ao iniciar* validar depois
+
+
+ao clicar no mestre dos clãs o jogo trava e não consigo andar. temos que refatorar os clãs
+
+
+
+--------------------
+ na base de dados e arquivos de servidor e alguns de cliente depois de logar a primeira vez no servidor, gostaria de implementar um sistema de "save"
+ se eu jogar no servidor de alguma outra pessoa queria conseguir dar import de todos os dados do meu player no meu servidor e mandar um arquivo para outra pessoa para persistir meus dados no servidor deles. 
+ 
+ os dat são copiar e colar, mas se a pessoa fizer missões eu preciso persistir isso na db, não sei se o armazém e os items também persistem na db, etc. queria criar esse sistema. por ser algo em python poderia eu mesmo criar mas preciso da sua auditoria antes.  
+ 
+ 

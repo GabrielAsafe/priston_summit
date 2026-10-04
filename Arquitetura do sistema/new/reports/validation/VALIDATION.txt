@@ -1,0 +1,23 @@
+Summit bundle validation
+UTC 2026-10-03T19:31:15Z
+
+[1] extended canonical schemas
+{"validated": 369, "errors": 0}
+
+[2] JSON parse sweep
+json_files_parsed=6183
+
+[3] Python syntax for added tools
+python_compile=PASS
+
+[4] C++ smoke: world story
+world_story_contribution_smoke: PASS
+
+[5] C++ smoke: world phases
+world_phase_runtime_smoke: PASS
+
+[6] C++ smoke: equipment sets
+equipment_set_service_smoke: PASS
+
+[7] Spreadsheet present
+spreadsheet=PASS

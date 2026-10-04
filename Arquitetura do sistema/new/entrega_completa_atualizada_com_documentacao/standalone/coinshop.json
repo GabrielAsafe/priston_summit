@@ -1,0 +1,863 @@
+{
+  "schema": "summit.coinshop-catalog/v1",
+  "schema_version": 1,
+  "notes": [
+    "Catálogo estático migrado de CoinShopDB__ItemList e CoinShopDB__ItemList_T do summit.sqlite3 fornecido em 2026-09-30.",
+    "currency=coin usa CoinShopDB__UserInfo.UserCoin; currency=time usa CoinShopDB__UserInfo_T.UserMinutos.",
+    "QW103 (Asa de Ouro) e QW106 (Asa Imperial) foram removidos da CoinShop para manter a aquisição pelo fluxo de quest/craft de asas já existente."
+  ],
+  "items": [
+    {
+      "code": "SK101",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK102",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK103",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK106",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK107",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK108",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK109",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK110",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK111",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK112",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK113",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK114",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK115",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK116",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK117",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK172",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK173",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK174",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK175",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK176",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK201",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK202",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK203",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK204",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK205",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK221",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK222",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK223",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK224",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK231",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK232",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK233",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK234",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK242",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK243",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK244",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK245",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK246",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK247",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK248",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK249",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK253",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK254",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK255",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK256",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK259",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK265",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK266",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK267",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK268",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK269",
+      "section": 1,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK181",
+      "section": 2,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK182",
+      "section": 2,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK183",
+      "section": 2,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK184",
+      "section": 2,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK185",
+      "section": 2,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK186",
+      "section": 2,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "SK187",
+      "section": 2,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "CA507",
+      "section": 3,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "CA508",
+      "section": 3,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "CA509",
+      "section": 3,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "CA511",
+      "section": 3,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "CA543",
+      "section": 3,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "CA545",
+      "section": 3,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "CA607",
+      "section": 3,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "CA608",
+      "section": 3,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "CA609",
+      "section": 3,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "CA611",
+      "section": 3,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "CA643",
+      "section": 3,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "CA645",
+      "section": 3,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "OR250",
+      "section": 4,
+      "price": 600,
+      "currency": "coin"
+    },
+    {
+      "code": "OA231",
+      "section": 4,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "DB131",
+      "section": 4,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "OA150",
+      "section": 4,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "OR251",
+      "section": 4,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "OA151",
+      "section": 4,
+      "price": 1700,
+      "currency": "coin"
+    },
+    {
+      "code": "CX113",
+      "section": 4,
+      "price": 2000,
+      "currency": "coin"
+    },
+    {
+      "code": "OS108",
+      "section": 5,
+      "price": 100,
+      "currency": "coin"
+    },
+    {
+      "code": "OS109",
+      "section": 5,
+      "price": 200,
+      "currency": "coin"
+    },
+    {
+      "code": "OS110",
+      "section": 5,
+      "price": 300,
+      "currency": "coin"
+    },
+    {
+      "code": "SE101",
+      "section": 5,
+      "price": 500,
+      "currency": "coin"
+    },
+    {
+      "code": "FO111",
+      "section": 5,
+      "price": 600,
+      "currency": "coin"
+    },
+    {
+      "code": "FO131",
+      "section": 5,
+      "price": 600,
+      "currency": "coin"
+    },
+    {
+      "code": "FO112",
+      "section": 5,
+      "price": 800,
+      "currency": "coin"
+    },
+    {
+      "code": "FO132",
+      "section": 5,
+      "price": 800,
+      "currency": "coin"
+    },
+    {
+      "code": "BI104",
+      "section": 6,
+      "price": 50,
+      "currency": "coin"
+    },
+    {
+      "code": "BI108",
+      "section": 6,
+      "price": 50,
+      "currency": "coin"
+    },
+    {
+      "code": "BI184",
+      "section": 6,
+      "price": 400,
+      "currency": "coin"
+    },
+    {
+      "code": "BI283",
+      "section": 6,
+      "price": 500,
+      "currency": "coin"
+    },
+    {
+      "code": "BI180",
+      "section": 6,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "BI309",
+      "section": 6,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "BI330",
+      "section": 6,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "BI109",
+      "section": 6,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "BI302",
+      "section": 6,
+      "price": 1500,
+      "currency": "coin"
+    },
+    {
+      "code": "BI150",
+      "section": 6,
+      "price": 2000,
+      "currency": "coin"
+    },
+    {
+      "code": "BI303",
+      "section": 6,
+      "price": 2000,
+      "currency": "coin"
+    },
+    {
+      "code": "BI189",
+      "section": 6,
+      "price": 2000,
+      "currency": "coin"
+    },
+    {
+      "code": "RS101",
+      "section": 7,
+      "price": 200,
+      "currency": "coin"
+    },
+    {
+      "code": "RS102",
+      "section": 7,
+      "price": 200,
+      "currency": "coin"
+    },
+    {
+      "code": "RS103",
+      "section": 7,
+      "price": 200,
+      "currency": "coin"
+    },
+    {
+      "code": "RS104",
+      "section": 7,
+      "price": 200,
+      "currency": "coin"
+    },
+    {
+      "code": "RS105",
+      "section": 7,
+      "price": 200,
+      "currency": "coin"
+    },
+    {
+      "code": "RS106",
+      "section": 7,
+      "price": 200,
+      "currency": "coin"
+    },
+    {
+      "code": "RS107",
+      "section": 7,
+      "price": 200,
+      "currency": "coin"
+    },
+    {
+      "code": "RS108",
+      "section": 7,
+      "price": 200,
+      "currency": "coin"
+    },
+    {
+      "code": "BI304",
+      "section": 7,
+      "price": 600,
+      "currency": "coin"
+    },
+    {
+      "code": "BI305",
+      "section": 7,
+      "price": 1000,
+      "currency": "coin"
+    },
+    {
+      "code": "BI190",
+      "section": 7,
+      "price": 2000,
+      "currency": "coin"
+    },
+    {
+      "code": "BI306",
+      "section": 7,
+      "price": 2000,
+      "currency": "coin"
+    },
+    {
+      "code": "BI223",
+      "section": 1,
+      "price": 120,
+      "currency": "time"
+    },
+    {
+      "code": "BI224",
+      "section": 1,
+      "price": 200,
+      "currency": "time"
+    },
+    {
+      "code": "BI225",
+      "section": 1,
+      "price": 350,
+      "currency": "time"
+    },
+    {
+      "code": "OS108",
+      "section": 2,
+      "price": 150,
+      "currency": "time"
+    },
+    {
+      "code": "FO109",
+      "section": 2,
+      "price": 200,
+      "currency": "time"
+    },
+    {
+      "code": "FO129",
+      "section": 2,
+      "price": 200,
+      "currency": "time"
+    },
+    {
+      "code": "BI104",
+      "section": 3,
+      "price": 120,
+      "currency": "time"
+    },
+    {
+      "code": "BI142",
+      "section": 3,
+      "price": 120,
+      "currency": "time"
+    },
+    {
+      "code": "BI109",
+      "section": 3,
+      "price": 600,
+      "currency": "time"
+    },
+    {
+      "code": "CA193",
+      "section": 4,
+      "price": 600,
+      "currency": "time"
+    },
+    {
+      "code": "CA195",
+      "section": 4,
+      "price": 600,
+      "currency": "time"
+    },
+    {
+      "code": "CA293",
+      "section": 4,
+      "price": 600,
+      "currency": "time"
+    },
+    {
+      "code": "CA295",
+      "section": 4,
+      "price": 600,
+      "currency": "time"
+    },
+    {
+      "code": "CA539",
+      "section": 4,
+      "price": 600,
+      "currency": "time"
+    },
+    {
+      "code": "CA541",
+      "section": 4,
+      "price": 600,
+      "currency": "time"
+    },
+    {
+      "code": "CA639",
+      "section": 4,
+      "price": 600,
+      "currency": "time"
+    },
+    {
+      "code": "CA641",
+      "section": 4,
+      "price": 600,
+      "currency": "time"
+    },
+    {
+      "code": "BI110",
+      "section": 5,
+      "price": 200,
+      "currency": "time"
+    },
+    {
+      "code": "BI136",
+      "section": 5,
+      "price": 300,
+      "currency": "time"
+    },
+    {
+      "code": "BI137",
+      "section": 5,
+      "price": 300,
+      "currency": "time"
+    },
+    {
+      "code": "BI138",
+      "section": 5,
+      "price": 300,
+      "currency": "time"
+    },
+    {
+      "code": "RS101",
+      "section": 6,
+      "price": 100,
+      "currency": "time"
+    },
+    {
+      "code": "RS102",
+      "section": 6,
+      "price": 100,
+      "currency": "time"
+    },
+    {
+      "code": "RS103",
+      "section": 6,
+      "price": 100,
+      "currency": "time"
+    },
+    {
+      "code": "RS104",
+      "section": 6,
+      "price": 100,
+      "currency": "time"
+    },
+    {
+      "code": "RS105",
+      "section": 6,
+      "price": 100,
+      "currency": "time"
+    },
+    {
+      "code": "RS106",
+      "section": 6,
+      "price": 100,
+      "currency": "time"
+    },
+    {
+      "code": "RS107",
+      "section": 6,
+      "price": 100,
+      "currency": "time"
+    },
+    {
+      "code": "RS108",
+      "section": 6,
+      "price": 100,
+      "currency": "time"
+    },
+    {
+      "code": "SE101",
+      "section": 6,
+      "price": 300,
+      "currency": "time"
+    },
+    {
+      "code": "BI184",
+      "section": 6,
+      "price": 900,
+      "currency": "time"
+    },
+    {
+      "code": "BI189",
+      "section": 6,
+      "price": 1800,
+      "currency": "time"
+    },
+    {
+      "code": "BI190",
+      "section": 6,
+      "price": 1800,
+      "currency": "time"
+    }
+  ]
+}

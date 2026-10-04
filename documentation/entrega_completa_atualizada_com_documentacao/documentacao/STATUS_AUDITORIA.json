@@ -1,0 +1,45 @@
+{
+  "generated_on": "2026-09-30",
+  "coinshop": {
+    "db_rows": 144,
+    "json_rows": 142,
+    "coin": 109,
+    "time": 33,
+    "removed_quest_wings": [
+      "QW103",
+      "QW106"
+    ],
+    "invalid_codes": 0
+  },
+  "drops": {
+    "files": 22,
+    "known_item_codes": 1985,
+    "missing_item_references": 0
+  },
+  "localization": {
+    "active_locales": [
+      "en",
+      "pt-BR",
+      "ko",
+      "zh-TW"
+    ],
+    "pt_BR_automated_issues": 0,
+    "hardcoded_candidates": {
+      "client": 2989,
+      "server": 1960
+    }
+  },
+  "npc_shop_filtered_unique_codes": [
+    "BC101",
+    "TW106",
+    "WD113",
+    "WD114",
+    "WN113",
+    "WN114",
+    "WQ106"
+  ],
+  "maps": {
+    "client": 53,
+    "server": 53
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "db_rows_total": 144,
+  "db_coin_rows": 110,
+  "db_time_rows": 34,
+  "valid_in_client_and_server": 144,
+  "invalid_item_codes": [],
+  "duplicates_case_insensitive": [],
+  "invalid_section_or_price": [],
+  "excluded_from_json_for_quest_wings": [
+    {
+      "currency": "coin",
+      "code": "QW106",
+      "section": 4,
+      "price": 500,
+      "source_table": "CoinShopDB__ItemList",
+      "canonical_code": "QW106",
+      "name_pt_BR": "Asa Imperial",
+      "exists_client": true,
+      "exists_server": true,
+      "status": "excluded_quest_wing"
+    },
+    {
+      "currency": "time",
+      "code": "QW103",
+      "section": 3,
+      "price": 300,
+      "source_table": "CoinShopDB__ItemList_T",
+      "canonical_code": "QW103",
+      "name_pt_BR": "Asa de Ouro",
+      "exists_client": true,
+      "exists_server": true,
+      "status": "excluded_quest_wing"
+    }
+  ],
+  "json_rows": 142
+}

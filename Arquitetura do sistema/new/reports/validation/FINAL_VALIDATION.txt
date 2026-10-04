@@ -1,0 +1,16 @@
+Summit bundle final validation
+date=2026-10-03
+[schemas]
+{"validated": 369, "errors": 0}
+[json]
+parsed 6183
+[smoke world_story]
+world_story_contribution_smoke: PASS
+[smoke world_phase]
+world_phase_runtime_smoke: PASS
+[smoke equipment_sets]
+equipment_set_service_smoke: PASS
+[secret scan]
+secret_assignment_files 0
+[spreadsheet]
+PASS
