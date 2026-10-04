@@ -58,6 +58,7 @@
 #include "gameplay/world/v2/ActorNavigationPolicy.h"
 #include "gameplay/combat/v2/DeathAttributionPolicy.h"
 #include "systems/gameplay/skills/v2/legacy/LegacySkillAnimationAdapter.h"
+#include "gameplay/skills/v2/SkillMultiHitPolicy.h"
 #include "systems/gameplay/monsters/v2/legacy/LegacyMonsterAdapter.h"
 #include "core/server/legacy_runtime/onserver.h"
 #include "systems/ui/map/full_zoom/FullZoomMap.h"		
@@ -14006,7 +14007,7 @@ int smCHAR::EventSkill()
 			}
 		}
 
-		if(this == lpCurPlayer && MotionEvent < 3 && chrAttackTarget)
+		if(this == lpCurPlayer && gameplay::skills::SkillMultiHitPolicy::IsWithinHitWindow(MotionEvent, 3) && chrAttackTarget)
 		{
 
 
@@ -14183,7 +14184,7 @@ int smCHAR::EventSkill()
 		}
 		WeaponPlaySound(this);
 
-		if(this == lpCurPlayer && chrAttackTarget && MotionEvent < T_Impact_Hit[point - 1])
+		if(this == lpCurPlayer && chrAttackTarget && gameplay::skills::SkillMultiHitPolicy::IsWithinHitWindow(MotionEvent, T_Impact_Hit[point - 1]))
 		{
 			if(AttackCritcal >= 0)
 			{
@@ -15289,7 +15290,7 @@ int smCHAR::EventSkill()
 				WeaponPlaySound(this);
 
 
-			if(lpCurPlayer == this && MotionEvent < Divine_Piercing_AttackNum[point - 1])
+			if(lpCurPlayer == this && gameplay::skills::SkillMultiHitPolicy::IsWithinHitWindow(MotionEvent, Divine_Piercing_AttackNum[point - 1]))
 			{
 
 
