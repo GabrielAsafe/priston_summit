@@ -8187,10 +8187,10 @@ int	SendItemExpress(DWORD	dwItemCode, char *szPassCode)
 	if(szPassCode)
 		smTransCommand.LParam = GetSpeedSum(szPassCode);
 
-	if(smWsockDataServer)
-		return smWsockDataServer->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
-
-	return FALSE;
+	return gameplay::network::legacy::ServerLegacyBackendChannelSender().Send(
+		gameplay::network::BackendChannel::Data,
+		gameplay::network::PacketView(
+			&smTransCommand, static_cast<std::size_t>(smTransCommand.size), smTransCommand.code)).Succeeded() ? TRUE : FALSE;
 }
 
 
@@ -8237,10 +8237,10 @@ int	SendStarPointToServer(int Price, int Cash)
 	smTransCommand.SParam = 0;
 	smTransCommand.EParam = 0;
 
-	if(smWsockDataServer)
-		return smWsockDataServer->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
-
-	return FALSE;
+	return gameplay::network::legacy::ServerLegacyBackendChannelSender().Send(
+		gameplay::network::BackendChannel::Data,
+		gameplay::network::PacketView(
+			&smTransCommand, static_cast<std::size_t>(smTransCommand.size), smTransCommand.code)).Succeeded() ? TRUE : FALSE;
 }
 
 
@@ -8255,10 +8255,10 @@ int	SendGiveMoneyToServer(int Money)
 	smTransCommand.SParam = 0;
 	smTransCommand.EParam = 0;
 
-	if(smWsockDataServer)
-		return smWsockDataServer->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
-
-	return FALSE;
+	return gameplay::network::legacy::ServerLegacyBackendChannelSender().Send(
+		gameplay::network::BackendChannel::Data,
+		gameplay::network::PacketView(
+			&smTransCommand, static_cast<std::size_t>(smTransCommand.size), smTransCommand.code)).Succeeded() ? TRUE : FALSE;
 }
 
 
