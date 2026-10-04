@@ -16,5 +16,6 @@
   "features": {
     "worldcup_field": 1
   },
-  "dynamic_field_code": 53
+  "dynamic_field_code": 53,
+  "static_field_count": 53
 }

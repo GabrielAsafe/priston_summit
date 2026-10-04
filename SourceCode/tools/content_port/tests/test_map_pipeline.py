@@ -37,7 +37,7 @@ def main() -> None:
         assert len(tagged) == 11, f"{profile}: expected 11 WORLDCUP_FIELD operations"
         catalog = semanticize(shadow, profile, args.source_root, source)
         assert catalog["map_count"] == 53
-        assert catalog["legacy_dynamic_field"]["field_code"] == 53
+        assert catalog["legacy_dynamic_field"] == {"strategy": "append_after_static"}
         assert [m["legacy_field_code"] for m in catalog["maps"]] == list(range(53))
         expected_source = f"Shared/world/field/field_legacy_{profile}.inl"
         provenance_sources = {m["provenance"]["source"] for m in catalog["maps"]}

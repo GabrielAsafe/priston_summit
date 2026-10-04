@@ -1912,7 +1912,7 @@ smCHAR *srFindCharFromSerial(DWORD dwObjectSerial, int AreaNum)
 	STG_AREA *lpStgArea;
 
 
-	if(dwObjectSerial && AreaNum < STAGE_AREA_MAX && StageArea[AreaNum].lpStage)
+	if(dwObjectSerial && StageArea && AreaNum >= 0 && AreaNum < StageAreaCount && StageArea[AreaNum].lpStage)
 	{
 		lpStgArea = &StageArea[AreaNum];
 
@@ -3040,6 +3040,7 @@ smCHAR_INFO *SetMonsterModelRandom(smCHAR_INFO *lpCharInfo)
 
 
 STG_AREA	*StageArea;
+int StageAreaCount = 0;
 
 
 
@@ -5864,7 +5865,7 @@ int rsEnterHardCoreEvent(rsPLAYINFO *lpPlayInfo, int Money)
 skip_enterSOD:
 
 
-	for(cnt = 0; cnt < STAGE_AREA_MAX; cnt++)
+	for(cnt = 0; cnt < StageAreaCount; cnt++)
 	{
 		if(StageArea[cnt].lpStage && StageArea[cnt].lpField->FieldCode == rsSOD_FIELD)
 		{
@@ -6270,7 +6271,7 @@ int EventMonsterTime()
 
 	if(!EventBossMonsterFlag && st.wMinute == OpenBossTimeMin && (dwEventBossMonterTime + 60 * 1000 * 10) < dwPlayServTime)
 	{
-		for(cnt = 0; cnt < STAGE_AREA_MAX; cnt++)
+		for(cnt = 0; cnt < StageAreaCount; cnt++)
 		{
 			if(StageArea[cnt].lpStage)
 			{
@@ -8178,7 +8179,7 @@ STG_AREA *FindStageField(int x, int z)
 	int cnt;
 	int he;
 
-	for(cnt = 0; cnt < STAGE_AREA_MAX; cnt++)
+	for(cnt = 0; cnt < StageAreaCount; cnt++)
 	{
 		if(StageArea[cnt].lpStage)
 		{
@@ -8197,35 +8198,36 @@ STG_AREA *FindStageField(int x, int z)
 
 int srReadStage()
 {
-	int cnt;
-
-
 	InitStageLoader();
-	InitField();
+	if(!InitField())
+		return FALSE;
 
+	if(FieldCount <= 0 || FieldCount > FIELD_MAX)
+		return FALSE;
 
-
-
-	cnt = 0;
-
-	while(1)
+	if(StageArea)
 	{
-		if(sField[cnt].szName[0] == 0) break;
-
-
-
-
-		StageArea[cnt].LoadStage(sField[cnt].szName);
-		StageArea[cnt].lpField = &sField[cnt];
-		cnt++;
+		for(int old = StageAreaCount - 1; old >= 0; --old)
+			StageArea[old].Close();
+		delete[] StageArea;
+		StageArea = nullptr;
+		StageAreaCount = 0;
 	}
 
+	StageAreaCount = FieldCount;
+	StageArea = new STG_AREA[StageAreaCount];
 
+	for(int cnt = 0; cnt < StageAreaCount; ++cnt)
+	{
+		StageArea[cnt].LoadStage(sField[cnt].szName);
+		StageArea[cnt].lpField = &sField[cnt];
+	}
+
+	if(!StageArea[0].lpStage)
+		return FALSE;
 
 	lpsmStage[0] = StageArea[0].lpStage;
 	lpsmStage[1] = StageArea[0].lpStage;
-
-
 
 	return TRUE;
 }
@@ -9956,7 +9958,7 @@ int srAutoPlayMain()
 		rsAutoPlayTransCount++;
 	}
 
-	for(cnt = 0; cnt < STAGE_AREA_MAX; cnt++)
+	for(cnt = 0; cnt < StageAreaCount; cnt++)
 	{
 		if(StageArea[cnt].lpStage)
 		{
@@ -10586,7 +10588,7 @@ int srAutoTransPlay()
 
 
 			if(rsServerConfig.ExpGameTimeMode && rsPlayInfo[cnt].dwExpGameTimeCheck &&
-				rsPlayInfo[cnt].Position.Area < STAGE_AREA_MAX && StageArea[rsPlayInfo[cnt].Position.Area].lpField)
+				rsPlayInfo[cnt].Position.Area >= 0 && rsPlayInfo[cnt].Position.Area < StageAreaCount && StageArea[rsPlayInfo[cnt].Position.Area].lpField)
 			{
 
 				int gTimeChk = rsPlayInfo[cnt].dwExpGameTime / (1000 * 60);
@@ -10642,7 +10644,7 @@ int srAutoTransPlay()
 
 			if(UserPlayServer && (rsPlayInfo[cnt].dwMacroChkTime + 60000) > dwPlayServTime)
 			{
-				if(rsPlayInfo[cnt].Position.Area < STAGE_AREA_MAX && StageArea[rsPlayInfo[cnt].Position.Area].lpField &&
+				if(rsPlayInfo[cnt].Position.Area >= 0 && rsPlayInfo[cnt].Position.Area < StageAreaCount && StageArea[rsPlayInfo[cnt].Position.Area].lpField &&
 					StageArea[rsPlayInfo[cnt].Position.Area].lpField->State == FIELD_STATE_VILLAGE)
 				{
 
@@ -11199,8 +11201,8 @@ int InitAll()
 
 	Stage_StepHeight = fONE * 20;
 
-	StageArea = new STG_AREA[STAGE_AREA_MAX];
-	srReadStage();
+	if(!srReadStage())
+		return FALSE;
 
 	ConvertMonsterNames();
 
@@ -11277,13 +11279,14 @@ void RemoveAll()
 
 	if(StageArea)
 	{
-		for(int cnt = STAGE_AREA_MAX - 1; cnt >= 0; cnt--)
+		for(int cnt = StageAreaCount - 1; cnt >= 0; cnt--)
 		{
 			StageArea[cnt].Close();
 		}
 
 		delete[] StageArea;
 		StageArea = nullptr;
+		StageAreaCount = 0;
 	}
 
 	rsRemoveCopiedItemList();
@@ -11777,7 +11780,7 @@ int AddNewPlayInfo(smWINSOCK *lpsmSock)
 
 int IsStgArea(STG_AREA *lpStgArea)
 {
-	for(int cnt = 0; cnt < STAGE_AREA_MAX; cnt++)
+	for(int cnt = 0; cnt < StageAreaCount; cnt++)
 	{
 		if(lpStgArea == &StageArea[cnt])
 			return TRUE;
@@ -23818,7 +23821,7 @@ int rsRecvYahooMotion(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 	int			x, y, z, dist;
 
 
-	if(lpPlayInfo->dwClanCode && lpPlayInfo->Position.Area >= 0 && lpPlayInfo->Position.Area < STAGE_AREA_MAX)
+	if(StageArea && lpPlayInfo->dwClanCode && lpPlayInfo->Position.Area >= 0 && lpPlayInfo->Position.Area < StageAreaCount)
 	{
 
 		lpStgArea = &StageArea[lpPlayInfo->Position.Area];
@@ -26941,7 +26944,7 @@ int rsCheckPlayField(rsPLAYINFO *lpPlayInfo)
 
 
 
-	if(lpPlayInfo->Position.Area > STAGE_AREA_MAX || lpPlayInfo->Position.Area < 0)
+	if(!StageArea || lpPlayInfo->Position.Area < 0 || lpPlayInfo->Position.Area >= StageAreaCount)
 	{
 		rsFault_PlayField(lpPlayInfo, 0);
 		return FALSE;

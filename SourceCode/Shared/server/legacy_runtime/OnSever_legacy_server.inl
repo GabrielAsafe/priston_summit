@@ -2661,7 +2661,7 @@ smCHAR *srFindCharFromSerial(DWORD dwObjectSerial, int AreaNum)
 	STG_AREA *lpStgArea;
 
 
-	if(dwObjectSerial && AreaNum < STAGE_AREA_MAX && StageArea[AreaNum].lpStage)
+	if(dwObjectSerial && StageArea && AreaNum >= 0 && AreaNum < StageAreaCount && StageArea[AreaNum].lpStage)
 	{
 		lpStgArea = &StageArea[AreaNum];
 
@@ -3902,6 +3902,7 @@ smCHAR_INFO *SetMonsterModelRandom(smCHAR_INFO *lpCharInfo)
 
 
 STG_AREA	*StageArea;
+int StageAreaCount = 0;
 
 
 struct T5_CRY_PICKUP_TOKEN
@@ -5291,7 +5292,7 @@ smCHAR *OpenCharacterCompanionFromRecord(rsPLAYINFO *owner, const TRANS_RECORD_D
     // Prefer it to a coordinate lookup, which can miss near field boundaries
     // or immediately after a character enters the world.
     STG_AREA *area = NULL;
-    if(owner->Position.Area >= 0 && owner->Position.Area < STAGE_AREA_MAX)
+    if(StageArea && owner->Position.Area >= 0 && owner->Position.Area < StageAreaCount)
     {
         STG_AREA *indexedArea = &StageArea[owner->Position.Area];
         if(indexedArea->lpField && indexedArea->lpStage)
@@ -7938,7 +7939,7 @@ int rsEnterHardCoreEvent(rsPLAYINFO *lpPlayInfo, int Money)
 skip_enterSOD:
 
 
-	for(cnt = 0; cnt < STAGE_AREA_MAX; cnt++)
+	for(cnt = 0; cnt < StageAreaCount; cnt++)
 	{
 		if(StageArea[cnt].lpStage && StageArea[cnt].lpField->FieldCode == rsSOD_FIELD)
 		{
@@ -8219,7 +8220,7 @@ int EventMonsterTime()
 
 	if (!EventBossMonsterFlag && st.wMinute == OpenBossTimeMin - AlertaMob && (dwEventBossMonterTime + 60 * 1000 * 10) < dwPlayServTime)
 	{
-		for (cnt = 0; cnt < STAGE_AREA_MAX; cnt++)
+		for (cnt = 0; cnt < StageAreaCount; cnt++)
 		{
 			if (StageArea[cnt].lpStage)
 			{
@@ -8243,7 +8244,7 @@ int EventMonsterTime()
 
 	/*if (!EventBossMonsterFlag && st.wMinute == OpenBossTimeMin - 1 && (dwEventBossMonterTime + 60 * 1000 * 10) < dwPlayServTime)
 	{
-		for (cnt = 0; cnt < STAGE_AREA_MAX; cnt++)
+		for (cnt = 0; cnt < StageAreaCount; cnt++)
 		{
 			if (StageArea[cnt].lpStage)
 			{
@@ -8267,7 +8268,7 @@ int EventMonsterTime()
 
 	if (!EventBossMonsterFlag && st.wMinute == OpenBossTimeMin && (dwEventBossMonterTime + 60 * 1000 * 10) < dwPlayServTime)
 	{
-		for (cnt = 0; cnt < STAGE_AREA_MAX; cnt++)
+		for (cnt = 0; cnt < StageAreaCount; cnt++)
 		{
 			if (StageArea[cnt].lpStage)
 			{
@@ -10463,7 +10464,7 @@ STG_AREA *FindStageField(int x, int z)
 	int cnt;
 	int he;
 
-	for(cnt = 0; cnt < STAGE_AREA_MAX; cnt++)
+	for(cnt = 0; cnt < StageAreaCount; cnt++)
 	{
 		if(StageArea[cnt].lpStage)
 		{
@@ -10479,127 +10480,48 @@ STG_AREA *FindStageField(int x, int z)
 }
 
 
-//comentado pois quebra a inicializaçao
-// int srReadStage()
-// {
-// 	int cnt;
-
-
-// 	InitStageLoader();
-// 	InitField();
-
-
-
-
-// 	cnt = 0;
-
-// 	while(1)
-// 	{
-// 		if(sField[cnt].szName[0] == 0) break;
-
-
-
-
-// 		StageArea[cnt].LoadStage(sField[cnt].szName);
-// 		StageArea[cnt].lpField = &sField[cnt];
-// 		cnt++;
-// 	}
-
-
-
-// 	lpsmStage[0] = StageArea[0].lpStage;
-// 	lpsmStage[1] = StageArea[0].lpStage;
-
-
-
-// 	return TRUE;
-// }
-// int srReadStage()
-// {
-//     int cnt;
-
-//     InitStageLoader();
-//     InitField();
-
-//     cnt = 0;
-
-//     while(1)
-//     {
-//         if(cnt >= STAGE_AREA_MAX)
-//         {
-//             fprintf(stderr,
-//                 "MAPAS: quantidade excedeu STAGE_AREA_MAX=%d\n",
-//                 STAGE_AREA_MAX);
-//             fflush(stderr);
-//             break;
-//         }
-
-//         if(sField[cnt].szName[0] == 0)
-//             break;
-
-//         fprintf(stderr, "MAPAS: carregando [%d]: %s\n",
-//             cnt, sField[cnt].szName);
-//         fflush(stderr);
-
-//         if(!StageArea[cnt].LoadStage(sField[cnt].szName))
-//         {
-//             fprintf(stderr, "MAPAS: falha no mapa [%d]: %s\n",
-//                 cnt, sField[cnt].szName);
-//             fflush(stderr);
-//         }
-//         else
-//         {
-//             fprintf(stderr, "MAPAS: mapa [%d] carregado\n", cnt);
-//             fflush(stderr);
-//         }
-
-//         StageArea[cnt].lpField = &sField[cnt];
-//         cnt++;
-//     }
-
-//     fprintf(stderr, "MAPAS: total processado=%d\n", cnt);
-//     fprintf(stderr, "[srReadStage] DEPOIS total processado\n");
-// 	fflush(stderr);
-
-//     if(cnt <= 0 || !StageArea[0].lpStage)
-//     {
-//         fprintf(stderr, "MAPAS: mapa inicial nao foi carregado\n");
-//         fflush(stderr);
-//         return FALSE;
-//     }
-
-//     lpsmStage[0] = StageArea[0].lpStage;
-//     lpsmStage[1] = StageArea[0].lpStage;
-
-//     return TRUE;
-// }
-
-
+// Stage runtime is sized from FieldCount; the legacy fixed-64 loaders were removed.
 int srReadStage()
 {
-    int cnt;
-
     InitStageLoader();
-    InitField();
 
-    cnt = 0;
-
-    while(1)
+    if(!InitField())
     {
-        if(cnt >= STAGE_AREA_MAX)
-        {
-            fprintf(stderr,
-                "MAPAS: quantidade excedeu STAGE_AREA_MAX=%d\n",
-                STAGE_AREA_MAX);
-            fflush(stderr);
-            break;
-        }
+        fprintf(stderr, "MAPAS: InitField falhou\n");
+        fflush(stderr);
+        return FALSE;
+    }
 
-        if(sField[cnt].szName[0] == 0)
-            break;
+    if(FieldCount <= 0 || FieldCount > FIELD_MAX)
+    {
+        fprintf(stderr, "MAPAS: FieldCount invalido=%d capacity=%d\n", FieldCount, FIELD_MAX);
+        fflush(stderr);
+        return FALSE;
+    }
 
-        fprintf(stderr, "MAPAS: carregando [%d]: %s\n",
-            cnt, sField[cnt].szName);
+    if(StageArea)
+    {
+        for(int old = StageAreaCount - 1; old >= 0; --old)
+            StageArea[old].Close();
+        delete[] StageArea;
+        StageArea = nullptr;
+        StageAreaCount = 0;
+    }
+
+    StageAreaCount = FieldCount;
+    StageArea = new STG_AREA[StageAreaCount];
+    if(!StageArea)
+    {
+        StageAreaCount = 0;
+        fprintf(stderr, "MAPAS: falha ao alocar StageArea para %d fields\n", FieldCount);
+        fflush(stderr);
+        return FALSE;
+    }
+
+    for(int cnt = 0; cnt < StageAreaCount; ++cnt)
+    {
+        fprintf(stderr, "MAPAS: carregando [%d/%d]: %s\n",
+            cnt, StageAreaCount, sField[cnt].szName);
         fflush(stderr);
 
         if(!StageArea[cnt].LoadStage(sField[cnt].szName))
@@ -10615,34 +10537,9 @@ int srReadStage()
         }
 
         StageArea[cnt].lpField = &sField[cnt];
-        cnt++;
     }
 
-    fprintf(stderr, "MAPAS: total processado=%d\n", cnt);
-    fprintf(stderr, "[srReadStage] DEPOIS total processado\n");
-    fflush(stderr);
-
-    fprintf(stderr, "[srReadStage] ANTES validar cnt\n");
-    fflush(stderr);
-
-    if(cnt <= 0)
-    {
-        fprintf(stderr, "[srReadStage] ERRO: cnt <= 0\n");
-        fflush(stderr);
-        return FALSE;
-    }
-
-    fprintf(stderr, "[srReadStage] DEPOIS validar cnt | cnt=%d\n", cnt);
-    fflush(stderr);
-
-    fprintf(stderr,
-        "[srReadStage] ANTES acessar StageArea[0] | StageArea=%p\n",
-        (void *)StageArea);
-    fflush(stderr);
-
-    fprintf(stderr,
-        "[srReadStage] StageArea[0].lpStage=%p\n",
-        (void *)StageArea[0].lpStage);
+    fprintf(stderr, "MAPAS: total processado=%d\n", StageAreaCount);
     fflush(stderr);
 
     if(!StageArea[0].lpStage)
@@ -10652,28 +10549,8 @@ int srReadStage()
         return FALSE;
     }
 
-    fprintf(stderr, "[srReadStage] ANTES atribuir lpsmStage[0]\n");
-    fflush(stderr);
-
     lpsmStage[0] = StageArea[0].lpStage;
-
-    fprintf(stderr,
-        "[srReadStage] DEPOIS atribuir lpsmStage[0] | valor=%p\n",
-        (void *)lpsmStage[0]);
-    fflush(stderr);
-
-    fprintf(stderr, "[srReadStage] ANTES atribuir lpsmStage[1]\n");
-    fflush(stderr);
-
     lpsmStage[1] = StageArea[0].lpStage;
-
-    fprintf(stderr,
-        "[srReadStage] DEPOIS atribuir lpsmStage[1] | valor=%p\n",
-        (void *)lpsmStage[1]);
-    fflush(stderr);
-
-    fprintf(stderr, "[srReadStage] ANTES return TRUE\n");
-    fflush(stderr);
 
     return TRUE;
 }
@@ -12040,6 +11917,7 @@ int rsOpen_MonsterItemExp(rsKILL_MONSTER_INFO *lpKillMonInfo)
 		}
 	}
 	if(cnt >= chrMonsterCnt) return FALSE;
+	if(!StageArea || lpKillMonInfo->Area < 0 || lpKillMonInfo->Area >= StageAreaCount) return FALSE;
 
 	if(lpKillMonInfo->PartyFlag == rsHARDCORE_EVENT_FLAG && lpKillMonInfo->dwParam[0] >= sinPM1)
 	{
@@ -12787,7 +12665,7 @@ int srAutoPlayMain()
 		UpdateT5ArenaQuest();
 	}
 
-	for(cnt = 0; cnt < STAGE_AREA_MAX; cnt++)
+	for(cnt = 0; cnt < StageAreaCount; cnt++)
 	{
 		if(StageArea[cnt].lpStage)
 		{
@@ -12890,7 +12768,7 @@ int srTransPlayData(rsPLAYINFO *lpPlayInfo)
 				continue;
 		}
 
-		if (lpPlayInfo->Position.Area >= 0 && chrAutoPlayer[ClipCnt].lpStage && lpPlayInfo->Position.Area < STAGE_AREA_MAX)
+		if (StageArea && lpPlayInfo->Position.Area >= 0 && chrAutoPlayer[ClipCnt].lpStage && lpPlayInfo->Position.Area < StageAreaCount)
 		{
 			STG_AREA * lpStgArea = &StageArea[lpPlayInfo->Position.Area];
 			if (lpStgArea)
@@ -13016,7 +12894,7 @@ int srTransPlayData(rsPLAYINFO *lpPlayInfo)
 
 	if(rsServerConfig.Enable_PKField_All)
 	{
-		if(rsServerConfig.Enable_PKField >= 0 && StageArea[lpPlayInfo->Position.Area].dwActiveMode && lpPlayInfo->Position.Area != 3 && lpPlayInfo->Position.Area != 21)
+		if(StageArea && lpPlayInfo->Position.Area >= 0 && lpPlayInfo->Position.Area < StageAreaCount && rsServerConfig.Enable_PKField >= 0 && StageArea[lpPlayInfo->Position.Area].dwActiveMode && lpPlayInfo->Position.Area != 3 && lpPlayInfo->Position.Area != 21)
 		{
 
 			if(lpPlayInfo->Position.Area >= 11 && lpPlayInfo->Position.Area <= 34)
@@ -13034,7 +12912,7 @@ int srTransPlayData(rsPLAYINFO *lpPlayInfo)
 	}
 	else
 	{
-		if(lpPlayInfo->Position.Area == rsServerConfig.Enable_PKField && rsServerConfig.Enable_PKField >= 0 && StageArea[rsServerConfig.Enable_PKField].dwActiveMode)
+		if(lpPlayInfo->Position.Area == rsServerConfig.Enable_PKField && rsServerConfig.Enable_PKField >= 0 && rsServerConfig.Enable_PKField < StageAreaCount && StageArea[rsServerConfig.Enable_PKField].dwActiveMode)
 		{
 			lpTransCommand = (smTRANS_COMMAND *)lpTransBuff;
 			lpTransCommand->code = OpCode::OPCODE_PLAY_COMMAND;
@@ -13045,7 +12923,7 @@ int srTransPlayData(rsPLAYINFO *lpPlayInfo)
 			lpTransCommand->EParam = 0;
 			lpTransBuff += sizeof(smTRANS_COMMAND);
 		}
-		if (lpPlayInfo->Position.Area == rsServerConfig.Enable_PKField1 && rsServerConfig.Enable_PKField1 >= 0 && StageArea[rsServerConfig.Enable_PKField1].dwActiveMode)
+		if (lpPlayInfo->Position.Area == rsServerConfig.Enable_PKField1 && rsServerConfig.Enable_PKField1 >= 0 && rsServerConfig.Enable_PKField1 < StageAreaCount && StageArea[rsServerConfig.Enable_PKField1].dwActiveMode)
 		{
 			lpTransCommand = (smTRANS_COMMAND *)lpTransBuff;
 			lpTransCommand->code = OpCode::OPCODE_PLAY_COMMAND;
@@ -13056,7 +12934,7 @@ int srTransPlayData(rsPLAYINFO *lpPlayInfo)
 			lpTransCommand->EParam = 0;
 			lpTransBuff += sizeof(smTRANS_COMMAND);
 		}
-		if (lpPlayInfo->Position.Area == rsServerConfig.Enable_PKField2 && rsServerConfig.Enable_PKField2 >= 0 && StageArea[rsServerConfig.Enable_PKField2].dwActiveMode)
+		if (lpPlayInfo->Position.Area == rsServerConfig.Enable_PKField2 && rsServerConfig.Enable_PKField2 >= 0 && rsServerConfig.Enable_PKField2 < StageAreaCount && StageArea[rsServerConfig.Enable_PKField2].dwActiveMode)
 		{
 			lpTransCommand = (smTRANS_COMMAND *)lpTransBuff;
 			lpTransCommand->code = OpCode::OPCODE_PLAY_COMMAND;
@@ -13067,7 +12945,7 @@ int srTransPlayData(rsPLAYINFO *lpPlayInfo)
 			lpTransCommand->EParam = 0;
 			lpTransBuff += sizeof(smTRANS_COMMAND);
 		}
-		if (lpPlayInfo->Position.Area == rsServerConfig.Enable_PKField3 && rsServerConfig.Enable_PKField3 >= 0 && StageArea[rsServerConfig.Enable_PKField3].dwActiveMode)
+		if (lpPlayInfo->Position.Area == rsServerConfig.Enable_PKField3 && rsServerConfig.Enable_PKField3 >= 0 && rsServerConfig.Enable_PKField3 < StageAreaCount && StageArea[rsServerConfig.Enable_PKField3].dwActiveMode)
 		{
 			lpTransCommand = (smTRANS_COMMAND *)lpTransBuff;
 			lpTransCommand->code = OpCode::OPCODE_PLAY_COMMAND;
@@ -13459,7 +13337,7 @@ int srAutoTransPlay()
 
 
 			if(rsServerConfig.ExpGameTimeMode && rsPlayInfo[cnt].dwExpGameTimeCheck &&
-				rsPlayInfo[cnt].Position.Area < STAGE_AREA_MAX && StageArea[rsPlayInfo[cnt].Position.Area].lpField)
+				rsPlayInfo[cnt].Position.Area >= 0 && rsPlayInfo[cnt].Position.Area < StageAreaCount && StageArea[rsPlayInfo[cnt].Position.Area].lpField)
 			{
 
 				int gTimeChk = rsPlayInfo[cnt].dwExpGameTime / (1000 * 60);
@@ -13513,7 +13391,7 @@ int srAutoTransPlay()
 
 			if(UserPlayServer && (rsPlayInfo[cnt].dwMacroChkTime + 60000) > dwPlayServTime)
 			{
-				if(rsPlayInfo[cnt].Position.Area < STAGE_AREA_MAX && StageArea[rsPlayInfo[cnt].Position.Area].lpField &&
+				if(rsPlayInfo[cnt].Position.Area >= 0 && rsPlayInfo[cnt].Position.Area < StageAreaCount && StageArea[rsPlayInfo[cnt].Position.Area].lpField &&
 					StageArea[rsPlayInfo[cnt].Position.Area].lpField->State == FIELD_STATE_VILLAGE)
 				{
 
@@ -14198,7 +14076,6 @@ int InitAll()
 
 	//verificando crash do servidor
 	// cout << "Carregando Mapas..." << endl;
-	// StageArea = new STG_AREA[STAGE_AREA_MAX];
 	// srReadStage();
 
 	// cout << "Carregando Nome de Monstros..." << endl;
@@ -14222,10 +14099,6 @@ int InitAll()
     // rsInit_SerToServer();
 
 	// ZeroMemory(&rsUserListDamageTop10, sizeof(rsUSER_LIST_TOP10));
-	cout << "[INIT] ANTES: alocar StageArea" << endl;
-	StageArea = new STG_AREA[STAGE_AREA_MAX];
-	cout << "[INIT] DEPOIS: alocar StageArea" << endl;
-
 	cout << "[INIT] ANTES: srReadStage" << endl;
 	if(!srReadStage())
 	{
@@ -14361,13 +14234,14 @@ void RemoveAll()
 
 	if(StageArea)
 	{
-		for(int cnt = STAGE_AREA_MAX - 1; cnt >= 0; cnt--)
+		for(int cnt = StageAreaCount - 1; cnt >= 0; cnt--)
 		{
 			StageArea[cnt].Close();
 		}
 
 		delete[] StageArea;
 		StageArea = nullptr;
+		StageAreaCount = 0;
 	}
 
 	rsRemoveCopiedItemList();
@@ -14893,7 +14767,7 @@ int AddNewPlayInfo(smWINSOCK *lpsmSock)
 
 int IsStgArea(STG_AREA *lpStgArea)
 {
-	for(int cnt = 0; cnt < STAGE_AREA_MAX; cnt++)
+	for(int cnt = 0; cnt < StageAreaCount; cnt++)
 	{
 		if(lpStgArea == &StageArea[cnt])
 			return TRUE;
@@ -19438,7 +19312,10 @@ int rsOpenEventMonster(int EventCode, int wParam, int lParam, int sParam)
 			{
 				memcpy(&StgCharInfo.smCharInfo, &chrMonsterList[cnt], sizeof(smCHAR_INFO));
 
-				lpStgArea = &StageArea[chrMonsterList[cnt].lpMonInfo->EventInfo];
+				const int eventArea = chrMonsterList[cnt].lpMonInfo->EventInfo;
+				if(!StageArea || eventArea < 0 || eventArea >= StageAreaCount)
+					continue;
+				lpStgArea = &StageArea[eventArea];
 
 				lpStgArea->EvnMonster = TRUE;
 				lpStgArea->OpenMonster(&StgCharInfo, 0);
@@ -30838,7 +30715,7 @@ if(cnt >= CONNECTMAX)
 			{
 				lpTransCommand = (smTRANS_COMMAND *)SockInfo->Buff;
 
-				JoiResult validation = Joi::validate(Joi::key(lpPlayInfo->Position.Area, JoiNumber::build().minimum(0).maximum(STAGE_AREA_MAX)));
+				JoiResult validation = Joi::validate(Joi::key(lpPlayInfo->Position.Area, JoiNumber::build().minimum(0).maximum(StageAreaCount > 0 ? StageAreaCount - 1 : 0)));
 
 				if(validation.error())
 				{
@@ -38101,7 +37978,7 @@ int rsRecvYahooMotion(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 	int			x, y, z, dist;
 
 
-	if(lpPlayInfo->dwClanCode && lpPlayInfo->Position.Area >= 0 && lpPlayInfo->Position.Area < STAGE_AREA_MAX)
+	if(StageArea && lpPlayInfo->dwClanCode && lpPlayInfo->Position.Area >= 0 && lpPlayInfo->Position.Area < StageAreaCount)
 	{
 
 		lpStgArea = &StageArea[lpPlayInfo->Position.Area];
@@ -41279,7 +41156,7 @@ int rsCheckPlayField(rsPLAYINFO *lpPlayInfo)
 
 
 
-	if(lpPlayInfo->Position.Area > STAGE_AREA_MAX || lpPlayInfo->Position.Area < 0)
+	if(!StageArea || lpPlayInfo->Position.Area < 0 || lpPlayInfo->Position.Area >= StageAreaCount)
 	{
 		rsFault_PlayField(lpPlayInfo, 0);
 		return FALSE;

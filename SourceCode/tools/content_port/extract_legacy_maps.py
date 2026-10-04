@@ -125,6 +125,12 @@ def parse(source:Path):
         if m:
             current={'legacy_field_code':int(m.group(1)),'operations':[],'source_line':line_no}
             maps.append(current); continue
+        # The migrated legacy source increments once after the final static field
+        # instead of hardcoding the historical total (53). This is catalog-count
+        # bookkeeping, not a map operation.
+        if re.fullmatch(r'(?:cnt\+\+|\+\+cnt)\s*;',code):
+            current=None
+            continue
         if current is None:
             # Initial directory setup and field-code loop are global bootstrap semantics.
             for key,var in [('field_directory','szFieldDirectory'),('map_directory','szMapDirectory'),('title_directory','szTitleDirectory')]:

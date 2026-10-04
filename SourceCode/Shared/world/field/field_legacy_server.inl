@@ -444,8 +444,18 @@ static void ResetLegacyFieldCatalogStorage()
 
 static int FinalizeLegacyFieldCatalog(int cnt)
 {
+	if (cnt < 0 || cnt > FIELD_MAX)
+		return FALSE;
+
 	if (smConfig.szFile_Stage[0])
 	{
+		if (cnt >= FIELD_MAX)
+		{
+			fprintf(stderr, "[CONTENT][MAP] FATAL custom field has no free legacy slot (static=%d capacity=%d)\n", cnt, FIELD_MAX);
+			fflush(stderr);
+			return FALSE;
+		}
+
 		CustomField = cnt;
 		sField[cnt].SetName(smConfig.szFile_Stage);
 
@@ -1908,7 +1918,7 @@ static int InitFieldLegacy()
 	sField[cnt].LimitLevel = 100;
 	sField[cnt].AddWarpGate(198289, 240238, 1543, 32, 32);					// Å¾ 3Ãþ Ãâ±¸ 
 	sField[cnt].AddWarpOutGate(&sField[3], 2599, -18235, 236);
-	cnt = 53;
+	cnt++;
 
 
 
@@ -1929,12 +1939,20 @@ static int InitFieldCompiled(const char *packPath)
 {
 	ResetLegacyFieldCatalogStorage();
 	std::string error;
+	std::uint32_t staticFieldCount = 0;
+	std::int32_t dynamicFieldCode = -1;
 	const summit::content::map::LegacyMapPathContext paths(szFieldDirectory, szMapDirectory, szTitleDirectory);
 	if (!summit::content::map::LoadCompiledMapsIntoLegacyFields(
 		packPath, summit::content::map::MapProfileServer, SummitMapRuntimeFeatureMask(),
-		sField, FIELD_MAX, paths, 53, 53, &error))
+		sField, FIELD_MAX, paths, &staticFieldCount, &dynamicFieldCode, &error))
+	{
+		fprintf(stderr, "[CONTENT][MAP] FATAL profile=server load failed: %s\n", error.c_str());
+		fflush(stderr);
 		return FALSE;
-	return FinalizeLegacyFieldCatalog(53);
+	}
+	if (dynamicFieldCode != static_cast<std::int32_t>(staticFieldCount))
+		return FALSE;
+	return FinalizeLegacyFieldCatalog(static_cast<int>(staticFieldCount));
 }
 
 int InitField()

@@ -245,9 +245,8 @@ public:
 int rsCompanionPickupStageItem(rsPLAYINFO *lpPlayInfo, STG_AREA *lpStgArea, STG_ITEMS *lpStgItem);
 
 
-#define STAGE_AREA_MAX		64
-
 extern STG_AREA	*StageArea;
+extern int StageAreaCount;
 
 extern DWORD		dwPlayServTime;
 extern rsSERVER_CONFIG		rsServerConfig;

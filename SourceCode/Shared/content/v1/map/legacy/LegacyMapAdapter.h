@@ -48,10 +48,10 @@ inline bool ValidateLegacyMapCatalog(const MapCatalogDefinition &catalog,
 {
     if(!fields || fieldCapacity<=0) return MapAdapterFail(error,"invalid legacy field storage");
     if(catalog.profile!=expectedProfile) return MapAdapterFail(error,"compiled map profile does not match runtime profile");
-    if(catalog.dynamicFieldCode<0 || catalog.dynamicFieldCode>=fieldCapacity)
-        return MapAdapterFail(error,"compiled map dynamic field code is outside legacy storage");
-    if(catalog.staticFieldCount==0 || catalog.staticFieldCount>static_cast<std::uint32_t>(fieldCapacity))
-        return MapAdapterFail(error,"compiled map static field count is invalid");
+    if(catalog.staticFieldCount==0 || catalog.staticFieldCount>=static_cast<std::uint32_t>(fieldCapacity))
+        return MapAdapterFail(error,"compiled map static field count must leave room for the legacy custom field");
+    if(catalog.dynamicFieldCode!=static_cast<std::int32_t>(catalog.staticFieldCount))
+        return MapAdapterFail(error,"compiled map dynamic field code must append after the static field range");
     if(catalog.maps.size()!=catalog.staticFieldCount)
         return MapAdapterFail(error,"compiled map catalog does not contain exactly one record per static field");
     if((runtimeFeatureMask & ~catalog.featureMask)!=0)
@@ -235,27 +235,32 @@ inline bool LoadCompiledMapsIntoLegacyFields(const char *packPath,
                                              LegacyField *fields,
                                              int fieldCapacity,
                                              const LegacyMapPathContext &paths,
-                                             std::int32_t expectedDynamicFieldCode,
-                                             std::uint32_t expectedStaticFieldCount,
+                                             std::uint32_t *outStaticFieldCount,
+                                             std::int32_t *outDynamicFieldCode,
                                              std::string *error=0)
 {
     if(!packPath || !*packPath) return MapAdapterFail(error,"compiled map pack path is empty");
+    if(!outStaticFieldCount || !outDynamicFieldCode)
+        return MapAdapterFail(error,"compiled map runtime outputs are required");
+
     CompiledMapContentSource source(packPath);
     if(!source.IsValid()) return MapAdapterFail(error,source.LastError().c_str());
 
     MapCatalogDefinition staged;
     if(!source.LoadCatalog(staged,error)) return false;
-    if(staged.dynamicFieldCode!=expectedDynamicFieldCode)
-        return MapAdapterFail(error,"compiled map dynamic field code does not match runtime contract");
-    if(staged.staticFieldCount!=expectedStaticFieldCount)
-        return MapAdapterFail(error,"compiled map static field count does not match runtime contract");
 
     // AddStageObject stores the supplied char pointer instead of copying it.
     // Keep the selected compiled catalog alive for the lifetime of this process.
     static MapCatalogDefinition persistentCatalog;
     persistentCatalog=staged;
-    return MaterializeLegacyMapCatalog(persistentCatalog,expectedProfile,runtimeFeatureMask,
-                                       fields,fieldCapacity,paths,error);
+    if(!MaterializeLegacyMapCatalog(persistentCatalog,expectedProfile,runtimeFeatureMask,
+                                    fields,fieldCapacity,paths,error))
+        return false;
+
+    *outStaticFieldCount=persistentCatalog.staticFieldCount;
+    *outDynamicFieldCode=persistentCatalog.dynamicFieldCode;
+    if(error) error->clear();
+    return true;
 }
 
 } // namespace map

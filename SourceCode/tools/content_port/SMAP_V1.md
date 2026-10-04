@@ -5,9 +5,10 @@
 UTF-8 JSON. The runtime does not parse JSON.
 
 The current client and server catalogs intentionally remain separate because 14
-legacy fields differ semantically between the two sides. Field code 53 is also
-intentionally excluded: it is populated dynamically from `smConfig` at runtime and
-is represented by `dynamic_field_code=53` in the pack header.
+legacy fields differ semantically between the two sides. Static field codes are a
+contiguous range `0..N-1`; the legacy `smConfig` custom field is not reserved at a
+fixed code and is appended at runtime as field `N`. The pack header therefore stores
+`static_field_count=N` and `dynamic_field_code=N`.
 
 All integer fields are little-endian fixed-width values. No raw C++ structs are
 serialized.
@@ -24,8 +25,8 @@ serialized.
 | 16..71 | count/offset pairs | maps, stage objects, start points, gates, warp gates, warp outs, ambient |
 | 72 | `u32` | UTF-8 string-table offset |
 | 76 | `u32` | string-table bytes |
-| 80 | `u32` | dynamic legacy field code (53) |
-| 84 | `u32` | static field count (53) |
+| 80 | `u32` | dynamic legacy field code (first field after the static range) |
+| 84 | `u32` | static field count |
 | 88 | `u32` | feature mask; bit 0 = `worldcup_field` |
 | 92 | `u32` | reserved = 0 |
 | 96 | `u8[32]` | SHA-256 of bytes `[128, EOF)` |
@@ -64,7 +65,8 @@ rejected by `LegacyMapAdapter` before materialization.
 The runtime bridge is opt-in through `SUMMIT_MAP_PACK`. With
 `SUMMIT_MAP_STRICT=1`, any pack/load/materialization failure makes `InitField()` fail;
 without strict mode, `InitField()` reconstructs the original hardcoded catalog. Static
-fields are loaded from SMAP and field 53 is then finalized from `smConfig` exactly as
+fields are loaded from SMAP and the `smConfig` custom field is finalized at
+`dynamic_field_code == static_field_count` (the first free field) exactly as
 in the legacy path. `WORLDCUP_FIELD` is translated to feature bit 0 at runtime.
 
 The compiler input itself can be regenerated from the current legacy source with

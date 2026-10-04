@@ -232,9 +232,8 @@ public:
 };
 
 
-#define STAGE_AREA_MAX		64
-
 extern STG_AREA	*StageArea;
+extern int StageAreaCount;
 
 extern DWORD		dwPlayServTime;
 extern rsSERVER_CONFIG		rsServerConfig;

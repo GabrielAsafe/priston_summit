@@ -209,8 +209,11 @@ int main(int argc,char **argv)
     for(int i=0;i<256;++i) fields[i].FieldCode=i;
     std::string error;
     summit::content::map::LegacyMapPathContext paths(gFieldDir,gMapDir,gTitleDir);
-    if(!summit::content::map::LoadCompiledMapsIntoLegacyFields(argv[1],profile,0,fields,256,paths,53,53,&error))
+    std::uint32_t staticFieldCount=0;
+    std::int32_t dynamicFieldCode=-1;
+    if(!summit::content::map::LoadCompiledMapsIntoLegacyFields(argv[1],profile,0,fields,256,paths,&staticFieldCount,&dynamicFieldCode,&error))
     { std::fprintf(stderr,"FAIL load: %s\n",error.c_str()); return 1; }
+    if(staticFieldCount<53 || dynamicFieldCode!=static_cast<std::int32_t>(staticFieldCount)) return fail("content-driven field-count contract");
 
     if(std::strcmp(fields[0].szName,"field//forest//fore-3.ase")!=0) return fail("field 0 stage name");
     if(fields[3].StgObjCount!=14) return fail("WORLDCUP objects must be absent with feature mask 0");

@@ -305,7 +305,7 @@ def semanticize(shadow: dict, profile: str, source_root: Path, source_path: Path
         "profile": profile,
         "map_count": len(maps),
         "maps": maps,
-        "legacy_dynamic_field": {"field_code": 53, "strategy": "legacy_runtime_config_fallback"},
+        "legacy_dynamic_field": {"strategy": "append_after_static"},
     }
 
 

@@ -204,9 +204,18 @@ def compile_catalog(doc: dict) -> tuple[bytes, dict]:
     body = b"".join((map_blob, stage_blob, start_blob, gate_blob, warp_blob, out_blob, ambient_blob, bytes(strings.data)))
     body_hash = hashlib.sha256(body).digest()
 
-    dynamic = doc.get("legacy_dynamic_field") or {}
-    dynamic_field_code = int(dynamic.get("field_code", 0xFFFFFFFF))
     static_field_count = max(seen_codes) + 1
+    expected_codes = set(range(static_field_count))
+    if seen_codes != expected_codes:
+        raise ValueError("legacy_field_code range must be contiguous from 0")
+    if static_field_count > 255:
+        raise ValueError("at most 255 static fields are supported while the legacy custom field is enabled")
+
+    dynamic = doc.get("legacy_dynamic_field") or {}
+    strategy = dynamic.get("strategy", "append_after_static")
+    if strategy != "append_after_static":
+        raise ValueError(f"unsupported legacy_dynamic_field strategy: {strategy!r}")
+    dynamic_field_code = static_field_count
 
     header = bytearray(HEADER_SIZE)
     struct.pack_into("<4sHH", header, 0, MAGIC, VERSION, HEADER_SIZE)
@@ -244,6 +253,7 @@ def compile_catalog(doc: dict) -> tuple[bytes, dict]:
         "bytes": len(pack),
         "features": {name: 1 if feature_mask & bit else 0 for name, bit in FEATURE_BITS.items()},
         "dynamic_field_code": dynamic_field_code,
+        "static_field_count": static_field_count,
     }
     return pack, report
 

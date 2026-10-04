@@ -21,12 +21,13 @@
     },
     "map_count": {
       "type": "integer",
-      "const": 53
+      "minimum": 1,
+      "maximum": 255
     },
     "maps": {
       "type": "array",
-      "minItems": 53,
-      "maxItems": 53,
+      "minItems": 1,
+      "maxItems": 255,
       "items": {
         "type": "object",
         "required": [
@@ -53,7 +54,7 @@
           "legacy_field_code": {
             "type": "integer",
             "minimum": 0,
-            "maximum": 52
+            "maximum": 254
           },
           "stage": {
             "type": "string",
@@ -66,15 +67,11 @@
     "legacy_dynamic_field": {
       "type": "object",
       "required": [
-        "field_code",
         "strategy"
       ],
       "properties": {
-        "field_code": {
-          "const": 53
-        },
         "strategy": {
-          "const": "legacy_runtime_config_fallback"
+          "const": "append_after_static"
         }
       },
       "additionalProperties": false
