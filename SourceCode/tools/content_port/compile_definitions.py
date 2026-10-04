@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse,base64,hashlib,json,struct
 from pathlib import Path, PurePosixPath
 from legacy_text import lex_bytes
+from npc_shop_overrides import load_overrides,ops_for
 
 MAGIC=b'SCFG'; VERSION=1
 HEADER=struct.Struct('<4sHH10I32s')
@@ -69,26 +70,40 @@ def item_is_normal(d:dict)->bool:
  fields=d.get('semantic',{}).get('fields',{})
  return not bool(fields.get('unique',0))
 
-def render_shop_values(d:dict,materializable_codes:set[str]):
+def render_shop_values(d:dict,materializable_codes:set[str],adds:list[str]|None=None,removes:set[str]|None=None):
  raws=d.get('raw_values_hex') or []
  semantic=d.get('values') or []
  quoted=d.get('quoted') or []
- out=[];filtered=[]
+ adds=adds or [];removes=removes or set()
+ out=[];filtered=[];seen=set()
  for i,h in enumerate(raws):
   b=bytes.fromhex(h)
   token=str(semantic[i]).strip() if i<len(semantic) else b.decode('latin1').strip()
-  keep=(token=='없음' or token.casefold() in materializable_codes)
-  if not keep:
-   filtered.append(token)
+  key=token.casefold()
+  if key in removes:
+   filtered.append(token);continue
+  if token=='없음' and adds:
    continue
+  keep=(token=='없음' or key in materializable_codes)
+  if not keep:
+   filtered.append(token);continue
+  if key in seen:continue
+  seen.add(key)
   q=(i<len(quoted) and quoted[i]) or any(c in b' \t\r\n' for c in b)
   out.append((b'"'+b+b'"') if q else b)
+ for token in adds:
+  key=token.casefold()
+  if key in seen:continue
+  if key not in materializable_codes:
+   filtered.append(token);continue
+  seen.add(key);out.append(token.encode('ascii'))
  return b' '.join(out),filtered
 
 def main():
- ap=argparse.ArgumentParser();ap.add_argument('canonical',type=Path);ap.add_argument('output',type=Path);ap.add_argument('--item-profile',type=Path);a=ap.parse_args()
+ ap=argparse.ArgumentParser();ap.add_argument('canonical',type=Path);ap.add_argument('output',type=Path);ap.add_argument('--item-profile',type=Path);ap.add_argument('--npc-shop-overrides',type=Path);a=ap.parse_args()
  root=a.canonical.resolve(); idx=json.loads((root/'index.json').read_text(encoding='utf-8'))['documents']
  profile_name,profile_codes=load_item_profile(a.item_profile.resolve() if a.item_profile else None)
+ vendor_overrides=load_overrides(a.npc_shop_overrides.resolve() if a.npc_shop_overrides else None)
  docs={}; alias_map={}
  for e in idx:
   d=json.loads((root/e['json_path']).read_text(encoding='utf-8')); docs[d['id']]=d
@@ -117,7 +132,11 @@ def main():
  defs.sort(key=lambda d:runtime_alias(d).casefold())
  for d in defs:
   start=len(directives); rpath=runtime_alias(d)
-  for directive in d.get('semantic',{}).get('directives',[]):
+  source_directives=d.get('semantic',{}).get('directives',[])
+  shop_last={}
+  for directive_index,directive in enumerate(source_directives):
+   if directive.get('key') in SHOP_KEYS:shop_last[directive.get('key')]=directive_index
+  for directive_index,directive in enumerate(source_directives):
    key=directive.get('key')
    if key=='linked_file':
     raw=directive.get('raw_values_hex') or []
@@ -135,8 +154,10 @@ def main():
      else: unresolved_links.append({'id':d['id'],'path':rpath,'target':target})
     break # exact legacy behavior switches file and never returns
    command=bytes.fromhex(directive['legacy_token_hex'])
-   if key in SHOP_KEYS and profile_name=='server':
-    rendered,filtered=render_shop_values(directive,materializable_codes)
+   if key in SHOP_KEYS and profile_name in ('client','server'):
+    adds,removes=ops_for(vendor_overrides,d['id'],key)
+    if shop_last.get(key)!=directive_index:adds=[]
+    rendered,filtered=render_shop_values(directive,materializable_codes,adds,removes)
     for token in filtered:
      filtered_shop_tokens.append({'id':d['id'],'path':rpath,'key':key,'token':token})
     directives.append((intern_bytes(command),intern_bytes(rendered),0))

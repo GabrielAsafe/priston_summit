@@ -16,7 +16,7 @@ COMMON_PACKS = (
 )
 ROLE_PACKS = {
     'client': ('definitions_client.scfg', 'maps_client.smap') + COMMON_PACKS,
-    'server': ('definitions_server.scfg', 'maps_server.smap') + COMMON_PACKS,
+    'server': ('definitions_server.scfg', 'maps_server.smap', 'coin_shop.scsp') + COMMON_PACKS,
 }
 STALE_COMMON_PACKS = ('stage_spawns.sspb',)
 KNOWN_ROLE_SPECIFIC = {

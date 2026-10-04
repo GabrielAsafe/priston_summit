@@ -57,6 +57,7 @@ def main() -> None:
     fixed_npcs = args.canonical_fixed_npcs.resolve()
     item_profiles = args.canonical_item_profiles.resolve()
     gameplay_reference = (text.parent / 'gameplay_reference').resolve()
+    commerce = (text.parent / 'commerce').resolve()
     out = args.out_root.resolve()
     invocation_root = Path.cwd().resolve()
     packs = out / 'packs'
@@ -73,6 +74,7 @@ def main() -> None:
         'localization': packs / 'localization.sloc',
         'gameplay_config': packs / 'gameplay_config.sgcf',
         'gameplay_reference': packs / 'gameplay_reference.sgrf',
+        'coin_shop': packs / 'coin_shop.scsp',
         'field_runtime': packs / 'field_runtime.sfld',
         'maps_client': packs / 'maps_client.smap',
         'maps_server': packs / 'maps_server.smap',
@@ -80,18 +82,28 @@ def main() -> None:
 
     run(py, here / 'compile_text_resources.py', text, outputs['text_resources'])
     run(py, here / 'inspect_text_resources.py', outputs['text_resources'])
+    npc_shop_overrides = commerce / 'npc_shop_overrides.json'
+    if not npc_shop_overrides.is_file():
+        raise SystemExit(f'missing canonical NPC shop overrides: {npc_shop_overrides}')
+    run(py, here / 'validate_npc_shop_catalog.py', '--repo-root', here.parent.parent)
     for profile in ('client', 'server'):
         profile_catalog = item_profiles / f'{profile}.items.json'
         if not profile_catalog.is_file():
             raise SystemExit(f'missing canonical item profile: {profile_catalog}')
         output = outputs[f'definitions_{profile}']
-        run(py, here / 'compile_definitions.py', text, output, '--item-profile', profile_catalog)
+        run(py, here / 'compile_definitions.py', text, output, '--item-profile', profile_catalog, '--npc-shop-overrides', npc_shop_overrides)
         run(py, here / 'inspect_definitions.py', output)
     run(py, here / 'validate_item_profile_pack.py', '--source-root', here.parent.parent, '--content-root', out, '--profile', 'both')
     run(py, here / 'compile_localization.py', text, outputs['localization'])
     run(py, here / 'inspect_localization.py', outputs['localization'])
     run(py, here / 'compile_gameplay_config.py', text, outputs['gameplay_config'])
     run(py, here / 'inspect_gameplay_config.py', outputs['gameplay_config'])
+    coin_shop_catalog = commerce / 'coin_shop.json'
+    if not coin_shop_catalog.is_file():
+        raise SystemExit(f'missing canonical coin shop catalog: {coin_shop_catalog}')
+    run(py, here / 'validate_coin_shop_catalog.py', '--repo-root', here.parent.parent)
+    run(py, here / 'compile_coin_shop.py', coin_shop_catalog, outputs['coin_shop'])
+    run(py, here / 'inspect_coin_shop.py', outputs['coin_shop'])
     if not gameplay_reference.is_dir():
         raise SystemExit(f'missing canonical gameplay reference root: {gameplay_reference}')
     run(py, here / 'compile_gameplay_reference.py', gameplay_reference, outputs['gameplay_reference'])
@@ -121,6 +133,7 @@ def main() -> None:
             'canonical_fixed_npcs': portable_input_path(fixed_npcs, invocation_root),
             'canonical_item_profiles': portable_input_path(item_profiles, invocation_root),
             'canonical_gameplay_reference': portable_input_path(gameplay_reference, invocation_root),
+            'canonical_commerce': portable_input_path(commerce, invocation_root),
         },
         'packs': {
             name: {
