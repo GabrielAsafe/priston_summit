@@ -34,3 +34,21 @@ SourceCode Summit Tale/Dependency/DXSDK_Jun10.exe
 SourceCode Summit Tale/Dependency/DirectXSDK.7z
 SourceCode/Dependency/DXSDK_Jun10.exe
 SourceCode/Dependency/DirectXSDK.7z
+
+# Summit local build artifacts
+SourceCode/build_mingw_client_i686/
+SourceCode/build_mingw_server_i686/
+SourceCode/dist_mingw_client_i686/
+SourceCode/dist_mingw_server_i686/
+SourceCode/ccache/
+
+SourceCode/cpp_files_client_i686.txt
+SourceCode/cpp_files_server_i686.txt
+SourceCode/object_files_client_mingw.txt
+SourceCode/object_files_server_mingw.txt
+
+# Temporary migration helpers
+/commit_remaining_patches.sh
+/continue_commits_05_08.sh
+/continue_commits_06_08_from_worktree.sh
+/continue_commits_06_08_from_worktree (1).sh
