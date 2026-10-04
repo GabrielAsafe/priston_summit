@@ -8640,8 +8640,10 @@ int ThrowItemToServer(smTRANS_COMMAND_EX *lpTransCommand)
 				smTransCommand.SParam = 3000;
 				smTransCommand.EParam = lpCurPlayer->dwObjectSerial;
 
-				if(smWsockUserServer)
-					smWsockUserServer->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+				if(gameplay::network::legacy::ClientLegacyBackendChannelSender().Available(gameplay::network::BackendChannel::User))
+					gameplay::network::legacy::ClientLegacyBackendChannelSender().Send(
+						gameplay::network::BackendChannel::User,
+						gameplay::network::PacketView(&smTransCommand, static_cast<std::size_t>(smTransCommand.size), smTransCommand.code));
 
 				SetPartyPosion(&smTransCommand);
 
