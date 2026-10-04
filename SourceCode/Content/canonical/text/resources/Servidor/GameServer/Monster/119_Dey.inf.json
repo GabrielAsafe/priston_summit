@@ -188,7 +188,8 @@
           ]
         ]
       },
-      "linked_file": "name\\119_Dey.zhoon"
+      "linked_file": "name\\119_Dey.zhoon",
+      "model_config_id": "model.char.monster.dey.dey"
     },
     "directives": [
       {

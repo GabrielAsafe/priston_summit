@@ -61,7 +61,8 @@
         1100,
         "pm104"
       ],
-      "linked_file": "name\\new_sod_chain_golem.zhoon"
+      "linked_file": "name\\new_sod_chain_golem.zhoon",
+      "model_config_id": "model.char.monster.chaingolem.chaingolem"
     },
     "directives": [
       {

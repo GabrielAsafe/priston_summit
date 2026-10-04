@@ -20,7 +20,8 @@
       "model_file": "char\\npc\\TN-017\\TN-017.INI",
       "polling": 1,
       "class": 0,
-      "linked_file": "name\\TN-017.zhoon"
+      "linked_file": "name\\TN-017.zhoon",
+      "model_config_id": "model.char.npc.tn.017.tn.017"
     },
     "directives": [
       {

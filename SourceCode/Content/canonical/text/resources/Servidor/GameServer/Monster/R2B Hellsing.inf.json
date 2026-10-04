@@ -51,7 +51,8 @@
       "move_type": 0,
       "effect_sound": "figon",
       "experience": 200000,
-      "linked_file": "name\\R2B Hellsing.zhoon"
+      "linked_file": "name\\R2B Hellsing.zhoon",
+      "model_config_id": "model.char.monster.figon.monfigon.boss"
     },
     "directives": [
       {

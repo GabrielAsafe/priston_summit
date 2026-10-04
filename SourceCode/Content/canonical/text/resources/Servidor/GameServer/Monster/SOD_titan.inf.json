@@ -56,7 +56,8 @@
       "potion_count": 1,
       "potion_percent": 15,
       "experience": 16200,
-      "linked_file": "name\\new_sod_titan.zhoon"
+      "linked_file": "name\\new_sod_titan.zhoon",
+      "model_config_id": "model.char.monster.monbagon.monbagon.boss"
     },
     "directives": [
       {

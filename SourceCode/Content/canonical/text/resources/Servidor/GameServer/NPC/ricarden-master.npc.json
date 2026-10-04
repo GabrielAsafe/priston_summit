@@ -22,7 +22,8 @@
       "class": 1003,
       "skill_master": true,
       "skill_change_job": 2,
-      "linked_file": "name\\ricarden-master.zhoon"
+      "linked_file": "name\\ricarden-master.zhoon",
+      "model_config_id": "model.char.npc.tn.007.tn.007"
     },
     "directives": [
       {

@@ -41,7 +41,8 @@
         "BI244",
         "BI247"
       ],
-      "linked_file": "name\\Salao de Beleza.zhoon"
+      "linked_file": "name\\Salao de Beleza.zhoon",
+      "model_config_id": "model.char.npc.maskedwoman.maskedwoman"
     },
     "directives": [
       {

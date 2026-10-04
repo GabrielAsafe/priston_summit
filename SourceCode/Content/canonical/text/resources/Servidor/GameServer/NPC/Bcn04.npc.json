@@ -43,7 +43,8 @@
         "bc115",
         "bc116"
       ],
-      "linked_file": "name\\Bcn04.zhoon"
+      "linked_file": "name\\Bcn04.zhoon",
+      "model_config_id": "model.char.npc.bcn04.bcn04"
     },
     "directives": [
       {

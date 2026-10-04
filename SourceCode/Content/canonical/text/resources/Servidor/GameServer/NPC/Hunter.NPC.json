@@ -20,7 +20,8 @@
       "name": "사냥꾼 오웬",
       "english_name": "Hunter Owen",
       "class": 2002,
-      "linked_file": "name\\Hunter.zhoon"
+      "linked_file": "name\\Hunter.zhoon",
+      "model_config_id": "model.char.npc.hunter.hunter"
     },
     "directives": [
       {

@@ -31,7 +31,8 @@
         "OM105",
         "OM106"
       ],
-      "linked_file": "name\\ruiden-magic.zhoon"
+      "linked_file": "name\\ruiden-magic.zhoon",
+      "model_config_id": "model.char.npc.mn.008.mn.008"
     },
     "directives": [
       {

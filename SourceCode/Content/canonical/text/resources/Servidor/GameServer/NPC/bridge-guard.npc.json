@@ -18,7 +18,8 @@
       "name": "다리 경비병",
       "model_file": "char\\npc\\TN-001\\TN-001.INI",
       "level": 100,
-      "linked_file": "name\\bridge-guard.zhoon"
+      "linked_file": "name\\bridge-guard.zhoon",
+      "model_config_id": "model.char.npc.tn.001.tn.001"
     },
     "directives": [
       {

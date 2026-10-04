@@ -46,7 +46,8 @@
         "fo107",
         "fo127"
       ],
-      "linked_file": "name\\ricarden-store.zhoon"
+      "linked_file": "name\\ricarden-store.zhoon",
+      "model_config_id": "model.char.npc.tn.005.tn.005"
     },
     "directives": [
       {

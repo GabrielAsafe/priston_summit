@@ -20,7 +20,8 @@
       "name": "마력연구가",
       "level": 100,
       "quest_event": 14,
-      "linked_file": "name\\Resercher.zhoon"
+      "linked_file": "name\\Resercher.zhoon",
+      "model_config_id": "model.char.npc.mn.006.mn.006"
     },
     "directives": [
       {

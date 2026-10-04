@@ -18,7 +18,8 @@
       "state": "NPC",
       "model_file": "char\\npc\\MN-002\\MN-002.INI",
       "name": "동굴 경비병",
-      "linked_file": "name\\mrcave-keeper.zhoon"
+      "linked_file": "name\\mrcave-keeper.zhoon",
+      "model_config_id": "model.char.npc.mn.002.mn.002"
     },
     "directives": [
       {

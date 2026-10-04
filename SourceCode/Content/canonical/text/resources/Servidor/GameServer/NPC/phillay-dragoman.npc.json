@@ -18,7 +18,8 @@
       "state": "NPC",
       "model_file": "char\\npc\\MN-001\\MN-001.INI",
       "name": "필라이 가드",
-      "linked_file": "name\\phillay-dragoman.zhoon"
+      "linked_file": "name\\phillay-dragoman.zhoon",
+      "model_config_id": "model.char.npc.mn.001.mn.001"
     },
     "directives": [
       {

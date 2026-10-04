@@ -20,7 +20,8 @@
       "name": "조사원 에토",
       "level": 100,
       "quest_event": 16,
-      "linked_file": "name\\Eto.zhoon"
+      "linked_file": "name\\Eto.zhoon",
+      "model_config_id": "model.char.npc.tn.006.tn.006"
     },
     "directives": [
       {

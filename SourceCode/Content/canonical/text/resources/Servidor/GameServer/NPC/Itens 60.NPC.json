@@ -73,7 +73,8 @@
         "oa209"
       ],
       "sell_etc": "없음",
-      "linked_file": "name\\Itens 60.zhoon"
+      "linked_file": "name\\Itens 60.zhoon",
+      "model_config_id": "model.char.npc.tn.003.tn.003"
     },
     "directives": [
       {

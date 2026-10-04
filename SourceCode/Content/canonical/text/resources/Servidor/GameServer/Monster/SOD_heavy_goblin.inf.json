@@ -61,7 +61,8 @@
       "move_type": 0,
       "effect_sound": "HeavyGoblin",
       "experience": 37800,
-      "linked_file": "name\\new_sod_heavy_goblin.zhoon"
+      "linked_file": "name\\new_sod_heavy_goblin.zhoon",
+      "model_config_id": "model.char.monster.monheavygoblin.monheavygoblin"
     },
     "directives": [
       {

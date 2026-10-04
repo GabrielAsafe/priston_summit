@@ -48,7 +48,8 @@
       "size": "대형",
       "experience": 90000,
       "effect_sound": "MOUNTAIN",
-      "linked_file": "Name\\Name.zhoon"
+      "linked_file": "Name\\Name.zhoon",
+      "model_config_id": "model.char.monster.mountain.mountain"
     },
     "directives": [
       {

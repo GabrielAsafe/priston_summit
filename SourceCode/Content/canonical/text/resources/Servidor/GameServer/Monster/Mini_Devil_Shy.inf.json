@@ -198,7 +198,8 @@
           ]
         ]
       },
-      "linked_file": "name\\Mini_Devil_Shy.zhoon"
+      "linked_file": "name\\Mini_Devil_Shy.zhoon",
+      "model_config_id": "model.char.monster.devilshy.devilshy"
     },
     "directives": [
       {

@@ -55,7 +55,8 @@
       "move_type": 0,
       "effect_sound": "buma",
       "experience": 80000,
-      "linked_file": "name\\new_sod_buma.zhoon"
+      "linked_file": "name\\new_sod_buma.zhoon",
+      "model_config_id": "model.char.monster.buma.buma"
     },
     "directives": [
       {

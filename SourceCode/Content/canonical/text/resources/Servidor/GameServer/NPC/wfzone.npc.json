@@ -26,7 +26,8 @@
         "QW105",
         "QW106"
       ],
-      "linked_file": "name\\wfzone.zhoon"
+      "linked_file": "name\\wfzone.zhoon",
+      "model_config_id": "model.char.npc.tn.015.tn.015"
     },
     "directives": [
       {

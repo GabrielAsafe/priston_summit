@@ -20,7 +20,8 @@
       "name": "롱보 여자친구",
       "quest_event": 10,
       "class": 0,
-      "linked_file": "name\\PRISTON.zhoon"
+      "linked_file": "name\\PRISTON.zhoon",
+      "model_config_id": "model.char.npc.tn.016.tn.016"
     },
     "directives": [
       {

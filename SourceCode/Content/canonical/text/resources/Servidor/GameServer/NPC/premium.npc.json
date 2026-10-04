@@ -45,7 +45,8 @@
         "BI141",
         "wq106"
       ],
-      "linked_file": "name\\premium.zhoon"
+      "linked_file": "name\\premium.zhoon",
+      "model_config_id": "model.char.npc.bcn06.bcn06"
     },
     "directives": [
       {

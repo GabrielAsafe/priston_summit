@@ -44,7 +44,8 @@
       "effect_sound": "Ruca",
       "experience": 100000,
       "fall_item_max": 3,
-      "linked_file": "Name\\Name.zhoon"
+      "linked_file": "Name\\Name.zhoon",
+      "model_config_id": "model.char.monster.adevayo.world.togo"
     },
     "directives": [
       {

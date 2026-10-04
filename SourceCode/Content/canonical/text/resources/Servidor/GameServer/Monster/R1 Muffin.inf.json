@@ -41,7 +41,8 @@
       "size": "중대형",
       "experience": 19800,
       "effect_sound": "MUFFIN",
-      "linked_file": "Name\\Name.zhoon"
+      "linked_file": "Name\\Name.zhoon",
+      "model_config_id": "model.char.monster.cavemush.cmush"
     },
     "directives": [
       {

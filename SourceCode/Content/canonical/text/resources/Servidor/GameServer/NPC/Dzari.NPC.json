@@ -20,7 +20,8 @@
       "name": "드자리 공주",
       "english_name": "Princess Dzari",
       "event_npc": 7,
-      "linked_file": "name\\Dzari.zhoon"
+      "linked_file": "name\\Dzari.zhoon",
+      "model_config_id": "model.char.monster.lizard.bigmama.lizard.bigmama"
     },
     "directives": [
       {

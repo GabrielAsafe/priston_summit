@@ -56,7 +56,8 @@
       "move_type": 0,
       "effect_sound": "DarkKnight",
       "experience": 32000,
-      "linked_file": "name\\new_sod_dark_knight.zhoon"
+      "linked_file": "name\\new_sod_dark_knight.zhoon",
+      "model_config_id": "model.char.monster.monsguard.monhauntguard"
     },
     "directives": [
       {

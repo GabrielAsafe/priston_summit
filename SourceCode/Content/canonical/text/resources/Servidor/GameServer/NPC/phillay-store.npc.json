@@ -37,7 +37,8 @@
         "ec104",
         "ec102"
       ],
-      "linked_file": "name\\phillay-store.zhoon"
+      "linked_file": "name\\phillay-store.zhoon",
+      "model_config_id": "model.char.npc.mn.005.mn.005"
     },
     "directives": [
       {

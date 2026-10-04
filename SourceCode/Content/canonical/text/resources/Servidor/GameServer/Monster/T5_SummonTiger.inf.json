@@ -141,7 +141,8 @@
           ]
         ]
       },
-      "linked_file": "name\\31_BronzeWolverine.zhoon"
+      "linked_file": "name\\31_BronzeWolverine.zhoon",
+      "model_config_id": "model.char.monster.lltiger.tiger"
     },
     "directives": [
       {

@@ -48,7 +48,8 @@
       "size": "중대형",
       "experience": 55000,
       "effect_sound": "DARKKNIGHT",
-      "linked_file": "Name\\Name.zhoon"
+      "linked_file": "Name\\Name.zhoon",
+      "model_config_id": "model.char.monster.monsguard.mondoomguard"
     },
     "directives": [
       {

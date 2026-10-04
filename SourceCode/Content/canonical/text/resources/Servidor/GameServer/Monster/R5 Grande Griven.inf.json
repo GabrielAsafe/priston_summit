@@ -42,7 +42,8 @@
       "size": "중형",
       "experience": 70000,
       "effect_sound": "GREATE_GREVEN",
-      "linked_file": "Name\\Name.zhoon"
+      "linked_file": "Name\\Name.zhoon",
+      "model_config_id": "model.char.monster.great.greven.great.greven"
     },
     "directives": [
       {

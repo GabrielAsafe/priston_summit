@@ -45,7 +45,8 @@
         "oa203",
         "oa204"
       ],
-      "linked_file": "name\\phillay-equip1.zhoon"
+      "linked_file": "name\\phillay-equip1.zhoon",
+      "model_config_id": "model.char.npc.mn.003.mn.003"
     },
     "directives": [
       {

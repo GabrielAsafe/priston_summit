@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\Bcn05\\Bcn05.INI",
       "name": "집사 앤더스",
       "bless_castle": true,
-      "linked_file": "name\\Bcn05.zhoon"
+      "linked_file": "name\\Bcn05.zhoon",
+      "model_config_id": "model.char.npc.bcn05.bcn05"
     },
     "directives": [
       {

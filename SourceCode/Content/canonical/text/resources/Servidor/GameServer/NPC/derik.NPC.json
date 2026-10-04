@@ -20,7 +20,8 @@
       "name": "기사단장 데릭",
       "class": 1012,
       "unmapped.2ab4f4c8ad": "로열메이지 레이는 성격이 약간 날카로와서 친해지기는 어렵지만 일단 친해지면 누구보다 친절한 사람입니다.",
-      "linked_file": "name\\derik.zhoon"
+      "linked_file": "name\\derik.zhoon",
+      "model_config_id": "model.char.npc.derik.derik"
     },
     "directives": [
       {

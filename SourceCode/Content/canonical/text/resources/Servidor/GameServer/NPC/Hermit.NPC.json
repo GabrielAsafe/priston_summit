@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\Hermit\\Hermit.INI",
       "name": "겁쟁이 헤밋",
       "warehouse": true,
-      "linked_file": "name\\Hermit.zhoon"
+      "linked_file": "name\\Hermit.zhoon",
+      "model_config_id": "model.char.npc.hermit.hermit"
     },
     "directives": [
       {

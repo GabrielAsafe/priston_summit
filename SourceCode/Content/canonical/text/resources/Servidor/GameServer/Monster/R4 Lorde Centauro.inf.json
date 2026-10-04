@@ -43,7 +43,8 @@
       "size": "대형",
       "experience": 60000,
       "effect_sound": "AVELISK",
-      "linked_file": "Name\\Name.zhoon"
+      "linked_file": "Name\\Name.zhoon",
+      "model_config_id": "model.char.monster.monavelrisk.monavelrisk.mass"
     },
     "directives": [
       {

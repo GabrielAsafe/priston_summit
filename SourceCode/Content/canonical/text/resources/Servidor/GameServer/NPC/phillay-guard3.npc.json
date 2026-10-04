@@ -18,7 +18,8 @@
       "state": "NPC",
       "model_file": "char\\npc\\MN-002\\MN-002.INI",
       "name": "감옥 경비병",
-      "linked_file": "name\\phillay-guard3.zhoon"
+      "linked_file": "name\\phillay-guard3.zhoon",
+      "model_config_id": "model.char.npc.mn.002.mn.002"
     },
     "directives": [
       {

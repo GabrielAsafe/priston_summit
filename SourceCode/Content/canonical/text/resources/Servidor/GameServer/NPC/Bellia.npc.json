@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\Nadia\\Nadia.INI",
       "name": "집시 벨리아",
       "unmapped.2ac5a9b8aebdbac5bbb0adc8ad": true,
-      "linked_file": "name\\Bellia.zhoon"
+      "linked_file": "name\\Bellia.zhoon",
+      "model_config_id": "model.char.npc.nadia.nadia"
     },
     "directives": [
       {

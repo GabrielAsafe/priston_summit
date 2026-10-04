@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\MN-008\\MN-008.INI",
       "name": "아케인 대리 뉴터",
       "item_aging": true,
-      "linked_file": "name\\phillay-civilian3.zhoon"
+      "linked_file": "name\\phillay-civilian3.zhoon",
+      "model_config_id": "model.char.npc.mn.008.mn.008"
     },
     "directives": [
       {

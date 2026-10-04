@@ -18,7 +18,8 @@
       "name": "네비스코 가드",
       "model_file": "char\\npc\\TN-002\\TN-013.INI",
       "level": 100,
-      "linked_file": "name\\navisko-dragoman.zhoon"
+      "linked_file": "name\\navisko-dragoman.zhoon",
+      "model_config_id": "model.char.npc.tn.002.tn.013"
     },
     "directives": [
       {

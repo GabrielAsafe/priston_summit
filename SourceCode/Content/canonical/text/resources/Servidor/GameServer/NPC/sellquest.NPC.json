@@ -30,7 +30,8 @@
         "QT109",
         "QT110"
       ],
-      "linked_file": "name\\sellquest.zhoon"
+      "linked_file": "name\\sellquest.zhoon",
+      "model_config_id": "model.char.npc.tn.009.tn.009"
     },
     "directives": [
       {

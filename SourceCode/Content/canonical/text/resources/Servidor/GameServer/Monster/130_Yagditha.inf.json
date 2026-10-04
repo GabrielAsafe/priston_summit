@@ -190,7 +190,8 @@
           ]
         ]
       },
-      "linked_file": "name\\130_Yagditha.zhoon"
+      "linked_file": "name\\130_Yagditha.zhoon",
+      "model_config_id": "model.char.monster.yagditha.yagditha"
     },
     "directives": [
       {

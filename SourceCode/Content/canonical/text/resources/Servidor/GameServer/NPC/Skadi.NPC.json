@@ -20,7 +20,8 @@
       "name": "모험가 스카디",
       "english_name": "Adventurer Skadi",
       "class": 2000,
-      "linked_file": "name\\Skadi.zhoon"
+      "linked_file": "name\\Skadi.zhoon",
+      "model_config_id": "model.char.npc.skadi.skadi"
     },
     "directives": [
       {

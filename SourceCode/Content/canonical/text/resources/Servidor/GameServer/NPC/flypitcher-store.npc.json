@@ -28,7 +28,8 @@
         "PS102",
         "PS103"
       ],
-      "linked_file": "name\\flypitcher-store.zhoon"
+      "linked_file": "name\\flypitcher-store.zhoon",
+      "model_config_id": "model.char.npc.mn.005.mn.005"
     },
     "directives": [
       {

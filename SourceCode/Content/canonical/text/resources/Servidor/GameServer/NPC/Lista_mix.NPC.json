@@ -20,7 +20,8 @@
       "level": 100,
       "english_name": "Mr Lim",
       "event_code": 1001,
-      "linked_file": "name\\Lista_mix.zhoon"
+      "linked_file": "name\\Lista_mix.zhoon",
+      "model_config_id": "model.char.npc.teacher.teacher03"
     },
     "directives": [
       {

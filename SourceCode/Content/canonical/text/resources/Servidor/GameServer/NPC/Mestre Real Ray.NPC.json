@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\Quest_ray\\Quest_ray.INI",
       "name": "로열메이지 레이",
       "class": 1013,
-      "linked_file": "name\\Mestre Real Ray.zhoon"
+      "linked_file": "name\\Mestre Real Ray.zhoon",
+      "model_config_id": "model.char.npc.quest.ray.quest.ray"
     },
     "directives": [
       {

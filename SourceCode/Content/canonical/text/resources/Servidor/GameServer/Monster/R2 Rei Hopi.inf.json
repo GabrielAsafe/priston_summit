@@ -41,7 +41,8 @@
       "size": "대형",
       "experience": 51200,
       "effect_sound": "HOPYKING",
-      "linked_file": "Name\\Name.zhoon"
+      "linked_file": "Name\\Name.zhoon",
+      "model_config_id": "model.char.monster.hopyking.hopyking"
     },
     "directives": [
       {

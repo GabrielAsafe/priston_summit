@@ -64,7 +64,8 @@
       "move_type": 0,
       "effect_sound": "Morgon",
       "experience": 520000,
-      "linked_file": "name\\new_sod_shadow_phalanx.zhoon"
+      "linked_file": "name\\new_sod_shadow_phalanx.zhoon",
+      "model_config_id": "model.char.monster.darkphalanx.darkphalanx"
     },
     "directives": [
       {

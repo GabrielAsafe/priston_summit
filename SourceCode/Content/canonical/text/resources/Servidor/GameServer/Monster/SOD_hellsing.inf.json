@@ -51,7 +51,8 @@
       "move_type": 0,
       "effect_sound": "figon",
       "experience": 100000,
-      "linked_file": "name\\new_sod_hellsing.zhoon"
+      "linked_file": "name\\new_sod_hellsing.zhoon",
+      "model_config_id": "model.char.monster.figon.monfigon.boss"
     },
     "directives": [
       {

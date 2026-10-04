@@ -31,7 +31,8 @@
         "CA243",
         "CA245"
       ],
-      "linked_file": "name\\Zarad, o Elengante.zhoon"
+      "linked_file": "name\\Zarad, o Elengante.zhoon",
+      "model_config_id": "model.char.npc.zarad.zarad"
     },
     "directives": [
       {

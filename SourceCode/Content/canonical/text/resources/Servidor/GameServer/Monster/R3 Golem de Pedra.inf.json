@@ -48,7 +48,8 @@
       "size": "대형",
       "experience": 55000,
       "effect_sound": "STONEGOLEM",
-      "linked_file": "Name\\Name.zhoon"
+      "linked_file": "Name\\Name.zhoon",
+      "model_config_id": "model.char.monster.monstonegolem.monstonegolem"
     },
     "directives": [
       {

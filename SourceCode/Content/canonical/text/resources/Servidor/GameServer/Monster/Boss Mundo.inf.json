@@ -197,7 +197,8 @@
           ]
         ]
       },
-      "linked_file": "name\\Bossmundo.zhoon"
+      "linked_file": "name\\Bossmundo.zhoon",
+      "model_config_id": "model.char.monster.lizard.commander.lizard.commander"
     },
     "directives": [
       {

@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\NineFox\\npc_ninefox.INI",
       "name": "프레이아",
       "quest_event": 4,
-      "linked_file": "name\\npc_ninefox.zhoon"
+      "linked_file": "name\\npc_ninefox.zhoon",
+      "model_config_id": "model.char.npc.ninefox.npc.ninefox"
     },
     "directives": [
       {

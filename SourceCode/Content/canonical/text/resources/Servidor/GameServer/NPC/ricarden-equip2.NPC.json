@@ -50,7 +50,8 @@
         "ds104"
       ],
       "sell_etc": "없음",
-      "linked_file": "name\\ricarden-equip2.zhoon"
+      "linked_file": "name\\ricarden-equip2.zhoon",
+      "model_config_id": "model.char.npc.tn.004.tn.004"
     },
     "directives": [
       {

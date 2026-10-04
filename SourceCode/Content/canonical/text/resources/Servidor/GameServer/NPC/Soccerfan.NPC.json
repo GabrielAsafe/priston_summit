@@ -26,7 +26,8 @@
         "DA147",
         "DA153"
       ],
-      "linked_file": "name\\Soccerfan.zhoon"
+      "linked_file": "name\\Soccerfan.zhoon",
+      "model_config_id": "model.char.monster.ziddane.world.fran"
     },
     "directives": [
       {

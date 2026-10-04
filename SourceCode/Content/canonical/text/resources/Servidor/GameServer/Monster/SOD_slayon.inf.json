@@ -59,7 +59,8 @@
       "potion_count": 1,
       "potion_percent": 15,
       "experience": 150000,
-      "linked_file": "name\\new_sod_slayon.zhoon"
+      "linked_file": "name\\new_sod_slayon.zhoon",
+      "model_config_id": "model.char.monster.headcut.headcutaxe"
     },
     "directives": [
       {

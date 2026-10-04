@@ -20,7 +20,8 @@
       "name": "조사원 카미유",
       "level": 100,
       "quest_event": 15,
-      "linked_file": "name\\Kamiyu.zhoon"
+      "linked_file": "name\\Kamiyu.zhoon",
+      "model_config_id": "model.char.npc.ninefox.npc.ninefox"
     },
     "directives": [
       {

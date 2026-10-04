@@ -34,7 +34,8 @@
         "OM108",
         "OM109"
       ],
-      "linked_file": "name\\navisko-magic.zhoon"
+      "linked_file": "name\\navisko-magic.zhoon",
+      "model_config_id": "model.char.npc.mn.008.mn.008"
     },
     "directives": [
       {

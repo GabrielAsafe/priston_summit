@@ -55,7 +55,8 @@
       "move_type": 0,
       "effect_sound": "web",
       "experience": 120000,
-      "linked_file": "name\\new_sod_cursed_web.zhoon"
+      "linked_file": "name\\new_sod_cursed_web.zhoon",
+      "model_config_id": "model.char.monster.web.web"
     },
     "directives": [
       {

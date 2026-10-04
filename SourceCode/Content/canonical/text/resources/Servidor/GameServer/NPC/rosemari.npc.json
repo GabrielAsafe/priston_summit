@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\TN-016\\TN-016.ini",
       "name": "이벤트걸 별난소녀",
       "star_point": 10,
-      "linked_file": "name\\rosemari.zhoon"
+      "linked_file": "name\\rosemari.zhoon",
+      "model_config_id": "model.char.npc.tn.016.tn.016"
     },
     "directives": [
       {

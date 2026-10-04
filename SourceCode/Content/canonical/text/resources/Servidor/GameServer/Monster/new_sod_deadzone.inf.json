@@ -60,7 +60,8 @@
         800,
         "pm104"
       ],
-      "linked_file": "name\\new_sod_deadzone.zhoon"
+      "linked_file": "name\\new_sod_deadzone.zhoon",
+      "model_config_id": "model.char.monster.deadzone.deadzone"
     },
     "directives": [
       {

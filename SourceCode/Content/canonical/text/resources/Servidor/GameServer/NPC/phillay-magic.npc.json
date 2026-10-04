@@ -34,7 +34,8 @@
         "om103",
         "om104"
       ],
-      "linked_file": "name\\phillay-magic.zhoon"
+      "linked_file": "name\\phillay-magic.zhoon",
+      "model_config_id": "model.char.npc.mn.006.mn.006"
     },
     "directives": [
       {

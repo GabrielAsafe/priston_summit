@@ -43,7 +43,8 @@
       "experience": 32400,
       "effect_sound": "ILLUSIONKNIGHT",
       "fall_item_max": 1,
-      "linked_file": "Name\\Name.zhoon"
+      "linked_file": "Name\\Name.zhoon",
+      "model_config_id": "model.char.monster.mongknight.mongknight"
     },
     "directives": [
       {

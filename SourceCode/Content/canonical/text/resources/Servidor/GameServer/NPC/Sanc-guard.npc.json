@@ -25,7 +25,8 @@
           "현재로서는 레어 안에 있는 켈베쥬는 무적이라해도 과언이 아닐것이오."
         ]
       },
-      "linked_file": "name\\Sanc-guard.zhoon"
+      "linked_file": "name\\Sanc-guard.zhoon",
+      "model_config_id": "model.char.npc.mn.013.mn.013"
     },
     "directives": [
       {

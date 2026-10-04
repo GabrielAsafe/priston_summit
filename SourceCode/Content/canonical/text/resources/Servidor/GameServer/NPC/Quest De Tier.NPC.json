@@ -32,7 +32,8 @@
         "qt106",
         "qt113"
       ],
-      "linked_file": "name\\Quest De Tier.zhoon"
+      "linked_file": "name\\Quest De Tier.zhoon",
+      "model_config_id": "model.char.npc.m.messenger.m.messenger"
     },
     "directives": [
       {

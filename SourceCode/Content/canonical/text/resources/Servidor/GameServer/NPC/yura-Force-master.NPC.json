@@ -20,7 +20,8 @@
       "name": "포스 마스터",
       "class": 1006,
       "refining": true,
-      "linked_file": "name\\yura-force-master.zhoon"
+      "linked_file": "name\\yura-force-master.zhoon",
+      "model_config_id": "model.char.npc.icen.03.icen.03"
     },
     "directives": [
       {

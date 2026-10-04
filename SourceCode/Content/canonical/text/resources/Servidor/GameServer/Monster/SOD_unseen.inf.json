@@ -67,7 +67,8 @@
       "potion_percent": 0,
       "effect_sound": "Shadow",
       "experience": 95000,
-      "linked_file": "name\\new_sod_unseen.zhoon"
+      "linked_file": "name\\new_sod_unseen.zhoon",
+      "model_config_id": "model.char.monster.monshadow.1.monshadow.1"
     },
     "directives": [
       {

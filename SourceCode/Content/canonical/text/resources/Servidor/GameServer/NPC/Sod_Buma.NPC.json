@@ -23,7 +23,8 @@
         1,
         2
       ],
-      "linked_file": "name\\Sod_Buma.zhoon"
+      "linked_file": "name\\Sod_Buma.zhoon",
+      "model_config_id": "model.char.npc.tn.009.tn.009"
     },
     "directives": [
       {

@@ -192,7 +192,8 @@
           ]
         ]
       },
-      "linked_file": "name\\124_Sathla.zhoon"
+      "linked_file": "name\\124_Sathla.zhoon",
+      "model_config_id": "model.char.monster.sathla.sathla"
     },
     "directives": [
       {

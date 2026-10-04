@@ -25,7 +25,8 @@
         "pl105",
         "pm105"
       ],
-      "linked_file": "name\\Ahin.zhoon"
+      "linked_file": "name\\Ahin.zhoon",
+      "model_config_id": "model.char.npc.ahin.ahin"
     },
     "directives": [
       {

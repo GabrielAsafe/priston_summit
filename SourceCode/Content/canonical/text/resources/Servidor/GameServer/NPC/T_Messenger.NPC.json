@@ -20,7 +20,8 @@
       "name": "왕국의 전령 이안",
       "english_name": "Messenger Ian",
       "class": 2003,
-      "linked_file": "name\\T_Messenger.zhoon"
+      "linked_file": "name\\T_Messenger.zhoon",
+      "model_config_id": "model.char.npc.t.messenger.t.messenger"
     },
     "directives": [
       {

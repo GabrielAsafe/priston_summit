@@ -64,7 +64,8 @@
         220,
         80
       ],
-      "linked_file": "name\\new_sod_skeleton_ranger.zhoon"
+      "linked_file": "name\\new_sod_skeleton_ranger.zhoon",
+      "model_config_id": "model.char.monster.monsrazorarcher.monsrazorarcher"
     },
     "directives": [
       {

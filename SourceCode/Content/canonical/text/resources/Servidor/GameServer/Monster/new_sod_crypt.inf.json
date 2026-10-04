@@ -59,7 +59,8 @@
       "effect_sound": "CRIP",
       "experience": 8600,
       "fall_item_max": 1,
-      "linked_file": "name\\new_sod_crypt.zhoon"
+      "linked_file": "name\\new_sod_crypt.zhoon",
+      "model_config_id": "model.char.monster.monclip.monclip"
     },
     "directives": [
       {

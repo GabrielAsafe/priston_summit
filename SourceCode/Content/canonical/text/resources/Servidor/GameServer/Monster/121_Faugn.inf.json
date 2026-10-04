@@ -191,7 +191,8 @@
           ]
         ]
       },
-      "linked_file": "name\\121_Faugn.zhoon"
+      "linked_file": "name\\121_Faugn.zhoon",
+      "model_config_id": "model.char.monster.faugn.faugn"
     },
     "directives": [
       {

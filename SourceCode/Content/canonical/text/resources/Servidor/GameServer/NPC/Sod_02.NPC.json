@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\SN-002\\SN-002.ini",
       "name": "아리엘",
       "event_npc": 2,
-      "linked_file": "name\\Sod_02.zhoon"
+      "linked_file": "name\\Sod_02.zhoon",
+      "model_config_id": "model.char.npc.sn.002.sn.002"
     },
     "directives": [
       {

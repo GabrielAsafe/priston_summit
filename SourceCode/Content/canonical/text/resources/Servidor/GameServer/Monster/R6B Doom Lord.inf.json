@@ -62,7 +62,8 @@
       "move_type": 0,
       "effect_sound": "DarkKnight",
       "experience": 500000,
-      "linked_file": "name\\R6B Doom Lord.zhoon"
+      "linked_file": "name\\R6B Doom Lord.zhoon",
+      "model_config_id": "model.char.monster.monsguard.mondoomguard"
     },
     "directives": [
       {

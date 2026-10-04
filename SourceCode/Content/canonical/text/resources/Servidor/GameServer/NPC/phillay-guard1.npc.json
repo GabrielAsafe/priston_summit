@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\MN-002\\MN-002.INI",
       "name": "필라이 경비병",
       "class": 1020,
-      "linked_file": "name\\phillay-guard1.zhoon"
+      "linked_file": "name\\phillay-guard1.zhoon",
+      "model_config_id": "model.char.npc.mn.002.mn.002"
     },
     "directives": [
       {

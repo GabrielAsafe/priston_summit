@@ -20,7 +20,8 @@
       "name": "호박 상인",
       "quest_event": 8,
       "class": 0,
-      "linked_file": "name\\Pumpkin.zhoon"
+      "linked_file": "name\\Pumpkin.zhoon",
+      "model_config_id": "model.char.npc.mn.005.mn.005"
     },
     "directives": [
       {

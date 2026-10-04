@@ -20,7 +20,8 @@
       "name": "소켓 장인 도스",
       "english_name": "Dos",
       "unmapped.2abcd2c4cf": true,
-      "linked_file": "name\\Dos.zhoon"
+      "linked_file": "name\\Dos.zhoon",
+      "model_config_id": "model.char.monster.lengineer.1.lengineer"
     },
     "directives": [
       {

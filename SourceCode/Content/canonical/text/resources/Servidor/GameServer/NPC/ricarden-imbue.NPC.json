@@ -20,7 +20,8 @@
       "name": "조합장인 모랄드",
       "english_name": "Abaranbo",
       "item_mix": true,
-      "linked_file": "name\\ricarden-imbue.zhoon"
+      "linked_file": "name\\ricarden-imbue.zhoon",
+      "model_config_id": "model.char.npc.tn.012.tn.012"
     },
     "directives": [
       {

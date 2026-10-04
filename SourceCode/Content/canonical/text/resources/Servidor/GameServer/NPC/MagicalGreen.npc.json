@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\MN-013\\MN-013.ini",
       "name": "마력연구가",
       "quest_event": 12,
-      "linked_file": "name\\MagicalGreen.zhoon"
+      "linked_file": "name\\MagicalGreen.zhoon",
+      "model_config_id": "model.char.npc.mn.013.mn.013"
     },
     "directives": [
       {

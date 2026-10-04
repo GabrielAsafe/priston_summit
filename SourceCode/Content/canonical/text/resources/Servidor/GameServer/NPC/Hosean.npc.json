@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\hosean\\hosean.INI",
       "name": "장로 호세안",
       "class": 2100,
-      "linked_file": "name\\Hosean.zhoon"
+      "linked_file": "name\\Hosean.zhoon",
+      "model_config_id": "model.char.npc.hosean.hosean"
     },
     "directives": [
       {

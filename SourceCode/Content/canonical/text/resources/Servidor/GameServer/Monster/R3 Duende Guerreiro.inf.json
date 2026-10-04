@@ -48,7 +48,8 @@
       "size": "중대형",
       "experience": 50000,
       "effect_sound": "HEAVYGOBLIN",
-      "linked_file": "Name\\Name.zhoon"
+      "linked_file": "Name\\Name.zhoon",
+      "model_config_id": "model.char.monster.monheavygoblin.monheavygoblin"
     },
     "directives": [
       {

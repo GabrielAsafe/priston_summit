@@ -23,7 +23,8 @@
         0,
         2
       ],
-      "linked_file": "name\\Sod_Goblin.zhoon"
+      "linked_file": "name\\Sod_Goblin.zhoon",
+      "model_config_id": "model.char.npc.tn.008.tn.008"
     },
     "directives": [
       {

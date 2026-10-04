@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\ji_woo\\jiwoo.INI",
       "english_name": "Abaranbo",
       "class": 1014,
-      "linked_file": "name\\amanda.zhoon"
+      "linked_file": "name\\amanda.zhoon",
+      "model_config_id": "model.char.npc.ji.woo.jiwoo"
     },
     "directives": [
       {

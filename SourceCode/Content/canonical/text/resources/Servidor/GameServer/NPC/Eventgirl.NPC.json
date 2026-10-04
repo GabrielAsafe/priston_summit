@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\TN-016\\TN-016.ini",
       "name": "이벤트 걸",
       "event_gift": true,
-      "linked_file": "name\\Eventgirl.zhoon"
+      "linked_file": "name\\Eventgirl.zhoon",
+      "model_config_id": "model.char.npc.tn.016.tn.016"
     },
     "directives": [
       {

@@ -180,7 +180,8 @@
           ]
         ]
       },
-      "linked_file": "name\\Acero.zhoon"
+      "linked_file": "name\\Acero.zhoon",
+      "model_config_id": "model.char.monster.acero.acero"
     },
     "directives": [
       {

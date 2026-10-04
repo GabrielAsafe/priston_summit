@@ -60,7 +60,8 @@
       "potion_count": 1,
       "potion_percent": 15,
       "experience": 85000,
-      "linked_file": "name\\R1B Vegas Demir.zhoon"
+      "linked_file": "name\\R1B Vegas Demir.zhoon",
+      "model_config_id": "model.char.monster.headcut.headcut"
     },
     "directives": [
       {

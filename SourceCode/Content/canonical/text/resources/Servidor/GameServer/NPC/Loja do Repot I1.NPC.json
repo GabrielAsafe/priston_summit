@@ -45,7 +45,8 @@
         "fo107",
         "fo127"
       ],
-      "linked_file": "name\\Loja do Repot I1.zhoon"
+      "linked_file": "name\\Loja do Repot I1.zhoon",
+      "model_config_id": "model.char.npc.tn.005.tn.005"
     },
     "directives": [
       {

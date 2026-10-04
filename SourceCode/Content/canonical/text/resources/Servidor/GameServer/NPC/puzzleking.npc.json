@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\MN-013\\MN-013.ini",
       "name": "퍼즐수집가 라몬트",
       "quest_event": true,
-      "linked_file": "name\\puzzleking.zhoon"
+      "linked_file": "name\\puzzleking.zhoon",
+      "model_config_id": "model.char.npc.mn.013.mn.013"
     },
     "directives": [
       {

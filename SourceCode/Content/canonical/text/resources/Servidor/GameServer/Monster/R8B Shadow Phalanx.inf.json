@@ -64,7 +64,8 @@
       "move_type": 0,
       "effect_sound": "Morgon",
       "experience": 1150000,
-      "linked_file": "name\\R8B Shadow Phalanx.zhoon"
+      "linked_file": "name\\R8B Shadow Phalanx.zhoon",
+      "model_config_id": "model.char.monster.darkphalanx.darkphalanx"
     },
     "directives": [
       {

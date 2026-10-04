@@ -20,7 +20,8 @@
       "name": "미스터 부마",
       "english_name": "",
       "clan_npc": true,
-      "linked_file": "name\\ClanMaster.zhoon"
+      "linked_file": "name\\ClanMaster.zhoon",
+      "model_config_id": "model.char.monster.buma.buma"
     },
     "directives": [
       {

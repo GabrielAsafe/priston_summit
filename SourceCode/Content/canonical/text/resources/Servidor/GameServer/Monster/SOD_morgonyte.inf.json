@@ -64,7 +64,8 @@
       "move_type": 0,
       "effect_sound": "Morgon",
       "experience": 300000,
-      "linked_file": "name\\new_sod_morgonyte.zhoon"
+      "linked_file": "name\\new_sod_morgonyte.zhoon",
+      "model_config_id": "model.char.monster.morgon.morgon"
     },
     "directives": [
       {

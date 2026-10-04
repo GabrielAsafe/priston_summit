@@ -20,7 +20,8 @@
       "name": "모험가 진",
       "english_name": "Adventurer Jin",
       "class": 2001,
-      "linked_file": "name\\Jin.zhoon"
+      "linked_file": "name\\Jin.zhoon",
+      "model_config_id": "model.char.npc.jin.jin"
     },
     "directives": [
       {

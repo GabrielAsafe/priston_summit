@@ -27,7 +27,8 @@
           "초콜릿 7개를 가져오시면 선물을 드릴께요."
         ]
       },
-      "linked_file": "name\\Chocolate.zhoon"
+      "linked_file": "name\\Chocolate.zhoon",
+      "model_config_id": "model.char.npc.mn.005.mn.005"
     },
     "directives": [
       {

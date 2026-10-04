@@ -47,7 +47,8 @@
       "size": "중대형",
       "experience": 72400,
       "effect_sound": "STRIDER",
-      "linked_file": "Name\\Name.zhoon"
+      "linked_file": "Name\\Name.zhoon",
+      "model_config_id": "model.char.monster.strider.strider"
     },
     "directives": [
       {

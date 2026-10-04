@@ -41,7 +41,8 @@
       "potion_count": 10,
       "potion_percent": 10,
       "fall_item": 10000,
-      "linked_file": "Name\\Name.zhoon"
+      "linked_file": "Name\\Name.zhoon",
+      "model_config_id": "model.char.monster.castledoor.castledoor"
     },
     "directives": [
       {

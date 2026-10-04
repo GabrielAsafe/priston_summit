@@ -198,7 +198,8 @@
           ]
         ]
       },
-      "linked_file": "name\\Mini_Mid.zhoon"
+      "linked_file": "name\\Mini_Mid.zhoon",
+      "model_config_id": "model.char.monster.midranda.midranda"
     },
     "directives": [
       {

@@ -20,7 +20,8 @@
       "name": "떠도는 영혼",
       "english_name": "Wandering Soul",
       "class": 2300,
-      "linked_file": "name\\Soul.zhoon"
+      "linked_file": "name\\Soul.zhoon",
+      "model_config_id": "model.char.monster.nihil.nihil1"
     },
     "directives": [
       {

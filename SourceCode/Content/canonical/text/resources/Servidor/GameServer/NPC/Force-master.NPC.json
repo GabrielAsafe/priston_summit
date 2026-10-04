@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\MN-012\\MN-012.INI",
       "name": "포스 마스터",
       "refining": true,
-      "linked_file": "name\\Force-master.zhoon"
+      "linked_file": "name\\Force-master.zhoon",
+      "model_config_id": "model.char.npc.mn.012.mn.012"
     },
     "directives": [
       {

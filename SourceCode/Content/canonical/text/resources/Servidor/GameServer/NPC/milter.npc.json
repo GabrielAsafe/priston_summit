@@ -25,7 +25,8 @@
           "이골라노스의 저주는 너무 강력하다네. 우리들에게 영원한 안식은 없는것인지.."
         ]
       },
-      "linked_file": "name\\milter.zhoon"
+      "linked_file": "name\\milter.zhoon",
+      "model_config_id": "model.char.npc.milter.milter"
     },
     "directives": [
       {

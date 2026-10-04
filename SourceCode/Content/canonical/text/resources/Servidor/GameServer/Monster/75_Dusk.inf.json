@@ -193,7 +193,8 @@
         ]
       },
       "event_item": "QT113",
-      "linked_file": "Name\\Name.zhoon"
+      "linked_file": "Name\\Name.zhoon",
+      "model_config_id": "model.char.monster.monnazz.1.monnazz.1"
     },
     "directives": [
       {

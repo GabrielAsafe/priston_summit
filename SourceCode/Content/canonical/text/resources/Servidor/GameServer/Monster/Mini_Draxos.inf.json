@@ -198,7 +198,8 @@
           ]
         ]
       },
-      "linked_file": "name\\Mini_Draxos.zhoon"
+      "linked_file": "name\\Mini_Draxos.zhoon",
+      "model_config_id": "model.char.monster.draxos.draxos"
     },
     "directives": [
       {

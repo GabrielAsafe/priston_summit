@@ -198,7 +198,8 @@
           ]
         ]
       },
-      "linked_file": "name\\Mini_Greedy.zhoon"
+      "linked_file": "name\\Mini_Greedy.zhoon",
+      "model_config_id": "model.char.monster.greedy.greedy"
     },
     "directives": [
       {

@@ -20,7 +20,8 @@
       "name": "asd",
       "english_name": "Louis",
       "mixture_reset": true,
-      "linked_file": "name\\dailyquest.zhoon"
+      "linked_file": "name\\dailyquest.zhoon",
+      "model_config_id": "model.char.npc.arad.arad"
     },
     "directives": [
       {

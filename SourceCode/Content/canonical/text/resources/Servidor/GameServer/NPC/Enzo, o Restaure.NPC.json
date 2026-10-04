@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\Enzo\\Enzo.ini",
       "english_name": "Abaranbo",
       "class": 1024,
-      "linked_file": "name\\Enzo, o Restaure.zhoon"
+      "linked_file": "name\\Enzo, o Restaure.zhoon",
+      "model_config_id": "model.char.npc.enzo.enzo"
     },
     "directives": [
       {

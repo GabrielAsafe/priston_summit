@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\SN-005\\SN-005.ini",
       "name": "실피",
       "event_npc": 3,
-      "linked_file": "name\\Sod_03.zhoon"
+      "linked_file": "name\\Sod_03.zhoon",
+      "model_config_id": "model.char.npc.sn.005.sn.005"
     },
     "directives": [
       {

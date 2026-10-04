@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\TN-008\\TN-008.INI",
       "name": "겁쟁이",
       "class": 0,
-      "linked_file": "name\\coward.zhoon"
+      "linked_file": "name\\coward.zhoon",
+      "model_config_id": "model.char.npc.tn.008.tn.008"
     },
     "directives": [
       {

@@ -21,7 +21,8 @@
       "name": "바우린",
       "size": "중형",
       "quest_event": 13,
-      "linked_file": "name\\Baurin.zhoon"
+      "linked_file": "name\\Baurin.zhoon",
+      "model_config_id": "model.char.npc.baurin.baurin"
     },
     "directives": [
       {

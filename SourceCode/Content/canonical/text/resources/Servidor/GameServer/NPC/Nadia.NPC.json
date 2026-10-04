@@ -19,7 +19,8 @@
       "model_file": "char\\monster\\d_fi\\dfi.ini",
       "class": 1019,
       "battle_pass": true,
-      "linked_file": "name\\nadia.zhoon"
+      "linked_file": "name\\nadia.zhoon",
+      "model_config_id": "model.char.monster.d.fi.dfi"
     },
     "directives": [
       {

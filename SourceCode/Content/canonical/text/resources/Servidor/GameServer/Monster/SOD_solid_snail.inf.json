@@ -62,7 +62,8 @@
       "potion_count": 0,
       "potion_percent": 0,
       "experience": 27000,
-      "linked_file": "name\\new_sod_solid_snail.zhoon"
+      "linked_file": "name\\new_sod_solid_snail.zhoon",
+      "model_config_id": "model.char.monster.ssnail.ssnail"
     },
     "directives": [
       {

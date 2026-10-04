@@ -32,7 +32,8 @@
         "OS104",
         "OS105"
       ],
-      "linked_file": "name\\shelton.zhoon"
+      "linked_file": "name\\shelton.zhoon",
+      "model_config_id": "model.char.npc.tn.005.tn.005"
     },
     "directives": [
       {

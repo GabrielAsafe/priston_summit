@@ -63,7 +63,8 @@
       "potion_count": 0,
       "potion_percent": 0,
       "experience": 74000,
-      "linked_file": "name\\new_sod_stone_golem.zhoon"
+      "linked_file": "name\\new_sod_stone_golem.zhoon",
+      "model_config_id": "model.char.monster.monstonegolem.monstonegolem"
     },
     "directives": [
       {

@@ -40,7 +40,8 @@
       "size": "중대형",
       "experience": 86000,
       "effect_sound": "DEADZONE",
-      "linked_file": "Name\\Name.zhoon"
+      "linked_file": "Name\\Name.zhoon",
+      "model_config_id": "model.char.monster.deadzone.deadzone"
     },
     "directives": [
       {

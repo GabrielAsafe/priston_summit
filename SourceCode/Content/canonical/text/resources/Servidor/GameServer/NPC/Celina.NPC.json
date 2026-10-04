@@ -20,7 +20,8 @@
       "name": "현자 셀리나",
       "english_name": "Sage Celina",
       "class": 2301,
-      "linked_file": "name\\Celina.zhoon"
+      "linked_file": "name\\Celina.zhoon",
+      "model_config_id": "model.char.npc.stella.celina"
     },
     "directives": [
       {

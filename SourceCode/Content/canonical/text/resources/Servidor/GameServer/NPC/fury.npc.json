@@ -21,7 +21,8 @@
       "effect_sound": "Fury",
       "name": "퓨리",
       "size": "대형",
-      "linked_file": "name\\fury.zhoon"
+      "linked_file": "name\\fury.zhoon",
+      "model_config_id": "model.char.monster.monfury.monfury"
     },
     "directives": [
       {

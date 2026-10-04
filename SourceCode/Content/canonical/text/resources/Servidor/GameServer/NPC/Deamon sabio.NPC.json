@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\MN-013\\MN-013.INI",
       "name": "안내자 데이몬",
       "teleport": 2,
-      "linked_file": "name\\Deamon sabio.zhoon"
+      "linked_file": "name\\Deamon sabio.zhoon",
+      "model_config_id": "model.char.npc.mn.013.mn.013"
     },
     "directives": [
       {

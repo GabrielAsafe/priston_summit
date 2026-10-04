@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\bt03\\battleportal.INI",
       "name": "Secretaria Karina",
       "rank": true,
-      "linked_file": "name\\Sod_05.zhoon"
+      "linked_file": "name\\Sod_05.zhoon",
+      "model_config_id": "model.char.npc.bt03.battleportal"
     },
     "directives": [
       {

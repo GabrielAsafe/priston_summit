@@ -18,7 +18,8 @@
       "name": "크리스 마스 롱보",
       "model_file": "char\\npcXms\\ChTree_Longbo.ini",
       "level": 100,
-      "linked_file": "name\\Xmasguy.zhoon"
+      "linked_file": "name\\Xmasguy.zhoon",
+      "model_config_id": "model.char.npcxms.chtree.longbo"
     },
     "directives": [
       {

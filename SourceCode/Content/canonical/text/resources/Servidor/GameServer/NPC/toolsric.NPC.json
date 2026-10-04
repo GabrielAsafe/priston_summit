@@ -38,7 +38,8 @@
         "TW115",
         "TW117"
       ],
-      "linked_file": "name\\toolsric.zhoon"
+      "linked_file": "name\\toolsric.zhoon",
+      "model_config_id": "model.char.npc.packjjangpy.packjjangpy"
     },
     "directives": [
       {

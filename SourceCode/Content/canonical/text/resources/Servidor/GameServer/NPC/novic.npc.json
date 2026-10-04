@@ -21,7 +21,8 @@
       "name": "노비치",
       "english_name": "Novic",
       "unmapped.2ab7e9bdbac5e6c1b6c7d5": true,
-      "linked_file": "name\\novic.zhoon"
+      "linked_file": "name\\novic.zhoon",
+      "model_config_id": "model.char.monster.nihil.nihil.1"
     },
     "directives": [
       {

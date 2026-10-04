@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\MN-007\\MN-007.INI",
       "name": "아케인 모리프",
       "item_aging": true,
-      "linked_file": "name\\Moriph, o Misterioso.zhoon"
+      "linked_file": "name\\Moriph, o Misterioso.zhoon",
+      "model_config_id": "model.char.npc.mn.007.mn.007"
     },
     "directives": [
       {

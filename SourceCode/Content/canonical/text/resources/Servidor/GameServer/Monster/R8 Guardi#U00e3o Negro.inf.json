@@ -47,7 +47,8 @@
       "size": "중대형",
       "experience": 296000,
       "effect_sound": "DARKGUARD",
-      "linked_file": "Name\\Name.zhoon"
+      "linked_file": "Name\\Name.zhoon",
+      "model_config_id": "model.char.monster.darkguard.skullac"
     },
     "directives": [
       {

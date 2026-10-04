@@ -20,7 +20,8 @@
       "level": 100,
       "class": 1015,
       "warehouse": true,
-      "linked_file": "name\\ricarden-warehouse.zhoon"
+      "linked_file": "name\\ricarden-warehouse.zhoon",
+      "model_config_id": "model.char.npc.tn.010.tn.010"
     },
     "directives": [
       {

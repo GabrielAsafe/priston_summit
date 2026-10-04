@@ -49,7 +49,8 @@
       "size": "중대형",
       "effect_sound": "WOLVERIN",
       "fall_item": 10000,
-      "linked_file": "Name\\Name.zhoon"
+      "linked_file": "Name\\Name.zhoon",
+      "model_config_id": "model.char.monster.g.wolverin.wolverin.a"
     },
     "directives": [
       {

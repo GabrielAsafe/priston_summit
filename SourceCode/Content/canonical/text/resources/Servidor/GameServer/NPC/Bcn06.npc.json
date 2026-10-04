@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\Bcn06\\Bcn06.INI",
       "name": "창고지기 던컨",
       "warehouse": true,
-      "linked_file": "name\\Bcn06.zhoon"
+      "linked_file": "name\\Bcn06.zhoon",
+      "model_config_id": "model.char.npc.bcn06.bcn06"
     },
     "directives": [
       {

@@ -22,7 +22,8 @@
       "effect_sound": "WOLVERLIN",
       "event_code": 100,
       "event_info": 1,
-      "linked_file": "name\\bronzWolverin.zhoon"
+      "linked_file": "name\\bronzWolverin.zhoon",
+      "model_config_id": "model.char.monster.monwolverin.monwolverin.01"
     },
     "directives": [
       {

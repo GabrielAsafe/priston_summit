@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\TN-002\\TN-002.INI",
       "level": 100,
       "class": 1019,
-      "linked_file": "name\\ricarden-guard1.zhoon"
+      "linked_file": "name\\ricarden-guard1.zhoon",
+      "model_config_id": "model.char.npc.tn.002.tn.002"
     },
     "directives": [
       {

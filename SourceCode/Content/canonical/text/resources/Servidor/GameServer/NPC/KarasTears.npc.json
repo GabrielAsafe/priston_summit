@@ -20,7 +20,8 @@
       "model_file": "char\\monster\\chaoscara\\chaoscara.ini",
       "name": "카라의 후손",
       "quest_event": 13,
-      "linked_file": "name\\KarasTears.zhoon"
+      "linked_file": "name\\KarasTears.zhoon",
+      "model_config_id": "model.char.monster.chaoscara.chaoscara"
     },
     "directives": [
       {

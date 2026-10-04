@@ -34,7 +34,8 @@
         "GP119",
         "GP109"
       ],
-      "linked_file": "name\\Loja de Cristais.zhoon"
+      "linked_file": "name\\Loja de Cristais.zhoon",
+      "model_config_id": "model.char.npc.tn.008.tn.008"
     },
     "directives": [
       {

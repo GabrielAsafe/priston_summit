@@ -56,7 +56,8 @@
       "potion_count": 1,
       "potion_percent": 50,
       "experience": 48000,
-      "linked_file": "name\\new_sod_hulk.zhoon"
+      "linked_file": "name\\new_sod_hulk.zhoon",
+      "model_config_id": "model.char.monster.monhulk.monhulk"
     },
     "directives": [
       {

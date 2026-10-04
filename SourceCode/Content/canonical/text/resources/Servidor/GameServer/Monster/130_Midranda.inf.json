@@ -197,7 +197,8 @@
           ]
         ]
       },
-      "linked_file": "name\\130_Midranda.zhoon"
+      "linked_file": "name\\130_Midranda.zhoon",
+      "model_config_id": "model.char.monster.midranda.midranda"
     },
     "directives": [
       {

@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\MN-005\\MN-005.INI",
       "name": "노점상 델라",
       "quest_event": 5,
-      "linked_file": "name\\7crystal.zhoon"
+      "linked_file": "name\\7crystal.zhoon",
+      "model_config_id": "model.char.npc.mn.005.mn.005"
     },
     "directives": [
       {

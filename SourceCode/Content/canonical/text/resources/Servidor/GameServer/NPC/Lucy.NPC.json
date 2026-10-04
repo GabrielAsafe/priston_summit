@@ -20,7 +20,8 @@
       "name": "믹스처리셋 장인 나디아",
       "english_name": "Reset ^_^",
       "mixture_reset": true,
-      "linked_file": "name\\Lucy.zhoon"
+      "linked_file": "name\\Lucy.zhoon",
+      "model_config_id": "model.char.npc.phl.phl"
     },
     "directives": [
       {

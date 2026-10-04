@@ -45,7 +45,8 @@
         "ds103",
         "ds104"
       ],
-      "linked_file": "name\\phillay-equip2.zhoon"
+      "linked_file": "name\\phillay-equip2.zhoon",
+      "model_config_id": "model.char.npc.mn.004.mn.004"
     },
     "directives": [
       {

@@ -52,7 +52,8 @@
       "potion_count": 3,
       "potion_percent": 10,
       "fall_item": 10000,
-      "linked_file": "Name\\Name.zhoon"
+      "linked_file": "Name\\Name.zhoon",
+      "model_config_id": "model.char.monster.t.crystal.r.t.crystal.r"
     },
     "directives": [
       {

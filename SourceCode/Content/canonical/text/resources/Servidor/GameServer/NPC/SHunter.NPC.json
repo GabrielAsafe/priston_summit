@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\SHunter\\SHunter.ini",
       "english_name": "SHunter",
       "class": 2005,
-      "linked_file": "name\\SHunter.zhoon"
+      "linked_file": "name\\SHunter.zhoon",
+      "model_config_id": "model.char.npc.shunter.shunter"
     },
     "directives": [
       {

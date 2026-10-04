@@ -20,7 +20,8 @@
       "name": "창고지기 라벤다",
       "class": 1016,
       "warehouse": true,
-      "linked_file": "name\\phillay-warehouse.zhoon"
+      "linked_file": "name\\phillay-warehouse.zhoon",
+      "model_config_id": "model.char.npc.mn.010.mn.010"
     },
     "directives": [
       {

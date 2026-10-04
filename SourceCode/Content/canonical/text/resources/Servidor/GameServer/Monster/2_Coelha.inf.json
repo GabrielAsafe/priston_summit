@@ -217,7 +217,8 @@
           ]
         ]
       },
-      "linked_file": "Name\\Name.zhoon"
+      "linked_file": "Name\\Name.zhoon",
+      "model_config_id": "model.char.monster.monrebi.monrebi.1"
     },
     "directives": [
       {

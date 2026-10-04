@@ -61,7 +61,8 @@
       "move_type": 0,
       "effect_sound": "DarkKnight",
       "experience": 35000,
-      "linked_file": "name\\new_sod_doom_guard.zhoon"
+      "linked_file": "name\\new_sod_doom_guard.zhoon",
+      "model_config_id": "model.char.monster.monsguard.mondoomguard"
     },
     "directives": [
       {

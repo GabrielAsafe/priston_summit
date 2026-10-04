@@ -20,7 +20,8 @@
       "name": "룬스톤 장인 리시오",
       "english_name": "Ricio",
       "unmapped.2ab7e9bdbac5e6": true,
-      "linked_file": "name\\Ricio.zhoon"
+      "linked_file": "name\\Ricio.zhoon",
+      "model_config_id": "model.char.monster.ltechnician.1.ltechnician"
     },
     "directives": [
       {

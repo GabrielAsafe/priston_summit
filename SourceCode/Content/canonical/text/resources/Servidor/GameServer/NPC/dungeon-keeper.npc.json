@@ -29,7 +29,8 @@
         "ec102",
         "ec104"
       ],
-      "linked_file": "name\\dungeon-keeper.zhoon"
+      "linked_file": "name\\dungeon-keeper.zhoon",
+      "model_config_id": "model.char.npc.tn.001.tn.001"
     },
     "directives": [
       {

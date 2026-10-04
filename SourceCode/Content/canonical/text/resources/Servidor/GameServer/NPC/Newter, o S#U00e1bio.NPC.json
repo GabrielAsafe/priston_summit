@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\MN-008\\MN-008.INI",
       "name": "현명한 뉴터",
       "teleport": true,
-      "linked_file": "name\\Newter, o Sábio.zhoon"
+      "linked_file": "name\\Newter, o Sábio.zhoon",
+      "model_config_id": "model.char.npc.mn.008.mn.008"
     },
     "directives": [
       {

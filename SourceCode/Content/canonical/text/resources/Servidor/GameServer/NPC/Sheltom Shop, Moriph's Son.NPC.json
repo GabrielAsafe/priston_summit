@@ -19,7 +19,8 @@
       "model_file": "char\\monster\\d_pa\\dpike.ini",
       "class": 1019,
       "unmapped.sorteiocoins": true,
-      "linked_file": "name\\Sheltom Shop, Moriph's Son.zhoon"
+      "linked_file": "name\\Sheltom Shop, Moriph's Son.zhoon",
+      "model_config_id": "model.char.monster.d.pa.dpike"
     },
     "directives": [
       {

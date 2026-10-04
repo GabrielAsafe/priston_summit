@@ -46,7 +46,8 @@
       "size": "중대형",
       "experience": 201000,
       "effect_sound": "DARKPHALANX",
-      "linked_file": "Name\\Name.zhoon"
+      "linked_file": "Name\\Name.zhoon",
+      "model_config_id": "model.char.monster.darkphalanx.darkphalanx"
     },
     "directives": [
       {

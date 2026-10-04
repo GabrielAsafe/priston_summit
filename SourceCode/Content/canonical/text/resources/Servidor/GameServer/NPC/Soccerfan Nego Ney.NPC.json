@@ -26,7 +26,8 @@
         "DA147",
         "DA153"
       ],
-      "linked_file": "name\\Soccerfan Nego Ney.zhoon"
+      "linked_file": "name\\Soccerfan Nego Ney.zhoon",
+      "model_config_id": "model.char.monster.adevayo.world.togo"
     },
     "directives": [
       {

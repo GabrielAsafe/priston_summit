@@ -18,7 +18,8 @@
       "name": "유라 경비병",
       "model_file": "char\\npc\\TN-002\\TN-002.INI",
       "level": 100,
-      "linked_file": "name\\yura-guard.zhoon"
+      "linked_file": "name\\yura-guard.zhoon",
+      "model_config_id": "model.char.npc.tn.002.tn.002"
     },
     "directives": [
       {

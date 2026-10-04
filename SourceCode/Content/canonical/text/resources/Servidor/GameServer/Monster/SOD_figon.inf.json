@@ -54,7 +54,8 @@
       "move_type": 0,
       "effect_sound": "figon",
       "experience": 32400,
-      "linked_file": "name\\new_sod_figon.zhoon"
+      "linked_file": "name\\new_sod_figon.zhoon",
+      "model_config_id": "model.char.monster.figon.figon"
     },
     "directives": [
       {

@@ -18,7 +18,8 @@
       "name": "착한소년 롱보",
       "model_file": "char\\monster\\d_meca\\dmeca.ini",
       "class": 1019,
-      "linked_file": "name\\nadia.zhoon"
+      "linked_file": "name\\nadia.zhoon",
+      "model_config_id": "model.char.monster.d.meca.dmeca"
     },
     "directives": [
       {

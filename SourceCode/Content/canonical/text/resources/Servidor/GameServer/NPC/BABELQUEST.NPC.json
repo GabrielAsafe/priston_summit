@@ -18,7 +18,8 @@
       "state": "NPC",
       "model_file": "char\\npc\\TN-008\\TN-008.INI",
       "name": "수집가 홉고블린씨",
-      "quest_event": 3
+      "quest_event": 3,
+      "model_config_id": "model.char.npc.tn.008.tn.008"
     },
     "directives": [
       {

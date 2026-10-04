@@ -26,7 +26,8 @@
           "루돌프의 코를 한번 보라고... 더이상 빛이 나질 않아."
         ]
       },
-      "linked_file": "name\\hobsanta.zhoon"
+      "linked_file": "name\\hobsanta.zhoon",
+      "model_config_id": "model.char.npc.hobsanta.hobsanta"
     },
     "directives": [
       {

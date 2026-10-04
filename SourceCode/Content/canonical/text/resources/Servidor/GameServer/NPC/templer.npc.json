@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\MN-006\\MN-006.INI",
       "name": "신전사제",
       "class": 1005,
-      "linked_file": "name\\templer.zhoon"
+      "linked_file": "name\\templer.zhoon",
+      "model_config_id": "model.char.npc.mn.006.mn.006"
     },
     "directives": [
       {

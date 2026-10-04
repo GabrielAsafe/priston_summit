@@ -138,7 +138,8 @@
         ]
       },
       "event_item": "QT109",
-      "linked_file": "Name\\Name.zhoon"
+      "linked_file": "Name\\Name.zhoon",
+      "model_config_id": "model.char.monster.monratoo.1.monratoo.1"
     },
     "directives": [
       {

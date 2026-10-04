@@ -20,7 +20,8 @@
       "model_file": "char\\npc\\Teacher\\Teacher01.ini",
       "name": "도우미 프리아",
       "event_code": 121,
-      "linked_file": "name\\Teacher01.zhoon"
+      "linked_file": "name\\Teacher01.zhoon",
+      "model_config_id": "model.char.npc.teacher.teacher01"
     },
     "directives": [
       {

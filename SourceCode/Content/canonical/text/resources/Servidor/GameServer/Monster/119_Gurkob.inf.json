@@ -192,7 +192,8 @@
           ]
         ]
       },
-      "linked_file": "name\\119_Gurkob.zhoon"
+      "linked_file": "name\\119_Gurkob.zhoon",
+      "model_config_id": "model.char.monster.gurkob.gurkob"
     },
     "directives": [
       {

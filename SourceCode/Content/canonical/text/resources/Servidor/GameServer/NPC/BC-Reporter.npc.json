@@ -20,7 +20,8 @@
       "name": "블레스캐슬 리포터",
       "media_title": "공성전 생중계",
       "media_path": "mms://media.pristontale.com/siegewartest",
-      "linked_file": "name\\BC-Reporter.zhoon"
+      "linked_file": "name\\BC-Reporter.zhoon",
+      "model_config_id": "model.char.npc.tn.016.tn.016"
     },
     "directives": [
       {

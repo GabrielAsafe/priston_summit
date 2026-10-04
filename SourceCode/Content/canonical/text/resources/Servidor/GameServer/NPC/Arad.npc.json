@@ -19,7 +19,8 @@
       "model_file": "char\\monster\\d_meca\\dmeca.ini",
       "class": 1019,
       "skin_change": true,
-      "linked_file": "name\\arad.zhoon"
+      "linked_file": "name\\arad.zhoon",
+      "model_config_id": "model.char.monster.d.meca.dmeca"
     },
     "directives": [
       {

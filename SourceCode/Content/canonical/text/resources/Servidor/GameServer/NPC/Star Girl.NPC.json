@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\TN-017\\TN-017.ini",
       "name": "산타마리아",
       "ranking": true,
-      "linked_file": "name\\Star Girl.zhoon"
+      "linked_file": "name\\Star Girl.zhoon",
+      "model_config_id": "model.char.npc.tn.017.tn.017"
     },
     "directives": [
       {

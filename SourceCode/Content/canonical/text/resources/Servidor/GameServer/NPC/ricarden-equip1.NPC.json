@@ -45,7 +45,8 @@
         "oa204"
       ],
       "sell_etc": "없음",
-      "linked_file": "name\\ricarden-equip1.zhoon"
+      "linked_file": "name\\ricarden-equip1.zhoon",
+      "model_config_id": "model.char.npc.tn.003.tn.003"
     },
     "directives": [
       {

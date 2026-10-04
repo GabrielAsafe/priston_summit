@@ -21,7 +21,8 @@
       "class": 1004,
       "skill_master": true,
       "skill_change_job": 3,
-      "linked_file": "name\\phillay-master.zhoon"
+      "linked_file": "name\\phillay-master.zhoon",
+      "model_config_id": "model.char.npc.mn.012.mn.012"
     },
     "directives": [
       {

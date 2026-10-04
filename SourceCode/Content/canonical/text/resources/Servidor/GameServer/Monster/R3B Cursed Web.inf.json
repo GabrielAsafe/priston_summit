@@ -55,7 +55,8 @@
       "move_type": 0,
       "effect_sound": "web",
       "experience": 240000,
-      "linked_file": "name\\R3B Cursed Web.zhoon"
+      "linked_file": "name\\R3B Cursed Web.zhoon",
+      "model_config_id": "model.char.monster.web.web"
     },
     "directives": [
       {

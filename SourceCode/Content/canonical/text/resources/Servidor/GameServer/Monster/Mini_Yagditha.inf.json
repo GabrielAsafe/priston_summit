@@ -198,7 +198,8 @@
           ]
         ]
       },
-      "linked_file": "name\\Mini_Yagditha.zhoon"
+      "linked_file": "name\\Mini_Yagditha.zhoon",
+      "model_config_id": "model.char.monster.yagditha.yagditha"
     },
     "directives": [
       {

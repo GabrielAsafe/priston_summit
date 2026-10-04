@@ -20,7 +20,8 @@
       "name": "각인사 바르바",
       "english_name": "Barba",
       "unmapped.2ab0a2c0ce": true,
-      "linked_file": "name\\Barba.zhoon"
+      "linked_file": "name\\Barba.zhoon",
+      "model_config_id": "model.char.npc.barba.barba"
     },
     "directives": [
       {

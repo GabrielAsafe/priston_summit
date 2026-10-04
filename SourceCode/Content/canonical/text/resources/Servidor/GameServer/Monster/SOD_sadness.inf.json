@@ -64,7 +64,8 @@
       "move_type": 0,
       "effect_sound": "Sadness",
       "experience": 99000,
-      "linked_file": "name\\new_sod_sadness.zhoon"
+      "linked_file": "name\\new_sod_sadness.zhoon",
+      "model_config_id": "model.char.monster.sadness.sadness"
     },
     "directives": [
       {

@@ -51,7 +51,8 @@
         "PL104",
         "PS104"
       ],
-      "linked_file": "name\\Loja VIP.zhoon"
+      "linked_file": "name\\Loja VIP.zhoon",
+      "model_config_id": "model.char.npc.bcn06.bcn06"
     },
     "directives": [
       {

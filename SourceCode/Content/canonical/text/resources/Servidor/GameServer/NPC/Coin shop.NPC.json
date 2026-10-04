@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\cashshop\\cash.INI",
       "english_name": "Abaranbo",
       "shop": true,
-      "linked_file": "name\\Coin shop.zhoon"
+      "linked_file": "name\\Coin shop.zhoon",
+      "model_config_id": "model.char.npc.cashshop.cash"
     },
     "directives": [
       {

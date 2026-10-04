@@ -18,7 +18,8 @@
       "state": "NPC",
       "model_file": "char\\npc\\MN-011\\MN-011.INI",
       "name": "퀘스트 담당자",
-      "linked_file": "name\\quest.zhoon"
+      "linked_file": "name\\quest.zhoon",
+      "model_config_id": "model.char.npc.mn.011.mn.011"
     },
     "directives": [
       {

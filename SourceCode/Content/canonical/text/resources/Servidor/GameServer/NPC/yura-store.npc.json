@@ -37,7 +37,8 @@
         "ec102",
         "ec104"
       ],
-      "linked_file": "name\\yura-store.zhoon"
+      "linked_file": "name\\yura-store.zhoon",
+      "model_config_id": "model.char.npc.icen.02.icen.02"
     },
     "directives": [
       {

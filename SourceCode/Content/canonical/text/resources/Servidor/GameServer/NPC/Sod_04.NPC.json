@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\SN-004\\SN-004.ini",
       "name": "노아스",
       "event_npc": 4,
-      "linked_file": "name\\Sod_04.zhoon"
+      "linked_file": "name\\Sod_04.zhoon",
+      "model_config_id": "model.char.npc.sn.004.sn.004"
     },
     "directives": [
       {

@@ -64,7 +64,8 @@
       "move_type": 0,
       "effect_sound": "succubus",
       "experience": 40000,
-      "linked_file": "name\\new_sod_witch.zhoon"
+      "linked_file": "name\\new_sod_witch.zhoon",
+      "model_config_id": "model.char.monster.monwitch.monwitch2"
     },
     "directives": [
       {

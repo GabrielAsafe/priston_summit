@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\Teacher\\Teacher02.ini",
       "english_name": "Abaranbo",
       "time_shop": true,
-      "linked_file": "name\\timeshop.zhoon"
+      "linked_file": "name\\timeshop.zhoon",
+      "model_config_id": "model.char.npc.teacher.teacher02"
     },
     "directives": [
       {

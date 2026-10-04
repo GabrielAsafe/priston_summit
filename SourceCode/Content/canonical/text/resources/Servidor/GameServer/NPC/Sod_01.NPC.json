@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\SN-003\\SN-003.ini",
       "name": "카사",
       "event_npc": 1,
-      "linked_file": "name\\Sod_01.zhoon"
+      "linked_file": "name\\Sod_01.zhoon",
+      "model_config_id": "model.char.npc.sn.003.sn.003"
     },
     "directives": [
       {

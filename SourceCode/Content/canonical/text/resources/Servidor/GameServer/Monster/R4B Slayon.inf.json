@@ -59,7 +59,8 @@
       "potion_count": 1,
       "potion_percent": 15,
       "experience": 350000,
-      "linked_file": "name\\R4B Slayon.zhoon"
+      "linked_file": "name\\R4B Slayon.zhoon",
+      "model_config_id": "model.char.monster.headcut.headcutaxe"
     },
     "directives": [
       {

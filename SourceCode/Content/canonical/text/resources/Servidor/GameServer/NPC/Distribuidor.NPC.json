@@ -19,7 +19,8 @@
       "model_file": "CHAR\\NPC\\TN-014\\TN-014.INI",
       "name": "물품 교부처",
       "gift_express": true,
-      "linked_file": "name\\Distribuidor.zhoon"
+      "linked_file": "name\\Distribuidor.zhoon",
+      "model_config_id": "model.char.npc.tn.014.tn.014"
     },
     "directives": [
       {

@@ -55,7 +55,8 @@
         "OA206"
       ],
       "sell_etc": "없음",
-      "linked_file": "name\\ruiden-equip.zhoon"
+      "linked_file": "name\\ruiden-equip.zhoon",
+      "model_config_id": "model.char.npc.tn.004.tn.004"
     },
     "directives": [
       {

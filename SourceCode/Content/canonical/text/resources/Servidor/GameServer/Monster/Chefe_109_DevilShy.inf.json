@@ -211,7 +211,8 @@
           ]
         ]
       },
-      "linked_file": "Name\\Name.zhoon"
+      "linked_file": "Name\\Name.zhoon",
+      "model_config_id": "model.char.monster.devilshy.devilshy"
     },
     "directives": [
       {

@@ -42,7 +42,8 @@
       "size": "중대형",
       "experience": 68000,
       "effect_sound": "SLIVER",
-      "linked_file": "Name\\Name.zhoon"
+      "linked_file": "Name\\Name.zhoon",
+      "model_config_id": "model.char.monster.monsliver.monsliver"
     },
     "directives": [
       {

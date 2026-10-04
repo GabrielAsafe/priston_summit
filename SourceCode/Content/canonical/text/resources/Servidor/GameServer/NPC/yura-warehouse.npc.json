@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\IceN-01\\IceN-01.ini",
       "level": 100,
       "warehouse": true,
-      "linked_file": "name\\yura-warehouse.zhoon"
+      "linked_file": "name\\yura-warehouse.zhoon",
+      "model_config_id": "model.char.npc.icen.01.icen.01"
     },
     "directives": [
       {

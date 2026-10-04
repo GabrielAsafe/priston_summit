@@ -20,7 +20,8 @@
       "level": 100,
       "warehouse": true,
       "dialog": "이것도 힘든일이야.. 가끔씩만 들리라구!",
-      "linked_file": "name\\navisko-warehouse.zhoon"
+      "linked_file": "name\\navisko-warehouse.zhoon",
+      "model_config_id": "model.char.npc.npc.10"
     },
     "directives": [
       {

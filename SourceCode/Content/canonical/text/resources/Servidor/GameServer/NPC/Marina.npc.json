@@ -45,7 +45,8 @@
         "bi118",
         "bi123"
       ],
-      "linked_file": "name\\Marina.zhoon"
+      "linked_file": "name\\Marina.zhoon",
+      "model_config_id": "model.char.npc.marina.marina"
     },
     "directives": [
       {

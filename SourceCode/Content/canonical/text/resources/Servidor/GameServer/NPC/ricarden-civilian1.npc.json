@@ -18,7 +18,8 @@
       "name": "착한소년 롱보",
       "model_file": "char\\npc\\TN-006\\TN-006.ini",
       "level": 100,
-      "linked_file": "name\\ricarden-civilian1.zhoon"
+      "linked_file": "name\\ricarden-civilian1.zhoon",
+      "model_config_id": "model.char.npc.tn.006.tn.006"
     },
     "directives": [
       {

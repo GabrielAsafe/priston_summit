@@ -198,7 +198,8 @@
           ]
         ]
       },
-      "linked_file": "name\\Mini_Tulla.zhoon"
+      "linked_file": "name\\Mini_Tulla.zhoon",
+      "model_config_id": "model.char.monster.tulla.tulla"
     },
     "directives": [
       {

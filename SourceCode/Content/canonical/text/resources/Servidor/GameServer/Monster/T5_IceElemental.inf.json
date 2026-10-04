@@ -67,7 +67,8 @@
         10000,
         "없음"
       ],
-      "linked_file": "name\\s_FireElemental.zhoon"
+      "linked_file": "name\\s_FireElemental.zhoon",
+      "model_config_id": "model.char.monster.iceelemental.iceelemental"
     },
     "directives": [
       {

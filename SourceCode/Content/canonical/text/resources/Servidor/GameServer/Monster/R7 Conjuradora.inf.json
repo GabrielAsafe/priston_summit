@@ -40,7 +40,8 @@
       "size": "중형",
       "experience": 152000,
       "effect_sound": "SUCCUBUS",
-      "linked_file": "Name\\Name.zhoon"
+      "linked_file": "Name\\Name.zhoon",
+      "model_config_id": "model.char.monster.incubussummer.incubussummer"
     },
     "directives": [
       {

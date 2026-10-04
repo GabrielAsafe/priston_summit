@@ -19,7 +19,8 @@
       "model_file": "char\\npc\\Ascam\\Ascam.ini",
       "english_name": "Abaranbo",
       "shop": true,
-      "linked_file": "name\\coinshop.zhoon"
+      "linked_file": "name\\coinshop.zhoon",
+      "model_config_id": "model.char.npc.ascam.ascam"
     },
     "directives": [
       {

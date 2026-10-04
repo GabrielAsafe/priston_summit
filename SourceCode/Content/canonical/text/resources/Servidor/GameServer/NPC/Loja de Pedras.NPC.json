@@ -37,7 +37,8 @@
         "SE103",
         "SE104"
       ],
-      "linked_file": "name\\Loja de Pedras.zhoon"
+      "linked_file": "name\\Loja de Pedras.zhoon",
+      "model_config_id": "model.char.npc.bcn03.bcn03"
     },
     "directives": [
       {

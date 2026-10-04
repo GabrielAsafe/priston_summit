@@ -55,7 +55,8 @@
       "potion_percent": 0,
       "effect_sound": "Avelisk",
       "experience": 21200,
-      "linked_file": "name\\new_sod_avelisk-s.zhoon"
+      "linked_file": "name\\new_sod_avelisk-s.zhoon",
+      "model_config_id": "model.char.monster.monavelrisk.monavelrisk.sword"
     },
     "directives": [
       {

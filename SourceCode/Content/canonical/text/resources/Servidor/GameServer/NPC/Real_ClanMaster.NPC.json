@@ -20,7 +20,8 @@
       "name": "클랜 마스터",
       "english_name": "",
       "clan_npc": true,
-      "linked_file": "name\\Real_ClanMaster.zhoon"
+      "linked_file": "name\\Real_ClanMaster.zhoon",
+      "model_config_id": "model.char.npc.tn.011.tn.011"
     },
     "directives": [
       {

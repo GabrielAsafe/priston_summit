@@ -192,7 +192,8 @@
           ]
         ]
       },
-      "linked_file": "name\\120_Koon.zhoon"
+      "linked_file": "name\\120_Koon.zhoon",
+      "model_config_id": "model.char.monster.koon.koon"
     },
     "directives": [
       {

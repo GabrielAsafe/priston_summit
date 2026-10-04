@@ -71,7 +71,8 @@
           ]
         ]
       },
-      "linked_file": "name\\Donation Box.zhoon"
+      "linked_file": "name\\Donation Box.zhoon",
+      "model_config_id": "model.char.npc.bcn05.bcn05"
     },
     "directives": [
       {
