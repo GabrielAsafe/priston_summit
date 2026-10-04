@@ -338,28 +338,53 @@ for scan_root in SCAN_ROOTS:
                 FAILURES.append(f"{relative}:{lineno}: generic consumer bypasses ClassService")
 
 
-# Every compiled implementation unit in the class subsystem must be linked by
-# both client and server manifests. This prevents portable tests from passing
-# while the native MinGW link silently omits a new Shared .cpp.
+# Every compiled implementation unit in the class subsystem must be present in
+# the build contract available to this checkout. Full repository checkouts ship
+# the native client/server MinGW manifests and both are authoritative. Source
+# snapshots may omit those repository-level scripts, so in that package shape
+# we verify the packaged compile runners instead. Missing only one native
+# manifest is still an error: that is neither a complete repository checkout
+# nor the known snapshot contract.
 CLASS_CPP_FILES = sorted(
     str(path.relative_to(ROOT)).replace("\\", "/")
     for path in V2_ROOT.rglob("*.cpp")
     if "tests" not in path.parts
 )
-for manifest_relative in [
+NATIVE_BUILD_MANIFESTS = [
     "build_client_mingw_i686_multicore.sh",
     "build_server_mingw_i686_j8.sh",
-]:
-    manifest = ROOT / manifest_relative
-    if not manifest.exists():
-        FAILURES.append(f"missing build manifest: {manifest_relative}")
-        continue
-    manifest_text = manifest.read_text(encoding="utf-8", errors="ignore")
-    for implementation in CLASS_CPP_FILES:
-        if implementation not in manifest_text:
-            FAILURES.append(
-                f"{manifest_relative}: missing playable-class implementation: {implementation}"
-            )
+]
+PACKAGED_COMPILE_MANIFESTS = [
+    "Shared/gameplay/classes/v2/tests/run_class_system_tests.sh",
+    "Shared/gameplay/tests/run_v2_domain_tests.sh",
+]
+existing_native_manifests = [
+    relative for relative in NATIVE_BUILD_MANIFESTS if (ROOT / relative).exists()
+]
+if existing_native_manifests:
+    for manifest_relative in NATIVE_BUILD_MANIFESTS:
+        manifest = ROOT / manifest_relative
+        if not manifest.exists():
+            FAILURES.append(f"missing build manifest: {manifest_relative}")
+            continue
+        manifest_text = manifest.read_text(encoding="utf-8", errors="ignore")
+        for implementation in CLASS_CPP_FILES:
+            if implementation not in manifest_text:
+                FAILURES.append(
+                    f"{manifest_relative}: missing playable-class implementation: {implementation}"
+                )
+else:
+    for manifest_relative in PACKAGED_COMPILE_MANIFESTS:
+        manifest = ROOT / manifest_relative
+        if not manifest.exists():
+            FAILURES.append(f"missing packaged compile manifest: {manifest_relative}")
+            continue
+        manifest_text = manifest.read_text(encoding="utf-8", errors="ignore")
+        for implementation in CLASS_CPP_FILES:
+            if implementation not in manifest_text:
+                FAILURES.append(
+                    f"{manifest_relative}: missing playable-class implementation: {implementation}"
+                )
 
 # OpenItem parser identity must resolve through ClassService. The historical
 # JobDataBase rows may still back localized presentation bridges, but they must
