@@ -55,6 +55,7 @@
 #include "systems/gameplay/combat/v2/legacy/LegacyScopedCombatBuff.h"
 #include "systems/gameplay/combat/v2/legacy/LegacyLifeAdapter.h"
 #include "systems/gameplay/combat/v2/legacy/LegacyTargetingAdapter.h"
+#include "gameplay/world/v2/ActorNavigationPolicy.h"
 #include "gameplay/combat/v2/DeathAttributionPolicy.h"
 #include "systems/gameplay/skills/v2/legacy/LegacySkillAnimationAdapter.h"
 #include "systems/gameplay/monsters/v2/legacy/LegacyMonsterAdapter.h"
@@ -5857,18 +5858,19 @@ int smCHAR::Main()
 							if(MotionInfo->State == CHRMOTION_STATE_STAND)
 							{
 
-								AutoMoveStep = smMonsterInfo.IQ - 5;
-								if(AutoMoveStep < 0) AutoMoveStep = 0;
-
 								x = (pX - ptNextTarget.x) >> FLOATNS;
 								z = (pZ - ptNextTarget.z) >> FLOATNS;
 								dist = x*x + z*z;
 
-								if(smMonsterInfo.IQ >= 6 && dist < (64 * 8 * 64 * 8))
+								const gameplay::world::ActorAutoMovePlan autoMovePlan =
+									gameplay::world::ActorNavigationPolicy::PlanAutoMove(smMonsterInfo.IQ, dist);
+								AutoMoveStep = autoMovePlan.walkStepCount;
+
+								if(autoMovePlan.preferRun)
 								{
 									if(SetMotionFromCode(CHRMOTION_STATE_RUN))
 									{
-										AutoMoveStep <<= 2;
+										AutoMoveStep = autoMovePlan.runStepCount;
 									}
 									else
 										SetMotionFromCode(CHRMOTION_STATE_WALK);

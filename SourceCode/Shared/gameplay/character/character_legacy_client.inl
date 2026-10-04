@@ -32,6 +32,7 @@
 #include "core/gameplay/runtime/playmain.h"
 #include "gameplay/classes/v2/services/ClassService.h"
 #include "gameplay/companions/CompanionProtocol.h"
+#include "gameplay/world/v2/ActorNavigationPolicy.h"
 #include "systems/rendering/2d/legacy/drawsub.h"
 #include "systems/network/client/netplay.h"
 #include "systems/world/field/field.h"
@@ -7418,18 +7419,19 @@ int smCHAR::Main()
 							if (MotionInfo->State == CHRMOTION_STATE_STAND)
 							{
 
-								AutoMoveStep = smMonsterInfo.IQ - 5;
-								if (AutoMoveStep < 0) AutoMoveStep = 0;
-
 								x = (pX - ptNextTarget.x) >> FLOATNS;
 								z = (pZ - ptNextTarget.z) >> FLOATNS;
 								dist = x * x + z * z;
 
-								if (smMonsterInfo.IQ >= 6 && dist < (64 * 8 * 64 * 8))
+								const gameplay::world::ActorAutoMovePlan autoMovePlan =
+									gameplay::world::ActorNavigationPolicy::PlanAutoMove(smMonsterInfo.IQ, dist);
+								AutoMoveStep = autoMovePlan.walkStepCount;
+
+								if (autoMovePlan.preferRun)
 								{
 									if (SetMotionFromCode(CHRMOTION_STATE_RUN))
 									{
-										AutoMoveStep <<= 2;
+										AutoMoveStep = autoMovePlan.runStepCount;
 									}
 									else
 										SetMotionFromCode(CHRMOTION_STATE_WALK);
