@@ -1,3 +1,4 @@
+#include "gameplay/commerce/v2/AgingQuestModePolicy.h"
 #include "gameplay/commerce/v2/AgingResultLogPolicy.h"
 
 // AMBER ownership extraction from the frozen OnServer monolith.
@@ -142,15 +143,11 @@ int rsRecvAgingItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server
 		return TRUE;
 	}
 
-	if((sItemInfo.CODE&sinITEM_MASK2) == sinMA1)
-		QuestMode = TRUE;
-	else
-	{
-		if(lpPlayInfo->getSecurity() >= AccountTypes::SEC_MODERATOR)
-			QuestMode = -1;
-		else
-			QuestMode = FALSE;
-	}
+	const gameplay::commerce::AgingQuestMode agingQuestMode =
+		gameplay::commerce::AgingQuestModePolicy::Resolve(
+			(sItemInfo.CODE&sinITEM_MASK2) == sinMA1,
+			lpPlayInfo->getSecurity() >= AccountTypes::SEC_MODERATOR);
+	QuestMode = static_cast<int>(agingQuestMode);
 
 
 	int pedraDireto = 0;
