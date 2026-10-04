@@ -19,6 +19,7 @@
 
 #include <cstring>
 #include "gameplay/commerce/legacy/LegacyClassCommerceAdapter.h"
+#include "gameplay/commerce/v2/AgingStoneKindPolicy.h"
 #include "core/server/legacy_sin_runtime/sinLinkHeader.h"
 
 #define AGING_MONEY_FREE
@@ -5145,26 +5146,18 @@ int cAGING::AgingItem(int MakeItemFlag, rsPLAYINFO* Player) {
 	DWORD TempCODE[16] = { 0, };
 	int  i = 0;
 
-	if (sAging_Recv.A_StoneItemCode == (sinBI1 | sin10))
-		cAging.AginStoneKind = 1;
-	else if (sAging_Recv.A_StoneItemCode == (sinBI1 | sin11))
-		cAging.AginStoneKind = 2;
-	else if (sAging_Recv.A_StoneItemCode == (sinBI1 | sin60))
-		cAging.AginStoneKind = 3;
-	else if (sAging_Recv.A_StoneItemCode == (sinBI1 | sin61))
-		cAging.AginStoneKind = 4;
-	else if (sAging_Recv.A_StoneItemCode == (sinBI1 | sin85))
-		cAging.AginStoneKind = 5;
-	else if (sAging_Recv.A_StoneItemCode == (sinBI2 | sin73))
-		cAging.AginStoneKind = 6;
-	else if (sAging_Recv.A_StoneItemCode == (sinBI2 | sin74))
-		cAging.AginStoneKind = 7;
-	else if (sAging_Recv.A_StoneItemCode == (sinBI2 | sin75))
-		cAging.AginStoneKind = 8;
-	else if (sAging_Recv.A_StoneItemCode == (sinBI2 | sin76))
-		cAging.AginStoneKind = 9;
-	else
-		cAging.AginStoneKind = 0;
+	gameplay::commerce::AgingStoneKindConfig stoneKindConfig;
+	stoneKindConfig.stoneCodes[0] = sinBI1 | sin10;
+	stoneKindConfig.stoneCodes[1] = sinBI1 | sin11;
+	stoneKindConfig.stoneCodes[2] = sinBI1 | sin60;
+	stoneKindConfig.stoneCodes[3] = sinBI1 | sin61;
+	stoneKindConfig.stoneCodes[4] = sinBI1 | sin85;
+	stoneKindConfig.stoneCodes[5] = sinBI2 | sin73;
+	stoneKindConfig.stoneCodes[6] = sinBI2 | sin74;
+	stoneKindConfig.stoneCodes[7] = sinBI2 | sin75;
+	stoneKindConfig.stoneCodes[8] = sinBI2 | sin76;
+	cAging.AginStoneKind = gameplay::commerce::AgingStoneKindPolicy::Classify(
+		static_cast<std::uint32_t>(sAging_Recv.A_StoneItemCode), stoneKindConfig);
 
 	if (sAging_Recv.DesCraftItem.sItemInfo.ItemKindCode == ITEM_KIND_QUEST_WEAPON) {
 		if (SetChangeJob3QuestItem(&sAging_Recv.DesCraftItem.sItemInfo)) {
