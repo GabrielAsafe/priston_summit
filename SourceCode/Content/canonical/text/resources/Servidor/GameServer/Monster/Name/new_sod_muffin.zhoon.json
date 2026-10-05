@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "SoD Muffin"
+        "text": "Muffin do SoD"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRQkJCSJTb0QgTXVmZmluIg0K"
+    "legacy_payload_base64": "KkpfTkFNRQkJCSJNdWZmaW4gZG8gU29EIg0K"
   }
 }

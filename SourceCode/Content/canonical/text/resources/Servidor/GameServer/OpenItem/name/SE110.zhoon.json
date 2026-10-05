@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Atalanta Spec"
+        "text": "Especialização de Atalanta"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9TRTEwNC50eHQNCg0KKkpfTmFtZQkJIkF0YWxhbnRhIFNwZWMiDQo="
+    "legacy_payload_base64": "Ly9TRTEwNC50eHQNCg0KKkpfTmFtZQkJIkVzcGVjaWFsaXph5+NvIGRlIEF0YWxhbnRhIg0K"
   }
 }

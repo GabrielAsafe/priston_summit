@@ -19,12 +19,12 @@
         "line": 2,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Halloween Box"
+        "text": "Caixa de Halloween"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "DQoqSl9OYW1lCQkiSGFsbG93ZWVuIEJveCINCg=="
+    "legacy_payload_base64": "DQoqSl9OYW1lCQkiQ2FpeGEgZGUgSGFsbG93ZWVuIg0K"
   }
 }

@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Baú de Bronze Up 24h"
+        "text": "Baú de Bronze Aprimorado 24h"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRSAiQmH6IGRlIEJyb256ZSBVcCAyNGgi"
+    "legacy_payload_base64": "KkpfTkFNRSAiQmH6IGRlIEJyb256ZSBBcHJpbW9yYWRvIDI0aCI="
   }
 }

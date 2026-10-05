@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Revenge Bow"
+        "text": "Arco de Vingança"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9VV1MxMjJfUmV2ZW5nZSBCb3cudHh0DQoNCipKX05hbWUJCSJSZXZlbmdlIEJvdyINCg=="
+    "legacy_payload_base64": "Ly9VV1MxMjJfUmV2ZW5nZSBCb3cudHh0DQoNCipKX05hbWUJCSJBcmNvIGRlIFZpbmdhbudhIg0K"
   }
 }

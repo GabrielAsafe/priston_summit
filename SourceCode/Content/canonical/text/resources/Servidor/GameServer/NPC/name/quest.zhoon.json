@@ -19,18 +19,18 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "릿식絿육"
+        "text": "Mestre de Missões"
       },
       {
         "line": 3,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "긏긄긚긣귩뭈궢궲궋귡궻궔갎"
+        "text": "Está procurando uma missão?"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRQkJIri0vcTPvcCwIg0KDQoqSl9DSEFUCQkig06DR4NYg2eC8JJUgrWCxIKigumCzIKpgUgiDQo="
+    "legacy_payload_base64": "KkpfTkFNRQkJIk1lc3RyZSBkZSBNaXNz9WVzIg0KDQoqSl9DSEFUCQkiRXN04SBwcm9jdXJhbmRvIHVtYSBtaXNz428/Ig0K"
   }
 }

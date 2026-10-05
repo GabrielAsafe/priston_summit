@@ -25,30 +25,30 @@
         "line": 5,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "You must be a brave worrior come to this far."
+        "text": "Você deve ser um guerreiro muito corajoso para ter chegado até aqui."
       },
       {
         "line": 6,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "I've prepared a gift for you"
+        "text": "Preparei um presente para você."
       },
       {
         "line": 7,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "Because I don't have much time, you can only buy one item in 3 min."
+        "text": "Como não tenho muito tempo, você só pode comprar um item a cada 3 minutos."
       },
       {
         "line": 8,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "See you again. Good bye."
+        "text": "Até a próxima. Adeus!"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9BaGluLm5wYw0KDQoqSl9OQU1FCQkJIkFoaW4iDQoNCipKX0NIQVQJCQkiWW91IG11c3QgYmUgYSBicmF2ZSB3b3JyaW9yIGNvbWUgdG8gdGhpcyBmYXIuIg0KKkpfQ0hBVAkJCSJJJ3ZlIHByZXBhcmVkIGEgZ2lmdCBmb3IgeW91Ig0KKkpfQ0hBVAkJCSJCZWNhdXNlIEkgZG9uJ3QgaGF2ZSBtdWNoIHRpbWUsIHlvdSBjYW4gb25seSBidXkgb25lIGl0ZW0gaW4gMyBtaW4uIg0KKkpfQ0hBVAkJCSJTZWUgeW91IGFnYWluLiBHb29kIGJ5ZS4i"
+    "legacy_payload_base64": "Ly9BaGluLm5wYw0KDQoqSl9OQU1FCQkJIkFoaW4iDQoNCipKX0NIQVQJCQkiVm9j6iBkZXZlIHNlciB1bSBndWVycmVpcm8gbXVpdG8gY29yYWpvc28gcGFyYSB0ZXIgY2hlZ2FkbyBhdOkgYXF1aS4iDQoqSl9DSEFUCQkJIlByZXBhcmVpIHVtIHByZXNlbnRlIHBhcmEgdm9j6i4iDQoqSl9DSEFUCQkJIkNvbW8gbuNvIHRlbmhvIG11aXRvIHRlbXBvLCB2b2PqIHPzIHBvZGUgY29tcHJhciB1bSBpdGVtIGEgY2FkYSAzIG1pbnV0b3MuIg0KKkpfQ0hBVAkJCSJBdOkgYSBwcvN4aW1hLiBBZGV1cyEi"
   }
 }

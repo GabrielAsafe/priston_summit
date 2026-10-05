@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "EXP Potion (3h)"
+        "text": "EXP Poção (3h)"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTmFtZQkJIkVYUCBQb3Rpb24gKDNoKSINCg=="
+    "legacy_payload_base64": "KkpfTmFtZQkJIkVYUCBQb+fjbyAoM2gpIg0K"
   }
 }

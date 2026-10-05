@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "SoD Stone Golem"
+        "text": "Golem de Pedra do SoD"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRQkJCSJTb0QgU3RvbmUgR29sZW0i"
+    "legacy_payload_base64": "KkpfTkFNRQkJCSJHb2xlbSBkZSBQZWRyYSBkbyBTb0Qi"
   }
 }

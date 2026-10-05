@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "E_NAME",
         "kind": "name",
-        "text": "Enigma Dagger"
+        "text": "Adaga Enigma"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9fVW9fRW5pZ21hIERhZ2dlci50eHQNCg0KKkVfTkFNRQkJIkVuaWdtYSBEYWdnZXIiDQo="
+    "legacy_payload_base64": "Ly9fVW9fRW5pZ21hIERhZ2dlci50eHQNCg0KKkVfTkFNRQkJIkFkYWdhIEVuaWdtYSINCg=="
   }
 }

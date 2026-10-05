@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Mist"
+        "text": "Névoa"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly8yX1dTMTEwLnR4dA0KDQoqSl9OYW1lCQkiTWlzdCINCg=="
+    "legacy_payload_base64": "Ly8yX1dTMTEwLnR4dA0KDQoqSl9OYW1lCQkiTul2b2EiDQo="
   }
 }

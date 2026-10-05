@@ -19,18 +19,18 @@
         "line": 1,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Master Raymon!"
+        "text": "Mestre Raymon"
       },
       {
         "line": 4,
         "legacy_key": "J_Chat",
         "kind": "chat",
-        "text": "What im talking?!?"
+        "text": "Do que estou falando?!?"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTmFtZQkiTWFzdGVyIFJheW1vbiEiDQoNCg0KKkpfQ2hhdAkiV2hhdCBpbSB0YWxraW5nPyE/Ig0K"
+    "legacy_payload_base64": "KkpfTmFtZQkiTWVzdHJlIFJheW1vbiINCg0KDQoqSl9DaGF0CSJEbyBxdWUgZXN0b3UgZmFsYW5kbz8hPyINCg=="
   }
 }

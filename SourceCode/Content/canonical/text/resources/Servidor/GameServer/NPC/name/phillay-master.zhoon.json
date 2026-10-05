@@ -19,18 +19,18 @@
         "line": 4,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Master Raymon!"
+        "text": "Mestre Raymon"
       },
       {
         "line": 7,
         "legacy_key": "J_Chat",
         "kind": "chat",
-        "text": "vamos upar as habilidades ?"
+        "text": "Vamos aprimorar as habilidades?"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9QSElMTEFZLU1BU1RFUi5OUEMNCg0KDQoqSl9OYW1lCSJNYXN0ZXIgUmF5bW9uISINCg0KDQoqSl9DaGF0CSJ2YW1vcyB1cGFyIGFzIGhhYmlsaWRhZGVzID8iDQoNCg=="
+    "legacy_payload_base64": "Ly9QSElMTEFZLU1BU1RFUi5OUEMNCg0KDQoqSl9OYW1lCSJNZXN0cmUgUmF5bW9uIg0KDQoNCipKX0NoYXQJIlZhbW9zIGFwcmltb3JhciBhcyBoYWJpbGlkYWRlcz8iDQoNCg=="
   }
 }

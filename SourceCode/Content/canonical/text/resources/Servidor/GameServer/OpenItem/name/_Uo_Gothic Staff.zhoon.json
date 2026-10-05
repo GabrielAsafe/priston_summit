@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Gothic Staff"
+        "text": "Cajado de Gothic"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9VV00xMjFfR290aGljIFN0YWZmLnR4dA0KDQoqSl9OYW1lCQkiR290aGljIFN0YWZmIg0K"
+    "legacy_payload_base64": "Ly9VV00xMjFfR290aGljIFN0YWZmLnR4dA0KDQoqSl9OYW1lCQkiQ2FqYWRvIGRlIEdvdGhpYyINCg=="
   }
 }

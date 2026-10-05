@@ -19,7 +19,7 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "2a Loja do Maron"
+        "text": "2ª Loja do Maron"
       },
       {
         "line": 3,
@@ -49,6 +49,6 @@
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRQkJIjJhIExvamEgZG8gTWFyb24iDQoNCipKX0NIQVQJCSJWaXUgc/M/IENhZGEgYXJ0ZWZhdG8gdGVtIGEgYXNzaW5hdHVyYSBkbyBNZXN0cmUuLi4iDQoqSl9DSEFUCQkiRXN0YSBu428g6SB1bWEgdmlsYSBtdWl0byBvcmdhbml6YWRhLiBNYXMgdGlyYW1vcyBhbGd1bSBkaW5oZWlybywgZ3Jh52FzIGFvcyB2aWFqYW50ZXMgcXVlIGFwYXJlY2VtLiINCipKX0NIQVQJCSJWZW5kZW1vcyBhcnRlZmF0b3MgZmVpdG8gcGVsbyBNZXN0cmUgTWFyb24uIETqIHVtYSBvbGhhZGEuLi4iDQoqSl9DSEFUCQkiRXN0YSDpIGEgc2VndW5kYSBmaWxpYWwgZGEgTG9qYSBkbyBNZXN0cmUgTWFyb24uIENsYXJvLCBlbGUgcHJvZHV6IHRvZG9zIG9zIGFydGVmYXRvcyBxdWUgZm9ybmVjZW1vcy4uLiINCg0K"
+    "legacy_payload_base64": "KkpfTkFNRQkJIjKqIExvamEgZG8gTWFyb24iDQoNCipKX0NIQVQJCSJWaXUgc/M/IENhZGEgYXJ0ZWZhdG8gdGVtIGEgYXNzaW5hdHVyYSBkbyBNZXN0cmUuLi4iDQoqSl9DSEFUCQkiRXN0YSBu428g6SB1bWEgdmlsYSBtdWl0byBvcmdhbml6YWRhLiBNYXMgdGlyYW1vcyBhbGd1bSBkaW5oZWlybywgZ3Jh52FzIGFvcyB2aWFqYW50ZXMgcXVlIGFwYXJlY2VtLiINCipKX0NIQVQJCSJWZW5kZW1vcyBhcnRlZmF0b3MgZmVpdG8gcGVsbyBNZXN0cmUgTWFyb24uIETqIHVtYSBvbGhhZGEuLi4iDQoqSl9DSEFUCQkiRXN0YSDpIGEgc2VndW5kYSBmaWxpYWwgZGEgTG9qYSBkbyBNZXN0cmUgTWFyb24uIENsYXJvLCBlbGUgcHJvZHV6IHRvZG9zIG9zIGFydGVmYXRvcyBxdWUgZm9ybmVjZW1vcy4uLiINCg0K"
   }
 }

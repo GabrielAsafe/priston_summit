@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "SoD Witch"
+        "text": "Bruxa do SoD"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRQkJCSJTb0QgV2l0Y2giDQoNCg=="
+    "legacy_payload_base64": "KkpfTkFNRQkJCSJCcnV4YSBkbyBTb0QiDQoNCg=="
   }
 }

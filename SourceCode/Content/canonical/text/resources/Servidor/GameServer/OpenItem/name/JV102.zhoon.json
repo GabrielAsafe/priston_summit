@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Mechanician Spec"
+        "text": "Especialização de Mecânico"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9TRTEwMS50eHQNCg0KKkpfTmFtZQkJIk1lY2hhbmljaWFuIFNwZWMiDQo="
+    "legacy_payload_base64": "Ly9TRTEwMS50eHQNCg0KKkpfTmFtZQkJIkVzcGVjaWFsaXph5+NvIGRlIE1lY+JuaWNvIg0K"
   }
 }

@@ -25,24 +25,24 @@
         "line": 5,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "Runestones can be equipped to drill holes of the same color."
+        "text": "Pedras Rúnicas podem ser encaixadas em perfurações da mesma cor."
       },
       {
         "line": 6,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "Runestones can be found all over the world of Priston, but the best are in Secret Labratory and Ancient Weapon!"
+        "text": "Pedras Rúnicas podem ser encontradas por todo o mundo de Priston, mas as melhores estão no Laboratório Secreto e na Arma Antiga!"
       },
       {
         "line": 7,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "Runestones add different abilities to your equipment."
+        "text": "Pedras Rúnicas concedem diferentes habilidades aos seus equipamentos."
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9SaWNpby5ucGMNCg0KKkpfTkFNRQkJIlJpY2lvIg0KDQoqSl9DSEFUCQkiUnVuZXN0b25lcyBjYW4gYmUgZXF1aXBwZWQgdG8gZHJpbGwgaG9sZXMgb2YgdGhlIHNhbWUgY29sb3IuIiANCipKX0NIQVQJCSJSdW5lc3RvbmVzIGNhbiBiZSBmb3VuZCBhbGwgb3ZlciB0aGUgd29ybGQgb2YgUHJpc3RvbiwgYnV0IHRoZSBiZXN0IGFyZSBpbiBTZWNyZXQgTGFicmF0b3J5IGFuZCBBbmNpZW50IFdlYXBvbiEiDQoqSl9DSEFUCQkiUnVuZXN0b25lcyBhZGQgZGlmZmVyZW50IGFiaWxpdGllcyB0byB5b3VyIGVxdWlwbWVudC4iDQo="
+    "legacy_payload_base64": "Ly9SaWNpby5ucGMNCg0KKkpfTkFNRQkJIlJpY2lvIg0KDQoqSl9DSEFUCQkiUGVkcmFzIFL6bmljYXMgcG9kZW0gc2VyIGVuY2FpeGFkYXMgZW0gcGVyZnVyYef1ZXMgZGEgbWVzbWEgY29yLiIgDQoqSl9DSEFUCQkiUGVkcmFzIFL6bmljYXMgcG9kZW0gc2VyIGVuY29udHJhZGFzIHBvciB0b2RvIG8gbXVuZG8gZGUgUHJpc3RvbiwgbWFzIGFzIG1lbGhvcmVzIGVzdONvIG5vIExhYm9yYXTzcmlvIFNlY3JldG8gZSBuYSBBcm1hIEFudGlnYSEiDQoqSl9DSEFUCQkiUGVkcmFzIFL6bmljYXMgY29uY2VkZW0gZGlmZXJlbnRlcyBoYWJpbGlkYWRlcyBhb3Mgc2V1cyBlcXVpcGFtZW50b3MuIg0K"
   }
 }

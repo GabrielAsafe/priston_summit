@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "SoD Chain Golem"
+        "text": "Golem de Correntes do SoD"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRQkJCSJTb0QgQ2hhaW4gR29sZW0iDQoNCg=="
+    "legacy_payload_base64": "KkpfTkFNRQkJCSJHb2xlbSBkZSBDb3JyZW50ZXMgZG8gU29EIg0KDQo="
   }
 }

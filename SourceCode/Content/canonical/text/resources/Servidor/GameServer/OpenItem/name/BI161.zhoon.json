@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Super Pedra do Aging"
+        "text": "Super Pedra do Aprimoramento"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRSAiU3VwZXIgUGVkcmEgZG8gQWdpbmci"
+    "legacy_payload_base64": "KkpfTkFNRSAiU3VwZXIgUGVkcmEgZG8gQXByaW1vcmFtZW50byI="
   }
 }

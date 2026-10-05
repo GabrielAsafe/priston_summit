@@ -37,7 +37,7 @@
         "line": 11,
         "legacy_key": "J_Chat",
         "kind": "chat",
-        "text": "Depois que você chegar a level 40, não terá mais que falar comigo."
+        "text": "Depois que você chegar ao nível 40, não terá mais que falar comigo."
       },
       {
         "line": 13,
@@ -55,6 +55,6 @@
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9hbWFuZGEuTlBDDQoNCg0KKkpfTmFtZQkiSW5zdHJ1dG9yYSBBbWFuZGEiDQoNCipKX0NoYXQJIlZvdSBsaGUgYXJyYW5qYXIgdW5zIGJvbnMgaXRlbnMgc2Ugdm9j6iBhdGVuZGVyIG1ldXMgcGVkaWRvcy4iDQoNCipKX0NoYXQJIlNlIHZvY+ogYWp1ZGFyIGFvIHBvdm8gZGEgY2lkYWRlLCBlbGVzIHByb3ZhdmVsbWVudGUgdGUgZGFy428gduFyaW9zIGl0ZW5zLiINCg0KKkpfQ2hhdAkiRGVwb2lzIHF1ZSB2b2PqIGNoZWdhciBhIGxldmVsIDQwLCBu428gdGVy4SBtYWlzIHF1ZSBmYWxhciBjb21pZ28uIg0KDQoqSl9DaGF0CSJFc3RvdSBhcXVpIHBhcmEgYWp1ZGFyIG9zIGluaWNpYW50ZXMgYSB2aXZlciBubyBjb250aW5lbnRlIGRlIFByaXN0b24uIg0KDQoqSl9DaGF0CSJFIHPzIHZvY+ogcGFyYSB0cmF6ZXIgZGUgdm9sdGEgYXMgY29uc3BpcmHn9WVzIGUgSWdvbGFub3MuIg0KDQo="
+    "legacy_payload_base64": "Ly9hbWFuZGEuTlBDDQoNCg0KKkpfTmFtZQkiSW5zdHJ1dG9yYSBBbWFuZGEiDQoNCipKX0NoYXQJIkRlcG9pcyBxdWUgdm9j6iBjaGVnYXIgYW8gbu12ZWwgNDAsIG7jbyB0ZXLhIG1haXMgcXVlIGZhbGFyIGNvbWlnby4iDQoNCipKX0NoYXQJIlNlIHZvY+ogYWp1ZGFyIGFvIHBvdm8gZGEgY2lkYWRlLCBlbGVzIHByb3ZhdmVsbWVudGUgdGUgZGFy428gduFyaW9zIGl0ZW5zLiINCg0KKkpfQ2hhdAkiRGVwb2lzIHF1ZSB2b2PqIGNoZWdhciBhIGxldmVsIDQwLCBu428gdGVy4SBtYWlzIHF1ZSBmYWxhciBjb21pZ28uIg0KDQoqSl9DaGF0CSJFc3RvdSBhcXVpIHBhcmEgYWp1ZGFyIG9zIGluaWNpYW50ZXMgYSB2aXZlciBubyBjb250aW5lbnRlIGRlIFByaXN0b24uIg0KDQoqSl9DaGF0CSJFIHPzIHZvY+ogcGFyYSB0cmF6ZXIgZGUgdm9sdGEgYXMgY29uc3BpcmHn9WVzIGUgSWdvbGFub3MuIg0KDQo="
   }
 }

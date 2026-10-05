@@ -19,30 +19,30 @@
         "line": 3,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Wandering Soul"
+        "text": "Alma Errante"
       },
       {
         "line": 5,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "Your Majestry. Please listen to me."
+        "text": "Majestade, por favor, escute-me."
       },
       {
         "line": 6,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "our mission must be completed no matter what."
+        "text": "Nossa missão precisa ser concluída, custe o que custar."
       },
       {
         "line": 7,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "Please share your strength to us."
+        "text": "Por favor, compartilhe sua força conosco."
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9Tb3VsLm5wYw0KDQoqSl9OQU1FCQkiV2FuZGVyaW5nIFNvdWwiDQoNCipKX0NIQVQJCSJZb3VyIE1hamVzdHJ5LiBQbGVhc2UgbGlzdGVuIHRvIG1lLiIgDQoqSl9DSEFUCQkib3VyIG1pc3Npb24gbXVzdCBiZSBjb21wbGV0ZWQgbm8gbWF0dGVyIHdoYXQuIg0KKkpfQ0hBVAkJIlBsZWFzZSBzaGFyZSB5b3VyIHN0cmVuZ3RoIHRvIHVzLiINCg=="
+    "legacy_payload_base64": "Ly9Tb3VsLm5wYw0KDQoqSl9OQU1FCQkiQWxtYSBFcnJhbnRlIg0KDQoqSl9DSEFUCQkiTWFqZXN0YWRlLCBwb3IgZmF2b3IsIGVzY3V0ZS1tZS4iIA0KKkpfQ0hBVAkJIk5vc3NhIG1pc3PjbyBwcmVjaXNhIHNlciBjb25jbHXtZGEsIGN1c3RlIG8gcXVlIGN1c3Rhci4iDQoqSl9DSEFUCQkiUG9yIGZhdm9yLCBjb21wYXJ0aWxoZSBzdWEgZm9y52EgY29ub3Njby4iDQo="
   }
 }

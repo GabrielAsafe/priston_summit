@@ -25,12 +25,12 @@
         "line": 7,
         "legacy_key": "J_Chat",
         "kind": "chat",
-        "text": "Quebrou seu item no aging? não se preocupe com isso, eu lhe ajudarei!"
+        "text": "Seu item quebrou durante o aprimoramento? Não se preocupe, eu ajudarei você!"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9FbnpvLCBvIFJlc3RhdXJlLk5QQw0KDQoNCipKX05hbWUJIkVuem8sIG8gUmVzdGF1cmFkb3IgZGUgSXRlbnMiDQoNCipKX0NoYXQJIlF1ZWJyb3Ugc2V1IGl0ZW0gbm8gYWdpbmc/IG7jbyBzZSBwcmVvY3VwZSBjb20gaXNzbywgZXUgbGhlIGFqdWRhcmVpISINCg0K"
+    "legacy_payload_base64": "Ly9FbnpvLCBvIFJlc3RhdXJlLk5QQw0KDQoNCipKX05hbWUJIkVuem8sIG8gUmVzdGF1cmFkb3IgZGUgSXRlbnMiDQoNCipKX0NoYXQJIlNldSBpdGVtIHF1ZWJyb3UgZHVyYW50ZSBvIGFwcmltb3JhbWVudG8/IE7jbyBzZSBwcmVvY3VwZSwgZXUgYWp1ZGFyZWkgdm9j6iEiDQoNCg=="
   }
 }

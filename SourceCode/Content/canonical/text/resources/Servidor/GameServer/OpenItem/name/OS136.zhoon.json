@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Fury Sheltom"
+        "text": "Sheltom da Fúria"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRSAiRnVyeSBTaGVsdG9tIg=="
+    "legacy_payload_base64": "KkpfTkFNRSAiU2hlbHRvbSBkYSBG+nJpYSI="
   }
 }

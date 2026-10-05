@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Brinco Endless"
+        "text": "Brinco Infinito"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRSAiQnJpbmNvIEVuZGxlc3Mi"
+    "legacy_payload_base64": "KkpfTkFNRSAiQnJpbmNvIEluZmluaXRvIg=="
   }
 }

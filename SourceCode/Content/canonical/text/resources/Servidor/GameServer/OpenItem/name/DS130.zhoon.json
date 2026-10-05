@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Arch Angel Shield"
+        "text": "Escudo do Arcanjo"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTmFtZQkJIkFyY2ggQW5nZWwgU2hpZWxkIg0K"
+    "legacy_payload_base64": "KkpfTmFtZQkJIkVzY3VkbyBkbyBBcmNhbmpvIg0K"
   }
 }

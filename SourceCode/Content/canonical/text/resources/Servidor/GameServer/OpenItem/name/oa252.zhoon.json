@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Eragon Braceles"
+        "text": "Braceletes de Eragon"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTmFtZQkJIkVyYWdvbiBCcmFjZWxlcyI="
+    "legacy_payload_base64": "KkpfTmFtZQkJIkJyYWNlbGV0ZXMgZGUgRXJhZ29uIg=="
   }
 }

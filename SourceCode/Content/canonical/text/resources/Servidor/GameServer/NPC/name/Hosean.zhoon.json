@@ -19,36 +19,36 @@
         "line": 3,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Elder Hosean"
+        "text": "Ancião Hosean"
       },
       {
         "line": 6,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "How come you are so far out in the country?"
+        "text": "O que trouxe você para tão longe, no interior?"
       },
       {
         "line": 7,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "huh huh ...I'm just an old man who lives far out in the country."
+        "text": "He he... sou apenas um velho que vive longe de tudo."
       },
       {
         "line": 8,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "I'm temporarily helping the Kingdom with the testing for the Rank-Up tests."
+        "text": "Estou ajudando temporariamente o Reino com os testes de promoção de classe."
       },
       {
         "line": 9,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "Be careful! Move around without caution because there are dangerous monsters around."
+        "text": "Tenha cuidado! Há monstros perigosos por toda esta região."
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9ob3NlYW4ubnBjDQoNCipKX05BTUUJCSJFbGRlciBIb3NlYW4iDQoNCg0KKkpfQ0hBVAkJIkhvdyBjb21lIHlvdSBhcmUgc28gZmFyIG91dCBpbiB0aGUgY291bnRyeT8iIA0KKkpfQ0hBVAkJImh1aCBodWggLi4uSSdtIGp1c3QgYW4gb2xkIG1hbiB3aG8gbGl2ZXMgZmFyIG91dCBpbiB0aGUgY291bnRyeS4iICANCipKX0NIQVQJCSJJJ20gdGVtcG9yYXJpbHkgaGVscGluZyB0aGUgS2luZ2RvbSB3aXRoIHRoZSB0ZXN0aW5nIGZvciB0aGUgUmFuay1VcCB0ZXN0cy4iDQoqSl9DSEFUCQkiQmUgY2FyZWZ1bCEgTW92ZSBhcm91bmQgd2l0aG91dCBjYXV0aW9uIGJlY2F1c2UgdGhlcmUgYXJlIGRhbmdlcm91cyBtb25zdGVycyBhcm91bmQuIg=="
+    "legacy_payload_base64": "Ly9ob3NlYW4ubnBjDQoNCipKX05BTUUJCSJBbmNp428gSG9zZWFuIg0KDQoNCipKX0NIQVQJCSJPIHF1ZSB0cm91eGUgdm9j6iBwYXJhIHTjbyBsb25nZSwgbm8gaW50ZXJpb3I/IiANCipKX0NIQVQJCSJIZSBoZS4uLiBzb3UgYXBlbmFzIHVtIHZlbGhvIHF1ZSB2aXZlIGxvbmdlIGRlIHR1ZG8uIiAgDQoqSl9DSEFUCQkiRXN0b3UgYWp1ZGFuZG8gdGVtcG9yYXJpYW1lbnRlIG8gUmVpbm8gY29tIG9zIHRlc3RlcyBkZSBwcm9tb+fjbyBkZSBjbGFzc2UuIg0KKkpfQ0hBVAkJIlRlbmhhIGN1aWRhZG8hIEjhIG1vbnN0cm9zIHBlcmlnb3NvcyBwb3IgdG9kYSBlc3RhIHJlZ2njby4i"
   }
 }

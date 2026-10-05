@@ -25,24 +25,24 @@
         "line": 5,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "I work in a Secret Labratory."
+        "text": "Eu trabalho no Laboratório Secreto."
       },
       {
         "line": 6,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "I have learned the skill of drilling colored holes in your equipment."
+        "text": "Aprendi a perfurar encaixes coloridos em seus equipamentos."
       },
       {
         "line": 7,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "My drills can penetrate the toughest of armors."
+        "text": "Minhas brocas atravessam até as armaduras mais resistentes."
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9Eb3MubnBjDQoNCipKX05BTUUJCSJEb3MiDQoNCipKX0NIQVQJCSJJIHdvcmsgaW4gYSBTZWNyZXQgTGFicmF0b3J5LiIgDQoqSl9DSEFUCQkiSSBoYXZlIGxlYXJuZWQgdGhlIHNraWxsIG9mIGRyaWxsaW5nIGNvbG9yZWQgaG9sZXMgaW4geW91ciBlcXVpcG1lbnQuIg0KKkpfQ0hBVAkJIk15IGRyaWxscyBjYW4gcGVuZXRyYXRlIHRoZSB0b3VnaGVzdCBvZiBhcm1vcnMuIg0K"
+    "legacy_payload_base64": "Ly9Eb3MubnBjDQoNCipKX05BTUUJCSJEb3MiDQoNCipKX0NIQVQJCSJFdSB0cmFiYWxobyBubyBMYWJvcmF083JpbyBTZWNyZXRvLiIgDQoqSl9DSEFUCQkiQXByZW5kaSBhIHBlcmZ1cmFyIGVuY2FpeGVzIGNvbG9yaWRvcyBlbSBzZXVzIGVxdWlwYW1lbnRvcy4iDQoqSl9DSEFUCQkiTWluaGFzIGJyb2NhcyBhdHJhdmVzc2FtIGF06SBhcyBhcm1hZHVyYXMgbWFpcyByZXNpc3RlbnRlcy4iDQo="
   }
 }

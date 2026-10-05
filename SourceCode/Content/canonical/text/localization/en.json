@@ -18,7 +18,7 @@
     },
     {
       "key": "item.2_wd109.name",
-      "text": "Platinum Dagger",
+      "text": "Adaga de Platina",
       "quality": "translated",
       "source": "text.2_wd109"
     },
@@ -36,7 +36,7 @@
     },
     {
       "key": "item.2_wn109.name",
-      "text": "Tatanka Phantom",
+      "text": "Fantasma de Tatanka",
       "quality": "translated",
       "source": "text.2_wn109"
     },
@@ -156,13 +156,13 @@
     },
     {
       "key": "item.bc117.name",
-      "text": "Might Stone",
+      "text": "Pedra do Poder",
       "quality": "untranslated_fallback",
       "source": "text.bc117"
     },
     {
       "key": "item.bc118.name",
-      "text": "Might Stone",
+      "text": "Pedra do Poder",
       "quality": "untranslated_fallback",
       "source": "text.bc118"
     },
@@ -1644,7 +1644,7 @@
     },
     {
       "key": "item.ca206.name",
-      "text": "ThÃµÃŒi trang tÃªÃ¬t (F)",
+      "text": "Traje de Ano-Novo (F)",
       "quality": "untranslated_fallback",
       "source": "text.ca206"
     },
@@ -6720,7 +6720,7 @@
     },
     {
       "key": "item.or248.name",
-      "text": "Shire Ring",
+      "text": "Anel de Shire",
       "quality": "untranslated_fallback",
       "source": "text.or248"
     },
@@ -8628,7 +8628,7 @@
     },
     {
       "key": "item.uwd121_enigma_dagger.name",
-      "text": "Enigma Dagger",
+      "text": "Adaga Enigma",
       "quality": "translated",
       "source": "text.uo_enigma_dagger"
     },
@@ -8652,7 +8652,7 @@
     },
     {
       "key": "item.uwn121_kahsehtha_phantom.name",
-      "text": "Kahsehtha  Phantom",
+      "text": "Fantasma de Kahsehtha",
       "quality": "translated",
       "source": "text.uo_kahsehtha_phantom"
     },
@@ -12600,7 +12600,7 @@
     },
     {
       "key": "monster.boss_mundo.name",
-      "text": "Boss Mundo",
+      "text": "Chefe Mundial",
       "quality": "untranslated_fallback",
       "source": "text.bossmundo"
     },
@@ -13650,13 +13650,13 @@
     },
     {
       "key": "monster.t5_iceelemental.name",
-      "text": "Fire Elemental",
+      "text": "Elemental de Gelo",
       "quality": "translated",
       "source": "text.s_fireelemental"
     },
     {
       "key": "monster.t5_summontiger.name",
-      "text": "Bronze Wolverine",
+      "text": "Invocação do Tigre",
       "quality": "translated",
       "source": "text.31_bronzewolverine"
     },
@@ -13686,7 +13686,7 @@
     },
     {
       "key": "npc.7crystal.name",
-      "text": "Traveler Dela",
+      "text": "Dela, a Viajante",
       "quality": "untranslated_fallback",
       "source": "text.7crystal"
     },
@@ -13722,25 +13722,25 @@
     },
     {
       "key": "npc.ahin.chat.1",
-      "text": "You must be a brave worrior come to this far.",
+      "text": "Você deve ser um guerreiro muito corajoso para ter chegado até aqui.",
       "quality": "untranslated_fallback",
       "source": "text.ahin"
     },
     {
       "key": "npc.ahin.chat.2",
-      "text": "I've prepared a gift for you",
+      "text": "Preparei um presente para você.",
       "quality": "untranslated_fallback",
       "source": "text.ahin"
     },
     {
       "key": "npc.ahin.chat.3",
-      "text": "Because I don't have much time, you can only buy one item in 3 min.",
+      "text": "Como não tenho muito tempo, você só pode comprar um item a cada 3 minutos.",
       "quality": "untranslated_fallback",
       "source": "text.ahin"
     },
     {
       "key": "npc.ahin.chat.4",
-      "text": "See you again. Good bye.",
+      "text": "Até a próxima. Adeus!",
       "quality": "untranslated_fallback",
       "source": "text.ahin"
     },
@@ -13752,7 +13752,7 @@
     },
     {
       "key": "npc.amanda.chat.1",
-      "text": "Vou lhe arranjar uns bons itens se você atender meus pedidos.",
+      "text": "Depois que você chegar ao nível 40, não terá mais que falar comigo.",
       "quality": "untranslated_fallback",
       "source": "text.amanda"
     },
@@ -13794,13 +13794,13 @@
     },
     {
       "key": "npc.arad.name",
-      "text": "Trocar Skin",
+      "text": "Trocar Visual",
       "quality": "untranslated_fallback",
       "source": "text.arad"
     },
     {
       "key": "npc.arena_de_batalha.chat.1",
-      "text": " Summit Tale e Muito Divertido",
+      "text": "Summit Tale e Muito Divertido",
       "quality": "untranslated_fallback",
       "source": "text.arena_de_batalha"
     },
@@ -13818,25 +13818,25 @@
     },
     {
       "key": "npc.barba.chat.1",
-      "text": "There's a way to protect your equipment in this chaotic time.",
+      "text": "Existe uma forma de proteger seu equipamento nestes tempos caóticos.",
       "quality": "untranslated_fallback",
       "source": "text.barba"
     },
     {
       "key": "npc.barba.chat.2",
-      "text": "Imprinting on your equipment will decrease the risk of losing them.",
+      "text": "Gravar uma marca no equipamento reduz o risco de perdê-lo.",
       "quality": "untranslated_fallback",
       "source": "text.barba"
     },
     {
       "key": "npc.barba.chat.3",
-      "text": "If you want to remove the imprint, you'll need a Brush of Oblivion.",
+      "text": "Se quiser remover a marca, você precisará de um Pincel do Esquecimento.",
       "quality": "untranslated_fallback",
       "source": "text.barba"
     },
     {
       "key": "npc.barba.chat.4",
-      "text": "Imprinted items cannot be moved from your inventory to other's.",
+      "text": "Itens marcados não podem ser transferidos do seu inventário para o de outra pessoa.",
       "quality": "untranslated_fallback",
       "source": "text.barba"
     },
@@ -13848,13 +13848,13 @@
     },
     {
       "key": "npc.baurin.chat.1",
-      "text": "Happy New Year",
+      "text": "Feliz Ano-Novo!",
       "quality": "untranslated_fallback",
       "source": "text.baurin"
     },
     {
       "key": "npc.baurin.chat.2",
-      "text": "If you bring me a dragon capsule, I will exchange with a gift.",
+      "text": "Se você me trouxer uma Cápsula de Dragão, eu a trocarei por um presente.",
       "quality": "untranslated_fallback",
       "source": "text.baurin"
     },
@@ -13866,43 +13866,43 @@
     },
     {
       "key": "npc.bc_reporter.chat.1",
-      "text": "¡TÌéÌåÍêÌNÅµå¤©B",
+      "text": "Quem será o dono do castelo esta semana?",
       "quality": "untranslated_fallback",
       "source": "text.bc_reporter"
     },
     {
       "key": "npc.bc_reporter.chat.2",
-      "text": "÷éíÍT1ñ¸ÂsíêÄAonÌðjó·éNªéÌåÉÈèÜ·B",
+      "text": "A Guerra do Castelo acontece uma vez por semana. O clã que destruir a Torre de Valhalla torna-se o dono do castelo.",
       "quality": "untranslated_fallback",
       "source": "text.bc_reporter"
     },
     {
       "key": "npc.bc_reporter.chat.3",
-      "text": "éÌåÉÍ»ÌJÜª·²¢ÌÅ·ªA§íµÄÝÜ¹ñ©B",
+      "text": "As recompensas para o dono do castelo são excelentes. Que tal tentar conquistá-lo?",
       "quality": "untranslated_fallback",
       "source": "text.bc_reporter"
     },
     {
       "key": "npc.bc_reporter.chat.4",
-      "text": "µ¢í¬Ìóµð©éªÅ«Ü·B",
+      "text": "Aqui você pode acompanhar a situação dos combates mais intensos.",
       "quality": "untranslated_fallback",
       "source": "text.bc_reporter"
     },
     {
       "key": "npc.bc_reporter.chat.5",
-      "text": "uXLbXÖs­½ßÉÍ|ÌXÌÄàlufCv³ñÉ¾íÈ¢Æ¢¯Ü¹ñB",
+      "text": "Para ir ao Bless Castle, fale com Damon, o guia da Floresta de Bambu.",
       "quality": "untranslated_fallback",
       "source": "text.bc_reporter"
     },
     {
       "key": "npc.bc_reporter.chat.6",
-      "text": "uXLbXÖs­½ßÉÍ|ÌXÌÄàlufCv³ñÉ¾íÈ¢Æ¢¯Ü¹ñB",
+      "text": "Para ir ao Bless Castle, fale com Damon, o guia da Floresta de Bambu.",
       "quality": "untranslated_fallback",
       "source": "text.bc_reporter"
     },
     {
       "key": "npc.bc_reporter.name",
-      "text": "uXLbX|[^[",
+      "text": "Repórter do Bless Castle",
       "quality": "untranslated_fallback",
       "source": "text.bc_reporter"
     },
@@ -14058,13 +14058,13 @@
     },
     {
       "key": "npc.bcn06.name",
-      "text": "Warehouse do Castelo",
+      "text": "Armazém do Castelo",
       "quality": "untranslated_fallback",
       "source": "text.bcn06"
     },
     {
       "key": "npc.bellia.chat.1",
-      "text": "Bring me three of the same monster  crystal and I can craft you a triple monster crystal.",
+      "text": "Traga três cristais do mesmo monstro e eu poderei criar um cristal triplo para você.",
       "quality": "untranslated_fallback",
       "source": "text.bellia"
     },
@@ -14160,25 +14160,25 @@
     },
     {
       "key": "npc.bronzwolverin.name",
-      "text": "Wolverine de Bronze",
+      "text": "Carcaju de Bronze",
       "quality": "untranslated_fallback",
       "source": "text.bronzwolverin"
     },
     {
       "key": "npc.celina.chat.1",
-      "text": "I will use my knowledge for the Prison continent and its forever peace.",
+      "text": "Usarei meu conhecimento pelo continente de Priston e por sua paz duradoura.",
       "quality": "untranslated_fallback",
       "source": "text.celina"
     },
     {
       "key": "npc.celina.chat.2",
-      "text": "You, Can you devote your life for Priston continent?",
+      "text": "Você consegue dedicar sua força ao continente de Priston?",
       "quality": "untranslated_fallback",
       "source": "text.celina"
     },
     {
       "key": "npc.celina.chat.3",
-      "text": "Will there be Absolute good and evil exist.",
+      "text": "Será que o bem e o mal absolutos realmente existem?",
       "quality": "untranslated_fallback",
       "source": "text.celina"
     },
@@ -14196,19 +14196,19 @@
     },
     {
       "key": "npc.clanmaster.chat.1",
-      "text": "íµÌ±ÆÍNÌVË'~X^[u}³Ü'ÆÅàÄñÅ­ê¢IÓ§ÁÓ§ÁÓ§",
+      "text": "Pode me chamar de 'Mestre Buma', o gênio dos clãs! Ho ho ho!",
       "quality": "untranslated_fallback",
       "source": "text.clanmaster"
     },
     {
       "key": "npc.clanmaster.name",
-      "text": "~X^[u}",
+      "text": "Mestre Buma",
       "quality": "untranslated_fallback",
       "source": "text.clanmaster"
     },
     {
       "key": "npc.coin_shop.chat.1",
-      "text": "Aproveite os coins e tune o seu personagem!",
+      "text": "Aproveite suas moedas e aprimore o seu personagem!",
       "quality": "untranslated_fallback",
       "source": "text.coin_shop"
     },
@@ -14226,19 +14226,19 @@
     },
     {
       "key": "npc.covenant_altar.chat.1",
-      "text": "Welcome to the world of Prisontale.",
+      "text": "Bem-vindo ao mundo de Priston Tale.",
       "quality": "untranslated_fallback",
       "source": "text.teacher01"
     },
     {
       "key": "npc.covenant_altar.chat.2",
-      "text": "We will put a spell on you once a day to help you grow up faster.",
+      "text": "Uma vez por dia, lançaremos um encantamento em você para ajudá-lo a evoluir mais rápido.",
       "quality": "untranslated_fallback",
       "source": "text.teacher01"
     },
     {
       "key": "npc.covenant_altar.name",
-      "text": "Helper Pria",
+      "text": "Ajudante Pria",
       "quality": "untranslated_fallback",
       "source": "text.teacher01"
     },
@@ -14274,13 +14274,13 @@
     },
     {
       "key": "npc.dailyquest.chat.1",
-      "text": "Remova com segurança seu aging/mix.",
+      "text": "Remova com segurança o aprimoramento ou a combinação do seu item.",
       "quality": "untranslated_fallback",
       "source": "text.dailyquest"
     },
     {
       "key": "npc.dailyquest.chat.2",
-      "text": "Limpeza de Itens do Summit Tale.",
+      "text": "Limpeza de itens do Summit Tale.",
       "quality": "untranslated_fallback",
       "source": "text.dailyquest"
     },
@@ -14340,7 +14340,7 @@
     },
     {
       "key": "npc.desert_guard.chat.1",
-      "text": "Matenha distância. Esta área é perigosa e somente os guerreiros mais poderosos podem passar.",
+      "text": "Somente guerreiros acima do Nível 50 podem entrar.",
       "quality": "untranslated_fallback",
       "source": "text.desert_guard"
     },
@@ -14430,19 +14430,19 @@
     },
     {
       "key": "npc.dos.chat.1",
-      "text": "I work in a Secret Labratory.",
+      "text": "Eu trabalho no Laboratório Secreto.",
       "quality": "untranslated_fallback",
       "source": "text.dos"
     },
     {
       "key": "npc.dos.chat.2",
-      "text": "I have learned the skill of drilling colored holes in your equipment.",
+      "text": "Aprendi a perfurar encaixes coloridos em seus equipamentos.",
       "quality": "untranslated_fallback",
       "source": "text.dos"
     },
     {
       "key": "npc.dos.chat.3",
-      "text": "My drills can penetrate the toughest of armors.",
+      "text": "Minhas brocas atravessam até as armaduras mais resistentes.",
       "quality": "untranslated_fallback",
       "source": "text.dos"
     },
@@ -14454,7 +14454,7 @@
     },
     {
       "key": "npc.dungeon_keeper.chat.1",
-      "text": "O Rei Hoppie arrebentou uma parede da último andar do calabouço e revelou uma nova área. O que será que há nela?",
+      "text": "Somente guerreiros acima do Nível 40 podem entrar aqui.",
       "quality": "untranslated_fallback",
       "source": "text.dungeon_keeper"
     },
@@ -14496,7 +14496,7 @@
     },
     {
       "key": "npc.enzo_o_restaure.chat.1",
-      "text": "Quebrou seu item no aging? não se preocupe com isso, eu lhe ajudarei!",
+      "text": "Seu item quebrou durante o aprimoramento? Não se preocupe, eu ajudarei você!",
       "quality": "untranslated_fallback",
       "source": "text.enzo_o_restaure"
     },
@@ -14514,7 +14514,7 @@
     },
     {
       "key": "npc.eventgirl.chat.1",
-      "text": "Resete todas suas skills e seus pontos de status aqui comigo!",
+      "text": "Redefina todas as suas habilidades e seus pontos de atributos aqui comigo!",
       "quality": "untranslated_fallback",
       "source": "text.eventgirl"
     },
@@ -14538,7 +14538,7 @@
     },
     {
       "key": "npc.eventgirl.name",
-      "text": "Event Girl",
+      "text": "Garota do Evento",
       "quality": "untranslated_fallback",
       "source": "text.eventgirl"
     },
@@ -14640,85 +14640,85 @@
     },
     {
       "key": "npc.goldenwolverin.name",
-      "text": "Wolverine Dourado",
+      "text": "Carcaju de Ouro",
       "quality": "untranslated_fallback",
       "source": "text.goldenwolverin"
     },
     {
       "key": "npc.hermit.chat.1",
-      "text": "No ones here.. right?",
+      "text": "Não tem ninguém aqui... certo?",
       "quality": "untranslated_fallback",
       "source": "text.hermit"
     },
     {
       "key": "npc.hermit.chat.2",
-      "text": "It will be safe hiding here..",
+      "text": "Ficaremos seguros escondidos aqui...",
       "quality": "untranslated_fallback",
       "source": "text.hermit"
     },
     {
       "key": "npc.hermit.name",
-      "text": "Hermit",
+      "text": "Eremita",
       "quality": "untranslated_fallback",
       "source": "text.hermit"
     },
     {
       "key": "npc.heventgirl.chat.1",
-      "text": "X^[AÖæ¤±»ÁI",
+      "text": "Bem-vindo ao Covil dos Monstros!",
       "quality": "untranslated_fallback",
       "source": "text.heventgirl"
     },
     {
       "key": "npc.heventgirl.name",
-      "text": "üêÌõ",
+      "text": "Vendedora de Ingressos",
       "quality": "untranslated_fallback",
       "source": "text.heventgirl"
     },
     {
       "key": "npc.hosean.chat.1",
-      "text": "How come you are so far out in the country?",
+      "text": "O que trouxe você para tão longe, no interior?",
       "quality": "untranslated_fallback",
       "source": "text.hosean"
     },
     {
       "key": "npc.hosean.chat.2",
-      "text": "huh huh ...I'm just an old man who lives far out in the country.",
+      "text": "He he... sou apenas um velho que vive longe de tudo.",
       "quality": "untranslated_fallback",
       "source": "text.hosean"
     },
     {
       "key": "npc.hosean.chat.3",
-      "text": "I'm temporarily helping the Kingdom with the testing for the Rank-Up tests.",
+      "text": "Estou ajudando temporariamente o Reino com os testes de promoção de classe.",
       "quality": "untranslated_fallback",
       "source": "text.hosean"
     },
     {
       "key": "npc.hosean.chat.4",
-      "text": "Be careful! Move around without caution because there are dangerous monsters around.",
+      "text": "Tenha cuidado! Há monstros perigosos por toda esta região.",
       "quality": "untranslated_fallback",
       "source": "text.hosean"
     },
     {
       "key": "npc.hosean.name",
-      "text": "Elder Hosean",
+      "text": "Ancião Hosean",
       "quality": "untranslated_fallback",
       "source": "text.hosean"
     },
     {
       "key": "npc.hunter.chat.1",
-      "text": "Oh~ Brave soldier. Nice to see you.",
+      "text": "Oh, bravo guerreiro! É bom ver você.",
       "quality": "untranslated_fallback",
       "source": "text.hunter"
     },
     {
       "key": "npc.hunter.chat.2",
-      "text": "I'm Owen, a hunter. I'm not superb, but I can kill most monsters!",
+      "text": "Sou Owen, um caçador. Não sou extraordinário, mas consigo derrotar a maioria dos monstros!",
       "quality": "untranslated_fallback",
       "source": "text.hunter"
     },
     {
       "key": "npc.hunter.chat.3",
-      "text": "Always, be careful. Monsters are very violent.",
+      "text": "Tenha sempre cuidado. Os monstros são muito violentos.",
       "quality": "untranslated_fallback",
       "source": "text.hunter"
     },
@@ -14730,7 +14730,7 @@
     },
     {
       "key": "npc.item_shop.chat.1",
-      "text": "What im talking?!?",
+      "text": "Do que estou falando?!?",
       "quality": "untranslated_fallback",
       "source": "text.item_shop"
     },
@@ -14772,7 +14772,7 @@
     },
     {
       "key": "npc.itens_60.chat.1",
-      "text": "What im talking?!?",
+      "text": "Do que estou falando?!?",
       "quality": "untranslated_fallback",
       "source": "text.itens_60"
     },
@@ -14784,7 +14784,7 @@
     },
     {
       "key": "npc.ji_woo.chat.1",
-      "text": "Vou lhe arranjar uns bons itens se você atender meus pedidos.",
+      "text": "Depois que você chegar ao nível 40, não terá mais que falar comigo.",
       "quality": "untranslated_fallback",
       "source": "text.jiwoo"
     },
@@ -14820,19 +14820,19 @@
     },
     {
       "key": "npc.jin.chat.1",
-      "text": "Hello! I'm Jin. I've traveled all over the Priston continent.",
+      "text": "Olá! Sou Jin. Viajei por todo o continente de Priston.",
       "quality": "untranslated_fallback",
       "source": "text.jin.path_1f1aa5fee2"
     },
     {
       "key": "npc.jin.chat.2",
-      "text": "I had traveled for few years, but now I've been doing volunteer work after many monsters came out.",
+      "text": "Viajei durante alguns anos, mas agora faço trabalho voluntário desde que os monstros começaram a aparecer.",
       "quality": "untranslated_fallback",
       "source": "text.jin.path_1f1aa5fee2"
     },
     {
       "key": "npc.jin.chat.3",
-      "text": "I have a twin sister. We are travelers, and now we are apart. I wonder where she is~ ",
+      "text": "Tenho uma irmã gêmea. Somos viajantes, mas agora estamos separados. Será que ela está bem?",
       "quality": "untranslated_fallback",
       "source": "text.jin.path_1f1aa5fee2"
     },
@@ -14862,25 +14862,25 @@
     },
     {
       "key": "npc.lake_guard.path_daa63fac93.chat.1",
-      "text": "This area is open for the warriors  who are approved by the kingdom.    Stay back it's very dangerous.",
+      "text": "Esta área é aberta apenas a guerreiros aprovados pelo Reino. Afaste-se; é muito perigoso.",
       "quality": "untranslated_fallback",
       "source": "text.lake_guard"
     },
     {
       "key": "npc.lake_guard.path_daa63fac93.chat.2",
-      "text": "Warriors at level 70 may pass here.",
+      "text": "Guerreiros de nível 70 ou superior podem passar por aqui.",
       "quality": "untranslated_fallback",
       "source": "text.lake_guard"
     },
     {
       "key": "npc.lake_guard.path_daa63fac93.chat.3",
-      "text": "We prohibit this area because there are very dangerous monsters.",
+      "text": "Restringimos esta área porque há monstros muito perigosos aqui.",
       "quality": "untranslated_fallback",
       "source": "text.lake_guard"
     },
     {
       "key": "npc.lake_guard.path_daa63fac93.name",
-      "text": "Lake Guard",
+      "text": "Guarda do Lago",
       "quality": "untranslated_fallback",
       "source": "text.lake_guard"
     },
@@ -14892,7 +14892,7 @@
     },
     {
       "key": "npc.lista_mix.chat.1",
-      "text": "Tabela de mix Online",
+      "text": "Consulte aqui a tabela de combinações.",
       "quality": "untranslated_fallback",
       "source": "text.lista_mix"
     },
@@ -14904,7 +14904,7 @@
     },
     {
       "key": "npc.loja_da_allya.chat.1",
-      "text": "What im talking?!?",
+      "text": "Do que estou falando?!?",
       "quality": "untranslated_fallback",
       "source": "text.loja_da_allya"
     },
@@ -14916,7 +14916,7 @@
     },
     {
       "key": "npc.loja_de_creditos.chat.1",
-      "text": "Aproveite os coins e tune o seu personagem!",
+      "text": "Aproveite suas moedas e aprimore o seu personagem!",
       "quality": "untranslated_fallback",
       "source": "text.loja_de_creditos"
     },
@@ -14940,7 +14940,7 @@
     },
     {
       "key": "npc.loja_de_pedras.chat.1",
-      "text": "What im talking?!?",
+      "text": "Do que estou falando?!?",
       "quality": "untranslated_fallback",
       "source": "text.loja_de_pedras"
     },
@@ -14952,7 +14952,7 @@
     },
     {
       "key": "npc.loja_do_repot_i1.chat.1",
-      "text": "What im talking?!?",
+      "text": "Do que estou falando?!?",
       "quality": "untranslated_fallback",
       "source": "text.loja_do_repot_i1"
     },
@@ -14964,7 +14964,7 @@
     },
     {
       "key": "npc.loja_do_repot_i2.chat.1",
-      "text": "What im talking?!?",
+      "text": "Do que estou falando?!?",
       "quality": "untranslated_fallback",
       "source": "text.loja_do_repot_i2"
     },
@@ -14976,7 +14976,7 @@
     },
     {
       "key": "npc.loja_do_repot_s1.chat.1",
-      "text": "What im talking?!?",
+      "text": "Do que estou falando?!?",
       "quality": "untranslated_fallback",
       "source": "text.loja_do_repot_s1"
     },
@@ -14988,7 +14988,7 @@
     },
     {
       "key": "npc.loja_do_tempo.chat.1",
-      "text": "Aproveite os time e tune o seu personagem!",
+      "text": "Aproveite seus pontos da Loja de Tempo e aprimore o seu personagem!",
       "quality": "untranslated_fallback",
       "source": "text.loja_do_tempo"
     },
@@ -15024,7 +15024,7 @@
     },
     {
       "key": "npc.lucy.chat.1",
-      "text": "What im talking?!?",
+      "text": "Do que estou falando?!?",
       "quality": "untranslated_fallback",
       "source": "text.lucy"
     },
@@ -15042,19 +15042,19 @@
     },
     {
       "key": "npc.marina.chat.1",
-      "text": "My dear prince, isn't he so gorgeous?",
+      "text": "Meu querido príncipe, ele não é maravilhoso?",
       "quality": "untranslated_fallback",
       "source": "text.marina"
     },
     {
       "key": "npc.marina.chat.2",
-      "text": "Except he is being too show off to others, he would be perfect..",
+      "text": "Se ele não gostasse tanto de se exibir para os outros, seria perfeito...",
       "quality": "untranslated_fallback",
       "source": "text.marina"
     },
     {
       "key": "npc.marina.chat.3",
-      "text": "Actually I think his swag is also very attractive too.",
+      "text": "Na verdade, acho o jeito confiante dele bastante atraente também.",
       "quality": "untranslated_fallback",
       "source": "text.marina"
     },
@@ -15066,19 +15066,19 @@
     },
     {
       "key": "npc.master_raymon.chat.1",
-      "text": "What im talking?!?",
+      "text": "Do que estou falando?!?",
       "quality": "untranslated_fallback",
       "source": "text.master_raymon"
     },
     {
       "key": "npc.master_raymon.name",
-      "text": "Master Raymon!",
+      "text": "Mestre Raymon",
       "quality": "untranslated_fallback",
       "source": "text.master_raymon"
     },
     {
       "key": "npc.mestre_raymon.chat.1",
-      "text": "What im talking?!?",
+      "text": "Do que estou falando?!?",
       "quality": "untranslated_fallback",
       "source": "text.mestre_raymon"
     },
@@ -15090,7 +15090,7 @@
     },
     {
       "key": "npc.mestre_real_ray.chat.1",
-      "text": "What im talking?!?",
+      "text": "Do que estou falando?!?",
       "quality": "untranslated_fallback",
       "source": "text.mestre_real_ray"
     },
@@ -15132,7 +15132,7 @@
     },
     {
       "key": "npc.moriph_o_misterioso.chat.1",
-      "text": "What im talking?!?",
+      "text": "Do que estou falando?!?",
       "quality": "untranslated_fallback",
       "source": "text.moriph_o_misterioso"
     },
@@ -15180,7 +15180,7 @@
     },
     {
       "key": "npc.nadia.name",
-      "text": "PasseDeBatalha",
+      "text": "Passe de Batalha",
       "quality": "untranslated_fallback",
       "source": "text.nadia"
     },
@@ -15306,7 +15306,7 @@
     },
     {
       "key": "npc.navisko_magic.name",
-      "text": "3a Loja do Maron",
+      "text": "3ª Loja do Maron",
       "quality": "untranslated_fallback",
       "source": "text.navisko_magic"
     },
@@ -15378,7 +15378,7 @@
     },
     {
       "key": "npc.nevisko_magic.name",
-      "text": "3a Loja do Maron",
+      "text": "3ª Loja do Maron",
       "quality": "untranslated_fallback",
       "source": "text.navisko_magic"
     },
@@ -15390,25 +15390,25 @@
     },
     {
       "key": "npc.novic.chat.1",
-      "text": "Where is this?",
+      "text": "Onde estou?",
       "quality": "untranslated_fallback",
       "source": "text.novic"
     },
     {
       "key": "npc.novic.chat.2",
-      "text": "I think I can combine those gems that you have.",
+      "text": "Acho que consigo combinar essas gemas que você carrega.",
       "quality": "untranslated_fallback",
       "source": "text.novic"
     },
     {
       "key": "npc.novic.chat.3",
-      "text": "I can feel a mysterious spirit around those gems.",
+      "text": "Consigo sentir uma energia misteriosa ao redor dessas gemas.",
       "quality": "untranslated_fallback",
       "source": "text.novic"
     },
     {
       "key": "npc.novic.chat.4",
-      "text": "Hmm.. I'm not sure I can create it for some reason...",
+      "text": "Hmm... por algum motivo, não tenho certeza se consigo criar isso...",
       "quality": "untranslated_fallback",
       "source": "text.novic"
     },
@@ -15432,37 +15432,37 @@
     },
     {
       "key": "npc.npc_ninefox.chat.1",
-      "text": "Ó½ÂÌA~bgðTµÉ±±ÜÅÜµ½B",
+      "text": "Vim até aqui procurando dois amuletos.",
       "quality": "untranslated_fallback",
       "source": "text.npc_ninefox"
     },
     {
       "key": "npc.npc_ninefox.chat.2",
-      "text": "»ÌûÍX^[¾Á½¯ÇABÍ{É¤µÁÄ½ÌÅ·EEE",
+      "text": "Ele era um monstro, mas nós realmente nos amávamos...",
       "quality": "untranslated_fallback",
       "source": "text.npc_ninefox"
     },
     {
       "key": "npc.npc_ninefox.chat.3",
-      "text": "Ó½ÂÌA~bgÍBÌ¤Ì ©µÅµ½B»êðñ¾X^[Í¹Ü¹ñB",
+      "text": "Os dois amuletos eram a prova do nosso amor. Não perdoarei o monstro que os roubou.",
       "quality": "untranslated_fallback",
       "source": "text.npc_ninefox"
     },
     {
       "key": "npc.npc_ninefox.name",
-      "text": "ƒvƒŒƒCƒA",
+      "text": "Preia",
       "quality": "untranslated_fallback",
       "source": "text.npc_ninefox"
     },
     {
       "key": "npc.phillai_quest_shop.chat.1",
-      "text": "What im talking?!?",
+      "text": "Do que estou falando?!?",
       "quality": "untranslated_fallback",
       "source": "text.phillai_quest_shop"
     },
     {
       "key": "npc.phillai_quest_shop.name",
-      "text": "Pillai Quest Shop",
+      "text": "Loja de Missões de Pillai",
       "quality": "untranslated_fallback",
       "source": "text.phillai_quest_shop"
     },
@@ -15528,25 +15528,25 @@
     },
     {
       "key": "npc.phillay_civilian3.chat.1",
-      "text": "vªVµ¢_ÎðTµÉo©¯ÄAÁÄ±È¢Å·ËB»ÌÔªGCWOµÄ °Ü·",
+      "text": "Moriph saiu em busca de uma nova pedra divina e ainda não voltou. Enquanto isso, eu cuidarei do aprimoramento para você.",
       "quality": "untranslated_fallback",
       "source": "text.phillay_civilian3"
     },
     {
       "key": "npc.phillay_civilian3.chat.2",
-      "text": "Ç±©ÅvÉïÁ½ç­AÁÄ­éæ¤É`¦Ä­¾³¢",
+      "text": "Se encontrar Moriph em algum lugar, diga a ele para voltar logo.",
       "quality": "untranslated_fallback",
       "source": "text.phillay_civilian3"
     },
     {
       "key": "npc.phillay_civilian3.chat.3",
-      "text": "ÍvÙÇDêÄÍ¢Ü¹ñªAC¹Ä­êéÌÅµ½çæ£èÜ·I",
+      "text": "Não sou tão habilidoso quanto Moriph, mas farei o meu melhor se confiar em mim!",
       "quality": "untranslated_fallback",
       "source": "text.phillay_civilian3"
     },
     {
       "key": "npc.phillay_civilian3.name",
-      "text": "±¹²Ýã j[^[",
+      "text": "Newter, Assistente de Aprimoramento",
       "quality": "untranslated_fallback",
       "source": "text.phillay_civilian3"
     },
@@ -15762,13 +15762,13 @@
     },
     {
       "key": "npc.phillay_imbue.chat.1",
-      "text": "Ouvi por aí que agora existe uma pedra que aumenta a chance de sucesso no Aging...^^",
+      "text": "Ouvi dizer que agora existe uma pedra que aumenta a chance de sucesso no aprimoramento...^^",
       "quality": "untranslated_fallback",
       "source": "text.phillay_imbue"
     },
     {
       "key": "npc.phillay_imbue.chat.2",
-      "text": "Este sistema foi criado para buscar o desempenho máximo dos itens, mas, existe um certo risco em seu uso...",
+      "text": "Você poderá fazer o aprimoramento a qualquer momento, se tiver os recursos necessários.",
       "quality": "untranslated_fallback",
       "source": "text.phillay_imbue"
     },
@@ -15822,13 +15822,13 @@
     },
     {
       "key": "npc.phillay_master.chat.1",
-      "text": "vamos upar as habilidades ?",
+      "text": "Vamos aprimorar as habilidades?",
       "quality": "untranslated_fallback",
       "source": "text.phillay_master"
     },
     {
       "key": "npc.phillay_master.name",
-      "text": "Master Raymon!",
+      "text": "Mestre Raymon",
       "quality": "untranslated_fallback",
       "source": "text.phillay_master"
     },
@@ -15894,13 +15894,13 @@
     },
     {
       "key": "npc.pillai_quest_shop.chat.1",
-      "text": "What im talking?!?",
+      "text": "Do que estou falando?!?",
       "quality": "untranslated_fallback",
       "source": "text.pillai_quest_shop"
     },
     {
       "key": "npc.pillai_quest_shop.name",
-      "text": "Pillai Quest Shop",
+      "text": "Loja de Missões de Pillai",
       "quality": "untranslated_fallback",
       "source": "text.pillai_quest_shop"
     },
@@ -15930,43 +15930,43 @@
     },
     {
       "key": "npc.puzzleking.chat.1",
-      "text": "8ÂÌjÐð®¬µÄÁÄ½çACeÉð·µÄ °éæB",
+      "text": "Se completar os 8 fragmentos e trazê-los para mim, eu os trocarei por um item.",
       "quality": "untranslated_fallback",
       "source": "text.puzzleking"
     },
     {
       "key": "npc.puzzleking.chat.2",
-      "text": "71úÜÅÒÁÄé©çA»ÌÜÅG¿ðÁÄ«Ä­êB",
+      "text": "Esperarei até 1º de julho. Traga os desenhos até lá.",
       "quality": "untranslated_fallback",
       "source": "text.puzzleking"
     },
     {
       "key": "npc.puzzleking.chat.3",
-      "text": "r[ÌG¿ÍíÞÆð·Å«éµA}¤ÌG¿ÆÍhïªð·Å«éæB",
+      "text": "O desenho de cerveja pode ser trocado por armas; o desenho de edamame pode ser trocado por equipamentos defensivos.",
       "quality": "untranslated_fallback",
       "source": "text.puzzleking"
     },
     {
       "key": "npc.puzzleking.chat.4",
-      "text": "Ü¾Ü¾«èÈ¢¥¥¥71úÜÅ¾©çàÁÆàÁÆÁÄ¢I",
+      "text": "Ainda não é suficiente... Você tem até 1º de julho, então traga muito mais!",
       "quality": "untranslated_fallback",
       "source": "text.puzzleking"
     },
     {
       "key": "npc.puzzleking.name",
-      "text": "LOzs[",
+      "text": "Rei Hopi",
       "quality": "untranslated_fallback",
       "source": "text.puzzleking"
     },
     {
       "key": "npc.quest.chat.1",
-      "text": "NGXgðTµÄ¢éÌ©H",
+      "text": "Está procurando uma missão?",
       "quality": "untranslated_fallback",
       "source": "text.quest"
     },
     {
       "key": "npc.quest.name",
-      "text": "¸´½ÄÏ½À°",
+      "text": "Mestre de Missões",
       "quality": "untranslated_fallback",
       "source": "text.quest"
     },
@@ -15978,13 +15978,13 @@
     },
     {
       "key": "npc.quest_de_tier.name",
-      "text": "Ricarten Quest Shop, Wanda",
+      "text": "Wanda, Loja de Missões de Ricarten",
       "quality": "untranslated_fallback",
       "source": "text.quest_de_tier"
     },
     {
       "key": "npc.ray.chat.1",
-      "text": "What im talking?!?",
+      "text": "Do que estou falando?!?",
       "quality": "untranslated_fallback",
       "source": "text.ray"
     },
@@ -15996,7 +15996,7 @@
     },
     {
       "key": "npc.real_clanmaster.chat.1",
-      "text": "Você poderá configurar o Símbolo e a Frase do clan em nosso site.",
+      "text": "Eu sou o responsável por toda a atividade relacionada aos Clãs.",
       "quality": "untranslated_fallback",
       "source": "text.real_clanmaster"
     },
@@ -16020,7 +16020,7 @@
     },
     {
       "key": "npc.real_clanmaster.name",
-      "text": "Mestre dos Clans",
+      "text": "Mestre dos Clãs",
       "quality": "untranslated_fallback",
       "source": "text.real_clanmaster"
     },
@@ -16266,7 +16266,7 @@
     },
     {
       "key": "npc.ricarden_imbue.chat.1",
-      "text": "A Mixagem não é somente eficiente. Ela é o meio mais seguro de melhorar o desempenho de seus itens...",
+      "text": "Qual é o objetivo da combinação? Você melhorará o desempenho de seus itens por um processo sem riscos, diferente do aprimoramento, em que um item pode ser perdido.",
       "quality": "untranslated_fallback",
       "source": "text.ricarden_imbue"
     },
@@ -16386,19 +16386,19 @@
     },
     {
       "key": "npc.ricio.chat.1",
-      "text": "Runestones can be equipped to drill holes of the same color.",
+      "text": "Pedras Rúnicas podem ser encaixadas em perfurações da mesma cor.",
       "quality": "untranslated_fallback",
       "source": "text.ricio"
     },
     {
       "key": "npc.ricio.chat.2",
-      "text": "Runestones can be found all over the world of Priston, but the best are in Secret Labratory and Ancient Weapon!",
+      "text": "Pedras Rúnicas podem ser encontradas por todo o mundo de Priston, mas as melhores estão no Laboratório Secreto e na Arma Antiga!",
       "quality": "untranslated_fallback",
       "source": "text.ricio"
     },
     {
       "key": "npc.ricio.chat.3",
-      "text": "Runestones add different abilities to your equipment.",
+      "text": "Pedras Rúnicas concedem diferentes habilidades aos seus equipamentos.",
       "quality": "untranslated_fallback",
       "source": "text.ricio"
     },
@@ -16410,19 +16410,19 @@
     },
     {
       "key": "npc.rosemari.chat.1",
-      "text": "ÁÊCxgÅ|CgðÏÝ§Äé±ÆªÅ«éíæB³ `|CgðWßÄÜiàá¦éíæB",
+      "text": "Em eventos especiais você pode acumular Pontos-Estrela. Junte-os e troque por prêmios!",
       "quality": "untranslated_fallback",
       "source": "text.rosemari"
     },
     {
       "key": "npc.rosemari.chat.2",
-      "text": "|CgÍ{¨Ì¤iÆð·Å«é{[iX|CgT[rXÅ·BÚµ­Íö®z[y[WðQlµÄ­¾³¢ËB",
+      "text": "Pontos-Estrela são pontos de bônus que podem ser trocados por produtos. Consulte o site oficial para mais detalhes.",
       "quality": "untranslated_fallback",
       "source": "text.rosemari"
     },
     {
       "key": "npc.rosemari.name",
-      "text": "ƒCƒxƒ“ƒgƒMƒƒƒ‹",
+      "text": "Garota do Evento",
       "quality": "untranslated_fallback",
       "source": "text.rosemari"
     },
@@ -16512,7 +16512,7 @@
     },
     {
       "key": "npc.ruiden_magic.name",
-      "text": "2a Loja do Maron",
+      "text": "2ª Loja do Maron",
       "quality": "untranslated_fallback",
       "source": "text.ruiden_magic"
     },
@@ -16566,31 +16566,31 @@
     },
     {
       "key": "npc.salon.name",
-      "text": "PasseDeBatalha",
+      "text": "Passe de Batalha",
       "quality": "untranslated_fallback",
       "source": "text.nadia"
     },
     {
       "key": "npc.sanc_guard.chat.1",
-      "text": "See the place behind you? This is   Kelvezu's Lair! I doubt you will    survive in there!",
+      "text": "Está vendo o lugar atrás de você? É o Covil de Kelvezu! Duvido que consiga sobreviver lá dentro!",
       "quality": "untranslated_fallback",
       "source": "text.sanc_guard"
     },
     {
       "key": "npc.sanc_guard.chat.2",
-      "text": "Kelvezu is a fearsome monster with  incredible attack power. You're not gonna survive with your current     defense power from the most furious monster ever!!",
+      "text": "Kelvezu é um monstro terrível, com um poder de ataque incrível. Com sua defesa atual, você não sobreviverá à criatura mais feroz do covil!",
       "quality": "untranslated_fallback",
       "source": "text.sanc_guard"
     },
     {
       "key": "npc.sanc_guard.chat.3",
-      "text": "Listen! for now, it's not too much to say that Kelvezu is the invincible one living in the Lair!!",
+      "text": "Escute! Não é exagero dizer que Kelvezu é praticamente invencível dentro do covil!",
       "quality": "untranslated_fallback",
       "source": "text.sanc_guard"
     },
     {
       "key": "npc.sanc_guard.name",
-      "text": "Sanctuary Guard",
+      "text": "Guarda do Santuário",
       "quality": "untranslated_fallback",
       "source": "text.sanc_guard"
     },
@@ -16608,7 +16608,7 @@
     },
     {
       "key": "npc.sheltom_shop_moriph_s_son.name",
-      "text": "Tigrinho Coins",
+      "text": "Moedas do Tigrinho",
       "quality": "untranslated_fallback",
       "source": "text.sheltom_shop_moriph_s_son"
     },
@@ -16632,19 +16632,19 @@
     },
     {
       "key": "npc.shunter.chat.1",
-      "text": "All the snakes that I captured has escaped",
+      "text": "Todas as cobras que capturei escaparam.",
       "quality": "translated",
       "source": "text.shunter"
     },
     {
       "key": "npc.shunter.chat.2",
-      "text": "Black snakes have strong power we never knew.",
+      "text": "As cobras negras têm um poder muito maior do que imaginávamos.",
       "quality": "translated",
       "source": "text.shunter"
     },
     {
       "key": "npc.shunter.name",
-      "text": "Snake Hunter",
+      "text": "Serpente Caçador",
       "quality": "translated",
       "source": "text.shunter"
     },
@@ -16662,25 +16662,25 @@
     },
     {
       "key": "npc.sillverwolverin.name",
-      "text": "Wolverine de Prata",
+      "text": "Carcaju de Prata",
       "quality": "untranslated_fallback",
       "source": "text.sillverwolverin"
     },
     {
       "key": "npc.skadi.chat.1",
-      "text": "Hello! I'm Scady who has traveled all over the Priston continent.",
+      "text": "Olá! Sou Skadi e viajei por todo o continente de Priston.",
       "quality": "untranslated_fallback",
       "source": "text.skadi.path_2d56f97915"
     },
     {
       "key": "npc.skadi.chat.2",
-      "text": "I was born from a traveler family with a twin. I'm doing volunteer work at the village during this dangerous time.",
+      "text": "Nasci em uma família de viajantes e tenho um irmão gêmeo. Nestes tempos perigosos, faço trabalho voluntário na vila.",
       "quality": "untranslated_fallback",
       "source": "text.skadi.path_2d56f97915"
     },
     {
       "key": "npc.skadi.chat.3",
-      "text": "Could you please say 'Hello' to my younger brother? ^0^",
+      "text": "Pode dizer 'olá' ao meu irmão mais novo por mim? ^0^",
       "quality": "untranslated_fallback",
       "source": "text.skadi.path_2d56f97915"
     },
@@ -16698,7 +16698,7 @@
     },
     {
       "key": "npc.soccerfan.name",
-      "text": "Soccerfan",
+      "text": "Torcedor",
       "quality": "untranslated_fallback",
       "source": "text.soccerfan"
     },
@@ -16710,13 +16710,13 @@
     },
     {
       "key": "npc.soccerfan_nego_ney.name",
-      "text": "Soccerfan",
+      "text": "Torcedor",
       "quality": "untranslated_fallback",
       "source": "text.soccerfan_nego_ney"
     },
     {
       "key": "npc.sod_01.chat.1",
-      "text": "Está preparado para a competição?",
+      "text": "Eu levarei você ao Sobreviver ou Morrer (SoD)!",
       "quality": "untranslated_fallback",
       "source": "text.sod_01"
     },
@@ -16740,7 +16740,7 @@
     },
     {
       "key": "npc.sod_02.chat.1",
-      "text": "Está preparado para a competição?",
+      "text": "Eu levarei você ao Sobreviver ou Morrer (SoD)!",
       "quality": "untranslated_fallback",
       "source": "text.sod_02"
     },
@@ -16764,7 +16764,7 @@
     },
     {
       "key": "npc.sod_03.chat.1",
-      "text": "Está preparado para a competição?",
+      "text": "Eu levarei você ao Sobreviver ou Morrer (SoD)!",
       "quality": "untranslated_fallback",
       "source": "text.sod_03"
     },
@@ -16788,7 +16788,7 @@
     },
     {
       "key": "npc.sod_04.chat.1",
-      "text": "Está preparado para a competição?",
+      "text": "Eu levarei você ao Sobreviver ou Morrer (SoD)!",
       "quality": "untranslated_fallback",
       "source": "text.sod_04"
     },
@@ -16836,85 +16836,85 @@
     },
     {
       "key": "npc.sod_buma.chat.1",
-      "text": " ÁI@©È¢ÅEESzSz",
+      "text": "Ei! Não bata em mim... cof, cof!",
       "quality": "untranslated_fallback",
       "source": "text.sod_buma"
     },
     {
       "key": "npc.sod_buma.chat.2",
-      "text": "SODÍúé¾¯¾¯Å·BÔðçÁÄ­¾³¢B",
+      "text": "O SoD acontece todos os dias ao amanhecer. Respeite o horário.",
       "quality": "untranslated_fallback",
       "source": "text.sod_buma"
     },
     {
       "key": "npc.sod_buma.chat.3",
-      "text": "SODÅ¾½XRAÍãÅÜàÆµÄl¾Å«éÌÅnCXRAð_ÁÄ­¾³¢B",
+      "text": "A pontuação obtida no SoD pode ser convertida em prêmio depois. Tente alcançar a maior pontuação!",
       "quality": "untranslated_fallback",
       "source": "text.sod_buma"
     },
     {
       "key": "npc.sod_buma.chat.4",
-      "text": "SOD£ZêÌüêÌÛAxÉæé§Àª é©ç}¢Å­¾³¢B",
+      "text": "A entrada na arena do SoD possui restrições de nível. Prepare-se com antecedência.",
       "quality": "untranslated_fallback",
       "source": "text.sod_buma"
     },
     {
       "key": "npc.sod_buma.name",
-      "text": "ƒuƒ}",
+      "text": "Buma",
       "quality": "untranslated_fallback",
       "source": "text.sod_buma"
     },
     {
       "key": "npc.sod_goblin.chat.1",
-      "text": "êñÉÀñÅüêµÄ­¾³¢B",
+      "text": "Entre em fila, por favor.",
       "quality": "untranslated_fallback",
       "source": "text.sod_goblin"
     },
     {
       "key": "npc.sod_goblin.chat.2",
-      "text": "»±ÌèÝµÄéûI½Å·©H¿áñÆÀñÅ­¾³¢æB",
+      "text": "Ei, você aí furando a fila! O que está fazendo? Entre na fila direito.",
       "quality": "untranslated_fallback",
       "source": "text.sod_goblin"
     },
     {
       "key": "npc.sod_goblin.chat.3",
-      "text": "SODÍúé¾¯Å·BÔðçÁÄ­¾³¢B",
+      "text": "O SoD acontece todos os dias ao amanhecer. Respeite o horário.",
       "quality": "untranslated_fallback",
       "source": "text.sod_goblin"
     },
     {
       "key": "npc.sod_goblin.chat.4",
-      "text": "SODÅ¾½XRAÍãÅÜàÆµÄl¾Å«Ü·ÌÅnCXRAð_ÁÄ­¾³¢B",
+      "text": "A pontuação obtida no SoD pode ser convertida em prêmio depois. Tente alcançar a maior pontuação!",
       "quality": "untranslated_fallback",
       "source": "text.sod_goblin"
     },
     {
       "key": "npc.sod_goblin.chat.5",
-      "text": "SOD£ZêÌüêÌÛAxÉæé§Àª é©ç}¢Å­¾³¢B",
+      "text": "A entrada na arena do SoD possui restrições de nível. Prepare-se com antecedência.",
       "quality": "untranslated_fallback",
       "source": "text.sod_goblin"
     },
     {
       "key": "npc.sod_goblin.name",
-      "text": "ƒzƒuƒSƒuƒŠƒ“",
+      "text": "Hobgoblin",
       "quality": "untranslated_fallback",
       "source": "text.sod_goblin"
     },
     {
       "key": "npc.soul.chat.1",
-      "text": "Your Majestry. Please listen to me.",
+      "text": "Majestade, por favor, escute-me.",
       "quality": "untranslated_fallback",
       "source": "text.soul"
     },
     {
       "key": "npc.soul.chat.2",
-      "text": "our mission must be completed no matter what.",
+      "text": "Nossa missão precisa ser concluída, custe o que custar.",
       "quality": "untranslated_fallback",
       "source": "text.soul"
     },
     {
       "key": "npc.soul.chat.3",
-      "text": "Please share your strength to us.",
+      "text": "Por favor, compartilhe sua força conosco.",
       "quality": "untranslated_fallback",
       "source": "text.soul"
     },
@@ -16932,13 +16932,13 @@
     },
     {
       "key": "npc.star_girl.name",
-      "text": "Garota Do Ranking",
+      "text": "Garota da Classificação",
       "quality": "untranslated_fallback",
       "source": "text.star_girl"
     },
     {
       "key": "npc.status.chat.1",
-      "text": "Resete todas suas skills e seus pontos de status aqui comigo!",
+      "text": "Redefina todas as suas habilidades e seus pontos de atributos aqui comigo!",
       "quality": "untranslated_fallback",
       "source": "text.status"
     },
@@ -16962,31 +16962,31 @@
     },
     {
       "key": "npc.status.name",
-      "text": "Event Girl",
+      "text": "Garota do Evento",
       "quality": "untranslated_fallback",
       "source": "text.status"
     },
     {
       "key": "npc.t_messenger.chat.1",
-      "text": "How are you? I'm Ian, the messenger of Temskron.",
+      "text": "Como vai? Sou Ian, o mensageiro de Tempskron.",
       "quality": "untranslated_fallback",
       "source": "text.t_messenger"
     },
     {
       "key": "npc.t_messenger.chat.2",
-      "text": "I deliver urgent messages all over the continent.",
+      "text": "Entrego mensagens urgentes por todo o continente.",
       "quality": "untranslated_fallback",
       "source": "text.t_messenger"
     },
     {
       "key": "npc.t_messenger.chat.3",
-      "text": "Currently, all the kingdoms in Priston are under suppressing monsters.",
+      "text": "Atualmente, todos os reinos de Priston estão combatendo os monstros.",
       "quality": "untranslated_fallback",
       "source": "text.t_messenger"
     },
     {
       "key": "npc.t_messenger.chat.4",
-      "text": "There are many powerful monsters out of the village, so be careful.",
+      "text": "Há muitos monstros poderosos fora da vila, então tenha cuidado.",
       "quality": "untranslated_fallback",
       "source": "text.t_messenger"
     },
@@ -16998,19 +16998,19 @@
     },
     {
       "key": "npc.teacher01.chat.1",
-      "text": "Welcome to the world of Prisontale.",
+      "text": "Bem-vindo ao mundo de Priston Tale.",
       "quality": "untranslated_fallback",
       "source": "text.teacher01"
     },
     {
       "key": "npc.teacher01.chat.2",
-      "text": "We will put a spell on you once a day to help you grow up faster.",
+      "text": "Uma vez por dia, lançaremos um encantamento em você para ajudá-lo a evoluir mais rápido.",
       "quality": "untranslated_fallback",
       "source": "text.teacher01"
     },
     {
       "key": "npc.teacher01.name",
-      "text": "Helper Pria",
+      "text": "Ajudante Pria",
       "quality": "untranslated_fallback",
       "source": "text.teacher01"
     },
@@ -17046,7 +17046,7 @@
     },
     {
       "key": "npc.timeshop.chat.1",
-      "text": "Aproveite os time e tune o seu personagem!",
+      "text": "Aproveite seus pontos da Loja de Tempo e aprimore o seu personagem!",
       "quality": "untranslated_fallback",
       "source": "text.timeshop"
     },
@@ -17088,7 +17088,7 @@
     },
     {
       "key": "npc.toolspilai.chat.1",
-      "text": "What im talking?!?",
+      "text": "Do que estou falando?!?",
       "quality": "untranslated_fallback",
       "source": "text.toolspilai"
     },
@@ -17136,31 +17136,31 @@
     },
     {
       "key": "npc.xmasguy.chat.1",
-      "text": "[NX}X[I",
+      "text": "Feliz Natal!",
       "quality": "untranslated_fallback",
       "source": "text.xmasguy"
     },
     {
       "key": "npc.xmasguy.chat.2",
-      "text": "ÝAÝñÈÌ½ßÉc[ðìÁÄ«½ñ¾¯Çc",
+      "text": "Eu fiz uma árvore para todos, mas...",
       "quality": "untranslated_fallback",
       "source": "text.xmasguy"
     },
     {
       "key": "npc.xmasguy.chat.3",
-      "text": "u­êªcÈ©È©©½çÈ¢Èc",
+      "text": "Não consigo encontrar um bom lugar para colocá-la...",
       "quality": "untranslated_fallback",
       "source": "text.xmasguy"
     },
     {
       "key": "npc.xmasguy.chat.4",
-      "text": "±ñÈ±Æ¾Á½çc¬ÅÔçÔçµÄÈ¢Å^®ÅàâÁÆ¯ÎÇ©Á½c",
+      "text": "Se eu soubesse que seria assim, teria me exercitado em vez de ficar andando pela cidade...",
       "quality": "untranslated_fallback",
       "source": "text.xmasguy"
     },
     {
       "key": "npc.xmasguy.name",
-      "text": "­«Ò{[",
+      "text": "Rombo, o Trabalhador",
       "quality": "untranslated_fallback",
       "source": "text.xmasguy"
     },
@@ -17346,7 +17346,7 @@
     },
     {
       "key": "npc.zarad_o_elengante.chat.1",
-      "text": " EPT e Muito Divertido",
+      "text": "EPT e Muito Divertido",
       "quality": "untranslated_fallback",
       "source": "text.zarad_o_elengante"
     },

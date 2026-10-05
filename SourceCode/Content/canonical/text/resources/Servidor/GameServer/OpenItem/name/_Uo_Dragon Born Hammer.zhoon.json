@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Dragon Bone Hammer"
+        "text": "Martelo de Osso de Dragão"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9VV0gxMjFfRHJhZ29uIEJvbmUgSGFtbWVyLnR4dA0KDQoqSl9OYW1lCQkiRHJhZ29uIEJvbmUgSGFtbWVyIg0K"
+    "legacy_payload_base64": "Ly9VV0gxMjFfRHJhZ29uIEJvbmUgSGFtbWVyLnR4dA0KDQoqSl9OYW1lCQkiTWFydGVsbyBkZSBPc3NvIGRlIERyYWfjbyINCg=="
   }
 }

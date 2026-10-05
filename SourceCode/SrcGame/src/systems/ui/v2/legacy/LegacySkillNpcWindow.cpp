@@ -16,10 +16,10 @@ namespace
 std::string LegacyToUtf8(const char* text)
 {
     if (!text || !*text) return {};
-    const int wideLen = MultiByteToWideChar(CP_ACP, 0, text, -1, nullptr, 0);
+    const int wideLen = MultiByteToWideChar(1252, 0, text, -1, nullptr, 0);
     if (wideLen <= 1) return text;
     std::vector<wchar_t> wide(static_cast<std::size_t>(wideLen));
-    MultiByteToWideChar(CP_ACP, 0, text, -1, wide.data(), wideLen);
+    MultiByteToWideChar(1252, 0, text, -1, wide.data(), wideLen);
     const int utfLen = WideCharToMultiByte(CP_UTF8, 0, wide.data(), -1, nullptr, 0, nullptr, nullptr);
     if (utfLen <= 1) return text;
     std::string out(static_cast<std::size_t>(utfLen), '\0');

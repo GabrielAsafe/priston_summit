@@ -19,7 +19,7 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Wolverine Dourado"
+        "text": "Carcaju de Ouro"
       },
       {
         "line": 3,
@@ -37,6 +37,6 @@
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRQkJIldvbHZlcmluZSBEb3VyYWRvIg0KDQoqSl9DSEFUCQkiR3JycnJyLi4uIGdycnJycnIuLi4iDQoqSl9DSEFUCQkiVXJyLi4gdXJycnJycnJyci4uIHVycnIuLi4iDQo="
+    "legacy_payload_base64": "KkpfTkFNRQkJIkNhcmNhanUgZGUgT3VybyINCg0KKkpfQ0hBVAkJIkdycnJyci4uLiBncnJycnJyLi4uIg0KKkpfQ0hBVAkJIlVyci4uIHVycnJycnJycnIuLiB1cnJyLi4uIg0K"
   }
 }

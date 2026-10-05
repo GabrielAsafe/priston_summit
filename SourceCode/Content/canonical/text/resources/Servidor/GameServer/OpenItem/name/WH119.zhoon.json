@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Martelo Archon"
+        "text": "Martelo Arconte"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRSAiTWFydGVsbyBBcmNob24i"
+    "legacy_payload_base64": "KkpfTkFNRSAiTWFydGVsbyBBcmNvbnRlIg=="
   }
 }

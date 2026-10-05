@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Dion's Bow"
+        "text": "Arco de Dion's"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTmFtZQkJIkRpb24ncyBCb3ci"
+    "legacy_payload_base64": "KkpfTmFtZQkJIkFyY28gZGUgRGlvbidzIg=="
   }
 }

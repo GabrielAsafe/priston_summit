@@ -6,37 +6,37 @@
   "entries": [
     {
       "key": "npc.navisko_warehouse.chat.1",
-      "text": "不要指望我會提供免費服務。",
+      "text": "Este trabalho também é cansativo... Passe por aqui só de vez em quando!",
       "quality": "translated",
       "source": "text.navisko_warehouse"
     },
     {
       "key": "npc.navisko_warehouse.name",
-      "text": "倉庫管理員",
+      "text": "Mif, Guardi緌 do Armaz幦",
       "quality": "translated",
       "source": "text.navisko_warehouse"
     },
     {
       "key": "npc.ricarden_civilian2.chat.1",
-      "text": "先前發現的古代監獄已經變成了怪物的巢穴，國王已經下令要消滅它們。",
+      "text": "Ultimamente muitos guerreiros t瘱 conseguido armas e armaduras no mercado negro. Sempre fico incomodado quando ou蔞 isso... e acabo me intrometendo!",
       "quality": "translated",
       "source": "text.ricarden_civilian2"
     },
     {
       "key": "npc.ricarden_civilian2.name",
-      "text": "愛管閒事的凱丁",
+      "text": "Galdin, o Intrometido",
       "quality": "translated",
       "source": "text.ricarden_civilian2"
     },
     {
       "key": "npc.ricarden_civilian3.chat.1",
-      "text": "沿著樹林往前走有一個怪獸出沒的小山丘，我很害怕。",
+      "text": "Ah! Dizem que os monstros est緌 ficando cada vez mais fortes. Preciso encontrar uma nova forma de ca諃-los... O que devo fazer?",
       "quality": "translated",
       "source": "text.ricarden_civilian3"
     },
     {
       "key": "npc.ricarden_civilian3.name",
-      "text": "苦惱的扎昆",
+      "text": "Jacon, o Preocupado",
       "quality": "translated",
       "source": "text.ricarden_civilian3"
     },

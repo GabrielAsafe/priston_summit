@@ -19,18 +19,18 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "~X^[u}"
+        "text": "Mestre Buma"
       },
       {
         "line": 3,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "íµÌ±ÆÍNÌVË'~X^[u}³Ü'ÆÅàÄñÅ­ê¢IÓ§ÁÓ§ÁÓ§"
+        "text": "Pode me chamar de 'Mestre Buma', o gênio dos clãs! Ho ho ho!"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRQkJIoN+g1iDXoFbg3WDfSINCg0KKkpfQ0hBVAkJIoLtgrWCzIKxgsaCzYNOg4mDk4LMk1aNyyeDfoNYg16BW4N1g32Cs4LcJ4LGgsWC4IzEgvGCxYKtguqCooFJgtOCp4LBgtOCp4LBgtOCpyI="
+    "legacy_payload_base64": "KkpfTkFNRQkJIk1lc3RyZSBCdW1hIg0KDQoqSl9DSEFUCQkiUG9kZSBtZSBjaGFtYXIgZGUgJ01lc3RyZSBCdW1hJywgbyBn6m5pbyBkb3MgY2zjcyEgSG8gaG8gaG8hIg=="
   }
 }

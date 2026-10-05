@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Mestre do Aging E"
+        "text": "Mestre do Aprimoramento E"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRSAiTWVzdHJlIGRvIEFnaW5nIEUi"
+    "legacy_payload_base64": "KkpfTkFNRSAiTWVzdHJlIGRvIEFwcmltb3JhbWVudG8gRSI="
   }
 }

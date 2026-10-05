@@ -19,18 +19,18 @@
         "line": 3,
         "legacy_key": "T_NAME",
         "kind": "name",
-        "text": "쵽큢ずㅳ³"
+        "text": "Jacon, o Preocupado"
       },
       {
         "line": 4,
         "legacy_key": "T_CHAT",
         "kind": "chat",
-        "text": "ªuµÛ¾ðªL©¹«e¨«¦³¤@­Ó©ÇÃ~¥X¨Sªº¤p¤s¥C¡A§Ú«Ü®`©È¡C"
+        "text": "Ah! Dizem que os monstros estão ficando cada vez mais fortes. Preciso encontrar uma nova forma de caçá-los... O que devo fazer?"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9yaWNhcmRlbi1jaXZpbGlhbjMubnBjDQoNCipUX05BTUUJCSKtV7Rvqrqk46n4Ig0KKlRfQ0hBVAkJIqp1tdu+8KpMqbmrZairprOkQK3TqcfDfqVYqFOquqRwpHOlQ6FBp9qr3K5gqcihQyINCg0KDQo="
+    "legacy_payload_base64": "Ly9yaWNhcmRlbi1jaXZpbGlhbjMubnBjDQoNCipUX05BTUUJCSJKYWNvbiwgbyBQcmVvY3VwYWRvIg0KKlRfQ0hBVAkJIkFoISBEaXplbSBxdWUgb3MgbW9uc3Ryb3MgZXN0428gZmljYW5kbyBjYWRhIHZleiBtYWlzIGZvcnRlcy4gUHJlY2lzbyBlbmNvbnRyYXIgdW1hIG5vdmEgZm9ybWEgZGUgY2Hn4S1sb3MuLi4gTyBxdWUgZGV2byBmYXplcj8iDQoNCg0K"
   }
 }

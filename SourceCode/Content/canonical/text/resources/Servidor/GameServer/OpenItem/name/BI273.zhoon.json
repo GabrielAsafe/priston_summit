@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Aging Direto +10"
+        "text": "Aprimoramento Direto +10"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRSAiQWdpbmcgRGlyZXRvICsxMCI="
+    "legacy_payload_base64": "KkpfTkFNRSAiQXByaW1vcmFtZW50byBEaXJldG8gKzEwIg=="
   }
 }

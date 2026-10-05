@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "E_NAME",
         "kind": "name",
-        "text": "Tatanka Phantom"
+        "text": "Fantasma de Tatanka"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly8yX1dOMTA5LnR4dA0KDQoqRV9OQU1FCQkiVGF0YW5rYSBQaGFudG9tIg0K"
+    "legacy_payload_base64": "Ly8yX1dOMTA5LnR4dA0KDQoqRV9OQU1FCQkiRmFudGFzbWEgZGUgVGF0YW5rYSINCg=="
   }
 }

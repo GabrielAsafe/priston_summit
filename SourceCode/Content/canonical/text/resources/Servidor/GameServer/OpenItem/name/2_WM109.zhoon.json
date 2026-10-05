@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Ghost"
+        "text": "Fantasma"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly8yX1dNMTA5LnR4dA0KDQoqSl9OYW1lCQkiR2hvc3QiDQo="
+    "legacy_payload_base64": "Ly8yX1dNMTA5LnR4dA0KDQoqSl9OYW1lCQkiRmFudGFzbWEiDQo="
   }
 }

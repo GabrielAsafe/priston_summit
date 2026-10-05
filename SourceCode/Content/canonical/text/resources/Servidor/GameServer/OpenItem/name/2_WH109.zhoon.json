@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Meteorite"
+        "text": "Meteorito"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly8yX1dIMTA5LnR4dA0KDQoqSl9OYW1lCQkiTWV0ZW9yaXRlIg0K"
+    "legacy_payload_base64": "Ly8yX1dIMTA5LnR4dA0KDQoqSl9OYW1lCQkiTWV0ZW9yaXRvIg0K"
   }
 }

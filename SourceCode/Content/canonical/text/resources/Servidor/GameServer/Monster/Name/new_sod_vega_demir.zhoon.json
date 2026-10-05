@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "SoD Vega Demir"
+        "text": "Vega Demir do SoD"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRQkJCSJTb0QgVmVnYSBEZW1pciINCg=="
+    "legacy_payload_base64": "KkpfTkFNRQkJCSJWZWdhIERlbWlyIGRvIFNvRCINCg=="
   }
 }

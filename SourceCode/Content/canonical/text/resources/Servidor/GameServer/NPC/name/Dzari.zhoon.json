@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Princess Dzari"
+        "text": "Princesa Dzari"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9EemFyaS5ucGMNCg0KKkpfTkFNRQkJIlByaW5jZXNzIER6YXJpIg0KDQo="
+    "legacy_payload_base64": "Ly9EemFyaS5ucGMNCg0KKkpfTkFNRQkJIlByaW5jZXNhIER6YXJpIg0KDQo="
   }
 }

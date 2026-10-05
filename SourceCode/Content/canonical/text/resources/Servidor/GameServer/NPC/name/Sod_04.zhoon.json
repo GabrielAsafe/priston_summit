@@ -31,7 +31,7 @@
         "line": 9,
         "legacy_key": "J_Chat",
         "kind": "chat",
-        "text": "Eu te levarei para o Survival or Die!"
+        "text": "Eu levarei você ao Sobreviver ou Morrer (SoD)!"
       },
       {
         "line": 11,
@@ -43,6 +43,6 @@
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9Tb2RfMDQuTlBDDQoNCg0KKkpfTmFtZQkiTm9hcyINCg0KDQoqSl9DaGF0CSJFc3ThIHByZXBhcmFkbyBwYXJhIGEgY29tcGV0aefjbz8iDQoNCipKX0NoYXQJIkV1IHRlIGxldmFyZWkgcGFyYSBvIFN1cnZpdmFsIG9yIERpZSEiDQoNCipKX0NoYXQJIkJvYSBzb3J0ZSBwYXJhIHNvYnJldml2ZXIsIHZhaSBwcmVjaXNhciEiDQoNCg=="
+    "legacy_payload_base64": "Ly9Tb2RfMDQuTlBDDQoNCg0KKkpfTmFtZQkiTm9hcyINCg0KDQoqSl9DaGF0CSJFdSBsZXZhcmVpIHZvY+ogYW8gU29icmV2aXZlciBvdSBNb3JyZXIgKFNvRCkhIg0KDQoqSl9DaGF0CSJFdSB0ZSBsZXZhcmVpIHBhcmEgbyBTdXJ2aXZhbCBvciBEaWUhIg0KDQoqSl9DaGF0CSJCb2Egc29ydGUgcGFyYSBzb2JyZXZpdmVyLCB2YWkgcHJlY2lzYXIhIg0KDQo="
   }
 }

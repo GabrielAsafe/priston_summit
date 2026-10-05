@@ -19,7 +19,7 @@
         "line": 4,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Ricarten Quest Shop, Wanda"
+        "text": "Wanda, Loja de Missões de Ricarten"
       },
       {
         "line": 7,
@@ -31,6 +31,6 @@
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9RdWVzdCBEZSBUaWVyLk5QQw0KDQoNCipKX05hbWUJIlJpY2FydGVuIFF1ZXN0IFNob3AsIFdhbmRhIg0KDQoNCipKX0NoYXQJIkVzdG91IGFxdWkgcGFyYSBhdXhpbGlhciBlbSBzZXVzIGRlc2FmaW9zISINCg0K"
+    "legacy_payload_base64": "Ly9RdWVzdCBEZSBUaWVyLk5QQw0KDQoNCipKX05hbWUJIldhbmRhLCBMb2phIGRlIE1pc3P1ZXMgZGUgUmljYXJ0ZW4iDQoNCg0KKkpfQ2hhdAkiRXN0b3UgYXF1aSBwYXJhIGF1eGlsaWFyIGVtIHNldXMgZGVzYWZpb3MhIg0KDQo="
   }
 }

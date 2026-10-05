@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "SoD Heavy Goblin"
+        "text": "Duende Pesado do SoD"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRQkJCSJTb0QgSGVhdnkgR29ibGluIg0K"
+    "legacy_payload_base64": "KkpfTkFNRQkJCSJEdWVuZGUgUGVzYWRvIGRvIFNvRCINCg=="
   }
 }

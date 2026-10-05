@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Pacote de UP 1d"
+        "text": "Pacote de Aprimoramento 1d"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRSAiUGFjb3RlIGRlIFVQIDFkIg=="
+    "legacy_payload_base64": "KkpfTkFNRSAiUGFjb3RlIGRlIEFwcmltb3JhbWVudG8gMWQi"
   }
 }

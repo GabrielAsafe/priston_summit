@@ -19,30 +19,30 @@
         "line": 3,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Lake Guard"
+        "text": "Guarda do Lago"
       },
       {
         "line": 5,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "This area is open for the warriors  who are approved by the kingdom.    Stay back it's very dangerous."
+        "text": "Esta área é aberta apenas a guerreiros aprovados pelo Reino. Afaste-se; é muito perigoso."
       },
       {
         "line": 6,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "Warriors at level 70 may pass here."
+        "text": "Guerreiros de nível 70 ou superior podem passar por aqui."
       },
       {
         "line": 7,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "We prohibit this area because there are very dangerous monsters."
+        "text": "Restringimos esta área porque há monstros muito perigosos aqui."
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9sYWtpX2d1YXJkLm5wYw0KDQoqSl9OQU1FCQkiTGFrZSBHdWFyZCINCg0KKkpfQ0hBVAkJIlRoaXMgYXJlYSBpcyBvcGVuIGZvciB0aGUgd2FycmlvcnMgIHdobyBhcmUgYXBwcm92ZWQgYnkgdGhlIGtpbmdkb20uICAgIFN0YXkgYmFjayBpdCdzIHZlcnkgZGFuZ2Vyb3VzLiINCipKX0NIQVQJCSJXYXJyaW9ycyBhdCBsZXZlbCA3MCBtYXkgcGFzcyBoZXJlLiINCipKX0NIQVQJCSJXZSBwcm9oaWJpdCB0aGlzIGFyZWEgYmVjYXVzZSB0aGVyZSBhcmUgdmVyeSBkYW5nZXJvdXMgbW9uc3RlcnMuIg=="
+    "legacy_payload_base64": "Ly9sYWtpX2d1YXJkLm5wYw0KDQoqSl9OQU1FCQkiR3VhcmRhIGRvIExhZ28iDQoNCipKX0NIQVQJCSJFc3RhIOFyZWEg6SBhYmVydGEgYXBlbmFzIGEgZ3VlcnJlaXJvcyBhcHJvdmFkb3MgcGVsbyBSZWluby4gQWZhc3RlLXNlOyDpIG11aXRvIHBlcmlnb3NvLiINCipKX0NIQVQJCSJHdWVycmVpcm9zIGRlIG7tdmVsIDcwIG91IHN1cGVyaW9yIHBvZGVtIHBhc3NhciBwb3IgYXF1aS4iDQoqSl9DSEFUCQkiUmVzdHJpbmdpbW9zIGVzdGEg4XJlYSBwb3JxdWUgaOEgbW9uc3Ryb3MgbXVpdG8gcGVyaWdvc29zIGFxdWkuIg=="
   }
 }

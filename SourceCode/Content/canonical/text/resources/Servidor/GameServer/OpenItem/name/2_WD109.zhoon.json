@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "E_NAME",
         "kind": "name",
-        "text": "Platinum Dagger"
+        "text": "Adaga de Platina"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly8yX1dEMTA5LnR4dA0KDQoqRV9OQU1FCQkiUGxhdGludW0gRGFnZ2VyIg0K"
+    "legacy_payload_base64": "Ly8yX1dEMTA5LnR4dA0KDQoqRV9OQU1FCQkiQWRhZ2EgZGUgUGxhdGluYSINCg=="
   }
 }

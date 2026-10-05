@@ -19,7 +19,7 @@
         "line": 4,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "PasseDeBatalha"
+        "text": "Passe de Batalha"
       },
       {
         "line": 7,
@@ -31,6 +31,6 @@
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9OYWRpYS5OUEMNCg0KDQoqSl9OYW1lCSJQYXNzZURlQmF0YWxoYSINCg0KDQoqSl9DaGF0CSJPYnJpZ2FkbyBwb3Igam9nYXIgU3VtbWl0IFRhbGUgPSkiDQoNCg=="
+    "legacy_payload_base64": "Ly9OYWRpYS5OUEMNCg0KDQoqSl9OYW1lCSJQYXNzZSBkZSBCYXRhbGhhIg0KDQoNCipKX0NoYXQJIk9icmlnYWRvIHBvciBqb2dhciBTdW1taXQgVGFsZSA9KSINCg0K"
   }
 }

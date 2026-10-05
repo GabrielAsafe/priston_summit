@@ -22,11 +22,11 @@ void Border(IUIRenderer& r, const Rect& rect, Color color)
 
 NumericInputOverlay::NumericInputOverlay(UIId id) : Container(id)
 {
-    auto& primary = AddChild<Button>(id == InvalidUIId ? InvalidUIId : id + 1, "Gold");
+    auto& primary = AddChild<Button>(id == InvalidUIId ? InvalidUIId : id + 1, "Ouro");
     primary.SetOnClick([this](const UIEvent&) { alternateSelected_ = false; RefreshOptionButtons(); });
     primaryOptionButton_ = &primary;
 
-    auto& alternate = AddChild<Button>(id == InvalidUIId ? InvalidUIId : id + 2, "Coins");
+    auto& alternate = AddChild<Button>(id == InvalidUIId ? InvalidUIId : id + 2, "Moedas");
     alternate.SetOnClick([this](const UIEvent&) { alternateSelected_ = true; RefreshOptionButtons(); });
     alternateOptionButton_ = &alternate;
 

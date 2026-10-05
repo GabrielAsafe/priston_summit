@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Orbital Mundane"
+        "text": "Orbital Comum"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRSAiT3JiaXRhbCBNdW5kYW5lIg=="
+    "legacy_payload_base64": "KkpfTkFNRSAiT3JiaXRhbCBDb211bSI="
   }
 }

@@ -25,7 +25,29 @@ inline const char* LocalizationLocale(){
 inline bool LocalizationOverrideEnabled(){return !LocalizationLocaleOverrideStorage().empty()||(std::getenv("SUMMIT_LOCALE")&&*std::getenv("SUMMIT_LOCALE"));}
 
 inline const CompiledLocalizationSource* ActiveLocalizationSource(){
-    struct Holder{std::string path;CompiledLocalizationSource*source;Holder():source(0){const char*configured=LocalizationPackPath();if(configured){path=configured;source=new CompiledLocalizationSource(path.c_str());}}~Holder(){delete source;}};
+    struct Holder{
+        std::string path; CompiledLocalizationSource*source;
+        Holder():source(0){
+            const char*configured=LocalizationPackPath();
+            if(configured && Try(configured)) return;
+            static const char*candidates[]={
+                "Content/packs/localization.sloc",
+                "content/packs/localization.sloc",
+                "packs/localization.sloc",
+                "localization.sloc",
+                "../Content/packs/localization.sloc",
+                "../SourceCode/Content/packs/localization.sloc"
+            };
+            for(std::size_t i=0;i<sizeof(candidates)/sizeof(candidates[0]);++i)
+                if(Try(candidates[i])) return;
+        }
+        bool Try(const char*candidate){
+            CompiledLocalizationSource*next=new CompiledLocalizationSource(candidate);
+            if(next->IsValid()){delete source;source=next;path=candidate;return true;}
+            delete next;return false;
+        }
+        ~Holder(){delete source;}
+    };
     static Holder holder;return holder.source;
 }
 inline bool CompiledLocalizationEnabled(){return ActiveLocalizationSource()!=0;}

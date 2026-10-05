@@ -25,18 +25,18 @@
         "line": 5,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "Happy New Year"
+        "text": "Feliz Ano-Novo!"
       },
       {
         "line": 6,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "If you bring me a dragon capsule, I will exchange with a gift."
+        "text": "Se você me trouxer uma Cápsula de Dragão, eu a trocarei por um presente."
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9iYXVyaW4ubnBjDQoNCipKX05BTUUJCSJCYXVyaW4iDQoNCipKX0NIQVQJCSJIYXBweSBOZXcgWWVhciINCipKX0NIQVQJCSJJZiB5b3UgYnJpbmcgbWUgYSBkcmFnb24gY2Fwc3VsZSwgSSB3aWxsIGV4Y2hhbmdlIHdpdGggYSBnaWZ0LiI="
+    "legacy_payload_base64": "Ly9iYXVyaW4ubnBjDQoNCipKX05BTUUJCSJCYXVyaW4iDQoNCipKX0NIQVQJCSJGZWxpeiBBbm8tTm92byEiDQoqSl9DSEFUCQkiU2Ugdm9j6iBtZSB0cm91eGVyIHVtYSBD4XBzdWxhIGRlIERyYWfjbywgZXUgYSB0cm9jYXJlaSBwb3IgdW0gcHJlc2VudGUuIg=="
   }
 }

@@ -19,30 +19,30 @@
         "line": 3,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Adventurer Skadi"
+        "text": "Aventureiro Skadi"
       },
       {
         "line": 5,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "Hello! I'm Scady who has traveled all over the Priston continent."
+        "text": "Olá! Sou Skadi e viajei por todo o continente de Priston."
       },
       {
         "line": 6,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "I was born from a traveler family with a twin. I'm doing volunteer work at the village during this dangerous time."
+        "text": "Nasci em uma família de viajantes e tenho um irmão gêmeo. Nestes tempos perigosos, faço trabalho voluntário na vila."
       },
       {
         "line": 7,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "Could you please say 'Hello' to my younger brother? ^0^"
+        "text": "Pode dizer 'olá' ao meu irmão mais novo por mim? ^0^"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9Ta2FkaS5ucGMNCg0KKkpfTkFNRQkJIkFkdmVudHVyZXIgU2thZGkiDQoNCipKX0NIQVQJCSJIZWxsbyEgSSdtIFNjYWR5IHdobyBoYXMgdHJhdmVsZWQgYWxsIG92ZXIgdGhlIFByaXN0b24gY29udGluZW50LiIgDQoqSl9DSEFUCQkiSSB3YXMgYm9ybiBmcm9tIGEgdHJhdmVsZXIgZmFtaWx5IHdpdGggYSB0d2luLiBJJ20gZG9pbmcgdm9sdW50ZWVyIHdvcmsgYXQgdGhlIHZpbGxhZ2UgZHVyaW5nIHRoaXMgZGFuZ2Vyb3VzIHRpbWUuIg0KKkpfQ0hBVAkJIkNvdWxkIHlvdSBwbGVhc2Ugc2F5ICdIZWxsbycgdG8gbXkgeW91bmdlciBicm90aGVyPyBeMF4i"
+    "legacy_payload_base64": "Ly9Ta2FkaS5ucGMNCg0KKkpfTkFNRQkJIkF2ZW50dXJlaXJvIFNrYWRpIg0KDQoqSl9DSEFUCQkiT2zhISBTb3UgU2thZGkgZSB2aWFqZWkgcG9yIHRvZG8gbyBjb250aW5lbnRlIGRlIFByaXN0b24uIiANCipKX0NIQVQJCSJOYXNjaSBlbSB1bWEgZmFt7WxpYSBkZSB2aWFqYW50ZXMgZSB0ZW5obyB1bSBpcm3jbyBn6m1lby4gTmVzdGVzIHRlbXBvcyBwZXJpZ29zb3MsIGZh528gdHJhYmFsaG8gdm9sdW504XJpbyBuYSB2aWxhLiINCipKX0NIQVQJCSJQb2RlIGRpemVyICdvbOEnIGFvIG1ldSBpcm3jbyBtYWlzIG5vdm8gcG9yIG1pbT8gXjBeIg=="
   }
 }

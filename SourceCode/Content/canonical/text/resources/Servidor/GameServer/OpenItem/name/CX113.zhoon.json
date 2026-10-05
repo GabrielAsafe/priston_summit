@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Caixa 70 Aging 8"
+        "text": "Caixa 70 Aprimoramento 8"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRSAiQ2FpeGEgNzAgQWdpbmcgOCI="
+    "legacy_payload_base64": "KkpfTkFNRSAiQ2FpeGEgNzAgQXByaW1vcmFtZW50byA4Ig=="
   }
 }

@@ -25,12 +25,12 @@
         "line": 7,
         "legacy_key": "J_Chat",
         "kind": "chat",
-        "text": "What im talking?!?"
+        "text": "Do que estou falando?!?"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9Mb2phIGRlIFBlZHJhcy5OUEMNCg0KDQoqSl9OYW1lCSJMb2phIGRlIFBlZHJhcyINCg0KDQoqSl9DaGF0CSJXaGF0IGltIHRhbGtpbmc/IT8iDQoNCg=="
+    "legacy_payload_base64": "Ly9Mb2phIGRlIFBlZHJhcy5OUEMNCg0KDQoqSl9OYW1lCSJMb2phIGRlIFBlZHJhcyINCg0KDQoqSl9DaGF0CSJEbyBxdWUgZXN0b3UgZmFsYW5kbz8hPyINCg0K"
   }
 }

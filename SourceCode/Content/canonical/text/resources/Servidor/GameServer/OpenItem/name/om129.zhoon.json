@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Aeon Sphere"
+        "text": "Aeon Esfera"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "DQoNCipKX05hbWUJCSJBZW9uIFNwaGVyZSINCg0K"
+    "legacy_payload_base64": "DQoNCipKX05hbWUJCSJBZW9uIEVzZmVyYSINCg0K"
   }
 }

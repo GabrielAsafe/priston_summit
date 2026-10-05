@@ -19,36 +19,36 @@
         "line": 3,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Messenger Ian"
+        "text": "Mensageiro Ian"
       },
       {
         "line": 5,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "How are you? I'm Ian, the messenger of Temskron."
+        "text": "Como vai? Sou Ian, o mensageiro de Tempskron."
       },
       {
         "line": 6,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "I deliver urgent messages all over the continent."
+        "text": "Entrego mensagens urgentes por todo o continente."
       },
       {
         "line": 7,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "Currently, all the kingdoms in Priston are under suppressing monsters."
+        "text": "Atualmente, todos os reinos de Priston estão combatendo os monstros."
       },
       {
         "line": 8,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "There are many powerful monsters out of the village, so be careful."
+        "text": "Há muitos monstros poderosos fora da vila, então tenha cuidado."
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9UX01lc3Nlbmdlci5ucGMNCg0KKkpfTkFNRQkJIk1lc3NlbmdlciBJYW4iDQoNCipKX0NIQVQJCSJIb3cgYXJlIHlvdT8gSSdtIElhbiwgdGhlIG1lc3NlbmdlciBvZiBUZW1za3Jvbi4iIA0KKkpfQ0hBVAkJIkkgZGVsaXZlciB1cmdlbnQgbWVzc2FnZXMgYWxsIG92ZXIgdGhlIGNvbnRpbmVudC4iDQoqSl9DSEFUCQkiQ3VycmVudGx5LCBhbGwgdGhlIGtpbmdkb21zIGluIFByaXN0b24gYXJlIHVuZGVyIHN1cHByZXNzaW5nIG1vbnN0ZXJzLiINCipKX0NIQVQJCSJUaGVyZSBhcmUgbWFueSBwb3dlcmZ1bCBtb25zdGVycyBvdXQgb2YgdGhlIHZpbGxhZ2UsIHNvIGJlIGNhcmVmdWwuIg=="
+    "legacy_payload_base64": "Ly9UX01lc3Nlbmdlci5ucGMNCg0KKkpfTkFNRQkJIk1lbnNhZ2Vpcm8gSWFuIg0KDQoqSl9DSEFUCQkiQ29tbyB2YWk/IFNvdSBJYW4sIG8gbWVuc2FnZWlybyBkZSBUZW1wc2tyb24uIiANCipKX0NIQVQJCSJFbnRyZWdvIG1lbnNhZ2VucyB1cmdlbnRlcyBwb3IgdG9kbyBvIGNvbnRpbmVudGUuIg0KKkpfQ0hBVAkJIkF0dWFsbWVudGUsIHRvZG9zIG9zIHJlaW5vcyBkZSBQcmlzdG9uIGVzdONvIGNvbWJhdGVuZG8gb3MgbW9uc3Ryb3MuIg0KKkpfQ0hBVAkJIkjhIG11aXRvcyBtb25zdHJvcyBwb2Rlcm9zb3MgZm9yYSBkYSB2aWxhLCBlbnTjbyB0ZW5oYSBjdWlkYWRvLiI="
   }
 }

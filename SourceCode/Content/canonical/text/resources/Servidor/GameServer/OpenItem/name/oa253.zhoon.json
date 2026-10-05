@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Support Armlets"
+        "text": "Braçadeiras de Suporte"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTmFtZQkJIlN1cHBvcnQgQXJtbGV0cyI="
+    "legacy_payload_base64": "KkpfTmFtZQkJIkJyYedhZGVpcmFzIGRlIFN1cG9ydGUi"
   }
 }

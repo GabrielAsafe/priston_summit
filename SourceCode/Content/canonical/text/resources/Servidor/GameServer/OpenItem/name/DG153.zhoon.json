@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Support Gloves"
+        "text": "Luvas de Suporte"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTmFtZQkJIlN1cHBvcnQgR2xvdmVzIg=="
+    "legacy_payload_base64": "KkpfTmFtZQkJIkx1dmFzIGRlIFN1cG9ydGUi"
   }
 }

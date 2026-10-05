@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "SoD Unseen"
+        "text": "Invisível do SoD"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRQkJCSJTb0QgVW5zZWVuIg0KDQo="
+    "legacy_payload_base64": "KkpfTkFNRQkJCSJJbnZpc+12ZWwgZG8gU29EIg0KDQo="
   }
 }

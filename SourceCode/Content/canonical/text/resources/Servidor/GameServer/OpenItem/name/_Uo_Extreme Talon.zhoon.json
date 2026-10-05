@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Extreme Talon"
+        "text": "Garra de Extreme"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9VV0MxMjBfRXh0cmVtZSBUYWxvbi50eHQNCg0KKkpfTmFtZQkJIkV4dHJlbWUgVGFsb24iDQo="
+    "legacy_payload_base64": "Ly9VV0MxMjBfRXh0cmVtZSBUYWxvbi50eHQNCg0KKkpfTmFtZQkJIkdhcnJhIGRlIEV4dHJlbWUiDQo="
   }
 }

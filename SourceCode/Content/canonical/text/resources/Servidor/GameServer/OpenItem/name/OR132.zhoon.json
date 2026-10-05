@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Eragon Ring"
+        "text": "Anel de Eragon"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9PUjIwNS50eHQNCg0KKkpfTmFtZQkJIkVyYWdvbiBSaW5nIg0K"
+    "legacy_payload_base64": "Ly9PUjIwNS50eHQNCg0KKkpfTmFtZQkJIkFuZWwgZGUgRXJhZ29uIg0K"
   }
 }

@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "SoD Mummy"
+        "text": "Múmia do SoD"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRQkJCSJTb0QgTXVtbXkiDQo="
+    "legacy_payload_base64": "KkpfTkFNRQkJCSJN+m1pYSBkbyBTb0QiDQo="
   }
 }

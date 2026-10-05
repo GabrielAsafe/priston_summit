@@ -19,18 +19,18 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "볺뤾뙏붛봽덒"
+        "text": "Vendedora de Ingressos"
       },
       {
         "line": 3,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "X^[AÖæ¤±»ÁI"
+        "text": "Bem-vindo ao Covil dos Monstros!"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRQkJIpP8j+qMlJTMlISI9SINCg0KKkpfQ0hBVAkJIoOCg5ODWINegVuRg4xBgtaC5oKkgrGCu4LBgUki"
+    "legacy_payload_base64": "KkpfTkFNRQkJIlZlbmRlZG9yYSBkZSBJbmdyZXNzb3MiDQoNCipKX0NIQVQJCSJCZW0tdmluZG8gYW8gQ292aWwgZG9zIE1vbnN0cm9zISI="
   }
 }

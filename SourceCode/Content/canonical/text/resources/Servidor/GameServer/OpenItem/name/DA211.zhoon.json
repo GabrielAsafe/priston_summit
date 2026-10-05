@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Roupão Arch"
+        "text": "Roupão Arcano"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRSAiUm91cONvIEFyY2gi"
+    "legacy_payload_base64": "KkpfTkFNRSAiUm91cONvIEFyY2FubyI="
   }
 }

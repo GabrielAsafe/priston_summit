@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "SoD Avelin Queen"
+        "text": "Rainha Avelin do SoD"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRQkJCSJTb0QgQXZlbGluIFF1ZWVuIg0K"
+    "legacy_payload_base64": "KkpfTkFNRQkJCSJSYWluaGEgQXZlbGluIGRvIFNvRCINCg=="
   }
 }

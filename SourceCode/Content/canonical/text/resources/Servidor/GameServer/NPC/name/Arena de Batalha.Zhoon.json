@@ -25,12 +25,12 @@
         "line": 7,
         "legacy_key": "J_Chat",
         "kind": "chat",
-        "text": " Summit Tale e Muito Divertido"
+        "text": "Summit Tale e Muito Divertido"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9BcmVuYSBkZSBCYXRhbGhhLk5QQw0KDQoNCipKX05hbWUJIlphcmFkLCBvIEVsZWdhbnRlIg0KDQoNCipKX0NoYXQJIiBTdW1taXQgVGFsZSBlIE11aXRvIERpdmVydGlkbyINCg0K"
+    "legacy_payload_base64": "Ly9BcmVuYSBkZSBCYXRhbGhhLk5QQw0KDQoNCipKX05hbWUJIlphcmFkLCBvIEVsZWdhbnRlIg0KDQoNCipKX0NoYXQJIlN1bW1pdCBUYWxlIGUgTXVpdG8gRGl2ZXJ0aWRvIg0KDQo="
   }
 }

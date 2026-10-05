@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Demon Hunter"
+        "text": "Caçador de Demônios"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly8yX1dBMTA4LnR4dA0KDQoqSl9OYW1lCQkiRGVtb24gSHVudGVyIg0K"
+    "legacy_payload_base64": "Ly8yX1dBMTA4LnR4dA0KDQoqSl9OYW1lCQkiQ2HnYWRvciBkZSBEZW30bmlvcyINCg=="
   }
 }

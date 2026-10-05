@@ -19,19 +19,19 @@
         "line": 4,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Removedor de MIX/AGE"
+        "text": "Removedor de Combinação/Aprimoramento"
       },
       {
         "line": 7,
         "legacy_key": "J_Chat",
         "kind": "chat",
-        "text": "Remova com segurança seu aging/mix."
+        "text": "Remova com segurança o aprimoramento ou a combinação do seu item."
       },
       {
         "line": 9,
         "legacy_key": "J_Chat",
         "kind": "chat",
-        "text": "Limpeza de Itens do Summit Tale."
+        "text": "Limpeza de itens do Summit Tale."
       },
       {
         "line": 11,
@@ -43,6 +43,6 @@
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9kYWlseXF1ZXN0Lk5QQw0KDQoNCipKX05hbWUJIlJlbW92ZWRvciBkZSBNSVgvQUdFIg0KDQoNCipKX0NoYXQJIlJlbW92YSBjb20gc2VndXJhbudhIHNldSBhZ2luZy9taXguIg0KDQoqSl9DaGF0CSJMaW1wZXphIGRlIEl0ZW5zIGRvIFN1bW1pdCBUYWxlLiINCg0KKkpfQ2hhdAkiUXVlciBzZXUgaXRlbSBsaW1waW5obz8gVmVuaGEgZmFsYXIgY29taWdvIDspIg0KDQo="
+    "legacy_payload_base64": "Ly9kYWlseXF1ZXN0Lk5QQw0KDQoNCipKX05hbWUJIlJlbW92ZWRvciBkZSBDb21iaW5h5+NvL0Fwcmltb3JhbWVudG8iDQoNCg0KKkpfQ2hhdAkiUmVtb3ZhIGNvbSBzZWd1cmFu52EgbyBhcHJpbW9yYW1lbnRvIG91IGEgY29tYmluYefjbyBkbyBzZXUgaXRlbS4iDQoNCipKX0NoYXQJIkxpbXBlemEgZGUgaXRlbnMgZG8gU3VtbWl0IFRhbGUuIg0KDQoqSl9DaGF0CSJRdWVyIHNldSBpdGVtIGxpbXBpbmhvPyBWZW5oYSBmYWxhciBjb21pZ28gOykiDQoNCg=="
   }
 }

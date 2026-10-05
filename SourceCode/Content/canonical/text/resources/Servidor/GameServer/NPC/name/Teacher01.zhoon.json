@@ -19,24 +19,24 @@
         "line": 3,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Helper Pria"
+        "text": "Ajudante Pria"
       },
       {
         "line": 5,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "Welcome to the world of Prisontale."
+        "text": "Bem-vindo ao mundo de Priston Tale."
       },
       {
         "line": 6,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "We will put a spell on you once a day to help you grow up faster."
+        "text": "Uma vez por dia, lançaremos um encantamento em você para ajudá-lo a evoluir mais rápido."
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9UZWFjaGVyMDEubnBjDQoNCipKX05BTUUJCSJIZWxwZXIgUHJpYSINCg0KKkpfQ0hBVAkJIldlbGNvbWUgdG8gdGhlIHdvcmxkIG9mIFByaXNvbnRhbGUuIg0KKkpfQ0hBVAkJIldlIHdpbGwgcHV0IGEgc3BlbGwgb24geW91IG9uY2UgYSBkYXkgdG8gaGVscCB5b3UgZ3JvdyB1cCBmYXN0ZXIuIg=="
+    "legacy_payload_base64": "Ly9UZWFjaGVyMDEubnBjDQoNCipKX05BTUUJCSJBanVkYW50ZSBQcmlhIg0KDQoqSl9DSEFUCQkiQmVtLXZpbmRvIGFvIG11bmRvIGRlIFByaXN0b24gVGFsZS4iDQoqSl9DSEFUCQkiVW1hIHZleiBwb3IgZGlhLCBsYW7nYXJlbW9zIHVtIGVuY2FudGFtZW50byBlbSB2b2PqIHBhcmEgYWp1ZOEtbG8gYSBldm9sdWlyIG1haXMgcuFwaWRvLiI="
   }
 }

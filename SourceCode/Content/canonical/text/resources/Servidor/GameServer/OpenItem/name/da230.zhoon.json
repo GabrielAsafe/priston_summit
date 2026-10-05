@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Mythology Robe"
+        "text": "Túnica Mitológica"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "DQoNCipKX05hbWUJCSJNeXRob2xvZ3kgUm9iZSINCg0K"
+    "legacy_payload_base64": "DQoNCipKX05hbWUJCSJU+m5pY2EgTWl0b2zzZ2ljYSINCg0K"
   }
 }

@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Support Bow"
+        "text": "Arco de Suporte"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9XUzE1My50eHQNCg0KKkpfTmFtZQkJIlN1cHBvcnQgQm93Ig0K"
+    "legacy_payload_base64": "Ly9XUzE1My50eHQNCg0KKkpfTmFtZQkJIkFyY28gZGUgU3Vwb3J0ZSINCg=="
   }
 }

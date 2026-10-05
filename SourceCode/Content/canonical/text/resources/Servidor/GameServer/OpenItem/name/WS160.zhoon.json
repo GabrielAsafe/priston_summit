@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Pistol"
+        "text": "Pistola"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTmFtZQkJIlBpc3RvbCI="
+    "legacy_payload_base64": "KkpfTmFtZQkJIlBpc3RvbGEi"
   }
 }

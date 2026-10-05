@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Deadly Sphere"
+        "text": "Esfera Mortal"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "DQoNCipKX05hbWUJCSJEZWFkbHkgU3BoZXJlIg0KDQo="
+    "legacy_payload_base64": "DQoNCipKX05hbWUJCSJFc2ZlcmEgTW9ydGFsIg0KDQo="
   }
 }

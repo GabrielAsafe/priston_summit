@@ -25,12 +25,12 @@
         "line": 7,
         "legacy_key": "J_Chat",
         "kind": "chat",
-        "text": "Aproveite os coins e tune o seu personagem!"
+        "text": "Aproveite suas moedas e aprimore o seu personagem!"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9Db2luIHNob3AuTlBDDQoNCg0KKkpfTmFtZQkiTG9qYSBkZSBDculkaXRvcyINCg0KDQoqSl9DaGF0CSJBcHJvdmVpdGUgb3MgY29pbnMgZSB0dW5lIG8gc2V1IHBlcnNvbmFnZW0hIg0KDQo="
+    "legacy_payload_base64": "Ly9Db2luIHNob3AuTlBDDQoNCg0KKkpfTmFtZQkiTG9qYSBkZSBDculkaXRvcyINCg0KDQoqSl9DaGF0CSJBcHJvdmVpdGUgc3VhcyBtb2VkYXMgZSBhcHJpbW9yZSBvIHNldSBwZXJzb25hZ2VtISINCg0K"
   }
 }

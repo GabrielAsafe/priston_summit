@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "SoD Illusion Knight"
+        "text": "Cavaleiro da Ilusão do SoD"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRQkJCSJTb0QgSWxsdXNpb24gS25pZ2h0Ig0K"
+    "legacy_payload_base64": "KkpfTkFNRQkJCSJDYXZhbGVpcm8gZGEgSWx1c+NvIGRvIFNvRCINCg=="
   }
 }

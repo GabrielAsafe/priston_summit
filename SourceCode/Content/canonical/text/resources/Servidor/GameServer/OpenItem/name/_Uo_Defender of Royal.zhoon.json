@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Defender of Royal"
+        "text": "Defensor Real"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTmFtZQkJIkRlZmVuZGVyIG9mIFJveWFsIg=="
+    "legacy_payload_base64": "KkpfTmFtZQkJIkRlZmVuc29yIFJlYWwi"
   }
 }

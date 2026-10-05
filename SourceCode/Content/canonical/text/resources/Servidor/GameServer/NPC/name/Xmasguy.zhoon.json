@@ -19,36 +19,36 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "­«Ò{["
+        "text": "Rombo, o Trabalhador"
       },
       {
         "line": 3,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "[NX}X[I"
+        "text": "Feliz Natal!"
       },
       {
         "line": 4,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "ÝAÝñÈÌ½ßÉc[ðìÁÄ«½ñ¾¯Çc"
+        "text": "Eu fiz uma árvore para todos, mas..."
       },
       {
         "line": 5,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "뭫궘뤾룋궕갷궶궔궶궔뙥뱰궫귞궶궋궶갷"
+        "text": "Não consigo encontrar um bom lugar para colocá-la..."
       },
       {
         "line": 6,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "±ñÈ±Æ¾Á½çc¬ÅÔçÔçµÄÈ¢Å^®ÅàâÁÆ¯ÎÇ©Á½c"
+        "text": "Se eu soubesse que seria assim, teria me exercitado em vez de ficar andando pela cidade..."
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRQkJCSKTrYKrjtKDjYOTg3uBWyINCg0KKkpfQ0hBVAkJCSKDgYOKgVuDToOKg1iDfYNYgVuBSSINCipKX0NIQVQJCQkigt2BQYLdgvGCyILMgr2C34LJg2ODioFbgvCN7ILBgsSCq4K9gvGCvoKvgseBYyINCipKX0NIQVQJCQkiknWCrY/qj4qCqoFjgsiCqYLIgqmMqZOWgr2C54LIgqKCyIFjIg0KKkpfQ0hBVAkJCSKCsYLxgsiCsYLGgr6CwYK9gueBY5KsgsWC1ILngtSC54K1gsSCyIKigsWJXpOugsWC4ILigsGCxoKvgs6Xx4KpgsGCvYFjIg0KDQoNCg=="
+    "legacy_payload_base64": "KkpfTkFNRQkJCSJSb21ibywgbyBUcmFiYWxoYWRvciINCg0KKkpfQ0hBVAkJCSJGZWxpeiBOYXRhbCEiDQoqSl9DSEFUCQkJIkV1IGZpeiB1bWEg4XJ2b3JlIHBhcmEgdG9kb3MsIG1hcy4uLiINCipKX0NIQVQJCQkiTuNvIGNvbnNpZ28gZW5jb250cmFyIHVtIGJvbSBsdWdhciBwYXJhIGNvbG9j4S1sYS4uLiINCipKX0NIQVQJCQkiU2UgZXUgc291YmVzc2UgcXVlIHNlcmlhIGFzc2ltLCB0ZXJpYSBtZSBleGVyY2l0YWRvIGVtIHZleiBkZSBmaWNhciBhbmRhbmRvIHBlbGEgY2lkYWRlLi4uIg0KDQoNCg=="
   }
 }

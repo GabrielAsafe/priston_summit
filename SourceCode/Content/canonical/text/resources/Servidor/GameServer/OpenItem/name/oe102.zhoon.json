@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Brinco Galaxy"
+        "text": "Brinco Galáxia"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRSAiQnJpbmNvIEdhbGF4eSI="
+    "legacy_payload_base64": "KkpfTkFNRSAiQnJpbmNvIEdhbOF4aWEi"
   }
 }

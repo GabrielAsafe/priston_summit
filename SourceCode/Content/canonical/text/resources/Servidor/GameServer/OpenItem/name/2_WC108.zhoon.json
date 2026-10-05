@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Ancient Revenge"
+        "text": "Vingança Ancestral"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly8yX1dDMTA4LnR4dA0KDQoqSl9OYW1lCQkiQW5jaWVudCBSZXZlbmdlIg0K"
+    "legacy_payload_base64": "Ly8yX1dDMTA4LnR4dA0KDQoqSl9OYW1lCQkiVmluZ2Fu52EgQW5jZXN0cmFsIg0K"
   }
 }

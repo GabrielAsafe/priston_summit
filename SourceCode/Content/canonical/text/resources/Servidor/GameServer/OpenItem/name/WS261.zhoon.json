@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Penis Sword"
+        "text": "Espada de Penis"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "DQoNCipKX05hbWUJCSJQZW5pcyBTd29yZCINCg0K"
+    "legacy_payload_base64": "DQoNCipKX05hbWUJCSJFc3BhZGEgZGUgUGVuaXMiDQoNCg=="
   }
 }

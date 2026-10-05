@@ -330,7 +330,7 @@ ContextSnapshot LegacyContextGateway::GetSnapshot() const
     {
         out.valid = true;
         out.kind = ContextKind::CoinShop;
-        out.title = "Coin Shop";
+        out.title = "Loja de Moedas";
         out.money = cCoinShop.Coin;
         out.currency = "SCoin";
         const int section = cCoinShop.GetSectionForUI();
@@ -366,7 +366,7 @@ ContextSnapshot LegacyContextGateway::GetSnapshot() const
     {
         out.valid = true;
         out.kind = ContextKind::TimeCoinShop;
-        out.title = "Time Coin Shop";
+        out.title = "Loja de Moedas Temporais";
         out.money = cCoinShop_T.Coin;
         out.currency = "TCoin";
         const int section = cCoinShop_T.GetSectionForUI();
@@ -403,7 +403,7 @@ ContextSnapshot LegacyContextGateway::GetSnapshot() const
         out.valid = true;
         out.kind = ContextKind::Restoration;
         out.title = "Restauracao";
-        out.subtitle = "Itens apagados disponiveis para restaurar usando coins.";
+        out.subtitle = "Itens apagados disponíveis para restaurar usando moedas.";
         out.money = cCoinShop.Coin;
         out.currency = "SCoin";
         out.feeCurrency = "SCoin";
@@ -486,7 +486,7 @@ ContextSnapshot LegacyContextGateway::GetSnapshot() const
     {
         out.valid = true;
         out.kind = ContextKind::Mixing;
-        out.title = cCraftItem.ForceFlag ? "Force / Alquimia" : "Mixing";
+        out.title = cCraftItem.ForceFlag ? "Força / Alquimia" : "Combinação";
         out.subtitle = "Item principal + ate 12 materiais + pedra especial. Botao direito envia itens da mochila.";
         out.fee = cCraftItem.ForceItemPrice;
         out.gridColumns = 8;
@@ -503,7 +503,7 @@ ContextSnapshot LegacyContextGateway::GetSnapshot() const
             if (entry.gridX >= 0)
                 out.items.push_back(std::move(entry));
         }
-        AddAction(out, 40, cCraftItem.ForceFlag ? "Criar Force" : "Misturar");
+        AddAction(out, 40, cCraftItem.ForceFlag ? "Criar Força" : "Misturar");
         AddAction(out, 41, "Cancelar");
         return out;
     }
@@ -512,7 +512,7 @@ ContextSnapshot LegacyContextGateway::GetSnapshot() const
     {
         out.valid = true;
         out.kind = ContextKind::Aging;
-        out.title = "Aging";
+        out.title = "Aprimoramento";
         out.subtitle = "Item principal + ate 12 sheltoms + pedra especial. As validacoes continuam no sistema original.";
         out.gridColumns = 8;
         out.gridRows = 4;
@@ -528,7 +528,7 @@ ContextSnapshot LegacyContextGateway::GetSnapshot() const
             if (entry.gridX >= 0)
                 out.items.push_back(std::move(entry));
         }
-        AddAction(out, 40, "Aplicar Aging", AgingCheckSheltomFlag != 0);
+        AddAction(out, 40, "Aprimorar", AgingCheckSheltomFlag != 0);
         AddAction(out, 41, "Cancelar");
         return out;
     }
@@ -567,12 +567,12 @@ ContextSnapshot LegacyContextGateway::GetSnapshot() const
     {
         out.valid = true;
         out.kind = ContextKind::MixtureReset;
-        out.title = "Limpeza de Mix";
+        out.title = "Limpeza de Combinação";
         out.subtitle = "Item principal + pedra de reset. As regras e o resultado continuam no codigo original.";
         for (int i = 0; i < 2; ++i)
             if (HasItem(sMixtureResetItem.MixtureResetItem[i]))
                 out.items.push_back(MakeItem(i, sMixtureResetItem.MixtureResetItem[i], true, false, i == 0 ? "Item" : "Pedra"));
-        AddAction(out, 40, "Remover Mix", sMixtureResetItem.MixtureResetItem[1].Flag != 0);
+        AddAction(out, 40, "Remover Combinação", sMixtureResetItem.MixtureResetItem[1].Flag != 0);
         AddAction(out, 41, "Cancelar");
         return out;
     }
@@ -581,12 +581,12 @@ ContextSnapshot LegacyContextGateway::GetSnapshot() const
     {
         out.valid = true;
         out.kind = ContextKind::SkinChange;
-        out.title = "Skin Change";
-        out.subtitle = "Item principal + skin stone compativel. As validacoes continuam no sistema original.";
+        out.title = "Alteração de Visual";
+        out.subtitle = "Item principal + pedra de visual compatível. As validações continuam no sistema original.";
         for (int i = 0; i < 2; ++i)
             if (HasItem(sSkinChangeItem.SkinChangeItem[i]))
-                out.items.push_back(MakeItem(i, sSkinChangeItem.SkinChangeItem[i], true, false, i == 0 ? "Item" : "Skin"));
-        AddAction(out, 40, "Aplicar Skin", sSkinChangeItem.SkinChangeItem[1].Flag != 0);
+                out.items.push_back(MakeItem(i, sSkinChangeItem.SkinChangeItem[i], true, false, i == 0 ? "Item" : "Visual"));
+        AddAction(out, 40, "Aplicar Visual", sSkinChangeItem.SkinChangeItem[1].Flag != 0);
         AddAction(out, 41, "Cancelar");
         return out;
     }
@@ -683,8 +683,8 @@ ContextInputRequest LegacyContextGateway::InventoryAcceptanceRequest(int invento
     request.minimum = 1;
     request.maximum = 1000000000;
     request.initial = std::max(1, item.CoinPrice > 0 ? item.CoinPrice : static_cast<int>(item.sItemInfo.Money));
-    request.primaryOption = "Gold";
-    request.alternateOption = "Coins";
+    request.primaryOption = "Ouro";
+    request.alternateOption = "Moedas";
     return request;
 }
 

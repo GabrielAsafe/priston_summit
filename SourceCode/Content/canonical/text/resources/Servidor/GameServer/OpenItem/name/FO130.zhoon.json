@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Força Mágica Mirage"
+        "text": "Força Mágica Miragem"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRSAiRm9y52EgTeFnaWNhIE1pcmFnZSI="
+    "legacy_payload_base64": "KkpfTkFNRSAiRm9y52EgTeFnaWNhIE1pcmFnZW0i"
   }
 }

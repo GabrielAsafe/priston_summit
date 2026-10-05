@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "SoD Shadow Phalanx"
+        "text": "Falange Sombria do SoD"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRQkJCSJTb0QgU2hhZG93IFBoYWxhbngiDQoNCg=="
+    "legacy_payload_base64": "KkpfTkFNRQkJCSJGYWxhbmdlIFNvbWJyaWEgZG8gU29EIg0KDQo="
   }
 }

@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Bone Age"
+        "text": "Era dos Ossos"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTmFtZQkJIkJvbmUgQWdlIg=="
+    "legacy_payload_base64": "KkpfTmFtZQkJIkVyYSBkb3MgT3Nzb3Mi"
   }
 }

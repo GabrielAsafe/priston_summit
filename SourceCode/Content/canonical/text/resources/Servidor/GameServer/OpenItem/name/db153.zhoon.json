@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Support Boots"
+        "text": "Botas de Suporte"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTmFtZQkJIlN1cHBvcnQgQm9vdHMi"
+    "legacy_payload_base64": "KkpfTmFtZQkJIkJvdGFzIGRlIFN1cG9ydGUi"
   }
 }

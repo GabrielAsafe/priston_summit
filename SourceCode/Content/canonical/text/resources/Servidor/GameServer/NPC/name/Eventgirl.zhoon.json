@@ -19,13 +19,13 @@
         "line": 4,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Event Girl"
+        "text": "Garota do Evento"
       },
       {
         "line": 7,
         "legacy_key": "J_Chat",
         "kind": "chat",
-        "text": "Resete todas suas skills e seus pontos de status aqui comigo!"
+        "text": "Redefina todas as suas habilidades e seus pontos de atributos aqui comigo!"
       },
       {
         "line": 9,
@@ -49,6 +49,6 @@
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9FdmVudGdpcmwuTlBDDQoNCg0KKkpfTmFtZQkiRXZlbnQgR2lybCINCg0KDQoqSl9DaGF0CSJSZXNldGUgdG9kYXMgc3VhcyBza2lsbHMgZSBzZXVzIHBvbnRvcyBkZSBzdGF0dXMgYXF1aSBjb21pZ28hIg0KDQoqSl9DaGF0CSJWb2PqIOkgdONvIGxpbmRvKGEpLCBwYXJhYulucyBwb3Igc2VyIGFzc2ltIHTjbyBmb3J0ZS4uLiINCg0KKkpfQ2hhdAkiUXVhbmRvIGV1IHRlIHZlam8gcGFzc2FyIHBvciBhcXVpLCBldSBmaWNvIGRlc2x1bWJyYWRhISBRdWFudGEgYmVsZXphIGVtIGFwZW5hcyB1bSBndWVycmVpcm8oYSkuLi4iDQoNCipKX0NoYXQJIkV1IGdvc3RvIGRlIGRhbudhciwgcG9kZSBvYnNlcnZhciwgdG9kYSB2ZXogcXVlIHZvY+ogcGFzc2EgcG9yIGFxdWkgZXUgZXN0b3UgZGFu52FuZG8uLi4iDQoNCg=="
+    "legacy_payload_base64": "Ly9FdmVudGdpcmwuTlBDDQoNCg0KKkpfTmFtZQkiR2Fyb3RhIGRvIEV2ZW50byINCg0KDQoqSl9DaGF0CSJSZWRlZmluYSB0b2RhcyBhcyBzdWFzIGhhYmlsaWRhZGVzIGUgc2V1cyBwb250b3MgZGUgYXRyaWJ1dG9zIGFxdWkgY29taWdvISINCg0KKkpfQ2hhdAkiVm9j6iDpIHTjbyBsaW5kbyhhKSwgcGFyYWLpbnMgcG9yIHNlciBhc3NpbSB0428gZm9ydGUuLi4iDQoNCipKX0NoYXQJIlF1YW5kbyBldSB0ZSB2ZWpvIHBhc3NhciBwb3IgYXF1aSwgZXUgZmljbyBkZXNsdW1icmFkYSEgUXVhbnRhIGJlbGV6YSBlbSBhcGVuYXMgdW0gZ3VlcnJlaXJvKGEpLi4uIg0KDQoqSl9DaGF0CSJFdSBnb3N0byBkZSBkYW7nYXIsIHBvZGUgb2JzZXJ2YXIsIHRvZGEgdmV6IHF1ZSB2b2PqIHBhc3NhIHBvciBhcXVpIGV1IGVzdG91IGRhbudhbmRvLi4uIg0KDQo="
   }
 }

@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Premium Amulet"
+        "text": "Amuleto de Premium"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTmFtZQkJIlByZW1pdW0gQW11bGV0Ig0K"
+    "legacy_payload_base64": "KkpfTmFtZQkJIkFtdWxldG8gZGUgUHJlbWl1bSINCg=="
   }
 }

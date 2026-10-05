@@ -19,7 +19,7 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Mestre dos Clans"
+        "text": "Mestre dos Clãs"
       },
       {
         "line": 3,
@@ -43,12 +43,12 @@
         "line": 6,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "Eu sou o responsável por toda a atividade relacionada aos Clans."
+        "text": "Eu sou o responsável por toda a atividade relacionada aos Clãs."
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRQkJIk1lc3RyZSBkb3MgQ2xhbnMiDQoNCipKX0NIQVQJCSJWb2PqIHBvZGVy4SBjb25maWd1cmFyIG8gU+1tYm9sbyBlIGEgRnJhc2UgZG8gY2xhbiBlbSBub3NzbyBzaXRlLiINCipKX0NIQVQJCSJWb2PqIHByZWNpc2EgZXN0YXIgYWNpbWEgZG8gTu12ZWwgNTAgZSBwYWdhciA1MDAsMDAwIHBhcmEgZm9ybWFyIHVtIENsYW4uIg0KKkpfQ0hBVAkJIlF1YW50byBtYWlvciBvIE7tdmVsIGRvIExpZGVyIGRvIENsYW4sIG1haXMgbWVtYnJvcyBlbGUgcG9kZXLhIHRlci4iDQoqSl9DSEFUCQkiRXUgc291IG8gcmVzcG9uc+F2ZWwgcG9yIHRvZGEgYSBhdGl2aWRhZGUgcmVsYWNpb25hZGEgYW9zIENsYW5zLiINCg0KDQo="
+    "legacy_payload_base64": "KkpfTkFNRQkJIk1lc3RyZSBkb3MgQ2zjcyINCg0KKkpfQ0hBVAkJIkV1IHNvdSBvIHJlc3BvbnPhdmVsIHBvciB0b2RhIGEgYXRpdmlkYWRlIHJlbGFjaW9uYWRhIGFvcyBDbONzLiINCipKX0NIQVQJCSJWb2PqIHByZWNpc2EgZXN0YXIgYWNpbWEgZG8gTu12ZWwgNTAgZSBwYWdhciA1MDAsMDAwIHBhcmEgZm9ybWFyIHVtIENsYW4uIg0KKkpfQ0hBVAkJIlF1YW50byBtYWlvciBvIE7tdmVsIGRvIExpZGVyIGRvIENsYW4sIG1haXMgbWVtYnJvcyBlbGUgcG9kZXLhIHRlci4iDQoqSl9DSEFUCQkiRXUgc291IG8gcmVzcG9uc+F2ZWwgcG9yIHRvZGEgYSBhdGl2aWRhZGUgcmVsYWNpb25hZGEgYW9zIENsYW5zLiINCg0KDQo="
   }
 }

@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Boss Mundo"
+        "text": "Chefe Mundial"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9ib3NzbXVuZG8uaW5mDQoNCipKX05BTUUgIkJvc3MgTXVuZG8i"
+    "legacy_payload_base64": "Ly9ib3NzbXVuZG8uaW5mDQoNCipKX05BTUUgIkNoZWZlIE11bmRpYWwi"
   }
 }

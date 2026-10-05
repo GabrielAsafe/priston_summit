@@ -25,12 +25,12 @@
         "line": 6,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "Bring me three of the same monster  crystal and I can craft you a triple monster crystal."
+        "text": "Traga três cristais do mesmo monstro e eu poderei criar um cristal triplo para você."
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9CZWxsaWEubnBjDQoNCipKX05BTUUJCSJCZWxsaWEiDQoNCi8vKkpfQ0hBVAkiWW91IGNhbiBtYWtlIHRoZSBzYW1lIHR5cGUgb2YgY3J5c3RhbCB0aHJlZSBzdHJvbmcgY3J5c3RhbC4iDQoqSl9DSEFUCQkiQnJpbmcgbWUgdGhyZWUgb2YgdGhlIHNhbWUgbW9uc3RlciAgY3J5c3RhbCBhbmQgSSBjYW4gY3JhZnQgeW91IGEgdHJpcGxlIG1vbnN0ZXIgY3J5c3RhbC4i"
+    "legacy_payload_base64": "Ly9CZWxsaWEubnBjDQoNCipKX05BTUUJCSJCZWxsaWEiDQoNCi8vKkpfQ0hBVAkiWW91IGNhbiBtYWtlIHRoZSBzYW1lIHR5cGUgb2YgY3J5c3RhbCB0aHJlZSBzdHJvbmcgY3J5c3RhbC4iDQoqSl9DSEFUCQkiVHJhZ2EgdHLqcyBjcmlzdGFpcyBkbyBtZXNtbyBtb25zdHJvIGUgZXUgcG9kZXJlaSBjcmlhciB1bSBjcmlzdGFsIHRyaXBsbyBwYXJhIHZvY+ouIg=="
   }
 }

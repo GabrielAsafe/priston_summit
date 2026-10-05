@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Throne Ring"
+        "text": "Anel de Trono"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9PUjEzMS50eHQNCg0KKkpfTmFtZQkJIlRocm9uZSBSaW5nIg0K"
+    "legacy_payload_base64": "Ly9PUjEzMS50eHQNCg0KKkpfTmFtZQkJIkFuZWwgZGUgVHJvbm8iDQo="
   }
 }

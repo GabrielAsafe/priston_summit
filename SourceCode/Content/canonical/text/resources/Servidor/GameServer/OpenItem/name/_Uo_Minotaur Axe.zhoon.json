@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Minotaur Axe"
+        "text": "Machado do Minotauro"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9Vd2ExMjBfTWlub3RhdXIgQXhlLnR4dA0KDQoqSl9OYW1lCQkiTWlub3RhdXIgQXhlIg0K"
+    "legacy_payload_base64": "Ly9Vd2ExMjBfTWlub3RhdXIgQXhlLnR4dA0KDQoqSl9OYW1lCQkiTWFjaGFkbyBkbyBNaW5vdGF1cm8iDQo="
   }
 }

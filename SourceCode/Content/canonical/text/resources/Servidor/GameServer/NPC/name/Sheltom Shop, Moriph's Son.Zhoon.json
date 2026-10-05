@@ -19,7 +19,7 @@
         "line": 4,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Tigrinho Coins"
+        "text": "Moedas do Tigrinho"
       },
       {
         "line": 7,
@@ -31,6 +31,6 @@
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9TaGVsdG9tIFNob3AsIE1vcmlwaCdzIFNvbi5OUEMNCg0KDQoqSl9OYW1lCSJUaWdyaW5obyBDb2lucyINCg0KDQoqSl9DaGF0CSJPYnJpZ2FkbyBwb3Igam9nYXIgU3VtbWl0IFRhbGUgPSkiDQoNCg=="
+    "legacy_payload_base64": "Ly9TaGVsdG9tIFNob3AsIE1vcmlwaCdzIFNvbi5OUEMNCg0KDQoqSl9OYW1lCSJNb2VkYXMgZG8gVGlncmluaG8iDQoNCg0KKkpfQ2hhdAkiT2JyaWdhZG8gcG9yIGpvZ2FyIFN1bW1pdCBUYWxlID0pIg0KDQo="
   }
 }

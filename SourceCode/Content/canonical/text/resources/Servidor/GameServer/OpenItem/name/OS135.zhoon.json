@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Dark Guardian Sheltom"
+        "text": "Sheltom do Guardião Sombrio"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRSAiRGFyayBHdWFyZGlhbiBTaGVsdG9tIg=="
+    "legacy_payload_base64": "KkpfTkFNRSAiU2hlbHRvbSBkbyBHdWFyZGnjbyBTb21icmlvIg=="
   }
 }

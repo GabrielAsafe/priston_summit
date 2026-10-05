@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "E_NAME",
         "kind": "name",
-        "text": "Fire Elemental"
+        "text": "Elemental de Gelo"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly82MF9zX0ZpcmVFbGVtZW50YWwuaW5mDQoNCipFX05BTUUJCQkiRmlyZSBFbGVtZW50YWwiDQo="
+    "legacy_payload_base64": "Ly82MF9zX0ZpcmVFbGVtZW50YWwuaW5mDQoNCipFX05BTUUJCQkiRWxlbWVudGFsIGRlIEdlbG8iDQo="
   }
 }

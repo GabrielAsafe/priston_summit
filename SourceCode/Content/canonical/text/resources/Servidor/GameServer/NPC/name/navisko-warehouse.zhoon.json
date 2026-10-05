@@ -19,18 +19,18 @@
         "line": 3,
         "legacy_key": "T_NAME",
         "kind": "name",
-        "text": "­Ü®wºÞ²z­û"
+        "text": "Mif, Guardião do Armazém"
       },
       {
         "line": 4,
         "legacy_key": "T_CHAT",
         "kind": "chat",
-        "text": "¤£­n«ü±æ§Ú·|´£¨Ñ§K¶OªA°È¡C"
+        "text": "Este trabalho também é cansativo... Passe por aqui só de vez em quando!"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9uYXZpc2tvLXdhcmVob3VzZS5ucGMNCg0KKlRfTkFNRQkJIq3crne63rJ6rfsiDQoqVF9DSEFUCQkipKOtbqv8sean2rd8tKOo0adLtk+qQbDIoUMiDQo="
+    "legacy_payload_base64": "Ly9uYXZpc2tvLXdhcmVob3VzZS5ucGMNCg0KKlRfTkFNRQkJIk1pZiwgR3VhcmRp428gZG8gQXJtYXrpbSINCipUX0NIQVQJCSJFc3RlIHRyYWJhbGhvIHRhbWLpbSDpIGNhbnNhdGl2by4uLiBQYXNzZSBwb3IgYXF1aSBz8yBkZSB2ZXogZW0gcXVhbmRvISINCg=="
   }
 }

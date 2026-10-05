@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Bone Crasher"
+        "text": "Esmagador de Ossos"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTmFtZQkJIkJvbmUgQ3Jhc2hlciINCg=="
+    "legacy_payload_base64": "KkpfTmFtZQkJIkVzbWFnYWRvciBkZSBPc3NvcyINCg=="
   }
 }

@@ -23,24 +23,24 @@
         "line": 1,
         "legacy_key": "E_NAME",
         "kind": "name",
-        "text": "Snake Hunter"
+        "text": "Serpente Caçador"
       },
       {
         "line": 3,
         "legacy_key": "E_CHAT",
         "kind": "chat",
-        "text": "All the snakes that I captured has escaped"
+        "text": "Todas as cobras que capturei escaparam."
       },
       {
         "line": 4,
         "legacy_key": "E_CHAT",
         "kind": "chat",
-        "text": "Black snakes have strong power we never knew."
+        "text": "As cobras negras têm um poder muito maior do que imaginávamos."
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkVfTkFNRQkJIlNuYWtlIEh1bnRlciINCg0KKkVfQ0hBVAkJIkFsbCB0aGUgc25ha2VzIHRoYXQgSSBjYXB0dXJlZCBoYXMgZXNjYXBlZCIgDQoqRV9DSEFUCQkiQmxhY2sgc25ha2VzIGhhdmUgc3Ryb25nIHBvd2VyIHdlIG5ldmVyIGtuZXcuIg0K"
+    "legacy_payload_base64": "KkVfTkFNRQkJIlNlcnBlbnRlIENh52Fkb3IiDQoNCipFX0NIQVQJCSJUb2RhcyBhcyBjb2JyYXMgcXVlIGNhcHR1cmVpIGVzY2FwYXJhbS4iIA0KKkVfQ0hBVAkJIkFzIGNvYnJhcyBuZWdyYXMgdOptIHVtIHBvZGVyIG11aXRvIG1haW9yIGRvIHF1ZSBpbWFnaW7hdmFtb3MuIg0K"
   }
 }

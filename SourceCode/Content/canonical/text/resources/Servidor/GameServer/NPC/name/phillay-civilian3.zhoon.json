@@ -19,30 +19,30 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "±¹²Ýã j[^["
+        "text": "Newter, Assistente de Aprimoramento"
       },
       {
         "line": 3,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "vªVµ¢_ÎðTµÉo©¯ÄAÁÄ±È¢Å·ËB»ÌÔªGCWOµÄ °Ü·"
+        "text": "Moriph saiu em busca de uma nova pedra divina e ainda não voltou. Enquanto isso, eu cuidarei do aprimoramento para você."
       },
       {
         "line": 4,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "Ç±©ÅvÉïÁ½ç­AÁÄ­éæ¤É`¦Ä­¾³¢"
+        "text": "Se encontrar Moriph em algum lugar, diga a ele para voltar logo."
       },
       {
         "line": 5,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "럡궼긾깏긵귌궵뾆귢궲궼궋귏궧귪궕갂봀궧궲궘귢귡궻궳궢궫귞딀뮗귟귏궥갏"
+        "text": "Não sou tão habilidoso quanto Moriph, mas farei o meu melhor se confiar em mim!"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRQkJIrG5st2R45edIINqg4WBW4NegVsiDQoNCipKX0NIQVQJCSKDgoOKg3aCqpBWgrWCopBfkM6C8JJUgrWCyY9vgqmCr4LEi0GCwYLEgrGCyIKigsWCt4LLgUKCu4LMitSOhIKqg0eDQ4NXg5ODT4K1gsSCoIKwgtyCtyINCipKX0NIQVQJCSKCx4KxgqmCxYOCg4qDdoLJie+CwYK9gueRgYKti0GCwYLEgq2C6YLmgqSCyZNggqaCxIKtgr6Cs4KiIg0KKkpfQ0hBVAkJIo6Egs2DgoOKg3aC2YLHl0SC6oLEgs2CooLcgrmC8YKqgUGUQ4K5gsSCrYLqgumCzILFgrWCvYLniuaSo4LogtyCt4FJIg0KDQo="
+    "legacy_payload_base64": "KkpfTkFNRQkJIk5ld3RlciwgQXNzaXN0ZW50ZSBkZSBBcHJpbW9yYW1lbnRvIg0KDQoqSl9DSEFUCQkiTW9yaXBoIHNhaXUgZW0gYnVzY2EgZGUgdW1hIG5vdmEgcGVkcmEgZGl2aW5hIGUgYWluZGEgbuNvIHZvbHRvdS4gRW5xdWFudG8gaXNzbywgZXUgY3VpZGFyZWkgZG8gYXByaW1vcmFtZW50byBwYXJhIHZvY+ouIg0KKkpfQ0hBVAkJIlNlIGVuY29udHJhciBNb3JpcGggZW0gYWxndW0gbHVnYXIsIGRpZ2EgYSBlbGUgcGFyYSB2b2x0YXIgbG9nby4iDQoqSl9DSEFUCQkiTuNvIHNvdSB0428gaGFiaWxpZG9zbyBxdWFudG8gTW9yaXBoLCBtYXMgZmFyZWkgbyBtZXUgbWVsaG9yIHNlIGNvbmZpYXIgZW0gbWltISINCg0K"
   }
 }

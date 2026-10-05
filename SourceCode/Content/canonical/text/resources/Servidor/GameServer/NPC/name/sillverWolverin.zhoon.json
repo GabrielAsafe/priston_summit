@@ -19,7 +19,7 @@
         "line": 2,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Wolverine de Prata"
+        "text": "Carcaju de Prata"
       },
       {
         "line": 4,
@@ -37,6 +37,6 @@
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "DQoqSl9OQU1FCQkiV29sdmVyaW5lIGRlIFByYXRhIg0KDQoqSl9DSEFUCQkiVXJyLi4gdXJycnJycnJyci4uIHVycnIuLi4iDQoqSl9DSEFUCQkiR3JycnJyLi4uIGdycnJycnIuLi4iDQo="
+    "legacy_payload_base64": "DQoqSl9OQU1FCQkiQ2FyY2FqdSBkZSBQcmF0YSINCg0KKkpfQ0hBVAkJIlVyci4uIHVycnJycnJycnIuLiB1cnJyLi4uIg0KKkpfQ0hBVAkJIkdycnJyci4uLiBncnJycnJyLi4uIg0K"
   }
 }

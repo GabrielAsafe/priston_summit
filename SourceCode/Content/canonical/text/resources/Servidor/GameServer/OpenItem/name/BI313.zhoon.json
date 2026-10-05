@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "MP Booster 6h"
+        "text": "MP Reforço 6h"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRSAiTVAgQm9vc3RlciA2aCI="
+    "legacy_payload_base64": "KkpfTkFNRSAiTVAgUmVmb3LnbyA2aCI="
   }
 }

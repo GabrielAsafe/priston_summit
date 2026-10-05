@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Support Talon"
+        "text": "Garra de Suporte"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9XQzE1My50eHQNCg0KKkpfTmFtZQkJIlN1cHBvcnQgVGFsb24iDQo="
+    "legacy_payload_base64": "Ly9XQzE1My50eHQNCg0KKkpfTmFtZQkJIkdhcnJhIGRlIFN1cG9ydGUiDQo="
   }
 }

@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "E_NAME",
         "kind": "name",
-        "text": "Bronze Wolverine"
+        "text": "Invocação do Tigre"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly8zN19Ccm9uemVXb2x2ZXJpbmUuaW5mDQoNCipFX05BTUUJCQkiQnJvbnplIFdvbHZlcmluZSINCg=="
+    "legacy_payload_base64": "Ly8zN19Ccm9uemVXb2x2ZXJpbmUuaW5mDQoNCipFX05BTUUJCQkiSW52b2Nh5+NvIGRvIFRpZ3JlIg0K"
   }
 }

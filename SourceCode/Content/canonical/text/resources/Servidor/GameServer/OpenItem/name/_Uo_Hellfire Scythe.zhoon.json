@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Hellfire Scythe"
+        "text": "Foice de Fogo Infernal"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9VV1AxMjFfSGVsbGZpcmUgU2N5dGhlLnR4dA0KDQoqSl9OYW1lCQkiSGVsbGZpcmUgU2N5dGhlIg0K"
+    "legacy_payload_base64": "Ly9VV1AxMjFfSGVsbGZpcmUgU2N5dGhlLnR4dA0KDQoqSl9OYW1lCQkiRm9pY2UgZGUgRm9nbyBJbmZlcm5hbCINCg=="
   }
 }

@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Support Javelin"
+        "text": "Lança de Suporte"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9XVDE1My50eHQNCg0KKkpfTmFtZQkJIlN1cHBvcnQgSmF2ZWxpbiINCg=="
+    "legacy_payload_base64": "Ly9XVDE1My50eHQNCg0KKkpfTmFtZQkJIkxhbudhIGRlIFN1cG9ydGUiDQo="
   }
 }

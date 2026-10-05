@@ -19,18 +19,18 @@
         "line": 3,
         "legacy_key": "T_NAME",
         "kind": "name",
-        "text": "톀붸땁㉵ず넌짟"
+        "text": "Galdin, o Intrometido"
       },
       {
         "line": 4,
         "legacy_key": "T_CHAT",
         "kind": "chat",
-        "text": "¥ý«eµo²{ªº¥j¥NºÊº»¤w¸gÅÜ¦¨¤F©Çª«ªº±_¥Þ¡A°ê¤ý¤w¸g¤U¥O­n®ø·À¥¦­Ì¡C"
+        "text": "Ultimamente muitos guerreiros têm conseguido armas e armaduras no mercado negro. Sempre fico incomodado quando ouço isso... e acabo me intrometendo!"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9yaWNhcmRlbi1jaXZpbGlhbjIubnBjDQoNCipUX05BTUUJCSK3UrretqKoxqq6s82kQiINCipUX0NIQVQJCSKl/atltW+ye6q6pWqlTrrKurukd7hnxdymqKRGqceqq6q6sV+l3qFBsOqk/aR3uGekVaVPrW6u+LfApaatzKFDIg0KDQo="
+    "legacy_payload_base64": "Ly9yaWNhcmRlbi1jaXZpbGlhbjIubnBjDQoNCipUX05BTUUJCSJHYWxkaW4sIG8gSW50cm9tZXRpZG8iDQoqVF9DSEFUCQkiVWx0aW1hbWVudGUgbXVpdG9zIGd1ZXJyZWlyb3MgdOptIGNvbnNlZ3VpZG8gYXJtYXMgZSBhcm1hZHVyYXMgbm8gbWVyY2FkbyBuZWdyby4gU2VtcHJlIGZpY28gaW5jb21vZGFkbyBxdWFuZG8gb3XnbyBpc3NvLi4uIGUgYWNhYm8gbWUgaW50cm9tZXRlbmRvISINCg0K"
   }
 }

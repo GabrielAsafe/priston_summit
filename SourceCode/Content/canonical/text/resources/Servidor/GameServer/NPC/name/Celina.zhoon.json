@@ -19,30 +19,30 @@
         "line": 3,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Sage Celina"
+        "text": "Sábia Celina"
       },
       {
         "line": 5,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "I will use my knowledge for the Prison continent and its forever peace."
+        "text": "Usarei meu conhecimento pelo continente de Priston e por sua paz duradoura."
       },
       {
         "line": 6,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "You, Can you devote your life for Priston continent?"
+        "text": "Você consegue dedicar sua força ao continente de Priston?"
       },
       {
         "line": 7,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "Will there be Absolute good and evil exist."
+        "text": "Será que o bem e o mal absolutos realmente existem?"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9DZWxpbmEubnBjDQoNCipKX05BTUUJCSJTYWdlIENlbGluYSINCg0KKkpfQ0hBVAkJIkkgd2lsbCB1c2UgbXkga25vd2xlZGdlIGZvciB0aGUgUHJpc29uIGNvbnRpbmVudCBhbmQgaXRzIGZvcmV2ZXIgcGVhY2UuIiANCipKX0NIQVQJCSJZb3UsIENhbiB5b3UgZGV2b3RlIHlvdXIgbGlmZSBmb3IgUHJpc3RvbiBjb250aW5lbnQ/Ig0KKkpfQ0hBVAkJIldpbGwgdGhlcmUgYmUgQWJzb2x1dGUgZ29vZCBhbmQgZXZpbCBleGlzdC4iDQo="
+    "legacy_payload_base64": "Ly9DZWxpbmEubnBjDQoNCipKX05BTUUJCSJT4WJpYSBDZWxpbmEiDQoNCipKX0NIQVQJCSJVc2FyZWkgbWV1IGNvbmhlY2ltZW50byBwZWxvIGNvbnRpbmVudGUgZGUgUHJpc3RvbiBlIHBvciBzdWEgcGF6IGR1cmFkb3VyYS4iIA0KKkpfQ0hBVAkJIlZvY+ogY29uc2VndWUgZGVkaWNhciBzdWEgZm9y52EgYW8gY29udGluZW50ZSBkZSBQcmlzdG9uPyINCipKX0NIQVQJCSJTZXLhIHF1ZSBvIGJlbSBlIG8gbWFsIGFic29sdXRvcyByZWFsbWVudGUgZXhpc3RlbT8iDQo="
   }
 }

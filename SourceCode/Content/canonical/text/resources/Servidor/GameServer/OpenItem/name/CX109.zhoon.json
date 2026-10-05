@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Pacote de Aging +17"
+        "text": "Pacote de Aprimoramento +17"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRSAiUGFjb3RlIGRlIEFnaW5nICsxNyI="
+    "legacy_payload_base64": "KkpfTkFNRSAiUGFjb3RlIGRlIEFwcmltb3JhbWVudG8gKzE3Ig=="
   }
 }

@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Salamander Javelin"
+        "text": "Lança de Salamander"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9VV1QxMjFfU2FsYW1hbmRlciBKYXZlbGluLnR4dA0KDQoqSl9OYW1lCQkiU2FsYW1hbmRlciBKYXZlbGluIg0K"
+    "legacy_payload_base64": "Ly9VV1QxMjFfU2FsYW1hbmRlciBKYXZlbGluLnR4dA0KDQoqSl9OYW1lCQkiTGFu52EgZGUgU2FsYW1hbmRlciINCg=="
   }
 }

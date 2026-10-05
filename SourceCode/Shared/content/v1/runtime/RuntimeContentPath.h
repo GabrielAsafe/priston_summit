@@ -27,17 +27,57 @@ inline std::string RuntimeJoinPath(const std::string &left, const std::string &r
     return left + "\\" + right;
 }
 
+inline bool RuntimeRegularFileExists(const std::string &path)
+{
+    if(path.empty()) return false;
+    const DWORD attributes = GetFileAttributesA(path.c_str());
+    return attributes != INVALID_FILE_ATTRIBUTES &&
+           (attributes & FILE_ATTRIBUTE_DIRECTORY) == 0;
+}
+
+inline std::string RuntimeCurrentDirectory()
+{
+    char current[4096] = {0};
+    const DWORD length = GetCurrentDirectoryA(static_cast<DWORD>(sizeof(current)), current);
+    if(length == 0 || length >= sizeof(current))
+        return std::string();
+    return std::string(current, current + length);
+}
+
 inline std::string ResolveRuntimePackPath(const char *packFileName)
 {
     const std::string fileName = packFileName ? packFileName : "";
     const std::string executableDirectory = RuntimeExecutableDirectory();
+    const std::string currentDirectory = RuntimeCurrentDirectory();
 
-    // Production contract: every standalone client/server deployment owns its
-    // runtime content. Development/source trees are never consulted at runtime.
+    // Shipped runtime content always wins. During source-tree development the
+    // executable commonly lives in summit/client(e) while canonical packs are
+    // rebuilt under summit/SourceCode/Content/packs. Resolve the first existing
+    // pack instead of returning a non-existent exe-local path and silently
+    // disabling localization/text resources.
+    std::string candidates[7];
+    int count = 0;
+    if(!executableDirectory.empty())
+    {
+        candidates[count++] = RuntimeJoinPath(executableDirectory, "Content\\packs\\" + fileName);
+        candidates[count++] = RuntimeJoinPath(executableDirectory, "..\\Content\\packs\\" + fileName);
+        candidates[count++] = RuntimeJoinPath(executableDirectory, "..\\SourceCode\\Content\\packs\\" + fileName);
+        candidates[count++] = RuntimeJoinPath(executableDirectory, "..\\..\\SourceCode\\Content\\packs\\" + fileName);
+    }
+    if(!currentDirectory.empty())
+    {
+        candidates[count++] = RuntimeJoinPath(currentDirectory, "Content\\packs\\" + fileName);
+        candidates[count++] = RuntimeJoinPath(currentDirectory, "SourceCode\\Content\\packs\\" + fileName);
+    }
+    candidates[count++] = RuntimeJoinPath("Content\\packs", fileName);
+
+    for(int i = 0; i < count; ++i)
+        if(RuntimeRegularFileExists(candidates[i]))
+            return candidates[i];
+
+    // Deterministic diagnostic path when the pack is genuinely missing.
     if(!executableDirectory.empty())
         return RuntimeJoinPath(executableDirectory, "Content\\packs\\" + fileName);
-
-    // Keep diagnostics deterministic even if GetModuleFileNameA itself fails.
     return RuntimeJoinPath("Content\\packs", fileName);
 }
 

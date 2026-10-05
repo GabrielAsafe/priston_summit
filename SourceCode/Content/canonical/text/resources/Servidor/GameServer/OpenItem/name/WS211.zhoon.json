@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Espada Claymore"
+        "text": "Espada Montante"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRSAiRXNwYWRhIENsYXltb3JlIg=="
+    "legacy_payload_base64": "KkpfTkFNRSAiRXNwYWRhIE1vbnRhbnRlIg=="
   }
 }

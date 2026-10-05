@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "HP Booster (3h)"
+        "text": "HP Reforço (3h)"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRSAiSFAgQm9vc3RlciAoM2gpIg=="
+    "legacy_payload_base64": "KkpfTkFNRSAiSFAgUmVmb3LnbyAoM2gpIg=="
   }
 }

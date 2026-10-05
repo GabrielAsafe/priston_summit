@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Platinum Sword"
+        "text": "Espada de Platina"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly8yX1dTMjEwLnR4dA0KDQoqSl9OYW1lCQkiUGxhdGludW0gU3dvcmQiDQo="
+    "legacy_payload_base64": "Ly8yX1dTMjEwLnR4dA0KDQoqSl9OYW1lCQkiRXNwYWRhIGRlIFBsYXRpbmEiDQo="
   }
 }

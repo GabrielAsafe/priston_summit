@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Halloween Amulet"
+        "text": "Amuleto de Halloween"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTmFtZQkJIkhhbGxvd2VlbiBBbXVsZXQiDQo="
+    "legacy_payload_base64": "KkpfTmFtZQkJIkFtdWxldG8gZGUgSGFsbG93ZWVuIg0K"
   }
 }

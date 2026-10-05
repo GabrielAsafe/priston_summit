@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Mythology Armor"
+        "text": "Armadura Mitológica"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9EQTMwNS50eHQNCg0KKkpfTmFtZQkJIk15dGhvbG9neSBBcm1vciINCg=="
+    "legacy_payload_base64": "Ly9EQTMwNS50eHQNCg0KKkpfTmFtZQkJIkFybWFkdXJhIE1pdG9s82dpY2EiDQo="
   }
 }

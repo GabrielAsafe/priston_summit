@@ -19,30 +19,30 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "긵깒귽귺"
+        "text": "Preia"
       },
       {
         "line": 3,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "Ó½ÂÌA~bgðTµÉ±±ÜÅÜµ½B"
+        "text": "Vim até aqui procurando dois amuletos."
       },
       {
         "line": 4,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "»ÌûÍX^[¾Á½¯ÇABÍ{É¤µÁÄ½ÌÅ·EEE"
+        "text": "Ele era um monstro, mas nós realmente nos amávamos..."
       },
       {
         "line": 5,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "Ó½ÂÌA~bgÍBÌ¤Ì ©µÅµ½B»êðñ¾X^[Í¹Ü¹ñB"
+        "text": "Os dois amuletos eram a prova do nosso amor. Não perdoarei o monstro que os roubou."
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRQkJCSKDdoOMg0ODQSINCg0KKkpfQ0hBVAkJCSKC04K9gsKCzINBg36DhYOMg2KDZ4LwklSCtYLJgrGCsYLcgsWXiILcgrWCvYFCIg0KKkpfQ0hBVCAgICAgICAgICAgICAgICAgICAigruCzJX7gs2DgoOTg1iDXoFbgr6CwYK9gq+Cx4FBjoSSQoLNlnuTloLJiKSCtY2HgsGCxIK9gsyCxYK3gUWBRYFFIg0KKkpfQ0hBVCAgICAgICAgICAgICAgICAgICAigtOCvYLCgsyDQYN+g4WDjINig2eCzY6EkkKCzIikgsyCoIKpgrWCxYK1gr2BQoK7guqC8JOQgvGCvoOCg5ODWINegVuCzYuWgrmC3IK5gvGBQiINCg=="
+    "legacy_payload_base64": "KkpfTkFNRQkJCSJQcmVpYSINCg0KKkpfQ0hBVAkJCSJWaW0gYXTpIGFxdWkgcHJvY3VyYW5kbyBkb2lzIGFtdWxldG9zLiINCipKX0NIQVQgICAgICAgICAgICAgICAgICAgIkVsZSBlcmEgdW0gbW9uc3RybywgbWFzIG7zcyByZWFsbWVudGUgbm9zIGFt4XZhbW9zLi4uIg0KKkpfQ0hBVCAgICAgICAgICAgICAgICAgICAiT3MgZG9pcyBhbXVsZXRvcyBlcmFtIGEgcHJvdmEgZG8gbm9zc28gYW1vci4gTuNvIHBlcmRvYXJlaSBvIG1vbnN0cm8gcXVlIG9zIHJvdWJvdS4iDQo="
   }
 }

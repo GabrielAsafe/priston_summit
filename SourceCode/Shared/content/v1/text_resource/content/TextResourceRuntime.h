@@ -16,7 +16,7 @@ inline const CompiledTextResourceSource* ActiveTextResourceSource(){
     CompiledTextResourceSource *source;
     Holder():source(0){
       const char*configured=TextResourcePackPath();
-      if(configured){ Try(configured); return; }
+      if(configured && Try(configured)) return;
       // PATCH 194: canonical text resources are part of the normal runtime,
       // not an optional developer environment. Keep SUMMIT_TEXT_RESOURCE_PACK
       // as an explicit override, but discover the shipped pack by default.

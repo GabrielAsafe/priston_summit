@@ -19,18 +19,18 @@
         "line": 4,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Pillai Quest Shop"
+        "text": "Loja de Missões de Pillai"
       },
       {
         "line": 7,
         "legacy_key": "J_Chat",
         "kind": "chat",
-        "text": "What im talking?!?"
+        "text": "Do que estou falando?!?"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9QaGlsbGFpIFF1ZXN0IFNob3AuTlBDDQoNCg0KKkpfTmFtZQkiUGlsbGFpIFF1ZXN0IFNob3AiDQoNCg0KKkpfQ2hhdAkiV2hhdCBpbSB0YWxraW5nPyE/Ig0KDQo="
+    "legacy_payload_base64": "Ly9QaGlsbGFpIFF1ZXN0IFNob3AuTlBDDQoNCg0KKkpfTmFtZQkiTG9qYSBkZSBNaXNz9WVzIGRlIFBpbGxhaSINCg0KDQoqSl9DaGF0CSJEbyBxdWUgZXN0b3UgZmFsYW5kbz8hPyINCg0K"
   }
 }

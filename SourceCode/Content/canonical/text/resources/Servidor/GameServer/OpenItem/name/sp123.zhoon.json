@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Gold Bar"
+        "text": "Barra de Ouro"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTmFtZQkJIkdvbGQgQmFyIg=="
+    "legacy_payload_base64": "KkpfTmFtZQkJIkJhcnJhIGRlIE91cm8i"
   }
 }

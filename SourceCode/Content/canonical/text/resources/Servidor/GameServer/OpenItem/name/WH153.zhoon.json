@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Support Hammer"
+        "text": "Martelo de Suporte"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9XSDE1My50eHQNCg0KKkpfTmFtZQkJIlN1cHBvcnQgSGFtbWVyIg0K"
+    "legacy_payload_base64": "Ly9XSDE1My50eHQNCg0KKkpfTmFtZQkJIk1hcnRlbG8gZGUgU3Vwb3J0ZSINCg=="
   }
 }

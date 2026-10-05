@@ -19,7 +19,7 @@
         "line": 4,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Soccerfan"
+        "text": "Torcedor"
       },
       {
         "line": 7,
@@ -31,6 +31,6 @@
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9Tb2NjZXJmYW4uTlBDDQoNCg0KKkpfTmFtZQkiU29jY2VyZmFuIg0KDQoNCipKX0NoYXQJIlppZGRhbmUuLi4iDQoNCg=="
+    "legacy_payload_base64": "Ly9Tb2NjZXJmYW4uTlBDDQoNCg0KKkpfTmFtZQkiVG9yY2Vkb3IiDQoNCg0KKkpfQ2hhdAkiWmlkZGFuZS4uLiINCg0K"
   }
 }

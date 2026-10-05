@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Arch Metal"
+        "text": "Arcano Metal"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTmFtZQkJIkFyY2ggTWV0YWwi"
+    "legacy_payload_base64": "KkpfTmFtZQkJIkFyY2FubyBNZXRhbCI="
   }
 }

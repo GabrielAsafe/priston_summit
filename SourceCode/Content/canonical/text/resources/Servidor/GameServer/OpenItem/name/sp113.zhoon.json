@@ -19,12 +19,12 @@
         "line": 2,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Event Box"
+        "text": "Caixa de Evento"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "DQoqSl9OYW1lCQkiRXZlbnQgQm94Ig0K"
+    "legacy_payload_base64": "DQoqSl9OYW1lCQkiQ2FpeGEgZGUgRXZlbnRvIg0K"
   }
 }

@@ -25,24 +25,24 @@
         "line": 5,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "My dear prince, isn't he so gorgeous?"
+        "text": "Meu querido príncipe, ele não é maravilhoso?"
       },
       {
         "line": 6,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "Except he is being too show off to others, he would be perfect.."
+        "text": "Se ele não gostasse tanto de se exibir para os outros, seria perfeito..."
       },
       {
         "line": 7,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "Actually I think his swag is also very attractive too."
+        "text": "Na verdade, acho o jeito confiante dele bastante atraente também."
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9NYXJpbmEubnBjDQoNCipKX05BTUUJCSJNYXJpbmEiDQoNCipKX0NIQVQJCSJNeSBkZWFyIHByaW5jZSwgaXNuJ3QgaGUgc28gZ29yZ2VvdXM/Ig0KKkpfQ0hBVAkJIkV4Y2VwdCBoZSBpcyBiZWluZyB0b28gc2hvdyBvZmYgdG8gb3RoZXJzLCBoZSB3b3VsZCBiZSBwZXJmZWN0Li4iDQoqSl9DSEFUCQkiQWN0dWFsbHkgSSB0aGluayBoaXMgc3dhZyBpcyBhbHNvIHZlcnkgYXR0cmFjdGl2ZSB0b28uIg=="
+    "legacy_payload_base64": "Ly9NYXJpbmEubnBjDQoNCipKX05BTUUJCSJNYXJpbmEiDQoNCipKX0NIQVQJCSJNZXUgcXVlcmlkbyBwcu1uY2lwZSwgZWxlIG7jbyDpIG1hcmF2aWxob3NvPyINCipKX0NIQVQJCSJTZSBlbGUgbuNvIGdvc3Rhc3NlIHRhbnRvIGRlIHNlIGV4aWJpciBwYXJhIG9zIG91dHJvcywgc2VyaWEgcGVyZmVpdG8uLi4iDQoqSl9DSEFUCQkiTmEgdmVyZGFkZSwgYWNobyBvIGplaXRvIGNvbmZpYW50ZSBkZWxlIGJhc3RhbnRlIGF0cmFlbnRlIHRhbWLpbS4i"
   }
 }

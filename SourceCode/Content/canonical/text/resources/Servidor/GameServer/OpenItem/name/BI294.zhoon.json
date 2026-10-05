@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Pedra do Acesso - Craft"
+        "text": "Pedra do Acesso - Fabricação"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRSAiUGVkcmEgZG8gQWNlc3NvIC0gQ3JhZnQi"
+    "legacy_payload_base64": "KkpfTkFNRSAiUGVkcmEgZG8gQWNlc3NvIC0gRmFicmljYefjbyI="
   }
 }

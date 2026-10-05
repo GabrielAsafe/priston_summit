@@ -25,12 +25,12 @@
         "line": 7,
         "legacy_key": "J_Chat",
         "kind": "chat",
-        "text": " EPT e Muito Divertido"
+        "text": "EPT e Muito Divertido"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9aYXJhZCwgbyBFbGVuZ2FudGUuTlBDDQoNCg0KKkpfTmFtZQkiWmFyYWQsIG8gRWxlZ2FudGUiDQoNCg0KKkpfQ2hhdAkiIEVQVCBlIE11aXRvIERpdmVydGlkbyINCg0K"
+    "legacy_payload_base64": "Ly9aYXJhZCwgbyBFbGVuZ2FudGUuTlBDDQoNCg0KKkpfTmFtZQkiWmFyYWQsIG8gRWxlZ2FudGUiDQoNCg0KKkpfQ2hhdAkiRVBUIGUgTXVpdG8gRGl2ZXJ0aWRvIg0KDQo="
   }
 }

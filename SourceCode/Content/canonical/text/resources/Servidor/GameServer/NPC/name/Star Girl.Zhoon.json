@@ -19,7 +19,7 @@
         "line": 4,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Garota Do Ranking"
+        "text": "Garota da Classificação"
       },
       {
         "line": 7,
@@ -31,6 +31,6 @@
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9TdGFyIEdpcmwuTlBDDQoNCg0KKkpfTmFtZQkiR2Fyb3RhIERvIFJhbmtpbmciDQoNCg0KKkpfQ2hhdAkiT2JyaWdhZG8gcG9yIGpvZ2FyIFN1bW1pdCBUYWxlID0pIg0KDQo="
+    "legacy_payload_base64": "Ly9TdGFyIEdpcmwuTlBDDQoNCg0KKkpfTmFtZQkiR2Fyb3RhIGRhIENsYXNzaWZpY2Hn428iDQoNCg0KKkpfQ2hhdAkiT2JyaWdhZG8gcG9yIGpvZ2FyIFN1bW1pdCBUYWxlID0pIg0KDQo="
   }
 }

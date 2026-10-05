@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Pedra de Respec FS"
+        "text": "Pedra de Reespecialização FS"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRSAiUGVkcmEgZGUgUmVzcGVjIEZTIg=="
+    "legacy_payload_base64": "KkpfTkFNRSAiUGVkcmEgZGUgUmVlc3BlY2lhbGl6YefjbyBGUyI="
   }
 }

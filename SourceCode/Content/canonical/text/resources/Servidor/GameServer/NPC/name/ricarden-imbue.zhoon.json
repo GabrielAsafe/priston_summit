@@ -31,7 +31,7 @@
         "line": 4,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "Qual o objetivo da Mixagem? Bem, você irá melhorar o desempenho de seus itens, com um processo único, sem riscos, o que é muito melhor que o Aging, devido à impossibilidade de perder seus itens."
+        "text": "Qual é o objetivo da combinação? Você melhorará o desempenho de seus itens por um processo sem riscos, diferente do aprimoramento, em que um item pode ser perdido."
       },
       {
         "line": 5,
@@ -49,6 +49,6 @@
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRQkJIkFydGVz428gTW9yYWxkIg0KDQoqSl9DSEFUCQkiQSBNaXhhZ2VtIG7jbyDpIHNvbWVudGUgZWZpY2llbnRlLiBFbGEg6SBvIG1laW8gbWFpcyBzZWd1cm8gZGUgbWVsaG9yYXIgbyBkZXNlbXBlbmhvIGRlIHNldXMgaXRlbnMuLi4iIA0KKkpfQ0hBVAkJIlF1YWwgbyBvYmpldGl2byBkYSBNaXhhZ2VtPyBCZW0sIHZvY+ogaXLhIG1lbGhvcmFyIG8gZGVzZW1wZW5obyBkZSBzZXVzIGl0ZW5zLCBjb20gdW0gcHJvY2Vzc28g+m5pY28sIHNlbSByaXNjb3MsIG8gcXVlIOkgbXVpdG8gbWVsaG9yIHF1ZSBvIEFnaW5nLCBkZXZpZG8g4CBpbXBvc3NpYmlsaWRhZGUgZGUgcGVyZGVyIHNldXMgaXRlbnMuIg0KKkpfQ0hBVAkJIkEgTWl4YWdlbSBmb2kgY3JpYWRhIGEgYWxndW5zIG1pbOpuaW9zIGF0cuFzLCBtYXMsIHNvbWVudGUgbWV0YWRlIGRhcyBjb21iaW5h5/VlcyBmb3JhbSBkZXNjb2JlcnRhcyBhdOkgYWdvcmEuIg0KKkpfQ0hBVAkJIk5hIE1peGFnZW0g6SBpbXBvc3PtdmVsIHNhaXIgcHJlanVkaWNhZG8sIGEgbWVub3MgcXVlIHZvY+ogZXJyZSBhIGNvbWJpbmHn428gZGUgU2hlbHRvbXMgYWRlcXVhZGEuIg0K"
+    "legacy_payload_base64": "KkpfTkFNRQkJIkFydGVz428gTW9yYWxkIg0KDQoqSl9DSEFUCQkiUXVhbCDpIG8gb2JqZXRpdm8gZGEgY29tYmluYefjbz8gVm9j6iBtZWxob3JhcuEgbyBkZXNlbXBlbmhvIGRlIHNldXMgaXRlbnMgcG9yIHVtIHByb2Nlc3NvIHNlbSByaXNjb3MsIGRpZmVyZW50ZSBkbyBhcHJpbW9yYW1lbnRvLCBlbSBxdWUgdW0gaXRlbSBwb2RlIHNlciBwZXJkaWRvLiIgDQoqSl9DSEFUCQkiUXVhbCBvIG9iamV0aXZvIGRhIE1peGFnZW0/IEJlbSwgdm9j6iBpcuEgbWVsaG9yYXIgbyBkZXNlbXBlbmhvIGRlIHNldXMgaXRlbnMsIGNvbSB1bSBwcm9jZXNzbyD6bmljbywgc2VtIHJpc2NvcywgbyBxdWUg6SBtdWl0byBtZWxob3IgcXVlIG8gQWdpbmcsIGRldmlkbyDgIGltcG9zc2liaWxpZGFkZSBkZSBwZXJkZXIgc2V1cyBpdGVucy4iDQoqSl9DSEFUCQkiQSBNaXhhZ2VtIGZvaSBjcmlhZGEgYSBhbGd1bnMgbWls6m5pb3MgYXRy4XMsIG1hcywgc29tZW50ZSBtZXRhZGUgZGFzIGNvbWJpbmHn9WVzIGZvcmFtIGRlc2NvYmVydGFzIGF06SBhZ29yYS4iDQoqSl9DSEFUCQkiTmEgTWl4YWdlbSDpIGltcG9zc+12ZWwgc2FpciBwcmVqdWRpY2FkbywgYSBtZW5vcyBxdWUgdm9j6iBlcnJlIGEgY29tYmluYefjbyBkZSBTaGVsdG9tcyBhZGVxdWFkYS4iDQo="
   }
 }

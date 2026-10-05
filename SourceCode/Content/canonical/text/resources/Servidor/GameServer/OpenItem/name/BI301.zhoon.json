@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Caixa EndGame"
+        "text": "Caixa de Fim de Jogo"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRSAiQ2FpeGEgRW5kR2FtZSI="
+    "legacy_payload_base64": "KkpfTkFNRSAiQ2FpeGEgZGUgRmltIGRlIEpvZ28i"
   }
 }

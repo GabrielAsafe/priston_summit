@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "SoD Crypt"
+        "text": "Crypt do SoD"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRQkJCSJTb0QgQ3J5cHQiDQo="
+    "legacy_payload_base64": "KkpfTkFNRQkJCSJDcnlwdCBkbyBTb0QiDQo="
   }
 }

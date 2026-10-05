@@ -25,30 +25,30 @@
         "line": 5,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "There's a way to protect your equipment in this chaotic time."
+        "text": "Existe uma forma de proteger seu equipamento nestes tempos caóticos."
       },
       {
         "line": 6,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "Imprinting on your equipment will decrease the risk of losing them."
+        "text": "Gravar uma marca no equipamento reduz o risco de perdê-lo."
       },
       {
         "line": 7,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "If you want to remove the imprint, you'll need a Brush of Oblivion."
+        "text": "Se quiser remover a marca, você precisará de um Pincel do Esquecimento."
       },
       {
         "line": 8,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "Imprinted items cannot be moved from your inventory to other's."
+        "text": "Itens marcados não podem ser transferidos do seu inventário para o de outra pessoa."
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9CYXJiYS5ucGMNCg0KKkpfTkFNRQkJIkJhcmJhIg0KDQoqSl9DSEFUCQkiVGhlcmUncyBhIHdheSB0byBwcm90ZWN0IHlvdXIgZXF1aXBtZW50IGluIHRoaXMgY2hhb3RpYyB0aW1lLiIgDQoqSl9DSEFUCQkiSW1wcmludGluZyBvbiB5b3VyIGVxdWlwbWVudCB3aWxsIGRlY3JlYXNlIHRoZSByaXNrIG9mIGxvc2luZyB0aGVtLiINCipKX0NIQVQJCSJJZiB5b3Ugd2FudCB0byByZW1vdmUgdGhlIGltcHJpbnQsIHlvdSdsbCBuZWVkIGEgQnJ1c2ggb2YgT2JsaXZpb24uIg0KKkpfQ0hBVAkJIkltcHJpbnRlZCBpdGVtcyBjYW5ub3QgYmUgbW92ZWQgZnJvbSB5b3VyIGludmVudG9yeSB0byBvdGhlcidzLiI="
+    "legacy_payload_base64": "Ly9CYXJiYS5ucGMNCg0KKkpfTkFNRQkJIkJhcmJhIg0KDQoqSl9DSEFUCQkiRXhpc3RlIHVtYSBmb3JtYSBkZSBwcm90ZWdlciBzZXUgZXF1aXBhbWVudG8gbmVzdGVzIHRlbXBvcyBjYfN0aWNvcy4iIA0KKkpfQ0hBVAkJIkdyYXZhciB1bWEgbWFyY2Egbm8gZXF1aXBhbWVudG8gcmVkdXogbyByaXNjbyBkZSBwZXJk6i1sby4iDQoqSl9DSEFUCQkiU2UgcXVpc2VyIHJlbW92ZXIgYSBtYXJjYSwgdm9j6iBwcmVjaXNhcuEgZGUgdW0gUGluY2VsIGRvIEVzcXVlY2ltZW50by4iDQoqSl9DSEFUCQkiSXRlbnMgbWFyY2Fkb3MgbuNvIHBvZGVtIHNlciB0cmFuc2Zlcmlkb3MgZG8gc2V1IGludmVudOFyaW8gcGFyYSBvIGRlIG91dHJhIHBlc3NvYS4i"
   }
 }

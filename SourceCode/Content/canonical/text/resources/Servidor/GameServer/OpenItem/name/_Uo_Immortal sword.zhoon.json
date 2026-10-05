@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Immortal sword"
+        "text": "Espada Imortal"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9VV1MyMjNfSW1tb3J0YWwgc3dvcmQudHh0DQoNCipKX05hbWUJCSJJbW1vcnRhbCBzd29yZCINCg=="
+    "legacy_payload_base64": "Ly9VV1MyMjNfSW1tb3J0YWwgc3dvcmQudHh0DQoNCipKX05hbWUJCSJFc3BhZGEgSW1vcnRhbCINCg=="
   }
 }

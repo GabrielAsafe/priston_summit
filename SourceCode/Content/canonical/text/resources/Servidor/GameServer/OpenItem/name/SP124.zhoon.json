@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Silver Bar"
+        "text": "Barra de Prata"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTmFtZQkJIlNpbHZlciBCYXIi"
+    "legacy_payload_base64": "KkpfTmFtZQkJIkJhcnJhIGRlIFByYXRhIg=="
   }
 }

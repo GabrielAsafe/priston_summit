@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "SoD Armored Beetle"
+        "text": "Besouro Blindado do SoD"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRQkJCSJTb0QgQXJtb3JlZCBCZWV0bGUiDQo="
+    "legacy_payload_base64": "KkpfTkFNRQkJCSJCZXNvdXJvIEJsaW5kYWRvIGRvIFNvRCINCg=="
   }
 }

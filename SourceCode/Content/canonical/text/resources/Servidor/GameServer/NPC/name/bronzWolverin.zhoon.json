@@ -19,7 +19,7 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Wolverine de Bronze"
+        "text": "Carcaju de Bronze"
       },
       {
         "line": 3,
@@ -37,6 +37,6 @@
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRQkJIldvbHZlcmluZSBkZSBCcm9uemUiDQoNCipKX0NIQVQJCSJHcnJycnIuLi4gZ3JycnJyci4uLiINCipKX0NIQVQJCSJVcnIuLiB1cnJycnJycnJyLi4gdXJyci4uLiINCg=="
+    "legacy_payload_base64": "KkpfTkFNRQkJIkNhcmNhanUgZGUgQnJvbnplIg0KDQoqSl9DSEFUCQkiR3JycnJyLi4uIGdycnJycnIuLi4iDQoqSl9DSEFUCQkiVXJyLi4gdXJycnJycnJyci4uIHVycnIuLi4iDQo="
   }
 }

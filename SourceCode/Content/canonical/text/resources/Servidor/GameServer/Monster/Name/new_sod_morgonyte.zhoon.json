@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "SoD Morgonyte"
+        "text": "Morgonyte do SoD"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRQkJCSJTb0QgTW9yZ29ueXRlIg0KDQo="
+    "legacy_payload_base64": "KkpfTkFNRQkJCSJNb3Jnb255dGUgZG8gU29EIg0KDQo="
   }
 }

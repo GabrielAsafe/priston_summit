@@ -25,12 +25,12 @@
         "line": 7,
         "legacy_key": "J_Chat",
         "kind": "chat",
-        "text": "Aproveite os time e tune o seu personagem!"
+        "text": "Aproveite seus pontos da Loja de Tempo e aprimore o seu personagem!"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9Mb2phIGRvIFRlbXBvLk5QQw0KDQoNCipKX05hbWUJIkxvamEgZG8gVGVtcG8iDQoNCg0KKkpfQ2hhdAkiQXByb3ZlaXRlIG9zIHRpbWUgZSB0dW5lIG8gc2V1IHBlcnNvbmFnZW0hIg0KDQo="
+    "legacy_payload_base64": "Ly9Mb2phIGRvIFRlbXBvLk5QQw0KDQoNCipKX05hbWUJIkxvamEgZG8gVGVtcG8iDQoNCg0KKkpfQ2hhdAkiQXByb3ZlaXRlIHNldXMgcG9udG9zIGRhIExvamEgZGUgVGVtcG8gZSBhcHJpbW9yZSBvIHNldSBwZXJzb25hZ2VtISINCg0K"
   }
 }

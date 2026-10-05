@@ -19,18 +19,18 @@
         "line": 4,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Loja do Minutos"
+        "text": "Loja de Minutos"
       },
       {
         "line": 7,
         "legacy_key": "J_Chat",
         "kind": "chat",
-        "text": "Aproveite os time e tune o seu personagem!"
+        "text": "Aproveite seus pontos da Loja de Tempo e aprimore o seu personagem!"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly90aW1lc2hvcC5OUEMNCg0KDQoqSl9OYW1lCSJMb2phIGRvIE1pbnV0b3MiDQoNCg0KKkpfQ2hhdAkiQXByb3ZlaXRlIG9zIHRpbWUgZSB0dW5lIG8gc2V1IHBlcnNvbmFnZW0hIg0KDQo="
+    "legacy_payload_base64": "Ly90aW1lc2hvcC5OUEMNCg0KDQoqSl9OYW1lCSJMb2phIGRlIE1pbnV0b3MiDQoNCg0KKkpfQ2hhdAkiQXByb3ZlaXRlIHNldXMgcG9udG9zIGRhIExvamEgZGUgVGVtcG8gZSBhcHJpbW9yZSBvIHNldSBwZXJzb25hZ2VtISINCg0K"
   }
 }

@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Dynasty Sphere"
+        "text": "Esfera da Dinastia"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9PTTMwNS50eHQNCg0KKkpfTmFtZQkJIkR5bmFzdHkgU3BoZXJlIg0K"
+    "legacy_payload_base64": "Ly9PTTMwNS50eHQNCg0KKkpfTmFtZQkJIkVzZmVyYSBkYSBEaW5hc3RpYSINCg=="
   }
 }

@@ -19,12 +19,12 @@
         "line": 2,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Lucky Box"
+        "text": "Caixa da Sorte"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "DQoqSl9OYW1lCQkiTHVja3kgQm94Ig0K"
+    "legacy_payload_base64": "DQoqSl9OYW1lCQkiQ2FpeGEgZGEgU29ydGUiDQo="
   }
 }

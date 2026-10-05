@@ -19,18 +19,18 @@
         "line": 4,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Tabela de Mix"
+        "text": "Tabela de Combinações"
       },
       {
         "line": 7,
         "legacy_key": "J_Chat",
         "kind": "chat",
-        "text": "Tabela de mix Online"
+        "text": "Consulte aqui a tabela de combinações."
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9MaXN0YV9taXguTlBDDQoNCg0KKkpfTmFtZQkiVGFiZWxhIGRlIE1peCINCg0KDQoqSl9DaGF0CSJUYWJlbGEgZGUgbWl4IE9ubGluZSINCg0K"
+    "legacy_payload_base64": "Ly9MaXN0YV9taXguTlBDDQoNCg0KKkpfTmFtZQkiVGFiZWxhIGRlIENvbWJpbmHn9WVzIg0KDQoNCipKX0NoYXQJIkNvbnN1bHRlIGFxdWkgYSB0YWJlbGEgZGUgY29tYmluYef1ZXMuIg0KDQo="
   }
 }

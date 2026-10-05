@@ -55,11 +55,11 @@ void CharacterWindow::BuildChrome()
     inventory.SetOnClick([this](const UIEvent&) { SetActiveTab(CharacterTab::Inventory); });
     inventoryTab_ = &inventory;
 
-    auto& companions = AddChild<Button>(504, "Companions");
+    auto& companions = AddChild<Button>(504, "Companheiros");
     companions.SetOnClick([this](const UIEvent&) { SetActiveTab(CharacterTab::Companions); });
     companionsTab_ = &companions;
 
-    auto& covenants = AddChild<Button>(505, "Covenants");
+    auto& covenants = AddChild<Button>(505, "Pactos");
     covenants.SetOnClick([this](const UIEvent&) { SetActiveTab(CharacterTab::Covenants); });
     covenantsTab_ = &covenants;
 

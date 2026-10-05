@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Support Scythe"
+        "text": "Foice de Suporte"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9XUDE1My50eHQNCg0KKkpfTmFtZQkJIlN1cHBvcnQgU2N5dGhlIg0K"
+    "legacy_payload_base64": "Ly9XUDE1My50eHQNCg0KKkpfTmFtZQkJIkZvaWNlIGRlIFN1cG9ydGUiDQo="
   }
 }

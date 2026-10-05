@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Mirage Mágico"
+        "text": "Miragem Mágico"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRSAiTWlyYWdlIE3hZ2ljbyI="
+    "legacy_payload_base64": "KkpfTkFNRSAiTWlyYWdlbSBN4WdpY28i"
   }
 }

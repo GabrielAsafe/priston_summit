@@ -25,7 +25,7 @@
         "line": 3,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "Ouvi por aí que agora existe uma pedra que aumenta a chance de sucesso no Aging...^^"
+        "text": "Ouvi dizer que agora existe uma pedra que aumenta a chance de sucesso no aprimoramento...^^"
       },
       {
         "line": 4,
@@ -43,12 +43,12 @@
         "line": 6,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "Você poderá fazer o Aging, a qualquer momento, se tiver os recursos necessários."
+        "text": "Você poderá fazer o aprimoramento a qualquer momento, se tiver os recursos necessários."
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRQkJIk1vcmlwaCwgbyBNaXN0ZXJpb3NvIg0KDQoqSl9DSEFUCQkiT3V2aSBwb3IgYe0gcXVlIGFnb3JhIGV4aXN0ZSB1bWEgcGVkcmEgcXVlIGF1bWVudGEgYSBjaGFuY2UgZGUgc3VjZXNzbyBubyBBZ2luZy4uLl5eIg0KKkpfQ0hBVAkJIkVzdGUgc2lzdGVtYSBmb2kgY3JpYWRvIHBhcmEgYnVzY2FyIG8gZGVzZW1wZW5obyBt4XhpbW8gZG9zIGl0ZW5zLCBtYXMsIGV4aXN0ZSB1bSBjZXJ0byByaXNjbyBlbSBzZXUgdXNvLi4uIg0KKkpfQ0hBVAkJIkFsZ3VucyBpdGVucyBwb2RlbSBzZXIgcGVyZGlkb3MgZHVyYW50ZSBvIHByb2Nlc3NvLCBtYXMgZWxlIOkgbXVpdG8gbWFpcyBlZmljYXogZG8gcXVlIGEgTWl4YWdlbS4iDQoqSl9DSEFUCQkiVm9j6iBwb2RlcuEgZmF6ZXIgbyBBZ2luZywgYSBxdWFscXVlciBtb21lbnRvLCBzZSB0aXZlciBvcyByZWN1cnNvcyBuZWNlc3Phcmlvcy4iDQoNCg=="
+    "legacy_payload_base64": "KkpfTkFNRQkJIk1vcmlwaCwgbyBNaXN0ZXJpb3NvIg0KDQoqSl9DSEFUCQkiT3V2aSBkaXplciBxdWUgYWdvcmEgZXhpc3RlIHVtYSBwZWRyYSBxdWUgYXVtZW50YSBhIGNoYW5jZSBkZSBzdWNlc3NvIG5vIGFwcmltb3JhbWVudG8uLi5eXiINCipKX0NIQVQJCSJWb2PqIHBvZGVy4SBmYXplciBvIGFwcmltb3JhbWVudG8gYSBxdWFscXVlciBtb21lbnRvLCBzZSB0aXZlciBvcyByZWN1cnNvcyBuZWNlc3Phcmlvcy4iDQoqSl9DSEFUCQkiQWxndW5zIGl0ZW5zIHBvZGVtIHNlciBwZXJkaWRvcyBkdXJhbnRlIG8gcHJvY2Vzc28sIG1hcyBlbGUg6SBtdWl0byBtYWlzIGVmaWNheiBkbyBxdWUgYSBNaXhhZ2VtLiINCipKX0NIQVQJCSJWb2PqIHBvZGVy4SBmYXplciBvIEFnaW5nLCBhIHF1YWxxdWVyIG1vbWVudG8sIHNlIHRpdmVyIG9zIHJlY3Vyc29zIG5lY2Vzc+FyaW9zLiINCg0K"
   }
 }

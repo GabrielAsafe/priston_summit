@@ -19,48 +19,48 @@
         "line": 3,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "uXLbX|[^["
+        "text": "Repórter do Bless Castle"
       },
       {
         "line": 5,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "뜞뢙궻뤻궻렃롥궼덇뫬묿궳궢귛궎궔갃"
+        "text": "Quem será o dono do castelo esta semana?"
       },
       {
         "line": 6,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "뚻뤻먰궼뻽뢙1됷궦궰뛱귦귢궲갂긫깑긪깋궻뱜귩봨됹궥귡긏깋깛궕뤻궻렃롥궸궶귟귏궥갃"
+        "text": "A Guerra do Castelo acontece uma vez por semana. O clã que destruir a Torre de Valhalla torna-se o dono do castelo."
       },
       {
         "line": 7,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "뤻궻렃롥궸궼궩궻뻁뤮궕궥궟궋궻궳궥궕갂뮛먰궢궲귒귏궧귪궔갃"
+        "text": "As recompensas para o dono do castelo são excelentes. Que tal tentar conquistá-lo?"
       },
       {
         "line": 8,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "똽궢궋먰벉궻륉떟귩뙥귡럷궕궳궖귏궥갃"
+        "text": "Aqui você pode acompanhar a situação dos combates mais intensos."
       },
       {
         "line": 9,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "uXLbXÖs­½ßÉÍ|ÌXÌÄàlufCv³ñÉ¾íÈ¢Æ¢¯Ü¹ñB"
+        "text": "Para ir ao Bless Castle, fale com Damon, o guia da Floresta de Bambu."
       },
       {
         "line": 10,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "uXLbXÖs­½ßÉÍ|ÌXÌÄàlufCv³ñÉ¾íÈ¢Æ¢¯Ü¹ñB"
+        "text": "Para ir ao Bless Castle, fale com Damon, o guia da Floresta de Bambu."
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9CQy1SZXBvcnRlci5ucGMNCg0KKkpfTkFNRQkJCSKDdYOMg1iDTIODg2KDWIOLg4qDfIFbg16BWyINCg0KKkpfQ0hBVAkJCSKNoY9UgsyP6YLMjp2O5YLNiOqRzJJOgsWCtYLlgqSCqYFCIg0KKkpfQ0hBVCAJCQkijPeP6ZDtgs2WiI9UMYnxgriCwo1zgu2C6oLEgUGDb4OLg26DiYLMk4OC8JRqifOCt4Lpg06DiYOTgqqP6YLMjp2O5YLJgsiC6ILcgreBQiINCipKX0NIQVQgICAgICAgICAgICAgICAgICAgIo/pgsyOnY7lgsmCzYK7gsyWSo/cgqqCt4KygqKCzILFgreCqoFBkqeQ7YK1gsSC3YLcgrmC8YKpgUIiDQoqSl9DSEFUICAgICAgICAgICAgICAgICAgICKMg4K1gqKQ7ZOsgsyP84u1gvCMqYLpjpaCqoLFgquC3IK3gUIiDQoqSl9DSEFUICAgICAgICAgICAgICAgICAgICKDdYOMg1iDTIODg2KDWIOLgtaNc4Ktgr2C34LJgs2SfILMkFiCzIjEk+CQbIF1g2aDQ4OCg5OBdoKzgvGCyYy+gu2CyIKigsaCooKvgtyCuYLxgUIiDQoqSl9DSEFUICAgICAgICAgICAgICAgICAgICKDdYOMg1iDTIODg2KDWIOLgtaNc4Ktgr2C34LJgs2SfILMkFiCzIjEk+CQbIF1g2aDQ4OCg5OBdoKzgvGCyYy+gu2CyIKigsaCooKvgtyCuYLxgUIiDQo="
+    "legacy_payload_base64": "Ly9CQy1SZXBvcnRlci5ucGMNCg0KKkpfTkFNRQkJCSJSZXDzcnRlciBkbyBCbGVzcyBDYXN0bGUiDQoNCipKX0NIQVQJCQkiUXVlbSBzZXLhIG8gZG9ubyBkbyBjYXN0ZWxvIGVzdGEgc2VtYW5hPyINCipKX0NIQVQgCQkJIkEgR3VlcnJhIGRvIENhc3RlbG8gYWNvbnRlY2UgdW1hIHZleiBwb3Igc2VtYW5hLiBPIGNs4yBxdWUgZGVzdHJ1aXIgYSBUb3JyZSBkZSBWYWxoYWxsYSB0b3JuYS1zZSBvIGRvbm8gZG8gY2FzdGVsby4iDQoqSl9DSEFUICAgICAgICAgICAgICAgICAgICJBcyByZWNvbXBlbnNhcyBwYXJhIG8gZG9ubyBkbyBjYXN0ZWxvIHPjbyBleGNlbGVudGVzLiBRdWUgdGFsIHRlbnRhciBjb25xdWlzdOEtbG8/Ig0KKkpfQ0hBVCAgICAgICAgICAgICAgICAgICAiQXF1aSB2b2PqIHBvZGUgYWNvbXBhbmhhciBhIHNpdHVh5+NvIGRvcyBjb21iYXRlcyBtYWlzIGludGVuc29zLiINCipKX0NIQVQgICAgICAgICAgICAgICAgICAgIlBhcmEgaXIgYW8gQmxlc3MgQ2FzdGxlLCBmYWxlIGNvbSBEYW1vbiwgbyBndWlhIGRhIEZsb3Jlc3RhIGRlIEJhbWJ1LiINCipKX0NIQVQgICAgICAgICAgICAgICAgICAgIlBhcmEgaXIgYW8gQmxlc3MgQ2FzdGxlLCBmYWxlIGNvbSBEYW1vbiwgbyBndWlhIGRhIEZsb3Jlc3RhIGRlIEJhbWJ1LiINCg=="
   }
 }

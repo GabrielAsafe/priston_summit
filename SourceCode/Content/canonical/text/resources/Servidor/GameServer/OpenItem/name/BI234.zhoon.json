@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Baú de Ouro Up 24h"
+        "text": "Baú de Ouro Aprimorado 24h"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRSAiQmH6IGRlIE91cm8gVXAgMjRoIg=="
+    "legacy_payload_base64": "KkpfTkFNRSAiQmH6IGRlIE91cm8gQXByaW1vcmFkbyAyNGgi"
   }
 }

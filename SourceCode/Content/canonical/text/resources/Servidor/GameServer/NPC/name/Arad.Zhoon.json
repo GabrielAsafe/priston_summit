@@ -19,7 +19,7 @@
         "line": 4,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Trocar Skin"
+        "text": "Trocar Visual"
       },
       {
         "line": 7,
@@ -31,6 +31,6 @@
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9BcmFkLk5QQw0KDQoNCipKX05hbWUJIlRyb2NhciBTa2luIg0KDQoNCipKX0NoYXQJIk9icmlnYWRvIHBvciBqb2dhciBTdW1taXQgVGFsZSA9KSINCg0K"
+    "legacy_payload_base64": "Ly9BcmFkLk5QQw0KDQoNCipKX05hbWUJIlRyb2NhciBWaXN1YWwiDQoNCg0KKkpfQ2hhdAkiT2JyaWdhZG8gcG9yIGpvZ2FyIFN1bW1pdCBUYWxlID0pIg0KDQo="
   }
 }

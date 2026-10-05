@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Ticket de Estrela"
+        "text": "Bilhete de Estrela"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRSAiVGlja2V0IGRlIEVzdHJlbGEi"
+    "legacy_payload_base64": "KkpfTkFNRSAiQmlsaGV0ZSBkZSBFc3RyZWxhIg=="
   }
 }

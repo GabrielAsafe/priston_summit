@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "HP Booster (1d)"
+        "text": "HP Reforço (1d)"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRSAiSFAgQm9vc3RlciAoMWQpIg=="
+    "legacy_payload_base64": "KkpfTkFNRSAiSFAgUmVmb3LnbyAoMWQpIg=="
   }
 }

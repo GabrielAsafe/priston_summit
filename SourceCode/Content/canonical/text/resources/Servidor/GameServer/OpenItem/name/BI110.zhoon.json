@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Pedra do Aging"
+        "text": "Pedra do Aprimoramento"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRSAiUGVkcmEgZG8gQWdpbmci"
+    "legacy_payload_base64": "KkpfTkFNRSAiUGVkcmEgZG8gQXByaW1vcmFtZW50byI="
   }
 }

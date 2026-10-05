@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "SoD Avelisk-S"
+        "text": "Avelisk-S do SoD"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRQkJCSJTb0QgQXZlbGlzay1TIg0K"
+    "legacy_payload_base64": "KkpfTkFNRQkJCSJBdmVsaXNrLVMgZG8gU29EIg0K"
   }
 }

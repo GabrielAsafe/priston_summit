@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "R8B Shadow Phalanx"
+        "text": "Falange Sombria R8B"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRSAiUjhCIFNoYWRvdyBQaGFsYW54Ig=="
+    "legacy_payload_base64": "KkpfTkFNRSAiRmFsYW5nZSBTb21icmlhIFI4QiI="
   }
 }

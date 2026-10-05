@@ -19,24 +19,24 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "귽긹깛긣긎긿깑"
+        "text": "Garota do Evento"
       },
       {
         "line": 3,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "ÁÊCxgÅ|CgðÏÝ§Äé±ÆªÅ«éíæB³ `|CgðWßÄÜiàá¦éíæB"
+        "text": "Em eventos especiais você pode acumular Pontos-Estrela. Junte-os e troque por prêmios!"
       },
       {
         "line": 4,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "|CgÍ{¨Ì¤iÆð·Å«é{[iX|CgT[rXÅ·BÚµ­Íö®z[y[WðQlµÄ­¾³¢ËB"
+        "text": "Pontos-Estrela são pontos de bônus que podem ser trocados por produtos. Consulte o site oficial para mais detalhes."
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRQkJIoNDg3iDk4Nng02Dg4OLIg0KDQoqSl9DSEFUCQkik8GVyoNDg3iDk4NngsWBmoN8g0ODk4NngvCQz4Ldl6eCxILpgrGCxoKqgsWCq4Lpgu2C5oFCgrOCoIFggZqDfINDg5ODZ4Lwj1eC34LEj9yVaYLgluGCpoLpgu2C5oFCIg0KKkpfQ0hBVAkJIoGag3yDQ4OTg2eCzZZ7laiCzI+klWmCxozwireCxYKrgumDe4Fbg2mDWIN8g0ODk4Nng1SBW4Nyg1iCxYK3gUKP2oK1gq2CzYz2jq6DeoFbg4CDeYFbg1eC8I5RjWyCtYLEgq2CvoKzgqKCy4FCIg0K"
+    "legacy_payload_base64": "KkpfTkFNRQkJIkdhcm90YSBkbyBFdmVudG8iDQoNCipKX0NIQVQJCSJFbSBldmVudG9zIGVzcGVjaWFpcyB2b2PqIHBvZGUgYWN1bXVsYXIgUG9udG9zLUVzdHJlbGEuIEp1bnRlLW9zIGUgdHJvcXVlIHBvciBwcuptaW9zISINCipKX0NIQVQJCSJQb250b3MtRXN0cmVsYSBz428gcG9udG9zIGRlIGL0bnVzIHF1ZSBwb2RlbSBzZXIgdHJvY2Fkb3MgcG9yIHByb2R1dG9zLiBDb25zdWx0ZSBvIHNpdGUgb2ZpY2lhbCBwYXJhIG1haXMgZGV0YWxoZXMuIg0K"
   }
 }

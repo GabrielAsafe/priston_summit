@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Runic Orb"
+        "text": "Orbe Rúnico"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9PTTMwNC50eHQNCg0KKkpfTmFtZQkJIlJ1bmljIE9yYiINCg=="
+    "legacy_payload_base64": "Ly9PTTMwNC50eHQNCg0KKkpfTmFtZQkJIk9yYmUgUvpuaWNvIg0K"
   }
 }

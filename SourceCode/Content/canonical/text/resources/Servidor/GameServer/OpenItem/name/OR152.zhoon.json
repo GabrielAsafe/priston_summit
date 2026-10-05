@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "2019 Ring"
+        "text": "Anel de 2019"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9PUjEyMi50eHQNCg0KKkpfTmFtZQkJIjIwMTkgUmluZyINCg=="
+    "legacy_payload_base64": "Ly9PUjEyMi50eHQNCg0KKkpfTmFtZQkJIkFuZWwgZGUgMjAxOSINCg=="
   }
 }

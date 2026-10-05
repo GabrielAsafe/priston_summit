@@ -31,7 +31,7 @@
         "line": 4,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "Somente guerreiros acima do Nivel 40 podem entrar aqui."
+        "text": "Somente guerreiros acima do Nível 40 podem entrar aqui."
       },
       {
         "line": 5,
@@ -49,6 +49,6 @@
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRQkJIkd1YXJkaeNvIg0KDQoqSl9DSEFUCQkiTyBSZWkgSG9wcGllIGFycmViZW50b3UgdW1hIHBhcmVkZSBkYSD6bHRpbW8gYW5kYXIgZG8gY2FsYWJvdedvIGUgcmV2ZWxvdSB1bWEgbm92YSDhcmVhLiBPIHF1ZSBzZXLhIHF1ZSBo4SBuZWxhPyINCipKX0NIQVQJCSJTb21lbnRlIGd1ZXJyZWlyb3MgYWNpbWEgZG8gTml2ZWwgNDAgcG9kZW0gZW50cmFyIGFxdWkuIg0KKkpfQ0hBVAkJIk8gUmVpIEhvcHBpZSwgbGlkZXIgZG8gZXjpcmNpdG8gZG9zIEhvcHBpZXMsIHBlcmFtYnVsYSBwZWxvIENhbGFib3Xnby4gRXUgbW9ycm8gZGUgbWVkbyBz8yBkZSBwZW5zYXIuLi4iDQoqSl9DSEFUCQkiRXN0ZSBDYWxhYm91528gQW50aWdvIGZvaSBjb25zdHJ17WRvIHBhcmEgYXByaXNpb25hciBhbGd1bWEgY3JpYXR1cmEuLi4iDQo="
+    "legacy_payload_base64": "KkpfTkFNRQkJIkd1YXJkaeNvIg0KDQoqSl9DSEFUCQkiU29tZW50ZSBndWVycmVpcm9zIGFjaW1hIGRvIE7tdmVsIDQwIHBvZGVtIGVudHJhciBhcXVpLiINCipKX0NIQVQJCSJTb21lbnRlIGd1ZXJyZWlyb3MgYWNpbWEgZG8gTml2ZWwgNDAgcG9kZW0gZW50cmFyIGFxdWkuIg0KKkpfQ0hBVAkJIk8gUmVpIEhvcHBpZSwgbGlkZXIgZG8gZXjpcmNpdG8gZG9zIEhvcHBpZXMsIHBlcmFtYnVsYSBwZWxvIENhbGFib3Xnby4gRXUgbW9ycm8gZGUgbWVkbyBz8yBkZSBwZW5zYXIuLi4iDQoqSl9DSEFUCQkiRXN0ZSBDYWxhYm91528gQW50aWdvIGZvaSBjb25zdHJ17WRvIHBhcmEgYXByaXNpb25hciBhbGd1bWEgY3JpYXR1cmEuLi4iDQo="
   }
 }

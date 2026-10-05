@@ -19,30 +19,30 @@
         "line": 3,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "Sanctuary Guard"
+        "text": "Guarda do Santuário"
       },
       {
         "line": 6,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "See the place behind you? This is   Kelvezu's Lair! I doubt you will    survive in there!"
+        "text": "Está vendo o lugar atrás de você? É o Covil de Kelvezu! Duvido que consiga sobreviver lá dentro!"
       },
       {
         "line": 7,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "Kelvezu is a fearsome monster with  incredible attack power. You're not gonna survive with your current     defense power from the most furious monster ever!!"
+        "text": "Kelvezu é um monstro terrível, com um poder de ataque incrível. Com sua defesa atual, você não sobreviverá à criatura mais feroz do covil!"
       },
       {
         "line": 8,
         "legacy_key": "J_CHAT",
         "kind": "chat",
-        "text": "Listen! for now, it's not too much to say that Kelvezu is the invincible one living in the Lair!!"
+        "text": "Escute! Não é exagero dizer que Kelvezu é praticamente invencível dentro do covil!"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9TYW5jLUd1YXJkLm5wYw0KDQoqSl9OQU1FCQkJIlNhbmN0dWFyeSBHdWFyZCINCg0KDQoqSl9DSEFUCQkJIlNlZSB0aGUgcGxhY2UgYmVoaW5kIHlvdT8gVGhpcyBpcyAgIEtlbHZlenUncyBMYWlyISBJIGRvdWJ0IHlvdSB3aWxsICAgIHN1cnZpdmUgaW4gdGhlcmUhIg0KKkpfQ0hBVAkJCSJLZWx2ZXp1IGlzIGEgZmVhcnNvbWUgbW9uc3RlciB3aXRoICBpbmNyZWRpYmxlIGF0dGFjayBwb3dlci4gWW91J3JlIG5vdCBnb25uYSBzdXJ2aXZlIHdpdGggeW91ciBjdXJyZW50ICAgICBkZWZlbnNlIHBvd2VyIGZyb20gdGhlIG1vc3QgZnVyaW91cyBtb25zdGVyIGV2ZXIhISIgDQoqSl9DSEFUCQkJIkxpc3RlbiEgZm9yIG5vdywgaXQncyBub3QgdG9vIG11Y2ggdG8gc2F5IHRoYXQgS2VsdmV6dSBpcyB0aGUgaW52aW5jaWJsZSBvbmUgbGl2aW5nIGluIHRoZSBMYWlyISEiDQo="
+    "legacy_payload_base64": "Ly9TYW5jLUd1YXJkLm5wYw0KDQoqSl9OQU1FCQkJIkd1YXJkYSBkbyBTYW50deFyaW8iDQoNCg0KKkpfQ0hBVAkJCSJFc3ThIHZlbmRvIG8gbHVnYXIgYXRy4XMgZGUgdm9j6j8gySBvIENvdmlsIGRlIEtlbHZlenUhIER1dmlkbyBxdWUgY29uc2lnYSBzb2JyZXZpdmVyIGzhIGRlbnRybyEiDQoqSl9DSEFUCQkJIktlbHZlenUg6SB1bSBtb25zdHJvIHRlcnLtdmVsLCBjb20gdW0gcG9kZXIgZGUgYXRhcXVlIGluY3LtdmVsLiBDb20gc3VhIGRlZmVzYSBhdHVhbCwgdm9j6iBu428gc29icmV2aXZlcuEg4CBjcmlhdHVyYSBtYWlzIGZlcm96IGRvIGNvdmlsISIgDQoqSl9DSEFUCQkJIkVzY3V0ZSEgTuNvIOkgZXhhZ2VybyBkaXplciBxdWUgS2VsdmV6dSDpIHByYXRpY2FtZW50ZSBpbnZlbmPtdmVsIGRlbnRybyBkbyBjb3ZpbCEiDQo="
   }
 }

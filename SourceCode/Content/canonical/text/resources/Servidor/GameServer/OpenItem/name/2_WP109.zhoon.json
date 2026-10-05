@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Devil Scythe"
+        "text": "Foice Demoníaca"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly8yX1dQMTA5LnR4dA0KDQoqSl9OYW1lCQkiRGV2aWwgU2N5dGhlIg0K"
+    "legacy_payload_base64": "Ly8yX1dQMTA5LnR4dA0KDQoqSl9OYW1lCQkiRm9pY2UgRGVtb27tYWNhIg0K"
   }
 }

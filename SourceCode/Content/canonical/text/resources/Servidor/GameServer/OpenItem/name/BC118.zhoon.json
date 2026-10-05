@@ -19,12 +19,12 @@
         "line": 3,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Might Stone"
+        "text": "Pedra do Poder"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9CQzExNi50eHQNCg0KKkpfTmFtZQkJIk1pZ2h0IFN0b25lIg0K"
+    "legacy_payload_base64": "Ly9CQzExNi50eHQNCg0KKkpfTmFtZQkJIlBlZHJhIGRvIFBvZGVyIg0K"
   }
 }

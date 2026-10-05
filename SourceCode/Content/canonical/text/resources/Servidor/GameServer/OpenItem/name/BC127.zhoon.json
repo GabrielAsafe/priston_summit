@@ -19,12 +19,12 @@
         "line": 1,
         "legacy_key": "J_NAME",
         "kind": "name",
-        "text": "RES Booster (1h)"
+        "text": "RES Reforço (1h)"
       }
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "KkpfTkFNRSAiUkVTIEJvb3N0ZXIgKDFoKSI="
+    "legacy_payload_base64": "KkpfTkFNRSAiUkVTIFJlZm9y528gKDFoKSI="
   }
 }
