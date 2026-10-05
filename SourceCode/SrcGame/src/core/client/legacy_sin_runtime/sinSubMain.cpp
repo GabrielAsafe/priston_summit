@@ -2263,6 +2263,8 @@ int haSiegeBoardTempFlag = 0;
 
 int ShowParty()
 {
+	if (ui::v2::legacy::OpenSocialWindow())
+		return TRUE;
 	int ls;
 
 
@@ -2305,6 +2307,8 @@ int ShowParty()
 
 int ShowQuest()
 {
+	if (ui::v2::legacy::OpenQuestJournalWindow())
+		return TRUE;
 	int ls;
 
 

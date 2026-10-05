@@ -61,6 +61,7 @@ static void MINGW_ClanTrace(const char *, ...)
 #include "systems/security/integrity/isaocheck.h"
 #include "Help.h"
 #include "GuideHelp.h" 
+#include "systems/ui/v2/legacy/LegacyUIV2Bridge.h"
 
 #include "systems/audio/voice/legacy_client/Process.h"
 
@@ -317,6 +318,12 @@ void InitHelp()
 
 void InitGuideHelp()
 {
+	if (ui::v2::legacy::OpenGuideWindow())
+	{
+		IsDrawGuideHelp = FALSE;
+		g_GuideHelp.GuidHelpEnd();
+		return;
+	}
 	g_GuideHelp.SetDoing(TRUE);
 	g_GuideHelp.SetStartPos(0, 0);
 	g_GuideHelp.CheckLevel(sinChar->Level);

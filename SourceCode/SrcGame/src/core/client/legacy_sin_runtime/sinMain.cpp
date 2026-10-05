@@ -228,7 +228,8 @@ void sinDraw()
 
 	dsDrawOffsetArray = dsARRAY_TOP;
 
-	cParty.Draw();
+	// UI V2 owns party presentation; cParty remains the authoritative legacy data backend.
+	// cParty.Draw();
 
 	chaPremiumitem.DrawUp();
 	
@@ -470,8 +471,8 @@ void sinProc(int Message)
 			}
 			break;
 		}
-		if (cParty.LButtonDown())
-			break;
+		// Legacy party HUD input is disabled; SocialWindow/PartyStatusHud own presentation.
+		// if (cParty.LButtonDown()) break;
 
 		if (!ui::v2::legacy::OwnsLegacyRestorationUI() && cRestaure.LButtonDown())
 			break;
@@ -533,7 +534,8 @@ void sinProc(int Message)
 		ROLLHANDLER->OnMouseClick(false);
 		if (!ui::v2::legacy::OwnsLegacyMessage3UI()) cMessageBox.LButtonUp(pCursorPos.x, pCursorPos.y);
 		if(sinMessageBoxShowFlag && !ui::v2::legacy::OwnsLegacyMessage3UI())return;
-		if(cParty.RButtonDown())return;
+		// Legacy party HUD input is disabled; SocialWindow owns member actions.
+		// if(cParty.RButtonDown())return;
 		if (ui::v2::legacy::HandleLegacyMessage(Message))
 			return;
 		if (LegacyInterfaceInputEnabled()) cInterFace.LButtonUp(pCursorPos.x, pCursorPos.y);

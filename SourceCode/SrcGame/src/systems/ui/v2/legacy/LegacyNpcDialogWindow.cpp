@@ -1,4 +1,5 @@
 #include "systems/ui/v2/legacy/LegacyNpcDialogWindow.h"
+#include "systems/ui/v2/legacy/LegacyUIV2Bridge.h"
 
 #include <algorithm>
 #include <cstring>
@@ -11,7 +12,6 @@
 #include "systems/ui/v2/widgets/Button.h"
 #include "systems/ui/v2/widgets/TextLayout.h"
 
-extern void InitGuideHelp();
 
 namespace ui::v2::legacy
 {
@@ -20,10 +20,10 @@ namespace
 std::string LegacyToUtf8(const char* text)
 {
     if (!text || !*text) return {};
-    const int wideLen = MultiByteToWideChar(CP_ACP, 0, text, -1, nullptr, 0);
+    const int wideLen = MultiByteToWideChar(1252, 0, text, -1, nullptr, 0);
     if (wideLen <= 1) return text;
     std::vector<wchar_t> wide(static_cast<std::size_t>(wideLen));
-    MultiByteToWideChar(CP_ACP, 0, text, -1, wide.data(), wideLen);
+    MultiByteToWideChar(1252, 0, text, -1, wide.data(), wideLen);
     const int utfLen = WideCharToMultiByte(CP_UTF8, 0, wide.data(), -1, nullptr, 0, nullptr, nullptr);
     if (utfLen <= 1) return text;
     std::string out(static_cast<std::size_t>(utfLen), '\0');
@@ -197,7 +197,7 @@ void LegacyNpcDialogWindow::ActivateGuideHelp()
     // PATCH 184: the legacy normal-help window used an embedded parchment icon
     // to enter GuideHelp. UI V2 suppresses that chrome, so expose the same
     // transition explicitly instead of leaving the guide unreachable.
-    InitGuideHelp();
+    OpenGuideWindow();
     std::memset(&sSinHelp[activeIndex_], 0, sizeof(sSINHELP));
     HelpBoxKindIndex = 0;
     activeIndex_ = -1;

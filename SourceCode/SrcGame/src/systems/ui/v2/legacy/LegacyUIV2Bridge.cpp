@@ -33,6 +33,9 @@
 #include "systems/ui/v2/quests/QuestJournalWindow.h"
 #include "systems/ui/v2/quests/QuestTrackerHud.h"
 #include "systems/ui/v2/crafting/MixGuideWindow.h"
+#include "systems/ui/v2/help/GuideWindow.h"
+#include "systems/ui/v2/social/SocialWindow.h"
+#include "systems/ui/v2/social/PartyStatusHud.h"
 #include "systems/ui/v2/rendering/Dx9UIRenderer.h"
 #include "systems/ui/v2/widgets/Label.h"
 #include "systems/ui/v2/widgets/Panel.h"
@@ -57,6 +60,9 @@ constexpr WindowId LegacyNotificationWindowId = 0x554956324E4F5446ULL; // "UIV2N
 constexpr WindowId NpcDialogWindowId = 0x554956324E504344ULL; // "UIV2NPCD"
 constexpr WindowId SkillNpcWindowId = 0x55495632534B4E50ULL; // "UIV2SKNP"
 constexpr WindowId SettingsWindowId = 0x5549563253455454ULL; // "UIV2SETT"
+constexpr WindowId GuideWindowId = 0x5549563247554944ULL; // "UIV2GUID"
+constexpr WindowId SocialWindowId = 0x55495632534F434CULL; // "UIV2SOCL"
+constexpr WindowId PartyStatusHudId = 0x5549563250485544ULL; // "UIV2PHUD"
 UIRuntime runtime;
 DWORD lastTick = 0;
 CharacterWindow* characterWindow = nullptr;
@@ -70,6 +76,9 @@ LegacyNotificationHud* legacyNotificationHud = nullptr;
 LegacyNpcDialogWindow* npcDialogWindow = nullptr;
 LegacySkillNpcWindow* skillNpcWindow = nullptr;
 SettingsWindow* settingsWindow = nullptr;
+GuideWindow* guideWindow = nullptr;
+SocialWindow* socialWindow = nullptr;
+PartyStatusHud* partyStatusHud = nullptr;
 LegacyCharacterStatsGateway statsGateway;
 LegacySkillGateway skillGateway;
 LegacyInventoryGateway inventoryGateway;
@@ -266,7 +275,7 @@ void ExecuteHudShortcut(HudShortcutAction action)
         case HudShortcutAction::Attributes: ToggleCharacterTab(CharacterTab::Attributes); break;
         case HudShortcutAction::Skills: ToggleCharacterTab(CharacterTab::Skills); break;
         case HudShortcutAction::Inventory: ToggleCharacterTab(CharacterTab::Inventory); break;
-        case HudShortcutAction::Party: ShowParty(); break;
+        case HudShortcutAction::Party: OpenSocialWindow(); break;
         case HudShortcutAction::Quests: ToggleQuestJournal(); break;
         case HudShortcutAction::System:
             ToggleSettingsWindow();
@@ -368,6 +377,33 @@ void BuildSettingsWindow()
         runtime.Windows().Close(SettingsWindowId);
     });
     runtime.Windows().Register(SettingsWindowId, std::move(window), UIWindowLayer::NormalWindow);
+}
+
+void BuildGuideWindow()
+{
+    auto window = std::make_unique<GuideWindow>(220);
+    guideWindow = window.get();
+    guideWindow->SetViewport(WinSizeX, WinSizeY);
+    guideWindow->SetOnClose([]() { runtime.Windows().Close(GuideWindowId); });
+    runtime.Windows().Register(GuideWindowId, std::move(window), UIWindowLayer::NormalWindow);
+}
+
+void BuildSocialWindow()
+{
+    auto window = std::make_unique<SocialWindow>(230);
+    socialWindow = window.get();
+    socialWindow->SetViewport(WinSizeX, WinSizeY);
+    socialWindow->SetOnClose([]() { runtime.Windows().Close(SocialWindowId); });
+    runtime.Windows().Register(SocialWindowId, std::move(window), UIWindowLayer::NormalWindow);
+}
+
+void BuildPartyStatusHud()
+{
+    auto window = std::make_unique<PartyStatusHud>(231);
+    partyStatusHud = window.get();
+    partyStatusHud->SetViewport(WinSizeX, WinSizeY);
+    runtime.Windows().Register(PartyStatusHudId, std::move(window), UIWindowLayer::Hud);
+    runtime.Windows().Open(PartyStatusHudId);
 }
 
 void BuildLegacyDialogUI()
@@ -588,6 +624,9 @@ void Initialize()
     BuildQuestUI();
     BuildMixGuideUI();
     BuildSettingsWindow();
+    BuildGuideWindow();
+    BuildSocialWindow();
+    BuildPartyStatusHud();
     BuildLegacyDialogUI();
     lastTick = GetTickCount();
 }
@@ -607,6 +646,9 @@ void Shutdown()
     npcDialogWindow = nullptr;
     skillNpcWindow = nullptr;
     settingsWindow = nullptr;
+    guideWindow = nullptr;
+    socialWindow = nullptr;
+    partyStatusHud = nullptr;
     questGateway.ShutdownBackend();
     companionGateway.Reset();
     covenantGateway.Reset();
@@ -869,6 +911,34 @@ void ToggleSettingsWindow()
     runtime.Windows().Open(SettingsWindowId);
 }
 
+bool OpenGuideWindow()
+{
+    if (!runtime.IsInitialized() || !guideWindow) return false;
+    guideWindow->Reload();
+    runtime.Windows().Open(GuideWindowId);
+    return true;
+}
+
+bool OpenSocialWindow()
+{
+    if (!runtime.IsInitialized() || !socialWindow) return false;
+    socialWindow->Refresh();
+    runtime.Windows().Open(SocialWindowId);
+    return true;
+}
+
+bool OpenQuestJournalWindow()
+{
+#if UI_V2_QUEST_JOURNAL
+    if (!runtime.IsInitialized() || !questJournal) return false;
+    if (!questGateway.EnsureBackendOpen()) return false;
+    runtime.Windows().Open(QuestJournalWindowId);
+    return true;
+#else
+    return false;
+#endif
+}
+
 void OnResolutionChanged(int width, int height)
 {
     runtime.OnResolutionChanged(width, height);
@@ -890,6 +960,12 @@ void OnResolutionChanged(int width, int height)
         legacyNotificationHud->SetViewport(width, height);
     if (settingsWindow)
         settingsWindow->SetViewport(width, height);
+    if (guideWindow)
+        guideWindow->SetViewport(width, height);
+    if (socialWindow)
+        socialWindow->SetViewport(width, height);
+    if (partyStatusHud)
+        partyStatusHud->SetViewport(width, height);
 }
 
 bool OwnsCharacterStatus()
