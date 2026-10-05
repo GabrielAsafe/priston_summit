@@ -82,6 +82,11 @@ static FILE *SummitServerRuntimeTraceFile(const char *path)
 #include "systems/commerce/v2/legacy/LegacyWalletAdapter.h"
 #include "systems/commerce/v2/legacy/LegacyCoinWalletAdapter.h"
 #include "systems/commerce/v2/legacy/LegacyTimeCreditWalletAdapter.h"
+#include "systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h"
+#include "systems/inventory/v2/legacy/LegacyInventoryRuntime.h"
+#include "systems/social/party/v2/legacy/LegacyPartyCommandsAdapter.h"
+#include "systems/social/clan/v2/legacy/LegacyClanQueryAdapter.h"
+#include "systems/social/clan/v2/legacy/LegacyClanMembershipAdapter.h"
 #include "systems/commerce/v2/legacy/LegacyCraftingAdapter.h"
 #include "systems/commerce/v2/legacy/LegacyAgingAdapter.h"
 #include "systems/commerce/v2/legacy/LegacyMixingAdapter.h"
@@ -199,11 +204,6 @@ gameplay::inventory::InventoryMutationResult SummitOnServerInventoryRemove(
 			gameplay::ItemId(static_cast<std::uint32_t>(code)),
 			static_cast<std::uint32_t>(key),
 			static_cast<std::uint32_t>(checksum)));
-}
-
-inline gameplay::PlayerId SummitOnServerPlayerId(rsPLAYINFO* player)
-{
-	return gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(player);
 }
 
 inline bool SummitOnServerClearPartyMembership(rsPLAYINFO* player)
@@ -38437,7 +38437,7 @@ int rsSendPacketToLoginLine(char *szBuff, int size)
 
 	if (lpPlayInfo_LoginServer[dwSerToLogin_Num]->lpsmSock && lpPlayInfo_LoginServer[dwSerToLogin_Num]->SystemLine == 2)
 	{
-		return lpPlayInfo_LoginServer[dwSerToLogin_Num++]->SendOnServerLegacySocket(lpsmSock, szBuff, size);
+		return SendOnServerLegacySocket(lpPlayInfo_LoginServer[dwSerToLogin_Num++]->lpsmSock, szBuff, size);
 	}
 
 	return FALSE;

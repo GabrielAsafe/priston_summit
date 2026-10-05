@@ -1,6 +1,11 @@
 #pragma once
 
 #include <map>
+#include <vector>
+
+#include "smPacket.h"
+
+class smCHAR;
 
 class cPARTY
 {
@@ -78,7 +83,7 @@ public:
 		int iX;
 		int iY;
 		int MemberNum;
-		vector<sMENUOPT*> vOption;
+		std::vector<sMENUOPT*> vOption;
 	};
 
 	sMENU menu;
