@@ -111,8 +111,8 @@ InventoryPage::InventoryPage(IInventoryGateway& gateway, IContextGateway& contex
     bagB.SetOnClick([this](const UIEvent&) { SelectBagPage(2); });
     bagBButton_ = &bagB;
 
-    auto& quest = AddChild<Button>(312, "Quest Items");
-    quest.SetBounds({542, 52, 104, 30});
+    auto& quest = AddChild<Button>(312, "Itens de Missão");
+    quest.SetBounds({542, 52, 140, 30});
     quest.SetZOrder(2);
     quest.SetOnClick([this](const UIEvent&) { SelectQuestItems(); });
     questButton_ = &quest;
@@ -215,6 +215,11 @@ void InventoryPage::Update(float deltaSeconds)
     personalShopButton_->SetSelected(snapshot.personalShopOpen);
     cancelDragButton_->SetEnabled(snapshot.drag.active);
 
+    // Update ContextPanel first so ownership/visibility reacts in the same frame
+    // that a merchant/crafting context opens. The previous order left the
+    // inventory footer buttons visible for one frame over the V2 action row.
+    Container::Update(deltaSeconds);
+
     const bool contextActive = contextPanel_ && contextPanel_->IsContextActive();
     weaponSet1Button_->SetVisible(!contextActive);
     weaponSet2Button_->SetVisible(!contextActive);
@@ -223,8 +228,6 @@ void InventoryPage::Update(float deltaSeconds)
     lockButton_->SetVisible(showNormalActions);
     costumeButton_->SetVisible(showNormalActions);
     cancelDragButton_->SetVisible(!contextActive && snapshot.drag.active);
-
-    Container::Update(deltaSeconds);
 }
 
 Rect InventoryPage::BagRectLocal() const noexcept
@@ -706,7 +709,7 @@ void InventoryPage::OnRender(UIRenderContext& context)
 
     r.DrawTextUtf8(FontHandle{}, "INVENTARIO", {root.x + 24, root.y + 18, 180, 24},
                    TextStyle{UITheme::Text, true, TextAlign::Left});
-    r.DrawTextUtf8(FontHandle{}, "Gold: " + std::to_string(snapshot.gold), {root.x + 346, root.y + 18, 180, 24},
+    r.DrawTextUtf8(FontHandle{}, "Ouro: " + std::to_string(snapshot.gold), {root.x + 346, root.y + 18, 180, 24},
                    TextStyle{UITheme::Accent, true, TextAlign::Left});
     r.DrawTextUtf8(FontHandle{}, "Peso: " + std::to_string(snapshot.weightCurrent) + "/" + std::to_string(snapshot.weightMax),
                    {root.x + 536, root.y + 18, 190, 24}, TextStyle{UITheme::TextMuted, false, TextAlign::Left});
@@ -716,10 +719,11 @@ void InventoryPage::OnRender(UIRenderContext& context)
     DrawBag(context);
     DrawDetails(context);
 
-    r.DrawTextUtf8(FontHandle{}, snapshot.locked ? "Itens travados: movimento bloqueado." : "Travar itens impede mover itens por engano.",
-                   {root.x + 24, root.y + 452, 318, 16}, TextStyle{UITheme::TextMuted, false, TextAlign::Left});
+    if (!(contextPanel_ && contextPanel_->IsContextActive()))
+        r.DrawTextUtf8(FontHandle{}, snapshot.locked ? "Itens travados: movimento bloqueado." : "Travar itens impede mover itens por engano.",
+                       {root.x + 24, root.y + 452, 318, 16}, TextStyle{UITheme::TextMuted, false, TextAlign::Left});
     if (contextPanel_ && contextPanel_->IsContextActive())
-        r.DrawTextUtf8(FontHandle{}, "Contexto ativo: botao direito na mochila envia itens para a operacao.",
+        r.DrawTextUtf8(FontHandle{}, "Contexto ativo: botão direito na mochila envia itens para a operação.",
                        {root.x + 346, root.y + 430, 360, 20}, TextStyle{UITheme::Accent, false, TextAlign::Left});
     else if (snapshot.blacksmithOpen)
         r.DrawTextUtf8(FontHandle{}, "Ferreiro ativo: reparar/vender usa as regras originais.",

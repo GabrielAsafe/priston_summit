@@ -10,8 +10,8 @@
   ],
   "source": {
     "legacy_path": "Servidor/GameServer/NPC/name/shunter.zhoon",
-    "legacy_sha256": "34c0f519c5286e57d65372a9d331c6b5fc9b72365e4fc97cd6ca91e556d757d6",
-    "legacy_size": 141,
+    "legacy_sha256": "2238937a2331a4f6d44c00cfb2bf7ffda2de8e23a8ba42047601b73ead5e80ea",
+    "legacy_size": 159,
     "legacy_aliases": [
       "Servidor/GameServer/NPC/name/shunter.zhoon",
       "Servidor/gameserver/npc/name/shunter.zhoon"

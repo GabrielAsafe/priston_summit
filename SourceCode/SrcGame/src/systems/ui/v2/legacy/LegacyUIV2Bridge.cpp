@@ -922,6 +922,16 @@ bool OpenGuideWindow()
 bool OpenSocialWindow()
 {
     if (!runtime.IsInitialized() || !socialWindow) return false;
+    socialWindow->SetTab(SocialWindow::Tab::Party);
+    socialWindow->Refresh();
+    runtime.Windows().Open(SocialWindowId);
+    return true;
+}
+
+bool OpenFriendsWindow()
+{
+    if (!runtime.IsInitialized() || !socialWindow) return false;
+    socialWindow->SetTab(SocialWindow::Tab::Friends);
     socialWindow->Refresh();
     runtime.Windows().Open(SocialWindowId);
     return true;

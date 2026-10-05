@@ -15,6 +15,7 @@ bool HandleMainHudHotkeys();
 void ToggleSettingsWindow();
 bool OpenGuideWindow();
 bool OpenSocialWindow();
+bool OpenFriendsWindow();
 bool OpenQuestJournalWindow();
 [[nodiscard]] bool IsSettingsWindowOpen();
 bool HandleModalHotkeys();

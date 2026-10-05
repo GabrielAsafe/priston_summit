@@ -47,6 +47,10 @@ sync=root/'tools/content_port/sync_linked_text_resources_pt.py'
 proc=subprocess.run([sys.executable,str(sync),'--check'],cwd=root,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True)
 if proc.returncode != 0:
     errors.append('linked resource PT sync is not clean: '+proc.stdout.strip())
+canonical_validator=root/'tools/content_port/validate_canonical_text.py'
+proc=subprocess.run([sys.executable,str(canonical_validator),str(root/'Content/canonical/text')],cwd=root,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True)
+if proc.returncode != 0:
+    errors.append('canonical text payload metadata is inconsistent: '+proc.stdout.strip())
 
 pack=root/'Content/packs/text_resources.sres'
 if not pack.is_file() or pack.stat().st_size == 0: errors.append('compiled text_resources.sres missing/empty')

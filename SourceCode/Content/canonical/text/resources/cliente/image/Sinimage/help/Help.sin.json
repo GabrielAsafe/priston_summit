@@ -10,8 +10,8 @@
   ],
   "source": {
     "legacy_path": "cliente/image/Sinimage/help/Help.sin",
-    "legacy_sha256": "ec127fa7a0431317fa799b962604da13b8eb9138f17783f97fefa7d763ec1275",
-    "legacy_size": 2471
+    "legacy_sha256": "f6f5fbe0addea7695ceb4b3b25e6c6154ea7fe8bb7b0408b07314b8c10ed3610",
+    "legacy_size": 2885
   },
   "semantic": {
     "lines": [

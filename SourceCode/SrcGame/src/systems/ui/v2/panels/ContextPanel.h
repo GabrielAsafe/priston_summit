@@ -40,6 +40,9 @@ private:
     void LayoutActions();
     void LayoutPaging();
     [[nodiscard]] Rect ItemsAreaLocal() const noexcept;
+    [[nodiscard]] int ActionStartY() const noexcept;
+    [[nodiscard]] int DetailStartY() const noexcept;
+    [[nodiscard]] int StatusStartY() const noexcept;
     [[nodiscard]] bool UsesSpatialGrid() const noexcept;
     [[nodiscard]] Rect SpatialGridRectLocal() const noexcept;
     [[nodiscard]] int ItemCapacity() const noexcept;

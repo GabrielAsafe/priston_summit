@@ -4,10 +4,10 @@
 The localization catalog is authoritative for entity names/chats. Runtime systems that
 still consume text_resources.sres must see the same Portuguese strings. This tool
 updates canonical localization_resource semantic entries and their legacy-compatible
-payload without touching source provenance.
+payload while keeping the embedded legacy payload SHA/size metadata consistent.
 """
 from __future__ import annotations
-import argparse, base64, json, sys
+import argparse, base64, hashlib, json, sys
 from pathlib import Path
 
 
@@ -78,9 +78,6 @@ def main() -> int:
             entry=arr[index]
             if entry.get('text') != value:
                 entry_updates.append((entry,value))
-        if not entry_updates:
-            continue
-
         compat=doc.get('compatibility',{})
         try: raw=base64.b64decode(compat['legacy_payload_base64'], validate=True)
         except Exception as exc:
@@ -117,10 +114,23 @@ def main() -> int:
             lines[found]=line[:first+1]+encoded+line[last:]
             entry['text']=value
             cursor=found+1
-        compat['legacy_payload_base64']=base64.b64encode(b''.join(lines)).decode('ascii')
-        modified += 1
-        if not args.check:
-            path.write_text(json.dumps(doc,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+        rebuilt=b''.join(lines)
+        compat['legacy_payload_base64']=base64.b64encode(rebuilt).decode('ascii')
+        source=doc.get('source',{})
+        metadata_changed=False
+        if source.get('migration_status') != 'native_canonical_generated':
+            expected_sha=hashlib.sha256(rebuilt).hexdigest()
+            expected_size=len(rebuilt)
+            if source.get('legacy_sha256') != expected_sha:
+                source['legacy_sha256']=expected_sha
+                metadata_changed=True
+            if source.get('legacy_size') != expected_size:
+                source['legacy_size']=expected_size
+                metadata_changed=True
+        if entry_updates or metadata_changed:
+            modified += 1
+            if not args.check:
+                path.write_text(json.dumps(doc,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 
     if errors:
         for e in errors: print('ERROR:',e,file=sys.stderr)

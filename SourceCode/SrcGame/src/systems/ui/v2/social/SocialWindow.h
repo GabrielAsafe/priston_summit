@@ -32,6 +32,7 @@ private:
     void Layout();
     void RefreshFriends();
     void SendPartyCommandForSelection(int command);
+    void WhisperSelectedFriend();
     void RefreshActions();
 
     Tab tab_ = Tab::Party;
@@ -44,6 +45,7 @@ private:
     Button* leaveButton_ = nullptr;
     Button* delegateButton_ = nullptr;
     Button* removeButton_ = nullptr;
+    Button* whisperButton_ = nullptr;
     Button* closeButton_ = nullptr;
     CloseHandler onClose_;
 };

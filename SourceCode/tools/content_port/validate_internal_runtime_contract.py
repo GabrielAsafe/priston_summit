@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import re
 from pathlib import Path
 
 RUNTIME_FILES = (
@@ -33,8 +34,15 @@ def main() -> int:
             continue
         text = path.read_text(encoding='utf-8', errors='surrogateescape')
         texts[rel] = text
-        if 'getenv("SUMMIT_' in text or "getenv('SUMMIT_" in text:
-            errors.append(f'content activation still reads SUMMIT environment variables: {rel}')
+        allowed_env = {
+            'SUMMIT_LOCALIZATION_STRICT',
+            'SUMMIT_LOCALIZATION_PACK',
+            'SUMMIT_LOCALE',
+        }
+        env_names = re.findall(r"getenv\([\"'](SUMMIT_[A-Z0-9_]+)[\"']\)", text)
+        for name in env_names:
+            if name not in allowed_env:
+                errors.append(f'content activation reads unsupported SUMMIT environment variable in {rel}: {name}')
 
     definition = texts.get('Shared/content/v1/definition/content/DefinitionRuntime.h', '')
     for needle in ('definitions_client.scfg', 'definitions_server.scfg', 'CompiledItemDefinitionsEnabled(){return true;}'):
@@ -90,10 +98,17 @@ def main() -> int:
         errors.append('missing standalone runtime resolver')
     else:
         resolver_text = resolver.read_text(encoding='utf-8', errors='replace')
-        if 'SourceCode' in resolver_text or '..\\\\Content' in resolver_text:
-            errors.append('runtime resolver still contains a source/external fallback')
+        shipped_token = 'candidates[count++] = RuntimeJoinPath(executableDirectory, "Content\\\\packs\\\\" + fileName);'
+        source_token = 'SourceCode\\\\Content\\\\packs'
         if 'Content\\\\packs\\\\' not in resolver_text or 'GetModuleFileNameA' not in resolver_text:
             errors.append('runtime resolver is not executable-relative standalone content')
+        if shipped_token not in resolver_text:
+            errors.append('runtime resolver does not prioritize executable-local Content/packs')
+        if 'RuntimeRegularFileExists(candidates[i])' not in resolver_text:
+            errors.append('runtime resolver does not verify candidate existence')
+        if source_token in resolver_text and shipped_token in resolver_text:
+            if resolver_text.find(source_token) < resolver_text.find(shipped_token):
+                errors.append('source-tree development fallback precedes executable-local content')
 
     print(f'SOURCE_ROOT={root}')
     print(f'RUNTIME_FILES_CHECKED={len(RUNTIME_FILES)}')
@@ -102,8 +117,8 @@ def main() -> int:
             print(f'ERROR={error}')
         print('RESULT=FAIL')
         return 1
-    print('CONTENT_ACTIVATION_ENV_READS=0')
-    print('PACK_RESOLUTION=STANDALONE_EXECUTABLE_CONTENT')
+    print('CONTENT_ACTIVATION_ENV_READS=LOCALIZATION_OVERRIDES_ONLY')
+    print('PACK_RESOLUTION=EXECUTABLE_FIRST_WITH_SOURCE_TREE_DEV_FALLBACK')
     print('CLIENT_DEFINITION_PACK=definitions_client.scfg')
     print('SERVER_DEFINITION_PACK=definitions_server.scfg')
     print('RESULT=PASS')

@@ -82,6 +82,26 @@ void ContextPanel::Refresh()
     LayoutPaging();
 }
 
+int ContextPanel::ActionStartY() const noexcept
+{
+    const int count = std::min<int>(static_cast<int>(snapshot_.actions.size()), static_cast<int>(actionButtons_.size()));
+    const int columns = count > 3 ? 2 : 1;
+    const int rows = count > 0 ? (count + columns - 1) / columns : 0;
+    return std::max(84, Bounds().height - 10 - rows * 34);
+}
+
+int ContextPanel::DetailStartY() const noexcept
+{
+    // Keep three wrapped detail lines entirely above the money/action footer.
+    return ActionStartY() - 24 - 58;
+}
+
+int ContextPanel::StatusStartY() const noexcept
+{
+    // Status gets up to two wrapped lines and never shares pixels with item detail.
+    return DetailStartY() - (snapshot_.statusText.empty() ? 0 : 40);
+}
+
 void ContextPanel::LayoutActions()
 {
     const int width = Bounds().width;
@@ -89,7 +109,7 @@ void ContextPanel::LayoutActions()
     const int columns = count > 3 ? 2 : 1;
     const int gap = 6;
     const int buttonWidth = columns == 2 ? std::max(70, (width - 20 - gap) / 2) : std::max(80, width - 20);
-    const int startY = std::max(300, Bounds().height - 104);
+    const int startY = ActionStartY();
 
     for (std::size_t i = 0; i < actionButtons_.size(); ++i)
     {
@@ -171,8 +191,11 @@ void ContextPanel::Update(float deltaSeconds)
 
 Rect ContextPanel::ItemsAreaLocal() const noexcept
 {
-    const int bottomReserve = snapshot_.statusText.empty() ? 198 : 244;
-    return {10, 80, std::max(1, Bounds().width - 20), std::max(1, Bounds().height - bottomReserve)};
+    // Item cells end before the footer. The previous fixed reserve let the status
+    // and hover-detail text render on top of the last item row.
+    const int footerTop = StatusStartY();
+    const int bottom = std::max(82, footerTop - 8);
+    return {10, 80, std::max(1, Bounds().width - 20), std::max(1, bottom - 80)};
 }
 
 bool ContextPanel::UsesSpatialGrid() const noexcept
@@ -482,9 +505,13 @@ void ContextPanel::OnRender(UIRenderContext& context)
     }
 
     if (!snapshot_.statusText.empty())
-        r.DrawTextUtf8(FontHandle{}, EllipsizeText(snapshot_.statusText, root.width - 24),
-                       {root.x + 12, root.y + root.height - 202, root.width - 24, 18},
-                       TextStyle{UITheme::TextMuted, false, TextAlign::Left});
+    {
+        const auto statusLines = WrapTextApprox(snapshot_.statusText, root.width - 24, 2, 7);
+        for (std::size_t line = 0; line < statusLines.size(); ++line)
+            r.DrawTextUtf8(FontHandle{}, statusLines[line],
+                           {root.x + 12, root.y + StatusStartY() + static_cast<int>(line) * 18, root.width - 24, 18},
+                           TextStyle{UITheme::TextMuted, false, TextAlign::Left});
+    }
 
     const ContextItemSnapshot* hovered = nullptr;
     for (const auto& item : snapshot_.items)
@@ -504,7 +531,7 @@ void ContextPanel::OnRender(UIRenderContext& context)
         const auto detailLines = WrapTextApprox(info, root.width - 24, 3, 7);
         for (std::size_t line = 0; line < detailLines.size(); ++line)
             r.DrawTextUtf8(FontHandle{}, detailLines[line],
-                           {root.x + 12, root.y + root.height - 178 + static_cast<int>(line) * 18,
+                           {root.x + 12, root.y + DetailStartY() + static_cast<int>(line) * 18,
                             root.width - 24, 18},
                            TextStyle{UITheme::Text, false, TextAlign::Left});
     }
@@ -513,7 +540,7 @@ void ContextPanel::OnRender(UIRenderContext& context)
     if (snapshot_.fee > 0)
         money += "   Custo: " + std::to_string(snapshot_.fee) + " " + snapshot_.feeCurrency;
     r.DrawTextUtf8(FontHandle{}, EllipsizeText(money, root.width - 24),
-                   {root.x + 12, root.y + root.height - 122, root.width - 24, 20},
+                   {root.x + 12, root.y + ActionStartY() - 24, root.width - 24, 20},
                    TextStyle{UITheme::Accent, true, TextAlign::Left});
 }
 }

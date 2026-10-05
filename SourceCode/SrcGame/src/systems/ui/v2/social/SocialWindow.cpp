@@ -13,6 +13,8 @@
 #include "systems/ui/v2/widgets/Button.h"
 #include "systems/ui/v2/widgets/TextLayout.h"
 
+extern int WhisperPartyPlayer(char* szName);
+
 namespace ui::v2
 {
 namespace
@@ -54,6 +56,8 @@ SocialWindow::SocialWindow(UIId id) : Window(id, "Social")
     delegate.SetOnClick([this](const UIEvent&) { SendPartyCommandForSelection(0); }); delegateButton_ = &delegate;
     auto& remove = AddChild<Button>(id == InvalidUIId ? InvalidUIId : id + 5, "Remover");
     remove.SetOnClick([this](const UIEvent&) { SendPartyCommandForSelection(2); }); removeButton_ = &remove;
+    auto& whisper = AddChild<Button>(id == InvalidUIId ? InvalidUIId : id + 7, "Sussurrar");
+    whisper.SetOnClick([this](const UIEvent&) { WhisperSelectedFriend(); }); whisperButton_ = &whisper;
     auto& close = AddChild<Button>(id == InvalidUIId ? InvalidUIId : id + 6, "X");
     close.SetOnClick([this](const UIEvent&) { if (onClose_) onClose_(); }); closeButton_ = &close;
 
@@ -69,6 +73,7 @@ void SocialWindow::Layout()
     leaveButton_->SetBounds({14, b.height - 44, 126, 28});
     delegateButton_->SetBounds({146, b.height - 44, 126, 28});
     removeButton_->SetBounds({278, b.height - 44, 100, 28});
+    whisperButton_->SetBounds({14, b.height - 44, 126, 28});
     partyTab_->SetSelected(tab_ == Tab::Party);
     friendsTab_->SetSelected(tab_ == Tab::Friends);
 }
@@ -123,6 +128,11 @@ void SocialWindow::RefreshActions()
     delegateButton_->SetEnabled(selectedOther);
     removeButton_->SetVisible(selectedOther);
     removeButton_->SetEnabled(selectedOther);
+
+    const bool selectedFriend = !party && selectedFriend_ >= 0 &&
+                                selectedFriend_ < static_cast<int>(friends_.size());
+    whisperButton_->SetVisible(selectedFriend);
+    whisperButton_->SetEnabled(selectedFriend);
 }
 
 void SocialWindow::SendPartyCommandForSelection(int command)
@@ -143,6 +153,16 @@ void SocialWindow::SendPartyCommandForSelection(int command)
     packet.LParam = command;
     (void)gameplay::network::legacy::ClientLegacyCommandSender().Send(
         gameplay::network::PacketView(&packet, packet.size, static_cast<std::uint32_t>(packet.code)));
+}
+
+void SocialWindow::WhisperSelectedFriend()
+{
+    if (selectedFriend_ < 0 || selectedFriend_ >= static_cast<int>(friends_.size()))
+        return;
+
+    std::vector<char> name(friends_[selectedFriend_].name.begin(), friends_[selectedFriend_].name.end());
+    name.push_back('\0');
+    WhisperPartyPlayer(name.data());
 }
 
 UIEventResult SocialWindow::OnEvent(const UIEvent& event)

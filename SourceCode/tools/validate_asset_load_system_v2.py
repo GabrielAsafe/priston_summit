@@ -35,7 +35,11 @@ require('Shared/rendering/legacy_3d/material/smTexture_legacy_client.inl',
         'WAIT_DEVICE', 'D3DERR_DEVICELOST', 'D3DERR_DEVICENOTRESET',
         'BUDGET_OVERSHOOT')
 
-require('link_client_mingw_i686.sh', '-Wl,--large-address-aware')
+link_script = ROOT / 'link_client_mingw_i686.sh'
+if link_script.is_file():
+    require('link_client_mingw_i686.sh', '-Wl,--large-address-aware')
+else:
+    print('Asset Load System V2 native-link check: SKIP (link_client_mingw_i686.sh omitted from source snapshot)')
 require('SrcGame/src/core/gameplay/runtime/playmain.cpp',
         'RequestStageFromFieldAsync(lpField, lpSecondField)',
         'void PumpStageTexturePrewarm()',

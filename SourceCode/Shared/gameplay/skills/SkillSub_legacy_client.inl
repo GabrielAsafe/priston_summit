@@ -1,6 +1,7 @@
 #include "opcodes.h"
 #include <windows.h>
 #include <stdio.h>
+#include <string.h>
 
 #include "systems/rendering/legacy_3d/smd3d.h"
 #include "systems/network/transport/legacy/smwsock.h"
@@ -37,7 +38,19 @@ static void SummitT5StartParticle(const char *name, smCHAR *pcChar)
 {
 	if(!name || !pcChar) return;
 	POINT3D pos = { pcChar->pX, pcChar->pY, pcChar->pZ };
-	g_NewParticleMgr.Start((char *)name, pos);
+	int particleID = g_NewParticleMgr.Start((char *)name, pos);
+	if(particleID >= 0) return;
+
+	// Some Summit distributions never shipped the two custom Magician T5 .part files.
+	// Keep the canonical name first, then fall back to long-standing Magician particles
+	// that are loaded by the legacy particle catalog so the skill is never invisible.
+	const char *fallback = 0;
+	if(strcmp(name, "MG5OrbMastery") == 0)
+		fallback = "Skill3MagicianSpiritElemental";
+	else if(strcmp(name, "R5StoneSkin") == 0)
+		fallback = "Skill3MagicianEngrgyShield";
+	if(fallback)
+		g_NewParticleMgr.Start((char *)fallback, pos);
 }
 
 static int SummitT5StartParticleAt(const char *name, int x, int y, int z)

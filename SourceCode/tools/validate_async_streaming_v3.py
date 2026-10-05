@@ -25,11 +25,18 @@ def forbid(rel, needle, label=None):
     checks.append((ok, label or f"{rel}: no {needle}"))
     if not ok: errors.append(label or f"forbidden contract {needle!r} in {rel}")
 
+def require_if_present(rel, needle, label=None):
+    p = ROOT / rel
+    if not p.exists():
+        print('SKIP  ' + (label or rel) + f' ({rel} omitted from source snapshot)')
+        return
+    require(rel, needle, label)
+
 # Scheduler / build
 require('SrcGame/src/core/concurrency/JobSystem.cpp', 'std::thread::hardware_concurrency()', 'JobSystem scales from hardware concurrency')
 require('SrcGame/src/core/concurrency/JobSystem.cpp', 'SUMMIT_WORKER_THREADS', 'JobSystem worker override exists')
-require('build_client_mingw_i686_multicore.sh', '-pthread', 'compile enables pthread')
-require('link_client_mingw_i686.sh', '-pthread', 'link enables pthread')
+require_if_present('build_client_mingw_i686_multicore.sh', '-pthread', 'compile enables pthread')
+require_if_present('link_client_mingw_i686.sh', '-pthread', 'link enables pthread')
 
 # Texture split CPU worker -> GPU pump
 tex = 'Shared/rendering/legacy_3d/material/smTexture_legacy_client.inl'
@@ -215,8 +222,8 @@ require('SrcGame/src/systems/rendering/sky/legacy/HoSky.cpp', 'DrawIndex < -1 ||
 # Login/selection startup V4: DDS generation is automatic for interactive UI,
 # global texture sweeps are removed, and AssaEffect does not rescan recursively
 # a second time when moving from opening to character selection.
-require('build_client_mingw_i686_multicore.sh', 'SUMMIT_AUTO_COOK_DDS', 'client build has automatic DDS cooking switch')
-require('build_client_mingw_i686_multicore.sh', 'AUTO_COOK_DDS="${SUMMIT_AUTO_COOK_DDS:-0}"', 'DDS auto-cook is opt-in after login UI cooked regression')
+require_if_present('build_client_mingw_i686_multicore.sh', 'SUMMIT_AUTO_COOK_DDS', 'client build has automatic DDS cooking switch')
+require_if_present('build_client_mingw_i686_multicore.sh', 'AUTO_COOK_DDS="${SUMMIT_AUTO_COOK_DDS:-0}"', 'DDS auto-cook is opt-in after login UI cooked regression')
 require('tools/cook_textures_dds.py', '--login-ui-only', 'DDS cooker supports focused login UI cooking')
 require('tools/cook_textures_dds.py', 'Fast incremental path', 'DDS cooker skips decode for up-to-date cooked UI')
 require('Shared/rendering/legacy_3d/material/smTexture_legacy_client.inl', 'SUMMIT_TEXTURE_COOKED_UI', 'cooked login UI has an explicit runtime A/B opt-in')

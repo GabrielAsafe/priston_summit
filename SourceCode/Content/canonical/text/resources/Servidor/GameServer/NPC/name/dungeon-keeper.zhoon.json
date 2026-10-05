@@ -10,8 +10,8 @@
   ],
   "source": {
     "legacy_path": "Servidor/GameServer/NPC/name/dungeon-keeper.zhoon",
-    "legacy_sha256": "65edafbb287bf2d451b8114fbbb74a7c57b3fbc8566a602bc4ddbc70e69081c5",
-    "legacy_size": 416
+    "legacy_sha256": "e415bddf1948e15677199a1ad3112fb7270c67d786b6dd52098f4702c5cccde3",
+    "legacy_size": 359
   },
   "semantic": {
     "entries": [

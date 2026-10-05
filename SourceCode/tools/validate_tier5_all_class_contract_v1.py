@@ -72,6 +72,9 @@ skill=(ROOT/'Shared/gameplay/skills/SkillSub_legacy_client.inl').read_text('lati
 if 'SummitT5StartLegacyLuaEffectAt("game//scripts//particles//MG5WizardTrance.luac"' in skill:
     errors.append('Wizard Trance still feeds .luac bytecode to legacy Lua loader')
 if 'MG5OrbMastery' not in skill: errors.append('Wizard Trance compatible particle fallback missing')
+if 'Skill3MagicianSpiritElemental' not in skill: errors.append('Wizard Trance legacy particle fallback missing')
+if 'Skill3MagicianEngrgyShield' not in skill: errors.append('Stone Skin legacy particle fallback missing')
+if 'if(particleID >= 0) return;' not in skill: errors.append('T5 particle fallback does not preserve canonical asset preference')
 
 if errors:
     print('FAIL tier5 all-class contract')

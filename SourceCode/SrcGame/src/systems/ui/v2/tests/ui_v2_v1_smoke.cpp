@@ -375,7 +375,7 @@ int main()
     assert(HasText("EQUIPAMENTO"));
     assert(HasText("Mochila A"));
     assert(HasText("Mochila B"));
-    assert(HasText("Quest Items"));
+    assert(HasText("Itens de Missão"));
 
     // Inventory parity controls: second bag, weapon set, quest items, personal shop and explicit lock.
     Click(runtime, pageX + 444 + 20, pageY + 52 + 15);
@@ -469,8 +469,8 @@ int main()
     // Context panel starts at page-local (14,48), item area local (10,80).
     Click(runtime, pageX + 14 + 10 + 15, pageY + 48 + 80 + 15);
     assert(context.activations == 1 && context.lastActivated == 7);
-    // First action is laid out near the bottom of the context panel.
-    Click(runtime, pageX + 14 + 20, pageY + 48 + 314 + 14);
+    // First action is laid out against the dynamic footer of the context panel.
+    Click(runtime, pageX + 14 + 20, pageY + 48 + 370 + 14);
     assert(context.actions == 1 && context.lastAction == 40);
     Click(runtime, pageX + 346 + 15, pageY + 92 + 15, MouseButton::Right);
     assert(context.acceptedInventory == 1 && context.lastAcceptedInventory == 2);

@@ -3296,7 +3296,9 @@ int SetMousePlay(int flag)
 
 					InterfaceParty.Main_menuSet(2);
 					InterfaceParty.chat_changeMENU(1);
-					if (InterfaceParty.PartyPosState == PARTY_NONE)	ShowParty();
+					if (!ui::v2::legacy::OpenFriendsWindow() &&
+						InterfaceParty.PartyPosState == PARTY_NONE)
+						ShowParty();
 					return TRUE;
 
 				case 3:
