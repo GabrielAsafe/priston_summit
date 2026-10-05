@@ -1,15 +1,15 @@
 {
   "format": "SLOC",
   "version": 2,
-  "entries": 7657,
-  "keys": 3689,
-  "english_keys": 3689,
+  "entries": 7686,
+  "keys": 3692,
+  "english_keys": 3692,
   "locales": {
-    "en": 3689,
-    "pt-BR": 3666,
+    "en": 3692,
+    "pt-BR": 3692,
     "zh-TW": 18,
     "ko": 284
   },
-  "bytes": 356566,
-  "sha256": "7756f87f052a92ec0f8e0c18163ddbe4e488e56f3255ad3b2c19717c72966a06"
+  "bytes": 380398,
+  "sha256": "411711011ecbfac1e8913a498958cea4fccb77d0184c7ef4c597879d2dd6bed2"
 }

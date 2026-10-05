@@ -13,7 +13,7 @@ checks = [
     ("Party companion award", ROOT / "SrcServer/src/core/server/legacy_runtime/PartySever.cpp", "companions::AwardExperience"),
     ("Solo companion EXP", ROOT / "Shared/server/legacy_runtime/OnSever_legacy_server.inl", "companionPartyRate"),
     ("Crystal bridge", ROOT / "Shared/server/legacy_runtime/OnSever_legacy_server.inl", "ServerLegacyCompanionCommandsAdapter().UseCrystal"),
-    ("Command bridge", ROOT / "Shared/server/legacy_runtime/OnSever_legacy_server.inl", 'rsCompString("/companion"'),
+    ("Command bridge", ROOT / "SrcServer/src/systems/network/v2/legacy/LegacyModernChatIngressAdapter.inl", 'rsCompString("/companion"'),
     ("Disconnect cleanup", ROOT / "Shared/server/legacy_runtime/OnSever_legacy_server.inl", "ServerLegacyCompanionLifecycleAdapter().OwnerDisconnected"),
     ("AI hook", ROOT / "SrcServer/src/systems/gameplay/character/core/character.cpp", "companions::ApplyAI(this)"),
     ("Record header bridge", ROOT / "SrcServer/src/systems/persistence/character_record/record.h", "rsAddOfflineCharacterExp"),

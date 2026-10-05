@@ -332,13 +332,10 @@ void sinDraw()
 	dsDrawOffsetArray = dsARRAY_TOP;
 
 	
-	// CharacterWindow V2 owns the C/S/V help surface. Legacy HUD hover/key
-	// handlers may still enqueue those messages, so discard only the three
-	// character-panel overlays immediately before HelpPet rendering.
+	// PATCH 195: HelpPet remains a legacy state/message producer only.
+	// LegacyNotificationHud is the sole presentation surface, so never invoke
+	// the old pet chrome renderer from the frame loop.
 	ui::v2::legacy::ClearLegacyCharacterHelpOverlay();
-	cHelpPet.Draw();
-	
-	cHelpPet.DrawText();
 
 
 
@@ -515,7 +512,6 @@ void sinProc(int Message)
 		cSin3D.LButtonDown(pCursorPos.x, pCursorPos.y);
 		if (!ui::v2::legacy::OwnsLegacyHelpUI()) cSinHelp.LButtonDown(pCursorPos.x, pCursorPos.y);
 		cSinWarpGate.LButtonDown(pCursorPos.x, pCursorPos.y);
-		cHelpPet.LButtonDown(pCursorPos.x, pCursorPos.y);
 		cInvenTory.ReFormMousePotionNum();
 
 
@@ -549,7 +545,6 @@ void sinProc(int Message)
 		cSin3D.LButtonUp(pCursorPos.x, pCursorPos.y);
 		if (!ui::v2::legacy::OwnsLegacyHelpUI()) cSinHelp.LButtonUp(pCursorPos.x, pCursorPos.y);
 		cSinWarpGate.LButtonUp(pCursorPos.x, pCursorPos.y);
-		cHelpPet.LButtonUp(pCursorPos.x, pCursorPos.y);
 		cSinSod2.LButtonUp(pCursorPos.x, pCursorPos.y);
 
 		chaSiege.LButtonUp(pCursorPos.x, pCursorPos.y);
@@ -572,7 +567,6 @@ void sinProc(int Message)
 		cSin3D.RButtonDown(pCursorPos.x, pCursorPos.y);
 		if (!ui::v2::legacy::OwnsLegacyHelpUI()) cSinHelp.RButtonDown(pCursorPos.x, pCursorPos.y);
 		cSinWarpGate.RButtonDown(pCursorPos.x, pCursorPos.y);
-		cHelpPet.RButtonDown(pCursorPos.x, pCursorPos.y);
 		cSinSod2.RButtonDown(pCursorPos.x, pCursorPos.y);
 
 		break;
@@ -593,7 +587,6 @@ void sinProc(int Message)
 		cSin3D.RButtonUp(pCursorPos.x, pCursorPos.y);
 		if (!ui::v2::legacy::OwnsLegacyHelpUI()) cSinHelp.RButtonUp(pCursorPos.x, pCursorPos.y);
 		cSinWarpGate.RButtonUp(pCursorPos.x, pCursorPos.y);
-		cHelpPet.RButtonUp(pCursorPos.x, pCursorPos.y);
 		cSinSod2.RButtonUp(pCursorPos.x, pCursorPos.y);
 		break;
 
@@ -628,7 +621,6 @@ void sinProc(int Message)
 		cSin3D.KeyDown();
 		if (!ui::v2::legacy::OwnsLegacyHelpUI()) cSinHelp.KeyDown();
 		cSinWarpGate.KeyDown();
-		cHelpPet.KeyDown();
 		cSinSod2.KeyDown();
 		chaSiege.KeyDown();
 		if (!ui::v2::legacy::HandleQuestHotkey())

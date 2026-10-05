@@ -1391,6 +1391,15 @@ switch (messg)
 			}
 		}
 
+		// PATCH 189: Ctrl+F10 toggles the stage collision/hitbox x-ray view.
+		// Plain F10 remains available to the existing Time Coin Shop shortcut.
+		if (GameMode == 2 && VRKeyBuff[VK_CONTROL] && wParam == VK_F10 &&
+			!VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_MENU] && VRKeyBuff[VK_F10] == 0)
+		{
+			extern int smStageCollisionDebugView;
+			smStageCollisionDebugView = !smStageCollisionDebugView;
+		}
+
 		// SUMMIT_COMMAND_HOTKEYS_V17: CoinShop moved off plain F9 to avoid the legacy F-key collision set.
 		if (wParam == VK_F9 && VRKeyBuff[VK_CONTROL] && !VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_MENU])
 		{

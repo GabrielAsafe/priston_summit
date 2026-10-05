@@ -14,14 +14,34 @@ inline const CompiledTextResourceSource* ActiveTextResourceSource(){
   struct Holder {
     std::string path;
     CompiledTextResourceSource *source;
-    Holder():source(0){ const char*p=TextResourcePackPath(); if(p){ path=p; source=new CompiledTextResourceSource(path.c_str()); } }
+    Holder():source(0){
+      const char*configured=TextResourcePackPath();
+      if(configured){ Try(configured); return; }
+      // PATCH 194: canonical text resources are part of the normal runtime,
+      // not an optional developer environment. Keep SUMMIT_TEXT_RESOURCE_PACK
+      // as an explicit override, but discover the shipped pack by default.
+      static const char*candidates[]={
+        "Content/packs/text_resources.sres",
+        "content/packs/text_resources.sres",
+        "packs/text_resources.sres",
+        "text_resources.sres",
+        "../Content/packs/text_resources.sres"
+      };
+      for(std::size_t i=0;i<sizeof(candidates)/sizeof(candidates[0]);++i)
+        if(Try(candidates[i])) return;
+    }
+    bool Try(const char*candidate){
+      CompiledTextResourceSource*next=new CompiledTextResourceSource(candidate);
+      if(next->IsValid()){ source=next; path=candidate; return true; }
+      delete next; return false;
+    }
     ~Holder(){ delete source; }
   };
   static Holder h;
   return h.source;
 }
 
-inline bool CompiledTextResourcesEnabled(){ return TextResourcePackPath()!=0; }
+inline bool CompiledTextResourcesEnabled(){ return ActiveTextResourceSource()!=0; }
 inline bool CompiledTextResourcesReady(){ const CompiledTextResourceSource*s=ActiveTextResourceSource(); return s&&s->IsValid(); }
 
 inline bool LoadTextResourceBytes(const char*path,std::vector<unsigned char>&out,std::string*id=0,std::uint32_t*kind=0){

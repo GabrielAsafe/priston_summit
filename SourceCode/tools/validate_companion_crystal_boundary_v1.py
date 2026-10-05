@@ -9,6 +9,7 @@ R=(ROOT/'SrcServer/src/systems/gameplay/companions/CompanionSystem.cpp').read_te
 QA=(ROOT/'SrcServer/src/systems/gameplay/companions/v2/legacy/LegacyCompanionQueryAdapter.cpp').read_text(errors='replace')
 CA=(ROOT/'SrcServer/src/systems/gameplay/companions/v2/legacy/LegacyCompanionCommandsAdapter.cpp').read_text(errors='replace')
 O=(ROOT/'Shared/server/legacy_runtime/OnSever_legacy_server.inl').read_text(errors='replace')
+I=(ROOT/'SrcServer/src/systems/network/v2/legacy/LegacyModernChatIngressAdapter.inl').read_text(errors='replace')
 def fail(m): print(f'companion crystal boundary v1: FAIL: {m}',file=sys.stderr); raise SystemExit(1)
 def main():
  if 'ConfiguredCrystalItemCode() const' not in Q: fail('crystal config missing from GREEN query contract')
@@ -22,7 +23,7 @@ def main():
   if tok not in R: fail(f'crystal runtime integration missing: {tok}')
  if 'return runtime::ConfiguredCrystalItemCode();' not in QA: fail('query adapter does not expose crystal config')
  if 'companions::HandleCrystalUse(legacyOwner, itemCode)' not in CA: fail('command adapter does not bridge crystal use')
- if O.count('ServerLegacyCompanionQueryAdapter().ConfiguredCrystalItemCode()') < 3: fail('server crystal config consumers not migrated')
+ if O.count('ServerLegacyCompanionQueryAdapter().ConfiguredCrystalItemCode()') + I.count('ServerLegacyCompanionQueryAdapter().ConfiguredCrystalItemCode()') < 3: fail('server crystal config consumers not migrated')
  if 'ServerLegacyCompanionCommandsAdapter().UseCrystal(' not in O: fail('server item-use ingress not migrated')
  print('companion crystal boundary v1: PASS (crystal config/query and use command are pointer-free at server ingress)')
 if __name__=='__main__': main()

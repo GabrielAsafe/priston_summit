@@ -6,7 +6,7 @@ Q=(ROOT/'Shared/gameplay/companions/v2/CompanionQuery.h').read_text(errors='repl
 H=(ROOT/'SrcServer/src/systems/gameplay/companions/CompanionSystem.h').read_text(errors='replace')
 C=(ROOT/'SrcServer/src/systems/gameplay/companions/CompanionSystem.cpp').read_text(errors='replace')
 A=(ROOT/'SrcServer/src/systems/gameplay/companions/v2/legacy/LegacyCompanionQueryAdapter.cpp').read_text(errors='replace')
-O=(ROOT/'Shared/server/legacy_runtime/OnSever_legacy_server.inl').read_text(errors='replace')
+O=(ROOT/'SrcServer/src/systems/network/v2/legacy/LegacyModernChatIngressAdapter.inl').read_text(errors='replace')
 def fail(m): print(f'companion state snapshot v1: FAIL: {m}',file=sys.stderr); raise SystemExit(1)
 def main():
  for tok in ('struct CompanionStateSnapshot','std::uint32_t activeCount','CompanionBehaviorMode mode','std::string selectedName','TryGetState(PlayerId owner, CompanionStateSnapshot& out) const'):

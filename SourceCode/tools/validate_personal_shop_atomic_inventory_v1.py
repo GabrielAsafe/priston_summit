@@ -4,8 +4,8 @@ import sys
 
 ROOT=Path(__file__).resolve().parents[1]
 CONTRACT=(ROOT/'Shared/gameplay/commerce/v2/PersonalShopService.h').read_text()
-ADAPTER=(ROOT/'SrcServer/src/systems/commerce/v2/legacy/LegacyPersonalShopAdapter.cpp').read_text()
-HEADER=(ROOT/'SrcServer/src/systems/commerce/v2/legacy/LegacyPersonalShopAdapter.h').read_text()
+ADAPTER=(ROOT/'Shared/gameplay/commerce/v2/PersonalShopTransactionService.h').read_text() + (ROOT/'SrcServer/src/systems/commerce/v2/legacy/LegacyPersonalShopAdapter.cpp').read_text()
+HEADER=(ROOT/'Shared/gameplay/commerce/v2/PersonalShopTransactionService.h').read_text() + (ROOT/'SrcServer/src/systems/commerce/v2/legacy/LegacyPersonalShopAdapter.h').read_text()
 
 def need(text, token, label):
     if token not in text:
@@ -20,8 +20,8 @@ for token in (
     'inventoryQuery_.Contains(request.seller, item).Present()',
     'inventoryCommands_.Add(request.buyer, item)',
     'inventoryCommands_.Remove(request.seller, item)',
-    'const auto rollbackInventory',
-    'const auto rollbackGold',
+    'sellerItemRemoved',
+    'buyerGoldDebited',
     'buyerAdd.code != inventory::InventoryMutationCode::Applied',
     'PersonalShopTradeCode::RollbackFailed',
     'ServerLegacyInventoryRuntime()',

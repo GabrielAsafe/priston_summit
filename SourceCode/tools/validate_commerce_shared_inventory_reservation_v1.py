@@ -9,8 +9,9 @@ def read(path):
 
 runtime = read('SrcServer/src/systems/inventory/v2/legacy/LegacyInventoryReservationRuntime.h')
 trade = read('SrcServer/src/systems/commerce/v2/legacy/LegacyTradeAdapter.cpp')
-shop_h = read('SrcServer/src/systems/commerce/v2/legacy/LegacyPersonalShopAdapter.h')
-shop = read('SrcServer/src/systems/commerce/v2/legacy/LegacyPersonalShopAdapter.cpp')
+shop_h = read('Shared/gameplay/commerce/v2/PersonalShopTransactionService.h')
+shop = read('Shared/gameplay/commerce/v2/PersonalShopTransactionService.h')
+shop_wiring = read('SrcServer/src/systems/commerce/v2/legacy/LegacyPersonalShopAdapter.cpp')
 contract = read('Shared/gameplay/commerce/v2/PersonalShopService.h')
 
 checks = []
@@ -26,11 +27,11 @@ check('IInventoryReservationService& inventoryReservations' in shop_h and 'inven
       'personal shop consumes reservation boundary')
 check('inventoryReservations_.Reserve(reservationRequest)' in shop,
       'personal shop reserves seller item')
-check('ReservationGuard' in shop and 'service.Release(token)' in shop,
+check('ReservationGuard' in shop and 'service_.Release(token_)' in shop,
       'personal shop reservation is released on every return path')
 check('ServerInventoryReservationService()' in trade,
       'trade uses shared reservation kernel')
-check('ServerInventoryReservationService()' in shop,
+check('ServerInventoryReservationService()' in shop_wiring,
       'personal shop uses shared reservation kernel')
 check('static inventory::InventoryReservationService inventoryReservations' not in trade,
       'trade no longer owns an isolated reservation service')

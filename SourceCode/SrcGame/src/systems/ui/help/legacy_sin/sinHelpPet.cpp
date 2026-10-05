@@ -6,6 +6,7 @@
 #include "systems/social/clan/tjclan.h"
 #include "systems/social/clan/Help.h"
 #include "systems/world/field/field.h"
+#include "systems/ui/v2/legacy/LegacyUIV2Bridge.h"
 
 cHELPPET cHelpPet;
 int MatPetImage[4] = { 0, };
@@ -34,6 +35,9 @@ void cHELPPET::Release()
 
 void cHELPPET::Draw()
 {
+	// PATCH 183: UI V2 owns pet/tutorial notifications; keep legacy state
+	// generation for compatibility but never render the old pet chrome.
+	if(ui::v2::legacy::OwnsLegacyNotificationUI()) return;
 	if(PetKind && PetShow)
 	{
 		if(HelpMsgFlag)
@@ -58,6 +62,7 @@ void cHELPPET::Draw(POINT3D *pPosi, POINT3D *pAngle)
 void cHELPPET::DrawText()
 {
 
+	if(ui::v2::legacy::OwnsLegacyNotificationUI()) return;
 	if(!HelpMsgFlag)return;
 	HDC	hdc = NULL;
 
@@ -113,12 +118,18 @@ void cHELPPET::Main()
 	}
 
 	string TempString;
+	const bool notificationUiV2OwnsPresentation = ui::v2::legacy::OwnsLegacyNotificationUI();
 	if(PetMessageOkButtonFlag != 2)
 		PetMessageOkButtonFlag = 0;
+	if(notificationUiV2OwnsPresentation) PetMessageOkButtonFlag = 0;
 	if(HelpMsgFlag)
 	{
 		HelpMsgTime++;
-		if(522 < pCursorPos.x && 522 + 50 > pCursorPos.x &&
+		// PATCH 195: the old OK-button hit box belongs to the retired pet chrome.
+		// Keep timeout/queue bookkeeping, but do not run hidden legacy UI input
+		// while the V2 notification surface owns presentation.
+		if(!notificationUiV2OwnsPresentation &&
+		   522 < pCursorPos.x && 522 + 50 > pCursorPos.x &&
 		   94 < pCursorPos.y && 94 + 25 > pCursorPos.y)
 		{
 			if(PetMessageOkButtonFlag != 2)

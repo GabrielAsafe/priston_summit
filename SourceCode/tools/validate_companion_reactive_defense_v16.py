@@ -27,7 +27,7 @@ for tok in ('holyReflectionPercent = Holy_Reflection_Return_Damage[p]','attacker
 for tok in ('pow = GetRandomPos(lpChar->smCharInfo.Attack_Damage[0], lpChar->smCharInfo.Attack_Damage[1])','pow = (pow*lpPlayInfo->dwSkill_HolyReflection_Param) / 100'):
     if tok not in ORACLE: err.append('Holy Reflection oracle missing '+tok)
 # Divine Inhalation: extra block only vs Undead and low-byte heal encoding on successful block.
-for tok in ('blockChance += D_Inhalation_Block[point - 1]','D_Inhalation_Life[divinePoint - 1] * resistance','heal &= 0xFF','target->smCharInfo.Life[0] = (short)std::min'):
+for tok in ('blockChance += D_Inhalation_Block[point - 1]','D_Inhalation_Life[divinePoint - 1] * resistance','heal &= 0xFF','ServerLegacyLifeAdapter().Restore('):
     if tok not in CPP: err.append('Divine Inhalation missing '+tok)
 for tok in ('D_Inhalation_Block[lpPlayInfo->dwSkill_DivineInhalation_Param]','D_Inhalation_Life[lpPlayInfo->dwSkill_DivineInhalation_Param]'):
     if tok not in CHAR: err.append('Divine Inhalation oracle missing '+tok)

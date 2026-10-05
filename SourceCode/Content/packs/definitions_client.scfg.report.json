@@ -2,9 +2,9 @@
   "format": "SCFG",
   "version": 1,
   "profile": "client",
-  "definitions": 2182,
-  "directives": 36286,
-  "flattened_links": 1737,
+  "definitions": 2183,
+  "directives": 36294,
+  "flattened_links": 1738,
   "filtered_open_items": 300,
   "filtered_open_item_rows": [
     {
@@ -938,6 +938,46 @@
       "code": "sp179"
     },
     {
+      "id": "item.tw160",
+      "path": "GameServer/OpenItem/TW160.txt",
+      "code": "tw160"
+    },
+    {
+      "id": "item.uwd121_enigma_dagger",
+      "path": "GameServer/OpenItem/UWD121_Enigma Dagger.txt",
+      "code": "wd121"
+    },
+    {
+      "id": "item.uwn121_kahsehtha_phantom",
+      "path": "GameServer/OpenItem/UWN121_Kahsehtha  Phantom.txt",
+      "code": "wn121"
+    },
+    {
+      "id": "item.wa153",
+      "path": "GameServer/OpenItem/WA153.txt",
+      "code": "wa153"
+    },
+    {
+      "id": "item.wa160",
+      "path": "GameServer/OpenItem/WA160.txt",
+      "code": "wa160"
+    },
+    {
+      "id": "item.wc153",
+      "path": "GameServer/OpenItem/WC153.txt",
+      "code": "wc153"
+    },
+    {
+      "id": "item.wc160",
+      "path": "GameServer/OpenItem/WC160.txt",
+      "code": "wc160"
+    },
+    {
+      "id": "item.wc161",
+      "path": "GameServer/OpenItem/WC161.txt",
+      "code": "wc161"
+    },
+    {
       "id": "item.wd101",
       "path": "GameServer/OpenItem/Tier5/WD101.txt",
       "code": "wd101"
@@ -1093,6 +1133,21 @@
       "code": "wd153"
     },
     {
+      "id": "item.wh153",
+      "path": "GameServer/OpenItem/WH153.txt",
+      "code": "wh153"
+    },
+    {
+      "id": "item.wh160",
+      "path": "GameServer/OpenItem/WH160.txt",
+      "code": "wh160"
+    },
+    {
+      "id": "item.wm153",
+      "path": "GameServer/OpenItem/WM153.txt",
+      "code": "wm153"
+    },
+    {
       "id": "item.wn101",
       "path": "GameServer/OpenItem/Tier5/WN101.txt",
       "code": "wn101"
@@ -1246,6 +1301,46 @@
       "id": "item.wn153",
       "path": "GameServer/OpenItem/Tier5/WN153.txt",
       "code": "wn153"
+    },
+    {
+      "id": "item.wp153",
+      "path": "GameServer/OpenItem/WP153.txt",
+      "code": "wp153"
+    },
+    {
+      "id": "item.wp160",
+      "path": "GameServer/OpenItem/WP160.txt",
+      "code": "wp160"
+    },
+    {
+      "id": "item.ws153",
+      "path": "GameServer/OpenItem/WS153.txt",
+      "code": "ws153"
+    },
+    {
+      "id": "item.ws160",
+      "path": "GameServer/OpenItem/WS160.txt",
+      "code": "ws160"
+    },
+    {
+      "id": "item.ws161",
+      "path": "GameServer/OpenItem/WS161.txt",
+      "code": "ws161"
+    },
+    {
+      "id": "item.ws253",
+      "path": "GameServer/OpenItem/WS253.txt",
+      "code": "ws253"
+    },
+    {
+      "id": "item.ws260",
+      "path": "GameServer/OpenItem/WS260.txt",
+      "code": "ws260"
+    },
+    {
+      "id": "item.ws261",
+      "path": "GameServer/OpenItem/WS261.txt",
+      "code": "ws261"
     },
     {
       "id": "item.wv101",
@@ -1411,104 +1506,64 @@
       "id": "item.wv153",
       "path": "GameServer/OpenItem/Tier5/WV153.txt",
       "code": "wv153"
-    },
-    {
-      "id": "item.tw160",
-      "path": "GameServer/OpenItem/TW160.txt",
-      "code": "tw160"
-    },
-    {
-      "id": "item.uwd121_enigma_dagger",
-      "path": "GameServer/OpenItem/UWD121_Enigma Dagger.txt",
-      "code": "wd121"
-    },
-    {
-      "id": "item.uwn121_kahsehtha_phantom",
-      "path": "GameServer/OpenItem/UWN121_Kahsehtha  Phantom.txt",
-      "code": "wn121"
-    },
-    {
-      "id": "item.wa153",
-      "path": "GameServer/OpenItem/WA153.txt",
-      "code": "wa153"
-    },
-    {
-      "id": "item.wa160",
-      "path": "GameServer/OpenItem/WA160.txt",
-      "code": "wa160"
-    },
-    {
-      "id": "item.wc153",
-      "path": "GameServer/OpenItem/WC153.txt",
-      "code": "wc153"
-    },
-    {
-      "id": "item.wc160",
-      "path": "GameServer/OpenItem/WC160.txt",
-      "code": "wc160"
-    },
-    {
-      "id": "item.wc161",
-      "path": "GameServer/OpenItem/WC161.txt",
-      "code": "wc161"
-    },
-    {
-      "id": "item.wh153",
-      "path": "GameServer/OpenItem/WH153.txt",
-      "code": "wh153"
-    },
-    {
-      "id": "item.wh160",
-      "path": "GameServer/OpenItem/WH160.txt",
-      "code": "wh160"
-    },
-    {
-      "id": "item.wm153",
-      "path": "GameServer/OpenItem/WM153.txt",
-      "code": "wm153"
-    },
-    {
-      "id": "item.wp153",
-      "path": "GameServer/OpenItem/WP153.txt",
-      "code": "wp153"
-    },
-    {
-      "id": "item.wp160",
-      "path": "GameServer/OpenItem/WP160.txt",
-      "code": "wp160"
-    },
-    {
-      "id": "item.ws153",
-      "path": "GameServer/OpenItem/WS153.txt",
-      "code": "ws153"
-    },
-    {
-      "id": "item.ws160",
-      "path": "GameServer/OpenItem/WS160.txt",
-      "code": "ws160"
-    },
-    {
-      "id": "item.ws161",
-      "path": "GameServer/OpenItem/WS161.txt",
-      "code": "ws161"
-    },
-    {
-      "id": "item.ws253",
-      "path": "GameServer/OpenItem/WS253.txt",
-      "code": "ws253"
-    },
-    {
-      "id": "item.ws260",
-      "path": "GameServer/OpenItem/WS260.txt",
-      "code": "ws260"
-    },
-    {
-      "id": "item.ws261",
-      "path": "GameServer/OpenItem/WS261.txt",
-      "code": "ws261"
     }
   ],
-  "filtered_shop_tokens": [],
+  "filtered_shop_tokens": [
+    {
+      "id": "npc.bcn01",
+      "path": "GameServer/NPC/Bcn01.npc",
+      "key": "sell_etc",
+      "token": "bc101"
+    },
+    {
+      "id": "npc.donation_box",
+      "path": "GameServer/NPC/Donation Box.NPC",
+      "key": "sell_weapon",
+      "token": "WD113"
+    },
+    {
+      "id": "npc.donation_box",
+      "path": "GameServer/NPC/Donation Box.NPC",
+      "key": "sell_weapon",
+      "token": "WD114"
+    },
+    {
+      "id": "npc.donation_box",
+      "path": "GameServer/NPC/Donation Box.NPC",
+      "key": "sell_weapon",
+      "token": "WN113"
+    },
+    {
+      "id": "npc.donation_box",
+      "path": "GameServer/NPC/Donation Box.NPC",
+      "key": "sell_weapon",
+      "token": "WN114"
+    },
+    {
+      "id": "npc.marina",
+      "path": "GameServer/NPC/Marina.npc",
+      "key": "sell_etc",
+      "token": "SP179"
+    },
+    {
+      "id": "npc.premium",
+      "path": "GameServer/NPC/premium.npc",
+      "key": "sell_etc",
+      "token": "wq106"
+    },
+    {
+      "id": "npc.toolspilai",
+      "path": "GameServer/NPC/toolspilai.NPC",
+      "key": "sell_etc",
+      "token": "TW106"
+    },
+    {
+      "id": "npc.toolsric",
+      "path": "GameServer/NPC/toolsric.NPC",
+      "key": "sell_etc",
+      "token": "TW106"
+    }
+  ],
   "legacy_missing_links": [
     {
       "id": "monster.100_arqueira_das_cinzas",
@@ -3181,6 +3236,6 @@
       "target": "gameserver/openitem/name/ca652.zhoon"
     }
   ],
-  "bytes": 755043,
-  "sha256": "36c40ad3ee58e72253c7a57386223b302a2bfa34cf9c3225a05fc3302f270e01"
+  "bytes": 755186,
+  "sha256": "48a7b6dc8c1a33ab5b95f82c58cc57f8b5d50aeb97e6823f21b547bf86b20e57"
 }

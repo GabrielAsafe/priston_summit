@@ -1,9 +1,13 @@
 {
   "format": "SCFG",
   "version": 1,
-  "definitions": 2482,
-  "directives": 46788,
-  "flattened_links": 1852,
+  "profile": "unprofiled",
+  "definitions": 2483,
+  "directives": 46797,
+  "flattened_links": 1853,
+  "filtered_open_items": 0,
+  "filtered_open_item_rows": [],
+  "filtered_shop_tokens": [],
   "legacy_missing_links": [
     {
       "id": "monster.100_arqueira_das_cinzas",
@@ -2381,6 +2385,6 @@
       "target": "gameserver/openitem/name/ws260.zhoon"
     }
   ],
-  "bytes": 912031,
-  "sha256": "b53cd7f06415c831ab7191c5bc3583e9fafc6afd8a203fd27d9ab6d5bbc8c3a1"
+  "bytes": 912030,
+  "sha256": "e852e931f3f3168393d1ce9f72eeb1f9794b8607e08c283001b1d378b9c38344"
 }

@@ -10,28 +10,23 @@
   ],
   "source": {
     "legacy_path": "cliente/image/Sinimage/Quest/haQuestundead_Eend.sin",
-    "legacy_sha256": "7303ce6cf6c29444eac000f49e6de82b3f6a6e96f84ffbe4128d9e597b7b7c69",
-    "legacy_size": 465
+    "legacy_sha256": "74aa4c4411181e12c7ae0fa6baf00b70a6e128deb85de857f425c90e018967c9",
+    "legacy_size": 434
   },
   "semantic": {
     "lines": [
-      "Thanks to your assistance, the transport route ",
-      "became much safer. Now I'm going to buy requirements. ",
-      "Fortunately, I have some Force Orbs to use when I am in ",
-      "difficulties. Please stop by sometimes. Here is ",
-      "the place where the combatants are training. ",
+      "Graças à sua ajuda, a rota de transporte ficou muito mais segura.",
+      "Agora poderei voltar a buscar suprimentos. Por sorte, tenho alguns",
+      "Orbes de Força para usar nos momentos difíceis. Passe por aqui",
+      "quando quiser; este é um ponto de treinamento para combatentes.",
       "",
-      "Force Orb is the item you can use on a battle and ",
-      "it helps to mazimixe your attack power. ",
-      "The Force Orb in your inventory can be activated ",
-      "by right-clicking. Please make the best use of it.",
-      "",
-      "",
-      ""
+      "O Orbe de Força pode ser usado durante a batalha para aumentar",
+      "seu poder de ataque. Para ativá-lo, clique com o botão direito",
+      "sobre o orbe no inventário. Use-o bem."
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "VGhhbmtzIHRvIHlvdXIgYXNzaXN0YW5jZSwgdGhlIHRyYW5zcG9ydCByb3V0ZSANCmJlY2FtZSBtdWNoIHNhZmVyLiBOb3cgSSdtIGdvaW5nIHRvIGJ1eSByZXF1aXJlbWVudHMuIA0KRm9ydHVuYXRlbHksIEkgaGF2ZSBzb21lIEZvcmNlIE9yYnMgdG8gdXNlIHdoZW4gSSBhbSBpbiANCmRpZmZpY3VsdGllcy4gUGxlYXNlIHN0b3AgYnkgc29tZXRpbWVzLiBIZXJlIGlzIA0KdGhlIHBsYWNlIHdoZXJlIHRoZSBjb21iYXRhbnRzIGFyZSB0cmFpbmluZy4gDQoNCkZvcmNlIE9yYiBpcyB0aGUgaXRlbSB5b3UgY2FuIHVzZSBvbiBhIGJhdHRsZSBhbmQgDQppdCBoZWxwcyB0byBtYXppbWl4ZSB5b3VyIGF0dGFjayBwb3dlci4gDQpUaGUgRm9yY2UgT3JiIGluIHlvdXIgaW52ZW50b3J5IGNhbiBiZSBhY3RpdmF0ZWQgDQpieSByaWdodC1jbGlja2luZy4gUGxlYXNlIG1ha2UgdGhlIGJlc3QgdXNlIG9mIGl0Lg0KDQoNCg0K"
+    "legacy_payload_base64": "R3Jh52FzIOAgc3VhIGFqdWRhLCBhIHJvdGEgZGUgdHJhbnNwb3J0ZSBmaWNvdSBtdWl0byBtYWlzIHNlZ3VyYS4NCkFnb3JhIHBvZGVyZWkgdm9sdGFyIGEgYnVzY2FyIHN1cHJpbWVudG9zLiBQb3Igc29ydGUsIHRlbmhvIGFsZ3Vucw0KT3JiZXMgZGUgRm9y52EgcGFyYSB1c2FyIG5vcyBtb21lbnRvcyBkaWbtY2Vpcy4gUGFzc2UgcG9yIGFxdWkNCnF1YW5kbyBxdWlzZXI7IGVzdGUg6SB1bSBwb250byBkZSB0cmVpbmFtZW50byBwYXJhIGNvbWJhdGVudGVzLg0KDQpPIE9yYmUgZGUgRm9y52EgcG9kZSBzZXIgdXNhZG8gZHVyYW50ZSBhIGJhdGFsaGEgcGFyYSBhdW1lbnRhcg0Kc2V1IHBvZGVyIGRlIGF0YXF1ZS4gUGFyYSBhdGl24S1sbywgY2xpcXVlIGNvbSBvIGJvdONvIGRpcmVpdG8NCnNvYnJlIG8gb3JiZSBubyBpbnZlbnThcmlvLiBVc2UtbyBiZW0uDQo="
   }
 }

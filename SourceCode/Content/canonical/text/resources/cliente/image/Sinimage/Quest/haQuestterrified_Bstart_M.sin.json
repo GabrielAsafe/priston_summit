@@ -10,35 +10,30 @@
   ],
   "source": {
     "legacy_path": "cliente/image/Sinimage/Quest/haQuestterrified_Bstart_M.sin",
-    "legacy_sha256": "6cb9536c7b966f3c3dcaa604dabe4c3feaa51cba03a70b2b1e851b49151fac81",
-    "legacy_size": 553
+    "legacy_sha256": "daee29cff73550530e3164e492f03e4930e62158c67553f1e5f0c1c254a0f78e",
+    "legacy_size": 498
   },
   "semantic": {
     "lines": [
-      "We are not sure when the horrible monsters started to",
-      "appear outside of our town. So, people can't",
-      "go outside, they have to stay inside to be safe.",
+      "Não sabemos ao certo quando os monstros terríveis começaram",
+      "a aparecer nos arredores da cidade. Por segurança, muitas",
+      "pessoas têm evitado sair.",
       "",
-      "If you go in town and meet some people, it will",
-      "be good to talk and trade things with them.",
+      "Converse e negocie com os moradores para conhecer melhor",
+      "a cidade e se preparar.",
       "",
-      "If you want to be a stronger warrior, ",
-      "you have to hunt monsters outside the town.",
-      "Hunt 5 Rabbies in the Road to the Wind and come ",
-      "back to me, that is the first step of becoming ",
-      "a Warrior.",
+      "Se quiser se tornar um guerreiro mais forte, terá de",
+      "caçar monstros. Cace 5 Coelhos na Estrada dos Ventos",
+      "e volte para falar comigo. Esse é o primeiro passo.",
       "",
-      "[Quest Subject]",
+      "[Objetivo da Missão]",
       "",
-      "     After having hunted 5 Rabbies in Road to the Wind, ",
-      "     go back to Ran.",
-      " ",
-      "",
-      ""
+      "Cace 5 Coelhos na Estrada dos Ventos e depois",
+      "volte para falar com Amanda."
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "V2UgYXJlIG5vdCBzdXJlIHdoZW4gdGhlIGhvcnJpYmxlIG1vbnN0ZXJzIHN0YXJ0ZWQgdG8NCmFwcGVhciBvdXRzaWRlIG9mIG91ciB0b3duLiBTbywgcGVvcGxlIGNhbid0DQpnbyBvdXRzaWRlLCB0aGV5IGhhdmUgdG8gc3RheSBpbnNpZGUgdG8gYmUgc2FmZS4NCg0KSWYgeW91IGdvIGluIHRvd24gYW5kIG1lZXQgc29tZSBwZW9wbGUsIGl0IHdpbGwNCmJlIGdvb2QgdG8gdGFsayBhbmQgdHJhZGUgdGhpbmdzIHdpdGggdGhlbS4NCg0KSWYgeW91IHdhbnQgdG8gYmUgYSBzdHJvbmdlciB3YXJyaW9yLCANCnlvdSBoYXZlIHRvIGh1bnQgbW9uc3RlcnMgb3V0c2lkZSB0aGUgdG93bi4NCkh1bnQgNSBSYWJiaWVzIGluIHRoZSBSb2FkIHRvIHRoZSBXaW5kIGFuZCBjb21lIA0KYmFjayB0byBtZSwgdGhhdCBpcyB0aGUgZmlyc3Qgc3RlcCBvZiBiZWNvbWluZyANCmEgV2Fycmlvci4NCg0KW1F1ZXN0IFN1YmplY3RdDQoNCiAgICAgQWZ0ZXIgaGF2aW5nIGh1bnRlZCA1IFJhYmJpZXMgaW4gUm9hZCB0byB0aGUgV2luZCwgDQogICAgIGdvIGJhY2sgdG8gUmFuLg0KIA0KDQoNCg=="
+    "legacy_payload_base64": "TuNvIHNhYmVtb3MgYW8gY2VydG8gcXVhbmRvIG9zIG1vbnN0cm9zIHRlcnLtdmVpcyBjb21l52FyYW0NCmEgYXBhcmVjZXIgbm9zIGFycmVkb3JlcyBkYSBjaWRhZGUuIFBvciBzZWd1cmFu52EsIG11aXRhcw0KcGVzc29hcyB06m0gZXZpdGFkbyBzYWlyLg0KDQpDb252ZXJzZSBlIG5lZ29jaWUgY29tIG9zIG1vcmFkb3JlcyBwYXJhIGNvbmhlY2VyIG1lbGhvcg0KYSBjaWRhZGUgZSBzZSBwcmVwYXJhci4NCg0KU2UgcXVpc2VyIHNlIHRvcm5hciB1bSBndWVycmVpcm8gbWFpcyBmb3J0ZSwgdGVy4SBkZQ0KY2HnYXIgbW9uc3Ryb3MuIENhY2UgNSBDb2VsaG9zIG5hIEVzdHJhZGEgZG9zIFZlbnRvcw0KZSB2b2x0ZSBwYXJhIGZhbGFyIGNvbWlnby4gRXNzZSDpIG8gcHJpbWVpcm8gcGFzc28uDQoNCltPYmpldGl2byBkYSBNaXNz429dDQoNCkNhY2UgNSBDb2VsaG9zIG5hIEVzdHJhZGEgZG9zIFZlbnRvcyBlIGRlcG9pcw0Kdm9sdGUgcGFyYSBmYWxhciBjb20gQW1hbmRhLg0K"
   }
 }

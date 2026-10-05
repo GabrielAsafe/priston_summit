@@ -2,9 +2,9 @@
   "format": "SCFG",
   "version": 1,
   "profile": "server",
-  "definitions": 2350,
-  "directives": 41805,
-  "flattened_links": 1836,
+  "definitions": 2351,
+  "directives": 41813,
+  "flattened_links": 1837,
   "filtered_open_items": 132,
   "filtered_open_item_rows": [
     {
@@ -176,6 +176,21 @@
       "id": "item.om226",
       "path": "GameServer/OpenItem/OM226.txt",
       "code": "om226"
+    },
+    {
+      "id": "item.tw160",
+      "path": "GameServer/OpenItem/TW160.txt",
+      "code": "tw160"
+    },
+    {
+      "id": "item.uwd121_enigma_dagger",
+      "path": "GameServer/OpenItem/UWD121_Enigma Dagger.txt",
+      "code": "wd121"
+    },
+    {
+      "id": "item.uwn121_kahsehtha_phantom",
+      "path": "GameServer/OpenItem/UWN121_Kahsehtha  Phantom.txt",
+      "code": "wn121"
     },
     {
       "id": "item.wd101",
@@ -651,21 +666,6 @@
       "id": "item.wv153",
       "path": "GameServer/OpenItem/Tier5/WV153.txt",
       "code": "wv153"
-    },
-    {
-      "id": "item.tw160",
-      "path": "GameServer/OpenItem/TW160.txt",
-      "code": "tw160"
-    },
-    {
-      "id": "item.uwd121_enigma_dagger",
-      "path": "GameServer/OpenItem/UWD121_Enigma Dagger.txt",
-      "code": "wd121"
-    },
-    {
-      "id": "item.uwn121_kahsehtha_phantom",
-      "path": "GameServer/OpenItem/UWN121_Kahsehtha  Phantom.txt",
-      "code": "wn121"
     }
   ],
   "filtered_shop_tokens": [
@@ -698,6 +698,12 @@
       "path": "GameServer/NPC/Donation Box.NPC",
       "key": "sell_weapon",
       "token": "WN114"
+    },
+    {
+      "id": "npc.marina",
+      "path": "GameServer/NPC/Marina.npc",
+      "key": "sell_etc",
+      "token": "SP179"
     },
     {
       "id": "npc.premium",
@@ -2605,6 +2611,6 @@
       "target": "gameserver/openitem/name/ws260.zhoon"
     }
   ],
-  "bytes": 838034,
-  "sha256": "f3dcb9c18755280f72299355e213694e4b223d0c017c0137d24e8de13b4f6bba"
+  "bytes": 838219,
+  "sha256": "fb1413e2238584d0f3d7789d16f6c6f66bae1500e39e1dd2fa6c4c28b6561e40"
 }

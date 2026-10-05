@@ -3,9 +3,10 @@ from pathlib import Path
 root=Path(__file__).resolve().parents[1]
 contract=(root/'Shared/gameplay/social/clan/v2/ClanQuery.h').read_text()
 adapter=(root/'SrcServer/src/systems/social/clan/v2/legacy/LegacyClanQueryAdapter.cpp').read_text()
-onserver=(root/'Shared/server/legacy_runtime/OnSever_legacy_server.inl').read_text()
+onserver=(root/'SrcServer/src/systems/commerce/v2/legacy/LegacyCraftingKernel.inl').read_text()
 start=onserver.index('int rsRecvUseLinkCore(')
-end=onserver.index('\nint ', start+10)
+end=onserver.find('\nint ', start+10)
+if end < 0: end=len(onserver)
 link=onserver[start:end]
 checks=[
  ('green clan id', 'struct ClanId' in contract and 'std::uint32_t value' in contract),

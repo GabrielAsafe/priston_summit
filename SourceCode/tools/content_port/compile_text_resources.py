@@ -44,7 +44,12 @@ def main():
         kind=KIND.get(d['kind'])
         if kind is None: raise ValueError(f'unsupported SRES kind {d["kind"]}')
         resource_count+=1
-        legacy_key=norm(d['source']['legacy_path']).casefold()
+        source = d.get('source') if isinstance(d.get('source'), dict) else {}
+        legacy_path = source.get('legacy_path') if isinstance(source.get('legacy_path'), str) else ''
+        if not legacy_path:
+            runtime_paths = d.get('runtime_paths') or []
+            legacy_path = runtime_paths[0] if runtime_paths else ''
+        legacy_key=norm(legacy_path).casefold()
         for alias in d['runtime_paths']:
             # bit 0: runtime alias (prefix stripped); bit 1: provenance/source alias
             flags = 2 if norm(alias).casefold()==legacy_key else 1

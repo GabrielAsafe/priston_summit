@@ -10,24 +10,21 @@
   ],
   "source": {
     "legacy_path": "cliente/image/Sinimage/Quest/haQuestcyclops_Fpass.sin",
-    "legacy_sha256": "8690a6facb406fcea11fff09b9d27d4575d4a000acf769cf11bc99940b453ded",
-    "legacy_size": 229
+    "legacy_sha256": "fb129ad1cdcf283fcdfff483af3a035357bf08c8923342d121e8e63cca6db8b7",
+    "legacy_size": 213
   },
   "semantic": {
     "lines": [
-      "Wow Cyclops are really scary monsters! They ",
-      "have great power and defense.",
+      "Os Cíclopes são monstros assustadores, com grande poder",
+      "de ataque e muita resistência.",
       "",
-      "You must defeat those Cyclops and save our land ",
-      "from chaos.",
-      "Get your equipment changed to better one in the ",
-      "town and go to the Cursed land.",
-      "",
-      ""
+      "Você precisa derrotá-los e proteger nossa terra.",
+      "Melhore seus equipamentos na cidade e volte para",
+      "a Terra Amaldiçoada."
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "V293IEN5Y2xvcHMgYXJlIHJlYWxseSBzY2FyeSBtb25zdGVycyEgVGhleSANCmhhdmUgZ3JlYXQgcG93ZXIgYW5kIGRlZmVuc2UuDQoNCllvdSBtdXN0IGRlZmVhdCB0aG9zZSBDeWNsb3BzIGFuZCBzYXZlIG91ciBsYW5kIA0KZnJvbSBjaGFvcy4NCkdldCB5b3VyIGVxdWlwbWVudCBjaGFuZ2VkIHRvIGJldHRlciBvbmUgaW4gdGhlIA0KdG93biBhbmQgZ28gdG8gdGhlIEN1cnNlZCBsYW5kLg0KDQoNCg=="
+    "legacy_payload_base64": "T3MgQ+1jbG9wZXMgc+NvIG1vbnN0cm9zIGFzc3VzdGFkb3JlcywgY29tIGdyYW5kZSBwb2Rlcg0KZGUgYXRhcXVlIGUgbXVpdGEgcmVzaXN06m5jaWEuDQoNClZvY+ogcHJlY2lzYSBkZXJyb3ThLWxvcyBlIHByb3RlZ2VyIG5vc3NhIHRlcnJhLg0KTWVsaG9yZSBzZXVzIGVxdWlwYW1lbnRvcyBuYSBjaWRhZGUgZSB2b2x0ZSBwYXJhDQphIFRlcnJhIEFtYWxkaedvYWRhLg0K"
   }
 }

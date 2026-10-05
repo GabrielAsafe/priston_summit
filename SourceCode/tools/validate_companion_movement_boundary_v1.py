@@ -42,7 +42,7 @@ def main() -> None:
         if forbidden in executor:
             fail(f"movement mutation still direct in Companion executor: {forbidden}")
 
-    if "target->lpTargetPlayInfo = NULL" not in executor:
+    if "ServerLegacyTargetingAdapter().ClearAcquiredTarget(" not in executor:
         fail("movement-specific target release side effect was lost")
 
     for token in (

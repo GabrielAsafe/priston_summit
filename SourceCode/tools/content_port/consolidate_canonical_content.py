@@ -171,7 +171,7 @@ def main() -> int:
         run(sys.executable, tools / "validate_runtime_pack_resolution.py", "--repo-root", repo)
 
     family_manifest = {}
-    for family in ("maps", "stage_spawns", "stage_start_points", "fixed_npcs", "text", "item_profiles"):
+    for family in sorted(path.name for path in canonical.iterdir() if path.is_dir()):
         digest, files, total = tree_digest(canonical / family)
         family_manifest[family] = {"files": files, "bytes": total, "sha256": digest}
 

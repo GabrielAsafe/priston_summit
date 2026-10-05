@@ -10,33 +10,27 @@
   ],
   "source": {
     "legacy_path": "cliente/image/Sinimage/Quest/haQuesthammer_Gstart.sin",
-    "legacy_sha256": "dc5273b760c5cc19c7bc26e14b7803b3cf01207f74df7050a52bfd7056365a33",
-    "legacy_size": 548
+    "legacy_sha256": "7e2c856f015a183a6714446be7ccc55bb9cf2d39233a51a25de116be88a494eb",
+    "legacy_size": 470
   },
   "semantic": {
     "lines": [
-      "The combatants who have been training with their ",
-      "skills are leaving for the place where there ",
-      "are more stronger monsters. And Navisko is their way. ",
-      "They will rest themselves and fix their equipments ",
-      "while staying there. But a few days ago, Ump in ",
-      "Navisko lost his hammer. It was stolen by the ",
-      "Bargons that invaded Navisko. Could you look for ",
-      "it? If you see it, please give it back to him. ",
+      "Os combatentes que já dominaram suas habilidades estão partindo",
+      "para regiões com monstros mais fortes. Navisko fica no caminho",
+      "e serve como ponto de descanso e manutenção de equipamentos.",
       "",
-      "[Quest Subject]",
+      "Há alguns dias, Ump perdeu seu martelo. Bargons que invadiram",
+      "Navisko o roubaram. Você pode recuperá-lo? Quando encontrá-lo,",
+      "entregue-o de volta a Ump.",
       "",
-      "     After hunting Bargons in the continent ",
-      "     and acquiring Ump's hammer, go back to ",
-      "     Ump in Navisco.",
+      "[Objetivo da Missão]",
       "",
-      "",
-      "",
-      ""
+      "Cace Bargons pelo continente até recuperar o martelo de Ump",
+      "e depois fale com Ump em Navisko."
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "VGhlIGNvbWJhdGFudHMgd2hvIGhhdmUgYmVlbiB0cmFpbmluZyB3aXRoIHRoZWlyIA0Kc2tpbGxzIGFyZSBsZWF2aW5nIGZvciB0aGUgcGxhY2Ugd2hlcmUgdGhlcmUgDQphcmUgbW9yZSBzdHJvbmdlciBtb25zdGVycy4gQW5kIE5hdmlza28gaXMgdGhlaXIgd2F5LiANClRoZXkgd2lsbCByZXN0IHRoZW1zZWx2ZXMgYW5kIGZpeCB0aGVpciBlcXVpcG1lbnRzIA0Kd2hpbGUgc3RheWluZyB0aGVyZS4gQnV0IGEgZmV3IGRheXMgYWdvLCBVbXAgaW4gDQpOYXZpc2tvIGxvc3QgaGlzIGhhbW1lci4gSXQgd2FzIHN0b2xlbiBieSB0aGUgDQpCYXJnb25zIHRoYXQgaW52YWRlZCBOYXZpc2tvLiBDb3VsZCB5b3UgbG9vayBmb3IgDQppdD8gSWYgeW91IHNlZSBpdCwgcGxlYXNlIGdpdmUgaXQgYmFjayB0byBoaW0uIA0KDQpbUXVlc3QgU3ViamVjdF0NCg0KICAgICBBZnRlciBodW50aW5nIEJhcmdvbnMgaW4gdGhlIGNvbnRpbmVudCANCiAgICAgYW5kIGFjcXVpcmluZyBVbXAncyBoYW1tZXIsIGdvIGJhY2sgdG8gDQogICAgIFVtcCBpbiBOYXZpc2NvLg0KDQoNCg0KDQo="
+    "legacy_payload_base64": "T3MgY29tYmF0ZW50ZXMgcXVlIGrhIGRvbWluYXJhbSBzdWFzIGhhYmlsaWRhZGVzIGVzdONvIHBhcnRpbmRvDQpwYXJhIHJlZ2n1ZXMgY29tIG1vbnN0cm9zIG1haXMgZm9ydGVzLiBOYXZpc2tvIGZpY2Egbm8gY2FtaW5obw0KZSBzZXJ2ZSBjb21vIHBvbnRvIGRlIGRlc2NhbnNvIGUgbWFudXRlbufjbyBkZSBlcXVpcGFtZW50b3MuDQoNCkjhIGFsZ3VucyBkaWFzLCBVbXAgcGVyZGV1IHNldSBtYXJ0ZWxvLiBCYXJnb25zIHF1ZSBpbnZhZGlyYW0NCk5hdmlza28gbyByb3ViYXJhbS4gVm9j6iBwb2RlIHJlY3VwZXLhLWxvPyBRdWFuZG8gZW5jb250cuEtbG8sDQplbnRyZWd1ZS1vIGRlIHZvbHRhIGEgVW1wLg0KDQpbT2JqZXRpdm8gZGEgTWlzc+NvXQ0KDQpDYWNlIEJhcmdvbnMgcGVsbyBjb250aW5lbnRlIGF06SByZWN1cGVyYXIgbyBtYXJ0ZWxvIGRlIFVtcA0KZSBkZXBvaXMgZmFsZSBjb20gVW1wIGVtIE5hdmlza28uDQo="
   }
 }

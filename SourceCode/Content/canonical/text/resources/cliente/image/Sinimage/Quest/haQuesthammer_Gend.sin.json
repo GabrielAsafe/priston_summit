@@ -10,28 +10,23 @@
   ],
   "source": {
     "legacy_path": "cliente/image/Sinimage/Quest/haQuesthammer_Gend.sin",
-    "legacy_sha256": "48d6dcf0a27b78716e254931abf74701b5120fb542e11a222240fbac181eab26",
+    "legacy_sha256": "25e7718569e1a24d621a05a7ff335c6323cb568a2140f7e9facef6af77e9183b",
     "legacy_size": 309
   },
   "semantic": {
     "lines": [
-      "Wow! I got my hammer back! Actually, I also ran ",
-      "after the Bargons when I am free, but I gave it ",
-      "up because it was too hard for me. ",
-      "I want to return your favor somehow.",
+      "Finalmente recuperei meu martelo! Eu mesmo tentei perseguir",
+      "os Bargons quando tinha tempo, mas acabei desistindo porque",
+      "era difícil demais. Quero retribuir sua ajuda.",
       "",
-      "Luckily, I bought Transparo from the Force Master ",
-      "yesterday and I'll give it to you. ",
-      "Hunt all The Bargons with this.",
+      "Por sorte, comprei um Transparo com o Mestre da Força ontem.",
+      "Vou entregá-lo a você como recompensa.",
       "",
-      "",
-      "",
-      "",
-      ""
+      "Use-o bem nas próximas caçadas."
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "V293ISBJIGdvdCBteSBoYW1tZXIgYmFjayEgQWN0dWFsbHksIEkgYWxzbyByYW4gDQphZnRlciB0aGUgQmFyZ29ucyB3aGVuIEkgYW0gZnJlZSwgYnV0IEkgZ2F2ZSBpdCANCnVwIGJlY2F1c2UgaXQgd2FzIHRvbyBoYXJkIGZvciBtZS4gDQpJIHdhbnQgdG8gcmV0dXJuIHlvdXIgZmF2b3Igc29tZWhvdy4NCg0KTHVja2lseSwgSSBib3VnaHQgVHJhbnNwYXJvIGZyb20gdGhlIEZvcmNlIE1hc3RlciANCnllc3RlcmRheSBhbmQgSSdsbCBnaXZlIGl0IHRvIHlvdS4gDQpIdW50IGFsbCBUaGUgQmFyZ29ucyB3aXRoIHRoaXMuDQoNCg0KDQoNCg0K"
+    "legacy_payload_base64": "RmluYWxtZW50ZSByZWN1cGVyZWkgbWV1IG1hcnRlbG8hIEV1IG1lc21vIHRlbnRlaSBwZXJzZWd1aXINCm9zIEJhcmdvbnMgcXVhbmRvIHRpbmhhIHRlbXBvLCBtYXMgYWNhYmVpIGRlc2lzdGluZG8gcG9ycXVlDQplcmEgZGlm7WNpbCBkZW1haXMuIFF1ZXJvIHJldHJpYnVpciBzdWEgYWp1ZGEuDQoNClBvciBzb3J0ZSwgY29tcHJlaSB1bSBUcmFuc3Bhcm8gY29tIG8gTWVzdHJlIGRhIEZvcudhIG9udGVtLg0KVm91IGVudHJlZ+EtbG8gYSB2b2PqIGNvbW8gcmVjb21wZW5zYS4NCg0KVXNlLW8gYmVtIG5hcyBwcvN4aW1hcyBjYedhZGFzLg0K"
   }
 }

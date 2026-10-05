@@ -10,37 +10,27 @@
   ],
   "source": {
     "legacy_path": "cliente/image/Sinimage/Quest/haQuestcandy_Cend.sin",
-    "legacy_sha256": "8cd6e586a70d93cf94cdd6b0f135d82870d6a9e9b1e9bcd9d449e8155c962eb0",
-    "legacy_size": 764
+    "legacy_sha256": "af7884d8db8d2edba3c2d695d2d1258eab457b57c40809155ddceb992d99195f",
+    "legacy_size": 555
   },
   "semantic": {
     "lines": [
-      "Oh! It was Mr.Ren who had my candy. People think ",
-      "that why does a man need such a candy but well, candy ",
-      "is very important item for me. You know last ",
-      "whiteday, I was going to show my heart to a lady",
-      "at misc store but at the moment I saw her beautiful",
-      "eyes and it melted me down. I wasn't brave enough ",
-      "to hand her my candy. :(",
+      "Ah! Então era Amanda quem estava com meu doce.",
+      "Alguns podem achar estranho eu gostar tanto de doces,",
+      "mas este é importante para mim. No último Dia Branco,",
+      "eu queria demonstrar meus sentimentos a uma moça da",
+      "loja de variedades, mas fiquei sem coragem quando a vi.",
       "",
-      "With indication of gratitude, i'll give you life ",
-      "potion, stamina potion, mana potion for 10 each.",
-      "Actually I bought these potions to look good to ",
-      "her, but honestly I don't need these potions. ",
-      "Rather it appears to be necessary to you.",
+      "Como agradecimento, vou lhe dar 10 Poções de Vida,",
+      "10 Poções de Vigor e 10 Poções de Mana. Eu as havia",
+      "comprado para impressioná-la, mas serão mais úteis para você.",
       "",
-      "Keep these potions in your armlet, it'll make you ",
-      "very comfortable to carry. If you have better ",
-      "armlet, you will be able to carry more potions ",
-      "and you can hunt longer.",
-      "",
-      "",
-      "",
-      ""
+      "Guarde as poções na braçadeira. Uma braçadeira melhor",
+      "permite carregar ainda mais poções e caçar por mais tempo."
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "T2ghIEl0IHdhcyBNci5SZW4gd2hvIGhhZCBteSBjYW5keS4gUGVvcGxlIHRoaW5rIA0KdGhhdCB3aHkgZG9lcyBhIG1hbiBuZWVkIHN1Y2ggYSBjYW5keSBidXQgd2VsbCwgY2FuZHkgDQppcyB2ZXJ5IGltcG9ydGFudCBpdGVtIGZvciBtZS4gWW91IGtub3cgbGFzdCANCndoaXRlZGF5LCBJIHdhcyBnb2luZyB0byBzaG93IG15IGhlYXJ0IHRvIGEgbGFkeQ0KYXQgbWlzYyBzdG9yZSBidXQgYXQgdGhlIG1vbWVudCBJIHNhdyBoZXIgYmVhdXRpZnVsDQpleWVzIGFuZCBpdCBtZWx0ZWQgbWUgZG93bi4gSSB3YXNuJ3QgYnJhdmUgZW5vdWdoIA0KdG8gaGFuZCBoZXIgbXkgY2FuZHkuIDooDQoNCldpdGggaW5kaWNhdGlvbiBvZiBncmF0aXR1ZGUsIGknbGwgZ2l2ZSB5b3UgbGlmZSANCnBvdGlvbiwgc3RhbWluYSBwb3Rpb24sIG1hbmEgcG90aW9uIGZvciAxMCBlYWNoLg0KQWN0dWFsbHkgSSBib3VnaHQgdGhlc2UgcG90aW9ucyB0byBsb29rIGdvb2QgdG8gDQpoZXIsIGJ1dCBob25lc3RseSBJIGRvbid0IG5lZWQgdGhlc2UgcG90aW9ucy4gDQpSYXRoZXIgaXQgYXBwZWFycyB0byBiZSBuZWNlc3NhcnkgdG8geW91Lg0KDQpLZWVwIHRoZXNlIHBvdGlvbnMgaW4geW91ciBhcm1sZXQsIGl0J2xsIG1ha2UgeW91IA0KdmVyeSBjb21mb3J0YWJsZSB0byBjYXJyeS4gSWYgeW91IGhhdmUgYmV0dGVyIA0KYXJtbGV0LCB5b3Ugd2lsbCBiZSBhYmxlIHRvIGNhcnJ5IG1vcmUgcG90aW9ucyANCmFuZCB5b3UgY2FuIGh1bnQgbG9uZ2VyLg0KDQoNCg0KDQo="
+    "legacy_payload_base64": "QWghIEVudONvIGVyYSBBbWFuZGEgcXVlbSBlc3RhdmEgY29tIG1ldSBkb2NlLg0KQWxndW5zIHBvZGVtIGFjaGFyIGVzdHJhbmhvIGV1IGdvc3RhciB0YW50byBkZSBkb2NlcywNCm1hcyBlc3RlIOkgaW1wb3J0YW50ZSBwYXJhIG1pbS4gTm8g+mx0aW1vIERpYSBCcmFuY28sDQpldSBxdWVyaWEgZGVtb25zdHJhciBtZXVzIHNlbnRpbWVudG9zIGEgdW1hIG1v52EgZGENCmxvamEgZGUgdmFyaWVkYWRlcywgbWFzIGZpcXVlaSBzZW0gY29yYWdlbSBxdWFuZG8gYSB2aS4NCg0KQ29tbyBhZ3JhZGVjaW1lbnRvLCB2b3UgbGhlIGRhciAxMCBQb+f1ZXMgZGUgVmlkYSwNCjEwIFBv5/VlcyBkZSBWaWdvciBlIDEwIFBv5/VlcyBkZSBNYW5hLiBFdSBhcyBoYXZpYQ0KY29tcHJhZG8gcGFyYSBpbXByZXNzaW9u4S1sYSwgbWFzIHNlcuNvIG1haXMg+nRlaXMgcGFyYSB2b2PqLg0KDQpHdWFyZGUgYXMgcG/n9WVzIG5hIGJyYedhZGVpcmEuIFVtYSBicmHnYWRlaXJhIG1lbGhvcg0KcGVybWl0ZSBjYXJyZWdhciBhaW5kYSBtYWlzIHBv5/VlcyBlIGNh52FyIHBvciBtYWlzIHRlbXBvLg0K"
   }
 }

@@ -5,28 +5,28 @@
     {
       "key": "news.coin_shop_balance",
       "locales": {
-        "pt-BR": "> Você possui %d CoinShop",
+        "pt-BR": "> Você possui %d moedas da Loja de Moedas",
         "en": "> You have %d CoinShop"
       }
     },
     {
       "key": "news.player_online",
       "locales": {
-        "pt-BR": "> Player [%s] está online",
+        "pt-BR": "> Jogador [%s] está conectado",
         "en": "> Player [%s] is online"
       }
     },
     {
       "key": "news.time_shop_balance",
       "locales": {
-        "pt-BR": "> Você possui %d TimeShop",
+        "pt-BR": "> Você possui %d pontos da Loja de Tempo",
         "en": "> You have %d TimeShop"
       }
     },
     {
       "key": "news.welcome",
       "locales": {
-        "pt-BR": "Olá %s, bem-vindo ao Priston Tale.",
+        "pt-BR": "Olá, %s. Bem-vindo ao Priston Tale.",
         "en": "Hello %s, welcome to Priston Tale."
       }
     }

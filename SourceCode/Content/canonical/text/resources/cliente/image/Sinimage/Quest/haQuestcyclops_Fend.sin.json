@@ -10,27 +10,23 @@
   ],
   "source": {
     "legacy_path": "cliente/image/Sinimage/Quest/haQuestcyclops_Fend.sin",
-    "legacy_sha256": "9d5ab2b94c3385d61000fc2ed855a2297455f3266f8147d8e2feaaaaf04a6a1d",
-    "legacy_size": 385
+    "legacy_sha256": "165d24df0157267beef8ef41ce1c1ceee11b348935d3568bf4eb3d58ca923a44",
+    "legacy_size": 320
   },
   "semantic": {
     "lines": [
-      "You've successfully defend us from Cyclops, but we ",
-      "never knew when they will attack us again.",
+      "Você conseguiu nos defender dos Cíclopes, mas não sabemos",
+      "quando eles atacarão novamente.",
       "",
-      "I guess you've used alot of potions during the ",
-      "battle against Cyclops. Here are some potions ",
-      "I've prepared for you. Hope these potions will ",
-      "help you during the battle.",
+      "Imagino que tenha usado muitas poções durante a batalha.",
+      "Preparei algumas para você. Espero que ajudem nas próximas lutas.",
       "",
-      "I have various kind of potions, to help your life,",
-      "stamina and mana with size small to mystic potions.",
-      "",
-      ""
+      "Existem poções de Vida, Vigor e Mana em vários tamanhos.",
+      "Use a que melhor se adequar à situação."
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "WW91J3ZlIHN1Y2Nlc3NmdWxseSBkZWZlbmQgdXMgZnJvbSBDeWNsb3BzLCBidXQgd2UgDQpuZXZlciBrbmV3IHdoZW4gdGhleSB3aWxsIGF0dGFjayB1cyBhZ2Fpbi4NCg0KSSBndWVzcyB5b3UndmUgdXNlZCBhbG90IG9mIHBvdGlvbnMgZHVyaW5nIHRoZSANCmJhdHRsZSBhZ2FpbnN0IEN5Y2xvcHMuIEhlcmUgYXJlIHNvbWUgcG90aW9ucyANCkkndmUgcHJlcGFyZWQgZm9yIHlvdS4gSG9wZSB0aGVzZSBwb3Rpb25zIHdpbGwgDQpoZWxwIHlvdSBkdXJpbmcgdGhlIGJhdHRsZS4NCg0KSSBoYXZlIHZhcmlvdXMga2luZCBvZiBwb3Rpb25zLCB0byBoZWxwIHlvdXIgbGlmZSwNCnN0YW1pbmEgYW5kIG1hbmEgd2l0aCBzaXplIHNtYWxsIHRvIG15c3RpYyBwb3Rpb25zLg0KDQoNCg=="
+    "legacy_payload_base64": "Vm9j6iBjb25zZWd1aXUgbm9zIGRlZmVuZGVyIGRvcyBD7WNsb3BlcywgbWFzIG7jbyBzYWJlbW9zDQpxdWFuZG8gZWxlcyBhdGFjYXLjbyBub3ZhbWVudGUuDQoNCkltYWdpbm8gcXVlIHRlbmhhIHVzYWRvIG11aXRhcyBwb+f1ZXMgZHVyYW50ZSBhIGJhdGFsaGEuDQpQcmVwYXJlaSBhbGd1bWFzIHBhcmEgdm9j6i4gRXNwZXJvIHF1ZSBhanVkZW0gbmFzIHBy83hpbWFzIGx1dGFzLg0KDQpFeGlzdGVtIHBv5/VlcyBkZSBWaWRhLCBWaWdvciBlIE1hbmEgZW0gduFyaW9zIHRhbWFuaG9zLg0KVXNlIGEgcXVlIG1lbGhvciBzZSBhZGVxdWFyIOAgc2l0dWHn428uDQo="
   }
 }

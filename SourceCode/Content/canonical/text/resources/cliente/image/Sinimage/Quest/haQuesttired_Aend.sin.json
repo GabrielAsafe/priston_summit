@@ -10,31 +10,24 @@
   ],
   "source": {
     "legacy_path": "cliente/image/Sinimage/Quest/haQuesttired_Aend.sin",
-    "legacy_sha256": "3ba7edaed390bc8baf1a8d086e82f54c65d06195d08da2afa27b77c8027f5a13",
-    "legacy_size": 363
+    "legacy_sha256": "dfa64e5e4f28ec898c6dc2e30751bbebc56d459d508023d3f979b8e998498788",
+    "legacy_size": 343
   },
   "semantic": {
     "lines": [
+      "Ele gostou do meu bolo?",
+      "Fico feliz quando as pessoas gostam da minha comida.",
+      "Se eu tiver tempo, farei um para você também.",
       "",
-      "Did he enjoy my cake?",
-      "I feel happy when people enjoy my food.",
-      "If I have time, I will make one for you.",
+      "Você cumpriu meu pedido, então vou lhe dar esta arma",
+      "como recompensa. Ela é perigosa para um iniciante,",
+      "mas vai ajudar bastante ao caçar monstros fora da cidade.",
       "",
-      "You have passed my request so, I will give this weapon as ",
-      "a reward. It is so dangerous weapon for beginner however, ",
-      "it helps you when you are hunting monsters outside the town.",
-      "",
-      "",
-      "Now, go to the outside of town and enjoy the adventure.",
-      "",
-      "",
-      "",
-      "",
-      ""
+      "Agora saia da cidade e aproveite sua aventura."
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "DQpEaWQgaGUgZW5qb3kgbXkgY2FrZT8NCkkgZmVlbCBoYXBweSB3aGVuIHBlb3BsZSBlbmpveSBteSBmb29kLg0KSWYgSSBoYXZlIHRpbWUsIEkgd2lsbCBtYWtlIG9uZSBmb3IgeW91Lg0KDQpZb3UgaGF2ZSBwYXNzZWQgbXkgcmVxdWVzdCBzbywgSSB3aWxsIGdpdmUgdGhpcyB3ZWFwb24gYXMgDQphIHJld2FyZC4gSXQgaXMgc28gZGFuZ2Vyb3VzIHdlYXBvbiBmb3IgYmVnaW5uZXIgaG93ZXZlciwgDQppdCBoZWxwcyB5b3Ugd2hlbiB5b3UgYXJlIGh1bnRpbmcgbW9uc3RlcnMgb3V0c2lkZSB0aGUgdG93bi4NCg0KDQpOb3csIGdvIHRvIHRoZSBvdXRzaWRlIG9mIHRvd24gYW5kIGVuam95IHRoZSBhZHZlbnR1cmUuDQoNCg0KDQoNCg0K"
+    "legacy_payload_base64": "RWxlIGdvc3RvdSBkbyBtZXUgYm9sbz8NCkZpY28gZmVsaXogcXVhbmRvIGFzIHBlc3NvYXMgZ29zdGFtIGRhIG1pbmhhIGNvbWlkYS4NClNlIGV1IHRpdmVyIHRlbXBvLCBmYXJlaSB1bSBwYXJhIHZvY+ogdGFtYultLg0KDQpWb2PqIGN1bXByaXUgbWV1IHBlZGlkbywgZW50428gdm91IGxoZSBkYXIgZXN0YSBhcm1hDQpjb21vIHJlY29tcGVuc2EuIEVsYSDpIHBlcmlnb3NhIHBhcmEgdW0gaW5pY2lhbnRlLA0KbWFzIHZhaSBhanVkYXIgYmFzdGFudGUgYW8gY2HnYXIgbW9uc3Ryb3MgZm9yYSBkYSBjaWRhZGUuDQoNCkFnb3JhIHNhaWEgZGEgY2lkYWRlIGUgYXByb3ZlaXRlIHN1YSBhdmVudHVyYS4NCg=="
   }
 }

@@ -97,7 +97,8 @@ int LegacyNotificationHud::FindActiveMessage1()
 
 bool LegacyNotificationHud::HasActiveLegacyNotification()
 {
-    return FindActiveMessage() >= 0 || FindActiveMessage1() >= 0;
+    return FindActiveMessage() >= 0 || FindActiveMessage1() >= 0 ||
+           (cHelpPet.MsgFlag && cHelpPet.szPetBuff[0]) || cHelpPet.HelpMsgFlag;
 }
 
 void LegacyNotificationHud::OnRender(UIRenderContext& context)
@@ -116,6 +117,26 @@ void LegacyNotificationHud::OnRender(UIRenderContext& context)
 
     const int message1 = FindActiveMessage1();
     if (message1 >= 0)
-        DrawNotice(context, viewport, y, LegacyToUtf8(sMessageBox1[message1].MessageDoc), true);
+        y = DrawNotice(context, viewport, y, LegacyToUtf8(sMessageBox1[message1].MessageDoc), true);
+
+    // PATCH 183: pet producers remain legacy, presentation is V2-only.
+    if (cHelpPet.MsgFlag && cHelpPet.szPetBuff[0])
+        y = DrawNotice(context, viewport, y, LegacyToUtf8(cHelpPet.szPetBuff), false);
+
+    if (cHelpPet.HelpMsgFlag)
+    {
+        const auto it = cHelpPet.PetMsg_Map.find(cHelpPet.HelpMsgId);
+        if (it != cHelpPet.PetMsg_Map.end())
+        {
+            std::string tutorial;
+            for (const std::string* line : it->second)
+            {
+                if (!line || line->empty()) continue;
+                if (!tutorial.empty()) tutorial += " ";
+                tutorial += *line;
+            }
+            DrawNotice(context, viewport, y, LegacyToUtf8(tutorial.c_str()), true);
+        }
+    }
 }
 }

@@ -34,7 +34,7 @@ for tok in ('modifier.undeadDamageReductionPercent = ClampPercent(HolyBody_Absor
 if 'TransAttackData.Power -= (TransAttackData.Power*lpPlayInfo->dwSkill_HolyBody_Param) / 100' not in ORACLE:
     err.append('Holy Body oracle missing')
 # Energy Shield: full percentage reduction and matching MP loss.
-for tok in ('modifier.energyShieldPercent = ClampPercent(Energy_Shield_DecDamage[p])','const int absorbed = (value * ClampPercent(modifier.energyShieldPercent)) / 100','target->smCharInfo.Mana[0] = (short)std::max(0,'):
+for tok in ('modifier.energyShieldPercent = ClampPercent(Energy_Shield_DecDamage[p])','const int absorbed = (value * ClampPercent(modifier.energyShieldPercent)) / 100','DrainCompanionSkillResources(target, absorbed, 0)'):
     if tok not in CPP: err.append('Energy Shield missing '+tok)
 if 'temp = (TransAttackData.Power*lpPlayInfo->dwSkill_EnergyShield_Param) / 100' not in ORACLE:
     err.append('Energy Shield oracle missing')

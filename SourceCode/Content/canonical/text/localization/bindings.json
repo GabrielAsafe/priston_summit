@@ -16412,6 +16412,16 @@
       "linked_resource_id": "text.coinshop"
     },
     {
+      "content_id": "npc.covenant_altar",
+      "kind": "npc_definition",
+      "name_key": "npc.covenant_altar.name",
+      "chat_keys": [
+        "npc.covenant_altar.chat.1",
+        "npc.covenant_altar.chat.2"
+      ],
+      "linked_resource_id": "text.teacher01"
+    },
+    {
       "content_id": "npc.coward",
       "kind": "npc_definition",
       "name_key": "npc.coward.name",

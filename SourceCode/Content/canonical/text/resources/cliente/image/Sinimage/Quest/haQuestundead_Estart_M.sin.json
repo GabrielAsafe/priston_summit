@@ -10,32 +10,28 @@
   ],
   "source": {
     "legacy_path": "cliente/image/Sinimage/Quest/haQuestundead_Estart_M.sin",
-    "legacy_sha256": "2871244ab4a42620328f732faf3463035515e5e1c8efef0464708c6f03e44d4d",
-    "legacy_size": 562
+    "legacy_sha256": "0bc78781a35d6ca5ae0217533fc41849f5c564d9f50caa8ec7de44bc5a65a466",
+    "legacy_size": 486
   },
   "semantic": {
     "lines": [
-      "On the north of this village, there is an old ",
-      "city called, Ruinen. There, the merchants",
-      "buy the products from Philai and sell them ",
-      "for living. But the Skeletons started to appear",
-      "enroute to Ruinen Village for some time now. ",
-      "So the merchants are having much difficulties. ",
+      "Ao norte desta região existe uma antiga cidade chamada Ruinen.",
+      "Lá, comerciantes compram produtos de Pillai e os revendem.",
+      "Há algum tempo, monstros começaram a atacar a rota até Ruinen,",
+      "dificultando muito o trabalho dos mercadores.",
       "",
-      "They need your help urgently. ",
-      "Go to Forest of Spirits and hunt 10 Corrupts, ",
-      "then go back to Blacksmith Ruga in Ruinen Village.",
+      "Eles precisam de ajuda com urgência.",
+      "Vá à Floresta dos Espíritos, cace 10 Corruptos e depois",
+      "fale com o ferreiro Ruga em Ruinen.",
       "",
-      "[Quest Subject]",
-      "     ",
-      "     Hunt 10 10 Skeletons in the ",
-      "     Forest of Spirits, then go back to  ",
-      "     Blacksmith Ruga in Ruinen Village.",
-      ""
+      "[Objetivo da Missão]",
+      "",
+      "Cace 10 Corruptos na Floresta dos Espíritos e depois",
+      "fale com o ferreiro Ruga em Ruinen."
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "T24gdGhlIG5vcnRoIG9mIHRoaXMgdmlsbGFnZSwgdGhlcmUgaXMgYW4gb2xkIA0KY2l0eSBjYWxsZWQsIFJ1aW5lbi4gVGhlcmUsIHRoZSBtZXJjaGFudHMNCmJ1eSB0aGUgcHJvZHVjdHMgZnJvbSBQaGlsYWkgYW5kIHNlbGwgdGhlbSANCmZvciBsaXZpbmcuIEJ1dCB0aGUgU2tlbGV0b25zIHN0YXJ0ZWQgdG8gYXBwZWFyDQplbnJvdXRlIHRvIFJ1aW5lbiBWaWxsYWdlIGZvciBzb21lIHRpbWUgbm93LiANClNvIHRoZSBtZXJjaGFudHMgYXJlIGhhdmluZyBtdWNoIGRpZmZpY3VsdGllcy4gDQoNClRoZXkgbmVlZCB5b3VyIGhlbHAgdXJnZW50bHkuIA0KR28gdG8gRm9yZXN0IG9mIFNwaXJpdHMgYW5kIGh1bnQgMTAgQ29ycnVwdHMsIA0KdGhlbiBnbyBiYWNrIHRvIEJsYWNrc21pdGggUnVnYSBpbiBSdWluZW4gVmlsbGFnZS4NCg0KW1F1ZXN0IFN1YmplY3RdDQogICAgIA0KICAgICBIdW50IDEwIDEwIFNrZWxldG9ucyBpbiB0aGUgDQogICAgIEZvcmVzdCBvZiBTcGlyaXRzLCB0aGVuIGdvIGJhY2sgdG8gIA0KICAgICBCbGFja3NtaXRoIFJ1Z2EgaW4gUnVpbmVuIFZpbGxhZ2UuDQoNCg=="
+    "legacy_payload_base64": "QW8gbm9ydGUgZGVzdGEgcmVnaeNvIGV4aXN0ZSB1bWEgYW50aWdhIGNpZGFkZSBjaGFtYWRhIFJ1aW5lbi4NCkzhLCBjb21lcmNpYW50ZXMgY29tcHJhbSBwcm9kdXRvcyBkZSBQaWxsYWkgZSBvcyByZXZlbmRlbS4NCkjhIGFsZ3VtIHRlbXBvLCBtb25zdHJvcyBjb21l52FyYW0gYSBhdGFjYXIgYSByb3RhIGF06SBSdWluZW4sDQpkaWZpY3VsdGFuZG8gbXVpdG8gbyB0cmFiYWxobyBkb3MgbWVyY2Fkb3Jlcy4NCg0KRWxlcyBwcmVjaXNhbSBkZSBhanVkYSBjb20gdXJn6m5jaWEuDQpW4SDgIEZsb3Jlc3RhIGRvcyBFc3Dtcml0b3MsIGNhY2UgMTAgQ29ycnVwdG9zIGUgZGVwb2lzDQpmYWxlIGNvbSBvIGZlcnJlaXJvIFJ1Z2EgZW0gUnVpbmVuLg0KDQpbT2JqZXRpdm8gZGEgTWlzc+NvXQ0KDQpDYWNlIDEwIENvcnJ1cHRvcyBuYSBGbG9yZXN0YSBkb3MgRXNw7XJpdG9zIGUgZGVwb2lzDQpmYWxlIGNvbSBvIGZlcnJlaXJvIFJ1Z2EgZW0gUnVpbmVuLg0K"
   }
 }

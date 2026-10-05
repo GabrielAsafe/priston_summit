@@ -750,7 +750,7 @@ BOOL HoStopCharMotion()
 
 
 
-	if(ClanCharMove)
+	if(ClanCharMove && isDrawClanMenu)
 	{
 
 		extern POINT clanBoxPos;
@@ -760,7 +760,7 @@ BOOL HoStopCharMotion()
 	}
 
 
-	if(ClanCLCharMove)
+	if(ClanCLCharMove && isDrawClanMenu)
 	{
 
 

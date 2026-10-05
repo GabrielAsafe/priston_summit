@@ -26,9 +26,14 @@ def main():
         try:raw=base64.b64decode(d['compatibility']['legacy_payload_base64'],validate=True)
         except Exception as exc:
             errors.append(f'{e["json_path"]}: bad compatibility payload: {exc}'); continue
-        sha=hashlib.sha256(raw).hexdigest()
-        if sha!=d['source']['legacy_sha256']: errors.append(f'{e["json_path"]}: payload SHA mismatch')
-        if len(raw)!=d['source']['legacy_size']: errors.append(f'{e["json_path"]}: payload size mismatch')
+        source=d.get('source',{})
+        if source.get('migration_status') == 'native_canonical_generated':
+            if not source.get('generated_from'):
+                errors.append(f'{e["json_path"]}: native canonical source missing generated_from')
+        else:
+            sha=hashlib.sha256(raw).hexdigest()
+            if sha!=source.get('legacy_sha256'): errors.append(f'{e["json_path"]}: payload SHA mismatch')
+            if len(raw)!=source.get('legacy_size'): errors.append(f'{e["json_path"]}: payload size mismatch')
         for alias in d.get('runtime_paths',[]):
             k=norm(alias); old=paths.get(k)
             if old and old!=cid: errors.append(f'alias collision {alias}: {old} vs {cid}')

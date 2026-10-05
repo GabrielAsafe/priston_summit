@@ -37,9 +37,13 @@ public:
 	smMATERIAL			*smMaterial;
 
 	int nVertex;
+	int VertexCapacity;
 	int nFace;
+	int FaceCapacity;
 	int nTexLink;
+	int TexLinkCapacity;
 	int	nLight;
+	int	LightCapacity;
 
 	int	nVertColor;
 

@@ -10,23 +10,22 @@
   ],
   "source": {
     "legacy_path": "cliente/image/Sinimage/Quest/haQuesttired_Apass1.sin",
-    "legacy_sha256": "c1a37e9b96b21dbe16ea63d95361b4c00779e43cc66b98382a9be1ba21317aa8",
-    "legacy_size": 238
+    "legacy_sha256": "7cfe89c4700989193bc6646e201c52d8f7371a628a899ffc2b6695b9778ba090",
+    "legacy_size": 219
   },
   "semantic": {
     "lines": [
+      "Você ainda não entregou o bolo?",
       "",
-      "Oops! You didn't give this cake to him yet? ",
+      "Meu bolo não tem conservantes, então leve-o ao",
+      "responsável pelo armazém o quanto antes. Depressa!",
       "",
-      "My cake has no preservatives so you have to give it",
-      "to the warehouse keeper quickly. Hurry up!",
-      "",
-      "Hard to find the warehouse keeper? Double click ",
-      "the mini map then, you will find him."
+      "Está difícil encontrar o armazém? Abra o minimapa",
+      "para localizar o responsável."
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "DQpPb3BzISBZb3UgZGlkbid0IGdpdmUgdGhpcyBjYWtlIHRvIGhpbSB5ZXQ/IA0KDQpNeSBjYWtlIGhhcyBubyBwcmVzZXJ2YXRpdmVzIHNvIHlvdSBoYXZlIHRvIGdpdmUgaXQNCnRvIHRoZSB3YXJlaG91c2Uga2VlcGVyIHF1aWNrbHkuIEh1cnJ5IHVwIQ0KDQpIYXJkIHRvIGZpbmQgdGhlIHdhcmVob3VzZSBrZWVwZXI/IERvdWJsZSBjbGljayANCnRoZSBtaW5pIG1hcCB0aGVuLCB5b3Ugd2lsbCBmaW5kIGhpbS4NCg=="
+    "legacy_payload_base64": "Vm9j6iBhaW5kYSBu428gZW50cmVnb3UgbyBib2xvPw0KDQpNZXUgYm9sbyBu428gdGVtIGNvbnNlcnZhbnRlcywgZW50428gbGV2ZS1vIGFvDQpyZXNwb25z4XZlbCBwZWxvIGFybWF66W0gbyBxdWFudG8gYW50ZXMuIERlcHJlc3NhIQ0KDQpFc3ThIGRpZu1jaWwgZW5jb250cmFyIG8gYXJtYXrpbT8gQWJyYSBvIG1pbmltYXBhDQpwYXJhIGxvY2FsaXphciBvIHJlc3BvbnPhdmVsLg0K"
   }
 }

@@ -139,13 +139,20 @@ def main() -> int:
             errors.append(f'{profile} expected at least one UTF-8 overflow rescued by legacy encoding')
 
     adapter = root / 'Shared' / 'content' / 'v1' / 'definition' / 'legacy' / 'CompiledDefinitionAdapter.inl'
+    encoding = root / 'Shared' / 'content' / 'v1' / 'localization' / 'legacy' / 'LocalizationLegacyEncoding.h'
     if not adapter.is_file():
         errors.append(f'missing adapter: {adapter}')
-    else:
-        source = adapter.read_text(encoding='utf-8', errors='replace')
-        for needle in ('MultiByteToWideChar(CP_UTF8', 'WideCharToMultiByte', 'return 1252u', '&&LocalizationStrictMode()'):
-            if needle not in source:
-                errors.append(f'localization bridge contract missing: {needle}')
+    if not encoding.is_file():
+        errors.append(f'missing localization encoding boundary: {encoding}')
+    if adapter.is_file() and encoding.is_file():
+        adapter_source = adapter.read_text(encoding='utf-8', errors='replace')
+        encoding_source = encoding.read_text(encoding='utf-8', errors='replace')
+        for needle in ('EncodeLocalizationUtf8ForLegacy', 'LocalizationStrictMode()'):
+            if needle not in adapter_source:
+                errors.append(f'localization adapter contract missing: {needle}')
+        for needle in ('MultiByteToWideChar(CP_UTF8', 'WideCharToMultiByte', 'return 1252u'):
+            if needle not in encoding_source:
+                errors.append(f'localization encoding contract missing: {needle}')
 
     if errors:
         for error in errors:

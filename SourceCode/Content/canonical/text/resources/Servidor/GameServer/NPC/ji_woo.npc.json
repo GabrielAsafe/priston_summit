@@ -19,8 +19,7 @@
       "model_file": "char\\npc\\ji_woo\\jiwoo.INI",
       "english_name": "Abaranbo",
       "class": 1014,
-      "linked_file": "name\\jiwoo.zhoon",
-      "model_config_id": "model.char.npc.ji.woo.jiwoo"
+      "linked_file": "name\\jiwoo.zhoon"
     },
     "directives": [
       {

@@ -16,7 +16,7 @@ for tok in ('resolved->PlayPoison[1] = static_cast<short>(durationTicks)','resol
     if tok not in STATUS: err.append('status adapter poison parity missing '+tok)
 for tok in ('PlayPoison[1] = VenomSpear_Time[SkillPoint] * 17','PlayPoison[0] = (lpTransSkilAttackData->Power*VenomSpear_DamagePercent[SkillPoint])/100'):
     if tok not in LEG: err.append('legacy poison oracle missing '+tok)
-for tok in ('if(PlayPoison[1] > 0)','PlayPoison[1]--','smCharInfo.Life[0] -= PlayPoison[0]'):
+for tok in ('if(PlayPoison[1] > 0)','PlayPoison[1]--','ServerLegacyLifeAdapter().ConsumeNonLethal('):
     if tok not in CHAR: err.append('native poison lifecycle missing '+tok)
 ready=sum(', true,' in ln for ln in CAT.splitlines() if ln.strip().startswith('{ SKILL_'))
 if ready < 75: err.append(f'expected at least 75 READY after V11, got {ready}')

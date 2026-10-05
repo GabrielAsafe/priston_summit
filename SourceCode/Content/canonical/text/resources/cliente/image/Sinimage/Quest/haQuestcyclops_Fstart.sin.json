@@ -10,26 +10,26 @@
   ],
   "source": {
     "legacy_path": "cliente/image/Sinimage/Quest/haQuestcyclops_Fstart.sin",
-    "legacy_sha256": "f52b0b90214139d223734e57eba8dd6dca56ae7b5b8e6846f3ca21ea7ac297f3",
-    "legacy_size": 338
+    "legacy_sha256": "78ea0a29db6e25415776b41a94c51e32ee7aac01b4d7757a15bc37274492689c",
+    "legacy_size": 344
   },
   "semantic": {
     "lines": [
-      "I sense that Igolanos' attack is impending. ",
-      "Recently we've received the news about Cyclops are",
-      "putting massive attack on Cursed land.",
+      "Tenho a sensação de que um grande ataque está próximo.",
+      "Recebemos notícias de que vários Cíclopes estão atacando",
+      "a Terra Amaldiçoada.",
       "",
-      "If we fail to defend, there are no place for us to ",
-      "live. We need to stop them. Defend Cursed land from ",
-      "Cyclops' attack.",
+      "Se não conseguirmos defender a região, não teremos um lugar",
+      "seguro para viver. Precisamos detê-los.",
       "",
-      "[Quest Subject]",
+      "[Objetivo da Missão]",
       "",
-      "Hunt 10 Cyclops in Cursed Land and report it to Ran."
+      "Cace 10 Cíclopes na Terra Amaldiçoada e depois",
+      "volte para falar com Amanda."
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "SSBzZW5zZSB0aGF0IElnb2xhbm9zJyBhdHRhY2sgaXMgaW1wZW5kaW5nLiANClJlY2VudGx5IHdlJ3ZlIHJlY2VpdmVkIHRoZSBuZXdzIGFib3V0IEN5Y2xvcHMgYXJlDQpwdXR0aW5nIG1hc3NpdmUgYXR0YWNrIG9uIEN1cnNlZCBsYW5kLg0KDQpJZiB3ZSBmYWlsIHRvIGRlZmVuZCwgdGhlcmUgYXJlIG5vIHBsYWNlIGZvciB1cyB0byANCmxpdmUuIFdlIG5lZWQgdG8gc3RvcCB0aGVtLiBEZWZlbmQgQ3Vyc2VkIGxhbmQgZnJvbSANCkN5Y2xvcHMnIGF0dGFjay4NCg0KW1F1ZXN0IFN1YmplY3RdDQoNCkh1bnQgMTAgQ3ljbG9wcyBpbiBDdXJzZWQgTGFuZCBhbmQgcmVwb3J0IGl0IHRvIFJhbi4="
+    "legacy_payload_base64": "VGVuaG8gYSBzZW5zYefjbyBkZSBxdWUgdW0gZ3JhbmRlIGF0YXF1ZSBlc3ThIHBy83hpbW8uDQpSZWNlYmVtb3Mgbm907WNpYXMgZGUgcXVlIHbhcmlvcyBD7WNsb3BlcyBlc3TjbyBhdGFjYW5kbw0KYSBUZXJyYSBBbWFsZGnnb2FkYS4NCg0KU2UgbuNvIGNvbnNlZ3Vpcm1vcyBkZWZlbmRlciBhIHJlZ2njbywgbuNvIHRlcmVtb3MgdW0gbHVnYXINCnNlZ3VybyBwYXJhIHZpdmVyLiBQcmVjaXNhbW9zIGRldOotbG9zLg0KDQpbT2JqZXRpdm8gZGEgTWlzc+NvXQ0KDQpDYWNlIDEwIEPtY2xvcGVzIG5hIFRlcnJhIEFtYWxkaedvYWRhIGUgZGVwb2lzDQp2b2x0ZSBwYXJhIGZhbGFyIGNvbSBBbWFuZGEuDQo="
   }
 }

@@ -31,7 +31,7 @@ for tok in ('rect.left = -50','rect.right = 50','rect.bottom = 160'):
 for tok in ('pow += (pow*S_Strike_DamagePercent[Point]) / 100','lpTransSkillAttackData->AttackState = 5','lpChar->PlayStunCount = 16 * 10'):
     if tok not in POL: err.append('Shield Strike policy oracle missing '+tok)
 # Soul Sucker: forward box, targets above 50%, percent of max life, Bionic=100 immunity, caster heal.
-for tok in ('IsInsideCompanionForwardBox(caster, primary, candidate, 30, 200)','Soul_Sucker_Absorb[point - 1]','* 50) / 100 >= candidate->smCharInfo.Life[0]','if(bionic == 100) absorb = 0','caster->smCharInfo.Life[0] = (short)std::min'):
+for tok in ('IsInsideCompanionForwardBox(caster, primary, candidate, 30, 200)','Soul_Sucker_Absorb[point - 1]','* 50) / 100 >= candidate->smCharInfo.Life[0]','if(bionic == 100) absorb = 0','ServerLegacyLifeAdapter().Restore('):
     if tok not in CPP: err.append('Soul Sucker missing '+tok)
 for tok in ('rect.left = -30','rect.right = 30','rect.bottom = 200'):
     if tok not in SUB: err.append('Soul Sucker geometry oracle missing '+tok)

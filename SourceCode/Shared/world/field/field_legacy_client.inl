@@ -27,6 +27,13 @@ char szTitleDirectory[64];
 DWORD	dwWarpDelayTime = 0;
 DWORD	dwNextWarpDelay = 0;
 int		WingWarpField = -1;
+
+static void ResetWarpInteractionLock(bool applyCooldown)
+{
+	dwNextWarpDelay = 0;
+	WingWarpField = -1;
+	dwWarpDelayTime = applyCooldown ? dwPlayTime : 0;
+}
 sFIELD	*lpLastWarpField = 0;
 
 
@@ -2249,13 +2256,16 @@ int	WingWarpGate_Field(int dwFieldCode)
 {
 	int dist, x, y, z;
 
+	// PATCH 179: SpecialEffect==2 arms the interaction lock before opening
+	// the destination UI. Cancel/reject paths call this function with -1 or
+	// can fail validation, so every rejected request must release that prior
+	// lock and apply a short cooldown to avoid reopening the portal instantly.
 	WingWarpField = -1;
-
-	// Do not arm the movement/warp lock until the request has passed all
-	// validation. The legacy order set dwNextWarpDelay first and returned FALSE
-	// on invalid field/distance, leaving SetMousePlay() blocked indefinitely.
-	if (!lpLastWarpField) return FALSE;
-	if (dwFieldCode < 0) return FALSE;
+	if (!lpLastWarpField || dwFieldCode < 0)
+	{
+		ResetWarpInteractionLock(true);
+		return FALSE;
+	}
 	/*if(FieldLimitLevel_Table[dwFieldCode] > lpCurPlayer->smCharInfo.Level) return FALSE;*/
 
 	x = (lpCurPlayer->pX - lpLastWarpField->PosWarpOut.x) >> FLOATNS;
@@ -2263,7 +2273,11 @@ int	WingWarpGate_Field(int dwFieldCode)
 	z = (lpCurPlayer->pZ - lpLastWarpField->PosWarpOut.z) >> FLOATNS;
 	dist = x * x + y * y + z * z;
 
-	if (dist > DIST_TRANSLEVEL_LOW) return FALSE;
+	if (dist > DIST_TRANSLEVEL_LOW)
+	{
+		ResetWarpInteractionLock(true);
+		return FALSE;
+	}
 
 	dwNextWarpDelay = TRUE;
 	dwWarpDelayTime = dwPlayTime - 1000;

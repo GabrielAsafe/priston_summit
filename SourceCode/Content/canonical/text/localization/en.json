@@ -14225,6 +14225,24 @@
       "source": "text.coinshop"
     },
     {
+      "key": "npc.covenant_altar.chat.1",
+      "text": "Welcome to the world of Prisontale.",
+      "quality": "untranslated_fallback",
+      "source": "text.teacher01"
+    },
+    {
+      "key": "npc.covenant_altar.chat.2",
+      "text": "We will put a spell on you once a day to help you grow up faster.",
+      "quality": "untranslated_fallback",
+      "source": "text.teacher01"
+    },
+    {
+      "key": "npc.covenant_altar.name",
+      "text": "Helper Pria",
+      "quality": "untranslated_fallback",
+      "source": "text.teacher01"
+    },
+    {
       "key": "npc.coward.name",
       "text": "겁쟁이",
       "quality": "untranslated_fallback",

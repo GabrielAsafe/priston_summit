@@ -693,6 +693,15 @@ bool cQUESTHANDLER::KillMonster(rsPLAYINFO* lpPlayInfo, smCHAR* lpChar, int Part
 			SummitQuestSend(lpPlayInfo, &msg, msg.size);
 		}
 
+		// PATCH 180/198: recording the final kill must also advance the
+		// lifecycle before refreshing presentation. This branch owns kill
+		// mutation in cQUESTHANDLER rather than LegacyQuestProgressService.
+		if (it->count > 0 && it->killed >= it->count)
+		{
+			(void)gameplay::quests::legacy::ServerLegacyQuestRepository().CompleteObjectives(
+				lpPlayInfo->getName(), it->quest);
+		}
+
 		GetQuestInfo(
 			lpPlayInfo,
 			static_cast<int>(it->quest.value),

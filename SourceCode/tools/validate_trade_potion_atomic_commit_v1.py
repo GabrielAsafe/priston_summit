@@ -4,7 +4,7 @@ import sys
 ROOT=Path(__file__).resolve().parents[1]
 C=(ROOT/'Shared/gameplay/commerce/v2/TradeService.h').read_text(errors='replace')
 H=(ROOT/'SrcServer/src/systems/commerce/v2/legacy/LegacyTradeAdapter.h').read_text(errors='replace')
-A=(ROOT/'SrcServer/src/systems/commerce/v2/legacy/LegacyTradeAdapter.cpp').read_text(errors='replace')
+A=(ROOT/'Shared/gameplay/commerce/v2/TradeTransactionService.h').read_text(errors='replace') + (ROOT/'SrcServer/src/systems/commerce/v2/legacy/LegacyTradeAdapter.cpp').read_text(errors='replace')
 S=(ROOT/'Shared/server/legacy_runtime/OnSever_legacy_server.inl').read_text(errors='replace')
 def fail(m): print(f'trade potion atomic commit v1: FAIL: {m}',file=sys.stderr); raise SystemExit(1)
 def fn(t):

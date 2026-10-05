@@ -4,7 +4,7 @@ import sys
 ROOT=Path(__file__).resolve().parents[1]
 C=(ROOT/'Shared/gameplay/companions/v2/CompanionCommands.h').read_text(errors='replace')
 A=(ROOT/'SrcServer/src/systems/gameplay/companions/v2/legacy/LegacyCompanionCommandsAdapter.cpp').read_text(errors='replace')
-O=(ROOT/'Shared/server/legacy_runtime/OnSever_legacy_server.inl').read_text(errors='replace')
+O=(ROOT/'SrcServer/src/systems/network/v2/legacy/LegacyModernChatIngressAdapter.inl').read_text(errors='replace')
 def fail(m): print(f'companion commands boundary v1: FAIL: {m}',file=sys.stderr); raise SystemExit(1)
 def main():
  for tok in ('class ICompanionCommands','Select(PlayerId owner','Summon(PlayerId owner','SummonSelected(PlayerId owner)','Dismiss(PlayerId owner','DismissAll(PlayerId owner)','SetMode(PlayerId owner, CompanionBehaviorMode mode)'):

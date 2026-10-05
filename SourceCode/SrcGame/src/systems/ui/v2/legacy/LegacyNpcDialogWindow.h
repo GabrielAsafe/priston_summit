@@ -25,12 +25,14 @@ protected:
 private:
     void Refresh();
     void ActivatePrimary();
+    void ActivateGuideHelp();
     void CloseDialog();
     static int FindActiveIndex();
     static bool SupportedKind(int kind);
     static const char* TitleFor(int kind);
 
     Button* primaryButton_ = nullptr;
+    Button* guideButton_ = nullptr;
     Button* closeButton_ = nullptr;
     int activeIndex_ = -1;
     int scrollLine_ = 0;

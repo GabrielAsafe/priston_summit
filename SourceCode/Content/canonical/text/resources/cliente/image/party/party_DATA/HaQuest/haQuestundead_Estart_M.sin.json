@@ -10,31 +10,28 @@
   ],
   "source": {
     "legacy_path": "cliente/image/party/party_DATA/HaQuest/haQuestundead_Estart_M.sin",
-    "legacy_sha256": "44c669a296c10f25058de8819fe2cc798ce8c5f9217e288f7f4c1e6b0a3b6856",
-    "legacy_size": 597
+    "legacy_sha256": "0bc78781a35d6ca5ae0217533fc41849f5c564d9f50caa8ec7de44bc5a65a466",
+    "legacy_size": 486
   },
   "semantic": {
     "lines": [
-      "Se você seguir direto ao norte, a partir desta cidade, há",
-      "a Vila Ruinen, que está em ruínas. ",
-      "Os mercadores ganhavam a vida ali, vendendo mercadorias",
-      "trazidas de Ricarten.",
-      "Mas, há alguns dias atrás, vários esqueletos começaram",
-      "a aparecer na rota de transporte para Vila Ruinen.",
-      "Esses Esqueletos estão prejudicando os mercadores. ",
+      "Ao norte desta região existe uma antiga cidade chamada Ruinen.",
+      "Lá, comerciantes compram produtos de Pillai e os revendem.",
+      "Há algum tempo, monstros começaram a atacar a rota até Ruinen,",
+      "dificultando muito o trabalho dos mercadores.",
       "",
-      "Então precisamos da sua ajuda.",
-      "Você poderia caçar 10 Esqueletos no Refúgio dos Anciões e",
-      "relatar ao Ferreiro Ruga em Vila Ruinen, por favor?",
+      "Eles precisam de ajuda com urgência.",
+      "Vá à Floresta dos Espíritos, cace 10 Corruptos e depois",
+      "fale com o ferreiro Ruga em Ruinen.",
       "",
-      "[Objetivo do Desafio]",
+      "[Objetivo da Missão]",
       "",
-      "Cace 10 Esqueletos no Refúgio dos Anciões, e informe ao",
-      "Ferreiro Ruga, em Vila Ruinen."
+      "Cace 10 Corruptos na Floresta dos Espíritos e depois",
+      "fale com o ferreiro Ruga em Ruinen."
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "U2Ugdm9j6iBzZWd1aXIgZGlyZXRvIGFvIG5vcnRlLCBhIHBhcnRpciBkZXN0YSBjaWRhZGUsIGjhDQphIFZpbGEgUnVpbmVuLCBxdWUgZXN04SBlbSByde1uYXMuIA0KT3MgbWVyY2Fkb3JlcyBnYW5oYXZhbSBhIHZpZGEgYWxpLCB2ZW5kZW5kbyBtZXJjYWRvcmlhcw0KdHJhemlkYXMgZGUgUmljYXJ0ZW4uDQpNYXMsIGjhIGFsZ3VucyBkaWFzIGF0cuFzLCB24XJpb3MgZXNxdWVsZXRvcyBjb21l52FyYW0NCmEgYXBhcmVjZXIgbmEgcm90YSBkZSB0cmFuc3BvcnRlIHBhcmEgVmlsYSBSdWluZW4uDQpFc3NlcyBFc3F1ZWxldG9zIGVzdONvIHByZWp1ZGljYW5kbyBvcyBtZXJjYWRvcmVzLiANCg0KRW50428gcHJlY2lzYW1vcyBkYSBzdWEgYWp1ZGEuDQpWb2PqIHBvZGVyaWEgY2HnYXIgMTAgRXNxdWVsZXRvcyBubyBSZWb6Z2lvIGRvcyBBbmNp9WVzIGUNCnJlbGF0YXIgYW8gRmVycmVpcm8gUnVnYSBlbSBWaWxhIFJ1aW5lbiwgcG9yIGZhdm9yPw0KDQpbT2JqZXRpdm8gZG8gRGVzYWZpb10NCg0KQ2FjZSAxMCBFc3F1ZWxldG9zIG5vIFJlZvpnaW8gZG9zIEFuY2n1ZXMsIGUgaW5mb3JtZSBhbw0KRmVycmVpcm8gUnVnYSwgZW0gVmlsYSBSdWluZW4u"
+    "legacy_payload_base64": "QW8gbm9ydGUgZGVzdGEgcmVnaeNvIGV4aXN0ZSB1bWEgYW50aWdhIGNpZGFkZSBjaGFtYWRhIFJ1aW5lbi4NCkzhLCBjb21lcmNpYW50ZXMgY29tcHJhbSBwcm9kdXRvcyBkZSBQaWxsYWkgZSBvcyByZXZlbmRlbS4NCkjhIGFsZ3VtIHRlbXBvLCBtb25zdHJvcyBjb21l52FyYW0gYSBhdGFjYXIgYSByb3RhIGF06SBSdWluZW4sDQpkaWZpY3VsdGFuZG8gbXVpdG8gbyB0cmFiYWxobyBkb3MgbWVyY2Fkb3Jlcy4NCg0KRWxlcyBwcmVjaXNhbSBkZSBhanVkYSBjb20gdXJn6m5jaWEuDQpW4SDgIEZsb3Jlc3RhIGRvcyBFc3Dtcml0b3MsIGNhY2UgMTAgQ29ycnVwdG9zIGUgZGVwb2lzDQpmYWxlIGNvbSBvIGZlcnJlaXJvIFJ1Z2EgZW0gUnVpbmVuLg0KDQpbT2JqZXRpdm8gZGEgTWlzc+NvXQ0KDQpDYWNlIDEwIENvcnJ1cHRvcyBuYSBGbG9yZXN0YSBkb3MgRXNw7XJpdG9zIGUgZGVwb2lzDQpmYWxlIGNvbSBvIGZlcnJlaXJvIFJ1Z2EgZW0gUnVpbmVuLg0K"
   }
 }

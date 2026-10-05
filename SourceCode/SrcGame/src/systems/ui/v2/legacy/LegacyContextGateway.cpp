@@ -698,7 +698,8 @@ bool LegacyContextGateway::ActivateItemResolved(int index, int value)
     {
         if (index < 0 || index >= 30 || !cShop.ShowShopItem[index].Flag || value <= 0)
             return false;
-        if (!IsClassCompatible(cShop.ShowShopItem[index]))
+        if (!IsClassCompatible(cShop.ShowShopItem[index]) ||
+            !MeetsStatRequirements(cShop.ShowShopItem[index]))
         {
             cMessageBox.ShowMessage(MESSAGE_NO_USE_ITEM);
             return false;
@@ -838,7 +839,8 @@ bool LegacyContextGateway::ActivateItem(int index)
     {
         if (index < 0 || index >= 30 || !cShop.ShowShopItem[index].Flag)
             return false;
-        if (!IsClassCompatible(cShop.ShowShopItem[index]))
+        if (!IsClassCompatible(cShop.ShowShopItem[index]) ||
+            !MeetsStatRequirements(cShop.ShowShopItem[index]))
         {
             cMessageBox.ShowMessage(MESSAGE_NO_USE_ITEM);
             return false;

@@ -1675,6 +1675,10 @@ int ktj_imsiDRAWinfo = 0;
 int CLAN_MENU::Draw()
 {
 
+	// PATCH 187: movement/input lock must follow visible clan chrome, not a
+	// stale OpenFlag/ClanCharMove left by async clan flows.
+	isDrawClanMenu = 0;
+
 
 #ifndef USE_PROSTONTALE
 	window_renderINIT();
@@ -2989,6 +2993,10 @@ void clanMENU_close()
 
 void CLAN_MENU::Close()
 {
+	ClanCharMove = 0;
+	ClanCLCharMove = 0;
+	isDrawClanMenu = 0;
+
 #ifdef USE_PROSTONTALE		
 
 

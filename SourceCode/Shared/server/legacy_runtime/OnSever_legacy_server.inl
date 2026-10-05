@@ -8476,6 +8476,51 @@ int STG_AREA::LoadCharInfoFixed(char *szFile)
 			return FALSE;
 		dst.smCharInfo.dwCharSoundCode = decodedInfo.dwCharSoundCode;
 	}
+
+	// PATCH 185: Amanda is an instructor (class 1014), not the Enzo restorer.
+	// The field-runtime canonical placement family was dropped from the final
+	// integration bundle even though this loader still consumes field_runtime.sfld.
+	// Keep Pillai playable by adding the canonical Amanda placement as a narrow
+	// runtime overlay until fixed_npcs authoring is materialized again. Never
+	// overwrite a packed slot: use the first free fixed-NPC slot.
+	const char *fieldBase = szFile;
+	for(const char *scan = szFile; *scan; ++scan)
+		if(*scan == '/' || *scan == '\\') fieldBase = scan + 1;
+	if(_stricmp(fieldBase, "pilai.ase.spc") == 0 || _stricmp(fieldBase, "pillai.ase.spc") == 0)
+	{
+		int amandaSlot = -1;
+		bool amandaPresent = false;
+		for(int slot = 0; slot < FIX_CHAR_MAX; ++slot)
+		{
+			if(TransCharFixed[slot].code == 0 && amandaSlot < 0) amandaSlot = slot;
+			if(TransCharFixed[slot].code &&
+				_stricmp(TransCharFixed[slot].smCharInfo.szModelName2, "GameServer/NPC/ji_woo.npc") == 0)
+				amandaPresent = true;
+		}
+
+		if(!amandaPresent && amandaSlot >= 0)
+		{
+			smTRNAS_PLAYERINFO &dst = TransCharFixed[amandaSlot];
+			ZeroMemory(&dst, sizeof(dst));
+			dst.size = sizeof(smTRNAS_PLAYERINFO);
+			dst.code = smTRANSCODE_ADD_NPC;
+			// 32 stage units west of the existing Pillai service-NPC cluster.
+			dst.x = 260757; dst.y = 167424; dst.z = 19485184;
+			dst.ax = 0; dst.ay = 1579; dst.az = 0; dst.state = 0;
+			dst.smCharInfo.State = smCHAR_STATE_NPC;
+			dst.smCharInfo.Life[0] = 100;
+			dst.smCharInfo.Life[1] = 100;
+			const char *definitionPath = "GameServer/NPC/ji_woo.npc";
+			std::memcpy(dst.smCharInfo.szModelName2, definitionPath, std::strlen(definitionPath) + 1);
+
+			smCHAR_INFO decodedInfo = {};
+			smCHAR_MONSTER_INFO decodedMonster = {};
+			char decodedDialog[256] = {0};
+			if(!smCharDecode(dst.smCharInfo.szModelName2, &decodedInfo, &decodedMonster, decodedDialog, sizeof(decodedDialog)))
+				return FALSE;
+			dst.smCharInfo.dwCharSoundCode = decodedInfo.dwCharSoundCode;
+		}
+	}
 	return TRUE;
 }
 
@@ -17771,11 +17816,29 @@ int	rsCheck_ItemSecCode(rsPLAYINFO *lpPlayInfo, DWORD dwCode, DWORD dwHead, DWOR
 
 
 
+static bool rsMeetsShopItemRequirements(const rsPLAYINFO *lpPlayInfo, const sITEMINFO &item)
+{
+	if(!lpPlayInfo) return false;
+	const smCHAR_INFO &character = lpPlayInfo->smCharInfo;
+	return item.Level <= character.Level &&
+		item.Strength <= character.Strength &&
+		item.Spirit <= character.Spirit &&
+		item.Talent <= character.Talent &&
+		item.Dexterity <= character.Dexterity &&
+		item.Health <= character.Health;
+}
+
 int rsRecvBuyShopItem(rsPLAYINFO *lpPlayInfo, TRANS_BUY_SHOPITEM *lpTransBuyShopItem)
 {
 	int money;
 
 	if(!lpPlayInfo || !lpTransBuyShopItem || !lpPlayInfo->lpsmSock)
+		return FALSE;
+
+	// Never trust a client-side merchant filter. This closes crystal/vendor
+	// purchases forged or initiated through a legacy path with unmet level/stat
+	// requirements before currency or inventory state can be mutated.
+	if(!rsMeetsShopItemRequirements(lpPlayInfo, lpTransBuyShopItem->sItem.sItemInfo))
 		return FALSE;
 
 	if(!rsServerConfig.ServerInventoryMode)

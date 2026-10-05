@@ -24,7 +24,7 @@ for code in ('SKILL_RAVING','SKILL_MULTISPARK','SKILL_AVALANCHE'):
 if 'UpdateCompanionMultiHit(character, owner, managedSlot->skillRuntime, dwPlayServTime)' not in SYS:
     err.append('CompanionSystem does not advance scheduled hits')
 # Legacy oracle markers
-for tok in ('lpCurPlayer->MotionLoop = Ravind_Speed[lpSkill->Point - 1]','PlaySkillSubLife(((int)(Raving_UseLife[point - 1] * 10)*lpChar->smCharInfo.Life[1]) / 1000)','lpCurPlayer->MotionLoop = Avalanche_ArrowNum[lpSkill->Point - 1]','cnt = GetRandomPos((cnt / 2) + 1, cnt)','lpCurPlayer->AttackSkil |= (cnt << 12)'):
+for tok in ('SummitConfigurePlaySkillLoop(\n\t\t\t\t\tlpCurPlayer, lpCurPlayer->MotionLoopSpeed, Ravind_Speed[lpSkill->Point - 1])','PlaySkillSubLife(((int)(Raving_UseLife[point - 1] * 10)*lpChar->smCharInfo.Life[1]) / 1000)','SummitConfigurePlaySkillLoop(lpCurPlayer, GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed, Avalanche_Speed[lpSkill->Point - 1]), Avalanche_ArrowNum[lpSkill->Point - 1])','cnt = GetRandomPos((cnt / 2) + 1, cnt)','lpCurPlayer->AttackSkil |= (cnt << 12)'):
     if tok not in LEG: err.append('legacy multi-hit oracle missing '+tok)
 for tok in ('case SKILL_PLAY_RAVING:','Raving_Damage[Point]','case SKILL_PLAY_AVALANCHE:','Avalanche_Damage[Point]','case SKILL_PLAY_MULTI_SPARK:','M_Spark_Damage_Percent[Point] * Param'):
     if tok not in POL: err.append('legacy damage oracle missing '+tok)

@@ -483,7 +483,7 @@ void ContextPanel::OnRender(UIRenderContext& context)
 
     if (!snapshot_.statusText.empty())
         r.DrawTextUtf8(FontHandle{}, EllipsizeText(snapshot_.statusText, root.width - 24),
-                       {root.x + 12, root.y + root.height - 162, root.width - 24, 18},
+                       {root.x + 12, root.y + root.height - 202, root.width - 24, 18},
                        TextStyle{UITheme::TextMuted, false, TextAlign::Left});
 
     const ContextItemSnapshot* hovered = nullptr;
@@ -498,9 +498,15 @@ void ContextPanel::OnRender(UIRenderContext& context)
             info += "  |  " + hovered->caption;
         if (!hovered->restriction.empty())
             info += "  |  " + hovered->restriction;
-        r.DrawTextUtf8(FontHandle{}, EllipsizeText(info, root.width - 24),
-                       {root.x + 12, root.y + root.height - 142, root.width - 24, 20},
-                       TextStyle{UITheme::Text, false, TextAlign::Left});
+        // PATCH 188: merchant details are semantic content, not a one-line label.
+        // Keep price/caption/requirements readable instead of truncating them with
+        // ellipsis. Reserve three wrapped lines above the currency/actions footer.
+        const auto detailLines = WrapTextApprox(info, root.width - 24, 3, 7);
+        for (std::size_t line = 0; line < detailLines.size(); ++line)
+            r.DrawTextUtf8(FontHandle{}, detailLines[line],
+                           {root.x + 12, root.y + root.height - 178 + static_cast<int>(line) * 18,
+                            root.width - 24, 18},
+                           TextStyle{UITheme::Text, false, TextAlign::Left});
     }
 
     std::string money = snapshot_.currency + ": " + std::to_string(snapshot_.money);

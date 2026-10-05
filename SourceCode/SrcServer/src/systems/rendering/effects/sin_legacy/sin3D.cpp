@@ -82,7 +82,6 @@ void cSIN3D::Draw(int x, int y, int z, int ax, int ay, int az)
 	sinDrawEffect(x, y, z, ax, ay, az);
 	sinDrawEffect2(x, y, z, ax, ay, az);
 	DrawYameEffect(&Posi, &Angle);
-	cHelpPet.Draw(&Posi, &Angle);
 
 	renderDevice.SetRenderState(D3DRENDERSTATE_ZWRITEENABLE, TRUE);
 

@@ -10,21 +10,19 @@
   ],
   "source": {
     "legacy_path": "cliente/image/Sinimage/Quest/haQuestundead_Epass_M.sin",
-    "legacy_sha256": "414fa94aaaddf946d73cbc3b544bbe0b13f274f70fa8334c2e38483979055433",
-    "legacy_size": 164
+    "legacy_sha256": "6111e874bbf5279017100a1a24a93b53eaff916e1538224451ea177ac9a383ce",
+    "legacy_size": 148
   },
   "semantic": {
     "lines": [
-      "The striking power of Corrupt is really ",
-      "horrible.",
+      "Os Corruptos atacam com muita força.",
       "",
-      "It's not easy for you to attack them. ",
-      "Hunt them again after preparing potions ",
-      "or defensive equipments. "
+      "Não é fácil enfrentá-los sem preparação.",
+      "Leve poções e equipamentos defensivos antes de tentar novamente."
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "VGhlIHN0cmlraW5nIHBvd2VyIG9mIENvcnJ1cHQgaXMgcmVhbGx5IA0KaG9ycmlibGUuDQoNCkl0J3Mgbm90IGVhc3kgZm9yIHlvdSB0byBhdHRhY2sgdGhlbS4gDQpIdW50IHRoZW0gYWdhaW4gYWZ0ZXIgcHJlcGFyaW5nIHBvdGlvbnMgDQpvciBkZWZlbnNpdmUgZXF1aXBtZW50cy4gDQo="
+    "legacy_payload_base64": "T3MgQ29ycnVwdG9zIGF0YWNhbSBjb20gbXVpdGEgZm9y52EuDQoNCk7jbyDpIGbhY2lsIGVuZnJlbnThLWxvcyBzZW0gcHJlcGFyYefjby4NCkxldmUgcG/n9WVzIGUgZXF1aXBhbWVudG9zIGRlZmVuc2l2b3MgYW50ZXMgZGUgdGVudGFyIG5vdmFtZW50ZS4NCg=="
   }
 }

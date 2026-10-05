@@ -37,9 +37,13 @@ public:
 	smMATERIAL			*smMaterial;
 
 	int nVertex;
+	int VertexCapacity;
 	int nFace;
+	int FaceCapacity;
 	int nTexLink;
+	int TexLinkCapacity;
 	int	nLight;
+	int	LightCapacity;
 
 	int	nVertColor;
 
@@ -149,6 +153,8 @@ public:
 	int SetupPolyAreas();
 
 	int RenderGeom();
+
+	int RenderCollisionDebugGeom();
 
 
 	int DrawStage(int x, int y, int z, int angX, int angY, int angZ, smEMATRIX *eRotMatrix = 0);

@@ -10,25 +10,18 @@
   ],
   "source": {
     "legacy_path": "cliente/image/Sinimage/Quest/haQuestGoblin_Dpass_M.sin",
-    "legacy_sha256": "8543e3b827603eecf48e70129759ee3d8ec5768b2bd6c6f7f2b4bccae5787512",
-    "legacy_size": 150
+    "legacy_sha256": "d1fab67ef403bd65278dcd41e6120a4db653828d8fc8d0fa09565a66b3807592",
+    "legacy_size": 148
   },
   "semantic": {
     "lines": [
-      "You haven't hunted all of the North Goblins. ",
-      "Potions are sold at the grocery shop in the ",
-      "village. So, get ready for hunting there.",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      ""
+      "Você ainda não caçou todos os Duendes do Norte.",
+      "As poções são vendidas na loja de variedades da cidade.",
+      "Prepare-se melhor e volte para a caçada."
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "WW91IGhhdmVuJ3QgaHVudGVkIGFsbCBvZiB0aGUgTm9ydGggR29ibGlucy4gDQpQb3Rpb25zIGFyZSBzb2xkIGF0IHRoZSBncm9jZXJ5IHNob3AgaW4gdGhlIA0KdmlsbGFnZS4gU28sIGdldCByZWFkeSBmb3IgaHVudGluZyB0aGVyZS4NCg0KDQoNCg0KDQoNCg0K"
+    "legacy_payload_base64": "Vm9j6iBhaW5kYSBu428gY2Hnb3UgdG9kb3Mgb3MgRHVlbmRlcyBkbyBOb3J0ZS4NCkFzIHBv5/VlcyBz428gdmVuZGlkYXMgbmEgbG9qYSBkZSB2YXJpZWRhZGVzIGRhIGNpZGFkZS4NClByZXBhcmUtc2UgbWVsaG9yIGUgdm9sdGUgcGFyYSBhIGNh52FkYS4NCg=="
   }
 }

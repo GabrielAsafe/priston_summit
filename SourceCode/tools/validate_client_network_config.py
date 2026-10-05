@@ -2,7 +2,7 @@
 from pathlib import Path
 import re
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 SETTINGS = ROOT / "SrcGame/src/systems/configuration/client/Settings.cpp"
 NETPLAY = ROOT / "SrcGame/src/systems/network/client/netplay.cpp"
 

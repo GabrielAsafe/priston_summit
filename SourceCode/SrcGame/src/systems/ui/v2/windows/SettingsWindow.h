@@ -2,6 +2,7 @@
 
 #include <array>
 #include <functional>
+#include <string>
 #include "systems/ui/v2/core/Window.h"
 
 namespace ui::v2
@@ -56,6 +57,7 @@ private:
         bool damageDebug = true;
         bool hpBar = true;
         bool fps = true;
+        std::string locale = "pt-BR";
 
         bool lootEnabled = true;
         std::array<bool, 22> loot{};
@@ -98,7 +100,7 @@ private:
 
     std::array<Button*, 8> videoButtons_{};
     std::array<Button*, 6> audioButtons_{};
-    std::array<Button*, 8> generalButtons_{};
+    std::array<Button*, 9> generalButtons_{};
     std::array<Button*, 23> lootButtons_{};
     std::array<Button*, 4> commandGroupButtons_{};
     std::array<Label*, 24> commandLabels_{};

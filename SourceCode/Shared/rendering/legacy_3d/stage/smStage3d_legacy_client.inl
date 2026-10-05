@@ -1,5 +1,6 @@
 
 #include "systems/rendering/legacy_3d/smd3d.h"
+#include "rendering/legacy_3d/stage/LegacyStageSerialization.h"
 
 #define SMSFACE_MAX		8192
 
@@ -15,6 +16,7 @@ int smStage_WaterChk;
 smSTAGE_FACE *CheckFace = 0;
 smSTAGE_FACE *DebugFace = 0;
 WORD		DebugFaceMat = 0;
+int smStageCollisionDebugView = 0;
 
 
 int smGetPlaneProduct(POINT3D *p1, POINT3D *p2, POINT3D *p3, POINT3D *p)
@@ -319,6 +321,8 @@ extern smCHAR *CheckOtherPlayPosi(int x, int y, int z);
 smSTAGE3D::smSTAGE3D()
 {
 
+	summit::rendering::legacy3d::stage_storage::ResetStorageState(*this);
+
 	VectLight.x = fONE;
 	VectLight.y = -fONE;
 	VectLight.z = fONE / 2;
@@ -337,6 +341,8 @@ smSTAGE3D::smSTAGE3D()
 
 smSTAGE3D::smSTAGE3D(int nv, int nf)
 {
+
+	summit::rendering::legacy3d::stage_storage::ResetStorageState(*this);
 
 	VectLight.x = fONE;
 	VectLight.y = -fONE;
@@ -962,43 +968,24 @@ int smSTAGE3D::CheckVecImpact2(int sx, int sy, int sz, int ex, int ey, int ez)
 
 void smSTAGE3D::Init(void)
 {
-	nLight = 0;
-	nTexLink = 0;
-	nFace = 0;
-	nVertex = 0;
-
-	::ZeroMemory(StageArea, sizeof(StageArea));
-
-	AreaList = NULL;
-	Vertex = NULL;
-	Face = NULL;
-	TexLink = NULL;
-	smLight = NULL;
-	smMaterialGroup = NULL;
-	StageObject = NULL;
-	smMaterial = NULL;
-	lpwAreaBuff = NULL;
+	summit::rendering::legacy3d::stage_storage::ReleaseOwnedStorage(*this);
 }
 
 
 int smSTAGE3D::Init(int nv, int nf)
 {
-	Vertex = new smSTAGE_VERTEX[nv];
-	Face = new smSTAGE_FACE[nf];
-	TexLink = new smTEXLINK[nf * 4];
-	StageObject = new smSTAGE_OBJECT;
+	if(!summit::rendering::legacy3d::stage_storage::InitializeOwnedStorage(*this, nv, nf))
+		return FALSE;
 
 	nVertex = 0;
 	nFace = 0;
 	nTexLink = 0;
+	nLight = 0;
 
 	nVertColor = 0;
 
 	SumCount = 0;
 	CalcSumCount = 0;
-
-	smMaterialGroup = 0;
-	lpwAreaBuff = 0;
 
 	StageMapRect.top = 0;
 	StageMapRect.bottom = 0;
@@ -1012,23 +999,7 @@ int smSTAGE3D::Init(int nv, int nf)
 
 int smSTAGE3D::Close()
 {
-	Head = 0;
-
-
-
-
-	if(nLight) delete[] smLight;
-
-	if(lpwAreaBuff) delete[] lpwAreaBuff;
-
-	if(nTexLink) delete[]	TexLink;
-	if(nFace)	delete[]	Face;
-	if(nVertex)	delete[]	Vertex;
-
-	if(StageObject) delete StageObject;
-	if(smMaterialGroup) delete smMaterialGroup;
-
-
+	summit::rendering::legacy3d::stage_storage::ReleaseOwnedStorage(*this);
 	return TRUE;
 }
 
@@ -1329,8 +1300,20 @@ int smSTAGE3D::AddVertexLightRound(POINT3D *LightPos, int r, int g, int b, int R
 
 int	smSTAGE3D::InitDynLight(int nl)
 {
+	if(nl < 0)
+		return FALSE;
+
+	delete[] smLight;
+	smLight = 0;
 	nLight = 0;
-	smLight = new smLIGHT3D[nl];
+	LightCapacity = 0;
+	if(nl > 0)
+	{
+		smLight = new(std::nothrow) smLIGHT3D[nl];
+		if(!smLight)
+			return FALSE;
+	}
+	LightCapacity = nl;
 
 	return TRUE;
 }
@@ -1338,6 +1321,9 @@ int	smSTAGE3D::InitDynLight(int nl)
 
 int smSTAGE3D::AddDynLight(int type, POINT3D *LightPos, int r, int g, int b, int Range)
 {
+
+	if(!LightPos || nLight < 0 || LightCapacity < 0 || nLight >= LightCapacity || !smLight)
+		return FALSE;
 
 	smLight[nLight].type = type;
 	smLight[nLight].x = LightPos->x;
@@ -2014,6 +2000,58 @@ int smSTAGE3D::RenderGeom()
 	return TRUE;
 }
 
+int smSTAGE3D::RenderCollisionDebugGeom()
+{
+	if(!smStageCollisionDebugView || !d3ddev || !smMaterialGroup || !smMaterial)
+		return FALSE;
+
+	// PATCH 189: submit only stage faces marked as collision/check-face geometry.
+	// This is an x-ray diagnostic overlay; it deliberately ignores art textures.
+	++SumCount;
+	smRender.SetMaterialGroup(smMaterialGroup);
+	smRender.InitStageMesh(Vertex, SumCount);
+	for(int h = MapPosiTop; h < MapPosiBot; ++h)
+	{
+		int x1 = MapPosiLeft[h & 0xFF];
+		int x2 = MapPosiRight[h & 0xFF];
+		if(x1 > x2) { const int swap = x1; x1 = x2; x2 = swap; }
+		const int clipH = h & 0xFF;
+		for(int w = x1; w < x2; ++w)
+		{
+			const int clipW = w & 0xFF;
+			if(!StageArea[clipW][clipH]) continue;
+			const int count = StageArea[clipW][clipH][0];
+			for(int i = 1; i <= count; ++i)
+			{
+				const int faceIndex = StageArea[clipW][clipH][i];
+				if(faceIndex < 0 || faceIndex >= nFace) continue;
+				smSTAGE_FACE *face = &Face[faceIndex];
+				const int materialIndex = face->Vertex[3];
+				if(materialIndex < 0 || static_cast<DWORD>(materialIndex) >= smMaterialGroup->MaterialCount) continue;
+				if(!(smMaterial[materialIndex].MeshState & SMMAT_STAT_CHECK_FACE)) continue;
+				if(face->sum != SumCount) smRender.AddStageFace(face);
+			}
+		}
+	}
+	smRender.ClipRendFace();
+	smRender.GeomVertex2D();
+
+	DWORD oldFill = D3DFILL_SOLID;
+	DWORD oldZ = TRUE;
+	DWORD oldLighting = FALSE;
+	d3ddev->GetRenderState(D3DRS_FILLMODE, &oldFill);
+	d3ddev->GetRenderState(D3DRS_ZENABLE, &oldZ);
+	d3ddev->GetRenderState(D3DRS_LIGHTING, &oldLighting);
+	d3ddev->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
+	d3ddev->SetRenderState(D3DRS_ZENABLE, FALSE);
+	d3ddev->SetRenderState(D3DRS_LIGHTING, FALSE);
+	smRender.RenderD3D();
+	d3ddev->SetRenderState(D3DRS_FILLMODE, oldFill);
+	d3ddev->SetRenderState(D3DRS_ZENABLE, oldZ);
+	d3ddev->SetRenderState(D3DRS_LIGHTING, oldLighting);
+	return TRUE;
+}
+
 #define STAGE_RECT_LIMIT (30 * 64 * fONE)
 #define STAGE_RECT_LIMIT2 (320 * 64 * fONE)
 
@@ -2070,6 +2108,7 @@ int smSTAGE3D::DrawStage(int x, int y, int z, int angX, int angY, int angZ, smEM
 		smRender.RenderD3D();
 
 		StageObject->Draw(x, y, z, angX, angY, angZ);
+		RenderCollisionDebugGeom();
 	}
 	return FALSE;
 }
@@ -2271,112 +2310,15 @@ int	smSTAGE3D::SaveFile(char *szFile)
 }
 
 
-int	smSTAGE3D::LoadFile(char *szFile)
+int smSTAGE3D::LoadFile(char *szFile)
 {
-	DWORD	dwAcess;
-	int		slen;
-
-	smDFILE_HEADER	FileHeader;
-
-	HANDLE hFile = CreateFile(szFile, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-
-	if(!hFile)
-	{
-// 		Utils_Log(LOG_ERROR, "Cannot open StageFile(%s)", szFile);
-		return FALSE;
-	}
-
-
-	int size = ReadFile(hFile, &FileHeader, sizeof(smDFILE_HEADER), &dwAcess, NULL);
-
-
-	if(lstrcmp(FileHeader.szHeader, szSMDFileHeader) != 0)
-	{
-// 		Utils_Log(LOG_ERROR, "Wrong StageFile Header (%s)", szFile);
-		CloseHandle(hFile);
-		return FALSE;
-	}
-
-
-	ReadFile(hFile, &Head, sizeof(smSTAGE3D), &dwAcess, NULL);
-	smTEXLINK *lpOldTexLink = TexLink;
-
-
-
-
-	if(FileHeader.MatCounter)
-	{
-		smMaterialGroup = new smMATERIAL_GROUP;
-		smMaterialGroup->LoadFile(hFile);
-		smMaterial = smMaterialGroup->smMaterial;
-	}
-
-
-	Vertex = new smSTAGE_VERTEX[nVertex];
-	ReadFile(hFile, Vertex, sizeof(smSTAGE_VERTEX) * nVertex, &dwAcess, NULL);
-
-	Face = new smSTAGE_FACE[nFace];
-	ReadFile(hFile, Face, sizeof(smSTAGE_FACE) * nFace, &dwAcess, NULL);
-
-	TexLink = new smTEXLINK[nTexLink];
-	ReadFile(hFile, TexLink, sizeof(smTEXLINK) * nTexLink, &dwAcess, NULL);
-
-	if(nLight > 0)
-	{
-		smLight = new smLIGHT3D[nLight];
-		ReadFile(hFile, smLight, sizeof(smLIGHT3D) * nLight, &dwAcess, NULL);
-	}
-
-
-
-	int SubTexLink = TexLink - lpOldTexLink;
-
-	for(int cnt = 0; cnt < nTexLink; cnt++)
-	{
-		if(TexLink[cnt].NextTex)
-		{
-			SubTexLink = TexLink[cnt].NextTex - lpOldTexLink;
-			TexLink[cnt].NextTex = TexLink + SubTexLink;
-		}
-	}
-	for(int cnt = 0; cnt < nFace; cnt++)
-	{
-		if(Face[cnt].lpTexLink)
-		{
-			SubTexLink = Face[cnt].lpTexLink - lpOldTexLink;
-			Face[cnt].lpTexLink = TexLink + SubTexLink;
-		}
-	}
-
-	StageObject = new smSTAGE_OBJECT;
-
-
-
-	lpwAreaBuff = new DWORD[wAreaSize];
-
-	int wbCnt = 0;
-
-
-	for(int cnt2 = 0; cnt2 < MAP_SIZE; cnt2++)
-	{
-		for(int cnt = 0; cnt < MAP_SIZE; cnt++)
-		{
-			if(StageArea[cnt][cnt2])
-			{
-				ReadFile(hFile, &slen, sizeof(int), &dwAcess, NULL);
-				StageArea[cnt][cnt2] = &lpwAreaBuff[wbCnt];
-				ReadFile(hFile, StageArea[cnt][cnt2], slen * sizeof(DWORD), &dwAcess, NULL);
-				wbCnt += slen;
-			}
-		}
-	}
-
-
-	CloseHandle(hFile);
-
-	CalcSumCount++;
-
-	return TRUE;
+	// PATCH 178: never deserialize a raw smSTAGE3D object. The on-disk
+	// layout contains legacy pointer values and must not become a live C++
+	// object. The canonical loader validates counts, rebases serialized links
+	// without pointer subtraction, validates area lists, and publishes only
+	// after the complete read succeeds.
+	return summit::rendering::legacy3d::stage_serialization::LoadStage(
+		*this, szFile, szSMDFileHeader) ? TRUE : FALSE;
 }
 
 

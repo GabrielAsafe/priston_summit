@@ -10,24 +10,21 @@
   ],
   "source": {
     "legacy_path": "cliente/image/Sinimage/Quest/haQuestcandy_Cpass.sin",
-    "legacy_sha256": "e5846ffe1faccf37e6ca67194f5374695b20baf15cfe8f9eefda6b512291fa6c",
-    "legacy_size": 207
+    "legacy_sha256": "14d2495b3e4ab7fe7eb434c0b12e122c7dc551cd7dd5cc31e85cd0a3a837d536",
+    "legacy_size": 154
   },
   "semantic": {
     "lines": [
-      "You still have it on you. Perhaps you don't know ",
-      "where the blacksmith located?",
-      "Well you can simply find the location of blacksmith",
-      "by double clicking your mini map.",
+      "Você ainda está com o doce. Talvez não saiba onde fica",
+      "o ferreiro.",
       "",
-      "Hurry, before it melt away.",
+      "Abra o minimapa para localizar a ferraria.",
       "",
-      "",
-      ""
+      "Depressa, antes que o doce derreta!"
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "WW91IHN0aWxsIGhhdmUgaXQgb24geW91LiBQZXJoYXBzIHlvdSBkb24ndCBrbm93IA0Kd2hlcmUgdGhlIGJsYWNrc21pdGggbG9jYXRlZD8NCldlbGwgeW91IGNhbiBzaW1wbHkgZmluZCB0aGUgbG9jYXRpb24gb2YgYmxhY2tzbWl0aA0KYnkgZG91YmxlIGNsaWNraW5nIHlvdXIgbWluaSBtYXAuDQoNCkh1cnJ5LCBiZWZvcmUgaXQgbWVsdCBhd2F5Lg0KDQoNCg0K"
+    "legacy_payload_base64": "Vm9j6iBhaW5kYSBlc3ThIGNvbSBvIGRvY2UuIFRhbHZleiBu428gc2FpYmEgb25kZSBmaWNhDQpvIGZlcnJlaXJvLg0KDQpBYnJhIG8gbWluaW1hcGEgcGFyYSBsb2NhbGl6YXIgYSBmZXJyYXJpYS4NCg0KRGVwcmVzc2EsIGFudGVzIHF1ZSBvIGRvY2UgZGVycmV0YSENCg=="
   }
 }

@@ -18,7 +18,8 @@ checks=[
  ('handler sends sentinel', 'QuestCount = -1' in body and 'OPCODE_SPOILER_INFO' in body),
  ('handler delegates spoiler read', 'ServerLegacyQuestViewQuery().TryGetSpoilerBatches' in body),
  ('handler preserves packet max', 'MAX_QUEST_PACKET_INFO' in body),
- ('handler preserves trailing batch packet', body.count('lpPlayInfo->lpsmSock->Send') >= 3),
+ ('handler preserves trailing batch packet', body.count('SummitQuestSend(lpPlayInfo') >= 3),
+ ('handler routes packets through packet sender boundary', 'ServerLegacyPacketSender().Send' in handler),
  ('handler has no direct QuestDB', 'SQLConnection' not in handler and 'DATABASEID_QuestDB' not in handler and 'db->Prepare' not in handler),
 ]
 failed=[]

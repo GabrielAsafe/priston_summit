@@ -10,32 +10,30 @@
   ],
   "source": {
     "legacy_path": "cliente/image/Sinimage/Quest/haQuesttired_Astart.sin",
-    "legacy_sha256": "c396b85767df3454dba0f2a4f32f41cee7d178030efa8d6891a24949a2be3446",
-    "legacy_size": 562
+    "legacy_sha256": "b5d4d11a3a69cf977ba758f42ea91ad6ab411c847dbdd8921fc58d2c1f398073",
+    "legacy_size": 584
   },
   "semantic": {
     "lines": [
+      "Bem-vindo ao campo de batalha de Priston Tale.",
+      "Eu sou Amanda, a instrutora que ajuda os iniciantes.",
+      "Aqui ficam as lojas de itens e poções, onde você pode",
+      "se preparar antes de sair para a batalha.",
+      "Conheça a cidade com calma e observe os pontos importantes.",
       "",
-      "Welcome to PristonTale battle field.",
-      "I am Ran who help the beginners.",
-      "This is the place where shops for items and potions ",
-      "are located, so you can get ready for the battle.",
-      "Please have a look around the town carefully.",
+      "Ótimo, eu estava procurando alguém que pudesse me ajudar.",
+      "Pode levar este bolo ao responsável pelo armazém?",
+      "Se não souber onde fica o armazém, abra o minimapa",
+      "no canto inferior direito para localizar o NPC.",
       "",
-      "That's great, I was looking for a person who can ",
-      "help me. Can you give this cake to warehouse keeper?",
-      "If you don't know where the warehouse keeper is, ",
-      "please double click on the minimap situated at",
-      "the bottom right hand corner of the screen.",
+      "[Objetivo da Missão]",
       "",
-      "[Quest Subject]",
-      "",
-      "Deliver the cake to the warehouse keeper and come ",
-      "back to Ran."
+      "Entregue o bolo ao responsável pelo armazém e depois",
+      "volte para falar com Amanda."
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "DQpXZWxjb21lIHRvIFByaXN0b25UYWxlIGJhdHRsZSBmaWVsZC4NCkkgYW0gUmFuIHdobyBoZWxwIHRoZSBiZWdpbm5lcnMuDQpUaGlzIGlzIHRoZSBwbGFjZSB3aGVyZSBzaG9wcyBmb3IgaXRlbXMgYW5kIHBvdGlvbnMgDQphcmUgbG9jYXRlZCwgc28geW91IGNhbiBnZXQgcmVhZHkgZm9yIHRoZSBiYXR0bGUuDQpQbGVhc2UgaGF2ZSBhIGxvb2sgYXJvdW5kIHRoZSB0b3duIGNhcmVmdWxseS4NCg0KVGhhdCdzIGdyZWF0LCBJIHdhcyBsb29raW5nIGZvciBhIHBlcnNvbiB3aG8gY2FuIA0KaGVscCBtZS4gQ2FuIHlvdSBnaXZlIHRoaXMgY2FrZSB0byB3YXJlaG91c2Uga2VlcGVyPw0KSWYgeW91IGRvbid0IGtub3cgd2hlcmUgdGhlIHdhcmVob3VzZSBrZWVwZXIgaXMsIA0KcGxlYXNlIGRvdWJsZSBjbGljayBvbiB0aGUgbWluaW1hcCBzaXR1YXRlZCBhdA0KdGhlIGJvdHRvbSByaWdodCBoYW5kIGNvcm5lciBvZiB0aGUgc2NyZWVuLg0KDQpbUXVlc3QgU3ViamVjdF0NCg0KRGVsaXZlciB0aGUgY2FrZSB0byB0aGUgd2FyZWhvdXNlIGtlZXBlciBhbmQgY29tZSANCmJhY2sgdG8gUmFuLg=="
+    "legacy_payload_base64": "QmVtLXZpbmRvIGFvIGNhbXBvIGRlIGJhdGFsaGEgZGUgUHJpc3RvbiBUYWxlLg0KRXUgc291IEFtYW5kYSwgYSBpbnN0cnV0b3JhIHF1ZSBhanVkYSBvcyBpbmljaWFudGVzLg0KQXF1aSBmaWNhbSBhcyBsb2phcyBkZSBpdGVucyBlIHBv5/Vlcywgb25kZSB2b2PqIHBvZGUNCnNlIHByZXBhcmFyIGFudGVzIGRlIHNhaXIgcGFyYSBhIGJhdGFsaGEuDQpDb25oZedhIGEgY2lkYWRlIGNvbSBjYWxtYSBlIG9ic2VydmUgb3MgcG9udG9zIGltcG9ydGFudGVzLg0KDQrTdGltbywgZXUgZXN0YXZhIHByb2N1cmFuZG8gYWxndeltIHF1ZSBwdWRlc3NlIG1lIGFqdWRhci4NClBvZGUgbGV2YXIgZXN0ZSBib2xvIGFvIHJlc3BvbnPhdmVsIHBlbG8gYXJtYXrpbT8NClNlIG7jbyBzb3ViZXIgb25kZSBmaWNhIG8gYXJtYXrpbSwgYWJyYSBvIG1pbmltYXBhDQpubyBjYW50byBpbmZlcmlvciBkaXJlaXRvIHBhcmEgbG9jYWxpemFyIG8gTlBDLg0KDQpbT2JqZXRpdm8gZGEgTWlzc+NvXQ0KDQpFbnRyZWd1ZSBvIGJvbG8gYW8gcmVzcG9uc+F2ZWwgcGVsbyBhcm1heultIGUgZGVwb2lzDQp2b2x0ZSBwYXJhIGZhbGFyIGNvbSBBbWFuZGEuDQo="
   }
 }

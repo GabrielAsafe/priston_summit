@@ -10,18 +10,18 @@
   ],
   "source": {
     "legacy_path": "cliente/image/party/party_DATA/HaQuest/haQuestGoblin_Dpass_M.sin",
-    "legacy_sha256": "3df30c78fe5f531895d03ea413c98e2b5d52a5acdaf6f3db14f8f152cb516d7d",
-    "legacy_size": 147
+    "legacy_sha256": "d1fab67ef403bd65278dcd41e6120a4db653828d8fc8d0fa09565a66b3807592",
+    "legacy_size": 148
   },
   "semantic": {
     "lines": [
-      "Você não terminou de caçar os Duendes Macabros.",
-      "Você pode comprar poções na loja na cidade.",
-      "Por favor, tente novamente depois de estar preparado."
+      "Você ainda não caçou todos os Duendes do Norte.",
+      "As poções são vendidas na loja de variedades da cidade.",
+      "Prepare-se melhor e volte para a caçada."
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Vm9j6iBu428gdGVybWlub3UgZGUgY2HnYXIgb3MgRHVlbmRlcyBNYWNhYnJvcy4NClZvY+ogcG9kZSBjb21wcmFyIHBv5/VlcyBuYSBsb2phIG5hIGNpZGFkZS4NClBvciBmYXZvciwgdGVudGUgbm92YW1lbnRlIGRlcG9pcyBkZSBlc3RhciBwcmVwYXJhZG8u"
+    "legacy_payload_base64": "Vm9j6iBhaW5kYSBu428gY2Hnb3UgdG9kb3Mgb3MgRHVlbmRlcyBkbyBOb3J0ZS4NCkFzIHBv5/VlcyBz428gdmVuZGlkYXMgbmEgbG9qYSBkZSB2YXJpZWRhZGVzIGRhIGNpZGFkZS4NClByZXBhcmUtc2UgbWVsaG9yIGUgdm9sdGUgcGFyYSBhIGNh52FkYS4NCg=="
   }
 }

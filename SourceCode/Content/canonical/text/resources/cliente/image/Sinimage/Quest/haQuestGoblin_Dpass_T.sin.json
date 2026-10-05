@@ -10,22 +10,18 @@
   ],
   "source": {
     "legacy_path": "cliente/image/Sinimage/Quest/haQuestGoblin_Dpass_T.sin",
-    "legacy_sha256": "5404fa4f8e52687be059156008c51b0192926b06de56c2f82e05c0785eb5e9ad",
-    "legacy_size": 139
+    "legacy_sha256": "ab5d297d755741abbe0479e4b5a67eecbb9145a88dfcd0aea0e7602cf54a30fd",
+    "legacy_size": 142
   },
   "semantic": {
     "lines": [
-      "You haven't hunted all of the Hob Goblins. ",
-      "Potions are sold at the grocery shop in the town. ",
-      "So, get ready for hunting there.",
-      "",
-      "",
-      "",
-      ""
+      "Você ainda não caçou todos os Hobgoblins.",
+      "As poções são vendidas na loja de variedades da cidade.",
+      "Prepare-se melhor e volte para a caçada."
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "WW91IGhhdmVuJ3QgaHVudGVkIGFsbCBvZiB0aGUgSG9iIEdvYmxpbnMuIA0KUG90aW9ucyBhcmUgc29sZCBhdCB0aGUgZ3JvY2VyeSBzaG9wIGluIHRoZSB0b3duLiANClNvLCBnZXQgcmVhZHkgZm9yIGh1bnRpbmcgdGhlcmUuDQoNCg0KDQoNCg=="
+    "legacy_payload_base64": "Vm9j6iBhaW5kYSBu428gY2Hnb3UgdG9kb3Mgb3MgSG9iZ29ibGlucy4NCkFzIHBv5/VlcyBz428gdmVuZGlkYXMgbmEgbG9qYSBkZSB2YXJpZWRhZGVzIGRhIGNpZGFkZS4NClByZXBhcmUtc2UgbWVsaG9yIGUgdm9sdGUgcGFyYSBhIGNh52FkYS4NCg=="
   }
 }

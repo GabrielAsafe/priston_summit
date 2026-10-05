@@ -10,29 +10,26 @@
   ],
   "source": {
     "legacy_path": "cliente/image/party/party_DATA/HaQuest/haQuestcandy_Cstart_M.sin",
-    "legacy_sha256": "ed866e8c76dfccfda7725f48e78fb854c12a99b652f8667fcfcd91281dd4812c",
-    "legacy_size": 550
+    "legacy_sha256": "c54734958b1b4bc2ca63fbc8b5dacb30171cfaaba0cf8a4e8f5a13acd3e6df85",
+    "legacy_size": 344
   },
   "semantic": {
     "lines": [
-      "Uau, faz tempo que não nos vemos. Você mudou muito depois ",
-      "da caçada aos Hopis, não lhe reconheci. ",
-      "Você pode me contar sua história, quando tiver um tempo?",
-      "Deve ter sido muito divertido. Nossa! Não percebi que já",
-      "passou muito tempo desde que começamos a conversar. ",
+      "Há quanto tempo! Você mudou bastante desde a caça aos",
+      "Coelhos. Depois me conte como foi sua aventura.",
       "",
-      "Oh, bom guerreiro! Você poderia me fazer um favor?",
-      "Por favor, entregue este pirulito ao Ferreiro Goden. ",
-      "Ele deixou cair quando passou por aqui. ",
-      "Ele deve estar procurando por esse Doce até agora. ",
+      "Quase me esqueci de uma coisa.",
+      "Pode me fazer um favor? Entregue este doce ao ferreiro Bartz.",
+      "Ele deixou o doce em minha casa ontem e provavelmente",
+      "está procurando por ele.",
       "",
-      "[Objetivo do Desafio]",
+      "[Objetivo da Missão]",
       "",
-      "Entregue o Doce ao Ferreiro Goden, em Ricarten."
+      "Entregue o doce ao ferreiro Bartz."
     ]
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "VWF1LCBmYXogdGVtcG8gcXVlIG7jbyBub3MgdmVtb3MuIFZvY+ogbXVkb3UgbXVpdG8gZGVwb2lzIA0KZGEgY2HnYWRhIGFvcyBIb3BpcywgbuNvIGxoZSByZWNvbmhlY2kuIA0KVm9j6iBwb2RlIG1lIGNvbnRhciBzdWEgaGlzdPNyaWEsIHF1YW5kbyB0aXZlciB1bSB0ZW1wbz8NCkRldmUgdGVyIHNpZG8gbXVpdG8gZGl2ZXJ0aWRvLiBOb3NzYSEgTuNvIHBlcmNlYmkgcXVlIGrhDQpwYXNzb3UgbXVpdG8gdGVtcG8gZGVzZGUgcXVlIGNvbWXnYW1vcyBhIGNvbnZlcnNhci4gDQoNCk9oLCBib20gZ3VlcnJlaXJvISBWb2PqIHBvZGVyaWEgbWUgZmF6ZXIgdW0gZmF2b3I/DQpQb3IgZmF2b3IsIGVudHJlZ3VlIGVzdGUgcGlydWxpdG8gYW8gRmVycmVpcm8gR29kZW4uIA0KRWxlIGRlaXhvdSBjYWlyIHF1YW5kbyBwYXNzb3UgcG9yIGFxdWkuIA0KRWxlIGRldmUgZXN0YXIgcHJvY3VyYW5kbyBwb3IgZXNzZSBEb2NlIGF06SBhZ29yYS4gDQoNCltPYmpldGl2byBkbyBEZXNhZmlvXQ0KDQpFbnRyZWd1ZSBvIERvY2UgYW8gRmVycmVpcm8gR29kZW4sIGVtIFJpY2FydGVuLg=="
+    "legacy_payload_base64": "SOEgcXVhbnRvIHRlbXBvISBWb2PqIG11ZG91IGJhc3RhbnRlIGRlc2RlIGEgY2HnYSBhb3MNCkNvZWxob3MuIERlcG9pcyBtZSBjb250ZSBjb21vIGZvaSBzdWEgYXZlbnR1cmEuDQoNClF1YXNlIG1lIGVzcXVlY2kgZGUgdW1hIGNvaXNhLg0KUG9kZSBtZSBmYXplciB1bSBmYXZvcj8gRW50cmVndWUgZXN0ZSBkb2NlIGFvIGZlcnJlaXJvIEJhcnR6Lg0KRWxlIGRlaXhvdSBvIGRvY2UgZW0gbWluaGEgY2FzYSBvbnRlbSBlIHByb3ZhdmVsbWVudGUNCmVzdOEgcHJvY3VyYW5kbyBwb3IgZWxlLg0KDQpbT2JqZXRpdm8gZGEgTWlzc+NvXQ0KDQpFbnRyZWd1ZSBvIGRvY2UgYW8gZmVycmVpcm8gQmFydHouDQo="
   }
 }

@@ -9,7 +9,7 @@ sender_cpp = (root / 'SrcServer/src/systems/network/v2/legacy/LegacyPacketSender
 
 checks = [
     ('server packet sender contract remains available', 'class LegacyPacketSender final : public IPacketSender' in sender_h),
-    ('legacy packet sender remains sole socket-send owner for migrated flow', 'lpsmSock->Send' in sender_cpp),
+    ('legacy packet sender remains sole socket-send owner for migrated flow', 'SendToLegacySocket' in sender_cpp),
     ('companion includes packet sender adapter', 'systems/network/v2/legacy/LegacyPacketSender.h' in companion),
     ('companion routes owner packets through helper', 'ServerLegacyPacketSender().Send' in companion and 'network::PacketView(data, size, opcode)' in companion),
     ('companion has no direct socket send', 'lpsmSock->Send' not in companion),

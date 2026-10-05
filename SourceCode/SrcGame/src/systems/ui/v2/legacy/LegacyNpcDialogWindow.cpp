@@ -11,6 +11,8 @@
 #include "systems/ui/v2/widgets/Button.h"
 #include "systems/ui/v2/widgets/TextLayout.h"
 
+extern void InitGuideHelp();
+
 namespace ui::v2::legacy
 {
 namespace
@@ -46,6 +48,12 @@ LegacyNpcDialogWindow::LegacyNpcDialogWindow(UIId id) : Window(id, "Dialogo")
     close.SetBounds({380, 342, 120, 30});
     close.SetOnClick([this](const UIEvent&) { CloseDialog(); });
     closeButton_ = &close;
+
+    auto& guide = AddChild<Button>(id == InvalidUIId ? InvalidUIId : id + 3, "Abrir guia");
+    guide.SetBounds({120, 342, 120, 30});
+    guide.SetOnClick([this](const UIEvent&) { ActivateGuideHelp(); });
+    guide.SetVisible(false);
+    guideButton_ = &guide;
 }
 
 bool LegacyNpcDialogWindow::SupportedKind(int kind)
@@ -96,6 +104,15 @@ const char* LegacyNpcDialogWindow::TitleFor(int kind)
 {
     switch (kind)
     {
+        case HAQUEST_CODE_ELEMENTARY_A:
+        case HAQUEST_CODE_ELEMENTARY_B:
+        case HAQUEST_CODE_ELEMENTARY_C:
+        case HAQUEST_CODE_ELEMENTARY_D:
+        case HAQUEST_CODE_ELEMENTARY_E:
+        case HAQUEST_CODE_ELEMENTARY_F:
+        case HAQUEST_CODE_ELEMENTARY_G:
+        case HAQUEST_CODE_ELEMENTARY_X:
+            return "Missao de iniciante";
         case SIN_HELP_KIND_QUEST:
         case SIN_HELP_KIND_QUEST_WING:
         case SIN_HELP_KIND_Q_LEVEL30:
@@ -140,6 +157,11 @@ void LegacyNpcDialogWindow::Refresh()
     }
     if (closeButton_)
         closeButton_->SetBounds({380, Bounds().height - 48, 120, 30});
+    if (guideButton_)
+    {
+        guideButton_->SetVisible(help.KindFlag == SIN_HELP_KIND_NORMAL);
+        guideButton_->SetBounds({120, Bounds().height - 48, 120, 30});
+    }
 }
 
 void LegacyNpcDialogWindow::ActivatePrimary()
@@ -165,6 +187,21 @@ void LegacyNpcDialogWindow::ActivatePrimary()
     cSinHelp.LButtonDown(pCursorPos.x, pCursorPos.y);
     pCursorPos = savedCursor;
     Refresh();
+}
+
+void LegacyNpcDialogWindow::ActivateGuideHelp()
+{
+    if (activeIndex_ < 0 || sSinHelp[activeIndex_].KindFlag != SIN_HELP_KIND_NORMAL)
+        return;
+
+    // PATCH 184: the legacy normal-help window used an embedded parchment icon
+    // to enter GuideHelp. UI V2 suppresses that chrome, so expose the same
+    // transition explicitly instead of leaving the guide unreachable.
+    InitGuideHelp();
+    std::memset(&sSinHelp[activeIndex_], 0, sizeof(sSINHELP));
+    HelpBoxKindIndex = 0;
+    activeIndex_ = -1;
+    scrollLine_ = 0;
 }
 
 void LegacyNpcDialogWindow::CloseDialog()

@@ -8,6 +8,7 @@
 #include <string>
 
 #include "systems/configuration/client/Settings.h"
+#include "content/v1/localization/content/LocalizationRuntime.h"
 #include "systems/gameplay/loot/filter/CLootHandler.h"
 #include "systems/ui/v2/theme/UITheme.h"
 #include "systems/ui/v2/widgets/Button.h"
@@ -183,14 +184,14 @@ void SettingsWindow::BuildGeneralPage()
     auto& page = AddChild<Container>(770);
     generalPage_ = &page;
 
-    const char* names[8] = {
+    const char* names[9] = {
         "Clima", "Lembrar ID", "Pedidos de grupo", "Pedidos de troca",
-        "Mensagens privadas", "Exibir dano", "Barra de HP", "Mostrar FPS"
+        "Mensagens privadas", "Exibir dano", "Barra de HP", "Mostrar FPS", "Idioma"
     };
-    for (int i = 0; i < 8; ++i)
+    for (int i = 0; i < 9; ++i)
     {
-        const int col = i >= 4 ? 1 : 0;
-        const int row = i % 4;
+        const int col = i >= 5 ? 1 : 0;
+        const int row = i >= 5 ? i - 5 : i;
         const int x = 18 + col * 350;
         auto& label = page.AddChild<Label>(771 + i * 2, names[i]);
         label.SetBounds({x, 22 + row * 70, 180, 24});
@@ -208,6 +209,7 @@ void SettingsWindow::BuildGeneralPage()
     generalButtons_[5]->SetOnClick([this](const UIEvent&) { state_.damageDebug = !state_.damageDebug; RefreshLabels(); });
     generalButtons_[6]->SetOnClick([this](const UIEvent&) { state_.hpBar = !state_.hpBar; RefreshLabels(); });
     generalButtons_[7]->SetOnClick([this](const UIEvent&) { state_.fps = !state_.fps; RefreshLabels(); });
+    generalButtons_[8]->SetOnClick([this](const UIEvent&) { state_.locale = state_.locale == "pt-BR" ? "en" : "pt-BR"; RefreshLabels(); });
 }
 
 void SettingsWindow::BuildLootPage()
@@ -397,6 +399,7 @@ void SettingsWindow::ReloadFromRuntime()
     state_.damageDebug = SETTINGSHANDLER->getDamageDebug();
     state_.hpBar = SETTINGSHANDLER->getHpBar();
     state_.fps = SETTINGSHANDLER->getFps();
+    state_.locale = SETTINGSHANDLER->getLocale() == "en" ? "en" : "pt-BR";
 
     state_.lootEnabled = cLootFilter.getEnabled();
     state_.loot = {{
@@ -434,6 +437,7 @@ void SettingsWindow::RefreshLabels()
                              state_.whisper, state_.damageDebug, state_.hpBar, state_.fps};
     for (int i = 0; i < 8; ++i)
         SetButton(generalButtons_[static_cast<std::size_t>(i)], BoolText(general[i]), general[i]);
+    SetButton(generalButtons_[8], state_.locale == "pt-BR" ? "Português (Brasil)" : "English", state_.locale == "pt-BR");
 
     static const char* names[23] = {
         "Filtro de loot", "Pocao HP", "Pocao MP", "Pocao RES", "Gold", "Amuletos",
@@ -470,6 +474,8 @@ void SettingsWindow::Save()
     SETTINGSHANDLER->setDamageDebug(state_.damageDebug);
     SETTINGSHANDLER->setHpBar(state_.hpBar);
     SETTINGSHANDLER->setFps(state_.fps);
+    SETTINGSHANDLER->setLocale(state_.locale);
+    summit::content::localization::SetLocalizationLocale(SETTINGSHANDLER->getLocale().c_str());
 
     cLootFilter.setEnabled(state_.lootEnabled);
     cLootFilter.setHpPot(state_.loot[0]);
@@ -526,6 +532,7 @@ void SettingsWindow::ResetDefaults()
     state_.damageDebug = true;
     state_.hpBar = true;
     state_.fps = true;
+    state_.locale = "pt-BR";
     state_.lootEnabled = true;
     state_.loot.fill(true);
     RefreshLabels();

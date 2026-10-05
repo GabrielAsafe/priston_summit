@@ -7,6 +7,7 @@ C=(ROOT/'SrcServer/src/systems/gameplay/companions/CompanionSystem.cpp').read_te
 R=(ROOT/'SrcServer/src/systems/gameplay/companions/v2/CompanionRuntimeQuery.h').read_text(errors='replace')
 A=(ROOT/'SrcServer/src/systems/gameplay/companions/v2/legacy/LegacyCompanionQueryAdapter.cpp').read_text(errors='replace')
 O=(ROOT/'Shared/server/legacy_runtime/OnSever_legacy_server.inl').read_text(errors='replace')
+I=(ROOT/'SrcServer/src/systems/network/v2/legacy/LegacyModernChatIngressAdapter.inl').read_text(errors='replace')
 def fail(m): print(f'companion active count runtime v1: FAIL: {m}',file=sys.stderr); raise SystemExit(1)
 def main():
  if 'GetActiveCount(rsPLAYINFO' in H or 'GetActiveCount(rsPLAYINFO' in C:
@@ -26,7 +27,7 @@ def main():
  if 'runtime::ActiveCount(owner)' not in A: fail('ICompanionQuery adapter does not consume PlayerId runtime query')
  for bad in ('players_.Resolve(owner)','companions::GetActiveCount('):
   if bad in A: fail(f'ICompanionQuery adapter still uses legacy pointer bridge: {bad}')
- migrated = O.count('ServerLegacyCompanionQueryAdapter().ActiveCount(') + O.count('ServerLegacyCompanionQueryAdapter().TryGetState(')
+ migrated = sum(text.count('ServerLegacyCompanionQueryAdapter().ActiveCount(') + text.count('ServerLegacyCompanionQueryAdapter().TryGetState(') for text in (O,I))
  if migrated < 2:
   fail('legacy server consumers were not migrated to ICompanionQuery')
  print('companion active count runtime v1: PASS (active count is PlayerId-based; rsPLAYINFO API removed)')

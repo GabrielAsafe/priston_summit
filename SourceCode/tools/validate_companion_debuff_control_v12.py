@@ -39,7 +39,7 @@ for tok in ('H_Incantation_Success[p]','H_Incantation_Time[p] * 17','H_Incantati
     if tok not in CPP: err.append('Holy Incantation runtime missing '+tok)
 for tok in ('target->lpMasterPlayInfo = owner','target->PlayHolyIncantation[1] = static_cast<short>(request.durationTicks)','target->smCharInfo.Brood = smCHAR_MONSTER_USER'):
     if tok not in MONSTER: err.append('Holy Incantation adapter missing '+tok)
-for tok in ('PlayHolyIncantation[1]--','smCharInfo.Brood = PlayHolyIncantation[0]','lpMasterPlayInfo = 0'):
+for tok in ('PlayHolyIncantation[1]--','ServerLegacyMonsterAdapter().ReleaseFollower('):
     if tok not in CHAR: err.append('native Holy Incantation cleanup missing '+tok)
 # Split Javelin: current legacy accuracy helper hard-returns 100, then server sums independent rolls.
 for tok in ('Split_Javelin_AttackNum[p]','Split_Javelin_Damage[p]','for(int hit = 0; hit < hits; ++hit)'):

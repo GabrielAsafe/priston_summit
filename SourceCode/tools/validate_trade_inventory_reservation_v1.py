@@ -12,8 +12,8 @@ req('Shared/gameplay/inventory/v2/InventoryReservationService.h','InventoryReser
 req('Shared/gameplay/inventory/v2/InventoryReservationService.h','ReleasePlayer','reservation service can clear player leases')
 req('Shared/gameplay/commerce/v2/TradeService.h','InventoryReservationRejected','trade exposes reservation rejection')
 req('SrcServer/src/systems/commerce/v2/legacy/LegacyTradeAdapter.h','IInventoryReservationService& inventoryReservations','trade adapter consumes reservation service')
-req('SrcServer/src/systems/commerce/v2/legacy/LegacyTradeAdapter.cpp','inventoryReservations_.Reserve','exact commit reserves items before mutation')
-req('SrcServer/src/systems/commerce/v2/legacy/LegacyTradeAdapter.cpp','ReservationGuard','reservation always releases on commit/rollback return')
+req('Shared/gameplay/commerce/v2/TradeTransactionService.h','inventoryReservations_.Reserve','exact commit reserves items before mutation')
+req('Shared/gameplay/commerce/v2/TradeTransactionService.h','ReservationGuard','reservation always releases on commit/rollback return')
 req('SrcServer/src/systems/inventory/v2/legacy/LegacyInventoryReservationRuntime.h','ServerInventoryReservationService','server owns shared V2 reservation kernel')
 req('SrcServer/src/systems/commerce/v2/legacy/LegacyTradeAdapter.cpp','ServerInventoryReservationService()','trade consumes shared reservation kernel')
 failed=[x for x in checks if not x[0]]

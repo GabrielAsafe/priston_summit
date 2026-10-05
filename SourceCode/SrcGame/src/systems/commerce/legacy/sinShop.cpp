@@ -1658,6 +1658,20 @@ int cSHOP::GetShopItemXY(sITEM *pItem)
 
 int cSHOP::SendBuyItemToServer(sITEM *pItem, int ItemCount)
 {
+	// PATCH 186: purchase eligibility is an invariant, not UI decoration.
+	// Protect legacy and V2 callers alike so a crystal/item whose level or
+	// stats exceed the character cannot reach the server purchase request.
+	if(!pItem || !sinChar ||
+		pItem->sItemInfo.Level > sinChar->Level ||
+		pItem->sItemInfo.Strength > sinChar->Strength ||
+		pItem->sItemInfo.Spirit > sinChar->Spirit ||
+		pItem->sItemInfo.Talent > sinChar->Talent ||
+		pItem->sItemInfo.Dexterity > sinChar->Dexterity ||
+		pItem->sItemInfo.Health > sinChar->Health)
+	{
+		cMessageBox.ShowMessage(MESSAGE_NO_USE_ITEM);
+		return FALSE;
+	}
 	if(!cInvenTory.CheckSetEmptyArea(pItem))
 	{
 		cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);

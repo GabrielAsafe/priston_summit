@@ -52,16 +52,17 @@ def main() -> None:
         if forbidden in contract:
             fail(f"GREEN replay contract leaks legacy symbol: {forbidden}")
 
+    session = (ROOT / "Shared/gameplay/commerce/v2/TradeSessionService.h").read_text(encoding="utf-8", errors="replace")
     for token in (
-        "kLegacyDuplicateWindowMs = 8000u",
-        "request.nowMs - static_cast<std::uint32_t>(sender->dwLastTradeTime)",
-        "sender->dwLastTradeChksum",
+        "duplicateWindowMs = 8000u",
         "TradeCommitGuardCode::Duplicate",
-        "sender->dwLastTradeTime = static_cast<DWORD>(request.nowMs)",
-        "sender->dwLastTradeChksum = static_cast<DWORD>(BuildTradeId(request.fingerprint).value)",
+        "BuildTradeId(fingerprint)",
     ):
+        if token not in session:
+            fail(f"replay service token missing: {token}")
+    for token in ("replayGuard_.Check(", "replayGuard_.MarkCommitted(", "TradeReplayGuardService replayGuard(8000u)"):
         if token not in adapter:
-            fail(f"legacy replay parity token missing: {token}")
+            fail(f"legacy replay adapter delegation missing: {token}")
 
     for token in (
         "TradeCommitGuardRequest tradeGuardRequest",

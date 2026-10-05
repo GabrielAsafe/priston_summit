@@ -11,7 +11,7 @@ err=[]
 line=next((x for x in cat.splitlines() if 'SKILL_RESURRECTION' in x),'')
 if ', true,' not in line: err.append('Resurrection not READY')
 for tok in ['descriptor.skillCode == SKILL_RESURRECTION','Resurrection_Percent[descriptor.point - 1]',
-            'deadTarget->smCharInfo.Life[1] / 2','CHRMOTION_STATE_RESTART','bestDistance = 300 * 300']:
+            'ServerLegacyLifeAdapter().Revive(','CHRMOTION_STATE_RESTART','bestDistance = 300 * 300']:
  if tok not in cpp: err.append('executor missing '+tok)
 for tok in ['ResurrectionCorpseSeconds','kDeadVisualHoldMs','partySlot.entity->lpMasterPlayInfo == state->owner']:
  if tok not in syscpp: err.append('lifecycle missing '+tok)

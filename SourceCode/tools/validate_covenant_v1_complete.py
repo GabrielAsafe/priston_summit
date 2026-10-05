@@ -110,12 +110,13 @@ require(
 onserver = require(
     "Shared/server/legacy_runtime/OnSever_legacy_server.inl",
     '"xp.monster_gain"', '"monster.drop_chance"', '"hunt.drop_chance"',
-    '"loot.extra_roll_chance"', '"combat.damage_taken"', '"crafting.success"',
+    '"loot.extra_roll_chance"', '"combat.damage_taken"',
     '"vendor.blacksmith_sell_value"',
     "SummitApplyArtisanCraftingOutput", "crafting.reforge_enabled",
     "crafting.forgemaster_enabled", "crafting.master_artisan_enabled",
     "CreateDefItemPerf", "special_material:", "refined_trophy:", "refined_material:",
 )
+require("SrcServer/src/systems/commerce/v2/legacy/LegacyCraftingKernel.inl", '"crafting.success"')
 require("SrcServer/src/core/server/legacy_runtime/PartySever.cpp", '"xp.monster_gain"')
 require(
     "SrcServer/src/systems/gameplay/events/v2/GameplayEventRuntime.cpp",

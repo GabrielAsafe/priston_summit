@@ -40,6 +40,7 @@ private:
 	std::string server2;
 	std::string server3;
 	unsigned short port;
+	std::string locale;
 
 	//Social
 	bool bPartyRequest;
@@ -129,6 +130,9 @@ public:
 
 	unsigned short getPort() const { return port; }
 	void setPort(unsigned short value) { port = value; }
+
+	std::string getLocale() const { return locale; }
+	void setLocale(const std::string& value) { locale = value == "en" ? "en" : "pt-BR"; }
 
 	bool getPartyRequest() const { return bPartyRequest; }
 	void setPartyRequest(bool value) { bPartyRequest = value; }

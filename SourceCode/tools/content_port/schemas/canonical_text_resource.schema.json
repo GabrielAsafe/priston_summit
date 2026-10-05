@@ -57,11 +57,7 @@
     },
     "source": {
       "type": "object",
-      "required": [
-        "legacy_path",
-        "legacy_sha256",
-        "legacy_size"
-      ],
+      "required": [],
       "properties": {
         "legacy_path": {
           "type": "string",
@@ -82,9 +78,34 @@
             "minLength": 1
           },
           "uniqueItems": true
+        },
+        "generated_from": {
+          "type": "string",
+          "minLength": 1
+        },
+        "migration_status": {
+          "type": "string",
+          "enum": [
+            "native_canonical_generated"
+          ]
         }
       },
-      "additionalProperties": false
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "required": [
+            "legacy_path",
+            "legacy_sha256",
+            "legacy_size"
+          ]
+        },
+        {
+          "required": [
+            "generated_from",
+            "migration_status"
+          ]
+        }
+      ]
     },
     "semantic": {
       "type": "object"

@@ -124,8 +124,8 @@ def load_profile(path: Path, source_root: Path) -> tuple[dict, set[str]]:
     return doc, codes
 
 
-def validate_one(source_root: Path, content_root: Path, profile_name: str, show_duplicates: bool = False) -> tuple[bool, list[str]]:
-    profile_path = content_root / 'canonical/item_profiles' / f'{profile_name}.items.json'
+def validate_one(source_root: Path, content_root: Path, profile_name: str, show_duplicates: bool = False, item_profiles_root: Path | None = None) -> tuple[bool, list[str]]:
+    profile_path = (item_profiles_root or (content_root / 'canonical/item_profiles')) / f'{profile_name}.items.json'
     pack_path = content_root / 'packs' / f'definitions_{profile_name}.scfg'
     report_path = pack_path.with_suffix(pack_path.suffix + '.report.json')
     profile, codes = load_profile(profile_path, source_root)
@@ -187,6 +187,7 @@ def main() -> int:
     ap = argparse.ArgumentParser(description='Validate client/server profiled SCFG OpenItem packs against the authoritative code map compiled into each executable')
     ap.add_argument('--source-root', type=Path, default=Path('.'), help='SourceCode root')
     ap.add_argument('--content-root', type=Path, default=Path('Content'), help='Content root, relative to source-root unless absolute')
+    ap.add_argument('--canonical-item-profiles', type=Path, help='Canonical item profiles root when output content root is separate')
     ap.add_argument('--profile', choices=('client', 'server', 'both'), default='both')
     ap.add_argument('--report', type=Path)
     ap.add_argument('--show-duplicates', action='store_true', help='list duplicate CODE variants; duplicates are informational')
@@ -198,12 +199,14 @@ def main() -> int:
         content_root = source_root / content_root
     content_root = content_root.resolve()
 
+    item_profiles_root = args.canonical_item_profiles.resolve() if args.canonical_item_profiles else None
+
     profiles = ('client', 'server') if args.profile == 'both' else (args.profile,)
     all_lines: list[str] = []
     all_ok = True
     for name in profiles:
         try:
-            ok, lines = validate_one(source_root, content_root, name, args.show_duplicates)
+            ok, lines = validate_one(source_root, content_root, name, args.show_duplicates, item_profiles_root)
         except Exception as exc:
             ok, lines = False, [f'PROFILE={name}', f'ERROR={exc}', 'RESULT=FAIL']
         all_ok = all_ok and ok

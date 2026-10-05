@@ -5,6 +5,7 @@
 #include "Helper/common.h"
 #include "systems/gameplay/loot/filter/CLootHandler.h"
 #include "compat/legacy/sin/sinLinkHeader.h"
+#include "content/v1/localization/content/LocalizationRuntime.h"
 
 Settings settings;
 Settings settings_temp;
@@ -48,6 +49,7 @@ Settings::Settings()
 	server2 = "";
 	server3 = "";
 	port = 0;
+	locale = "pt-BR";
 
 	rememberID = false;
 }
@@ -145,6 +147,10 @@ void Settings::readConfig()
 		setServer2(networkServer2);
 		setServer3(networkServer3);
 		setPort(networkPort);
+		char localeValue[16] = {};
+		GetPrivateProfileStringA("Language", "Locale", "pt-BR", localeValue, sizeof(localeValue), "game.ini");
+		setLocale(localeValue);
+		summit::content::localization::SetLocalizationLocale(getLocale().c_str());
 
 		/* MINGW_LOGIN_HANDSHAKE_TRACE_V1: runtime network authority, no credentials. */
 		{
@@ -235,6 +241,9 @@ bool Settings::save()
 		//Game
 		file.write("Game", "RememberID", getRememberID() ? 1 : 0);
 		file.write("Game", "Weather", getWeather() ? 1 : 0);
+
+		//Language
+		file.write("Language", "Locale", getLocale());
 
 		//Social
 		file.write("Social", "PartyRequest", getPartyRequest() ? 1 : 0);

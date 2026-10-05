@@ -236,6 +236,50 @@ def build_catalog(canonical_root: Path) -> dict:
                 dedup[e['key']] = e
         entries[locale] = [dedup[k] for k in sorted(dedup)]
 
+    # pt-BR is a maintained canonical language, not a permissive J_* fallback.
+    # Keep the override outside the generated localization/ directory so rebuilding
+    # the catalogs cannot silently re-introduce English/Korean/mojibake into PT.
+    pt_override_path = root / 'localization_overrides' / 'pt-BR.json'
+    pt_override_loaded = False
+    if pt_override_path.exists():
+        override_doc = json.loads(pt_override_path.read_text(encoding='utf-8'))
+        if override_doc.get('schema') != SCHEMA or override_doc.get('locale') != 'pt-BR':
+            raise ValueError(f'invalid pt-BR canonical override: {pt_override_path}')
+        override_entries = override_doc.get('entries')
+        if not isinstance(override_entries, list):
+            raise ValueError(f'pt-BR canonical override entries must be a list: {pt_override_path}')
+        override_by_key = {}
+        for row in override_entries:
+            if not isinstance(row, dict):
+                raise ValueError('pt-BR canonical override contains non-object entry')
+            key = row.get('key')
+            text = row.get('text')
+            if not isinstance(key, str) or not key:
+                raise ValueError('pt-BR canonical override contains invalid/empty key')
+            if key in override_by_key:
+                raise ValueError(f'duplicate pt-BR canonical override key: {key}')
+            if not isinstance(text, str) or not text.strip():
+                raise ValueError(f'empty pt-BR canonical override text: {key}')
+            override_by_key[key] = {
+                'key': key,
+                'text': text,
+                'quality': 'translated',
+                'source': row.get('source') or 'pt-BR-canonical-override',
+            }
+
+        generated_en_keys = {e['key'] for e in entries['en']}
+        override_keys = set(override_by_key)
+        missing = sorted(generated_en_keys - override_keys)
+        extra = sorted(override_keys - generated_en_keys)
+        if missing or extra:
+            raise ValueError(
+                'pt-BR canonical override must exactly cover the runtime catalog: '
+                f'missing={len(missing)} {missing[:20]} extra={len(extra)} {extra[:20]}'
+            )
+        entries['pt-BR'] = [override_by_key[k] for k in sorted(override_by_key)]
+        stats['pt_br_canonical_overrides'] = len(entries['pt-BR'])
+        pt_override_loaded = True
+
     en_keys = {e['key'] for e in entries['en']}
     all_keys = {e['key'] for locale in LOCALES for e in entries[locale]}
     missing_en = sorted(all_keys - en_keys)
@@ -252,7 +296,7 @@ def build_catalog(canonical_root: Path) -> dict:
             'schema': SCHEMA,
             'schema_version': 1,
             'locale': locale,
-            'fallback_locale': None if locale == 'en' else 'en',
+            'fallback_locale': None if locale == 'en' or (locale == 'pt-BR' and pt_override_loaded) else 'en',
             'entries': entries[locale],
         }
         path = loc_root / f'{locale}.json'

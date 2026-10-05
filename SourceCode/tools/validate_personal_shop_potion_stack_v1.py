@@ -2,8 +2,8 @@
 from pathlib import Path
 import sys
 ROOT=Path(__file__).resolve().parents[1]
-H=(ROOT/'SrcServer/src/systems/commerce/v2/legacy/LegacyPersonalShopAdapter.h').read_text(errors='replace')
-A=(ROOT/'SrcServer/src/systems/commerce/v2/legacy/LegacyPersonalShopAdapter.cpp').read_text(errors='replace')
+H=(ROOT/'Shared/gameplay/commerce/v2/PersonalShopTransactionService.h').read_text(errors='replace') + (ROOT/'SrcServer/src/systems/commerce/v2/legacy/LegacyPersonalShopAdapter.h').read_text(errors='replace')
+A=(ROOT/'Shared/gameplay/commerce/v2/PersonalShopTransactionService.h').read_text(errors='replace') + (ROOT/'SrcServer/src/systems/commerce/v2/legacy/LegacyPersonalShopAdapter.cpp').read_text(errors='replace')
 def fail(m): print(f'personal shop potion stack v1: FAIL: {m}',file=sys.stderr); raise SystemExit(1)
 def main():
  for tok in ('const inventory::IPotionStackQuery& potionStackQuery','inventory::IPotionStackCommands& potionStackCommands','potionStackQuery_','potionStackCommands_'):

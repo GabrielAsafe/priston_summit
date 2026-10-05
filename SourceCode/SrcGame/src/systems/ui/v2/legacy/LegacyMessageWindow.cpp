@@ -99,6 +99,13 @@ std::string LegacyMessageWindow::TitleFor(int kind)
         case MESSAGE_EVENTITEM_SEND:
         case MESSAGE_FOXEVENTITEM_SEND: return "Evento";
         case MESSAGE_QUEST:
+        case MESSAGE_QUEST_ElementaryA:
+        case MESSAGE_QUEST_ElementaryB:
+        case MESSAGE_QUEST_ElementaryC:
+        case MESSAGE_QUEST_ElementaryD:
+        case MESSAGE_QUEST_ElementaryE:
+        case MESSAGE_QUEST_ElementaryF:
+        case MESSAGE_QUEST_ElementaryG:
         case MESSAGE_QUEST_CHANGEJOB_MORAYOIN:
         case MESSAGE_QUEST_CHANGEJOB3:
         case MESSAGE_QUEST_LEVEL30:
