@@ -27,9 +27,9 @@ def sha256(path: Path) -> str:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description='Validate executable-first Summit runtime content resolution and deployed packs when present')
-    ap.add_argument('--repo-root', type=Path, default=Path('.'), help='Summit repository root, or a source-only SourceCode snapshot')
+    ap.add_argument('--repo-root', type=Path, default=None, help='Summit repository root, or a source-only SourceCode snapshot; defaults to the root derived from this script location')
     args = ap.parse_args()
-    repo = args.repo_root.resolve()
+    repo = (args.repo_root if args.repo_root is not None else Path(__file__).resolve().parents[3]).resolve()
     nested_source = repo / 'SourceCode'
     source_root = nested_source if (nested_source / 'Content' / 'packs').is_dir() else repo
     source_packs = source_root / 'Content' / 'packs'

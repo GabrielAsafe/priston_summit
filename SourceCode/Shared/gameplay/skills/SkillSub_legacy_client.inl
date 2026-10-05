@@ -5,6 +5,8 @@
 
 #include "systems/rendering/legacy_3d/smd3d.h"
 #include "systems/network/transport/legacy/smwsock.h"
+#include "systems/network/v2/legacy/LegacyClientCommandSender.h"
+#include "systems/network/v2/legacy/LegacyBackendChannelSender.h"
 
 #include "systems/gameplay/character/core/character.h"
 #include "core/gameplay/runtime/playmain.h"
@@ -30,6 +32,23 @@
 #include "systems/social/party/ui/cPartyWindow.h"
 
 static sSKILL Skill_ScoutHawk;
+
+namespace
+{
+inline bool SummitSkillClientSocketSend(smWINSOCK* socket, const void* data, int size)
+{
+	if(!socket || !data || size <= 0) return false;
+	return gameplay::network::legacy::ClientLegacyCommandSender().SendToLegacySocket(
+		socket, gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded();
+}
+
+inline bool SummitSkillClientDataSend(const void* data, int size)
+{
+	if(!data || size <= 0) return false;
+	return gameplay::network::legacy::ClientLegacyBackendChannelSender().Send(
+		gameplay::network::BackendChannel::Data, gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded();
+}
+}
 
 
 // Summit Tier 5: canonical EU particle scripts are loaded by the legacy Ho particle manager.
@@ -4101,7 +4120,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 
 			lpsmSock = GetAreaServerSock();
 			if(lpsmSock)
-				lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+				SummitSkillClientSocketSend(lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 		}
 
@@ -4935,13 +4954,13 @@ int CheckPlaySkill()
 			fnEncodeDamagePacket(&smTransCommand);
 
 			if(smWsockDataServer)
-				smWsockDataServer->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+				SummitSkillClientDataSend((char *)&smTransCommand, smTransCommand.size);
 		}
 	#else
 		dm_EncodePacket(&smTransCommand);
 
 		if(smWsockDataServer)
-			smWsockDataServer->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+			SummitSkillClientDataSend((char *)&smTransCommand, smTransCommand.size);
 	#endif
 	}
 

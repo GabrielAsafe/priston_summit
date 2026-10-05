@@ -3,6 +3,7 @@
 
 static char *record_GetWord(char *q, char *p);
 #include "systems/network/transport/legacy/smwsock.h"
+#include "systems/network/v2/legacy/LegacyClientCommandSender.h"
 #include "systems/gameplay/character/core/character.h"
 #include "gameplay/classes/v2/services/ClassService.h"
 #include "systems/media/video/legacy_avi/avictrl.h"
@@ -27,6 +28,17 @@ static char *record_GetWord(char *q, char *p);
 
 #include "systems/security/integrity/isaocheck.h"
 #include "persistence/character_record/WarehouseRecordValidation.h"
+
+namespace
+{
+inline bool SummitRecordSocketSend(smWINSOCK* socket, const void* data, int size)
+{
+	if(!socket || !data || size <= 0)
+		return false;
+	return gameplay::network::legacy::ClientLegacyCommandSender().SendToLegacySocket(
+		socket, gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded();
+}
+}
 
 
 char	*szRecordHeader = "RC 1.50";
@@ -2139,7 +2151,7 @@ int rsRECORD_DBASE::SendRecordDataToServer(smWINSOCK *lpsmSock)
 
 		memcpy(TransRecord.szData, &lpData[TotalLen], len);
 
-		lpsmSock->Send((char *)&TransRecord, TransRecord.size, TRUE);
+		SummitRecordSocketSend(lpsmSock, (char *)&TransRecord, TransRecord.size);
 		cnt++;
 
 		TotalLen += len;
@@ -2421,7 +2433,7 @@ int rsRECORD_DBASE::SendRecordDataToClient(rsPLAYINFO *lpPlayInfo, char *szName,
 
 		memcpy(TransRecord.szData, &lpData[TotalLen], len);
 
-		lpsmSock->Send((char *)&TransRecord, TransRecord.size, TRUE);
+		SummitRecordSocketSend(lpsmSock, (char *)&TransRecord, TransRecord.size);
 		cnt++;
 
 		TotalLen += len;
@@ -3605,7 +3617,7 @@ int rsRECORD_DBASE::SendUserDataToClient(const char *szID, smWINSOCK *lpsmSock, 
 
 
 	TransUserCharInfo.PlayUserCount = FindCnt;
-	lpsmSock->Send((char *)&TransUserCharInfo, TransUserCharInfo.size, TRUE);
+	SummitRecordSocketSend(lpsmSock, (char *)&TransUserCharInfo, TransUserCharInfo.size);
 
 
 
@@ -3946,7 +3958,7 @@ int rsLoadWareHouseData(rsPLAYINFO *lpPlayInfo)
 	if (!CopiedItemFlag)
 	{
 		if (lpPlayInfo->lpsmSock)
-			lpPlayInfo->lpsmSock->Send((char *)&TransWareHouse, TransWareHouse.size, TRUE);
+			SummitRecordSocketSend(lpPlayInfo->lpsmSock, (char *)&TransWareHouse, TransWareHouse.size);
 	}
 	else
 	{
@@ -3959,7 +3971,7 @@ int rsLoadWareHouseData(rsPLAYINFO *lpPlayInfo)
 		smTransCommand.EParam = 0;
 
 		if (lpPlayInfo->lpsmSock)
-			lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+			SummitRecordSocketSend(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 
 	}
@@ -3988,7 +4000,7 @@ int rsLoadWareHouseData_Admin(rsPLAYINFO *lpPlayInfo, char *szID, int Day)
 	lpPlayInfo->OpenWarehouseInfoFlag = 0;
 
 	if (lpPlayInfo->lpsmSock)
-		lpPlayInfo->lpsmSock->Send((char *)&TransWareHouse, TransWareHouse.size, TRUE);
+		SummitRecordSocketSend(lpPlayInfo->lpsmSock, (char *)&TransWareHouse, TransWareHouse.size);
 
 	return TRUE;
 }

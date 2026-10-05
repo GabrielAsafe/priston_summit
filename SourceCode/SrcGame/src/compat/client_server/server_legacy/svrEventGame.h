@@ -1,5 +1,16 @@
 #include "compat/client_server/server_legacy/protocol/opcodes.h"
+#include "systems/network/v2/legacy/LegacyClientCommandSender.h"
 #define _EVENT_GAME_
+
+namespace
+{
+inline bool SummitClientEventGameSocketSend(smWINSOCK* socket, const void* data, int size)
+{
+	if(!socket || !data || size <= 0) return false;
+	return gameplay::network::legacy::ClientLegacyCommandSender().SendToLegacySocket(
+		socket, gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded();
+}
+}
 
 
 
@@ -123,7 +134,7 @@ int rsEventGame_State_Init(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransComma
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 1;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SummitClientEventGameSocketSend(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 		return FALSE;
 	}
 
@@ -139,7 +150,7 @@ int rsEventGame_State_Init(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransComma
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 1;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+			SummitClientEventGameSocketSend(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 			return FALSE;
 		}
@@ -195,13 +206,13 @@ int rsEventGame_State_Init(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransComma
 	TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 	TransChatMessage.dwIP = 1;
 	TransChatMessage.dwObjectSerial = 0;
-	lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+	SummitClientEventGameSocketSend(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 
 	smTRANS_COMMAND smTransCommand;
 	smTransCommand.size = sizeof(smTRANS_COMMAND);
 	smTransCommand.code = OpCode::OPCODE_YAHOO_MOTION;
-	lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+	SummitClientEventGameSocketSend(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 #endif
 

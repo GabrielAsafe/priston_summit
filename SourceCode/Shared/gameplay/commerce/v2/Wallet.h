@@ -28,7 +28,9 @@ enum class WalletReason
     ClanMoney,
     GiveMoney,
     PersonalShop,
-    Warehouse
+    Warehouse,
+    LoadPlayer,
+    NpcShopCompatibility
 };
 
 enum class WalletMutationCode

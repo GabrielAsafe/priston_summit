@@ -2,6 +2,8 @@
 // Byte-equivalent Crafting kernels remain in the same server translation unit.
 // New orchestration belongs behind ICraftingService.
 
+#include "systems/commerce/v2/legacy/LegacyWalletAdapter.h"
+
 int rsRecvCraftItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server)
 {
 	cCRAFTITEM	ccItem;
@@ -111,12 +113,16 @@ int rsRecvCraftItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server
 			smTransCommand.EParam = sItemInfo.Price;
 			RecordHackLogFile(lpPlayInfo, &smTransCommand);
 
-			lpPlayInfo->SetServerMoney(0, WHERE_CRAFTITEM);
+			(void)gameplay::commerce::legacy::ServerLegacyWalletAdapter().SetBalance(
+				gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo),
+				0, gameplay::commerce::WalletReason::Crafting);
 			ErrorFlag++;
 		}
 		else
 		{
-			lpPlayInfo->SubServerMoney(sItemInfo.Price, WHERE_CRAFTITEM);
+			(void)gameplay::commerce::legacy::ServerLegacyWalletAdapter().Debit(
+				gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo),
+				sItemInfo.Price, gameplay::commerce::WalletReason::Crafting);
 			lpPlayInfo->UnsaveMoney = lpPlayInfo->ServerMoney;
 		}
 	}
@@ -1289,7 +1295,9 @@ int rsRecvWingItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server)
 
 		if(lpPlayInfo->ServerMoney >= Money)
 		{
-			lpPlayInfo->SubServerMoney(Money, WHERE_FORECORB);
+			(void)gameplay::commerce::legacy::ServerLegacyWalletAdapter().Debit(
+				gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo),
+				Money, gameplay::commerce::WalletReason::ForceOrb);
 			CurrencyLog.int64_ForceOrbMoney += Money;
 		}
 		else

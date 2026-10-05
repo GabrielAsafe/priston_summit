@@ -10,7 +10,8 @@ runner=(root/'Shared/network/v2/tests/run_packet_sender_tests.sh').read_text()
 checks=[
  ('green sender contract exists', 'class IClientCommandSender' in contract and 'PacketView' in contract),
  ('green sender has no winsock', 'smWINSOCK' not in contract and 'smWsockServer' not in contract),
- ('adapter owns gameplay socket send', 'smWsockServer->Send' in adapter),
+ ('adapter delegates primary socket through owned socket helper', 'return SendToLegacySocket(smWsockServer, packet);' in adapter),
+ ('adapter owns gameplay socket send', 'socket->Send(' in adapter and 'SendToLegacySocket(smWINSOCK* socket' in adapter),
  ('companion routes command through sender', 'ClientLegacyCommandSender' in companion and 'sender.Send(gameplay::network::PacketView' in companion),
  ('companion has no direct gameplay socket send', 'smWsockServer->Send' not in companion),
  ('covenant routes command through sender', 'ClientLegacyCommandSender' in covenant and 'sender.Send(gameplay::network::PacketView' in covenant),

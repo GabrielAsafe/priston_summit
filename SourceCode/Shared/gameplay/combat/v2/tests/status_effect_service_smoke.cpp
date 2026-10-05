@@ -31,6 +31,10 @@ int main()
     assert(service.ApplyStun(gameplay::EntityId(1u), 160).Ok());
     assert(service.ApplyPoison(gameplay::EntityId(1u), 170, 25).Ok());
     assert(service.ApplySlow(gameplay::EntityId(1u), gameplay::combat::SlowEffect(136, 200, 0, true, true, true)).Ok());
+    assert(service.ApplySlow(
+        gameplay::EntityId(1u),
+        gameplay::combat::SlowEffect(36, 0, 0, false, false, false,
+                                     gameplay::combat::SlowTimerMode::CountUpFromNegative)).Ok());
     assert(service.ApplyElementalSlow16Hz(gameplay::EntityId(1u), 5, 180, -100).Ok());
     assert(service.ClearStatus(gameplay::EntityId(1u), gameplay::combat::StatusEffectKind::Stun).Ok());
     assert(!service.ApplyAssassinEye(gameplay::EntityId(), 100u, 5).Ok());

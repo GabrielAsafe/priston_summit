@@ -1,5 +1,6 @@
 #include "systems/gameplay/progression/v2/LegacyProgressionGateways.h"
 #include "systems/gameplay/progression/v2/ProgressionTriggerRuntime.h"
+#include "systems/gameplay/progression/v2/legacy/LegacyPlayerExperienceAdapter.h"
 
 #include "core/server/legacy_runtime/onserver.h"
 
@@ -100,11 +101,20 @@ rewards::RewardResult LegacyProgressionRewardGateway::Grant(
                    ? rewards::RewardResult::Granted
                    : rewards::RewardResult::Failed;
     case rewards::RewardType::Experience:
-        player->AddExp(static_cast<INT64>(reward.amount), 0, false);
-        // AddExp may change PlayerLevelAtLeast conditions. Reentrant processing is
+    {
+        const PlayerId playerId = players_.IdOf(player);
+        const PlayerExperienceGrantResult experience = PlayerExperienceService::Grant(
+            legacy::ServerLegacyPlayerExperienceAdapter(),
+            PlayerExperienceGrantRequest(
+                playerId, static_cast<PlayerExperienceAmount>(reward.amount), EntityId(), false,
+                PlayerExperienceSource::ProgressionReward));
+        if(!experience.Granted())
+            return rewards::RewardResult::Failed;
+        // Experience may change PlayerLevelAtLeast conditions. Reentrant processing is
         // coalesced by ProgressionRuntime, so this never recursively walks Story.
-        NotifyServerProgressionPlayerStateChanged(players_.IdOf(player));
+        NotifyServerProgressionPlayerStateChanged(playerId);
         return rewards::RewardResult::Granted;
+    }
     case rewards::RewardType::Item:
     {
         inventory::ItemDefinition definition;

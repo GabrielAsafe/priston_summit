@@ -31,6 +31,7 @@
 #include "systems/security/integrity/isaocheck.h"
 #include "persistence/character_record/WarehouseRecordValidation.h"
 #include "systems/network/v2/legacy/LegacyPacketSender.h"
+#include "systems/commerce/v2/legacy/LegacyWalletAdapter.h"
 
 
 namespace
@@ -2334,7 +2335,7 @@ int rsRECORD_DBASE::SendRecordDataToServer(smWINSOCK *lpsmSock)
 
 		memcpy(TransRecord.szData, &lpData[TotalLen], len);
 
-		lpsmSock->Send((char *)&TransRecord, TransRecord.size, TRUE);
+		SummitRecordSocketSend(lpsmSock, (char *)&TransRecord, TransRecord.size);
 		cnt++;
 
 		TotalLen += len;
@@ -3841,7 +3842,7 @@ int rsRECORD_DBASE::SendUserDataToClient(const char *szID, smWINSOCK *lpsmSock, 
 
 
 	TransUserCharInfo.PlayUserCount = FindCnt;
-	lpsmSock->Send((char *)&TransUserCharInfo, TransUserCharInfo.size, TRUE);
+	SummitRecordSocketSend(lpsmSock, (char *)&TransUserCharInfo, TransUserCharInfo.size);
 
 
 
@@ -4173,7 +4174,9 @@ int rsLoadWareHouseData(rsPLAYINFO *lpPlayInfo)
 			}
 
 			if(WareHouseCheck.Money)
-				lpPlayInfo->AddServerMoney(WareHouseCheck.Money - 2023, WHERE_OPEN_WAREHOUES);
+				(void)gameplay::commerce::legacy::ServerLegacyWalletAdapter().Credit(
+					gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo),
+					WareHouseCheck.Money - 2023, gameplay::commerce::WalletReason::Warehouse);
 
 		}
 		Server_DebugCount = 520;
@@ -4308,7 +4311,9 @@ int rsLoadWareHouseData(rsPLAYINFO *lpPlayInfo, int Caravan = 0)
 			}
 
 			if (WareHouseCheck.Money)
-				lpPlayInfo->AddServerMoney(WareHouseCheck.Money - 2023, WHERE_OPEN_WAREHOUES);
+				(void)gameplay::commerce::legacy::ServerLegacyWalletAdapter().Credit(
+					gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo),
+					WareHouseCheck.Money - 2023, gameplay::commerce::WalletReason::Warehouse);
 
 		}
 		Server_DebugCount = 520;

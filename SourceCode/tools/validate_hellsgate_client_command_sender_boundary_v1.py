@@ -13,7 +13,8 @@ checks = [
     ('client preserves command packet size', 'sPacket.size = sizeof(smTRANS_COMMAND)' in client),
     ('client routes join through command sender', 'ClientLegacyCommandSender().Send' in client and 'PacketView(&sPacket, sPacket.size' in client),
     ('client hells gate has no direct socket send', 'smWsockServer->Send' not in client),
-    ('amber sender owns client socket send', 'smWsockServer->Send' in sender and 'static_cast<int>(packet.size), TRUE' in sender),
+    ('amber sender delegates primary socket through owned helper', 'return SendToLegacySocket(smWsockServer, packet);' in sender),
+    ('amber sender owns client socket send', 'socket->Send(' in sender and 'static_cast<int>(packet.size), TRUE' in sender),
     ('server router receives same opcode', 'class HellsGateJoinHandler' in router and 'OpCode::OPCODE_OPEN_HG' in router and 'cHg.RequestJoin(player)' in router),
     ('server join remains PlayerId based', 'void cHELLSGATE::RequestJoin(gameplay::PlayerId playerId)' in server),
 ]

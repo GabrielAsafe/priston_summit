@@ -12,6 +12,7 @@
 
 #include "platform/windows/resources/resource.h"
 #include "systems/network/transport/legacy/smwsock.h"
+#include "systems/network/v2/legacy/LegacyClientCommandSender.h"
 
 
 
@@ -31,6 +32,16 @@
 #include "systems/localization/legacy_catalog/language.h"
 
 #include "compat/client_server/server_legacy/ClientFuncPos.h"
+
+namespace
+{
+inline bool SummitClientIntegritySocketSend(smWINSOCK* socket, const void* data, int size)
+{
+	if(!socket || !data || size <= 0) return false;
+	return gameplay::network::legacy::ClientLegacyCommandSender().SendToLegacySocket(
+		socket, gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded();
+}
+}
 
 extern rsSERVER_CONFIG		rsServerConfig;
 
@@ -252,7 +263,7 @@ int rsSendFuncMemToClient(rsPLAYINFO *lpPlayInfo, DWORD dwFuncMem, DWORD	dwLen)
 
 	if(lpPlayInfo && lpPlayInfo->lpsmSock)
 	{
-		val = lpPlayInfo->lpsmSock->Send((char *)&TransFuncMemory, TransFuncMemory.size, TRUE);
+		val = SummitClientIntegritySocketSend(lpPlayInfo->lpsmSock, (char *)&TransFuncMemory, TransFuncMemory.size) ? TRUE : FALSE;
 	}
 
 	if(val)
@@ -301,7 +312,7 @@ int rsSendFuncMemToClient2(rsPLAYINFO *lpPlayInfo)
 
 	if(lpPlayInfo && lpPlayInfo->lpsmSock)
 	{
-		val = lpPlayInfo->lpsmSock->Send((char *)&TransFuncMemory, TransFuncMemory.size, TRUE);
+		val = SummitClientIntegritySocketSend(lpPlayInfo->lpsmSock, (char *)&TransFuncMemory, TransFuncMemory.size) ? TRUE : FALSE;
 	}
 
 	if(val)

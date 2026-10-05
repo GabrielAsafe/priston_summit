@@ -27,6 +27,7 @@
 #include "systems/persistence/database/core/Database.h"
 #include "gameplay/classes/v2/services/ClassService.h"
 #include "systems/network/v2/legacy/LegacyPacketSender.h"
+#include "systems/commerce/v2/legacy/LegacyWalletAdapter.h"
 
 
 namespace
@@ -3828,13 +3829,17 @@ DWORD WINAPI LogEventDataThreadProc(void *pInfo)
 
 						case 1:
 							smTransCommand.LParam = sLogEvent->Param[0];
-							lpPlayInfo->AddServerMoney(sLogEvent->Param[0], WHERE_CLAN_MONEY);
+							(void)gameplay::commerce::legacy::ServerLegacyWalletAdapter().Credit(
+								gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo),
+								sLogEvent->Param[0], gameplay::commerce::WalletReason::ClanMoney);
 							rsClanMoneyLog(lpPlayInfo, smTransCommand.LParam, Result);
 							break;
 
 						case 2:
 							smTransCommand.LParam = -sLogEvent->Param[0];
-							lpPlayInfo->SubServerMoney(sLogEvent->Param[0], WHERE_CLAN_MONEY);
+							(void)gameplay::commerce::legacy::ServerLegacyWalletAdapter().Debit(
+								gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo),
+								sLogEvent->Param[0], gameplay::commerce::WalletReason::ClanMoney);
 							rsClanMoneyLog(lpPlayInfo, smTransCommand.LParam, Result);
 							break;
 						}

@@ -5,6 +5,7 @@
 
 #include "systems/gameplay/hunting/v2/HuntingService.h"
 #include "systems/gameplay/progression/v2/ProgressionRuntime.h"
+#include "systems/gameplay/professions/v2/ProfessionRuntime.h"
 #include "gameplay/covenants/v2/CovenantCatalog.h"
 
 namespace gameplay
@@ -20,6 +21,14 @@ void EnsureCoreConsumersRegistered()
             [](const MonsterKilledEvent& event)
             {
                 hunting::ServerHuntingService().OnMonsterKilled(event);
+                if (!event.playerName.empty())
+                {
+                    // Hunter is a V2-only profession identity. One credited monster kill
+                    // advances one persistent Hunter XP unit; no legacy JOB_CODE mapping
+                    // is required or permitted for this activation path.
+                    (void)professions::ServerProfessionService().AddExperience(
+                        event.playerName, professions::ProfessionType::Hunter, 1u);
+                }
             });
 
     static const GameplayEventHub::SubscriptionId covenantSubscription =

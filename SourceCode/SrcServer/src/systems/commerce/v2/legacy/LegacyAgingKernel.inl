@@ -1,5 +1,6 @@
 #include "gameplay/commerce/v2/AgingQuestModePolicy.h"
 #include "gameplay/commerce/v2/AgingResultLogPolicy.h"
+#include "systems/commerce/v2/legacy/LegacyWalletAdapter.h"
 
 // AMBER ownership extraction from the frozen OnServer monolith.
 // Byte-equivalent Aging kernels remain in the same server translation unit.
@@ -113,12 +114,16 @@ int rsRecvAgingItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server
 			smTransCommand.EParam = Price;
 			RecordHackLogFile(lpPlayInfo, &smTransCommand);
 
-			lpPlayInfo->SetServerMoney(0, WHERE_AGINGITEM);
+			(void)gameplay::commerce::legacy::ServerLegacyWalletAdapter().SetBalance(
+				gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo),
+				0, gameplay::commerce::WalletReason::Aging);
 			ErrorFlag++;
 		}
 		else
 		{
-			lpPlayInfo->SubServerMoney(Price, WHERE_AGINGITEM);
+			(void)gameplay::commerce::legacy::ServerLegacyWalletAdapter().Debit(
+				gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo),
+				Price, gameplay::commerce::WalletReason::Aging);
 			lpPlayInfo->UnsaveMoney = lpPlayInfo->ServerMoney;
 		}
 	}

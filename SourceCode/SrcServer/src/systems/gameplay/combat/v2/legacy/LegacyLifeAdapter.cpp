@@ -37,7 +37,23 @@ smCHAR* ResolveEntity(EntityId target)
 {
     if(!target.Valid())
         return 0;
-    return srFindCharFromSerial(static_cast<DWORD>(target.value));
+
+    const DWORD serial = static_cast<DWORD>(target.value);
+    smCHAR* entity = srFindCharFromSerial(serial);
+    if(entity)
+        return entity;
+
+    if(StageArea)
+    {
+        for(int area = 0; area < StageAreaCount; ++area)
+        {
+            entity = srFindCharFromSerial(serial, area);
+            if(entity)
+                return entity;
+        }
+    }
+
+    return 0;
 }
 }
 
@@ -121,6 +137,85 @@ LifeCommandResult LegacyLifeAdapter::ConsumeLethal(EntityId target, int amount)
     if(after <= 0)
         entity->SetMotionFromCode(CHRMOTION_STATE_DEAD);
     return SnapshotResult(LifeCommandCode::Ok, before, after, maximum);
+}
+
+LifeCommandResult LegacyLifeAdapter::Deplete(EntityId target)
+{
+    if(!target.Valid())
+        return InvalidResult();
+    smCHAR* entity = ResolveEntity(target);
+    if(!entity)
+        return InvalidResult(LifeCommandCode::NotFound);
+    if(!entity->Flag)
+        return InvalidResult(LifeCommandCode::Inactive);
+
+    const int before = entity->smCharInfo.Life[0];
+    const int maximum = entity->smCharInfo.Life[1];
+    if(before <= 0 || maximum <= 0)
+        return SnapshotResult(LifeCommandCode::InvalidState, before, before, maximum);
+
+    entity->smCharInfo.Life[0] = 0;
+    return SnapshotResult(LifeCommandCode::Ok, before, 0, maximum);
+}
+
+LifeCommandResult LegacyLifeAdapter::EnsureMinimum(EntityId target, int minimumLife)
+{
+    if(!target.Valid() || minimumLife <= 0)
+        return InvalidResult();
+    smCHAR* entity = ResolveEntity(target);
+    if(!entity)
+        return InvalidResult(LifeCommandCode::NotFound);
+    if(!entity->Flag)
+        return InvalidResult(LifeCommandCode::Inactive);
+
+    const int before = entity->smCharInfo.Life[0];
+    const int maximum = entity->smCharInfo.Life[1];
+    if(maximum <= 0)
+        return SnapshotResult(LifeCommandCode::InvalidState, before, before, maximum);
+
+    const int floorLife = std::min(maximum, minimumLife);
+    const int after = std::max(before, floorLife);
+    entity->smCharInfo.Life[0] = static_cast<short>(after);
+    return SnapshotResult(LifeCommandCode::Ok, before, after, maximum);
+}
+
+LifeCommandResult LegacyLifeAdapter::ClampToValidRange(EntityId target)
+{
+    if(!target.Valid())
+        return InvalidResult();
+    smCHAR* entity = ResolveEntity(target);
+    if(!entity)
+        return InvalidResult(LifeCommandCode::NotFound);
+    if(!entity->Flag)
+        return InvalidResult(LifeCommandCode::Inactive);
+
+    const int before = entity->smCharInfo.Life[0];
+    const int maximum = entity->smCharInfo.Life[1];
+    if(maximum <= 0)
+        return SnapshotResult(LifeCommandCode::InvalidState, before, before, maximum);
+
+    const int after = std::max(0, std::min(maximum, before));
+    entity->smCharInfo.Life[0] = static_cast<short>(after);
+    return SnapshotResult(LifeCommandCode::Ok, before, after, maximum);
+}
+
+LifeCommandResult LegacyLifeAdapter::RestoreToMaximum(EntityId target)
+{
+    if(!target.Valid())
+        return InvalidResult();
+    smCHAR* entity = ResolveEntity(target);
+    if(!entity)
+        return InvalidResult(LifeCommandCode::NotFound);
+    if(!entity->Flag)
+        return InvalidResult(LifeCommandCode::Inactive);
+
+    const int before = entity->smCharInfo.Life[0];
+    const int maximum = entity->smCharInfo.Life[1];
+    if(maximum <= 0)
+        return SnapshotResult(LifeCommandCode::InvalidState, before, before, maximum);
+
+    entity->smCharInfo.Life[0] = static_cast<short>(maximum);
+    return SnapshotResult(LifeCommandCode::Ok, before, maximum, maximum);
 }
 
 LifeCommandResult LegacyLifeAdapter::Revive(EntityId target, int percentOfMaximum)

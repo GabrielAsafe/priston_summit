@@ -22,6 +22,12 @@ enum class StatusEffectKind
     Stun = 0
 };
 
+enum class SlowTimerMode
+{
+    CountDownToZero = 0,
+    CountUpFromNegative
+};
+
 struct StatusEffectResult
 {
     StatusEffectCode code;
@@ -39,13 +45,15 @@ struct SlowEffect
     bool updateAttackIce;
     bool attackIce;
     bool clearStun;
+    SlowTimerMode timerMode;
 
     SlowEffect(int durationTicksValue = 0, int moveSpeedValue = 0,
                int distortionTicksValue = 0, bool updateAttackIceValue = false,
-               bool attackIceValue = false, bool clearStunValue = false)
+               bool attackIceValue = false, bool clearStunValue = false,
+               SlowTimerMode timerModeValue = SlowTimerMode::CountDownToZero)
         : durationTicks(durationTicksValue), moveSpeed(moveSpeedValue),
           distortionTicks(distortionTicksValue), updateAttackIce(updateAttackIceValue),
-          attackIce(attackIceValue), clearStun(clearStunValue) {}
+          attackIce(attackIceValue), clearStun(clearStunValue), timerMode(timerModeValue) {}
 };
 
 class IStatusEffectService

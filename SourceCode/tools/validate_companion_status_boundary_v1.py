@@ -31,9 +31,8 @@ def main() -> None:
         if token not in executor:
             fail(f"missing routed status operation: {token}")
 
-    # These status families have been fully extracted in this cut.  The only
-    # direct residuals intentionally left for the follow-up cleanup are three
-    # elemental slow groups and two explicit PlayStunCount = 0 clears.
+    # Status application/clear authority is fully extracted. Direct writes in
+    # the executor are no longer accepted as a transitional state.
     for pattern in (
         r"->PlayPoison\s*\[",
         r"->PlayHolyMind\s*\[",
@@ -49,11 +48,11 @@ def main() -> None:
         fail(f"non-clear stun assignment still direct: {stun_assignments}")
 
     residual_slow = re.findall(r"->Play(?:SlowCount|SlowSpeed|Distortion)\s*=", executor)
-    if len(residual_slow) not in (0, 9):
-        fail(f"unexpected direct slow residual count: {len(residual_slow)} (expected 9 before cleanup or 0 after)")
+    if residual_slow:
+        fail(f"direct slow writes returned: {len(residual_slow)}")
     residual_clear = re.findall(r"->PlayStunCount\s*=\s*0\s*;", executor)
-    if len(residual_clear) not in (0, 2):
-        fail(f"unexpected direct stun-clear residual count: {len(residual_clear)} (expected 2 before cleanup or 0 after)")
+    if residual_clear:
+        fail(f"direct stun-clear writes returned: {len(residual_clear)}")
 
     contract = CONTRACT.read_text(encoding="utf-8", errors="replace")
     for token in (
@@ -79,7 +78,7 @@ def main() -> None:
         "resolved->PlayPoison[1] = static_cast<short>(durationTicks)",
         "resolved->PlayHolyMind[0] = static_cast<short>(damageReduction)",
         "resolved->dwAssassinEyeTime = static_cast<DWORD>(expiresAt)",
-        "resolved->PlaySlowCount = effect.durationTicks",
+        "effect.timerMode == SlowTimerMode::CountUpFromNegative ? -effect.durationTicks : effect.durationTicks",
         "resolved->PlayDistortion = effect.distortionTicks",
         "resolved->PlayHeavenlyLight[0] = static_cast<short>(attackRateReduction)",
     ):
@@ -88,7 +87,7 @@ def main() -> None:
 
     print(
         "companion status boundary v1: PASS "
-        f"({len(residual_slow)} direct slow writes; {len(residual_clear)} explicit stun clears reserved for cleanup)"
+        "(executor direct status writes=0)"
     )
 
 

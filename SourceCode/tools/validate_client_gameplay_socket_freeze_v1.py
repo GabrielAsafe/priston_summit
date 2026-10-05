@@ -7,12 +7,10 @@ root = Path(__file__).resolve().parents[1]
 client_root = root / 'SrcGame/src'
 pattern = re.compile(r'\bsmWsockServer\s*->\s*Send\s*\(')
 
-# Explicit kernel/backend ownership. These are not migration debt hidden in a
-# generic allowlist: netplay/Damage/legacy_sin are frozen RED, while the V2
-# sender is the single AMBER entrypoint used by modernized feature paths.
-allowed = {
-    'SrcGame/src/systems/network/v2/legacy/LegacyClientCommandSender.cpp': 'AMBER command sender adapter',
-}
+# Direct smWsockServer ownership is now fully retired from client RED code.
+# The AMBER adapter owns the physical socket through its generic
+# SendToLegacySocket bridge instead of spelling the global socket at each send.
+allowed = {}
 
 hits = {}
 for path in client_root.rglob('*'):
@@ -25,7 +23,8 @@ for path in client_root.rglob('*'):
         hits[rel] = count
 
 unexpected = {rel: count for rel, count in hits.items() if rel not in allowed}
-missing_adapter = 'SrcGame/src/systems/network/v2/legacy/LegacyClientCommandSender.cpp' not in hits
+adapter = (root / 'SrcGame/src/systems/network/v2/legacy/LegacyClientCommandSender.cpp').read_text(errors='replace')
+adapter_owns_transport = 'LegacyClientCommandSender::SendToLegacySocket' in adapter and 'socket->Send' in adapter
 
 for rel in sorted(hits):
     ownership = allowed.get(rel, 'UNEXPECTED')
@@ -35,8 +34,8 @@ if unexpected:
     for rel, count in sorted(unexpected.items()):
         print(f'FAIL: unclassified direct gameplay socket send: {rel} ({count})', file=sys.stderr)
     sys.exit(1)
-if missing_adapter:
-    print('FAIL: AMBER LegacyClientCommandSender no longer owns a gameplay socket send', file=sys.stderr)
+if not adapter_owns_transport:
+    print('FAIL: AMBER LegacyClientCommandSender no longer owns the generic legacy socket send', file=sys.stderr)
     sys.exit(1)
 
 feature_files = [
@@ -54,4 +53,4 @@ for rel in feature_files:
         print(f'FAIL: migrated feature regained direct gameplay socket send: {rel}', file=sys.stderr)
         sys.exit(1)
 
-print(f'client gameplay socket freeze v1: PASS (direct-send files={len(hits)}, unexpected=0)')
+print(f'client gameplay socket freeze v1: PASS (direct smWsockServer files={len(hits)}, AMBER generic transport owner=1)')

@@ -20,6 +20,7 @@
 #include "systems/rendering/assets/v3/AssetStreamingV3.h"
 #include "systems/security/legacy/process_integrity/cracker.h"
 #include "systems/network/transport/legacy/smwsock.h"
+#include "systems/network/v2/legacy/LegacyClientCommandSender.h"
 #include "systems/gameplay/character/core/character.h"
 #include "authentication/character_selection/CharacterSelectionTrace.h"
 #include "systems/media/video/legacy_avi/avictrl.h"
@@ -59,6 +60,16 @@ extern int WinSizeX;
 extern int WinSizeY;
 extern HWND hwnd;
 extern int MouseButton[3];
+
+namespace
+{
+inline bool SummitPlayMainClientSocketSend(smWINSOCK* socket, const void* data, int size)
+{
+	if(!socket || !data || size <= 0) return false;
+	return gameplay::network::legacy::ClientLegacyCommandSender().SendToLegacySocket(
+		socket, gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded();
+}
+}
 
 int LoadFieldMap(int PosNum, sFIELD *lpField, smSTAGE3D *lpStage);
 extern char szGameStageName[2][64];
@@ -3912,7 +3923,7 @@ int PlayPat3D()
 								lpsmSock = GetServerSock(lpMsTraceItem->ServerCode);
 								if(lpsmSock)
 								{
-									lpsmSock->Send((char *)&TransActionItem, TransActionItem.size, TRUE);
+									SummitPlayMainClientSocketSend(lpsmSock, (char *)&TransActionItem, TransActionItem.size);
 								}
 							}
 						}
@@ -3921,7 +3932,7 @@ int PlayPat3D()
 							lpsmSock = GetServerSock(lpMsTraceItem->ServerCode);
 							if(lpsmSock)
 							{
-								lpsmSock->Send((char *)&TransActionItem, TransActionItem.size, TRUE);
+								SummitPlayMainClientSocketSend(lpsmSock, (char *)&TransActionItem, TransActionItem.size);
 							}
 						}
 					}

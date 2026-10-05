@@ -34,7 +34,7 @@ checks = [
     ('GREEN direct legacy socket sends are zero', not violations),
     ('client GREEN transport contract exists', 'class IClientCommandSender' in client_contract and 'PacketView' in client_contract),
     ('server GREEN transport contract exists', 'class IPacketSender' in server_contract and 'PacketView' in server_contract),
-    ('client AMBER adapter owns gameplay socket send', 'smWsockServer->Send' in client_adapter),
+    ('client AMBER adapter owns legacy socket send', 'SendToLegacySocket' in client_adapter and 'socket->Send' in client_adapter),
     ('server AMBER adapter owns player socket send', 'SendToLegacySocket' in server_adapter),
 ]
 for label, ok in checks:

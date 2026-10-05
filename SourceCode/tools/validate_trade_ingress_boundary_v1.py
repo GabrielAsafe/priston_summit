@@ -83,7 +83,7 @@ def main() -> None:
         "ServerLegacyTradeAdapter().EvaluateIngress(tradeRequest)",
         "TradeActionFromLegacyFlag(lpTransCommand->LParam)",
         "lpTransCommand->LParam",
-        "lpPlayInfo2->lpsmSock->Send((char *)lpTransCommand, lpTransCommand->size, TRUE);",
+        "SendOnServerLegacySocket(lpPlayInfo2->lpsmSock, (char *)lpTransCommand, lpTransCommand->size);",
     ):
         if token not in ingress:
             fail(f"migrated ingress token missing: {token}")

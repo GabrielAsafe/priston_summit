@@ -14,8 +14,8 @@
 #include "content/v1/localization/content/LocalizationRuntime.h"
 #include "content/v1/localization/legacy/LocalizationLegacyEncoding.h"
 #include "systems/persistence/database/core/Database.h"
-#include "systems/commerce/coin_shop/CoinShop.h"
-#include "systems/commerce/coin_shop/CoinShop_T.h"
+#include "systems/commerce/v2/legacy/LegacyCoinWalletAdapter.h"
+#include "systems/commerce/v2/legacy/LegacyTimeCreditWalletAdapter.h"
 
 extern int OpenBossTimeMin;
 
@@ -111,12 +111,16 @@ void News::msgCoinShop()
     if(!player || !player->lpsmSock)
         return;
 
+    const gameplay::PlayerId playerId =
+        gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(player);
+    gameplay::commerce::CoinWalletSnapshot coinWallet;
     TRANS_CHATMESSAGE packet = {};
-    if(SummitNewsFormatNumber(
+    if(gameplay::commerce::legacy::ServerLegacyCoinWalletAdapter().TryGetCoinWallet(playerId, coinWallet) &&
+       SummitNewsFormatNumber(
         packet.szMessage,
         sizeof(packet.szMessage),
         "news.coin_shop_balance",
-        cCoinShop.GetPlayerCoin(player)))
+        static_cast<int>(coinWallet.coins)))
     {
         packet.code = OpCode::OPCODE_WHISPERMESSAGE;
         packet.size = 32 + lstrlen(packet.szMessage);
@@ -125,12 +129,14 @@ void News::msgCoinShop()
         (void)SummitNewsSend(player, &packet, packet.size);
     }
 
+    gameplay::commerce::CoinWalletSnapshot timeWallet;
     ZeroMemory(&packet, sizeof(packet));
-    if(SummitNewsFormatNumber(
+    if(gameplay::commerce::legacy::ServerLegacyTimeCreditWalletAdapter().TryGetCoinWallet(playerId, timeWallet) &&
+       SummitNewsFormatNumber(
         packet.szMessage,
         sizeof(packet.szMessage),
         "news.time_shop_balance",
-        cCoinShop_T.GetPlayerCoin(player)))
+        static_cast<int>(timeWallet.coins)))
     {
         packet.code = OpCode::OPCODE_WHISPERMESSAGE;
         packet.size = 32 + lstrlen(packet.szMessage);

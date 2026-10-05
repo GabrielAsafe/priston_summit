@@ -30,6 +30,7 @@
 #include "systems/network/v2/legacy/LegacyPacketSender.h"
 #include "systems/gameplay/pets/v2/legacy/LegacyPetRuntimeAdapter.h"
 #include "systems/gameplay/progression/v2/ProgressionRuntime.h"
+#include "systems/gameplay/progression/v2/legacy/LegacyPlayerExperienceAdapter.h"
 
 extern DWORD	dwPlayServTime;
 
@@ -628,7 +629,13 @@ int rsPLAYINFO::GetPartyExp(smCHAR* lpChar, rsPLAYINFO* lpPlayInfo)
 
 					//lpPartyPlayers[cnt]->ExpFlag++;
 
-					lpPartyPlayers[cnt]->AddExp(PlayerEXP, lpChar->dwObjectSerial, true);
+					(void)gameplay::progression::PlayerExperienceService::Grant(
+						gameplay::progression::legacy::ServerLegacyPlayerExperienceAdapter(),
+						gameplay::progression::PlayerExperienceGrantRequest(
+							gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPartyPlayers[cnt]),
+							static_cast<gameplay::progression::PlayerExperienceAmount>(PlayerEXP),
+							gameplay::EntityId(static_cast<std::uint32_t>(lpChar->dwObjectSerial)), true,
+							gameplay::progression::PlayerExperienceSource::MonsterParty));
 				}
 			}
 		}

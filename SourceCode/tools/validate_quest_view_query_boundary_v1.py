@@ -16,7 +16,7 @@ checks=[
  ('handler delegates quest detail', 'ServerLegacyQuestViewQuery().TryGetDetail' in body),
  ('handler no direct quest db', 'SQLConnection' not in body and 'db->Prepare' not in body),
  ('handler preserves quest info packet', 'OPCODE_QUEST_INFO' in body and 'smTRANS_QUEST_FULL' in body and 'QUEST_FULL_ENTRY_MAX' in body),
- ('handler preserves TCoin reward grant', 'reward.tCoin' in handler and 'cCoinShop_T.AddPlayerCoin' in handler),
+ ('handler routes TCoin reward through wallet authority', 'reward.tCoin' in handler and 'ServerLegacyTimeCreditWalletAdapter().CreditCoins' in handler and 'CoinReason::QuestReward' in handler),
  ('handler resolves reward names through item catalog', 'ServerLegacyItemCatalogAdapter().TryGetDefinitionByContentKey' in body and 'itemDefinition.displayName' in body),
  ('handler has no direct legacy item tables', 'sItem[' not in body and 'DefaultItems[' not in body and 'sinItem.h' not in handler),
 ]

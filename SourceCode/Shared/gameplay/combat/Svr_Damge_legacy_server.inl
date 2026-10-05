@@ -34,6 +34,8 @@
 #include "systems/gameplay/events/hells_gate/cHellsGate.h"
 #include "systems/gameplay/world/v2/legacy/LegacyInteractionAdapter.h"
 #include "systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h"
+#include "systems/gameplay/monsters/v2/legacy/LegacyMonsterAdapter.h"
+#include "systems/gameplay/combat/v2/legacy/LegacyTargetingAdapter.h"
 #include "systems/progression/class_rank/Rank.h"
 #include "systems/gameplay/quests/v2/legacy/LegacyQuestStateQuery.h"
 #include "systems/network/v2/legacy/LegacyPacketSender.h"
@@ -2642,7 +2644,8 @@ int RecvRangeAttack(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAt
 										lpChar->SetMotionFromCode(CHRMOTION_STATE_DAMAGE);
 									}
 								}
-								lpChar->lpTargetPlayInfo = 0;
+								(void)gameplay::combat::legacy::ServerLegacyTargetingAdapter().ClearPlayerTarget(
+									gameplay::EntityId(static_cast<std::uint32_t>(lpChar->dwObjectSerial)));
 								lpChar->dwNextMotionCode = CHRMOTION_STATE_STAND;
 							}
 						}
@@ -4082,34 +4085,26 @@ int rsSetSkillAttack(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, TRANS_ATTACKDATA *l
 			}
 			if((rand() % 100) < pow)
 			{
-				lpChar->lpMasterPlayInfo = lpPlayInfo;
-				lpChar->smMonsterInfo.dwAutoCharCode = 0;
-				lpChar->smCharInfo.bUpdateInfo[0]++;
-				lpChar->PlayHolyIncantation[0] = (short)lpChar->smCharInfo.Brood;
-				lpChar->PlayHolyIncantation[1] = H_Incantation_Time[Point] * 17;
+				const gameplay::monsters::FollowerConversionResult conversion =
+					gameplay::monsters::legacy::ServerLegacyMonsterAdapter().ConvertToFollower(
+						gameplay::monsters::FollowerConversionRequest(
+							gameplay::EntityId(static_cast<std::uint32_t>(lpChar->dwObjectSerial)),
+							gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo),
+							H_Incantation_Time[Point] * 17,
+							H_Incantation_AddLife[Point]));
+				if(conversion.Ok())
+				{
+					// Model-name mirroring and the legacy command are presentation/network side effects;
+					// follower ownership, lifecycle, targets and combat state are owned by IMonsterCommands.
+					strcpy_s(lpChar->smCharInfo.szModelName2 + 1, sizeof(lpChar->smCharInfo.szModelName2) - 1, lpPlayInfo->smCharInfo.szName);
 
-
-
-
-
-
-				lpChar->smCharInfo.Life[0] = lpChar->smCharInfo.Life[1] = (lpChar->smCharInfo.Life[0] * H_Incantation_AddLife[Point]) / 100;
-
-
-
-				lpChar->smCharInfo.Next_Exp = lpPlayInfo->dwObjectSerial;
-				lpChar->smCharInfo.Brood = smCHAR_MONSTER_USER;
-				strcpy_s(lpChar->smCharInfo.szModelName2 + 1, sizeof(lpChar->smCharInfo.szModelName2) - 1, lpPlayInfo->smCharInfo.szName);
-				lpChar->lpTargetChar = 0;
-				lpChar->lpTargetPlayInfo = 0;
-
-
-				ZeroMemory(&TransCommandEx, sizeof(smTRANS_COMMAND_EX));
-				TransCommandEx.WParam = smCOMMNAD_USER_HOLY_INCANTATION;
-				TransCommandEx.LParam = lpChar->dwObjectSerial;
-				TransCommandEx.SParam = H_Incantation_Time[Point];
-				TransCommandEx.EParam = 0;
-				rsSendCommandUser(lpPlayInfo, &TransCommandEx);
+					ZeroMemory(&TransCommandEx, sizeof(smTRANS_COMMAND_EX));
+					TransCommandEx.WParam = smCOMMNAD_USER_HOLY_INCANTATION;
+					TransCommandEx.LParam = lpChar->dwObjectSerial;
+					TransCommandEx.SParam = H_Incantation_Time[Point];
+					TransCommandEx.EParam = 0;
+					rsSendCommandUser(lpPlayInfo, &TransCommandEx);
+				}
 			}
 		}
 		return FALSE;

@@ -2,6 +2,8 @@
 
 #include "network/v2/ClientCommandSender.h"
 
+class smWINSOCK;
+
 namespace gameplay
 {
 namespace network
@@ -13,6 +15,7 @@ class LegacyClientCommandSender final : public IClientCommandSender
 public:
     bool Available() const override;
     SendResult Send(const PacketView& packet) override;
+    SendResult SendToLegacySocket(smWINSOCK* socket, const PacketView& packet);
 };
 
 LegacyClientCommandSender& ClientLegacyCommandSender();

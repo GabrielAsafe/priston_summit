@@ -38,6 +38,8 @@ int LegacyWhere(WalletReason reason)
         case WalletReason::GiveMoney: return WHERE_GIVE_MONEY;
         case WalletReason::PersonalShop: return WHERE_PERSONAL_SHOP;
         case WalletReason::Warehouse: return WHERE_OPEN_WAREHOUES;
+        case WalletReason::LoadPlayer: return WHERE_LOAD_PLAYER;
+        case WalletReason::NpcShopCompatibility: return WHERE_BUY_ITEM;
     }
     return WHERE_GIVE_MONEY;
 }
@@ -129,6 +131,35 @@ WalletMutationResult LegacyWalletAdapter::Debit(PlayerId player, CurrencyAmount 
     const int accepted = legacyPlayer->SubServerMoney(static_cast<int>(amount), LegacyWhere(reason));
     result.after = static_cast<CurrencyAmount>(legacyPlayer->ServerMoney);
     result.code = accepted && result.after == before - amount
+                      ? WalletMutationCode::Ok
+                      : WalletMutationCode::LegacyRejected;
+    return result;
+}
+
+WalletMutationResult LegacyWalletAdapter::SetBalance(PlayerId player, CurrencyAmount amount, WalletReason reason)
+{
+    rsPLAYINFO* legacyPlayer = registry_.Resolve(player);
+    if(!legacyPlayer)
+    {
+        WalletMutationResult result;
+        result.player = player;
+        result.requested = amount;
+        result.code = WalletMutationCode::PlayerNotFound;
+        return result;
+    }
+
+    const CurrencyAmount before = static_cast<CurrencyAmount>(legacyPlayer->ServerMoney);
+    WalletMutationResult result = BaseResult(player, amount, before);
+    if(amount < 0 || amount > kLegacyWalletMax ||
+       amount > static_cast<CurrencyAmount>(std::numeric_limits<int>::max()))
+    {
+        result.code = WalletMutationCode::InvalidAmount;
+        return result;
+    }
+
+    const int accepted = legacyPlayer->SetServerMoney(static_cast<int>(amount), LegacyWhere(reason));
+    result.after = static_cast<CurrencyAmount>(legacyPlayer->ServerMoney);
+    result.code = accepted && result.after == amount
                       ? WalletMutationCode::Ok
                       : WalletMutationCode::LegacyRejected;
     return result;

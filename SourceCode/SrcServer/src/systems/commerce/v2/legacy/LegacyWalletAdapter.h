@@ -17,6 +17,8 @@ public:
     bool TryGetWallet(PlayerId player, WalletSnapshot& out) const override;
     WalletMutationResult Credit(PlayerId player, CurrencyAmount amount, WalletReason reason) override;
     WalletMutationResult Debit(PlayerId player, CurrencyAmount amount, WalletReason reason) override;
+    // Hydration/compatibility boundary only. Gameplay code should prefer Credit/Debit.
+    WalletMutationResult SetBalance(PlayerId player, CurrencyAmount amount, WalletReason reason);
 
 private:
     const player::legacy::LegacyOnlinePlayerRegistry& registry_;

@@ -38,6 +38,12 @@ public:
     virtual LifeCommandResult Restore(PlayerId target, int amount) = 0;
     virtual LifeCommandResult ConsumeNonLethal(EntityId target, int amount) = 0;
     virtual LifeCommandResult ConsumeLethal(EntityId target, int amount) = 0;
+    // Sets current life to zero without changing motion/lifecycle. This is for
+    // legacy effects whose caller still owns the subsequent death/recovery branch.
+    virtual LifeCommandResult Deplete(EntityId target) = 0;
+    virtual LifeCommandResult EnsureMinimum(EntityId target, int minimumLife) = 0;
+    virtual LifeCommandResult ClampToValidRange(EntityId target) = 0;
+    virtual LifeCommandResult RestoreToMaximum(EntityId target) = 0;
     virtual LifeCommandResult Revive(EntityId target, int percentOfMaximum) = 0;
 };
 }

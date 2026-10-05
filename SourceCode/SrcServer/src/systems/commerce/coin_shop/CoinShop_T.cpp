@@ -3,6 +3,7 @@
 #include "systems/commerce/coin_shop/CoinShop_T.h"
 #include "content/v1/commerce/coin_shop/content/CoinShopRuntime.h"
 #include "systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h"
+#include "systems/inventory/v2/legacy/LegacyInventoryRuntime.h"
 #include "systems/network/v2/legacy/LegacyPacketSender.h"
 #include "gameplay/commerce/v2/PremiumPurchaseTransactionService.h"
 #include "gameplay/commerce/v2/PremiumPurchaseReplayGuard.h"
@@ -168,7 +169,6 @@ struct psITEM
 
 int	rsRegist_ItemSecCode(rsPLAYINFO* lpPlayInfo, TRANS_ITEMINFO* lpTransItemInfo, int NewItem);
 int CreateItem(psITEM* lpsItem, char* dwCode, int JobCode);
-int	rsAddInvenItem(rsPLAYINFO* lpPlayInfo, DWORD dwCode, DWORD dwHead, DWORD dwChkSum);
 
 void cCOINSHOP_T::RecvGetItemShop(rsPLAYINFO* lpPlayInfo, smTRANS_COMMAND * lpTransCommand)
 {
@@ -298,7 +298,15 @@ public:
 		packet.size = sizeof(TRANS_ITEMINFO);
 		memcpy(&packet.Item, &item.ItemInfo, sizeof(sITEMINFO));
 		rsRegist_ItemSecCode(player, &packet, 1);
-		rsAddInvenItem(player, packet.Item.CODE, packet.Item.ItemHeader.Head, packet.Item.ItemHeader.dwChkSum);
+		const gameplay::inventory::InventoryMutationResult inventoryResult =
+			gameplay::inventory::legacy::ServerLegacyInventoryRuntime().Add(
+				request.player,
+				gameplay::inventory::ItemInstanceId(
+					gameplay::ItemId(static_cast<std::uint32_t>(packet.Item.CODE)),
+					static_cast<std::uint32_t>(packet.Item.ItemHeader.Head),
+					static_cast<std::uint32_t>(packet.Item.ItemHeader.dwChkSum)));
+		if(inventoryResult.code != gameplay::inventory::InventoryMutationCode::Applied)
+			return false;
 		if(player->lpsmSock)
 			(void)SummitCoinShopTSend(player, &packet, packet.size);
 		return true;

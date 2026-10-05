@@ -11,7 +11,8 @@ checks = [
     ('restore item identity preserved', 'smTransCommand.WParam = Item->psItem.sItemInfo.ItemHeader.Head' in client and 'smTransCommand.LParam = Item->psItem.sItemInfo.ItemHeader.dwChkSum' in client),
     ('both restoration commands route through sender', client.count('ClientLegacyCommandSender().Send') == 2 and client.count('PacketView(&smTransCommand, smTransCommand.size') == 2),
     ('restoration ui has no direct socket send', 'smWsockServer->Send' not in client),
-    ('amber sender preserves important send semantics', 'smWsockServer->Send' in sender and 'static_cast<int>(packet.size), TRUE' in sender),
+    ('amber sender preserves primary socket delegation', 'return SendToLegacySocket(smWsockServer, packet);' in sender),
+    ('amber sender preserves important send semantics', 'socket->Send(' in sender and 'static_cast<int>(packet.size), TRUE' in sender),
 ]
 failed = [name for name, ok in checks if not ok]
 for name, ok in checks:

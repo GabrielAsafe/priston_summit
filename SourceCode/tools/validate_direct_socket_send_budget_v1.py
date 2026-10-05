@@ -70,10 +70,30 @@ expected_amber = {
 if set(amber) != expected_amber:
     failures.append('AMBER direct socket ownership set changed without validator review')
 
+kernel = sorted(rel for rel, entry in baseline_files.items() if entry.get('role') == 'KERNEL')
+expected_kernel = {'Shared/network/transport/legacy/SmWSockPacketSendQueueLegacyCommon.inl'}
+if set(kernel) != expected_kernel:
+    failures.append('legacy transport KERNEL ownership set changed without validator review')
+
+inactive = sorted(rel for rel, entry in baseline_files.items() if entry.get('role') == 'INACTIVE_TEMPLATE')
+expected_inactive = {
+    'Shared/gameplay/combat/LegacyDamageCommon.inl',
+    'Shared/gameplay/combat/LegacyDamagePacket.inl',
+    'Shared/gameplay/combat/LegacyDamagePolicy.inl',
+    'Shared/gameplay/skills/LegacySkillSubCommon.inl',
+}
+if set(inactive) != expected_inactive:
+    failures.append('inactive legacy template ownership set changed without validator review')
+
+oracle = sorted(rel for rel, entry in baseline_files.items() if entry.get('role') == 'ORACLE')
+expected_oracle = {rel for rel in baseline_files if 'legacy_oracle/' in rel}
+if set(oracle) != expected_oracle:
+    failures.append('legacy oracle ownership classification drifted')
+
 if failures:
     for failure in failures:
         print('FAIL: ' + failure, file=sys.stderr)
     sys.exit(1)
 
 red_files = sum(1 for entry in baseline_files.values() if entry.get('role') == 'RED')
-print(f'direct socket send budget v1: PASS (tracked_files={len(baseline_files)}, red_files={red_files}, amber_files={len(amber)}, reductions={reductions})')
+print(f'direct socket send budget v1: PASS (tracked_files={len(baseline_files)}, red_files={red_files}, amber_files={len(amber)}, kernel_files={len(kernel)}, inactive_templates={len(inactive)}, oracle_files={len(oracle)}, reductions={reductions})')

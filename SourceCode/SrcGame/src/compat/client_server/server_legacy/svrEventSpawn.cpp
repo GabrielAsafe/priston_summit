@@ -11,6 +11,7 @@
 
 #include "platform/windows/resources/resource.h"
 #include "systems/network/transport/legacy/smwsock.h"
+#include "systems/network/v2/legacy/LegacyClientCommandSender.h"
 
 #include "systems/rendering/legacy_3d/smd3d.h"
 #include "systems/gameplay/character/core/character.h"
@@ -38,6 +39,16 @@
 #include "compat/client_server/server_legacy/svrEventSpawn.h"
 
 #include "systems/gameplay/events/bellatra/ui/BellatraFontEffect.h"
+
+namespace
+{
+inline bool SummitClientEventSpawnSocketSend(smWINSOCK* socket, const void* data, int size)
+{
+	if(!socket || !data || size <= 0) return false;
+	return gameplay::network::legacy::ClientLegacyCommandSender().SendToLegacySocket(
+		socket, gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded();
+}
+}
 
 
 
@@ -277,7 +288,7 @@ int	rsEVENT_SPAWN::Event_KillMonster(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar)
 		TransChatMessage.dwObjectSerial = 0;
 		wsprintf(TransChatMessage.szMessage, ">Condition[%d] EventPlayTime[%d] BossTime[%d]", EventCondition, (dwEventPlayTime - dwPlayServTime) / 1000, (dwBossTime - dwPlayServTime) / 1000);
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SummitClientEventSpawnSocketSend(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 	}
 
 	return TRUE;
@@ -304,7 +315,7 @@ int rsEVENT_SPAWN::OpenUserEffect(int FontEffectType, int x, int z, int range)
 			dist = rx*rx + rz*rz;
 			if(dist < drange && rx < range && rz < range)
 			{
-				rsPlayInfo[cnt].lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+				SummitClientEventSpawnSocketSend(rsPlayInfo[cnt].lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 			}
 		}
 	}
@@ -432,14 +443,14 @@ int rsEVENT_SPAWN::Order(rsPLAYINFO *lpPlayInfo, char *szText)
 
 						wsprintf(TransChatMessage.szMessage, szEventSpawn_Order42[cnt][2]);
 						TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
-						lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+						SummitClientEventSpawnSocketSend(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 					}
 					else
 					{
 
 						wsprintf(TransChatMessage.szMessage, szEventSpawn_Order42[cnt][1]);
 						TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
-						lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+						SummitClientEventSpawnSocketSend(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 					}
 				}
 			}

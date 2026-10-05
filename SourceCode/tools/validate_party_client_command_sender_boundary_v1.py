@@ -17,7 +17,7 @@ checks = [
     ('client preserves menu action payload', 'smTransCommand.LParam = opt->ButtonNum' in client and 'smTransCommand.SParam = 0' in client),
     ('client routes party command through sender', 'ClientLegacyCommandSender().Send' in client and 'PacketView(&smTransCommand, smTransCommand.size' in client),
     ('party ui has no direct gameplay socket send', 'smWsockServer->Send' not in client),
-    ('amber sender owns socket send', 'smWsockServer->Send' in sender and 'static_cast<int>(packet.size), TRUE' in sender),
+    ('amber sender owns socket send', 'LegacyClientCommandSender::SendToLegacySocket' in sender and 'socket->Send' in sender and 'static_cast<int>(packet.size), TRUE' in sender),
     ('server command boundary remains modern', all(token in contract for token in ('TransferLeadership', 'Release(PlayerId requester)', 'Kick(PlayerId requester, PlayerId target)', 'Leave(PlayerId requester)'))),
     ('server preserves action dispatch', all(token in server_body for token in ('partyCommands.TransferLeadership', 'partyCommands.Release', 'partyCommands.Kick', 'partyCommands.Leave'))),
 ]

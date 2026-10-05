@@ -106,7 +106,8 @@ StatusEffectResult LegacyStatusEffectAdapter::ApplySlow(EntityId target, const S
     smCHAR* resolved = ResolveTarget(target, failure);
     if(!resolved)
         return failure;
-    resolved->PlaySlowCount = effect.durationTicks;
+    resolved->PlaySlowCount =
+        effect.timerMode == SlowTimerMode::CountUpFromNegative ? -effect.durationTicks : effect.durationTicks;
     resolved->PlaySlowSpeed = effect.moveSpeed;
     resolved->PlayDistortion = effect.distortionTicks;
     if(effect.clearStun)

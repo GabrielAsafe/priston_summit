@@ -17,6 +17,7 @@
 #include "systems/social/party/v2/legacy/LegacyPartyQueryAdapter.h"
 #include "systems/gameplay/companions/v2/legacy/LegacyCompanionQueryAdapter.h"
 #include "systems/gameplay/combat/v2/legacy/LegacyThreatService.h"
+#include "systems/gameplay/combat/v2/legacy/LegacyLifeAdapter.h"
 #include "systems/network/v2/legacy/LegacyPacketSender.h"
 #include "opcodes.h"
 
@@ -2385,10 +2386,11 @@ void KillEntity(CompanionSlot &slot)
 
     if(slot.entity && slot.entity->Flag && slot.entity->smCharInfo.Life[0] > 0)
     {
-        slot.entity->smCharInfo.Life[0] = 0;
-        const int changed = slot.entity->SetMotionFromCode(CHRMOTION_STATE_DEAD);
-        CompanionDebugLog("KILL_ENTITY_DEAD name='%s' serial=%lu setMotion=%d motion=%d frame=%d",
-            slot.characterName, (unsigned long)slot.entity->dwObjectSerial, changed,
+        const combat::LifeCommandResult killed = combat::legacy::ServerLegacyLifeAdapter().ConsumeLethal(
+            EntityId(static_cast<std::uint32_t>(slot.entity->dwObjectSerial)),
+            slot.entity->smCharInfo.Life[0]);
+        CompanionDebugLog("KILL_ENTITY_DEAD name='%s' serial=%lu lifeResult=%d motion=%d frame=%d",
+            slot.characterName, (unsigned long)slot.entity->dwObjectSerial, static_cast<int>(killed.code),
             slot.entity->MotionInfo ? (int)slot.entity->MotionInfo->State : -1, slot.entity->frame);
     }
     if(slot.entity)

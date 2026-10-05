@@ -8,6 +8,16 @@
 #include "systems/ui/settings/legacy_window/cSettingsWindow.h"
 #include "systems/ui/v2/legacy/LegacyUIV2Bridge.h"
 
+namespace
+{
+inline bool SummitInterfaceClientSocketSend(smWINSOCK* socket, const void* data, int size)
+{
+	if(!socket || !data || size <= 0) return false;
+	return gameplay::network::legacy::ClientLegacyCommandSender().SendToLegacySocket(
+		socket, gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded();
+}
+}
+
 cINTERFACE	cInterFace;
 sSHADOWSTATE sShadowState[3];
 
@@ -3134,7 +3144,7 @@ void cINTERFACE::CheckAllBox(int ButtonFlag)
 				lpsmSock = GetAreaServerSock();
 				if(lpsmSock)
 				{
-					lpsmSock->Send((char*)&TransCommand, TransCommand.size, TRUE);
+					SummitInterfaceClientSocketSend(lpsmSock, (char*)&TransCommand, TransCommand.size);
 				}
 			}
 		}

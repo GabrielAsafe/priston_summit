@@ -79,10 +79,16 @@ static FILE *SummitServerRuntimeTraceFile(const char *path)
 #include "systems/commerce/v2/legacy/LegacyTradeAdapter.h"
 #include "systems/commerce/v2/legacy/LegacyShopAdapter.h"
 #include "systems/commerce/v2/legacy/LegacyPersonalShopAdapter.h"
+#include "systems/commerce/v2/legacy/LegacyWalletAdapter.h"
+#include "systems/commerce/v2/legacy/LegacyCoinWalletAdapter.h"
+#include "systems/commerce/v2/legacy/LegacyTimeCreditWalletAdapter.h"
 #include "systems/commerce/v2/legacy/LegacyCraftingAdapter.h"
 #include "systems/commerce/v2/legacy/LegacyAgingAdapter.h"
 #include "systems/commerce/v2/legacy/LegacyMixingAdapter.h"
 #include "systems/community/chat/v2/legacy/LegacyChatDeliveryAdapter.h"
+#include "systems/gameplay/combat/v2/legacy/LegacyLifeAdapter.h"
+#include "systems/gameplay/combat/v2/legacy/LegacyTargetingAdapter.h"
+#include "systems/gameplay/combat/v2/legacy/LegacyStatusEffectAdapter.h"
 
 #include "systems/combat/skills/legacy/sinSkill_InfoIni.h"
 #include "systems/rendering/legacy_3d/smd3d.h"
@@ -110,10 +116,149 @@ static FILE *SummitServerRuntimeTraceFile(const char *path)
 
 #include "core/server/legacy_runtime/ClientFuncPos.h"
 
+static gameplay::PlayerId SummitOnServerPlayerId(rsPLAYINFO* player)
+{
+	return gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(player);
+}
+
+static int SummitOnServerCoinBalance(rsPLAYINFO* player)
+{
+	gameplay::commerce::CoinWalletSnapshot wallet;
+	if(!gameplay::commerce::legacy::ServerLegacyCoinWalletAdapter().TryGetCoinWallet(
+		SummitOnServerPlayerId(player), wallet))
+		return -1;
+	return static_cast<int>(wallet.coins);
+}
+
+static int SummitOnServerTimeCoinBalance(rsPLAYINFO* player)
+{
+	gameplay::commerce::CoinWalletSnapshot wallet;
+	if(!gameplay::commerce::legacy::ServerLegacyTimeCreditWalletAdapter().TryGetCoinWallet(
+		SummitOnServerPlayerId(player), wallet))
+		return -1;
+	return static_cast<int>(wallet.coins);
+}
+
+static bool SummitOnServerCreditCoins(rsPLAYINFO* player, int amount, gameplay::commerce::CoinReason reason)
+{
+	if(amount == 0)
+		return true;
+	return gameplay::commerce::legacy::ServerLegacyCoinWalletAdapter().CreditCoins(
+		SummitOnServerPlayerId(player), amount, reason).Ok();
+}
+
+static bool SummitOnServerDebitCoins(rsPLAYINFO* player, int amount, gameplay::commerce::CoinReason reason)
+{
+	if(amount == 0)
+		return true;
+	return gameplay::commerce::legacy::ServerLegacyCoinWalletAdapter().DebitCoins(
+		SummitOnServerPlayerId(player), amount, reason).Ok();
+}
+
+static bool SummitOnServerCreditTimeCoins(rsPLAYINFO* player, int amount, gameplay::commerce::CoinReason reason)
+{
+	if(amount == 0)
+		return true;
+	return gameplay::commerce::legacy::ServerLegacyTimeCreditWalletAdapter().CreditCoins(
+		SummitOnServerPlayerId(player), amount, reason).Ok();
+}
+
 #include "core/server/legacy_runtime/onserver.h"
 #include "systems/gameplay/progression/v2/ProgressionRuntime.h"
+#include "systems/gameplay/progression/v2/legacy/LegacyPlayerExperienceAdapter.h"
 #include "systems/network/v2/legacy/LegacyGameplayPacketRouter.h"
 #include "systems/network/v2/legacy/LegacyPacketSender.h"
+
+namespace
+{
+int SendOnServerLegacySocket(smWINSOCK* socket, const void* data, int size)
+{
+	return gameplay::network::legacy::ServerLegacyPacketSender().SendToLegacySocket(
+		socket, gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded() ? TRUE : FALSE;
+}
+
+gameplay::inventory::InventoryMutationResult SummitOnServerInventoryAdd(
+	rsPLAYINFO* player, DWORD code, DWORD key, DWORD checksum)
+{
+	const gameplay::PlayerId playerId =
+		gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(player);
+	return gameplay::inventory::legacy::ServerLegacyInventoryRuntime().Add(
+		playerId, gameplay::inventory::ItemInstanceId(
+			gameplay::ItemId(static_cast<std::uint32_t>(code)),
+			static_cast<std::uint32_t>(key),
+			static_cast<std::uint32_t>(checksum)));
+}
+
+gameplay::inventory::InventoryMutationResult SummitOnServerInventoryRemove(
+	rsPLAYINFO* player, DWORD code, DWORD key, DWORD checksum)
+{
+	const gameplay::PlayerId playerId =
+		gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(player);
+	return gameplay::inventory::legacy::ServerLegacyInventoryRuntime().Remove(
+		playerId, gameplay::inventory::ItemInstanceId(
+			gameplay::ItemId(static_cast<std::uint32_t>(code)),
+			static_cast<std::uint32_t>(key),
+			static_cast<std::uint32_t>(checksum)));
+}
+
+inline gameplay::PlayerId SummitOnServerPlayerId(rsPLAYINFO* player)
+{
+	return gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(player);
+}
+
+inline bool SummitOnServerClearPartyMembership(rsPLAYINFO* player)
+{
+	return gameplay::social::party::legacy::ServerLegacyPartyCommandsAdapter().ClearMembership(
+		SummitOnServerPlayerId(player));
+}
+
+inline gameplay::social::clan::ClanMembershipSnapshot SummitOnServerClanMembership(rsPLAYINFO* player)
+{
+	gameplay::social::clan::ClanMembershipSnapshot snapshot;
+	gameplay::social::clan::legacy::ServerLegacyClanQueryAdapter().TryGetMembership(
+		SummitOnServerPlayerId(player), snapshot);
+	return snapshot;
+}
+
+inline std::uint32_t SummitOnServerClanCode(rsPLAYINFO* player)
+{
+	return SummitOnServerClanMembership(player).clan.value;
+}
+
+inline std::int32_t SummitOnServerClanMark(rsPLAYINFO* player)
+{
+	return SummitOnServerClanMembership(player).mark;
+}
+
+inline bool SummitOnServerSynchronizeClanMark(rsPLAYINFO* player, std::int32_t mark)
+{
+	return gameplay::social::clan::ClanMembershipService::SynchronizeMark(
+		gameplay::social::clan::legacy::ServerLegacyClanMembershipAdapter(),
+		gameplay::social::clan::ClanMembershipMutationRequest(SummitOnServerPlayerId(player), mark)).Applied();
+}
+
+inline gameplay::commerce::WalletMutationResult SummitOnServerWalletCredit(
+	rsPLAYINFO* player, gameplay::commerce::CurrencyAmount amount, gameplay::commerce::WalletReason reason)
+{
+	return gameplay::commerce::legacy::ServerLegacyWalletAdapter().Credit(
+		SummitOnServerPlayerId(player), amount, reason);
+}
+
+inline gameplay::commerce::WalletMutationResult SummitOnServerWalletDebit(
+	rsPLAYINFO* player, gameplay::commerce::CurrencyAmount amount, gameplay::commerce::WalletReason reason)
+{
+	return gameplay::commerce::legacy::ServerLegacyWalletAdapter().Debit(
+		SummitOnServerPlayerId(player), amount, reason);
+}
+
+inline gameplay::commerce::WalletMutationResult SummitOnServerWalletSet(
+	rsPLAYINFO* player, gameplay::commerce::CurrencyAmount amount, gameplay::commerce::WalletReason reason)
+{
+	return gameplay::commerce::legacy::ServerLegacyWalletAdapter().SetBalance(
+		SummitOnServerPlayerId(player), amount, reason);
+}
+}
+
 #include "systems/combat/server_legacy/svr_Damage.h"
 #include "systems/combat/server_legacy/CRollHandler.h"
 
@@ -150,9 +295,11 @@ static FILE *SummitServerRuntimeTraceFile(const char *path)
 #include "systems/gameplay/companions/v2/legacy/LegacyCompanionCommandsAdapter.h"
 #include "systems/gameplay/companions/v2/legacy/LegacyCompanionLifecycleAdapter.h"
 #include "systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h"
+#include "systems/inventory/v2/legacy/LegacyInventoryRuntime.h"
 #include "systems/gameplay/pets/v2/legacy/LegacyPetRuntimeAdapter.h"
 #include "systems/social/clan/v2/legacy/LegacyClanChatAdapter.h"
 #include "systems/social/clan/v2/legacy/LegacyClanQueryAdapter.h"
+#include "systems/social/clan/v2/legacy/LegacyClanMembershipAdapter.h"
 #include "systems/social/clan/v2/legacy/LegacyClanUpdateNotifier.h"
 #include "systems/social/party/v2/legacy/LegacyPartyCommandsAdapter.h"
 #include "systems/social/party/v2/legacy/LegacyPartyRelayRuntime.h"
@@ -1864,7 +2011,7 @@ int AgingEventoGlobalOn() {
 		smTransCommand.EParam = 0;
 		for (int cnt = 0; cnt < CONNECTMAX; cnt++) {
 			if (rsPlayInfo[cnt].lpsmSock && (rsPlayInfo[cnt].getAccount() && rsPlayInfo[cnt].getAccount()[0])) {
-				rsPlayInfo[cnt].lpsmSock->Send((char*)& smTransCommand, smTransCommand.size, TRUE);
+				SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char*)& smTransCommand, smTransCommand.size);
 			}
 		}
 		wsprintf(TransChatMessage.szMessage, "Alerta> Evento Aging Free Ativado!");
@@ -1877,7 +2024,7 @@ int AgingEventoGlobalOn() {
 		{
 			if (rsPlayInfo[cnt].lpsmSock)
 			{
-				rsPlayInfo[cnt].lpsmSock->Send((char*)& TransChatMessage, TransChatMessage.size, TRUE);
+				SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char*)& TransChatMessage, TransChatMessage.size);
 			}
 		}
 
@@ -1890,7 +2037,7 @@ int AgingEventoGlobalOn() {
 		smTransCommand.EParam = 0;
 		for (int cnt = 0; cnt < CONNECTMAX; cnt++) {
 			if (rsPlayInfo[cnt].lpsmSock && (rsPlayInfo[cnt].getAccount() && rsPlayInfo[cnt].getAccount()[0])) {
-				rsPlayInfo[cnt].lpsmSock->Send((char*)& smTransCommand, smTransCommand.size, TRUE);
+				SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char*)& smTransCommand, smTransCommand.size);
 			}
 		}
 
@@ -1904,7 +2051,7 @@ int AgingEventoGlobalOn() {
 		{
 			if (rsPlayInfo[cnt].lpsmSock)
 			{
-				rsPlayInfo[cnt].lpsmSock->Send((char*)& TransChatMessage, TransChatMessage.size, TRUE);
+				SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char*)& TransChatMessage, TransChatMessage.size);
 
 			}
 		}
@@ -2619,7 +2766,7 @@ int SendToAll(char* Buff, int Size)
 	{
 		if (rsPlayInfo[cnt].lpsmSock)
 		{
-			rsPlayInfo[cnt].lpsmSock->Send(Buff, Size, TRUE);
+			SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, Buff, Size);
 		}
 	}
 
@@ -4196,8 +4343,9 @@ static void KillT5ArenaUnits(T5_ARENA_STATE& state, bool bIncludeTower)
 		lpChar->smMonsterInfo.FallItemCount = 0;
 		if(lpChar->smCharInfo.Life[0] > 0)
 		{
-			lpChar->smCharInfo.Life[0] = 0;
-			lpChar->SetMotionFromCode(CHRMOTION_STATE_DEAD);
+			(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().ConsumeLethal(
+				gameplay::EntityId(static_cast<std::uint32_t>(lpChar->dwObjectSerial)),
+				lpChar->smCharInfo.Life[0]);
 		}
 	}
 
@@ -4225,7 +4373,7 @@ static void SendT5ArenaWarp(rsPLAYINFO* lpPlayInfo, int iField, int x, int z)
 	packet.WParam = iField;
 	packet.SParam = x * fONE;
 	packet.LParam = z * fONE;
-	lpPlayInfo->lpsmSock->Send((char*)&packet, packet.size, TRUE);
+	SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&packet, packet.size);
 }
 
 static void WarpT5ArenaExit(rsPLAYINFO* lpPlayInfo)
@@ -4324,8 +4472,9 @@ static bool SpawnT5ArenaWave(rsPLAYINFO* lpPlayInfo, T5_ARENA_STATE& state)
 		if(!TrackT5ArenaUnit(state, lpHopy))
 		{
 			lpHopy->smMonsterInfo.FallItemCount = 0;
-			lpHopy->smCharInfo.Life[0] = 0;
-			lpHopy->SetMotionFromCode(CHRMOTION_STATE_DEAD);
+			(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().ConsumeLethal(
+				gameplay::EntityId(static_cast<std::uint32_t>(lpHopy->dwObjectSerial)),
+				lpHopy->smCharInfo.Life[0]);
 			continue;
 		}
 
@@ -4935,8 +5084,9 @@ int	OpenMonsterFromCristal(DWORD dwItemCode, int x, int y, int z, rsPLAYINFO* lp
 		if (lpStgArea->lpField->State == FIELD_STATE_VILLAGE) return FALSE;
 		if (CodeCount >= srCRISTAL_CASTLE_START && CodeCount < srCRISTAL_CASTLE_END)
 		{
+			const std::uint32_t playerClanCode = SummitOnServerClanCode(lpPlayInfo);
 
-			if (!rsBlessCastle.CastleMode || !lpPlayInfo->dwClanCode || lpPlayInfo->dwClanCode != rsBlessCastle.dwMasterClan || lpPlayInfo->Position.Area != rsCASTLE_FIELD)
+			if (!rsBlessCastle.CastleMode || !playerClanCode || playerClanCode != rsBlessCastle.dwMasterClan || lpPlayInfo->Position.Area != rsCASTLE_FIELD)
 			{
 
 				TransChatMessage.code = OpCode::OPCODE_MESSAGEBOX;
@@ -4945,7 +5095,7 @@ int	OpenMonsterFromCristal(DWORD dwItemCode, int x, int y, int z, rsPLAYINFO* lp
 				strcpy_s(TransChatMessage.szMessage, srMsg_202);
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 
-				lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 				return -1;
 			}
 
@@ -4956,7 +5106,7 @@ int	OpenMonsterFromCristal(DWORD dwItemCode, int x, int y, int z, rsPLAYINFO* lp
 			BlessSolderCnt[2] = 0;
 			for (cnt = 0; cnt < STG_MONSTER_MAX; cnt++)
 			{
-				if (lpStgArea->lpCharMonster[cnt] && lpStgArea->lpCharMonster[cnt]->dwClanCode == lpPlayInfo->dwClanCode)
+				if (lpStgArea->lpCharMonster[cnt] && lpStgArea->lpCharMonster[cnt]->dwClanCode == playerClanCode)
 				{
 					if (lpStgArea->lpCharMonster[cnt]->smCharInfo.Life[0] > 0 && lpStgArea->lpCharMonster[cnt]->smCharInfo.Next_Exp)
 					{
@@ -5005,7 +5155,7 @@ int	OpenMonsterFromCristal(DWORD dwItemCode, int x, int y, int z, rsPLAYINFO* lp
 				strcpy_s(TransChatMessage.szMessage, srMsg_200);
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 
-				lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 				return -1;
 			}
 
@@ -5014,12 +5164,13 @@ int	OpenMonsterFromCristal(DWORD dwItemCode, int x, int y, int z, rsPLAYINFO* lp
 
 		if (CodeCount == srCRISTAL_CLAN)
 		{
-			if (!lpPlayInfo->smCharInfo.ClassClan) return FALSE;
+			const std::int32_t playerClanMark = SummitOnServerClanMark(lpPlayInfo);
+			if (!playerClanMark) return FALSE;
 			ClanCnt = 0;
 			MyMonFlag = 0;
 			for (cnt = 0; cnt < STG_MONSTER_MAX; cnt++)
 			{
-				if (lpStgArea->lpCharMonster[cnt] && lpStgArea->lpCharMonster[cnt]->smCharInfo.ClassClan == lpPlayInfo->smCharInfo.ClassClan)
+				if (lpStgArea->lpCharMonster[cnt] && lpStgArea->lpCharMonster[cnt]->smCharInfo.ClassClan == playerClanMark)
 				{
 					sx = (lpPlayInfo->Position.x - lpStgArea->lpCharMonster[cnt]->pX) >> FLOATNS;
 					sy = (lpPlayInfo->Position.y - lpStgArea->lpCharMonster[cnt]->pY) >> FLOATNS;
@@ -5039,7 +5190,7 @@ int	OpenMonsterFromCristal(DWORD dwItemCode, int x, int y, int z, rsPLAYINFO* lp
 				strcpy_s(TransChatMessage.szMessage, srMsg_200);
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 
-				lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 				return -1;
 			}
 
@@ -5051,7 +5202,7 @@ int	OpenMonsterFromCristal(DWORD dwItemCode, int x, int y, int z, rsPLAYINFO* lp
 				strcpy_s(TransChatMessage.szMessage, srMsg_201);
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 
-				lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 				return -1;
 			}
 		}
@@ -5128,7 +5279,7 @@ int	OpenMonsterFromCristal(DWORD dwItemCode, int x, int y, int z, rsPLAYINFO* lp
 					}
 
 					if (CodeCount == srCRISTAL_CLAN)
-						lpChar->smCharInfo.ClassClan = lpPlayInfo->smCharInfo.ClassClan;
+						lpChar->smCharInfo.ClassClan = SummitOnServerClanMark(lpPlayInfo);
 
 					lpChar->Clan_CastleMasterFlag = BillingCrystalFlag;
 				}
@@ -5550,7 +5701,7 @@ smCHAR *OpenCharacterCompanionFromRecord(rsPLAYINFO *owner, const TRANS_RECORD_D
     presence->angle[3] = 0;
     presence->frame = 0;
     presence->dwAutoCharCode = 0;
-    owner->lpsmSock->Send(presenceBuffer, presenceGroup->size, TRUE);
+    SendOnServerLegacySocket(owner->lpsmSock, presenceBuffer, presenceGroup->size);
 
     // Send the full character record immediately after the bootstrap packet.
     // TCP ordering guarantees the client has created the remote slot first.
@@ -5563,7 +5714,7 @@ smCHAR *OpenCharacterCompanionFromRecord(rsPLAYINFO *owner, const TRANS_RECORD_D
     companionInfo.x = companion->pX;
     companionInfo.y = companion->pY;
     companionInfo.z = companion->pZ;
-    owner->lpsmSock->Send((char *)&companionInfo, companionInfo.size, TRUE);
+    SendOnServerLegacySocket(owner->lpsmSock, (char *)&companionInfo, companionInfo.size);
     companion->NearPlayCount = 256;
 
     smTRANS_COMMAND_EX warp;
@@ -5668,9 +5819,10 @@ smCHAR *OpenMonsterFromSkill(DWORD SkillCode, int x, int y, int z, rsPLAYINFO *l
 				chrAutoPlayer[cnt].HoSkillCode && chrAutoPlayer[cnt].smCharInfo.Life[0] > 0)
 			{
 
-				chrAutoPlayer[cnt].smCharInfo.Life[0] = 0;
+				(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().ConsumeLethal(
+					gameplay::EntityId(chrAutoPlayer[cnt].dwObjectSerial),
+					chrAutoPlayer[cnt].smCharInfo.Life[0]);
 				chrAutoPlayer[cnt].HoSkillCode = 0;
-				chrAutoPlayer[cnt].SetMotionFromCode(CHRMOTION_STATE_DEAD);
 			}
 		}
 	}
@@ -5776,7 +5928,7 @@ smCHAR *OpenMonsterFromSkill(DWORD SkillCode, int x, int y, int z, rsPLAYINFO *l
 				lpChar->dwUpdateCharInfoTime = dwPlayServTime + 5 * 60 * 1000;
 
 				if(lpEnemyChar->lpLinkPlayInfo->lpsmSock)
-					lpEnemyChar->lpLinkPlayInfo->lpsmSock->Send((char *)&TransCommandEx, TransCommandEx.size, TRUE);
+					SendOnServerLegacySocket(lpEnemyChar->lpLinkPlayInfo->lpsmSock, (char *)&TransCommandEx, TransCommandEx.size);
 			}
 
 			return lpChar;
@@ -6698,8 +6850,9 @@ int rsHardCoreEvent_OpenMonster(STG_AREA *lpStgArea, STG_CHAR_INFO *lpStgCharInf
 				if(lpStgArea->lpCharMonster[cnt]->Flag && lpStgArea->lpCharMonster[cnt]->PartyFlag == rsHARDCORE_EVENT_FLAG &&
 					lpStgArea->lpCharMonster[cnt]->MotionInfo->State != CHRMOTION_STATE_DEAD)
 				{
-					lpStgArea->lpCharMonster[cnt]->smCharInfo.Life[0] = 0;
-					lpStgArea->lpCharMonster[cnt]->SetMotionFromCode(CHRMOTION_STATE_DEAD);
+					(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().ConsumeLethal(
+						gameplay::EntityId(lpStgArea->lpCharMonster[cnt]->dwObjectSerial),
+						lpStgArea->lpCharMonster[cnt]->smCharInfo.Life[0]);
 
 					if(!sHCoreEvent[rsHardCoreEvent_Count].hCoreMonster1.szName[0])
 					{
@@ -6812,14 +6965,14 @@ int rsHardCoreEvent_OpenMonster(STG_AREA *lpStgArea, STG_CHAR_INFO *lpStgCharInf
 						smTransCommand.LParam = rsHardCoreEvent_Count;
 						smTransCommand.SParam = 100;
 						smTransCommand.EParam = money;
-						rsPlayInfo[cnt].lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+						SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 
 						if(TransSodResult.ResultCount < SOD_RESULT_MAX && !rsPlayInfo[cnt].HideMode)
 						{
 							TransSodResult.Result[TransSodResult.ResultCount].lpPlayInfo = &rsPlayInfo[cnt];
 							strcpy_s(TransSodResult.Result[TransSodResult.ResultCount].szName, rsPlayInfo[cnt].smCharInfo.szName);
-							TransSodResult.Result[TransSodResult.ResultCount].Class = rsPlayInfo[cnt].smCharInfo.ClassClan;
+							TransSodResult.Result[TransSodResult.ResultCount].Class = SummitOnServerClanMark(&rsPlayInfo[cnt]);
 							TransSodResult.Result[TransSodResult.ResultCount].JobCode = rsPlayInfo[cnt].smCharInfo.JOB_CODE;
 							TransSodResult.Result[TransSodResult.ResultCount].Score = rsPlayInfo[cnt].EventScore;
 							TransSodResult.Result[TransSodResult.ResultCount].Monster = rsPlayInfo[cnt].EventCount;
@@ -6878,7 +7031,7 @@ int rsHardCoreEvent_OpenMonster(STG_AREA *lpStgArea, STG_CHAR_INFO *lpStgCharInf
 			{
 				if(TransSodResult.Result[cnt].lpPlayInfo && TransSodResult.Result[cnt].lpPlayInfo->lpsmSock)
 				{
-					TransSodResult.Result[cnt].lpPlayInfo->lpsmSock->Send((char *)&TransSodResult, TransSodResult.size, TRUE);
+					SendOnServerLegacySocket(TransSodResult.Result[cnt].lpPlayInfo->lpsmSock, (char *)&TransSodResult, TransSodResult.size);
 				}
 			}
 			TransSodResult.dwDisplayMode = FALSE;
@@ -6941,14 +7094,14 @@ int rsHardCoreEvent_OpenMonster(STG_AREA *lpStgArea, STG_CHAR_INFO *lpStgCharInf
 								else
 									smTransCommand2.SParam = rsSod_RoundRoomTable[2][rsHardCoreEvent_Count];
 
-								rsPlayInfo[cnt].lpsmSock->Send((char *)&smTransCommand2, smTransCommand2.size, TRUE);
+								SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char *)&smTransCommand2, smTransCommand2.size);
 
 							}
 							else
 							{
 
 
-								rsPlayInfo[cnt].lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+								SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 
 								rsSend_ResultSOD(&rsPlayInfo[cnt], -rsPlayInfo[cnt].EventScore, rsPlayInfo[cnt].EventCount, 0, 0, rsHardCoreEvent_TotalUser, rsSoD_StartCode);
@@ -6985,7 +7138,7 @@ int rsHardCoreEvent_OpenMonster(STG_AREA *lpStgArea, STG_CHAR_INFO *lpStgCharInf
 								TransChatMessage2.dwIP = 0;
 								TransChatMessage2.dwObjectSerial = 0;
 
-								rsPlayInfo[cnt].lpsmSock->Send((char *)&TransChatMessage2, TransChatMessage2.size, TRUE);
+								SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char *)&TransChatMessage2, TransChatMessage2.size);
 
 							}
 						}
@@ -7004,7 +7157,7 @@ int rsHardCoreEvent_OpenMonster(STG_AREA *lpStgArea, STG_CHAR_INFO *lpStgCharInf
 				{
 
 					if(smTransCommand2.size)
-						rsPlayInfo[cnt].lpsmSock->Send((char *)&smTransCommand2, smTransCommand2.size, TRUE);
+						SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char *)&smTransCommand2, smTransCommand2.size);
 					total++;
 
 				}
@@ -7043,7 +7196,7 @@ int rsHardCoreEvent_OpenMonster(STG_AREA *lpStgArea, STG_CHAR_INFO *lpStgCharInf
 						smTransCommand.size = sizeof(smTRANS_COMMAND);
 						smTransCommand.SParam = StageArea[rsSOD_VILLAGE].lpField->cX*fONE;
 						smTransCommand.LParam = StageArea[rsSOD_VILLAGE].lpField->cZ*fONE;
-						rsPlayInfo[cnt].lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+						SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 					}
 
 				}
@@ -7195,7 +7348,7 @@ TRANS_SOD_RESULT *rsSod_GetRealTimeScore(rsPLAYINFO *lpPlayInfo, int TeamNum)
 						rc = TransSodResult_RealTime[Team].ResultCount;
 						TransSodResult_RealTime[Team].Result[rc].lpPlayInfo = &rsPlayInfo[cnt];
 						strcpy_s(TransSodResult_RealTime[Team].Result[rc].szName, rsPlayInfo[cnt].smCharInfo.szName);
-						TransSodResult_RealTime[Team].Result[rc].Class = rsPlayInfo[cnt].smCharInfo.ClassClan;
+						TransSodResult_RealTime[Team].Result[rc].Class = SummitOnServerClanMark(&rsPlayInfo[cnt]);
 						TransSodResult_RealTime[Team].Result[rc].JobCode = rsPlayInfo[cnt].smCharInfo.JOB_CODE;
 						TransSodResult_RealTime[Team].Result[rc].Score = rsPlayInfo[cnt].EventScore;
 						TransSodResult_RealTime[Team].Result[rc].Monster = rsPlayInfo[cnt].EventCount;
@@ -7217,7 +7370,7 @@ TRANS_SOD_RESULT *rsSod_GetRealTimeScore(rsPLAYINFO *lpPlayInfo, int TeamNum)
 	TransSodResult_RealTime[Team].dwDisplayMode = TRUE;
 
 	if(lpPlayInfo && lpPlayInfo->lpsmSock)
-		lpPlayInfo->lpsmSock->Send((char *)&TransSodResult_RealTime[Team], TransSodResult_RealTime[Team].size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransSodResult_RealTime[Team], TransSodResult_RealTime[Team].size);
 
 
 	return &TransSodResult_RealTime[Team];
@@ -7257,7 +7410,7 @@ int	rsTransUpdateSod(rsPLAYINFO *lpPlayInfo)
 			smTransCommand.MyTeam = lpPlayInfo->sEventParam[0];
 			smTransCommand.smTransCommand.LParam = 1;
 
-			lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.smTransCommand.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.smTransCommand.size);
 			SndCount++;
 		}
 	}
@@ -7273,7 +7426,7 @@ int	rsTransUpdateSod(rsPLAYINFO *lpPlayInfo)
 
 				smTransCommand.MyScore = rsSodUser[cnt].lpPlayInfo->EventScore;
 				smTransCommand.MyTeam = rsSodUser[cnt].lpPlayInfo->sEventParam[0];
-				rsSodUser[cnt].lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.smTransCommand.size, TRUE);
+				SendOnServerLegacySocket(rsSodUser[cnt].lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.smTransCommand.size);
 				SndCount++;
 			}
 		}
@@ -7308,7 +7461,7 @@ int rsShowHardCoreEventScore2(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, int Score)
 
 	if(lpPlayInfo && lpPlayInfo->lpsmSock)
 	{
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 	}
 
 	return TRUE;
@@ -7340,10 +7493,21 @@ int rsSoD_CatchItem_SD201(rsPLAYINFO *lpPlayInfo, int StagePos, STG_AREA	*lpStgA
 
 					Damage = lpStgArea->lpCharMonster[cnt]->smCharInfo.Life[1] / 3;
 
-					lpStgArea->lpCharMonster[cnt]->smCharInfo.Life[0] -= Damage;
-					if(lpStgArea->lpCharMonster[cnt]->smCharInfo.Life[0] <= 0)
+					const int currentLife = lpStgArea->lpCharMonster[cnt]->smCharInfo.Life[0];
+					if(currentLife > 1)
 					{
-						lpStgArea->lpCharMonster[cnt]->smCharInfo.Life[0] = 1;
+						const int nonLethalDamage = Damage < currentLife ? Damage : currentLife - 1;
+						if(nonLethalDamage > 0)
+						{
+							(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().ConsumeNonLethal(
+								gameplay::EntityId(lpStgArea->lpCharMonster[cnt]->dwObjectSerial),
+								nonLethalDamage);
+						}
+					}
+					else if(currentLife <= 0)
+					{
+						(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().EnsureMinimum(
+							gameplay::EntityId(lpStgArea->lpCharMonster[cnt]->dwObjectSerial), 1);
 					}
 
 					lpStgArea->lpCharMonster[cnt]->SetMotionFromCode(CHRMOTION_STATE_DAMAGE);
@@ -7378,7 +7542,9 @@ int rsSoD_CatchItem_SD202(rsPLAYINFO *lpPlayInfo, int StagePos, STG_AREA	*lpStgA
 				{
 
 					lpStgArea->lpCharMonster[cnt]->SetMotionFromCode(CHRMOTION_STATE_DAMAGE);
-					lpStgArea->lpCharMonster[cnt]->PlayStunCount = 16 * 10;
+					(void)gameplay::combat::legacy::ServerLegacyStatusEffectAdapter().ApplyStun(
+						gameplay::EntityId(static_cast<std::uint32_t>(lpStgArea->lpCharMonster[cnt]->dwObjectSerial)),
+						16 * 10);
 				}
 			}
 		}
@@ -7410,8 +7576,10 @@ int rsSoD_CatchItem_SD203(rsPLAYINFO *lpPlayInfo, int StagePos, STG_AREA	*lpStgA
 				{
 
 					lpStgArea->lpCharMonster[cnt]->SetMotionFromCode(CHRMOTION_STATE_DAMAGE);
-					lpStgArea->lpCharMonster[cnt]->PlaySlowCount = 16 * 15;
-					lpStgArea->lpCharMonster[cnt]->PlaySlowSpeed = 0;
+					(void)gameplay::combat::legacy::ServerLegacyStatusEffectAdapter().ApplySlow(
+						gameplay::EntityId(static_cast<std::uint32_t>(lpStgArea->lpCharMonster[cnt]->dwObjectSerial)),
+						gameplay::combat::SlowEffect(
+							16 * 15, 0, lpStgArea->lpCharMonster[cnt]->PlayDistortion));
 				}
 			}
 		}
@@ -7664,7 +7832,7 @@ int	rsSendCommandSodUserTeam(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND	*lpTransCom
 				rsCheckHardCoreEventArea(rsPlayInfo[cnt].Position.x, rsPlayInfo[cnt].Position.y, rsPlayInfo[cnt].Position.z) == TRUE)
 			{
 
-				rsPlayInfo[cnt].lpsmSock->Send((char *)lpTransCommandEx, lpTransCommandEx->size, TRUE);
+				SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char *)lpTransCommandEx, lpTransCommandEx->size);
 				SndCnt++;
 			}
 		}
@@ -7768,7 +7936,7 @@ int	rsSoD_CatchItem(DWORD dwItemCode, rsPLAYINFO *lpPlayInfo)
 			smTransCommand.SParam = 7;
 			smTransCommand.EParam = 0;
 
-			lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 			break;
 
@@ -7819,7 +7987,7 @@ int SendOpenEvent(smCHAR* lpChar, rsPLAYINFO* lpPlayInfo, int EventFlag)
 		}
 
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
-		lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 		return TRUE;
 	}
 
@@ -7830,7 +7998,7 @@ int SendOpenEvent(smCHAR* lpChar, rsPLAYINFO* lpPlayInfo, int EventFlag)
 		lstrcpy(TransChatMessage.szMessage, srMsg_107);
 
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
-		lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 
 		rsSod_GetRealTimeScore(lpPlayInfo, NpcTeam);
 		if (lpPlayInfo->EventMode == 0)	lpPlayInfo->sEventParam[0] = NpcTeam - 1;
@@ -7854,7 +8022,7 @@ int SendOpenEvent(smCHAR* lpChar, rsPLAYINFO* lpPlayInfo, int EventFlag)
 
 
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
-		lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 
 		rsSod_GetRealTimeScore(lpPlayInfo, NpcTeam);
 		if (lpPlayInfo->EventMode == 0)	lpPlayInfo->sEventParam[0] = NpcTeam - 1;
@@ -7873,7 +8041,7 @@ int SendOpenEvent(smCHAR* lpChar, rsPLAYINFO* lpPlayInfo, int EventFlag)
 
 
 	TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
-	lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+	SendOnServerLegacySocket(lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 	lpPlayInfo->EventMode = EventFlag;
 
 
@@ -7942,7 +8110,7 @@ int rsEnterHardCoreEvent(rsPLAYINFO *lpPlayInfo, int Money)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 		return FALSE;
 	}
@@ -7959,7 +8127,7 @@ skip_enterSOD:
 			smTransCommand.size = sizeof(smTRANS_COMMAND);
 			smTransCommand.SParam = rsHardCoreEventOpenPos[lpPlayInfo->sEventParam[0]][2].x*fONE;
 			smTransCommand.LParam = rsHardCoreEventOpenPos[lpPlayInfo->sEventParam[0]][2].z*fONE;
-			lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 			rsEventTicketCount++;
 			rsEventTicketLevel[lpPlayInfo->sEventParam[0]] += lpPlayInfo->smCharInfo.Level;
 			lpPlayInfo->EventMode = rsHARDCORE_EVENT_FLAG;
@@ -8343,7 +8511,7 @@ int AtualizaTopPVP(rsPLAYINFO* ReiPVP) {
 					smTransCommand.size = sizeof(smTRANS_COMMAND);
 					smTransCommand.SParam = 1;
 					ReiPVP->topLevelFlag = true;
-					ReiPVP->lpsmSock->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+					SendOnServerLegacySocket(ReiPVP->lpsmSock, (char*)&smTransCommand, smTransCommand.size);
 				}
 
 
@@ -8353,7 +8521,7 @@ int AtualizaTopPVP(rsPLAYINFO* ReiPVP) {
 
 				for (int i = 0; i < CONNECTMAX; i++) {
 					if (rsPlayInfo[i].lpsmSock && strcmp(rsPlayInfo[i].smCharInfo.szName, szString1) != 0) {
-						rsPlayInfo[i].lpsmSock->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+						SendOnServerLegacySocket(rsPlayInfo[i].lpsmSock, (char*)&smTransCommand, smTransCommand.size);
 					}
 				}
 
@@ -8756,7 +8924,7 @@ int STG_AREA::DeleteItem(STG_ITEMS *lpStgItem)
 				dist = rx*rx + rz*rz;
 				if(dist < DIST_TRANSLEVEL_MHIGH && abs(rx) < TRANS_VIEW_LIMIT && abs(rz) < TRANS_VIEW_LIMIT)
 				{
-					rsPlayInfo[cnt].lpsmSock->Send((char *)&TransActionItem, TransActionItem.size, TRUE);
+					SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char *)&TransActionItem, TransActionItem.size);
 				}
 			}
 		}
@@ -8906,7 +9074,7 @@ int STG_AREA::SendStgItem(rsPLAYINFO *lpPlayInfo)
 	TransItems.Count = scnt;
 
 	if(scnt > 0 && lpPlayInfo && lpPlayInfo->lpsmSock)
-		return lpPlayInfo->lpsmSock->Send((char *)&TransItems, TransItems.size, TRUE);
+		return SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransItems, TransItems.size);
 
 	return FALSE;
 }
@@ -8959,7 +9127,7 @@ int STG_AREA::SendStgItem(rsPLAYINFO *lpPlayInfo, STG_ITEMS *lpStgItem)
 	TransItems.Count = 1;
 
 	if(lpPlayInfo && lpPlayInfo->lpsmSock)
-		return lpPlayInfo->lpsmSock->Send((char *)&TransItems, TransItems.size, TRUE);
+		return SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransItems, TransItems.size);
 
 	return FALSE;
 }
@@ -9023,7 +9191,7 @@ int STG_AREA::SendStgItemToNearUsers(STG_ITEMS *lpStgItem)
 
 				if(dist < DIST_TRANSLEVEL_HIGH && abs(rx) < TRANS_VIEW_LIMIT && abs(rz) < TRANS_VIEW_LIMIT)
 				{
-					rsPlayInfo[cnt].lpsmSock->Send((char *)&TransItems, TransItems.size, TRUE);
+					SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char *)&TransItems, TransItems.size);
 				}
 			}
 		}
@@ -9089,7 +9257,7 @@ int STG_AREA::SendStgItemToPartyUsers(rsPLAYINFO *lpPlayInfo, STG_ITEMS *lpStgIt
 
 				if(dist < DIST_TRANSLEVEL_HIGH && abs(rx) < TRANS_VIEW_LIMIT && abs(rz) < TRANS_VIEW_LIMIT)
 				{
-					rsPlayInfo[cnt].lpsmSock->Send((char *)&TransItems, TransItems.size, TRUE);
+					SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char *)&TransItems, TransItems.size);
 				}
 			}
 		}
@@ -9132,8 +9300,7 @@ int rsCompanionPickupStageItem(rsPLAYINFO *lpPlayInfo, STG_AREA *lpStgArea, STG_
         if(!lpPlayInfo->lpPartyMaster ||
            lpPlayInfo->lpPartyMaster->GetPartyMoney(&lpStgItem->Item.ItemInfo, lpPlayInfo) == FALSE)
         {
-            lpPlayInfo->dwPartyInfo = PARTY_STATE_NONE;
-            lpPlayInfo->lpPartyMaster = NULL;
+            SummitOnServerClearPartyMembership(lpPlayInfo);
         }
         lpStgArea->DeleteItem(lpStgItem);
         return TRUE;
@@ -9154,14 +9321,14 @@ int rsCompanionPickupStageItem(rsPLAYINFO *lpPlayInfo, STG_AREA *lpStgArea, STG_
     }
 
     if(lpStgItem->Item.ItemInfo.CODE == (sinGG1 | sin05))
-        cCoinShop.AddPlayerCoin(lpPlayInfo, lpStgItem->Item.ItemInfo.Money);
+        (void)SummitOnServerCreditCoins(lpPlayInfo, lpStgItem->Item.ItemInfo.Money, gameplay::commerce::CoinReason::Pickup);
 
     if(lpStgItem->dwExclusiveOwnerCode == lpPlayInfo->dwObjectSerial &&
        lpStgItem->Item.ItemInfo.CODE == sinQT136)
         RegisterT5CryPickupToken(lpPlayInfo, &lpStgItem->Item.ItemInfo);
 
     rsRegist_ItemSecCode(lpPlayInfo, &transItemInfo, lpStgItem->BeginMode);
-    lpPlayInfo->lpsmSock->Send((char *)&transItemInfo, transItemInfo.size, TRUE);
+    SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&transItemInfo, transItemInfo.size);
 
     if((lpStgItem->Item.ItemInfo.CODE & sinITEM_MASK3) >= sin09 ||
        ((lpStgItem->Item.ItemInfo.CODE & sinITEM_MASK2) == sinOS1 &&
@@ -9272,7 +9439,7 @@ int STG_AREA::SendStartPos(rsPLAYINFO *lpPlayInfo)
 		TransItems.Count = scnt;
 
 		if(scnt > 0 && lpPlayInfo && lpPlayInfo->lpsmSock)
-			return lpPlayInfo->lpsmSock->Send((char *)&TransItems, TransItems.size, TRUE);
+			return SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransItems, TransItems.size);
 	}
 	return TRUE;
 }
@@ -10029,8 +10196,9 @@ int STG_AREA::Main()
 					{
 
 
-						chrAutoPlayer[cnt].smCharInfo.Life[0] = 0;
-						chrAutoPlayer[cnt].SetMotionFromCode(CHRMOTION_STATE_DEAD);
+						(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().ConsumeLethal(
+							gameplay::EntityId(chrAutoPlayer[cnt].dwObjectSerial),
+							chrAutoPlayer[cnt].smCharInfo.Life[0]);
 					}
 				}
 
@@ -10644,7 +10812,7 @@ int rsSendCharInfo(smCHAR *lpChar, rsPLAYINFO *lpPlayInfo)
 
 	}
 
-	return lpPlayInfo->lpsmSock->Send((char *)&TransPlayerInfo, TransPlayerInfo.size, TRUE);
+	return SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransPlayerInfo, TransPlayerInfo.size);
 }
 
 
@@ -10681,7 +10849,7 @@ int rsSendPlayerInfo(rsPLAYINFO *lpSndPlayInfo, smTRANS_COMMAND *lpTransCommand)
 		TransPlayerInfo.y = lpPlayInfo->Position.y;
 		TransPlayerInfo.z = lpPlayInfo->Position.z;
 
-		return lpSndPlayInfo->lpsmSock->Send((char *)&TransPlayerInfo, TransPlayerInfo.size, TRUE);
+		return SendOnServerLegacySocket(lpSndPlayInfo->lpsmSock, (char *)&TransPlayerInfo, TransPlayerInfo.size);
 	}
 
 	return TRUE;
@@ -10727,7 +10895,7 @@ int rsSendPlayerInfoQuick(rsPLAYINFO *lpSndPlayInfo, smTRANS_COMMAND *lpTransCom
 		TransPlayerInfoQ.y = lpPlayInfo->Position.y;
 		TransPlayerInfoQ.z = lpPlayInfo->Position.z;
 
-		return lpSndPlayInfo->lpsmSock->Send((char *)&TransPlayerInfoQ, TransPlayerInfoQ.size, TRUE);
+		return SendOnServerLegacySocket(lpSndPlayInfo->lpsmSock, (char *)&TransPlayerInfoQ, TransPlayerInfoQ.size);
 	}
 
 	return TRUE;
@@ -10783,7 +10951,7 @@ int rsSendTransSkillAttack(smCHAR *lpChar, rsPLAYINFO *lpPlayInfo)
 
 
 
-	if(lpChar->dwClanCode && lpChar->dwClanCode == lpPlayInfo->dwClanCode)
+	if(lpChar->dwClanCode && lpChar->dwClanCode == SummitOnServerClanCode(lpPlayInfo))
 		return NULL;
 
 
@@ -11006,7 +11174,7 @@ int rsSendTransSkillAttack(smCHAR *lpChar, rsPLAYINFO *lpPlayInfo)
 			TransAttackData.dwDamageChkSum = dm_GetDamgeChkSum_S2V(&TransAttackData);
 
 
-		return lpPlayInfo->lpsmSock->Send((char *)&TransAttackData, TransAttackData.size, TRUE);
+		return SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransAttackData, TransAttackData.size);
 	}
 
 	return NULL;
@@ -11119,7 +11287,7 @@ int	SelectDamageTop10(smCHAR *lpChar, rsUSER_LIST_TOP10 *lpUserListDamageTop10)
 	lpsmSock = rsFindNextSertoServerSock();
 
 	if (lpsmSock)
-		return lpsmSock->Send((char *)lpUserListDamageTop10, lpUserListDamageTop10->size, TRUE);
+		return SendOnServerLegacySocket(lpsmSock, (char *)lpUserListDamageTop10, lpUserListDamageTop10->size);
 
 
 	return FALSE;
@@ -11268,7 +11436,7 @@ int rsOpen_MonsterItemExp(smCHAR *lpChar, rsPLAYINFO *lprsPlayInfo)
 						TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 						TransChatMessage.dwIP = 0;
 						TransChatMessage.dwObjectSerial = lpDamagePlayInfo[cnt]->dwObjectSerial;
-						lpDamagePlayInfo[cnt2]->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+						SendOnServerLegacySocket(lpDamagePlayInfo[cnt2]->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 					}
 				}
 			}
@@ -11782,8 +11950,7 @@ int rsOpen_MonsterItemExp(smCHAR *lpChar, rsPLAYINFO *lprsPlayInfo)
 		if(!lprsPlayInfo->lpPartyMaster || lprsPlayInfo->lpPartyMaster->GetPartyExp(lpChar, lprsPlayInfo) == FALSE)
 		{
 
-			lprsPlayInfo->dwPartyInfo = PARTY_STATE_NONE;
-			lprsPlayInfo->lpPartyMaster = NULL;
+			SummitOnServerClearPartyMembership(lprsPlayInfo);
 		}
 	}
 	else
@@ -11875,7 +12042,13 @@ int rsOpen_MonsterItemExp(smCHAR *lpChar, rsPLAYINFO *lprsPlayInfo)
 
 			//lprsPlayInfo->ExpFlag++;
 
-			lprsPlayInfo->AddExp(PlayerEXP, lpChar->dwObjectSerial, false);
+			(void)gameplay::progression::PlayerExperienceService::Grant(
+				gameplay::progression::legacy::ServerLegacyPlayerExperienceAdapter(),
+				gameplay::progression::PlayerExperienceGrantRequest(
+					gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lprsPlayInfo),
+					static_cast<gameplay::progression::PlayerExperienceAmount>(PlayerEXP),
+					gameplay::EntityId(static_cast<std::uint32_t>(lpChar->dwObjectSerial)), false,
+					gameplay::progression::PlayerExperienceSource::MonsterSolo));
 		}
 	}
 
@@ -12220,7 +12393,7 @@ int srAutoCharMain(smCHAR *lpChar)
 					smTransCommand.LParam = lpChar->dwObjectSerial;
 					smTransCommand.SParam = 0;
 					smTransCommand.EParam = 0;
-					lpChar->lpMasterPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+					SendOnServerLegacySocket(lpChar->lpMasterPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 				}
 
 				lpChar->Close();
@@ -12319,8 +12492,8 @@ int srAutoCharMain(smCHAR *lpChar)
 
 	}
 
-	if(lpChar->smCharInfo.Life[0] < 0) lpChar->smCharInfo.Life[0] = 0;
-	if(lpChar->smCharInfo.Life[0] > lpChar->smCharInfo.Life[1]) lpChar->smCharInfo.Life[0] = lpChar->smCharInfo.Life[1];
+	(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().ClampToValidRange(
+		gameplay::EntityId(lpChar->dwObjectSerial));
 
 	lpChar->ReopenCount = REOPEN_COUNT_NUM;
 
@@ -12429,8 +12602,9 @@ int srAutoCharMain(smCHAR *lpChar)
 			if(lpChar->dwUpdateCharInfoTime && lpChar->dwUpdateCharInfoTime < dwPlayServTime && lpChar->smCharInfo.Life[0]>0)
 			{
 
-				lpChar->smCharInfo.Life[0] = 0;
-				lpChar->SetMotionFromCode(CHRMOTION_STATE_DEAD);
+				(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().ConsumeLethal(
+					gameplay::EntityId(lpChar->dwObjectSerial),
+					lpChar->smCharInfo.Life[0]);
 			}
 
 		}
@@ -12488,7 +12662,7 @@ int srAutoCharMain(smCHAR *lpChar)
 
 
 							if(lpChar->dwLinkObjectCode && lpChar->dwLinkObjectCode != rsPlayInfo[cnt].dwObjectSerial) continue;
-							if(lpChar->dwClanCode && lpChar->dwClanCode == rsPlayInfo[cnt].dwClanCode) continue;
+							if(lpChar->dwClanCode && lpChar->dwClanCode == SummitOnServerClanCode(&rsPlayInfo[cnt])) continue;
 
 							rX = (pX - rsPlayInfo[cnt].Position.x) >> FLOATNS;
 							rY = (pY - rsPlayInfo[cnt].Position.y) >> FLOATNS;
@@ -12581,8 +12755,9 @@ int srAutoCharMain(smCHAR *lpChar)
 			if(lpChar->dwUpdateCharInfoTime && lpChar->dwUpdateCharInfoTime < dwPlayServTime && lpChar->smCharInfo.Life[0]>0)
 			{
 
-				lpChar->smCharInfo.Life[0] = 0;
-				lpChar->SetMotionFromCode(CHRMOTION_STATE_DEAD);
+				(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().ConsumeLethal(
+					gameplay::EntityId(lpChar->dwObjectSerial),
+					lpChar->smCharInfo.Life[0]);
 			}
 		}
 
@@ -12852,7 +13027,7 @@ int srTransPlayData(rsPLAYINFO *lpPlayInfo)
 				{
 					lpPlayDataGroup->size = (lpTransBuff - TransBuff);
 					lpPlayDataGroup->PlayDataCnt = PlayDataCnt;
-					lpPlayInfo->lpsmSock->Send((char *)lpPlayDataGroup, lpPlayDataGroup->size, TRUE);
+					SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)lpPlayDataGroup, lpPlayDataGroup->size);
 
 					PlayDataCnt = 0;
 					lpTransBuff = TransBuff + sizeof(smPLAYDATA_GROUP);
@@ -13019,7 +13194,7 @@ int srTransPlayData(rsPLAYINFO *lpPlayInfo)
 	{
 		lpPlayDataGroup->size = (lpTransBuff - TransBuff);
 		lpPlayDataGroup->PlayDataCnt = PlayDataCnt;
-		lpPlayInfo->lpsmSock->Send((char *)lpPlayDataGroup, lpPlayDataGroup->size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)lpPlayDataGroup, lpPlayDataGroup->size);
 	}
 
 	ClipCnt = cnt&AUTOPLAYER_MASK;
@@ -13128,7 +13303,7 @@ int srTransPlayUserData(rsPLAYINFO *lpPlayInfo)
 		if(lpPlayInfo->ChatMsgMode)
 		{
 			TransChatMessage.dwIP = lpPlayInfo->ChatMsgMode;
-			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 			ddist = DIST_TRANSLEVEL_LOW;
 		}
 		else
@@ -13154,7 +13329,7 @@ int srTransPlayUserData(rsPLAYINFO *lpPlayInfo)
 				if(dist < ddist && abs(x) < TRANS_VIEW_LIMIT && abs(z) < TRANS_VIEW_LIMIT)
 				{
 
-					lpPlayInfo2->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+					SendOnServerLegacySocket(lpPlayInfo2->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 				}
 
 			}
@@ -13230,7 +13405,7 @@ int srTransPlayUserData(rsPLAYINFO *lpPlayInfo)
 					{
 						lpPlayDataGroup->size = (lpTransBuff - TransBuff);
 						lpPlayDataGroup->PlayDataCnt = PlayDataCnt;
-						lpPlayInfo->lpsmSock->Send((char *)lpPlayDataGroup, lpPlayDataGroup->size, TRUE);
+						SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)lpPlayDataGroup, lpPlayDataGroup->size);
 
 						PlayDataCnt = 0;
 						lpTransBuff = TransBuff + sizeof(smPLAYDATA_GROUP);
@@ -13301,7 +13476,7 @@ int srTransPlayUserData(rsPLAYINFO *lpPlayInfo)
 	{
 		lpPlayDataGroup->size = (lpTransBuff - TransBuff);
 		lpPlayDataGroup->PlayDataCnt = PlayDataCnt;
-		lpPlayInfo->lpsmSock->Send((char *)lpPlayDataGroup, lpPlayDataGroup->size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)lpPlayDataGroup, lpPlayDataGroup->size);
 	}
 
 	ClipCnt = cnt&CONNECTMAX_MASK;
@@ -13421,7 +13596,7 @@ int srAutoTransPlay()
 						TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 						TransChatMessage.dwIP = 3;
 						TransChatMessage.dwObjectSerial = 0;
-						rsPlayInfo[cnt].lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+						SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 						if(gTime >= 5 * 60)
 						{
@@ -13708,7 +13883,7 @@ int srDisplayBillingTime(rsPLAYINFO *lpPlayInfo, int Add_BillingTime)
 			TransChatMessage.dwObjectSerial = 0;
 
 			if(lpPlayInfo->lpsmSock)
-				lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 		}
 	}
@@ -13751,7 +13926,7 @@ int srDisplayBillingTime(rsPLAYINFO *lpPlayInfo, int Add_BillingTime)
 		TransChatMessage.dwIP = 3;
 		TransChatMessage.dwObjectSerial = 0;
 		if(lpPlayInfo->lpsmSock)
-			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 	}
 
 	return TRUE;
@@ -13764,9 +13939,9 @@ int SendUpdatePremiumItemTime(rsPLAYINFO* lpPlayInfo)
 		if (lpPlayInfo->dwPrimeItem_NextSetTime_T < dwPlayServTime)
 		{
 			if (VIPHANDLER->returnVip(lpPlayInfo))
-				cCoinShop_T.AddPlayerCoin(lpPlayInfo, 2);
+				(void)SummitOnServerCreditTimeCoins(lpPlayInfo, 2, gameplay::commerce::CoinReason::Administration);
 			else
-			cCoinShop_T.AddPlayerCoin(lpPlayInfo, 1);
+			(void)SummitOnServerCreditTimeCoins(lpPlayInfo, 1, gameplay::commerce::CoinReason::Administration);
 			cCoinShop_T.RecvGetItemCoin(lpPlayInfo);
 			lpPlayInfo->dwPrimeItem_NextSetTime_T = dwPlayServTime + 1000 * 60;
 		}
@@ -13843,7 +14018,7 @@ int SendUpdatePremiumItemTime(rsPLAYINFO* lpPlayInfo)
 		PremiumTime.RESBooster = lpPlayInfo->dwTime_PrimeItem_RESBooster;
 
 		if (lpPlayInfo->lpsmSock)
-			lpPlayInfo->lpsmSock->Send((char*)&PremiumTime, PremiumTime.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&PremiumTime, PremiumTime.size);
 	}
 
 	return TRUE;
@@ -13942,14 +14117,14 @@ int srBillingMain()
 						TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 						TransChatMessage.dwIP = 3;
 						TransChatMessage.dwObjectSerial = 0;
-						if(rsServerConfig.DispBillingTime) rsPlayInfo[cnt].lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+						if(rsServerConfig.DispBillingTime) SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 					}
 					bSql_PCSearchReserv(&rsPlayInfo[cnt]);
 				}
 
 						if(rsPlayInfo[cnt].DisuseDay < tServerTime)
 						{
-							rsPlayInfo[cnt].lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+							SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 							Record_BillingLogFile(&rsPlayInfo[cnt], (DWORD)rsPlayInfo[cnt].DisuseDay, rsPlayInfo[cnt].dwPeriodTime, (DWORD)tServerTime, rsPlayInfo[cnt].Bl_RNo);
 						}
@@ -13970,14 +14145,14 @@ int srBillingMain()
 						TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 						TransChatMessage.dwIP = 3;
 						TransChatMessage.dwObjectSerial = 0;
-						if(rsServerConfig.DispBillingTime)  rsPlayInfo[cnt].lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+						if(rsServerConfig.DispBillingTime)  SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 					}
 					bSql_PCSearchReserv(&rsPlayInfo[cnt]);
 				}
 
 				if(Time <= 0)
 				{
-					rsPlayInfo[cnt].lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+					SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 					if(!HiddenPeriod)
 					{
 
@@ -14815,7 +14990,7 @@ int AddNewPlayInfo(smWINSOCK *lpsmSock)
 	TransCommand.LParam = 0;
 
 
-	lpsmSock->Send((char *)&TransCommand, TransCommand.size, TRUE);
+	SendOnServerLegacySocket(lpsmSock, (char *)&TransCommand, TransCommand.size);
 
 
 	return TRUE;
@@ -14845,7 +15020,7 @@ int	rsSendServerNoticeToUser(rsPLAYINFO *lpPlayInfo)
 	TransChatMessage.dwObjectSerial = 0;
 
 	if(lpPlayInfo->lpsmSock)
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 	lpPlayInfo->dwNoticeCount = rsNoticeMessage.Counter;
 
@@ -14876,7 +15051,7 @@ int	SendSaveClientData(rsPLAYINFO *lpPlayInfo)
 
 	if(lpPlayInfo && lpPlayInfo->lpsmSock)
 	{
-		lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 	}
 
 	return TRUE;
@@ -14896,7 +15071,7 @@ int	rsSendCloseClient(rsPLAYINFO *lpPlayInfo)
 
 	if(lpPlayInfo && lpPlayInfo->lpsmSock)
 	{
-		lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 	}
 
 	return TRUE;
@@ -15447,9 +15622,7 @@ int	rsAddTradePotionInfo(rsPLAYINFO *lpPlayInfo, DWORD	dwCode)
 int	rsTradeInvenItem(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, TRANS_TRADE_ITEMKEY *lpTransTradeItemKey)
 {
 	int cnt;
-	int money;
 	smTRANS_COMMAND_EX	smTransCommand;
-	int	PotionCount;
 
 	if(!lpPlayInfo || !lpPlayInfo2) return FALSE;
 
@@ -15560,183 +15733,46 @@ int	rsTradeInvenItem(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, TRANS_TRAD
 			static_cast<std::uint32_t>(lpTransTradeItemKey->dwItemSum[cnt]));
 	}
 
-	if(exactTradeEligible)
+	if(!exactTradeEligible)
 	{
-		const gameplay::commerce::TradeExactCommitResult exactCommit =
-			gameplay::commerce::legacy::ServerLegacyTradeAdapter().CommitExactTrade(exactTradeRequest);
-		if(!exactCommit.Committed())
-		{
-			smTransCommand.WParam = exactCommit.code == gameplay::commerce::TradeExactCommitCode::ItemTransferRejected ? 8000 : 8010;
-			smTransCommand.WxParam = exactCommit.code == gameplay::commerce::TradeExactCommitCode::ItemTransferRejected ? 30 : 0;
-			smTransCommand.LParam = exactCommit.code == gameplay::commerce::TradeExactCommitCode::CoinRejected ? 85 : 30;
-			smTransCommand.SParam = static_cast<int>(exactCommit.failingItemIndex);
-			smTransCommand.EParam = lpTransTradeItemKey->Money;
-			RecordHackLogFile(lpPlayInfo, &smTransCommand);
-			return FALSE;
-		}
-
-		for(cnt = 0; cnt < MAX_TRADE_ITEM; cnt++)
-		{
-			if(!lpTransTradeItemKey->dwItemCode[cnt])
-				continue;
-			if((lpTransTradeItemKey->dwItemCode[cnt] & sinITEM_MASK1) == (sinPM1&sinITEM_MASK1))
-			{
-				rsAddTradePotionInfo(lpPlayInfo, lpTransTradeItemKey->dwItemCode[cnt]);
-			}
-			else if(lpTransTradeItemKey->dwItemKey[cnt])
-			{
-				SaveThrowItem2(lpPlayInfo, lpTransTradeItemKey->dwItemCode[cnt],
-					lpTransTradeItemKey->dwItemKey[cnt], lpTransTradeItemKey->dwItemSum[cnt]);
-			}
-		}
-
-		gameplay::commerce::legacy::ServerLegacyTradeAdapter().MarkCommitted(tradeGuardRequest);
-		rsRecord_ItemLog_Trade(lpPlayInfo, lpPlayInfo2, lpTransTradeItemKey);
-		return TRUE;
+		smTransCommand.WParam = 8010;
+		smTransCommand.LParam = 30;
+		smTransCommand.SParam = lpPlayInfo->ServerMoney;
+		smTransCommand.EParam = lpTransTradeItemKey->Money;
+		RecordHackLogFile(lpPlayInfo, &smTransCommand);
+		return FALSE;
 	}
 
-	if(lpTransTradeItemKey->Coin)
+	const gameplay::commerce::TradeExactCommitResult exactCommit =
+		gameplay::commerce::legacy::ServerLegacyTradeAdapter().CommitExactTrade(exactTradeRequest);
+	if(!exactCommit.Committed())
 	{
-		const gameplay::commerce::TradeCoinCommitResult coinCommit =
-			gameplay::commerce::legacy::ServerLegacyTradeAdapter().CommitCoins(
-				gameplay::commerce::TradeCoinCommitRequest(
-					gameplay::PlayerId(static_cast<std::uint32_t>(lpPlayInfo->dwObjectSerial)),
-					gameplay::PlayerId(static_cast<std::uint32_t>(lpPlayInfo2->dwObjectSerial)),
-					static_cast<gameplay::commerce::CoinAmount>(lpTransTradeItemKey->Coin)));
-
-		if(!coinCommit.Committed())
-		{
-			smTransCommand.WParam = 8010;
-			smTransCommand.LParam = 85;
-			smTransCommand.SParam = static_cast<int>(coinCommit.senderBefore);
-			smTransCommand.EParam = lpTransTradeItemKey->Coin;
-			RecordHackLogFile(lpPlayInfo, &smTransCommand);
-			return FALSE;
-		}
-	}
-
-	if(lpTransTradeItemKey->Money)
-	{
-
-		money = lpTransTradeItemKey->Money - 193;
-		if(money < 0)
-		{
-			smTransCommand.WParam = 8010;
-			smTransCommand.LParam = 30;
-			smTransCommand.SParam = lpPlayInfo->ServerMoney;
-			smTransCommand.EParam = money;
-			RecordHackLogFile(lpPlayInfo, &smTransCommand);
-			return FALSE;
-		}
-
-		// Money==193 is the legacy zero-gold sentinel and must remain a no-op.
-		if(money > 0)
-		{
-			const gameplay::commerce::TradeGoldCommitResult goldCommit =
-				gameplay::commerce::legacy::ServerLegacyTradeAdapter().CommitGold(
-					gameplay::commerce::TradeGoldCommitRequest(
-						gameplay::PlayerId(static_cast<std::uint32_t>(lpPlayInfo->dwObjectSerial)),
-						gameplay::PlayerId(static_cast<std::uint32_t>(lpPlayInfo2->dwObjectSerial)),
-						static_cast<gameplay::commerce::CurrencyAmount>(money)));
-
-			if(!goldCommit.Committed())
-			{
-				smTransCommand.WParam = 8010;
-				smTransCommand.LParam = 30;
-				smTransCommand.SParam = static_cast<int>(goldCommit.senderBefore);
-				smTransCommand.EParam = money;
-				RecordHackLogFile(lpPlayInfo, &smTransCommand);
-				return FALSE;
-			}
-		}
+		smTransCommand.WParam = exactCommit.code == gameplay::commerce::TradeExactCommitCode::ItemTransferRejected ? 8000 : 8010;
+		smTransCommand.WxParam = exactCommit.code == gameplay::commerce::TradeExactCommitCode::ItemTransferRejected ? 30 : 0;
+		smTransCommand.LParam = exactCommit.code == gameplay::commerce::TradeExactCommitCode::CoinRejected ? 85 : 30;
+		smTransCommand.SParam = static_cast<int>(exactCommit.failingItemIndex);
+		smTransCommand.EParam = lpTransTradeItemKey->Money;
+		RecordHackLogFile(lpPlayInfo, &smTransCommand);
+		return FALSE;
 	}
 
 	for(cnt = 0; cnt < MAX_TRADE_ITEM; cnt++)
 	{
-		if(lpTransTradeItemKey->dwItemCode[cnt])
+		if(!lpTransTradeItemKey->dwItemCode[cnt])
+			continue;
+		if((lpTransTradeItemKey->dwItemCode[cnt] & sinITEM_MASK1) == (sinPM1&sinITEM_MASK1))
 		{
-
-			if((lpTransTradeItemKey->dwItemCode[cnt] & sinITEM_MASK1) != (sinPM1&sinITEM_MASK1))
-			{
-				const gameplay::inventory::ItemInstanceId tradeItem(
-					gameplay::ItemId(static_cast<std::uint32_t>(lpTransTradeItemKey->dwItemCode[cnt])),
-					static_cast<std::uint32_t>(lpTransTradeItemKey->dwItemKey[cnt]),
-					static_cast<std::uint32_t>(lpTransTradeItemKey->dwItemSum[cnt]));
-
-				bool itemTransferred = false;
-				if(lpTransTradeItemKey->dwItemKey[cnt])
-				{
-					const gameplay::inventory::InventoryTransferResult transfer =
-						gameplay::commerce::legacy::ServerLegacyTradeAdapter().TransferItem(
-							gameplay::commerce::TradeItemTransferRequest(
-								gameplay::PlayerId(static_cast<std::uint32_t>(lpPlayInfo->dwObjectSerial)),
-								gameplay::PlayerId(static_cast<std::uint32_t>(lpPlayInfo2->dwObjectSerial)),
-								tradeItem));
-					itemTransferred = transfer.Applied();
-				}
-				else
-				{
-					const gameplay::inventory::InventoryMutationResult removal =
-						gameplay::commerce::legacy::ServerLegacyTradeAdapter().RemoveItem(
-							gameplay::PlayerId(static_cast<std::uint32_t>(lpPlayInfo->dwObjectSerial)), tradeItem);
-					itemTransferred = removal.Applied();
-				}
-
-				if(!itemTransferred)
-				{
-					smTransCommand.WParam = 8000;
-					smTransCommand.WxParam = 30;
-					smTransCommand.LxParam = (int)"*TRADE ITEM*";
-					smTransCommand.LParam = lpTransTradeItemKey->dwItemCode[cnt];
-					smTransCommand.SParam = lpTransTradeItemKey->dwItemKey[cnt];
-					smTransCommand.EParam = lpTransTradeItemKey->dwItemSum[cnt];
-					RecordHackLogFile(lpPlayInfo, &smTransCommand);
-					lpTransTradeItemKey->dwItemKey[cnt] = 0;
-				}
-				else if(lpTransTradeItemKey->dwItemKey[cnt])
-				{
-					SaveThrowItem2(lpPlayInfo, lpTransTradeItemKey->dwItemCode[cnt],
-						lpTransTradeItemKey->dwItemKey[cnt], lpTransTradeItemKey->dwItemSum[cnt]);
-				}
-			}
-			else
-			{
-
-
-
-				PotionCount = 0x5cbc ^ (lpTransTradeItemKey->dwItemSum[cnt] >> 16) ^ lpTransTradeItemKey->dwItemSum[cnt];
-				PotionCount &= 0xFFFF;
-
-				if(rsAddServerPotion(lpPlayInfo, lpTransTradeItemKey->dwItemCode[cnt], -PotionCount) < 0)
-				{
-
-					rsServerPotionErrorLog(lpPlayInfo, lpTransTradeItemKey->dwItemCode[cnt], -PotionCount, 100);
-					return FALSE;
-				}
-				rsAddServerPotion(lpPlayInfo2, lpTransTradeItemKey->dwItemCode[cnt], PotionCount);
-
-
-				rsAddTradePotionInfo(lpPlayInfo, lpTransTradeItemKey->dwItemCode[cnt]);
-			}
-
-			if((lpTransTradeItemKey->dwItemCode[cnt] & sinITEM_MASK1) == (sinPM1&sinITEM_MASK1) &&
-				lpTransTradeItemKey->dwItemKey[cnt])
-			{
-				rsAddInvenItem(lpPlayInfo2, lpTransTradeItemKey->dwItemCode[cnt],
-					lpTransTradeItemKey->dwItemKey[cnt],
-					lpTransTradeItemKey->dwItemSum[cnt]);
-				SaveThrowItem2(lpPlayInfo, lpTransTradeItemKey->dwItemCode[cnt],
-					lpTransTradeItemKey->dwItemKey[cnt], lpTransTradeItemKey->dwItemSum[cnt]);
-			}
-
+			rsAddTradePotionInfo(lpPlayInfo, lpTransTradeItemKey->dwItemCode[cnt]);
+		}
+		else if(lpTransTradeItemKey->dwItemKey[cnt])
+		{
+			SaveThrowItem2(lpPlayInfo, lpTransTradeItemKey->dwItemCode[cnt],
+				lpTransTradeItemKey->dwItemKey[cnt], lpTransTradeItemKey->dwItemSum[cnt]);
 		}
 	}
 
 	gameplay::commerce::legacy::ServerLegacyTradeAdapter().MarkCommitted(tradeGuardRequest);
-
-
 	rsRecord_ItemLog_Trade(lpPlayInfo, lpPlayInfo2, lpTransTradeItemKey);
-
 	return TRUE;
 }
 
@@ -15769,7 +15805,7 @@ int SendChatMessage()
 			tChatBuff.size = len;
 			memcpy(TransTemp, &tChatBuff, sizeof(TRANS_CHATBUFF));
 			strcpy_s(TransTemp + sizeof(TRANS_CHATBUFF), sizeof(TransTemp) - sizeof(TRANS_CHATBUFF), lpChatBuff->szMessage);
-			if(lpPlayInfo->lpsmSock->Send(TransTemp, len, TRUE) == TRUE)
+			if(SendOnServerLegacySocket(lpPlayInfo->lpsmSock, TransTemp, len) == TRUE)
 			{
 				lpPlayInfo->ChatBuffCnt++;
 			}
@@ -15842,10 +15878,7 @@ int SendShopItemList(smWINSOCK *lpsmSock, smCHAR *lpChar)
 		fflush(stderr);
 
 		int ShopAttackSendResult =
-			lpsmSock->Send(
-				(char *)lpTransSellItem,
-				lpTransSellItem->size,
-				TRUE);
+			SendOnServerLegacySocket(lpsmSock, (char *)lpTransSellItem, lpTransSellItem->size);
 
 		fprintf(
 			stderr,
@@ -15887,10 +15920,7 @@ int SendShopItemList(smWINSOCK *lpsmSock, smCHAR *lpChar)
 		fflush(stderr);
 
 		int ShopDefenceSendResult =
-			lpsmSock->Send(
-				(char *)lpTransSellItem,
-				lpTransSellItem->size,
-				TRUE);
+			SendOnServerLegacySocket(lpsmSock, (char *)lpTransSellItem, lpTransSellItem->size);
 
 		fprintf(
 			stderr,
@@ -15932,10 +15962,7 @@ int SendShopItemList(smWINSOCK *lpsmSock, smCHAR *lpChar)
 		fflush(stderr);
 
 		int ShopEtcSendResult =
-			lpsmSock->Send(
-				(char *)lpTransSellItem,
-				lpTransSellItem->size,
-				TRUE);
+			SendOnServerLegacySocket(lpsmSock, (char *)lpTransSellItem, lpTransSellItem->size);
 
 		fprintf(
 			stderr,
@@ -15965,7 +15992,7 @@ int SendSkillMenu(smWINSOCK *lpsmSock, smCHAR *lpChar, int Mode)
 
 
 
-	return lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+	return SendOnServerLegacySocket(lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 }
 
 int SendWareHouseToClient(rsPLAYINFO *lpPlayInfo, int Caravan = 0)
@@ -16009,7 +16036,7 @@ int SendOpenWareHouse(smWINSOCK *lpsmSock)
 	smTransCommand.LParam = 0;
 	smTransCommand.SParam = 0;
 
-	return lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+	return SendOnServerLegacySocket(lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 }
 
 
@@ -16023,7 +16050,7 @@ int SendOpenMixItem(smWINSOCK *lpsmSock, int MixFlag)
 	smTransCommand.LParam = 0;
 	smTransCommand.SParam = 0;
 
-	return lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+	return SendOnServerLegacySocket(lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 }
 
 
@@ -16037,7 +16064,7 @@ int SendOpenSmelting(smWINSOCK *lpsmSock)
 	smTransCommand.LParam = 0;
 	smTransCommand.SParam = 0;
 
-	return lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+	return SendOnServerLegacySocket(lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 }
 
 int SendOpenManufacture(smWINSOCK *lpsmSock)
@@ -16050,7 +16077,7 @@ int SendOpenManufacture(smWINSOCK *lpsmSock)
 	smTransCommand.LParam = 0;
 	smTransCommand.SParam = 0;
 
-	return lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+	return SendOnServerLegacySocket(lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 }
 
 
@@ -16064,7 +16091,7 @@ int SendOpenCollectMoney(smWINSOCK *lpsmSock)
 	smTransCommand.LParam = 0;
 	smTransCommand.SParam = 0;
 
-	return lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+	return SendOnServerLegacySocket(lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 }
 
 
@@ -16078,7 +16105,7 @@ int SendOpenEventGift(smWINSOCK *lpsmSock)
 	smTransCommand.LParam = 0;
 	smTransCommand.SParam = 0;
 
-	return lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+	return SendOnServerLegacySocket(lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 }
 
 
@@ -16096,7 +16123,7 @@ int SendOpenGiftExpress(rsPLAYINFO* lpPlayInfo, DWORD	dwItemCode, DWORD dwPassCo
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 
 		return FALSE;
 	}
@@ -16143,7 +16170,7 @@ int SendOpenGiftExpress(rsPLAYINFO* lpPlayInfo, DWORD	dwItemCode, DWORD dwPassCo
 					TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 					TransChatMessage.dwIP = 0;
 					TransChatMessage.dwObjectSerial = 0;
-					lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+					SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 
 					break;
 				}
@@ -16162,7 +16189,7 @@ int SendOpenGiftExpress(rsPLAYINFO* lpPlayInfo, DWORD	dwItemCode, DWORD dwPassCo
 				lpItem->CODE = sinGG1 | sin01;
 				lpItem->Money = spJobCode;
 				ReformItem(lpItem);
-				lpPlayInfo->AddServerMoney(spJobCode, WHERE_GIFT_EXPRESS);
+				(void)SummitOnServerWalletCredit(lpPlayInfo, spJobCode, gameplay::commerce::WalletReason::GiftExpress);
 
 				rsRecord_ItemLog_Post(lpPlayInfo, lpItem->CODE, 0, spJobCode, dwFormCode, szPassCode, ITEMLOG_EXPRESS);
 
@@ -16196,7 +16223,7 @@ int SendOpenGiftExpress(rsPLAYINFO* lpPlayInfo, DWORD	dwItemCode, DWORD dwPassCo
 							rsRecord_ItemLog_Post(lpPlayInfo, lpItem->CODE, 0, spJobCode, dwFormCode, szPassCode, ITEMLOG_EXPRESS);
 						}
 						else {
-							rsAddInvenItem(lpPlayInfo, lpItem->CODE, lpItem->ItemHeader.Head, lpItem->ItemHeader.dwChkSum);
+							(void)SummitOnServerInventoryAdd(lpPlayInfo, lpItem->CODE, lpItem->ItemHeader.Head, lpItem->ItemHeader.dwChkSum);
 
 							rsRecord_ItemLog_Post(lpPlayInfo, lpItem->CODE, lpItem->ItemHeader.Head, lpItem->ItemHeader.dwChkSum,
 								dwFormCode, szPassCode, ITEMLOG_EXPRESS);
@@ -16261,7 +16288,7 @@ int SendOpenGiftExpress(rsPLAYINFO* lpPlayInfo, DWORD	dwItemCode, DWORD dwPassCo
 	if (lpTransPostItem->dwItemFlag) lpTransPostItem->size += sizeof(sITEMINFO);
 
 	if (lpPlayInfo->lpsmSock || (lpTransPostItem->dwItemCode || lpTransPostItem->dwItemFlag)) {
-		lpPlayInfo->lpsmSock->Send((char*)lpTransPostItem, lpTransPostItem->size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)lpTransPostItem, lpTransPostItem->size);
 	}
 
 	return TRUE;
@@ -16277,7 +16304,7 @@ int SendOpenAgingItem(smWINSOCK *lpsmSock)
 	smTransCommand.LParam = 0;
 	smTransCommand.SParam = 0;
 
-	return lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+	return SendOnServerLegacySocket(lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 }
 
 int SendOpenJOBS(smWINSOCK* lpsmSock)
@@ -16290,7 +16317,7 @@ int SendOpenJOBS(smWINSOCK* lpsmSock)
 	smTransCommand.LParam = 0;
 	smTransCommand.SParam = 0;
 
-	return lpsmSock->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+	return SendOnServerLegacySocket(lpsmSock, (char*)&smTransCommand, smTransCommand.size);
 }
 
 int SendRanking(smWINSOCK* lpsmSock)
@@ -16331,7 +16358,7 @@ int SendRanking(smWINSOCK* lpsmSock)
 	ranking.code = OpCode::OPCODE_RANKING;
 	ranking.size = sizeof(ranking) + 50;
 	ranking.contador = i;
-	return lpsmSock->Send((char*)&ranking, ranking.size, TRUE);
+	return SendOnServerLegacySocket(lpsmSock, (char*)&ranking, ranking.size);
 }
 
 int SendOpenMixtureItemReset(smWINSOCK *lpsmSock)
@@ -16344,7 +16371,7 @@ int SendOpenMixtureItemReset(smWINSOCK *lpsmSock)
 	smTransCommand.LParam = 0;
 	smTransCommand.SParam = 0;
 
-	return lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+	return SendOnServerLegacySocket(lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 }
 
 int SendOpenRank(smWINSOCK* lpsmSock)
@@ -16357,7 +16384,7 @@ int SendOpenRank(smWINSOCK* lpsmSock)
 	smTransCommand.LParam = 0;
 	smTransCommand.SParam = 0;
 
-	return lpsmSock->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+	return SendOnServerLegacySocket(lpsmSock, (char*)&smTransCommand, smTransCommand.size);
 }
 
 int SendOpenBattlePass(smWINSOCK* lpsmSock)
@@ -16370,7 +16397,7 @@ int SendOpenBattlePass(smWINSOCK* lpsmSock)
 	smTransCommand.LParam = 0;
 	smTransCommand.SParam = 0;
 
-	return lpsmSock->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+	return SendOnServerLegacySocket(lpsmSock, (char*)&smTransCommand, smTransCommand.size);
 }
 
 //Send NPC info
@@ -16384,7 +16411,7 @@ int SendOpenNPCinfo(smWINSOCK* lpsmSock)
 	smTransCommand.LParam = 0;
 	smTransCommand.SParam = 0;
 
-	return lpsmSock->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+	return SendOnServerLegacySocket(lpsmSock, (char*)&smTransCommand, smTransCommand.size);
 }
 //Send NPC info
 
@@ -16399,7 +16426,7 @@ int SendOpenClanCustom(smWINSOCK* lpsmSock)
 	smTransCommand.LParam = 0;
 	smTransCommand.SParam = 0;
 
-	return lpsmSock->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+	return SendOnServerLegacySocket(lpsmSock, (char*)&smTransCommand, smTransCommand.size);
 }
 
 
@@ -16413,7 +16440,7 @@ int SendOpenSkinChange(smWINSOCK* lpsmSock)
 	smTransCommand.LParam = 0;
 	smTransCommand.SParam = 0;
 
-	return lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+	return SendOnServerLegacySocket(lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 }
 
 int SendCoinShop(smWINSOCK *lpsmSock)
@@ -16426,7 +16453,7 @@ int SendCoinShop(smWINSOCK *lpsmSock)
 	smTransCommand.LParam = 0;
 	smTransCommand.SParam = 0;
 
-	return lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+	return SendOnServerLegacySocket(lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 }
 
 int SendCoinShop_T(smWINSOCK *lpsmSock)
@@ -16439,7 +16466,7 @@ int SendCoinShop_T(smWINSOCK *lpsmSock)
 	smTransCommand.LParam = 0;
 	smTransCommand.SParam = 0;
 
-	return lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+	return SendOnServerLegacySocket(lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 }
 
 int rsSend_BadPlayerToGameServer(smWINSOCK *lpsmSock, int BadPlayer)
@@ -16469,7 +16496,7 @@ int rsSend_PlayerKilling(smWINSOCK *lpsmSock)
 	smTransCommand.EParam = 0;
 
 	if(lpsmSock)
-		return lpsmSock->Send((char *)&smTransCommand, sizeof(smTRANS_COMMAND), TRUE);
+		return SendOnServerLegacySocket(lpsmSock, (char *)&smTransCommand, sizeof(smTRANS_COMMAND));
 
 	return FALSE;
 }
@@ -16486,7 +16513,7 @@ int SendOpenClanMenu(smWINSOCK *lpsmSock)
 	smTransCommand.LParam = 0;
 	smTransCommand.SParam = 0;
 
-	return lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+	return SendOnServerLegacySocket(lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 }
 
 
@@ -16522,7 +16549,7 @@ int rsProcessQuest(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, int QuestCode, int Qu
 		break;
 	}
 
-	lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+	SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 	return TRUE;
 }
@@ -16588,7 +16615,7 @@ int	rsDeleteClientItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpItem)
 
 	if(lpPlayInfo && lpPlayInfo->lpsmSock)
 	{
-		lpPlayInfo->lpsmSock->Send((char *)&TransItemCode, TransItemCode.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransItemCode, TransItemCode.size);
 	}
 
 	return TRUE;
@@ -16611,7 +16638,7 @@ int	rsDeleteClientItem(rsPLAYINFO *lpPlayInfo, DWORD dwCode, DWORD dwHead, DWORD
 
 	if(lpPlayInfo && lpPlayInfo->lpsmSock)
 	{
-		lpPlayInfo->lpsmSock->Send((char *)&TransItemCode, TransItemCode.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransItemCode, TransItemCode.size);
 	}
 
 	return TRUE;
@@ -16823,7 +16850,7 @@ int ManufactureItemInfo(rsPLAYINFO *lpPlayInfo)
 	}
 	if(lpPlayInfo && lpPlayInfo->lpsmSock)
 	{
-		lpPlayInfo->lpsmSock->Send((char *)&Item_Recv, Item_Recv.smTransCommand.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&Item_Recv, Item_Recv.smTransCommand.size);
 	}
 	return TRUE;
 }
@@ -16865,9 +16892,9 @@ int	rsPlayHealing(smTRANS_COMMAND* lpTransCommand)
 					return TRUE;
 #endif
 
-				lpChar->smCharInfo.Life[0] += lpTransCommand->WParam;
-				if (lpChar->smCharInfo.Life[0] > lpChar->smCharInfo.Life[1])
-					lpChar->smCharInfo.Life[0] = lpChar->smCharInfo.Life[1];
+				(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().Restore(
+					gameplay::EntityId(static_cast<std::uint32_t>(lpChar->dwObjectSerial)),
+					lpTransCommand->WParam);
 			}
 		}
 		return TRUE;
@@ -16883,7 +16910,7 @@ int	rsPlayHealing(smTRANS_COMMAND* lpTransCommand)
 		}
 
 
-		lpPlayInfo->lpsmSock->Send((char*)lpTransCommand, lpTransCommand->size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)lpTransCommand, lpTransCommand->size);
 		return TRUE;
 	}
 
@@ -16956,7 +16983,7 @@ int	rsPlayHealing(smTRANS_COMMAND* lpTransCommand)
 		}
 
 
-		lpPlayInfo->lpsmSock->Send((char *)lpTransCommand, lpTransCommand->size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)lpTransCommand, lpTransCommand->size);
 		return TRUE;
 	}
 
@@ -16988,11 +17015,11 @@ int rsPlayGrandHealing(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 
 						smTransCommand.LParam = lpTransCommand->LParam;
 						smTransCommand.LParam -= (lpTransCommand->LParam*lpPlayInfo->dwSkill_VirtualLife_Param) / 100;
-						lpPartyMaster->lpPartyPlayers[cnt]->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+						SendOnServerLegacySocket(lpPartyMaster->lpPartyPlayers[cnt]->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 					}
 					else
 					{
-						lpPartyMaster->lpPartyPlayers[cnt]->lpsmSock->Send((char *)lpTransCommand, lpTransCommand->size, TRUE);
+						SendOnServerLegacySocket(lpPartyMaster->lpPartyPlayers[cnt]->lpsmSock, (char *)lpTransCommand, lpTransCommand->size);
 					}
 				}
 
@@ -17021,8 +17048,9 @@ int	rsPlayHolyMind(smTRANS_COMMAND *lpTransCommand)
 		time = (time*(100 - bio)) / 100;
 		if(time > 0)
 		{
-			lpChar->PlayHolyMind[0] = lpTransCommand->WParam;
-			lpChar->PlayHolyMind[1] = time;
+			(void)gameplay::combat::legacy::ServerLegacyStatusEffectAdapter().ApplyHolyMind(
+				gameplay::EntityId(static_cast<std::uint32_t>(lpChar->dwObjectSerial)),
+				lpTransCommand->WParam, time);
 		}
 		return TRUE;
 	}
@@ -17488,7 +17516,7 @@ int	rsSendItemInfoPerf(rsPLAYINFO *lpPlayInfo, DWORD dwItemCode)
 		CopyMemory(&TransItemInfo.Item, &lpsItem->ItemInfo, sizeof(sITEMINFO));
 
 		if (lpPlayInfo->lpsmSock)
-			lpPlayInfo->lpsmSock->Send((char *)&TransItemInfo, TransItemInfo.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransItemInfo, TransItemInfo.size);
 	}
 #endif
 	return TRUE;
@@ -17542,7 +17570,7 @@ int	rsCheckItemCode(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpItem)
 	TransItemCode.dwTime = 0;
 	if(lpPlayInfo && lpPlayInfo->lpsmSock)
 	{
-		lpPlayInfo->lpsmSock->Send((char *)&TransItemCode, TransItemCode.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransItemCode, TransItemCode.size);
 	}
 
 
@@ -17843,7 +17871,9 @@ int rsRecvBuyShopItem(rsPLAYINFO *lpPlayInfo, TRANS_BUY_SHOPITEM *lpTransBuyShop
 
 	if(!rsServerConfig.ServerInventoryMode)
 	{
-		lpPlayInfo->ServerMoney = 90000000;
+		if(!SummitOnServerWalletSet(
+			lpPlayInfo, 90000000, gameplay::commerce::WalletReason::NpcShopCompatibility).Ok())
+			return FALSE;
 	}
 
 	if(CheckItemForm(&lpTransBuyShopItem->sItem.sItemInfo) == TRUE &&
@@ -17939,7 +17969,7 @@ int rsRecvBuyShopItem(rsPLAYINFO *lpPlayInfo, TRANS_BUY_SHOPITEM *lpTransBuyShop
 			CurrencyLog.int64_ShopMoney += lpTransBuyShopItem->sItem.sItemInfo.Price;
 		}
 
-		return lpPlayInfo->lpsmSock->Send((char *)lpTransBuyShopItem, lpTransBuyShopItem->size, TRUE);
+		return SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)lpTransBuyShopItem, lpTransBuyShopItem->size);
 	}
 
 	return FALSE;
@@ -18053,7 +18083,7 @@ int rsRecvSellShopItem(rsPLAYINFO *lpPlayInfo, TRANS_ITEMINFO *lpTransItemInfo)
 
 	if(lpPlayInfo->lpsmSock)
 	{
-		lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 	}
 
 	lpPlayInfo->UnsaveMoney = lpTransItemInfo->y - smTransCommand.EParam;
@@ -18159,7 +18189,7 @@ int rsSendDataServer(smWINSOCK *lpsmSock, void *szData)
 	TransSendDataServer.code = OpCode::OPCODE_SEND_DATASERVER;
 	TransSendDataServer.size = size + 16;
 
-	return lpsmSock->Send((char *)&TransSendDataServer, TransSendDataServer.size, TRUE);
+	return SendOnServerLegacySocket(lpsmSock, (char *)&TransSendDataServer, TransSendDataServer.size);
 }
 
 
@@ -18179,7 +18209,7 @@ int rsSendGameServer(smWINSOCK *lpsmSock, void *szData)
 	TransSendDataServer.code = OpCode::OPCODE_SEND_GAMESERVER;
 	TransSendDataServer.size = size + 16;
 
-	return lpsmSock->Send((char *)&TransSendDataServer, TransSendDataServer.size, TRUE);
+	return SendOnServerLegacySocket(lpsmSock, (char *)&TransSendDataServer, TransSendDataServer.size);
 }
 
 
@@ -18199,7 +18229,7 @@ int rsSendAreaServer(smWINSOCK *lpsmSock, void *szData)
 	TransSendDataServer.code = OpCode::OPCODE_SEND_AREASERVER;
 	TransSendDataServer.size = size + 16;
 
-	return lpsmSock->Send((char *)&TransSendDataServer, TransSendDataServer.size, TRUE);
+	return SendOnServerLegacySocket(lpsmSock, (char *)&TransSendDataServer, TransSendDataServer.size);
 }
 
 
@@ -18220,7 +18250,7 @@ int rsSendAGameServer(smWINSOCK *lpsmSock, void *szData)
 	TransSendDataServer.code = OpCode::OPCODE_SEND_AGAME_SERVER;
 	TransSendDataServer.size = size + 16;
 
-	return lpsmSock->Send((char *)&TransSendDataServer, TransSendDataServer.size, TRUE);
+	return SendOnServerLegacySocket(lpsmSock, (char *)&TransSendDataServer, TransSendDataServer.size);
 }
 
 
@@ -18241,7 +18271,7 @@ int rsSendAGameServer_PrimeItem2(smWINSOCK *lpsmSock, void *szData)
 	TransSendDataServer.code = OpCode::OPCODE_SEND_AGAME_PRIMEITEM_DATA2;
 	TransSendDataServer.size = size + 16;
 
-	return lpsmSock->Send((char *)&TransSendDataServer, TransSendDataServer.size, TRUE);
+	return SendOnServerLegacySocket(lpsmSock, (char *)&TransSendDataServer, TransSendDataServer.size);
 }
 
 
@@ -18262,7 +18292,7 @@ int rsSendAGameServer_PrimeItem3(smWINSOCK *lpsmSock, void *szData)
 	TransSendDataServer.code = OpCode::OPCODE_SEND_AGAME_PRIMEITEM_DATA3;
 	TransSendDataServer.size = size + 16;
 
-	return lpsmSock->Send((char *)&TransSendDataServer, TransSendDataServer.size, TRUE);
+	return SendOnServerLegacySocket(lpsmSock, (char *)&TransSendDataServer, TransSendDataServer.size);
 }
 
 
@@ -18284,7 +18314,7 @@ int rsSendAGameServer_PrimeItem4(smWINSOCK *lpsmSock, void *szData)
 	TransSendDataServer.code = OpCode::OPCODE_SEND_AGAME_PRIMEITEM_DATA4;
 	TransSendDataServer.size = size + 16;
 
-	return lpsmSock->Send((char *)&TransSendDataServer, TransSendDataServer.size, TRUE);
+	return SendOnServerLegacySocket(lpsmSock, (char *)&TransSendDataServer, TransSendDataServer.size);
 }
 
 int	rsCheckTotalExpMoney(rsPLAYINFO *lpPlayInfo, TRANS_TOTAL_EXPMONEY *TransTotalExpMoney)
@@ -19456,17 +19486,17 @@ void FunctionCoins(rsPLAYINFO* lpPlayInfo, int Tipo)
 	{
 	case 0:
 		sort = rand() % 100;
-		cCoinShop.AddPlayerCoin(lpPlayInfo, sort);
+		(void)SummitOnServerCreditCoins(lpPlayInfo, sort, gameplay::commerce::CoinReason::Administration);
 		break;
 
 	case 1:
 		sort = rand() % 40;
-		cCoinShop.AddPlayerCoin(lpPlayInfo, sort);
+		(void)SummitOnServerCreditCoins(lpPlayInfo, sort, gameplay::commerce::CoinReason::Administration);
 		break;
 
 	case 2:
 		sort = rand() % 20;
-		cCoinShop.AddPlayerCoin(lpPlayInfo, sort);
+		(void)SummitOnServerCreditCoins(lpPlayInfo, sort, gameplay::commerce::CoinReason::Administration);
 		break;
 
 	}
@@ -19477,7 +19507,7 @@ void FunctionCoins(rsPLAYINFO* lpPlayInfo, int Tipo)
 	TransChatMessage.dwIP = 3;
 	TransChatMessage.dwObjectSerial = 0;
 
-	lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+	SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 }
 
 int CreateCommandItem(rsPLAYINFO* lpPlayInfo, rsPLAYINFO* lpPlayInfo2, char* szItem);
@@ -19581,7 +19611,7 @@ int LogadoCoin()
 			}
 
 
-			cCoinShop.AddPlayerCoin(&rsPlayInfo[Player], ValorCred);
+			(void)SummitOnServerCreditCoins(&rsPlayInfo[Player], ValorCred, gameplay::commerce::CoinReason::Administration);
 
 			TRANS_CHATMESSAGE	TransChatMessage;
 			wsprintf(TransChatMessage.szMessage, "Logado Premiado> %s ganhou [ %d %s ] !", rsPlayInfo[Player].getName(), ValorCred, szBuf);
@@ -19593,7 +19623,7 @@ int LogadoCoin()
 			for (int cnt2 = 0; cnt2 < CONNECTMAX; cnt2++)
 			{
 				if (rsPlayInfo[cnt2].lpsmSock)
-					rsPlayInfo[cnt2].lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+					SendOnServerLegacySocket(rsPlayInfo[cnt2].lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 			}
 		}
 		return true;
@@ -19657,7 +19687,7 @@ int LogadoPremiado()
 
 							rsRegist_ItemSecCode(Logados[cnt], &TransItemInfo, 1);
 
-							Logados[cnt]->lpsmSock->Send((char*)&TransItemInfo, TransItemInfo.size, TRUE);
+							SendOnServerLegacySocket(Logados[cnt]->lpsmSock, (char*)&TransItemInfo, TransItemInfo.size);
 
 							smTransChatMessage.size = sizeof(TRANS_CHATMESSAGE);
 							smTransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
@@ -19691,7 +19721,7 @@ int LogadoPremiado()
 //	for (cnt = 0; cnt < CONNECTMAX; cnt++) {
 //		if (rsPlayInfo[cnt].lpsmSock && retornarNomeMapa(lpStgArea->lpField->FieldCode) != nullptr) {
 //			if (rsPlayInfo[cnt].Position.Area == lpStgArea->lpField->FieldCode)
-//			rsPlayInfo[cnt].lpsmSock->Send((char*)& TransChatMessage, TransChatMessage.size, TRUE);
+//			SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char*)& TransChatMessage, TransChatMessage.size);
 //		}
 //	}
 //	return 0;
@@ -19711,7 +19741,7 @@ int LogadoPremiado()
 //	for (cnt = 0; cnt < CONNECTMAX; cnt++) {
 //		if (rsPlayInfo[cnt].lpsmSock && retornarNomeMapa(lpStgArea->lpField->FieldCode) != nullptr) {
 //			if (rsPlayInfo[cnt].Position.Area == lpStgArea->lpField->FieldCode)
-//			rsPlayInfo[cnt].lpsmSock->Send((char*)& TransChatMessage, TransChatMessage.size, TRUE);
+//			SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char*)& TransChatMessage, TransChatMessage.size);
 //		}
 //	}
 //	return 0;
@@ -19738,7 +19768,7 @@ int LogadoPremiado()
 //	for (cnt = 0; cnt < CONNECTMAX; cnt++) {
 //		if (rsPlayInfo[cnt].lpsmSock && retornarNomeMapa(lpStgArea->lpField->FieldCode) != nullptr) {
 //			if (rsPlayInfo[cnt].Position.Area == lpStgArea->lpField->FieldCode)
-//			rsPlayInfo[cnt].lpsmSock->Send((char*)& TransChatMessage, TransChatMessage.size, TRUE);
+//			SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char*)& TransChatMessage, TransChatMessage.size);
 //		}
 //	}
 //
@@ -19954,7 +19984,7 @@ char* ListMap[62] =
 //	for (cnt = 0; cnt < CONNECTMAX; cnt++) {
 //		if (rsPlayInfo[cnt].lpsmSock && retornarNomeMapa(lpStgArea->lpField->FieldCode) != nullptr) {
 //			if (rsPlayInfo[cnt].Position.Area == lpStgArea->lpField->FieldCode)
-//			rsPlayInfo[cnt].lpsmSock->Send((char*)& TransChatMessage, TransChatMessage.size, TRUE);
+//			SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char*)& TransChatMessage, TransChatMessage.size);
 //		}
 //	}
 //	return 0;
@@ -19979,7 +20009,7 @@ int rsOpenBossMonster(STG_AREA* lpStgArea, sBOSS_MONSTER* lpBossMonster)
 	for (cnt = 0; cnt < CONNECTMAX; cnt++) {
 		if (rsPlayInfo[cnt].lpsmSock && ListMap[lpStgArea->lpField->FieldCode] != nullptr) {
 			//if (rsPlayInfo[cnt].Position.Area == lpStgArea->lpField->FieldCode)
-			rsPlayInfo[cnt].lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 		}
 	}
 
@@ -20157,7 +20187,7 @@ int	rsSendCommandUser(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND_EX	*lpTransCommand
 
 			if(dist < DIST_TRANSLEVEL_HIGH && abs(rx) < TRANS_VIEW_LIMIT && abs(rz) < TRANS_VIEW_LIMIT)
 			{
-				rsPlayInfo[cnt].lpsmSock->Send((char *)lpTransCommandEx, lpTransCommandEx->size, TRUE);
+				SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char *)lpTransCommandEx, lpTransCommandEx->size);
 			}
 		}
 	}
@@ -20185,7 +20215,7 @@ int	rsSendCommandUser2(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 
 			if(dist < DIST_TRANSLEVEL_HIGH && abs(rx) < TRANS_VIEW_LIMIT && abs(rz) < TRANS_VIEW_LIMIT)
 			{
-				rsPlayInfo[cnt].lpsmSock->Send((char *)lpTransCommand, lpTransCommand->size, TRUE);
+				SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char *)lpTransCommand, lpTransCommand->size);
 			}
 		}
 	}
@@ -20454,7 +20484,7 @@ int CreateCommandItem(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, char *szI
 
 						rsRegist_ItemSecCode(lpPlayInfo2, &TransItemInfo, 1);
 
-						lpPlayInfo2->lpsmSock->Send((char *)&TransItemInfo, TransItemInfo.size, TRUE);
+						SendOnServerLegacySocket(lpPlayInfo2->lpsmSock, (char *)&TransItemInfo, TransItemInfo.size);
 						val = TRUE;
 					}
 				}
@@ -20485,7 +20515,7 @@ int CreateCommandItem(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, char *szI
 						TransItemInfo.size = sizeof(TRANS_ITEMINFO);
 						memcpy(&TransItemInfo.Item, &lpsItem->ItemInfo, sizeof(sITEMINFO));
 						rsRegist_ItemSecCode(lpPlayInfo2, &TransItemInfo, 1);
-						lpPlayInfo2->lpsmSock->Send((char *)&TransItemInfo, TransItemInfo.size, TRUE);
+						SendOnServerLegacySocket(lpPlayInfo2->lpsmSock, (char *)&TransItemInfo, TransItemInfo.size);
 						val = TRUE;
 					}
 				}
@@ -20528,7 +20558,7 @@ int CreateCommandItem(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, char *szI
 					TransItemInfo.size = sizeof(TRANS_ITEMINFO);
 					memcpy(&TransItemInfo.Item, &lpsItem->ItemInfo, sizeof(sITEMINFO));
 					rsRegist_ItemSecCode(lpPlayInfo2, &TransItemInfo, 1);
-					lpPlayInfo2->lpsmSock->Send((char *)&TransItemInfo, TransItemInfo.size, TRUE);
+					SendOnServerLegacySocket(lpPlayInfo2->lpsmSock, (char *)&TransItemInfo, TransItemInfo.size);
 					val = TRUE;
 				}
 			}
@@ -20570,7 +20600,7 @@ int rsPutItem_PointTicket(rsPLAYINFO *lpPlayInfo, int Price)
 				TransItemInfo.Item.Price = Price;
 				ReformItem(&TransItemInfo.Item);
 				rsRegist_ItemSecCode(lpPlayInfo, &TransItemInfo, 1);
-				lpPlayInfo->lpsmSock->Send((char *)&TransItemInfo, TransItemInfo.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransItemInfo, TransItemInfo.size);
 			}
 			return TRUE;
 		}
@@ -20634,7 +20664,7 @@ int rsPutItem(rsPLAYINFO* lpPlayInfo, DWORD dwItemCode)
 				TransItemInfo.size = sizeof(TRANS_ITEMINFO);
 				memcpy(&TransItemInfo.Item, &psItem.ItemInfo, sizeof(sITEMINFO));
 				rsRegist_ItemSecCode(lpPlayInfo, &TransItemInfo, 1);
-				lpPlayInfo->lpsmSock->Send((char*)&TransItemInfo, TransItemInfo.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransItemInfo, TransItemInfo.size);
 			}
 			return TRUE;
 		}
@@ -20691,7 +20721,7 @@ int rsPutItem(rsPLAYINFO* lpPlayInfo, DWORD dwItemCode, int spJobCode)
 				TransItemInfo.size = sizeof(TRANS_ITEMINFO);
 				memcpy(&TransItemInfo.Item, &psItem.ItemInfo, sizeof(sITEMINFO));
 				rsRegist_ItemSecCode(lpPlayInfo, &TransItemInfo, 1);
-				lpPlayInfo->lpsmSock->Send((char*)&TransItemInfo, TransItemInfo.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransItemInfo, TransItemInfo.size);
 			}
 			return TRUE;
 		}
@@ -20722,7 +20752,7 @@ sDEF_ITEMINFO* rsPutItem4(rsPLAYINFO* lpPlayInfo, DWORD dwItemCode, int spJobCod
 				TransItemInfo.size = sizeof(TRANS_ITEMINFO);
 				memcpy(&TransItemInfo.Item, &psItem.ItemInfo, sizeof(sITEMINFO));
 				rsRegist_ItemSecCode(lpPlayInfo, &TransItemInfo, 1);
-				lpPlayInfo->lpsmSock->Send((char*)&TransItemInfo, TransItemInfo.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransItemInfo, TransItemInfo.size);
 			}
 			return &DefaultItems[cnt];
 		}
@@ -20754,7 +20784,7 @@ sDEF_ITEMINFO* rsPutItem_aging(rsPLAYINFO* lpPlayInfo, DWORD dwItemCode, int spJ
 				TransItemInfo.size = sizeof(TRANS_ITEMINFO);
 				memcpy(&TransItemInfo.Item, &psItem.ItemInfo, sizeof(sITEMINFO));
 				rsRegist_ItemSecCode(lpPlayInfo, &TransItemInfo, 1);
-				lpPlayInfo->lpsmSock->Send((char*)&TransItemInfo, TransItemInfo.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransItemInfo, TransItemInfo.size);
 			}
 			return &DefaultItems[cnt];
 		}
@@ -20783,7 +20813,7 @@ sDEF_ITEMINFO* rsPutItem3(rsPLAYINFO* lpPlayInfo, DWORD dwItemCode, int spJobCod
 				TransItemInfo.size = sizeof(TRANS_ITEMINFO);
 				memcpy(&TransItemInfo.Item, &psItem.ItemInfo, sizeof(sITEMINFO));
 				rsRegist_ItemSecCode(lpPlayInfo, &TransItemInfo, 1);
-				lpPlayInfo->lpsmSock->Send((char*)&TransItemInfo, TransItemInfo.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransItemInfo, TransItemInfo.size);
 			}
 			return &DefaultItems[cnt];
 		}
@@ -20826,7 +20856,7 @@ int rsPutItemUnique(rsPLAYINFO* lpPlayInfo, DWORD dwItemCode, int spJobCode, DWO
 				TransItemInfo.size = sizeof(TRANS_ITEMINFO);
 				memcpy(&TransItemInfo.Item, &psItem.ItemInfo, sizeof(sITEMINFO));
 				rsRegist_ItemSecCode(lpPlayInfo, &TransItemInfo, 1);
-				lpPlayInfo->lpsmSock->Send((char*)&TransItemInfo, TransItemInfo.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransItemInfo, TransItemInfo.size);
 			}
 			return TRUE;
 		}
@@ -20845,7 +20875,7 @@ int rsPutItem2(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpItem)
 		TransItemInfo.size = sizeof(TRANS_ITEMINFO);
 		memcpy(&TransItemInfo.Item, lpItem, sizeof(sITEMINFO));
 		rsRegist_ItemSecCode(lpPlayInfo, &TransItemInfo, 1);
-		return lpPlayInfo->lpsmSock->Send((char *)&TransItemInfo, TransItemInfo.size, TRUE);
+		return SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransItemInfo, TransItemInfo.size);
 	}
 	return FALSE;
 }
@@ -20869,7 +20899,7 @@ int rsSendNetLog(rsPLAYINFO *lpPlayInfo)
 	TransChatMessage.dwIP = 0;
 	TransChatMessage.dwObjectSerial = 0;
 
-	return lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+	return SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 }
 
 
@@ -20946,7 +20976,7 @@ int	SendFindCrack(smWINSOCK *lpsmSock)
 {
 	if(lpsmSock)
 	{
-		return lpsmSock->Send((char *)&rsTransFindCracker, rsTransFindCracker.size, TRUE);
+		return SendOnServerLegacySocket(lpsmSock, (char *)&rsTransFindCracker, rsTransFindCracker.size);
 	}
 	return FALSE;
 }
@@ -20963,7 +20993,7 @@ int SendQuickMessage(rsPLAYINFO *lpPlayInfo, char *szMessage)
 	TransChatMessage.dwIP = 0;
 	TransChatMessage.dwObjectSerial = 0;
 
-	lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+	SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 	return TRUE;
 
@@ -20980,7 +21010,7 @@ int SendQuickMessage2(rsPLAYINFO* lpPlayInfo, char* szMessage)
 	TransChatMessage.dwIP = 0;
 	TransChatMessage.dwObjectSerial = 0;
 
-	lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+	SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 
 	return TRUE;
 
@@ -21110,7 +21140,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			smTransCommand.LParam = 0;
 			smTransCommand.SParam = 0;
 
-			lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 			sprintf_s(szTempBuff, sizeof(szTempBuff), "GameMode Ativado! [nivel %d]", static_cast<int>(security));
 			SendQuickMessage(lpPlayInfo, szTempBuff);
@@ -21135,7 +21165,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 		}
 	}
 
@@ -21224,14 +21254,14 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 							if(lpPlayInfo->lpPartyMaster->lpsmSock)
 							{
-								lpPlayInfo->lpPartyMaster->lpsmSock->Send((char *)&smTransCharCommand, smTransCharCommand.size, TRUE);
+								SendOnServerLegacySocket(lpPlayInfo->lpPartyMaster->lpsmSock, (char *)&smTransCharCommand, smTransCharCommand.size);
 							}
 						}
 					}
 					else
 					{
 						wsprintf(TransChatMessage.szMessage, srMsg_002, lpPlayInfo2->smCharInfo.szName);
-						lpPlayInfo2->lpsmSock->Send((char *)&smTransCharCommand, smTransCharCommand.size, TRUE);
+						SendOnServerLegacySocket(lpPlayInfo2->lpsmSock, (char *)&smTransCharCommand, smTransCharCommand.size);
 					}
 				}
 				else
@@ -21262,7 +21292,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 		}
 	}
 
@@ -21282,7 +21312,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 0;
 				TransChatMessage.dwObjectSerial = 0;
-				lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 				return TRUE;
 			}
@@ -21296,7 +21326,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 1;
 				TransChatMessage.dwObjectSerial = 0;
-				lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 				if(lpPlayInfo2->lpsmSock)
 				{
@@ -21305,7 +21335,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 					TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 					TransChatMessage.dwIP = 1;
 					TransChatMessage.dwObjectSerial = 0;
-					lpPlayInfo2->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+					SendOnServerLegacySocket(lpPlayInfo2->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 				}
 			}
 			else
@@ -21315,7 +21345,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 0;
 				TransChatMessage.dwObjectSerial = 0;
-				lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 			}
 		}
 		else
@@ -21327,7 +21357,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 0;
 				TransChatMessage.dwObjectSerial = 0;
-				lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 			}
 		}
 
@@ -21359,7 +21389,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 					TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 					TransChatMessage.dwIP = 0;
 					TransChatMessage.dwObjectSerial = 0;
-					lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+					SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 				}
 				return TRUE;
 			}
@@ -21387,14 +21417,14 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 			if(lpStgArea->lpField->FieldCode != 30 && lpStgArea->lpField->FieldCode != 33)
 			{
-				lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 				smTransCommand.code = OpCode::OPCODE_WARPFIELD;
 				smTransCommand.size = sizeof(smTRANS_COMMAND);
 				smTransCommand.WParam = lpStgArea->lpField->FieldCode;
 				smTransCommand.SParam = lpPlayInfo2->Position.x;
 				smTransCommand.LParam = lpPlayInfo2->Position.z;
-				lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 			}
 		}
 		else
@@ -21407,7 +21437,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 0;
 				TransChatMessage.dwObjectSerial = 0;
-				lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 			}
 		}
 
@@ -21425,7 +21455,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 		return TRUE;
 
@@ -21442,7 +21472,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 		return TRUE;
 
@@ -21484,7 +21514,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 		}
 	}
 
@@ -21496,7 +21526,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 		return TRUE;
 	}
 
@@ -21512,7 +21542,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 		return TRUE;
 	}
@@ -21539,12 +21569,12 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		   TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		   TransChatMessage.dwIP = 0;
 		   TransChatMessage.dwObjectSerial = 0;
-		   lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		   SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 		   smTransCommand.size = sizeof(smTRANS_COMMAND);
 		   smTransCommand.code = OpCode::OPCODE_CANCEL_FORCE_ORB;
 		   smTransCommand.LParam = 0;
-		   lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+		   SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 		}
 
 		return TRUE;
@@ -21561,7 +21591,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 			smTransCommand.size = sizeof(smTRANS_COMMAND);
 			smTransCommand.code = OpCode::OPCODE_DEAD_PLAYER;
@@ -21569,7 +21599,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			smTransCommand.SParam = 0;
 			smTransCommand.LParam = 0;
 			smTransCommand.EParam = 0;
-			lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 		}
 
@@ -21595,7 +21625,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			{
 				if (rsPlayInfo[cnt].lpsmSock)
 				{
-					rsPlayInfo[cnt].lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+					SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 				}
 			}
 
@@ -21611,7 +21641,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.dwObjectSerial = 0;
 
 
-			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 		}
 
 
@@ -21711,7 +21741,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 						((DWORD)lpPlayInfo->bSkillPoint[17] << 8) |
 						((DWORD)lpPlayInfo->bSkillPoint[18] << 16) |
 						((DWORD)lpPlayInfo->bSkillPoint[19] << 24);
-					lpPlayInfo->lpsmSock->Send((char*)&tier5Sync, tier5Sync.size, TRUE);
+					SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&tier5Sync, tier5Sync.size);
 					wsprintf(TransChatMessage.szMessage, "T5 DEV> Tier 5 liberada e sincronizada sem relog.");
 				}
 				else
@@ -21729,7 +21759,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 
 		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
 		return TRUE;
@@ -21756,7 +21786,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.dwIP = 11;
 		TransChatMessage.dwObjectSerial = 0;
 
-		lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 
 		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
 		return TRUE;
@@ -21783,7 +21813,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 	}
 
 
@@ -21797,7 +21827,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 	}
 
 	len = rsCompString("/dm_info", szChatCommand);
@@ -21811,7 +21841,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 3);
 		return TRUE;
@@ -21827,7 +21857,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 3);
 		return TRUE;
@@ -21843,7 +21873,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 3);
 		return TRUE;
@@ -21857,7 +21887,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 3);
 		return TRUE;
@@ -21882,7 +21912,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				smTransCommand.WParam = lpStgArea->lpField->FieldCode;
 				smTransCommand.SParam = lpPlayInfo2->Position.x;
 				smTransCommand.LParam = lpPlayInfo2->Position.z;
-				lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 				gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 2);
 				return TRUE;
@@ -21910,7 +21940,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				smTransCommand.WParam = lpStgArea->lpField->FieldCode;
 				smTransCommand.SParam = lpPlayInfo->Position.x;
 				smTransCommand.LParam = lpPlayInfo->Position.z;
-				lpPlayInfo2->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo2->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 				gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 2);
 				return TRUE;
@@ -21948,7 +21978,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 		return TRUE;
 	}
@@ -21985,7 +22015,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 		return TRUE;
 	}
@@ -22020,7 +22050,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 		return TRUE;
 	}
@@ -22057,7 +22087,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 		return TRUE;
 	}
 
@@ -22074,7 +22104,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 		return TRUE;
 	}
 
@@ -22089,7 +22119,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 		return TRUE;
 	}
 
@@ -22118,7 +22148,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 		wsprintf(TransChatMessage.szMessage, ">currency[M]: Mx(%d) Ag(%d) Sh(%d) Po(%d %d %d) Fo(%d) Wp(%d) Sk(%d ) Tt(%d)",
 			(int)(CurrencyLog.int64_CraftMoney / 1000000),
@@ -22136,7 +22166,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 		return TRUE;
 	}
@@ -22154,7 +22184,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
 		return TRUE;
@@ -22178,7 +22208,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
 		return TRUE;
@@ -22206,7 +22236,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 		}
 		return TRUE;
@@ -22241,7 +22271,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 3);
 		return TRUE;
@@ -22272,7 +22302,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 3);
 		return TRUE;
@@ -22292,7 +22322,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 		}
 		else
 		{
@@ -22301,7 +22331,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 		}
 
 
@@ -22339,7 +22369,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 0;
 				TransChatMessage.dwObjectSerial = 0;
-				lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 			}
 		}
 	}
@@ -22371,7 +22401,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char*)& TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)& TransChatMessage, TransChatMessage.size);
 		}
 		else
 		{
@@ -22391,7 +22421,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char*)& TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)& TransChatMessage, TransChatMessage.size);
 		}
 
 	}
@@ -22411,7 +22441,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		for (int i = 0; i < CONNECTMAX; i++) {
 
 			if (rsPlayInfo[i].lpsmSock) {
-				rsPlayInfo[i].lpsmSock->Send((char*)& TransChatMessage, TransChatMessage.size, TRUE);
+				SendOnServerLegacySocket(rsPlayInfo[i].lpsmSock, (char*)& TransChatMessage, TransChatMessage.size);
 			}
 		}
 		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 2);
@@ -22430,7 +22460,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 		for (int i = 0; i < CONNECTMAX; i++) {
 			if (rsPlayInfo[i].lpsmSock) {
-				rsPlayInfo[i].lpsmSock->Send((char*)& TransChatMessage, TransChatMessage.size, TRUE);
+				SendOnServerLegacySocket(rsPlayInfo[i].lpsmSock, (char*)& TransChatMessage, TransChatMessage.size);
 			}
 		}
 		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 2);
@@ -22538,7 +22568,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 3);
 		return TRUE;
@@ -22575,7 +22605,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 0;
 				TransChatMessage.dwObjectSerial = 0;
-				lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 				gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 2);
 				return TRUE;
@@ -22610,7 +22640,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 			DisconnectUser(lpPlayInfo2->lpsmSock);
 		}
@@ -22645,7 +22675,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 			smTransCommand.size = sizeof(smTRANS_COMMAND);
 			smTransCommand.code = OpCode::OPCODE_DEAD_PLAYER;
@@ -22653,7 +22683,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			smTransCommand.SParam = 0;
 			smTransCommand.LParam = 0;
 			smTransCommand.EParam = 0;
-			lpPlayInfo2->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo2->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 		}
 		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 2);
@@ -22710,7 +22740,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			{
 				if(rsPlayInfo[cnt].lpsmSock)
 				{
-					rsPlayInfo[cnt].lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+					SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 				}
 			}
 		}
@@ -22799,7 +22829,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 0;
 				TransChatMessage.dwObjectSerial = 0;
-				lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 			}
 			else
 			{
@@ -22813,7 +22843,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 					TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 					TransChatMessage.dwIP = 0;
 					TransChatMessage.dwObjectSerial = 0;
-					lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+					SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 				}
 			}
 		}
@@ -22874,12 +22904,12 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		len = rsCompString("/set_castle_master", szChatCommand);
 		if(len && AutoPlayServer)
 		{
-			if(!rsBlessCastle.CastleMode && lpPlayInfo->dwClanCode)
+			if(!rsBlessCastle.CastleMode && SummitOnServerClanCode(lpPlayInfo))
 			{
 				lpBuff = szChatCommand + len;
 				lpBuff = rsGetWord(szCmdBuff, lpBuff);
 				if(!szCmdBuff[0])
-					rsBlessCastle.dwMasterClan = lpPlayInfo->dwClanCode;
+					rsBlessCastle.dwMasterClan = SummitOnServerClanCode(lpPlayInfo);
 				else
 					rsBlessCastle.dwMasterClan = atoi(szCmdBuff);
 
@@ -22888,7 +22918,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 0;
 				TransChatMessage.dwObjectSerial = 0;
-				lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 			}
 			return TRUE;
@@ -22906,14 +22936,14 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				rsBlessCastle.dwMasterClan,
 				rsBlessCastle.Tax,
 				rsBlessCastle.NextTax,
-				lpPlayInfo->dwClanCode, lpPlayInfo->smCharInfo.ClassClan,
+				SummitOnServerClanCode(lpPlayInfo), SummitOnServerClanMark(lpPlayInfo),
 				rsBlessCastle.CastleMode);
 
 			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 			return TRUE;
 		}
@@ -22934,7 +22964,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 			return TRUE;
 		}
@@ -22952,7 +22982,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 			return TRUE;
 		}
@@ -22973,7 +23003,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 			return TRUE;
 		}
@@ -23017,7 +23047,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 		}
 
 		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
@@ -23057,7 +23087,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 0;
 				TransChatMessage.dwObjectSerial = 0;
-				lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 			}
 		}
 
@@ -23084,7 +23114,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 3;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 		}
 
 		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
@@ -23111,7 +23141,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 3;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 		}
 
 		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
@@ -23138,7 +23168,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 3;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 		}
 
 		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
@@ -23165,7 +23195,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 3;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 		}
 		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
 		return TRUE;
@@ -23194,7 +23224,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.dwIP = 3;
 			TransChatMessage.dwObjectSerial = 0;
 
-			lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 		}
 
 		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
@@ -23243,14 +23273,14 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		for (cnt = 0; cnt < CONNECTMAX; cnt++)
 		{
 			if (rsPlayInfo[cnt].lpsmSock)
-				rsPlayInfo[cnt].lpsmSock->Send((char*)&packetc, packetc.size, TRUE);
+				SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char*)&packetc, packetc.size);
 		}
 
 		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 11;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 
 		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
 		return TRUE;
@@ -23280,7 +23310,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		for (cnt = 0; cnt < CONNECTMAX; cnt++)
 		{
 			if (rsPlayInfo[cnt].lpsmSock)
-				rsPlayInfo[cnt].lpsmSock->Send((char*)&packetc, packetc.size, TRUE);
+				SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char*)&packetc, packetc.size);
 		}
 
 		wsprintf(TransChatMessage.szMessage, "Configura\347\365es Recarregadas!");
@@ -23289,7 +23319,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 11;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 
 		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
 
@@ -23305,7 +23335,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 11;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 
 		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
 
@@ -23330,7 +23360,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 			return TRUE;
 		}
 	}
@@ -23352,7 +23382,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 		return TRUE;
 		}
 	}
@@ -23374,7 +23404,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 			return TRUE;
 		}
 	}
@@ -23417,7 +23447,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				TransChatMessage.dwIP = 0;
 				TransChatMessage.dwObjectSerial = 0;
 
-				lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 			}
 			spJobCode = 0;
 
@@ -23455,12 +23485,12 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 					break;
 			}
 
-			wsprintf(TransChatMessage.szMessage, "> Nick [%s] id [%s] SCoins [%d].", lpPlayInfo2->getName(), lpPlayInfo2->getAccount(), cCoinShop.GetPlayerCoin(lpPlayInfo2));
+			wsprintf(TransChatMessage.szMessage, "> Nick [%s] id [%s] SCoins [%d].", lpPlayInfo2->getName(), lpPlayInfo2->getAccount(), SummitOnServerCoinBalance(lpPlayInfo2));
 			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 3;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 		}
 
 		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
@@ -23481,7 +23511,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 		if (lpPlayInfo2)
 		{
-			cCoinShop.AddPlayerCoin(lpPlayInfo2, +len);
+			(void)SummitOnServerCreditCoins(lpPlayInfo2, len, gameplay::commerce::CoinReason::Administration);
 
 			wsprintf(TransChatMessage.szMessage, "> Foram adicionados [%d] SCoins no id [%s].", len, lpPlayInfo2->getAccount());
 
@@ -23490,7 +23520,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.dwIP = 3;
 			TransChatMessage.dwObjectSerial = 0;
 
-			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 			cCoinShop.RecvGetItemCoin(lpPlayInfo2);
 		}
@@ -23514,9 +23544,9 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		if (lpPlayInfo2)
 		{
 
-			if (len >= 0 && len <= cCoinShop.GetPlayerCoin(lpPlayInfo2))
+			if (len >= 0 && len <= SummitOnServerCoinBalance(lpPlayInfo2))
 			{
-				cCoinShop.AddPlayerCoin(lpPlayInfo2, -len);
+				(void)SummitOnServerDebitCoins(lpPlayInfo2, len, gameplay::commerce::CoinReason::Administration);
 
 				wsprintf(TransChatMessage.szMessage, "> Foram removidos [%d] coins do id [%s].", len, lpPlayInfo2->getAccount());
 			}
@@ -23529,7 +23559,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.dwIP = 3;
 			TransChatMessage.dwObjectSerial = 0;
 
-			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 			cCoinShop.RecvGetItemCoin(lpPlayInfo2);
 		}
@@ -23557,7 +23587,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 		}
 		else {
 			// criando item max = 8
@@ -23569,7 +23599,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 					TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 					TransChatMessage.dwIP = 0;
 					TransChatMessage.dwObjectSerial = 0;
-					lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+					SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 
 				}
 
@@ -23600,7 +23630,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 		}
 
 		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);		//
@@ -23644,7 +23674,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 		}
 		gameplay::admin::legacy::ServerLegacyAdminAuditAdapter().Record(lpPlayInfo, szChatCommand, 1);
 		return TRUE;
@@ -23721,7 +23751,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 		smTransCommand.size = sizeof(smTRANS_COMMAND);
 		smTransCommand.code = OpCode::OPCODE_PREMIUMITEM_INIT;
@@ -23729,7 +23759,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		smTransCommand.LParam = 0;
 		smTransCommand.SParam = 0;
 		smTransCommand.EParam = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 
 		return TRUE;
@@ -23794,7 +23824,7 @@ bool initialize(smTHREADSOCK *SockInfo)
 		news.welcome();
 		news.title();
 		news.msgCoinShop();
-		cCoinShop_T.GetPlayerCoin(player);
+		(void)SummitOnServerTimeCoinBalance(player);
 		news.msgNotice();
 		news.msgPlayerLogado(rsPlayInfo);
 		ClanCustom::GetInstance()->SendCrownToClient(player);
@@ -23812,7 +23842,7 @@ bool initialize(smTHREADSOCK *SockInfo)
 		packet.size = sizeof(packet);
 		packet.opcode = OpCode::CHECK_SOD_CROWN;
 
-		player->lpsmSock->Send((char*)&packet, packet.size, TRUE);
+		SendOnServerLegacySocket(player->lpsmSock, (char*)&packet, packet.size);
 
 		return true;
 	}
@@ -24037,7 +24067,7 @@ bool handlePlayerLoginOpcode(smTHREADSOCK* SockInfo)
 						smTransCommand.WParam = (DWORD)0;
 						smTransCommand.LParam = 0;
 						smTransCommand.EParam = 1;
-						lpsmSock->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+						SendOnServerLegacySocket(lpsmSock, (char*)&smTransCommand, smTransCommand.size);
 						srLogFailedCount++;
 					}
 
@@ -24117,7 +24147,7 @@ bool handlePlayerLoginOpcode(smTHREADSOCK* SockInfo)
 						smTransCommand.WParam = (DWORD)0;
 						smTransCommand.LParam = 0;
 						smTransCommand.EParam = 1;
-						lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+						SendOnServerLegacySocket(lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 						srLogFailedCount++;
 
 						return false;
@@ -24870,7 +24900,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 				{
 					if (rsPlayInfo[cnt].lpsmSock)
 					{
-						rsPlayInfo[cnt].lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+						SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 					}
 				}
 			}
@@ -25374,8 +25404,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 					if (lpPlayInfo->lpPartyMaster->GetPartyMoney(&lpStgItem->Item.ItemInfo, lpPlayInfo) == FALSE)
 					{
 
-						lpPlayInfo->dwPartyInfo = PARTY_STATE_NONE;
-						lpPlayInfo->lpPartyMaster = NULL;
+						SummitOnServerClearPartyMembership(lpPlayInfo);
 					}
 				}
 				else
@@ -25396,14 +25425,14 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 					if (lpStgItem->Item.ItemInfo.CODE == (sinGG1 | sin05))
 					{
-						cCoinShop.AddPlayerCoin(lpPlayInfo, lpStgItem->Item.ItemInfo.Money);
+						(void)SummitOnServerCreditCoins(lpPlayInfo, lpStgItem->Item.ItemInfo.Money, gameplay::commerce::CoinReason::Pickup);
 					}
 
 					if(lpStgItem->dwExclusiveOwnerCode == lpPlayInfo->dwObjectSerial && lpStgItem->Item.ItemInfo.CODE == sinQT136)
 						RegisterT5CryPickupToken(lpPlayInfo, &lpStgItem->Item.ItemInfo);
 
 					rsRegist_ItemSecCode(lpPlayInfo, &TransItemInfo, lpStgItem->BeginMode);
-					lpsmSock->Send((char*)& TransItemInfo, TransItemInfo.size, TRUE);
+					SendOnServerLegacySocket(lpsmSock, (char*)& TransItemInfo, TransItemInfo.size);
 
 
 					if ((lpStgItem->Item.ItemInfo.CODE & sinITEM_MASK3) >= sin09 ||
@@ -25442,7 +25471,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 								{
 									if (rsPlayInfo[cnt].lpsmSock)
 									{
-										rsPlayInfo[cnt].lpsmSock->Send((char*)& TransChatMessage, TransChatMessage.size, TRUE);
+										SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char*)& TransChatMessage, TransChatMessage.size);
 									}
 								}
 
@@ -25455,7 +25484,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 								{
 									if (rsPlayInfo[cnt].lpsmSock)
 									{
-										rsPlayInfo[cnt].lpsmSock->Send((char*)& TransChatMessage, TransChatMessage.size, TRUE);
+										SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char*)& TransChatMessage, TransChatMessage.size);
 									}
 								}
 							}
@@ -25479,7 +25508,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 								{
 									if (rsPlayInfo[cnt].lpsmSock)
 									{
-										rsPlayInfo[cnt].lpsmSock->Send((char*)& TransChatMessage, TransChatMessage.size, TRUE);
+										SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char*)& TransChatMessage, TransChatMessage.size);
 									}
 								}
 
@@ -25492,7 +25521,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 								{
 									if (rsPlayInfo[cnt].lpsmSock)
 									{
-										rsPlayInfo[cnt].lpsmSock->Send((char*)& TransChatMessage, TransChatMessage.size, TRUE);
+										SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char*)& TransChatMessage, TransChatMessage.size);
 									}
 								}
 							}
@@ -25590,9 +25619,9 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 				}
 
 
-				lpPlayInfo->dwClanCode = GetClanCode(lpPlayInfo->smCharInfo.ClassClan);
+				(void)SummitOnServerSynchronizeClanMark(lpPlayInfo, SummitOnServerClanMark(lpPlayInfo));
 
-				if (lpPlayInfo->smCharInfo.ClassClan > 0)
+				if (SummitOnServerClanMark(lpPlayInfo) > 0)
 				{
 					std::shared_ptr<SQLConnection> db = SQLConnection::GetConnection(DATABASEID_ClanDB);
 
@@ -25615,13 +25644,13 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 								}
 								for (int i = 0; i < count; i++)
 								{
-									if (ClanCodes[i] == lpPlayInfo->smCharInfo.ClassClan)
+									if (ClanCodes[i] == SummitOnServerClanMark(lpPlayInfo))
 									{
 										smTransCommand.code = OpCode::OPCODE_SOD_INFO;
 										smTransCommand.size = sizeof(smTRANS_COMMAND);
 										smTransCommand.WParam = i + 1;
 
-										lpPlayInfo->lpsmSock->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+										SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&smTransCommand, smTransCommand.size);
 										break;
 									}
 								}
@@ -25637,7 +25666,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 				smTransCommand.size = sizeof(smTRANS_COMMAND);
 				smTransCommand.WParam = lpPlayInfo->dwObjectSerial;
 				smTransCommand.LParam = dwTime;
-				lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+				SendOnServerLegacySocket(lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 				lpPlayInfo2 = FindUserFromName(lpPlayInfo->smCharInfo.szName);
 				if (lpPlayInfo2 && lpPlayInfo2->lpsmSock && lpPlayInfo2->TransInfoFlag && lpPlayInfo2->getSecurity() <= AccountTypes::SEC_VIP)
 				{
@@ -25676,7 +25705,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 				if (rsServerConfig.AreaServer.IP_Count > 0)
 				{
 
-					lpsmSock->Send((char *)&rsServerConfig.AreaServer, rsServerConfig.AreaServer.size, TRUE);
+					SendOnServerLegacySocket(lpsmSock, (char *)&rsServerConfig.AreaServer, rsServerConfig.AreaServer.size);
 				}
 
 				lpPlayInfo->TransInfoFlag = TRUE;
@@ -25759,7 +25788,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 				}
 
 
-				lpPlayInfo->dwClanCode = GetClanCode(lpPlayInfo->smCharInfo.ClassClan);
+				(void)SummitOnServerSynchronizeClanMark(lpPlayInfo, SummitOnServerClanMark(lpPlayInfo));
 				lpPlayInfo->UpdateInfo_WarnigCounter++;
 			}
 			break;
@@ -25863,7 +25892,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 					smTransCommand.WParam = lpPlayInfo->dwObjectSerial;
 					smTransCommand.LParam = lpPlayInfo->smCharInfo.bUpdateInfo[0];
 					smTransCommand.SParam = lpTransPlayData->bUpdateInfo[0];
-					lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+					SendOnServerLegacySocket(lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 					lpPlayInfo->UpdateInfo_WarnigCounter++;
 				}
 				lpPlayInfo->UpdateInfo_WaitCounter++;
@@ -26097,7 +26126,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 				smTransCommand.LParam = 0;
 				smTransCommand.SParam = rsBlessCastle.Tax;
 				smTransCommand.EParam = (int)rsBlessCastle.dwMasterClan;
-				lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+				SendOnServerLegacySocket(lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 				delete lpPlayInfo->lpRecordBase;
 				lpPlayInfo->lpRecordBase = 0;
@@ -26149,7 +26178,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 				lpPlayInfo->smCharInfo.Level = lpPlayInfo->lpRecordBase->TransRecordData.smCharInfo.Level;
 
 				if(lpPlayInfo->lpRecordBase->TransRecordData.smCharInfo.ClassClan)
-					lpPlayInfo->smCharInfo.ClassClan = lpPlayInfo->lpRecordBase->TransRecordData.smCharInfo.ClassClan;
+					(void)SummitOnServerSynchronizeClanMark(lpPlayInfo, lpPlayInfo->lpRecordBase->TransRecordData.smCharInfo.ClassClan);
 
 
 				// Never trust a Rank5 value coming from the client save. QuestDB is authoritative.
@@ -26262,7 +26291,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 				smTransCommand.LParam = 0;
 				smTransCommand.SParam = rsBlessCastle.Tax;
 				smTransCommand.EParam = (int)rsBlessCastle.dwMasterClan;
-				lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+				SendOnServerLegacySocket(lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 
 				lpPlayInfo->dwLastSaveTime = dwPlayServTime;
@@ -26584,7 +26613,7 @@ if(cnt >= CONNECTMAX)
 					lpTransCharCommand->LParam = rsGetLoginSafeKey(&lpPlayInfo->smCharInfo, GetSpeedSum(lpPlayInfo->getName()));
 					lpTransCharCommand->SParam = nStartUserLevel;
 
-					lpsmSock->Send((char *)lpTransCharCommand, lpTransCharCommand->size, TRUE);
+					SendOnServerLegacySocket(lpsmSock, (char *)lpTransCharCommand, lpTransCharCommand->size);
 
 					((TRANS_RECORD_DATA *)lpPlayInfo->lpRecordDataBuff)->size = 0;
 					((TRANS_RECORD_DATA *)lpPlayInfo->lpRecordDataBuff)->code = 0;
@@ -26681,8 +26710,8 @@ if(cnt >= CONNECTMAX)
 					else
 						lpPlayInfo->spMoney_Start = lpRecordBase->TransRecordData.smCharInfo.Money;;
 
-					lpPlayInfo->SetServerMoney(lpPlayInfo->spMoney_Start, WHERE_LOAD_PLAYER);
-					lpPlayInfo->smCharInfo.ClassClan = lpRecordBase->TransRecordData.smCharInfo.ClassClan;
+					(void)SummitOnServerWalletSet(lpPlayInfo, lpPlayInfo->spMoney_Start, gameplay::commerce::WalletReason::LoadPlayer);
+					(void)SummitOnServerSynchronizeClanMark(lpPlayInfo, lpRecordBase->TransRecordData.smCharInfo.ClassClan);
 
 
 
@@ -26961,7 +26990,7 @@ if(cnt >= CONNECTMAX)
 					smTransCommand.WParam = lpPlayInfo->Client_Version;
 					smTransCommand.LParam = 0;
 					smTransCommand.SParam = 0;
-					lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+					SendOnServerLegacySocket(lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 				}
 			}
 
@@ -27055,8 +27084,8 @@ if(cnt >= CONNECTMAX)
 
 				db->Close();
 
-				lpPlayInfo->lpsmSock->Send((char*)&p, p.iLength, TRUE);
-				lpPlayInfo->lpsmSock->Send((char*)&s, s.iLength, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&p, p.iLength);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&s, s.iLength);
 			}
 
 			{
@@ -27098,7 +27127,7 @@ if(cnt >= CONNECTMAX)
 								smTransCommand.LParam = 0;
 								smTransCommand.EParam = 0;
 
-								lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+								SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 							}
 						}
 						db->Close();
@@ -27160,7 +27189,7 @@ if(cnt >= CONNECTMAX)
 				packetc.SetBoss2Bonus2 = SetBoss2Bonus2;
 
 				if (lpPlayInfo->lpsmSock)
-					lpPlayInfo->lpsmSock->Send((char*)&packetc, packetc.size, true);
+					SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&packetc, packetc.size);
 			}
 
 			if(lpPlayInfo->smCharInfo.Level < NovatoLevel)
@@ -27171,7 +27200,7 @@ if(cnt >= CONNECTMAX)
 				smTransCommand.EParam = 0;
 				smTransCommand.LParam = 0;
 
-				lpPlayInfo->lpsmSock->Send((char*)& smTransCommand, smTransCommand.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)& smTransCommand, smTransCommand.size);
 			}
 
 			if (rsLoadPostBox(lpPlayInfo) == TRUE)
@@ -27186,7 +27215,7 @@ if(cnt >= CONNECTMAX)
 					TransChatMessage.dwObjectSerial = 0;
 
 					if (lpPlayInfo->lpsmSock)
-						lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+						SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 				}
 			}
 
@@ -27223,7 +27252,7 @@ if(cnt >= CONNECTMAX)
 					smTransCommand.LParam = 0;
 					smTransCommand.SParam = 0;
 
-					lpPlayInfo->lpsmSock->Send((char*)& smTransCommand, smTransCommand.size, TRUE);
+					SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)& smTransCommand, smTransCommand.size);
 
 					sprintf_s(szTempBuff, sizeof(szTempBuff), "Modo de Jogo [nivel %d] Ativado!", static_cast<int>(security));
 					SendQuickMessage(lpPlayInfo, szTempBuff);
@@ -27258,7 +27287,7 @@ if(cnt >= CONNECTMAX)
 							smTransCommand.SParam = 0;
 						smTransCommand.EParam = 0;
 
-						lpsmSock->Send((char*)& smTransCommand, smTransCommand.size, TRUE);
+						SendOnServerLegacySocket(lpsmSock, (char*)& smTransCommand, smTransCommand.size);
 
 						if (iCountPlayerGm > 0 && AlertaGm)
 						{
@@ -27272,7 +27301,7 @@ if(cnt >= CONNECTMAX)
 							{
 								if (rsPlayInfo[cnt].lpsmSock)
 								{
-									rsPlayInfo[cnt].lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+									SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 								}
 							}
 						}
@@ -27293,7 +27322,7 @@ if(cnt >= CONNECTMAX)
 					int dps = 0;
 
 
-					lpsmSock->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+					SendOnServerLegacySocket(lpsmSock, (char*)&smTransCommand, smTransCommand.size);
 					if (db->Prepare("SELECT TOP 1 Name From PVP Where Class=? Order By Lvl Desc"))
 					{
 						db->BindInputParameter(&lpPlayInfo->smCharInfo.JOB_CODE, 1, PARAMTYPE_Integer);
@@ -27325,11 +27354,11 @@ if(cnt >= CONNECTMAX)
 						{
 							if (rsPlayInfo[cnt].lpsmSock)
 							{
-								rsPlayInfo[cnt].lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+								SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 							}
 						}
 					}
-					lpsmSock->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+					SendOnServerLegacySocket(lpsmSock, (char*)&smTransCommand, smTransCommand.size);
 
 				}
 			}
@@ -27388,11 +27417,11 @@ if(cnt >= CONNECTMAX)
 						{
 							if (rsPlayInfo[cnt].lpsmSock)
 							{
-								rsPlayInfo[cnt].lpsmSock->Send((char*)& TransChatMessage, TransChatMessage.size, TRUE);
+								SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char*)& TransChatMessage, TransChatMessage.size);
 							}
 						}
 					}
-					lpsmSock->Send((char*)& smTransCommand, smTransCommand.size, TRUE);
+					SendOnServerLegacySocket(lpsmSock, (char*)& smTransCommand, smTransCommand.size);
 				}
 			}
 
@@ -27402,7 +27431,7 @@ if(cnt >= CONNECTMAX)
 				smTransCommand.code = OpCode::BOSS_TIME;
 				smTransCommand.WParam = OpenBossTimeMin;
 				smTransCommand.size = sizeof(smTRANS_COMMAND);
-				lpsmSock->Send((char*)& smTransCommand, smTransCommand.size, TRUE);
+				SendOnServerLegacySocket(lpsmSock, (char*)& smTransCommand, smTransCommand.size);
 			}
 
 			//Aging and Mix Free
@@ -27418,7 +27447,7 @@ if(cnt >= CONNECTMAX)
 
 				smTransCommand.SParam = 0;
 				smTransCommand.EParam = 0;
-				lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+				SendOnServerLegacySocket(lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 			}
 
 			gameplay::quests::legacy::ServerLegacyQuestLifecycleService().VerifyPlayerLevel(gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo));
@@ -27481,7 +27510,7 @@ if(cnt >= CONNECTMAX)
 		// 		lpTransCharCommand2->WParam = lpRecordBase->InsertCharData(lpPlayInfo->getAccount(), lpTransCharCommand2->szName);
 		// 	}
 
-		// 	lpsmSock->Send((char *)lpTransCharCommand2, lpTransCharCommand2->size, TRUE);
+		// 	SendOnServerLegacySocket(lpsmSock, (char *)lpTransCharCommand2, lpTransCharCommand2->size);
 
 		// 	if(lpTransCharCommand2->WParam == TRUE)
 		// 	{
@@ -27595,11 +27624,7 @@ if(cnt >= CONNECTMAX)
 				fflush(fpIns);
 			}
 
-			lpsmSock->Send(
-				(char *)lpTransCharCommand2,
-				lpTransCharCommand2->size,
-				TRUE
-			);
+			SendOnServerLegacySocket(lpsmSock, (char *)lpTransCharCommand2, lpTransCharCommand2->size);
 
 			if(lpTransCharCommand2->WParam == TRUE)
 			{
@@ -27673,7 +27698,7 @@ if(cnt >= CONNECTMAX)
 
 			lpTransCharCommand2 = (smTRANS_CHAR_COMMAND2 *)SockInfo->Buff;
 			lpTransCharCommand2->WParam = lpRecordBase->IsData(lpTransCharCommand2->szName);
-			lpsmSock->Send((char *)lpTransCharCommand2, lpTransCharCommand2->size, TRUE);
+			SendOnServerLegacySocket(lpsmSock, (char *)lpTransCharCommand2, lpTransCharCommand2->size);
 
 			if(lpRecordBase)
 			{
@@ -27969,21 +27994,21 @@ if(cnt >= CONNECTMAX)
 			//		int dist = x * x + z * z;
 
 			//		if (dist < DIST_TRANSLEVEL_CONNECT && abs(x) < TRANS_VIEW_LIMIT && abs(z) < TRANS_VIEW_LIMIT) {
-			//			rsPlayInfo[i].lpsmSock->Send((char*)lpTransCommand, lpTransCommand->size, TRUE);
+			//			SendOnServerLegacySocket(rsPlayInfo[i].lpsmSock, (char*)lpTransCommand, lpTransCommand->size);
 			//		}
 			//	}
 			//}
 			lpPlayInfo2 = srFindUserFromSerial(lpTransCommand->EParam);
 			if (lpPlayInfo2)
 			{
-				lpPlayInfo2->lpsmSock->Send((char*)lpTransCommand, lpTransCommand->size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo2->lpsmSock, (char*)lpTransCommand, lpTransCommand->size);
 			}
 			break;
 
 		case OpCode::OPCODE_DEF_INFO:
 			lpTransCommand = (smTRANS_COMMAND*)SockInfo->Buff;
 
-			lpPlayInfo->lpsmSock->Send((char*)lpTransCommand, lpTransCommand->size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)lpTransCommand, lpTransCommand->size);
 			break;
 
 		case OpCode::OPCODE_SAVETHROWITEM:
@@ -28008,7 +28033,8 @@ if(cnt >= CONNECTMAX)
 			{
 
 
-				if(rsDeleteInvenItem(lpPlayInfo, lpTransCommandEx->WParam, lpTransCommandEx->LParam, lpTransCommandEx->SParam) < 0)
+				if(!SummitOnServerInventoryRemove(
+					lpPlayInfo, lpTransCommandEx->WParam, lpTransCommandEx->LParam, lpTransCommandEx->SParam).Applied())
 				{
 
 					smTransCommandEx.WParam = 8000;
@@ -28851,7 +28877,7 @@ if(cnt >= CONNECTMAX)
 					{
 						if(lpPlayInfo->ServerMoney >= lpTransCommandEx->ExParam)
 						{
-							lpPlayInfo->SubServerMoney(lpTransCommandEx->ExParam, WHERE_THROW_ITEM);
+							(void)SummitOnServerWalletDebit(lpPlayInfo, lpTransCommandEx->ExParam, gameplay::commerce::WalletReason::ThrowItem);
 						}
 						else
 						{
@@ -28903,7 +28929,7 @@ if(cnt >= CONNECTMAX)
 			rsRegist_ItemSecCode(lpPlayInfo, lpTransCommandEx);
 
 
-			lpsmSock->Send((char *)lpTransCommandEx, lpTransCommandEx->size, TRUE);
+			SendOnServerLegacySocket(lpsmSock, (char *)lpTransCommandEx, lpTransCommandEx->size);
 
 
 			break;
@@ -28979,7 +29005,7 @@ if(cnt >= CONNECTMAX)
 						CharLower(szChkID);
 						smTransCommand.code = OpCode::OPCODE_CLOSECLIENT;
 						smTransCommand.size = sizeof(smTRANS_COMMAND);
-						lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+						SendOnServerLegacySocket(lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 #endif
 						lpPlayInfo->dwTime_Disconnect = dwTime + 1000 * 60 * 3;
 						break;
@@ -29035,7 +29061,7 @@ if(cnt >= CONNECTMAX)
 					}
 				}
 				lpTransCommand->size = sizeof(TRANS_ATTACKDATA);
-				lpsmSock->Send((char *)lpTransCommand, lpTransCommand->size, TRUE);
+				SendOnServerLegacySocket(lpsmSock, (char *)lpTransCommand, lpTransCommand->size);
 
 
 			}
@@ -29102,7 +29128,7 @@ if(cnt >= CONNECTMAX)
 						CharLower(szChkID);
 						smTransCommand.code = OpCode::OPCODE_CLOSECLIENT;
 						smTransCommand.size = sizeof(smTRANS_COMMAND);
-						lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+						SendOnServerLegacySocket(lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 #endif
 						lpPlayInfo->dwTime_Disconnect = dwTime + 1000 * 60 * 3;
 						break;
@@ -29132,7 +29158,7 @@ if(cnt >= CONNECTMAX)
 				}
 			}
 			lpTransCommand->size = sizeof(TRANS_ATTACKDATA);
-			lpsmSock->Send((char *)lpTransCommand, lpTransCommand->size, TRUE);
+			SendOnServerLegacySocket(lpsmSock, (char *)lpTransCommand, lpTransCommand->size);
 
 			if((lpPlayInfo->getAccount() && lpPlayInfo->getAccount()[0]) && (lpPlayInfo->getName() && lpPlayInfo->getName()[0]) && lpPlayInfo->ThrowItemCount > (THROW_ITEM_INFO_MAX / 2))
 			{
@@ -29187,7 +29213,7 @@ if(cnt >= CONNECTMAX)
 
 			lpTransCommand = (smTRANS_COMMAND *)SockInfo->Buff;
 			lpTransCommand->size = sizeof(TRANS_ATTACKDATA);
-			lpsmSock->Send((char *)lpTransCommand, lpTransCommand->size, TRUE);
+			SendOnServerLegacySocket(lpsmSock, (char *)lpTransCommand, lpTransCommand->size);
 			break;
 
 
@@ -29370,7 +29396,7 @@ if(cnt >= CONNECTMAX)
 
 			smTransCommand.code = OpCode::OPCODE_CLOSECLIENT;
 			smTransCommand.size = sizeof(smTRANS_COMMAND);
-			lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+			SendOnServerLegacySocket(lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 		}
 		break;
 
@@ -29435,11 +29461,10 @@ if(cnt >= CONNECTMAX)
 
 			case 1:
 				lpPlayInfo->smCharInfo.Level = lpTransCommand->LParam;
-				lpPlayInfo->smCharInfo.ClassClan = lpTransCommand->SParam;
+				(void)SummitOnServerSynchronizeClanMark(lpPlayInfo, lpTransCommand->SParam);
 				lpPlayInfo->smCharInfo.bUpdateInfo[0] = lpTransCommand->EParam;
-				lpPlayInfo->dwClanCode = GetClanCode(lpPlayInfo->smCharInfo.ClassClan);
 
-				if (lpPlayInfo->smCharInfo.ClassClan > 0)
+				if (SummitOnServerClanMark(lpPlayInfo) > 0)
 				{
 					std::shared_ptr<SQLConnection> db = SQLConnection::GetConnection(DATABASEID_ClanDB);
 
@@ -29462,13 +29487,13 @@ if(cnt >= CONNECTMAX)
 								}
 								for (int i = 0; i < count; i++)
 								{
-									if (ClanCodes[i] == lpPlayInfo->smCharInfo.ClassClan)
+									if (ClanCodes[i] == SummitOnServerClanMark(lpPlayInfo))
 									{
 										smTransCommand.code = OpCode::OPCODE_SOD_INFO;
 										smTransCommand.size = sizeof(smTRANS_COMMAND);
 										smTransCommand.WParam = i + 1;
 
-										lpPlayInfo->lpsmSock->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+										SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&smTransCommand, smTransCommand.size);
 										break;
 									}
 								}
@@ -29517,7 +29542,7 @@ if(cnt >= CONNECTMAX)
 					TransChatMessage.dwIP = 0;
 					TransChatMessage.dwObjectSerial = 0;
 					TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
-					lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+					SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 				}
 			}
 			break;
@@ -29603,7 +29628,7 @@ if(cnt >= CONNECTMAX)
 			lpPlayInfo2 = srFindUserFromSerial(lpTransTradeItems->dwRecver);
 			if(lpPlayInfo2 && lpPlayInfo2->lpsmSock)
 			{
-				lpPlayInfo2->lpsmSock->Send((char *)lpTransTradeItems, lpTransTradeItems->size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo2->lpsmSock, (char *)lpTransTradeItems, lpTransTradeItems->size);
 			}
 			break;
 
@@ -29615,7 +29640,7 @@ if(cnt >= CONNECTMAX)
 			{
 				if(rsTradeInvenItem(lpPlayInfo, lpPlayInfo2, (TRANS_TRADE_ITEMKEY *)SockInfo->Buff) == TRUE)
 				{
-					lpPlayInfo2->lpsmSock->Send((char *)lpTransTradeItems, lpTransTradeItems->size, TRUE);
+					SendOnServerLegacySocket(lpPlayInfo2->lpsmSock, (char *)lpTransTradeItems, lpTransTradeItems->size);
 				}
 			}
 			break;
@@ -29626,7 +29651,7 @@ if(cnt >= CONNECTMAX)
 			lpPlayInfo2 = srFindUserFromSerial(lpTransTradeItems->dwRecver);
 			if(lpPlayInfo2 && lpPlayInfo2->lpsmSock)
 			{
-				lpPlayInfo2->lpsmSock->Send((char *)lpTransTradeItems, lpTransTradeItems->size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo2->lpsmSock, (char *)lpTransTradeItems, lpTransTradeItems->size);
 			}
 
 
@@ -29651,7 +29676,7 @@ if(cnt >= CONNECTMAX)
 
 				lpPlayInfo2 = gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().Resolve(tradeResult.receiver);
 				if(lpPlayInfo2 && lpPlayInfo2->lpsmSock)
-					lpPlayInfo2->lpsmSock->Send((char *)lpTransCommand, lpTransCommand->size, TRUE);
+					SendOnServerLegacySocket(lpPlayInfo2->lpsmSock, (char *)lpTransCommand, lpTransCommand->size);
 			}
 			break;
 
@@ -29718,7 +29743,7 @@ if(cnt >= CONNECTMAX)
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 0;
 				TransChatMessage.dwObjectSerial = 0;
-				lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 			}
 			break;
 
@@ -29832,7 +29857,7 @@ if(cnt >= CONNECTMAX)
 
 				smTransCommand.code = OpCode::OPCODE_CLOSECLIENT;
 				smTransCommand.size = sizeof(smTRANS_COMMAND);
-				lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+				SendOnServerLegacySocket(lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 			}
 		}
 		break;
@@ -29862,7 +29887,7 @@ if(cnt >= CONNECTMAX)
 				lpTransCommand->code = PACKET_KILL;
 				lpTransCommand->WParam = lpPlayInfo2->KillCount;
 				lpTransCommand->LParam = lpPlayInfo->smCharInfo.JOB_CODE;
-				lpPlayInfo2->lpsmSock->Send((char *)lpTransCommand, lpTransCommand->size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo2->lpsmSock, (char *)lpTransCommand, lpTransCommand->size);
 			}
 
 			if ((lpPlayInfo && lpPlayInfo->lpsmSock) && (lpPlayInfo2 && lpPlayInfo2->lpsmSock))
@@ -29957,7 +29982,7 @@ if(cnt >= CONNECTMAX)
 										continue;
 
 									//if(rsPlayInfo[cnt].Position.Area == lpPlayInfo->Position.Area)
-									rsPlayInfo[cnt].lpsmSock->Send((char*)&pvp, pvp.size, TRUE);
+									SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char*)&pvp, pvp.size);
 								}
 							}
 
@@ -29969,7 +29994,7 @@ if(cnt >= CONNECTMAX)
 							bps.dwIP = 14;
 							bps.dwObjectSerial = 0;
 
-							lpPlayInfo2->lpsmSock->Send((char*)&bps, bps.size, TRUE);
+							SendOnServerLegacySocket(lpPlayInfo2->lpsmSock, (char*)&bps, bps.size);
 						}
 
 					}
@@ -30008,12 +30033,12 @@ if(cnt >= CONNECTMAX)
 							pvp2.dwIP = 14;
 							pvp2.dwObjectSerial = 0;
 
-							lpPlayInfo->lpsmSock->Send((char*)&pvp2, pvp2.size, TRUE);
+							SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&pvp2, pvp2.size);
 
 							smTransCommand.size = sizeof(smTRANS_COMMAND);
 							smTransCommand.code = BATTLE_POINTS_DEADS;
 							smTransCommand.WParam = dps;
-							lpPlayInfo->lpsmSock->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+							SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&smTransCommand, smTransCommand.size);
 						}
 					}
 					db->Close();
@@ -30048,7 +30073,7 @@ if(cnt >= CONNECTMAX)
 					if (lpPlayInfo2 && lpPlayInfo2->lpsmSock)
 					{
 
-						lpPlayInfo2->lpsmSock->Send((char*)lpTransCommand, lpTransCommand->size, TRUE);
+						SendOnServerLegacySocket(lpPlayInfo2->lpsmSock, (char*)lpTransCommand, lpTransCommand->size);
 					}
 				}
 
@@ -30122,7 +30147,7 @@ if(cnt >= CONNECTMAX)
 							ranking.code = OpCode::OPCODE_RANKING;
 							ranking.contador = i;
 							ranking.size = sizeof(ranking) + 50;
-							lpsmSock->Send((char*)&ranking, ranking.size, TRUE);
+							SendOnServerLegacySocket(lpsmSock, (char*)&ranking, ranking.size);
 						}
 						if (lpTransCommand->WParam == 3) {
 							i = 0;
@@ -30155,7 +30180,7 @@ if(cnt >= CONNECTMAX)
 							else {
 								ranking.type = 6;
 							}
-							lpsmSock->Send((char*)&ranking, ranking.size, TRUE);
+							SendOnServerLegacySocket(lpsmSock, (char*)&ranking, ranking.size);
 
 						}
 						if (lpTransCommand->WParam == 4) {
@@ -30189,7 +30214,7 @@ if(cnt >= CONNECTMAX)
 							ranking.code = OpCode::OPCODE_RANKING;
 							ranking.size = sizeof(ranking) + 50;
 							ranking.contador = i;
-							lpsmSock->Send((char*)&ranking, ranking.size, TRUE);
+							SendOnServerLegacySocket(lpsmSock, (char*)&ranking, ranking.size);
 						}
 						if (lpTransCommand->WParam == 5) {
 							i = 0;
@@ -30221,7 +30246,7 @@ if(cnt >= CONNECTMAX)
 							ranking.code = OpCode::OPCODE_RANKING;
 							ranking.size = sizeof(ranking) + 50;
 							ranking.contador = i;
-							lpsmSock->Send((char*)&ranking, ranking.size, TRUE);
+							SendOnServerLegacySocket(lpsmSock, (char*)&ranking, ranking.size);
 						}
 					}
 					break;
@@ -30499,7 +30524,7 @@ if(cnt >= CONNECTMAX)
 
 				if(lpTransCommandEx->WParam == (sinGG1 | sin01))
 				{
-					lpPlayInfo->AddServerMoney(cnt, WHERE_GET_ITEM);
+					(void)SummitOnServerWalletCredit(lpPlayInfo, cnt, gameplay::commerce::WalletReason::PickupItem);
 					rsRecord_ItemLog(lpPlayInfo, sinGG1 | sin01, cnt, 0, ITEMLOG_GET);
 
 					if(cnt > 1000000)
@@ -30521,9 +30546,12 @@ if(cnt >= CONNECTMAX)
 					}
 
 
-					int invenResult = rsAddInvenItem(lpPlayInfo, lpTransCommandEx->WParam, lpTransCommandEx->LParam, lpTransCommandEx->SParam);
+					const gameplay::inventory::InventoryMutationResult inventoryAdd =
+						SummitOnServerInventoryAdd(
+							lpPlayInfo, lpTransCommandEx->WParam, lpTransCommandEx->LParam, lpTransCommandEx->SParam);
 
-					if(lpTransCommandEx->WParam == sinQT136 && invenResult >= 0 &&
+					if(lpTransCommandEx->WParam == sinQT136 &&
+						inventoryAdd.code == gameplay::inventory::InventoryMutationCode::Applied &&
 						IsT5CryPickupToken(lpPlayInfo, lpTransCommandEx->WParam, lpTransCommandEx->LParam, lpTransCommandEx->SParam))
 					{
 						if(gameplay::quests::legacy::ServerLegacyQuestObjectiveService().CompleteObjectives(gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo), gameplay::QuestId(QUESTID_T5_CRY_ME_A_RIVER)))
@@ -30534,7 +30562,7 @@ if(cnt >= CONNECTMAX)
 					rsRecord_ItemLog(lpPlayInfo, lpTransCommandEx->WParam, lpTransCommandEx->LParam, lpTransCommandEx->SParam, ITEMLOG_GET);
 				}
 
-				lpsmSock->Send((char *)lpTransCommandEx, lpTransCommandEx->size, TRUE);
+				SendOnServerLegacySocket(lpsmSock, (char *)lpTransCommandEx, lpTransCommandEx->size);
 			}
 			break;
 
@@ -30641,7 +30669,8 @@ if(cnt >= CONNECTMAX)
 			{
 
 
-				rsDeleteInvenItem(lpPlayInfo, lpTransCommandEx->WParam, lpTransCommandEx->LParam, lpTransCommandEx->SParam);
+				(void)SummitOnServerInventoryRemove(
+					lpPlayInfo, lpTransCommandEx->WParam, lpTransCommandEx->LParam, lpTransCommandEx->SParam);
 				SaveThrowItem(lpPlayInfo, lpTransCommandEx->WParam, lpTransCommandEx->LParam, lpTransCommandEx->SParam);
 
 				if((lpTransCommandEx->WParam&sinITEM_MASK2) == sinGP1 ||
@@ -30849,7 +30878,8 @@ if(cnt >= CONNECTMAX)
 								if(lpChar->sObject_VirtualLife[0] > lpChar->sObject_VirtualLife[1])
 									lpChar->sObject_VirtualLife[0] = lpChar->sObject_VirtualLife[1];
 
-								lpChar->smCharInfo.Life[0] = lpChar->smCharInfo.Life[1];
+								(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().RestoreToMaximum(
+									gameplay::EntityId(lpChar->dwObjectSerial));
 							}
 						}
 					}
@@ -31097,7 +31127,7 @@ if(cnt >= CONNECTMAX)
 			{
 				lpPlayInfo2 = gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().Resolve(ingress.receiver);
 				if(lpPlayInfo2 && lpPlayInfo2->lpsmSock)
-					lpPlayInfo2->lpsmSock->Send((char *)lpTransCommand, lpTransCommand->size, TRUE);
+					SendOnServerLegacySocket(lpPlayInfo2->lpsmSock, (char *)lpTransCommand, lpTransCommand->size);
 			}
 			break;
 		}
@@ -31115,7 +31145,7 @@ if(cnt >= CONNECTMAX)
 			{
 				lpPlayInfo2 = gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().Resolve(ingress.receiver);
 				if(lpPlayInfo2 && lpPlayInfo2->lpsmSock)
-					lpPlayInfo2->lpsmSock->Send((char *)lpTransTradeItems, lpTransTradeItems->size, TRUE);
+					SendOnServerLegacySocket(lpPlayInfo2->lpsmSock, (char *)lpTransTradeItems, lpTransTradeItems->size);
 			}
 			break;
 		}
@@ -31135,7 +31165,7 @@ if(cnt >= CONNECTMAX)
 				if(lpPlayInfo2 && lpPlayInfo2->lpsmSock &&
 					rsTrade_PersonalShop(lpPlayInfo, lpPlayInfo2, (smTRANS_COMMAND_BUFF *)SockInfo->Buff) == TRUE)
 				{
-					lpPlayInfo2->lpsmSock->Send((char *)lpTransCommand, lpTransCommand->size, TRUE);
+					SendOnServerLegacySocket(lpPlayInfo2->lpsmSock, (char *)lpTransCommand, lpTransCommand->size);
 				}
 			}
 			break;
@@ -31157,7 +31187,7 @@ if(cnt >= CONNECTMAX)
 				TransChatMessage.dwIP = 0;
 				TransChatMessage.dwObjectSerial = message.target.value;
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
-				lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 			}
 			break;
 		}
@@ -33215,7 +33245,7 @@ DWORD WINAPI LogAccountThreadProc(void *pInfo)
 					smTransCommand.WParam = (DWORD)cbCnt;
 					smTransCommand.LParam = 0;
 					smTransCommand.EParam = 2;
-					LogAccount->lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+					SendOnServerLegacySocket(LogAccount->lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 					LogAccount->lpPlayInfo->dwTime_Disconnect = GetCurrentTime();
 					LogAccount->lpPlayInfo->setAccount('\0');
 				}
@@ -33489,7 +33519,7 @@ int rsSendServerList(smWINSOCK *lpsmSock, int ClanTicket)
 	TransServerList.dwServerTime_t = (DWORD)tServerTime;
 	TransServerList.ClanTicket = ClanTicket;
 
-	return lpsmSock->Send((char *)&TransServerList, TransServerList.size, TRUE);
+	return SendOnServerLegacySocket(lpsmSock, (char *)&TransServerList, TransServerList.size);
 }
 
 
@@ -33592,7 +33622,7 @@ DWORD WINAPI ShutDownThreadProc(void *pInfo)
 			EnterCriticalSection(&cSerSection);
 			if(rsPlayInfo[cnt].lpsmSock)
 			{
-				rsPlayInfo[cnt].lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+				SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 				SleepTime = 5;
 			}
 			LeaveCriticalSection(&cSerSection);
@@ -33615,7 +33645,7 @@ DWORD WINAPI ShutDownThreadProc(void *pInfo)
 
 			smTransCommand.code = OpCode::OPCODE_CLOSECLIENT;
 			smTransCommand.size = sizeof(smTRANS_COMMAND);
-			rsPlayInfo[cnt].lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+			SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 			SleepTime = 5;
 		}
 		LeaveCriticalSection(&cSerSection);
@@ -33675,7 +33705,7 @@ int	rsSendTransCommand(rsPLAYINFO *lpPlayInfo, DWORD	dwCode, int WParam, int LPa
 
 	if(lpPlayInfo && lpPlayInfo->lpsmSock)
 	{
-		return lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+		return SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 	}
 
 	return FALSE;
@@ -36100,7 +36130,7 @@ int rsShowBlackList(smWINSOCK *lpsmSock, char *szID)
 			{
 				wsprintf(TransChatMessage.szMessage, "> ID ( %s ) / ( %d )Min.", srBlackList[cnt].szID, (srBlackList[cnt].dwFreeTime - dwPlayServTime) / 60000);
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
-				lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+				SendOnServerLegacySocket(lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 				dcnt++;
 			}
 		}
@@ -36108,7 +36138,7 @@ int rsShowBlackList(smWINSOCK *lpsmSock, char *szID)
 
 	wsprintf(TransChatMessage.szMessage, "> Total %d Users", dcnt);
 	TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
-	lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+	SendOnServerLegacySocket(lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 	*/
 	return TRUE;
 }
@@ -37205,7 +37235,7 @@ int	rsRecvSkillPartyUser(rsPLAYINFO *playInfo, TRANS_PARTY_SKILL *lpTransPartySk
 		{
 			if(rsProcessSkillPartyUser(lpPlayInfo, lpTransPartySkill) == TRUE)
 			{
-				lpPlayInfo->lpsmSock->Send((char *)lpTransPartySkill, lpTransPartySkill->size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)lpTransPartySkill, lpTransPartySkill->size);
 			}
 		}
 	}
@@ -37279,7 +37309,8 @@ static void SummitReleaseTargetsForVanish(rsPLAYINFO *lpPlayInfo)
 			lpMonster->lpCompulsionPlayInfo == lpPlayInfo)
 			continue;
 
-		lpMonster->lpTargetPlayInfo = 0;
+		(void)gameplay::combat::legacy::ServerLegacyTargetingAdapter().ClearPlayerTarget(
+			gameplay::EntityId(static_cast<std::uint32_t>(lpMonster->dwObjectSerial)));
 		lpMonster->dwTargetLockTime = 0;
 		lpMonster->TragetTraceMode = 0;
 		lpMonster->TargetMoveCount = 0;
@@ -37468,7 +37499,7 @@ int rsRecvProcessSkill(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 				lpPlayInfo2->dwSkill_EnchantWeapon_Time = dwPlayServTime + Enchant_Weapon_Time[point] * 1000;
 				lpPlayInfo2->dwSkill_EnchantWeapon_Param = (point + 1) | (lpTransCommand->EParam << 8);
 				if(lpPlayInfo2 != lpPlayInfo)
-					lpPlayInfo2->lpsmSock->Send((char *)lpTransCommand, lpTransCommand->size, TRUE);
+					SendOnServerLegacySocket(lpPlayInfo2->lpsmSock, (char *)lpTransCommand, lpTransCommand->size);
 			}
 		}
 		break;
@@ -37598,7 +37629,7 @@ int rsRecvProcessSkill(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 					if((rand() % 100) < Resurrection_Percent[point])
 					{
 						if(lpPlayInfo2 != lpPlayInfo)
-							lpPlayInfo2->lpsmSock->Send((char *)lpTransCommand, lpTransCommand->size, TRUE);
+							SendOnServerLegacySocket(lpPlayInfo2->lpsmSock, (char *)lpTransCommand, lpTransCommand->size);
 					}
 				}
 			}
@@ -37631,7 +37662,7 @@ int rsRecvProcessSkill(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 				{
 					lpPlayInfo2->dwSkill_VirtualLife_Time = dwPlayServTime + Virtual_Life_Time[point] * 1000;
 					lpPlayInfo2->dwSkill_VirtualLife_Param = Virtual_Life_Percent[point];
-					lpPlayInfo2->lpsmSock->Send((char *)lpTransCommand, lpTransCommand->size, TRUE);
+					SendOnServerLegacySocket(lpPlayInfo2->lpsmSock, (char *)lpTransCommand, lpTransCommand->size);
 				}
 			}
 		}
@@ -37699,7 +37730,7 @@ int rsRecvProcessSkill(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 						lpPlayInfo2->dwSkill_TriumphOfValhalla_Time = dwPlayServTime + (T_Of_Valhalla_Time[point] * 1000);
 						lpPlayInfo2->dwSkill_TriumphOfValhalla_Param = (T_Of_Valhalla_Damage[point] + lv) / 2;
 						lpTransCommand->EParam = lpPlayInfo->smCharInfo.Level;
-						lpPlayInfo2->lpsmSock->Send((char *)lpTransCommand, lpTransCommand->size, TRUE);
+						SendOnServerLegacySocket(lpPlayInfo2->lpsmSock, (char *)lpTransCommand, lpTransCommand->size);
 					}
 				}
 			}
@@ -37831,7 +37862,7 @@ int rsRecvProcessSkill(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 						rsPlayInfo[cnt].dwSkill_ForceOfNature_Time = dwPlayServTime + Force_Of_Nature_Time[point] * 1000;
 						rsPlayInfo[cnt].wSkill_ForceOfNature_Param[0] = Force_Of_Nature_AddDamage[point] / 2;
 						rsPlayInfo[cnt].wSkill_ForceOfNature_Param[1] = Force_Of_Nature_FalconAddDamage[point];
-						rsPlayInfo[cnt].lpsmSock->Send((char*)lpTransCommand, lpTransCommand->size, TRUE);
+						SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char*)lpTransCommand, lpTransCommand->size);
 
 					}
 				}
@@ -37911,7 +37942,7 @@ int rsRecvProcessSkill(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 							rsPlayInfo[cnt].dwSkill_HallOfValhalla_Time = dwPlayServTime + Hall_Of_Valhalla_Time[point] * 1000;
 							rsPlayInfo[cnt].wSkill_HallOfValhalla_Param[0] = Hall_Of_Valhalla_AddEvation[point] / 2;
 							rsPlayInfo[cnt].wSkill_HallOfValhalla_Param[1] = (T_Of_Valhalla_Damage[lpTransCommand->SParam - 1] + lv) / 2;
-							rsPlayInfo[cnt].lpsmSock->Send((char*)lpTransCommand, lpTransCommand->size, TRUE);
+							SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char*)lpTransCommand, lpTransCommand->size);
 						}
 					}
 				}
@@ -38000,17 +38031,11 @@ int rsProcessAttack_SkillHolyReflection(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar)
 
 	if(pow > 0)
 	{
-
-		lpChar->smCharInfo.Life[0] -= pow;
-
-		if(lpChar->smCharInfo.Life[0] > 0)
+		const auto lifeResult = gameplay::combat::legacy::ServerLegacyLifeAdapter().ConsumeLethal(
+			gameplay::EntityId(static_cast<std::uint32_t>(lpChar->dwObjectSerial)),
+			pow);
+		if(lifeResult.Ok() && lifeResult.after <= 0)
 		{
-
-
-		}
-		else
-		{
-			lpChar->SetMotionFromCode(CHRMOTION_STATE_DEAD);
 			lpChar->lpExt2 = (void *)lpPlayInfo;
 		}
 	}
@@ -38023,7 +38048,7 @@ int rsProcessAttack_SkillHolyReflection(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar)
 		smTransCommand.LParam = pow;
 		smTransCommand.SParam = 0;
 		smTransCommand.EParam = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 	}
 
 
@@ -38067,14 +38092,15 @@ int rsRecvYahooMotion(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 	int			x, y, z, dist;
 
 
-	if(StageArea && lpPlayInfo->dwClanCode && lpPlayInfo->Position.Area >= 0 && lpPlayInfo->Position.Area < StageAreaCount)
+	const gameplay::social::clan::ClanMembershipSnapshot playerClan = SummitOnServerClanMembership(lpPlayInfo);
+	if(StageArea && playerClan.clan.Valid() && lpPlayInfo->Position.Area >= 0 && lpPlayInfo->Position.Area < StageAreaCount)
 	{
 
 		lpStgArea = &StageArea[lpPlayInfo->Position.Area];
 
 		for(cnt = 0; cnt < STG_MONSTER_MAX; cnt++)
 		{
-			if(lpStgArea->lpCharMonster[cnt] && lpStgArea->lpCharMonster[cnt]->smCharInfo.ClassClan == lpPlayInfo->smCharInfo.ClassClan)
+			if(lpStgArea->lpCharMonster[cnt] && lpStgArea->lpCharMonster[cnt]->smCharInfo.ClassClan == playerClan.mark)
 			{
 				if(ClanMonCount >= srCLAN_MONSTER_MAX) break;
 
@@ -38098,9 +38124,9 @@ int rsRecvYahooMotion(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 			{
 				if(lpCharList[cnt]->smCharInfo.Life[0] > 0)
 				{
-					lpCharList[cnt]->smCharInfo.Life[0] += ClanPoint;
-					if(lpCharList[cnt]->smCharInfo.Life[0] > lpCharList[cnt]->smCharInfo.Life[1])
-						lpCharList[cnt]->smCharInfo.Life[0] = lpCharList[cnt]->smCharInfo.Life[1];
+					(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().Restore(
+						gameplay::EntityId(static_cast<std::uint32_t>(lpCharList[cnt]->dwObjectSerial)),
+						ClanPoint);
 				}
 			}
 		}
@@ -38192,11 +38218,11 @@ smCHAR *rsSkillDamage_AroundMonster(smCHAR *lpChar)
 
 					if(pw > 0)
 					{
-						lpTargetChar->smCharInfo.Life[0] -= pw;
-						if(lpTargetChar->smCharInfo.Life[0] <= 0)
+						const auto targetLifeResult = gameplay::combat::legacy::ServerLegacyLifeAdapter().ConsumeLethal(
+							gameplay::EntityId(static_cast<std::uint32_t>(lpTargetChar->dwObjectSerial)),
+							pw);
+						if(targetLifeResult.Ok() && targetLifeResult.after <= 0)
 						{
-							lpTargetChar->smCharInfo.Life[0] = 0;
-							lpTargetChar->SetMotionFromCode(CHRMOTION_STATE_DEAD);
 							if(lpChar->lpMasterPlayInfo && lpChar->lpMasterPlayInfo->lpsmSock && lpChar->lpMasterPlayInfo->dwObjectSerial && lpChar->lpMasterPlayInfo->dwObjectSerial == lpChar->smCharInfo.Next_Exp)
 							{
 								lpTargetChar->lpExt2 = lpChar->lpMasterPlayInfo;
@@ -38207,9 +38233,13 @@ smCHAR *rsSkillDamage_AroundMonster(smCHAR *lpChar)
 							{
 								if(lpChar->lpMasterPlayInfo)
 								{
-
-									lpChar->smCharInfo.Life[0] = 0;
-									lpChar->SetMotionFromCode(CHRMOTION_STATE_DEAD);
+									const int sourceLife = lpChar->smCharInfo.Life[0];
+									if(sourceLife > 0)
+									{
+										(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().ConsumeLethal(
+											gameplay::EntityId(static_cast<std::uint32_t>(lpChar->dwObjectSerial)),
+											sourceLife);
+									}
 								}
 								else
 								{
@@ -38217,12 +38247,9 @@ smCHAR *rsSkillDamage_AroundMonster(smCHAR *lpChar)
 								}
 							}
 						}
-						else
+						else if(targetLifeResult.Ok() && lpTargetChar->MotionInfo->State != CHRMOTION_STATE_DEAD)
 						{
-							if(lpTargetChar->MotionInfo->State != CHRMOTION_STATE_DEAD)
-							{
-								lpTargetChar->SetMotionFromCode(CHRMOTION_STATE_DAMAGE);
-							}
+							lpTargetChar->SetMotionFromCode(CHRMOTION_STATE_DAMAGE);
 						}
 					}
 
@@ -38263,7 +38290,9 @@ smCHAR *rsSkillMonster_AroundMonster(smCHAR *lpChar, int RoundDist)
 					if(lpChar->smCharInfo.dwCharSoundCode == snCHAR_SOUND_RATOO)
 					{
 						lpTargetChar = lpStgArea->lpCharMonster[cnt];
-						lpTargetChar->PlayStunCount = 0;
+						(void)gameplay::combat::legacy::ServerLegacyStatusEffectAdapter().ClearStatus(
+							gameplay::EntityId(static_cast<std::uint32_t>(lpTargetChar->dwObjectSerial)),
+							gameplay::combat::StatusEffectKind::Stun);
 					}
 				}
 			}
@@ -38299,7 +38328,7 @@ int	rsSendMoneyToUser(rsPLAYINFO *lpPlayInfo, int Money)
 
 	rsRegist_ItemSecCode(lpPlayInfo, &TransItemInfo, 1);
 
-	lpPlayInfo->lpsmSock->Send((char*)&TransItemInfo, TransItemInfo.size, TRUE);
+	SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransItemInfo, TransItemInfo.size);
 
 	return TRUE;
 }
@@ -38320,7 +38349,7 @@ int	rsPutItemToSystemLine(rsPLAYINFO *lpPlayInfo, DWORD dwItemCode)
 	lpsmSock = rsFindNextSertoServerSock();
 
 	if (lpsmSock)
-		return lpsmSock->Send((char *)&TransSystemCommand, TransSystemCommand.size, TRUE);
+		return SendOnServerLegacySocket(lpsmSock, (char *)&TransSystemCommand, TransSystemCommand.size);
 
 	return FALSE;
 }
@@ -38342,7 +38371,7 @@ int	rsSendMoneyToSystemLine(rsPLAYINFO *lpPlayInfo, int Money)
 	lpsmSock = rsFindNextSertoServerSock();
 
 	if (lpsmSock)
-		return lpsmSock->Send((char *)&TransSystemCommand, TransSystemCommand.size, TRUE);
+		return SendOnServerLegacySocket(lpsmSock, (char *)&TransSystemCommand, TransSystemCommand.size);
 
 	return FALSE;
 }
@@ -38408,7 +38437,7 @@ int rsSendPacketToLoginLine(char *szBuff, int size)
 
 	if (lpPlayInfo_LoginServer[dwSerToLogin_Num]->lpsmSock && lpPlayInfo_LoginServer[dwSerToLogin_Num]->SystemLine == 2)
 	{
-		return lpPlayInfo_LoginServer[dwSerToLogin_Num++]->lpsmSock->Send(szBuff, size, TRUE);
+		return lpPlayInfo_LoginServer[dwSerToLogin_Num++]->SendOnServerLegacySocket(lpsmSock, szBuff, size);
 	}
 
 	return FALSE;
@@ -38505,7 +38534,7 @@ int rsRecvSystemInfo(rsPLAYINFO *lpPlayInfo, void *Buff)
 		}
 
 		lpCharCommand->LParam = smTRANS_SYSCODE_USER_FAILED;
-		lpPlayInfo->lpsmSock->Send((char *)Buff, lpCharCommand->size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)Buff, lpCharCommand->size);
 		break;
 
 	case smTRANS_SYSCODE_USER_FAILED:
@@ -38529,7 +38558,7 @@ int rsRecvSystemInfo(rsPLAYINFO *lpPlayInfo, void *Buff)
 
 		lpTransSystemCommand->tCode = smTRANS_SYSCODE_NETSUCCESS;
 		lpTransSystemCommand->Param[0] = dwPlayServTime;
-		lpPlayInfo->lpsmSock->Send((char *)lpTransSystemCommand, lpTransSystemCommand->size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)lpTransSystemCommand, lpTransSystemCommand->size);
 
 		rsSystemNetCount++;
 		break;
@@ -38648,7 +38677,7 @@ int	rsSendKillMonsterInfo(smWINSOCK *lpsmSock)
 	lpTransKillMonInfo->Temp[2] = 0;
 	lpTransKillMonInfo->Temp[3] = 0;
 
-	if(lpsmSock) lpsmSock->Send((char *)lpTransKillMonInfo, lpTransKillMonInfo->size, TRUE);
+	if(lpsmSock) SendOnServerLegacySocket(lpsmSock, (char *)lpTransKillMonInfo, lpTransKillMonInfo->size);
 
 	return mCnt;
 }
@@ -38730,7 +38759,7 @@ DWORD WINAPI rsTransServerMain_Thread(void *pInfo)
 					TransSystemCommand.size = sizeof(smTRANS_SYSTEM_COMMAND);
 					TransSystemCommand.tCode = smTRANS_SYSCODE_CONNECT;
 					TransSystemCommand.dwObjectSerial = rsServerConfig.ServerCode;
-					lpsmSock->Send((char *)&TransSystemCommand, TransSystemCommand.size, TRUE);
+					SendOnServerLegacySocket(lpsmSock, (char *)&TransSystemCommand, TransSystemCommand.size);
 				}
 			}
 		}
@@ -38758,7 +38787,7 @@ DWORD WINAPI rsTransServerMain_Thread(void *pInfo)
 					}
 					else
 					{
-						lpsmSock_SerToServer[cnt]->Send((char *)&TransSystemCommand, TransSystemCommand.size, TRUE);
+						SendOnServerLegacySocket(lpsmSock_SerToServer[cnt], (char *)&TransSystemCommand, TransSystemCommand.size);
 					}
 				}
 			}
@@ -38972,7 +39001,8 @@ int rsRecvStarPoint(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 				return FALSE;
 			}
 
-			lpPlayInfo->SubServerMoney(lpTransCommand->WParam, WHERE_STAR_POINT);
+			if(!SummitOnServerWalletDebit(lpPlayInfo, lpTransCommand->WParam, gameplay::commerce::WalletReason::StarPoint).Ok())
+				return FALSE;
 
 
 
@@ -39009,7 +39039,7 @@ int rsRecvStarPoint(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 			lpTransCommand->WParam = TestStarPoint;
 
 			if(lpPlayInfo->lpsmSock)
-				lpPlayInfo->lpsmSock->Send((char *)lpTransCommand, sizeof(smTRANS_COMMAND), TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)lpTransCommand, sizeof(smTRANS_COMMAND));
 		}
 
 		if(StarPoint > 0)
@@ -39019,7 +39049,7 @@ int rsRecvStarPoint(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 			TransChatMessage.dwObjectSerial = 0;
 			wsprintf(TransChatMessage.szMessage, srMsg_400, StarPoint);
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
-			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 		}
 	}
 	else
@@ -39028,7 +39058,7 @@ int rsRecvStarPoint(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 		{
 			lpTransCommand->WParam = TestStarPoint;
 			if(lpPlayInfo->lpsmSock)
-				lpPlayInfo->lpsmSock->Send((char *)lpTransCommand, sizeof(smTRANS_COMMAND), TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)lpTransCommand, sizeof(smTRANS_COMMAND));
 		}
 	}
 
@@ -39063,7 +39093,8 @@ int rsRecvSodClanCash(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 					return FALSE;
 				}
 
-				lpPlayInfo->AddServerMoney(cash, WHERE_CLAN_MONEY);
+				if(!SummitOnServerWalletCredit(lpPlayInfo, cash, gameplay::commerce::WalletReason::ClanMoney).Ok())
+					return FALSE;
 				TestSodClanCash -= cash;
 
 				lpTransCommand->WParam = TestSodClanCash;
@@ -39073,7 +39104,7 @@ int rsRecvSodClanCash(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 				rsClanMoneyLog(lpPlayInfo, cash, TestSodClanCash);
 
 				if(lpPlayInfo->lpsmSock)
-					lpPlayInfo->lpsmSock->Send((char *)lpTransCommand, sizeof(smTRANS_COMMAND), TRUE);
+					SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)lpTransCommand, sizeof(smTRANS_COMMAND));
 			}
 		}
 	}
@@ -39085,7 +39116,7 @@ int rsRecvSodClanCash(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 			lpTransCommand->WParam = TestSodClanCash;
 			lpTransCommand->LParam = 0;
 			if(lpPlayInfo->lpsmSock)
-				lpPlayInfo->lpsmSock->Send((char *)lpTransCommand, sizeof(smTRANS_COMMAND), TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)lpTransCommand, sizeof(smTRANS_COMMAND));
 		}
 	}
 
@@ -39108,7 +39139,8 @@ int rsRecvGiveMoney(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 		{
 			return FALSE;
 		}
-		lpPlayInfo->SubServerMoney(lpTransCommand->WParam, WHERE_GIVE_MONEY);
+		if(!SummitOnServerWalletDebit(lpPlayInfo, lpTransCommand->WParam, gameplay::commerce::WalletReason::GiveMoney).Ok())
+			return FALSE;
 
 
 		bSql_GiveMoney(lpPlayInfo, lpTransCommand->WParam);
@@ -39118,7 +39150,7 @@ int rsRecvGiveMoney(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 		TransChatMessage.dwObjectSerial = 0;
 		wsprintf(TransChatMessage.szMessage, srMsg_401, lpTransCommand->WParam);
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 	}
 
@@ -39134,11 +39166,13 @@ int rsRecvPaymentMoney(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 	{
 	case 1:
 		CurrencyLog.int64_LearnSkillMoney += lpTransCommand->LParam;
-		lpPlayInfo->SubServerMoney(lpTransCommand->LParam, WHERE_LEARNSKILL);
+		if(!SummitOnServerWalletDebit(lpPlayInfo, lpTransCommand->LParam, gameplay::commerce::WalletReason::LearnSkill).Ok())
+			return FALSE;
 		break;
 	case 2:
 		CurrencyLog.int64_WarpgateMoney += lpTransCommand->LParam;
-		lpPlayInfo->SubServerMoney(lpTransCommand->LParam, WHERE_WARPGATE);
+		if(!SummitOnServerWalletDebit(lpPlayInfo, lpTransCommand->LParam, gameplay::commerce::WalletReason::WarpGate).Ok())
+			return FALSE;
 		break;
 	}
 
@@ -39164,7 +39198,7 @@ int rsEventLogOn_Sucess(rsPLAYINFO *lpPlayInfo)
 			smTransCommand.LParam = 60 * 24 * 6;
 			smTransCommand.SParam = 0;
 			smTransCommand.EParam = 0;
-			lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 		}
 	}
 
@@ -39177,7 +39211,7 @@ int rsEventLogOn_Sucess(rsPLAYINFO *lpPlayInfo)
 		smTransCommand.LParam = lpPlayInfo->Bl_RNo;
 		smTransCommand.SParam = 0;
 		smTransCommand.EParam = 1;
-		lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 	}
 
 
@@ -39267,7 +39301,7 @@ int rsDebugMessageToClient(rsPLAYINFO *lpPlayInfo, char *szDmgMsg)
 	TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 	TransChatMessage.dwIP = 0;
 	TransChatMessage.dwObjectSerial = 0;
-	lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+	SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 	return TRUE;
 }
@@ -39305,7 +39339,7 @@ int	rsTrade_PersonalShop(rsPLAYINFO* lpPlayInfo, rsPLAYINFO* lpPlayInfo2, smTRAN
 			lpTransCommandBuff->smTransCommand.SParam = lpPlayInfo->dwObjectSerial;
 			lpMyShopItem->SendFlag = 3;
 			if(lpPlayInfo->lpsmSock)
-				lpPlayInfo->lpsmSock->Send((char*)lpTransCommandBuff, lpTransCommandBuff->smTransCommand.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)lpTransCommandBuff, lpTransCommandBuff->smTransCommand.size);
 		}
 		return FALSE;
 	}
@@ -39481,7 +39515,7 @@ int rsGetMonsterLifeRegen(smCHAR *lpChar)
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
-			lpDebugPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpDebugPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 		}
 #endif
 		return RegenLife;
@@ -39572,7 +39606,7 @@ int rsSendRangeDamage(smCHAR *lpChar, rsPLAYINFO *lpMainPlayInfo, int Range, int
 		for(cnt = 0; cnt < sndUserCount; cnt++)
 		{
 			if(lpSndUserList[cnt]->lpsmSock)
-				lpSndUserList[cnt]->lpsmSock->Send((char *)&TransSkillAttackData, TransSkillAttackData.size, TRUE);
+				SendOnServerLegacySocket(lpSndUserList[cnt]->lpsmSock, (char *)&TransSkillAttackData, TransSkillAttackData.size);
 		}
 	}
 
@@ -39740,7 +39774,7 @@ int	rsQuestMasterMessage(smCHAR *lpChar, rsPLAYINFO *lpPlayInfo)
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = lpChar->dwObjectSerial;
 
-			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 		}
 		return TRUE;
 	}
@@ -40058,7 +40092,7 @@ int rsMain_CombatCastle()
 				{
 					if (rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].dwObjectSerial)
 					{
-						rsPlayInfo[cnt].lpsmSock->Send((char*)&packet, packet.size, true);
+						SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char*)&packet, packet.size);
 					}
 				}
 			}
@@ -40079,7 +40113,8 @@ int rsMain_CombatCastle()
 		{
 			if(CrystalTowerCount > 0)
 			{
-				lpChar_ValhallaTower->smCharInfo.Life[0] = lpChar_ValhallaTower->smCharInfo.Life[1];
+				(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().RestoreToMaximum(
+					gameplay::EntityId(lpChar_ValhallaTower->dwObjectSerial));
 			}
 			else
 			{
@@ -40114,7 +40149,7 @@ int rsMain_CombatCastle()
 			if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].dwObjectSerial && rsPlayInfo[cnt].Position.Area == rsCASTLE_FIELD)
 			{
 
-				rsPlayInfo[cnt].lpsmSock->Send((char *)&rsBlessCastle.ClanTop10, rsBlessCastle.ClanTop10.size, TRUE);
+				SendOnServerLegacySocket(rsPlayInfo[cnt].lpsmSock, (char *)&rsBlessCastle.ClanTop10, rsBlessCastle.ClanTop10.size);
 				if(UpdateFlag > 0)
 				{
 					rsSendBlessCastleInfoToDataServer(&rsPlayInfo[cnt]);
@@ -40350,14 +40385,16 @@ int	rsEnd_CombatCastle(int DefenceFlag)
 			if(DefenceFlag && chrAutoPlayer[cnt].smCharInfo.dwCharSoundCode == snCHAR_SOUND_CASTLE_TOWER_B)
 			{
 
-				chrAutoPlayer[cnt].smCharInfo.Life[0] = chrAutoPlayer[cnt].smCharInfo.Life[1];
+				(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().RestoreToMaximum(
+					gameplay::EntityId(chrAutoPlayer[cnt].dwObjectSerial));
 				chrAutoPlayer[cnt].SetMotionFromCode(CHRMOTION_STATE_STAND);
 			}
 			else
 			{
 
-				chrAutoPlayer[cnt].smCharInfo.Life[0] = 0;
-				chrAutoPlayer[cnt].SetMotionFromCode(CHRMOTION_STATE_DEAD);
+				(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().ConsumeLethal(
+					gameplay::EntityId(chrAutoPlayer[cnt].dwObjectSerial),
+					chrAutoPlayer[cnt].smCharInfo.Life[0]);
 			}
 		}
 	}
@@ -40452,7 +40489,10 @@ int	rsEasy_CastleMode()
 		{
 
 			chrAutoPlayer[cnt].sObject_VirtualLife[0] = 0;
-			chrAutoPlayer[cnt].smCharInfo.Life[0] = 1;
+			(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().Deplete(
+				gameplay::EntityId(chrAutoPlayer[cnt].dwObjectSerial));
+			(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().EnsureMinimum(
+				gameplay::EntityId(chrAutoPlayer[cnt].dwObjectSerial), 1);
 		}
 	}
 
@@ -40584,13 +40624,13 @@ int rsRecvBlessCastInfo(rsPLAYINFO *lpPlayInfo, void *lpPacket)
 			smTransCommand.SParam = rsBlessCastle.Tax;
 			smTransCommand.EParam = 0;
 
-			lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 		}
 		break;
 
 
 	case 1:
-		if(lpPlayInfo->dwClanCode == rsBlessCastle.dwMasterClan || lpPlayInfo->getSecurity() > AccountTypes::SEC_GAMEMASTER)
+		if(SummitOnServerClanCode(lpPlayInfo) == rsBlessCastle.dwMasterClan || lpPlayInfo->getSecurity() > AccountTypes::SEC_GAMEMASTER)
 		{
 
 			if(StageArea[rsCASTLE_FIELD].dwActiveMode)
@@ -40634,10 +40674,10 @@ int rsSendBlessCastInfo(rsPLAYINFO *lpPlayInfo, int Mode)
 	switch(Mode)
 	{
 	case 1:
-		if(lpPlayInfo->dwClanCode == rsBlessCastle.dwMasterClan || lpPlayInfo->getSecurity() > AccountTypes::SEC_VIP)
+		if(SummitOnServerClanCode(lpPlayInfo) == rsBlessCastle.dwMasterClan || lpPlayInfo->getSecurity() > AccountTypes::SEC_VIP)
 		{
 			if(lpPlayInfo->lpsmSock)
-				lpPlayInfo->lpsmSock->Send((char *)&smTransBlessCastle, smTransBlessCastle.smTransCommand.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransBlessCastle, smTransBlessCastle.smTransCommand.size);
 		}
 		break;
 
@@ -40750,8 +40790,8 @@ int	rsBlessCastle_SoulFountainMain()
 		lpPlayInfo = &rsPlayInfo[mcnt];
 		if(lpPlayInfo->lpsmSock && lpPlayInfo->dwObjectSerial && lpPlayInfo->Position.Area == rsCASTLE_FIELD)
 		{
-			if(rsBlessCastle.SoulFountain_PotionCount > 0 && lpPlayInfo->dwClanCode &&
-				lpPlayInfo->dwClanCode == rsBlessCastle.dwMasterClan &&
+			if(rsBlessCastle.SoulFountain_PotionCount > 0 && SummitOnServerClanCode(lpPlayInfo) &&
+				SummitOnServerClanCode(lpPlayInfo) == rsBlessCastle.dwMasterClan &&
 				lpPlayInfo->Position.x > CastleSoulFountain_Area[0] &&
 				lpPlayInfo->Position.x<CastleSoulFountain_Area[1] &&
 				lpPlayInfo->Position.z>CastleSoulFountain_Area[2] &&
@@ -40787,7 +40827,7 @@ int rsSendBlessCastleClanSkill(rsPLAYINFO *lpPlayInfo)
 {
 	smTRANS_COMMAND smTransCommand;
 
-	if(lpPlayInfo->dwClanCode && lpPlayInfo->dwClanCode == rsBlessCastle.dwMasterClan)
+	if(SummitOnServerClanCode(lpPlayInfo) && SummitOnServerClanCode(lpPlayInfo) == rsBlessCastle.dwMasterClan)
 	{
 
 		if(!lpPlayInfo->SucessCheck_ClanCode)
@@ -40808,10 +40848,10 @@ int rsSendBlessCastleClanSkill(rsPLAYINFO *lpPlayInfo)
 			smTransCommand.code = OpCode::OPCODE_PROCESS_CLAN_SKILL;
 			smTransCommand.size = sizeof(smTRANS_COMMAND);
 			smTransCommand.WParam = rsBlessCastle.SelectedSkill;
-			smTransCommand.LParam = lpPlayInfo->dwClanCode;
+			smTransCommand.LParam = SummitOnServerClanCode(lpPlayInfo);
 			smTransCommand.SParam = 0;
 			smTransCommand.EParam = rsCheck_BlessCastleClanSkill(lpPlayInfo, &smTransCommand);
-			lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 			lpPlayInfo->CastleMaster.dwCheckTime = dwPlayServTime + 1000 * 60;
 		}
@@ -40885,7 +40925,7 @@ int rsSiegeItemSucess(rsPLAYINFO *lpPlayInfo, DWORD dwItemCode)
 	smTransCommand.LParam = lpPlayInfo->dwObjectSerial;
 	smTransCommand.SParam = dwItemCode;
 	smTransCommand.EParam = 0;
-	lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+	SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 	return TRUE;
 }
@@ -40925,7 +40965,7 @@ int	rsOpenSiegeCastleItem(DWORD dwItemCode, int x, int y, int z, rsPLAYINFO *lpP
 		smTransCommand.LParam = 60 * 60 * 24;
 		smTransCommand.SParam = 0;
 		smTransCommand.EParam = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 		return TRUE;
 
 
@@ -41586,7 +41626,7 @@ DWORD rsLowLevelItem(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar)
 				TransChatMessage.dwObjectSerial = 0;
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 
-				lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+				SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 			}
 #endif
 
@@ -41683,7 +41723,7 @@ void initItems(rsPLAYINFO* lpPlayInfo)
 	smTransCommand.LParam = 0;
 	smTransCommand.SParam = 0;
 	smTransCommand.EParam = 0;
-	lpPlayInfo->lpsmSock->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+	SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&smTransCommand, smTransCommand.size);
 
 }
 
@@ -41758,7 +41798,7 @@ int rsStartUser_PresentItem(rsPLAYINFO * lpPlayInfo)
 		TransChatMessage.dwObjectSerial = 0;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 
-		lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char*)&TransChatMessage, TransChatMessage.size);
 	}
 
 	lpPlayInfo->dwStartUser_PresentItem_Count++;
@@ -41918,7 +41958,7 @@ int rsDispay_GameTime(rsPLAYINFO *lpPlayInfo, DWORD dwTimeOld)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 3;
 		TransChatMessage.dwObjectSerial = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 	}
 
 	return 0;
@@ -42421,7 +42461,7 @@ int rsPutItem_TreasureBox(rsPLAYINFO *lpPlayInfo, DWORD Code)
 
 					ReformItem(&TransItemInfo.Item);
 					rsRegist_ItemSecCode(lpPlayInfo, &TransItemInfo, 1);
-					lpPlayInfo->lpsmSock->Send((char *)&TransItemInfo, TransItemInfo.size, TRUE);
+					SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransItemInfo, TransItemInfo.size);
 				}
 				return TRUE;
 			}
@@ -42492,7 +42532,7 @@ int rsPutItem_CapsuleItem(rsPLAYINFO *lpPlayInfo, DWORD Code)
 					memcpy(&TransItemInfo.Item, &psItem.ItemInfo, sizeof(sITEMINFO));
 					ReformItem(&TransItemInfo.Item);
 					rsRegist_ItemSecCode(lpPlayInfo, &TransItemInfo, 1);
-					lpPlayInfo->lpsmSock->Send((char *)&TransItemInfo, TransItemInfo.size, TRUE);
+					SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransItemInfo, TransItemInfo.size);
 				}
 				return TRUE;
 			}
@@ -42741,7 +42781,7 @@ int	rsUseSoccerBallPotionItem(DWORD dwItemCode, rsPLAYINFO *lpPlayInfo)
 		smTransCommand.LParam = 60 * 60 * 3;
 		smTransCommand.SParam = 1;
 		smTransCommand.EParam = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 		break;
 	}
 
@@ -43054,7 +43094,7 @@ int rsXignCode_selected_code_SendPacket(rsPLAYINFO *lpPlayInfo)
 
 			pkt.code = OpCode::OPCODE_XIGNCODE_PACKET;
 			pkt.size = sizeof(pkt);
-			lpPlayInfo->lpsmSock->Send((char *)&pkt, pkt.size, TRUE);
+			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&pkt, pkt.size);
 
 			if(lpPlayInfo->Xigncode_tempdata.m_ceComplete == TRUE && scan_Type == Z_SCAN_TYPE_ANTI_CHEAT_ENGINE)
 			{

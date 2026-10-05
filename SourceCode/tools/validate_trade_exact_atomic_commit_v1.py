@@ -21,10 +21,12 @@ def main():
  for tok in ('bool exactTradeEligible = true','TradeExactCommitRequest exactTradeRequest','ServerLegacyTradeAdapter().CommitExactTrade(exactTradeRequest)','if(!exactCommit.Committed())','SaveThrowItem2(lpPlayInfo','MarkCommitted(tradeGuardRequest)'):
   if tok not in s: fail(f'handler exact path token missing: {tok}')
  exact_start=s.find('// Fully coordinated path for exact-item trades.')
- exact_end=s.find('\n\tif(lpTransTradeItemKey->Coin)',exact_start)
- exact=s[exact_start:exact_end]
+ exact=s[exact_start:]
  for bad in ('cCoinShop.AddPlayerCoin','CommitGold(', 'CommitCoins(', 'rsAddInvenItem(', 'rsDeleteInvenItem('):
   if bad in exact: fail(f'direct/partial authority leaked into exact path: {bad}')
- if 'sinPM1' not in exact: fail('potion exclusion guard missing')
+ if 'sinPM1' not in exact: fail('potion decoding guard missing')
+ for bad in ('ServerLegacyTradeAdapter().CommitGold(', 'ServerLegacyTradeAdapter().CommitCoins(', 'ServerLegacyTradeAdapter().TransferItem(', 'rsAddServerPotion(', 'rsAddInvenItem('):
+  if bad in exact: fail(f'parallel legacy commit authority remains: {bad}')
+ if s.count('ServerLegacyTradeAdapter().CommitExactTrade(exactTradeRequest)') != 1: fail('handler must have exactly one exact commit authority')
  print('trade exact atomic commit v1: PASS (exact items + gold + coin coordinated with reverse item/gold compensation)')
 if __name__=='__main__': main()

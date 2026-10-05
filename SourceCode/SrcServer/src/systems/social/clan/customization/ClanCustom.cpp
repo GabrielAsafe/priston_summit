@@ -4,6 +4,7 @@
 #include "modules/File/File.h"
 #include "core/server/legacy_runtime/onserver.h"
 #include "systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h"
+#include "systems/social/clan/v2/legacy/LegacyClanQueryAdapter.h"
 #include "systems/network/v2/legacy/LegacyPacketSender.h"
 
 
@@ -29,6 +30,14 @@ static bool SummitClanCustomSend(rsPLAYINFO *recipient, const void *data, int si
 		gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(recipient);
 	return gameplay::network::legacy::ServerLegacyPacketSender().Send(
 		playerId, gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded();
+}
+
+static bool SummitClanCustomMembership(rsPLAYINFO *player, gameplay::social::clan::ClanMembershipSnapshot& out)
+{
+	if(!player)
+		return false;
+	return gameplay::social::clan::legacy::ServerLegacyClanQueryAdapter().TryGetMembership(
+		gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(player), out);
 }
 
 static bool IsSafeClanAssetCode(const char *value)
@@ -141,7 +150,8 @@ void ClanCustom::RecvItemToClient(rsPLAYINFO * Player, CCSHOP_BUY * Shop)
 	if(!Player || !Shop)
 		return;
 
-	if(!Player || !Shop)
+	gameplay::social::clan::ClanMembershipSnapshot clanMembership;
+	if(!SummitClanCustomMembership(Player, clanMembership))
 		return;
 
 	if (Shop->item.SubTag == 1)
@@ -177,7 +187,7 @@ void ClanCustom::RecvItemToClient(rsPLAYINFO * Player, CCSHOP_BUY * Shop)
 				}
 
 
-				if ((rsBlessCastle.dwMasterClan == (Player->smCharInfo.ClassClan -1000000) || rsBlessCastle.dwMasterClan == (Player->smCharInfo.ClassClan)) && lstrcmpi(Player->smCharInfo.szName, Cname) == 0 && lstrcmpi(Player->getAccount(), Cid) == 0)
+				if ((rsBlessCastle.dwMasterClan == (clanMembership.mark -1000000) || rsBlessCastle.dwMasterClan == (clanMembership.mark)) && lstrcmpi(Player->smCharInfo.szName, Cname) == 0 && lstrcmpi(Player->getAccount(), Cid) == 0)
 				{
 					if (Price == 101)
 					{
@@ -280,7 +290,7 @@ void ClanCustom::RecvItemToClient(rsPLAYINFO * Player, CCSHOP_BUY * Shop)
 			char sourcePath[512] = { 0 };
 			char destinationPath[512] = { 0 };
 			SQL::GetInstance()->EnterSqlSection();
-			wsprintf(szQuery, "SELECT * FROM [ClanDB].[dbo].[CL] WHERE [MiconCnt]='%d'", Player->smCharInfo.ClassClan);
+			wsprintf(szQuery, "SELECT * FROM [ClanDB].[dbo].[CL] WHERE [MiconCnt]='%d'", clanMembership.mark);
 			if (SQL::GetInstance()->Execute(szQuery))
 			{
 				if (SQL::GetInstance()->Fetch())
@@ -288,12 +298,12 @@ void ClanCustom::RecvItemToClient(rsPLAYINFO * Player, CCSHOP_BUY * Shop)
 				SQL::GetInstance()->GetDataValue(5, Cid);
 				SQL::GetInstance()->GetDataValue(6, Cname);
 
-				wsprintfA(codeant, "%d", Player->smCharInfo.ClassClan);
+				wsprintfA(codeant, "%d", clanMembership.mark);
 
 				if (lstrcmpi(Player->smCharInfo.szName, Cname) == 0 && lstrcmpi(Player->getAccount(), Cid) == 0)
 				{
 
-				//	if (rsBlessCastle.dwMasterClan == (Player->smCharInfo.ClassClan - 1000000) || rsBlessCastle.dwMasterClan == (Player->smCharInfo.ClassClan))
+				//	if (rsBlessCastle.dwMasterClan == (Player->smCharInfo.ClassClan - 1000000) || rsBlessCastle.dwMasterClan == (clanMembership.mark))
 					//{
 					//	wsprintfA(Clanaux, "%s", (Shop->item.itCode -1000000));
 					//	rsBlessCastle.dwMasterClan = atoi(Clanaux);

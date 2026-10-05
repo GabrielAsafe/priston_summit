@@ -1,6 +1,7 @@
 #include "opcodes.h"
 #include "systems/rendering/legacy_3d/smd3d.h"
 #include "systems/network/transport/legacy/smwsock.h"
+#include "systems/network/v2/legacy/LegacyClientCommandSender.h"
 
 #include "systems/gameplay/character/core/character.h"
 #include "systems/audio/playback/legacy/Dxwav.h"
@@ -20,6 +21,16 @@
 
 #include "systems/network/region/AreaServer.h"
 #include "network/region/AreaServerMapValidation.h"
+
+namespace
+{
+inline bool SummitAreaClientSocketSend(smWINSOCK* socket, const void* data, int size)
+{
+	if(!socket || !data || size <= 0) return false;
+	return gameplay::network::legacy::ClientLegacyCommandSender().SendToLegacySocket(
+		socket, gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded();
+}
+}
 
 TRANS_SEVER_MAP	TransAreaServer;
 int	AreaServerMode = 0;
@@ -53,7 +64,7 @@ int AreaSetObjectSerial(smWINSOCK *lpsmSock)
 	TransPlayerInfo.y = lpCurPlayer->pY;
 	TransPlayerInfo.z = lpCurPlayer->pZ;
 
-	lpsmSock->Send((char *)&TransPlayerInfo, TransPlayerInfo.size, TRUE);
+	SummitAreaClientSocketSend(lpsmSock, (char *)&TransPlayerInfo, TransPlayerInfo.size);
 
 	return TRUE;
 }

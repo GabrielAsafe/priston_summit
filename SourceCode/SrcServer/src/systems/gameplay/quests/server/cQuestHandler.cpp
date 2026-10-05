@@ -2,8 +2,8 @@
 #include <cstring>
 #include "systems/network/protocol/server/opcodes.h"
 #include "systems/gameplay/quests/server/cQuestHandler.h"
-#include "systems/commerce/coin_shop/CoinShop.h"
-#include "systems/commerce/coin_shop/CoinShop_T.h"
+#include "systems/commerce/v2/legacy/LegacyCoinWalletAdapter.h"
+#include "systems/commerce/v2/legacy/LegacyTimeCreditWalletAdapter.h"
 #include "systems/gameplay/inventory/v2/legacy/LegacyItemCatalogAdapter.h"
 #include "systems/gameplay/progression/v2/ProgressionTriggerRuntime.h"
 #include "systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h"
@@ -581,11 +581,15 @@ void cQUESTHANDLER::GetReward(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKind
 			SendPostBox(playerID, goldCode, reward.gold);
 		}
 
+		const gameplay::PlayerId rewardPlayer =
+			gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo);
 		if (reward.coin)
-			cCoinShop.AddPlayerCoin(lpPlayInfo, reward.coin);
+			(void)gameplay::commerce::legacy::ServerLegacyCoinWalletAdapter().CreditCoins(
+				rewardPlayer, reward.coin, gameplay::commerce::CoinReason::QuestReward);
 
 		if (reward.tCoin)
-			cCoinShop_T.AddPlayerCoin(lpPlayInfo, reward.tCoin);
+			(void)gameplay::commerce::legacy::ServerLegacyTimeCreditWalletAdapter().CreditCoins(
+				rewardPlayer, reward.tCoin, gameplay::commerce::CoinReason::QuestReward);
 
 		if (!reward.items.empty())
 		{

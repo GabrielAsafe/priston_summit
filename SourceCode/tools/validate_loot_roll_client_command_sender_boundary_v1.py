@@ -13,7 +13,7 @@ checks = [
     ('skip action remains zero', 'sPacket.LParam = 0' in client),
     ('both roll commands route through sender', client.count('ClientLegacyCommandSender().Send') == 2 and client.count('PacketView(&sPacket, sPacket.size') == 2),
     ('roll ui has no direct socket send', 'smWsockServer->Send' not in client),
-    ('amber sender preserves important send semantics', 'smWsockServer->Send' in sender and 'static_cast<int>(packet.size), TRUE' in sender),
+    ('amber sender preserves important send semantics', 'LegacyClientCommandSender::SendToLegacySocket' in sender and 'socket->Send' in sender and 'static_cast<int>(packet.size), TRUE' in sender),
     ('server still handles roll opcode', 'case OpCode::OPCODE_ROLL:' in onserver and 'ROLLHANDLER->HandlePacket' in onserver),
 ]
 failed = [name for name, ok in checks if not ok]

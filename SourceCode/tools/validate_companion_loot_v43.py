@@ -43,7 +43,7 @@ for needle in (
     'GetPartyMoney(&lpStgItem->Item.ItemInfo, lpPlayInfo)',
     'transItemInfo.code = OpCode::OPCODE_PUTITEM',
     'rsRegist_ItemSecCode(lpPlayInfo, &transItemInfo, lpStgItem->BeginMode)',
-    'lpPlayInfo->lpsmSock->Send((char *)&transItemInfo',
+    'SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&transItemInfo',
     'RecordGetHighItem(lpPlayInfo, lpStgItem)',
     'lpStgArea->DeleteItem(lpStgItem)',
 ):

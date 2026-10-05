@@ -3,8 +3,8 @@
   "files": {
     "Shared/gameplay/character/character_legacy_client.inl": {
       "max_counts": {
-        "lpsmSock": 9,
-        "smWsockDataServer": 1,
+        "lpsmSock": 0,
+        "smWsockDataServer": 0,
         "smWsockServer": 0
       },
       "role": "RED"
@@ -13,23 +13,23 @@
       "max_counts": {
         "lpsmSock": 1
       },
-      "role": "RED"
+      "role": "INACTIVE_TEMPLATE"
     },
     "Shared/gameplay/combat/LegacyDamagePacket.inl": {
       "max_counts": {
         "lpsmSock": 3
       },
-      "role": "RED"
+      "role": "INACTIVE_TEMPLATE"
     },
     "Shared/gameplay/combat/LegacyDamagePolicy.inl": {
       "max_counts": {
         "lpsmSock": 32
       },
-      "role": "RED"
+      "role": "INACTIVE_TEMPLATE"
     },
     "Shared/gameplay/combat/Svr_Damge_legacy_client.inl": {
       "max_counts": {
-        "lpsmSock": 35
+        "lpsmSock": 0
       },
       "role": "RED"
     },
@@ -68,19 +68,19 @@
         "lpsmSock": 1,
         "smWsockDataServer": 2
       },
-      "role": "RED"
+      "role": "INACTIVE_TEMPLATE"
     },
     "Shared/gameplay/skills/SkillSub_legacy_client.inl": {
       "max_counts": {
-        "lpsmSock": 1,
-        "smWsockDataServer": 2
+        "lpsmSock": 0,
+        "smWsockDataServer": 0
       },
       "role": "RED"
     },
     "Shared/gameplay/skills/SkillSub_legacy_server.inl": {
       "max_counts": {
-        "lpsmSock": 1,
-        "smWsockDataServer": 2
+        "lpsmSock": 0,
+        "smWsockDataServer": 0
       },
       "role": "RED"
     },
@@ -88,32 +88,32 @@
       "max_counts": {
         "lpsmSock": 2
       },
-      "role": "RED"
+      "role": "ORACLE"
     },
     "Shared/legacy_oracle/client/compat/client_server/server_legacy/OnSever.cpp.inl": {
       "max_counts": {
         "lpsmSock": 173
       },
-      "role": "RED"
+      "role": "ORACLE"
     },
     "Shared/legacy_oracle/client/compat/client_server/server_legacy/Svr_Damge.cpp.inl": {
       "max_counts": {
         "lpsmSock": 35
       },
-      "role": "RED"
+      "role": "ORACLE"
     },
     "Shared/legacy_oracle/client/core/gameplay/legacy_support/playsub.cpp.inl": {
       "max_counts": {
         "smWsockDataServer": 5
       },
-      "role": "RED"
+      "role": "ORACLE"
     },
     "Shared/legacy_oracle/client/systems/combat/skills/client/SkillSub.cpp.inl": {
       "max_counts": {
         "lpsmSock": 1,
         "smWsockDataServer": 2
       },
-      "role": "RED"
+      "role": "ORACLE"
     },
     "Shared/legacy_oracle/client/systems/gameplay/character/core/character.cpp.inl": {
       "max_counts": {
@@ -121,102 +121,102 @@
         "smWsockDataServer": 1,
         "smWsockServer": 1
       },
-      "role": "RED"
+      "role": "ORACLE"
     },
     "Shared/legacy_oracle/client/systems/gameplay/quests/ui/cQuestWindow.cpp.inl": {
       "max_counts": {
         "smWsockServer": 5
       },
-      "role": "RED"
+      "role": "ORACLE"
     },
     "Shared/legacy_oracle/client/systems/network/region/AreaServer.cpp.inl": {
       "max_counts": {
         "lpsmSock": 1
       },
-      "role": "RED"
+      "role": "ORACLE"
     },
     "Shared/legacy_oracle/client/systems/network/transport/legacy/smwsock.cpp.inl": {
       "max_counts": {
         "lpsmSock": 1
       },
-      "role": "RED"
+      "role": "ORACLE"
     },
     "Shared/legacy_oracle/client/systems/persistence/character_record/record.cpp.inl": {
       "max_counts": {
         "lpsmSock": 6
       },
-      "role": "RED"
+      "role": "ORACLE"
     },
     "Shared/legacy_oracle/client/systems/security/legacy/process_integrity/cracker.cpp.inl": {
       "max_counts": {
         "smWsockDataServer": 1
       },
-      "role": "RED"
+      "role": "ORACLE"
     },
     "Shared/legacy_oracle/server/core/gameplay/legacy_support/playsub.cpp.inl": {
       "max_counts": {
         "smWsockDataServer": 5
       },
-      "role": "RED"
+      "role": "ORACLE"
     },
     "Shared/legacy_oracle/server/core/server/legacy_runtime/ClientFuncPos.cpp.inl": {
       "max_counts": {
         "lpsmSock": 2
       },
-      "role": "RED"
+      "role": "ORACLE"
     },
     "Shared/legacy_oracle/server/core/server/legacy_runtime/OnSever.cpp.inl": {
       "max_counts": {
         "lpsmSock": 379
       },
-      "role": "RED"
+      "role": "ORACLE"
     },
     "Shared/legacy_oracle/server/systems/combat/server_legacy/Svr_Damge.cpp.inl": {
       "max_counts": {
         "lpsmSock": 42
       },
-      "role": "RED"
+      "role": "ORACLE"
     },
     "Shared/legacy_oracle/server/systems/combat/skills/server_support/SkillSub.cpp.inl": {
       "max_counts": {
         "lpsmSock": 1,
         "smWsockDataServer": 2
       },
-      "role": "RED"
+      "role": "ORACLE"
     },
     "Shared/legacy_oracle/server/systems/network/region/AreaServer.cpp.inl": {
       "max_counts": {
         "lpsmSock": 1
       },
-      "role": "RED"
+      "role": "ORACLE"
     },
     "Shared/legacy_oracle/server/systems/network/transport/legacy/smwsock.cpp.inl": {
       "max_counts": {
         "lpsmSock": 1
       },
-      "role": "RED"
+      "role": "ORACLE"
     },
     "Shared/legacy_oracle/server/systems/persistence/character_record/record.cpp.inl": {
       "max_counts": {
         "lpsmSock": 9
       },
-      "role": "RED"
+      "role": "ORACLE"
     },
     "Shared/legacy_oracle/server/systems/security/legacy/process_integrity/cracker.cpp.inl": {
       "max_counts": {
         "smWsockDataServer": 1
       },
-      "role": "RED"
+      "role": "ORACLE"
     },
     "Shared/network/region/AreaServer_legacy_client.inl": {
       "max_counts": {
-        "lpsmSock": 1
+        "lpsmSock": 0
       },
       "role": "RED"
     },
     "Shared/network/region/AreaServer_legacy_server.inl": {
       "max_counts": {
-        "lpsmSock": 1
+        "lpsmSock": 0
       },
       "role": "RED"
     },
@@ -224,23 +224,23 @@
       "max_counts": {
         "lpsmSock": 1
       },
-      "role": "RED"
+      "role": "KERNEL"
     },
     "Shared/persistence/character_record/record_legacy_client.inl": {
       "max_counts": {
-        "lpsmSock": 6
+        "lpsmSock": 0
       },
       "role": "RED"
     },
     "Shared/persistence/character_record/record_legacy_server.inl": {
       "max_counts": {
-        "lpsmSock": 2
+        "lpsmSock": 0
       },
       "role": "RED"
     },
     "Shared/security/integrity/ClientFuncPos_legacy_client.inl": {
       "max_counts": {
-        "lpsmSock": 2
+        "lpsmSock": 0
       },
       "role": "RED"
     },
@@ -258,37 +258,37 @@
     },
     "Shared/server/legacy_runtime/OnSever_legacy_client.inl": {
       "max_counts": {
-        "lpsmSock": 173
+        "lpsmSock": 0
       },
       "role": "RED"
     },
     "Shared/server/legacy_runtime/OnSever_legacy_server.inl": {
       "max_counts": {
-        "lpsmSock": 351
+        "lpsmSock": 0
       },
       "role": "RED"
     },
     "SrcGame/src/compat/client_server/server_legacy/PartySever.cpp": {
       "max_counts": {
-        "lpsmSock": 10
+        "lpsmSock": 0
       },
       "role": "RED"
     },
     "SrcGame/src/compat/client_server/server_legacy/svrEventGame.h": {
       "max_counts": {
-        "lpsmSock": 4
+        "lpsmSock": 0
       },
       "role": "RED"
     },
     "SrcGame/src/compat/client_server/server_legacy/svrEventSpawn.cpp": {
       "max_counts": {
-        "lpsmSock": 4
+        "lpsmSock": 0
       },
       "role": "RED"
     },
     "SrcGame/src/core/gameplay/runtime/playmain.cpp": {
       "max_counts": {
-        "lpsmSock": 2
+        "lpsmSock": 0
       },
       "role": "RED"
     },
@@ -346,11 +346,11 @@
     },
     "SrcGame/src/systems/network/client/netplay.cpp": {
       "max_counts": {
-        "lpsmSock": 43,
-        "smWsockDataServer": 51,
-        "smWsockExtendServer": 12,
+        "lpsmSock": 0,
+        "smWsockDataServer": 0,
+        "smWsockExtendServer": 0,
         "smWsockServer": 0,
-        "smWsockUserServer": 24
+        "smWsockUserServer": 0
       },
       "role": "RED"
     },
@@ -394,7 +394,7 @@
     },
     "SrcGame/src/systems/ui/hud/legacy_sin/sinInterFace.cpp": {
       "max_counts": {
-        "lpsmSock": 1,
+        "lpsmSock": 0,
         "smWsockServer": 0
       },
       "role": "RED"
@@ -408,7 +408,7 @@
     },
     "SrcServer/src/core/server/gameplay_runtime/playmain.cpp": {
       "max_counts": {
-        "lpsmSock": 2
+        "lpsmSock": 0
       },
       "role": "RED"
     },
@@ -551,11 +551,11 @@
     },
     "SrcServer/src/systems/network/server_gameplay/netplay.cpp": {
       "max_counts": {
-        "lpsmSock": 36,
-        "smWsockDataServer": 47,
-        "smWsockExtendServer": 9,
+        "lpsmSock": 0,
+        "smWsockDataServer": 0,
+        "smWsockExtendServer": 0,
         "smWsockServer": 0,
-        "smWsockUserServer": 22
+        "smWsockUserServer": 0
       },
       "role": "RED"
     },
@@ -594,7 +594,7 @@
     },
     "SrcServer/src/systems/ui/hud/legacy_sin/sinInterFace.cpp": {
       "max_counts": {
-        "lpsmSock": 1
+        "lpsmSock": 0
       },
       "role": "RED"
     }

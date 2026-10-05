@@ -9,12 +9,12 @@
 #include "Shared/gameplay/progression/v2/BattlePassProgressService.h"
 #include "Shared/gameplay/progression/v2/BattlePassProgressApplicationService.h"
 #include "systems/progression/battle_pass/v2/legacy/LegacyBattlePassProgressMutationPort.h"
+#include "systems/inventory/v2/legacy/LegacyInventoryRuntime.h"
 
 #include <time.h>
 
 int	rsRegist_ItemSecCode(rsPLAYINFO* lpPlayInfo, TRANS_ITEMINFO* lpTransItemInfo, int NewItem);
 int CreateItem(psITEM* lpsItem, char* dwCode, int JobCode);
-int	rsAddInvenItem(rsPLAYINFO* lpPlayInfo, DWORD dwCode, DWORD dwHead, DWORD dwChkSum);
 int	rsSendMoneyToUser(rsPLAYINFO* lpPlayInfo, int Money);
 DWORD GetServerTime();
 
@@ -28,6 +28,24 @@ bool SummitBattlePassSend(rsPLAYINFO* recipient, const void* data, int size)
 	return gameplay::network::legacy::ServerLegacyPacketSender().Send(
 		gameplay::PlayerId(static_cast<std::uint32_t>(recipient->dwObjectSerial)),
 		gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded();
+}
+
+bool SummitBattlePassAddInventoryItem(rsPLAYINFO* recipient, const TRANS_ITEMINFO& item)
+{
+	if(!recipient)
+		return false;
+	const gameplay::PlayerId playerId =
+		gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(recipient);
+	if(!playerId.Valid())
+		return false;
+	const gameplay::inventory::InventoryMutationResult result =
+		gameplay::inventory::legacy::ServerLegacyInventoryRuntime().Add(
+			playerId,
+			gameplay::inventory::ItemInstanceId(
+				gameplay::ItemId(static_cast<std::uint32_t>(item.Item.CODE)),
+				static_cast<std::uint32_t>(item.Item.ItemHeader.Head),
+				static_cast<std::uint32_t>(item.Item.ItemHeader.dwChkSum)));
+	return result.code == gameplay::inventory::InventoryMutationCode::Applied;
 }
 }
 
@@ -300,8 +318,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 									TransItemInfo.size = sizeof(TRANS_ITEMINFO);
 									memcpy(&TransItemInfo.Item, &lpsItem->ItemInfo, sizeof(sITEMINFO));
 									rsRegist_ItemSecCode(Player, &TransItemInfo, 1);
-									rsAddInvenItem(Player, TransItemInfo.Item.CODE, TransItemInfo.Item.ItemHeader.Head, TransItemInfo.Item.ItemHeader.dwChkSum);
-									if (Player->lpsmSock)
+									if (SummitBattlePassAddInventoryItem(Player, TransItemInfo) && Player->lpsmSock)
 										SummitBattlePassSend(Player, &TransItemInfo, TransItemInfo.size);
 								}
 
@@ -371,8 +388,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 									TransItemInfo.size = sizeof(TRANS_ITEMINFO);
 									memcpy(&TransItemInfo.Item, &lpsItem->ItemInfo, sizeof(sITEMINFO));
 									rsRegist_ItemSecCode(Player, &TransItemInfo, 1);
-									rsAddInvenItem(Player, TransItemInfo.Item.CODE, TransItemInfo.Item.ItemHeader.Head, TransItemInfo.Item.ItemHeader.dwChkSum);
-									if (Player->lpsmSock)
+									if (SummitBattlePassAddInventoryItem(Player, TransItemInfo) && Player->lpsmSock)
 										SummitBattlePassSend(Player, &TransItemInfo, TransItemInfo.size);
 								}
 
@@ -442,8 +458,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 									TransItemInfo.size = sizeof(TRANS_ITEMINFO);
 									memcpy(&TransItemInfo.Item, &lpsItem->ItemInfo, sizeof(sITEMINFO));
 									rsRegist_ItemSecCode(Player, &TransItemInfo, 1);
-									rsAddInvenItem(Player, TransItemInfo.Item.CODE, TransItemInfo.Item.ItemHeader.Head, TransItemInfo.Item.ItemHeader.dwChkSum);
-									if (Player->lpsmSock)
+									if (SummitBattlePassAddInventoryItem(Player, TransItemInfo) && Player->lpsmSock)
 										SummitBattlePassSend(Player, &TransItemInfo, TransItemInfo.size);
 								}
 
@@ -528,8 +543,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 									TransItemInfo.size = sizeof(TRANS_ITEMINFO);
 									memcpy(&TransItemInfo.Item, &lpsItem->ItemInfo, sizeof(sITEMINFO));
 									rsRegist_ItemSecCode(Player, &TransItemInfo, 1);
-									rsAddInvenItem(Player, TransItemInfo.Item.CODE, TransItemInfo.Item.ItemHeader.Head, TransItemInfo.Item.ItemHeader.dwChkSum);
-									if (Player->lpsmSock)
+									if (SummitBattlePassAddInventoryItem(Player, TransItemInfo) && Player->lpsmSock)
 										SummitBattlePassSend(Player, &TransItemInfo, TransItemInfo.size);
 								}
 
@@ -614,8 +628,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 									TransItemInfo.size = sizeof(TRANS_ITEMINFO);
 									memcpy(&TransItemInfo.Item, &lpsItem->ItemInfo, sizeof(sITEMINFO));
 									rsRegist_ItemSecCode(Player, &TransItemInfo, 1);
-									rsAddInvenItem(Player, TransItemInfo.Item.CODE, TransItemInfo.Item.ItemHeader.Head, TransItemInfo.Item.ItemHeader.dwChkSum);
-									if (Player->lpsmSock)
+									if (SummitBattlePassAddInventoryItem(Player, TransItemInfo) && Player->lpsmSock)
 										SummitBattlePassSend(Player, &TransItemInfo, TransItemInfo.size);
 								}
 
@@ -713,8 +726,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 										TransItemInfo.size = sizeof(TRANS_ITEMINFO);
 										memcpy(&TransItemInfo.Item, &lpsItem->ItemInfo, sizeof(sITEMINFO));
 										rsRegist_ItemSecCode(Player, &TransItemInfo, 1);
-										rsAddInvenItem(Player, TransItemInfo.Item.CODE, TransItemInfo.Item.ItemHeader.Head, TransItemInfo.Item.ItemHeader.dwChkSum);
-										if (Player->lpsmSock)
+										if (SummitBattlePassAddInventoryItem(Player, TransItemInfo) && Player->lpsmSock)
 											SummitBattlePassSend(Player, &TransItemInfo, TransItemInfo.size);
 									}
 
@@ -813,8 +825,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 										TransItemInfo.size = sizeof(TRANS_ITEMINFO);
 										memcpy(&TransItemInfo.Item, &lpsItem->ItemInfo, sizeof(sITEMINFO));
 										rsRegist_ItemSecCode(Player, &TransItemInfo, 1);
-										rsAddInvenItem(Player, TransItemInfo.Item.CODE, TransItemInfo.Item.ItemHeader.Head, TransItemInfo.Item.ItemHeader.dwChkSum);
-										if (Player->lpsmSock)
+										if (SummitBattlePassAddInventoryItem(Player, TransItemInfo) && Player->lpsmSock)
 											SummitBattlePassSend(Player, &TransItemInfo, TransItemInfo.size);
 									}
 
@@ -911,8 +922,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 									TransItemInfo.size = sizeof(TRANS_ITEMINFO);
 									memcpy(&TransItemInfo.Item, &lpsItem->ItemInfo, sizeof(sITEMINFO));
 									rsRegist_ItemSecCode(Player, &TransItemInfo, 1);
-									rsAddInvenItem(Player, TransItemInfo.Item.CODE, TransItemInfo.Item.ItemHeader.Head, TransItemInfo.Item.ItemHeader.dwChkSum);
-									if (Player->lpsmSock)
+									if (SummitBattlePassAddInventoryItem(Player, TransItemInfo) && Player->lpsmSock)
 										SummitBattlePassSend(Player, &TransItemInfo, TransItemInfo.size);
 								}
 
@@ -967,8 +977,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 											TransItemInfo.size = sizeof(TRANS_ITEMINFO);
 											memcpy(&TransItemInfo.Item, &lpsItem->ItemInfo, sizeof(sITEMINFO));
 											rsRegist_ItemSecCode(Player, &TransItemInfo, 1);
-											rsAddInvenItem(Player, TransItemInfo.Item.CODE, TransItemInfo.Item.ItemHeader.Head, TransItemInfo.Item.ItemHeader.dwChkSum);
-											if (Player->lpsmSock)
+											if (SummitBattlePassAddInventoryItem(Player, TransItemInfo) && Player->lpsmSock)
 												SummitBattlePassSend(Player, &TransItemInfo, TransItemInfo.size);
 
 											BattlePass::GetInstance()->SendItemToClient(Player);
@@ -985,8 +994,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 											TransItemInfo.size = sizeof(TRANS_ITEMINFO);
 											memcpy(&TransItemInfo.Item, &lpsItem->ItemInfo, sizeof(sITEMINFO));
 											rsRegist_ItemSecCode(Player, &TransItemInfo, 1);
-											rsAddInvenItem(Player, TransItemInfo.Item.CODE, TransItemInfo.Item.ItemHeader.Head, TransItemInfo.Item.ItemHeader.dwChkSum);
-											if (Player->lpsmSock)
+											if (SummitBattlePassAddInventoryItem(Player, TransItemInfo) && Player->lpsmSock)
 												SummitBattlePassSend(Player, &TransItemInfo, TransItemInfo.size);
 
 											BattlePass::GetInstance()->SendItemToClient(Player);

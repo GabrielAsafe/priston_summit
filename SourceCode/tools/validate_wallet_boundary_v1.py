@@ -57,6 +57,9 @@ def main() -> None:
         "case WalletReason::PersonalShop: return WHERE_PERSONAL_SHOP;",
         "case WalletReason::Crafting: return WHERE_CRAFTITEM;",
         "case WalletReason::Aging: return WHERE_AGINGITEM;",
+        "case WalletReason::LoadPlayer: return WHERE_LOAD_PLAYER;",
+        "LegacyWalletAdapter::SetBalance",
+        "legacyPlayer->SetServerMoney(static_cast<int>(amount), LegacyWhere(reason))",
     ):
         if token not in adapter:
             fail(f"legacy wallet parity/safety token missing: {token}")

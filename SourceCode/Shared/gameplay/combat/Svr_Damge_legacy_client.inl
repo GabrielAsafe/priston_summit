@@ -9,6 +9,7 @@
 
 
 #include "systems/network/transport/legacy/smwsock.h"
+#include "systems/network/v2/legacy/LegacyClientCommandSender.h"
 #include "systems/rendering/legacy_3d/smd3d.h"
 #include "systems/gameplay/character/core/character.h"
 #include "core/data/legacy_loader/fileread.h"
@@ -28,6 +29,15 @@
 #ifdef _LANGUAGE_VEITNAM
 #include "../veitnam/v_event.h"
 #endif
+
+namespace
+{
+int SendDamageLegacySocket(smWINSOCK* socket, const void* data, int size)
+{
+	return gameplay::network::legacy::ClientLegacyCommandSender().SendToLegacySocket(
+		socket, gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded() ? TRUE : FALSE;
+}
+}
 
 #define	PK_POWER_DIVIDE	5
 #define	PK_SCORE_DIVIDE	10
@@ -85,7 +95,7 @@ int rsDisplayDamgeToClient(rsPLAYINFO *lpPlayInfo, char *szDmgMsg)
 	TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 	TransChatMessage.dwIP = 0;
 	TransChatMessage.dwObjectSerial = 0;
-	lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+	SendDamageLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 	return TRUE;
 }
@@ -531,7 +541,7 @@ int rsRecvAttackData_Old(rsPLAYINFO *lpPlayInfo, TRANS_ATTACKDATA *lpTransAttack
 									 lpChar->smMonsterInfo.lpNpcMessage[rand() % lpChar->smMonsterInfo.NpcMsgCount]);
 
 							TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
-							lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+							SendDamageLegacySocket(lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 						}
 						else
 						{
@@ -541,7 +551,7 @@ int rsRecvAttackData_Old(rsPLAYINFO *lpPlayInfo, TRANS_ATTACKDATA *lpTransAttack
 							TransChatMessage.dwIP = 0;
 							TransChatMessage.dwObjectSerial = lpChar->dwObjectSerial;
 							strcpy_s(TransChatMessage.szMessage, lpChar->szChatMessage);
-							lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+							SendDamageLegacySocket(lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 						}
 					}
 					if(lpChar->smMonsterInfo.SellAttackItemCount ||
@@ -599,7 +609,7 @@ int rsRecvAttackData_Old(rsPLAYINFO *lpPlayInfo, TRANS_ATTACKDATA *lpTransAttack
 						TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 						TransChatMessage.dwIP = 0;
 						TransChatMessage.dwObjectSerial = 0;
-						lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+						SendDamageLegacySocket(lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 
 						lpChar->Close();
 						return TRUE;
@@ -630,7 +640,7 @@ int rsRecvAttackData_Old(rsPLAYINFO *lpPlayInfo, TRANS_ATTACKDATA *lpTransAttack
 						smTransCommand.WParam = lpChar->smMonsterInfo.WingQuestNpc;
 						smTransCommand.LParam = 0;
 						smTransCommand.SParam = 0;
-						lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+						SendDamageLegacySocket(lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 					}
 
 					if(lpChar->smMonsterInfo.TelePortNpc)
@@ -645,7 +655,7 @@ int rsRecvAttackData_Old(rsPLAYINFO *lpPlayInfo, TRANS_ATTACKDATA *lpTransAttack
 						smTransCommand.WParam = temp;
 						smTransCommand.LParam = lpChar->smMonsterInfo.TelePortNpc;
 						smTransCommand.SParam = 0;
-						lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+						SendDamageLegacySocket(lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 					}
 
 
@@ -657,7 +667,7 @@ int rsRecvAttackData_Old(rsPLAYINFO *lpPlayInfo, TRANS_ATTACKDATA *lpTransAttack
 						smTransCommand.WParam = 0;
 						smTransCommand.LParam = 0;
 						smTransCommand.SParam = 0;
-						lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+						SendDamageLegacySocket(lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 					}
 
 					if(lpChar->smMonsterInfo.GiveMoneyNpc)
@@ -668,7 +678,7 @@ int rsRecvAttackData_Old(rsPLAYINFO *lpPlayInfo, TRANS_ATTACKDATA *lpTransAttack
 						smTransCommand.WParam = 0;
 						smTransCommand.LParam = 0;
 						smTransCommand.SParam = 0;
-						lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+						SendDamageLegacySocket(lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 					}
 
 
@@ -683,7 +693,7 @@ int rsRecvAttackData_Old(rsPLAYINFO *lpPlayInfo, TRANS_ATTACKDATA *lpTransAttack
 							smTransCommand.WParam = 5;
 							smTransCommand.LParam = 0;
 							smTransCommand.SParam = 0;
-							lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+							SendDamageLegacySocket(lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 						}
 						else
 						{
@@ -741,7 +751,7 @@ int rsRecvAttackData_Old(rsPLAYINFO *lpPlayInfo, TRANS_ATTACKDATA *lpTransAttack
 						TransChatMessage.size = 34 + len + lstrlen(lpChar->smMonsterInfo.szMediaPlayNPC_Title);
 						TransChatMessage.dwIP = 0;
 						TransChatMessage.dwObjectSerial = lpChar->dwObjectSerial;
-						lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+						SendDamageLegacySocket(lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 					}
 
 
@@ -987,7 +997,7 @@ int rsSendAttackUser(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, int Power,
 				smTransCommand.LParam = lpPlayInfo2->dwSiegeItem_Scroll_Code;
 				smTransCommand.SParam = lpPlayInfo->dwObjectSerial;
 				smTransCommand.EParam = 0;
-				lpPlayInfo2->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+				SendDamageLegacySocket(lpPlayInfo2->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 				return FALSE;
 			}
 		}
@@ -1010,7 +1020,7 @@ int rsSendAttackUser(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, int Power,
 			smTransCommand.LParam = lpPlayInfo2->dwSiegeItem_Scroll_Code;
 			smTransCommand.SParam = lpPlayInfo->dwObjectSerial;
 			smTransCommand.EParam = 0;
-			lpPlayInfo2->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+			SendDamageLegacySocket(lpPlayInfo2->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 			return FALSE;
 		}
 	}
@@ -1157,7 +1167,7 @@ int rsSendAttackUser(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, int Power,
 				smTransCommand.LParam = SKILL_PLAY_VAGUE;
 				smTransCommand.SParam = lpPlayInfo->dwObjectSerial;
 				smTransCommand.EParam = 0;
-				lpPlayInfo2->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+				SendDamageLegacySocket(lpPlayInfo2->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 				return FALSE;
 			}
@@ -1205,7 +1215,7 @@ int rsSendAttackUser(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, int Power,
 				smTransCommand.LParam = SKILL_PLAY_HALL_OF_VALHALLA;
 				smTransCommand.SParam = lpPlayInfo->dwObjectSerial;
 				smTransCommand.EParam = 0;
-				lpPlayInfo2->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+				SendDamageLegacySocket(lpPlayInfo2->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 				return FALSE;
 			}
@@ -1237,7 +1247,7 @@ int rsSendAttackUser(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, int Power,
 				smTransCommand.LParam = SKILL_PLAY_SUMMON_MUSPELL;
 				smTransCommand.SParam = lpPlayInfo->dwObjectSerial;
 				smTransCommand.EParam = 0;
-				lpPlayInfo2->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+				SendDamageLegacySocket(lpPlayInfo2->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 				return FALSE;
 			}
@@ -1284,7 +1294,7 @@ int rsSendAttackUser(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, int Power,
 		else
 			TransAttackData.dwDamageChkSum = dm_GetDamgeChkSum_S2V(&TransAttackData);
 
-		lpPlayInfo2->lpsmSock->Send((char *)&TransAttackData, TransAttackData.size, TRUE);
+		SendDamageLegacySocket(lpPlayInfo2->lpsmSock, (char *)&TransAttackData, TransAttackData.size);
 	}
 
 	return TRUE;
@@ -2513,7 +2523,7 @@ int RecvRangeAttack(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAt
 			smTransCommand.SParam = 0;
 			smTransCommand.EParam = 0;
 			if(lpPlayInfo->lpsmSock)
-				lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+				SendDamageLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 		}
 		break;
 
@@ -2731,7 +2741,7 @@ int RecvRangeAttackUser(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSk
 					rsPlayInfo[cnt2].Send_AttackCount++;
 					rsPlayInfo[cnt2].Send_AttackDamage += lpTransSkilAttackData->Power;
 
-					rsPlayInfo[cnt2].lpsmSock->Send((char *)&TransAttackData, TransAttackData.size, TRUE);
+					rsPlayInfo[cnt2].SendDamageLegacySocket(lpsmSock, (char *)&TransAttackData, TransAttackData.size);
 
 					break;
 				}
@@ -3666,7 +3676,7 @@ int rsSetSkillPlus(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, TRANS_ATTACKDATA *lpT
 		smTransCommand.LParam = 0;
 		smTransCommand.SParam = 0;
 		smTransCommand.EParam = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+		SendDamageLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 	}
 
 	if(lpPlayInfo->dwSkill_Berserker_Time)
@@ -4290,7 +4300,7 @@ int rsRecvAttackData(rsPLAYINFO *lpPlayInfo, TRANS_ATTACKDATA2 *lpTransAttackDat
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendDamageLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 		}
 	#endif
 
@@ -4400,7 +4410,7 @@ int rsRecvAttackData(rsPLAYINFO *lpPlayInfo, TRANS_ATTACKDATA2 *lpTransAttackDat
 				smTransCommand.LParam = 0;
 				smTransCommand.SParam = 0;
 				smTransCommand.EParam = 0;
-				lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+				SendDamageLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 			#ifdef DISP_DAMAGE
 
@@ -4480,7 +4490,7 @@ int rsRecvAttackData(rsPLAYINFO *lpPlayInfo, TRANS_ATTACKDATA2 *lpTransAttackDat
 					smTransCommand.LParam = 0;
 					smTransCommand.SParam = 0;
 					smTransCommand.EParam = 0;
-					lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+					SendDamageLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 				#ifdef DISP_DAMAGE
 
@@ -4505,7 +4515,7 @@ int rsRecvAttackData(rsPLAYINFO *lpPlayInfo, TRANS_ATTACKDATA2 *lpTransAttackDat
 		smTransCommand.LParam = 0;
 		smTransCommand.SParam = 0;
 		smTransCommand.EParam = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+		SendDamageLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 	}
 
 	return TRUE;
@@ -4549,7 +4559,7 @@ int rsSetSkillRangeAttack(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, TRANS_ATTACKDA
 		smTransCommand.LParam = 0;
 		smTransCommand.SParam = 0;
 		smTransCommand.EParam = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+		SendDamageLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 	}
 
 
@@ -5199,7 +5209,7 @@ int rsRecvRangeAttackData(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA2 *lpTran
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendDamageLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 		}
 	#endif
 
@@ -5302,7 +5312,7 @@ int rsRecvRangeAttackData(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA2 *lpTran
 		smTransCommand.LParam = 0;
 		smTransCommand.SParam = 0;
 		smTransCommand.EParam = 0;
-		lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+		SendDamageLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 	}
 
 
@@ -5388,7 +5398,7 @@ int rsSendDamageFuncToClient(rsPLAYINFO *lpPlayInfo)
 
 	if(lpPlayInfo && lpPlayInfo->lpsmSock)
 	{
-		return lpPlayInfo->lpsmSock->Send((char *)&TransFuncMemory, TransFuncMemory.size, TRUE);
+		return SendDamageLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransFuncMemory, TransFuncMemory.size);
 	}
 
 	return FALSE;
@@ -5415,7 +5425,7 @@ int rsSendDamageFuncToClient2(rsPLAYINFO *lpPlayInfo)
 
 	if(lpPlayInfo && lpPlayInfo->lpsmSock)
 	{
-		return lpPlayInfo->lpsmSock->Send((char *)&TransFuncMemory, TransFuncMemory.size, TRUE);
+		return SendDamageLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransFuncMemory, TransFuncMemory.size);
 	}
 
 	return FALSE;
@@ -5444,7 +5454,7 @@ int rsSendPacketFuncToClient(rsPLAYINFO *lpPlayInfo, DWORD dwEncPacketCode, BYTE
 
 	if(lpPlayInfo && lpPlayInfo->lpsmSock)
 	{
-		return lpPlayInfo->lpsmSock->Send((char *)&TransFuncMemory, TransFuncMemory.size, TRUE);
+		return SendDamageLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransFuncMemory, TransFuncMemory.size);
 	}
 
 	return FALSE;
@@ -5864,7 +5874,7 @@ int	rsBillingItemSkill(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, int HitMonsters, 
 		smTransCommand.EParam = lpPlayInfo->dwObjectSerial;
 
 		if (smTransCommand.WParam)
-			lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+			SendDamageLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 
 #ifdef _LANGUAGE_KOREAN
@@ -5878,7 +5888,7 @@ int	rsBillingItemSkill(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, int HitMonsters, 
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendDamageLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 		}
 #endif
 	}
@@ -5897,7 +5907,7 @@ int	rsBillingItemSkill(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, int HitMonsters, 
 		smTransCommand.EParam = lpPlayInfo->dwObjectSerial;
 
 		if (smTransCommand.WParam)
-			lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+			SendDamageLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 
 #ifdef _LANGUAGE_JAPANESE 
@@ -5911,7 +5921,7 @@ int	rsBillingItemSkill(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, int HitMonsters, 
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendDamageLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 		}
 #endif
 	}
@@ -5929,7 +5939,7 @@ int	rsBillingItemSkill(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, int HitMonsters, 
 		smTransCommand.SParam = 0;
 		smTransCommand.EParam = lpPlayInfo->dwObjectSerial;
 		if (smTransCommand.WParam)
-			lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+			SendDamageLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 #ifdef _LANGUAGE_KOREAN
 		TRANS_CHATMESSAGE	TransChatMessage;
@@ -5942,7 +5952,7 @@ int	rsBillingItemSkill(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, int HitMonsters, 
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
-			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+			SendDamageLegacySocket(lpPlayInfo->lpsmSock, (char *)&TransChatMessage, TransChatMessage.size);
 		}
 #endif
 	}

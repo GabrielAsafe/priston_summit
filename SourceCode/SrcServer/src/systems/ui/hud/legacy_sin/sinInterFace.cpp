@@ -1,11 +1,22 @@
 #include <cstring>
 #include "gameplay/classes/v2/services/ClassService.h"
 #include "systems/network/protocol/server/opcodes.h"
+#include "systems/network/v2/legacy/LegacyPacketSender.h"
 
 
 #include "core/server/legacy_sin_runtime/sinLinkHeader.h"
 #include "systems/social/clan/legacy/tjclan.h"
 #include "systems/world/field/field.h"
+
+namespace
+{
+inline bool SummitInterfaceServerSocketSend(smWINSOCK* socket, const void* data, int size)
+{
+	if(!socket || !data || size <= 0) return false;
+	return gameplay::network::legacy::ServerLegacyPacketSender().SendToLegacySocket(
+		socket, gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded();
+}
+}
 
 
 cINTERFACE	cInterFace;
@@ -3143,7 +3154,7 @@ void cINTERFACE::CheckAllBox(int ButtonFlag)
 				lpsmSock = GetAreaServerSock();
 				if(lpsmSock)
 				{
-					lpsmSock->Send((char*)&TransCommand, TransCommand.size, TRUE);
+					SummitInterfaceServerSocketSend(lpsmSock, (char*)&TransCommand, TransCommand.size);
 				}
 			}
 		}

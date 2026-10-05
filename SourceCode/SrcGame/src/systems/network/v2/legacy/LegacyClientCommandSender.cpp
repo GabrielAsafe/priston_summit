@@ -19,12 +19,17 @@ bool LegacyClientCommandSender::Available() const
 
 SendResult LegacyClientCommandSender::Send(const PacketView& packet)
 {
+    return SendToLegacySocket(smWsockServer, packet);
+}
+
+SendResult LegacyClientCommandSender::SendToLegacySocket(smWINSOCK* socket, const PacketView& packet)
+{
     if (!packet.Valid() || packet.size > static_cast<std::size_t>(std::numeric_limits<int>::max()))
         return SendResult(SendStatus::InvalidPacket, 0u);
-    if (!smWsockServer)
+    if (!socket)
         return SendResult(SendStatus::Disconnected, 0u);
 
-    const int sent = smWsockServer->Send(
+    const int sent = socket->Send(
         reinterpret_cast<char*>(const_cast<void*>(packet.data)),
         static_cast<int>(packet.size), TRUE);
     return sent == TRUE

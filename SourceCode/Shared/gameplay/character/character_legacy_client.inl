@@ -24,6 +24,8 @@
 
 #include "systems/rendering/legacy_3d/smd3d.h"
 #include "systems/network/transport/legacy/smwsock.h"
+#include "systems/network/v2/legacy/LegacyClientCommandSender.h"
+#include "systems/network/v2/legacy/LegacyBackendChannelSender.h"
 
 #include "systems/gameplay/character/core/character.h"
 #include "systems/audio/playback/legacy/Dxwav.h"
@@ -59,6 +61,22 @@
 #include "systems/configuration/client/Settings.h"
 #include "systems/gameplay/character/core/CharacterModelStreamingV3.h"
 #include "core/concurrency/SourceAssetLock.h"
+
+namespace
+{
+int SendCharacterLegacySocket(smWINSOCK* socket, const void* data, int size)
+{
+	return gameplay::network::legacy::ClientLegacyCommandSender().SendToLegacySocket(
+		socket, gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded() ? TRUE : FALSE;
+}
+
+int SendCharacterDataPacket(const void* data, int size)
+{
+	return gameplay::network::legacy::ClientLegacyBackendChannelSender().Send(
+		gameplay::network::BackendChannel::Data,
+		gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded() ? TRUE : FALSE;
+}
+}
 
 #define DISP_DAMAGE
 
@@ -7473,7 +7491,7 @@ int smCHAR::Main()
 							smTransCommand.SParam = 0;
 							smTransCommand.EParam = 0;
 							if (lpLinkPlayInfo && lpLinkPlayInfo->lpsmSock)
-								lpLinkPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+								SendCharacterLegacySocket(lpLinkPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 							smCharInfo.Life[0] += (smCharInfo.Life[1] >> 2);
 							if (smCharInfo.Life[0] > smCharInfo.Life[1])
@@ -8198,7 +8216,7 @@ int smCHAR::Main()
 									smTransCommand.LParam = 60 * 10;
 									smTransCommand.SParam = 0;
 									smTransCommand.EParam = 0;
-									lpTargetPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+									SendCharacterLegacySocket(lpTargetPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 									if (smMonsterInfo.UseEventModel && smCharInfo.szModelName2[1])
 									{
@@ -8242,7 +8260,7 @@ int smCHAR::Main()
 								smTransCommand.LParam = 0;
 								smTransCommand.SParam = 0;
 								smTransCommand.EParam = 0;
-								lpTargetPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+								SendCharacterLegacySocket(lpTargetPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 								lpTargetPlayInfo->BadPlayer = 2;
 							}
 						}
@@ -17635,7 +17653,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 				smTransCommand.LParam = lpPlayInfo->dwSiegeItem_Scroll_Code;
 				smTransCommand.SParam = dwObjectSerial;
 				smTransCommand.EParam = 0;
-				lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+				SendCharacterLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 				return FALSE;
 			}
 		}
@@ -17659,7 +17677,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 			smTransCommand.LParam = lpPlayInfo->dwSiegeItem_Scroll_Code;
 			smTransCommand.SParam = dwObjectSerial;
 			smTransCommand.EParam = 0;
-			lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+			SendCharacterLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 			return FALSE;
 		}
 	}
@@ -17834,7 +17852,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 				smTransCommand.LParam = SKILL_PLAY_VAGUE;
 				smTransCommand.SParam = dwObjectSerial;
 				smTransCommand.EParam = 0;
-				lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+				SendCharacterLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 				return FALSE;
 			}
@@ -17882,7 +17900,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 				smTransCommand.LParam = SKILL_PLAY_HALL_OF_VALHALLA;
 				smTransCommand.SParam = dwObjectSerial;
 				smTransCommand.EParam = 0;
-				lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+				SendCharacterLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 				return FALSE;
 			}
@@ -17914,7 +17932,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 				smTransCommand.LParam = SKILL_PLAY_SUMMON_MUSPELL;
 				smTransCommand.SParam = dwObjectSerial;
 				smTransCommand.EParam = 0;
-				lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+				SendCharacterLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 				return FALSE;
 			}
@@ -17970,7 +17988,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 					smTransCommand.LParam = SKILL_PLAY_BLESS_EVADE;
 					smTransCommand.SParam = dwObjectSerial;
 					smTransCommand.EParam = 0;
-					lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+					SendCharacterLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
 
 					return FALSE;
 				}
@@ -18638,7 +18656,7 @@ int	Ptect_IncAttackCount(int Flag)
 		smTransCommand.LParam = 0;
 		smTransCommand.SParam = 0;
 		smTransCommand.EParam = 0;
-		if (smWsockDataServer) smWsockDataServer->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+		if (smWsockDataServer) SendCharacterDataPacket((char *)&smTransCommand, smTransCommand.size);
 		rc = 0;
 	}
 

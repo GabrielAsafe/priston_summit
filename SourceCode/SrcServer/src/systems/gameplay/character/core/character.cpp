@@ -55,7 +55,10 @@
 #include "systems/gameplay/combat/v2/legacy/LegacyScopedCombatBuff.h"
 #include "systems/gameplay/combat/v2/legacy/LegacyLifeAdapter.h"
 #include "systems/gameplay/combat/v2/legacy/LegacyTargetingAdapter.h"
+#include "systems/gameplay/combat/v2/legacy/LegacyStatusEffectAdapter.h"
 #include "gameplay/world/v2/ActorNavigationPolicy.h"
+#include "gameplay/world/v2/ActorLifecycleService.h"
+#include "gameplay/combat/v2/ActorDamageLifePolicy.h"
 #include "gameplay/combat/v2/DeathAttributionPolicy.h"
 #include "gameplay/combat/v2/DeathLifecyclePolicy.h"
 #include "systems/gameplay/skills/v2/legacy/LegacySkillAnimationAdapter.h"
@@ -6130,7 +6133,9 @@ int smCHAR::Main()
 				if(smCharInfo.Life[0] <= (smCharInfo.Life[1] >> 4))
 				{
 
-					smCharInfo.Life[0] = (smCharInfo.Life[1] >> 4);
+					(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().EnsureMinimum(
+						gameplay::EntityId(static_cast<std::uint32_t>(dwObjectSerial)),
+						std::max(1, static_cast<int>(smCharInfo.Life[1]) >> 4));
 					SummitClearCharacterPlayerTarget(this);
 					lpTargetChar = 0;
 					SetMotionFromCode(CHRMOTION_STATE_STAND);
@@ -6147,8 +6152,9 @@ int smCHAR::Main()
 					lpChar = rsGetLinkChar(this);
 					if(lpChar)
 					{
-						lpChar->SetMotionFromCode(CHRMOTION_STATE_DEAD);
-						lpChar->smCharInfo.Life[0] = 0;
+						(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().ConsumeLethal(
+							gameplay::EntityId(static_cast<std::uint32_t>(lpChar->dwObjectSerial)),
+							std::max(1, static_cast<int>(lpChar->smCharInfo.Life[0])));
 					}
 
 				}
@@ -6582,7 +6588,8 @@ int smCHAR::Main()
 					{
 						cnt *= 8;
 						if (smCharInfo.dwCharSoundCode == snCHAR_SOUND_KELVEZU) {
-							lpTargetChar->smCharInfo.Life[0] = 0;
+							(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().Deplete(
+								gameplay::EntityId(static_cast<std::uint32_t>(lpTargetChar->dwObjectSerial)));
 							cnt = 1;
 						}
 					}
@@ -6607,7 +6614,29 @@ int smCHAR::Main()
 						cnt = 0;
 
 					if (cnt > 0) {
-						lpTargetChar->smCharInfo.Life[0] -= cnt;
+						bool virtualLifeAbsorbed = false;
+						if (lpTargetChar->smCharInfo.Life[0] > 0)
+						{
+							const gameplay::combat::ActorDamageLifePlan lifePlan =
+								gameplay::combat::ActorDamageLifePolicy::Resolve(
+									lpTargetChar->smCharInfo.Life[0],
+									lpTargetChar->smCharInfo.Life[1],
+									cnt,
+									lpTargetChar->UseObject_VirtualLife && sObject_VirtualLife[0] > 0);
+							virtualLifeAbsorbed = lifePlan.virtualLifeAbsorbed;
+							const gameplay::EntityId targetId(static_cast<std::uint32_t>(lpTargetChar->dwObjectSerial));
+							if (lifePlan.restoreAmount > 0)
+							{
+								(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().Restore(targetId, lifePlan.restoreAmount);
+							}
+							else if (lifePlan.amount > 0)
+							{
+								if (lifePlan.consumeNonLethal)
+									(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().ConsumeNonLethal(targetId, lifePlan.amount);
+								else
+									(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().ConsumeLethal(targetId, lifePlan.amount);
+							}
+						}
 						const int companionReflect = gameplay::companions::GetReactiveDamage(lpTargetChar, cnt);
 						if(companionReflect > 0 && smCharInfo.Life[0] > 0)
 						{
@@ -6615,23 +6644,40 @@ int smCHAR::Main()
 								gameplay::EntityId(static_cast<std::uint32_t>(dwObjectSerial)), companionReflect);
 						}
 
-						if (smCharInfo.dwCharSoundCode == snCHAR_SOUND_WEB) {	
-							if (lpTargetChar->smCharInfo.dwCharSoundCode != snCHAR_SOUND_KELVEZU)	
-								lpTargetChar->PlaySlowCount = -36;
+						if (smCharInfo.dwCharSoundCode == snCHAR_SOUND_WEB) {
+
+							if (lpTargetChar->smCharInfo.dwCharSoundCode != snCHAR_SOUND_KELVEZU)
+
+							{
+
+								(void)gameplay::combat::legacy::ServerLegacyStatusEffectAdapter().ApplySlow(
+
+									gameplay::EntityId(static_cast<std::uint32_t>(lpTargetChar->dwObjectSerial)),
+
+									gameplay::combat::SlowEffect(
+
+										36, lpTargetChar->PlaySlowSpeed, lpTargetChar->PlayDistortion, false, false, false,
+
+										gameplay::combat::SlowTimerMode::CountUpFromNegative));
+
+							}
+
 						}
 
 
 						if (lpTargetChar->smCharInfo.Life[0] <= 0) {
-							//Verifica se o monstro usa a HP em blocos e se há blocos existentes
+							// Kelvezu's legacy forced-zero path still arrives here. Normal damage,
+							// including virtual-life flooring, is owned by ActorDamageLifePolicy + LifeCommands.
 							if (lpTargetChar->UseObject_VirtualLife && sObject_VirtualLife[0] > 0)
 							{
-								//Caso seja verdadeiro, atualizar a vida do monstro para 1% da total, assim criamos a folga
-								//necessária para o servidor atualizar para o próximo bloco
-								lpTargetChar->smCharInfo.Life[0] = (lpTargetChar->smCharInfo.Life[1] * 1) / 100;
+								// Preserve the exact legacy forced-zero recovery here; this path begins at
+								// zero life, while LifeCommands::Restore intentionally rejects dead actors.
+								(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().EnsureMinimum(
+									gameplay::EntityId(static_cast<std::uint32_t>(lpTargetChar->dwObjectSerial)),
+									std::max(1, static_cast<int>(lpTargetChar->smCharInfo.Life[1]) / 100));
 							}
 							else
 							{
-								lpTargetChar->smCharInfo.Life[0] = 0;
 								lpTargetChar->SetMotionFromCode(CHRMOTION_STATE_DEAD);
 								if (lpMasterPlayInfo && lpMasterPlayInfo->dwObjectSerial && lpMasterPlayInfo->dwObjectSerial == smCharInfo.Next_Exp)
 								{
@@ -6642,8 +6688,9 @@ int smCHAR::Main()
 								{
 									if (lpMasterPlayInfo)
 									{
-										smCharInfo.Life[0] = 0;
-										SetMotionFromCode(CHRMOTION_STATE_DEAD);
+										(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().ConsumeLethal(
+											gameplay::EntityId(static_cast<std::uint32_t>(dwObjectSerial)),
+											std::max(1, static_cast<int>(smCharInfo.Life[0])));
 									}
 									else
 									{
@@ -6653,7 +6700,7 @@ int smCHAR::Main()
 							}
 						}
 
-						else {
+						else if (!virtualLifeAbsorbed) {
 							if (lpTargetChar->MotionInfo->State < 0x100) {
 								lpTargetChar->SetMotionFromCode(CHRMOTION_STATE_DAMAGE);
 							}
@@ -7145,7 +7192,8 @@ int smCHAR::Main()
 				if(cnt <= 10)
 				{
 					sObject_VirtualLife[0] --;
-					smCharInfo.Life[0] = smCharInfo.Life[1];
+					(void)gameplay::combat::legacy::ServerLegacyLifeAdapter().RestoreToMaximum(
+						gameplay::EntityId(static_cast<std::uint32_t>(dwObjectSerial)));
 
 					if(smCharInfo.dwCharSoundCode == snCHAR_SOUND_KELVEZU && (sObject_VirtualLife[0] & 0x1) == 0)
 					{
@@ -7185,76 +7233,74 @@ int smCHAR::Main()
 
 	case 10:
 	case 11:
-		if(MotionInfo->State && MotionInfo->State < 0x100)
+	{
+		if (MotionInfo->State && MotionInfo->State < 0x100)
 		{
-			if(MotionInfo->State == CHRMOTION_STATE_WALK)
+			if (MotionInfo->State == CHRMOTION_STATE_WALK)
 			{
 				MoveAngle(SERVER_CHAR_SKIP);
-				if(MotionInfo->State != CHRMOTION_STATE_WALK) SetMotionFromCode(CHRMOTION_STATE_WALK);
+				if (MotionInfo->State != CHRMOTION_STATE_WALK) SetMotionFromCode(CHRMOTION_STATE_WALK);
 			}
 			else
 			{
-				if(MotionInfo->State != CHRMOTION_STATE_STAND) SetMotionFromCode(CHRMOTION_STATE_STAND);
+				if (MotionInfo->State != CHRMOTION_STATE_STAND) SetMotionFromCode(CHRMOTION_STATE_STAND);
 			}
 
 		}
 
 		frame += SERVER_CHAR_FRAME_STEP;
+		const gameplay::world::ActorAnimationCompletion motionCompletion =
+			gameplay::world::ActorLifecycleService::ResolveAnimationCompletion(
+				frame, MotionInfo->StartFrame * 160, MotionInfo->EndFrame * 160,
+				MotionInfo->State == CHRMOTION_STATE_DEAD, MotionInfo->Repeat == TRUE);
 
-		if(frame > MotionInfo->EndFrame * 160)
+		if (motionCompletion.completed)
 		{
+			frame = motionCompletion.nextFrame;
 
-			if(MotionInfo->State == CHRMOTION_STATE_DEAD)
+			if (motionCompletion.action != gameplay::world::ActorAnimationCompletionAction::HoldFinalFrame)
 			{
-				frame = MotionInfo->EndFrame * 160;
-			}
-			else
-			{
-
-				if(MotionInfo->Repeat == TRUE)
-				{
-					frame = (MotionInfo->StartFrame * 160) + (frame - MotionInfo->EndFrame * 160);
-				}
-				else SetMotionFromCode(CHRMOTION_STATE_STAND);
+				if (motionCompletion.action == gameplay::world::ActorAnimationCompletionAction::ReturnToStand)
+					SetMotionFromCode(CHRMOTION_STATE_STAND);
 
 
 
-				if(MotionInfo->State == CHRMOTION_STATE_STAND)
+				if (MotionInfo->State == CHRMOTION_STATE_STAND)
 				{
 					cnt = rand() % ANGCLIP;
-					if(((cnt >> 2) & 3) == 0)
+					if (((cnt >> 2) & 3) == 0)
 					{
 
-						if(ActionPattern == 10)
+						if (ActionPattern == 10)
 						{
-							if(!SetMotionFromCode(CHRMOTION_STATE_SOMETIME))
+							if (!SetMotionFromCode(CHRMOTION_STATE_SOMETIME))
 							{
-								Angle.y = cnt&ANGCLIP;
+								Angle.y = cnt & ANGCLIP;
 								SetMotionFromCode(CHRMOTION_STATE_WALK);
 							}
 						}
 						else
 						{
-							if(!SetMotionFromCode(TRUE))
+							if (!SetMotionFromCode(TRUE))
 							{
-								Angle.y = cnt&ANGCLIP;
+								Angle.y = cnt & ANGCLIP;
 								SetMotionFromCode(CHRMOTION_STATE_WALK);
 							}
 						}
 					}
 					else
 					{
-						Angle.y = cnt&ANGCLIP;
+						Angle.y = cnt & ANGCLIP;
 						SetMotionFromCode(CHRMOTION_STATE_WALK);
 					}
 
-					if(MotionInfo->State == CHRMOTION_STATE_WALK)
+					if (MotionInfo->State == CHRMOTION_STATE_WALK)
 					{
 
 						x = (pX - PosiAround.x) >> FLOATNS;
 						z = (pZ - PosiAround.z) >> FLOATNS;
-						dist = x*x + z*z;
-						if(dist > DistAroundDbl)
+						dist = x * x + z * z;
+						if (dist > DistAroundDbl)
 						{
 							SetTargetPosi(PosiAround.x >> FLOATNS, PosiAround.z >> FLOATNS);
 						}
@@ -7262,7 +7308,7 @@ int smCHAR::Main()
 				}
 				else SetMotionFromCode(CHRMOTION_STATE_STAND);
 
-				if(OverLapPosi && lpCharOverLap)
+				if (OverLapPosi && lpCharOverLap)
 				{
 
 					Angle.y = GetRadian2D(lpCharOverLap->pX >> FLOATNS, lpCharOverLap->pZ >> FLOATNS,
@@ -7276,19 +7322,23 @@ int smCHAR::Main()
 		SavePlayBuff();
 		FrameCounter += 3;
 		break;
+	}
 
 	case 12:
+	{
 
 
 
-		if(smMotionInfo->NpcMotionRate[CHRMOTION_EXT])
+		if (smMotionInfo->NpcMotionRate[CHRMOTION_EXT])
 		{
 
-			if(MotionInfo->State == CHRMOTION_STATE_WARP)
+			if (MotionInfo->State == CHRMOTION_STATE_WARP)
 			{
-
-				frame += SERVER_CHAR_FRAME_STEP;
-				if(frame > MotionInfo->EndFrame * 160)
+				const gameplay::world::ActorAnimationAdvance warpAdvance =
+					gameplay::world::ActorLifecycleService::AdvanceOneShot(
+						frame, MotionInfo->EndFrame * 160, SERVER_CHAR_FRAME_STEP);
+				frame = warpAdvance.nextFrame;
+				if (warpAdvance.finished)
 				{
 					Close();
 					return TRUE;
@@ -7300,23 +7350,23 @@ int smCHAR::Main()
 
 
 			int TalkCnt = 0;
-			if(MotionInfo->State == CHRMOTION_STATE_WALK)
+			if (MotionInfo->State == CHRMOTION_STATE_WALK)
 			{
 				x = pX; z = pZ;
 				MoveAngle(SERVER_CHAR_SKIP);
 
-				if(x == pX && z == pZ)
+				if (x == pX && z == pZ)
 				{
 					TalkCnt = rand() % 100;
 					TalkCnt = smMotionInfo->NpcMotionRateCnt[TalkCnt];
 
-					if(TalkCnt == action && smMotionInfo->MotionInfo[TalkCnt].State == CHRMOTION_STATE_WALK)
+					if (TalkCnt == action && smMotionInfo->MotionInfo[TalkCnt].State == CHRMOTION_STATE_WALK)
 					{
 
 						x = (pX - PosiAround.x) >> FLOATNS;
 						z = (pZ - PosiAround.z) >> FLOATNS;
-						dist = x*x + z*z;
-						if(dist > DistAroundDbl)
+						dist = x * x + z * z;
+						if (dist > DistAroundDbl)
 							SetTargetPosi(PosiAround.x >> FLOATNS, PosiAround.z >> FLOATNS);
 					}
 					else
@@ -7328,23 +7378,23 @@ int smCHAR::Main()
 			}
 
 			frame += SERVER_CHAR_FRAME_STEP;
-			if(frame > MotionInfo->EndFrame * 160)
+			if (frame > MotionInfo->EndFrame * 160)
 			{
-				if(MotionInfo->State == CHRMOTION_STATE_WALK)
+				if (MotionInfo->State == CHRMOTION_STATE_WALK)
 					frame = (MotionInfo->StartFrame * 160) + (frame - MotionInfo->EndFrame * 160);
-				else if(smCharInfo.dwCharSoundCode != snCHAR_SOUND_FURY)
+				else if (smCharInfo.dwCharSoundCode != snCHAR_SOUND_FURY)
 				{
-					if(TalkCnt == 0)
+					if (TalkCnt == 0)
 						TalkCnt = rand() % 100;
 
 					ChangeMotion(smMotionInfo->NpcMotionRateCnt[TalkCnt]);
-					if(MotionInfo->State == CHRMOTION_STATE_WALK)
+					if (MotionInfo->State == CHRMOTION_STATE_WALK)
 					{
 
 						x = (pX - PosiAround.x) >> FLOATNS;
 						z = (pZ - PosiAround.z) >> FLOATNS;
-						dist = x*x + z*z;
-						if(dist > DistAroundDbl)
+						dist = x * x + z * z;
+						if (dist > DistAroundDbl)
 							SetTargetPosi(PosiAround.x >> FLOATNS, PosiAround.z >> FLOATNS);
 					}
 					else
@@ -7357,12 +7407,13 @@ int smCHAR::Main()
 
 		else
 		{
-			if(MotionInfo->State == CHRMOTION_STATE_WARP)
+			if (MotionInfo->State == CHRMOTION_STATE_WARP)
 			{
-
-				frame += SERVER_CHAR_FRAME_STEP;
-
-				if(frame > MotionInfo->EndFrame * 160)
+				const gameplay::world::ActorAnimationAdvance warpAdvance =
+					gameplay::world::ActorLifecycleService::AdvanceOneShot(
+						frame, MotionInfo->EndFrame * 160, SERVER_CHAR_FRAME_STEP);
+				frame = warpAdvance.nextFrame;
+				if (warpAdvance.finished)
 				{
 					Close();
 					return TRUE;
@@ -7373,58 +7424,55 @@ int smCHAR::Main()
 			}
 
 
-			if(MotionInfo->State && MotionInfo->State < 0x100)
+			if (MotionInfo->State && MotionInfo->State < 0x100)
 			{
-				if(MotionInfo->State == CHRMOTION_STATE_WALK)
+				if (MotionInfo->State == CHRMOTION_STATE_WALK)
 				{
 					x = pX; z = pZ;
 
 					MoveAngle(SERVER_CHAR_SKIP);
 
-					if(x == pX && z == pZ)
+					if (x == pX && z == pZ)
 					{
 						Angle.y = rand() % ANGCLIP;
 					}
 
-					if(MotionInfo->State != CHRMOTION_STATE_WALK) SetMotionFromCode(CHRMOTION_STATE_WALK);
+					if (MotionInfo->State != CHRMOTION_STATE_WALK) SetMotionFromCode(CHRMOTION_STATE_WALK);
 				}
 				else
 				{
-					if(MotionInfo->State != CHRMOTION_STATE_STAND) SetMotionFromCode(CHRMOTION_STATE_STAND);
+					if (MotionInfo->State != CHRMOTION_STATE_STAND) SetMotionFromCode(CHRMOTION_STATE_STAND);
 				}
 			}
 
 			frame += SERVER_CHAR_FRAME_STEP;
+			const gameplay::world::ActorAnimationCompletion motionCompletion =
+				gameplay::world::ActorLifecycleService::ResolveAnimationCompletion(
+					frame, MotionInfo->StartFrame * 160, MotionInfo->EndFrame * 160,
+					MotionInfo->State == CHRMOTION_STATE_DEAD, MotionInfo->Repeat == TRUE);
 
-			if(frame > MotionInfo->EndFrame * 160)
+			if (motionCompletion.completed)
 			{
+				frame = motionCompletion.nextFrame;
 
-				if(MotionInfo->State == CHRMOTION_STATE_DEAD)
+				if (motionCompletion.action != gameplay::world::ActorAnimationCompletionAction::HoldFinalFrame)
 				{
-					frame = MotionInfo->EndFrame * 160;
-				}
-				else
-				{
-
-					if(MotionInfo->Repeat == TRUE)
-					{
-						frame = (MotionInfo->StartFrame * 160) + (frame - MotionInfo->EndFrame * 160);
-					}
-					else SetMotionFromCode(CHRMOTION_STATE_STAND);
+					if (motionCompletion.action == gameplay::world::ActorAnimationCompletionAction::ReturnToStand)
+						SetMotionFromCode(CHRMOTION_STATE_STAND);
 
 
 
-					if(MotionInfo->State == CHRMOTION_STATE_STAND && smCharInfo.dwCharSoundCode != snCHAR_SOUND_FURY)
+					if (MotionInfo->State == CHRMOTION_STATE_STAND && smCharInfo.dwCharSoundCode != snCHAR_SOUND_FURY)
 					{
 						cnt = rand() % ANGCLIP;
-						if(((cnt >> 2) & 3) == 0)
+						if (((cnt >> 2) & 3) == 0)
 						{
 
-							if(!SetMotionFromCode(TRUE))
+							if (!SetMotionFromCode(TRUE))
 							{
-								if(MoveSpeed) Angle.y = cnt&ANGCLIP;
+								if (MoveSpeed) Angle.y = cnt & ANGCLIP;
 
-								if(DistAroundDbl)
+								if (DistAroundDbl)
 									SetMotionFromCode(CHRMOTION_STATE_WALK);
 								else
 									SetMotionFromCode(CHRMOTION_STATE_STAND);
@@ -7435,13 +7483,13 @@ int smCHAR::Main()
 							SetMotionFromCode(CHRMOTION_STATE_STAND);
 						}
 
-						if(MotionInfo->State == CHRMOTION_STATE_WALK)
+						if (MotionInfo->State == CHRMOTION_STATE_WALK)
 						{
 
 							x = (pX - PosiAround.x) >> FLOATNS;
 							z = (pZ - PosiAround.z) >> FLOATNS;
-							dist = x*x + z*z;
-							if(dist > DistAroundDbl)
+							dist = x * x + z * z;
+							if (dist > DistAroundDbl)
 							{
 								SetTargetPosi(PosiAround.x >> FLOATNS, PosiAround.z >> FLOATNS);
 							}
@@ -7456,6 +7504,7 @@ int smCHAR::Main()
 		SavePlayBuff();
 		FrameCounter += 3;
 		break;
+	}
 
 
 
@@ -9456,8 +9505,9 @@ int smCHAR::PlayAttack(int EventFlag)
 
 			if(smCharInfo.dwCharSoundCode == snCHAR_SOUND_WEB)
 			{
-				lpCurPlayer->PlaySlowCount = 70 * 2;
-				lpCurPlayer->PlaySlowSpeed = 180;
+				(void)gameplay::combat::legacy::ServerLegacyStatusEffectAdapter().ApplySlow(
+					gameplay::EntityId(static_cast<std::uint32_t>(lpCurPlayer->dwObjectSerial)),
+					gameplay::combat::SlowEffect(70 * 2, 180, lpCurPlayer->PlayDistortion));
 			}
 			if(!EventFlag)
 			{
@@ -9663,7 +9713,9 @@ int smCHAR::PlayAttack(int EventFlag)
 					}
 
 					bStunCount = lpCurPlayer->PlayStunCount;
-					lpCurPlayer->PlayStunCount = 0;
+					(void)gameplay::combat::legacy::ServerLegacyStatusEffectAdapter().ClearStatus(
+						gameplay::EntityId(static_cast<std::uint32_t>(lpCurPlayer->dwObjectSerial)),
+						gameplay::combat::StatusEffectKind::Stun);
 
 
 					switch(Param1)
@@ -9672,41 +9724,44 @@ int smCHAR::PlayAttack(int EventFlag)
 					case SKILL_PLAY_SHIELD_STRIKE:
 						if(!bStunCount)
 						{
-							lpCurPlayer->PlayStunCount = GetResistancePower(Param2 * 70, sITEMINFO_BIONIC);
+							(void)gameplay::combat::legacy::ServerLegacyStatusEffectAdapter().ApplyStun(
+								gameplay::EntityId(static_cast<std::uint32_t>(lpCurPlayer->dwObjectSerial)),
+								GetResistancePower(Param2 * 70, sITEMINFO_BIONIC));
 							AssaParticle_Stune(lpCurPlayer, Param2 + 1);
 						}
 						break;
 					case SKILL_PLAY_GROUND_PIKE:
-						lpCurPlayer->PlaySlowCount = GetResistancePower(Param2 * 70, sITEMINFO_ICE);
-						lpCurPlayer->PlaySlowSpeed = 180;
-						lpCurPlayer->AttackIce = 1;
+						(void)gameplay::combat::legacy::ServerLegacyStatusEffectAdapter().ApplySlow(
+							gameplay::EntityId(static_cast<std::uint32_t>(lpCurPlayer->dwObjectSerial)),
+							gameplay::combat::SlowEffect(
+								GetResistancePower(Param2 * 70, sITEMINFO_ICE), 180, lpCurPlayer->PlayDistortion, true, true));
 						break;
 					case SKILL_PLAY_GLACIAL_SPIKE:
 					case SKILL_PLAY_ICE_CRYSTAL:
-						lpCurPlayer->PlaySlowCount = GetResistancePower(Param2 * 70, sITEMINFO_ICE);
-						lpCurPlayer->PlaySlowSpeed = 200;
-						lpCurPlayer->AttackIce = 1;
+						(void)gameplay::combat::legacy::ServerLegacyStatusEffectAdapter().ApplySlow(
+							gameplay::EntityId(static_cast<std::uint32_t>(lpCurPlayer->dwObjectSerial)),
+							gameplay::combat::SlowEffect(
+								GetResistancePower(Param2 * 70, sITEMINFO_ICE), 200, lpCurPlayer->PlayDistortion, true, true));
 						break;
 					case SKILL_PLAY_DISTORTION:
-						lpCurPlayer->PlaySlowCount = Param2 * 70;
-						lpCurPlayer->PlaySlowSpeed = 210;
-						lpCurPlayer->PlayDistortion = lpCurPlayer->PlaySlowCount;
-						lpCurPlayer->AttackIce = 0;
+						(void)gameplay::combat::legacy::ServerLegacyStatusEffectAdapter().ApplySlow(
+							gameplay::EntityId(static_cast<std::uint32_t>(lpCurPlayer->dwObjectSerial)),
+							gameplay::combat::SlowEffect(Param2 * 70, 210, Param2 * 70, true, false));
 						break;
 					case SKILL_PLAY_ENCHANT_WEAPON:
-						lpCurPlayer->PlaySlowCount = GetResistancePower(100, sITEMINFO_ICE);
-						lpCurPlayer->PlaySlowSpeed = Param2 * 70;
-						lpCurPlayer->AttackIce = 1;
+						(void)gameplay::combat::legacy::ServerLegacyStatusEffectAdapter().ApplySlow(
+							gameplay::EntityId(static_cast<std::uint32_t>(lpCurPlayer->dwObjectSerial)),
+							gameplay::combat::SlowEffect(GetResistancePower(100, sITEMINFO_ICE), Param2 * 70, lpCurPlayer->PlayDistortion, true, true));
 						break;
 					case SKILL_PLAY_DANCING_SWORD:
-						lpCurPlayer->PlaySlowCount = GetResistancePower(140, sITEMINFO_ICE);
-						lpCurPlayer->PlaySlowSpeed = Param2 * 70;
-						lpCurPlayer->AttackIce = 1;
+						(void)gameplay::combat::legacy::ServerLegacyStatusEffectAdapter().ApplySlow(
+							gameplay::EntityId(static_cast<std::uint32_t>(lpCurPlayer->dwObjectSerial)),
+							gameplay::combat::SlowEffect(GetResistancePower(140, sITEMINFO_ICE), Param2 * 70, lpCurPlayer->PlayDistortion, true, true));
 						break;
 					case SKILL_PLAY_FROST_JAVELIN:
-						lpCurPlayer->PlaySlowCount = GetResistancePower(210, sITEMINFO_ICE);
-						lpCurPlayer->PlaySlowSpeed = Param2 * 70;
-						lpCurPlayer->AttackIce = 1;
+						(void)gameplay::combat::legacy::ServerLegacyStatusEffectAdapter().ApplySlow(
+							gameplay::EntityId(static_cast<std::uint32_t>(lpCurPlayer->dwObjectSerial)),
+							gameplay::combat::SlowEffect(GetResistancePower(210, sITEMINFO_ICE), Param2 * 70, lpCurPlayer->PlayDistortion, true, true));
 						break;
 					case SKILL_PLAY_FIRE_CRYSTAL:
 						cnt = GetResistancePower(cnt, sITEMINFO_FIRE);
@@ -9714,7 +9769,9 @@ int smCHAR::PlayAttack(int EventFlag)
 					case SKILL_PLAY_LIGHTNING_CRYSTAL:
 						if(!bStunCount)
 						{
-							lpCurPlayer->PlayStunCount = GetResistancePower(Param2 * 70, sITEMINFO_LIGHTING);
+							(void)gameplay::combat::legacy::ServerLegacyStatusEffectAdapter().ApplyStun(
+								gameplay::EntityId(static_cast<std::uint32_t>(lpCurPlayer->dwObjectSerial)),
+								GetResistancePower(Param2 * 70, sITEMINFO_LIGHTING));
 							AssaParticle_Stune(lpCurPlayer, Param2 + 1);
 						}
 						break;
@@ -9726,17 +9783,22 @@ int smCHAR::PlayAttack(int EventFlag)
 					case snCHAR_SOUND_COLDEYE:
 					case snCHAR_SOUND_FROZEN:
 
-						if((lpTransAttackData->AttackState & 0xFF) == 0x80)
-							lpCurPlayer->PlaySlowCount = GetResistancePower(70 * 4, sITEMINFO_ICE);
-						lpCurPlayer->PlaySlowSpeed = 200;
-						lpCurPlayer->AttackIce = 1;
+						(void)gameplay::combat::legacy::ServerLegacyStatusEffectAdapter().ApplySlow(
+							gameplay::EntityId(static_cast<std::uint32_t>(lpCurPlayer->dwObjectSerial)),
+							gameplay::combat::SlowEffect(
+								((lpTransAttackData->AttackState & 0xFF) == 0x80)
+									? GetResistancePower(70 * 4, sITEMINFO_ICE) : lpCurPlayer->PlaySlowCount,
+								200, lpCurPlayer->PlayDistortion, true, true));
 						break;
 					case snCHAR_SOUND_FROST:
 					case snCHAR_SOUND_DEATHKNIGHT:
-						if((lpTransAttackData->AttackState & 0xFF) == 0x80)
-							lpCurPlayer->PlaySlowCount = GetResistancePower(70 * 6, sITEMINFO_ICE);
-						lpCurPlayer->PlaySlowSpeed = 200;
-						lpCurPlayer->AttackIce = 1;
+
+						(void)gameplay::combat::legacy::ServerLegacyStatusEffectAdapter().ApplySlow(
+							gameplay::EntityId(static_cast<std::uint32_t>(lpCurPlayer->dwObjectSerial)),
+							gameplay::combat::SlowEffect(
+								((lpTransAttackData->AttackState & 0xFF) == 0x80)
+									? GetResistancePower(70 * 6, sITEMINFO_ICE) : lpCurPlayer->PlaySlowCount,
+								200, lpCurPlayer->PlayDistortion, true, true));
 						break;
 
 					case snCHAR_SOUND_CHAOSCARA:
@@ -9754,8 +9816,8 @@ int smCHAR::PlayAttack(int EventFlag)
 							if(chrAttackTarget == lpCurPlayer)
 							{
 								len = GetResistancePower(70 * STINGRAY_POSION_TIME, sITEMINFO_POISON);
-								lpCurPlayer->PlayPoison[0] = 1;
-								lpCurPlayer->PlayPoison[1] = len;
+								(void)gameplay::combat::legacy::ServerLegacyStatusEffectAdapter().ApplyPoison(
+									gameplay::EntityId(static_cast<std::uint32_t>(lpCurPlayer->dwObjectSerial)), len, 1);
 							}
 						}
 						break;
@@ -9765,8 +9827,8 @@ int smCHAR::PlayAttack(int EventFlag)
 						if(chrAttackTarget == lpCurPlayer)
 						{
 							len = GetResistancePower(70 * STINGRAY_POSION_TIME, sITEMINFO_POISON);
-							lpCurPlayer->PlayPoison[0] = 1;
-							lpCurPlayer->PlayPoison[1] = len;
+							(void)gameplay::combat::legacy::ServerLegacyStatusEffectAdapter().ApplyPoison(
+								gameplay::EntityId(static_cast<std::uint32_t>(lpCurPlayer->dwObjectSerial)), len, 1);
 						}
 						break;
 
@@ -9783,7 +9845,8 @@ int smCHAR::PlayAttack(int EventFlag)
 						if(chrAttackTarget && (lpTransAttackData->AttackState & 0xFF) == 0x80)
 						{
 							ParkAssaParticle_BloodySkillStun(chrAttackTarget);
-							lpCurPlayer->PlayStunCount = 70 * 3;
+							(void)gameplay::combat::legacy::ServerLegacyStatusEffectAdapter().ApplyStun(
+								gameplay::EntityId(static_cast<std::uint32_t>(lpCurPlayer->dwObjectSerial)), 70 * 3);
 						}
 						break;
 					case snCHAR_SOUND_HELLHOUND:
@@ -9795,7 +9858,8 @@ int smCHAR::PlayAttack(int EventFlag)
 					case snCHAR_SOUND_CHIMERA:
 						if(chrAttackTarget && (lpTransAttackData->AttackState & 0xFF) == 0x80)
 						{
-							lpCurPlayer->PlayStunCount = 70 * 3;
+							(void)gameplay::combat::legacy::ServerLegacyStatusEffectAdapter().ApplyStun(
+								gameplay::EntityId(static_cast<std::uint32_t>(lpCurPlayer->dwObjectSerial)), 70 * 3);
 						}
 						break;
 
@@ -13257,7 +13321,9 @@ int smCHAR::EventSkill_Monster()
 
 				if(chrAttackTarget == lpCurPlayer)
 				{
-					lpCurPlayer->PlaySlowCount = 90;
+					(void)gameplay::combat::legacy::ServerLegacyStatusEffectAdapter().ApplySlow(
+						gameplay::EntityId(static_cast<std::uint32_t>(lpCurPlayer->dwObjectSerial)),
+						gameplay::combat::SlowEffect(90, lpCurPlayer->PlaySlowSpeed, lpCurPlayer->PlayDistortion));
 					lpCurPlayer->AttackIce -= 160;
 				}
 
@@ -13543,7 +13609,9 @@ int smCHAR::EventSkill_Monster()
 
 				if(chrAttackTarget == lpCurPlayer)
 				{
-					lpCurPlayer->PlaySlowCount = 90;
+					(void)gameplay::combat::legacy::ServerLegacyStatusEffectAdapter().ApplySlow(
+						gameplay::EntityId(static_cast<std::uint32_t>(lpCurPlayer->dwObjectSerial)),
+						gameplay::combat::SlowEffect(90, lpCurPlayer->PlaySlowSpeed, lpCurPlayer->PlayDistortion));
 					lpCurPlayer->AttackIce -= 160;
 				}
 				break;
