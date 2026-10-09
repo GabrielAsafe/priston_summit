@@ -150,6 +150,11 @@ require(tex, 'SummitRejectCookedTexture', 'invalid cooked DDS falls back to sour
 require('tools/cook_textures_dds.py', '"DXT5" if source.suffix.lower() in ALPHA_EXTENSIONS else "DXT1"', 'offline cooker mirrors DXT1/DXT5 opacity policy')
 require('tools/cook_textures_dds.py', 'default=1.0', 'offline cooker covers 512x512-and-larger texture stalls by default')
 require('tools/cook_textures_dds.py', '--mipmaps', 'offline cooker can precompute mip chains')
+require('tools/cook_textures_dds.py', 'ITEM_ICON_PREFIXES', 'item icons have an explicit cooked-runtime family')
+require('tools/cook_textures_dds.py', '--item-icons-only', 'DDS cooker supports focused item-icon cooking')
+require('tools/cook_textures_dds.py', '--no-item-icons-required', 'item-icon required policy has an explicit A/B escape hatch')
+require('tools/cook_textures_dds.py', 'item-icon-runtime-required-lossless', 'small/non-DXT item icons are cooked losslessly instead of skipped')
+require('tools/cook_textures_dds.py', 'probe_dds_header(target)', 'item-icon incremental reuse validates cooked DDS dimensions and format')
 
 # Login / character-selection startup no longer front-loads the selection stage
 # and preview models synchronously before the opening screen. The selection

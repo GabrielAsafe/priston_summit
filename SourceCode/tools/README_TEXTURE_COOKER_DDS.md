@@ -36,12 +36,31 @@ From the client asset root:
 python3 /path/to/SourceCode/tools/cook_textures_dds.py --input .
 ```
 
-By default the cooker mirrors the current runtime compression policy: only
-textures whose uncompressed RGBA footprint is at least 1 MiB (512x512 RGBA) and whose top
-level is DXT block-compatible are emitted. This threshold is intentionally lower than the
-old 16 MiB rollout because runtime traces showed 512x512 and 1024x1024 source uploads
-already causing visible frame stalls. PNG/TGA/STA use DXT5; opaque
-JPG/BMP/STG use DXT1. Sources remain untouched.
+By default the cooker mirrors the current runtime compression policy for ordinary
+world textures: only textures whose uncompressed RGBA footprint is at least 1 MiB
+(512x512 RGBA) and whose top level is DXT block-compatible are emitted. This
+threshold is intentionally lower than the old 16 MiB rollout because runtime traces
+showed 512x512 and 1024x1024 source uploads already causing visible frame stalls.
+PNG/TGA/STA use DXT5; opaque JPG/BMP/STG use DXT1. Sources remain untouched.
+
+Item icons under `image/Sinimage/Items/**` are runtime-required by default and are
+never skipped solely because they are below the world-texture threshold or are not
+DXT block-compatible. Large/default-eligible item icons keep DXT1/DXT5; smaller or
+non-block-compatible icons are cooked losslessly as A8R8G8B8 DDS. This keeps the
+legacy/protected source representation as authoring evidence while allowing runtime
+to consume a deterministic cooked DDS. Use `--no-item-icons-required` only for A/B
+against the historical threshold behavior.
+
+For a focused item-icon cook:
+
+```bash
+python3 /path/to/SourceCode/tools/cook_textures_dds.py --input . --item-icons-only
+```
+
+The item-icon incremental path does not trust mtime alone. Before an existing DDS is
+accepted as up-to-date, the cooker decodes the source with the official legacy codec
+and verifies the cooked DDS width, height and expected pixel format. A stale/mismatched
+DDS is rebuilt even if its mtime is newer than the source.
 
 To preview without writing:
 

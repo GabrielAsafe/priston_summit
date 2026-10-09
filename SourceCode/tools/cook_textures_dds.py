@@ -7,6 +7,8 @@ is block-compatible are cooked to DXT1/DXT5. Login and character-selection UI
 used by login/character-selection (game/Login, game/UI,
 game/GUI/Opening/Login/UI and StartImage/login) are additionally cooked
 losslessly to A8R8G8B8 DDS so startup UI avoids D3DX source decode without DXT artifacts.
+Item icons under image/Sinimage/Items are runtime-required: large block-compatible
+icons use DXT1/DXT5 while smaller/non-block-compatible icons use lossless A8R8G8B8.
 Mip generation remains opt-in for world textures.
 
 The runtime keeps the original logical asset name and automatically prefers
@@ -117,6 +119,10 @@ def documented_integrity_state(meta: dict[str, object]) -> str:
     if "NON_IMAGE" in cls or "ZERO_FILLED" in cls or "INVALID_HISTORICAL" in cls:
         return "KNOWN_INVALID_OR_NON_IMAGE"
     return "KNOWN_OUTLIER_RUNTIME_UNPROVEN"
+
+ITEM_ICON_PREFIXES = (
+    "image/sinimage/items/",
+)
 
 LOGIN_UI_PREFIXES = (
     "game/login/",
@@ -503,6 +509,49 @@ def is_login_ui(relative: Path) -> bool:
     return any(normalized.startswith(prefix) for prefix in LOGIN_UI_PREFIXES)
 
 
+def is_item_icon(relative: Path) -> bool:
+    """Return whether *relative* belongs to the legacy item-icon namespace."""
+    normalized = relative.as_posix().lower()
+    return any(normalized.startswith(prefix) for prefix in ITEM_ICON_PREFIXES)
+
+
+def item_icon_pixel_format(image: Image.Image, source: Path, min_rgba_bytes: int) -> tuple[str, str]:
+    """Choose a cooked DDS format for runtime-required item icons.
+
+    Large block-compatible icons retain the existing DXT1/DXT5 policy. Small
+    icons and dimensions that cannot be represented by DXT are emitted
+    losslessly as A8R8G8B8 rather than being skipped.
+    """
+    dxt_eligible, _ = should_cook(image, min_rgba_bytes)
+    if dxt_eligible:
+        return ("DXT5" if source.suffix.lower() in ALPHA_EXTENSIONS else "DXT1"), "item-icon-runtime-required-dxt"
+    return "A8R8G8B8", "item-icon-runtime-required-lossless"
+
+
+def probe_dds_header(path: Path) -> tuple[int, int, str]:
+    """Read DDS dimensions/pixel format without decoding the full texture."""
+    data = path.read_bytes()[:128]
+    if len(data) < 128 or data[:4] != DDS_MAGIC:
+        raise ValueError("invalid DDS header")
+    height = struct.unpack_from("<I", data, 12)[0]
+    width = struct.unpack_from("<I", data, 16)[0]
+    flags = struct.unpack_from("<I", data, 80)[0]
+    fourcc = struct.unpack_from("<I", data, 84)[0]
+    rgb_bits = struct.unpack_from("<I", data, 88)[0]
+    if flags & DDPF_FOURCC:
+        if fourcc == FOURCC_DXT1:
+            pixel_format = "DXT1"
+        elif fourcc == FOURCC_DXT5:
+            pixel_format = "DXT5"
+        else:
+            raise ValueError(f"unsupported cooked format fourcc=0x{fourcc:08x}")
+    elif flags & DDPF_RGB and rgb_bits == 32:
+        pixel_format = "A8R8G8B8"
+    else:
+        raise ValueError("unsupported cooked format")
+    return width, height, pixel_format
+
+
 def encode_dds(image: Image.Image, pixel_format: str, with_mipmaps: bool) -> tuple[bytes, int]:
     levels = mip_chain(image) if with_mipmaps else [image]
     payload = bytearray()
@@ -516,13 +565,15 @@ def output_path_for(source_root: Path, output_root: Path, source: Path) -> Path:
     return (output_root / relative).with_suffix(".dds")
 
 
-def discover_sources(source_root: Path, output_root: Path, login_ui_only: bool = False) -> Iterable[Path]:
+def discover_sources(source_root: Path, output_root: Path, login_ui_only: bool = False, item_icons_only: bool = False) -> Iterable[Path]:
     output_resolved = output_root.resolve()
     for path in source_root.rglob("*"):
         if not path.is_file() or path.suffix.lower() not in SOURCE_EXTENSIONS:
             continue
         relative = path.relative_to(source_root)
         if login_ui_only and not is_login_ui(relative):
+            continue
+        if item_icons_only and not is_item_icon(relative):
             continue
         try:
             path.resolve().relative_to(output_resolved)
@@ -708,6 +759,18 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="only scan/cook login and character-selection UI roots",
     )
+    parser.add_argument(
+        "--item-icons-only",
+        action="store_true",
+        help="only scan/cook image/Sinimage/Items runtime item-icon roots",
+    )
+    parser.add_argument(
+        "--no-item-icons-required",
+        dest="item_icons_required",
+        action="store_false",
+        help="restore legacy threshold behavior for item icons (A/B only)",
+    )
+    parser.set_defaults(item_icons_required=True)
     parser.add_argument("--quiet", action="store_true", help="suppress per-file COOKED/WOULD_COOK output")
     parser.add_argument("--limit", type=int, default=0, help="cook at most N eligible files (0 = unlimited)")
     parser.add_argument("--manifest", default=None, help="manifest JSON path (default: <output>/manifest.json)")
@@ -736,6 +799,10 @@ def main() -> int:
     failed_manifest_path = Path(args.failed_manifest).resolve() if args.failed_manifest else output_root / "failed.json"
     min_rgba_bytes = int(max(0.0, args.min_rgba_mib) * 1024 * 1024)
 
+    if args.login_ui_only and args.item_icons_only:
+        print("ERROR --login-ui-only and --item-icons-only are mutually exclusive", file=sys.stderr)
+        return 2
+
     if not source_root.is_dir():
         print(f"ERROR input directory does not exist: {source_root}", file=sys.stderr)
         return 2
@@ -762,7 +829,7 @@ def main() -> int:
     run_entries: list[dict[str, object]] = []
     started = time.time()
 
-    for source in discover_sources(source_root, output_root, args.login_ui_only):
+    for source in discover_sources(source_root, output_root, args.login_ui_only, args.item_icons_only):
         relative = source.relative_to(source_root)
         relative_key = relative.as_posix().casefold()
         if retry_sources is not None and relative_key not in retry_sources:
@@ -770,13 +837,13 @@ def main() -> int:
 
         stats["scanned"] += 1
         target = output_path_for(source_root, output_root, source)
+        item_icon = args.item_icons_required and is_item_icon(relative)
         stage = "incremental-check"
         try:
-            # Fast incremental path: an existing cooked artifact newer than its
-            # source does not need Pillow/decrypt/decode just to prove it is
-            # still current. This makes automatic login-UI cooking cheap on
-            # normal rebuilds.
-            if not args.force and target.exists() and target.stat().st_mtime_ns >= source.stat().st_mtime_ns:
+            # Fast incremental path remains valid for ordinary assets. Item
+            # icons are decoded before reuse so stale DDS dimensions/formats
+            # cannot be accepted solely because their mtime is newer.
+            if not item_icon and not args.force and target.exists() and target.stat().st_mtime_ns >= source.stat().st_mtime_ns:
                 stats["eligible"] += 1
                 stats["up_to_date"] += 1
                 prior = dict(prior_entries.get(relative_key) or {})
@@ -809,8 +876,13 @@ def main() -> int:
             lossless_login_ui = args.login_ui_lossless and is_login_ui(relative)
             if lossless_login_ui:
                 eligible, reason = True, "login-ui-lossless"
+                pixel_format = "A8R8G8B8"
+            elif item_icon:
+                eligible = True
+                pixel_format, reason = item_icon_pixel_format(image, source, min_rgba_bytes)
             else:
                 eligible, reason = should_cook(image, min_rgba_bytes)
+                pixel_format = "DXT5" if source.suffix.lower() in ALPHA_EXTENSIONS else "DXT1"
             if not eligible:
                 stats["skipped"] += 1
                 run_entries.append({
@@ -833,11 +905,33 @@ def main() -> int:
                 continue
 
             stats["eligible"] += 1
-            pixel_format = (
-                "A8R8G8B8"
-                if lossless_login_ui
-                else ("DXT5" if source.suffix.lower() in ALPHA_EXTENSIONS else "DXT1")
-            )
+
+            if item_icon and not args.force and target.exists() and target.stat().st_mtime_ns >= source.stat().st_mtime_ns:
+                try:
+                    cooked_width, cooked_height, cooked_format = probe_dds_header(target)
+                except Exception:
+                    cooked_width = cooked_height = 0
+                    cooked_format = "INVALID"
+                if (cooked_width, cooked_height, cooked_format) == (image.width, image.height, pixel_format):
+                    stats["up_to_date"] += 1
+                    run_entries.append({
+                        "source": relative.as_posix(),
+                        "cooked": target.relative_to(output_root).as_posix(),
+                        "extension": source.suffix.lower(),
+                        "source_bytes": source.stat().st_size,
+                        "source_mtime_ns": source.stat().st_mtime_ns,
+                        "cooked_bytes": target.stat().st_size,
+                        "cooked_mtime_ns": target.stat().st_mtime_ns,
+                        "status": "up-to-date",
+                        "asset_integrity_state": "COOK_ARTIFACT_UP_TO_DATE",
+                        "runtime_dds_expected": True,
+                        "cook_reason": reason,
+                        "format": pixel_format,
+                        "width": image.width,
+                        "height": image.height,
+                        **decode_info,
+                    })
+                    continue
 
             if args.dry_run:
                 run_entries.append({
@@ -848,6 +942,8 @@ def main() -> int:
                     "height": image.height,
                     "format": pixel_format,
                     "status": "would-cook",
+                    "cook_reason": reason,
+                    "runtime_dds_expected": True,
                     "asset_integrity_state": "VALID_IMAGE_WOULD_COOK",
                     "deletion_authorized": False,
                     **decode_info,
@@ -881,6 +977,7 @@ def main() -> int:
                 "source_mtime_ns": source.stat().st_mtime_ns,
                 "cooked_mtime_ns": target.stat().st_mtime_ns,
                 "status": "cooked",
+                "cook_reason": reason,
                 "asset_integrity_state": "VALID_IMAGE_COOKED",
                 "decoded_ok": True,
                 "runtime_dds_expected": True,
@@ -924,8 +1021,10 @@ def main() -> int:
                     "login_ui": "A8R8G8B8" if args.login_ui_lossless else "threshold-policy",
                 },
                 "mipmaps": "full-chain" if args.mipmaps else "top-level-only",
-                "scope": "login-ui-only" if args.login_ui_only else "all-assets",
+                "scope": "login-ui-only" if args.login_ui_only else ("item-icons-only" if args.item_icons_only else "all-assets"),
                 "source_assets_are_never_removed_by_cooker": True,
+                "item_icons_runtime_required": args.item_icons_required,
+                "item_icon_policy": "DXT1_DXT5_WHEN_DEFAULT_ELIGIBLE_ELSE_A8R8G8B8",
                 "failed_entries_are_persisted": True,
                 "protected_tga_modes": ["FULL18", "KEEP_00_16", "DIMENSIONS_12_15"],
                 "protected_tga_contract": "PT_ASSET_TOOL_PROVEN_TGA_FAMILIES_FAIL_CLOSED",
