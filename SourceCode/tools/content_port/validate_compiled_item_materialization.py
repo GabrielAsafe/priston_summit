@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 
 from validate_item_profile_pack import parse_pack
+from item_profile_policy import effective_profile_codes,load_open_item_documents
 
 SHOP_KEYS = {"sell_weapon", "sell_defence", "sell_etc"}
 DELLA_CODES = {"pl101", "pl102", "pl103", "ps101", "ps102", "ps103"}
@@ -56,7 +57,9 @@ def main() -> None:
         fail("server profile/pack/NPC canonical data is incomplete")
 
     profile = json.loads(profile_path.read_text(encoding="utf-8"))
-    profile_codes = {str(code).casefold() for code in profile.get("codes", [])}
+    legacy_profile_codes = {str(code).casefold() for code in profile.get("codes", [])}
+    canonical_documents = load_open_item_documents(content / "canonical/text")
+    profile_codes = effective_profile_codes(canonical_documents, "server", legacy_profile_codes)
     rows = parse_pack(pack_path)
     non_unique_direct = {
         str(row["code"]).casefold()
@@ -118,7 +121,7 @@ def main() -> None:
     print(f"DELLA_MISSING_CODES={len(della_missing)}")
 
     if unresolved_tokens:
-        print("NOTE=Raw canonical shop tokens absent from the executable item catalog are preserved for audit and filtered from compiled shop directives, matching the historical parser skip behavior.")
+        print("NOTE=Raw canonical shop tokens absent from the effective server item profile are preserved for audit and filtered from compiled shop directives, matching the historical parser skip behavior.")
         for token in sorted(unresolved_tokens)[:20]:
             state = "FILTERED" if token in filtered_shop_tokens else "UNHANDLED"
             print(f"LEGACY_SHOP_TOKEN={token} STATE={state}")

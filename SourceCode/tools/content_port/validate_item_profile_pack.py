@@ -8,6 +8,8 @@ import json
 import struct
 from pathlib import Path
 
+from item_profile_policy import effective_profile_codes,item_enabled_for_profile,load_open_item_documents
+
 HEADER = struct.Struct('<4sHH10I32s')
 RECORD = struct.Struct('<5I')
 DIRECTIVE = struct.Struct('<3I')
@@ -124,23 +126,39 @@ def load_profile(path: Path, source_root: Path) -> tuple[dict, set[str]]:
     return doc, codes
 
 
-def validate_one(source_root: Path, content_root: Path, profile_name: str, show_duplicates: bool = False, item_profiles_root: Path | None = None) -> tuple[bool, list[str]]:
+def validate_one(source_root: Path, content_root: Path, profile_name: str, show_duplicates: bool = False, item_profiles_root: Path | None = None, canonical_text_root: Path | None = None) -> tuple[bool, list[str]]:
     profile_path = (item_profiles_root or (content_root / 'canonical/item_profiles')) / f'{profile_name}.items.json'
     pack_path = content_root / 'packs' / f'definitions_{profile_name}.scfg'
     report_path = pack_path.with_suffix(pack_path.suffix + '.report.json')
-    profile, codes = load_profile(profile_path, source_root)
+    profile, legacy_codes = load_profile(profile_path, source_root)
+    if canonical_text_root is None:
+        if item_profiles_root is not None:
+            canonical_text_root = item_profiles_root.resolve().parent / 'text'
+        else:
+            canonical_text_root = content_root / 'canonical/text'
+    canonical_documents = load_open_item_documents(canonical_text_root)
+    docs_by_id = {str(d['id']): d for d in canonical_documents}
+    effective_codes = effective_profile_codes(canonical_documents, profile_name, legacy_codes)
+
     rows = parse_pack(pack_path)
     direct = [r for r in rows if r['direct']]
     missing = [r for r in rows if not r['code']]
-    out_of_profile = [r for r in rows if r['code_fold'] and r['code_fold'] not in codes]
+
+    def row_allowed(row: dict[str, object]) -> bool:
+        document = docs_by_id.get(str(row.get('content_id') or ''))
+        if document is None:
+            return False
+        return item_enabled_for_profile(document, profile_name, legacy_codes)
+
+    out_of_profile = [r for r in rows if r['code_fold'] and not row_allowed(r)]
     direct_missing = [r for r in direct if not r['code']]
-    direct_out = [r for r in direct if r['code_fold'] and r['code_fold'] not in codes]
+    direct_out = [r for r in direct if r['code_fold'] and not row_allowed(r)]
 
     direct_codes = [str(r['code_fold']) for r in direct if r['code_fold']]
     counts = collections.Counter(direct_codes)
     duplicates = {k: v for k, v in counts.items() if v > 1}
     represented = set(direct_codes)
-    profile_not_direct = codes - represented
+    profile_not_direct = effective_codes - represented
 
     compiler_profile = None
     filtered = None
@@ -154,7 +172,8 @@ def validate_one(source_root: Path, content_root: Path, profile_name: str, show_
         f'PROFILE={profile_name}',
         f'PROFILE_FILE={profile_path}',
         f'PROFILE_SOURCE={profile["source"]["path"]}',
-        f'PROFILE_CODES={len(codes)}',
+        f'LEGACY_PROFILE_CODES={len(legacy_codes)}',
+        f'EFFECTIVE_PROFILE_CODES={len(effective_codes)}',
         f'PACK={pack_path}',
         f'PACK_SHA256={sha256(pack_path)}',
         f'PACK_OPENITEM_RECORDS={len(rows)}',
@@ -179,15 +198,16 @@ def validate_one(source_root: Path, content_root: Path, profile_name: str, show_
             lines.append(f"DUPLICATE_INFO code='{code}' count={count} variants={variants!r}")
     lines.append(f'RESULT={"PASS" if ok else "FAIL"}')
     lines.append('NOTE=DUPLICATE_DIRECT_CODES is informational: multiple OpenItem records may intentionally share a CODE with different UniqueItem variants.')
-    lines.append('NOTE=PROFILE_CODES_WITHOUT_DIRECT_OPENITEM is informational: the executable code map is a superset of startup OpenItem definitions and does not imply a missing definition by itself.')
+    lines.append('NOTE=PROFILE_CODES_WITHOUT_DIRECT_OPENITEM is informational: the effective profile (canonical override plus legacy fallback) may be a superset of startup OpenItem definitions.')
     return ok, lines
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description='Validate client/server profiled SCFG OpenItem packs against the authoritative code map compiled into each executable')
+    ap = argparse.ArgumentParser(description='Validate profiled SCFG OpenItem packs against canonical runtime_profiles with legacy executable profiles as fallback')
     ap.add_argument('--source-root', type=Path, default=Path('.'), help='SourceCode root')
     ap.add_argument('--content-root', type=Path, default=Path('Content'), help='Content root, relative to source-root unless absolute')
-    ap.add_argument('--canonical-item-profiles', type=Path, help='Canonical item profiles root when output content root is separate')
+    ap.add_argument('--canonical-item-profiles', type=Path, help='Legacy fallback item profiles root when output content root is separate')
+    ap.add_argument('--canonical-text', type=Path, help='Canonical text root that owns explicit runtime_profiles overrides')
     ap.add_argument('--profile', choices=('client', 'server', 'both'), default='both')
     ap.add_argument('--report', type=Path)
     ap.add_argument('--show-duplicates', action='store_true', help='list duplicate CODE variants; duplicates are informational')
@@ -200,13 +220,14 @@ def main() -> int:
     content_root = content_root.resolve()
 
     item_profiles_root = args.canonical_item_profiles.resolve() if args.canonical_item_profiles else None
+    canonical_text_root = args.canonical_text.resolve() if args.canonical_text else None
 
     profiles = ('client', 'server') if args.profile == 'both' else (args.profile,)
     all_lines: list[str] = []
     all_ok = True
     for name in profiles:
         try:
-            ok, lines = validate_one(source_root, content_root, name, args.show_duplicates, item_profiles_root)
+            ok, lines = validate_one(source_root, content_root, name, args.show_duplicates, item_profiles_root, canonical_text_root)
         except Exception as exc:
             ok, lines = False, [f'PROFILE={name}', f'ERROR={exc}', 'RESULT=FAIL']
         all_ok = all_ok and ok

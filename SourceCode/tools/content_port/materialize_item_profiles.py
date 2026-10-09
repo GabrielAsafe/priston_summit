@@ -44,7 +44,7 @@ def write_profile(output: Path, profile: str, source: Path, source_label: str, c
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description='Materialize client/server item-code profiles for SCFG compilation')
+    ap = argparse.ArgumentParser(description='Materialize legacy client/server item-code fallback profiles for SCFG compilation')
     ap.add_argument('--source-root', type=Path, required=True)
     ap.add_argument('--out', type=Path, required=True)
     args = ap.parse_args()

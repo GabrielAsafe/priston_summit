@@ -55,6 +55,8 @@
         "minLength": 1
       }
     },
+    "runtime_profiles": {"type": "array"},
+    "assets": {"type": "object"},
     "source": {
       "type": "object",
       "required": [],

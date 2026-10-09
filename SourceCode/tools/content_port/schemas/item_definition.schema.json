@@ -9,6 +9,34 @@
     "schema_version": {"const": 1},
     "id": {"type": "string", "pattern": "^item\\.[a-z0-9_.-]+$"},
     "kind": {"const": "open_item_definition"},
+    "runtime_profiles": {
+      "type": "array",
+      "items": {"type": "string", "enum": ["client", "server"]},
+      "maxItems": 2,
+      "uniqueItems": true,
+      "description": "Explicit canonical runtime eligibility. When absent, legacy executable item profiles remain the migration fallback."
+    },
+    "assets": {
+      "type": "object",
+      "properties": {
+        "icon": {
+          "type": "object",
+          "required": ["logical_path", "runtime_format", "runtime_required"],
+          "properties": {
+            "logical_path": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^image/Sinimage/Items/.+/it[^/]+$",
+              "description": "Extensionless logical item-icon path; runtime representation is cooked separately."
+            },
+            "runtime_format": {"const": "dds"},
+            "runtime_required": {"type": "boolean"}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": true
+    },
     "semantic": {
       "type": "object",
       "required": ["fields", "directives", "unknown_tokens"],

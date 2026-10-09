@@ -94,6 +94,53 @@ The shadow import is intentionally non-destructive. It is an audit/authoring bri
 not yet a declaration that every generic `.ini`, `.sin`, `.msg` or `.lua` line has a
 closed semantic schema.
 
+## Item runtime authority migration
+
+OpenItem JSON under `Content/canonical/text/` is the semantic source of truth. During
+the migration away from the legacy executable item tables, each item may optionally
+declare `runtime_profiles` (`client`, `server`) and an extensionless cooked icon
+identity under `assets.icon`.
+
+Profile resolution is deliberately transitional and fail-closed:
+
+```text
+canonical OpenItem runtime_profiles present
+        -> explicit canonical include/exclude decision
+canonical OpenItem runtime_profiles absent
+        -> legacy client/server item-code profile fallback
+```
+
+The generated `Content/canonical/item_profiles/*.items.json` files therefore describe
+the legacy fallback surface; they no longer override an explicit canonical decision.
+This lets items move to canonical authority incrementally without changing the
+behavior of unmigrated items. After all runtime-relevant items have explicit profile
+coverage, the legacy fallback can be retired.
+
+`assets.icon.logical_path` is extensionless by design. Authoring evidence can still be
+BMP/TGA/PNG/DDS, but the declared runtime format is `dds`; a separate cooked-asset
+gate must prove the DDS exists before the legacy image fallback is disabled. Canonical
+item metadata does not authorize copying a donor file directly into runtime.
+
+Example:
+
+```json
+{
+  "runtime_profiles": ["client", "server"],
+  "assets": {
+    "icon": {
+      "logical_path": "image/Sinimage/Items/Event/itSP123",
+      "runtime_format": "dds",
+      "runtime_required": true
+    }
+  }
+}
+```
+
+`compile_definitions.py` applies this explicit policy before the legacy profile
+fallback. `validate_item_profile_pack.py` resolves the same effective policy when
+checking generated client/server packs, and `validate_compiled_item_materialization.py`
+uses the effective server policy for NPC-shop materialization checks.
+
 ## Reproducible build
 
 ```bash

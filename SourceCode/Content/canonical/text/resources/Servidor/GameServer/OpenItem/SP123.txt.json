@@ -8,6 +8,17 @@
     "Servidor/GameServer/OpenItem/SP123.txt",
     "GameServer/OpenItem/SP123.txt"
   ],
+  "runtime_profiles": [
+    "client",
+    "server"
+  ],
+  "assets": {
+    "icon": {
+      "logical_path": "image/Sinimage/Items/Event/itSP123",
+      "runtime_format": "dds",
+      "runtime_required": true
+    }
+  },
   "source": {
     "legacy_path": "Servidor/GameServer/OpenItem/SP123.txt",
     "legacy_sha256": "c4313354b6b5da8f5a51c61d69539a3febf6578df922c8fe48e6efb7beeeda37",

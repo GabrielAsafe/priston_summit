@@ -4,6 +4,7 @@ import argparse,base64,hashlib,json,struct
 from pathlib import Path, PurePosixPath
 from legacy_text import lex_bytes
 from npc_shop_overrides import load_overrides,ops_for
+from item_profile_policy import explicit_runtime_profiles,item_code,item_enabled_for_profile
 
 MAGIC=b'SCFG'; VERSION=1
 HEADER=struct.Struct('<4sHH10I32s')
@@ -56,16 +57,6 @@ def load_item_profile(path:Path|None):
  codes=doc.get('codes') or []
  return doc.get('profile'),{str(x).casefold() for x in codes}
 
-def item_code(d:dict):
- for directive in d.get('semantic',{}).get('directives',[]):
-  if directive.get('key')!='code':continue
-  values=directive.get('raw_values_hex') or []
-  if values:
-   return bytes.fromhex(values[0]).decode('latin1').casefold()
-  semantic=directive.get('values') or []
-  if semantic:return str(semantic[0]).casefold()
- return None
-
 def item_is_normal(d:dict)->bool:
  fields=d.get('semantic',{}).get('fields',{})
  return not bool(fields.get('unique',0))
@@ -117,16 +108,34 @@ def main():
  directives=[];records=[];flattened_links=0;unresolved_links=[];filtered_shop_tokens=[]
  defs=[d for d in docs.values() if d['kind'] in KIND]
  filtered_open_items=[]
+ canonical_profile_override_rows=[]
  if profile_codes is not None:
+  if profile_name not in ('client','server'):
+   raise ValueError(f'profile name must be client/server when item profile codes are active: {profile_name!r}')
   kept=[]
   for d in defs:
    if d['kind']!='open_item_definition':
     kept.append(d);continue
    code=item_code(d)
-   if code is not None and code in profile_codes:
+   explicit=explicit_runtime_profiles(d)
+   allowed=item_enabled_for_profile(d,profile_name,profile_codes)
+   if explicit is not None:
+    canonical_profile_override_rows.append({
+     'id':d['id'],
+     'path':runtime_alias(d),
+     'code':code,
+     'runtime_profiles':sorted(explicit),
+     'decision':'include' if allowed else 'exclude',
+    })
+   if allowed:
     kept.append(d)
    else:
-    filtered_open_items.append({'id':d['id'],'path':runtime_alias(d),'code':code})
+    filtered_open_items.append({
+     'id':d['id'],
+     'path':runtime_alias(d),
+     'code':code,
+     'filter_source':'canonical_runtime_profiles' if explicit is not None else 'legacy_profile_fallback',
+    })
   defs=kept
  materializable_codes={item_code(d) for d in defs if d['kind']=='open_item_definition' and item_is_normal(d) and item_code(d)}
  defs.sort(key=lambda d:runtime_alias(d).casefold())
@@ -171,7 +180,7 @@ def main():
  body.extend(strings);digest=hashlib.sha256(body).digest()
  header=HEADER.pack(MAGIC,VERSION,0,len(records),ro,rs,len(directives),do,ds,so,len(strings),0,0,digest)
  a.output.parent.mkdir(parents=True,exist_ok=True);a.output.write_bytes(header+body)
- report={'format':'SCFG','version':VERSION,'profile':profile_name or 'unprofiled','definitions':len(records),'directives':len(directives),'flattened_links':flattened_links,'filtered_open_items':len(filtered_open_items),'filtered_open_item_rows':filtered_open_items,'filtered_shop_tokens':filtered_shop_tokens,'legacy_missing_links':unresolved_links,'bytes':a.output.stat().st_size,'sha256':hashlib.sha256(a.output.read_bytes()).hexdigest()}
+ report={'format':'SCFG','version':VERSION,'profile':profile_name or 'unprofiled','definitions':len(records),'directives':len(directives),'flattened_links':flattened_links,'filtered_open_items':len(filtered_open_items),'filtered_open_item_rows':filtered_open_items,'canonical_profile_overrides':len(canonical_profile_override_rows),'canonical_profile_override_rows':canonical_profile_override_rows,'filtered_shop_tokens':filtered_shop_tokens,'legacy_missing_links':unresolved_links,'bytes':a.output.stat().st_size,'sha256':hashlib.sha256(a.output.read_bytes()).hexdigest()}
  a.output.with_suffix(a.output.suffix+'.report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
- print(json.dumps({k:(len(v) if k in ('legacy_missing_links','filtered_open_item_rows','filtered_shop_tokens') else v) for k,v in report.items()},ensure_ascii=False))
+ print(json.dumps({k:(len(v) if k in ('legacy_missing_links','filtered_open_item_rows','canonical_profile_override_rows','filtered_shop_tokens') else v) for k,v in report.items()},ensure_ascii=False))
 if __name__=='__main__':main()

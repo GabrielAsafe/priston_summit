@@ -93,7 +93,7 @@ def main() -> None:
         output = outputs[f'definitions_{profile}']
         run(py, here / 'compile_definitions.py', text, output, '--item-profile', profile_catalog, '--npc-shop-overrides', npc_shop_overrides)
         run(py, here / 'inspect_definitions.py', output)
-    run(py, here / 'validate_item_profile_pack.py', '--source-root', here.parent.parent, '--content-root', out, '--canonical-item-profiles', item_profiles, '--profile', 'both')
+    run(py, here / 'validate_item_profile_pack.py', '--source-root', here.parent.parent, '--content-root', out, '--canonical-item-profiles', item_profiles, '--canonical-text', text, '--profile', 'both')
     run(py, here / 'compile_localization.py', text, outputs['localization'])
     run(py, here / 'inspect_localization.py', outputs['localization'])
     run(py, here / 'compile_gameplay_config.py', text, outputs['gameplay_config'])
