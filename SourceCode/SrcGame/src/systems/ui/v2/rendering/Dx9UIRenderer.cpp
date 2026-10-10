@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <cstdio>
+#include <cstdint>
 #include <string>
 #include <vector>
 #include <windows.h>
@@ -71,6 +72,45 @@ ID3DXFont* EnsureLegacyFont(bool bold)
     FontOpacity = savedOpacity;
     FontColor = savedColor;
     return LegacyFont(bold);
+}
+
+// DrawFontText uses ID3DXFont::DrawTextA, not UTF-8. Validate first so
+// a legacy CP1252 string is not double-converted, then feed DrawTextA bytes
+// in the host ANSI codepage. Never reinterpret valid UTF-8 as CP1252.
+std::string Utf8ToLegacyFontBytes(std::string_view utf8, std::wstring& unicodeFallback)
+{
+    std::string bytes(utf8);
+    if (utf8.empty())
+        return bytes;
+    const int count = static_cast<int>(utf8.size());
+    const int n = MultiByteToWideChar(CP_UTF8, MB_ERR_INVALID_CHARS,
+                                      utf8.data(), count, nullptr, 0);
+    if (n <= 0)
+        return bytes; // old UI/packet strings can already be in CP_ACP
+    unicodeFallback.resize(static_cast<std::size_t>(n));
+    if (MultiByteToWideChar(CP_UTF8, MB_ERR_INVALID_CHARS, utf8.data(), count,
+                            &unicodeFallback[0], n) != n)
+    {
+        unicodeFallback.clear();
+        return bytes;
+    }
+    BOOL lossy = FALSE;
+    const int byteCount = WideCharToMultiByte(CP_ACP, WC_NO_BEST_FIT_CHARS,
+                unicodeFallback.data(), n, nullptr, 0, nullptr, &lossy);
+    if (byteCount > 0 && !lossy)
+    {
+        std::string ansi(static_cast<std::size_t>(byteCount), '\0');
+        lossy = FALSE;
+        if (WideCharToMultiByte(CP_ACP, WC_NO_BEST_FIT_CHARS,
+                unicodeFallback.data(), n, &ansi[0], byteCount, nullptr, &lossy) == byteCount && !lossy)
+        {
+            unicodeFallback.clear();
+            return ansi;
+        }
+    }
+    // Preserve the Unicode text for the DrawTextW fallback: replacing Korean
+    // or other characters with '?' would lose the original message.
+    return bytes;
 }
 
 void LogTextFailureOnce(const char* reason)
@@ -209,11 +249,17 @@ void Dx9UIRenderer::DrawTextUtf8(FontHandle, std::string_view utf8, const Rect& 
         return;
     }
 
-    std::string text(utf8);
+    std::wstring unicodeFallback;
+    const std::string text = Utf8ToLegacyFontBytes(utf8, unicodeFallback);
+    const bool needsUnicode = !unicodeFallback.empty();
     RECT measure{0, 0, std::max(1, rect.width), std::max(1, rect.height)};
     const D3DCOLOR measureColor = D3DCOLOR_ARGB(255, 255, 255, 255);
-    activeFont->DrawTextA(nullptr, text.c_str(), static_cast<int>(text.size()), &measure,
-                          DT_CALCRECT | DT_SINGLELINE, measureColor);
+    if (needsUnicode)
+        activeFont->DrawTextW(nullptr, unicodeFallback.c_str(), static_cast<int>(unicodeFallback.size()),
+                              &measure, DT_CALCRECT | DT_SINGLELINE, measureColor);
+    else
+        activeFont->DrawTextA(nullptr, text.c_str(), static_cast<int>(text.size()), &measure,
+                              DT_CALCRECT | DT_SINGLELINE, measureColor);
 
     const int textWidth = std::max(0, static_cast<int>(measure.right - measure.left));
     const int textHeight = std::max(1, static_cast<int>(measure.bottom - measure.top));
@@ -233,7 +279,19 @@ void Dx9UIRenderer::DrawTextUtf8(FontHandle, std::string_view utf8, const Rect& 
     // The legacy texture helper mutates several device states. Reassert all
     // V2 2D states before glyph rendering; End() restores the game state.
     ApplyUiPrimitiveState();
-    const int result = DrawFontText(x, y, text.c_str(), ToColorRef(style.color), style.bold ? 1 : 0);
+    int result = 0;
+    if (needsUnicode)
+    {
+        // DrawTextW is used only when the system ANSI page cannot represent
+        // the character. Reuse the legacy-owned font/device resource.
+        RECT dst{x, y, x + std::max(1, rect.width), y + std::max(1, rect.height)};
+        result = activeFont->DrawTextW(nullptr, unicodeFallback.c_str(),
+                                      static_cast<int>(unicodeFallback.size()), &dst,
+                                      DT_SINGLELINE | DT_NOCLIP,
+                                      D3DCOLOR_ARGB(style.color.a, style.color.r, style.color.g, style.color.b));
+    }
+    else
+        result = DrawFontText(x, y, text.c_str(), ToColorRef(style.color), style.bold ? 1 : 0);
 
     FontOpacity = savedOpacity;
     FontColor = savedColor;

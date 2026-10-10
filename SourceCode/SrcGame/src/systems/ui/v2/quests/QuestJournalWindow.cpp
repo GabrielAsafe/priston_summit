@@ -422,17 +422,26 @@ void QuestJournalWindow::RefreshButtons()
     codexTab_->SetSelected(tab_ == JournalTab::Codex);
 
     const QuestEntrySnapshot* selected = SelectedQuest();
-    const bool hasSelected = selected != nullptr;
-    const bool inCodex = tab_ == JournalTab::Codex || (hasSelected && selected->sectionId == 0x7020);
-    const bool inProgress = hasSelected && selected->sectionId == 10;
-    const bool finalized = hasSelected && selected->sectionId == 11;
+    const QuestSectionSnapshot* selectedSection = nullptr;
+    if (selected)
+        for (const auto& section : snapshot_.sections)
+            if (section.id == selected->sectionId)
+            {
+                selectedSection = &section;
+                break;
+            }
+    const bool hasSelected = selected != nullptr && selectedSection != nullptr;
+    const bool inCodex = tab_ == JournalTab::Codex || (hasSelected && selectedSection->codexGroup);
+    const bool inProgress = hasSelected && selectedSection->progressGroup;
+    const bool finalized = hasSelected && selectedSection->finalizedGroup;
+    const bool amandaNpcManaged = hasSelected && (selected->sectionId == 0x7030 || selected->sectionId == 0x7031);
 
-    acceptButton_->SetVisible(hasSelected && !inCodex && !inProgress && !finalized);
-    acceptButton_->SetEnabled(hasSelected && !inCodex && selected->active && !inProgress && !finalized);
-    cancelButton_->SetVisible(!inCodex && inProgress && !selected->complete);
-    cancelButton_->SetEnabled(!inCodex && inProgress && !selected->complete);
-    rewardButton_->SetVisible(!inCodex && inProgress && selected->complete);
-    rewardButton_->SetEnabled(!inCodex && inProgress && selected->complete);
+    acceptButton_->SetVisible(hasSelected && !inCodex && !inProgress && !finalized && !amandaNpcManaged);
+    acceptButton_->SetEnabled(hasSelected && !inCodex && selected->active && !inProgress && !finalized && !amandaNpcManaged);
+    cancelButton_->SetVisible(!inCodex && inProgress && !selected->complete && !amandaNpcManaged);
+    cancelButton_->SetEnabled(!inCodex && inProgress && !selected->complete && !amandaNpcManaged);
+    rewardButton_->SetVisible(!inCodex && inProgress && selected->complete && !amandaNpcManaged);
+    rewardButton_->SetEnabled(!inCodex && inProgress && selected->complete && !amandaNpcManaged);
     trackButton_->SetVisible(!inCodex && inProgress);
     trackButton_->SetEnabled(!inCodex && inProgress);
     trackButton_->SetText(inProgress && selected && selected->tracked ? "Rastreando" : "Rastrear");

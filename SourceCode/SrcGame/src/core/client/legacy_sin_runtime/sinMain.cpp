@@ -17,7 +17,8 @@ AntiCheat * pcAntiCheat = NULL;
 static bool LegacyInterfaceInputEnabled()
 {
     const bool skillNpcFallback = (SkillNpcFlag || SkillMasterFlag) && !ui::v2::legacy::OwnsLegacySkillNpcUI();
-    return !ui::v2::legacy::SuppressLegacyMainHud() || skillNpcFallback || ReStartFlag;
+    return (!ui::v2::legacy::SuppressLegacyMainHud() || skillNpcFallback || ReStartFlag) &&
+           !(ReStartFlag && ui::v2::legacy::OwnsLegacyDeathUI());
 }
 
 static bool LegacySkillInterfaceEnabled()
@@ -246,8 +247,9 @@ void sinDraw()
 
 	dsDrawOffsetArray = dsARRAY_TOP;
 	
-	if (!ui::v2::legacy::SuppressLegacyMainHud())
-		cSkill.DrawUp();
+	// Continuous-skill timers are gameplay status, not legacy HUD chrome.
+	// Keep their top-left presentation alive while Player HUD V2 owns the main HUD.
+	cSkill.DrawUp();
 	
 
 
@@ -677,7 +679,9 @@ void sinProc(int Message)
 		if(sinGetKeyClick(VK_SPACE))
 		{
 			cMessageBox.CloseMessage();
-			if(!cCraftItem.OpenFlag && !cAging.OpenFlag && !SmeltingItem.OpenFlag && !ManufactureItem.m_OpenFlag || !cMixtureReset.OpenFlag || !cSkinChange.OpenFlag)
+			if (!cCraftItem.OpenFlag && !cAging.OpenFlag &&
+                !SmeltingItem.OpenFlag && !ManufactureItem.m_OpenFlag &&
+                !cMixtureReset.OpenFlag && !cSkinChange.OpenFlag)
 				cInterFace.CheckAllBox(SIN_ALL_CLOSE);
 
 		}

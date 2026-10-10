@@ -17,6 +17,8 @@ using summit::content::gameplay_reference::QuestGuideEntry;
 
 constexpr int ClassicQuestSectionId = 0x7010;
 constexpr int CodexQuestSectionId = 0x7020;
+constexpr int AmandaQuestSectionId = 0x7030;
+constexpr int AmandaFinalizedSectionId = 0x7031;
 
 struct QuestRef
 {
@@ -294,6 +296,136 @@ void AddClassicLevelQuests(QuestJournalSnapshot& out, int selectedClassicQuestId
     }
 }
 
+const char* AmandaStageName(int kind)
+{
+    static const char* names[] = {
+        "O Vigia Exausto",
+        "Marcas do Medo",
+        "Entrega de Doces",
+        "Colina dos Duendes",
+        "Ameaca Imortal",
+        "Desafio Ciclope",
+        "O Martelo Perdido",
+    };
+    return (kind >= Quest_A && kind <= Quest_G) ? names[kind] : "Quest da Instrutora Amanda";
+}
+
+QuestEntrySnapshot MakeAmandaQuest(
+    int kind,
+    const sQUEST_ELEMENTARY& quest,
+    int sectionId,
+    int selectedAmandaQuestId,
+    int trackedSectionId,
+    int trackedQuestId)
+{
+    QuestEntrySnapshot out;
+    out.id = HAQUEST_CODE_ELEMENTARY_A + kind;
+    out.kind = kind;
+    out.sectionId = sectionId;
+    out.title = AmandaStageName(kind);
+    out.name = out.title;
+    out.description = "Quest da Instrutora Amanda. O progresso e controlado pelo fluxo legacy da quest e projetado na UI V2.";
+    out.levelMin = 0;
+    out.levelMax = 39;
+    out.active = quest.CODE != 0;
+    out.complete = quest.State == 100;
+    out.selected = selectedAmandaQuestId == out.id;
+    out.tracked = trackedSectionId == AmandaQuestSectionId && sectionId == AmandaQuestSectionId && trackedQuestId == out.id;
+
+    QuestObjectiveSnapshot objective;
+    if (quest.Monster[1] > 0)
+    {
+        objective.name = "Monstros derrotados";
+        objective.current = std::max(0, static_cast<int>(quest.Monster[0]));
+        objective.required = std::max(1, static_cast<int>(quest.Monster[1]));
+        objective.complete = objective.current >= objective.required || out.complete;
+    }
+    else
+    {
+        objective.name = "Progresso da etapa";
+        objective.current = out.complete ? 1 : 0;
+        objective.required = 1;
+        objective.complete = out.complete;
+    }
+    out.objectives.push_back(std::move(objective));
+
+    std::vector<QuestGuideEntry> guides;
+    auto& source = summit::content::gameplay_reference::GameplayReferenceRuntime();
+    if (source.IsValid() && source.Quests(guides))
+    {
+        for (std::size_t i = 0; i < guides.size(); ++i)
+        {
+            if (guides[i].guideId != "instrutora-amanda")
+                continue;
+            CopyGuide(out, guides[i]);
+            if (kind >= 0 && static_cast<std::size_t>(kind) < guides[i].stages.size())
+            {
+                out.codex.stages.clear();
+                out.codex.stages.push_back(guides[i].stages[kind]);
+            }
+            break;
+        }
+    }
+    return out;
+}
+
+void AddAmandaQuests(
+    QuestJournalSnapshot& out,
+    int selectedAmandaQuestId,
+    int trackedSectionId,
+    int trackedQuestId)
+{
+    QuestSectionSnapshot section;
+    section.id = AmandaQuestSectionId;
+    section.title = "Instrutora Amanda";
+    section.progressGroup = true;
+
+    QuestSectionSnapshot finalized;
+    finalized.id = AmandaFinalizedSectionId;
+    finalized.title = "Finalizadas - Instrutora Amanda";
+    finalized.finalizedGroup = true;
+
+    for (int kind = Quest_A; kind <= Quest_G; ++kind)
+    {
+        const sQUEST_ELEMENTARY& quest = chaQuest.sHaQuestElementary[kind];
+        if (!quest.CODE && !quest.BackUpCode && quest.State == 0)
+            continue;
+
+        // The legacy Amanda flow retires CODE into BackUpCode after reward/turn-in.
+        // Keep a completed-but-not-yet-turned-in quest in the progress group so the
+        // NPC remains the authority for reward delivery; only retired quests belong
+        // to the finalized history.
+        const bool retired = quest.State == 100 && quest.CODE == 0 && quest.BackUpCode != 0;
+        QuestSectionSnapshot& targetSection = retired ? finalized : section;
+        targetSection.quests.push_back(MakeAmandaQuest(
+            kind, quest, targetSection.id, selectedAmandaQuestId, trackedSectionId, trackedQuestId));
+    }
+
+    if (selectedAmandaQuestId)
+    {
+        for (const auto& quest : section.quests)
+            if (quest.id == selectedAmandaQuestId)
+            {
+                out.selectedSectionId = AmandaQuestSectionId;
+                out.selectedQuestId = selectedAmandaQuestId;
+                break;
+            }
+        if (!out.selectedQuestId)
+            for (const auto& quest : finalized.quests)
+                if (quest.id == selectedAmandaQuestId)
+                {
+                    out.selectedSectionId = AmandaFinalizedSectionId;
+                    out.selectedQuestId = selectedAmandaQuestId;
+                    break;
+                }
+    }
+
+    if (!section.quests.empty())
+        out.sections.push_back(std::move(section));
+    if (!finalized.quests.empty())
+        out.sections.push_back(std::move(finalized));
+}
+
 QuestEntrySnapshot MakeCodexQuest(const QuestGuideEntry& guide, bool selected)
 {
     QuestEntrySnapshot out;
@@ -389,7 +521,7 @@ QuestJournalSnapshot LegacyQuestGateway::GetSnapshot() const
     out.trackedSectionId = trackedSectionId_;
     out.trackedQuestId = trackedQuestId_;
 
-    if (cQuestWindow.pSelectedSpoiler && cQuestWindow.pSelectedSpoiler->pSelectedQuest && !selectedClassicQuestId_ && !selectedCodexQuestId_)
+    if (cQuestWindow.pSelectedSpoiler && cQuestWindow.pSelectedSpoiler->pSelectedQuest && !selectedClassicQuestId_ && !selectedAmandaQuestId_ && !selectedCodexQuestId_)
     {
         out.selectedSectionId = cQuestWindow.pSelectedSpoiler->ID;
         out.selectedQuestId = cQuestWindow.pSelectedSpoiler->pSelectedQuest->ID;
@@ -416,6 +548,7 @@ QuestJournalSnapshot LegacyQuestGateway::GetSnapshot() const
         }
     }
     AddClassicLevelQuests(out, selectedClassicQuestId_);
+    AddAmandaQuests(out, selectedAmandaQuestId_, trackedSectionId_, trackedQuestId_);
     AddCodexQuests(out, selectedCodexQuestId_);
     out.valid = out.valid || !out.sections.empty();
     return out;
@@ -423,6 +556,17 @@ QuestJournalSnapshot LegacyQuestGateway::GetSnapshot() const
 
 QuestEntrySnapshot LegacyQuestGateway::GetTrackedQuest() const
 {
+    if (trackedSectionId_ == AmandaQuestSectionId)
+    {
+        QuestJournalSnapshot snapshot;
+        AddAmandaQuests(snapshot, selectedAmandaQuestId_, trackedSectionId_, trackedQuestId_);
+        for (const auto& section : snapshot.sections)
+            for (const auto& quest : section.quests)
+                if (quest.id == trackedQuestId_ && quest.active)
+                    return quest;
+        return {};
+    }
+
     const QuestRef ref = FindQuest(trackedSectionId_, trackedQuestId_);
     if (!ref.section || !ref.quest)
         return {};
@@ -431,6 +575,22 @@ QuestEntrySnapshot LegacyQuestGateway::GetTrackedQuest() const
 
 bool LegacyQuestGateway::SelectQuest(int sectionId, int questId)
 {
+    if (sectionId == AmandaQuestSectionId || sectionId == AmandaFinalizedSectionId)
+    {
+        QuestJournalSnapshot snapshot;
+        AddAmandaQuests(snapshot, questId, trackedSectionId_, trackedQuestId_);
+        for (const auto& section : snapshot.sections)
+            for (const auto& quest : section.quests)
+                if (quest.id == questId)
+                {
+                    selectedAmandaQuestId_ = questId;
+                    selectedClassicQuestId_ = 0;
+                    selectedCodexQuestId_ = 0;
+                    return true;
+                }
+        return false;
+    }
+    selectedAmandaQuestId_ = 0;
     if (sectionId == CodexQuestSectionId)
     {
         QuestJournalSnapshot snapshot;
@@ -441,6 +601,7 @@ bool LegacyQuestGateway::SelectQuest(int sectionId, int questId)
                 {
                     selectedCodexQuestId_ = questId;
                     selectedClassicQuestId_ = 0;
+                    selectedAmandaQuestId_ = 0;
                     return true;
                 }
         return false;
@@ -456,6 +617,7 @@ bool LegacyQuestGateway::SelectQuest(int sectionId, int questId)
                 if (quest.id == questId)
                 {
                     selectedClassicQuestId_ = questId;
+                    selectedAmandaQuestId_ = 0;
                     return true;
                 }
         return false;
@@ -471,7 +633,7 @@ bool LegacyQuestGateway::SelectQuest(int sectionId, int questId)
 
 bool LegacyQuestGateway::RequestAcceptSelected()
 {
-    if (selectedCodexQuestId_ || selectedClassicQuestId_)
+    if (selectedCodexQuestId_ || selectedClassicQuestId_ || selectedAmandaQuestId_)
         return false;
     sSPOILER* section = cQuestWindow.pSelectedSpoiler;
     if (!section || !section->pSelectedQuest ||
@@ -485,7 +647,7 @@ bool LegacyQuestGateway::RequestAcceptSelected()
 
 bool LegacyQuestGateway::RequestCancelSelected()
 {
-    if (selectedCodexQuestId_ || selectedClassicQuestId_)
+    if (selectedCodexQuestId_ || selectedClassicQuestId_ || selectedAmandaQuestId_)
         return false;
     sSPOILER* section = cQuestWindow.pSelectedSpoiler;
     if (!section || section->ID != cQUESTWINDOW::SPOILER_PROGRESS || !section->pSelectedQuest)
@@ -498,7 +660,7 @@ bool LegacyQuestGateway::RequestCancelSelected()
 
 bool LegacyQuestGateway::ClaimSelectedReward()
 {
-    if (selectedCodexQuestId_ || selectedClassicQuestId_)
+    if (selectedCodexQuestId_ || selectedClassicQuestId_ || selectedAmandaQuestId_)
         return false;
     sSPOILER* section = cQuestWindow.pSelectedSpoiler;
     if (!section || section->ID != cQUESTWINDOW::SPOILER_PROGRESS || !section->pSelectedQuest)
@@ -518,6 +680,21 @@ bool LegacyQuestGateway::ClaimSelectedReward()
 
 bool LegacyQuestGateway::TrackSelected()
 {
+    if (selectedAmandaQuestId_)
+    {
+        QuestJournalSnapshot snapshot;
+        AddAmandaQuests(snapshot, selectedAmandaQuestId_, trackedSectionId_, trackedQuestId_);
+        for (const auto& section : snapshot.sections)
+            for (const auto& quest : section.quests)
+                if (quest.id == selectedAmandaQuestId_ && quest.active)
+                {
+                    trackedSectionId_ = AmandaQuestSectionId;
+                    trackedQuestId_ = selectedAmandaQuestId_;
+                    return true;
+                }
+        return false;
+    }
+
     if (selectedCodexQuestId_ || selectedClassicQuestId_)
         return false;
     sSPOILER* section = cQuestWindow.pSelectedSpoiler;
@@ -551,6 +728,7 @@ void LegacyQuestGateway::ShutdownBackend()
     trackedSectionId_ = 0;
     trackedQuestId_ = 0;
     selectedClassicQuestId_ = 0;
+    selectedAmandaQuestId_ = 0;
     selectedCodexQuestId_ = 0;
 }
 }

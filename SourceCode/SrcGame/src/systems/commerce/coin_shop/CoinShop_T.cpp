@@ -245,9 +245,21 @@ void cCOINSHOP_T::RecvItemFromServer(smTRANS_SHOPDATA * lpTransShopData)
 	CurrentPage = 0;
 }
 
+bool cCOINSHOP_T::RequestBalanceForUI()
+{
+    smTRANS_COMMAND command = {};
+    command.size = sizeof(smTRANS_COMMAND);
+    command.code = OpCode::OPCODE_GET_SHOPCOIN_T;
+    return gameplay::network::legacy::ClientLegacyBackendChannelSender().Send(
+        gameplay::network::BackendChannel::Data,
+        gameplay::network::PacketView(&command, static_cast<std::size_t>(command.size),
+                                      static_cast<std::uint32_t>(command.code))).Succeeded();
+}
+
 void cCOINSHOP_T::RecvCoinFromServer(smTRANS_COMMAND * lpTransCommand)
 {
-	Coin = lpTransCommand->WParam;
+    Coin = lpTransCommand->WParam;
+    BalanceReceived = true;
 }
 
 void cCOINSHOP_T::Draw()
@@ -375,9 +387,8 @@ void cCOINSHOP_T::BuySelectedItem()
 		gameplay::network::PacketView(&TransBuy, static_cast<std::size_t>(TransBuy.size),
 		                              static_cast<std::uint32_t>(TransBuy.code)));
 
-	cMessageBox.ShowMessageEvent("Compra feita com sucesso!");
-
-	AddChatBuff("> Compra feita com sucesso!", 3);
+	// PATCH 227: confirmation must come from server after item grant.
+	// A send attempt alone is never proof of a completed purchase.
 }
 
 bool cCOINSHOP_T::LButtonDown()

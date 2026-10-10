@@ -5,6 +5,33 @@
 #include "systems/social/chat/filter/CurseFilter.h"		
 #include "systems/commerce/coin_shop/CoinShop.h"
 #include "systems/network/v2/legacy/LegacyBackendChannelSender.h"
+#include "systems/ui/v2/legacy/LegacyUIV2Bridge.h"
+#include "content/v1/localization/content/LocalizationRuntime.h"
+#include "gameplay/commerce/v2/NpcShopWireResult.h"
+#include <string>
+#include <cstdio>
+#include <cstdlib>
+#include <windows.h>
+
+namespace
+{
+// Diagnostic only: never changes purchase eligibility or sends extra packets.
+void SummitShopPurchaseDiag(const char* event, const sITEM* item, int quantity)
+{
+    const char* enabled = std::getenv("SUMMIT_SHOP_DIAG");
+    if (!enabled || enabled[0] != '1')
+        return;
+    CreateDirectoryA("LOGS", nullptr);
+    FILE* file = std::fopen("LOGS/shop_purchase_debug.log", "at");
+    if (!file)
+        return;
+    std::fprintf(file, "event=%s item_code=0x%08lX count=%d req_level=%d\n",
+                 event ? event : "unknown",
+                 item ? static_cast<unsigned long>(item->CODE) : 0ul,
+                 quantity, item ? item->sItemInfo.Level : -1);
+    std::fclose(file);
+}
+}
 
 #define MAX_MONEY 1000000000
 
@@ -550,7 +577,7 @@ void cSHOP::Release()
 void cSHOP::Draw()
 {
 
-	if(ReStartFlag)
+	if(ReStartFlag && !ui::v2::legacy::OwnsLegacyDeathUI())
 	{
 		DrawSprite(ReStartMainXY.x, ReStartMainXY.y, cInterFace.lpReStartMain, 0, 0, 188, 128);
 		if(ReStartIndex && RestartCheckExp)
@@ -1151,7 +1178,11 @@ void cSHOP::Main()
 	{
 		for(i = 0; i < 30; i++)
 		{
-			cInvenTory.CharOnlySetItem(&ShowShopItem[i]);
+			// SUMMIT_PATCH_223_SKIP_EMPTY_AND_DUPLICATE_ELIGIBILITY
+			// CheckRequireItemToSet already calls CharOnlySetItem internally.
+			// Skip empty slots and avoid running class checks twice each frame.
+			if(!ShowShopItem[i].Flag)
+				continue;
 			cInvenTory.CheckRequireItemToSet(&ShowShopItem[i]);
 			if(ShowShopItem[i].x < pCursorPos.x  && ShowShopItem[i].x + ShowShopItem[i].w > pCursorPos.x &&
 			   ShowShopItem[i].y < pCursorPos.y  && ShowShopItem[i].y + ShowShopItem[i].h > pCursorPos.y)
@@ -1658,45 +1689,53 @@ int cSHOP::GetShopItemXY(sITEM *pItem)
 
 int cSHOP::SendBuyItemToServer(sITEM *pItem, int ItemCount)
 {
-	// PATCH 186: purchase eligibility is an invariant, not UI decoration.
-	// Protect legacy and V2 callers alike so a crystal/item whose level or
-	// stats exceed the character cannot reach the server purchase request.
-	if(!pItem || !sinChar ||
-		pItem->sItemInfo.Level > sinChar->Level ||
-		pItem->sItemInfo.Strength > sinChar->Strength ||
-		pItem->sItemInfo.Spirit > sinChar->Spirit ||
-		pItem->sItemInfo.Talent > sinChar->Talent ||
-		pItem->sItemInfo.Dexterity > sinChar->Dexterity ||
-		pItem->sItemInfo.Health > sinChar->Health)
+    // PATCH 228: a pending purchase cannot be sent a second time.
+    // Original reply/timeout handling still releases this flag.
+    if (BuyItemServerFlag)
+        return FALSE;
+	// PATCH 216: prices and quantities must be checked without signed overflow.
+	if(!pItem || !sinChar || ItemCount <= 0 || pItem->sItemInfo.Price < 0)
 	{
-		cMessageBox.ShowMessage(MESSAGE_NO_USE_ITEM);
+		SummitShopPurchaseDiag("invalid_price_or_count", pItem, ItemCount);
 		return FALSE;
 	}
+	const long long totalCost64 = static_cast<long long>(pItem->sItemInfo.Price) * ItemCount;
+	if(totalCost64 > 2147483647LL)
+	{
+		SummitShopPurchaseDiag("price_overflow", pItem, ItemCount);
+		return FALSE;
+	}
+	const int totalCost = static_cast<int>(totalCost64);
+	// SUMMIT_PATCH_226_REAL_SOURCE: level/class/stats govern EQUIPPING, not BUYING.
 	if(!cInvenTory.CheckSetEmptyArea(pItem))
 	{
+		SummitShopPurchaseDiag("no_space", pItem, ItemCount);
 		cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
 		return FALSE;
 	}
 
 #ifdef HASIEGE_MODE
 
-	if(cShop.haBuyMoneyCheck(pItem->sItemInfo.Price*ItemCount) == 0)
+	if(cShop.haBuyMoneyCheck(totalCost) == 0)
 	{
 	#else
-	if((sinChar->Money - (pItem->sItemInfo.Price*ItemCount)) < 0)
+	if(sinChar->Money < totalCost)
 	{
 	#endif
 
+		SummitShopPurchaseDiag("money", pItem, ItemCount);
 		cMessageBox.ShowMessage(MESSAGE_NOT_ENOUGH_MONEY);
 		return FALSE;
 	}
 	if(pItem->sItemInfo.Weight + sinChar->Weight[0] > sinChar->Weight[1])
 	{
+		SummitShopPurchaseDiag("weight", pItem, ItemCount);
 		cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
 		return FALSE;
 
 	}
 	BuyItemServerFlag = 1;
+    dwBuyItemServerTime = 0; // Timeout is per request, not cumulative.
 
 	TRANS_BUY_SHOPITEM	TransBuyShopItem;
 
@@ -1704,38 +1743,89 @@ int cSHOP::SendBuyItemToServer(sITEM *pItem, int ItemCount)
 	TransBuyShopItem.size = sizeof(TRANS_BUY_SHOPITEM);
 	TransBuyShopItem.ItemCount = ItemCount;
 	memcpy(&TransBuyShopItem.sItem, pItem, sizeof(sITEM));
-	return gameplay::network::legacy::ClientLegacyBackendChannelSender().Send(
-		gameplay::network::BackendChannel::Data,
-		gameplay::network::PacketView(&TransBuyShopItem, TransBuyShopItem.size, TransBuyShopItem.code)).Succeeded() ? TRUE : FALSE;
+    const bool sent = gameplay::network::legacy::ClientLegacyBackendChannelSender().Send(
+        gameplay::network::BackendChannel::Data,
+        gameplay::network::PacketView(&TransBuyShopItem, TransBuyShopItem.size, TransBuyShopItem.code)).Succeeded();
+    if (!sent)
+        BuyItemServerFlag = 0; // Failed transport must not leave a pending purchase.
+    SummitShopPurchaseDiag(sent ? "sent" : "send_failed", pItem, ItemCount);
+    return sent ? TRUE : FALSE;
 	}
 
+
+void cSHOP::RecvBuyItemRejected(int reason)
+{
+    BuyItemServerFlag = 0;
+    dwBuyItemServerTime = 0;
+    const char* key = "ui.shop.server_reject.transaction";
+    switch(reason)
+    {
+        case static_cast<int>(gameplay::commerce::NpcShopRejection::InvalidRequest):
+            key = "ui.shop.server_reject.invalid_request"; break;
+        case static_cast<int>(gameplay::commerce::NpcShopRejection::InvalidItem):
+            key = "ui.shop.server_reject.invalid_item"; break;
+        case static_cast<int>(gameplay::commerce::NpcShopRejection::InsufficientFunds):
+            key = "ui.shop.server_reject.gold"; break;
+        case static_cast<int>(gameplay::commerce::NpcShopRejection::InventoryRejected):
+            key = "ui.shop.server_reject.inventory"; break;
+        default: break;
+    }
+    std::string localized;
+    if(!summit::content::localization::GetLocalizationValue(key, localized) || localized.empty())
+        localized = key;
+    // cMESSAGEBOX is a Windows-1252 char[64] surface; convert at boundary.
+    const int wideCount = MultiByteToWideChar(CP_UTF8, MB_ERR_INVALID_CHARS,
+        localized.data(), static_cast<int>(localized.size()), nullptr, 0);
+    if(wideCount > 0)
+    {
+        std::wstring wide(static_cast<size_t>(wideCount), L'\0');
+        if(MultiByteToWideChar(CP_UTF8, MB_ERR_INVALID_CHARS,
+            localized.data(), static_cast<int>(localized.size()), &wide[0], wideCount))
+        {
+            const int count = WideCharToMultiByte(1252, 0, wide.data(), wideCount, nullptr, 0, nullptr, nullptr);
+            if(count > 0)
+            {
+                std::string legacy(static_cast<size_t>(count), '\0');
+                if(WideCharToMultiByte(1252, 0, wide.data(), wideCount, &legacy[0], count, nullptr, nullptr))
+                    localized = legacy;
+            }
+        }
+    }
+    if(localized.size() > 63) localized.resize(63);
+    cMessageBox.ShowMessage(localized.c_str());
+    SummitShopPurchaseDiag("server_rejected", nullptr, reason);
+}
 
 int cSHOP::RecvBuyItemToServer(sITEM *pItem, int ItemCount)
 {
 
 	BuyItemServerFlag = 0;
+	// PATCH 216: check the packet total before any money or inventory mutation.
+	if(!pItem || !sinChar || ItemCount <= 0 || pItem->sItemInfo.Price < 0)
+		return FALSE;
+	const long long totalCost64 = static_cast<long long>(pItem->sItemInfo.Price) * ItemCount;
+	if(totalCost64 > 2147483647LL)
+		return FALSE;
+	const int totalCost = static_cast<int>(totalCost64);
 	CheckCharForm();
 
 
 
 #ifdef HASIEGE_MODE
 
-	if(haBuyMoneyCheck(pItem->sItemInfo.Price*ItemCount))
+	if(haBuyMoneyCheck(totalCost))
 	{
 	#else
-	if((sinChar->Money - (pItem->sItemInfo.Price*ItemCount)) >= 0)
+	if(sinChar->Money >= totalCost)
 	{
 	#endif
 
 
-		sinMinusMoney(pItem->sItemInfo.Price*ItemCount, 1);
 		if(pItem->Class == ITEM_CLASS_POTION)
 		{
 			pItem->sItemInfo.PotionCount = ItemCount;
 
 		}
-		ReformCharForm();
-		SendSaveMoney();
 		if(cInvenTory.CheckRequireItemToSet(pItem))
 		{
 			if(CheckItemForm(&pItem->sItemInfo))
@@ -1747,6 +1837,11 @@ int cSHOP::RecvBuyItemToServer(sITEM *pItem, int ItemCount)
 				SendSetHackUser(3);
 				return FALSE;
 			}
+
+			// Debit only after eligibility and item-form validation passed.
+			sinMinusMoney(totalCost, 1);
+			ReformCharForm();
+			SendSaveMoney();
 
 			if(cInvenTory.AutoSetInvenItem(pItem))
 			{
@@ -1777,7 +1872,7 @@ int cSHOP::RecvBuyItemToServer(sITEM *pItem, int ItemCount)
 
 				CheckCharForm();
 
-				sinPlusMoney(pItem->sItemInfo.Price*ItemCount);
+				sinPlusMoney(totalCost);
 				ReformCharForm();
 				SendSaveMoney();
 
@@ -1812,64 +1907,17 @@ int cSHOP::SellItemToShop(sITEM *pItem, int ItemCount)
 
 	}
 
-	if(sinChar->Level <= 10)
-	{
-		if(sinChar->Money + pItem->SellPrice*ItemCount > 500000)
-		{
-			cMessageBox.ShowMessage(MESSAGE_OVER_MONEY);
-			cInvenTory.ReFormInvenItem();
-			return FALSE;
+	// PATCH 227: mirror the global 1e9 server carry cap, without signed overflow.
+    if (!pItem || !sinChar || ItemCount <= 0 || pItem->SellPrice < 0 ||
+        static_cast<long long>(sinChar->Money) +
+        static_cast<long long>(pItem->SellPrice) * ItemCount > 1000000000LL)
+    {
+        cMessageBox.ShowMessage(MESSAGE_OVER_MONEY);
+        cInvenTory.ReFormInvenItem();
+        return FALSE;
+    }
 
-		}
-	}
-	else
-	{
-		switch(sinChar->ChangeJob)
-		{
-			case 0:
-			if((sinChar->Money + pItem->SellPrice*ItemCount) >= (sinChar->Level * 500000) - 1800000)
-			{
-				cMessageBox.ShowMessage(MESSAGE_OVER_MONEY);
-				cInvenTory.ReFormInvenItem();
-				return FALSE;
-			}
-
-			break;
-			case 1:
-			if((sinChar->Money + pItem->SellPrice*ItemCount) >= 10000000)
-			{
-				cMessageBox.ShowMessage(MESSAGE_OVER_MONEY);
-				cInvenTory.ReFormInvenItem();
-				return FALSE;
-			}
-			break;
-			case 2:
-			if((sinChar->Money + pItem->SellPrice*ItemCount) >= 50000000)
-			{
-				cMessageBox.ShowMessage(MESSAGE_OVER_MONEY);
-				cInvenTory.ReFormInvenItem();
-				return FALSE;
-			}
-
-			break;
-			case 3:
-			if((sinChar->Money + pItem->SellPrice*ItemCount) >= MAX_MONEY)
-			{
-				cMessageBox.ShowMessage(MESSAGE_OVER_MONEY);
-				cInvenTory.ReFormInvenItem();
-				return FALSE;
-			}
-
-			break;
-
-
-		}
-
-	}
-
-
-
-	if(pItem->Class == ITEM_CLASS_WEAPON_TWO && CursorClass == SIN_CURSOR_SELL)
+    if(pItem->Class == ITEM_CLASS_WEAPON_TWO && CursorClass == SIN_CURSOR_SELL)
 		cInvenTory.PickUpTwoHandItem(pItem);
 
     //Enviando item para o server (NPC)
@@ -1885,7 +1933,7 @@ int cSHOP::SellItemToShop(sITEM *pItem, int ItemCount)
 
 void cSHOP::DrawShopText()
 {
-	if (ReStartFlag)
+	if (ReStartFlag && !ui::v2::legacy::OwnsLegacyDeathUI())
 	{
 		HDC	hdc = NULL;
 		char strBuff[128];

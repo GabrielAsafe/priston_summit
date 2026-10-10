@@ -12,4 +12,91 @@ missões decentes
 
 ajeitar história
 
+--------------------------------------------------
 
+Sim. Revendo o estado do **desenvolvimento vertical** que ficou no source, os pilares iam além desses que você lembrou.
+
+Os grandes domínios eram:
+
+- **Companions**
+- **Caça / Hunting**
+- **Pesca / Fishing**
+- **Coleta / Gathering**
+- **Mineração / Mining** — separada de gathering porque tinha nodes, recursos, profissão Miner etc.
+- **Profissões** — progressão própria e requisitos; Hunter/Miner e base para outras profissões.
+- **Missões / Quests**
+- **Covenants**
+- **Reputação** — integrada a Covenants e condições de progressão.
+- **Story / progressão narrativa** — estados de história, gates e condições.
+- **World Events / Events** — eventos de mundo e integração com progressão.
+- **Pets** — domínio separado de Companion.
+- **Loot / Rewards** — distribuição/recompensas como domínio V2, usado pelos outros sistemas.
+- **Progressão do personagem** — XP, condições, gates de nível/profissão/covenant/quest.
+- **Classes / Skills** — migração da definição das classes e autoridade, embora não fosse uma “atividade” como pesca.
+- **Social** — Party/Clan e serviços sociais V2.
+- **Inventory / Commerce / Trade / Wallet** — infraestrutura autoritativa necessária para os verticals, inclusive Battle Pass, Premium e recompensas.
+- **Monster/NPC authority** — base para caça, quests, companions, eventos e conteúdo do mundo.
+
+Mas há uma distinção importante: **nem tudo nessa lista estava “por criar”**. Muita coisa já tinha o domínio V2 e testes implementados; o que faltava era fechamento vertical real, ou seja:
+
+```text
+domínio
+→ persistência
+→ servidor autoritativo
+→ integração com mundo
+→ cliente
+→ UI V2
+→ conteúdo real
+→ build
+→ teste dentro do jogo
+```
+
+Por exemplo, **Covenants estavam bastante avançados**. O próprio código diz que a mecânica principal já estava entregue e que o restante era principalmente **presentation/content**: popular mundo, visualização, conteúdo, UI/entidades etc. Já existia inclusive UI V2 de Covenants e integração com mineração/coleta.
+
+**Quests** estavam num estado diferente: a arquitetura estava pronta, mas o fechamento completo dependia de reconciliar os dados reais do `QuestDB`. O pacote registrava explicitamente:
+
+```text
+QUEST_SOURCE_READINESS=PASS
+QUEST_RUNTIME_CLOSURE=BLOCKED_MISSING_QUESTDB_SNAPSHOT
+```
+
+E havia **75 mappings canonical de quest ainda não resolvidos** naquele estágio.
+
+O conjunto que eu consideraria realmente como a visão de gameplay vertical do Summit era mais ou menos:
+
+```text
+                  SUMMIT GAMEPLAY
+
+        ┌──────────── Progressão ────────────┐
+        │                                    │
+     Quests ─── Story ─── Reputation ─ Covenants
+        │                         │
+        │                         │
+        ├──── Professions ────────┤
+        │       │       │         │
+        │     Hunting  Mining   Gathering
+        │               │
+        │             Fishing
+        │
+   World Events
+        │
+   Monsters/NPCs
+        │
+  Loot / Rewards
+        │
+ Inventory / Economy
+        │
+   Player / Classes
+
+        Companions ─ Pets
+```
+
+E agora eu acrescentaria uma coisa: **o Companion ainda não está verticalmente fechado**. Ele já existe e funciona bastante, mas nossa conversa sobre mochila, equipamento, armadura, gerenciamento de loadout, persistência e interação mostra que ainda há uma camada importante de gameplay para completar.
+
+Já **Battle Pass, Premium, Trade, Wallet, Clan/Party** eu não colocaria no mesmo grupo de “features novas a desenvolver”. No vertical closure eles apareceram principalmente porque estávamos retirando autoridade do monólito legacy e colocando limites V2 corretos.
+
+Então, se a pergunta for especificamente **“quais features de gameplay ainda tínhamos como frentes de produto?”**, eu resumiria como:
+
+**Companions, Hunting, Fishing, Gathering/Mining, Professions, Quests, Covenants/Reputation, Story/Progression, World Events e Pets**, com Loot/Rewards servindo de infraestrutura transversal.
+
+E isso é importante para o rumo atual: **nós interrompemos o desenvolvimento desses verticals para fechar a integração e os bugs**. Não foram abandonados. Depois que estabilizarmos cliente/servidor, faz sentido voltar neles um por um, fazendo fechamento runtime verdadeiro em vez de continuar expandindo várias frentes simultaneamente.

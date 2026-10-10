@@ -227,6 +227,15 @@ int	CameraSight = 0;					//??? ?? ??
 
 LPDIRECT3DTEXTURE9 lpDDSMenu;
 
+// SUMMIT_PATCH_221_GM_SKY_DEBUG: GM-only sky probe functions.
+#ifdef GAME_GM
+extern int SummitGmGetActiveSkyCode();
+extern int SummitGmGetSkyOverride();
+extern const char* SummitGmGetSkyName(int code);
+extern int SummitGmCycleSky();
+extern void SummitGmResetSky();
+#endif
+
 int DisplayDebug = 0;
 int DispInterface = TRUE;
 int	DebugPlayer = FALSE;
@@ -4639,6 +4648,34 @@ int DrawGameState()
 		SetFontTextColor( RGB(255, 255, 255));
 		dsTextLineOut( 10, 30, strBuff, lstrlen(strBuff));
 
+		// SUMMIT_PATCH_221_GM_SKY_DEBUG: show actual renderer sky code, not just field metadata.
+		const int activeSky = SummitGmGetActiveSkyCode();
+		const int forcedSky = SummitGmGetSkyOverride();
+		if (forcedSky >= 0)
+			wsprintf(strBuff, "Ceu ativo: 0x%X (%s) | Override GM: 0x%X",
+				activeSky, SummitGmGetSkyName(activeSky), forcedSky);
+		else
+			wsprintf(strBuff, "Ceu ativo: 0x%X (%s) | Override GM: OFF",
+				activeSky, SummitGmGetSkyName(activeSky));
+		SetFontTextColor(RGB(0, 0, 0));
+		dsTextLineOut(11, 147, strBuff, lstrlen(strBuff));
+		SetFontTextColor(RGB(255, 255, 255));
+		dsTextLineOut(10, 146, strBuff, lstrlen(strBuff));
+		// Legend for original numeric debug counters (do not rename the runtime counters).
+		const char* summitDebugLegend[] = {
+			"Render/MainLoop/Poly = counters render, loop e poligonos; x/z/y = posicao",
+			"VRAM=MB; R1/R2=recebidos; S1/S2=enviados (servidor/user)",
+			"(erro/pop)=filas de recepcao; RcvTurb=modo; Damage=ultimo dano",
+			"RcvDamage=recebido/defesa/bloqueio; Shift+F9=debug",
+			"Ctrl+Shift+F9=proximo ceu; Ctrl+Shift+F10=restaurar ceu"
+		};
+		for (unsigned int skyLegendLine = 0; skyLegendLine < sizeof(summitDebugLegend)/sizeof(summitDebugLegend[0]); ++skyLegendLine) {
+			SetFontTextColor(RGB(0, 0, 0));
+			dsTextLineOut(11, 165 + skyLegendLine * 14, summitDebugLegend[skyLegendLine], lstrlen(summitDebugLegend[skyLegendLine]));
+			SetFontTextColor(RGB(255, 255, 255));
+			dsTextLineOut(10, 164 + skyLegendLine * 14, summitDebugLegend[skyLegendLine], lstrlen(summitDebugLegend[skyLegendLine]));
+		}
+
 		wsprintf(strBuff, "World Time (%d:%d)", dwGameHour, dwGameMin);
 		SetFontTextColor( RGB(0, 0, 0));
 		dsTextLineOut( (WinSizeX >> 1) + 1, 31, strBuff, lstrlen(strBuff));
@@ -5283,6 +5320,16 @@ DWORD GameWindowMessage(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 
 			if (smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR)
 			{
+				// SUMMIT_PATCH_221_GM_SKY_DEBUG: moderator-only reversible sky preview.
+				// Ctrl+F9 stays CoinShop; Shift+F9 stays debug overlay.
+				if (VRKeyBuff[VK_CONTROL] && VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_MENU] &&
+					wParam == VK_F9 && VRKeyBuff[VK_F9] == 0)
+					SummitGmCycleSky();
+				if (VRKeyBuff[VK_CONTROL] && VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_MENU] &&
+					wParam == VK_F10 && VRKeyBuff[VK_F10] == 0)
+					SummitGmResetSky();
+
+
 
 				// SUMMIT_COMMAND_HOTKEYS_SAFETY_V17_1: keep the legacy SOD test disabled.
 				/*if (VRKeyBuff[VK_CONTROL] && wParam == 'E' && VRKeyBuff['E'] == 0)
@@ -5305,9 +5352,10 @@ DWORD GameWindowMessage(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 				if (VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_CONTROL])
 				{
 
+					// SUMMIT_PATCH_214_GM_WARP_LIST_V2_HOTKEY
 					if (wParam == VK_F5 && VRKeyBuff[VK_F5] == 0)
 					{
-						SkipNextField = 1;
+						ui::v2::legacy::ToggleGMWarpListWindow();
 					}
 					if (wParam == VK_F6 && VRKeyBuff[VK_F6] == 0)
 					{

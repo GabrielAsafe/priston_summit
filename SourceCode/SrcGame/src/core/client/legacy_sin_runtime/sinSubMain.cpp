@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include "opcodes.h"
 #include "compat/legacy/sin/sinLinkHeader.h"
 #include "gameplay/quests/legacy/LegacyClassQuestAdapter.h"
@@ -451,6 +452,8 @@ int sinRecvMessage(DWORD dwCode, void *RecvBuff)
 int RecvCountFlag = 0;
 
 
+unsigned int g_SummitMerchantCatalogRevision = 0;
+
 int sinSetShopItem(sITEMINFO *pItem, int ItemCount, int ItemKind)
 {
 
@@ -526,6 +529,7 @@ int sinSetShopItem(sITEMINFO *pItem, int ItemCount, int ItemKind)
 				);
 		}
 	}
+	++g_SummitMerchantCatalogRevision;
 	TalkNpcState = 1;
 	cShop.CopyShopItemToShow(0);
 	cInterFace.CheckAllBox(SIN_SHOP);
@@ -826,12 +830,28 @@ int sinSetSpecialItemCode(sITEMINFO *pItemInfo)
 
 
 
+// SUMMIT_PATCH_222_ITEM_IMAGE_TRACE_OPT_IN
+// Debug-only inventory/catalog dump. Disabled by default to keep shop opening cheap.
+#ifdef __MINGW32__
+static bool SummitItemImageTraceEnabled()
+{
+    static int enabled = -1;
+    if(enabled < 0)
+    {
+        const char* value = std::getenv("SUMMIT_ITEM_IMAGE_TRACE");
+        enabled = (value && value[0] == '1' && value[1] == '\0') ? 1 : 0;
+    }
+    return enabled == 1;
+}
+#endif
+
 int LoadItemImage(sITEMINFO *sItemInfo, sITEM *TempItem)
 {
 	char szFilePath[256];
 	szTestBuff2[0] = 0;
 
 #ifdef __MINGW32__
+	if(SummitItemImageTraceEnabled())
 	{
 		FILE *fp = fopen("LoadItemImage_debug.txt", "a");
 
@@ -891,6 +911,7 @@ int LoadItemImage(sITEMINFO *sItemInfo, sITEM *TempItem)
 		if(sItemInfo->CODE == sItem[j].CODE)
 		{
 #ifdef __MINGW32__
+			if(SummitItemImageTraceEnabled())
 			{
 				FILE *fp = fopen("LoadItemImage_debug.txt", "a");
 
@@ -943,6 +964,7 @@ int LoadItemImage(sITEMINFO *sItemInfo, sITEM *TempItem)
 			if(!TempItem->lpItem)
 			{
 #ifdef __MINGW32__
+				if(SummitItemImageTraceEnabled())
 				{
 					FILE *fp = fopen("LoadItemImage_debug.txt", "a");
 
@@ -968,6 +990,7 @@ int LoadItemImage(sITEMINFO *sItemInfo, sITEM *TempItem)
 			}
 
 #ifdef __MINGW32__
+			if(SummitItemImageTraceEnabled())
 			{
 				FILE *fp = fopen("LoadItemImage_debug.txt", "a");
 
@@ -995,6 +1018,7 @@ int LoadItemImage(sITEMINFO *sItemInfo, sITEM *TempItem)
 	}
 
 #ifdef __MINGW32__
+	if(SummitItemImageTraceEnabled())
 	{
 		FILE *fp = fopen("LoadItemImage_debug.txt", "a");
 

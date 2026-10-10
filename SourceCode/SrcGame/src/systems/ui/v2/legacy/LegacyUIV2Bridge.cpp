@@ -1,5 +1,6 @@
 #include "systems/ui/v2/legacy/LegacyUIV2Bridge.h"
 
+#include <algorithm>
 #include <cstdio>
 #include <cstring>
 #include <memory>
@@ -37,17 +38,38 @@
 #include "systems/ui/v2/social/SocialWindow.h"
 #include "systems/ui/v2/social/PartyStatusHud.h"
 #include "systems/ui/v2/rendering/Dx9UIRenderer.h"
+#include "systems/ui/v2/rendering/IUIRenderer.h"
+#include "systems/ui/v2/theme/UITheme.h"
+#include "content/v1/localization/content/LocalizationRuntime.h"
 #include "systems/ui/v2/widgets/Label.h"
+#include "systems/ui/v2/widgets/Button.h"
+#include "systems/world/field/field.h"
+#include "core/gameplay/runtime/playmain.h"
+#include "systems/rendering/legacy_3d/smType.h"
+#include "core/data/legacy_loader/fileread.h"
+#include <array>
+#include <algorithm>
+#include <vector>
+#include <functional>
+#ifdef GAME_GM
+extern int CustomField;
+#endif
 #include "systems/ui/v2/widgets/Panel.h"
 #include "systems/ui/v2/windows/CharacterWindow.h"
 #include "systems/ui/v2/windows/SettingsWindow.h"
 
 extern int SetChatingLine(char* szMessage);
+// PATCH 220: restart state flags are defined in sinInterFace.cpp.
+extern int CheckExpFlag;
+extern int CheckExpFlag2;
 
 namespace ui::v2::legacy
 {
 namespace
 {
+#ifdef GAME_GM
+constexpr WindowId GMWarpListWindowId = 0x5549563257415250ULL; // "UIV2WARP"
+#endif
 constexpr WindowId BootstrapWindowId = 0x55495632424F4F54ULL; // "UIV2BOOT"
 constexpr WindowId CharacterWindowId = 0x5549563243484152ULL; // "UIV2CHAR"
 constexpr WindowId PlayerHudWindowId = 0x5549563248554431ULL; // "UIV2HUD1"
@@ -56,13 +78,134 @@ constexpr WindowId QuestJournalWindowId = 0x5549563251554553ULL; // "UIV2QUES"
 constexpr WindowId QuestTrackerWindowId = 0x554956325452414BULL; // "UIV2TRAK"
 constexpr WindowId MixGuideWindowId = 0x554956324D495847ULL; // "UIV2MIXG"
 constexpr WindowId LegacyMessageWindowId = 0x554956324D534733ULL; // "UIV2MSG3"
-constexpr WindowId LegacyNotificationWindowId = 0x554956324E4F5446ULL; // "UIV2NOTF"
+constexpr WindowId LegacyNotificationWindowId = 0x554956324E4F5446ULL;
+constexpr WindowId DeathWindowId = 0x5549563244454154ULL; // UIV2DEAT // "UIV2NOTF"
 constexpr WindowId NpcDialogWindowId = 0x554956324E504344ULL; // "UIV2NPCD"
 constexpr WindowId SkillNpcWindowId = 0x55495632534B4E50ULL; // "UIV2SKNP"
 constexpr WindowId SettingsWindowId = 0x5549563253455454ULL; // "UIV2SETT"
 constexpr WindowId GuideWindowId = 0x5549563247554944ULL; // "UIV2GUID"
 constexpr WindowId SocialWindowId = 0x55495632534F434CULL; // "UIV2SOCL"
 constexpr WindowId PartyStatusHudId = 0x5549563250485544ULL; // "UIV2PHUD"
+#ifdef GAME_GM
+class GMWarpListWindow;
+#endif
+// PATCH 219: V2 is the only death-screen presentation and input owner.
+// The original restart state/timeout/network lifecycle remain authoritative.
+class DeathWindow final : public Window
+{
+public:
+    explicit DeathWindow(UIId id) : Window(id, {})
+    {
+        SetMovable(false);
+        SetClosable(false);
+        SetHitTestVisible(true);
+        SetViewport(WinSizeX, WinSizeY);
+    }
+    void SetViewport(int width, int height) { SetBounds({0, 0, width, height}); pressed_ = -1; }
+    UIEventResult OnEvent(const UIEvent& event) override
+    {
+        if (!ReStartFlag) return UIEventResult::Ignored;
+        if (event.type == UIEventType::PointerDown && event.button == MouseButton::Left)
+        {
+            pressed_ = HitOption(event.pointer);
+            return UIEventResult::Handled;
+        }
+        if (event.type == UIEventType::PointerUp && event.button == MouseButton::Left)
+        {
+            const int selected = HitOption(event.pointer);
+            if (selected >= 0 && selected == pressed_ && (selected != 0 || FieldAllowed()))
+                Choose(selected);
+            pressed_ = -1;
+            return UIEventResult::Handled;
+        }
+        // Modal: no background hotkeys or interactions while dead.
+        return UIEventResult::Handled;
+    }
+protected:
+    void OnRender(UIRenderContext& context) override
+    {
+        if (!ReStartFlag) return;
+        const Rect full = GlobalBounds();
+        auto& r = context.Renderer();
+        r.DrawRect(full, Color{5, 9, 17, 185});
+        const Rect panel = PanelRect();
+        r.DrawRect(panel, UITheme::WindowBg);
+        r.DrawRect({panel.x, panel.y, panel.width, 3}, UITheme::Accent);
+        r.DrawRect({panel.x, panel.y + panel.height - 1, panel.width, 1}, UITheme::Border);
+        r.DrawTextUtf8(FontHandle{}, Text("ui.death.title"),
+                       {panel.x + 22, panel.y + 19, panel.width - 44, 29},
+                       TextStyle{UITheme::Text, true, TextAlign::Center});
+        r.DrawTextUtf8(FontHandle{}, Text("ui.death.description"),
+                       {panel.x + 22, panel.y + 56, panel.width - 44, 25},
+                       TextStyle{UITheme::TextMuted, false, TextAlign::Center});
+        for (int i = 0; i < 3; ++i)
+        {
+            const Rect button = OptionRect(i);
+            const bool allowed = i != 0 || FieldAllowed();
+            r.DrawRect(button, allowed ? UITheme::SurfaceRaised : UITheme::Surface);
+            r.DrawRect({button.x, button.y, button.width, 2}, allowed ? UITheme::AccentMuted : UITheme::BorderSoft);
+            const char* key = i == 0 ? "ui.death.field" : (i == 1 ? "ui.death.town" : "ui.death.exit");
+            r.DrawTextUtf8(FontHandle{}, Text(key),
+                           {button.x + 6, button.y + 11, button.width - 12, 23},
+                           TextStyle{allowed ? UITheme::Text : UITheme::Disabled, false, TextAlign::Center});
+        }
+        const char* hint = FieldAllowed() ? "ui.death.timeout" : "ui.death.field_blocked";
+        r.DrawTextUtf8(FontHandle{}, Text(hint),
+                       {panel.x + 20, panel.y + 193, panel.width - 40, 24},
+                       TextStyle{UITheme::TextMuted, false, TextAlign::Center});
+    }
+private:
+    int pressed_ = -1;
+    static std::string Text(const char* key)
+    {
+        std::string value;
+        if (summit::content::localization::GetLocalizationValue(key, value) && !value.empty())
+            return value;
+        return key; // Missing translation is visible, never silently hardcoded.
+    }
+    static bool FieldAllowed()
+    {
+        if (RestartCheckExp) return false;
+        // Keep the original castle restriction; do not bypass gameplay rules.
+        if (lpCurPlayer && lpCurPlayer->OnStageField >= 0 &&
+            StageField[lpCurPlayer->OnStageField] &&
+            StageField[lpCurPlayer->OnStageField]->State == FIELD_STATE_CASTLE)
+            return false;
+        return true;
+    }
+    Rect PanelRect() const
+    {
+        const Rect full = GlobalBounds();
+        const int width = std::min(520, std::max(320, full.width - 28));
+        const int height = 242;
+        return {full.x + (full.width - width) / 2, full.y + (full.height - height) / 2, width, height};
+    }
+    Rect OptionRect(int i) const
+    {
+        const Rect p = PanelRect();
+        const int gap = 10;
+        const int margin = 19;
+        const int width = (p.width - margin * 2 - gap * 2) / 3;
+        return {p.x + margin + (width + gap) * i, p.y + 120, width, 52};
+    }
+    int HitOption(Point point) const
+    {
+        for (int i = 0; i < 3; ++i)
+            if (OptionRect(i).Contains(point)) return i;
+        return -1;
+    }
+    static void Choose(int i)
+    {
+        if (i == 0 && !FieldAllowed()) return;
+        ReStartOptionIndex = i == 0 ? RESTART_FEILD : (i == 1 ? RESTART_TOWN : RESTART_EXIT);
+        ReStartFlag = 0;
+        RestartCheckExp = 0;
+        ReStartIndex = 0;
+        CheckExpFlag2 = 1;
+        CheckExpFlag = 0;
+    }
+};
+
 UIRuntime runtime;
 DWORD lastTick = 0;
 CharacterWindow* characterWindow = nullptr;
@@ -73,9 +216,13 @@ QuestTrackerHud* questTracker = nullptr;
 MixGuideWindow* mixGuideWindow = nullptr;
 LegacyMessageWindow* legacyMessageWindow = nullptr;
 LegacyNotificationHud* legacyNotificationHud = nullptr;
+DeathWindow* deathWindow = nullptr;
 LegacyNpcDialogWindow* npcDialogWindow = nullptr;
 LegacySkillNpcWindow* skillNpcWindow = nullptr;
 SettingsWindow* settingsWindow = nullptr;
+#ifdef GAME_GM
+GMWarpListWindow* gmWarpListWindow = nullptr;
+#endif
 GuideWindow* guideWindow = nullptr;
 SocialWindow* socialWindow = nullptr;
 PartyStatusHud* partyStatusHud = nullptr;
@@ -367,6 +514,179 @@ void BuildMixGuideUI()
     runtime.Windows().Register(MixGuideWindowId, std::move(window), UIWindowLayer::NormalWindow);
 }
 
+// SUMMIT_PATCH_214_GM_WARP_LIST_V2_BEGIN
+#ifdef GAME_GM
+// The developer warp panel deliberately uses the same permission boundary and
+// queued WarpCustomField path as the pre-existing GM Shift+F6 shortcut.
+class GMWarpListWindow final : public Window
+{
+public:
+    using SelectHandler = std::function<void(int)>;
+    static constexpr int Rows = 11;
+
+    explicit GMWarpListWindow(UIId id) : Window(id, "GM - Warp Gates")
+    {
+        SetBounds({50, 30, 750, 525});
+        SetTitleBarHeight(34);
+        SetMovable(true);
+        SetClosable(true);
+
+        auto& close = AddChild<Button>(3101, "X");
+        close.SetOnClick([this](const UIEvent&) { if (onClose_) onClose_(); });
+        close_ = &close;
+
+        auto& back = AddChild<Button>(3102, "< Anterior");
+        back.SetOnClick([this](const UIEvent&) {
+            if (page_ > 0) { --page_; Refresh(); }
+        });
+        back_ = &back;
+
+        auto& next = AddChild<Button>(3103, "Proxima >");
+        next.SetOnClick([this](const UIEvent&) {
+            if ((page_ + 1) * Rows < static_cast<int>(fields_.size())) { ++page_; Refresh(); }
+        });
+        next_ = &next;
+
+        auto& indicator = AddChild<Label>(3104, "");
+        indicator_ = &indicator;
+
+        for (int row = 0; row < Rows; ++row)
+        {
+            auto& button = AddChild<Button>(3110 + row, "");
+            button.SetOnClick([this, row](const UIEvent&) {
+                const int index = page_ * Rows + row;
+                if (index < 0 || index >= static_cast<int>(fields_.size()) || !onSelect_)
+                    return;
+                onSelect_(fields_[static_cast<std::size_t>(index)]);
+            });
+            entries_[static_cast<std::size_t>(row)] = &button;
+        }
+        Layout();
+    }
+
+    void SetOnClose(std::function<void()> handler) { onClose_ = std::move(handler); }
+    void SetOnSelect(SelectHandler handler) { onSelect_ = std::move(handler); }
+
+    void SetViewport(int width, int height)
+    {
+        Rect b = Bounds();
+        b.width = std::min(750, std::max(460, width - 24));
+        b.height = std::min(525, std::max(380, height - 24));
+        b.x = std::max(0, (width - b.width) / 2);
+        b.y = std::max(0, (height - b.height) / 2);
+        SetBounds(b);
+        Layout();
+    }
+
+    void Reload()
+    {
+        fields_.clear();
+        const int count = std::min(FIELD_MAX, std::max(0, FieldCount));
+        for (int i = 0; i < count; ++i)
+        {
+            if (sField[i].szName[0])
+                fields_.push_back(i);
+        }
+        page_ = 0;
+        Refresh();
+    }
+
+    UIEventResult OnEvent(const UIEvent& event) override
+    {
+        if (event.type == UIEventType::Wheel && HitTest(event.pointer))
+        {
+            const int nextPage = page_ + (event.wheelDelta < 0 ? 1 : -1);
+            const int maxPage = fields_.empty() ? 0 : static_cast<int>((fields_.size() - 1) / Rows);
+            page_ = std::max(0, std::min(maxPage, nextPage));
+            Refresh();
+            return UIEventResult::Handled;
+        }
+        return Window::OnEvent(event);
+    }
+
+private:
+    void Layout()
+    {
+        const Rect b = Bounds();
+        if (close_) close_->SetBounds({b.width - 44, 5, 32, 24});
+        const int available = b.height - 110;
+        const int rowHeight = std::max(23, available / Rows);
+        for (int row = 0; row < Rows; ++row)
+            entries_[static_cast<std::size_t>(row)]->SetBounds(
+                {18, 49 + row * rowHeight, b.width - 36, rowHeight - 3});
+        const int footer = b.height - 47;
+        if (back_) back_->SetBounds({18, footer, 132, 28});
+        if (indicator_) indicator_->SetBounds({b.width / 2 - 90, footer + 4, 180, 24});
+        if (next_) next_->SetBounds({b.width - 150, footer, 132, 28});
+    }
+
+    void Refresh()
+    {
+        for (int row = 0; row < Rows; ++row)
+        {
+            Button* button = entries_[static_cast<std::size_t>(row)];
+            const int index = page_ * Rows + row;
+            if (index >= static_cast<int>(fields_.size()))
+            {
+                button->SetVisible(false);
+                continue;
+            }
+            const int field = fields_[static_cast<std::size_t>(index)];
+            const sFIELD& info = sField[field];
+            char label[224];
+            const bool current = (StageField[0] == &sField[field] || StageField[1] == &sField[field]);
+            std::snprintf(label, sizeof(label), "%s %03d  %-36.36s   Sky %02X/%02X/%02X",
+                current ? "*" : " ", field, info.szName,
+                info.BackImageCode[0] & 0xFF,
+                info.BackImageCode[1] & 0xFF,
+                info.BackImageCode[2] & 0xFF);
+            button->SetText(label);
+            button->SetVisible(true);
+        }
+        if (back_) back_->SetEnabled(page_ > 0);
+        if (next_) next_->SetEnabled((page_ + 1) * Rows < static_cast<int>(fields_.size()));
+        if (indicator_)
+        {
+            char status[64];
+            std::snprintf(status, sizeof(status), "%d / %d  (%d)",
+                page_ + 1, std::max(1, static_cast<int>((fields_.size() + Rows - 1) / Rows)),
+                static_cast<int>(fields_.size()));
+            indicator_->SetText(status);
+        }
+    }
+
+    std::array<Button*, Rows> entries_{};
+    Button* close_ = nullptr;
+    Button* back_ = nullptr;
+    Button* next_ = nullptr;
+    Label* indicator_ = nullptr;
+    std::vector<int> fields_;
+    int page_ = 0;
+    SelectHandler onSelect_;
+    std::function<void()> onClose_;
+};
+
+void BuildGMWarpListWindow()
+{
+    auto window = std::make_unique<GMWarpListWindow>(240);
+    gmWarpListWindow = window.get();
+    gmWarpListWindow->SetViewport(WinSizeX, WinSizeY);
+    gmWarpListWindow->SetOnClose([]() { runtime.Windows().Close(GMWarpListWindowId); });
+    gmWarpListWindow->SetOnSelect([](int field) {
+        if (smConfig.getSecurity() < AccountTypes::SEC_MODERATOR ||
+            field < 0 || field >= FIELD_MAX || field >= FieldCount || !sField[field].szName[0])
+            return;
+        // Do not teleport directly from a UI callback. The gameplay loop will
+        // execute its existing deferred GAME_GM / WarpCustomField transition.
+        ::CustomField = field;
+        SkipNextField = 2;
+        runtime.Windows().Close(GMWarpListWindowId);
+    });
+    runtime.Windows().Register(GMWarpListWindowId, std::move(window), UIWindowLayer::NormalWindow);
+}
+#endif
+// SUMMIT_PATCH_214_GM_WARP_LIST_V2_END
+
 void BuildSettingsWindow()
 {
     auto window = std::make_unique<SettingsWindow>(210);
@@ -419,6 +739,10 @@ void BuildLegacyDialogUI()
     runtime.Windows().Register(LegacyNotificationWindowId, std::move(notifications), UIWindowLayer::Popup);
     runtime.Windows().Open(LegacyNotificationWindowId);
 
+    auto death = std::make_unique<DeathWindow>(186);
+    deathWindow = death.get();
+    runtime.Windows().Register(DeathWindowId, std::move(death), UIWindowLayer::Modal);
+
     auto npc = std::make_unique<LegacyNpcDialogWindow>(190);
     npcDialogWindow = npc.get();
     runtime.Windows().Register(NpcDialogWindowId, std::move(npc), UIWindowLayer::Popup);
@@ -430,6 +754,14 @@ void BuildLegacyDialogUI()
 
 void SyncLegacyDialogUI()
 {
+    // First-class V2 death screen, backed by the existing restart state machine.
+    if (deathWindow)
+    {
+        if (ReStartFlag && !runtime.Windows().IsOpen(DeathWindowId))
+            runtime.Windows().Open(DeathWindowId);
+        else if (!ReStartFlag && runtime.Windows().IsOpen(DeathWindowId))
+            runtime.Windows().Close(DeathWindowId);
+    }
     // Legacy status/class flows arm a deferred skill-point reset through
     // sinSkillPontInitButtonFlag and historically wait for an unrelated mouse
     // button release before opening MESSAGE_INIT_SKILL_POINT. Promote that
@@ -624,6 +956,9 @@ void Initialize()
     BuildQuestUI();
     BuildMixGuideUI();
     BuildSettingsWindow();
+#ifdef GAME_GM
+    BuildGMWarpListWindow();
+#endif
     BuildGuideWindow();
     BuildSocialWindow();
     BuildPartyStatusHud();
@@ -643,9 +978,13 @@ void Shutdown()
     mixGuideWindow = nullptr;
     legacyMessageWindow = nullptr;
     legacyNotificationHud = nullptr;
+    deathWindow = nullptr;
     npcDialogWindow = nullptr;
     skillNpcWindow = nullptr;
     settingsWindow = nullptr;
+#ifdef GAME_GM
+    gmWarpListWindow = nullptr;
+#endif
     guideWindow = nullptr;
     socialWindow = nullptr;
     partyStatusHud = nullptr;
@@ -852,6 +1191,9 @@ bool HandleQuestHotkey()
 bool HandleModalHotkeys()
 {
     if (!runtime.IsInitialized()) return false;
+    // Death modal has no keyboard dismiss path; only explicit respawn buttons
+    // and the original server-backed automatic timeout are allowed.
+    if (ReStartFlag && deathWindow) return true;
     const bool messageModal = legacyMessageWindow && runtime.Windows().IsOpen(LegacyMessageWindowId) && legacyMessageWindow->HasModalInput();
     const bool characterModal = characterWindow && runtime.Windows().IsOpen(CharacterWindowId) && characterWindow->HasModalInput();
     const bool questModal = questJournal && runtime.Windows().IsOpen(QuestJournalWindowId) && questJournal->HasModalInput();
@@ -890,6 +1232,23 @@ bool HandleMainHudHotkeys()
 bool IsSettingsWindowOpen()
 {
     return runtime.IsInitialized() && settingsWindow != nullptr && runtime.Windows().IsOpen(SettingsWindowId);
+}
+
+// SUMMIT_PATCH_214_GM_WARP_LIST_V2_TOGGLE
+void ToggleGMWarpListWindow()
+{
+#ifdef GAME_GM
+    if (!runtime.IsInitialized() || !gmWarpListWindow ||
+        smConfig.getSecurity() < AccountTypes::SEC_MODERATOR)
+        return;
+    if (runtime.Windows().IsOpen(GMWarpListWindowId))
+    {
+        runtime.Windows().Close(GMWarpListWindowId);
+        return;
+    }
+    gmWarpListWindow->Reload();
+    runtime.Windows().Open(GMWarpListWindowId);
+#endif
 }
 
 void ToggleSettingsWindow()
@@ -968,8 +1327,14 @@ void OnResolutionChanged(int width, int height)
         legacyMessageWindow->SetBounds({0, 0, width, height});
     if (legacyNotificationHud)
         legacyNotificationHud->SetViewport(width, height);
+    if (deathWindow)
+        deathWindow->SetViewport(width, height);
     if (settingsWindow)
         settingsWindow->SetViewport(width, height);
+#ifdef GAME_GM
+    if (gmWarpListWindow)
+        gmWarpListWindow->SetViewport(width, height);
+#endif
     if (guideWindow)
         guideWindow->SetViewport(width, height);
     if (socialWindow)
@@ -1208,6 +1573,11 @@ bool OwnsLegacyMessage3UI()
     // the V2 modal on the following Update().
     return LegacyMessageWindow::HasActiveSupportedLegacyMessage() ||
            (runtime.Windows().IsOpen(LegacyMessageWindowId) && legacyMessageWindow->HasSupportedMessage());
+}
+
+bool OwnsLegacyDeathUI()
+{
+    return runtime.IsInitialized() && deathWindow != nullptr;
 }
 
 bool OwnsLegacyNotificationUI()

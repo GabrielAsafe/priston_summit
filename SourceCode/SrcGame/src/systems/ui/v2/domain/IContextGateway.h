@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <cstdint>
 #include "systems/ui/v2/domain/ContextUIModels.h"
 
 namespace ui::v2
@@ -29,6 +30,11 @@ class IContextGateway
 public:
     virtual ~IContextGateway() = default;
     [[nodiscard]] virtual ContextSnapshot GetSnapshot() const = 0;
+    // Optional cheap change token. Max means unsupported (keep existing polling).
+    [[nodiscard]] virtual std::uint64_t ContextStateRevision() const
+    {
+        return static_cast<std::uint64_t>(-1);
+    }
     virtual bool ActivateItem(int index) = 0;
     virtual bool AcceptInventoryItem(int inventoryIndex) = 0;
     virtual bool InvokeAction(int actionId) = 0;

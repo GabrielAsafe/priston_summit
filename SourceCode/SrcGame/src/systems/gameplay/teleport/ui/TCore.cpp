@@ -79,10 +79,10 @@ const char* FieldNum[38][4] = {
 	{ "31","41",	"105",	"Torre Sem Fim 2\272 Andar"},
 	{ "32","43",	"108",	"Torre Sem Fim 3\272 Andar"},
 	{ "33","44",	"110",	"Mina de Gelo 1\272 Andar"},
-	{ "34","46",	"200",	"EM BREVE"},
-	{ "35","47",	"200",	"EM BREVE"},
-	{ "36","48",	"200",	"EM BREVE"},
-	{ "37","49",	"200",	"EM BREVE"}
+	{ "34","46",	"132",	"Laboratorio Secreto"},
+	{ "35","47",	"132",	"Arma Secreta"},
+	{ "36","48",	"132",	"Abismo do Mar 1\272 Andar"},
+	{ "37","49",	"132",	"Abismo do Mar 2\272 Andar"}
 };
 
 int mapa, index = 1, click, lvl, imagemapa;

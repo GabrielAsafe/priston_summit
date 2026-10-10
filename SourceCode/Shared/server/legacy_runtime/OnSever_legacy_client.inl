@@ -18,6 +18,7 @@
 
 #include "content/v1/definition/content/DefinitionRuntime.h"
 #include "content/v1/text_resource/content/TextResourceRuntime.h"
+#include "content/v1/localization/legacy/LocalizationLegacyEncoding.h"
 #include "content/v1/text_resource/legacy/LegacyContentIdRegistry.h"
 #include "content/v1/field_runtime/content/CompiledFieldRuntimeSource.h"
 #include "content/v1/runtime/RuntimeContentPath.h"
@@ -1416,8 +1417,8 @@ int InitMonster()
 
 	HANDLE hFindHandle;
 	WIN32_FIND_DATA	fd;
-	char	szFindPath[64];
-	char	szFilePath[64];
+	char	szFindPath[MAX_PATH];
+	char	szFilePath[MAX_PATH];
 
 	chrMonsterCnt = 0;
 
@@ -6391,6 +6392,46 @@ int STG_AREA::DeleteCharInfoFixed(smTRNAS_PLAYERINFO *lpTransPlayerInfo)
 }
 
 
+
+static void SummitApplyFixedNpcIdentity(
+	smCHAR_INFO &target,
+	const smCHAR_INFO &decoded,
+	const smCHAR_MONSTER_INFO &decodedMonster)
+{
+	// Fixed-NPC packets are materialized before OpenNpc() decodes the definition
+	// into a live character. Preserve the safe identity fields required by
+	// client interaction/UI, including localized names and quest class codes.
+	// Never copy decoded.lpMonInfo: it can point at the temporary monster record.
+	if(decodedMonster.szName[0])
+		strcpy_s(target.szName, decodedMonster.szName);
+	else if(decoded.szName[0])
+		strcpy_s(target.szName, decoded.szName);
+
+	if(decoded.szModelName[0])
+		strcpy_s(target.szModelName, decoded.szModelName);
+	target.ModelNameCode2 = decoded.ModelNameCode2;
+	target.ClassClan = decoded.ClassClan;
+	target.SizeLevel = decoded.SizeLevel;
+	target.dwCharSoundCode = decoded.dwCharSoundCode;
+	target.JOB_CODE = decoded.JOB_CODE;
+	target.Level = decoded.Level;
+	target.Brood = decoded.Brood;
+	target.ChangeJob = decoded.ChangeJob;
+	target.JobBitMask = decoded.JobBitMask;
+	target.wPlayClass[0] = decoded.wPlayClass[0];
+	target.wPlayClass[1] = decoded.wPlayClass[1];
+}
+
+static void SummitApplyFixedNpcLocalizedName(smCHAR_INFO &target, const std::string &npcId)
+{
+	if(npcId.empty()) return;
+	std::string localized;
+	const std::string key = npcId + ".name";
+	if(summit::content::localization::GetLocalizationLegacyValue(key.c_str(), localized) &&
+		!localized.empty() && localized.size() < sizeof(target.szName))
+		std::memcpy(target.szName, localized.c_str(), localized.size() + 1);
+}
+
 int STG_AREA::LoadCharInfoFixed(char *szFile)
 {
 	if(!szFile) return FALSE;
@@ -6436,7 +6477,8 @@ int STG_AREA::LoadCharInfoFixed(char *szFile)
 		char decodedDialog[256] = {0};
 		if(!smCharDecode(dst.smCharInfo.szModelName2, &decodedInfo, &decodedMonster, decodedDialog, sizeof(decodedDialog)))
 			return FALSE;
-		dst.smCharInfo.dwCharSoundCode = decodedInfo.dwCharSoundCode;
+		SummitApplyFixedNpcIdentity(dst.smCharInfo, decodedInfo, decodedMonster);
+		SummitApplyFixedNpcLocalizedName(dst.smCharInfo, src.npcId);
 	}
 	return TRUE;
 }
@@ -6499,6 +6541,12 @@ int STG_AREA::OpenNpc(smTRNAS_PLAYERINFO *lpTransPlayerInfo)
 		lpChar->ActionPattern = 12;
 		memcpy(&lpChar->smCharInfo, &lpTransPlayerInfo->smCharInfo, sizeof(smCHAR_INFO));
 
+		// LoadCharInfoFixed already resolved the canonical PT-BR fixed-NPC name.
+		// smCharDecode below materializes model/combat metadata and may expose the
+		// original Korean definition name again, so preserve the packet identity.
+		char summitFixedNpcName[sizeof(lpChar->smCharInfo.szName)] = {0};
+		if(lpTransPlayerInfo->smCharInfo.szName[0])
+			strcpy_s(summitFixedNpcName, lpTransPlayerInfo->smCharInfo.szName);
 
 		lpFileName = lpChar->smCharInfo.szModelName2;
 		if(lpFileName[0])
@@ -6523,6 +6571,8 @@ int STG_AREA::OpenNpc(smTRNAS_PLAYERINFO *lpTransPlayerInfo)
 				strcpy_s(lpChar->smCharInfo.szName, lpChar->smMonsterInfo.szName);
 				lpChar->smMonsterInfo.szName[0] = 0;
 			}
+			if(summitFixedNpcName[0])
+				strcpy_s(lpChar->smCharInfo.szName, summitFixedNpcName);
 			srLinkNpcItem(lpChar);
 
 			dist = lpChar->smMonsterInfo.MoveRange >> FLOATNS;

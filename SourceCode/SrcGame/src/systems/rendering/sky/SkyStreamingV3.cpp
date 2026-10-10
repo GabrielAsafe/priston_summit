@@ -2,6 +2,9 @@
 
 #include <atomic>
 #include <cstdint>
+#include <cstdio>
+#include <cstdlib>
+#include <windows.h>
 #include <deque>
 #include <memory>
 #include <mutex>
@@ -43,6 +46,23 @@ struct SummitSkyStreamingState
     std::deque<std::shared_ptr<SummitSkyRequest> > completed;
     std::atomic<std::uint64_t> serial;
 };
+
+// Opt-in sky diagnostics. Runtime resolver can load models from cooked packs;
+// absence of loose .ASE files is not by itself an asset failure.
+static void SummitSkyDiagnostic(const char* event, const std::string& sourceName)
+{
+    const char* enabled = std::getenv("SUMMIT_SKY_DIAG");
+    if (!enabled || enabled[0] != '1')
+        return;
+    static std::mutex logMutex;
+    std::lock_guard<std::mutex> lock(logMutex);
+    CreateDirectoryA("LOGS", nullptr);
+    FILE* log = std::fopen("LOGS/sky_stream_v3.log", "at");
+    if (!log)
+        return;
+    std::fprintf(log, "event=%s model=%s\n", event ? event : "unknown", sourceName.c_str());
+    std::fclose(log);
+}
 
 static SummitSkyStreamingState &SummitSkyState()
 {
@@ -180,6 +200,7 @@ void SummitPumpSkyStreamingV3()
 
     if (!request->success || !request->prepared)
     {
+        SummitSkyDiagnostic("model_load_failed", request->sourceName);
         delete request->prepared;
         request->prepared = 0;
         return;
@@ -190,6 +211,9 @@ void SummitPumpSkyStreamingV3()
         delete target->stageSky;
     target->stageSky = request->prepared;
     request->prepared = 0;
+    SummitSkyDiagnostic("model_loaded", request->sourceName);
+    if (!target->stageSky->smMaterialGroup)
+        SummitSkyDiagnostic("model_missing_material_group", request->sourceName);
 
     if (target->stageSky->smMaterialGroup)
         AssetLoadV2PrewarmMaterialGroupStep(target->stageSky->smMaterialGroup,

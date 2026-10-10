@@ -1,6 +1,8 @@
 #include "systems/commerce/v2/legacy/LegacyWalletAdapter.h"
 
 #include <limits>
+#include <cstdio>
+#include <cstdlib>
 
 #include "systems/network/transport/legacy/smwsock.h"
 #include "systems/rendering/legacy_3d/smd3d.h"
@@ -44,6 +46,28 @@ int LegacyWhere(WalletReason reason)
     return WHERE_GIVE_MONEY;
 }
 
+// PATCH 231: optional single event per wallet mutation (no account/character identifiers).
+// This distinguishes loot/quest credits, load, buy/sell debits and invalid balances.
+void SummitWalletAudit(const char* operation, WalletReason reason,
+                       const WalletMutationResult& result)
+{
+    const char* enabled = std::getenv("SUMMIT_WALLET_AUDIT");
+    if(!enabled || enabled[0] != '1' || enabled[1] != '\0') return;
+    std::fprintf(stderr,
+        "[SUMMIT_WALLET_AUDIT] op=%s reason=%d request=%lld before=%lld after=%lld code=%d\n",
+        operation, static_cast<int>(reason),
+        static_cast<long long>(result.requested),
+        static_cast<long long>(result.before), static_cast<long long>(result.after),
+        static_cast<int>(result.code));
+}
+struct SummitWalletAuditOnExit
+{
+    const char* operation;
+    WalletReason reason;
+    const WalletMutationResult& result;
+    ~SummitWalletAuditOnExit() { SummitWalletAudit(operation, reason, result); }
+};
+
 WalletMutationResult BaseResult(PlayerId player, CurrencyAmount amount, CurrencyAmount before)
 {
     WalletMutationResult result;
@@ -84,6 +108,7 @@ WalletMutationResult LegacyWalletAdapter::Credit(PlayerId player, CurrencyAmount
 
     const CurrencyAmount before = static_cast<CurrencyAmount>(legacyPlayer->ServerMoney);
     WalletMutationResult result = BaseResult(player, amount, before);
+    const SummitWalletAuditOnExit audit = {"credit", reason, result};
     if(amount <= 0 || amount > static_cast<CurrencyAmount>(std::numeric_limits<int>::max()))
     {
         result.code = WalletMutationCode::InvalidAmount;
@@ -117,6 +142,7 @@ WalletMutationResult LegacyWalletAdapter::Debit(PlayerId player, CurrencyAmount 
 
     const CurrencyAmount before = static_cast<CurrencyAmount>(legacyPlayer->ServerMoney);
     WalletMutationResult result = BaseResult(player, amount, before);
+    const SummitWalletAuditOnExit audit = {"debit", reason, result};
     if(amount <= 0 || amount > static_cast<CurrencyAmount>(std::numeric_limits<int>::max()) || amount > kLegacyWalletMax)
     {
         result.code = WalletMutationCode::InvalidAmount;
@@ -150,6 +176,7 @@ WalletMutationResult LegacyWalletAdapter::SetBalance(PlayerId player, CurrencyAm
 
     const CurrencyAmount before = static_cast<CurrencyAmount>(legacyPlayer->ServerMoney);
     WalletMutationResult result = BaseResult(player, amount, before);
+    const SummitWalletAuditOnExit audit = {"set", reason, result};
     if(amount < 0 || amount > kLegacyWalletMax ||
        amount > static_cast<CurrencyAmount>(std::numeric_limits<int>::max()))
     {

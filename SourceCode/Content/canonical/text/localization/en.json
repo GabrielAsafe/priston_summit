@@ -22155,6 +22155,36 @@
       "text": "_Ð",
       "quality": "untranslated_fallback",
       "source": "text.zinjya"
+    },
+    {
+      "key": "ui.shop.server_reject.gold",
+      "text": "Purchase rejected: insufficient server gold.",
+      "quality": "translated",
+      "source": "summit-patch230"
+    },
+    {
+      "key": "ui.shop.server_reject.invalid_item",
+      "text": "Purchase rejected: invalid item data.",
+      "quality": "translated",
+      "source": "summit-patch230"
+    },
+    {
+      "key": "ui.shop.server_reject.invalid_request",
+      "text": "Purchase rejected: invalid request.",
+      "quality": "translated",
+      "source": "summit-patch230"
+    },
+    {
+      "key": "ui.shop.server_reject.inventory",
+      "text": "Purchase rejected: inventory unavailable.",
+      "quality": "translated",
+      "source": "summit-patch230"
+    },
+    {
+      "key": "ui.shop.server_reject.transaction",
+      "text": "Purchase rejected by server.",
+      "quality": "translated",
+      "source": "summit-patch230"
     }
   ]
 }

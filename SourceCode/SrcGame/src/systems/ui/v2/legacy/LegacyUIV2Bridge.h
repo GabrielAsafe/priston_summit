@@ -12,6 +12,8 @@ bool HandleCharacterHotkeys();
 bool HandleSkillShortcutHotkeys();
 bool HandleQuestHotkey();
 bool HandleMainHudHotkeys();
+// SUMMIT_PATCH_214_GM_WARP_LIST_V2_DECL
+void ToggleGMWarpListWindow();
 void ToggleSettingsWindow();
 bool OpenGuideWindow();
 bool OpenSocialWindow();
@@ -38,6 +40,7 @@ bool OwnsLegacyRestorationUI();
 [[nodiscard]] bool OwnsLegacyHelpUI();
 [[nodiscard]] bool OwnsLegacyMessage3UI();
 [[nodiscard]] bool OwnsLegacyNotificationUI();
+[[nodiscard]] bool OwnsLegacyDeathUI();
 [[nodiscard]] bool OwnsLegacySkillNpcUI();
 [[nodiscard]] bool SuppressLegacyMixGuide();
 bool SuppressLegacyContextEffects();

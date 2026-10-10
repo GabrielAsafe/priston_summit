@@ -6,10 +6,15 @@
 #include <cstdarg>
 #include <cstdint>
 #include <cstdio>
+#include <cstdlib>
 #include <windows.h>
 
 inline void SummitCharacterSelectionTrace(const char *component, const char *format, ...)
 {
+    // Per-event fopen/fclose is only for targeted diagnostics, never the default.
+    const char *enabled = std::getenv("SUMMIT_CHARACTER_SELECTION_TRACE");
+    if (!enabled || enabled[0] != '1' || enabled[1] != '\0')
+        return;
     CreateDirectoryA("LOGS", NULL);
     FILE *fp = std::fopen("LOGS\\character_selection_debug.log", "a");
     if(!fp)

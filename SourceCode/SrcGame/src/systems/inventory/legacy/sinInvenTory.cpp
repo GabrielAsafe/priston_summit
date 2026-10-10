@@ -2266,8 +2266,9 @@ void cINVENTORY::RButtonDown(int x, int y)
 			sITEM & Item = InvenItem[Index];
 			POINT MousePosition = { Item.x + 11, Item.y + 11 };
 			if (cInvenTory.isSalableItem(&Item)) {
-				int MaxGold = GetMaxGold(false);
-				if (cInvenTory.GetInvenItemPrice(&Item).SellPrice + sinChar->Money > MaxGold) {
+				const long long maxGold = static_cast<long long>(GetMaxGold(false));
+				const long long salePrice = static_cast<long long>(cInvenTory.GetInvenItemPrice(&Item).SellPrice);
+				if (sinChar && (static_cast<long long>(sinChar->Money) + salePrice > maxGold)) {
 					cMessageBox.ShowMessage(MESSAGE_OVER_MONEY);
 					return;
 				}
@@ -2300,7 +2301,9 @@ void cINVENTORY::RButtonDown(int x, int y)
 					cMessageBox.ShowMessage3(MESSAGE_SELL_HIGHRANK_ITEM, MouseItem.sItemInfo.ItemName);
 				}
 			} else {
-				cMessageBox.ShowMessage(MESSAGE_OVER_MONEY);
+				// PATCH 228: this is a non-sellable item, not a gold overflow.
+				// Potion stacks need a distinct server-authoritative sale path.
+				cMessageBox.ShowMessage(MESSAGE_NOT_SALE_ITEM);
 			}
 		}
 		return;
@@ -10106,46 +10109,14 @@ int cINVENTORY::ReFormInvenItem()
 
 int cINVENTORY::CheckMoneyLimit(int Money)
 {
-
-	int CheckMoney = 0;
-	if(sinChar->Level <= 10)
-	{
-		if((sinChar->Money + Money) <= 500000)
-			return TRUE;
-
-	}
-	else
-	{
-		switch(sinChar->ChangeJob)
-		{
-		case 0:
-			if((sinChar->Money + Money) <= (sinChar->Level * 500000) - 1800000)
-				return TRUE;
-			break;
-
-		case 1:
-			if((sinChar->Money + Money) <= 10000000)return TRUE;
-			break;
-		case 2:
-			if((sinChar->Money + Money) <= 50000000)return TRUE;
-
-			break;
-
-		case 3:
-		case 4:
-			if((sinChar->Money + Money) <= MAX_MONEY)return TRUE;
-			break;
-
-		}
-	}
-
-	cMessageBox.ShowMessage(MESSAGE_OVER_MONEY);
-	return FALSE;
-
-
-
+    // PATCH 227: same carry limit as authoritative ShopTransactionService.
+    // Do not use obsolete per-job caps and never overflow signed int.
+    const long long total = sinChar ? static_cast<long long>(sinChar->Money) + Money : -1;
+    if (total >= 0 && total <= 1000000000LL)
+        return TRUE;
+    cMessageBox.ShowMessage(MESSAGE_OVER_MONEY);
+    return FALSE;
 }
-
 
 int sinPotionNum[4] = { 0,0,0,0 };
 int CheckPotionNum[4] = { 0,0,0,0 };

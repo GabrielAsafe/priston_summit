@@ -11,6 +11,8 @@
 #include "systems/ui/v2/widgets/DetailTextLayout.h"
 #include "systems/ui/v2/theme/UITheme.h"
 #include "systems/ui/v2/widgets/Button.h"
+#include "systems/commerce/coin_shop/CoinShop.h"
+#include "systems/commerce/coin_shop/CoinShop_T.h"
 
 namespace ui::v2
 {
@@ -196,6 +198,15 @@ void InventoryPage::SelectQuestItems()
 
 void InventoryPage::Update(float deltaSeconds)
 {
+    // PATCH 227: only request missing wallet balances, not the item catalogs.
+    // Recheck at most once per 10s if a response has not arrived.
+    currencyFetchAccumulator_ += deltaSeconds;
+    if (currencyFetchAccumulator_ >= 10.0f)
+    {
+        currencyFetchAccumulator_ = 0.0f;
+        if (!cCoinShop.BalanceReceived) (void)cCoinShop.RequestBalanceForUI();
+        if (!cCoinShop_T.BalanceReceived) (void)cCoinShop_T.RequestBalanceForUI();
+    }
     refreshAccumulator_ += deltaSeconds;
     if (refreshAccumulator_ >= 0.10f)
     {
@@ -414,9 +425,18 @@ UIEventResult InventoryPage::OnEvent(const UIEvent& event)
             {
                 viewModel_.Select(hit.itemIndex);
                 RefreshDetails(hit.itemIndex);
-                const bool activated = (contextPanel_ && contextPanel_->IsContextActive())
-                    ? contextPanel_->AcceptInventoryItem(hit.itemIndex)
-                    : viewModel_.Activate(hit.itemIndex);
+                // In an NPC merchant, either mouse button only selects the
+                // inventory item; the V2 Vender button performs the transaction.
+                // Crafting/warehouse/trade continue using their explicit
+                // context acceptance paths, with original validations intact.
+                const bool merchantSelection = contextPanel_ && contextPanel_->IsContextActive() &&
+                                               contextPanel_->Kind() == ContextKind::Merchant;
+                if (merchantSelection)
+                    contextPanel_->SelectInventoryForMerchant(hit.itemIndex);
+                const bool activated = merchantSelection ? true :
+                    ((contextPanel_ && contextPanel_->IsContextActive())
+                        ? contextPanel_->AcceptInventoryItem(hit.itemIndex)
+                        : viewModel_.Activate(hit.itemIndex));
                 LogInventoryPointer(contextPanel_ && contextPanel_->IsContextActive() ? "context-accept" : "activate",
                                     event.pointer, GlobalBounds(), hit.itemIndex,
                                     hit.bagColumn, hit.bagRow, hit.equipmentSlot, activated);
@@ -482,7 +502,11 @@ UIEventResult InventoryPage::OnEvent(const UIEvent& event)
                 // original validated operation. Keep left-click as selection
                 // so an item cannot get stuck on the cursor behind the panel.
                 if (contextPanel_ && contextPanel_->IsContextActive())
+                {
+                    if (contextPanel_->Kind() == ContextKind::Merchant)
+                        contextPanel_->SelectInventoryForMerchant(hit.itemIndex);
                     return UIEventResult::Handled;
+                }
                 const bool began = viewModel_.BeginDrag(hit.itemIndex);
                 LogInventoryPointer("begin-drag", event.pointer, GlobalBounds(), hit.itemIndex,
                                     hit.bagColumn, hit.bagRow, hit.equipmentSlot, began);
@@ -713,6 +737,11 @@ void InventoryPage::OnRender(UIRenderContext& context)
                    TextStyle{UITheme::Accent, true, TextAlign::Left});
     r.DrawTextUtf8(FontHandle{}, "Peso: " + std::to_string(snapshot.weightCurrent) + "/" + std::to_string(snapshot.weightMax),
                    {root.x + 536, root.y + 18, 190, 24}, TextStyle{UITheme::TextMuted, false, TextAlign::Left});
+    // PATCH 227: balances last reported by their respective server wallets.
+    r.DrawTextUtf8(FontHandle{}, "SCoin: " + (cCoinShop.BalanceReceived ? std::to_string(cCoinShop.Coin) : std::string("--")),
+                   {root.x + 346, root.y + 36, 160, 15}, TextStyle{UITheme::TextMuted, false, TextAlign::Left});
+    r.DrawTextUtf8(FontHandle{}, "TCoin: " + (cCoinShop_T.BalanceReceived ? std::to_string(cCoinShop_T.Coin) : std::string("--")),
+                   {root.x + 526, root.y + 36, 160, 15}, TextStyle{UITheme::TextMuted, false, TextAlign::Left});
 
     if (!(contextPanel_ && contextPanel_->IsContextActive()))
         DrawEquipment(context);

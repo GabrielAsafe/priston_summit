@@ -1,3 +1,4 @@
+#include "diagnostics/RuntimeAssetProbe.h"
 #define CPARKDXPLAYER_CPP
 
 #include "ParkDXPlayer.h"
@@ -42,6 +43,7 @@ BOOL CParkPlayer::LoadPlayerFile(HWND PlayhWnd, char *szFileName)
 	HRESULT hr;
 	hr = ::CoCreateInstance(CLSID_FilterGraph, NULL
 							, CLSCTX_INPROC_SERVER, IID_IGraphBuilder, (LPVOID*)&pIGraphBuilder);
+	summit::diagnostics::RuntimeAssetProbeAttemptW("VIDEO", "RENDER", wPath);
 	hr = pIGraphBuilder->RenderFile(wPath, NULL);
 	hr = pIGraphBuilder->QueryInterface(IID_IMediaControl, (LPVOID*)&pIMediaControl);
 	hr = pIGraphBuilder->QueryInterface(IID_IMediaEventEx, (LPVOID*)&pIMediaEventEx);

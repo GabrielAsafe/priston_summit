@@ -1239,9 +1239,22 @@ int DrawFieldMap()
 		if (StageField[lpCurPlayer->OnStageField] == sCompactMap[1].lpField) flCode = 1;
 	}
 
-	if (sCompactMap[flCode].hTexTitleHandle)
+	// Stemple's shipped title texture is a legacy Korean asset. Keep the map
+	// texture itself, but render a deterministic PT-BR title for field 49.
+	if (sCompactMap[flCode].lpField && sCompactMap[flCode].lpField->FieldCode == 49)
 	{
-
+		char summitField49Title[] = "Abismo do Mar 2";
+		DrawFontImage(summitField49Title, px + 4, py - 17, D3DCOLOR_RGBA(255, 255, 255, 255), 0.55f);
+	}
+	else if (sCompactMap[flCode].lpField && sCompactMap[flCode].lpField->FieldCode == 52)
+	{
+		// dc1's shipped title art is not localized. Keep its map texture but own
+		// the visible title in runtime PT-BR, just like field 49.
+		char summitField52Title[] = "Lar do Eragon";
+		DrawFontImage(summitField52Title, px + 4, py - 17, D3DCOLOR_RGBA(255, 255, 255, 255), 0.55f);
+	}
+	else if (sCompactMap[flCode].hTexTitleHandle)
+	{
 		psDrawTexImage_Point(sCompactMap[flCode].hTexTitleHandle, (float)px, (float)py - 16, 128, 16, 0, 0, 1.0f, 1.0f, 255, dSpe >> 2);
 	}
 

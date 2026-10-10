@@ -22155,6 +22155,36 @@
       "text": "Santuário",
       "quality": "translated",
       "source": "text.zinjya"
+    },
+    {
+      "key": "ui.shop.server_reject.gold",
+      "text": "Compra recusada: ouro insuficiente no servidor.",
+      "quality": "translated",
+      "source": "summit-patch230"
+    },
+    {
+      "key": "ui.shop.server_reject.invalid_item",
+      "text": "Compra recusada: dados do item inválidos.",
+      "quality": "translated",
+      "source": "summit-patch230"
+    },
+    {
+      "key": "ui.shop.server_reject.invalid_request",
+      "text": "Compra recusada: pedido inválido.",
+      "quality": "translated",
+      "source": "summit-patch230"
+    },
+    {
+      "key": "ui.shop.server_reject.inventory",
+      "text": "Compra recusada: inventário indisponível.",
+      "quality": "translated",
+      "source": "summit-patch230"
+    },
+    {
+      "key": "ui.shop.server_reject.transaction",
+      "text": "Compra recusada pelo servidor.",
+      "quality": "translated",
+      "source": "summit-patch230"
     }
   ]
 }

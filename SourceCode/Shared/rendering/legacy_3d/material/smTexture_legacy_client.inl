@@ -1,3 +1,4 @@
+#include "diagnostics/RuntimeAssetProbe.h"
 #include <string>
 #include <set>
 #include <cstdlib>
@@ -178,8 +179,11 @@ struct SummitTextureCriticalSectionGuard
 
 static bool SummitAssetTraceEnabled()
 {
+    // Keep the existing deep Asset Load V2/V3 trace enabled by default. The
+    // runtime-wide attempt probe complements it with models/stages/audio/etc.
+    // Set SUMMIT_ASSET_TRACE=0 to disable only this detailed texture trace.
     const char *value = getenv("SUMMIT_ASSET_TRACE");
-    return value && *value && *value != '0';
+    return !value || !*value || *value != '0';
 }
 
 static bool SummitPrewarmHasHeadroom()
@@ -1052,6 +1056,7 @@ int AssetLoadV2EnsureTexture(smTEXTUREHANDLE *lpTexHandle, int MipMap)
 
 int AssetLoadV2RequestTexture(smTEXTUREHANDLE *lpTexHandle, DWORD ownerMask, int MipMap, int requestPriority)
 {
+    if(lpTexHandle) summit::diagnostics::RuntimeAssetProbeAttempt("TEXTURE", "REQUEST", lpTexHandle->Name);
     if (!lpTexHandle || lpTexHandle->UseCounter <= 0)
         return FALSE;
     AssetLoadV2AddOwner(lpTexHandle, ownerMask);
@@ -1060,6 +1065,7 @@ int AssetLoadV2RequestTexture(smTEXTUREHANDLE *lpTexHandle, DWORD ownerMask, int
 
 int AssetLoadV2LoadTextureNow(smTEXTUREHANDLE *lpTexHandle, DWORD ownerMask, int MipMap)
 {
+    if(lpTexHandle) summit::diagnostics::RuntimeAssetProbeAttempt("TEXTURE", "LOAD_NOW", lpTexHandle->Name);
     if (!lpTexHandle || lpTexHandle->UseCounter <= 0)
         return FALSE;
     if (summit::core::concurrency::JobSystem::Instance().IsWorkerThread())
@@ -3460,6 +3466,7 @@ int AssetLoadV3GetTextureReadiness(smTEXTUREHANDLE *lpTexHandle)
 
 int AssetLoadV3RequestTexture(smTEXTUREHANDLE *lpTexHandle, int MipMap, int priority)
 {
+    if(lpTexHandle) summit::diagnostics::RuntimeAssetProbeAttempt("TEXTURE", "REQUEST_V3", lpTexHandle->Name);
     if (!lpTexHandle || lpTexHandle->UseCounter <= 0)
         return FALSE;
 
@@ -3750,6 +3757,7 @@ LPDIRECT3DTEXTURE9 LoadDibSurfaceOffscreen(char *Filename)
 
 int new_smCreateTexture(smTEXTUREHANDLE *lpTexHandle, int MipMap)
 {
+    if(lpTexHandle) summit::diagnostics::RuntimeAssetProbeAttempt("TEXTURE", "CREATE", lpTexHandle->Name);
     if (!lpTexHandle)
         return -3;
 

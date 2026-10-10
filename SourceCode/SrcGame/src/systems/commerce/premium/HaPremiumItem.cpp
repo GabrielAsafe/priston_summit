@@ -8,6 +8,7 @@
 #include "systems/combat/pvp/war_mode/WarMode.h"
 #include "systems/network/v2/legacy/LegacyClientCommandSender.h"
 #include "systems/network/v2/legacy/LegacyBackendChannelSender.h"
+#include "systems/ui/v2/legacy/LegacyUIV2Bridge.h"
 
 using namespace std;
 
@@ -565,7 +566,8 @@ void cHaPremiumItem::DrawUp()
         {
             dsDrawTexImage(UpKeepItemTGAImage[UpKeepItem[i].TGAImageNumber - 1], UpKeepItem[i].PosiX, UpKeepItem[i].PosiY, 32, 32, UpKeepItem[i].Alpha);
 
-            if (UpKeepItem[i].Infoflag == true && InterfaceParty.PartyPosState == PARTY_NONE)
+            if (UpKeepItem[i].Infoflag == true && InterfaceParty.PartyPosState == PARTY_NONE &&
+                !ui::v2::legacy::SuppressLegacyMainHud())
             {
                 if (i > 6 && i < 14)
                 {
@@ -2388,6 +2390,10 @@ void cHaPremiumItem::InfoBox(int PoisX, int PosiY, int Width, int Height)
 
 int cHaPremiumItem::DrawText()
 {
+	// PATCH 213: premium status hover is rendered by UI V2. Keep this text
+	// renderer only when the legacy main HUD still owns presentation.
+	if (ui::v2::legacy::SuppressLegacyMainHud())
+		return FALSE;
 	if (InterfaceParty.PartyPosState != PARTY_NONE)
         return FALSE;
 	

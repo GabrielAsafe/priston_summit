@@ -2549,6 +2549,18 @@ bool Update(smCHAR *character)
     Runtime *runtime = Find(character->dwObjectSerial);
     if(!runtime || !runtime->active)
         return false;
+
+    // Network actors are published before CharacterModelStreamingV3 finishes
+    // installing Pattern/MotionInfo. A CompanionVisualState packet may arrive in
+    // that window. Claim the actor but keep it hidden until the model is ready;
+    // returning true also prevents the ActionPattern=99 legacy path from
+    // dereferencing a not-yet-published MotionInfo.
+    if(character->PatLoading || !character->Pattern || !character->MotionInfo)
+    {
+        character->DisplayFlag = FALSE;
+        CompanionClientDebugLog(character, "VISUAL_WAIT_MODEL", character->PatLoading, 0);
+        return true;
+    }
     if((runtime->flags & protocol::COMPANION_VISUAL_FLAG_DEAD) != 0 &&
         (DWORD)(GetTickCount() - runtime->lastPacketTick) >= 5000U)
     {
@@ -8686,6 +8698,16 @@ int smCHAR::Main()
 
 		if (gameplay::companions::client_visual::Update(this))
 		{
+			FrameCounter += 3;
+			break;
+		}
+
+		// Model streaming can republish/reset MotionInfo asynchronously after the
+		// frame-level guard at the top of Main(). Never let the legacy fallback
+		// dereference it during the companion summon transition.
+		if (!Pattern || PatLoading || !MotionInfo)
+		{
+			DisplayFlag = FALSE;
 			FrameCounter += 3;
 			break;
 		}

@@ -2,6 +2,7 @@
 
 #include <windows.h>
 #include <string>
+#include "diagnostics/RuntimeAssetProbe.h"
 
 namespace summit { namespace content { namespace runtime {
 
@@ -72,8 +73,13 @@ inline std::string ResolveRuntimePackPath(const char *packFileName)
     candidates[count++] = RuntimeJoinPath("Content\\packs", fileName);
 
     for(int i = 0; i < count; ++i)
-        if(RuntimeRegularFileExists(candidates[i]))
+    {
+        summit::diagnostics::RuntimeAssetProbeAttempt("RUNTIME_PACK", "RESOLVE", candidates[i].c_str());
+        const bool exists = RuntimeRegularFileExists(candidates[i]);
+        summit::diagnostics::RuntimeAssetProbeResult("RUNTIME_PACK", "RESOLVE", candidates[i].c_str(), exists);
+        if(exists)
             return candidates[i];
+    }
 
     // Deterministic diagnostic path when the pack is genuinely missing.
     if(!executableDirectory.empty())

@@ -12,9 +12,11 @@
 #include "systems/commerce/coin_shop/CoinShop_T.h"
 #include "systems/ui/v2/legacy/LegacyInventoryGateway.h"
 #include "systems/ui/messages/legacy_sin/sinMsg.h"
+#include "content/v1/localization/content/LocalizationRuntime.h"
 
 // A few UI-state globals live in the legacy .cpp files and were never exposed
 // through headers. Keep them confined to this compatibility adapter.
+extern unsigned int g_SummitMerchantCatalogRevision;
 extern int SelectShopButtonPosi;
 extern int ShowShopItemIndex;
 extern int ShopArrowPosi;
@@ -112,10 +114,61 @@ bool MeetsStatRequirements(const sITEM& item)
            info.Health <= sinChar->Health;
 }
 
+// PATCH 220: runtime-localized shop rejection messages. All displayed text comes
+// from the compiled localization catalog, not from this C++ translation unit.
+std::string ShopMessage(const char* key)
+{
+    std::string text;
+    if (summit::content::localization::GetLocalizationValue(key, text) && !text.empty())
+        return text;
+    return key; // Visible missing-key signal, never silently translate here.
+}
+
+void ShopReplace(std::string& text, const char* token, const std::string& value)
+{
+    const std::string needle(token);
+    for (std::string::size_type at = 0; (at = text.find(needle, at)) != std::string::npos; at += value.size())
+        text.replace(at, needle.size(), value);
+}
+
+std::string ShopRequirement(const char* key, int needed, int available)
+{
+    std::string text = ShopMessage(key);
+    ShopReplace(text, "{required}", std::to_string(needed));
+    ShopReplace(text, "{current}", std::to_string(available));
+    return text;
+}
+
+// The legacy message box consumes Windows-1252 bytes, while localization packs
+// contain UTF-8. Convert only at this legacy boundary.
+std::string ShopToLegacyText(const std::string& utf8)
+{
+    if (utf8.empty()) return utf8;
+    const int count = MultiByteToWideChar(CP_UTF8, MB_ERR_INVALID_CHARS, utf8.data(), static_cast<int>(utf8.size()), nullptr, 0);
+    if (count <= 0) return utf8;
+    std::wstring wide(static_cast<size_t>(count), L'\0');
+    if (!MultiByteToWideChar(CP_UTF8, MB_ERR_INVALID_CHARS, utf8.data(), static_cast<int>(utf8.size()), &wide[0], count))
+        return utf8;
+    const int bytes = WideCharToMultiByte(1252, 0, wide.data(), count, nullptr, 0, nullptr, nullptr);
+    if (bytes <= 0) return utf8;
+    std::string legacy(static_cast<size_t>(bytes), '\0');
+    if (!WideCharToMultiByte(1252, 0, wide.data(), count, &legacy[0], bytes, nullptr, nullptr))
+        return utf8;
+    return legacy;
+}
+
+void ShowShopFeedback(const std::string& text)
+{
+    std::string legacy = ShopToLegacyText(text);
+    // Legacy cMESSAGEBOX::MessageDoc is char[64]; longer text triggers
+    // MSVCRT invalid_parameter via strcpy_s. This message shows one cause.
+    if (legacy.size() > 63) legacy.resize(63);
+    cMessageBox.ShowMessage(legacy.c_str());
+}
+
 std::string RequirementSummary(const sITEM& item)
 {
-    if (!sinChar)
-        return {};
+    if (!sinChar) return {};
     const sITEMINFO& info = item.sItemInfo;
     std::string text;
     auto append = [&text](const std::string& part)
@@ -123,13 +176,35 @@ std::string RequirementSummary(const sITEM& item)
         if (!text.empty()) text += ", ";
         text += part;
     };
-    if (info.Level > sinChar->Level) append("Nivel " + std::to_string(info.Level));
-    if (info.Strength > sinChar->Strength) append("Forca " + std::to_string(info.Strength));
-    if (info.Spirit > sinChar->Spirit) append("Espirito " + std::to_string(info.Spirit));
-    if (info.Talent > sinChar->Talent) append("Talento " + std::to_string(info.Talent));
-    if (info.Dexterity > sinChar->Dexterity) append("Destreza " + std::to_string(info.Dexterity));
-    if (info.Health > sinChar->Health) append("Vida " + std::to_string(info.Health));
+    if (info.Level > sinChar->Level) append(ShopRequirement("ui.shop.need.level", info.Level, sinChar->Level));
+    if (info.Strength > sinChar->Strength) append(ShopRequirement("ui.shop.need.strength", info.Strength, sinChar->Strength));
+    if (info.Spirit > sinChar->Spirit) append(ShopRequirement("ui.shop.need.spirit", info.Spirit, sinChar->Spirit));
+    if (info.Talent > sinChar->Talent) append(ShopRequirement("ui.shop.need.talent", info.Talent, sinChar->Talent));
+    if (info.Dexterity > sinChar->Dexterity) append(ShopRequirement("ui.shop.need.dexterity", info.Dexterity, sinChar->Dexterity));
+    if (info.Health > sinChar->Health) append(ShopRequirement("ui.shop.need.health", info.Health, sinChar->Health));
     return text;
+}
+
+bool RejectMerchantRequirements(const sITEM& item)
+{
+    if (!IsClassCompatible(item))
+    {
+        ShowShopFeedback(ShopMessage("ui.shop.reject.class"));
+        return true;
+    }
+    if (!MeetsStatRequirements(item))
+    {
+        std::string text = ShopMessage("ui.shop.reject.requirements");
+        std::string details = RequirementSummary(item);
+        // The modal shows the first missing requirement; the V2 item
+        // restriction hover continues to show the full requirements list.
+        const auto separator = details.find(", ");
+        if (separator != std::string::npos) details.resize(separator);
+        ShopReplace(text, "{details}", details);
+        ShowShopFeedback(text);
+        return true;
+    }
+    return false;
 }
 
 void ApplyMerchantEligibility(ContextItemSnapshot& entry, const sITEM& item)
@@ -137,9 +212,9 @@ void ApplyMerchantEligibility(ContextItemSnapshot& entry, const sITEM& item)
     entry.classCompatible = IsClassCompatible(item);
     entry.requirementsMet = MeetsStatRequirements(item);
     if (!entry.classCompatible)
-        entry.restriction = "INCOMPATIVEL com sua classe/personagem";
+        entry.restriction = ShopMessage("ui.shop.reject.class");
     else if (!entry.requirementsMet)
-        entry.restriction = "Requer: " + RequirementSummary(item);
+        entry.restriction = ShopMessage("ui.shop.restriction.prefix") + RequirementSummary(item);
 }
 
 void ConfigureRecipeSlot(ContextItemSnapshot& entry, int index, const sITEM& item)
@@ -237,6 +312,31 @@ const char* CoinSectionName(int section)
 }
 }
 
+// Merchant UI invalidation is a cheap revision probe, NOT a snapshot rebuild.
+std::uint64_t LegacyContextGateway::ContextStateRevision() const
+{
+    // Non-merchant contexts keep their normal periodic refresh behavior.
+    if (!cShop.OpenFlag) return 0;
+    std::uint64_t h = 1469598103934665603ULL;
+    const auto mix = [&h](std::uint64_t x) { h = (h ^ x) * 1099511628211ULL; };
+    mix(static_cast<std::uint64_t>(::g_SummitMerchantCatalogRevision));
+    mix(static_cast<std::uint64_t>(sinShopKind));
+    mix(static_cast<std::uint64_t>(CursorClass));
+    mix(static_cast<std::uint64_t>(cShop.OpenFlag));
+    if (sinChar)
+    {
+        mix(static_cast<std::uint64_t>(sinChar->Money));
+        mix(static_cast<std::uint64_t>(sinChar->JOB_CODE));
+        mix(static_cast<std::uint64_t>(sinChar->Level));
+        mix(static_cast<std::uint64_t>(sinChar->Strength));
+        mix(static_cast<std::uint64_t>(sinChar->Spirit));
+        mix(static_cast<std::uint64_t>(sinChar->Talent));
+        mix(static_cast<std::uint64_t>(sinChar->Dexterity));
+        mix(static_cast<std::uint64_t>(sinChar->Health));
+    }
+    return h;
+}
+
 ContextSnapshot LegacyContextGateway::GetSnapshot() const
 {
     ContextSnapshot out;
@@ -247,6 +347,34 @@ ContextSnapshot LegacyContextGateway::GetSnapshot() const
 
     if (cShop.OpenFlag)
     {
+        // SUMMIT_PATCH_224_MERCHANT_SNAPSHOT_CACHE
+        // Avoid rebuilding an unchanged 25-30 item view ten times a second.
+        // Compare every item byte, relevant character stats, active shop tab and cursor.
+        // Any change invalidates the cache before rebuilding. This caches presentation
+        // only: every purchase still executes the original current-state validations.
+        struct MerchantCache
+        {
+            bool valid = false;
+            const void* character = nullptr;
+            int characterValues[8]{};
+            int shopKind = 0;
+            int cursorClass = 0;
+            sITEM items[30]{};
+            ContextSnapshot snapshot{};
+        };
+        static MerchantCache merchantCache;
+        const int characterValues[8] = {
+            sinChar->JOB_CODE, sinChar->Level, sinChar->Strength, sinChar->Spirit,
+            sinChar->Talent, sinChar->Dexterity, sinChar->Health, sinChar->Money
+        };
+        if (merchantCache.valid && merchantCache.character == sinChar &&
+            merchantCache.shopKind == sinShopKind &&
+            merchantCache.cursorClass == CursorClass &&
+            std::memcmp(merchantCache.characterValues, characterValues, sizeof(characterValues)) == 0 &&
+            std::memcmp(merchantCache.items, cShop.ShowShopItem, sizeof(merchantCache.items)) == 0)
+        {
+            return merchantCache.snapshot;
+        }
         out.valid = true;
         out.kind = ContextKind::Merchant;
         out.title = "Mercador";
@@ -268,6 +396,13 @@ ContextSnapshot LegacyContextGateway::GetSnapshot() const
         AddAction(out, 13, "Comprar", true, CursorClass == SIN_CURSOR_BUY || CursorClass == 1);
         AddAction(out, 14, "Armas", sinShopKind != 3, sinShopKind == 1);
         AddAction(out, 15, "Defesa", sinShopKind != 3, sinShopKind == 2);
+        merchantCache.character = sinChar;
+        std::memcpy(merchantCache.characterValues, characterValues, sizeof(characterValues));
+        merchantCache.shopKind = sinShopKind;
+        merchantCache.cursorClass = CursorClass;
+        std::memcpy(merchantCache.items, cShop.ShowShopItem, sizeof(merchantCache.items));
+        merchantCache.snapshot = out;
+        merchantCache.valid = true;
         return out;
     }
 
@@ -698,12 +833,7 @@ bool LegacyContextGateway::ActivateItemResolved(int index, int value)
     {
         if (index < 0 || index >= 30 || !cShop.ShowShopItem[index].Flag || value <= 0)
             return false;
-        if (!IsClassCompatible(cShop.ShowShopItem[index]) ||
-            !MeetsStatRequirements(cShop.ShowShopItem[index]))
-        {
-            cMessageBox.ShowMessage(MESSAGE_NO_USE_ITEM);
-            return false;
-        }
+        // SUMMIT_PATCH_226_REAL_SOURCE: purchase allowed; equip requirements remain visible.
         return cShop.SendBuyItemToServer(&cShop.ShowShopItem[index], value) != 0;
     }
 
@@ -839,16 +969,9 @@ bool LegacyContextGateway::ActivateItem(int index)
     {
         if (index < 0 || index >= 30 || !cShop.ShowShopItem[index].Flag)
             return false;
-        if (!IsClassCompatible(cShop.ShowShopItem[index]) ||
-            !MeetsStatRequirements(cShop.ShowShopItem[index]))
-        {
-            cMessageBox.ShowMessage(MESSAGE_NO_USE_ITEM);
-            return false;
-        }
-        ShowShopItemIndex = index + 1;
-        cShop.RButtonDown(0, 0);
-        ShowShopItemIndex = 0;
-        return true;
+        // PATCH 228: direct NPC purchase, independent of legacy cursor modes.
+        // The GameServer still validates inventory, currency and item integrity.
+        return ActivateItemResolved(index, 1);
     }
 
     if (state.kind == ContextKind::PlayerMerchant)
@@ -1081,8 +1204,10 @@ bool LegacyContextGateway::InvokeAction(int actionId)
         {
             case 10: legacyButton = SINALLREPAIR; break;
             case 11: legacyButton = SINREPAIR; break;
-            case 12: legacyButton = SINSELL; break;
-            case 13: legacyButton = SINBUY; break;
+            // Merchant Comprar and Vender are resolved by the V2 panel using
+            // selected items. Do not fall back to global cursor modes here.
+            case 12:
+            case 13: return false;
             case 14: legacyButton = 8; break;
             case 15: legacyButton = 9; break;
             default: return false;
@@ -1190,9 +1315,27 @@ bool LegacyContextGateway::InvokeAction(int actionId)
 
     if (actionId == 40 || actionId == 41)
     {
+        // In this legacy runtime, cTRADE::LButtonDown also owns Mix, Aging,
+        // Smelting, Manufacture, MixtureReset and SkinChange operations.
+        // Limit the compatibility dispatch to those explicit V2 contexts.
+        const bool craftContext = state.kind == ContextKind::Mixing ||
+                                  state.kind == ContextKind::Aging ||
+                                  state.kind == ContextKind::Smelting ||
+                                  state.kind == ContextKind::Manufacture ||
+                                  state.kind == ContextKind::MixtureReset ||
+                                  state.kind == ContextKind::SkinChange;
+        if (!craftContext || LbuttonUpCheckFlag || MixCancelButtonDelayFlag)
+            return false;
+        // Respect disabled actions (e.g. Aging without sheltoms).
+        const auto action = std::find_if(state.actions.begin(), state.actions.end(),
+                                         [actionId](const ContextActionSnapshot& entry)
+                                         { return entry.id == actionId; });
+        if (action == state.actions.end() || !action->enabled)
+            return false;
         CraftItemButtonIndex = actionId == 40 ? 1 : 2;
         { OffscreenCursorGuard cursor; cTrade.LButtonDown(0, 0); }
         CraftItemButtonIndex = 0;
+        // Dispatched does not mean the server completed a craft operation.
         return true;
     }
 

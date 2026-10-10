@@ -8,6 +8,7 @@ class LegacyContextGateway final : public IContextGateway
 {
 public:
     [[nodiscard]] ContextSnapshot GetSnapshot() const override;
+    [[nodiscard]] std::uint64_t ContextStateRevision() const override;
     bool ActivateItem(int index) override;
     bool AcceptInventoryItem(int inventoryIndex) override;
     [[nodiscard]] ContextInputRequest ItemActivationRequest(int index) const override;

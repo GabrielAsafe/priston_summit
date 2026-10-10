@@ -1,3 +1,4 @@
+#include "diagnostics/RuntimeAssetProbe.h"
 static int SummitLegacySkillTokenIsSeparator(char ch)
 {
 	return ch == ' ' || ch == '\t' || ch == '_' || ch == '-';
@@ -1079,6 +1080,7 @@ int AddModelDecode(char *iniFile, smMODELINFO *Info)
 
 int smModelDecode(char *iniFile, smMODELINFO *Info)
 {
+	summit::diagnostics::RuntimeAssetProbeAttempt("MODEL_CONFIG", "DECODE", iniFile);
 	char szFile[64] = { 0 };
 	DWORD dwFileLen = 0;
 	char *lpFile = nullptr;

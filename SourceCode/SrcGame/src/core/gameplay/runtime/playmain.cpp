@@ -28,6 +28,7 @@
 #include "systems/audio/playback/legacy/Dxwav.h"
 #include "core/data/legacy_loader/fileread.h"
 #include "gameplay/classes/v2/services/ClassService.h"
+#include "diagnostics/RuntimeAssetProbe.h"
 
 #include "systems/rendering/effects/particle/legacy/particle.h"
 #include "systems/network/client/netplay.h"
@@ -3366,9 +3367,45 @@ DWORD	dwClassDelayTime = 0;
 
 
 
+static void SummitEragonDiagnosticBypassTick()
+{
+    // Diagnostic-only bypass for the field-52 gate. It is opt-in so normal
+    // gameplay/collision remains untouched. The target is the preserved
+    // canonical dark_boss.ASE start point on the far side of the entrance.
+    const char *enabled = std::getenv("SUMMIT_ERAGON_DIAG_BYPASS");
+    if(!enabled || !*enabled || *enabled == '0' || !lpCurPlayer)
+        return;
+
+    static bool f11WasDown = false;
+    const bool f11Down = (GetAsyncKeyState(VK_F11) & 0x8000) != 0;
+    if(!f11Down)
+    {
+        f11WasDown = false;
+        return;
+    }
+    if(f11WasDown)
+        return;
+    f11WasDown = true;
+
+    const int slot = lpCurPlayer->OnStageField;
+    if(slot < 0 || slot >= 2 || !StageField[slot] || StageField[slot]->FieldCode != 52)
+        return;
+
+    const int targetX = 198280 * fONE;
+    const int targetZ = 242864 * fONE;
+    summit::diagnostics::RuntimeAssetProbeAttempt(
+        "DIAGNOSTIC", "ERAGON_BYPASS_F11", "field52@198280,242864");
+    lpCurPlayer->SetPosi(targetX, 0, targetZ, 0, 0, 0);
+    TraceCameraPosi.x = lpCurPlayer->pX;
+    TraceCameraPosi.y = lpCurPlayer->pY;
+    TraceCameraPosi.z = lpCurPlayer->pZ;
+    TraceTargetPosi = TraceCameraPosi;
+}
+
 int PlayPat3D()
 {
 
+	SummitEragonDiagnosticBypassTick();
 
 	int cnt;
 	int attack;

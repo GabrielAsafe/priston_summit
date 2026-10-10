@@ -4146,9 +4146,12 @@ int cWAREHOUSE::PickUpWareHouseItem(int x, int y, int PickUpFlag)
 
 
 
-					sITEM TempItem;
-					TempItem.w = ITEMSIZE * 2;
-					TempItem.h = ITEMSIZE * 4;
+					sITEM TempItem = {};
+					// Validate the footprint of the item that is actually leaving storage.
+					// The legacy 2x4 probe rejected perfectly valid withdrawals when only
+					// the real (smaller) item footprint fit in the inventory.
+					TempItem.w = sWareHouse.WareHouseItem[i].w;
+					TempItem.h = sWareHouse.WareHouseItem[i].h;
 					TempItem.Flag = 1;
 					if (cInvenTory.CheckSetEmptyArea(&TempItem))
 					{

@@ -4,8 +4,100 @@
 #include "systems/rendering/effects/particles/ho/HoNewParticleLinkHeader.h"
 #include "systems/configuration/client/Settings.h"
 #include "systems/rendering/sky/SkyStreamingV3.h"
+#include <cstdio>
+#include <cstdlib>
+#include <windows.h>
 
 HoSky SkyBackGround;
+
+// SUMMIT_PATCH_221_GM_SKY_DEBUG: developer-only, reversible sky preview.
+#ifdef GAME_GM
+namespace {
+int gSummitGmSkyOverride = -1;
+int gSummitGmSkyBeforeOverride = -1;
+const int kSummitGmSkies[] = {
+    FIELD_BACKIMAGE_DAY, FIELD_BACKIMAGE_GLOWDAY, FIELD_BACKIMAGE_NIGHT,
+    FIELD_BACKIMAGE_DESERT, FIELD_BACKIMAGE_GLOWDESERT, FIELD_BACKIMAGE_NIGHTDESERT,
+    FIELD_BACKIMAGE_RUIN1, FIELD_BACKIMAGE_NIGHTRUIN1,
+    FIELD_BACKIMAGE_DAYSNOW, FIELD_BACKIMAGE_NIGHTSNOW,
+    FIELD_BACKIMAGE_DAYLOST, FIELD_BACKIMAGE_GLOWLOST, FIELD_BACKIMAGE_NIGHTLOST,
+    FIELD_BACKIMAGE_DAYTEMPLE, FIELD_BACKIMAGE_GLOWTEMPLE, FIELD_BACKIMAGE_NIGHTTEMPLE
+};
+}
+int SummitGmGetActiveSkyCode() { return SkyBackGround.GetCodeID(); }
+int SummitGmGetSkyOverride() { return gSummitGmSkyOverride; }
+const char* SummitGmGetSkyName(int code)
+{
+    switch (code) {
+    case FIELD_BACKIMAGE_DAY: return "Dia";
+    case FIELD_BACKIMAGE_GLOWDAY: return "Entardecer";
+    case FIELD_BACKIMAGE_NIGHT: return "Noite";
+    case FIELD_BACKIMAGE_DESERT: return "Deserto dia";
+    case FIELD_BACKIMAGE_GLOWDESERT: return "Deserto crepusculo";
+    case FIELD_BACKIMAGE_NIGHTDESERT: return "Deserto noite";
+    case FIELD_BACKIMAGE_RUIN1: return "Ruinas";
+    case FIELD_BACKIMAGE_NIGHTRUIN1: return "Ruinas noite";
+    case FIELD_BACKIMAGE_DAYSNOW: return "Neve dia";
+    case FIELD_BACKIMAGE_NIGHTSNOW: return "Neve noite";
+    case FIELD_BACKIMAGE_DAYLOST: return "Lost dia";
+    case FIELD_BACKIMAGE_GLOWLOST: return "Lost crepusculo";
+    case FIELD_BACKIMAGE_NIGHTLOST: return "Lost noite";
+    case FIELD_BACKIMAGE_DAYTEMPLE: return "Templo dia";
+    case FIELD_BACKIMAGE_GLOWTEMPLE: return "Templo crepusculo";
+    case FIELD_BACKIMAGE_NIGHTTEMPLE: return "Templo noite";
+    default: return "Outro/field";
+    }
+}
+int SummitGmCycleSky()
+{
+    if (SkyBackGround.TestModeFlag)
+        return -1;
+    if (gSummitGmSkyOverride < 0)
+        gSummitGmSkyBeforeOverride = SkyBackGround.GetCodeID();
+    const unsigned int count = sizeof(kSummitGmSkies) / sizeof(kSummitGmSkies[0]);
+    unsigned int next = 0;
+    for (unsigned int i = 0; i < count; ++i) {
+        if (kSummitGmSkies[i] == gSummitGmSkyOverride) {
+            next = (i + 1) % count;
+            break;
+        }
+    }
+    gSummitGmSkyOverride = kSummitGmSkies[next];
+    ChangeSky(gSummitGmSkyOverride);
+    return gSummitGmSkyOverride;
+}
+void SummitGmResetSky()
+{
+    if (gSummitGmSkyOverride < 0)
+        return;
+    gSummitGmSkyOverride = -1;
+    // Restore the current field, not a previously visited field's appearance.
+    const int stage = lpCurPlayer ? lpCurPlayer->OnStageField : -1;
+    if (stage >= 0 && stage < 2 && StageField[stage]) {
+        if (StageField[stage]->State == FIELD_STATE_DUNGEON ||
+            StageField[stage]->State == FIELD_STATE_ROOM) {
+            SkyBackGround.SetCodeID(StageField[stage]->FieldCode + USER_SKY_ADD_CODE);
+        } else {
+            int selection = 0;
+            if (dwGameHour < GAME_HOUR_DAY || dwGameHour >= GAME_HOUR_NIGHT)
+                selection = 2;
+            else if (dwGameHour >= GAME_HOUR_GLOW)
+                selection = 1;
+            const int fieldSky = StageField[stage]->BackImageCode[selection];
+            if (fieldSky >= 0) {
+                SkyBackGround.SetCodeID(-1);
+                ChangeSky(fieldSky);
+            }
+        }
+    } else if (gSummitGmSkyBeforeOverride >= 0) {
+        SkyBackGround.SetCodeID(-1);
+        ChangeSky(gSummitGmSkyBeforeOverride);
+    }
+    gSummitGmSkyBeforeOverride = -1;
+}
+#endif // GAME_GM
+
+
 
 
 
@@ -47,6 +139,33 @@ HoSky::~HoSky()
 
 int HoSky::Draw(int x, int y, int z, int ax, int ay, int az)
 {
+    // Log the active sky only when its field or sky index changes.
+    // Cooked model paths need not exist as loose files.
+    const char* diag = std::getenv("SUMMIT_SKY_DIAG");
+    if (diag && diag[0] == '1')
+    {
+        static int previousField = -9999;
+        static int previousSky = -9999;
+        if (previousField != CodeID || previousSky != DrawIndex)
+        {
+            previousField = CodeID;
+            previousSky = DrawIndex;
+            CreateDirectoryA("LOGS", nullptr);
+            FILE* logfile = std::fopen("LOGS/sky_active.log", "at");
+            if (logfile)
+            {
+                std::fprintf(logfile, "field=%d sky=%d old_sky=%d\n", CodeID, DrawIndex, DrawOldIndex);
+                if (DrawIndex >= 0 && DrawIndex < static_cast<int>(SkyDrawInfoList.size()))
+                {
+                    const HoSkyDrawInfo& info = SkyDrawInfoList[DrawIndex];
+                    for (std::size_t layer = 0; layer < info.SkyResInfoList.size(); ++layer)
+                        std::fprintf(logfile, "  layer=%lu model=%s\n",
+                                     static_cast<unsigned long>(layer), info.SkyResInfoList[layer].resName.c_str());
+                }
+                std::fclose(logfile);
+            }
+        }
+    }
 	if(DrawIndex != -1)
 		Draw(x, y, z, ax, ay, az, DrawIndex, DrawAlphaCount, DrawNextAlphaCount);
 
@@ -1038,6 +1157,12 @@ int MainSky()
 			}
 		}
 	}
+
+#ifdef GAME_GM
+	// The automatic field sky can change during the test; keep GM selection active.
+	if (gSummitGmSkyOverride >= 0 && !SkyBackGround.TestModeFlag)
+		ChangeSky(gSummitGmSkyOverride);
+#endif
 	return TRUE;
 }
 

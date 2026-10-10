@@ -35,7 +35,9 @@ public:
 	bool ChangePageForUI(int delta);
 	bool BuySelectedForUI();
 
-	int Coin;
+    int Coin;
+    bool BalanceReceived = false; // PATCH 227: avoid inventing a zero before fetch
+    bool RequestBalanceForUI();
 
 private:
 

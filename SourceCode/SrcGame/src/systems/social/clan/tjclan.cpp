@@ -307,31 +307,25 @@ void clanMENUinit()
 
 void InitHelp()
 {
-	if(!g_GuideHelp.GetIsOn()) return;
-
-	g_Help.SetStartPos(0, 0);
-	if(!g_Help.CheckLevel(sinChar->Level, sinChar->JOB_CODE)) return;
-	g_Help.SetHelpN(LEVELUP_HELP);
-	g_Help.menuInit(LEVELUP_HELP);
-
-}
-
-void InitGuideHelp()
-{
+	// Gameplay help is owned by UI V2. Never reopen the legacy LEVELUP_HELP
+	// surface (which also exposes the untranslated legacy layout).
 	if (ui::v2::legacy::OpenGuideWindow())
 	{
 		IsDrawGuideHelp = FALSE;
 		g_GuideHelp.GuidHelpEnd();
-		return;
 	}
-	g_GuideHelp.SetDoing(TRUE);
-	g_GuideHelp.SetStartPos(0, 0);
-	g_GuideHelp.CheckLevel(sinChar->Level);
+}
 
-	g_GuideHelp.SetHelpN(GUIDEHELP_LIST);
-	g_GuideHelp.menuInit(GUIDEHELP_LIST);
-
-	IsDrawGuideHelp = TRUE;
+void InitGuideHelp()
+{
+	// Guide/help has no gameplay legacy fallback after the UI V2 migration.
+	// If UI V2 is not initialized yet, leave the request closed rather than
+	// stacking the retired legacy help window.
+	if (ui::v2::legacy::OpenGuideWindow())
+	{
+		IsDrawGuideHelp = FALSE;
+		g_GuideHelp.GuidHelpEnd();
+	}
 }
 
 

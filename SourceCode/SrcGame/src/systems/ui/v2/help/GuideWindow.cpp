@@ -100,6 +100,19 @@ void GuideWindow::Reload()
         {
             const bool heading = raw[0] == '*';
             if (heading) raw = Trim(raw.substr(1));
+
+            // The canonical legacy Help.sin is already PT-BR except for two
+            // surviving presentation strings. Normalize them at the V2 edge
+            // without mutating/re-encoding the canonical legacy payload.
+            if (heading && raw == "Keyboard")
+                raw = "Teclado";
+            if (raw == "(CH's name will be appeared in chat box)")
+            {
+                if (end >= bytes.size()) break;
+                pos = end + 1;
+                if (end + 1 < bytes.size() && bytes[end] == '\r' && bytes[end + 1] == '\n') ++pos;
+                continue;
+            }
             lines_.push_back({Cp1252ToUtf8(raw), heading});
         }
         else

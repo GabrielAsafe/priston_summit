@@ -1,0 +1,1750 @@
+source_path_rel_SrcGame_src,line_snapshot,reference_excerpt
+compat/legacy/presentation/opening_off/HoOpeningOFF.cpp,578,if (cSettings.isOpen())
+compat/legacy/presentation/opening_off/HoOpeningOFF.cpp,580,if (MouseButton[0] /*&& cSettings.LButtonDown()*/)
+compat/legacy/presentation/opening_off/HoOpeningOFF.cpp,592,if(cSettings.isOpen())
+compat/legacy/presentation/opening_off/HoOpeningOFF.cpp,593,cSettings.Close();
+compat/legacy/presentation/opening_off/HoOpeningOFF.cpp,595,cSettings.Open();
+compat/legacy/presentation/opening_off/HoOpeningOFF.cpp,774,cSettings.Draw();
+core/client/legacy_sin_runtime/sinMain.cpp,20,return !ui::v2::legacy::SuppressLegacyMainHud() || skillNpcFallback || ReStartFlag;
+core/client/legacy_sin_runtime/sinMain.cpp,47,"#include ""systems/gameplay/quests/ui/cQuestWindow.h"""
+core/client/legacy_sin_runtime/sinMain.cpp,69,cMessageBox.Init();
+core/client/legacy_sin_runtime/sinMain.cpp,71,cSinHelp.Init();
+core/client/legacy_sin_runtime/sinMain.cpp,76,cCoinShop_T.Init();
+core/client/legacy_sin_runtime/sinMain.cpp,77,cCoinShop.Init();
+core/client/legacy_sin_runtime/sinMain.cpp,78,cQuestWindow.Init();
+core/client/legacy_sin_runtime/sinMain.cpp,84,cSettings.Init();
+core/client/legacy_sin_runtime/sinMain.cpp,91,chaPremiumitem.init();
+core/client/legacy_sin_runtime/sinMain.cpp,182,cMessageBox.Main();
+core/client/legacy_sin_runtime/sinMain.cpp,184,cSinHelp.Main();
+core/client/legacy_sin_runtime/sinMain.cpp,192,chaPremiumitem.Main();
+core/client/legacy_sin_runtime/sinMain.cpp,234,chaPremiumitem.DrawUp();
+core/client/legacy_sin_runtime/sinMain.cpp,237,cQuestWindow.Draw();
+core/client/legacy_sin_runtime/sinMain.cpp,291,cCoinShop_T.Draw();
+core/client/legacy_sin_runtime/sinMain.cpp,292,cCoinShop.Draw();
+core/client/legacy_sin_runtime/sinMain.cpp,305,cSinHelp.Draw();
+core/client/legacy_sin_runtime/sinMain.cpp,306,cSinHelp.DrawText();
+core/client/legacy_sin_runtime/sinMain.cpp,364,chaPremiumitem.DrawUp();
+core/client/legacy_sin_runtime/sinMain.cpp,368,chaPremiumitem.Draw();
+core/client/legacy_sin_runtime/sinMain.cpp,369,chaPremiumitem.DrawText();
+core/client/legacy_sin_runtime/sinMain.cpp,384,cMessageBox.Draw();
+core/client/legacy_sin_runtime/sinMain.cpp,385,cMessageBox.DrawMessageText();
+core/client/legacy_sin_runtime/sinMain.cpp,393,cSettings.Draw();
+core/client/legacy_sin_runtime/sinMain.cpp,448,if (cCoinShop.isOpen() && !ui::v2::legacy::OwnsLegacyCoinShopUI())
+core/client/legacy_sin_runtime/sinMain.cpp,450,if (!cCoinShop.LButtonDown())
+core/client/legacy_sin_runtime/sinMain.cpp,462,if (cCoinShop_T.isOpen() && !ui::v2::legacy::OwnsLegacyCoinShopUI())
+core/client/legacy_sin_runtime/sinMain.cpp,464,if (!cCoinShop_T.LButtonDown())
+core/client/legacy_sin_runtime/sinMain.cpp,482,cQuestWindow.LButtonDown();
+core/client/legacy_sin_runtime/sinMain.cpp,484,"if (!ui::v2::legacy::OwnsLegacyMessage3UI()) cMessageBox.LButtonDown(pCursorPos.x, pCursorPos.y);"
+core/client/legacy_sin_runtime/sinMain.cpp,515,"if (!ui::v2::legacy::OwnsLegacyHelpUI()) cSinHelp.LButtonDown(pCursorPos.x, pCursorPos.y);"
+core/client/legacy_sin_runtime/sinMain.cpp,522,"chaPremiumitem.LButtonDown(pCursorPos.x, pCursorPos.y);"
+core/client/legacy_sin_runtime/sinMain.cpp,536,"if (!ui::v2::legacy::OwnsLegacyMessage3UI()) cMessageBox.LButtonUp(pCursorPos.x, pCursorPos.y);"
+core/client/legacy_sin_runtime/sinMain.cpp,549,"if (!ui::v2::legacy::OwnsLegacyHelpUI()) cSinHelp.LButtonUp(pCursorPos.x, pCursorPos.y);"
+core/client/legacy_sin_runtime/sinMain.cpp,559,"if (!ui::v2::legacy::OwnsLegacyMessage3UI()) cMessageBox.RButtonDown(pCursorPos.x, pCursorPos.y);"
+core/client/legacy_sin_runtime/sinMain.cpp,571,"if (!ui::v2::legacy::OwnsLegacyHelpUI()) cSinHelp.RButtonDown(pCursorPos.x, pCursorPos.y);"
+core/client/legacy_sin_runtime/sinMain.cpp,579,"if (!ui::v2::legacy::OwnsLegacyMessage3UI()) cMessageBox.RButtonUp(pCursorPos.x, pCursorPos.y);"
+core/client/legacy_sin_runtime/sinMain.cpp,589,"if (!ui::v2::legacy::OwnsLegacyMessage3UI()) cMessageBox.RButtonUp(pCursorPos.x, pCursorPos.y);"
+core/client/legacy_sin_runtime/sinMain.cpp,591,"if (!ui::v2::legacy::OwnsLegacyHelpUI()) cSinHelp.RButtonUp(pCursorPos.x, pCursorPos.y);"
+core/client/legacy_sin_runtime/sinMain.cpp,602,if (cSettings.isOpen())return;
+core/client/legacy_sin_runtime/sinMain.cpp,613,if (!ui::v2::legacy::OwnsLegacyMessage3UI()) cMessageBox.KeyDown();
+core/client/legacy_sin_runtime/sinMain.cpp,625,if (!ui::v2::legacy::OwnsLegacyHelpUI()) cSinHelp.KeyDown();
+core/client/legacy_sin_runtime/sinMain.cpp,630,cQuestWindow.KeyDown();
+core/client/legacy_sin_runtime/sinMain.cpp,680,cMessageBox.CloseMessage();
+core/client/legacy_sin_runtime/sinMain.cpp,756,cMessageBox.Close();
+core/client/legacy_sin_runtime/sinMain.cpp,758,cSinHelp.Close();
+core/client/legacy_sin_runtime/sinSubMain.cpp,739,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+core/client/legacy_sin_runtime/sinSubMain.cpp,749,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+core/client/legacy_sin_runtime/sinSubMain.cpp,966,cMessageBox.ShowMessage(MESSAGE_NOTEXIT_ITEMIMAGE);
+core/client/legacy_sin_runtime/sinSubMain.cpp,1754,cMessageBox.Release();
+core/client/legacy_sin_runtime/sinSubMain.cpp,1764,cMessageBox.Load();
+core/client/legacy_sin_runtime/sinSubMain.cpp,1797,"cSinHelp.sinShowHelp(SIN_HELP_KIND_QUEST, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, 15, 1"
+core/client/legacy_sin_runtime/sinSubMain.cpp,1826,"cSinHelp.sinShowHelp(SIN_HELP_KIND_QUEST, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, 15, 1"
+core/client/legacy_sin_runtime/sinSubMain.cpp,1843,"cSinHelp.sinShowHelp(SIN_HELP_KIND_QUEST, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, 15, 1"
+core/client/legacy_sin_runtime/sinSubMain.cpp,1860,"cSinHelp.sinShowHelp(SIN_HELP_KIND_QUEST, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, 15, 1"
+core/client/legacy_sin_runtime/sinSubMain.cpp,1948,if(chaPremiumitem.UseClickPremiumItemFlag)
+core/client/legacy_sin_runtime/sinSubMain.cpp,2126,"cSinHelp.sinShowHelp(SIN_HELP_KIND_QUEST, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, 15, 1"
+core/client/legacy_sin_runtime/sinSubMain.cpp,2137,"cSinHelp.sinShowHelp(SIN_HELP_KIND_QUEST, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, 15, 1"
+core/client/legacy_sin_runtime/sinSubMain.cpp,4674,cCharShop.OpenFlag || ExitButtonClick || MyShopSendButton || SmeltingItem.OpenFlag || ManufactureItem.m_OpenFlag || cMixtureReset.OpenFlag || cSkinChange.OpenFl
+core/client/legacy_sin_runtime/sinSubMain.cpp,4710,cMessageBox.ShowMessage(MESSAGE_FORCEORB_REFINING);
+core/gameplay/runtime/playmain.cpp,3911,cMessageBox.ShowMessage(MESSAGE_NOT_PICKUP_MALE);
+core/gameplay/runtime/playmain.cpp,3918,cMessageBox.ShowMessage(MESSAGE_NOT_PICKUP_FEMALE);
+core/gameplay/runtime/playmain.cpp,3927,cMessageBox.ShowMessage(MESSAGE_NOT_PICKUP_FEMALE);
+core/gameplay/runtime/playmain.cpp,3936,cMessageBox.ShowMessage(MESSAGE_NOT_PICKUP_MALE);
+core/gameplay/runtime/playmain.cpp,4082,if(cSinHelp.GetSodRankBoxState() == TRUE)
+platform/windows/application/Winmain.cpp,64,"#include ""systems/gameplay/quests/ui/cQuestWindow.h"""
+platform/windows/application/Winmain.cpp,1390,"cMessageBox.ShowMessageEvent(""N\343o \351 poss\355vel alterar o modo da janela neste mapa"");"
+platform/windows/application/Winmain.cpp,1406,if (!cCoinShop.isOpen())
+platform/windows/application/Winmain.cpp,1407,cCoinShop.Open();
+platform/windows/application/Winmain.cpp,1411,if (!cCoinShop_T.isOpen())
+platform/windows/application/Winmain.cpp,1412,cCoinShop_T.Open();
+platform/windows/application/Winmain.cpp,1418,else if (!cSettings.isOpen())
+platform/windows/application/Winmain.cpp,1419,cSettings.Open();
+platform/windows/application/Winmain.cpp,1911,cSettings.OnMouseMove();
+platform/windows/application/Winmain.cpp,1959,"{ FILE *f=SummitClientRuntimeTraceFile(""LOGS\\mingw_click_trace.txt""); if(f){ fprintf(f,""before cSettings.LButtonDown\n""); fclose(f);} }"
+platform/windows/application/Winmain.cpp,1960,cSettings.LButtonDown();
+platform/windows/application/Winmain.cpp,1961,"{ FILE *f=SummitClientRuntimeTraceFile(""LOGS\\mingw_click_trace.txt""); if(f){ fprintf(f,""after cSettings.LButtonDown\n""); fclose(f);} }"
+platform/windows/application/Winmain.cpp,1989,cSettings.LButtonUp();
+platform/windows/application/Winmain.cpp,2078,const bool settingsOpen = cSettings.isOpen();
+platform/windows/application/Winmain.cpp,2080,cSettings.OnMouseScroll(zDelta);
+platform/windows/application/Winmain.cpp,2082,if (cQuestWindow.OpenFlag)
+platform/windows/application/Winmain.cpp,2087,cQuestWindow.MouseWheel(zDelta);
+platform/windows/application/Winmain.cpp,2105,if (cSinHelp.sinGetScrollMove(-zDelta / 16) == TRUE) break;
+platform/windows/application/Winmain.cpp,2124,if (cSettings.isOpen())
+platform/windows/application/Winmain.cpp,2125,cSettings.OnKeyDown((char)wParam);
+platform/windows/application/Winmain.cpp,2343,else if(cSinHelp.sinGetHelpShowFlag() != TRUE)
+platform/windows/application/Winmain.cpp,3859,cSettings.Init();
+platform/windows/application/Winmain.cpp,3860,"{ FILE *f=SummitClientRuntimeTraceFile(""LOGS\\mingw_setgamemode_inside.txt""); if(f){ fprintf(f,""after cSettings.Init\n""); fclose(f);} }"
+systems/combat/pvp/war_mode/WarMode.cpp,91,"cMessageBox.ShowMessage3(MODOPVP, ""Deseja ativar Modo PvP ?"");"
+systems/combat/pvp/war_mode/WarMode.cpp,96,"cMessageBox.ShowMessage3(MODOPVP, ""Deseja desativar Modo PvP ?"");"
+systems/commerce/coin_shop/CoinShop.cpp,348,"cMessageBox.ShowMessageEvent(""Selecione um item para comprar."");"
+systems/commerce/coin_shop/CoinShop.cpp,354,"cMessageBox.ShowMessageEvent(""Voc\352 n\343o tem cr\351dito suficiente."");"
+systems/commerce/coin_shop/CoinShop.cpp,360,"cMessageBox.ShowMessageEvent(""Voc\352 n\343o tem espa\347o suficiente no invent\341rio."");"
+systems/commerce/coin_shop/CoinShop.cpp,366,"cMessageBox.ShowMessageEvent(""Excede o peso limite."");"
+systems/commerce/coin_shop/CoinShop.cpp,380,"cMessageBox.ShowMessageEvent(""Compra feita com sucesso!"");"
+systems/commerce/coin_shop/CoinShop_T.cpp,346,"cMessageBox.ShowMessageEvent(""Selecione um item para comprar."");"
+systems/commerce/coin_shop/CoinShop_T.cpp,352,"cMessageBox.ShowMessageEvent(""Voc\352 n\343o tem Tempo suficiente."");"
+systems/commerce/coin_shop/CoinShop_T.cpp,358,"cMessageBox.ShowMessageEvent(""Voc\352 n\343o tem espa\347o suficiente no invent\341rio."");"
+systems/commerce/coin_shop/CoinShop_T.cpp,364,"cMessageBox.ShowMessageEvent(""Excede o peso limite."");"
+systems/commerce/coin_shop/CoinShop_T.cpp,378,"cMessageBox.ShowMessageEvent(""Compra feita com sucesso!"");"
+systems/commerce/legacy/sinShop.cpp,208,"cMessageBox.ShowMessageEvent(""Este item n\343o pode ser vendido."");"
+systems/commerce/legacy/sinShop.cpp,553,if(ReStartFlag)
+systems/commerce/legacy/sinShop.cpp,927,"DrawSprite(BackStartPos.x + BackUpButton2X, BackStartPos.y + BackUpButton2Y, cMessageBox.lpButtonBox07, 0, 0, 48, 23, 1);"
+systems/commerce/legacy/sinShop.cpp,928,"DrawSprite(BackStartPos.x + BackUpButton3X, BackStartPos.y + BackUpButton3Y, cMessageBox.lpButtonBox07, 0, 0, 48, 23, 1);"
+systems/commerce/legacy/sinShop.cpp,931,"DrawSprite(BackStartPos.x + BackUpButton2X + 7, BackStartPos.y + BackUpButton2Y + 3, cMessageBox.lpButtonYes07, 0, 0, 32, 16, 1);"
+systems/commerce/legacy/sinShop.cpp,932,"else DrawSprite(BackStartPos.x + BackUpButton2X + 7, BackStartPos.y + BackUpButton2Y + 3, cMessageBox.lpButtonYesGlay07, 0, 0, 32, 16, 1);"
+systems/commerce/legacy/sinShop.cpp,934,"DrawSprite(BackStartPos.x + BackUpButton3X + 7, BackStartPos.y + BackUpButton3Y + 3, cMessageBox.lpButtonNo07, 0, 0, 32, 16, 1);"
+systems/commerce/legacy/sinShop.cpp,935,"else DrawSprite(BackStartPos.x + BackUpButton3X + 7, BackStartPos.y + BackUpButton3Y + 3, cMessageBox.lpButtonNoGlay07, 0, 0, 32, 16, 1);"
+systems/commerce/legacy/sinShop.cpp,1226,"cMessageBox.ShowMessage3(MESSAGE_MYSHOP_ITEM_CANCEL, cInvenTory.InvenItem[Index3 - 1].sItemInfo.ItemName);"
+systems/commerce/legacy/sinShop.cpp,1362,cMessageBox.ShowMessage(MESSAGE_NOT_SALE_ITEM);
+systems/commerce/legacy/sinShop.cpp,1393,cMessageBox.ShowMessage2(MESSAGE_BUY_ITEM);
+systems/commerce/legacy/sinShop.cpp,1400,cMessageBox.ShowMessage2(MESSAGE_BUY_ITEM_DEFALT);
+systems/commerce/legacy/sinShop.cpp,1548,cMessageBox.ShowMessage2(MESSAGE_BUY_ITEM);
+systems/commerce/legacy/sinShop.cpp,1672,cMessageBox.ShowMessage(MESSAGE_NO_USE_ITEM);
+systems/commerce/legacy/sinShop.cpp,1677,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/commerce/legacy/sinShop.cpp,1690,cMessageBox.ShowMessage(MESSAGE_NOT_ENOUGH_MONEY);
+systems/commerce/legacy/sinShop.cpp,1695,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/commerce/legacy/sinShop.cpp,1789,cMessageBox.ShowMessage(MESSAGE_NOT_ENOUGH_MONEY);
+systems/commerce/legacy/sinShop.cpp,1819,cMessageBox.ShowMessage(MESSAGE_OVER_MONEY);
+systems/commerce/legacy/sinShop.cpp,1832,cMessageBox.ShowMessage(MESSAGE_OVER_MONEY);
+systems/commerce/legacy/sinShop.cpp,1841,cMessageBox.ShowMessage(MESSAGE_OVER_MONEY);
+systems/commerce/legacy/sinShop.cpp,1849,cMessageBox.ShowMessage(MESSAGE_OVER_MONEY);
+systems/commerce/legacy/sinShop.cpp,1858,cMessageBox.ShowMessage(MESSAGE_OVER_MONEY);
+systems/commerce/legacy/sinShop.cpp,1888,if (ReStartFlag)
+systems/commerce/legacy/sinShop.cpp,2165,cMessageBox.ShowMessage(MESSAGE_NOT_MYSHOP_ITEM);
+systems/commerce/legacy/sinShop.cpp,2183,cMessageBox.ShowMessage(MESSAGE_NOT_MYSHOP_ITEM);
+systems/commerce/legacy/sinShop.cpp,2193,cMessageBox.ShowMessage(MESSAGE_NOT_MYSHOP_ITEM);
+systems/commerce/legacy/sinShop.cpp,2203,cMessageBox.ShowMessage(MESSAGE_NOT_MYSHOP_ITEM);
+systems/commerce/legacy/sinShop.cpp,2212,cMessageBox.ShowMessage(MESSAGE_NOT_MYSHOP_ITEM);
+systems/commerce/legacy/sinShop.cpp,2222,cMessageBox.ShowMessage(MESSAGE_NOT_MYSHOP_ITEM);
+systems/commerce/legacy/sinShop.cpp,2232,cMessageBox.ShowMessage(MESSAGE_NOT_MYSHOP_ITEM);
+systems/commerce/legacy/sinShop.cpp,2241,cMessageBox.ShowMessage(MESSAGE_NOT_MYSHOP_ITEM);
+systems/commerce/legacy/sinShop.cpp,2247,cMessageBox.ShowMessage2(MESSAGE_MYSHOP_ITEM);
+systems/commerce/legacy/sinShop.cpp,2253,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/commerce/legacy/sinShop.cpp,2789,cMessageBox.ShowMessage(MESSAGE_MYSHOP_ITEM_DOWN);
+systems/commerce/legacy/sinShop.cpp,2792,cMessageBox.ShowMessage(MESSAGE_MYSHOP_CLOSE);
+systems/commerce/legacy/sinShop.cpp,2795,cMessageBox.ShowMessage(MESSAGE_MYSHOP_NOT_SEARCH);
+systems/commerce/legacy/sinShop.cpp,2806,cMessageBox.ShowMessage(MESSAGE_MYSHOP_POTION_NUM2);
+systems/commerce/legacy/sinShop.cpp,2816,cMessageBox.ShowMessage(MESSAGE_MYSHOP_CHANGE_PRICE);
+systems/commerce/legacy/sinShop.cpp,2825,cMessageBox.ShowMessage(MESSAGE_MYSHOP_CHANGE_PRICE);
+systems/commerce/legacy/sinShop.cpp,2958,cMessageBox.ShowMessage2(MESSAGE_MYSHOP_POTION);
+systems/commerce/legacy/sinShop.cpp,2963,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/commerce/legacy/sinShop.cpp,2969,if (cCoinShop.Coin < (int)sMyShop_Server.Temp[0])
+systems/commerce/legacy/sinShop.cpp,2971,"cMessageBox.ShowMessage(""Coins Insuficientes!"");"
+systems/commerce/legacy/sinShop.cpp,2982,"cMessageBox.ShowMessage3(MESSAGE_MYSHOP_ITEM_BUY, sRecvMyShop.sMyShopItem[Index2 - 1].sItem.ItemName);"
+systems/commerce/legacy/sinShop.cpp,2986,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/commerce/legacy/sinShop.cpp,2991,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/commerce/legacy/sinShop.cpp,2997,cMessageBox.ShowMessage(MESSAGE_NOT_ENOUGH_MONEY);
+systems/commerce/legacy/sinTrade.cpp,1586,cMessageBox.ShowMessage2(MESSAGE_MOVE_MONEY_TRADE);
+systems/commerce/legacy/sinTrade.cpp,1589,cMessageBox.ShowMessage2(MESSAGE_MOVE_COIN_TRADE);
+systems/commerce/legacy/sinTrade.cpp,1619,cMessageBox.ShowMessage2(MESSAGE_MOVE_MONEY_RECV);
+systems/commerce/legacy/sinTrade.cpp,1806,cMessageBox.ShowMessage(MESSAGE_NOT_RECONITEM);
+systems/commerce/legacy/sinTrade.cpp,1816,cMessageBox.ShowMessage(MESSAGE_NOT_CRAFT_ITEM);
+systems/commerce/legacy/sinTrade.cpp,1824,cMessageBox.ShowMessage(MESSAGE_NOT_ENOUGH_MONEY);
+systems/commerce/legacy/sinTrade.cpp,1888,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/commerce/legacy/sinTrade.cpp,1906,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/commerce/legacy/sinTrade.cpp,1932,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/commerce/legacy/sinTrade.cpp,1972,cMessageBox.ShowMessage(MESSAGE_CANNOT_RECONITEM);
+systems/commerce/legacy/sinTrade.cpp,1975,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/commerce/legacy/sinTrade.cpp,1983,cMessageBox.ShowMessage(MESSAGE_NOT_CRAFT_ITEM);
+systems/commerce/legacy/sinTrade.cpp,1988,cMessageBox.ShowMessage(MESSAGE_NOT_CRAFT_ITEM);
+systems/commerce/legacy/sinTrade.cpp,2006,cMessageBox.ShowMessage(MESSAGE_NOT_MIXTURE_RESET_STONE);
+systems/commerce/legacy/sinTrade.cpp,2038,cMessageBox.ShowMessage(MESSAGE_NOT_CANCEL_RESET);
+systems/commerce/legacy/sinTrade.cpp,2085,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/commerce/legacy/sinTrade.cpp,2128,cMessageBox.ShowMessage(MESSAGE_NOT_CANCEL_RESET);
+systems/commerce/legacy/sinTrade.cpp,2174,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/commerce/legacy/sinTrade.cpp,2185,cMessageBox.ShowMessage(MESSAGE_NOT_AGING_ITEM);
+systems/commerce/legacy/sinTrade.cpp,2192,cMessageBox.ShowMessage(MESSAGE_NOT_ENOUGH_MONEY);
+systems/commerce/legacy/sinTrade.cpp,2249,cMessageBox.ShowMessage(MESSAGE_NOT_AGINGSHELTOM);
+systems/commerce/legacy/sinTrade.cpp,2303,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/commerce/legacy/sinTrade.cpp,2324,cMessageBox.ShowMessage(MESSAGE_NOT_SAME_SMELTINGITEM);
+systems/commerce/legacy/sinTrade.cpp,2334,cMessageBox.ShowMessage(MESSAGE_NOT_ENOUGH_MONEY);
+systems/commerce/legacy/sinTrade.cpp,2422,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/commerce/legacy/sinTrade.cpp,2444,cMessageBox.ShowMessage(MESSAGE_NOT_NEED_RUNE);
+systems/commerce/legacy/sinTrade.cpp,2449,cMessageBox.ShowMessage(MESSAGE_NOT_ENOUGH_MONEY);
+systems/commerce/legacy/sinTrade.cpp,2530,"cMessageBox.ShowMessage3(MESSAGE_MANUFACTURE, ResultItem.ItemName);"
+systems/commerce/legacy/sinTrade.cpp,2537,cMessageBox.ShowMessage(MESSAGE_NOT_ENOUGH_MONEY);
+systems/commerce/legacy/sinTrade.cpp,2542,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/commerce/legacy/sinTrade.cpp,2548,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/commerce/legacy/sinTrade.cpp,2579,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/commerce/legacy/sinTrade.cpp,2594,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/commerce/legacy/sinTrade.cpp,2610,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/commerce/legacy/sinTrade.cpp,2626,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/commerce/legacy/sinTrade.cpp,2642,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/commerce/legacy/sinTrade.cpp,2657,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/commerce/legacy/sinTrade.cpp,2671,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/commerce/legacy/sinTrade.cpp,3499,cMessageBox.ShowMessage(MESSAGE_TRADE_OVER_NUM);
+systems/commerce/legacy/sinTrade.cpp,3590,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/commerce/legacy/sinTrade.cpp,3600,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/commerce/legacy/sinTrade.cpp,3719,cCoinShop.Coin += sTradeRecv.Coin;
+systems/commerce/legacy/sinTrade.cpp,3795,cCoinShop.Coin += sTradeRecv.Coin;
+systems/commerce/legacy/sinTrade.cpp,3834,cMessageBox.ShowMessage(MESSAGE_TRADE_CANCEL);
+systems/commerce/legacy/sinTrade.cpp,4096,cMessageBox.ShowMessage(MESSAGE_OVER_ITEM_NUM);
+systems/commerce/legacy/sinTrade.cpp,4173,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/commerce/legacy/sinTrade.cpp,4209,cMessageBox.ShowMessage(MESSAGE_POTION_NOT_SETTING);
+systems/commerce/legacy/sinTrade.cpp,4215,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/commerce/legacy/sinTrade.cpp,5203,cMessageBox.ShowMessage(MESSAGE_NOT_RECONITEM);
+systems/commerce/legacy/sinTrade.cpp,5348,cMessageBox.ShowMessage(MESSAGE_NOT_AGINGPICKUP);
+systems/commerce/legacy/sinTrade.cpp,5416,cMessageBox.ShowMessage(MESSAGE_NOT_AGINGPICKUP);
+systems/commerce/legacy/sinTrade.cpp,7094,cMessageBox.ShowMessage(MESSAGE_QUEST_ITEM_AGING);
+systems/commerce/legacy/sinTrade.cpp,7148,cMessageBox.ShowMessage(MESSAGE_AGING_LEVEL_DOWN1);
+systems/commerce/legacy/sinTrade.cpp,7152,cMessageBox.ShowMessage(MESSAGE_AGING_LEVEL_DOWN2);
+systems/commerce/legacy/sinTrade.cpp,7156,cMessageBox.ShowMessage(MESSAGE_AGING_LEVEL_PLUS);
+systems/commerce/legacy/sinTrade.cpp,7160,cMessageBox.ShowMessage(MESSAGE_AGING_LEVEL_PLUS2);
+systems/commerce/legacy/sinTrade.cpp,7171,cMessageBox.ShowMessage(MESSAGE_FAILD_AGING_ITEM);
+systems/commerce/legacy/sinTrade.cpp,7417,cMessageBox.ShowMessage(MESSAGE_RECONITEM_OK);
+systems/commerce/legacy/sinTrade.cpp,7491,cMessageBox.ShowMessage(MESSAGE_FAILD_CRAFT_ITEM);
+systems/commerce/legacy/sinTrade.cpp,7626,"cSinHelp.sinShowHelp(SIN_HELP_KIND_POSTBOX, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, 15,"
+systems/commerce/legacy/sinTrade.cpp,8060,cMessageBox.ShowMessage(MESSAGE_NOT_MIXTURE_RESET_ITEM);
+systems/commerce/legacy/sinTrade.cpp,8237,cMessageBox.ShowMessage(MESSAGE_OK_MIXTURE_RESET_ITEM);
+systems/commerce/legacy/sinTrade.cpp,8251,cMessageBox.ShowMessage(MESSAGE_FAIL_MIXTURE_RESET_ITEM);
+systems/commerce/legacy/sinTrade.cpp,8470,cMessageBox.ShowMessage(MESSAGE_NOT_MIXTURE_RESET_ITEM);
+systems/commerce/legacy/sinTrade.cpp,8677,cMessageBox.ShowMessage(MESSAGE_OK_MIXTURE_RESET_ITEM);
+systems/commerce/legacy/sinTrade.cpp,8691,cMessageBox.ShowMessage(MESSAGE_FAIL_MIXTURE_RESET_ITEM);
+systems/commerce/legacy/sinTrade.cpp,9173,cMessageBox.ShowMessage(MESSAGE_NOT_SMELTING);
+systems/commerce/legacy/sinTrade.cpp,9311,cMessageBox.ShowMessage(MESSAGE_FAILD_SMELTING_ITEM);
+systems/commerce/legacy/sinTrade.cpp,9809,cMessageBox.ShowMessage(MESSAGE_NOT_MANUFACTURE);
+systems/commerce/legacy/sinTrade.cpp,10131,cMessageBox.ShowMessage(MESSAGE_FAILD_MANUFACTURE_ITEM);
+systems/commerce/premium/HaPremiumItem.cpp,15,cHaPremiumItem  chaPremiumitem;
+systems/commerce/premium/HaPremiumItem.cpp,81,cHaPremiumItem::cHaPremiumItem()
+systems/commerce/premium/HaPremiumItem.cpp,139,cHaPremiumItem::~cHaPremiumItem()
+systems/commerce/premium/HaPremiumItem.cpp,151,void cHaPremiumItem::init()
+systems/commerce/premium/HaPremiumItem.cpp,226,void cHaPremiumItem::Main()
+systems/commerce/premium/HaPremiumItem.cpp,229,if(chaPremiumitem.haItemUseDelayFlag == true)
+systems/commerce/premium/HaPremiumItem.cpp,234,chaPremiumitem.haItemUseDelayFlag = false;
+systems/commerce/premium/HaPremiumItem.cpp,239,if (chaPremiumitem.bUpdateTimeDelayFlag == true)
+systems/commerce/premium/HaPremiumItem.cpp,244,chaPremiumitem.bUpdateTimeDelayFlag = false;
+systems/commerce/premium/HaPremiumItem.cpp,454,"chaPremiumitem.SetItemPremiumTime(chaPremiumitem.UpKeepItem[i].TGAImageNumber, NULL);"
+systems/commerce/premium/HaPremiumItem.cpp,455,switch(chaPremiumitem.UpKeepItem[i].TGAImageNumber)
+systems/commerce/premium/HaPremiumItem.cpp,461,chaPremiumitem.SetBigHead1Time(0);
+systems/commerce/premium/HaPremiumItem.cpp,462,chaPremiumitem.SetBigHead2Time(0);
+systems/commerce/premium/HaPremiumItem.cpp,463,chaPremiumitem.SetBigHead3Time(0);
+systems/commerce/premium/HaPremiumItem.cpp,464,chaPremiumitem.SetBigHead4Time(0);
+systems/commerce/premium/HaPremiumItem.cpp,465,chaPremiumitem.SetBigHeadTime(0);
+systems/commerce/premium/HaPremiumItem.cpp,466,chaPremiumitem.SetBigHeadType(0);
+systems/commerce/premium/HaPremiumItem.cpp,470,case nsPremiumItem::EXPUP_POTION: chaPremiumitem.m_ExpUpPotionTime = 0; break;
+systems/commerce/premium/HaPremiumItem.cpp,474,case nsPremiumItem::HELP_PET_TERRY: chaPremiumitem.m_HelpPetTime = 0; break;
+systems/commerce/premium/HaPremiumItem.cpp,475,case nsPremiumItem::MANA_RECHAR_P: chaPremiumitem.m_ManaRechargingPTime = 0; break;
+systems/commerce/premium/HaPremiumItem.cpp,476,case nsPremiumItem::STAMINA_RECHAR_P: chaPremiumitem.m_StaminaRechargingPTime = 0; break;
+systems/commerce/premium/HaPremiumItem.cpp,477,case nsPremiumItem::MANA_REDUCE_P: chaPremiumitem.m_ManaReducePotiontime = 0; break;
+systems/commerce/premium/HaPremiumItem.cpp,478,case nsPremiumItem::MIGHT_OF_AWELL: chaPremiumitem.m_MightofAwellTime = 0; break;
+systems/commerce/premium/HaPremiumItem.cpp,479,case nsPremiumItem::PHENIX_PET: chaPremiumitem.m_PhenixPetTime = 0; break;
+systems/commerce/premium/HaPremiumItem.cpp,480,case nsPremiumItem::STAMINA_REDUCE_P: chaPremiumitem.m_StaminaReducePotiontime = 0; break;
+systems/commerce/premium/HaPremiumItem.cpp,481,case nsPremiumItem::THIRD_EYES: chaPremiumitem.m_ThirdEyesTime = 0; break;
+systems/commerce/premium/HaPremiumItem.cpp,482,case nsPremiumItem::VAMPIRIC_CUS: chaPremiumitem.m_VampiricCuspidTime = 0; break;
+systems/commerce/premium/HaPremiumItem.cpp,483,case nsPremiumItem::VAMPIRIC_CUS_EX: chaPremiumitem.m_VampiricCuspidEXTime = 0; break;
+systems/commerce/premium/HaPremiumItem.cpp,484,case nsPremiumItem::CARAVAN: chaPremiumitem.m_CaravanTime = 0; break;
+systems/commerce/premium/HaPremiumItem.cpp,485,case nsPremiumItem::GoldLooter: chaPremiumitem.m_GoldLooterPTime = 0; break;
+systems/commerce/premium/HaPremiumItem.cpp,486,case nsPremiumItem::HP_BOOSTER: chaPremiumitem.m_HPBoosterPTime = 0; break;
+systems/commerce/premium/HaPremiumItem.cpp,487,case nsPremiumItem::MP_BOOSTER: chaPremiumitem.m_MPBoosterPTime = 0; break;
+systems/commerce/premium/HaPremiumItem.cpp,488,case nsPremiumItem::RES_BOOSTER: chaPremiumitem.m_RESBoosterPTime = 0; break;
+systems/commerce/premium/HaPremiumItem.cpp,493,Packet.LParam = chaPremiumitem.UpKeepItem[i].TGAImageNumber;
+systems/commerce/premium/HaPremiumItem.cpp,507,void cHaPremiumItem::Draw()
+systems/commerce/premium/HaPremiumItem.cpp,526,int  cHaPremiumItem::CheckTime(DWORD CurrentTime)
+systems/commerce/premium/HaPremiumItem.cpp,541,void cHaPremiumItem::SetBigHead1Time(DWORD Time)
+systems/commerce/premium/HaPremiumItem.cpp,559,void cHaPremiumItem::DrawUp()
+systems/commerce/premium/HaPremiumItem.cpp,619,chaPremiumitem.m_ThirdEyesTime = 0;
+systems/commerce/premium/HaPremiumItem.cpp,651,chaPremiumitem.m_ExpUpPotionTime = 0;
+systems/commerce/premium/HaPremiumItem.cpp,709,chaPremiumitem.m_ManaReducePotiontime = 0;
+systems/commerce/premium/HaPremiumItem.cpp,710,chaPremiumitem.m_ManaReducePotionValue = 0;
+systems/commerce/premium/HaPremiumItem.cpp,711,chaPremiumitem.SetManaReducePotionTime(chaPremiumitem.m_ManaReducePotiontime);
+systems/commerce/premium/HaPremiumItem.cpp,744,chaPremiumitem.m_VampiricCuspidTime = 0;
+systems/commerce/premium/HaPremiumItem.cpp,777,chaPremiumitem.m_VampiricCuspidEXTime = 0;
+systems/commerce/premium/HaPremiumItem.cpp,810,chaPremiumitem.m_ManaRechargingPTime = 0;
+systems/commerce/premium/HaPremiumItem.cpp,811,chaPremiumitem.SetManaRechargingPTime(chaPremiumitem.m_ManaRechargingPTime);
+systems/commerce/premium/HaPremiumItem.cpp,843,chaPremiumitem.m_StaminaRechargingPTime = 0;
+systems/commerce/premium/HaPremiumItem.cpp,844,chaPremiumitem.SetStaminaRechargingPTime(chaPremiumitem.m_StaminaRechargingPTime);
+systems/commerce/premium/HaPremiumItem.cpp,876,chaPremiumitem.m_GoldLooterPTime = 0;
+systems/commerce/premium/HaPremiumItem.cpp,877,chaPremiumitem.SetGoldLooterPTime(chaPremiumitem.m_GoldLooterPTime);
+systems/commerce/premium/HaPremiumItem.cpp,910,chaPremiumitem.m_HPBoosterPTime = 0;
+systems/commerce/premium/HaPremiumItem.cpp,911,chaPremiumitem.SetHPBoosterPTime(chaPremiumitem.m_HPBoosterPTime);
+systems/commerce/premium/HaPremiumItem.cpp,943,chaPremiumitem.m_MPBoosterPTime = 0;
+systems/commerce/premium/HaPremiumItem.cpp,944,chaPremiumitem.SetMPBoosterPTime(chaPremiumitem.m_MPBoosterPTime);
+systems/commerce/premium/HaPremiumItem.cpp,976,chaPremiumitem.m_RESBoosterPTime = 0;
+systems/commerce/premium/HaPremiumItem.cpp,977,chaPremiumitem.SetRESBoosterPTime(chaPremiumitem.m_RESBoosterPTime);
+systems/commerce/premium/HaPremiumItem.cpp,1009,chaPremiumitem.m_StaminaReducePotiontime = 0;
+systems/commerce/premium/HaPremiumItem.cpp,1010,chaPremiumitem.m_StaminaReducePotionValue = 0;
+systems/commerce/premium/HaPremiumItem.cpp,1011,chaPremiumitem.SetStaminaReducePotionTime(chaPremiumitem.m_StaminaReducePotiontime);
+systems/commerce/premium/HaPremiumItem.cpp,1057,chaPremiumitem.m_CaravanTime = 0;
+systems/commerce/premium/HaPremiumItem.cpp,1058,chaPremiumitem.SetCaravanTime(chaPremiumitem.m_CaravanTime);
+systems/commerce/premium/HaPremiumItem.cpp,1072,chaPremiumitem.UpKeepItem[i].PosiX = 0;
+systems/commerce/premium/HaPremiumItem.cpp,1073,chaPremiumitem.UpKeepItem[i].PosiY = 0;
+systems/commerce/premium/HaPremiumItem.cpp,1074,chaPremiumitem.UpKeepItem[i].Visible = false;
+systems/commerce/premium/HaPremiumItem.cpp,1075,chaPremiumitem.UpKeepItem[i].TGAImageNumber = 0;
+systems/commerce/premium/HaPremiumItem.cpp,1076,chaPremiumitem.UpKeepItem[i].IconTime[0] = 0;
+systems/commerce/premium/HaPremiumItem.cpp,1077,chaPremiumitem.UpKeepItem[i].IconTime[1] = 0;
+systems/commerce/premium/HaPremiumItem.cpp,1078,chaPremiumitem.UpKeepItem[i].Alpha = 255;
+systems/commerce/premium/HaPremiumItem.cpp,1079,chaPremiumitem.UpKeepItem[i].Alphakind = 0;
+systems/commerce/premium/HaPremiumItem.cpp,1080,chaPremiumitem.UpKeepItem[i].Per = 0;
+systems/commerce/premium/HaPremiumItem.cpp,1081,"memset(chaPremiumitem.UpKeepItem[i].Id, NULL, sizeof(chaPremiumitem.UpKeepItem[i].Id));"
+systems/commerce/premium/HaPremiumItem.cpp,1132,"void cHaPremiumItem::LButtonDown(int x, int y)"
+systems/commerce/premium/HaPremiumItem.cpp,1139,"cSinHelp.sinShowHelp(SIN_HELP_KIND_TELEPORT_SCROLL, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGB"
+systems/commerce/premium/HaPremiumItem.cpp,1145,"cSinHelp.sinShowHelp(SIN_HELP_KIND_TELEPORT_SCROLL, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGB"
+systems/commerce/premium/HaPremiumItem.cpp,1149,"void cHaPremiumItem::LButtonUp(int x, int y)"
+systems/commerce/premium/HaPremiumItem.cpp,1155,int cHaPremiumItem::UsePremiumItem(int kind)
+systems/commerce/premium/HaPremiumItem.cpp,1159,chaPremiumitem.bUpdateTimeDelayFlag = true;
+systems/commerce/premium/HaPremiumItem.cpp,1734,cMessageBox.ShowMessage(MESSAGE_GRAVITYSCROOLFAIL);
+systems/commerce/premium/HaPremiumItem.cpp,1738,cMessageBox.ShowMessage(MESSAGE_GRAVITYSCROOLOK);
+systems/commerce/premium/HaPremiumItem.cpp,2033,chaPremiumitem.SetCaravanTime((3 * 24 * 60 * 60));
+systems/commerce/premium/HaPremiumItem.cpp,2034,"chaPremiumitem.SetUpKeepItem(nsPremiumItem::CARAVAN, (3 * 24 * 60 * 60), true, ""Caravana"");"
+systems/commerce/premium/HaPremiumItem.cpp,2038,chaPremiumitem.SetCaravanTime((7 * 24 * 60 * 60));
+systems/commerce/premium/HaPremiumItem.cpp,2039,"chaPremiumitem.SetUpKeepItem(nsPremiumItem::CARAVAN, (7 * 24 * 60 * 60), true, ""Caravana"");"
+systems/commerce/premium/HaPremiumItem.cpp,2128,int cHaPremiumItem::SetPremiumItemSkill(int kind)
+systems/commerce/premium/HaPremiumItem.cpp,2154,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/commerce/premium/HaPremiumItem.cpp,2174,int cHaPremiumItem::UseTeleportScrollItem(short ItemIndex)
+systems/commerce/premium/HaPremiumItem.cpp,2176,if(!chaPremiumitem.TelePortCore.FieldIndex[1])return FALSE;
+systems/commerce/premium/HaPremiumItem.cpp,2180,cMessageBox.ShowMessage(MESSAGE_NO_USE_ITEM);
+systems/commerce/premium/HaPremiumItem.cpp,2187,if((chaPremiumitem.TelePortCore.FieldIndex[1] - 1) == TelePort_FieldNum[i][0])
+systems/commerce/premium/HaPremiumItem.cpp,2195,cInvenTory.InvenItem[chaPremiumitem.TelePortCore.ItemIndex].sItemInfo.PotionCount = 300;
+systems/commerce/premium/HaPremiumItem.cpp,2196,sinThrowItemToFeild(&cInvenTory.InvenItem[chaPremiumitem.TelePortCore.ItemIndex]);
+systems/commerce/premium/HaPremiumItem.cpp,2197,cInvenTory.InvenItem[chaPremiumitem.TelePortCore.ItemIndex].Flag = 0;
+systems/commerce/premium/HaPremiumItem.cpp,2204,cMessageBox.ShowMessage(MESSAGE_NOT_ENOUGH_LEVEL);
+systems/commerce/premium/HaPremiumItem.cpp,2210,int cHaPremiumItem::CheckWindowOpen()
+systems/commerce/premium/HaPremiumItem.cpp,2218,if(cSinHelp.NPCTeleportFlag)return false;
+systems/commerce/premium/HaPremiumItem.cpp,2237,int cHaPremiumItem::CheckUpKeepItem()
+systems/commerce/premium/HaPremiumItem.cpp,2256,"int cHaPremiumItem::SetUpKeepItem(int kind, DWORD dwTime, bool visible, char* id, int Percent, short ItemType)"
+systems/commerce/premium/HaPremiumItem.cpp,2278,cMessageBox.ShowMessage(MESSAGE_ASATTRIBUTE_USE);
+systems/commerce/premium/HaPremiumItem.cpp,2315,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/commerce/premium/HaPremiumItem.cpp,2326,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/commerce/premium/HaPremiumItem.cpp,2337,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/commerce/premium/HaPremiumItem.cpp,2350,cMessageBox.ShowMessage(MESSAGE_ASATTRIBUTE_USE);
+systems/commerce/premium/HaPremiumItem.cpp,2363,"void cHaPremiumItem::InfoBox(int PoisX, int PosiY, int Width, int Height)"
+systems/commerce/premium/HaPremiumItem.cpp,2391,int cHaPremiumItem::DrawText()
+systems/commerce/premium/HaPremiumItem.cpp,2409,if(cSinHelp.sinGetHelpShowFlag())break;
+systems/commerce/premium/HaPremiumItem.cpp,2564,void cHaPremiumItem::UpdatePremiumTime()
+systems/commerce/premium/HaPremiumItem.cpp,2576,int cHaPremiumItem::UseHairtintPotion(int ItemKind)
+systems/commerce/premium/HaPremiumItem.cpp,2694,cMessageBox.ShowMessage(MESSAGE_NOT_HAIRTINTPOTION);
+systems/commerce/premium/HaPremiumItem.cpp,2700,int cHaPremiumItem::UseAgingMaster(int ItemKind)
+systems/commerce/premium/HaPremiumItem.cpp,2708,cMessageBox.ShowMessage(MESSAGE_AGING_MATURE_SUCCESS);
+systems/commerce/premium/HaPremiumItem.cpp,2715,cMessageBox.ShowMessage(MESSAGE_AGING_MATURE_SUCCESS);
+systems/commerce/premium/HaPremiumItem.cpp,2721,cMessageBox.ShowMessage(MESSAGE_AGING_MATURE_SUCCESS);
+systems/commerce/premium/HaPremiumItem.cpp,2727,cMessageBox.ShowMessage(MESSAGE_AGING_MATURE_SUCCESS);
+systems/commerce/premium/HaPremiumItem.cpp,2732,cMessageBox.ShowMessage(MESSAGE_AGING_MATURE_SUCCESS);
+systems/commerce/premium/HaPremiumItem.cpp,2737,cMessageBox.ShowMessage(MESSAGE_AGING_MATURE_SUCCESS);
+systems/commerce/premium/HaPremiumItem.cpp,2742,cMessageBox.ShowMessage(MESSAGE_AGING_MATURE_SUCCESS);
+systems/commerce/premium/HaPremiumItem.cpp,2750,int cHaPremiumItem::UseSkillMaster(int ItemKind)
+systems/commerce/premium/HaPremiumItem.cpp,2766,cMessageBox.ShowMessage(MESSAGE_SKILL_MATURE_SUCCESS);
+systems/commerce/premium/HaPremiumItem.cpp,2782,cMessageBox.ShowMessage(MESSAGE_SKILL_MATURE_SUCCESS);
+systems/commerce/premium/HaPremiumItem.cpp,2798,cMessageBox.ShowMessage(MESSAGE_SKILL_MATURE_SUCCESS);
+systems/commerce/premium/HaPremiumItem.cpp,2809,int cHaPremiumItem::UseMoveShop()
+systems/commerce/premium/HaPremiumItem.cpp,2826,int cHaPremiumItem::UseMoveAging()
+systems/commerce/premium/HaPremiumItem.cpp,2840,int cHaPremiumItem::UseMoveMix()
+systems/commerce/premium/HaPremiumItem.cpp,2854,int cHaPremiumItem::UseMoveForce()
+systems/commerce/premium/HaPremiumItem.cpp,2868,int cHaPremiumItem::UseMoveBau()
+systems/commerce/premium/HaPremiumItem.cpp,2882,int cHaPremiumItem::UseMoveCraft()
+systems/commerce/premium/HaPremiumItem.cpp,2896,int cHaPremiumItem::UseMoveRuna()
+systems/commerce/premium/HaPremiumItem.cpp,2910,int cHaPremiumItem::UseMoveClear()
+systems/commerce/premium/HaPremiumItem.cpp,2924,"void cHaPremiumItem::SetItemPremiumTime(int iType, int i)"
+systems/commerce/restoration/cRestaureWindow.cpp,67,"NumLineComa(cCoinShop.Coin, buff);"
+systems/commerce/restoration/cRestaureWindow.cpp,135,"cMessageBox.ShowMessageEvent(""Voc\352 n\343o tem itens para restaurar."");"
+systems/commerce/restoration/cRestaureWindow.cpp,141,if (cCoinShop.Coin < Item->CoinPrice)
+systems/commerce/restoration/cRestaureWindow.cpp,143,"cMessageBox.ShowMessageEvent(""Voc\352 n\343o tem cr\351dito suficiente."");"
+systems/commerce/restoration/cRestaureWindow.cpp,150,"cMessageBox.ShowMessageEvent(""Voc\352 n\343o tem espa\347o suficiente no invent\341rio."");"
+systems/commerce/restoration/cRestaureWindow.cpp,156,"cMessageBox.ShowMessageEvent(""Excede o peso limite."");"
+systems/crafting/professions/JOBS.cpp,23,"cMessageBox.ShowMessage3(MESSAGE_JOBS, vsfvtnc);"
+systems/crafting/professions/JOBS.cpp,39,"cMessageBox.ShowMessage3(MESSAGE_JOBS_SELL, vsfvtnc);"
+systems/crafting/professions/JOBS.cpp,44,cMessageBox.ShowMessage(34);
+systems/crafting/professions/JOBS.cpp,72,"cMessageBox.ShowMessage3(MESSAGE_JOBS_BUY, ""Deseja comprar?"");"
+systems/gameplay/character/status_ui/sinCharStatus.cpp,221,"dsDrawTexImage(cSinHelp.MatScrollBar, 285, 302, 8, 111, 255); // bar"
+systems/gameplay/character/status_ui/sinCharStatus.cpp,226,"dsDrawTexImage(cSinHelp.MatScrollButton, 281, 402 - scrolly, 16, 16, 255);"
+systems/gameplay/character/status_ui/sinCharStatus.cpp,248,"dsDrawTexImage(cSinHelp.MatScrollBar, 289, 416, 8, 150, 255); // bar"
+systems/gameplay/character/status_ui/sinCharStatus.cpp,253,"dsDrawTexImage(cSinHelp.MatScrollButton, 285, 416 + 133 - scrolly, 16, 16, 255);"
+systems/gameplay/character/status_ui/sinCharStatus.cpp,1369,cMessageBox.ShowMessage(MESSAGE_ALREADY_INITSTATE);
+systems/gameplay/character/status_ui/sinCharStatus.cpp,1380,cMessageBox.ShowMessage(MESSAGE_GYUNGFUM_OK);
+systems/gameplay/character/status_ui/sinCharStatus.cpp,1483,cMessageBox.ShowMessage(MESSAGE_GYUNGFUM_OK);
+systems/gameplay/events/bellatra/legacy_sin/sinSOD2.cpp,608,cMessageBox.ShowMessage2(MESSAGE_SOD2_GET_MONEY);
+systems/gameplay/events/bellatra/legacy_sin/sinSOD2.cpp,613,cMessageBox.ShowMessage(MESSAGE_DONT_HAVE_CLANMONEY);
+systems/gameplay/events/bellatra/legacy_sin/sinSOD2.cpp,1051,cMessageBox.ShowMessage2(MESSAGE_SOD2_GET_MONEY);
+systems/gameplay/events/bellatra/legacy_sin/sinSOD2.cpp,1062,cMessageBox.ShowMessage(MESSAGE_DONT_HAVE_CLANMONEY);
+systems/gameplay/events/bellatra/legacy_sin/sinSOD2.cpp,1507,"cMessageBox.ShowMessage3(MESSAGE_EVENT_SMASHTV, """");"
+systems/gameplay/events/bellatra/legacy_sin/sinSOD2.cpp,1945,"cSinHelp.sinShowHelp(SIN_HELP_KIND_C_TELEPORT, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, "
+systems/gameplay/events/bellatra/legacy_sin/sinSOD2.cpp,1949,"cSinHelp.sinShowHelp(SIN_HELP_KIND_C_TELEPORT, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, "
+systems/gameplay/events/bellatra/legacy_sin/sinSOD2.cpp,2212,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/gameplay/events/bellatra/legacy_sin/sinSOD2.cpp,2323,cMessageBox.ShowMessage2(MESSAGE_SIEGE_SET_MERCENRAY);
+systems/gameplay/events/bellatra/legacy_sin/sinSOD2.cpp,2338,"cMessageBox.ShowMessage3(MESSAGE_CASTLE_BUYTOWER, ""ICE"");"
+systems/gameplay/events/bellatra/legacy_sin/sinSOD2.cpp,2341,"cMessageBox.ShowMessage3(MESSAGE_CASTLE_BUYTOWER, ""LIGHTING"");"
+systems/gameplay/events/bellatra/legacy_sin/sinSOD2.cpp,2344,"cMessageBox.ShowMessage3(MESSAGE_CASTLE_BUYTOWER, ""FIRE"");"
+systems/gameplay/events/bellatra/legacy_sin/sinSOD2.cpp,2383,cMessageBox.ShowMessage(MESSAGE_NOT_CASTLE_TOTALMONEY);
+systems/gameplay/events/bellatra/legacy_sin/sinSOD2.cpp,2387,cMessageBox.ShowMessage2(MESSAGE_SIEGE_GET_MONEY);
+systems/gameplay/events/hells_gate/cHellsGate.cpp,13,"cMessageBox.ShowMessage3(MESSAGE_ENTER_HG, ""Deseja entrar na arena?"");"
+systems/gameplay/quests/legacy/HaQuest.cpp,96,cMessageBox.ShowMessage(MESSAGE_QUEST_NOW_EXIT);
+systems/gameplay/quests/legacy/HaQuest.cpp,103,cMessageBox.ShowMessage(MESSAGE_QUEST_NOW_EXIT);
+systems/gameplay/quests/legacy/HaQuest.cpp,114,if(cSinHelp.sinGetHelpShowFlag()) return FALSE;
+systems/gameplay/quests/legacy/HaQuest.cpp,131,"cSinHelp.sinShowHelp(HAQUEST_CODE_ELEMENTARY_X, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y,"
+systems/gameplay/quests/legacy/HaQuest.cpp,221,"cSinHelp.sinShowHelp(HAQUEST_CODE_ELEMENTARY_A, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y,"
+systems/gameplay/quests/legacy/HaQuest.cpp,225,"cSinHelp.sinShowHelp(HAQUEST_CODE_ELEMENTARY_A, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y,"
+systems/gameplay/quests/legacy/HaQuest.cpp,232,"cSinHelp.sinShowHelp(HAQUEST_CODE_ELEMENTARY_A, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y,"
+systems/gameplay/quests/legacy/HaQuest.cpp,244,"cSinHelp.sinShowHelp(HAQUEST_CODE_ELEMENTARY_A, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y,"
+systems/gameplay/quests/legacy/HaQuest.cpp,259,"cSinHelp.sinShowHelp(HAQUEST_CODE_ELEMENTARY_B, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y,"
+systems/gameplay/quests/legacy/HaQuest.cpp,262,"cSinHelp.sinShowHelp(HAQUEST_CODE_ELEMENTARY_B, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y,"
+systems/gameplay/quests/legacy/HaQuest.cpp,297,cMessageBox.ShowMessageEvent(szBuff);
+systems/gameplay/quests/legacy/HaQuest.cpp,302,"cSinHelp.sinShowHelp(HAQUEST_CODE_ELEMENTARY_B, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y,"
+systems/gameplay/quests/legacy/HaQuest.cpp,305,"cSinHelp.sinShowHelp(HAQUEST_CODE_ELEMENTARY_B, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y,"
+systems/gameplay/quests/legacy/HaQuest.cpp,311,"cSinHelp.sinShowHelp(HAQUEST_CODE_ELEMENTARY_B, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y,"
+systems/gameplay/quests/legacy/HaQuest.cpp,329,"cSinHelp.sinShowHelp(HAQUEST_CODE_ELEMENTARY_C, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y,"
+systems/gameplay/quests/legacy/HaQuest.cpp,332,"cSinHelp.sinShowHelp(HAQUEST_CODE_ELEMENTARY_C, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y,"
+systems/gameplay/quests/legacy/HaQuest.cpp,336,"cSinHelp.sinShowHelp(HAQUEST_CODE_ELEMENTARY_C, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y,"
+systems/gameplay/quests/legacy/HaQuest.cpp,349,"cSinHelp.sinShowHelp(HAQUEST_CODE_ELEMENTARY_C, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y,"
+systems/gameplay/quests/legacy/HaQuest.cpp,368,"cSinHelp.sinShowHelp(HAQUEST_CODE_ELEMENTARY_D, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y,"
+systems/gameplay/quests/legacy/HaQuest.cpp,371,"cSinHelp.sinShowHelp(HAQUEST_CODE_ELEMENTARY_D, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y,"
+systems/gameplay/quests/legacy/HaQuest.cpp,406,cMessageBox.ShowMessageEvent(szBuff);
+systems/gameplay/quests/legacy/HaQuest.cpp,411,"cSinHelp.sinShowHelp(HAQUEST_CODE_ELEMENTARY_D, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y,"
+systems/gameplay/quests/legacy/HaQuest.cpp,414,"cSinHelp.sinShowHelp(HAQUEST_CODE_ELEMENTARY_D, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y,"
+systems/gameplay/quests/legacy/HaQuest.cpp,425,"cSinHelp.sinShowHelp(HAQUEST_CODE_ELEMENTARY_D, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y,"
+systems/gameplay/quests/legacy/HaQuest.cpp,442,"cSinHelp.sinShowHelp(HAQUEST_CODE_ELEMENTARY_E, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y,"
+systems/gameplay/quests/legacy/HaQuest.cpp,445,"cSinHelp.sinShowHelp(HAQUEST_CODE_ELEMENTARY_E, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y,"
+systems/gameplay/quests/legacy/HaQuest.cpp,480,cMessageBox.ShowMessageEvent(szBuff);
+systems/gameplay/quests/legacy/HaQuest.cpp,485,"cSinHelp.sinShowHelp(HAQUEST_CODE_ELEMENTARY_E, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y,"
+systems/gameplay/quests/legacy/HaQuest.cpp,488,"cSinHelp.sinShowHelp(HAQUEST_CODE_ELEMENTARY_E, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y,"
+systems/gameplay/quests/legacy/HaQuest.cpp,498,"cSinHelp.sinShowHelp(HAQUEST_CODE_ELEMENTARY_E, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y,"
+systems/gameplay/quests/legacy/HaQuest.cpp,511,"cSinHelp.sinShowHelp(HAQUEST_CODE_ELEMENTARY_F, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0,"
+systems/gameplay/quests/legacy/HaQuest.cpp,537,cMessageBox.ShowMessageEvent(szBuff);
+systems/gameplay/quests/legacy/HaQuest.cpp,541,"cSinHelp.sinShowHelp(HAQUEST_CODE_ELEMENTARY_F, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0,"
+systems/gameplay/quests/legacy/HaQuest.cpp,546,"cSinHelp.sinShowHelp(HAQUEST_CODE_ELEMENTARY_F, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0,"
+systems/gameplay/quests/legacy/HaQuest.cpp,560,"cSinHelp.sinShowHelp(HAQUEST_CODE_ELEMENTARY_G, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0,"
+systems/gameplay/quests/legacy/HaQuest.cpp,563,"cSinHelp.sinShowHelp(HAQUEST_CODE_ELEMENTARY_G, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0,"
+systems/gameplay/quests/legacy/HaQuest.cpp,579,"cSinHelp.sinShowHelp(HAQUEST_CODE_ELEMENTARY_G, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0,"
+systems/gameplay/quests/legacy/HaQuest.cpp,790,"cSinHelp.sinShowHelp(HAQUEST_CODE_FURYOFPHANTOM, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0"
+systems/gameplay/quests/legacy/HaQuest.cpp,816,cMessageBox.ShowMessageEvent(szBuff);
+systems/gameplay/quests/legacy/HaQuest.cpp,817,"cSinHelp.sinShowHelp(HAQUEST_CODE_FURYOFPHANTOM, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0"
+systems/gameplay/quests/legacy/HaQuest.cpp,821,"cSinHelp.sinShowHelp(HAQUEST_CODE_FURYOFPHANTOM, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0"
+systems/gameplay/quests/legacy/HaQuest.cpp,825,"cSinHelp.sinShowHelp(HAQUEST_CODE_FURYOFPHANTOM, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0"
+systems/gameplay/quests/legacy/HaQuest.cpp,829,"cSinHelp.sinShowHelp(HAQUEST_CODE_FURYOFPHANTOM, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0"
+systems/gameplay/quests/legacy/HaQuest.cpp,832,"cSinHelp.sinShowHelp(HAQUEST_CODE_FURYOFPHANTOM, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0"
+systems/gameplay/quests/legacy/HaQuest.cpp,859,cMessageBox.ShowMessageEvent(szBuff);
+systems/gameplay/quests/legacy/HaQuest.cpp,865,"cSinHelp.sinShowHelp(HAQUEST_CODE_FURYOFPHANTOM, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0"
+systems/gameplay/quests/legacy/HaQuest.cpp,869,"cSinHelp.sinShowHelp(HAQUEST_CODE_FURYOFPHANTOM, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0"
+systems/gameplay/quests/legacy/HaQuest.cpp,873,"cSinHelp.sinShowHelp(HAQUEST_CODE_FURYOFPHANTOM, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0"
+systems/gameplay/quests/legacy/HaQuest.cpp,876,"cSinHelp.sinShowHelp(HAQUEST_CODE_FURYOFPHANTOM, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0"
+systems/gameplay/quests/legacy/HaQuest.cpp,879,"cSinHelp.sinShowHelp(HAQUEST_CODE_FURYOFPHANTOM, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0"
+systems/gameplay/quests/legacy/HaQuest.cpp,883,"cSinHelp.sinShowHelp(HAQUEST_CODE_FURYOFPHANTOM, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0"
+systems/gameplay/quests/legacy/HaQuest.cpp,893,"cSinHelp.sinShowHelp(HAQUEST_CODE_FURYOFPHANTOM, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0"
+systems/gameplay/quests/legacy/HaQuest.cpp,898,"cSinHelp.sinShowHelp(HAQUEST_CODE_FURYOFPHANTOM, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0"
+systems/gameplay/quests/legacy/HaQuest.cpp,913,"cSinHelp.sinShowHelp(HAQUEST_CODE_FURYOFPHANTOM, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0"
+systems/gameplay/quests/legacy/HaQuest.cpp,917,cMessageBox.ShowMessage(MESSAGE_100LVBATTLELOSE);
+systems/gameplay/teleport/ui/TCore.cpp,973,cMessageBox.ShowMessage(91);
+systems/gameplay/teleport/ui/TCore.cpp,977,cMessageBox.ShowMessage(92);
+systems/gameplay/teleport/ui/TCore.cpp,986,cInvenTory.InvenItem[chaPremiumitem.TelePortCore.ItemIndex].Flag = 0;
+systems/gameplay/world_events/legacy_sin/sinEvent.cpp,67,cMessageBox.ShowMessage(MESSAGE_GYUNGFUM_OK);
+systems/inventory/legacy/sinInvenTory.cpp,675,"DrawSprite(BackStartPos.x + BackUpButton2X, BackStartPos.y + BackUpButton2Y - 200, cMessageBox.lpButtonBox07, 0, 0, 48, 23, 1);"
+systems/inventory/legacy/sinInvenTory.cpp,676,"DrawSprite(BackStartPos.x + BackUpButton3X, BackStartPos.y + BackUpButton3Y - 200, cMessageBox.lpButtonBox07, 0, 0, 48, 23, 1);"
+systems/inventory/legacy/sinInvenTory.cpp,716,"if(nYesButton == 0) DrawSprite(BackStartPos.x + BackUpButton2X + 7, BackStartPos.y + BackUpButton2Y - 200 + 3, cMessageBox.lpButtonYesGlay07, 0, 0, 32, 16, 1);"
+systems/inventory/legacy/sinInvenTory.cpp,717,"else DrawSprite(BackStartPos.x + BackUpButton2X + 7, BackStartPos.y + BackUpButton2Y - 200 + 3, cMessageBox.lpButtonYes07, 0, 0, 32, 16, 1);"
+systems/inventory/legacy/sinInvenTory.cpp,719,"if(nNoButton == 0) DrawSprite(BackStartPos.x + BackUpButton3X + 7, BackStartPos.y + BackUpButton3Y - 200 + 3, cMessageBox.lpButtonNoGlay07, 0, 0, 32, 16, 1);"
+systems/inventory/legacy/sinInvenTory.cpp,720,"else DrawSprite(BackStartPos.x + BackUpButton3X + 7, BackStartPos.y + BackUpButton3Y - 200 + 3, cMessageBox.lpButtonNo07, 0, 0, 32, 16, 1);"
+systems/inventory/legacy/sinInvenTory.cpp,1458,cMessageBox.ShowMessage2(MESSAGE_THROW_MONEY);
+systems/inventory/legacy/sinInvenTory.cpp,1460,cMessageBox.ShowMessage2(MESSAGE_MOVE_MONEY_MOVE);
+systems/inventory/legacy/sinInvenTory.cpp,1735,if(sSinHelp[j].KindFlag == SIN_HELP_KIND_TELEPORT_SCROLL)
+systems/inventory/legacy/sinInvenTory.cpp,1772,"cMessageBox.ShowMessage(""J\341 existe uma pedra especial de aging."");"
+systems/inventory/legacy/sinInvenTory.cpp,1777,"cMessageBox.ShowMessage(""Este item n\343o pode ser usado no Aging."");"
+systems/inventory/legacy/sinInvenTory.cpp,1814,"cMessageBox.ShowMessage(""Este item n\343o pode ser usado no aging."");"
+systems/inventory/legacy/sinInvenTory.cpp,1819,"cMessageBox.ShowMessage(""Sheltom incompat\355vel ou n\343o h\341 espa\347o livre."");"
+systems/inventory/legacy/sinInvenTory.cpp,1848,"cMessageBox.ShowMessage(""J\341 existe um item na janela de aging."");"
+systems/inventory/legacy/sinInvenTory.cpp,1853,"cMessageBox.ShowMessage(""Ouro insuficiente."");"
+systems/inventory/legacy/sinInvenTory.cpp,1877,"cMessageBox.ShowMessage(""J\341 existe um item na janela de aging."");"
+systems/inventory/legacy/sinInvenTory.cpp,1883,"cMessageBox.ShowMessage(""Este item n\343o pode ser usado no Aging."");"
+systems/inventory/legacy/sinInvenTory.cpp,1933,"cMessageBox.ShowMessage(""Este item n\343o pode ser usado no mix."");"
+systems/inventory/legacy/sinInvenTory.cpp,1938,"cMessageBox.ShowMessage(""Sheltom incompat\355vel ou n\343o h\341 espa\347o livre."");"
+systems/inventory/legacy/sinInvenTory.cpp,1966,"cMessageBox.ShowMessage(""J\341 existe um item na janela de Mix."");"
+systems/inventory/legacy/sinInvenTory.cpp,1971,"cMessageBox.ShowMessage(""Ouro insuficiente."");"
+systems/inventory/legacy/sinInvenTory.cpp,1976,cMessageBox.ShowMessage(MESSAGE_NOT_CRAFT_ITEM);
+systems/inventory/legacy/sinInvenTory.cpp,2006,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/inventory/legacy/sinInvenTory.cpp,2030,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/inventory/legacy/sinInvenTory.cpp,2033,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/inventory/legacy/sinInvenTory.cpp,2036,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/inventory/legacy/sinInvenTory.cpp,2071,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/inventory/legacy/sinInvenTory.cpp,2086,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/inventory/legacy/sinInvenTory.cpp,2119,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/inventory/legacy/sinInvenTory.cpp,2144,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/inventory/legacy/sinInvenTory.cpp,2147,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/inventory/legacy/sinInvenTory.cpp,2150,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/inventory/legacy/sinInvenTory.cpp,2178,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/inventory/legacy/sinInvenTory.cpp,2181,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/inventory/legacy/sinInvenTory.cpp,2196,cMessageBox.ShowMessage(MESSAGE_POTION_NOT_SETTING);
+systems/inventory/legacy/sinInvenTory.cpp,2217,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/inventory/legacy/sinInvenTory.cpp,2220,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/inventory/legacy/sinInvenTory.cpp,2253,cMessageBox.ShowMessage(MESSAGE_NOT_MYSHOP_ITEM);
+systems/inventory/legacy/sinInvenTory.cpp,2271,cMessageBox.ShowMessage(MESSAGE_OVER_MONEY);
+systems/inventory/legacy/sinInvenTory.cpp,2277,"cMessageBox.ShowMessageEvent(""Este item n\343o pode ser vendido! "");"
+systems/inventory/legacy/sinInvenTory.cpp,2300,"cMessageBox.ShowMessage3(MESSAGE_SELL_HIGHRANK_ITEM, MouseItem.sItemInfo.ItemName);"
+systems/inventory/legacy/sinInvenTory.cpp,2303,cMessageBox.ShowMessage(MESSAGE_OVER_MONEY);
+systems/inventory/legacy/sinInvenTory.cpp,2328,cMessageBox.ShowMessage(MESSAGE_NOT_ENOUGH_MONEY);
+systems/inventory/legacy/sinInvenTory.cpp,2367,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/inventory/legacy/sinInvenTory.cpp,2372,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/inventory/legacy/sinInvenTory.cpp,2436,cMessageBox.ShowMessage(MESSAGE_ASATTRIBUTE_USE);
+systems/inventory/legacy/sinInvenTory.cpp,2467,if (chaPremiumitem.haItemUseDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,2469,"cMessageBox.ShowMessage(""Aguarde 5 segundos para usar um novo cristal"");"
+systems/inventory/legacy/sinInvenTory.cpp,2485,if(chaPremiumitem.haItemUseDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,2487,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,2499,cMessageBox.ShowMessage(MESSAGE_USE_REGULAR_CLAN_ONLY);
+systems/inventory/legacy/sinInvenTory.cpp,2515,chaPremiumitem.haItemUseDelayFlag = true;
+systems/inventory/legacy/sinInvenTory.cpp,2525,if(chaPremiumitem.haItemUseDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,2527,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,2540,chaPremiumitem.haItemUseDelayFlag = true;
+systems/inventory/legacy/sinInvenTory.cpp,2556,cMessageBox.ShowMessage(MESSAGE_ASATTRIBUTE_USE);
+systems/inventory/legacy/sinInvenTory.cpp,2610,chaPremiumitem.TelePortCore.ItemIndex = 0;
+systems/inventory/legacy/sinInvenTory.cpp,2626,chaPremiumitem.UsePremiumItem(1);
+systems/inventory/legacy/sinInvenTory.cpp,2629,chaPremiumitem.UsePremiumItem(2);
+systems/inventory/legacy/sinInvenTory.cpp,2632,chaPremiumitem.UsePremiumItem(3);
+systems/inventory/legacy/sinInvenTory.cpp,2638,chaPremiumitem.UsePremiumItem(5);
+systems/inventory/legacy/sinInvenTory.cpp,2648,cMessageBox.ShowMessage(MESSAGE_NO_USE_ITEM);
+systems/inventory/legacy/sinInvenTory.cpp,2653,chaPremiumitem.UsePremiumItem(6);
+systems/inventory/legacy/sinInvenTory.cpp,2664,cMessageBox.ShowMessage(MESSAGE_NO_USE_ITEM);
+systems/inventory/legacy/sinInvenTory.cpp,2669,chaPremiumitem.UsePremiumItem(6);
+systems/inventory/legacy/sinInvenTory.cpp,2680,cMessageBox.ShowMessage(MESSAGE_NO_USE_ITEM);
+systems/inventory/legacy/sinInvenTory.cpp,2685,chaPremiumitem.UsePremiumItem(7);
+systems/inventory/legacy/sinInvenTory.cpp,2690,chaPremiumitem.TelePortCore.ItemIndex = SelectInvenItemIndex - 1;
+systems/inventory/legacy/sinInvenTory.cpp,2691,chaPremiumitem.UsePremiumItem(8);
+systems/inventory/legacy/sinInvenTory.cpp,2696,chaPremiumitem.UsePremiumItem(9);
+systems/inventory/legacy/sinInvenTory.cpp,2700,chaPremiumitem.UsePremiumItem(10);
+systems/inventory/legacy/sinInvenTory.cpp,2703,chaPremiumitem.UsePremiumItem(11);
+systems/inventory/legacy/sinInvenTory.cpp,2707,if (chaPremiumitem.m_ThirdEyesTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,2709,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,2713,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,2715,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,2719,chaPremiumitem.UsePremiumItem(12);
+systems/inventory/legacy/sinInvenTory.cpp,2724,if (chaPremiumitem.m_ExpUpPotionTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,2726,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,2730,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,2732,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,2736,chaPremiumitem.UsePremiumItem(13);
+systems/inventory/legacy/sinInvenTory.cpp,2741,if (chaPremiumitem.m_ThirdEyesTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,2743,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,2747,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,2749,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,2753,chaPremiumitem.UsePremiumItem(14);
+systems/inventory/legacy/sinInvenTory.cpp,2758,if (chaPremiumitem.m_ExpUpPotionTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,2760,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,2764,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,2766,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,2770,chaPremiumitem.UsePremiumItem(15);
+systems/inventory/legacy/sinInvenTory.cpp,2774,chaPremiumitem.UsePremiumItem(16);
+systems/inventory/legacy/sinInvenTory.cpp,2777,chaPremiumitem.UsePremiumItem(17);
+systems/inventory/legacy/sinInvenTory.cpp,2780,chaPremiumitem.UsePremiumItem(18);
+systems/inventory/legacy/sinInvenTory.cpp,2784,if (chaPremiumitem.m_VampiricCuspidTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,2786,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,2790,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,2792,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,2796,chaPremiumitem.UsePremiumItem(19);
+systems/inventory/legacy/sinInvenTory.cpp,2801,if (chaPremiumitem.m_VampiricCuspidTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,2803,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,2807,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,2809,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,2813,chaPremiumitem.UsePremiumItem(20);
+systems/inventory/legacy/sinInvenTory.cpp,2818,if (chaPremiumitem.m_ManaRechargingPTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,2820,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,2824,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,2826,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,2830,chaPremiumitem.UsePremiumItem(21);
+systems/inventory/legacy/sinInvenTory.cpp,2835,if (chaPremiumitem.m_ManaRechargingPTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,2837,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,2841,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,2843,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,2847,chaPremiumitem.UsePremiumItem(22);
+systems/inventory/legacy/sinInvenTory.cpp,2852,if (chaPremiumitem.m_StaminaRechargingPTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,2854,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,2858,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,2860,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,2864,chaPremiumitem.UsePremiumItem(163);
+systems/inventory/legacy/sinInvenTory.cpp,2869,if (chaPremiumitem.m_StaminaRechargingPTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,2871,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,2875,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,2877,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,2881,chaPremiumitem.UsePremiumItem(164);
+systems/inventory/legacy/sinInvenTory.cpp,2886,if (chaPremiumitem.m_StaminaRechargingPTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,2888,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,2892,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,2894,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,2898,chaPremiumitem.UsePremiumItem(165);
+systems/inventory/legacy/sinInvenTory.cpp,2904,chaPremiumitem.UsePremiumItem(23);
+systems/inventory/legacy/sinInvenTory.cpp,2911,chaPremiumitem.UsePremiumItem(24);
+systems/inventory/legacy/sinInvenTory.cpp,2914,chaPremiumitem.UsePremiumItem(25);
+systems/inventory/legacy/sinInvenTory.cpp,2917,chaPremiumitem.UsePremiumItem(26);
+systems/inventory/legacy/sinInvenTory.cpp,2920,chaPremiumitem.UsePremiumItem(27);
+systems/inventory/legacy/sinInvenTory.cpp,2924,chaPremiumitem.UsePremiumItem(28);
+systems/inventory/legacy/sinInvenTory.cpp,2927,chaPremiumitem.UsePremiumItem(29);
+systems/inventory/legacy/sinInvenTory.cpp,2930,chaPremiumitem.UsePremiumItem(30);
+systems/inventory/legacy/sinInvenTory.cpp,2933,chaPremiumitem.UsePremiumItem(31);
+systems/inventory/legacy/sinInvenTory.cpp,2937,chaPremiumitem.UsePremiumItem(32);
+systems/inventory/legacy/sinInvenTory.cpp,2940,chaPremiumitem.UsePremiumItem(33);
+systems/inventory/legacy/sinInvenTory.cpp,2943,chaPremiumitem.UsePremiumItem(34);
+systems/inventory/legacy/sinInvenTory.cpp,2946,chaPremiumitem.UsePremiumItem(35);
+systems/inventory/legacy/sinInvenTory.cpp,2950,chaPremiumitem.UsePremiumItem(36);
+systems/inventory/legacy/sinInvenTory.cpp,2953,chaPremiumitem.UsePremiumItem(37);
+systems/inventory/legacy/sinInvenTory.cpp,2956,chaPremiumitem.UsePremiumItem(38);
+systems/inventory/legacy/sinInvenTory.cpp,2959,chaPremiumitem.UsePremiumItem(39);
+systems/inventory/legacy/sinInvenTory.cpp,2962,chaPremiumitem.UsePremiumItem(40);
+systems/inventory/legacy/sinInvenTory.cpp,2967,chaPremiumitem.UsePremiumItem(41);
+systems/inventory/legacy/sinInvenTory.cpp,2970,chaPremiumitem.UsePremiumItem(42);
+systems/inventory/legacy/sinInvenTory.cpp,2973,chaPremiumitem.UsePremiumItem(43);
+systems/inventory/legacy/sinInvenTory.cpp,2976,chaPremiumitem.UsePremiumItem(44);
+systems/inventory/legacy/sinInvenTory.cpp,2979,chaPremiumitem.UsePremiumItem(45);
+systems/inventory/legacy/sinInvenTory.cpp,2985,if (chaPremiumitem.m_ExpUpPotionTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,2987,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,2991,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,2993,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,2996,chaPremiumitem.UsePremiumItem(46);
+systems/inventory/legacy/sinInvenTory.cpp,3002,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3004,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3008,chaPremiumitem.UsePremiumItem(47);
+systems/inventory/legacy/sinInvenTory.cpp,3015,chaPremiumitem.UsePremiumItem(48);
+systems/inventory/legacy/sinInvenTory.cpp,3020,chaPremiumitem.UsePremiumItem(49);
+systems/inventory/legacy/sinInvenTory.cpp,3025,if (chaPremiumitem.m_ManaReducePotiontime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,3027,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,3031,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3033,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3037,chaPremiumitem.UsePremiumItem(50);
+systems/inventory/legacy/sinInvenTory.cpp,3042,if (chaPremiumitem.m_ManaReducePotiontime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,3044,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,3048,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3050,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3054,chaPremiumitem.UsePremiumItem(51);
+systems/inventory/legacy/sinInvenTory.cpp,3059,chaPremiumitem.UsePremiumItem(52);
+systems/inventory/legacy/sinInvenTory.cpp,3064,chaPremiumitem.UsePremiumItem(53);
+systems/inventory/legacy/sinInvenTory.cpp,3069,chaPremiumitem.UsePremiumItem(54);
+systems/inventory/legacy/sinInvenTory.cpp,3074,chaPremiumitem.UsePremiumItem(55);
+systems/inventory/legacy/sinInvenTory.cpp,3079,chaPremiumitem.UsePremiumItem(56);
+systems/inventory/legacy/sinInvenTory.cpp,3084,chaPremiumitem.UsePremiumItem(57);
+systems/inventory/legacy/sinInvenTory.cpp,3089,chaPremiumitem.UsePremiumItem(58);
+systems/inventory/legacy/sinInvenTory.cpp,3094,chaPremiumitem.UsePremiumItem(59);
+systems/inventory/legacy/sinInvenTory.cpp,3099,chaPremiumitem.UsePremiumItem(60);
+systems/inventory/legacy/sinInvenTory.cpp,3104,chaPremiumitem.UsePremiumItem(61);
+systems/inventory/legacy/sinInvenTory.cpp,3109,chaPremiumitem.UsePremiumItem(62);
+systems/inventory/legacy/sinInvenTory.cpp,3114,chaPremiumitem.UsePremiumItem(63);
+systems/inventory/legacy/sinInvenTory.cpp,3119,chaPremiumitem.UsePremiumItem(64);
+systems/inventory/legacy/sinInvenTory.cpp,3124,chaPremiumitem.UsePremiumItem(65);
+systems/inventory/legacy/sinInvenTory.cpp,3129,chaPremiumitem.UsePremiumItem(66);
+systems/inventory/legacy/sinInvenTory.cpp,3134,chaPremiumitem.UsePremiumItem(67);
+systems/inventory/legacy/sinInvenTory.cpp,3139,chaPremiumitem.UsePremiumItem(68);
+systems/inventory/legacy/sinInvenTory.cpp,3144,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3146,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3150,chaPremiumitem.UsePremiumItem(69);
+systems/inventory/legacy/sinInvenTory.cpp,3155,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3157,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3161,chaPremiumitem.UsePremiumItem(69);
+systems/inventory/legacy/sinInvenTory.cpp,3167,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3169,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3173,chaPremiumitem.UsePremiumItem(70);
+systems/inventory/legacy/sinInvenTory.cpp,3178,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3180,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3184,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3186,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3190,chaPremiumitem.UsePremiumItem(71);
+systems/inventory/legacy/sinInvenTory.cpp,3199,cMessageBox.ShowMessage(MESSAGE_HAVE_NOT_AGINGITEM);
+systems/inventory/legacy/sinInvenTory.cpp,3202,chaPremiumitem.UsePremiumItem(73);
+systems/inventory/legacy/sinInvenTory.cpp,3211,cMessageBox.ShowMessage(MESSAGE_HAVE_NOT_AGINGITEM);
+systems/inventory/legacy/sinInvenTory.cpp,3214,chaPremiumitem.UsePremiumItem(74);
+systems/inventory/legacy/sinInvenTory.cpp,3223,cMessageBox.ShowMessage(MESSAGE_HAVE_NOT_AGINGITEM);
+systems/inventory/legacy/sinInvenTory.cpp,3226,chaPremiumitem.UsePremiumItem(75);
+systems/inventory/legacy/sinInvenTory.cpp,3234,cMessageBox.ShowMessage(MESSAGE_HAVE_NOT_MATURESKILL);
+systems/inventory/legacy/sinInvenTory.cpp,3237,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3239,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3242,chaPremiumitem.UsePremiumItem(76);
+systems/inventory/legacy/sinInvenTory.cpp,3251,cMessageBox.ShowMessage(MESSAGE_HAVE_NOT_MATURESKILL);
+systems/inventory/legacy/sinInvenTory.cpp,3254,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3256,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3259,chaPremiumitem.UsePremiumItem(77);
+systems/inventory/legacy/sinInvenTory.cpp,3268,cMessageBox.ShowMessage(MESSAGE_HAVE_NOT_MATURESKILL);
+systems/inventory/legacy/sinInvenTory.cpp,3271,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3273,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3276,chaPremiumitem.UsePremiumItem(78);
+systems/inventory/legacy/sinInvenTory.cpp,3284,cMessageBox.ShowMessage(MESSAGE_NO_USE_ITEM);
+systems/inventory/legacy/sinInvenTory.cpp,3288,chaPremiumitem.Using_SelectInvenItemIndex = SelectInvenItemIndex - 1;
+systems/inventory/legacy/sinInvenTory.cpp,3289,"cMessageBox.ShowMessage3(MESSAGE_EVENT_ITEMOK, InvenItem[SelectInvenItemIndex - 1].sItemInfo.ItemName);"
+systems/inventory/legacy/sinInvenTory.cpp,3295,if (chaPremiumitem.m_ExpUpPotionTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,3297,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,3301,chaPremiumitem.UsePremiumItem(80);
+systems/inventory/legacy/sinInvenTory.cpp,3307,if (chaPremiumitem.m_ExpUpPotionTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,3309,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,3313,chaPremiumitem.UsePremiumItem(81);
+systems/inventory/legacy/sinInvenTory.cpp,3318,chaPremiumitem.UsePremiumItem(82);
+systems/inventory/legacy/sinInvenTory.cpp,3320,chaPremiumitem.UsePremiumItem(83);
+systems/inventory/legacy/sinInvenTory.cpp,3322,chaPremiumitem.UsePremiumItem(84);
+systems/inventory/legacy/sinInvenTory.cpp,3324,chaPremiumitem.UsePremiumItem(85);
+systems/inventory/legacy/sinInvenTory.cpp,3326,chaPremiumitem.UsePremiumItem(86);
+systems/inventory/legacy/sinInvenTory.cpp,3331,if (chaPremiumitem.m_ExpUpPotionTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,3333,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,3337,chaPremiumitem.UsePremiumItem(87);
+systems/inventory/legacy/sinInvenTory.cpp,3343,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3345,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3349,chaPremiumitem.UsePremiumItem(88);
+systems/inventory/legacy/sinInvenTory.cpp,3355,chaPremiumitem.UsePremiumItem(97);
+systems/inventory/legacy/sinInvenTory.cpp,3361,chaPremiumitem.UsePremiumItem(98);
+systems/inventory/legacy/sinInvenTory.cpp,3369,cMessageBox.ShowMessage(MESSAGE_PET_USE_LEVEL);
+systems/inventory/legacy/sinInvenTory.cpp,3373,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3375,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3379,chaPremiumitem.UsePremiumItem(99);
+systems/inventory/legacy/sinInvenTory.cpp,3386,cMessageBox.ShowMessage(MESSAGE_PET_USE_LEVEL);
+systems/inventory/legacy/sinInvenTory.cpp,3390,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3392,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3396,chaPremiumitem.UsePremiumItem(100);
+systems/inventory/legacy/sinInvenTory.cpp,3403,cMessageBox.ShowMessage(MESSAGE_PET_USE_LEVEL);
+systems/inventory/legacy/sinInvenTory.cpp,3407,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3409,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3413,chaPremiumitem.UsePremiumItem(101);
+systems/inventory/legacy/sinInvenTory.cpp,3420,cMessageBox.ShowMessage(MESSAGE_PET_USE_LEVEL);
+systems/inventory/legacy/sinInvenTory.cpp,3424,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3426,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3429,chaPremiumitem.UsePremiumItem(102);
+systems/inventory/legacy/sinInvenTory.cpp,3438,cMessageBox.ShowMessage(MESSAGE_PET_USE_LEVEL);
+systems/inventory/legacy/sinInvenTory.cpp,3442,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3444,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3448,chaPremiumitem.UsePremiumItem(103);
+systems/inventory/legacy/sinInvenTory.cpp,3455,cMessageBox.ShowMessage(MESSAGE_PET_USE_LEVEL);
+systems/inventory/legacy/sinInvenTory.cpp,3459,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3461,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3465,chaPremiumitem.UsePremiumItem(104);
+systems/inventory/legacy/sinInvenTory.cpp,3472,cMessageBox.ShowMessage(MESSAGE_PET_USE_LEVEL);
+systems/inventory/legacy/sinInvenTory.cpp,3476,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3478,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3482,chaPremiumitem.UsePremiumItem(105);
+systems/inventory/legacy/sinInvenTory.cpp,3489,cMessageBox.ShowMessage(MESSAGE_PET_USE_LEVEL);
+systems/inventory/legacy/sinInvenTory.cpp,3493,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3495,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3499,chaPremiumitem.UsePremiumItem(106);
+systems/inventory/legacy/sinInvenTory.cpp,3505,if (chaPremiumitem.m_ExpUpPotionTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,3507,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,3511,chaPremiumitem.UsePremiumItem(107);
+systems/inventory/legacy/sinInvenTory.cpp,3517,chaPremiumitem.UsePremiumItem(108);
+systems/inventory/legacy/sinInvenTory.cpp,3525,cMessageBox.ShowMessage(MESSAGE_PET_USE_LEVEL);
+systems/inventory/legacy/sinInvenTory.cpp,3529,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3531,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3535,chaPremiumitem.UsePremiumItem(109);
+systems/inventory/legacy/sinInvenTory.cpp,3542,cMessageBox.ShowMessage(MESSAGE_PET_USE_LEVEL);
+systems/inventory/legacy/sinInvenTory.cpp,3546,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3548,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3552,chaPremiumitem.UsePremiumItem(110);
+systems/inventory/legacy/sinInvenTory.cpp,3559,cMessageBox.ShowMessage(MESSAGE_PET_USE_LEVEL);
+systems/inventory/legacy/sinInvenTory.cpp,3563,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3565,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3569,chaPremiumitem.UsePremiumItem(111);
+systems/inventory/legacy/sinInvenTory.cpp,3576,cMessageBox.ShowMessage(MESSAGE_PET_USE_LEVEL);
+systems/inventory/legacy/sinInvenTory.cpp,3580,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3582,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3586,chaPremiumitem.UsePremiumItem(112);
+systems/inventory/legacy/sinInvenTory.cpp,3595,cMessageBox.ShowMessage(MESSAGE_HAVE_NOT_AGINGITEM);
+systems/inventory/legacy/sinInvenTory.cpp,3598,chaPremiumitem.UsePremiumItem(113);
+systems/inventory/legacy/sinInvenTory.cpp,3607,cMessageBox.ShowMessage(MESSAGE_HAVE_NOT_AGINGITEM);
+systems/inventory/legacy/sinInvenTory.cpp,3610,chaPremiumitem.UsePremiumItem(114);
+systems/inventory/legacy/sinInvenTory.cpp,3619,cMessageBox.ShowMessage(MESSAGE_HAVE_NOT_AGINGITEM);
+systems/inventory/legacy/sinInvenTory.cpp,3622,chaPremiumitem.UsePremiumItem(115);
+systems/inventory/legacy/sinInvenTory.cpp,3629,chaPremiumitem.UsePremiumItem(116);
+systems/inventory/legacy/sinInvenTory.cpp,3637,cMessageBox.ShowMessage(MESSAGE_PET_USE_LEVEL);
+systems/inventory/legacy/sinInvenTory.cpp,3641,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3643,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3647,chaPremiumitem.UsePremiumItem(117);
+systems/inventory/legacy/sinInvenTory.cpp,3654,cMessageBox.ShowMessage(MESSAGE_PET_USE_LEVEL);
+systems/inventory/legacy/sinInvenTory.cpp,3658,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3660,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3664,chaPremiumitem.UsePremiumItem(118);
+systems/inventory/legacy/sinInvenTory.cpp,3671,cMessageBox.ShowMessage(MESSAGE_PET_USE_LEVEL);
+systems/inventory/legacy/sinInvenTory.cpp,3675,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3677,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3681,chaPremiumitem.UsePremiumItem(119);
+systems/inventory/legacy/sinInvenTory.cpp,3688,cMessageBox.ShowMessage(MESSAGE_PET_USE_LEVEL);
+systems/inventory/legacy/sinInvenTory.cpp,3692,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3694,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3698,chaPremiumitem.UsePremiumItem(120);
+systems/inventory/legacy/sinInvenTory.cpp,3704,if (chaPremiumitem.m_ThirdEyesTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,3706,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,3710,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3712,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3716,chaPremiumitem.UsePremiumItem(121);
+systems/inventory/legacy/sinInvenTory.cpp,3722,chaPremiumitem.UsePremiumItem(122);
+systems/inventory/legacy/sinInvenTory.cpp,3728,if (chaPremiumitem.m_ExpUpPotionTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,3730,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,3734,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3736,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3740,chaPremiumitem.UsePremiumItem(123);
+systems/inventory/legacy/sinInvenTory.cpp,3746,if (chaPremiumitem.m_VampiricCuspidTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,3748,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,3752,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3754,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3758,chaPremiumitem.UsePremiumItem(124);
+systems/inventory/legacy/sinInvenTory.cpp,3764,if (chaPremiumitem.m_ManaRechargingPTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,3766,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,3770,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3772,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3776,chaPremiumitem.UsePremiumItem(125);
+systems/inventory/legacy/sinInvenTory.cpp,3782,if (chaPremiumitem.m_ManaReducePotiontime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,3784,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,3788,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3790,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3794,chaPremiumitem.UsePremiumItem(126);
+systems/inventory/legacy/sinInvenTory.cpp,3800,if (chaPremiumitem.m_VampiricCuspidEXTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,3802,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,3806,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3808,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3812,chaPremiumitem.UsePremiumItem(127);
+systems/inventory/legacy/sinInvenTory.cpp,3818,if (chaPremiumitem.m_VampiricCuspidEXTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,3820,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,3824,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3826,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3830,chaPremiumitem.UsePremiumItem(128);
+systems/inventory/legacy/sinInvenTory.cpp,3836,if (chaPremiumitem.m_VampiricCuspidEXTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,3838,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,3842,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3844,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3848,chaPremiumitem.UsePremiumItem(129);
+systems/inventory/legacy/sinInvenTory.cpp,3852,chaPremiumitem.UsePremiumItem(130);
+systems/inventory/legacy/sinInvenTory.cpp,3855,chaPremiumitem.UsePremiumItem(131);
+systems/inventory/legacy/sinInvenTory.cpp,3859,if (chaPremiumitem.m_StaminaReducePotiontime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,3861,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,3865,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3867,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3871,chaPremiumitem.UsePremiumItem(132);
+systems/inventory/legacy/sinInvenTory.cpp,3876,if (chaPremiumitem.m_StaminaReducePotiontime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,3878,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,3882,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,3884,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,3888,chaPremiumitem.UsePremiumItem(133);
+systems/inventory/legacy/sinInvenTory.cpp,3895,chaPremiumitem.TelePortCore.ItemIndex = SelectInvenItemIndex - 1;
+systems/inventory/legacy/sinInvenTory.cpp,3896,chaPremiumitem.UsePremiumItem(134);
+systems/inventory/legacy/sinInvenTory.cpp,3899,cMessageBox.ShowMessage(MESSAGE_NOT_ENOUGH_LEVEL);
+systems/inventory/legacy/sinInvenTory.cpp,3906,chaPremiumitem.TelePortCore.ItemIndex = SelectInvenItemIndex - 1;
+systems/inventory/legacy/sinInvenTory.cpp,3907,chaPremiumitem.UsePremiumItem(135);
+systems/inventory/legacy/sinInvenTory.cpp,3910,cMessageBox.ShowMessage(MESSAGE_NOT_ENOUGH_LEVEL);
+systems/inventory/legacy/sinInvenTory.cpp,3914,chaPremiumitem.UsePremiumItem(136);
+systems/inventory/legacy/sinInvenTory.cpp,3917,chaPremiumitem.UsePremiumItem(137);
+systems/inventory/legacy/sinInvenTory.cpp,3920,chaPremiumitem.UsePremiumItem(138);
+systems/inventory/legacy/sinInvenTory.cpp,3923,chaPremiumitem.UsePremiumItem(139);
+systems/inventory/legacy/sinInvenTory.cpp,3927,chaPremiumitem.UsePremiumItem(140);
+systems/inventory/legacy/sinInvenTory.cpp,3929,chaPremiumitem.UsePremiumItem(141);
+systems/inventory/legacy/sinInvenTory.cpp,3931,chaPremiumitem.UsePremiumItem(142);
+systems/inventory/legacy/sinInvenTory.cpp,3933,chaPremiumitem.UsePremiumItem(143);
+systems/inventory/legacy/sinInvenTory.cpp,3935,chaPremiumitem.UsePremiumItem(144);
+systems/inventory/legacy/sinInvenTory.cpp,3937,chaPremiumitem.UsePremiumItem(145);
+systems/inventory/legacy/sinInvenTory.cpp,3939,chaPremiumitem.UsePremiumItem(146);
+systems/inventory/legacy/sinInvenTory.cpp,3941,chaPremiumitem.UsePremiumItem(147);
+systems/inventory/legacy/sinInvenTory.cpp,3943,chaPremiumitem.UsePremiumItem(148);
+systems/inventory/legacy/sinInvenTory.cpp,3945,chaPremiumitem.UsePremiumItem(149);
+systems/inventory/legacy/sinInvenTory.cpp,3947,chaPremiumitem.UsePremiumItem(150);
+systems/inventory/legacy/sinInvenTory.cpp,3949,chaPremiumitem.UsePremiumItem(151);
+systems/inventory/legacy/sinInvenTory.cpp,3951,chaPremiumitem.UsePremiumItem(152);
+systems/inventory/legacy/sinInvenTory.cpp,3953,chaPremiumitem.UsePremiumItem(153);
+systems/inventory/legacy/sinInvenTory.cpp,3957,chaPremiumitem.UsePremiumItem(168);
+systems/inventory/legacy/sinInvenTory.cpp,3961,chaPremiumitem.UsePremiumItem(169);
+systems/inventory/legacy/sinInvenTory.cpp,3968,cMessageBox.ShowMessage(MESSAGE_NO_USE_ITEM);
+systems/inventory/legacy/sinInvenTory.cpp,3972,chaPremiumitem.Using_SelectInvenItemIndex = SelectInvenItemIndex - 1;
+systems/inventory/legacy/sinInvenTory.cpp,3973,"cMessageBox.ShowMessage3(MESSAGE_EVENT_ITEMOK, InvenItem[SelectInvenItemIndex - 1].sItemInfo.ItemName);"
+systems/inventory/legacy/sinInvenTory.cpp,3980,cMessageBox.ShowMessage(MESSAGE_NO_USE_ITEM);
+systems/inventory/legacy/sinInvenTory.cpp,3984,chaPremiumitem.Using_SelectInvenItemIndex = SelectInvenItemIndex - 1;
+systems/inventory/legacy/sinInvenTory.cpp,3985,"cMessageBox.ShowMessage3(MESSAGE_EVENT_ITEMOK, InvenItem[SelectInvenItemIndex - 1].sItemInfo.ItemName);"
+systems/inventory/legacy/sinInvenTory.cpp,3992,cMessageBox.ShowMessage(MESSAGE_NO_USE_ITEM);
+systems/inventory/legacy/sinInvenTory.cpp,3996,chaPremiumitem.Using_SelectInvenItemIndex = SelectInvenItemIndex - 1;
+systems/inventory/legacy/sinInvenTory.cpp,3997,"cMessageBox.ShowMessage3(MESSAGE_EVENT_ITEMOK, InvenItem[SelectInvenItemIndex - 1].sItemInfo.ItemName);"
+systems/inventory/legacy/sinInvenTory.cpp,4004,cMessageBox.ShowMessage(MESSAGE_NO_USE_ITEM);
+systems/inventory/legacy/sinInvenTory.cpp,4008,chaPremiumitem.Using_SelectInvenItemIndex = SelectInvenItemIndex - 1;
+systems/inventory/legacy/sinInvenTory.cpp,4009,"cMessageBox.ShowMessage3(MESSAGE_EVENT_ITEMOK, InvenItem[SelectInvenItemIndex - 1].sItemInfo.ItemName);"
+systems/inventory/legacy/sinInvenTory.cpp,4016,cMessageBox.ShowMessage(MESSAGE_NO_USE_ITEM);
+systems/inventory/legacy/sinInvenTory.cpp,4020,chaPremiumitem.Using_SelectInvenItemIndex = SelectInvenItemIndex - 1;
+systems/inventory/legacy/sinInvenTory.cpp,4021,"cMessageBox.ShowMessage3(MESSAGE_EVENT_ITEMOK, InvenItem[SelectInvenItemIndex - 1].sItemInfo.ItemName);"
+systems/inventory/legacy/sinInvenTory.cpp,4028,cMessageBox.ShowMessage(MESSAGE_NO_USE_ITEM);
+systems/inventory/legacy/sinInvenTory.cpp,4032,chaPremiumitem.Using_SelectInvenItemIndex = SelectInvenItemIndex - 1;
+systems/inventory/legacy/sinInvenTory.cpp,4033,"cMessageBox.ShowMessage3(MESSAGE_EVENT_ITEMOK, InvenItem[SelectInvenItemIndex - 1].sItemInfo.ItemName);"
+systems/inventory/legacy/sinInvenTory.cpp,4040,cMessageBox.ShowMessage(MESSAGE_NO_USE_ITEM);
+systems/inventory/legacy/sinInvenTory.cpp,4044,chaPremiumitem.Using_SelectInvenItemIndex = SelectInvenItemIndex - 1;
+systems/inventory/legacy/sinInvenTory.cpp,4045,"cMessageBox.ShowMessage3(MESSAGE_EVENT_ITEMOK, InvenItem[SelectInvenItemIndex - 1].sItemInfo.ItemName);"
+systems/inventory/legacy/sinInvenTory.cpp,4049,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,4051,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,4068,"cMessageBox.ShowMessage(""Voc\352 upou +1 n\355vel!"");"
+systems/inventory/legacy/sinInvenTory.cpp,4072,"cMessageBox.ShowMessage(""Voc\352 j\341 est\341 no n\355vel m\341ximo!"");"
+systems/inventory/legacy/sinInvenTory.cpp,4075,/*chaPremiumitem.UsePremiumItem(154);*/
+systems/inventory/legacy/sinInvenTory.cpp,4086,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,4088,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,4108,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,4110,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,4130,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,4132,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,4152,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,4154,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,4174,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,4176,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,4196,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,4198,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,4218,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,4220,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,4240,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,4242,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,4262,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,4264,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,4284,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,4286,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,4306,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,4308,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,4328,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,4330,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,4350,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,4352,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,4372,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,4374,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,4394,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,4396,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,4440,if (chaPremiumitem.m_GoldLooterPTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,4442,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,4445,chaPremiumitem.UsePremiumItem(170);
+systems/inventory/legacy/sinInvenTory.cpp,4450,if (chaPremiumitem.m_GoldLooterPTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,4452,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,4455,chaPremiumitem.UsePremiumItem(171);
+systems/inventory/legacy/sinInvenTory.cpp,4460,if (chaPremiumitem.m_GoldLooterPTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,4462,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,4465,chaPremiumitem.UsePremiumItem(172);
+systems/inventory/legacy/sinInvenTory.cpp,4471,if (chaPremiumitem.m_HPBoosterPTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,4473,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,4477,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,4479,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,4483,chaPremiumitem.UsePremiumItem(173);
+systems/inventory/legacy/sinInvenTory.cpp,4488,if (chaPremiumitem.m_HPBoosterPTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,4490,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,4494,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,4496,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,4500,chaPremiumitem.UsePremiumItem(174);
+systems/inventory/legacy/sinInvenTory.cpp,4505,if (chaPremiumitem.m_HPBoosterPTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,4507,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,4511,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,4513,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,4517,chaPremiumitem.UsePremiumItem(175);
+systems/inventory/legacy/sinInvenTory.cpp,4522,if (chaPremiumitem.m_MPBoosterPTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,4524,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,4528,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,4530,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,4534,chaPremiumitem.UsePremiumItem(176);
+systems/inventory/legacy/sinInvenTory.cpp,4539,if (chaPremiumitem.m_MPBoosterPTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,4541,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,4545,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,4547,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,4551,chaPremiumitem.UsePremiumItem(177);
+systems/inventory/legacy/sinInvenTory.cpp,4556,if (chaPremiumitem.m_MPBoosterPTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,4558,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,4562,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,4564,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,4568,chaPremiumitem.UsePremiumItem(178);
+systems/inventory/legacy/sinInvenTory.cpp,4574,if (chaPremiumitem.m_RESBoosterPTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,4576,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,4580,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,4582,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,4586,chaPremiumitem.UsePremiumItem(179);
+systems/inventory/legacy/sinInvenTory.cpp,4591,if (chaPremiumitem.m_RESBoosterPTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,4593,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,4597,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,4599,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,4603,chaPremiumitem.UsePremiumItem(180);
+systems/inventory/legacy/sinInvenTory.cpp,4608,if (chaPremiumitem.m_RESBoosterPTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,4610,cMessageBox.ShowMessage(MESSAGE_CLANSKILL_USE);
+systems/inventory/legacy/sinInvenTory.cpp,4614,if (chaPremiumitem.bUpdateTimeDelayFlag)
+systems/inventory/legacy/sinInvenTory.cpp,4616,cMessageBox.ShowMessage(MESSAGE_NOT_DELAYTIME);
+systems/inventory/legacy/sinInvenTory.cpp,4620,chaPremiumitem.UsePremiumItem(181);
+systems/inventory/legacy/sinInvenTory.cpp,4666,else if(isMale) cMessageBox.ShowMessage(MESSAGE_NOT_USE_MALE);
+systems/inventory/legacy/sinInvenTory.cpp,4671,else if(isFemale) cMessageBox.ShowMessage(MESSAGE_NOT_USE_FEMALE);
+systems/inventory/legacy/sinInvenTory.cpp,4677,else if(isFemale) cMessageBox.ShowMessage(MESSAGE_NOT_USE_FEMALE);
+systems/inventory/legacy/sinInvenTory.cpp,4684,else if(isMale) cMessageBox.ShowMessage(MESSAGE_NOT_USE_MALE);
+systems/inventory/legacy/sinInvenTory.cpp,5195,cMessageBox.ShowMessage(MESSAGE_NOTEXIT_ITEMIMAGE);
+systems/inventory/legacy/sinInvenTory.cpp,5424,cMessageBox.ShowMessageEvent(szBuff);
+systems/inventory/legacy/sinInvenTory.cpp,5432,cMessageBox.ShowMessageEvent(szBuff);
+systems/inventory/legacy/sinInvenTory.cpp,5475,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/inventory/legacy/sinInvenTory.cpp,6253,"cMessageBox.ShowMessageEvent(""Item Locked!"");"
+systems/inventory/legacy/sinInvenTory.cpp,6282,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/inventory/legacy/sinInvenTory.cpp,6290,cMessageBox.ShowMessage(MESSAGE_NOTEXIT_ITEMIMAGE);
+systems/inventory/legacy/sinInvenTory.cpp,6302,if(sSinHelp[j].KindFlag == SIN_HELP_KIND_TELEPORT_SCROLL)
+systems/inventory/legacy/sinInvenTory.cpp,6667,if(sSinHelp[j].KindFlag == SIN_HELP_KIND_TELEPORT_SCROLL)
+systems/inventory/legacy/sinInvenTory.cpp,6805,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_TELEPORT_SCROLL)
+systems/inventory/legacy/sinInvenTory.cpp,6889,"cMessageBox.ShowMessageEvent(""Este item n\343o pode ser vendido! "");"
+systems/inventory/legacy/sinInvenTory.cpp,6901,"cMessageBox.ShowMessage3(MESSAGE_SELL_HIGHRANK_ITEM, pItem->sItemInfo.ItemName);"
+systems/inventory/legacy/sinInvenTory.cpp,7008,cMessageBox.ShowMessage2(MESSAGE_THROW_ITEM);
+systems/inventory/legacy/sinInvenTory.cpp,7059,cMessageBox.ShowMessage2(MESSAGE_THROW_ITEM);
+systems/inventory/legacy/sinInvenTory.cpp,7385,"NumLineComa(cCoinShop.Coin, strCoin);"
+systems/inventory/legacy/sinInvenTory.cpp,7630,if( chaPremiumitem.GetBigHeadTime() > 0 && chaPremiumitem.GetBigHeadType() )
+systems/inventory/legacy/sinInvenTory.cpp,8700,if(chaPremiumitem.m_MightofAwellTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,8702,sinChar->Weight[1] = (short)(baseWeight + chaPremiumitem.m_MightofAwellWeight);
+systems/inventory/legacy/sinInvenTory.cpp,8815,if (chaPremiumitem.m_HPBoosterPTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,8857,if (chaPremiumitem.m_MPBoosterPTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,8885,if (chaPremiumitem.m_RESBoosterPTime > 0)
+systems/inventory/legacy/sinInvenTory.cpp,9134,if(chaPremiumitem.m_HelpPetTime > 0 && sinChar->GravityScroolCheck[1] == 2)
+systems/inventory/legacy/sinInvenTory.cpp,9239,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_TELEPORT_SCROLL)
+systems/inventory/legacy/sinInvenTory.cpp,9605,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/inventory/legacy/sinInvenTory.cpp,9617,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/inventory/legacy/sinInvenTory.cpp,9629,cMessageBox.ShowMessage(MESSAGE_NO_USE_ITEM);
+systems/inventory/legacy/sinInvenTory.cpp,9916,cMessageBox.ShowMessage(MESSAGE_NO_USE_ITEM);
+systems/inventory/legacy/sinInvenTory.cpp,9935,"cMessageBox.ShowMessage3(MESSAGE_LINKCORE, """");"
+systems/inventory/legacy/sinInvenTory.cpp,9950,cMessageBox.ShowMessage(MESSAGE_USE_REGULAR_CLAN_ONLY);
+systems/inventory/legacy/sinInvenTory.cpp,9955,cMessageBox.ShowMessage(MESSAGE_USE_CLAN_ONLY);
+systems/inventory/legacy/sinInvenTory.cpp,10142,cMessageBox.ShowMessage(MESSAGE_OVER_MONEY);
+systems/inventory/legacy/sinInvenTory.cpp,11672,"cSinHelp.sinShowHelp(SIN_HELP_KIND_QUEST_WING, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, "
+systems/inventory/legacy/sinInvenTory.cpp,11716,"cSinHelp.sinShowHelp(SIN_HELP_KIND_QUEST_WING, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, "
+systems/inventory/legacy/sinInvenTory.cpp,11721,"cSinHelp.sinShowHelp(SIN_HELP_KIND_QUEST_WING, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, "
+systems/inventory/legacy/sinInvenTory.cpp,12370,"cMessageBox.ShowMessage3(MESSAGE_EVENTITEM_SEND, BabelHorn);"
+systems/inventory/legacy/sinInvenTory.cpp,12374,"cSinHelp.sinShowHelp(SIN_HELP_KIND_BABEL, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, 15, 1"
+systems/inventory/legacy/sinInvenTory.cpp,12375,"cMessageBox.ShowMessage3(MESSAGE_FALLGAME, FallGameName);"
+systems/inventory/legacy/sinInvenTory.cpp,12396,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/inventory/legacy/sinInvenTory.cpp,12402,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/inventory/legacy/sinInvenTory.cpp,12425,"cMessageBox.ShowMessage3(MESSAGE_FOXEVENTITEM_SEND, NineTailFoxItem);"
+systems/inventory/legacy/sinInvenTory.cpp,12428,"cSinHelp.sinShowHelp(SIN_HELP_KIND_BABEL, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, 15, 1"
+systems/inventory/legacy/sinInvenTory.cpp,12451,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/inventory/legacy/sinInvenTory.cpp,12458,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/inventory/legacy/sinInvenTory.cpp,12487,"cSinHelp.sinShowHelp(SIN_HELP_KIND_BABEL, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, 15, 1"
+systems/inventory/legacy/sinInvenTory.cpp,12510,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/inventory/legacy/sinInvenTory.cpp,12517,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/inventory/legacy/sinInvenTory.cpp,12561,cMessageBox.ShowMessage(MESSAGE_FAILD_PUZZLE);
+systems/inventory/legacy/sinInvenTory.cpp,12570,cMessageBox.ShowMessage(MESSAGE_FAILD_PUZZLE);
+systems/inventory/legacy/sinInvenTory.cpp,12575,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/inventory/legacy/sinInvenTory.cpp,12589,"cMessageBox.ShowMessage3(MESSAGE_PUZZLE_SEND, PuzzleEvent5);"
+systems/inventory/legacy/sinInvenTory.cpp,12594,"cSinHelp.sinShowHelp(SIN_HELP_KIND_QUEST_WING, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, "
+systems/inventory/legacy/sinInvenTory.cpp,12673,cMessageBox.ShowMessage(MESSAGE_NOT_USE_FORCEORB);
+systems/inventory/legacy/sinInvenTory.cpp,12689,cMessageBox.ShowMessage(MESSAGE_NOT_USE_FORCEORB2);
+systems/inventory/legacy/sinInvenTory.cpp,12749,cMessageBox.ShowMessage(MESSAGE_NOT_USE_FORCEORB);
+systems/inventory/legacy/sinInvenTory.cpp,12766,cMessageBox.ShowMessage(MESSAGE_NOT_USE_FORCEORB2);
+systems/inventory/legacy/sinInvenTory.cpp,12825,cMessageBox.ShowMessage(MESSAGE_NOT_USE_FORCEORB);
+systems/inventory/legacy/sinInvenTory.cpp,12842,cMessageBox.ShowMessage(MESSAGE_NOT_USE_FORCEORB2);
+systems/inventory/legacy/sinInvenTory.cpp,12988,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/inventory/legacy/sinInvenTory.cpp,12996,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/inventory/legacy/sinInvenTory.cpp,13045,"cMessageBox.ShowMessage3(MESSAGE_CRISTALEVENTITEM_SEND, CristalItem);"
+systems/inventory/legacy/sinInvenTory.cpp,13049,"cSinHelp.sinShowHelp(SIN_HELP_KIND_BABEL, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, 15, 1"
+systems/inventory/legacy/sinInvenTory.cpp,13067,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/inventory/legacy/sinInvenTory.cpp,13073,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/inventory/legacy/sinInvenTory.cpp,13113,"cMessageBox.ShowMessage3(MESSAGE_WATERMELON_EVENTITEM, StarItem);"
+systems/inventory/legacy/sinInvenTory.cpp,13119,"cSinHelp.sinShowHelp(SIN_HELP_KIND_BABEL, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, 15, 1"
+systems/inventory/legacy/sinInvenTory.cpp,13141,"cMessageBox.ShowMessage3(MESSAGE_VALENTINE_EVENTITEM, ValentineItem);"
+systems/inventory/legacy/sinInvenTory.cpp,13144,"cSinHelp.sinShowHelp(SIN_HELP_KIND_BABEL, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, 15, 1"
+systems/inventory/legacy/sinInvenTory.cpp,13165,"cMessageBox.ShowMessage3(MESSAGE_CANDYDAYS_EVENTITEM, CandydaysItem);"
+systems/inventory/legacy/sinInvenTory.cpp,13168,"cSinHelp.sinShowHelp(SIN_HELP_KIND_BABEL, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, 15, 1"
+systems/inventory/legacy/sinInvenTory.cpp,13191,"cMessageBox.ShowMessage3(MESSAGE_MAGICALGREEN_EVENTITEM, MagicalGreenJadeItem);"
+systems/inventory/legacy/sinInvenTory.cpp,13197,"cMessageBox.ShowMessage3(MESSAGE_MAGICALGREEN_EVENTITEM_EMERALD, MagicalGreenEmeraldItem);"
+systems/inventory/legacy/sinInvenTory.cpp,13201,"cSinHelp.sinShowHelp(SIN_HELP_KIND_BABEL, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, 15, 1"
+systems/inventory/legacy/sinInvenTory.cpp,13222,"cMessageBox.ShowMessage3(MESSAGE_TEAROFKARA_EVENTITEM, TearOfKaraItem);"
+systems/inventory/legacy/sinInvenTory.cpp,13225,"cSinHelp.sinShowHelp(SIN_HELP_KIND_BABEL, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, 15, 1"
+systems/inventory/legacy/sinInvenTory.cpp,13248,"cSinHelp.sinShowHelp(SIN_HELP_KIND_BABEL, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, 15, 1"
+systems/inventory/legacy/sinInvenTory.cpp,13249,"cMessageBox.ShowMessage3(MESSAGE_FIND_EVENTITEM, FindinvestigatorItem);"
+systems/inventory/legacy/sinInvenTory.cpp,13256,"cSinHelp.sinShowHelp(SIN_HELP_KIND_BABEL, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, 15, 1"
+systems/inventory/legacy/sinInvenTory.cpp,13262,"cSinHelp.sinShowHelp(SIN_HELP_KIND_BABEL, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, 15, 1"
+systems/inventory/legacy/sinInvenTory.cpp,13283,"cSinHelp.sinShowHelp(SIN_HELP_KIND_BABEL, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, 15, 1"
+systems/inventory/legacy/sinInvenTory.cpp,13284,"cMessageBox.ShowMessage3(MESSAGE_FINDKAMIU_EVENTITEM, FindinvestigatorNineItem);"
+systems/inventory/legacy/sinInvenTory.cpp,13290,"cSinHelp.sinShowHelp(SIN_HELP_KIND_BABEL, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, 15, 1"
+systems/inventory/legacy/sinInvenTory.cpp,13313,"cSinHelp.sinShowHelp(SIN_HELP_KIND_BABEL, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, 15, 1"
+systems/inventory/legacy/sinInvenTory.cpp,13314,"cMessageBox.ShowMessage3(MESSAGE_FINDETO_EVENTITEM, FindinvestigatorTaleItem);"
+systems/inventory/legacy/sinInvenTory.cpp,13320,"cSinHelp.sinShowHelp(SIN_HELP_KIND_BABEL, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, 15, 1"
+systems/inventory/legacy/sinInvenTory.cpp,13340,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/inventory/legacy/sinInvenTory.cpp,13346,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/inventory/legacy/sinInvenTory.cpp,13383,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/inventory/legacy/sinInvenTory.cpp,13389,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/inventory/legacy/sinInvenTory.cpp,13443,"cMessageBox.ShowMessage3(MESSAGE_PRISTON_ALPHABET_EVENTITEM, PristonAlphabetItem);"
+systems/inventory/legacy/sinInvenTory.cpp,13448,"cSinHelp.sinShowHelp(SIN_HELP_KIND_BABEL, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, 15, 1"
+systems/inventory/legacy/sinInvenTory.cpp,13466,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/inventory/legacy/sinInvenTory.cpp,13472,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/inventory/legacy/sinInvenTory.cpp,13509,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/inventory/legacy/sinInvenTory.cpp,13515,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/inventory/legacy/sinInvenTory.cpp,13552,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/inventory/legacy/sinInvenTory.cpp,13558,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/inventory/legacy/sinInvenTory.cpp,13595,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/inventory/legacy/sinInvenTory.cpp,13601,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/inventory/legacy/sinInvenTory.cpp,13638,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/inventory/legacy/sinInvenTory.cpp,13644,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/inventory/legacy/sinInvenTory.cpp,13698,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/inventory/legacy/sinInvenTory.cpp,13704,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/inventory/legacy/sinInvenTory.cpp,13741,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/inventory/legacy/sinInvenTory.cpp,13747,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/inventory/legacy/sinInvenTory.cpp,13784,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/inventory/legacy/sinInvenTory.cpp,13790,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/inventory/legacy/sinItem.cpp,529,if (cCoinShop.isOpen() || cCoinShop_T.isOpen() || pItem->sItemInfo.SpecialItemFlag[2] != ITEM_KIND_SKIN && !bSendGetItemInfoPerf && (
+systems/network/client/netplay.cpp,179,"#include ""systems/gameplay/quests/ui/cQuestWindow.h"""
+systems/network/client/netplay.cpp,2610,chaPremiumitem.SetThirdEyesTime(StarterPremiumTime);
+systems/network/client/netplay.cpp,2611,"chaPremiumitem.SetUpKeepItem(nsPremiumItem::THIRD_EYES, chaPremiumitem.m_ThirdEyesTime, true, UpKeepItemName[0], 50);"
+systems/network/client/netplay.cpp,2613,chaPremiumitem.SetExpUpPotionTime(StarterPremiumTime);
+systems/network/client/netplay.cpp,2614,"chaPremiumitem.SetUpKeepItem(nsPremiumItem::EXPUP_POTION, chaPremiumitem.m_ExpUpPotionTime, true, UpKeepItemName[1], 30);"
+systems/network/client/netplay.cpp,2616,chaPremiumitem.SetVampiricCuspidTime(StarterPremiumTime);
+systems/network/client/netplay.cpp,2617,"chaPremiumitem.SetUpKeepItem(nsPremiumItem::VAMPIRIC_CUS, chaPremiumitem.m_VampiricCuspidTime, true, UpKeepItemName[2]);"
+systems/network/client/netplay.cpp,2619,chaPremiumitem.SetManaRechargingPTime(StarterPremiumTime);
+systems/network/client/netplay.cpp,2620,"chaPremiumitem.SetUpKeepItem(nsPremiumItem::MANA_RECHAR_P, chaPremiumitem.m_ManaRechargingPTime, true, UpKeepItemName[3]);"
+systems/network/client/netplay.cpp,2622,chaPremiumitem.SetManaReducePotionTime(StarterPremiumTime);
+systems/network/client/netplay.cpp,2623,chaPremiumitem.SetManaReducePotionValue(30);
+systems/network/client/netplay.cpp,2624,"chaPremiumitem.SetUpKeepItem(nsPremiumItem::MANA_REDUCE_P, chaPremiumitem.m_ManaReducePotiontime, true, UpKeepItemName[5], 30);"
+systems/network/client/netplay.cpp,2626,chaPremiumitem.SetMightOfAwellTime(StarterPremiumTime);
+systems/network/client/netplay.cpp,2627,chaPremiumitem.SetMightOfAwellWeight(300);
+systems/network/client/netplay.cpp,2628,"chaPremiumitem.SetUpKeepItem(nsPremiumItem::MIGHT_OF_AWELL, chaPremiumitem.m_MightofAwellTime, true, UpKeepItemName[4], 300);"
+systems/network/client/netplay.cpp,2630,chaPremiumitem.SetPhenixPetTime(StarterPremiumTime);
+systems/network/client/netplay.cpp,2631,"chaPremiumitem.SetUpKeepItem(nsPremiumItem::PHENIX_PET, chaPremiumitem.m_PhenixPetTime, true, UpKeepItemName[6], 500);"
+systems/network/client/netplay.cpp,2635,chaPremiumitem.SetStaminaReducePotionTime(StarterPremiumTime);
+systems/network/client/netplay.cpp,2636,chaPremiumitem.SetStaminaReducePotionValue(30);
+systems/network/client/netplay.cpp,2637,"chaPremiumitem.SetUpKeepItem(nsPremiumItem::STAMINA_REDUCE_P, chaPremiumitem.m_StaminaReducePotiontime, true, UpKeepItemName[12], 30);"
+systems/network/client/netplay.cpp,2688,cQuestWindow.handlePacket((smTRANS_QUEST_INFO*)pData->Buff);
+systems/network/client/netplay.cpp,2692,cQuestWindow.handlePacket((smTRANS_QUEST_FULL*)pData->Buff);
+systems/network/client/netplay.cpp,2706,"chaPremiumitem.SetUpKeepItem(nsPremiumItem::BIGHEAD1, SINITEM_TIME_ONEDAY, true, UpKeepItemName[13], 30);"
+systems/network/client/netplay.cpp,2707,"chaPremiumitem.SetItemPremiumTime(nsPremiumItem::BIGHEAD1, iTimeLeft);"
+systems/network/client/netplay.cpp,2708,chaPremiumitem.SetBigHeadType(iItemType);
+systems/network/client/netplay.cpp,2711,switch (chaPremiumitem.GetBigHeadType())
+systems/network/client/netplay.cpp,3320,cMessageBox.ShowMessageEvent(lpTransChatMessage->szMessage);
+systems/network/client/netplay.cpp,3325,cMessageBox.ShowMessage1(lpTransChatMessage->szMessage);
+systems/network/client/netplay.cpp,4322,cMessageBox.ShowMessageEvent(mgWeightOver);
+systems/network/client/netplay.cpp,4346,cMessageBox.ShowMessageEvent(mgWeightOver);
+systems/network/client/netplay.cpp,4502,cMessageBox.ShowMessageEvent(mgWeightOver);
+systems/network/client/netplay.cpp,4587,cMessageBox.ShowMessageEvent(mgWeightOver);
+systems/network/client/netplay.cpp,4667,cMessageBox.ShowMessage(MESSAGE_ALREADY_INITSTATE);
+systems/network/client/netplay.cpp,4669,"cMessageBox.ShowMessage3(MESSAGE_EVENT_GYUNGFUM, """");"
+systems/network/client/netplay.cpp,4677,cMessageBox.ShowMessageEvent(mgWeightOver);
+systems/network/client/netplay.cpp,4686,cMessageBox.ShowMessageEvent(mgWeightOver);
+systems/network/client/netplay.cpp,4695,cMessageBox.ShowMessageEvent(mgWeightOver);
+systems/network/client/netplay.cpp,4704,cMessageBox.ShowMessageEvent(mgWeightOver);
+systems/network/client/netplay.cpp,4713,cMessageBox.ShowMessageEvent(mgWeightOver);
+systems/network/client/netplay.cpp,4780,if(chaPremiumitem.UpKeepItem[i].TGAImageNumber == nsPremiumItem::THIRD_EYES)
+systems/network/client/netplay.cpp,4782,if(chaPremiumitem.UpKeepItem[i].IconTime[1] - chaPremiumitem.UpKeepItem[i].IconTime[0] <= 0)
+systems/network/client/netplay.cpp,4784,chaPremiumitem.m_ThirdEyesTime = 0;
+systems/network/client/netplay.cpp,4788,else if(chaPremiumitem.UpKeepItem[i].TGAImageNumber == nsPremiumItem::EXPUP_POTION)
+systems/network/client/netplay.cpp,4790,if(chaPremiumitem.UpKeepItem[i].IconTime[1] - chaPremiumitem.UpKeepItem[i].IconTime[0] <= 0)
+systems/network/client/netplay.cpp,4792,chaPremiumitem.m_ExpUpPotionTime = 0;
+systems/network/client/netplay.cpp,4796,else if(chaPremiumitem.UpKeepItem[i].TGAImageNumber == nsPremiumItem::VAMPIRIC_CUS)
+systems/network/client/netplay.cpp,4798,if(chaPremiumitem.UpKeepItem[i].IconTime[1] - chaPremiumitem.UpKeepItem[i].IconTime[0] <= 0)
+systems/network/client/netplay.cpp,4800,chaPremiumitem.m_VampiricCuspidTime = 0;
+systems/network/client/netplay.cpp,4804,else if(chaPremiumitem.UpKeepItem[i].TGAImageNumber == nsPremiumItem::MANA_RECHAR_P)
+systems/network/client/netplay.cpp,4806,if(chaPremiumitem.UpKeepItem[i].IconTime[1] - chaPremiumitem.UpKeepItem[i].IconTime[0] <= 0)
+systems/network/client/netplay.cpp,4808,chaPremiumitem.m_ManaRechargingPTime = 0;
+systems/network/client/netplay.cpp,4812,else if (chaPremiumitem.UpKeepItem[i].TGAImageNumber == nsPremiumItem::STAMINA_RECHAR_P)
+systems/network/client/netplay.cpp,4814,if (chaPremiumitem.UpKeepItem[i].IconTime[1] - chaPremiumitem.UpKeepItem[i].IconTime[0] <= 0)
+systems/network/client/netplay.cpp,4816,chaPremiumitem.m_StaminaRechargingPTime = 0;
+systems/network/client/netplay.cpp,4819,else if (chaPremiumitem.UpKeepItem[i].TGAImageNumber == nsPremiumItem::HP_BOOSTER)
+systems/network/client/netplay.cpp,4821,if (chaPremiumitem.UpKeepItem[i].IconTime[1] - chaPremiumitem.UpKeepItem[i].IconTime[0] <= 0)
+systems/network/client/netplay.cpp,4823,chaPremiumitem.m_HPBoosterPTime = 0;
+systems/network/client/netplay.cpp,4826,else if (chaPremiumitem.UpKeepItem[i].TGAImageNumber == nsPremiumItem::MP_BOOSTER)
+systems/network/client/netplay.cpp,4828,if (chaPremiumitem.UpKeepItem[i].IconTime[1] - chaPremiumitem.UpKeepItem[i].IconTime[0] <= 0)
+systems/network/client/netplay.cpp,4830,chaPremiumitem.m_MPBoosterPTime = 0;
+systems/network/client/netplay.cpp,4833,else if (chaPremiumitem.UpKeepItem[i].TGAImageNumber == nsPremiumItem::RES_BOOSTER)
+systems/network/client/netplay.cpp,4835,if (chaPremiumitem.UpKeepItem[i].IconTime[1] - chaPremiumitem.UpKeepItem[i].IconTime[0] <= 0)
+systems/network/client/netplay.cpp,4837,chaPremiumitem.m_RESBoosterPTime = 0;
+systems/network/client/netplay.cpp,5004,cCoinShop.Open();
+systems/network/client/netplay.cpp,5008,cCoinShop.RecvItemFromServer((smTRANS_SHOPDATA*)pData->Buff);
+systems/network/client/netplay.cpp,5012,cCoinShop.RecvCoinFromServer((smTRANS_COMMAND*)pData->Buff);
+systems/network/client/netplay.cpp,5016,cCoinShop_T.RecvItemFromServer((smTRANS_SHOPDATA*)pData->Buff);
+systems/network/client/netplay.cpp,5020,cCoinShop_T.RecvCoinFromServer((smTRANS_COMMAND*)pData->Buff);
+systems/network/client/netplay.cpp,5024,cCoinShop_T.Open();
+systems/network/client/netplay.cpp,5330,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/network/client/netplay.cpp,5340,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/network/client/netplay.cpp,5388,"cSinHelp.ShowSodRanking((TRANS_SOD_RESULT *)pData->Buff, 1);"
+systems/network/client/netplay.cpp,5393,"cSinHelp.ShowSodRanking((TRANS_SOD_RESULT *)pData->Buff, 0);"
+systems/network/client/netplay.cpp,5567,cMessageBox.ShowMessage2(MESSAGE_GIVE_MONEY);
+systems/network/client/netplay.cpp,5658,"cSinHelp.ShowResearchMenu(lpTransCommand->WParam, lpTransCommand->LParam);"
+systems/network/client/netplay.cpp,5718,if(chaPremiumitem.UpKeepItem[i].TGAImageNumber == nsPremiumItem::MIGHT_OF_AWELL)
+systems/network/client/netplay.cpp,5720,if(chaPremiumitem.UpKeepItem[i].IconTime[1] - chaPremiumitem.UpKeepItem[i].IconTime[0] <= 0)
+systems/network/client/netplay.cpp,5722,chaPremiumitem.m_MightofAwellTime = 0;
+systems/network/client/netplay.cpp,5723,chaPremiumitem.m_MightofAwellWeight = 0;
+systems/network/client/netplay.cpp,5727,if(chaPremiumitem.UpKeepItem[i].TGAImageNumber == nsPremiumItem::MANA_REDUCE_P)
+systems/network/client/netplay.cpp,5729,if(chaPremiumitem.UpKeepItem[i].IconTime[1] - chaPremiumitem.UpKeepItem[i].IconTime[0] <= 0)
+systems/network/client/netplay.cpp,5731,chaPremiumitem.m_ManaReducePotiontime = 0;
+systems/network/client/netplay.cpp,5732,chaPremiumitem.m_ManaReducePotionValue = 0;
+systems/network/client/netplay.cpp,5735,else if(chaPremiumitem.UpKeepItem[i].TGAImageNumber == nsPremiumItem::MIGHT_OF_AWELL)
+systems/network/client/netplay.cpp,5737,if(chaPremiumitem.UpKeepItem[i].IconTime[1] - chaPremiumitem.UpKeepItem[i].IconTime[0] <= 0)
+systems/network/client/netplay.cpp,5739,chaPremiumitem.m_MightofAwellTime = 0;
+systems/network/client/netplay.cpp,5740,chaPremiumitem.m_MightofAwellWeight = 0;
+systems/network/client/netplay.cpp,5743,else if(chaPremiumitem.UpKeepItem[i].TGAImageNumber == nsPremiumItem::PHENIX_PET)
+systems/network/client/netplay.cpp,5745,if(chaPremiumitem.UpKeepItem[i].IconTime[1] - chaPremiumitem.UpKeepItem[i].IconTime[0] <= 0)
+systems/network/client/netplay.cpp,5747,chaPremiumitem.m_PhenixPetTime = 0;
+systems/network/client/netplay.cpp,5769,if(chaPremiumitem.UpKeepItem[i].TGAImageNumber == nsPremiumItem::HELP_PET_TERRY)
+systems/network/client/netplay.cpp,5771,if(chaPremiumitem.UpKeepItem[i].IconTime[1] - chaPremiumitem.UpKeepItem[i].IconTime[0] <= 0)
+systems/network/client/netplay.cpp,5774,chaPremiumitem.m_TerryTime = 0;
+systems/network/client/netplay.cpp,5776,chaPremiumitem.m_HelpPetTime = 0;
+systems/network/client/netplay.cpp,5781,else if(chaPremiumitem.UpKeepItem[i].TGAImageNumber == nsPremiumItem::HELP_PET_NEPSYS)
+systems/network/client/netplay.cpp,5783,if(chaPremiumitem.UpKeepItem[i].IconTime[1] - chaPremiumitem.UpKeepItem[i].IconTime[0] <= 0)
+systems/network/client/netplay.cpp,5785,chaPremiumitem.m_HelpPetTime = 0;
+systems/network/client/netplay.cpp,5789,else if(chaPremiumitem.UpKeepItem[i].TGAImageNumber == nsPremiumItem::HELP_PET_IO)
+systems/network/client/netplay.cpp,5791,if(chaPremiumitem.UpKeepItem[i].IconTime[1] - chaPremiumitem.UpKeepItem[i].IconTime[0] <= 0)
+systems/network/client/netplay.cpp,5793,chaPremiumitem.m_HelpPetTime = 0;
+systems/network/client/netplay.cpp,5797,else if(chaPremiumitem.UpKeepItem[i].TGAImageNumber == nsPremiumItem::HELP_PET_MUTE)
+systems/network/client/netplay.cpp,5799,if(chaPremiumitem.UpKeepItem[i].IconTime[1] - chaPremiumitem.UpKeepItem[i].IconTime[0] <= 0)
+systems/network/client/netplay.cpp,5801,chaPremiumitem.m_HelpPetTime = 0;
+systems/network/client/netplay.cpp,5806,else if(chaPremiumitem.UpKeepItem[i].TGAImageNumber == nsPremiumItem::STAMINA_REDUCE_P)
+systems/network/client/netplay.cpp,5808,if(chaPremiumitem.UpKeepItem[i].IconTime[1] - chaPremiumitem.UpKeepItem[i].IconTime[0] <= 0)
+systems/network/client/netplay.cpp,5810,chaPremiumitem.m_StaminaReducePotiontime = 0;
+systems/network/client/netplay.cpp,5811,chaPremiumitem.m_StaminaReducePotionValue = 0;
+systems/network/client/netplay.cpp,5812,chaPremiumitem.SetStaminaReducePotionTime(chaPremiumitem.m_StaminaReducePotiontime);
+systems/network/client/netplay.cpp,5816,else if(chaPremiumitem.UpKeepItem[i].TGAImageNumber == nsPremiumItem::VAMPIRIC_CUS_EX)
+systems/network/client/netplay.cpp,5818,if(chaPremiumitem.UpKeepItem[i].IconTime[1] - chaPremiumitem.UpKeepItem[i].IconTime[0] <= 0)
+systems/network/client/netplay.cpp,5820,chaPremiumitem.m_VampiricCuspidEXTime = 0;
+systems/network/client/netplay.cpp,5827,if(chaPremiumitem.UpKeepItem[i].TGAImageNumber == nsPremiumItem::VAMPIRIC_CUS_EX)
+systems/network/client/netplay.cpp,5829,if(chaPremiumitem.UpKeepItem[i].IconTime[1] - chaPremiumitem.UpKeepItem[i].IconTime[0] <= 0)
+systems/network/client/netplay.cpp,5831,chaPremiumitem.m_VampiricCuspidEXTime = 0;
+systems/network/client/netplay.cpp,5855,if(chaPremiumitem.UpKeepItem[i].TGAImageNumber == nsPremiumItem::VAMPIRIC_CUS_EX)
+systems/network/client/netplay.cpp,5857,if(chaPremiumitem.UpKeepItem[i].IconTime[1] - chaPremiumitem.UpKeepItem[i].IconTime[0] <= 0)
+systems/network/client/netplay.cpp,5859,chaPremiumitem.m_VampiricCuspidEXTime = 0;
+systems/network/client/netplay.cpp,5878,if (chaPremiumitem.bUpdateTimeDelayFlag == true) break;
+systems/network/client/netplay.cpp,5882,chaPremiumitem.m_ThirdEyesTime = lpTransPremiumTime->ThirdEye;
+systems/network/client/netplay.cpp,5883,chaPremiumitem.m_ExpUpPotionTime = lpTransPremiumTime->ExpUp;
+systems/network/client/netplay.cpp,5884,chaPremiumitem.m_VampiricCuspidTime = lpTransPremiumTime->VampCuspid;
+systems/network/client/netplay.cpp,5885,chaPremiumitem.m_ManaRechargingPTime = lpTransPremiumTime->ManaRecharg;
+systems/network/client/netplay.cpp,5886,chaPremiumitem.m_StaminaRechargingPTime = lpTransPremiumTime->StaminaRecharg;
+systems/network/client/netplay.cpp,5887,chaPremiumitem.m_ManaReducePotiontime = lpTransPremiumTime->ManaReduce;
+systems/network/client/netplay.cpp,5888,chaPremiumitem.m_MightofAwellTime = lpTransPremiumTime->MightofAwell;
+systems/network/client/netplay.cpp,5889,if (!chaPremiumitem.m_MightofAwellTime)
+systems/network/client/netplay.cpp,5890,chaPremiumitem.m_MightofAwellTime = lpTransPremiumTime->MightofAwell2;
+systems/network/client/netplay.cpp,5891,chaPremiumitem.m_PhenixPetTime = lpTransPremiumTime->PhenixPet;
+systems/network/client/netplay.cpp,5892,chaPremiumitem.m_HelpPetTime = lpTransPremiumTime->HelpPet;
+systems/network/client/netplay.cpp,5893,chaPremiumitem.m_VampiricCuspidEXTime = lpTransPremiumTime->VampCuspidEx;
+systems/network/client/netplay.cpp,5894,chaPremiumitem.m_StaminaReducePotiontime = lpTransPremiumTime->StaminaReduce;
+systems/network/client/netplay.cpp,5895,chaPremiumitem.m_CaravanTime = lpTransPremiumTime->Caravan;
+systems/network/client/netplay.cpp,5896,chaPremiumitem.m_GoldLooterPTime = lpTransPremiumTime->GoldLooter;
+systems/network/client/netplay.cpp,5897,chaPremiumitem.m_HPBoosterPTime = lpTransPremiumTime->HPBooster;
+systems/network/client/netplay.cpp,5898,chaPremiumitem.m_MPBoosterPTime = lpTransPremiumTime->MPBooster;
+systems/network/client/netplay.cpp,5899,chaPremiumitem.m_RESBoosterPTime = lpTransPremiumTime->RESBooster;
+systems/network/client/netplay.cpp,5901,if (chaPremiumitem.m_ThirdEyesTime > PRIME_ITEM_TIME_24H || chaPremiumitem.m_ExpUpPotionTime > PRIME_ITEM_TIME_24H ||
+systems/network/client/netplay.cpp,5902,chaPremiumitem.m_VampiricCuspidTime > PRIME_ITEM_TIME_24H || chaPremiumitem.m_ManaRechargingPTime > PRIME_ITEM_TIME_24H ||
+systems/network/client/netplay.cpp,5903,chaPremiumitem.m_ManaReducePotiontime > PRIME_ITEM_TIME_24H || chaPremiumitem.m_MightofAwellTime > PRIME_ITEM_TIME_24H || chaPremiumitem.m_PhenixPetTime > PRIME
+systems/network/client/netplay.cpp,5904,chaPremiumitem.m_HelpPetTime > PRIME_ITEM_TIME_24H || chaPremiumitem.m_StaminaReducePotiontime > PRIME_ITEM_TIME_24H || chaPremiumitem.m_VampiricCuspidEXTime > 
+systems/network/client/netplay.cpp,5911,int TGANumber = chaPremiumitem.UpKeepItem[i].TGAImageNumber;
+systems/network/client/netplay.cpp,5916,chaPremiumitem.UpKeepItem[i].IconTime[1] = chaPremiumitem.m_ThirdEyesTime;
+systems/network/client/netplay.cpp,5920,chaPremiumitem.UpKeepItem[i].IconTime[1] = chaPremiumitem.m_ExpUpPotionTime;
+systems/network/client/netplay.cpp,5924,chaPremiumitem.UpKeepItem[i].IconTime[1] = chaPremiumitem.m_VampiricCuspidTime;
+systems/network/client/netplay.cpp,5928,chaPremiumitem.UpKeepItem[i].IconTime[1] = chaPremiumitem.m_ManaRechargingPTime;
+systems/network/client/netplay.cpp,5932,chaPremiumitem.UpKeepItem[i].IconTime[1] = chaPremiumitem.m_MightofAwellTime;
+systems/network/client/netplay.cpp,5936,chaPremiumitem.UpKeepItem[i].IconTime[1] = chaPremiumitem.m_ManaReducePotiontime;
+systems/network/client/netplay.cpp,5940,chaPremiumitem.UpKeepItem[i].IconTime[1] = chaPremiumitem.m_PhenixPetTime;
+systems/network/client/netplay.cpp,5947,chaPremiumitem.UpKeepItem[i].IconTime[1] = chaPremiumitem.m_HelpPetTime;
+systems/network/client/netplay.cpp,5951,chaPremiumitem.UpKeepItem[i].IconTime[1] = chaPremiumitem.m_VampiricCuspidEXTime;
+systems/network/client/netplay.cpp,5955,chaPremiumitem.UpKeepItem[i].IconTime[1] = chaPremiumitem.m_StaminaReducePotiontime;
+systems/network/client/netplay.cpp,5959,chaPremiumitem.UpKeepItem[i].IconTime[1] = chaPremiumitem.m_StaminaRechargingPTime;
+systems/network/client/netplay.cpp,5963,chaPremiumitem.UpKeepItem[i].IconTime[1] = chaPremiumitem.m_CaravanTime;
+systems/network/client/netplay.cpp,5967,chaPremiumitem.UpKeepItem[i].IconTime[1] = chaPremiumitem.m_GoldLooterPTime;
+systems/network/client/netplay.cpp,5970,chaPremiumitem.UpKeepItem[i].IconTime[1] = chaPremiumitem.m_HPBoosterPTime;
+systems/network/client/netplay.cpp,5974,chaPremiumitem.UpKeepItem[i].IconTime[1] = chaPremiumitem.m_MPBoosterPTime;
+systems/network/client/netplay.cpp,5978,chaPremiumitem.UpKeepItem[i].IconTime[1] = chaPremiumitem.m_RESBoosterPTime;
+systems/network/client/netplay.cpp,5996,if(chaPremiumitem.UpKeepItem[i].TGAImageNumber == lpTransCommand->WParam)
+systems/network/client/netplay.cpp,5998,chaPremiumitem.UpKeepItem[i].IconTime[1] = chaPremiumitem.UpKeepItem[i].IconTime[0];
+systems/network/client/netplay.cpp,6009,chaPremiumitem.m_ManaReducePotiontime = 0;
+systems/network/client/netplay.cpp,6010,chaPremiumitem.SetManaReducePotionTime(chaPremiumitem.m_ManaReducePotiontime);
+systems/network/client/netplay.cpp,6014,chaPremiumitem.m_StaminaReducePotiontime = 0;
+systems/network/client/netplay.cpp,6015,chaPremiumitem.SetStaminaReducePotionTime(chaPremiumitem.m_StaminaReducePotiontime);
+systems/network/client/netplay.cpp,6495,cMessageBox.ShowMessage(MESSAGE_PLUS_STATE_POINT5);
+systems/network/client/netplay.cpp,6509,cMessageBox.ShowMessage(MESSAGE_PLUS_SKILL_POINT);
+systems/network/client/netplay.cpp,6524,cMessageBox.ShowMessage(MESSAGE_PLUS_SKILL_POINT);
+systems/network/client/netplay.cpp,6539,cMessageBox.ShowMessage(MESSAGE_PLUS_POINT_70);
+systems/network/client/netplay.cpp,6554,cMessageBox.ShowMessage(MESSAGE_PLUS_POINT_80);
+systems/network/client/netplay.cpp,6612,cMessageBox.ShowMessage(MESSAGE_PLUS_POINT_80_2);
+systems/network/client/netplay.cpp,6631,cMessageBox.ShowMessage(MESSAGE_PLUS_POINT_90_2);
+systems/network/client/netplay.cpp,8743,chaPremiumitem.SetThirdEyesTime(PRIME_ITEM_TIME_12H);
+systems/network/client/netplay.cpp,8747,chaPremiumitem.SetExpUpPotionTime(PRIME_ITEM_TIME_12H);
+systems/network/client/netplay.cpp,8751,chaPremiumitem.SetThirdEyesTime(PRIME_ITEM_TIME_24H);
+systems/network/client/netplay.cpp,8755,chaPremiumitem.SetExpUpPotionTime(PRIME_ITEM_TIME_24H);
+systems/network/client/netplay.cpp,8770,chaPremiumitem.SetExpUpPotionTime(PRIME_ITEM_TIME_12H);
+systems/network/client/netplay.cpp,8774,chaPremiumitem.SetExpUpPotionTime(PRIME_ITEM_TIME_24H);
+systems/network/client/netplay.cpp,8778,chaPremiumitem.SetMightOfAwellTime(PRIME_ITEM_TIME_EXPUPx7);
+systems/network/client/netplay.cpp,8779,chaPremiumitem.SetMightOfAwellWeight(300);
+systems/network/client/netplay.cpp,8783,chaPremiumitem.SetMightOfAwellTime(PRIME_ITEM_TIME_PACKAGE4);
+systems/network/client/netplay.cpp,8784,chaPremiumitem.SetMightOfAwellWeight(500);
+systems/network/client/netplay.cpp,8788,chaPremiumitem.SetManaReducePotionTime(PRIME_ITEM_TIME_12H);
+systems/network/client/netplay.cpp,8789,chaPremiumitem.SetManaReducePotionValue(30);
+systems/network/client/netplay.cpp,8793,chaPremiumitem.SetManaReducePotionTime(PRIME_ITEM_TIME_24H);
+systems/network/client/netplay.cpp,8794,chaPremiumitem.SetManaReducePotionValue(30);
+systems/network/client/netplay.cpp,8798,chaPremiumitem.SetMightOfAwellTime(PRIME_ITEM_TIME_24H);
+systems/network/client/netplay.cpp,8799,chaPremiumitem.SetMightOfAwellWeight(500);
+systems/network/client/netplay.cpp,8803,chaPremiumitem.SetMightOfAwellTime(PRIME_ITEM_TIME_24H);
+systems/network/client/netplay.cpp,8804,chaPremiumitem.SetMightOfAwellWeight(500);
+systems/network/client/netplay.cpp,8808,chaPremiumitem.SetPhenixPetTime(PRIME_ITEM_TIME_12H);
+systems/network/client/netplay.cpp,8814,chaPremiumitem.SetPhenixPetTime(PRIME_ITEM_TIME_12H);
+systems/network/client/netplay.cpp,8820,chaPremiumitem.SetPhenixPetTime(PRIME_ITEM_TIME_24H);
+systems/network/client/netplay.cpp,8826,chaPremiumitem.SetPhenixPetTime(PRIME_ITEM_TIME_6H);
+systems/network/client/netplay.cpp,8832,chaPremiumitem.SetExpUpPotionTime(PRIME_ITEM_TIME_6H);
+systems/network/client/netplay.cpp,8836,chaPremiumitem.SetExpUpPotionTime(PRIME_ITEM_TIME_12H);
+systems/network/client/netplay.cpp,8840,chaPremiumitem.SetExpUpPotionTime(PRIME_ITEM_TIME_24H);
+systems/network/client/netplay.cpp,8844,chaPremiumitem.SetPhenixPetTime(PRIME_ITEM_TIME_72H);
+systems/network/client/netplay.cpp,8850,chaPremiumitem.SetHelpPetTimeTime(PRIME_ITEM_TIME_1H);
+systems/network/client/netplay.cpp,8859,chaPremiumitem.SetHelpPetTimeTime(PRIME_ITEM_TIME_1H);
+systems/network/client/netplay.cpp,8867,chaPremiumitem.SetHelpPetTimeTime(PRIME_ITEM_TIME_1H);
+systems/network/client/netplay.cpp,8875,chaPremiumitem.SetHelpPetTimeTime(PRIME_ITEM_TIME_1H);
+systems/network/client/netplay.cpp,8885,chaPremiumitem.SetHelpPetTimeTime(PRIME_ITEM_TIME_12H);
+systems/network/client/netplay.cpp,8894,chaPremiumitem.SetHelpPetTimeTime(PRIME_ITEM_TIME_12H);
+systems/network/client/netplay.cpp,8902,chaPremiumitem.SetHelpPetTimeTime(PRIME_ITEM_TIME_12H);
+systems/network/client/netplay.cpp,8910,chaPremiumitem.SetHelpPetTimeTime(PRIME_ITEM_TIME_12H);
+systems/network/client/netplay.cpp,8920,chaPremiumitem.SetExpUpPotionTime(PRIME_ITEM_TIME_1H);
+systems/network/client/netplay.cpp,8926,chaPremiumitem.SetPhenixPetTime(PRIME_ITEM_TIME_1H);
+systems/network/client/netplay.cpp,8933,chaPremiumitem.SetHelpPetTimeTime(PRIME_ITEM_TIME_6H);
+systems/network/client/netplay.cpp,8942,chaPremiumitem.SetHelpPetTimeTime(PRIME_ITEM_TIME_6H);
+systems/network/client/netplay.cpp,8950,chaPremiumitem.SetHelpPetTimeTime(PRIME_ITEM_TIME_6H);
+systems/network/client/netplay.cpp,8958,chaPremiumitem.SetHelpPetTimeTime(PRIME_ITEM_TIME_6H);
+systems/network/client/netplay.cpp,8967,chaPremiumitem.SetHelpPetTimeTime(PRIME_ITEM_TIME_24H);
+systems/network/client/netplay.cpp,8976,chaPremiumitem.SetHelpPetTimeTime(PRIME_ITEM_TIME_24H);
+systems/network/client/netplay.cpp,8984,chaPremiumitem.SetHelpPetTimeTime(PRIME_ITEM_TIME_24H);
+systems/network/client/netplay.cpp,8992,chaPremiumitem.SetHelpPetTimeTime(PRIME_ITEM_TIME_24H);
+systems/network/client/netplay.cpp,9002,chaPremiumitem.SetThirdEyesTime(PRIME_ITEM_TIME_6H);
+systems/network/client/netplay.cpp,9008,chaPremiumitem.SetExpUpPotionTime(PRIME_ITEM_TIME_6H);
+systems/network/client/netplay.cpp,9014,chaPremiumitem.SetManaReducePotionTime(PRIME_ITEM_TIME_6H);
+systems/network/client/netplay.cpp,9015,chaPremiumitem.SetManaReducePotionValue(30);
+systems/network/client/netplay.cpp,9020,chaPremiumitem.SetStaminaReducePotionTime(PRIME_ITEM_TIME_12H);
+systems/network/client/netplay.cpp,9021,chaPremiumitem.SetStaminaReducePotionValue(30);
+systems/network/client/netplay.cpp,9025,chaPremiumitem.SetStaminaReducePotionTime(PRIME_ITEM_TIME_24H);
+systems/network/client/netplay.cpp,9026,chaPremiumitem.SetStaminaReducePotionValue(30);
+systems/network/client/netplay.cpp,9031,chaPremiumitem.SetCaravanTime((60 * 60 * 24 * 3));
+systems/network/client/netplay.cpp,9035,chaPremiumitem.SetCaravanTime((60 * 60 * 24 * 7));
+systems/network/client/netplay.cpp,9049,chaPremiumitem.SetThirdEyesTime(PRIME_ITEM_TIME_1H);
+systems/network/client/netplay.cpp,9050,chaPremiumitem.SetExpUpPotionTime(PRIME_ITEM_TIME_1H);
+systems/network/client/netplay.cpp,9056,chaPremiumitem.SetThirdEyesTime(PRIME_ITEM_TIME_6H);
+systems/network/client/netplay.cpp,9057,chaPremiumitem.SetExpUpPotionTime(PRIME_ITEM_TIME_6H);
+systems/network/client/netplay.cpp,9063,chaPremiumitem.SetThirdEyesTime(PRIME_ITEM_TIME_12H);
+systems/network/client/netplay.cpp,9064,chaPremiumitem.SetExpUpPotionTime(PRIME_ITEM_TIME_12H);
+systems/network/client/netplay.cpp,9070,chaPremiumitem.SetThirdEyesTime(PRIME_ITEM_TIME_24H);
+systems/network/client/netplay.cpp,9071,chaPremiumitem.SetExpUpPotionTime(PRIME_ITEM_TIME_24H);
+systems/network/client/netplay.cpp,9074,chaPremiumitem.SetExpUpPotionTime(PRIME_ITEM_TIME_6H);
+systems/network/client/netplay.cpp,9075,chaPremiumitem.SetManaReducePotionTime(PRIME_ITEM_TIME_6H);
+systems/network/client/netplay.cpp,9076,chaPremiumitem.SetManaReducePotionValue(10);
+systems/network/client/netplay.cpp,9079,chaPremiumitem.SetExpUpPotionTime(PRIME_ITEM_TIME_12H);
+systems/network/client/netplay.cpp,9080,chaPremiumitem.SetManaReducePotionTime(PRIME_ITEM_TIME_12H);
+systems/network/client/netplay.cpp,9081,chaPremiumitem.SetManaReducePotionValue(10);
+systems/network/client/netplay.cpp,9084,chaPremiumitem.SetExpUpPotionTime(PRIME_ITEM_TIME_24H);
+systems/network/client/netplay.cpp,9085,chaPremiumitem.SetManaReducePotionTime(PRIME_ITEM_TIME_24H);
+systems/network/client/netplay.cpp,9086,chaPremiumitem.SetManaReducePotionValue(10);
+systems/network/client/netplay.cpp,9089,chaPremiumitem.SetExpUpPotionTime(PRIME_ITEM_TIME_6H);
+systems/network/client/netplay.cpp,9090,chaPremiumitem.SetManaReducePotionTime(PRIME_ITEM_TIME_6H);
+systems/network/client/netplay.cpp,9091,chaPremiumitem.SetManaReducePotionValue(20);
+systems/network/client/netplay.cpp,9094,chaPremiumitem.SetExpUpPotionTime(PRIME_ITEM_TIME_12H);
+systems/network/client/netplay.cpp,9095,chaPremiumitem.SetManaReducePotionTime(PRIME_ITEM_TIME_12H);
+systems/network/client/netplay.cpp,9096,chaPremiumitem.SetManaReducePotionValue(20);
+systems/network/client/netplay.cpp,9099,chaPremiumitem.SetExpUpPotionTime(PRIME_ITEM_TIME_24H);
+systems/network/client/netplay.cpp,9100,chaPremiumitem.SetManaReducePotionTime(PRIME_ITEM_TIME_24H);
+systems/network/client/netplay.cpp,9101,chaPremiumitem.SetManaReducePotionValue(20);
+systems/network/client/netplay.cpp,9104,chaPremiumitem.SetExpUpPotionTime(PRIME_ITEM_TIME_6H);
+systems/network/client/netplay.cpp,9105,chaPremiumitem.SetManaReducePotionTime(PRIME_ITEM_TIME_6H);
+systems/network/client/netplay.cpp,9106,chaPremiumitem.SetManaReducePotionValue(30);
+systems/network/client/netplay.cpp,9109,chaPremiumitem.SetExpUpPotionTime(PRIME_ITEM_TIME_12H);
+systems/network/client/netplay.cpp,9110,chaPremiumitem.SetManaReducePotionTime(PRIME_ITEM_TIME_12H);
+systems/network/client/netplay.cpp,9111,chaPremiumitem.SetManaReducePotionValue(30);
+systems/network/client/netplay.cpp,9114,chaPremiumitem.SetExpUpPotionTime(PRIME_ITEM_TIME_24H);
+systems/network/client/netplay.cpp,9115,chaPremiumitem.SetManaReducePotionTime(PRIME_ITEM_TIME_24H);
+systems/network/client/netplay.cpp,9116,chaPremiumitem.SetManaReducePotionValue(30);
+systems/network/client/netplay.cpp,9119,chaPremiumitem.SetExpUpPotionTime(PRIME_ITEM_TIME_6H);
+systems/network/client/netplay.cpp,9120,chaPremiumitem.SetManaReducePotionTime(PRIME_ITEM_TIME_6H);
+systems/network/client/netplay.cpp,9121,chaPremiumitem.SetManaReducePotionValue(40);
+systems/network/client/netplay.cpp,9124,chaPremiumitem.SetExpUpPotionTime(PRIME_ITEM_TIME_12H);
+systems/network/client/netplay.cpp,9125,chaPremiumitem.SetManaReducePotionTime(PRIME_ITEM_TIME_12H);
+systems/network/client/netplay.cpp,9126,chaPremiumitem.SetManaReducePotionValue(40);
+systems/network/client/netplay.cpp,9129,chaPremiumitem.SetExpUpPotionTime(PRIME_ITEM_TIME_24H);
+systems/network/client/netplay.cpp,9130,chaPremiumitem.SetManaReducePotionTime(PRIME_ITEM_TIME_24H);
+systems/network/client/netplay.cpp,9131,chaPremiumitem.SetManaReducePotionValue(40);
+systems/network/client/netplay.cpp,10998,cMessageBox.ShowMessage(MESSAGE_MOVE_TRADE_ITEM);
+systems/network/client/netplay.cpp,13526,ReStartFlag = 0;
+systems/network/client/netplay.cpp,14957,cMessageBox.ShowMessageEvent(szBuff);
+systems/presentation/opening/HoOpening.cpp,943,"{ FILE *f=SummitOpeningRuntimeTraceFile(""NUL""); if(f){ fprintf(f,""DRAW before cSettings.isOpen block isOpen=%d MouseButton0=%d\n"", cSettings.isOpen(), MouseButt"
+systems/presentation/opening/HoOpening.cpp,944,if (cSettings.isOpen())
+systems/presentation/opening/HoOpening.cpp,949,"{ FILE *f=SummitOpeningRuntimeTraceFile(""NUL""); if(f){ fprintf(f,""DRAW after cSettings.isOpen block MouseButton0=%d\n"", MouseButton[0]); fclose(f);} }"
+systems/presentation/opening/HoOpening.cpp,960,if (cSettings.isOpen())
+systems/presentation/opening/HoOpening.cpp,961,cSettings.Close();
+systems/presentation/opening/HoOpening.cpp,963,cSettings.Open();
+systems/presentation/opening/HoOpening.cpp,1496,"{ FILE *f=SummitOpeningRuntimeTraceFile(""NUL""); if(f){ fprintf(f,""DRAW before cSettings.Draw\n""); fclose(f);} }"
+systems/presentation/opening/HoOpening.cpp,1497,"MINGW_CheckUserAccount(""before cSettings.Draw"");"
+systems/presentation/opening/HoOpening.cpp,1498,cSettings.Draw();
+systems/presentation/opening/HoOpening.cpp,1499,"MINGW_CheckUserAccount(""after cSettings.Draw"");"
+systems/presentation/opening/HoOpening.cpp,1502,"{ FILE *f=SummitOpeningRuntimeTraceFile(""NUL""); if(f){ fprintf(f,""DRAW after cSettings.Draw return TRUE\n""); fclose(f);} }"
+systems/presentation/opening/legacy_runtime/HoLinkHeader.cpp,718,"#include ""systems/gameplay/quests/ui/cQuestWindow.h"""
+systems/presentation/opening/legacy_runtime/HoLinkHeader.cpp,723,{if (cCoinShop.isOpen() || cCoinShop_T.isOpen() || cParty.StopMotion() || cTarget.StopMotion() || cQuestWindow.OpenFlag || cSettings.isOpen() || stop)
+systems/progression/battle_pass/BattlePass.cpp,46,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/progression/battle_pass/BattlePass.cpp,50,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/progression/battle_pass/BattlePass.cpp,54,cMessageBox.ShowMessage(MESSAGE_OVER_MONEY);
+systems/social/clan/customization/ClanCustom.cpp,44,"cMessageBox.ShowMessage3(MESSAGE_CLAN_CUSTOM, ""Deseja Alterar?"");"
+systems/social/clan/tjclan.cpp,292,if(cSinHelp.sinGetHelpShowFlag() && !IsDrawGuideHelp) return;
+systems/social/clan/tjclan.cpp,2240,if(cSinHelp.sinGetHelpShowFlag() && !IsDrawGuideHelp) return FALSE;
+systems/social/party/ui/cPartyWindow.cpp,6,"#include ""systems/gameplay/quests/ui/cQuestWindow.h"""
+systems/social/party/ui/cPartyWindow.cpp,252,cWareHouse.OpenFlag || SmeltingItem.OpenFlag || cShop.OpenFlag || cCoinShop.isOpen() || cCoinShop_T.isOpen() || cQuestWindow.OpenFlag)
+systems/ui/confirmation/ConfirmationBox.cpp,14,"cMessageBox.ShowMessage3(MESSAGE_CONFIRMATION_BOX, const_cast<char*>(m_Title.c_str()));"
+systems/ui/help/legacy_sin/sinHelp.cpp,13,cSINHELP cSinHelp;
+systems/ui/help/legacy_sin/sinHelp.cpp,66,cSINHELP::cSINHELP()
+systems/ui/help/legacy_sin/sinHelp.cpp,71,cSINHELP::~cSINHELP()
+systems/ui/help/legacy_sin/sinHelp.cpp,76,void cSINHELP::Init()
+systems/ui/help/legacy_sin/sinHelp.cpp,115,cSinHelp.NPCTeleportFlag = 0;
+systems/ui/help/legacy_sin/sinHelp.cpp,119,void cSINHELP::Load()
+systems/ui/help/legacy_sin/sinHelp.cpp,128,void cSINHELP::Release()
+systems/ui/help/legacy_sin/sinHelp.cpp,134,"void cSINHELP::CheckBox(int x, int y, char* text, bool b)"
+systems/ui/help/legacy_sin/sinHelp.cpp,150,void cSINHELP::Draw()
+systems/ui/help/legacy_sin/sinHelp.cpp,192,if(sSinHelp[i].KindFlag != SIN_HELP_KIND_SOD)
+systems/ui/help/legacy_sin/sinHelp.cpp,200,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_NORMAL)
+systems/ui/help/legacy_sin/sinHelp.cpp,231,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_SOD)
+systems/ui/help/legacy_sin/sinHelp.cpp,254,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_QUEST)
+systems/ui/help/legacy_sin/sinHelp.cpp,261,if(sSinHelp[i].KindFlag != SIN_HELP_KIND_WARPGATE && sSinHelp[i].KindFlag != SIN_HELP_KIND_INITPOINT&&sSinHelp[i].KindFlag != SIN_HELP_KIND_RESEARCH)
+systems/ui/help/legacy_sin/sinHelp.cpp,265,"DrawSprite(sSinHelp[i].ButtonPosi.x + 9, sSinHelp[i].ButtonPosi.y + 4, cMessageBox.lpButtonOk[0], 0, 0, 32, 16);"
+systems/ui/help/legacy_sin/sinHelp.cpp,268,"DrawSprite(sSinHelp[i].ButtonPosi.x + 9, sSinHelp[i].ButtonPosi.y + 4, cMessageBox.lpButtonOk[1], 0, 0, 32, 16);"
+systems/ui/help/legacy_sin/sinHelp.cpp,271,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_RESEARCH)
+systems/ui/help/legacy_sin/sinHelp.cpp,275,"DrawSprite(sSinHelp[i].ButtonPosi.x + 9, sSinHelp[i].ButtonPosi.y + 4, cMessageBox.lpButtonCancel[0], 0, 0, 32, 16);"
+systems/ui/help/legacy_sin/sinHelp.cpp,277,"DrawSprite(sSinHelp[i].ButtonPosi.x + 9, sSinHelp[i].ButtonPosi.y + 4, cMessageBox.lpButtonCancel[1], 0, 0, 32, 16);"
+systems/ui/help/legacy_sin/sinHelp.cpp,280,"DrawSprite(haResearch.ButtonPosi.x + 9, haResearch.ButtonPosi.y + 4, cMessageBox.lpButtonOk[0], 0, 0, 32, 16);"
+systems/ui/help/legacy_sin/sinHelp.cpp,282,"DrawSprite(haResearch.ButtonPosi.x + 9, haResearch.ButtonPosi.y + 4, cMessageBox.lpButtonOk[1], 0, 0, 32, 16);"
+systems/ui/help/legacy_sin/sinHelp.cpp,329,void cSINHELP::Main()
+systems/ui/help/legacy_sin/sinHelp.cpp,356,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_NORMAL)
+systems/ui/help/legacy_sin/sinHelp.cpp,367,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_WARPGATE)
+systems/ui/help/legacy_sin/sinHelp.cpp,374,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_INITPOINT)
+systems/ui/help/legacy_sin/sinHelp.cpp,381,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_TELEPORT)
+systems/ui/help/legacy_sin/sinHelp.cpp,395,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_TELEPORT_MILTER)
+systems/ui/help/legacy_sin/sinHelp.cpp,407,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_TRADEBPEXP)
+systems/ui/help/legacy_sin/sinHelp.cpp,419,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_C_TELEPORT)
+systems/ui/help/legacy_sin/sinHelp.cpp,426,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_RESEARCH)
+systems/ui/help/legacy_sin/sinHelp.cpp,457,chaPremiumitem.TelePortCore.FieldIndex[0] = 0;
+systems/ui/help/legacy_sin/sinHelp.cpp,459,if (sSinHelp[i].KindFlag == SIN_HELP_KIND_TELEPORT_SCROLL)
+systems/ui/help/legacy_sin/sinHelp.cpp,461,if (chaPremiumitem.TelePortCore.PageIndex == TELEPORT_PAGEMAX)
+systems/ui/help/legacy_sin/sinHelp.cpp,472,chaPremiumitem.TelePortCore.FieldIndex[0] = j + 1;
+systems/ui/help/legacy_sin/sinHelp.cpp,480,void cSINHELP::Close()
+systems/ui/help/legacy_sin/sinHelp.cpp,486,"void cSINHELP::LButtonDown(int x, int y)"
+systems/ui/help/legacy_sin/sinHelp.cpp,506,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_NORMAL)
+systems/ui/help/legacy_sin/sinHelp.cpp,524,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_TELEPORT_SCROLL)
+systems/ui/help/legacy_sin/sinHelp.cpp,526,if(chaPremiumitem.TelePortCore.FieldIndex[0])
+systems/ui/help/legacy_sin/sinHelp.cpp,530,chaPremiumitem.TelePortCore.FieldIndex[1] = chaPremiumitem.TelePortCore.FieldIndex[0] + (chaPremiumitem.TelePortCore.PageIndex * 10);
+systems/ui/help/legacy_sin/sinHelp.cpp,531,"cMessageBox.ShowMessage3(MESSAGE_TELEPORT_CORE, chaPremiumitem.TelePortCore.FieldName);"
+systems/ui/help/legacy_sin/sinHelp.cpp,532,chaPremiumitem.Using_ItemKind = 0;
+systems/ui/help/legacy_sin/sinHelp.cpp,552,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_RESEARCH)
+systems/ui/help/legacy_sin/sinHelp.cpp,558,cMessageBox.ShowMessage(MESSAGE_THANKS_RESEARCH);
+systems/ui/help/legacy_sin/sinHelp.cpp,559,cSinHelp.SendResearch();
+systems/ui/help/legacy_sin/sinHelp.cpp,598,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_TELEPORT)
+systems/ui/help/legacy_sin/sinHelp.cpp,619,"cMessageBox.ShowMessage3(MESSAGE_TELEPORT, sinTeleportDoc[sinTeleportIndex - 1]);"
+systems/ui/help/legacy_sin/sinHelp.cpp,620,cSinHelp.NPCTeleportFlag = 0;
+systems/ui/help/legacy_sin/sinHelp.cpp,627,cMessageBox.ShowMessage(MESSAGE_NOT_ENOUGH_MONEY);
+systems/ui/help/legacy_sin/sinHelp.cpp,634,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_TELEPORT_MILTER)
+systems/ui/help/legacy_sin/sinHelp.cpp,639,"cMessageBox.ShowMessage3(MESSAGE_TELEPORT_DUNGEON, EndlessGameName);"
+systems/ui/help/legacy_sin/sinHelp.cpp,640,cSinHelp.NPCTeleportFlag = 0;
+systems/ui/help/legacy_sin/sinHelp.cpp,648,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_C_TELEPORT)
+systems/ui/help/legacy_sin/sinHelp.cpp,654,"cMessageBox.ShowMessage3(MESSAGE_CASTLE_TELEPORT, HaWarpGateName[0]);"
+systems/ui/help/legacy_sin/sinHelp.cpp,661,cMessageBox.ShowMessage(MESSAGE_NOT_ENOUGH_MONEY);
+systems/ui/help/legacy_sin/sinHelp.cpp,667,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_TRADEBPEXP)
+systems/ui/help/legacy_sin/sinHelp.cpp,672,"cMessageBox.ShowMessage3(MESSAGE_TRADE_BPEXP, ""BP por EXP"");"
+systems/ui/help/legacy_sin/sinHelp.cpp,673,cSinHelp.NPCTeleportFlag = 0;
+systems/ui/help/legacy_sin/sinHelp.cpp,696,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_TELEPORT_SCROLL)
+systems/ui/help/legacy_sin/sinHelp.cpp,698,chaPremiumitem.Using_ItemKind = 0;
+systems/ui/help/legacy_sin/sinHelp.cpp,701,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_TELEPORT)
+systems/ui/help/legacy_sin/sinHelp.cpp,703,cSinHelp.NPCTeleportFlag = 0;
+systems/ui/help/legacy_sin/sinHelp.cpp,707,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_TELEPORT_MILTER)
+systems/ui/help/legacy_sin/sinHelp.cpp,709,cSinHelp.NPCTeleportFlag = 0;
+systems/ui/help/legacy_sin/sinHelp.cpp,712,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_TRADEBPEXP)
+systems/ui/help/legacy_sin/sinHelp.cpp,714,cSinHelp.NPCTeleportFlag = 0;
+systems/ui/help/legacy_sin/sinHelp.cpp,719,cSinHelp.NPCTeleportFlag = 0;
+systems/ui/help/legacy_sin/sinHelp.cpp,727,"cMessageBox.ShowMessage3(MESSAGE_QUEST_100LV, ha100LVQuestName);"
+systems/ui/help/legacy_sin/sinHelp.cpp,741,"cMessageBox.ShowMessage3(MESSAGE_QUEST_100LVBATTLEOK, """");"
+systems/ui/help/legacy_sin/sinHelp.cpp,758,"cMessageBox.ShowMessage3(MESSAGE_QUEST_100LVBATTLEOK, """");"
+systems/ui/help/legacy_sin/sinHelp.cpp,762,"cMessageBox.ShowMessage3(MESSAGE_QUEST_100LVITEMOK, ha100LVQuestItemName[chaQuest.iFuryQuestIndex[1] - 1]);"
+systems/ui/help/legacy_sin/sinHelp.cpp,772,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_RESEARCH)
+systems/ui/help/legacy_sin/sinHelp.cpp,781,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_Q_LEVEL30)
+systems/ui/help/legacy_sin/sinHelp.cpp,785,"cMessageBox.ShowMessage3(MESSAGE_QUEST_LEVEL30, """");"
+systems/ui/help/legacy_sin/sinHelp.cpp,791,cMessageBox.ShowMessage(MESSAGE_PLUS_STATE_POINT5);
+systems/ui/help/legacy_sin/sinHelp.cpp,808,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_Q_LEVEL55)
+systems/ui/help/legacy_sin/sinHelp.cpp,812,"cMessageBox.ShowMessage3(MESSAGE_QUEST_LEVEL55, """");"
+systems/ui/help/legacy_sin/sinHelp.cpp,818,cMessageBox.ShowMessage(MESSAGE_PLUS_SKILL_POINT);
+systems/ui/help/legacy_sin/sinHelp.cpp,836,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_Q_LEVEL55_2)
+systems/ui/help/legacy_sin/sinHelp.cpp,840,"cMessageBox.ShowMessage3(MESSAGE_QUEST_LEVEL55_2, """");"
+systems/ui/help/legacy_sin/sinHelp.cpp,846,cMessageBox.ShowMessage(MESSAGE_PLUS_SKILL_POINT);
+systems/ui/help/legacy_sin/sinHelp.cpp,863,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_Q_LEVEL70)
+systems/ui/help/legacy_sin/sinHelp.cpp,867,"cMessageBox.ShowMessage3(MESSAGE_QUEST_LEVEL70, """");"
+systems/ui/help/legacy_sin/sinHelp.cpp,874,cMessageBox.ShowMessage(MESSAGE_PLUS_POINT_70);
+systems/ui/help/legacy_sin/sinHelp.cpp,890,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_Q_LEVEL80)
+systems/ui/help/legacy_sin/sinHelp.cpp,894,"cMessageBox.ShowMessage3(MESSAGE_QUEST_LEVEL80, """");"
+systems/ui/help/legacy_sin/sinHelp.cpp,901,cMessageBox.ShowMessage(MESSAGE_PLUS_POINT_80);
+systems/ui/help/legacy_sin/sinHelp.cpp,917,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_Q_LEVEL85)
+systems/ui/help/legacy_sin/sinHelp.cpp,921,"cMessageBox.ShowMessage3(MESSAGE_QUEST_LEVEL85, """");"
+systems/ui/help/legacy_sin/sinHelp.cpp,951,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_Q_LEVEL90)
+systems/ui/help/legacy_sin/sinHelp.cpp,955,"cMessageBox.ShowMessage3(MESSAGE_QUEST_LEVEL90, """");"
+systems/ui/help/legacy_sin/sinHelp.cpp,977,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_Q_LEVEL80_2)
+systems/ui/help/legacy_sin/sinHelp.cpp,981,"cMessageBox.ShowMessage3(MESSAGE_QUEST_LEVEL80_2, """");"
+systems/ui/help/legacy_sin/sinHelp.cpp,1002,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/ui/help/legacy_sin/sinHelp.cpp,1008,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/ui/help/legacy_sin/sinHelp.cpp,1043,cMessageBox.ShowMessage(MESSAGE_PLUS_POINT_80_2);
+systems/ui/help/legacy_sin/sinHelp.cpp,1052,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_Q_LEVEL90_2)
+systems/ui/help/legacy_sin/sinHelp.cpp,1056,"cMessageBox.ShowMessage3(MESSAGE_QUEST_LEVEL90_2, """");"
+systems/ui/help/legacy_sin/sinHelp.cpp,1080,cMessageBox.ShowMessage(MESSAGE_PLUS_POINT_90_2);
+systems/ui/help/legacy_sin/sinHelp.cpp,1094,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_QUEST)
+systems/ui/help/legacy_sin/sinHelp.cpp,1109,"cMessageBox.ShowMessage3(MESSAGE_QUEST, """");"
+systems/ui/help/legacy_sin/sinHelp.cpp,1115,"cMessageBox.ShowMessage3(MESSAGE_CHANGE_JOB, sinJobList->szName2);"
+systems/ui/help/legacy_sin/sinHelp.cpp,1134,"cMessageBox.ShowMessage3(MESSAGE_CHANGE_JOB, sinJobList->szName2);"
+systems/ui/help/legacy_sin/sinHelp.cpp,1140,"cMessageBox.ShowMessage3(MESSAGE_QUEST_CHANGEJOB_MORAYOIN, """");"
+systems/ui/help/legacy_sin/sinHelp.cpp,1165,"cMessageBox.ShowMessage3(MESSAGE_QUEST_CHANGEJOB3, """");"
+systems/ui/help/legacy_sin/sinHelp.cpp,1195,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/ui/help/legacy_sin/sinHelp.cpp,1201,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/ui/help/legacy_sin/sinHelp.cpp,1210,"cMessageBox.ShowMessage3(MESSAGE_CHANGE_JOB, sinJobList->szName2);"
+systems/ui/help/legacy_sin/sinHelp.cpp,1230,cMessageBox.ShowMessage(MESSAGE_INCRE_LIFE15);
+systems/ui/help/legacy_sin/sinHelp.cpp,1237,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_QUEST && sinChar->ChangeJob == 2)
+systems/ui/help/legacy_sin/sinHelp.cpp,1250,"cMessageBox.ShowMessage3(MESSAGE_CHANGE_JOB4, """");"
+systems/ui/help/legacy_sin/sinHelp.cpp,1280,"cMessageBox.ShowMessage3(MESSAGE_CHANGE_JOB4_2, sinJobList->szName2);"
+systems/ui/help/legacy_sin/sinHelp.cpp,1289,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_QUEST_WING)
+systems/ui/help/legacy_sin/sinHelp.cpp,1295,"cMessageBox.ShowMessage3(MESSAGE_RECVITEM, WingItemName[WingItemQuestIndex]);"
+systems/ui/help/legacy_sin/sinHelp.cpp,1299,"cMessageBox.ShowMessage3(MESSAGE_RECVITEM, WingItemName[WingItemQuestIndex]);"
+systems/ui/help/legacy_sin/sinHelp.cpp,1303,"cMessageBox.ShowMessage3(MESSAGE_RECVITEM, WingItemName[WingItemQuestIndex]);"
+systems/ui/help/legacy_sin/sinHelp.cpp,1307,"cMessageBox.ShowMessage3(MESSAGE_RECVITEM, WingItemName[WingItemQuestIndex]);"
+systems/ui/help/legacy_sin/sinHelp.cpp,1311,"cMessageBox.ShowMessage3(MESSAGE_RECVITEM, WingItemName[WingItemQuestIndex]);"
+systems/ui/help/legacy_sin/sinHelp.cpp,1314,"cMessageBox.ShowMessage3(MESSAGE_RECVITEM, WingItemName[WingItemQuestIndex]);"
+systems/ui/help/legacy_sin/sinHelp.cpp,1325,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_NORMAL)
+systems/ui/help/legacy_sin/sinHelp.cpp,1335,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_SMASHTV)
+systems/ui/help/legacy_sin/sinHelp.cpp,1337,"cMessageBox.ShowMessage3(MESSAGE_EVENT_SMASHTV, """");"
+systems/ui/help/legacy_sin/sinHelp.cpp,1371,"cMessageBox.ShowMessage3(MESSAGE_QUEST_ElementaryA, """");"
+systems/ui/help/legacy_sin/sinHelp.cpp,1379,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/ui/help/legacy_sin/sinHelp.cpp,1401,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/ui/help/legacy_sin/sinHelp.cpp,1418,"cMessageBox.ShowMessage3(MESSAGE_QUEST_ElementaryB, """");"
+systems/ui/help/legacy_sin/sinHelp.cpp,1426,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/ui/help/legacy_sin/sinHelp.cpp,1448,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/ui/help/legacy_sin/sinHelp.cpp,1464,"cMessageBox.ShowMessage3(MESSAGE_QUEST_ElementaryC, """");"
+systems/ui/help/legacy_sin/sinHelp.cpp,1472,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/ui/help/legacy_sin/sinHelp.cpp,1494,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/ui/help/legacy_sin/sinHelp.cpp,1509,"cMessageBox.ShowMessage3(MESSAGE_QUEST_ElementaryD, """");"
+systems/ui/help/legacy_sin/sinHelp.cpp,1516,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/ui/help/legacy_sin/sinHelp.cpp,1538,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/ui/help/legacy_sin/sinHelp.cpp,1553,"cMessageBox.ShowMessage3(MESSAGE_QUEST_ElementaryE, """");"
+systems/ui/help/legacy_sin/sinHelp.cpp,1560,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/ui/help/legacy_sin/sinHelp.cpp,1582,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/ui/help/legacy_sin/sinHelp.cpp,1598,"cMessageBox.ShowMessage3(MESSAGE_QUEST_ElementaryF, """");"
+systems/ui/help/legacy_sin/sinHelp.cpp,1605,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/ui/help/legacy_sin/sinHelp.cpp,1627,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/ui/help/legacy_sin/sinHelp.cpp,1643,"cMessageBox.ShowMessage3(MESSAGE_QUEST_ElementaryG, """");"
+systems/ui/help/legacy_sin/sinHelp.cpp,1650,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/ui/help/legacy_sin/sinHelp.cpp,1671,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/ui/help/legacy_sin/sinHelp.cpp,1694,"void cSINHELP::LButtonUp(int x, int y)"
+systems/ui/help/legacy_sin/sinHelp.cpp,1709,"void cSINHELP::RButtonDown(int x, int y)"
+systems/ui/help/legacy_sin/sinHelp.cpp,1714,"void cSINHELP::RButtonUp(int x, int y)"
+systems/ui/help/legacy_sin/sinHelp.cpp,1720,void cSINHELP::KeyDown()
+systems/ui/help/legacy_sin/sinHelp.cpp,1767,void cSINHELP::DrawText()
+systems/ui/help/legacy_sin/sinHelp.cpp,1802,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_TELEPORT_SCROLL)
+systems/ui/help/legacy_sin/sinHelp.cpp,1814,if(atoi(&strBuff[p - 1]) == chaPremiumitem.TelePortCore.FieldIndex[0] - 1 && chaPremiumitem.TelePortCore.FieldIndex[0] != 0)
+systems/ui/help/legacy_sin/sinHelp.cpp,1817,"strcpy(chaPremiumitem.TelePortCore.FieldName, &strBuff[p + 1]);"
+systems/ui/help/legacy_sin/sinHelp.cpp,1873,else if(sSinHelp[i].KindFlag == SIN_HELP_KIND_RESEARCH)
+systems/ui/help/legacy_sin/sinHelp.cpp,1909,else if(sSinHelp[i].KindFlag == SIN_HELP_KIND_TELEPORT)
+systems/ui/help/legacy_sin/sinHelp.cpp,1941,else if((sSinHelp[i].KindFlag == SIN_HELP_KIND_TELEPORT_MILTER) ||  (sSinHelp[i].KindFlag == SIN_HELP_KIND_TRADEBPEXP))
+systems/ui/help/legacy_sin/sinHelp.cpp,1967,else  if(sSinHelp[i].KindFlag == SIN_HELP_KIND_C_TELEPORT)
+systems/ui/help/legacy_sin/sinHelp.cpp,2025,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_NORMAL)
+systems/ui/help/legacy_sin/sinHelp.cpp,2032,else if(sSinHelp[i].KindFlag == SIN_HELP_KIND_SOD)
+systems/ui/help/legacy_sin/sinHelp.cpp,2069,else if(sSinHelp[i].KindFlag == SIN_HELP_KIND_C_TELEPORT)
+systems/ui/help/legacy_sin/sinHelp.cpp,2074,else if(sSinHelp[i].KindFlag == SIN_HELP_KIND_WARPGATE)
+systems/ui/help/legacy_sin/sinHelp.cpp,2082,else if(sSinHelp[i].KindFlag == SIN_HELP_KIND_INITPOINT)
+systems/ui/help/legacy_sin/sinHelp.cpp,2088,else if(sSinHelp[i].KindFlag == SIN_HELP_KIND_BABEL || (sSinHelp[i].KindFlag == SIN_HELP_KIND_TRADEBPEXP))
+systems/ui/help/legacy_sin/sinHelp.cpp,2094,else if(sSinHelp[i].KindFlag == SIN_HELP_KIND_RESEARCH)
+systems/ui/help/legacy_sin/sinHelp.cpp,2099,else if(sSinHelp[i].KindFlag == SIN_HELP_KIND_TELEPORT_SCROLL)
+systems/ui/help/legacy_sin/sinHelp.cpp,2108,else if(sSinHelp[i].KindFlag == SIN_HELP_KIND_TELEPORT_MILTER)
+systems/ui/help/legacy_sin/sinHelp.cpp,2126,"int  cSINHELP::sinShowHelp(int Kind, int PosiX, int PosiY, int SizeW, int SizeH, DWORD BackColor, char *File)"
+systems/ui/help/legacy_sin/sinHelp.cpp,2133,if(Kind != SIN_HELP_KIND_TELEPORT_SCROLL && cSinHelp.sinGetHelpShowFlagNum())
+systems/ui/help/legacy_sin/sinHelp.cpp,2135,flag = cSinHelp.sinGetHelpShowFlagNum();
+systems/ui/help/legacy_sin/sinHelp.cpp,2154,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_WARPGATE)
+systems/ui/help/legacy_sin/sinHelp.cpp,2167,else if(sSinHelp[i].KindFlag == HAQUEST_CODE_FURYOFPHANTOM || sSinHelp[i].KindFlag == SIN_HELP_KIND_TELEPORT_SCROLL)
+systems/ui/help/legacy_sin/sinHelp.cpp,2174,chaPremiumitem.Using_ItemKind = 0;
+systems/ui/help/legacy_sin/sinHelp.cpp,2207,if(Kind == SIN_HELP_KIND_WARPGATE)
+systems/ui/help/legacy_sin/sinHelp.cpp,2225,if(Kind == SIN_HELP_KIND_TELEPORT)
+systems/ui/help/legacy_sin/sinHelp.cpp,2243,if(Kind == SIN_HELP_KIND_C_TELEPORT)
+systems/ui/help/legacy_sin/sinHelp.cpp,2288,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_NORMAL)
+systems/ui/help/legacy_sin/sinHelp.cpp,2479,int cSINHELP::sinReadFileData(char *name)
+systems/ui/help/legacy_sin/sinHelp.cpp,2509,"int cSINHELP::sinReadFileDataDivide(char *SaveBuf, int Linelen, int Size)"
+systems/ui/help/legacy_sin/sinHelp.cpp,2543,int cSINHELP::TonyGetFileData()
+systems/ui/help/legacy_sin/sinHelp.cpp,2636,int cSINHELP::sinGetScrollMove(int Num)
+systems/ui/help/legacy_sin/sinHelp.cpp,2660,int cSINHELP::sinGetKeyScrollDown()
+systems/ui/help/legacy_sin/sinHelp.cpp,2703,int cSINHELP::sinGetHelpShowFlag()
+systems/ui/help/legacy_sin/sinHelp.cpp,2726,"int cSINHELP::ShowSodRanking(TRANS_SOD_RESULT *SodResult, int MyGame)"
+systems/ui/help/legacy_sin/sinHelp.cpp,2795,"cSinHelp.sinShowHelp(SIN_HELP_KIND_SOD, QuestMessageBoxPosi2.x + 170, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, 1"
+systems/ui/help/legacy_sin/sinHelp.cpp,2797,"else cSinHelp.sinShowHelp(SIN_HELP_KIND_SOD, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, 15"
+systems/ui/help/legacy_sin/sinHelp.cpp,2803,int cSINHELP::GetSodRankBoxState()
+systems/ui/help/legacy_sin/sinHelp.cpp,2809,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_SOD)
+systems/ui/help/legacy_sin/sinHelp.cpp,2819,int sinShowHelp()
+systems/ui/help/legacy_sin/sinHelp.cpp,2822,"cSinHelp.sinShowHelp(SIN_HELP_KIND_NORMAL, 208, 61 - 50, 11, 11, D3DCOLOR_RGBA(19, 27, 20, 165), HelpFilePath);"
+systems/ui/help/legacy_sin/sinHelp.cpp,2830,cSinHelp.NPCTeleportFlag = 1;
+systems/ui/help/legacy_sin/sinHelp.cpp,2831,"cSinHelp.sinShowHelp(SIN_HELP_KIND_TELEPORT, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, 15"
+systems/ui/help/legacy_sin/sinHelp.cpp,2839,cSinHelp.NPCTeleportFlag = 1;
+systems/ui/help/legacy_sin/sinHelp.cpp,2841,"cSinHelp.sinShowHelp(SIN_HELP_KIND_TRADEBPEXP, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, "
+systems/ui/help/legacy_sin/sinHelp.cpp,2850,cSinHelp.NPCTeleportFlag = 1;
+systems/ui/help/legacy_sin/sinHelp.cpp,2854,"cSinHelp.sinShowHelp(SIN_HELP_KIND_TELEPORT_MILTER, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGB"
+systems/ui/help/legacy_sin/sinHelp.cpp,2857,"cSinHelp.sinShowHelp(SIN_HELP_KIND_TELEPORT_MILTER, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGB"
+systems/ui/help/legacy_sin/sinHelp.cpp,2867,"cSinHelp.sinShowHelp(SIN_HELP_KIND_C_TELEPORT, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, "
+systems/ui/help/legacy_sin/sinHelp.cpp,2879,"int cSINHELP::ShowResearchMenu(int Kind, int Flag)"
+systems/ui/help/legacy_sin/sinHelp.cpp,2886,"cSinHelp.sinShowHelp(SIN_HELP_KIND_RESEARCH, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, 15"
+systems/ui/help/legacy_sin/sinHelp.cpp,2888,cMessageBox.ShowMessage(MESSAGE_NOT_RESEARCH);
+systems/ui/help/legacy_sin/sinHelp.cpp,2893,"cSinHelp.sinShowHelp(SIN_HELP_KIND_RESEARCH, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, 15"
+systems/ui/help/legacy_sin/sinHelp.cpp,2895,cMessageBox.ShowMessage(MESSAGE_NOT_RESEARCH);
+systems/ui/help/legacy_sin/sinHelp.cpp,2900,"cSinHelp.sinShowHelp(SIN_HELP_KIND_RESEARCH, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x, QuestMessageBoxSize2.y, D3DCOLOR_RGBA(0, 15"
+systems/ui/help/legacy_sin/sinHelp.cpp,2902,cMessageBox.ShowMessage(MESSAGE_NOT_RESEARCH);
+systems/ui/help/legacy_sin/sinHelp.cpp,2909,int cSINHELP::SendResearch()
+systems/ui/help/legacy_sin/sinHelp.cpp,2918,int cSINHELP::sinGetHelpShowFlagNum()
+systems/ui/hud/legacy_sin/sinInterFace.cpp,67,int ReStartFlag = 0;
+systems/ui/hud/legacy_sin/sinInterFace.cpp,1226,ReStartFlag = 1;
+systems/ui/hud/legacy_sin/sinInterFace.cpp,1388,if (ReStartFlag)
+systems/ui/hud/legacy_sin/sinInterFace.cpp,1429,ReStartFlag = 0;
+systems/ui/hud/legacy_sin/sinInterFace.cpp,1670,"cSinHelp.sinShowHelp(SIN_HELP_KIND_NORMAL, 208, 61 - 50, 11, 11, D3DCOLOR_RGBA(19, 27, 20, 165), HelpFilePath);"
+systems/ui/hud/legacy_sin/sinInterFace.cpp,1701,if(ReStartFlag)
+systems/ui/hud/legacy_sin/sinInterFace.cpp,1707,ReStartFlag = 0;
+systems/ui/hud/legacy_sin/sinInterFace.cpp,1714,ReStartFlag = 0;
+systems/ui/hud/legacy_sin/sinInterFace.cpp,1720,ReStartFlag = 0;
+systems/ui/hud/legacy_sin/sinInterFace.cpp,1749,"cMessageBox.ShowMessage3(MESSAGE_CHANGE_JOB, sinJobList->szName2);"
+systems/ui/hud/legacy_sin/sinInterFace.cpp,2262,cMessageBox.ShowMessage(MESSAGE_PLUS_STATE_POINT5);
+systems/ui/hud/legacy_sin/sinInterFace.cpp,2276,cMessageBox.ShowMessage(MESSAGE_PLUS_SKILL_POINT);
+systems/ui/hud/legacy_sin/sinInterFace.cpp,2290,cMessageBox.ShowMessage(MESSAGE_PLUS_SKILL_POINT);
+systems/ui/hud/legacy_sin/sinInterFace.cpp,2305,cMessageBox.ShowMessage(MESSAGE_PLUS_POINT_70);
+systems/ui/hud/legacy_sin/sinInterFace.cpp,2320,cMessageBox.ShowMessage(MESSAGE_PLUS_POINT_80);
+systems/ui/hud/legacy_sin/sinInterFace.cpp,2380,cMessageBox.ShowMessage(MESSAGE_PLUS_POINT_80_2);
+systems/ui/hud/legacy_sin/sinInterFace.cpp,2399,cMessageBox.ShowMessage(MESSAGE_PLUS_POINT_90_2);
+systems/ui/hud/legacy_sin/sinInterFace.cpp,2543,chaPremiumitem.UpKeepItem[i].PosiX = 0;
+systems/ui/hud/legacy_sin/sinInterFace.cpp,2544,chaPremiumitem.UpKeepItem[i].PosiY = 0;
+systems/ui/hud/legacy_sin/sinInterFace.cpp,2545,chaPremiumitem.UpKeepItem[i].Visible = false;
+systems/ui/hud/legacy_sin/sinInterFace.cpp,2546,chaPremiumitem.UpKeepItem[i].TGAImageNumber = 0;
+systems/ui/hud/legacy_sin/sinInterFace.cpp,2547,chaPremiumitem.UpKeepItem[i].IconTime[0] = 0;
+systems/ui/hud/legacy_sin/sinInterFace.cpp,2548,chaPremiumitem.UpKeepItem[i].IconTime[1] = 0;
+systems/ui/hud/legacy_sin/sinInterFace.cpp,2549,chaPremiumitem.UpKeepItem[i].Alpha = 255;
+systems/ui/hud/legacy_sin/sinInterFace.cpp,2550,chaPremiumitem.UpKeepItem[i].Alphakind = 0;
+systems/ui/hud/legacy_sin/sinInterFace.cpp,2551,chaPremiumitem.UpKeepItem[i].Per = 0;
+systems/ui/hud/legacy_sin/sinInterFace.cpp,2552,"memset(chaPremiumitem.UpKeepItem[i].Id, NULL, sizeof(chaPremiumitem.UpKeepItem[i].Id));"
+systems/ui/hud/legacy_sin/sinInterFace.cpp,2772,if(sSinHelp[i].KindFlag == SIN_HELP_KIND_TELEPORT_SCROLL)
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,11,"#include ""systems/gameplay/quests/ui/cQuestWindow.h"""
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,559,"cMessageBox.ShowMessage3(MESSAGE_GIVE_MONEY_CHECK, szGiveMoneyBuff);"
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,600,cMessageBox.ShowMessage2(MESSAGE_BUY_STAR);
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,615,"cMessageBox.ShowMessage3(MESSAGE_SECRET_NUM, SecretNumName);"
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,624,cMessageBox.ShowMessage(MESSAGE_OVER_MONEY);
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,646,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,747,if(cCoinShop.Coin < sMessageBox2[i].Count)
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,749,sMessageBox2[i].Count = cCoinShop.Coin;
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,777,cMessageBox.ShowMessage(MESSAGE_NOT_ENOUGH_MONEY);
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,992,"cMessageBox.ShowMessage3(MESSAGE_INIT_SKILL_POINT, sinSkillPointName);"
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,1036,if (cCoinShop.Coin < sMessageBox2[i].Count)
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,1038,sMessageBox2[i].Count = cCoinShop.Coin;
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,1048,cMessageBox.ShowMessage(MESSAGE_NOT_CASTLE_TOTALMONEY);
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,1510,cCoinShop.Coin += sTrade.Coin;
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,1560,"cSinHelp.sinShowHelp(SIN_HELP_KIND_INITPOINT, QuestMessageBoxPosi2.x, QuestMessageBoxPosi2.y, QuestMessageBoxSize2.x - 3, QuestMessageBoxSize2.y - 1, D3DCOLOR_R"
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,2529,cMessageBox.ShowMessage(MESSAGE_NOT_ENOUGH_MONEY);
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,2614,chaPremiumitem.UsePremiumItem(cInvenTory.iEventBuyItemKind);
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,2635,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,2649,cMessageBox.ShowMessage(MESSAGE_100LVITEM_OK);
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,2654,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,2664,if (cQuestWindow.OpenFlag)
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,2665,cQuestWindow.pSelectedSpoiler->StartQuest(true);
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,2669,if (cQuestWindow.OpenFlag)
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,2670,cQuestWindow.pSelectedSpoiler->CancelQuest(true);
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,2682,chaPremiumitem.Using_ItemKind = 0;
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,2683,chaPremiumitem.UseTeleportScrollItem(chaPremiumitem.TelePortCore.ItemIndex);
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,2728,cMessageBox.ShowMessage(MESSAGE_OVER_WEIGHT);
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,2732,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,2796,"cMessageBox.ShowMessageEvent(""Voc\352 trocou 50 pontos de batalha por 10%."");"
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,2802,"cMessageBox.ShowMessageEvent(""Voc\352 trocou 50 pontos de batalha por 5%."");"
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,2808,"cMessageBox.ShowMessageEvent(""Voc\352 trocou 50 pontos de batalha por 2%."");"
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,2814,"cMessageBox.ShowMessageEvent(""Voc\352 trocou 50 pontos de batalha por 1%."");"
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,2833,"cMessageBox.ShowMessageEvent(""\311 necess\341rio 50 pontos de batalha para realizar a troca!"");"
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,2845,cSinHelp.NPCTeleportFlag = 0;
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,3045,if (cCoinShop.Coin - sMessageBox2[Kind].Count < 0)
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,3048,sMessageBox2[Kind].Count = cCoinShop.Coin;
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,3052,cCoinShop.Coin -= sMessageBox2[Kind].Count;
+systems/ui/messages/legacy_sin/sinMessageBox.cpp,3224,"cMessageBox.ShowMessage3(MESSAGE_GIFT_TICKET, ""Cupom de Presente"");"
+systems/ui/v2/legacy/LegacyContextGateway.cpp,88,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/ui/v2/legacy/LegacyContextGateway.cpp,329,if (cCoinShop.isOpen())
+systems/ui/v2/legacy/LegacyContextGateway.cpp,334,out.money = cCoinShop.Coin;
+systems/ui/v2/legacy/LegacyContextGateway.cpp,336,const int section = cCoinShop.GetSectionForUI();
+systems/ui/v2/legacy/LegacyContextGateway.cpp,337,const int page = cCoinShop.GetPageForUI();
+systems/ui/v2/legacy/LegacyContextGateway.cpp,338,"const int pages = std::max(1, cCoinShop.GetPageCountForUI());"
+systems/ui/v2/legacy/LegacyContextGateway.cpp,341,const int count = cCoinShop.GetItemCountForUI();
+systems/ui/v2/legacy/LegacyContextGateway.cpp,348,"const sITEM* item = cCoinShop.GetItemForUI(i, &price, &selected);"
+systems/ui/v2/legacy/LegacyContextGateway.cpp,365,if (cCoinShop_T.isOpen())
+systems/ui/v2/legacy/LegacyContextGateway.cpp,370,out.money = cCoinShop_T.Coin;
+systems/ui/v2/legacy/LegacyContextGateway.cpp,372,const int section = cCoinShop_T.GetSectionForUI();
+systems/ui/v2/legacy/LegacyContextGateway.cpp,373,const int page = cCoinShop_T.GetPageForUI();
+systems/ui/v2/legacy/LegacyContextGateway.cpp,374,"const int pages = std::max(1, cCoinShop_T.GetPageCountForUI());"
+systems/ui/v2/legacy/LegacyContextGateway.cpp,377,const int count = cCoinShop_T.GetItemCountForUI();
+systems/ui/v2/legacy/LegacyContextGateway.cpp,384,"const sITEM* item = cCoinShop_T.GetItemForUI(i, &price, &selected);"
+systems/ui/v2/legacy/LegacyContextGateway.cpp,407,out.money = cCoinShop.Coin;
+systems/ui/v2/legacy/LegacyContextGateway.cpp,704,cMessageBox.ShowMessage(MESSAGE_NO_USE_ITEM);
+systems/ui/v2/legacy/LegacyContextGateway.cpp,724,cMessageBox.CloseMessage();
+systems/ui/v2/legacy/LegacyContextGateway.cpp,803,cMessageBox.CloseMessage();
+systems/ui/v2/legacy/LegacyContextGateway.cpp,822,cMessageBox.ShowMessage(MESSAGE_OVER_MONEY);
+systems/ui/v2/legacy/LegacyContextGateway.cpp,845,cMessageBox.ShowMessage(MESSAGE_NO_USE_ITEM);
+systems/ui/v2/legacy/LegacyContextGateway.cpp,873,"cMessageBox.ShowMessage3(MESSAGE_MYSHOP_ITEM_CANCEL,"
+systems/ui/v2/legacy/LegacyContextGateway.cpp,879,return cCoinShop.SelectItemForUI(index);
+systems/ui/v2/legacy/LegacyContextGateway.cpp,881,return cCoinShop_T.SelectItemForUI(index);
+systems/ui/v2/legacy/LegacyContextGateway.cpp,1049,cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
+systems/ui/v2/legacy/LegacyContextGateway.cpp,1131,auto section = [&]() { return time ? cCoinShop_T.GetSectionForUI() : cCoinShop.GetSectionForUI(); };
+systems/ui/v2/legacy/LegacyContextGateway.cpp,1134,"case 70: return time ? cCoinShop_T.SelectSectionForUI(std::max(1, section() - 1))"
+systems/ui/v2/legacy/LegacyContextGateway.cpp,1135,": cCoinShop.SelectSectionForUI(std::max(1, section() - 1));"
+systems/ui/v2/legacy/LegacyContextGateway.cpp,1136,"case 71: return time ? cCoinShop_T.SelectSectionForUI(std::min(7, section() + 1))"
+systems/ui/v2/legacy/LegacyContextGateway.cpp,1137,": cCoinShop.SelectSectionForUI(std::min(7, section() + 1));"
+systems/ui/v2/legacy/LegacyContextGateway.cpp,1138,case 72: return time ? cCoinShop_T.ChangePageForUI(-1) : cCoinShop.ChangePageForUI(-1);
+systems/ui/v2/legacy/LegacyContextGateway.cpp,1139,case 73: return time ? cCoinShop_T.ChangePageForUI(1) : cCoinShop.ChangePageForUI(1);
+systems/ui/v2/legacy/LegacyContextGateway.cpp,1140,case 74: return time ? cCoinShop_T.BuySelectedForUI() : cCoinShop.BuySelectedForUI();
+systems/ui/v2/legacy/LegacyContextGateway.cpp,1141,case 75: if (time) cCoinShop_T.Close(); else cCoinShop.Close(); return true;
+systems/ui/v2/legacy/LegacyContextGateway.cpp,1232,cCoinShop.Close();
+systems/ui/v2/legacy/LegacyContextGateway.cpp,1235,cCoinShop_T.Close();
+systems/ui/v2/legacy/LegacyMessageWindow.cpp,161,"cMessageBox.ResolveMessage3ForUIV2(kind, accepted);"
+systems/ui/v2/legacy/LegacyNotificationHud.cpp,12,"#include ""systems/commerce/premium/HaPremiumItem.h"""
+systems/ui/v2/legacy/LegacyNotificationHud.cpp,281,return !chaPremiumitem.UpKeepItemTGAImage[index];
+systems/ui/v2/legacy/LegacyNotificationHud.cpp,293,const int material = (index >= 0 && index < SINUPKEEPITEM_MAX) ? chaPremiumitem.UpKeepItemTGAImage[index] : 0;
+systems/ui/v2/legacy/LegacyNotificationHud.cpp,358,const sUpKeepItem& item = chaPremiumitem.UpKeepItem[i];
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,1,"#include ""systems/ui/v2/legacy/LegacyNpcDialogWindow.h"""
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,36,"LegacyNpcDialogWindow::LegacyNpcDialogWindow(UIId id) : Window(id, ""Dialogo"")"
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,59,bool LegacyNpcDialogWindow::SupportedKind(int kind)
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,61,if (kind == SIN_HELP_KIND_INITPOINT)
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,66,case SIN_HELP_KIND_SOD:
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,67,case SIN_HELP_KIND_WARPGATE:
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,68,case SIN_HELP_KIND_TELEPORT:
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,69,case SIN_HELP_KIND_C_TELEPORT:
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,70,case SIN_HELP_KIND_RESEARCH:
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,71,case SIN_HELP_KIND_TELEPORT_SCROLL:
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,72,case SIN_HELP_KIND_TELEPORT_MILTER:
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,73,case SIN_HELP_KIND_TRADEBPEXP:
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,80,int LegacyNpcDialogWindow::FindActiveIndex()
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,88,bool LegacyNpcDialogWindow::HasActiveSupportedLegacyDialog()
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,93,bool LegacyNpcDialogWindow::HasActiveEventGiftDialog()
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,98,if (sSinHelp[i].KindFlag == SIN_HELP_KIND_INITPOINT)
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,103,const char* LegacyNpcDialogWindow::TitleFor(int kind)
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,116,case SIN_HELP_KIND_QUEST:
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,117,case SIN_HELP_KIND_QUEST_WING:
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,118,case SIN_HELP_KIND_Q_LEVEL30:
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,119,case SIN_HELP_KIND_Q_LEVEL55:
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,120,case SIN_HELP_KIND_Q_LEVEL55_2:
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,121,case SIN_HELP_KIND_Q_LEVEL70:
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,122,case SIN_HELP_KIND_Q_LEVEL80:
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,123,case SIN_HELP_KIND_Q_LEVEL85:
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,124,case SIN_HELP_KIND_Q_LEVEL90:
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,125,case SIN_HELP_KIND_Q_LEVEL80_2:
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,126,case SIN_HELP_KIND_Q_LEVEL90_2:
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,128,case SIN_HELP_KIND_SMASHTV:
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,129,case SIN_HELP_KIND_INITPOINT:
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,136,void LegacyNpcDialogWindow::Refresh()
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,151,const bool eventGift = help.KindFlag == SIN_HELP_KIND_INITPOINT &&
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,162,guideButton_->SetVisible(help.KindFlag == SIN_HELP_KIND_NORMAL);
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,167,void LegacyNpcDialogWindow::ActivatePrimary()
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,171,if (help.KindFlag == SIN_HELP_KIND_INITPOINT &&
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,174,"cMessageBox.ResolveMessage3ForUIV2(MESSAGE_EVENT_GYUNGFUM, true);"
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,187,"cSinHelp.LButtonDown(pCursorPos.x, pCursorPos.y);"
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,192,void LegacyNpcDialogWindow::ActivateGuideHelp()
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,194,if (activeIndex_ < 0 || sSinHelp[activeIndex_].KindFlag != SIN_HELP_KIND_NORMAL)
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,207,void LegacyNpcDialogWindow::CloseDialog()
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,210,if (sSinHelp[activeIndex_].KindFlag == SIN_HELP_KIND_INITPOINT &&
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,213,"cMessageBox.ResolveMessage3ForUIV2(MESSAGE_EVENT_GYUNGFUM, false);"
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,219,cSinHelp.NPCTeleportFlag = 0;
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,224,void LegacyNpcDialogWindow::Update(float deltaSeconds)
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,230,UIEventResult LegacyNpcDialogWindow::OnEvent(const UIEvent& event)
+systems/ui/v2/legacy/LegacyNpcDialogWindow.cpp,243,void LegacyNpcDialogWindow::OnRender(UIRenderContext& context)
+systems/ui/v2/legacy/LegacyQuestGateway.cpp,9,"#include ""systems/gameplay/quests/ui/cQuestWindow.h"""
+systems/ui/v2/legacy/LegacyQuestGateway.cpp,31,sSPOILER* section = cQuestWindow.GetSpoiler(sectionId);
+systems/ui/v2/legacy/LegacyQuestGateway.cpp,520,out.valid = !cQuestWindow.vTabs.empty();
+systems/ui/v2/legacy/LegacyQuestGateway.cpp,524,if (cQuestWindow.pSelectedSpoiler && cQuestWindow.pSelectedSpoiler->pSelectedQuest && !selectedClassicQuestId_ && !selectedAmandaQuestId_ && !selectedCodexQuest
+systems/ui/v2/legacy/LegacyQuestGateway.cpp,526,out.selectedSectionId = cQuestWindow.pSelectedSpoiler->ID;
+systems/ui/v2/legacy/LegacyQuestGateway.cpp,527,out.selectedQuestId = cQuestWindow.pSelectedSpoiler->pSelectedQuest->ID;
+systems/ui/v2/legacy/LegacyQuestGateway.cpp,530,for (auto* tab : cQuestWindow.vTabs)
+systems/ui/v2/legacy/LegacyQuestGateway.cpp,630,cQuestWindow.pSelectedSpoiler = ref.section;
+systems/ui/v2/legacy/LegacyQuestGateway.cpp,638,sSPOILER* section = cQuestWindow.pSelectedSpoiler;
+systems/ui/v2/legacy/LegacyQuestGateway.cpp,652,sSPOILER* section = cQuestWindow.pSelectedSpoiler;
+systems/ui/v2/legacy/LegacyQuestGateway.cpp,665,sSPOILER* section = cQuestWindow.pSelectedSpoiler;
+systems/ui/v2/legacy/LegacyQuestGateway.cpp,700,sSPOILER* section = cQuestWindow.pSelectedSpoiler;
+systems/ui/v2/legacy/LegacyQuestGateway.cpp,710,if (cQuestWindow.vTabs.empty())
+systems/ui/v2/legacy/LegacyQuestGateway.cpp,711,cQuestWindow.Open();
+systems/ui/v2/legacy/LegacyQuestGateway.cpp,713,cQuestWindow.OpenFlag = true;
+systems/ui/v2/legacy/LegacyQuestGateway.cpp,714,return cQuestWindow.OpenFlag;
+systems/ui/v2/legacy/LegacyQuestGateway.cpp,719,cQuestWindow.OpenFlag = false;
+systems/ui/v2/legacy/LegacyQuestGateway.cpp,724,if (!cQuestWindow.vTabs.empty())
+systems/ui/v2/legacy/LegacyQuestGateway.cpp,725,cQuestWindow.Close();
+systems/ui/v2/legacy/LegacyQuestGateway.cpp,727,cQuestWindow.OpenFlag = false;
+systems/ui/v2/legacy/LegacySkillGateway.cpp,193,cMessageBox.CheckOkMessageBox2(MESSAGE_MASTER_SKILL);
+systems/ui/v2/legacy/LegacySkillNpcWindow.cpp,91,"cMessageBox.ShowMessage3(MESSAGE_CHANGE_JOB, sinJobList ? sinJobList->szName2 : const_cast<char*>(""""));"
+systems/ui/v2/legacy/LegacyUIV2Bridge.cpp,15,"#include ""systems/gameplay/quests/ui/cQuestWindow.h"""
+systems/ui/v2/legacy/LegacyUIV2Bridge.cpp,28,"#include ""systems/ui/v2/legacy/LegacyNpcDialogWindow.h"""
+systems/ui/v2/legacy/LegacyUIV2Bridge.cpp,76,LegacyNpcDialogWindow* npcDialogWindow = nullptr;
+systems/ui/v2/legacy/LegacyUIV2Bridge.cpp,114,cCoinShop.isOpen() || cCoinShop_T.isOpen();
+systems/ui/v2/legacy/LegacyUIV2Bridge.cpp,422,auto npc = std::make_unique<LegacyNpcDialogWindow>(190);
+systems/ui/v2/legacy/LegacyUIV2Bridge.cpp,452,"cMessageBox.ShowMessage3(MESSAGE_INIT_SKILL_POINT, sinSkillPointName);"
+systems/ui/v2/legacy/LegacyUIV2Bridge.cpp,461,"cMessageBox.ResolveMessage3ForUIV2(MESSAGE_SELL_HIGHRANK_ITEM, false);"
+systems/ui/v2/legacy/LegacyUIV2Bridge.cpp,498,if (cQuestWindow.OpenFlag && !runtime.Windows().IsOpen(QuestJournalWindowId))
+systems/ui/v2/legacy/LegacyUIV2Bridge.cpp,908,if (cSettings.isOpen())
+systems/ui/v2/legacy/LegacyUIV2Bridge.cpp,909,cSettings.Close();
+systems/ui/v2/legacy/LegacyUIV2Bridge.cpp,1171,(cCoinShop.isOpen() || cCoinShop_T.isOpen());
+systems/ui/v2/legacy/LegacyUIV2Bridge.cpp,1192,return LegacyNpcDialogWindow::HasActiveSupportedLegacyDialog() ||
+systems/ui/v2/legacy/LegacyUIV2Bridge.cpp,1203,if (LegacyNpcDialogWindow::HasActiveEventGiftDialog())

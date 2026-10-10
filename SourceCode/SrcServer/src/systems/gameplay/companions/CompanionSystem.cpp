@@ -464,9 +464,13 @@ bool FlushSlotExperienceRetry(OwnerState &state, CompanionSlot &slot, int attemp
     return false;
 }
 
+void SendRuntimeStateLocked(OwnerState &state, bool force);
+void SendVisualStateLocked(OwnerState &state, bool force);
+
 void PruneState(OwnerState &state)
 {
     const DWORD kDeadVisualHoldMs = (DWORD)GetResurrectionCorpseSeconds() * 1000U;
+    bool presentationChanged = false;
     for(int i = 0; i < COMPANION_MAX_ACTIVE; ++i)
     {
         CompanionSlot &slot = state.slots[i];
@@ -500,16 +504,33 @@ void PruneState(OwnerState &state)
                 if(retiringEntity && retiringEntity->smCharInfo.Life[0] <= 0)
                     retiringEntity->lpMasterPlayInfo = NULL;
                 ClearSlot(slot);
+                presentationChanged = true;
             }
             else
+            {
+                // The runtime entity is already gone but buffered EXP still
+                // needs a later retry. Hide it from the owner immediately.
                 slot.entity = NULL;
+                presentationChanged = true;
+            }
         }
         else if(slot.characterName[0] && !slot.entity && slot.pendingExp > 0)
         {
             // Retry a previously failed flush on the next state touch.
             if(FlushSlotExperience(state, slot))
+            {
                 ClearSlot(slot);
+                presentationChanged = true;
+            }
         }
+    }
+
+    if(presentationChanged)
+    {
+        // A zero-entry snapshot is meaningful: it tells the client to clear
+        // stale HUD/visual state after natural death, expiry or ownership loss.
+        SendRuntimeStateLocked(state, true);
+        SendVisualStateLocked(state, true);
     }
 }
 

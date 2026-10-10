@@ -184,8 +184,10 @@ public:
 		if(!player || request.itemCode.empty())
 			return false;
 		const char first = request.itemCode[0];
-		if(first == 'P' || first == 'p' || first == 'G' || first == 'g')
-			return true; // Preserve the historical no-op grant path for these codes.
+        // PATCH 231: a no-op grant is NOT a successful purchase. Until
+        // a concrete entitlement grant exists, reject and roll back currency.
+        if(first == 'P' || first == 'p' || first == 'G' || first == 'g')
+            return false;
 
 		psITEM item = {};
 		if(CreateItem(&item, const_cast<char*>(request.itemCode.c_str()), player->smCharInfo.JOB_CODE) != TRUE)

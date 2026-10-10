@@ -1,6 +1,7 @@
 #include "compat/server_build/server_compat_packets.h"
 #include <cstring>
 #include "systems/network/protocol/server/opcodes.h"
+#include "gameplay/commerce/v2/LegacyGoldMath.h" // PATCH 231
 #include <windows.h>
 #include <io.h>
 #include <stdio.h>         
@@ -1036,102 +1037,72 @@ char *GetWhereParamString(int WareParam)
 #define	CHK_SERVER_MONEY_MAX2	1000000000
 #define	CHK_SERVER_MONEY_MIN	-150000000
 
-int	rsPLAYINFO::AddServerMoney(int Money, int WhereParam)
+// PATCH 231: check candidate in 64 bits BEFORE changing ServerMoney.
+// Legacy behavior changed ServerMoney then reset it to zero on invalid changes.
+int rsPLAYINFO::AddServerMoney(int Money, int WhereParam)
 {
-	int money = ServerMoney;
-
-	ServerMoney += Money;
-
-	if((money >= 0 && ServerMoney < 0) || Money<0 || Money>CHK_SERVER_MONEY_MAX)
-	{
-
-
-		smTRANS_COMMAND_EX	smTransCommandEx;
-
-		char szStrBuff[128];
-		wsprintf(szStrBuff, "*ADD_MONEY [%s]*", GetWhereParamString(WhereParam));
-
-		smTransCommandEx.WParam = 8840;
-		smTransCommandEx.WxParam = WhereParam;
-		smTransCommandEx.LxParam = (int)szStrBuff;
-		smTransCommandEx.LParam = money;
-		smTransCommandEx.SParam = Money;
-		smTransCommandEx.EParam = ServerMoney;
-		RecordHackLogFile(this, &smTransCommandEx);
-/*
-		if(ServerMoney < CHK_SERVER_MONEY_MIN)*/
-			ServerMoney = 0;
-
-		return FALSE;
-	}
-
-	return TRUE;
+    const int before = ServerMoney;
+    int after = before;
+    if(!gameplay::commerce::TryLegacyGoldCredit(before, Money, after))
+    {
+        smTRANS_COMMAND_EX record = {};
+        char message[128];
+        wsprintf(message, "*ADD_MONEY [%s]*", GetWhereParamString(WhereParam));
+        record.WParam = 8840;
+        record.WxParam = WhereParam;
+        record.LxParam = (int)message;
+        record.LParam = before;
+        record.SParam = Money;
+        record.EParam = before;
+        RecordHackLogFile(this, &record);
+        return FALSE;
+    }
+    ServerMoney = after;
+    return TRUE;
 }
 
-int	rsPLAYINFO::SubServerMoney(int Money, int WhereParam)
+int rsPLAYINFO::SubServerMoney(int Money, int WhereParam)
 {
-	int money = ServerMoney;
-
-	ServerMoney -= Money;
-
-	if((money >= 0 && ServerMoney < 0) || Money<0 || Money>CHK_SERVER_MONEY_MAX)
-	{
-
-
-		smTRANS_COMMAND_EX	smTransCommandEx;
-
-		char szStrBuff[128];
-		wsprintf(szStrBuff, "*SUB_MONEY [%s]*", GetWhereParamString(WhereParam));
-
-		smTransCommandEx.WParam = 8840;
-		smTransCommandEx.WxParam = WhereParam;
-		smTransCommandEx.LxParam = (int)szStrBuff;
-		smTransCommandEx.LParam = money;
-		smTransCommandEx.SParam = Money;
-		smTransCommandEx.EParam = ServerMoney;
-		RecordHackLogFile(this, &smTransCommandEx);
-/*
-		if(ServerMoney < CHK_SERVER_MONEY_MIN)*/
-			ServerMoney = 0;
-
-
-		return FALSE;
-	}
-
-	return TRUE;
+    const int before = ServerMoney;
+    int after = before;
+    if(!gameplay::commerce::TryLegacyGoldDebit(before, Money, after))
+    {
+        smTRANS_COMMAND_EX record = {};
+        char message[128];
+        wsprintf(message, "*SUB_MONEY [%s]*", GetWhereParamString(WhereParam));
+        record.WParam = 8840;
+        record.WxParam = WhereParam;
+        record.LxParam = (int)message;
+        record.LParam = before;
+        record.SParam = Money;
+        record.EParam = before;
+        RecordHackLogFile(this, &record);
+        return FALSE;
+    }
+    ServerMoney = after;
+    return TRUE;
 }
 
-int	rsPLAYINFO::SetServerMoney(int Money, int WhereParam)
+int rsPLAYINFO::SetServerMoney(int Money, int WhereParam)
 {
-	ServerMoney = Money;
-
-	if(Money > CHK_SERVER_MONEY_MAX || Money < 0)
-	{
-
-
-		smTRANS_COMMAND_EX	smTransCommandEx;
-
-		char szStrBuff[128];
-		wsprintf(szStrBuff, "*SET_MONEY [%s]*", GetWhereParamString(WhereParam));
-
-		smTransCommandEx.WParam = 8840;
-		smTransCommandEx.WxParam = WhereParam;
-		smTransCommandEx.LxParam = (int)szStrBuff;
-		smTransCommandEx.LParam = 0;
-		smTransCommandEx.SParam = Money;
-		smTransCommandEx.EParam = ServerMoney;
-		RecordHackLogFile(this, &smTransCommandEx);
-		DisconnectFlag = 1;/*
-		if(ServerMoney < CHK_SERVER_MONEY_MIN)
-			ServerMoney = CHK_SERVER_MONEY_MIN;
-
-		if(ServerMoney > CHK_SERVER_MONEY_MAX2)*/
-			ServerMoney = 0;
-
-		return FALSE;
-	}
-
-	return TRUE;
+    const int before = ServerMoney;
+    int after = before;
+    if(!gameplay::commerce::TryLegacyGoldSet(Money, after))
+    {
+        smTRANS_COMMAND_EX record = {};
+        char message[128];
+        wsprintf(message, "*SET_MONEY [%s]*", GetWhereParamString(WhereParam));
+        record.WParam = 8840;
+        record.WxParam = WhereParam;
+        record.LxParam = (int)message;
+        record.SParam = Money;
+        record.EParam = before;
+        RecordHackLogFile(this, &record);
+        DisconnectFlag = 1; // retain original protection for invalid load/set
+        return FALSE;
+    }
+    ServerMoney = after;
+    return TRUE;
 }
 
 

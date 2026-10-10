@@ -60,6 +60,7 @@ private:
     Button* costumeButton_ = nullptr;
     Button* cancelDragButton_ = nullptr;
     float refreshAccumulator_ = 0.0f;
+    float currencyFetchAccumulator_ = 9.0f; // PATCH 227: first request when inventory updates
     Point lastPointer_{};
     int hoveredIndex_ = -1;
     int detailItemIndex_ = -1;

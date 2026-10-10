@@ -1,6 +1,7 @@
 #pragma once
 namespace OpCode {
     static const int OPCODE_TIER5_LIVE_SYNC = 0x48479F50;
+    static const int OPCODE_SUMMIT_WALLET_SNAPSHOT = 0x48479F51; // PATCH 231
     static const int OPCODE_cMIXGUIDE = 0x4847900A;
     static const int OPCODE_FIX_ATTACK = 0x48478700;
     static const int OPCODE_ADD_NPC = 0x70000000 + 0;

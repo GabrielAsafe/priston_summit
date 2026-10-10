@@ -4981,7 +4981,34 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 		SaveGameData();
 		break;
 
+    // PATCH 231: server wallet snapshot follows the corresponding action ACK.
+    // Do not send this number back as a source of authority; it only reconciles UI.
+    case OpCode::OPCODE_SUMMIT_WALLET_SNAPSHOT:
+    {
+        const smTRANS_COMMAND* wallet = (const smTRANS_COMMAND*)pData->Buff;
+        if(wallet->size != sizeof(smTRANS_COMMAND) || wallet->LParam != 1000000000 ||
+           wallet->WParam < 0 || wallet->WParam > 1000000000 || !sinChar || !lpCurPlayer ||
+           wallet->EParam != static_cast<int>(lpCurPlayer->dwObjectSerial))
+            break;
+        if(sinChar->Money != wallet->WParam)
+        {
+            sinChar->Money = wallet->WParam;
+            lpCurPlayer->smCharInfo.Money = wallet->WParam;
+            ReformCharForm();
+            ResetInvenMoney();
+        }
+        break;
+    }
+
 	case OpCode::OPCODE_SHOPTITEM:
+
+        // Server rejection is a response, not an item grant. Always clear the
+        // pending purchase before any potion or inventory processing.
+        if(((TRANS_BUY_SHOPITEM *)pData->Buff)->ItemCount <= 0)
+        {
+            cShop.RecvBuyItemRejected(-((TRANS_BUY_SHOPITEM *)pData->Buff)->ItemCount);
+            break;
+        }
 
 		if((((TRANS_BUY_SHOPITEM *)pData->Buff)->sItem.sItemInfo.CODE&sinITEM_MASK1) == (sinPM1&sinITEM_MASK1))
 		{

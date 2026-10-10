@@ -17,6 +17,11 @@
       "json_path": "spawns/GameServer/Field/castle.ase.spm.json"
     },
     {
+      "id": "spawn.dark_boss",
+      "logical_path": "GameServer/Field/dark_boss.ase.spm",
+      "json_path": "spawns/GameServer/Field/dark_boss.ase.spm.json"
+    },
+    {
       "id": "spawn.dcave",
       "logical_path": "GameServer/Field/dcave.ase.spm",
       "json_path": "spawns/GameServer/Field/dcave.ase.spm.json"
@@ -167,6 +172,11 @@
       "json_path": "spawns/GameServer/Field/iron3.ASE.spm.json"
     },
     {
+      "id": "spawn.lost3",
+      "logical_path": "GameServer/Field/lost3.ase.spm",
+      "json_path": "spawns/GameServer/Field/lost3.ase.spm.json"
+    },
+    {
       "id": "spawn.lost_temple",
       "logical_path": "GameServer/Field/lost_temple.ase.spm",
       "json_path": "spawns/GameServer/Field/lost_temple.ase.spm.json"
@@ -220,6 +230,11 @@
       "id": "spawn.ruin_4",
       "logical_path": "GameServer/Field/ruin-4.ase.spm",
       "json_path": "spawns/GameServer/Field/ruin-4.ase.spm.json"
+    },
+    {
+      "id": "spawn.ruin_arenasf",
+      "logical_path": "GameServer/Field/ruin-arenasf.ase.spm",
+      "json_path": "spawns/GameServer/Field/ruin-arenasf.ase.spm.json"
     },
     {
       "id": "spawn.seaa",

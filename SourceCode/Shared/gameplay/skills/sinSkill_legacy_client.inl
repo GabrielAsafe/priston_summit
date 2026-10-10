@@ -485,6 +485,58 @@ sSKILL sSkill[SIN_MAX_SKILL] = {
 
 
 
+
+static int SummitResolveLegacyContinueSkillMaterial(DWORD code)
+{
+	for(int j = 0; j < SIN_MAX_SKILL; ++j)
+	{
+		if(sSkill[j].CODE != code)
+			continue;
+		if(sSkill[j].MatIcon)
+			return sSkill[j].MatIcon;
+		if(!sSkill[j].IconName[0])
+			return 0;
+
+		char path[260] = { 0 };
+		wsprintf(path, "image//Sinimage//skill//keep//%s", sSkill[j].IconName);
+		// PATCH 213: let the engine resolver try the canonical runtime path even
+		// when no loose file exists (cooked/runtime-pack assets are valid).
+		sSkill[j].MatIcon = CreateTextureMaterial(path, 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		if(sSkill[j].MatIcon)
+		{
+			ReadTextures();
+			return sSkill[j].MatIcon;
+		}
+		return 0;
+	}
+	return 0;
+}
+
+static void SummitLogMissingContinueSkillIcon(const sSKILL &skill)
+{
+	static DWORD loggedCodes[MAX_CONTINUE_SKILL] = { 0 };
+	for(int i = 0; i < MAX_CONTINUE_SKILL; ++i)
+	{
+		if(loggedCodes[i] == skill.CODE)
+			return;
+		if(loggedCodes[i] == 0)
+		{
+			loggedCodes[i] = skill.CODE;
+			break;
+		}
+	}
+
+	CreateDirectoryA("LOGS", 0);
+	FILE *file = fopen("LOGS/missing_timer_icons.log", "at");
+	if(!file)
+		file = fopen("missing_timer_icons.log", "at");
+	if(!file)
+		return;
+	fprintf(file, "CODE=0x%08lX NAME=%s ICON=%s FILE=%s\n",
+		(unsigned long)skill.CODE, skill.sSkillName, skill.IconName, skill.FileName);
+	fclose(file);
+}
+
 sSKILLBOX	sSkillBox[SIN_MAX_SKILLBOX] = {
 	{{142,537,142 + 49,537 + 46}},
 
@@ -806,17 +858,12 @@ void cSKILL::DrawUp()
 
 	for (i = 0; i < MAX_CONTINUE_SKILL; i++)
 	{
-		if (TempContinueSkill[i].Flag)
+		if (TempContinueSkill[i].Flag && !TempContinueSkill[i].IconFlag)
 		{
+			dsDrawTexImage(MatSkillIconBackGround, 10 + TempContinueSkill[i].IconPosiX, 10, 32, 32, TempContinueSkill[i].IconAlpha);
+			SkillBarDraw(&TempContinueSkill[i], 10 + 16 + TempContinueSkill[i].IconPosiX, 10 + 16, TempContinueSkill[i].IconAlpha);
 			if (TempContinueSkill[i].MatIcon)
-			{
-				if (!TempContinueSkill[i].IconFlag)
-				{
-					dsDrawTexImage(MatSkillIconBackGround, 10 + TempContinueSkill[i].IconPosiX, 10, 32, 32, TempContinueSkill[i].IconAlpha);
-					SkillBarDraw(&TempContinueSkill[i], 10 + 16 + TempContinueSkill[i].IconPosiX, 10 + 16, TempContinueSkill[i].IconAlpha);
-					dsDrawTexImage(TempContinueSkill[i].MatIcon, 10 + TempContinueSkill[i].IconPosiX, 10, 32, 32, TempContinueSkill[i].IconAlpha);
-				}
-			}
+				dsDrawTexImage(TempContinueSkill[i].MatIcon, 10 + TempContinueSkill[i].IconPosiX, 10, 32, 32, TempContinueSkill[i].IconAlpha);
 		}
 	}
 
@@ -1047,47 +1094,36 @@ void cSKILL::Main()
 	{
 		if(ContinueSkill[k].Flag)
 		{
-			if(ContinueSkill[k].MatIcon)
+			// PATCH 213: keep the status in the layout even when its texture is
+			// unresolved. UI V2 can expose a fallback badge + diagnostic instead
+			// of silently dropping the active timer from the HUD.
+			if(Num * 32 > ContinueSkill[k].IconPosiX)
+				ContinueSkill[k].IconPosiX += 2;
+			else if(Num * 32 < ContinueSkill[k].IconPosiX)
+				ContinueSkill[k].IconPosiX -= 2;
+
+			if(ContinueSkill[k].CheckTime < 255)
+				ContinueSkill[k].IconAlpha++;
+			else
+				ContinueSkill[k].IconAlpha = 255;
+
+			if(((ContinueSkill[k].UseTime * 70) - ContinueSkill[k].CheckTime) < 180)
+				ContinueSkill[k].IconAlpha--;
+			if(ContinueSkill[k].IconAlpha > 255) ContinueSkill[k].IconAlpha = 255;
+			if(ContinueSkill[k].IconAlpha < 0) ContinueSkill[k].IconAlpha = 0;
+
+			if(ContinueSkill[k].CheckTime > (ContinueSkill[k].UseTime - 4) * 70)
 			{
-				if(Num * 32 > ContinueSkill[k].IconPosiX)
+				ContinueSkill[k].IconTime++;
+				if(ContinueSkill[k].IconTime > 30)
 				{
-					ContinueSkill[k].IconPosiX += 2;
+					ContinueSkill[k].IconTime = 0;
+					ContinueSkill[k].IconFlag ^= 1;
 				}
-				else if(Num * 32 < ContinueSkill[k].IconPosiX)
-				{
-					ContinueSkill[k].IconPosiX -= 2;
-
-				}
-				if(ContinueSkill[k].CheckTime < 255)
-				{
-					ContinueSkill[k].IconAlpha++;
-				}
-				if(ContinueSkill[k].CheckTime >= 255)
-				{
-					ContinueSkill[k].IconAlpha = 255;
-
-				}
-				if(((ContinueSkill[k].UseTime * 70) - ContinueSkill[k].CheckTime) < 180)
-				{
-					ContinueSkill[k].IconAlpha--;
-				}
-				if(ContinueSkill[k].IconAlpha > 255)ContinueSkill[k].IconAlpha = 255;
-				if(ContinueSkill[k].IconAlpha < 0)ContinueSkill[k].IconAlpha = 0;
-
-				if(ContinueSkill[k].CheckTime > (ContinueSkill[k].UseTime - 4) * 70)
-				{
-					ContinueSkill[k].IconTime++;
-					if(ContinueSkill[k].IconTime > 30)
-					{
-						ContinueSkill[k].IconTime = 0;
-						ContinueSkill[k].IconFlag ^= 1;
-					}
-				}
-
-				memcpy(&TempContinueSkill[Num], &ContinueSkill[k], sizeof(sSKILL));
-				Num++;
-
 			}
+
+			memcpy(&TempContinueSkill[Num], &ContinueSkill[k], sizeof(sSKILL));
+			Num++;
 		}
 	}
 
@@ -3045,12 +3081,15 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 	}	
 	else if (pSkill->CODE == PLAYERVIP)
 	{
-		// ID
-		lstrcpy(szSkillInfoBuff, "Vip/r");
+		lstrcpy(szSkillInfoBuff, "VIP/r");
 		lstrcat(szSkillInfoBuff2, "/r");
-		lstrcat(szSkillInfoBuff, "/comandos para ver os beneficios/r");
+		lstrcat(szSkillInfoBuff, "EXP +15%/r");
+		lstrcat(szSkillInfoBuff2, "/r");
+		lstrcat(szSkillInfoBuff, "Drop +5%/r");
+		lstrcat(szSkillInfoBuff2, "/r");
+		lstrcat(szSkillInfoBuff, "Use /comandos para ver os atalhos VIP./r");
 
-		LineCount = 3;
+		LineCount = 4;
 	}
 
 	lstrcat(szSkillInfoBuff, "/r");
@@ -7669,21 +7708,13 @@ int cSKILL::EnsureContinueSkillIcon(DWORD CODE)
 		if(ContinueSkill[i].MatIcon)
 			return TRUE;
 
-		for(int j = 0; j < SIN_MAX_SKILL; j++)
-		{
-			if(ContinueSkill[i].CODE == sSkill[j].CODE && sSkill[j].MatIcon)
-			{
-				ContinueSkill[i].MatIcon = sSkill[j].MatIcon;
-				return TRUE;
-			}
-		}
-
-		ContinueSkill[i].MatIcon = SummitT5ResolveTimerMaterial(ContinueSkill[i].CODE);
+		ContinueSkill[i].MatIcon = SummitResolveLegacyContinueSkillMaterial(ContinueSkill[i].CODE);
+		if(!ContinueSkill[i].MatIcon)
+			ContinueSkill[i].MatIcon = SummitT5ResolveTimerMaterial(ContinueSkill[i].CODE);
 		if(ContinueSkill[i].MatIcon)
-		{
 			return TRUE;
-		}
 
+		SummitLogMissingContinueSkillIcon(ContinueSkill[i]);
 		return FALSE;
 	}
 
@@ -7700,33 +7731,22 @@ int cSKILL::EnsureContinueSkillIcon(DWORD CODE)
 
 int cSKILL::CheckContinueIcon()
 {
+	int resolvedAny = FALSE;
 	for(int i = 0; i < MAX_CONTINUE_SKILL; i++)
 	{
-		if(ContinueSkill[i].Flag)
-		{
-			if(!ContinueSkill[i].MatIcon)
-			{
-				for(int j = 0; j < SIN_MAX_SKILL; j++)
-				{
-					if(ContinueSkill[i].CODE == sSkill[j].CODE)
-					{
-						if(sSkill[j].MatIcon)
-						{
-							ContinueSkill[i].MatIcon = sSkill[j].MatIcon;
-							return TRUE;
-						}
-					}
-				}
+		if(!ContinueSkill[i].Flag || ContinueSkill[i].MatIcon)
+			continue;
 
-				ContinueSkill[i].MatIcon = SummitT5ResolveTimerMaterial(ContinueSkill[i].CODE);
-				if(ContinueSkill[i].MatIcon)
-				{
-					return TRUE;
-				}
-			}
-		}
+		ContinueSkill[i].MatIcon = SummitResolveLegacyContinueSkillMaterial(ContinueSkill[i].CODE);
+		if(!ContinueSkill[i].MatIcon)
+			ContinueSkill[i].MatIcon = SummitT5ResolveTimerMaterial(ContinueSkill[i].CODE);
+
+		if(ContinueSkill[i].MatIcon)
+			resolvedAny = TRUE;
+		else
+			SummitLogMissingContinueSkillIcon(ContinueSkill[i]);
 	}
-	return FALSE;
+	return resolvedAny;
 }
 
 

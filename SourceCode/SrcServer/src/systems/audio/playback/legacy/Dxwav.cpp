@@ -1,3 +1,4 @@
+#include "diagnostics/RuntimeAssetProbe.h"
 
 #include "systems/audio/playback/legacy/Dxwav.h"
 #include <windowsx.h>
@@ -316,10 +317,12 @@ BOOL ReadData(LPDIRECTSOUNDBUFFER lpDSB, FILE* pFile, DWORD dwSize, DWORD dwPos)
 
 BOOL CreateBufferFromWaveFile(char* FileName, DWORD dwBuf)
 {
+	summit::diagnostics::RuntimeAssetProbeAttempt("AUDIO_WAV", "OPEN", FileName);
 	DWORD dwSize;
 	BOOL bStereo;
 
 	FILE* pFile = fopen(FileName, "rb");
+	summit::diagnostics::RuntimeAssetProbeResult("AUDIO_WAV", "OPEN", FileName, pFile != NULL);
 	if(pFile == NULL) return FALSE;
 
 
@@ -1240,6 +1243,7 @@ void CALLBACK LSTimeRunFuncForDSound(UINT uTimerID, UINT uMsg, DWORD dwUser, DWO
 
 BOOL OpenBGM(LPSTR lpszFileName)
 {
+	summit::diagnostics::RuntimeAssetProbeAttempt("AUDIO_BGM", "OPEN", lpszFileName);
 
 	return TRUE;
 }

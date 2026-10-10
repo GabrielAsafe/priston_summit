@@ -19,6 +19,8 @@
 // =============================================================================
 
 #include "content/v1/text_resource/content/TextResourceRuntime.h"
+#include "gameplay/commerce/v2/NpcShopWireResult.h"
+#include "content/v1/localization/legacy/LocalizationLegacyEncoding.h"
 #include "content/v1/definition/content/DefinitionRuntime.h"
 #include "content/v1/text_resource/legacy/LegacyContentIdRegistry.h"
 #include "content/v1/field_runtime/content/CompiledFieldRuntimeSource.h"
@@ -2156,8 +2158,8 @@ int InitMonster()
 
 	HANDLE hFindHandle;
 	WIN32_FIND_DATA	fd;
-	char	szFindPath[64];
-	char	szFilePath[64];
+	char	szFindPath[MAX_PATH];
+	char	szFilePath[MAX_PATH];
 
 	chrMonsterCnt = 0;
 
@@ -8597,6 +8599,46 @@ int STG_AREA::DeleteCharInfoFixed(smTRNAS_PLAYERINFO *lpTransPlayerInfo)
 }
 
 
+
+static void SummitApplyFixedNpcIdentity(
+	smCHAR_INFO &target,
+	const smCHAR_INFO &decoded,
+	const smCHAR_MONSTER_INFO &decodedMonster)
+{
+	// Fixed-NPC packets are materialized before OpenNpc() decodes the definition
+	// into a live character. Preserve the safe identity fields required by
+	// client interaction/UI, including localized names and quest class codes.
+	// Never copy decoded.lpMonInfo: it can point at the temporary monster record.
+	if(decodedMonster.szName[0])
+		strcpy_s(target.szName, decodedMonster.szName);
+	else if(decoded.szName[0])
+		strcpy_s(target.szName, decoded.szName);
+
+	if(decoded.szModelName[0])
+		strcpy_s(target.szModelName, decoded.szModelName);
+	target.ModelNameCode2 = decoded.ModelNameCode2;
+	target.ClassClan = decoded.ClassClan;
+	target.SizeLevel = decoded.SizeLevel;
+	target.dwCharSoundCode = decoded.dwCharSoundCode;
+	target.JOB_CODE = decoded.JOB_CODE;
+	target.Level = decoded.Level;
+	target.Brood = decoded.Brood;
+	target.ChangeJob = decoded.ChangeJob;
+	target.JobBitMask = decoded.JobBitMask;
+	target.wPlayClass[0] = decoded.wPlayClass[0];
+	target.wPlayClass[1] = decoded.wPlayClass[1];
+}
+
+static void SummitApplyFixedNpcLocalizedName(smCHAR_INFO &target, const std::string &npcId)
+{
+	if(npcId.empty()) return;
+	std::string localized;
+	const std::string key = npcId + ".name";
+	if(summit::content::localization::GetLocalizationLegacyValue(key.c_str(), localized) &&
+		!localized.empty() && localized.size() < sizeof(target.szName))
+		std::memcpy(target.szName, localized.c_str(), localized.size() + 1);
+}
+
 int STG_AREA::LoadCharInfoFixed(char *szFile)
 {
 	if(!szFile) return FALSE;
@@ -8642,7 +8684,8 @@ int STG_AREA::LoadCharInfoFixed(char *szFile)
 		char decodedDialog[256] = {0};
 		if(!smCharDecode(dst.smCharInfo.szModelName2, &decodedInfo, &decodedMonster, decodedDialog, sizeof(decodedDialog)))
 			return FALSE;
-		dst.smCharInfo.dwCharSoundCode = decodedInfo.dwCharSoundCode;
+		SummitApplyFixedNpcIdentity(dst.smCharInfo, decodedInfo, decodedMonster);
+		SummitApplyFixedNpcLocalizedName(dst.smCharInfo, src.npcId);
 	}
 
 	// PATCH 185: Amanda is an instructor (class 1014), not the Enzo restorer.
@@ -8686,7 +8729,8 @@ int STG_AREA::LoadCharInfoFixed(char *szFile)
 			char decodedDialog[256] = {0};
 			if(!smCharDecode(dst.smCharInfo.szModelName2, &decodedInfo, &decodedMonster, decodedDialog, sizeof(decodedDialog)))
 				return FALSE;
-			dst.smCharInfo.dwCharSoundCode = decodedInfo.dwCharSoundCode;
+			SummitApplyFixedNpcIdentity(dst.smCharInfo, decodedInfo, decodedMonster);
+			SummitApplyFixedNpcLocalizedName(dst.smCharInfo, "npc.ji_woo");
 		}
 	}
 	return TRUE;
@@ -8750,6 +8794,12 @@ int STG_AREA::OpenNpc(smTRNAS_PLAYERINFO *lpTransPlayerInfo)
 		lpChar->ActionPattern = 12;
 		memcpy(&lpChar->smCharInfo, &lpTransPlayerInfo->smCharInfo, sizeof(smCHAR_INFO));
 
+		// LoadCharInfoFixed already resolved the canonical PT-BR fixed-NPC name.
+		// smCharDecode below materializes model/combat metadata and may expose the
+		// original Korean definition name again, so preserve the packet identity.
+		char summitFixedNpcName[sizeof(lpChar->smCharInfo.szName)] = {0};
+		if(lpTransPlayerInfo->smCharInfo.szName[0])
+			strcpy_s(summitFixedNpcName, lpTransPlayerInfo->smCharInfo.szName);
 
 		lpFileName = lpChar->smCharInfo.szModelName2;
 		if(lpFileName[0])
@@ -8774,6 +8824,8 @@ int STG_AREA::OpenNpc(smTRNAS_PLAYERINFO *lpTransPlayerInfo)
 				strcpy_s(lpChar->smCharInfo.szName, lpChar->smMonsterInfo.szName);
 				lpChar->smMonsterInfo.szName[0] = 0;
 			}
+			if(summitFixedNpcName[0])
+				strcpy_s(lpChar->smCharInfo.szName, summitFixedNpcName);
 			srLinkNpcItem(lpChar);
 
 			dist = lpChar->smMonsterInfo.MoveRange >> FLOATNS;
@@ -17844,16 +17896,63 @@ int	rsCheck_ItemSecCode(rsPLAYINFO *lpPlayInfo, DWORD dwCode, DWORD dwHead, DWOR
 
 
 
-static bool rsMeetsShopItemRequirements(const rsPLAYINFO *lpPlayInfo, const sITEMINFO &item)
+// PATCH 231: authoritative wallet reconciliation after the legacy action ACK.
+// The server never accepts a wallet amount from the client as authority.
+static int SummitSendWalletSnapshot(rsPLAYINFO* player)
 {
-	if(!lpPlayInfo) return false;
-	const smCHAR_INFO &character = lpPlayInfo->smCharInfo;
-	return item.Level <= character.Level &&
-		item.Strength <= character.Strength &&
-		item.Spirit <= character.Spirit &&
-		item.Talent <= character.Talent &&
-		item.Dexterity <= character.Dexterity &&
-		item.Health <= character.Health;
+    if(!player || !player->lpsmSock || player->ServerMoney < 0 || player->ServerMoney > 1000000000)
+        return FALSE;
+    smTRANS_COMMAND response = {};
+    response.code = OpCode::OPCODE_SUMMIT_WALLET_SNAPSHOT;
+    response.size = sizeof(response);
+    response.WParam = player->ServerMoney;
+    response.LParam = 1000000000; // exact protocol cap; safety check on client
+    response.EParam = static_cast<int>(player->dwObjectSerial);
+    return SendOnServerLegacySocket(player->lpsmSock, (char*)&response, response.size);
+}
+
+// SUMMIT_PATCH_218_NPC_SHOP_DECISION_TRACE
+// Diagnostic only: opt-in, one log line per purchase boundary event.
+// No account names, item grants, wallet updates, or network changes.
+static void SummitNpcShopPurchaseTrace(const char* phase, const rsPLAYINFO* player,
+                                       const TRANS_BUY_SHOPITEM* packet,
+                                       int transactionCode = -1, long long charged = -1)
+{
+    char enabled[8] = {0};
+    if(GetEnvironmentVariableA("SUMMIT_NPC_SHOP_TRACE", enabled, sizeof(enabled)) == 0 || enabled[0] != '1')
+        return;
+    CreateDirectoryA("LOGS", NULL);
+    FILE* fp = fopen("LOGS/npc_shop_purchase_server.log", "ab");
+    if(!fp)
+        return;
+    const sITEMINFO* item = packet ? &packet->sItem.sItemInfo : NULL;
+    fprintf(fp, "phase=%s code=0x%08X count=%d unitPrice=%d wallet=%d inventoryMode=%d createTime=%lu reqLevel=%d playerLevel=%d status=%d charged=%lld\n",
+            phase ? phase : "?", item ? (unsigned int)item->CODE : 0U,
+            packet ? packet->ItemCount : 0, item ? item->Price : 0,
+            player ? player->ServerMoney : -1, (int)rsServerConfig.ServerInventoryMode,
+            item ? (unsigned long)item->dwCreateTime : 0UL,
+            item ? item->Level : -1, player ? player->smCharInfo.Level : -1,
+            transactionCode, charged);
+    fclose(fp);
+}
+
+// SUMMIT_PATCH_226_REAL_SOURCE: merchant purchase does not require equip stats.
+
+static int SummitNpcShopReject(rsPLAYINFO* player, TRANS_BUY_SHOPITEM* request,
+                              gameplay::commerce::NpcShopRejection reason)
+{
+    if(player && player->lpsmSock && request)
+    {
+        // Reuse the existing opcode and packet size. The negative count cannot
+        // be mistaken for a successful grant; netplay handles it before inventory.
+        TRANS_BUY_SHOPITEM response = *request;
+        response.code = OpCode::OPCODE_SHOPTITEM;
+        response.size = sizeof(TRANS_BUY_SHOPITEM);
+        response.ItemCount = gameplay::commerce::EncodeNpcShopRejection(reason);
+        SendOnServerLegacySocket(player->lpsmSock, (char*)&response, response.size);
+        (void)SummitSendWalletSnapshot(player);
+    }
+    return FALSE;
 }
 
 int rsRecvBuyShopItem(rsPLAYINFO *lpPlayInfo, TRANS_BUY_SHOPITEM *lpTransBuyShopItem)
@@ -17861,22 +17960,26 @@ int rsRecvBuyShopItem(rsPLAYINFO *lpPlayInfo, TRANS_BUY_SHOPITEM *lpTransBuyShop
 	int money;
 
 	if(!lpPlayInfo || !lpTransBuyShopItem || !lpPlayInfo->lpsmSock)
-		return FALSE;
-
-	// Never trust a client-side merchant filter. This closes crystal/vendor
-	// purchases forged or initiated through a legacy path with unmet level/stat
-	// requirements before currency or inventory state can be mutated.
-	if(!rsMeetsShopItemRequirements(lpPlayInfo, lpTransBuyShopItem->sItem.sItemInfo))
-		return FALSE;
-
-	if(!rsServerConfig.ServerInventoryMode)
 	{
-		if(!SummitOnServerWalletSet(
-			lpPlayInfo, 90000000, gameplay::commerce::WalletReason::NpcShopCompatibility).Ok())
-			return FALSE;
+		SummitNpcShopPurchaseTrace("invalid-session", lpPlayInfo, lpTransBuyShopItem);
+		return FALSE;
+	}
+	SummitNpcShopPurchaseTrace("request", lpPlayInfo, lpTransBuyShopItem);
+	if(lpTransBuyShopItem->ItemCount <= 0 || lpTransBuyShopItem->sItem.sItemInfo.Price < 0)
+	{
+		SummitNpcShopPurchaseTrace("invalid-count-or-price", lpPlayInfo, lpTransBuyShopItem);
+        return SummitNpcShopReject(lpPlayInfo, lpTransBuyShopItem,
+            gameplay::commerce::NpcShopRejection::InvalidRequest);
 	}
 
-	if(CheckItemForm(&lpTransBuyShopItem->sItem.sItemInfo) == TRUE &&
+	// SUMMIT_PATCH_226_REAL_SOURCE: equipment requirements are enforced when
+	// equipping, not purchasing. All wallet/form/inventory checks stay active.
+	// PATCH 216: never synthesize or reset currency during a merchant purchase.
+	// Wallet balance is initialized from persisted ServerMoney at player load.
+	// Both inventory modes must validate the *actual* wallet balance.
+
+	const bool summitShopValidForm = CheckItemForm(&lpTransBuyShopItem->sItem.sItemInfo) == TRUE;
+	if(summitShopValidForm &&
 		lpTransBuyShopItem->sItem.sItemInfo.dwCreateTime == 0)
 	{
 		const bool isPotionPurchase =
@@ -17892,6 +17995,9 @@ int rsRecvBuyShopItem(rsPLAYINFO *lpPlayInfo, TRANS_BUY_SHOPITEM *lpTransBuyShop
 		gameplay::commerce::CurrencyAmount purchaseBefore = 0;
 		gameplay::commerce::CurrencyAmount purchaseTotal = unitPrice;
 		bool purchased = false;
+		int summitShopTransactionCode = -1;
+        gameplay::commerce::NpcShopRejection shopRejection =
+            gameplay::commerce::NpcShopRejection::TransactionRejected;
 
 		if(isPotionPurchase)
 		{
@@ -17903,6 +18009,11 @@ int rsRecvBuyShopItem(rsPLAYINFO *lpPlayInfo, TRANS_BUY_SHOPITEM *lpTransBuyShop
 						unitPrice,
 						static_cast<gameplay::inventory::PotionQuantity>(purchaseQuantity)));
 			purchased = purchase.Purchased();
+			summitShopTransactionCode = static_cast<int>(purchase.code);
+            if(purchase.code == gameplay::commerce::ShopPotionPurchaseCode::InsufficientFunds)
+                shopRejection = gameplay::commerce::NpcShopRejection::InsufficientFunds;
+            else if(purchase.code == gameplay::commerce::ShopPotionPurchaseCode::PotionRejected)
+                shopRejection = gameplay::commerce::NpcShopRejection::InventoryRejected;
 			purchaseBefore = purchase.before;
 			purchaseTotal = purchase.total;
 		}
@@ -17916,6 +18027,11 @@ int rsRecvBuyShopItem(rsPLAYINFO *lpPlayInfo, TRANS_BUY_SHOPITEM *lpTransBuyShop
 				gameplay::commerce::legacy::ServerLegacyShopAdapter().PurchaseItem(
 					gameplay::commerce::ShopItemPurchaseRequest(playerId, item, unitPrice));
 			purchased = purchase.Purchased();
+			summitShopTransactionCode = static_cast<int>(purchase.code);
+            if(purchase.code == gameplay::commerce::ShopItemPurchaseCode::InsufficientFunds)
+                shopRejection = gameplay::commerce::NpcShopRejection::InsufficientFunds;
+            else if(purchase.code == gameplay::commerce::ShopItemPurchaseCode::InventoryRejected)
+                shopRejection = gameplay::commerce::NpcShopRejection::InventoryRejected;
 			purchaseBefore = purchase.before;
 			purchaseTotal = purchase.price;
 		}
@@ -17926,19 +18042,24 @@ int rsRecvBuyShopItem(rsPLAYINFO *lpPlayInfo, TRANS_BUY_SHOPITEM *lpTransBuyShop
 					gameplay::commerce::ShopPurchaseRequest(
 						playerId, unitPrice, purchaseQuantity, gameplay::commerce::ShopPurchaseKind::Item));
 			purchased = purchase.Purchased();
+			summitShopTransactionCode = static_cast<int>(purchase.code);
+            if(purchase.code == gameplay::commerce::ShopPurchaseCode::InsufficientFunds)
+                shopRejection = gameplay::commerce::NpcShopRejection::InsufficientFunds;
 			purchaseBefore = purchase.before;
 			purchaseTotal = purchase.total;
 		}
 
 		if(!purchased)
 		{
+			SummitNpcShopPurchaseTrace("transaction-rejected", lpPlayInfo, lpTransBuyShopItem,
+				summitShopTransactionCode, static_cast<long long>(purchaseTotal));
 			smTRANS_COMMAND smTransCommand;
 			smTransCommand.WParam = 8010;
 			smTransCommand.LParam = 10;
 			smTransCommand.SParam = static_cast<int>(purchaseBefore);
 			smTransCommand.EParam = lpTransBuyShopItem->sItem.sItemInfo.Price;
 			RecordHackLogFile(lpPlayInfo, &smTransCommand);
-			return FALSE;
+            return SummitNpcShopReject(lpPlayInfo, lpTransBuyShopItem, shopRejection);
 		}
 
 		rsRecord_ItemLog(lpPlayInfo,
@@ -17969,10 +18090,18 @@ int rsRecvBuyShopItem(rsPLAYINFO *lpPlayInfo, TRANS_BUY_SHOPITEM *lpTransBuyShop
 			CurrencyLog.int64_ShopMoney += lpTransBuyShopItem->sItem.sItemInfo.Price;
 		}
 
-		return SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)lpTransBuyShopItem, lpTransBuyShopItem->size);
+		SummitNpcShopPurchaseTrace("accepted", lpPlayInfo, lpTransBuyShopItem,
+			summitShopTransactionCode, static_cast<long long>(purchaseTotal));
+        const int sent = SendOnServerLegacySocket(lpPlayInfo->lpsmSock,
+            (char *)lpTransBuyShopItem, lpTransBuyShopItem->size);
+        if(sent) (void)SummitSendWalletSnapshot(lpPlayInfo);
+        return sent;
 	}
 
-	return FALSE;
+	SummitNpcShopPurchaseTrace(summitShopValidForm ? "create-time-rejected" : "validation-rejected",
+		lpPlayInfo, lpTransBuyShopItem);
+    return SummitNpcShopReject(lpPlayInfo, lpTransBuyShopItem,
+        gameplay::commerce::NpcShopRejection::InvalidItem);
 }
 
 
@@ -18083,7 +18212,8 @@ int rsRecvSellShopItem(rsPLAYINFO *lpPlayInfo, TRANS_ITEMINFO *lpTransItemInfo)
 
 	if(lpPlayInfo->lpsmSock)
 	{
-		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
+        SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
+        (void)SummitSendWalletSnapshot(lpPlayInfo);
 	}
 
 	lpPlayInfo->UnsaveMoney = lpTransItemInfo->y - smTransCommand.EParam;
@@ -19382,13 +19512,17 @@ char* retornarNomeMapa(int field)
 	else if (field == 46)
 		nomeMapa = "Laboratorio Secreto";
 	else if (field == 47)
-		nomeMapa = "Arma Antiga";
+		nomeMapa = "Arma Secreta";
 	else if (field == 48)
-		nomeMapa = "Mar do Abismo";
+		nomeMapa = "Abismo do Mar 1 Andar";
 	else if (field == 49)
-		nomeMapa = "Templo do Abismo";
+		nomeMapa = "Abismo do Mar 2 Andar";
 	else if (field == 50)
-		nomeMapa = "Caverna Sangrenta";
+		nomeMapa = "Ruinas de Mars";
+	else if (field == 51)
+		nomeMapa = "Ilha da Morte";
+	else if (field == 52)
+		nomeMapa = "Lar do Eragon";
 	else
 		nomeMapa = "";
 
@@ -19950,21 +20084,22 @@ char* ListMap[62] =
 "Bonus Stage",
 "Torre Sem Fim 1",
 "Torre Sem Fim 2",
+"Templo Maldito 3",
 "Torre Sem Fim 3",
 "Mina de Gelo",
-"",//Sod2
+"SOD",
 "Laboratorio Secreto",
-"Arma Antiga",
-"Abismo do Mar",
-"",
+"Arma Secreta",
+"Abismo do Mar 1 Andar",
+"Abismo do Mar 2 Andar",
+"Ruinas de Mars",
 "Ilha da Morte",
-"Mystery Florest 1",
-"Mystery Florest 2",
+"Lar do Eragon",
 "Mystery Florest 3",
+"Mystery Florest 2",
+"Mystery Florest 1",
 "Forgotten Temple 1",
 "Forgotten Temple 2",
-"Mina de Gelo",
-"Mina de Gelo",
 "Mina de Gelo",
 "Battle Arena",
 "Arena PvP",
@@ -26705,13 +26840,6 @@ if(cnt >= CONNECTMAX)
 
 					lpPlayInfo->m_Experience = GetExp64(&lpRecordBase->TransRecordData.smCharInfo);
 
-					if(lpRecordBase->TransRecordData.GameSaveInfo.LastMoeny > 0)
-						lpPlayInfo->spMoney_Start = lpRecordBase->TransRecordData.GameSaveInfo.LastMoeny - 1;
-					else
-						lpPlayInfo->spMoney_Start = lpRecordBase->TransRecordData.smCharInfo.Money;;
-
-					(void)SummitOnServerWalletSet(lpPlayInfo, lpPlayInfo->spMoney_Start, gameplay::commerce::WalletReason::LoadPlayer);
-					(void)SummitOnServerSynchronizeClanMark(lpPlayInfo, lpRecordBase->TransRecordData.smCharInfo.ClassClan);
 
 
 
@@ -26876,6 +27004,27 @@ if(cnt >= CONNECTMAX)
 
 					if(!lpPlayInfo->dwObjectSerial)
 						lpPlayInfo->dwObjectSerial = lpRecordBase->TransRecordData.smCharInfo.dwObjectSerial;
+
+					// SUMMIT_PATCH_232_WALLET_AFTER_SERIAL: authenticated load after player id
+					// persisted character gold, which is also sent to the client.
+					// LastMoeny is a legacy checkpoint and can be stale or zero.
+					const int persistedShopGold = lpRecordBase->TransRecordData.smCharInfo.Money;
+					const int checkpointShopGold = lpRecordBase->TransRecordData.GameSaveInfo.LastMoeny;
+					if(persistedShopGold >= 0 && persistedShopGold <= 1000000000)
+					{
+						const auto walletLoad = SummitOnServerWalletSet(lpPlayInfo, persistedShopGold, gameplay::commerce::WalletReason::LoadPlayer);
+						if(walletLoad.Ok())
+							lpPlayInfo->spMoney_Start = persistedShopGold;
+						fprintf(stderr, "[SUMMIT_SHOP_WALLET] persisted=%d checkpoint=%d initialized=%d ok=%d code=%d serial=%u\n",
+							persistedShopGold, checkpointShopGold, lpPlayInfo->ServerMoney, walletLoad.Ok() ? 1 : 0,
+							static_cast<int>(walletLoad.code), static_cast<unsigned int>(lpPlayInfo->dwObjectSerial));
+					}
+					else
+					{
+						fprintf(stderr, "[SUMMIT_SHOP_WALLET] INVALID persisted=%d checkpoint=%d server_wallet=%d max=1000000000; no recovery from client data\n",
+                            persistedShopGold, checkpointShopGold, lpPlayInfo->ServerMoney);
+					}
+					(void)SummitOnServerSynchronizeClanMark(lpPlayInfo, lpRecordBase->TransRecordData.smCharInfo.ClassClan);
 
 					authentication::v2::legacy::ServerLegacyLoginSessionRegistry().RegisterPlayer(lpPlayInfo);
 
@@ -30258,6 +30407,7 @@ if(cnt >= CONNECTMAX)
 			const std::uint8_t* first = reinterpret_cast<const std::uint8_t*>(SockInfo->Buff);
 			request.requestBytes.assign(first, first + sizeof(sCRAFTITEM_SERVER));
 			gameplay::commerce::legacy::ServerLegacyCraftingAdapter().Craft(request);
+            (void)SummitSendWalletSnapshot(lpPlayInfo);
 			break;
 		}
 
@@ -30269,6 +30419,7 @@ if(cnt >= CONNECTMAX)
 			const std::uint8_t* first = reinterpret_cast<const std::uint8_t*>(SockInfo->Buff);
 			request.requestBytes.assign(first, first + sizeof(sCRAFTITEM_SERVER));
 			gameplay::commerce::legacy::ServerLegacyAgingAdapter().Process(request);
+            (void)SummitSendWalletSnapshot(lpPlayInfo);
 			break;
 		}
 
@@ -30280,6 +30431,7 @@ if(cnt >= CONNECTMAX)
 			const std::uint8_t* first = reinterpret_cast<const std::uint8_t*>(SockInfo->Buff);
 			request.requestBytes.assign(first, first + sizeof(TRANS_ITEMINFO));
 			gameplay::commerce::legacy::ServerLegacyAgingAdapter().Process(request);
+            (void)SummitSendWalletSnapshot(lpPlayInfo);
 			break;
 		}
 
@@ -30291,6 +30443,7 @@ if(cnt >= CONNECTMAX)
 			const std::uint8_t* first = reinterpret_cast<const std::uint8_t*>(SockInfo->Buff);
 			request.requestBytes.assign(first, first + sizeof(TRANS_ITEMINFO));
 			gameplay::commerce::legacy::ServerLegacyCraftingAdapter().ProcessAuxiliary(request);
+            (void)SummitSendWalletSnapshot(lpPlayInfo);
 			break;
 		}
 
@@ -30302,6 +30455,7 @@ if(cnt >= CONNECTMAX)
 			const std::uint8_t* first = reinterpret_cast<const std::uint8_t*>(SockInfo->Buff);
 			request.requestBytes.assign(first, first + sizeof(TRANS_ITEMINFO));
 			gameplay::commerce::legacy::ServerLegacyCraftingAdapter().ProcessAuxiliary(request);
+            (void)SummitSendWalletSnapshot(lpPlayInfo);
 			break;
 		}
 
@@ -30313,6 +30467,7 @@ if(cnt >= CONNECTMAX)
 			const std::uint8_t* first = reinterpret_cast<const std::uint8_t*>(SockInfo->Buff);
 			request.requestBytes.assign(first, first + sizeof(sCRAFTITEM_SERVER));
 			gameplay::commerce::legacy::ServerLegacyCraftingAdapter().ProcessAuxiliary(request);
+            (void)SummitSendWalletSnapshot(lpPlayInfo);
 			break;
 		}
 
@@ -30524,7 +30679,9 @@ if(cnt >= CONNECTMAX)
 
 				if(lpTransCommandEx->WParam == (sinGG1 | sin01))
 				{
-					(void)SummitOnServerWalletCredit(lpPlayInfo, cnt, gameplay::commerce::WalletReason::PickupItem);
+                    (void)SummitOnServerWalletCredit(lpPlayInfo, cnt,
+                        gameplay::commerce::WalletReason::PickupItem);
+                    (void)SummitSendWalletSnapshot(lpPlayInfo);
 					rsRecord_ItemLog(lpPlayInfo, sinGG1 | sin01, cnt, 0, ITEMLOG_GET);
 
 					if(cnt > 1000000)
@@ -31332,6 +31489,7 @@ if(cnt >= CONNECTMAX)
 			const std::uint8_t* first = reinterpret_cast<const std::uint8_t*>(SockInfo->Buff);
 			request.requestBytes.assign(first, first + sizeof(sMIXTURE_RESET_ITEM_SERVER));
 			gameplay::commerce::legacy::ServerLegacyMixingAdapter().Process(request);
+            (void)SummitSendWalletSnapshot(lpPlayInfo);
 			break;
 		}
 
@@ -31343,6 +31501,7 @@ if(cnt >= CONNECTMAX)
 			const std::uint8_t* first = reinterpret_cast<const std::uint8_t*>(SockInfo->Buff);
 			request.requestBytes.assign(first, first + sizeof(sSKIN_CHANGE_SERVER));
 			gameplay::commerce::legacy::ServerLegacyCraftingAdapter().ProcessAuxiliary(request);
+            (void)SummitSendWalletSnapshot(lpPlayInfo);
 			break;
 		}
 
@@ -31354,6 +31513,7 @@ if(cnt >= CONNECTMAX)
 			const std::uint8_t* first = reinterpret_cast<const std::uint8_t*>(SockInfo->Buff);
 			request.requestBytes.assign(first, first + sizeof(sSMELTINGITEM_SERVER));
 			gameplay::commerce::legacy::ServerLegacyCraftingAdapter().ProcessAuxiliary(request);
+            (void)SummitSendWalletSnapshot(lpPlayInfo);
 			break;
 		}
 		case OpCode::OPCODE_MANUFACTURE:
@@ -31364,6 +31524,7 @@ if(cnt >= CONNECTMAX)
 			const std::uint8_t* first = reinterpret_cast<const std::uint8_t*>(SockInfo->Buff);
 			request.requestBytes.assign(first, first + sizeof(SManufactureItem_Server));
 			gameplay::commerce::legacy::ServerLegacyCraftingAdapter().ProcessAuxiliary(request);
+            (void)SummitSendWalletSnapshot(lpPlayInfo);
 			break;
 		}
 

@@ -23,6 +23,7 @@ private:
     int trackedSectionId_ = 0;
     int trackedQuestId_ = 0;
     mutable int selectedClassicQuestId_ = 0;
+    mutable int selectedAmandaQuestId_ = 0;
     mutable int selectedCodexQuestId_ = 0;
 };
 }

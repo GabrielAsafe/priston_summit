@@ -1,0 +1,372 @@
+{
+  "format": "SUMMIT_ITEM_ICON_COOKED_COLLISION_QUARANTINE_V1",
+  "mode": "APPLY",
+  "client_root": "/home/gabriel/Área de Trabalho/summit/cliente",
+  "quarantine_root": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24",
+  "candidate_files": 45,
+  "moved": 45,
+  "missing": 0,
+  "errors": 0,
+  "rows": [
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itda148.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itda148.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itda148.dds",
+      "sha256": "0c8e52de5e953c2db5f6bd058d0aa354610d24c3434ec2746158b927bf9b6a0a",
+      "bytes": 2480768,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itda248.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itda248.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itda248.dds",
+      "sha256": "0c8e52de5e953c2db5f6bd058d0aa354610d24c3434ec2746158b927bf9b6a0a",
+      "bytes": 2480768,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itDB123.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itDB123.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itDB123.dds",
+      "sha256": "9bca2eaea521d8f6e55ad4b3449fe6138ab1646d9fc7c4fbec2ffb089c69b926",
+      "bytes": 2560128,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itGF103.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itGF103.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itGF103.dds",
+      "sha256": "b3f0ffbe54423cbf557280b456eb6b011a1a94d7070c86cc01cebdf74f84f0ae",
+      "bytes": 124032,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itgf103.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itgf103.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itgf103.dds",
+      "sha256": "b638ebbbabe5490892456e2789be194de0c547d7e0b450d18d23d6f0b015ccac",
+      "bytes": 1048704,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itor205.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itor205.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itor205.dds",
+      "sha256": "0b7827aa0b04fbb4fd813d751edf78da234dc6e46cc3fd5cce1f1468e853670c",
+      "bytes": 124032,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itos104.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itos104.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itos104.dds",
+      "sha256": "ec810af81dd236334f3f36368e51aaf9cafcea7d086a8cb2196d313b3d711feb",
+      "bytes": 262272,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itos113.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itos113.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itos113.dds",
+      "sha256": "32722d59505bf8cdd74af2dd7e484ba76c66b07f1470fb8a4b92141076282d3a",
+      "bytes": 32512,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itos114.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itos114.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itos114.dds",
+      "sha256": "6ee1650e52968496000fad4d487b180f36287b2c358f60e57780a7aa40e023bb",
+      "bytes": 1040528,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itPR101.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itPR101.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itPR101.dds",
+      "sha256": "d0e4bea109f6d3bf400eafba53e5be826333acb4d761b0a51bac4364952b8b47",
+      "bytes": 262272,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itPR102.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itPR102.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itPR102.dds",
+      "sha256": "2796cc6edb58149ace9e83caac9968fc91747ea087e1420f9c2842c3d26f6295",
+      "bytes": 262272,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itPR103.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itPR103.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itPR103.dds",
+      "sha256": "aa92512122c4ccff8c3d0a230699b0ba2470641d979724ee51941cc054e0168e",
+      "bytes": 262272,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itPR104.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itPR104.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itPR104.dds",
+      "sha256": "37ad34c0f6ff99ce4bf0739782a1664784b9181457ff62eab13db6331efee5dc",
+      "bytes": 262272,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itPR105.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itPR105.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itPR105.dds",
+      "sha256": "3f9c7ca0f415af95884117a36dfd38c41085397c19f5083873b1f0593c6e7e23",
+      "bytes": 262272,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itPR106.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itPR106.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itPR106.dds",
+      "sha256": "396de6df9131f032fda1b865f0a76ebafea6015471a15d2e5f9c4784dbe46038",
+      "bytes": 262272,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itPR107.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itPR107.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itPR107.dds",
+      "sha256": "c84b712ed64631bf64e6018679aae1e35478556232ac53964d35060b83664b2d",
+      "bytes": 262272,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itPR201.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itPR201.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itPR201.dds",
+      "sha256": "1af0b7a98a8413fa609cea2fcd8d019efb6dfe29687ac1a9a89e283e9ca7bc8f",
+      "bytes": 262272,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itPR202.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itPR202.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itPR202.dds",
+      "sha256": "27b8e11c4f4e24cf6054700a9ea0f39cfef49cc2b1c95448d54fdefa1d105886",
+      "bytes": 262272,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itPR203.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itPR203.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itPR203.dds",
+      "sha256": "55002f48dfd8df1dd7df3310fbe0d772a20e9e79aedc0a098c964ea2be221cd1",
+      "bytes": 262272,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itPR204.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itPR204.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itPR204.dds",
+      "sha256": "607056964271ae3713232d188e11ef3aca7fe935742801e2d65aec8b7255edee",
+      "bytes": 262272,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itPR205.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itPR205.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itPR205.dds",
+      "sha256": "088be6b2d4fa2e624755a3de6e485a75295057b12f40560ba5947fe04e824c0c",
+      "bytes": 262272,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itPR206.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itPR206.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itPR206.dds",
+      "sha256": "98ee248c93e0a6df2e43208fe85b6468e65e316dad5aa578a8a148df12150229",
+      "bytes": 262272,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itPR207.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itPR207.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itPR207.dds",
+      "sha256": "d7c6132eb096f7cbb897a3610be812f5768799ffffdb766676624d942e64032e",
+      "bytes": 262272,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itSP101.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itSP101.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itSP101.dds",
+      "sha256": "49e8369b822a6867b2da22fbe5ca95367b5c78538d7282545bb7ae56d3fb2fcf",
+      "bytes": 65664,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itSP102.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itSP102.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itSP102.dds",
+      "sha256": "a48e4af9ee358e180c555ab991e42adde09e69ac328480a9968f81384a654cf0",
+      "bytes": 65664,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itSP103.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itSP103.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itSP103.dds",
+      "sha256": "59d86bc1e740d11756fdba3a8dba580a80612afd7ad7f15fb55b48cfde26da4e",
+      "bytes": 65664,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itwa114.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itwa114.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itwa114.dds",
+      "sha256": "faa13eb270521e16c3daf41882726dde8550a153295fb28d508e848086dea40c",
+      "bytes": 1048704,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itwc114.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itwc114.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itwc114.dds",
+      "sha256": "877653077dfceb7a212376c34e84d0c4e56d60a1807039fb8434832f5efde229",
+      "bytes": 1048704,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itwc115.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itwc115.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itwc115.dds",
+      "sha256": "47980b53e8a95e6b93c1a6685226c93f27e2e7e285ff3d0e007146bc155d220e",
+      "bytes": 1048704,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itwc116.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itwc116.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itwc116.dds",
+      "sha256": "8c0693198051113a053b5560677cd17270ea3aa18b066e0cf287f2dc08e7cde3",
+      "bytes": 1048704,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itwc119.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itwc119.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itwc119.dds",
+      "sha256": "8c0693198051113a053b5560677cd17270ea3aa18b066e0cf287f2dc08e7cde3",
+      "bytes": 1048704,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/Itwh104.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/Itwh104.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/Itwh104.dds",
+      "sha256": "3134649713166efe36f3b25dbf8f281d4c0a26bdf310f56fe83f04c900eb605e",
+      "bytes": 262272,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itwh104.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itwh104.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itwh104.dds",
+      "sha256": "a42a3095dbbab0050e8b0142deed4b9861ff9297bebf30a9bff831318a4e343a",
+      "bytes": 131200,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itwh117.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itwh117.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itwh117.dds",
+      "sha256": "fa6f7880577a200714de86e4b90ef9788cd78e248dccee636d988f4f9380fd6c",
+      "bytes": 524416,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/Itwm102.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/Itwm102.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/Itwm102.dds",
+      "sha256": "cc70471c8111be0951684e3c24d8ca2971247d76b5ce940f3c194c407b443c26",
+      "bytes": 262272,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itwm102.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itwm102.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itwm102.dds",
+      "sha256": "98cd636672d7f49c502494dc9a3afb8bee58d136304b22893f701e9be1d52fc5",
+      "bytes": 131200,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itwm116.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itwm116.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itwm116.dds",
+      "sha256": "9b2ac3ef2d2c6603e42f09c724b65aa3ac27638401803c62d396fcb6202e8a6b",
+      "bytes": 1048704,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itwp120.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itwp120.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itwp120.dds",
+      "sha256": "8f1e46748a978d9836a133a76fc68da999c34b85eaeb981caa51a3625b0a556a",
+      "bytes": 524416,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itws116.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itws116.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itws116.dds",
+      "sha256": "b81d0690d1ebe5ee6709ba7a6ca445c518c332589e64487561517afa54b1f06b",
+      "bytes": 1048704,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itws118.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itws118.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itws118.dds",
+      "sha256": "772651e3d5066f1a967c633fb8c42cdfdb0ab4b0085ab05ed687aa5554778e04",
+      "bytes": 1048704,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itws122.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itws122.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itws122.dds",
+      "sha256": "425f372eb0bd5548ba308a75a38439905899bc2c75ebb3a7a90d1e38997533a0",
+      "bytes": 1048704,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itws213.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itws213.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itws213.dds",
+      "sha256": "2fe28ebba19ebaf5f490ccfc844ad81398cfda75a50190d6a9a871cc1091014c",
+      "bytes": 524416,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itwt105.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itwt105.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itwt105.dds",
+      "sha256": "741279193376b7ea38ab8e9365eb604b38cd8da3e437d1ef8070dd0e04c6a150",
+      "bytes": 524416,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/Itwt105.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/Itwt105.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/Itwt105.dds",
+      "sha256": "4967f60cf46b5d164ee59a01fcaadd9b380757286d56dcac853670458e449022",
+      "bytes": 524416,
+      "status": "QUARANTINED"
+    },
+    {
+      "relative_path": "cooked/image/Sinimage/Items/DropItem/itwt115.dds",
+      "source": "/home/gabriel/Área de Trabalho/summit/cliente/cooked/image/Sinimage/Items/DropItem/itwt115.dds",
+      "quarantine": "/home/gabriel/Área de Trabalho/summit/item_cooked_quarantine_patch24/cooked/image/Sinimage/Items/DropItem/itwt115.dds",
+      "sha256": "72508f54ce470f573e88f9f1fa5f6985ea46d252b41535c2f72e4646a20a5bcf",
+      "bytes": 262272,
+      "status": "QUARANTINED"
+    }
+  ]
+}

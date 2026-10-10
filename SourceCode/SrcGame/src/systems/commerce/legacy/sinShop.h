@@ -203,6 +203,7 @@ public:
 
 
 	int RecvBuyItemToServer(sITEM *pItem, int ItemCount = 1);
+    void RecvBuyItemRejected(int reason);
 	int SellItemToShop(sITEM *pItem, int ItemCount = 1);
 
 	int SendBuyItemToServer(sITEM *pItem, int ItemCount = 1);

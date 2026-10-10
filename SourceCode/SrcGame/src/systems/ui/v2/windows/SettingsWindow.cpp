@@ -310,7 +310,7 @@ void SettingsWindow::RefreshCommandPage()
         "Shift+F9  - Debug/coordenadas", "Shift+F5  - Skip field 1", "Shift+F6  - Skip field 2", "Shift+F8  - Draw info",
         "Ctrl+F11  - Interface on/off", "Ctrl+T  - Test flag", "Ctrl+F  - Shop", "Ctrl+G  - Craft",
         "Ctrl+H  - Aging", "Ctrl+J  - Mixture Reset", "Ctrl+Shift+F1  - Talk zoom ON", "Ctrl+Shift+F2  - Talk zoom OFF",
-        "Ctrl+Shift+F3  - Talk repeat ON", "Ctrl+Shift+F4  - Talk repeat OFF", "", "",
+        "Ctrl+Shift+F3  - Talk repeat ON", "Ctrl+Shift+F4  - Talk repeat OFF", "Ctrl+Shift+F9  - Proximo ceu", "Ctrl+Shift+F10  - Ceu normal",
         "", "", "", "", "", "", "", ""
     }};
     static const std::array<const char*, 24> kTest = {{

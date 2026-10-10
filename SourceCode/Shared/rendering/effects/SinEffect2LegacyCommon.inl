@@ -300,6 +300,16 @@ int sinDrawEffect2(int x, int y, int z, int ax, int ay, int az)
 		{
 			if(cSinEffect2[sinEffect_Zdepth2[i].Index - 1].Flag && cSinEffect2[sinEffect_Zdepth2[i].Index - 1].Time > 0)
 			{
+				cSINEFFECT2 &effect = cSinEffect2[sinEffect_Zdepth2[i].Index - 1];
+				// smPAT3D::smMaterialGroup lives at +0x288. A failed/streaming ASE
+				// can leave a live mesh effect with sinPatMesh == NULL; the legacy
+				// renderer dereferenced it unconditionally and crashed on combat.
+				if(!effect.sinPatMesh)
+				{
+					effect.Flag = 0;
+					continue;
+				}
+
 				LegacySinEffect2Policy::BeginEffectScene();
 				if(cSinEffect2[sinEffect_Zdepth2[i].Index - 1].Color_A || cSinEffect2[sinEffect_Zdepth2[i].Index - 1].Color_R ||
 				   cSinEffect2[sinEffect_Zdepth2[i].Index - 1].Color_G || cSinEffect2[sinEffect_Zdepth2[i].Index - 1].Color_B)
@@ -318,11 +328,11 @@ int sinDrawEffect2(int x, int y, int z, int ax, int ay, int az)
 
 				}
 
-				if(!cSinEffect2[sinEffect_Zdepth2[i].Index - 1].sinPatMesh->smMaterialGroup)
+				if(!effect.sinPatMesh->smMaterialGroup)
 					smRender.SetMaterialGroup(smMaterialGroup);
-				cSinEffect2[sinEffect_Zdepth2[i].Index - 1].sinPatMesh->Frame = cSinEffect2[sinEffect_Zdepth2[i].Index - 1].AniCount * 160;
-				cSinEffect2[sinEffect_Zdepth2[i].Index - 1].sinPatMesh->SetPosi(&cSinEffect2[sinEffect_Zdepth2[i].Index - 1].Posi, &cSinEffect2[sinEffect_Zdepth2[i].Index - 1].RanderAngle);
-				cSinEffect2[sinEffect_Zdepth2[i].Index - 1].sinPatMesh->RenderD3D(&posi, &Angle);
+				effect.sinPatMesh->Frame = effect.AniCount * 160;
+				effect.sinPatMesh->SetPosi(&effect.Posi, &effect.RanderAngle);
+				effect.sinPatMesh->RenderD3D(&posi, &Angle);
 				if(cSinEffect2[sinEffect_Zdepth2[i].Index - 1].Color_A || cSinEffect2[sinEffect_Zdepth2[i].Index - 1].Color_R ||
 				   cSinEffect2[sinEffect_Zdepth2[i].Index - 1].Color_G || cSinEffect2[sinEffect_Zdepth2[i].Index - 1].Color_B)
 				{

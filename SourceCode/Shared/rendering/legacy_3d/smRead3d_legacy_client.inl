@@ -1,5 +1,6 @@
 
 #include "systems/rendering/legacy_3d/smd3d.h"
+#include "diagnostics/RuntimeAssetProbe.h"
 
 thread_local char DataDirectory[128];
 
@@ -1837,6 +1838,7 @@ char *szFileModel = "smd";
 
 char *smFindFile(char *szfile, char *FileExt, DWORD *lpFileLen)
 {
+	summit::diagnostics::RuntimeAssetProbeAttempt("MODEL_CACHE", FileExt ? FileExt : "FIND", szfile);
 	HANDLE hFindHandle;
 	WIN32_FIND_DATA	fd;
 	WIN32_FIND_DATA	fd2;
@@ -1900,6 +1902,7 @@ char *smFindFile(char *szfile, char *FileExt, DWORD *lpFileLen)
 
 smPAT3D *smReadModel(char *file, char *szModelName)
 {
+	summit::diagnostics::RuntimeAssetProbeAttempt("MODEL_CACHE", "LOAD_SMD", file);
 	smPAT3D *pat;
 	int result;
 
@@ -1918,6 +1921,7 @@ smPAT3D *smReadModel(char *file, char *szModelName)
 
 smPAT3D *smReadModel_Bip(char *file)
 {
+	summit::diagnostics::RuntimeAssetProbeAttempt("MOTION_CACHE", "LOAD_SMB", file);
 	smPAT3D *pat;
 	int result;
 
@@ -1940,6 +1944,7 @@ smPAT3D *smReadModel_Bip(char *file)
 
 smPAT3D *smASE_Read(char *file, char *szModelName)
 {
+	summit::diagnostics::RuntimeAssetProbeAttempt("MODEL", "LOAD_ASE", file);
 	FILE *fp = nullptr;
 	smOBJ3D *obj = nullptr;
 	smPAT3D *pat = nullptr;
@@ -2070,6 +2075,7 @@ smPAT3D *smASE_Read(char *file, char *szModelName)
 
 smPAT3D *smASE_ReadBone(char *file)
 {
+	summit::diagnostics::RuntimeAssetProbeAttempt("MOTION", "LOAD_ASE_BONE", file);
 	FILE *fp;
 	smOBJ3D *obj;
 	smPAT3D *pat;
@@ -3215,6 +3221,7 @@ FILE *smSTAGE3D_GetASE_Info(FILE *fp, int *pVertex, int *pFace)
 
 smSTAGE3D *smReadStage(char *file, smSTAGE3D *smStagep)
 {
+	summit::diagnostics::RuntimeAssetProbeAttempt("STAGE_CACHE", "LOAD_SMD", file);
 	smSTAGE3D *smStage;
 	int result;
 
@@ -3248,6 +3255,7 @@ smSTAGE3D *smReadStage(char *file, smSTAGE3D *smStagep)
 
 smSTAGE3D *smSTAGE3D_ReadASE(char *file, smSTAGE3D *smStagep)
 {
+	summit::diagnostics::RuntimeAssetProbeAttempt("STAGE", "LOAD_ASE", file);
 	FILE *fp;
 	int nVertex, nFace;
 	int pVertex, pFace;

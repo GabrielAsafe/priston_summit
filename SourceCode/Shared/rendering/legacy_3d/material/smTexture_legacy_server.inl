@@ -1,3 +1,4 @@
+#include "diagnostics/RuntimeAssetProbe.h"
 #include <cstring>
 #include "systems/rendering/legacy_3d/smd3d.h"
 #include <io.h>
@@ -4618,6 +4619,7 @@ int CloseAnimBG()
 
 int new_smCreateTexture(smTEXTUREHANDLE *lpTexHandle, int MipMap)
 {
+	if(lpTexHandle) summit::diagnostics::RuntimeAssetProbeAttempt("TEXTURE", "CREATE", lpTexHandle->Name);
 	MipMapCount = 0;
 	::ZeroMemory(MipMapFileBuff, sizeof(MipMapFileBuff));
 	MipMapCountA = 0;

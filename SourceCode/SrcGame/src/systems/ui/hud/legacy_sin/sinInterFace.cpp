@@ -1388,6 +1388,7 @@ void cINTERFACE::Main()
 	if (ReStartFlag)
 	{
 		sinMenuBottonPosi = 0;
+		if (!ui::v2::legacy::OwnsLegacyDeathUI())
 		for (int i = 0; i < 3; i++)
 		{
 			if (ReStartMainXY.x + ReStartButtonRect[i][0] < pRealCursorPos.x  && ReStartMainXY.x + ReStartButtonRect[i][2] > pRealCursorPos.x  &&

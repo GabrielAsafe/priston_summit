@@ -508,8 +508,10 @@ void CompanionsPage::RefreshControls()
     detailModeButton_->SetEnabled(hasSelected);
     detailModeButton_->SetSelected(hasSelected && skillsView_ && !tacticsView_ && !buffSkillsView_);
     detailModeButton_->SetText("Skills");
-    skillModeButton_->SetVisible(!tacticsView_);
-    skillModeButton_->SetEnabled(hasSelected && !tacticsView_);
+    // Keep all top-level tabs stable. Selecting Tactics must not make the
+    // Support tab disappear; clicking Support already leaves tacticsView_.
+    skillModeButton_->SetVisible(true);
+    skillModeButton_->SetEnabled(hasSelected);
     skillModeButton_->SetSelected(hasSelected && skillsView_ && !tacticsView_ && buffSkillsView_);
     skillModeButton_->SetText("Suporte");
     tacticsModeButton_->SetEnabled(hasSelected);
@@ -646,7 +648,9 @@ void CompanionsPage::OnRender(UIRenderContext& context)
                    TextStyle{UITheme::TextMuted, true, TextAlign::Left});
 
     const CompanionUiEntry* selected = SelectedEntry();
-    if (selected)
+    // PATCH 213: the custom-tactics grid owns the detail area. Do not leave
+    // the behavior summary visually underneath its controls.
+    if (selected && !tacticsView_)
     {
         r.DrawTextUtf8(FontHandle{}, std::string("Tatica: ") + TacticName(selected->tactic),
                        {root.x + 330, root.y + 176, 350, 22},
@@ -666,23 +670,10 @@ void CompanionsPage::OnRender(UIRenderContext& context)
 
     if (tacticsView_)
     {
-        // The mode buttons occupy detailY..detailY+28. Do not render a second
-        // title/status underneath them; the Custom ON/OFF button already shows
-        // state. Keep the guidance short enough to stay inside the detail panel.
-        if(selected)
-        {
-            r.DrawTextUtf8(FontHandle{}, "Regras 1 -> 4; executor valida skills.",
-                           {root.x + 420, detailY + 39, 286, 18},
-                           TextStyle{UITheme::TextMuted, false, TextAlign::Left});
-            for(std::size_t rule = 0; rule < 4; ++rule)
-            {
-                const int y = detailY + 70 + static_cast<int>(rule) * 29;
-                r.DrawTextUtf8(FontHandle{}, std::to_string(rule + 1),
-                               {root.x + 278, y, 18, 20},
-                               TextStyle{UITheme::TextMuted, true, TextAlign::Left});
-            }
-        }
-        else
+        // The mode buttons and Custom ON/OFF already communicate the view.
+        // Do not render implementation guidance in the control row: it looked
+        // like stray text under the tabs and collided with localized labels.
+        if(!selected)
         {
             r.DrawTextUtf8(FontHandle{}, "Selecione outro personagem da conta.",
                            {root.x + 292, detailY + 72, 390, 24},

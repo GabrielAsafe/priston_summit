@@ -1,3 +1,4 @@
+#pragma once
 
 #define SIN_MAX_SKILL			224
 #define SIN_LEGACY_USE_SKILL	17

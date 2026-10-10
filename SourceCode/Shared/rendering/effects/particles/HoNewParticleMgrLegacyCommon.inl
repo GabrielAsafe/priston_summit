@@ -1,3 +1,4 @@
+#include "diagnostics/RuntimeAssetProbe.h"
 HoNewParticleResMgr  g_NewParticleResMgr;
 HoNewParticleMgr     g_NewParticleMgr;
 
@@ -39,12 +40,14 @@ HoNewParticleScriptRes *HoNewParticleResMgr::FindScript(char *find)
 
 bool HoNewParticleResMgr::LoadScript(char *scr)
 {
+	if(scr) summit::diagnostics::RuntimeAssetProbeAttempt("PARTICLE_SCRIPT", "OPEN", scr);
 	if(scr == NULL)
 		return false;
 
 
 	FILE *fp;
 	fp = fopen(scr, "rb");
+	summit::diagnostics::RuntimeAssetProbeResult("PARTICLE_SCRIPT", "OPEN", scr, fp != NULL);
 	if(fp == NULL)
 	{
 #ifndef _W_SERVER

@@ -1,3 +1,4 @@
+#include "diagnostics/RuntimeAssetProbe.h"
 
 #include "systems/presentation/opening/legacy_runtime/HoLinkHeader.h"
 HoAnimDataMgr	AnimDataMgr;
@@ -240,6 +241,7 @@ HoAnimDataMgr::~HoAnimDataMgr()
 
 int HoAnimDataMgr::SequenceLoad(char *iniName)
 {
+	summit::diagnostics::RuntimeAssetProbeAttempt("ANIM_SEQUENCE", "LOAD", iniName);
 	if(SequenceDataBufferCount < MAX_SEQUENCEDATA_BUFFER)
 	{
 		if(!SequenceDataBuffer[SequenceDataBufferCount].Load(iniName, this))
@@ -253,6 +255,7 @@ int HoAnimDataMgr::SequenceLoad(char *iniName)
 
 int HoAnimDataMgr::ImageLoad(char *iniName)
 {
+	summit::diagnostics::RuntimeAssetProbeAttempt("ANIM_IMAGE", "LOAD", iniName);
 
 	if(ImageDataBufferCount < MAX_IMAGEDATA_BUFFER)
 	{

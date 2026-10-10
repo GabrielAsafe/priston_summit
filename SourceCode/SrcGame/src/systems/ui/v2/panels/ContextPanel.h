@@ -19,6 +19,8 @@ public:
     void Update(float deltaSeconds) override;
     [[nodiscard]] bool IsContextActive() const noexcept { return snapshot_.valid; }
     bool AcceptInventoryItem(int inventoryIndex);
+    // Select a bag item for an explicit merchant sale. Does not move or sell it.
+    void SelectInventoryForMerchant(int inventoryIndex);
     [[nodiscard]] ContextKind Kind() const noexcept { return snapshot_.kind; }
     [[nodiscard]] bool HasModalInput() const noexcept;
     bool HandleModalKey(std::uint32_t key);
@@ -62,6 +64,9 @@ private:
     NumericInputOverlay* numericInput_ = nullptr;
     int itemPage_ = 0;
     int hoveredIndex_ = -1;
+    int selectedMerchantIndex_ = -1; // merchant stock selected for Comprar
+    int selectedInventoryIndex_ = -1; // bag item selected for Vender
     float refreshAccumulator_ = 0.0f;
+    std::uint64_t lastContextRevision_ = static_cast<std::uint64_t>(-1);
 };
 }

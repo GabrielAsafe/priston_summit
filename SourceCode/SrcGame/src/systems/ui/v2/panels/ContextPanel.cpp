@@ -1,3 +1,7 @@
+#include <cstring>
+#include <cstdlib>
+#include <cstdio>
+#include <chrono>
 #include "systems/ui/v2/panels/ContextPanel.h"
 
 #include <algorithm>
@@ -12,6 +16,58 @@
 
 namespace ui::v2
 {
+// SUMMIT_PATCH_223_SHOP_CONTEXT_PERF
+// Opt-in, bounded-rate performance sampling. Does not persist when disabled.
+namespace
+{
+class SummitShopContextPerfScope
+{
+public:
+    explicit SummitShopContextPerfScope(const char* phase, bool enabled)
+        : phase_(phase), enabled_(enabled && TraceEnabled())
+    {
+        if (enabled_) begin_ = std::chrono::steady_clock::now();
+    }
+    ~SummitShopContextPerfScope()
+    {
+        if (!enabled_) return;
+        const auto now = std::chrono::steady_clock::now();
+        const auto elapsed = std::chrono::duration_cast<std::chrono::microseconds>(now - begin_).count();
+        if (elapsed < 12000) return;
+        // A single line per second maximum, regardless of frame rate.
+        // Separate rate limits: a slow Snapshot cannot hide a slow Layout.
+        static auto lastRefresh = std::chrono::steady_clock::time_point{};
+        static auto lastSnapshot = std::chrono::steady_clock::time_point{};
+        static auto lastLayout = std::chrono::steady_clock::time_point{};
+        static auto lastRender = std::chrono::steady_clock::time_point{};
+        auto* last = &lastRefresh;
+        if (std::strcmp(phase_, "ContextPanel.GetSnapshot") == 0) last = &lastSnapshot;
+        else if (std::strcmp(phase_, "ContextPanel.Layout") == 0) last = &lastLayout;
+        else if (std::strcmp(phase_, "ContextPanel.OnRender") == 0) last = &lastRender;
+        if (now - *last < std::chrono::seconds(1)) return;
+        *last = now;
+        if (FILE* file = std::fopen("shop_ui_frame_perf.log", "a"))
+        {
+            std::fprintf(file, "[SHOP_UI_SLOW] phase=%s duration_us=%lld\n", phase_, static_cast<long long>(elapsed));
+            std::fclose(file);
+        }
+    }
+private:
+    static bool TraceEnabled()
+    {
+        static const bool enabled = [] {
+            const char* value = std::getenv("SUMMIT_SHOP_PERF_TRACE");
+            return value && value[0] == '1' && value[1] == '\0';
+        }();
+        return enabled;
+    }
+    const char* phase_;
+    bool enabled_;
+    std::chrono::steady_clock::time_point begin_{};
+};
+}
+
+
 namespace
 {
 void Border(IUIRenderer& r, const Rect& rect, Color color)
@@ -32,7 +88,32 @@ ContextPanel::ContextPanel(IContextGateway& gateway, UIId id) : Container(id), g
         button.SetOnClick([this, i](const UIEvent&)
         {
             if (i < snapshot_.actions.size())
-                gateway_.InvokeAction(snapshot_.actions[i].id);
+            {
+                const int action = snapshot_.actions[i].id;
+                if (snapshot_.kind == ContextKind::Merchant && action == 13)
+                {
+                    // Explicit V2 purchase: never change the legacy cursor mode.
+                    if (selectedMerchantIndex_ >= 0)
+                        BeginActivation(selectedMerchantIndex_);
+                }
+                else if (snapshot_.kind == ContextKind::Merchant && action == 12)
+                {
+                    // Explicit V2 sale of the selected inventory item. The
+                    // gateway still owns all server/legacy sale validations.
+                    if (selectedInventoryIndex_ >= 0)
+                    {
+                        const int inventoryIndex = selectedInventoryIndex_;
+                        selectedInventoryIndex_ = -1;
+                        BeginInventoryAcceptance(inventoryIndex);
+                    }
+                }
+                else
+                {
+                    if (snapshot_.kind == ContextKind::Merchant && (action == 14 || action == 15))
+                        selectedMerchantIndex_ = -1;
+                    gateway_.InvokeAction(action);
+                }
+            }
             Refresh();
         });
         actionButtons_[i] = &button;
@@ -71,15 +152,44 @@ ContextPanel::ContextPanel(IContextGateway& gateway, UIId id) : Container(id), g
     LayoutModals();
 }
 
+void ContextPanel::SelectInventoryForMerchant(int inventoryIndex)
+{
+    if (snapshot_.kind != ContextKind::Merchant)
+        return;
+    selectedInventoryIndex_ = inventoryIndex >= 0 ? inventoryIndex : -1;
+    // Update only the action row; do not rebuild the merchant catalog.
+    LayoutActions();
+}
+
 void ContextPanel::Refresh()
 {
     const ContextKind oldKind = snapshot_.kind;
-    snapshot_ = gateway_.GetSnapshot();
-    if (snapshot_.kind != oldKind)
-        itemPage_ = 0;
-    itemPage_ = std::clamp(itemPage_, 0, std::max(0, ItemPageCount() - 1));
-    LayoutActions();
-    LayoutPaging();
+    SummitShopContextPerfScope profile("ContextPanel.Refresh", true);
+    // SUMMIT_PATCH_224_REFRESH_PHASES
+    {
+        SummitShopContextPerfScope profileSnapshot("ContextPanel.GetSnapshot", true);
+        snapshot_ = gateway_.GetSnapshot();
+        lastContextRevision_ = gateway_.ContextStateRevision();
+    }
+    {
+        SummitShopContextPerfScope profileLayout("ContextPanel.Layout", true);
+        if (snapshot_.kind != oldKind)
+        {
+            itemPage_ = 0;
+            selectedMerchantIndex_ = -1;
+            selectedInventoryIndex_ = -1;
+        }
+        if (snapshot_.kind == ContextKind::Merchant && selectedMerchantIndex_ >= 0)
+        {
+            bool exists = false;
+            for (const auto& item : snapshot_.items)
+                if (item.index == selectedMerchantIndex_) { exists = true; break; }
+            if (!exists) selectedMerchantIndex_ = -1;
+        }
+        itemPage_ = std::clamp(itemPage_, 0, std::max(0, ItemPageCount() - 1));
+        LayoutActions();
+        LayoutPaging();
+    }
 }
 
 int ContextPanel::ActionStartY() const noexcept
@@ -123,7 +233,10 @@ void ContextPanel::LayoutActions()
         const int col = static_cast<int>(i) % columns;
         const int row = static_cast<int>(i) / columns;
         button->SetVisible(true);
-        button->SetEnabled(action.enabled);
+        // Merchant sale is not a global mouse mode. It requires an explicit
+        // inventory selection (the source item is never moved on selection).
+        button->SetEnabled(action.enabled && !(snapshot_.kind == ContextKind::Merchant &&
+                                               action.id == 12 && selectedInventoryIndex_ < 0));
         button->SetSelected(action.selected);
         button->SetText(action.label);
         button->SetBounds({10 + col * (buttonWidth + gap), startY + row * 34, buttonWidth, 28});
@@ -180,11 +293,23 @@ int ContextPanel::ItemPageCount() const noexcept
 
 void ContextPanel::Update(float deltaSeconds)
 {
-    refreshAccumulator_ += deltaSeconds;
-    if (refreshAccumulator_ >= 0.10f)
+    // SUMMIT_PATCH_226_REAL_SOURCE: static NPC catalogs are kept in RAM.
+    // Rebuild only when a list arrives, the tab/cursor changes, the shop closes,
+    // or relevant character state changes. Modal/action handlers also Refresh().
+    if (snapshot_.kind == ContextKind::Merchant)
     {
-        refreshAccumulator_ = 0.0f;
-        Refresh();
+        const std::uint64_t revision = gateway_.ContextStateRevision();
+        if (revision != lastContextRevision_ || revision == static_cast<std::uint64_t>(-1))
+            Refresh();
+    }
+    else
+    {
+        refreshAccumulator_ += deltaSeconds;
+        if (refreshAccumulator_ >= 0.10f)
+        {
+            refreshAccumulator_ = 0.0f;
+            Refresh();
+        }
     }
     Container::Update(deltaSeconds);
 }
@@ -393,7 +518,13 @@ UIEventResult ContextPanel::OnEvent(const UIEvent& event)
     {
         if (const auto* item = ItemAt(event.pointer))
         {
-            if (item->interactive)
+            if (snapshot_.kind == ContextKind::Merchant)
+            {
+                // PATCH 227: left chooses; right/middle never purchase.
+                if (event.button == MouseButton::Left && item->interactive)
+                    selectedMerchantIndex_ = item->index;
+            }
+            else if (event.button == MouseButton::Left && item->interactive)
                 BeginActivation(item->index);
         }
         return UIEventResult::Handled;
@@ -408,6 +539,7 @@ void ContextPanel::OnRender(UIRenderContext& context)
     if (!snapshot_.valid)
         return;
 
+    SummitShopContextPerfScope profile("ContextPanel.OnRender", snapshot_.kind == ContextKind::Merchant);
     const Rect root = GlobalBounds();
     auto& r = context.Renderer();
     r.DrawRect(root, UITheme::Surface);
@@ -487,8 +619,9 @@ void ContextPanel::OnRender(UIRenderContext& context)
         rect.x += root.x;
         rect.y += root.y;
         const bool hovered = item.index == hoveredIndex_;
-        r.DrawRect(rect, hovered ? UITheme::SurfaceHover : (item.selected ? UITheme::SurfacePressed : UITheme::Slot));
-        Color border = item.remote ? UITheme::AccentMuted : ((hovered || item.selected) ? UITheme::Accent : UITheme::BorderSoft);
+        const bool selectedMerchant = snapshot_.kind == ContextKind::Merchant && item.index == selectedMerchantIndex_;
+        r.DrawRect(rect, hovered ? UITheme::SurfaceHover : ((item.selected || selectedMerchant) ? UITheme::SurfacePressed : UITheme::Slot));
+        Color border = item.remote ? UITheme::AccentMuted : ((hovered || item.selected || selectedMerchant) ? UITheme::Accent : UITheme::BorderSoft);
         if (!item.classCompatible)
             border = UITheme::Danger;
         else if (!item.requirementsMet)
