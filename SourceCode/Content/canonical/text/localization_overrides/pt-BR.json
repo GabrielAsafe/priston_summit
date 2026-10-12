@@ -11657,6 +11657,48 @@
       "source": "monster.15_u00c1rvore"
     },
     {
+      "key": "monster.172_igniculus.name",
+      "text": "Igniculus",
+      "quality": "legacy_fallback",
+      "source": "monster.172_igniculus"
+    },
+    {
+      "key": "monster.174_lavaarmor.name",
+      "text": "Lava Guard",
+      "quality": "legacy_fallback",
+      "source": "monster.174_lavaarmor"
+    },
+    {
+      "key": "monster.175_lavaarcher.name",
+      "text": "Lava Archer",
+      "quality": "legacy_fallback",
+      "source": "monster.175_lavaarcher"
+    },
+    {
+      "key": "monster.176_insec.name",
+      "text": "Insec",
+      "quality": "legacy_fallback",
+      "source": "monster.176_insec"
+    },
+    {
+      "key": "monster.177_lavagolem.name",
+      "text": "Lava Golem",
+      "quality": "legacy_fallback",
+      "source": "monster.177_lavagolem"
+    },
+    {
+      "key": "monster.178_lavagiant.name",
+      "text": "Lava Giant",
+      "quality": "legacy_fallback",
+      "source": "monster.178_lavagiant"
+    },
+    {
+      "key": "monster.179_flamo.name",
+      "text": "Flamo",
+      "quality": "legacy_fallback",
+      "source": "monster.179_flamo"
+    },
+    {
       "key": "monster.17_esqueleto.name",
       "text": "Esqueleto",
       "quality": "translated",
@@ -11667,6 +11709,12 @@
       "text": "Planta Mortífera",
       "quality": "translated",
       "source": "pt-BR-canonical-override"
+    },
+    {
+      "key": "monster.190_flamemaiden.name",
+      "text": "Flame Maiden",
+      "quality": "legacy_fallback",
+      "source": "monster.190_flamemaiden"
     },
     {
       "key": "monster.19_esqueleto_do_mal.name",
@@ -11745,6 +11793,18 @@
       "text": "Cogumelo Fantasma",
       "quality": "translated",
       "source": "monster.2_cogumelo_fantasma"
+    },
+    {
+      "key": "monster.30_maplefairy.name",
+      "text": "MapleFairy",
+      "quality": "untranslated_fallback",
+      "source": "monster.30_maplefairy"
+    },
+    {
+      "key": "monster.30_mapletree.name",
+      "text": "MapleTree",
+      "quality": "untranslated_fallback",
+      "source": "monster.30_mapletree"
     },
     {
       "key": "monster.30_parasita.name",
@@ -22487,6 +22547,54 @@
       "source": "patch219_death_screen"
     },
     {
+      "key": "ui.premium.purchase.delivery",
+      "text": "Entrega recusada; pagamento revertido.",
+      "quality": "translated",
+      "source": "summit-patch233-override-reconcile"
+    },
+    {
+      "key": "ui.premium.purchase.funds",
+      "text": "Saldo insuficiente para esta compra.",
+      "quality": "translated",
+      "source": "summit-patch233-override-reconcile"
+    },
+    {
+      "key": "ui.premium.purchase.replayed",
+      "text": "Compra não repetida: pedido já processado.",
+      "quality": "translated",
+      "source": "summit-patch233-override-reconcile"
+    },
+    {
+      "key": "ui.premium.purchase.request",
+      "text": "Compra recusada: pedido inválido.",
+      "quality": "translated",
+      "source": "summit-patch233-override-reconcile"
+    },
+    {
+      "key": "ui.premium.purchase.success",
+      "text": "Compra concluída. Confere o item no inventário.",
+      "quality": "translated",
+      "source": "summit-patch233-override-reconcile"
+    },
+    {
+      "key": "ui.premium.purchase.transaction",
+      "text": "Compra não concluída. Tenta novamente.",
+      "quality": "translated",
+      "source": "summit-patch233-override-reconcile"
+    },
+    {
+      "key": "ui.premium.purchase.unavailable",
+      "text": "Produto indisponível: entrega não implementada.",
+      "quality": "translated",
+      "source": "summit-patch233-override-reconcile"
+    },
+    {
+      "key": "ui.premium.purchase.wallet",
+      "text": "Saldo premium indisponível no servidor.",
+      "quality": "translated",
+      "source": "summit-patch233-override-reconcile"
+    },
+    {
       "key": "ui.shop.need.dexterity",
       "text": "Destreza {required} (atual {current})",
       "quality": "translated",
@@ -22539,6 +22647,36 @@
       "text": "Requer: ",
       "quality": "translated",
       "source": "patch220_shop_reasons"
+    },
+    {
+      "key": "ui.shop.server_reject.gold",
+      "text": "Compra recusada: ouro insuficiente no servidor.",
+      "quality": "translated",
+      "source": "summit-patch233-override-reconcile"
+    },
+    {
+      "key": "ui.shop.server_reject.invalid_item",
+      "text": "Compra recusada: dados do item inválidos.",
+      "quality": "translated",
+      "source": "summit-patch233-override-reconcile"
+    },
+    {
+      "key": "ui.shop.server_reject.invalid_request",
+      "text": "Compra recusada: pedido inválido.",
+      "quality": "translated",
+      "source": "summit-patch233-override-reconcile"
+    },
+    {
+      "key": "ui.shop.server_reject.inventory",
+      "text": "Compra recusada: inventário indisponível.",
+      "quality": "translated",
+      "source": "summit-patch233-override-reconcile"
+    },
+    {
+      "key": "ui.shop.server_reject.transaction",
+      "text": "Compra recusada pelo servidor.",
+      "quality": "translated",
+      "source": "summit-patch233-override-reconcile"
     }
   ]
 }

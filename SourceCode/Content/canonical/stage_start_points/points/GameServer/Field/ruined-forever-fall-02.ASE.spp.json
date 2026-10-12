@@ -1,0 +1,157 @@
+{
+  "schema": "summit.stage-start-points/v1",
+  "id": "start_points.ruined_forever_fall_02",
+  "logical_path": "GameServer/Field/ruined-forever-fall-02.ASE.spp",
+  "points": [
+    {
+      "slot": 0,
+      "state": 1,
+      "x": 448951,
+      "z": 504690
+    },
+    {
+      "slot": 1,
+      "state": 1,
+      "x": 448861,
+      "z": 504780
+    },
+    {
+      "slot": 2,
+      "state": 1,
+      "x": 448771,
+      "z": 504690
+    },
+    {
+      "slot": 3,
+      "state": 1,
+      "x": 448861,
+      "z": 504600
+    },
+    {
+      "slot": 4,
+      "state": 1,
+      "x": 449006,
+      "z": 504755
+    },
+    {
+      "slot": 5,
+      "state": 1,
+      "x": 448716,
+      "z": 504625
+    },
+    {
+      "slot": 6,
+      "state": 1,
+      "x": 448926,
+      "z": 504545
+    },
+    {
+      "slot": 7,
+      "state": 1,
+      "x": 448796,
+      "z": 504835
+    },
+    {
+      "slot": 8,
+      "state": 1,
+      "x": 449020,
+      "z": 504577
+    },
+    {
+      "slot": 9,
+      "state": 1,
+      "x": 448930,
+      "z": 504667
+    },
+    {
+      "slot": 10,
+      "state": 1,
+      "x": 448840,
+      "z": 504577
+    },
+    {
+      "slot": 11,
+      "state": 1,
+      "x": 448930,
+      "z": 504487
+    },
+    {
+      "slot": 12,
+      "state": 1,
+      "x": 449075,
+      "z": 504642
+    },
+    {
+      "slot": 13,
+      "state": 1,
+      "x": 448785,
+      "z": 504512
+    },
+    {
+      "slot": 14,
+      "state": 1,
+      "x": 448995,
+      "z": 504432
+    },
+    {
+      "slot": 15,
+      "state": 1,
+      "x": 448865,
+      "z": 504722
+    },
+    {
+      "slot": 16,
+      "state": 1,
+      "x": 449109,
+      "z": 504695
+    },
+    {
+      "slot": 17,
+      "state": 1,
+      "x": 449019,
+      "z": 504785
+    },
+    {
+      "slot": 18,
+      "state": 1,
+      "x": 448929,
+      "z": 504695
+    },
+    {
+      "slot": 19,
+      "state": 1,
+      "x": 449019,
+      "z": 504605
+    },
+    {
+      "slot": 20,
+      "state": 1,
+      "x": 449164,
+      "z": 504760
+    },
+    {
+      "slot": 21,
+      "state": 1,
+      "x": 448874,
+      "z": 504630
+    },
+    {
+      "slot": 22,
+      "state": 1,
+      "x": 449084,
+      "z": 504550
+    },
+    {
+      "slot": 23,
+      "state": 1,
+      "x": 448954,
+      "z": 504840
+    }
+  ],
+  "provenance": {
+    "source": "WSB_EXPERIMENTAL_20261012",
+    "evidence": "TRIAL_OFFSETS_AROUND_KNOWN_PLAYER_STARTS",
+    "confirmed_walkable": false,
+    "warning": "Not historical; verify monster positions in game before production"
+  }
+}

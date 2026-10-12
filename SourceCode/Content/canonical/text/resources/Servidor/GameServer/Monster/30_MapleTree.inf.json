@@ -1,0 +1,444 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "monster.30_mapletree",
+  "kind": "monster_definition",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/Monster/30_MapleTree.inf",
+    "GameServer/Monster/30_MapleTree.inf"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/Monster/30_MapleTree.inf",
+    "legacy_sha256": "45a471ee9c62351de44eb13de3ab2bb3c5768068a195946b4161ae631ba2f1f9",
+    "legacy_size": 1816
+  },
+  "semantic": {
+    "fields": {
+      "model_scale": 1.5,
+      "state": "적",
+      "model_file": "char\\monster\\MapleTree\\MapleTree.ini",
+      "name": "단풍 나무",
+      "english_name": "MapleTree",
+      "level": 30,
+      "active_hour": "제한없음",
+      "generate_group": 1,
+      "iq": 10,
+      "nature": "Neutral",
+      "sight": 27,
+      "life": 500,
+      "skill_rating": 1,
+      "skill_damage": [
+        1,
+        1
+      ],
+      "attack_damage": [
+        1,
+        1
+      ],
+      "size": "중대형",
+      "bionic": 50,
+      "lightning": 50,
+      "ice": 50,
+      "fire": 50,
+      "poison": 0,
+      "unmapped.2ab8c5c1f7": -5,
+      "monster_race": "노멀",
+      "unmapped.2ac0ccb5bfbcd3b5b5": 2,
+      "move_type": 0,
+      "effect_sound": "MAPLETREE",
+      "experience": 1000,
+      "linked_file": "name\\MapleTree.zhoon"
+    },
+    "directives": [
+      {
+        "line": 2,
+        "key": "model_scale",
+        "legacy_token": "*모델크기",
+        "legacy_token_hex": "2ab8f0b5a8c5a9b1e2",
+        "loader_status": "supported_mapped",
+        "values": [
+          1.5
+        ],
+        "raw_values_hex": [
+          "312e35"
+        ]
+      },
+      {
+        "line": 3,
+        "key": "state",
+        "legacy_token": "*속성",
+        "legacy_token_hex": "2abcd3bcba",
+        "loader_status": "supported_mapped",
+        "values": [
+          "적"
+        ],
+        "raw_values_hex": [
+          "c0fb"
+        ]
+      },
+      {
+        "line": 4,
+        "key": "model_file",
+        "legacy_token": "*모양파일",
+        "legacy_token_hex": "2ab8f0bee7c6c4c0cf",
+        "loader_status": "supported_mapped",
+        "values": [
+          "char\\monster\\MapleTree\\MapleTree.ini"
+        ],
+        "raw_values_hex": [
+          "636861725c6d6f6e737465725c4d61706c65547265655c4d61706c65547265652e696e69"
+        ],
+        "quoted": [
+          true
+        ]
+      },
+      {
+        "line": 6,
+        "key": "name",
+        "legacy_token": "*이름",
+        "legacy_token_hex": "2ac0ccb8a7",
+        "loader_status": "supported_mapped",
+        "values": [
+          "단풍 나무"
+        ],
+        "raw_values_hex": [
+          "b4dcc7b320b3aab9ab"
+        ],
+        "quoted": [
+          true
+        ]
+      },
+      {
+        "line": 7,
+        "key": "english_name",
+        "legacy_token": "*Name",
+        "legacy_token_hex": "2a4e616d65",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          "MapleTree"
+        ],
+        "raw_values_hex": [
+          "4d61706c6554726565"
+        ],
+        "quoted": [
+          true
+        ]
+      },
+      {
+        "line": 9,
+        "key": "level",
+        "legacy_token": "*레벨",
+        "legacy_token_hex": "2ab7b9baa7",
+        "loader_status": "supported_mapped",
+        "values": [
+          30
+        ],
+        "raw_values_hex": [
+          "3330"
+        ]
+      },
+      {
+        "line": 12,
+        "key": "active_hour",
+        "legacy_token": "*활동시간",
+        "legacy_token_hex": "2ac8b0b5bfbdc3b0a3",
+        "loader_status": "supported_mapped",
+        "values": [
+          "제한없음"
+        ],
+        "raw_values_hex": [
+          "c1a6c7d1bef8c0bd"
+        ]
+      },
+      {
+        "line": 15,
+        "key": "generate_group",
+        "legacy_token": "*조직",
+        "legacy_token_hex": "2ac1b6c1f7",
+        "loader_status": "supported_mapped",
+        "values": [
+          1
+        ],
+        "raw_values_hex": [
+          "31"
+        ]
+      },
+      {
+        "line": 18,
+        "key": "iq",
+        "legacy_token": "*지능",
+        "legacy_token_hex": "2ac1f6b4c9",
+        "loader_status": "supported_mapped",
+        "values": [
+          10
+        ],
+        "raw_values_hex": [
+          "3130"
+        ]
+      },
+      {
+        "line": 21,
+        "key": "nature",
+        "legacy_token": "*품성",
+        "legacy_token_hex": "2ac7b0bcba",
+        "loader_status": "supported_mapped",
+        "values": [
+          "Neutral"
+        ],
+        "raw_values_hex": [
+          "4e65757472616c"
+        ]
+      },
+      {
+        "line": 24,
+        "key": "sight",
+        "legacy_token": "*시야",
+        "legacy_token_hex": "2abdc3bedf",
+        "loader_status": "supported_mapped",
+        "values": [
+          27
+        ],
+        "raw_values_hex": [
+          "3237"
+        ]
+      },
+      {
+        "line": 27,
+        "key": "life",
+        "legacy_token": "*생명력",
+        "legacy_token_hex": "2abbfdb8edb7c2",
+        "loader_status": "supported_mapped",
+        "values": [
+          500
+        ],
+        "raw_values_hex": [
+          "353030"
+        ]
+      },
+      {
+        "line": 30,
+        "key": "skill_rating",
+        "legacy_token": "*기술공격률",
+        "legacy_token_hex": "2ab1e2bcfab0f8b0ddb7fc",
+        "loader_status": "supported_mapped",
+        "values": [
+          1
+        ],
+        "raw_values_hex": [
+          "31"
+        ]
+      },
+      {
+        "line": 31,
+        "key": "skill_damage",
+        "legacy_token": "*기술공격력",
+        "legacy_token_hex": "2ab1e2bcfab0f8b0ddb7c2",
+        "loader_status": "supported_mapped",
+        "values": [
+          1,
+          1
+        ],
+        "raw_values_hex": [
+          "31",
+          "31"
+        ]
+      },
+      {
+        "line": 32,
+        "key": "attack_damage",
+        "legacy_token": "*공격력",
+        "legacy_token_hex": "2ab0f8b0ddb7c2",
+        "loader_status": "supported_mapped",
+        "values": [
+          1,
+          1
+        ],
+        "raw_values_hex": [
+          "31",
+          "31"
+        ]
+      },
+      {
+        "line": 54,
+        "key": "size",
+        "legacy_token": "*크기",
+        "legacy_token_hex": "2ac5a9b1e2",
+        "loader_status": "supported_mapped",
+        "values": [
+          "중대형"
+        ],
+        "raw_values_hex": [
+          "c1dfb4ebc7fc"
+        ]
+      },
+      {
+        "line": 64,
+        "key": "bionic",
+        "legacy_token": "*생체",
+        "legacy_token_hex": "2abbfdc3bc",
+        "loader_status": "supported_mapped",
+        "values": [
+          50
+        ],
+        "raw_values_hex": [
+          "3530"
+        ]
+      },
+      {
+        "line": 65,
+        "key": "lightning",
+        "legacy_token": "*번개",
+        "legacy_token_hex": "2ab9f8b0b3",
+        "loader_status": "supported_mapped",
+        "values": [
+          50
+        ],
+        "raw_values_hex": [
+          "3530"
+        ]
+      },
+      {
+        "line": 66,
+        "key": "ice",
+        "legacy_token": "*얼음",
+        "legacy_token_hex": "2abef3c0bd",
+        "loader_status": "supported_mapped",
+        "values": [
+          50
+        ],
+        "raw_values_hex": [
+          "3530"
+        ]
+      },
+      {
+        "line": 67,
+        "key": "fire",
+        "legacy_token": "*불",
+        "legacy_token_hex": "2abad2",
+        "loader_status": "supported_mapped",
+        "values": [
+          50
+        ],
+        "raw_values_hex": [
+          "3530"
+        ]
+      },
+      {
+        "line": 68,
+        "key": "poison",
+        "legacy_token": "*독",
+        "legacy_token_hex": "2ab5b6",
+        "loader_status": "supported_mapped",
+        "values": [
+          0
+        ],
+        "raw_values_hex": [
+          "30"
+        ]
+      },
+      {
+        "line": 69,
+        "key": "unmapped.2ab8c5c1f7",
+        "legacy_token": "*매직",
+        "legacy_token_hex": "2ab8c5c1f7",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          -5
+        ],
+        "raw_values_hex": [
+          "2d35"
+        ]
+      },
+      {
+        "line": 71,
+        "key": "monster_race",
+        "legacy_token": "*몬스터종족",
+        "legacy_token_hex": "2ab8f3bdbac5cdc1bec1b7",
+        "loader_status": "supported_mapped",
+        "values": [
+          "노멀"
+        ],
+        "raw_values_hex": [
+          "b3ebb8d6"
+        ]
+      },
+      {
+        "line": 74,
+        "key": "unmapped.2ac0ccb5bfbcd3b5b5",
+        "legacy_token": "*이동속도",
+        "legacy_token_hex": "2ac0ccb5bfbcd3b5b5",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          2
+        ],
+        "raw_values_hex": [
+          "32"
+        ]
+      },
+      {
+        "line": 77,
+        "key": "move_type",
+        "legacy_token": "*이동타입",
+        "legacy_token_hex": "2ac0ccb5bfc5b8c0d4",
+        "loader_status": "supported_mapped",
+        "values": [
+          0
+        ],
+        "raw_values_hex": [
+          "30"
+        ]
+      },
+      {
+        "line": 80,
+        "key": "effect_sound",
+        "legacy_token": "*효과음",
+        "legacy_token_hex": "2ac8bfb0fac0bd",
+        "loader_status": "supported_mapped",
+        "values": [
+          "MAPLETREE"
+        ],
+        "raw_values_hex": [
+          "4d41504c4554524545"
+        ]
+      },
+      {
+        "line": 83,
+        "key": "experience",
+        "legacy_token": "*경험치",
+        "legacy_token_hex": "2ab0e6c7e8c4a1",
+        "loader_status": "supported_mapped",
+        "values": [
+          1000
+        ],
+        "raw_values_hex": [
+          "31303030"
+        ]
+      },
+      {
+        "line": 100,
+        "key": "linked_file",
+        "legacy_token": "*연결파일",
+        "legacy_token_hex": "2abfacb0e1c6c4c0cf",
+        "loader_status": "supported_mapped",
+        "values": [
+          "name\\MapleTree.zhoon"
+        ],
+        "raw_values_hex": [
+          "6e616d655c4d61706c65547265652e7a686f6f6e"
+        ],
+        "quoted": [
+          true
+        ]
+      }
+    ],
+    "unknown_tokens": {
+      "*매직": 1,
+      "*이동속도": 1
+    }
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "DQoquPC1qMWpseIJCTEuNQ0KKrzTvLoJCQnA+w0KKrjwvufGxMDPCQkiY2hhclxtb25zdGVyXE1hcGxlVHJlZVxNYXBsZVRyZWUuaW5pIg0KDQoqwMy4pwkJCSK03MezILOquasiDQoqTmFtZQkJCSJNYXBsZVRyZWUiDQoNCiq3ubqnCQkJMzANCg0KLy+48726xc2woSDIsLW/x8+0wiC9w7CjDQoqyLC1v73DsKMJCcGmx9G++MC9DQoNCi8vuau4rrChIMfKv+TH0SC48726xc3AxyC89iDD1rzSWC3D1rTrWA0KKsG2wfcJCQkxIA0KDQovL8H2tMnAxyCxuLrQwLogMS0xMCCx7sH2wMcgSVEgDQoqwfa0yQkJCTEwDQoNCi8vuPO9usXNwMcgvLrH4iBHb29kLCBOZXV0cmFsLCBFdmlsDQoqx7C8ugkJCU5ldXRyYWwNCg0KLy+48726xc2woSDEs7ivxc24piDAzr3Ex8+0wiCwxbiuIDFNID0gMjcNCiq9w77fCQkJMjcNCg0KLy+48726xc3AxyBIUA0KKrv9uO23wgkJCTUwMA0KDQovL7jzvbrFzcDHILD4sN23wg0KKrHivPqw+LDdt/wJCTENCiqx4rz6sPiw3bfCCQkxIDENCiqw+LDdt8IJCQkxIDENCg0KLy+48726xc3AxyCw+LDdIMjtvPbAsiBYWCUguLjFrSC1pbnMwfa4piDI7bz2x9G02S4gDQovLyrI7bz2wLIJCQk0NQ0KDQovL7nmxtC4piC15yC48726xc3AxyCw5r/sILrtt7DAssDMIMG4wOcNCi8vKrrtt7DAsgkJCTANCg0KLy+48726xc3AxyC55r7ut8IgDQovLyq55r7ut8IJCQk1MA0KDQovL7D4sN0gvNO1tcDHILr8uKOx4iDD1rzSIDUgLSDD1rTrIDkNCi8vKrD4sN2807W1CQk4DQoNCi8vsPiw3b3DILD4sN3AxyC47cHft8IgKDg3KQ0KLy8quO3B37fCCQkJNTAwDQoNCi8vuPO9usXNsKEgsKHB9rDtIMDWtMIgsPiw3SDG0MXPwMcgyK63/CCxuLrQICjD1rzSILWluczB9iAvIMPWtOsgtaW5zMH2ID0gbSAvIG0gKCtYKQ0KLy8qxq+89rD4sN23/AkJMjANCg0KDQovL7jzvbrFzcDHILHXuLLA2iDFqbHiILzSx/wsIMHfx/wsIMHftOvH/CwgtOvH/CwgvvjAvQ0KKsWpseIJCQnB37Trx/wNCg0KDQovL7D4sN25/MCnILjzvbrFzbChILD4sN0gx9IgtqcgsPiw3SC5/MCnuKYgx6W9wyANCi8vKrD4sN25/MCnCQkxNTANCg0KDQovL7zTvLoNCi8vLy8vLy8vLy8gvNO8uiDA+sfXt8IgLy8vLy8vLy8vLw0KDQoqu/3DvAkJCTUwDQoqufiwswkJCTUwDQoqvvPAvQkJCTUwDQoqutIJCQk1MA0KKrW2CQkJMA0KKrjFwfcJCQktNQ0KDQoquPO9usXNwb7BtwkJs+u41g0KDQovL7jzvbrFzcDHIMDMtb8gvNO1tSAxLTbAxyC5/MCnIA0KKsDMtb+807W1CQkyDQoNCi8vwMy1v8W4wNQNCirAzLW/xbjA1AkJMA0KDQovL7G4utAgKCBDWUNMT1BTIC8gSE9CR09CTElOIC8gSU1QIC8gTUlOSUcgLyBQTEFOVCAvIFNLRUxFVE9OIC8gWk9NQkkgLyBPQklUICkNCirIv7D6wL0JCQlNQVBMRVRSRUUNCg0KLy+48726xc0gu+e4wb3DIMCvwPq16b+hsNQgtbm+xrChtMIgsObH6MShwMcgvucNCiqw5sfoxKEJCQkxMDAwDQoNCi8vuPO9usXNsKEgtrO+7rbfuK60wiC+xsDMxdsgvLPBpCC67bewDQovLyq+xsDMxdvEq7/uxc0JCTINCi8vKr7GwMzF2wkJMQm++MC9DQovLyq+xsDMxdsJCTQwMDAJtbcJMjAwMCA0MDAwDQovLyq+xsDMxdsJCTIwMjAJc3AxMTUNCi8vKr7GwMzF2wkJNDAwCW9zMTA4IG8xMDkNCi8vKr7GwMzF2wkJMzAwCW9zMTEwIG9zMTExDQovLyq+xsDMxdsJCTExMDAJZ3AxMDkgZ3AxMjENCi8vKr7GwMzF2wkJNTAwCWdwMTA1IGdwMTA2DQovLyq+xsDMxdsJCTkwMAlncDEwNyBncDEwOCBncDExNw0KLy8qvsbAzMXbCQkzMDAJZ3AxMTgNCi8vKr7GwMzF2wkJMjUwCWdwMTIwDQovLyq+xsDMxdsJCTE1MAlncDExOQ0KLy8qvsbAzMXbCQk4MAlzZTEwMQ0KDQoqv6yw4cbEwM8JIm5hbWVcTWFwbGVUcmVlLnpob29uIg=="
+  }
+}

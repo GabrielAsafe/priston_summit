@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse,json,sys
 from pathlib import Path
 from npc_shop_overrides import SHOP_KEYS,load_overrides,ops_for,effective_values
+from item_profile_policy import load_open_item_documents,effective_profile_codes
 
 def codes(path:Path)->set[str]:
  return {str(x).casefold() for x in json.loads(path.read_text(encoding='utf-8')).get('codes',[])}
@@ -13,7 +14,9 @@ def main()->int:
  a=ap.parse_args();root=a.repo_root.resolve()
  text=root/'Content/canonical/text'; commerce=root/'Content/canonical/commerce'
  vendors=load_overrides(commerce/'npc_shop_overrides.json')
- client=codes(root/'Content/canonical/item_profiles/client.items.json');server=codes(root/'Content/canonical/item_profiles/server.items.json')
+ open_items=load_open_item_documents(text)
+ client=effective_profile_codes(open_items,'client',codes(root/'Content/canonical/item_profiles/client.items.json'))
+ server=effective_profile_codes(open_items,'server',codes(root/'Content/canonical/item_profiles/server.items.json'))
  docs={};errors=[];suppressed=[];effective_count=0
  idx=json.loads((text/'index.json').read_text(encoding='utf-8'))['documents']
  for e in idx:

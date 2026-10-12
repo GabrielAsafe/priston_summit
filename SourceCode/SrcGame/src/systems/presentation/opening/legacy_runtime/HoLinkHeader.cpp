@@ -1,3 +1,4 @@
+#include "systems/rendering/effects/legacy_new/core/HoEffectResMgr.h"
 #include "opcodes.h"
 #include <stdio.h>
 #include "compat/legacy/sin/sinLinkHeader.h"
@@ -120,6 +121,10 @@ int DrawOpening()
 	// commonly used effect textures. Both operations are bounded per frame.
 	lpLogin->PumpOpeningPreload();
 	SummitPrewarmAssaEffectTexturesStep(2, 2);
+    SummitPumpAssaEffectModels256(2u);
+    SummitPrewarmAssaEffectModelsStep256(2u);
+	HoEffectResManager::GetInstance()->PumpPreparedResMeshes(2u);
+	HoEffectResManager::GetInstance()->PumpResTexturePrewarm(2u);
 
     if (!BeginRender())
         return FALSE;

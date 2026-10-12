@@ -1,6 +1,7 @@
 {
   "schema": "summit.canonical-text-resource/v1",
   "schema_version": 1,
+  "runtime_profiles": ["client", "server"],
   "id": "item.sp179",
   "kind": "open_item_definition",
   "selection_reason": "runtime_text_family",

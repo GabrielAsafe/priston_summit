@@ -110,7 +110,10 @@ char *SetDirectoryFromFile(char *filename)
 }
 
 
-thread_local char szChangeFileExt[64];
+// The legacy 64-byte cache-path scratch buffer rejected valid ASE paths
+// (including existing skill effects) before looking up their SMD/SMB.
+// Keep per-worker isolation; allow bounded Windows-length logical paths.
+thread_local char szChangeFileExt[512];
 
 
 char *ChangeFileExt(char *filename, char *FileExt)

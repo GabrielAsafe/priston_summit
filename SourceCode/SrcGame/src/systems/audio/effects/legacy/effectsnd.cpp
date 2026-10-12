@@ -9,6 +9,7 @@
 #include "systems/rendering/2d/legacy/drawsub.h"
 #include "systems/network/client/netplay.h"
 #include "systems/audio/effects/legacy/effectsnd.h"
+#include "systems/audio/effects/legacy/SummitSoundTable258.h"
 #include "gameplay/classes/v2/services/ClassService.h"
 #include "systems/world/field/field.h"
 #include "systems/localization/legacy_catalog/language.h"
@@ -1090,6 +1091,12 @@ int esPlayObjectSound2(int AmbNum, int round, int x, int y, int z)
 		return TRUE;
 	}
 
+	// Reject invalid content/network sound identifiers before indexing the
+	// sentinel-terminated legacy array. Never read beyond its last element.
+	char *ambientPath = summit::audio::SoundTablePath258(szAmbientSound2, AmbNum);
+	if (!ambientPath)
+		return FALSE;
+
 	vol = GetDistVolume2(x, y, z, round);
 
 	if(vol > 100)
@@ -1099,7 +1106,7 @@ int esPlayObjectSound2(int AmbNum, int round, int x, int y, int z)
 
 		if(AmbNum != AmbientSound2 && !AmbientFlag)
 		{
-			if(CreateBufferFromWaveFile2(szAmbientSound2[AmbNum], AmbientSoundNum2) == FALSE)
+			if(CreateBufferFromWaveFile2(ambientPath, AmbientSoundNum2) == FALSE)
 				return FALSE;
 			PlayWav2(AmbientSoundNum2, 1, vol, 2205);
 			AmbientSound2 = AmbNum;
@@ -1137,8 +1144,16 @@ int esContSound()
 	{
 		cnt = ContSoundPop&CONT_SOUND_MASK;
 		ContSoundNum = ContSoundBuff[cnt];
+		char *continuePath = summit::audio::SoundTablePath258(szSodSound, ContSoundNum);
+		if (!continuePath)
+		{
+			// Discard only malformed requests, so the queue cannot be poisoned.
+			ContSoundNum = -1;
+			ContSoundPop++;
+			return FALSE;
+		}
 
-		if(CreateBufferFromWaveFile2(szSodSound[ContSoundNum], ContinueSoundNum) == FALSE)
+		if(CreateBufferFromWaveFile2(continuePath, ContinueSoundNum) == FALSE)
 			return FALSE;
 
 		PlayWav2(ContinueSoundNum, 0, 360, 2205);
@@ -1156,6 +1171,7 @@ int esPlayContSound(int SoundNum)
 {
 	int cnt;
 
+	if (!summit::audio::SoundTablePath258(szSodSound, SoundNum)) return FALSE;
 	if((ContSoundPush - ContSoundPop) >= CONT_SOUND_MAX) return FALSE;
 
 	cnt = ContSoundPush&CONT_SOUND_MASK;
@@ -1224,9 +1240,13 @@ int	esPlayEffectBgm(int Num)
 		return TRUE;
 	}
 
+	char *backgroundPath = summit::audio::SoundTablePath258(szAmbientSound, Num);
+	if (!backgroundPath)
+		return FALSE;
+
 	if(AmbientSound != Num)
 	{
-		if(CreateBufferFromWaveFile2(szAmbientSound[Num], AmbientSoundNum) == FALSE)
+		if(CreateBufferFromWaveFile2(backgroundPath, AmbientSoundNum) == FALSE)
 			return FALSE;
 
 		PlayWav2(AmbientSoundNum, 1, 400, 2205);

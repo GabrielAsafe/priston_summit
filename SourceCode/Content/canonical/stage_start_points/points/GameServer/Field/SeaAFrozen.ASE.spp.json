@@ -1,0 +1,163 @@
+{
+  "schema": "summit.stage-start-points/v1",
+  "id": "start_points.seaafrozen",
+  "logical_path": "GameServer/Field/SeaAFrozen.ASE.spp",
+  "points": [
+    {
+      "slot": 0,
+      "state": 1,
+      "x": -62779,
+      "z": 39956
+    },
+    {
+      "slot": 1,
+      "state": 1,
+      "x": -62664,
+      "z": 39853
+    },
+    {
+      "slot": 2,
+      "state": 1,
+      "x": -62575,
+      "z": 39735
+    },
+    {
+      "slot": 3,
+      "state": 1,
+      "x": -62540,
+      "z": 39586
+    },
+    {
+      "slot": 4,
+      "state": 1,
+      "x": -62601,
+      "z": 39457
+    },
+    {
+      "slot": 5,
+      "state": 1,
+      "x": -62636,
+      "z": 39274
+    },
+    {
+      "slot": 6,
+      "state": 1,
+      "x": -62719,
+      "z": 39148
+    },
+    {
+      "slot": 7,
+      "state": 1,
+      "x": -62789,
+      "z": 39014
+    },
+    {
+      "slot": 8,
+      "state": 1,
+      "x": -62833,
+      "z": 38876
+    },
+    {
+      "slot": 9,
+      "state": 1,
+      "x": -62918,
+      "z": 38750
+    },
+    {
+      "slot": 10,
+      "state": 1,
+      "x": -62943,
+      "z": 38602
+    },
+    {
+      "slot": 11,
+      "state": 1,
+      "x": -62928,
+      "z": 38451
+    },
+    {
+      "slot": 12,
+      "state": 1,
+      "x": -62867,
+      "z": 38315
+    },
+    {
+      "slot": 13,
+      "state": 1,
+      "x": -62768,
+      "z": 38166
+    },
+    {
+      "slot": 14,
+      "state": 1,
+      "x": -62685,
+      "z": 38042
+    },
+    {
+      "slot": 15,
+      "state": 1,
+      "x": -62600,
+      "z": 37916
+    },
+    {
+      "slot": 16,
+      "state": 1,
+      "x": -62517,
+      "z": 37791
+    },
+    {
+      "slot": 17,
+      "state": 1,
+      "x": -62431,
+      "z": 37664
+    },
+    {
+      "slot": 18,
+      "state": 1,
+      "x": -62348,
+      "z": 37539
+    },
+    {
+      "slot": 19,
+      "state": 1,
+      "x": -62264,
+      "z": 37413
+    },
+    {
+      "slot": 20,
+      "state": 1,
+      "x": -62180,
+      "z": 37287
+    },
+    {
+      "slot": 21,
+      "state": 1,
+      "x": -62111,
+      "z": 37154
+    },
+    {
+      "slot": 22,
+      "state": 1,
+      "x": -62126,
+      "z": 37018
+    },
+    {
+      "slot": 23,
+      "state": 1,
+      "x": -62228,
+      "z": 36910
+    },
+    {
+      "slot": 24,
+      "state": 1,
+      "x": -62328,
+      "z": 36799
+    }
+  ],
+  "provenance": {
+    "source": "WSB_EXPERIMENTAL_20261012",
+    "evidence": "OBSERVED_PLAYER_WALK_MAP54",
+    "confirmed_walkable": true,
+    "warning": "Not historical; verify monster positions in game before production"
+  }
+}

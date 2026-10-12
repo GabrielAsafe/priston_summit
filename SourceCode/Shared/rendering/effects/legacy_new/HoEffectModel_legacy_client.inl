@@ -2,78 +2,64 @@
 #include "systems/rendering/effects/legacy_new/core/HoEffectView.h"
 #include "systems/rendering/effects/legacy_new/core/HoEffectResMgr.h"
 
+#include "rendering/effects/legacy_new/SummitEffectFrames248.h"
+
 void HoEffectTextureNameProperty::Init(const std::string &fileName)
 {
-	Clear();
-    m_TextureName.push_back(fileName);
-	unsigned int testCount = m_TextureName.size();
+    Clear();
+    if (!fileName.empty())
+    {
+        m_TextureName.push_back(fileName);
+        HoEffectResManager::GetInstance()->RequestResTexturePrewarm(fileName);
+    }
 }
 
 void HoEffectTextureNameProperty::Init(const std::string &fileName, int textureCount, float aniDelayTime)
 {
-	Clear();
-    m_iAniIndexCount = textureCount;
-    m_fAniDelayTime = aniDelayTime;
-    m_iAniIndex = 0;
-	unsigned int testCount = m_TextureName.size();
-    for(int i = 0; i < m_iAniIndexCount; i++)
-    {
-        char buffer[256];
-        char extName[64];
-        strcpy(buffer, fileName.c_str());
-        int index;
-        for(index = strlen(buffer); index >= 0; index--)
-        {
-            if(buffer[index] == '.')
-            {
-                buffer[index] = 0;
-                break;
-            }
-        }
-        strcpy(extName, &buffer[index+1]);
-        char tempBuffer[256];
-        if(stricmp(extName, "bmp") == 0)
-            wsprintf(tempBuffer, "%s%d%s",buffer,i+1, ".bmp");
-        else
-            wsprintf(tempBuffer, "%s%d%s",buffer,i+1, ".tga");
-
-        std::string textureNewName = tempBuffer;
-        m_TextureName.push_back(textureNewName);
-    }
+    Clear();
+    m_fAniDelayTime = aniDelayTime > 0.f ? aniDelayTime : 0.5f;
+    // A malformed effect definition must not generate unbounded allocations,
+    // truncate paths into a different asset, or keep a stale animation index.
+    if (!summit::effects::BuildEffectFrameNames248(fileName, textureCount, m_TextureName))
+        m_TextureName.clear();
+    m_iAniIndexCount = static_cast<int>(m_TextureName.size());
+    // Schedule the first two frames without allocating materials from Init.
+    for (size_t i = 0; i < m_TextureName.size() && i < 2u; ++i)
+        HoEffectResManager::GetInstance()->RequestResTexturePrewarm(m_TextureName[i]);
 }
 
 bool HoEffectTextureNameProperty::Main(float elapsedTime)
 {
-    if(m_iAniIndexCount > 0)
-    {
-          if(m_fAniTimer > m_fAniDelayTime)
-        {
-            m_iAniIndex++; 
-            m_fAniTimer = 0.f;
-             if(m_iAniIndex >= m_iAniIndexCount)
-                m_iAniIndex = 0;
-        }
-		else
-			m_fAniTimer += elapsedTime;
-	}
-    else
+    if (m_iAniIndexCount <= 0 || m_TextureName.empty())
         return false;
-
+    if (m_fAniTimer > m_fAniDelayTime)
+    {
+        m_iAniIndex = (m_iAniIndex + 1) % m_iAniIndexCount;
+        // Next frames are queued before they become visible. A one-frame
+        // first-use fallback remains for unusually fast animations.
+        for (int lookahead = 1; lookahead <= 2 && lookahead < m_iAniIndexCount; ++lookahead)
+            HoEffectResManager::GetInstance()->RequestResTexturePrewarm(
+                m_TextureName[(m_iAniIndex + lookahead) % m_iAniIndexCount]);
+        m_fAniTimer = 0.f;
+    }
+    else
+        m_fAniTimer += elapsedTime;
     return true;
 }
 
 int HoEffectTextureNameProperty::GetMatNum()
 {
-     int matNum = -1;
-	 char testBuffer[256];
-	 strcpy(testBuffer, m_TextureName[m_iAniIndex].c_str() );
- 	 matNum = HoEffectResManager::GetInstance()->GetResTexture(m_TextureName[m_iAniIndex]);
-    return matNum;
+    if (m_iAniIndex < 0 || static_cast<size_t>(m_iAniIndex) >= m_TextureName.size())
+        return -1;
+    return HoEffectResManager::GetInstance()->GetResTexture(m_TextureName[m_iAniIndex]);
 }
 
 void HoEffectTextureNameProperty::Clear()
 {
     m_TextureName.clear();
+    m_iAniIndex = 0;
+    m_iAniIndexCount = 0;
+    m_fAniTimer = 0.f;
 }
 
 HoEffectModelInterface::HoEffectModelInterface() : m_Color(255.f, 255.f, 255.f, 255.f),
@@ -243,6 +229,8 @@ bool HoEffectLineListModel::UpdateView(int x, int y, int z, int ax, int ay, int 
 void HoEffectMeshModel::Init(const std::string &meshName)
 {
     m_MeshName = meshName;
+    m_BoneName.clear(); // Reused effect instances must not retain previous skeleton.
+    HoEffectResManager::GetInstance()->RequestResMesh(m_MeshName, m_BoneName);
     m_bLiveFlag = true;
 }
 
@@ -250,6 +238,7 @@ void HoEffectMeshModel::Init(const std::string &meshName, const std::string &bon
 {
     m_MeshName = meshName;
     m_BoneName = boneName;
+    HoEffectResManager::GetInstance()->RequestResMesh(m_MeshName, m_BoneName);
     m_bLiveFlag = true;
 }
 
@@ -257,7 +246,7 @@ bool HoEffectMeshModel::UpdateView(int x, int y, int z, int ax, int ay, int az)
 {
     if(m_bLiveFlag == false)
         return false;
-    smPAT3D *pat3D = HoEffectResManager::GetInstance()->GetResMesh(m_MeshName, m_BoneName);
+    smPAT3D *pat3D = HoEffectResManager::GetInstance()->GetReadyResMesh(m_MeshName, m_BoneName);
     if(pat3D == NULL)
         return false;
 	

@@ -1,0 +1,159 @@
+O resultado confirma que a compilação funcionou, mas ainda não foi publicada.
+
+| Verificação          | Estado                                    |
+| -------------------- | ----------------------------------------- |
+| Packs do cliente     | Compilados, mas diferentes dos instalados |
+| Packs do servidor    | Compilados, mas diferentes dos instalados |
+| `field_runtime.sfld` | Já sincronizado                           |
+| `SP179` no cliente   | Ausente do perfil legado                  |
+| `SP179` no servidor  | Presente                                  |
+
+O facto de `field_runtime.sfld` estar sincronizado não é um erro. Significa apenas que a última compilação produziu o mesmo conteúdo que já estava instalado.
+
+## Corrigir a fonte de verdade antes do deploy
+
+Encontrei uma solução para preservar o `SP179` na Marina sem editar diretamente os packs.
+
+O compilador já suporta declarar um item para cliente e servidor através de `runtime_profiles`. O problema é que o validador da loja ainda verifica apenas os perfis legados.
+
+Preparei uma correção limitada a três ficheiros do `SourceCode`:
+
+1. Autoriza `SP179` nos dois perfis, no OpenItem canónico.
+2. Retira a supressão de `SP179` da configuração da Marina.
+3. Atualiza o validador para respeitar a autorização canónica.
+
+Descarregar correção canónica da Marina / SP179
+
+Testei-a numa cópia isolada: a validação da loja passou, os compiladores de cliente e servidor incluíram `SP179`, e o rollback restaurou os três ficheiros exatamente. Falta validar o comportamento visual do item no teu cliente.
+
+### 1. Pré-visualizar
+
+Guarda o script em `/home/gabriel/Transferências/` e executa:
+
+```
+python3 \
+  "/home/gabriel/Transferências/wsb_reconcile_sp179_canonical_20261012.py" \
+  --root "/home/gabriel/Área de Trabalho/summit" \
+  --state-dir "/home/gabriel/Transferências/patches/wsb_sp179_reconcile_state_20261012"
+```
+
+Se apresentar `STATUS=PASS_PREVIEW_NO_WRITES`, aplica:
+
+```
+python3 \
+  "/home/gabriel/Transferências/wsb_reconcile_sp179_canonical_20261012.py" \
+  --root "/home/gabriel/Área de Trabalho/summit" \
+  --state-dir "/home/gabriel/Transferências/patches/wsb_sp179_reconcile_state_20261012" \
+  --apply
+```
+
+Resultado esperado: `STATUS=PASS_CANONICAL_RECONCILED_BUILD_REQUIRED`.
+
+### 2. Recompilar o Content
+
+```
+set -o pipefail
+
+python3 \
+  "/home/gabriel/Área de Trabalho/summit/SourceCode/tools/content_port/consolidate_canonical_content.py" \
+  --repo-root "/home/gabriel/Área de Trabalho/summit" \
+  --no-deploy \
+  2>&1 | tee \
+  "/home/gabriel/Transferências/patches/wsb_content_sp179_reconciled_build.log"
+
+printf 'BUILD_EXIT=%s\n' "${PIPESTATUS[0]}"
+```
+
+Só avança com `BUILD_EXIT=0` e `CANONICAL_BUILD=PASS`.
+
+Para confirmar que os novos packs incluem o item:
+
+```
+python3 - <<'PY'
+from pathlib import Path
+import json
+
+base = Path("/home/gabriel/Área de Trabalho/summit/SourceCode/Content/packs")
+
+for role in ("client", "server"):
+    path = base / f"definitions_{role}.scfg.report.json"
+    doc = json.loads(path.read_text(encoding="utf-8"))
+
+    matches = [
+        row for row in doc.get("canonical_profile_override_rows", [])
+        if row.get("code", "").casefold() == "sp179"
+    ]
+
+    suppressed = [
+        row for row in doc.get("filtered_shop_tokens", [])
+        if row.get("id") == "npc.marina"
+        and row.get("token", "").casefold() == "sp179"
+    ]
+
+    print(
+        f"ROLE={role} "
+        f"SP179_ENABLED={bool(matches) and all(x.get('decision') == 'include' for x in matches)} "
+        f"MARINA_SP179_SUPPRESSED={bool(suppressed)}"
+    )
+PY
+```
+
+Esperamos `SP179_ENABLED=True` e `MARINA_SP179_SUPPRESSED=False` nos dois perfis.
+
+### 3. Fazer backup antes de publicar
+
+Com o cliente e servidor fechados:
+
+```
+python3 - <<'PY'
+from pathlib import Path
+from shutil import copytree
+
+root = Path("/home/gabriel/Área de Trabalho/summit")
+backup = Path("/home/gabriel/Transferências/patches/wsb_runtime_content_before_sp179_deploy_20261012")
+
+if backup.exists():
+    raise SystemExit(f"BACKUP_ALREADY_EXISTS={backup}")
+
+for role in ("cliente", "Servidor"):
+    source = root / role / "Content"
+    destination = backup / role / "Content"
+
+    if not source.is_dir():
+        raise SystemExit(f"MISSING={source}")
+
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    copytree(source, destination)
+    print(f"BACKUP_OK={destination}")
+
+print("STATUS=PASS_RUNTIME_CONTENT_BACKUP")
+PY
+```
+
+### 4. Publicar os packs compilados
+
+```
+set -o pipefail
+
+python3 \
+  "/home/gabriel/Área de Trabalho/summit/SourceCode/tools/content_port/deploy_runtime_content.py" \
+  --repo-root "/home/gabriel/Área de Trabalho/summit" \
+  2>&1 | tee \
+  "/home/gabriel/Transferências/patches/wsb_content_sp179_deploy.log"
+
+printf 'DEPLOY_EXIT=%s\n' "${PIPESTATUS[0]}"
+```
+
+E validar:
+
+```
+python3 \
+  "/home/gabriel/Área de Trabalho/summit/SourceCode/tools/content_port/validate_runtime_pack_resolution.py" \
+  --repo-root "/home/gabriel/Área de Trabalho/summit"
+```
+
+O esperado é `RESULT=PASS`.
+
+Depois disso, o fluxo estará alinhado: alterações no `SourceCode` → compilação → publicação → cliente e servidor a carregar os mesmos packs produzidos pela fonte.
+
+Este deploy não recompila o `Game.exe` e não resolve, por si só, o movimento do mapa 53, a visualização do 58 ou os monstros dos mapas 54–57. Mas elimina a divergência atual dos packs e dá-nos uma base consistente para testar essas correções sem perder a configuração da Marina.

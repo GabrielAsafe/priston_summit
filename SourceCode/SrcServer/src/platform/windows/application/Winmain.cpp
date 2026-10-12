@@ -16,7 +16,9 @@
 #include "systems/security/legacy/process_integrity/cracker.h"
 
 //engine gráfica rede e sistema
-#include "systems/rendering/legacy_3d/smd3d.h" //engine 3D (renderização, modelos, câmera, Direct3D/OpenGL etc.).
+#include "systems/rendering/legacy_3d/smd3d.h"
+#define SUMMIT_NATIVE_ASE_REASON_265 1
+#include "systems/rendering/legacy_3d/NativeModelCook259.h" //engine 3D (renderização, modelos, câmera, Direct3D/OpenGL etc.).
 #include "systems/network/transport/legacy/smwsock.h" //wrapper de winsock/rede tcp/udp do projeto
 #include "platform/windows/registry/smreg.h"//acesso ao registro do windows e configuração
 
@@ -274,6 +276,10 @@ LONG WINAPI RedirectedSetUnhandledExceptionFilter(EXCEPTION_POINTERS * p)
 // Entry Point
 int main(int argv, char* argc[])
 {
+	// Offline native ASE cook is isolated from database, network and window startup.
+	if(argv > 1 && argc[1] && strcmp(argc[1], "--summit-cook-model-one") == 0)
+		return summit_model_cook_259::RunOne(argv, argc);
+
 	SetUnhandledExceptionFilter(unhandled_handler);
 	HookAPI("kernel32.dll", "SetUnhandledExceptionFilter", RedirectedSetUnhandledExceptionFilter);
 

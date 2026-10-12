@@ -10,8 +10,8 @@
   ],
   "source": {
     "legacy_path": "Servidor/GameServer/NPC/name/dailyquest.zhoon",
-    "legacy_sha256": "fbd64bd4587fefddddb501069bb1fc808e1cda0dc65806451d57b22068888f84",
-    "legacy_size": 259
+    "legacy_sha256": "d8353b03f23f781643316f5aba2d710d5fad7c899602ed30aa827eab83b047a3",
+    "legacy_size": 252
   },
   "semantic": {
     "entries": [
@@ -19,7 +19,7 @@
         "line": 4,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Removedor de Combinação/Aprimoramento"
+        "text": "Removedor de Combinação/Aprim."
       },
       {
         "line": 7,
@@ -43,6 +43,6 @@
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9kYWlseXF1ZXN0Lk5QQw0KDQoNCipKX05hbWUJIlJlbW92ZWRvciBkZSBDb21iaW5h5+NvL0Fwcmltb3JhbWVudG8iDQoNCg0KKkpfQ2hhdAkiUmVtb3ZhIGNvbSBzZWd1cmFu52EgbyBhcHJpbW9yYW1lbnRvIG91IGEgY29tYmluYefjbyBkbyBzZXUgaXRlbS4iDQoNCipKX0NoYXQJIkxpbXBlemEgZGUgaXRlbnMgZG8gU3VtbWl0IFRhbGUuIg0KDQoqSl9DaGF0CSJRdWVyIHNldSBpdGVtIGxpbXBpbmhvPyBWZW5oYSBmYWxhciBjb21pZ28gOykiDQoNCg=="
+    "legacy_payload_base64": "Ly9kYWlseXF1ZXN0Lk5QQw0KDQoNCipKX05hbWUJIlJlbW92ZWRvciBkZSBDb21iaW5h5+NvL0FwcmltLiINCg0KDQoqSl9DaGF0CSJSZW1vdmEgY29tIHNlZ3VyYW7nYSBvIGFwcmltb3JhbWVudG8gb3UgYSBjb21iaW5h5+NvIGRvIHNldSBpdGVtLiINCg0KKkpfQ2hhdAkiTGltcGV6YSBkZSBpdGVucyBkbyBTdW1taXQgVGFsZS4iDQoNCipKX0NoYXQJIlF1ZXIgc2V1IGl0ZW0gbGltcGluaG8/IFZlbmhhIGZhbGFyIGNvbWlnbyA7KSINCg0K"
   }
 }

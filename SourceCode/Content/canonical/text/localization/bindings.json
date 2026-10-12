@@ -13813,6 +13813,55 @@
       "linked_resource_id": null
     },
     {
+      "content_id": "monster.172_igniculus",
+      "kind": "monster_definition",
+      "name_key": "monster.172_igniculus.name",
+      "chat_keys": [],
+      "linked_resource_id": null
+    },
+    {
+      "content_id": "monster.174_lavaarmor",
+      "kind": "monster_definition",
+      "name_key": "monster.174_lavaarmor.name",
+      "chat_keys": [],
+      "linked_resource_id": null
+    },
+    {
+      "content_id": "monster.175_lavaarcher",
+      "kind": "monster_definition",
+      "name_key": "monster.175_lavaarcher.name",
+      "chat_keys": [],
+      "linked_resource_id": null
+    },
+    {
+      "content_id": "monster.176_insec",
+      "kind": "monster_definition",
+      "name_key": "monster.176_insec.name",
+      "chat_keys": [],
+      "linked_resource_id": null
+    },
+    {
+      "content_id": "monster.177_lavagolem",
+      "kind": "monster_definition",
+      "name_key": "monster.177_lavagolem.name",
+      "chat_keys": [],
+      "linked_resource_id": null
+    },
+    {
+      "content_id": "monster.178_lavagiant",
+      "kind": "monster_definition",
+      "name_key": "monster.178_lavagiant.name",
+      "chat_keys": [],
+      "linked_resource_id": null
+    },
+    {
+      "content_id": "monster.179_flamo",
+      "kind": "monster_definition",
+      "name_key": "monster.179_flamo.name",
+      "chat_keys": [],
+      "linked_resource_id": null
+    },
+    {
       "content_id": "monster.17_esqueleto",
       "kind": "monster_definition",
       "name_key": "monster.17_esqueleto.name",
@@ -13823,6 +13872,13 @@
       "content_id": "monster.17_planta_mort_u00edfera",
       "kind": "monster_definition",
       "name_key": "monster.17_planta_mort_u00edfera.name",
+      "chat_keys": [],
+      "linked_resource_id": null
+    },
+    {
+      "content_id": "monster.190_flamemaiden",
+      "kind": "monster_definition",
+      "name_key": "monster.190_flamemaiden.name",
       "chat_keys": [],
       "linked_resource_id": null
     },
@@ -13914,6 +13970,20 @@
       "content_id": "monster.2_cogumelo_fantasma",
       "kind": "monster_definition",
       "name_key": "monster.2_cogumelo_fantasma.name",
+      "chat_keys": [],
+      "linked_resource_id": null
+    },
+    {
+      "content_id": "monster.30_maplefairy",
+      "kind": "monster_definition",
+      "name_key": "monster.30_maplefairy.name",
+      "chat_keys": [],
+      "linked_resource_id": null
+    },
+    {
+      "content_id": "monster.30_mapletree",
+      "kind": "monster_definition",
+      "name_key": "monster.30_mapletree.name",
       "chat_keys": [],
       "linked_resource_id": null
     },

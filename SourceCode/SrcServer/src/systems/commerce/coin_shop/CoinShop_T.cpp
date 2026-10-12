@@ -1,4 +1,5 @@
 #include <cstring>
+#include "gameplay/commerce/v2/PremiumPurchaseWire.h"
 #include "systems/network/protocol/server/opcodes.h"
 #include "systems/commerce/coin_shop/CoinShop_T.h"
 #include "content/v1/commerce/coin_shop/content/CoinShopRuntime.h"
@@ -20,6 +21,32 @@ bool SummitCoinShopTSend(rsPLAYINFO *recipient, const void *data, int size)
 		gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(recipient);
 	return gameplay::network::legacy::ServerLegacyPacketSender().Send(
 		playerId, gameplay::network::PacketView(data, static_cast<std::size_t>(size), 0u)).Succeeded();
+}
+
+void SummitPremiumCoinShop_TResult(rsPLAYINFO *recipient, int requestId, int resultCode, int balance)
+{
+    smTRANS_COMMAND packet = {};
+    packet.size = sizeof(packet);
+    packet.code = gameplay::commerce::premium_wire::ResultOpcode;
+    packet.WParam = requestId;
+    packet.LParam = resultCode;
+    packet.SParam = gameplay::commerce::premium_wire::TimeScope;
+    packet.EParam = balance;
+    (void)SummitCoinShopTSend(recipient, &packet, packet.size);
+}
+
+int SummitPremiumCoinShop_TResultCode(gameplay::commerce::PremiumPurchaseCode code)
+{
+    using namespace gameplay::commerce;
+    switch (code) {
+    case PremiumPurchaseCode::Purchased: return premium_wire::Purchased;
+    case PremiumPurchaseCode::InvalidPlayer:
+    case PremiumPurchaseCode::InvalidPrice: return premium_wire::InvalidRequest;
+    case PremiumPurchaseCode::WalletNotFound: return premium_wire::WalletUnavailable;
+    case PremiumPurchaseCode::InsufficientFunds: return premium_wire::InsufficientFunds;
+    case PremiumPurchaseCode::GrantRejected: return premium_wire::DeliveryRejected;
+    default: return premium_wire::TransactionRejected;
+    }
 }
 
 gameplay::commerce::IPremiumPurchaseReplayStore& SummitTimeShopReplayGuard()
@@ -284,12 +311,8 @@ public:
 		if(!player || request.itemCode.empty())
 			return false;
 
-		const char first = request.itemCode[0];
-        // PATCH 231: a no-op grant is NOT a successful purchase. Until
-        // a concrete entitlement grant exists, reject and roll back currency.
-        if(first == 'P' || first == 'p' || first == 'G' || first == 'g')
-            return false;
-
+if(gameplay::commerce::premium_wire::UnsupportedLegacyNoOp(request.itemCode.c_str()))
+			return false; // Never charge for a non-existent special-effect grant.
 		psITEM item = {};
 		if(CreateItem(&item, const_cast<char*>(request.itemCode.c_str()), player->smCharInfo.JOB_CODE) != TRUE)
 			return false;
@@ -320,8 +343,21 @@ void cCOINSHOP_T::RecvBuyShopItem(rsPLAYINFO * lpPlayInfo, smTRANS_BUYSHOP * lpT
 {
 	if(!lpPlayInfo || !lpTransBuy)
 		return;
-	if(lpTransBuy->ItemIndex < 0)
+	// Reject malformed/unbounded network item codes before string or SQL access.
+	if(lpTransBuy->ItemIndex < 0 ||
+	   !std::memchr(lpTransBuy->szItemCode, 0, sizeof(lpTransBuy->szItemCode)) ||
+	   !lpTransBuy->szItemCode[0])
+	{
+		SummitPremiumCoinShop_TResult(lpPlayInfo, lpTransBuy->ItemIndex,
+			gameplay::commerce::premium_wire::InvalidRequest, -1);
 		return;
+	}
+	if(gameplay::commerce::premium_wire::UnsupportedLegacyNoOp(lpTransBuy->szItemCode))
+	{
+		SummitPremiumCoinShop_TResult(lpPlayInfo, lpTransBuy->ItemIndex,
+			gameplay::commerce::premium_wire::UnavailableProduct, -1);
+		return;
+	}
 
 	gameplay::commerce::PremiumPurchaseOperation operation;
 	operation.purchaserKey = lpPlayInfo->getAccount() ? lpPlayInfo->getAccount() : "";
@@ -332,6 +368,8 @@ void cCOINSHOP_T::RecvBuyShopItem(rsPLAYINFO * lpPlayInfo, smTRANS_BUYSHOP * lpT
 		SummitTimeShopReplayGuard().Reserve(operation);
 	if(!replay.MayExecute())
 	{
+		SummitPremiumCoinShop_TResult(lpPlayInfo, lpTransBuy->ItemIndex,
+			gameplay::commerce::premium_wire::ReplayedRequest, -1);
 		RecvGetItemCoin(lpPlayInfo);
 		return;
 	}
@@ -354,6 +392,8 @@ void cCOINSHOP_T::RecvBuyShopItem(rsPLAYINFO * lpPlayInfo, smTRANS_BUYSHOP * lpT
 		}
 	}
 
+	int finalResultCode = gameplay::commerce::premium_wire::UnavailableProduct;
+	int finalBalance = -1;
 	if(price > 0)
 	{
 		const gameplay::PlayerId playerId =
@@ -367,6 +407,11 @@ void cCOINSHOP_T::RecvBuyShopItem(rsPLAYINFO * lpPlayInfo, smTRANS_BUYSHOP * lpT
 		request.price = price;
 		request.itemCode = lpTransBuy->szItemCode;
 		const gameplay::commerce::PremiumPurchaseResult result = transaction.Purchase(request);
+		finalResultCode = SummitPremiumCoinShop_TResultCode(result.code);
+		// Preserve the authoritative balance from the transaction snapshot.
+		if(result.code != gameplay::commerce::PremiumPurchaseCode::WalletNotFound &&
+		   result.code != gameplay::commerce::PremiumPurchaseCode::InvalidPlayer)
+			finalBalance = static_cast<int>(result.after);
 		if(replay.Reserved())
 		{
 			if(result.Purchased())
@@ -398,6 +443,7 @@ void cCOINSHOP_T::RecvBuyShopItem(rsPLAYINFO * lpPlayInfo, smTRANS_BUYSHOP * lpT
 		(void)SummitTimeShopReplayGuard().Abort(operation);
 	}
 
+	SummitPremiumCoinShop_TResult(lpPlayInfo, lpTransBuy->ItemIndex, finalResultCode, finalBalance);
 	RecvGetItemCoin(lpPlayInfo);
 }
 

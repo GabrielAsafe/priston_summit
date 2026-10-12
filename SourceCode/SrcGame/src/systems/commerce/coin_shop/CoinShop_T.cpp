@@ -1,5 +1,6 @@
 #include "opcodes.h"
 #include "systems/commerce/coin_shop/CoinShop_T.h"
+#include "systems/commerce/coin_shop/PremiumPurchaseFeedback.h"
 #include "systems/network/v2/legacy/LegacyBackendChannelSender.h"
 #include "gameplay/commerce/v2/PremiumPurchaseRequestSequence.h"
 
@@ -358,6 +359,11 @@ void cCOINSHOP_T::BuySelectedItem()
 		cMessageBox.ShowMessageEvent("Selecione um item para comprar.");
 		return;
 	}
+	// One transaction in flight per shop; a missing reply expires safely.
+	if (PendingPurchaseId != 0) {
+		if (GetTickCount() - PendingPurchaseAt < 10000u) return;
+		PendingPurchaseId = 0;
+	}
 
 	if (Coin < SelectedBox->Price)
 	{
@@ -380,15 +386,37 @@ void cCOINSHOP_T::BuySelectedItem()
 	smTRANS_BUYSHOP TransBuy = {};
 	TransBuy.code = OpCode::OPCODE_BUY_SHOPITEM_T;
 	TransBuy.size = sizeof(smTRANS_BUYSHOP);
-	TransBuy.ItemIndex = static_cast<int>(SummitPremiumPurchaseRequestSequence().Next());
+	const std::uint32_t requestId = SummitPremiumPurchaseRequestSequence().Next();
+	if(requestId == 0u) {
+		// Counter could not be persisted; never send an untracked purchase.
+		SummitPremiumPurchaseFeedback(gameplay::commerce::premium_wire::TransactionRejected);
+		return;
+	}
+	TransBuy.ItemIndex = static_cast<int>(requestId);
 	lstrcpy(TransBuy.szItemCode, SelectedBox->psItem->LastCategory);
-	(void)gameplay::network::legacy::ClientLegacyBackendChannelSender().Send(
+	const bool sent = gameplay::network::legacy::ClientLegacyBackendChannelSender().Send(
 		gameplay::network::BackendChannel::Data,
 		gameplay::network::PacketView(&TransBuy, static_cast<std::size_t>(TransBuy.size),
-		                              static_cast<std::uint32_t>(TransBuy.code)));
+		                              static_cast<std::uint32_t>(TransBuy.code))).Succeeded();
+	if (sent) {
+		PendingPurchaseId = static_cast<unsigned int>(TransBuy.ItemIndex);
+		PendingPurchaseAt = GetTickCount();
+	} else {
+		SummitPremiumPurchaseFeedback(gameplay::commerce::premium_wire::TransactionRejected);
+	}
+}
 
-	// PATCH 227: confirmation must come from server after item grant.
-	// A send attempt alone is never proof of a completed purchase.
+void cCOINSHOP_T::RecvPurchaseResult(const smTRANS_COMMAND* result)
+{
+	if(!result || PendingPurchaseId == 0 ||
+	   static_cast<unsigned int>(result->WParam) != PendingPurchaseId)
+		return; // Ignore stale or unsolicited results.
+	PendingPurchaseId = 0;
+	if(result->EParam >= 0) {
+		Coin = result->EParam;
+		BalanceReceived = true;
+	}
+	SummitPremiumPurchaseFeedback(result->LParam);
 }
 
 bool cCOINSHOP_T::LButtonDown()

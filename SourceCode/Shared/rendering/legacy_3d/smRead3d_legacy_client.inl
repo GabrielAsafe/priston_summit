@@ -1,6 +1,7 @@
 
 #include "systems/rendering/legacy_3d/smd3d.h"
 #include "diagnostics/RuntimeAssetProbe.h"
+#include "io/LegacyPath.h"
 
 thread_local char DataDirectory[128];
 
@@ -105,36 +106,18 @@ char *SetDirectoryFromFile(char *filename)
 }
 
 
-thread_local char szChangeFileExt[64];
-
+// The legacy buffer was only 64 bytes and its strcpy_s remaining-capacity
+// arithmetic was incorrect. Real asset paths may exceed that limit.
+// Keep this scratch storage thread-local as the worker-side ASE importer needs.
+thread_local char szChangeFileExt[512];
 
 char *ChangeFileExt(char *filename, char *FileExt)
 {
-	int cnt, len;
-
-	strcpy_s(szChangeFileExt, sizeof(szChangeFileExt), filename);
-	len = lstrlen(szChangeFileExt);
-
-	for(cnt = len - 1; cnt >= 0; cnt--)
-	{
-		if(szChangeFileExt[cnt] == '.')
-		{
-			strcpy_s(&szChangeFileExt[cnt + 1], sizeof(szChangeFileExt) - cnt + 1, FileExt);
-			return szChangeFileExt;
-		}
-	}
-
-	szChangeFileExt[len] = '.';
-
-	strcpy_s(szChangeFileExt + len + 1, sizeof(szChangeFileExt) - len - 1, FileExt);
-
-	return szChangeFileExt;
+    if(!summit::io::ReplaceFileExtension(
+        filename, FileExt, szChangeFileExt, sizeof(szChangeFileExt)))
+        szChangeFileExt[0] = 0;
+    return szChangeFileExt;
 }
-
-
-
-
-
 
 
 thread_local ASE_MATERIAL	aseMaterial[MATRIAL_MAX * 2];

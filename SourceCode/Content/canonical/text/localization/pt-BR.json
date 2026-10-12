@@ -11657,6 +11657,48 @@
       "source": "monster.15_u00c1rvore"
     },
     {
+      "key": "monster.172_igniculus.name",
+      "text": "Igniculus",
+      "quality": "translated",
+      "source": "monster.172_igniculus"
+    },
+    {
+      "key": "monster.174_lavaarmor.name",
+      "text": "Lava Guard",
+      "quality": "translated",
+      "source": "monster.174_lavaarmor"
+    },
+    {
+      "key": "monster.175_lavaarcher.name",
+      "text": "Lava Archer",
+      "quality": "translated",
+      "source": "monster.175_lavaarcher"
+    },
+    {
+      "key": "monster.176_insec.name",
+      "text": "Insec",
+      "quality": "translated",
+      "source": "monster.176_insec"
+    },
+    {
+      "key": "monster.177_lavagolem.name",
+      "text": "Lava Golem",
+      "quality": "translated",
+      "source": "monster.177_lavagolem"
+    },
+    {
+      "key": "monster.178_lavagiant.name",
+      "text": "Lava Giant",
+      "quality": "translated",
+      "source": "monster.178_lavagiant"
+    },
+    {
+      "key": "monster.179_flamo.name",
+      "text": "Flamo",
+      "quality": "translated",
+      "source": "monster.179_flamo"
+    },
+    {
       "key": "monster.17_esqueleto.name",
       "text": "Esqueleto",
       "quality": "translated",
@@ -11667,6 +11709,12 @@
       "text": "Planta Mortífera",
       "quality": "translated",
       "source": "pt-BR-canonical-override"
+    },
+    {
+      "key": "monster.190_flamemaiden.name",
+      "text": "Flame Maiden",
+      "quality": "translated",
+      "source": "monster.190_flamemaiden"
     },
     {
       "key": "monster.19_esqueleto_do_mal.name",
@@ -11745,6 +11793,18 @@
       "text": "Cogumelo Fantasma",
       "quality": "translated",
       "source": "monster.2_cogumelo_fantasma"
+    },
+    {
+      "key": "monster.30_maplefairy.name",
+      "text": "MapleFairy",
+      "quality": "translated",
+      "source": "monster.30_maplefairy"
+    },
+    {
+      "key": "monster.30_mapletree.name",
+      "text": "MapleTree",
+      "quality": "translated",
+      "source": "monster.30_mapletree"
     },
     {
       "key": "monster.30_parasita.name",
@@ -17357,6 +17417,294 @@
       "source": "text.zarad_o_elengante"
     },
     {
+      "key": "premium.active.description",
+      "text": "Efeito premium ativo.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.active.title",
+      "text": "Premium",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.big_head.description",
+      "text": "Efeito de Cabeça Grande ativo.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.big_head.title",
+      "text": "Cabeça Grande",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.caravan.description",
+      "text": "Caravana ativa.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.caravan.title",
+      "text": "Caravana",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.drop_bonus.description",
+      "text": "Drop +{percent}%",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.eor.description",
+      "text": "Eor ativo: ajuda em batalhas.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.eor.title",
+      "text": "Eor",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.exp_bonus.description",
+      "text": "EXP +{percent}%",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.exp_potion.title",
+      "text": "Bônus de EXP",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.gold_looter.description",
+      "text": "Coleta automática de ouro ativa.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.gold_looter.title",
+      "text": "Coletor de Ouro",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.hp_booster.description",
+      "text": "Bônus de HP ativo.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.hp_booster.title",
+      "text": "Booster de HP",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.mana_recharge.description",
+      "text": "Converte parte do dano em MP.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.mana_recharge.title",
+      "text": "Recarga de Mana",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.mana_reduce.description",
+      "text": "Consumo de MP -{percent}%",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.mana_reduce.title",
+      "text": "Redução de Mana",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.might_awell.description",
+      "text": "Poder de Awell ativo.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.might_awell.title",
+      "text": "Poder de Awell",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.mp_booster.description",
+      "text": "Bônus de MP ativo.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.mp_booster.title",
+      "text": "Booster de MP",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.mut.description",
+      "text": "Mut ativo: ajuda em batalhas.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.mut.title",
+      "text": "Mut",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.nepsys.description",
+      "text": "Nepsys ativo: ajuda em batalhas.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.nepsys.title",
+      "text": "Nepsys",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.phoenix.description",
+      "text": "Fênix ativa: ajuda em batalhas.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.phoenix.title",
+      "text": "Fênix",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.res_booster.description",
+      "text": "Bônus de RES ativo.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.res_booster.title",
+      "text": "Booster de RES",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.stamina_recharge.description",
+      "text": "Regeneração de stamina ativa.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.stamina_recharge.title",
+      "text": "Recarga de Stamina",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.stamina_reduce.description",
+      "text": "Consumo de SP -{percent}%",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.stamina_reduce.title",
+      "text": "Redução de Stamina",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.terry.description",
+      "text": "Terry ativo: ajuda em batalhas.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.terry.title",
+      "text": "Terry",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.third_eyes.title",
+      "text": "Terceiro Olho",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.vampiric.description",
+      "text": "Converte parte do dano em HP.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.vampiric.title",
+      "text": "Presa de Vampiro",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.vampiric_ex.description",
+      "text": "Super Presa de Vampiro ativa.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.vampiric_ex.title",
+      "text": "Super Presa de Vampiro",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "status.active.title",
+      "text": "Efeito ativo",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "status.missing_icon.description",
+      "text": "Ícone não resolvido; consulte LOGS/missing_status_icons.log",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "status.remaining.title",
+      "text": "Tempo restante: ",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "status.vip.description",
+      "text": "Benefícios VIP ativos, conforme configuração do servidor.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "status.vip.help",
+      "text": "Use /comandos para consultar os atalhos VIP.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "status.vip.title",
+      "text": "VIP",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
       "key": "text.100_arqueira_das_cinzas.name",
       "text": "Arqueira das Cinzas",
       "quality": "translated",
@@ -22157,34 +22505,178 @@
       "source": "text.zinjya"
     },
     {
+      "key": "ui.death.description",
+      "text": "Escolha onde deseja renascer.",
+      "quality": "translated",
+      "source": "patch219_death_screen"
+    },
+    {
+      "key": "ui.death.exit",
+      "text": "Sair",
+      "quality": "translated",
+      "source": "patch219_death_screen"
+    },
+    {
+      "key": "ui.death.field",
+      "text": "No campo",
+      "quality": "translated",
+      "source": "patch219_death_screen"
+    },
+    {
+      "key": "ui.death.field_blocked",
+      "text": "Renascer no campo está indisponível nesta situação.",
+      "quality": "translated",
+      "source": "patch219_death_screen"
+    },
+    {
+      "key": "ui.death.timeout",
+      "text": "Sem escolha, você renascerá automaticamente na cidade.",
+      "quality": "translated",
+      "source": "patch219_death_screen"
+    },
+    {
+      "key": "ui.death.title",
+      "text": "Personagem derrotado",
+      "quality": "translated",
+      "source": "patch219_death_screen"
+    },
+    {
+      "key": "ui.death.town",
+      "text": "Na cidade",
+      "quality": "translated",
+      "source": "patch219_death_screen"
+    },
+    {
+      "key": "ui.premium.purchase.delivery",
+      "text": "Entrega recusada; pagamento revertido.",
+      "quality": "translated",
+      "source": "summit-patch233-override-reconcile"
+    },
+    {
+      "key": "ui.premium.purchase.funds",
+      "text": "Saldo insuficiente para esta compra.",
+      "quality": "translated",
+      "source": "summit-patch233-override-reconcile"
+    },
+    {
+      "key": "ui.premium.purchase.replayed",
+      "text": "Compra não repetida: pedido já processado.",
+      "quality": "translated",
+      "source": "summit-patch233-override-reconcile"
+    },
+    {
+      "key": "ui.premium.purchase.request",
+      "text": "Compra recusada: pedido inválido.",
+      "quality": "translated",
+      "source": "summit-patch233-override-reconcile"
+    },
+    {
+      "key": "ui.premium.purchase.success",
+      "text": "Compra concluída. Confere o item no inventário.",
+      "quality": "translated",
+      "source": "summit-patch233-override-reconcile"
+    },
+    {
+      "key": "ui.premium.purchase.transaction",
+      "text": "Compra não concluída. Tenta novamente.",
+      "quality": "translated",
+      "source": "summit-patch233-override-reconcile"
+    },
+    {
+      "key": "ui.premium.purchase.unavailable",
+      "text": "Produto indisponível: entrega não implementada.",
+      "quality": "translated",
+      "source": "summit-patch233-override-reconcile"
+    },
+    {
+      "key": "ui.premium.purchase.wallet",
+      "text": "Saldo premium indisponível no servidor.",
+      "quality": "translated",
+      "source": "summit-patch233-override-reconcile"
+    },
+    {
+      "key": "ui.shop.need.dexterity",
+      "text": "Destreza {required} (atual {current})",
+      "quality": "translated",
+      "source": "patch220_shop_reasons"
+    },
+    {
+      "key": "ui.shop.need.health",
+      "text": "Vida {required} (atual {current})",
+      "quality": "translated",
+      "source": "patch220_shop_reasons"
+    },
+    {
+      "key": "ui.shop.need.level",
+      "text": "Nível {required} (atual {current})",
+      "quality": "translated",
+      "source": "patch220_shop_reasons"
+    },
+    {
+      "key": "ui.shop.need.spirit",
+      "text": "Espírito {required} (atual {current})",
+      "quality": "translated",
+      "source": "patch220_shop_reasons"
+    },
+    {
+      "key": "ui.shop.need.strength",
+      "text": "Força {required} (atual {current})",
+      "quality": "translated",
+      "source": "patch220_shop_reasons"
+    },
+    {
+      "key": "ui.shop.need.talent",
+      "text": "Talento {required} (atual {current})",
+      "quality": "translated",
+      "source": "patch220_shop_reasons"
+    },
+    {
+      "key": "ui.shop.reject.class",
+      "text": "Classe incompatível com este item.",
+      "quality": "translated",
+      "source": "patch220_shop_reasons"
+    },
+    {
+      "key": "ui.shop.reject.requirements",
+      "text": "Falta: {details}",
+      "quality": "translated",
+      "source": "patch220_shop_reasons"
+    },
+    {
+      "key": "ui.shop.restriction.prefix",
+      "text": "Requer: ",
+      "quality": "translated",
+      "source": "patch220_shop_reasons"
+    },
+    {
       "key": "ui.shop.server_reject.gold",
       "text": "Compra recusada: ouro insuficiente no servidor.",
       "quality": "translated",
-      "source": "summit-patch230"
+      "source": "summit-patch233-override-reconcile"
     },
     {
       "key": "ui.shop.server_reject.invalid_item",
       "text": "Compra recusada: dados do item inválidos.",
       "quality": "translated",
-      "source": "summit-patch230"
+      "source": "summit-patch233-override-reconcile"
     },
     {
       "key": "ui.shop.server_reject.invalid_request",
       "text": "Compra recusada: pedido inválido.",
       "quality": "translated",
-      "source": "summit-patch230"
+      "source": "summit-patch233-override-reconcile"
     },
     {
       "key": "ui.shop.server_reject.inventory",
       "text": "Compra recusada: inventário indisponível.",
       "quality": "translated",
-      "source": "summit-patch230"
+      "source": "summit-patch233-override-reconcile"
     },
     {
       "key": "ui.shop.server_reject.transaction",
       "text": "Compra recusada pelo servidor.",
       "quality": "translated",
-      "source": "summit-patch230"
+      "source": "summit-patch233-override-reconcile"
     }
   ]
 }

@@ -2,6 +2,8 @@
 
 #include <cstdlib>
 #include <cstring>
+#include <cctype>
+#include <cstdio>
 #include <string>
 
 #include "content/v1/stage_spawn/content/CompiledStageSpawnContentSource.h"
@@ -18,11 +20,27 @@ namespace content
 namespace stage_spawn
 {
 
+inline bool LegacyAsciiEqualNoCase(const char *left,const char *right)
+{
+    if(!left || !right) return false;
+    while(*left && *right)
+    {
+        const unsigned char a=static_cast<unsigned char>(*left++);
+        const unsigned char b=static_cast<unsigned char>(*right++);
+        if(a<0x80 && b<0x80)
+        {
+            if(std::tolower(a)!=std::tolower(b)) return false;
+        }
+        else if(a!=b) return false;
+    }
+    return *left==0 && *right==0;
+}
+
 inline smCHAR_INFO *FindLegacyCharacterByName(smCHAR_INFO *characters,int count,const std::string &name)
 {
     if(!characters || count<=0) return 0;
     for(int i=0;i<count;++i)
-        if(std::strcmp(characters[i].szName,name.c_str())==0) return &characters[i];
+        if(LegacyAsciiEqualNoCase(characters[i].szName,name.c_str())) return &characters[i];
     return 0;
 }
 
@@ -65,7 +83,14 @@ inline bool MaterializeLegacyStageSpawn(const StageSpawnDefinition &definition,
         std::memcpy(dst.szMonsterName,src.legacyNameBytes.c_str(),src.legacyNameBytes.size()+1);
         smCHAR_INFO *character=FindLegacyCharacterByContentIdOrName(characters,characterCount,src.monsterId,src.legacyNameBytes);
         if(!character)
+        {
+            std::printf(
+                "[CONTENT][SPAWN] unresolved-actor id=%s legacy=%s\n",
+                src.monsterId.c_str(),
+                src.legacyNameBytes.c_str());
+            std::fflush(stdout);
             continue; // exact legacy observable behavior: this slot is reused by the next actor
+        }
         dst.lpCharInfo=character;
         dst.NumOpenStart=percentageTotal;
         dst.OpenPercentage=src.weight;
@@ -93,6 +118,13 @@ inline bool MaterializeLegacyStageSpawn(const StageSpawnDefinition &definition,
     staged.Counter=monsterCount;
     staged.PecetageCount=percentageTotal;
     output=staged;
+    std::printf(
+        "[CONTENT][SPAWN] materialized defined=%u resolved=%d weight=%d bosses=%d\n",
+        static_cast<unsigned int>(definition.actors.size()),
+        monsterCount,
+        percentageTotal,
+        staged.BossMonsterCount);
+    std::fflush(stdout);
     if(error) error->clear();
     return true;
 }
@@ -107,14 +139,40 @@ inline bool DecodeOpenMonsterViaContent(const char *sourceFile,
     StageSpawnDefinition definition;
     std::string error;
     summit::content::field_runtime::CompiledFieldRuntimeSource field(packPath.c_str());
-    if(!field.IsValid()) return false;
+    if(!field.IsValid())
+    {
+        std::printf("[CONTENT][SPAWN] field-pack-invalid path=%s error=%s\n",packPath.c_str(),field.LastError().c_str());
+        std::fflush(stdout);
+        return false;
+    }
     std::vector<unsigned char> spawnSection;
-    if(!field.LoadStageSpawnSection(spawnSection,&error)) return false;
+    if(!field.LoadStageSpawnSection(spawnSection,&error))
+    {
+        std::printf("[CONTENT][SPAWN] section-load-fail source=%s error=%s\n",sourceFile,error.c_str());
+        std::fflush(stdout);
+        return false;
+    }
     CompiledStageSpawnContentSource compiled(spawnSection);
-    if(!compiled.IsValid()) return false;
+    if(!compiled.IsValid())
+    {
+        std::printf("[CONTENT][SPAWN] compiled-invalid source=%s error=%s\n",sourceFile,compiled.LastError().c_str());
+        std::fflush(stdout);
+        return false;
+    }
     StageSpawnService service(compiled);
-    if(!service.Load(sourceFile,definition,&error)) return false;
-    return MaterializeLegacyStageSpawn(definition,*output,characters,characterCount,&error);
+    if(!service.Load(sourceFile,definition,&error))
+    {
+        std::printf("[CONTENT][SPAWN] definition-load-fail source=%s error=%s\n",sourceFile,error.c_str());
+        std::fflush(stdout);
+        return false;
+    }
+    const bool ok=MaterializeLegacyStageSpawn(definition,*output,characters,characterCount,&error);
+    if(!ok)
+    {
+        std::printf("[CONTENT][SPAWN] materialize-fail source=%s error=%s\n",sourceFile,error.c_str());
+        std::fflush(stdout);
+    }
+    return ok;
 }
 
 } // namespace stage_spawn

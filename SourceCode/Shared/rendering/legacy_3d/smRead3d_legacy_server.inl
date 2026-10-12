@@ -1,7 +1,13 @@
 #include <cstring>
+#include "ase/BoneMaterialPolicy268.h"
+#include "ase/OfflineBoneHierarchy273.h"
+#include "ase/FaceMaterialPolicy269.h"
+#include "ase/MateriallessMeshPolicy271.h"
+#include "ase/EmptyMaterialTablePolicy274.h"
 
 #include "systems/rendering/legacy_3d/smd3d.h"
 #include "diagnostics/RuntimeAssetProbe.h"
+#include "ase/ModelUvPolicy266.h"
 
 char DataDirectory[128];
 
@@ -28,62 +34,40 @@ struct smFCPOINT
 
 
 
+static const char* g_SummitASEFailure265 = "none";
+const char* smASEFailureReason265() { return g_SummitASEFailure265; }
+
 static char decode[256];
 static char line[256];
 char *GetWord(char *q, char *p)
 {
-
-
-	while((*p == 32) || (*p == 9) || (*p == 58))
-	{
-		p++;
-	}
-
-	while((*p != 32) && (*p != 9) && (*p != 58))
-	{
-		// MINGW_GETWORD_LINE_TERMINATOR_FIX_V1
-		if(*p == 0 || *p == '\n' || *p == '\r') break;
-		*q++ = *p++;
-	}
-	*q++ = 0;
-
-
-
-	return p;
+    // PATCH 264: GetWord receives decode[256] or strBuff[256] and must
+    // never walk past the source line or overrun the destination.
+    while(*p == ' ' || *p == '\t' || *p == ':') ++p;
+    size_t used = 0;
+    while(*p && *p != '\n' && *p != '\r' &&
+          *p != ' ' && *p != '\t' && *p != ':') {
+        if (used < 255) q[used++] = *p;
+        ++p;
+    }
+    q[used] = 0;
+    return p;
 }
 
 char *GetString(char *q, char *p)
 {
-	// MINGW_GETSTRING_BOUNDS_FIX_V1
-	while(*p != 34)
-	{
-		if(*p == 0 || *p == '\r' || *p == '\n')
-		{
-			*q = 0;
-			return p;
-		}
-		p++;
-	}
-
-	p++;
-
-	while(*p != 34)
-	{
-		if(*p == 0 || *p == '\r' || *p == '\n')
-		{
-			*q = 0;
-			return p;
-		}
-
-		*q++ = *p++;
-	}
-
-	if(*p == 34)
-		p++;
-
-	*q = 0;
-
-	return p;
+    // PATCH 264: quoted tokens use the same 256-byte destination.
+    while (*p && *p != '\n' && *p != '\r' && *p != '"') ++p;
+    if (*p != '"') { *q = 0; return p; }
+    ++p;
+    size_t used = 0;
+    while (*p && *p != '\n' && *p != '\r' && *p != '"') {
+        if (used < 255) q[used++] = *p;
+        ++p;
+    }
+    q[used] = 0;
+    if (*p == '"') ++p;
+    return p;
 }
 
 char *SetDirectoryFromFile(char *filename)
@@ -139,6 +123,16 @@ char *ChangeFileExt(char *filename, char *FileExt)
 ASE_MATERIAL	aseMaterial[MATRIAL_MAX * 2];
 
 int	aseMaterialCnt;
+
+// PATCH 274: ASE files may explicitly declare MATERIAL_COUNT 0. Their
+// non-zero MESH_MTLID fields are unbound slot labels, not texture indices.
+// Only the explicit offline cook command may normalize those labels.
+static bool g_SummitOfflineEmptyMaterials274 = false;
+static bool g_SummitASEEmptyMaterialTable274 = false;
+void smASE_EnableOfflineEmptyMaterials274(bool enabled)
+{
+    g_SummitOfflineEmptyMaterials274 = enabled;
+}
 
 
 #define BS_SCRIPT_MAX		7
@@ -629,24 +623,26 @@ static int				s_LightMapRefMax;
 static SLightMapRefInfo	s_LightMapRefBuff[dMAX_LIGHT_MAP_REF];
 
 
-FILE* ReadASE_LIGHTMAP_MATERIAL(FILE *fp, smMATERIAL_GROUP **MatGroup = 0)
+FILE* ReadASE_LIGHTMAP_MATERIAL(FILE *fp, smMATERIAL_GROUP **MatGroup = 0, bool *emptyTable274 = 0)
 {
 	char strBuff[256];
 	char strFile[256];
 	char *p;
 	int strLevel;
 	int OldStrLevel;
-	int mCount;
-	int smCount;
-	int MatrialNum;
-	int OldMatrialNum;
-	int SubMatrialNum;
-	int NewMatrial;
+	int mCount = -1;
+	bool sawMaterialDefinitions274 = false;
+	if (emptyTable274) *emptyTable274 = false;
+	int smCount = 0;
+	int MatrialNum = 0;
+	int OldMatrialNum = 0;
+	int SubMatrialNum = 0;
+	int NewMatrial = 0;
 
 	int curMatrialNum;
 	int BitMapNum;
-	int BitmapDiffuse;
-	int BitmapCnt;
+	int BitmapDiffuse = -1;
+	int BitmapCnt = -1;
 	int slen;
 	int cnt;
 
@@ -671,22 +667,36 @@ FILE* ReadASE_LIGHTMAP_MATERIAL(FILE *fp, smMATERIAL_GROUP **MatGroup = 0)
 	{
 		if(fgets(line, 255, fp) == NULL)
 		{
+			g_SummitASEFailure265 = "material_unterminated";
 			fclose(fp);
 			return FALSE;
 		}
 
 		p = GetWord(decode, line);
 
+        // A zero-count list with hidden material fields is not an empty
+        // registry. Never treat malformed or contradictory declarations as
+        // unbound legacy slots.
+        if (lstrcmp(decode, "*MATERIAL_NAME") == 0 ||
+            lstrcmp(decode, "*NUMSUBMTLS") == 0 ||
+            strncmp(decode, "*MAP_", 5) == 0 ||
+            strncmp(decode, "*UVW_", 5) == 0 ||
+            lstrcmp(decode, "*BITMAP") == 0)
+            sawMaterialDefinitions274 = true;
+
 		if(lstrcmp(decode, "*MATERIAL_COUNT") == 0)
 		{
 			p = GetWord(strBuff, p);
 			mCount = atoi(strBuff);
+			if (mCount < 0 || mCount > MATRIAL_MAX * 2) { g_SummitASEFailure265 = "material_count"; fclose(fp); return FALSE; }
 			NewMatrial = mCount;
 		}
 		if(lstrcmp(decode, "*MATERIAL") == 0)
 		{
+            sawMaterialDefinitions274 = true;
 			p = GetWord(strBuff, p);
 			MatrialNum = atoi(strBuff);
+			if (MatrialNum < 0 || MatrialNum >= MATRIAL_MAX * 2) { g_SummitASEFailure265 = "material_index"; fclose(fp); return FALSE; }
 			curMatrialNum = MatrialNum;
 			BitmapCnt = -1;
 		}
@@ -760,8 +770,16 @@ FILE* ReadASE_LIGHTMAP_MATERIAL(FILE *fp, smMATERIAL_GROUP **MatGroup = 0)
 
 			p = GetWord(strBuff, p);
 			smCount = atoi(strBuff);
+			if (smCount < 0 || NewMatrial < 0 || NewMatrial > MATRIAL_MAX * 2 - smCount)
+			{ g_SummitASEFailure265 = "material_sub_count"; fclose(fp); return FALSE; }
 			aseMaterial[curMatrialNum].SubPoint = NewMatrial;
 
+			// PATCH 264: no preceding material reference means invalid ASE.
+			if (s_LightMapRefMax <= 0) {
+				g_SummitASEFailure265 = "material_sub_without_name";
+				fclose(fp);
+				return FALSE;
+			}
 			int LMRefMax = s_LightMapRefMax - 1;
 			if(s_LightMapRefBuff[LMRefMax].bLightMap == TRUE)
 			{
@@ -781,6 +799,7 @@ FILE* ReadASE_LIGHTMAP_MATERIAL(FILE *fp, smMATERIAL_GROUP **MatGroup = 0)
 		}
 		if(lstrcmp(decode, "*SUBMATERIAL") == 0)
 		{
+            sawMaterialDefinitions274 = true;
 			if(strLevel == OldStrLevel && OldMatrialNum)
 			{
 				MatrialNum = OldMatrialNum;
@@ -790,6 +809,8 @@ FILE* ReadASE_LIGHTMAP_MATERIAL(FILE *fp, smMATERIAL_GROUP **MatGroup = 0)
 			p = GetWord(strBuff, p);
 			SubMatrialNum = atoi(strBuff);
 			curMatrialNum = MatrialNum + SubMatrialNum;
+			if (curMatrialNum < 0 || curMatrialNum >= MATRIAL_MAX * 2)
+			{ g_SummitASEFailure265 = "material_sub_index"; fclose(fp); return FALSE; }
 			BitmapCnt = -1;
 		}
 
@@ -846,6 +867,7 @@ FILE* ReadASE_LIGHTMAP_MATERIAL(FILE *fp, smMATERIAL_GROUP **MatGroup = 0)
 			switch(BitmapDiffuse)
 			{
 				case 1:
+				if (BitmapCnt >= 7) { g_SummitASEFailure265 = "material_texture_limit"; fclose(fp); return FALSE; }
 				BitmapCnt++;
 				strcpy_s(aseMaterial[curMatrialNum].BITMAP[BitmapCnt], strFile);
 				aseMaterial[curMatrialNum].TextureCounter++;
@@ -864,27 +886,52 @@ FILE* ReadASE_LIGHTMAP_MATERIAL(FILE *fp, smMATERIAL_GROUP **MatGroup = 0)
 		if(lstrcmp(decode, "*UVW_U_OFFSET") == 0)
 		{
 			p = GetWord(strBuff, p);
-			aseMaterial[curMatrialNum].UVW_U_OFFSET[BitmapCnt] = (float)atof(strBuff);
+			// Optional ambient/opacity UV data must never index a diffuse slot.
+			if (BitmapDiffuse == 1)
+			{
+				if (BitmapCnt < 0 || BitmapCnt >= 8) { fclose(fp); return FALSE; }
+				aseMaterial[curMatrialNum].UVW_U_OFFSET[BitmapCnt] = (float)atof(strBuff);
+			}
 		}
 		if(lstrcmp(decode, "*UVW_V_OFFSET") == 0)
 		{
 			p = GetWord(strBuff, p);
-			aseMaterial[curMatrialNum].UVW_V_OFFSET[BitmapCnt] = (float)atof(strBuff);
+			// Optional ambient/opacity UV data must never index a diffuse slot.
+			if (BitmapDiffuse == 1)
+			{
+				if (BitmapCnt < 0 || BitmapCnt >= 8) { fclose(fp); return FALSE; }
+				aseMaterial[curMatrialNum].UVW_V_OFFSET[BitmapCnt] = (float)atof(strBuff);
+			}
 		}
 		if(lstrcmp(decode, "*UVW_U_TILING") == 0)
 		{
 			p = GetWord(strBuff, p);
-			aseMaterial[curMatrialNum].UVW_U_TILING[BitmapCnt] = (float)atof(strBuff);
+			// Optional ambient/opacity UV data must never index a diffuse slot.
+			if (BitmapDiffuse == 1)
+			{
+				if (BitmapCnt < 0 || BitmapCnt >= 8) { fclose(fp); return FALSE; }
+				aseMaterial[curMatrialNum].UVW_U_TILING[BitmapCnt] = (float)atof(strBuff);
+			}
 		}
 		if(lstrcmp(decode, "*UVW_V_TILING") == 0)
 		{
 			p = GetWord(strBuff, p);
-			aseMaterial[curMatrialNum].UVW_V_TILING[BitmapCnt] = (float)atof(strBuff);
+			// Optional ambient/opacity UV data must never index a diffuse slot.
+			if (BitmapDiffuse == 1)
+			{
+				if (BitmapCnt < 0 || BitmapCnt >= 8) { fclose(fp); return FALSE; }
+				aseMaterial[curMatrialNum].UVW_V_TILING[BitmapCnt] = (float)atof(strBuff);
+			}
 		}
 		if(lstrcmp(decode, "*UVW_ANGLE") == 0)
 		{
 			p = GetWord(strBuff, p);
-			aseMaterial[curMatrialNum].UVW_ANGLE[BitmapCnt] = (float)atof(strBuff);
+			// Optional ambient/opacity UV data must never index a diffuse slot.
+			if (BitmapDiffuse == 1)
+			{
+				if (BitmapCnt < 0 || BitmapCnt >= 8) { fclose(fp); return FALSE; }
+				aseMaterial[curMatrialNum].UVW_ANGLE[BitmapCnt] = (float)atof(strBuff);
+			}
 		}
 
 
@@ -1013,7 +1060,11 @@ FILE* ReadASE_LIGHTMAP_MATERIAL(FILE *fp, smMATERIAL_GROUP **MatGroup = 0)
 				EndSubPoint += s_LightMapRefBuff[cnt].MaxSubMtl;
 			}
 			else if(s_LightMapRefBuff[cnt].bLightMap)
-				return FALSE;
+			{
+			g_SummitASEFailure265 = "material_lightmap_sub";
+			fclose(fp);
+			return FALSE;
+			}
 		}
 	}
 
@@ -1097,6 +1148,11 @@ FILE* ReadASE_LIGHTMAP_MATERIAL(FILE *fp, smMATERIAL_GROUP **MatGroup = 0)
 		aseMaterial[cnt].Regist = TRUE;
 	}
 
+    // The flag is only set after all declarations have been parsed, and only
+    // for an explicitly empty material table (not an absent/malformed one).
+    if (emptyTable274 && mCount == 0 && !sawMaterialDefinitions274 &&
+        aseMaterialCnt == 0 && s_LightMapRefMax == 0)
+        *emptyTable274 = true;
 	return fp;
 }
 
@@ -1110,7 +1166,7 @@ static smMATERIAL	*smMatPattern;
 #define SCENE_TICKSPERFRAME		160
 int AseSceneLastFrame;
 
-FILE *ReadASE_GEOMOBJECT(FILE *fp, smOBJ3D *obj, char *szNodeName = 0)
+FILE *ReadASE_GEOMOBJECT(FILE *fp, smOBJ3D *obj, char *szNodeName = 0, bool boneOnly = false)
 {
 
 
@@ -1121,10 +1177,10 @@ FILE *ReadASE_GEOMOBJECT(FILE *fp, smOBJ3D *obj, char *szNodeName = 0)
 	char strBuff[256];
 	char *p;
 	int strLevel;
-	int nVertex;
-	int nFace;
-	int nTVertex;
-	int nTFace;
+	int nVertex = -1;
+	int nFace = -1;
+	int nTVertex = -1;
+	int nTFace = -1;
 	int InitFlag;
 	int InitTFlag;
 
@@ -1138,12 +1194,12 @@ FILE *ReadASE_GEOMOBJECT(FILE *fp, smOBJ3D *obj, char *szNodeName = 0)
 
 	float qx, qy, qz, qw;
 
-	smFTPOINT	*tPoint;
-	smTFACE		*tFace;
+	smFTPOINT	*tPoint = NULL;
+	smTFACE		*tFace = NULL;
 
 	int *FaceMatrial = 0;
-	int mCount = 0;
 	int MatrialRef = 0;
+	bool hasMaterialRef = false;
 	int cnt, cnt2;
 
 	smTM_ROT	TmRot[4096];
@@ -1189,13 +1245,26 @@ FILE *ReadASE_GEOMOBJECT(FILE *fp, smOBJ3D *obj, char *szNodeName = 0)
 	smFTPOINT	*lpTexVertex = NULL;
 	smTFACE		*lpTexFace = NULL;
 
+	// On parser failure release transient arrays and close the consumed FILE*.
+	auto failImport = [&]() -> FILE* {
+		delete[] FaceMatrial;
+		delete[] tPoint;
+		delete[] tFace;
+		delete[] tLightMapPoint;
+		delete[] tLightMapFace;
+		fclose(fp);
+		return NULL;
+	};
+	auto failImportWith = [&](const char* why) -> FILE* {
+		g_SummitASEFailure265 = why;
+		return failImport();
+	};
 
 	while(!feof(fp))
 	{
 		if(fgets(line, 255, fp) == NULL)
 		{
-			fclose(fp);
-			return FALSE;
+			return failImportWith("geometry_unterminated");
 		}
 
 		p = GetWord(decode, line);
@@ -1237,6 +1306,8 @@ FILE *ReadASE_GEOMOBJECT(FILE *fp, smOBJ3D *obj, char *szNodeName = 0)
 		{
 			p = GetWord(strBuff, p);
 			nTVertex = atoi(strBuff);
+			if (nTVertex < 0 || nTVertex > 1000000 || nFace < 0 || nFace > 1000000)
+				return failImportWith("geometry_uv_count");
 
 			if(bLightMap)
 			{
@@ -1271,11 +1342,13 @@ FILE *ReadASE_GEOMOBJECT(FILE *fp, smOBJ3D *obj, char *szNodeName = 0)
 
 		if(InitFlag == 0 && nVertex >= 0 && nFace >= 0)
 		{
+			if (nVertex > 1000000 || nFace > 1000000)
+				return failImportWith("geometry_vertex_face_count");
 
 			if(smPhysique) obj->Init(nVertex, nFace, 1);
 			else obj->Init(nVertex, nFace, 0);
 
-			FaceMatrial = new int[nFace];
+			FaceMatrial = new int[nFace]();
 			InitFlag++;
 		}
 
@@ -1383,6 +1456,7 @@ FILE *ReadASE_GEOMOBJECT(FILE *fp, smOBJ3D *obj, char *szNodeName = 0)
 		   lstrcmp(decode, "*CONTROL_TCB_ROT_KEY") == 0)
 		{
 			p = GetWord(strBuff, p);
+			if (TmRotCnt >= 4095) return failImportWith("geometry_invalid");
 			TmDRot[TmRotCnt].frame = (int)atoi(strBuff);
 			p = GetWord(strBuff, p);
 			TmDRot[TmRotCnt].x = atof(strBuff);
@@ -1410,6 +1484,7 @@ FILE *ReadASE_GEOMOBJECT(FILE *fp, smOBJ3D *obj, char *szNodeName = 0)
 		   lstrcmp(decode, "*CONTROL_BEZIER_POS_KEY") == 0)
 		{
 			p = GetWord(strBuff, p);
+			if (TmPosCnt >= 4095) return failImportWith("geometry_invalid");
 			TmPos[TmPosCnt].frame = atoi(strBuff);
 			p = GetWord(strBuff, p);
 			TmPos[TmPosCnt].x = (float)atof(strBuff);
@@ -1428,6 +1503,7 @@ FILE *ReadASE_GEOMOBJECT(FILE *fp, smOBJ3D *obj, char *szNodeName = 0)
 		   lstrcmp(decode, "*CONTROL_BEZIER_SCALE_KEY") == 0)
 		{
 			p = GetWord(strBuff, p);
+			if (TmScaleCnt >= 4095) return failImportWith("geometry_invalid");
 			TmScale[TmScaleCnt].frame = atoi(strBuff);
 			p = GetWord(strBuff, p);
 			TmScale[TmScaleCnt].x = (int)(atof(strBuff)*fONE);
@@ -1444,6 +1520,7 @@ FILE *ReadASE_GEOMOBJECT(FILE *fp, smOBJ3D *obj, char *szNodeName = 0)
 
 		if(lstrcmp(decode, "*MESH_VERTEX") == 0)
 		{
+			if (nVertex < 0 || VertexCnt >= nVertex) return failImportWith("geometry_vertex_index");
 			p = GetWord(strBuff, p);
 
 			if(atoi(strBuff) != VertexCnt)
@@ -1469,6 +1546,10 @@ FILE *ReadASE_GEOMOBJECT(FILE *fp, smOBJ3D *obj, char *szNodeName = 0)
 
 		if(lstrcmp(decode, "*MESH_FACE") == 0)
 		{
+			// PATCH 264: a declared face buffer must exist before writing.
+			if (nFace < 0 || FaceCnt >= nFace || !FaceMatrial) {
+				return failImportWith("geometry_face_count");
+			}
 			p = GetWord(strBuff, p);
 
 			p = GetWord(strBuff, p);
@@ -1483,8 +1564,11 @@ FILE *ReadASE_GEOMOBJECT(FILE *fp, smOBJ3D *obj, char *szNodeName = 0)
 			p = GetWord(strBuff, p);
 			c = (int)atoi(strBuff);
 
+			// PATCH 266: do not pass invalid geometry indices into the native mesh.
+			if (a < 0 || b < 0 || c < 0 || a >= nVertex || b >= nVertex || c >= nVertex)
+				return failImportWith("geometry_face_vertex");
 			obj->AddFace(a, b, c);
-
+			FaceCnt++;
 
 			for(cnt = 0; cnt < 16; cnt++)
 			{
@@ -1492,7 +1576,10 @@ FILE *ReadASE_GEOMOBJECT(FILE *fp, smOBJ3D *obj, char *szNodeName = 0)
 				if(lstrcmp(strBuff, "*MESH_MTLID") == 0)
 				{
 					p = GetWord(strBuff, p);
-					FaceMatrial[mCount++] = atoi(strBuff);
+					// PATCH 270: bind ID to its own face slot. A face without
+					// *MESH_MTLID retains its zero-initialized default,
+					// rather than shifting the IDs of all following faces.
+					FaceMatrial[FaceCnt - 1] = atoi(strBuff);
 					break;
 				}
 			}
@@ -1503,6 +1590,9 @@ FILE *ReadASE_GEOMOBJECT(FILE *fp, smOBJ3D *obj, char *szNodeName = 0)
 
 		if(lstrcmp(decode, "*MESH_TVERT") == 0)
 		{
+			if (!lpTexVertex || TVertexCnt >= nTVertex) {
+				return failImportWith("geometry_tvertex_count");
+			}
 			p = GetWord(strBuff, p);
 
 			if(atoi(strBuff) != TVertexCnt)
@@ -1522,6 +1612,9 @@ FILE *ReadASE_GEOMOBJECT(FILE *fp, smOBJ3D *obj, char *szNodeName = 0)
 
 		if(lstrcmp(decode, "*MESH_TFACE") == 0)
 		{
+			if (!lpTexFace || TFaceCnt >= nFace) {
+				return failImportWith("geometry_tface_count");
+			}
 			p = GetWord(strBuff, p);
 
 			if(atoi(strBuff) != TFaceCnt)
@@ -1546,6 +1639,7 @@ FILE *ReadASE_GEOMOBJECT(FILE *fp, smOBJ3D *obj, char *szNodeName = 0)
 		{
 			p = GetWord(strBuff, p);
 			MatrialRef = atoi(strBuff);
+			hasMaterialRef = true;
 		}
 
 
@@ -1616,14 +1710,65 @@ FILE *ReadASE_GEOMOBJECT(FILE *fp, smOBJ3D *obj, char *szNodeName = 0)
 	smFTPOINT	ftpoint[3];
 
 
-	for(cnt = 0; cnt < nFace; cnt++)
-	{
-		if(aseMaterial[MatrialRef].SubPoint)
-			fmat = aseMaterial[MatrialRef].SubPoint + FaceMatrial[cnt];
-		else
-			fmat = MatrialRef;
+	// PATCH 266: reject truncated meshes before their faces are materialized.
+	if ((nVertex < 0) != (nFace < 0) ||
+		(nVertex >= 0 && (VertexCnt != nVertex || FaceCnt != nFace)))
+		return failImportWith("geometry_incomplete_mesh");
 
-
+	// PATCH 268: skeleton ASE is read by smASE_ReadBone without
+	// *MATERIAL_LIST. Bone transform nodes may also have no *MESH block.
+	// If no geometry was declared, initialise the legacy object metadata
+	// before serialising the transforms (nFace is uninitialised otherwise).
+	if (boneOnly && nFace == -1)
+		obj->Init(0, 0, 0);
+	// Never interpret stale aseMaterial[]/smMatPattern as bone materials.
+	if (boneOnly) {
+		if (!summit_ase_bone268::AssignNeutralFaces(obj, nFace))
+			return failImportWith("bone_geometry_faces");
+	} else {
+		// PATCH 271: some animation geometry has no MATERIAL_LIST and no
+		// MATERIAL_REF. Preserve its faces with neutral material index 0,
+		// the representation understood by SMD (MatCounter=0). Never reuse
+		// an old global material registry, invent diffuse UVs, or silently
+		// discard non-zero per-face material IDs.
+		const bool materiallessMesh = summit_ase_mesh271::CanUseNeutral(
+			aseMaterialCnt, smMatPattern != NULL, hasMaterialRef,
+			nFace, FaceCnt, FaceMatrial);
+        // PATCH 274: a declared zero-count material list can carry non-zero
+        // per-face legacy slot IDs. With no real material and no MATERIAL_REF
+        // those IDs are semantically unbound, so keep faces with material 0.
+        // Never do this on normal server startup or for any nonempty registry.
+        const bool emptyTableUnbound274 = summit_ase_mesh274::CanNormalizeUnbound(
+            g_SummitOfflineEmptyMaterials274, g_SummitASEEmptyMaterialTable274,
+            aseMaterialCnt, hasMaterialRef, nFace, FaceCnt, FaceMatrial);
+		if (materiallessMesh || emptyTableUnbound274) {
+			if (!summit_ase_mesh271::AssignNeutralFaces(obj, nFace))
+				return failImportWith("geometry_neutral_faces");
+		} else {
+			// PATCH 264: regular mesh geometry MUST have valid materials.
+			if (nFace < 0 || (nFace > 0 &&
+				(!FaceMatrial || !smMatPattern ||
+				 MatrialRef < 0 || MatrialRef >= aseMaterialCnt))) {
+				return failImportWith("geometry_material_reference");
+			}
+			for(cnt = 0; cnt < nFace; cnt++)
+		{
+		// PATCH 269: only a declared multi/sub-object material can
+		// wrap face IDs. The count comes from the material parser, NOT
+		// from the remaining size of the global aseMaterial[] table.
+		// This preserves identity for existing in-range face IDs.
+		int subCount = 0;
+		if (aseMaterial[MatrialRef].SubPoint) {
+			if (MatrialRef >= s_LightMapRefMax)
+				return failImportWith("geometry_face_material");
+			// For lightmap groups MaxSubMtl already counts the copied
+			// colour submaterials (the two skipped slots are separate).
+			subCount = s_LightMapRefBuff[MatrialRef].MaxSubMtl;
+		}
+		if (!summit_ase_face269::Resolve(MatrialRef,
+			aseMaterial[MatrialRef].SubPoint, subCount, FaceMatrial[cnt],
+			aseMaterialCnt, &fmat))
+			return failImportWith("geometry_face_material");
 
 		mNum = aseMaterial[fmat].RegistNum;
 
@@ -1632,8 +1777,20 @@ FILE *ReadASE_GEOMOBJECT(FILE *fp, smOBJ3D *obj, char *szNodeName = 0)
 
 
 		TexCnt = smMatPattern[mNum].TextureCounter;
-
-
+		// PATCH 266: ASE nodes may contain faces without any UV mapping,
+		// even when the shared material lists a diffuse bitmap. smOBJ3D
+		// supports faces with no TexLink. Preserve their material and do
+		// not invent UVs. Partial UV streams are malformed and still fail.
+		if (TexCnt > 0 && !bLightMap) {
+			const summit_ase_uv266::Mode uvMode = summit_ase_uv266::Classify(
+				nTVertex, TVertexCnt, TFaceCnt, nFace, tPoint != NULL, tFace != NULL);
+			if (uvMode == summit_ase_uv266::Invalid)
+				return failImportWith("geometry_partial_uv");
+			if (uvMode == summit_ase_uv266::Absent)
+				TexCnt = 0; // no AddTexLink; SetFaceMaterial still runs
+		} else if (TexCnt > 0 && (!tPoint || !tFace)) {
+			return failImportWith("geometry_missing_uv");
+		}
 
 		if(bLightMap)
 			TexCnt--;
@@ -1650,6 +1807,9 @@ FILE *ReadASE_GEOMOBJECT(FILE *fp, smOBJ3D *obj, char *szNodeName = 0)
 			fSin = ((float)GetSin[((int)fAngle) & ANGLE_MASK]) / 65536;
 			fCos = ((float)GetCos[((int)fAngle) & ANGLE_MASK]) / 65536;
 
+			if (!summit_ase_uv266::FaceIndicesValid(
+				tFace[cnt].t[0], tFace[cnt].t[1], tFace[cnt].t[2], nTVertex))
+				return failImportWith("geometry_uv_face_index");
 			for(cnt2 = 0; cnt2 < 3; cnt2++)
 			{
 
@@ -1679,6 +1839,7 @@ FILE *ReadASE_GEOMOBJECT(FILE *fp, smOBJ3D *obj, char *szNodeName = 0)
 
 		if(bLightMap)
 		{
+			if (!tLightMapPoint || !tLightMapFace) return failImportWith("geometry_lightmap_uv");
 
 			fOffset_u = aseMaterial[fmat].UVW_U_OFFSET[tcnt];
 			fOffset_v = aseMaterial[fmat].UVW_V_OFFSET[tcnt];
@@ -1716,16 +1877,18 @@ FILE *ReadASE_GEOMOBJECT(FILE *fp, smOBJ3D *obj, char *szNodeName = 0)
 
 		obj->SetFaceMaterial(cnt, mNum);
 
-	}
+			}
+		} // Normal mesh material registry.
+	} // Bone-only import has no diffuse materials or texture links.
 
-	if(FaceMatrial) delete FaceMatrial;
-	if(tPoint) delete tPoint;
-	if(tFace) delete tFace;
+	if(FaceMatrial) delete[] FaceMatrial;
+	if(tPoint) delete[] tPoint;
+	if(tFace) delete[] tFace;
 
 
 
-	if(tLightMapPoint)	 delete tLightMapPoint;
-	if(tLightMapFace)	 delete tLightMapFace;
+	if(tLightMapPoint)	 delete[] tLightMapPoint;
+	if(tLightMapFace)	 delete[] tLightMapFace;
 
 
 
@@ -1943,6 +2106,7 @@ smPAT3D *smReadModel_Bip(char *file)
 
 smPAT3D *smASE_Read(char *file, char *szModelName)
 {
+	g_SummitASEFailure265 = "none";
 	summit::diagnostics::RuntimeAssetProbeAttempt("MODEL", "LOAD_ASE", file);
 	FILE *fp;
 	smOBJ3D *obj;
@@ -1965,7 +2129,7 @@ smPAT3D *smASE_Read(char *file, char *szModelName)
 
 	fp = fopen(file, "rt");
 
-	if(fp == NULL) return FALSE;
+	if(fp == NULL) { g_SummitASEFailure265 = "source_open"; return FALSE; }
 
 	pat = new smPAT3D;
 
@@ -1974,6 +2138,9 @@ smPAT3D *smASE_Read(char *file, char *szModelName)
 	s_bLightMapStage = FALSE;
 	s_LightMapRefMax = 0;
 	::ZeroMemory(s_LightMapRefBuff, sizeof(s_LightMapRefBuff));
+	aseMaterialCnt = 0;
+	smMatPattern = NULL;
+    g_SummitASEEmptyMaterialTable274 = false;
 
 	smMATERIAL_GROUP *lpMaterialGroup = NULL;
 
@@ -1992,11 +2159,45 @@ smPAT3D *smASE_Read(char *file, char *szModelName)
 
 		if(lstrcmp(decode, "*MATERIAL_LIST") == 0)
 		{
-			if((fp = ReadASE_LIGHTMAP_MATERIAL(fp, &lpMaterialGroup)) == FALSE)
+			if((fp = ReadASE_LIGHTMAP_MATERIAL(fp, &lpMaterialGroup,
+                &g_SummitASEEmptyMaterialTable274)) == FALSE) {
+				if (strcmp(g_SummitASEFailure265, "none") == 0)
+					g_SummitASEFailure265 = "material_rejected";
+				delete pat;
 				return FALSE;
-
-			pat->smMaterialGroup = lpMaterialGroup;
-			smMatPattern = pat->smMaterialGroup->smMaterial;
+			}
+            // PATCH 275: with MATERIAL_COUNT 0 the native SMD writer uses
+            // MatCounter=0. A non-null zero-material group nevertheless adds
+            // sizeof(smMATERIAL_GROUP) bytes before the first object. The
+            // native reader skips that group when MatCounter is zero, then
+            // interprets its bytes as smOBJ3D (including array lengths).
+            // Remove the empty group ONLY in the explicit offline policy;
+            // regular server/NPC loading preserves its prior behavior.
+            // PATCH 276: the validated zero-material offline path MUST
+            // stay null after PATCH 275's cleanup. Do not feed it into the
+            // nonempty registry check or dereference it to get smMaterial.
+            // This is the normal writer/reader contract for MatCounter=0.
+            const bool offlineEmptyRegistry276 =
+                g_SummitOfflineEmptyMaterials274 &&
+                g_SummitASEEmptyMaterialTable274 && aseMaterialCnt == 0;
+            if (offlineEmptyRegistry276) {
+                delete lpMaterialGroup;
+                lpMaterialGroup = NULL;
+                pat->smMaterialGroup = NULL;
+                smMatPattern = NULL;
+            } else {
+                if (!lpMaterialGroup || !lpMaterialGroup->smMaterial) {
+                    // The importer owns this temporary group until it is
+                    // transferred to pat. Do not leak it on a failed read.
+                    delete lpMaterialGroup;
+                    g_SummitASEFailure265 = "material_registry_empty";
+                    fclose(fp);
+                    delete pat;
+                    return FALSE;
+                }
+                pat->smMaterialGroup = lpMaterialGroup;
+                smMatPattern = lpMaterialGroup->smMaterial;
+            }
 		}
 
 
@@ -2015,8 +2216,11 @@ smPAT3D *smASE_Read(char *file, char *szModelName)
 
 
 			fp = ReadASE_GEOMOBJECT(fp, obj);
-
-
+			if (!fp) {
+				delete obj;
+				delete pat;
+				return NULL;
+			}
 
 			if((obj->NodeName[0] == 'B' && obj->NodeName[1] == 'i' && obj->NodeName[2] == 'p'))
 			{
@@ -2052,6 +2256,7 @@ smPAT3D *smASE_Read(char *file, char *szModelName)
 	delete pat;
 
 	pat = smReadModel(szFile, szName);
+	if (!pat) g_SummitASEFailure265 = "model_cache_readback";
 
 	return pat;
 
@@ -2059,8 +2264,16 @@ smPAT3D *smASE_Read(char *file, char *szModelName)
 
 
 
+static bool g_SummitOfflineBoneHierarchy273 = false;
+
+void smASE_EnableOfflineBoneHierarchy273(bool enabled)
+{
+    g_SummitOfflineBoneHierarchy273 = enabled;
+}
+
 smPAT3D *smASE_ReadBone(char *file)
 {
+	g_SummitASEFailure265 = "none";
 	summit::diagnostics::RuntimeAssetProbeAttempt("MOTION", "LOAD_ASE_BONE", file);
 	FILE *fp;
 	smOBJ3D *obj;
@@ -2080,6 +2293,7 @@ smPAT3D *smASE_ReadBone(char *file)
 	fp = fopen(file, "rt");
 	if(fp == NULL)
 	{
+		g_SummitASEFailure265 = "source_open";
 		if(szFile = smFindFile(file, szFileModelBip))
 		{
 			return smReadModel_Bip(szFile);
@@ -2120,10 +2334,24 @@ smPAT3D *smASE_ReadBone(char *file)
 		if(lstrcmp(decode, "*GEOMOBJECT") == 0)
 		{
 			obj = new smOBJ3D;
-			fp = ReadASE_GEOMOBJECT(fp, obj);
+			fp = ReadASE_GEOMOBJECT(fp, obj, 0, true);
+			if (!fp) {
+				delete obj;
+				delete pat;
+				return NULL;
+			}
 
-			if(obj->NodeName[0] == 'B' && obj->NodeName[1] == 'i' && obj->NodeName[2] == 'p')
-				pat->AddObject(obj);
+			if(obj->NodeName[0] == 'B' && obj->NodeName[1] == 'i' && obj->NodeName[2] == 'p') {
+                if (g_SummitOfflineBoneHierarchy273 && !pat->AddObject(obj)) {
+                    // Never silently truncate a skeleton past the native 128-node limit.
+                    g_SummitASEFailure265 = "bone_object_limit";
+                    delete obj;
+                    fclose(fp);
+                    delete pat;
+                    return NULL;
+                }
+                if (!g_SummitOfflineBoneHierarchy273) pat->AddObject(obj);
+            }
 			else
 				delete obj;
 
@@ -2132,12 +2360,29 @@ smPAT3D *smASE_ReadBone(char *file)
 
 	fclose(fp);
 
-	pat->LinkObject();
+	// PATCH 273: offline-only bounded topology sort. The old LinkObject()
+    // writes beyond TmSort on a parent cycle or when all roots are missing.
+    // Keep the normal server runtime reader's existing behavior unchanged.
+    if (g_SummitOfflineBoneHierarchy273) {
+        if (!summit_ase_bone273::LinkAndSort(pat)) {
+            g_SummitASEFailure265 = "bone_hierarchy_invalid";
+            delete pat;
+            return NULL;
+        }
+    } else {
+        pat->LinkObject();
+    }
 	pat->ReformTM();
 	smPhysique = pat;
 
 	szFile = ChangeFileExt(file, szFileModelBip);
-	pat->SaveFile(szFile);
+    if (g_SummitOfflineBoneHierarchy273 && !pat->SaveFile(szFile)) {
+        g_SummitASEFailure265 = "bone_save_failed";
+        smPhysique = NULL;
+        delete pat;
+        return NULL;
+    }
+    if (!g_SummitOfflineBoneHierarchy273) pat->SaveFile(szFile);
 
 	return pat;
 }
@@ -2194,7 +2439,12 @@ smPAT3D* smASE_TalkReadBone(char *file)
 		if(lstrcmp(decode, "*GEOMOBJECT") == 0)
 		{
 			obj = new smOBJ3D;
-			fp = ReadASE_GEOMOBJECT(fp, obj);
+			fp = ReadASE_GEOMOBJECT(fp, obj, 0, true);
+			if (!fp) {
+				delete obj;
+				delete pat;
+				return NULL;
+			}
 
 			if(obj->NodeName[0] == 'B' && obj->NodeName[1] == 'i' && obj->NodeName[2] == 'p')
 			{

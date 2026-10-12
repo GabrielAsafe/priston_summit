@@ -96,6 +96,11 @@ def candidate_paths(repo: Path) -> set[str]:
         for name in STALE_RUNTIME_PACKS:
             out.add(f"{role}/Content/packs/{name}")
 
+    # Old map compiler/deploy layouts used a lowercase content/maps tree.
+    # Modern runtime resolution is authoritative at Content/packs.
+    out.add("cliente/content/maps/maps_client.smap")
+    out.add("Servidor/content/maps/maps_server.smap")
+
     return out
 
 def validate_pack_presence(repo: Path) -> None:

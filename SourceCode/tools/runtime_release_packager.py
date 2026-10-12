@@ -29,9 +29,10 @@ DEFAULT_EXCLUDES = [
     "**/*.dmp",
     "**/*.tmp",
     "cliente/LoadItemImage_debug.txt",
-    # Legacy duplicate left by the old map-pack path. The active pack is
-    # cliente/Content/packs/maps_client.smap.
+    # Legacy duplicates left by the old map-pack path. Active packs live in
+    # <runtime>/Content/packs on both roles.
     "cliente/content/maps/maps_client.smap",
+    "Servidor/content/maps/maps_server.smap",
 ]
 
 RUNTIME_ROOTS = ("cliente", "Servidor")

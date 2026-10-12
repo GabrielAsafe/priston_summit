@@ -2156,6 +2156,9 @@ int rsLogOut(rsPLAYINFO *lpPlayInfo)
 int InitMonster()
 {
 
+	printf("[CONTENT][WORKSTREAM_B] runtime-diagnostics-v5 active\n");
+	fflush(stdout);
+
 	HANDLE hFindHandle;
 	WIN32_FIND_DATA	fd;
 	char	szFindPath[MAX_PATH];
@@ -2167,19 +2170,29 @@ int InitMonster()
 	//ZeroMemory(chrMonInfoList, sizeof(smCHAR_MONSTER_INFO)*CHR_MONSTER_MAX);
 
 	bool summitCompiledMonsters = false;
+	int summitCompiledMonsterSkipped = 0;
+	std::size_t summitCompiledMonsterEntries = 0;
 	if(summit::content::definition::CompiledDefinitionsEnabled())
 	{
 		std::vector<summit::content::definition::DefinitionEntry> entries;
 		if(summit::content::definition::ListCompiledDefinitions(MonsterPath, ".inf", true, entries, summit::content::definition::DefinitionKindMonster))
 		{
 			summitCompiledMonsters = true;
+			summitCompiledMonsterEntries = entries.size();
 			summit::content::text_resource::ClearLegacyContentIdBindings();
 			for(std::size_t index=0; index<entries.size() && chrMonsterCnt<CHR_MONSTER_MAX; ++index)
 			{
 				strcpy_s(szFilePath, entries[index].logicalPath.c_str());
 				if(!smCharDecode(szFilePath, &chrMonsterList[chrMonsterCnt], &chrMonInfoList[chrMonsterCnt], 0))
 				{
-					if(summit::content::definition::DefinitionStrictMode()) return FALSE;
+					printf(
+						"[CONTENT][MONSTER_DEF] decode-fail index=%u id=%s path=%s strict=%d action=skip\n",
+						static_cast<unsigned int>(index),
+						entries[index].contentId.c_str(),
+						entries[index].logicalPath.c_str(),
+						summit::content::definition::DefinitionStrictMode() ? 1 : 0);
+					fflush(stdout);
+					summitCompiledMonsterSkipped++;
 					continue;
 				}
 				summit::content::text_resource::RegisterLegacyContentPointer(entries[index].contentId, &chrMonsterList[chrMonsterCnt]);
@@ -2420,12 +2433,36 @@ int InitMonster()
 
 	if(summit::content::definition::CompiledDefinitionsEnabled())
 	{
-		fprintf(stderr,
+		printf(
+			"[CONTENT][MONSTER_DEF] summary entries=%u loaded=%d skipped=%d capacity=%d\n",
+			static_cast<unsigned int>(summitCompiledMonsterEntries),
+			chrMonsterCnt,
+			summitCompiledMonsterSkipped,
+			CHR_MONSTER_MAX);
+		static const char *workstreamBMonsterIds[] = {
+			"monster.172_igniculus",
+			"monster.174_lavaarmor",
+			"monster.175_lavaarcher",
+			"monster.176_insec",
+			"monster.177_lavagolem",
+			"monster.178_lavagiant",
+			"monster.179_flamo",
+			"monster.190_flamemaiden"
+		};
+		for(std::size_t workstreamIndex=0;
+			workstreamIndex<sizeof(workstreamBMonsterIds)/sizeof(workstreamBMonsterIds[0]);
+			++workstreamIndex)
+		{
+			void *bound = summit::content::text_resource::FindLegacyContentPointer(workstreamBMonsterIds[workstreamIndex]);
+			printf("[CONTENT][MONSTER_DEF] binding id=%s present=%d ptr=%p\n",
+				workstreamBMonsterIds[workstreamIndex], bound ? 1 : 0, bound);
+		}
+		printf(
 			"[NAVISKO][NIGHTMARE] init replacement=%p name=%s monsters=%d\n",
 			(void *)chrNpcMonsterInfo,
 			chrNpcMonsterInfo ? chrNpcMonsterInfo->szName : "<missing>",
 			chrMonsterCnt);
-		fflush(stderr);
+		fflush(stdout);
 	}
 
 	return TRUE;
@@ -8648,14 +8685,38 @@ int STG_AREA::LoadCharInfoFixed(char *szFile)
 	summit::content::field_runtime::CompiledFieldRuntimeSource source(fieldPackPath.c_str());
 	summit::content::field_runtime::FixedNpcSet placements;
 	std::string fieldError;
-	if(!source.IsValid() || !source.LoadFixedNpcs(szFile, placements, &fieldError))
+	if(!source.IsValid())
+	{
+		printf("[CONTENT][FIXED_NPC] field-pack-invalid field=%s pack=%s error=%s\n",
+			szFile, fieldPackPath.c_str(), source.LastError().c_str());
+		fflush(stdout);
 		return FALSE;
+	}
+	if(!source.LoadFixedNpcs(szFile, placements, &fieldError))
+	{
+		printf("[CONTENT][FIXED_NPC] lookup-fail field=%s pack=%s error=%s\n",
+			szFile, fieldPackPath.c_str(), fieldError.c_str());
+		fflush(stdout);
+		return FALSE;
+	}
 
+	int fixedNpcMaterialized = 0;
+	int fixedNpcSkipped = 0;
 	for(std::size_t i=0; i<placements.npcs.size(); ++i)
 	{
 		const summit::content::field_runtime::FixedNpcPlacement &src = placements.npcs[i];
 		if(src.slot >= FIX_CHAR_MAX || src.definitionPath.empty() || src.definitionPath.size() >= sizeof(TransCharFixed[0].smCharInfo.szModelName2))
-			return FALSE;
+		{
+			printf(
+				"[CONTENT][FIXED_NPC] invalid-placement field=%s slot=%u npc=%s def=%s\n",
+				szFile,
+				static_cast<unsigned int>(src.slot),
+				src.npcId.c_str(),
+				src.definitionPath.c_str());
+			fflush(stdout);
+			fixedNpcSkipped++;
+			continue;
+		}
 
 		smTRNAS_PLAYERINFO &dst = TransCharFixed[src.slot];
 		ZeroMemory(&dst, sizeof(dst));
@@ -8683,10 +8744,29 @@ int STG_AREA::LoadCharInfoFixed(char *szFile)
 		smCHAR_MONSTER_INFO decodedMonster = {};
 		char decodedDialog[256] = {0};
 		if(!smCharDecode(dst.smCharInfo.szModelName2, &decodedInfo, &decodedMonster, decodedDialog, sizeof(decodedDialog)))
-			return FALSE;
+		{
+			printf(
+				"[CONTENT][FIXED_NPC] decode-fail field=%s slot=%u npc=%s def=%s\n",
+				szFile,
+				static_cast<unsigned int>(src.slot),
+				src.npcId.c_str(),
+				src.definitionPath.c_str());
+			fflush(stdout);
+			ZeroMemory(&dst, sizeof(dst));
+			fixedNpcSkipped++;
+			continue;
+		}
 		SummitApplyFixedNpcIdentity(dst.smCharInfo, decodedInfo, decodedMonster);
 		SummitApplyFixedNpcLocalizedName(dst.smCharInfo, src.npcId);
+		fixedNpcMaterialized++;
 	}
+	printf(
+		"[CONTENT][FIXED_NPC] field=%s packed=%u materialized=%d skipped=%d\n",
+		szFile,
+		static_cast<unsigned int>(placements.npcs.size()),
+		fixedNpcMaterialized,
+		fixedNpcSkipped);
+	fflush(stdout);
 
 	// PATCH 185: Amanda is an instructor (class 1014), not the Enzo restorer.
 	// The field-runtime canonical placement family was dropped from the final
@@ -10406,7 +10486,7 @@ int STG_AREA::LoadStage(char *szFile)
 	{
 
 		SetFieldInfoPath(szStartPointFile, szFile, "spp");
-		LoadStartPoint(szStartPointFile);
+		const int startPointLoaded = LoadStartPoint(szStartPointFile);
 
 		SetFieldInfoPath(szCharFixedFile, szFile, "spc");
 		if(LoadCharInfoFixed(szCharFixedFile))
@@ -10422,8 +10502,20 @@ int STG_AREA::LoadStage(char *szFile)
 		SetFieldInfoPath(szCharMonsterFile, szFile, "spm");
 
 
-		DecodeOpenMonster(szCharMonsterFile, &rsMonsterList, chrMonsterList, chrMonsterCnt);
+		const int spawnLoaded = DecodeOpenMonster(szCharMonsterFile, &rsMonsterList, chrMonsterList, chrMonsterCnt);
 		if(!rsMonsterList.LimitMax) rsMonsterList.LimitMax = 10; //Limite de mobs por mapas
+		printf(
+			"[CONTENT][FIELD_RUNTIME] stage=%s spp=%s spp_loaded=%d spm=%s spm_loaded=%d actors=%d weight=%d limit=%d open_limit=%d\n",
+			szFile,
+			szStartPointFile,
+			startPointLoaded,
+			szCharMonsterFile,
+			spawnLoaded,
+			rsMonsterList.Counter,
+			rsMonsterList.PecetageCount,
+			rsMonsterList.LimitMax,
+			rsMonsterList.OpenLimit);
+		fflush(stdout);
 
 		return TRUE;
 	}
@@ -18230,8 +18322,8 @@ int rsRecvSellShopItem(rsPLAYINFO *lpPlayInfo, TRANS_ITEMINFO *lpTransItemInfo)
 
 	char accountIdLog[32] = { 0 };
 	char nameLog[32] = { 0 };
-	sprintf_s(accountIdLog, sizeof(accountIdLog), lpPlayInfo->getAccount());
-	sprintf_s(nameLog, sizeof(nameLog), lpPlayInfo->getName());
+	lstrcpynA(accountIdLog, lpPlayInfo->getAccount() ? lpPlayInfo->getAccount() : "", sizeof(accountIdLog));
+	lstrcpynA(nameLog, lpPlayInfo->getName() ? lpPlayInfo->getName() : "", sizeof(nameLog));
 
 	RecordLog("LogFerreiro", FormatString("Login[%s],NickName[%s],NomeItem[%s],Code[%d],Checksum[%d]", accountIdLog, nameLog, lpTransItemInfo->Item.ItemName, lpTransItemInfo->Item.CODE, lpTransItemInfo->Item.ItemHeader.dwChkSum));
 
@@ -19731,7 +19823,7 @@ int LogadoCoin()
 		{
 			char accountId[32] = { 0 };
 			char szBuf[10] = { 0 };
-			sprintf_s(accountId, sizeof(accountId), rsPlayInfo[Player].getAccount());
+			lstrcpynA(accountId, rsPlayInfo[Player].getAccount() ? rsPlayInfo[Player].getAccount() : "", sizeof(accountId));
 
 			int ValorCred = (rand() % Quantidade_Coins);
 			int usercred = 0;
@@ -25060,7 +25152,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 						{
 							char name[32] = { 0 };
 
-							sprintf_s(name, sizeof(name), lpPlayInfo->getName());
+							lstrcpynA(name, lpPlayInfo->getName() ? lpPlayInfo->getName() : "", sizeof(name));
 
 							db->BindInputParameter(name, 1, PARAMTYPE_String);
 							db->Execute();
@@ -27379,7 +27471,7 @@ if(cnt >= CONNECTMAX)
 					{
 						char accountId[32] = { 0 };
 
-						sprintf_s(accountId, sizeof(accountId), lpPlayInfo->getAccount());
+						lstrcpynA(accountId, lpPlayInfo->getAccount() ? lpPlayInfo->getAccount() : "", sizeof(accountId));
 						db->BindInputParameter(accountId, 1, PARAMTYPE_String);
 						if (db->Execute())
 						{
@@ -27525,7 +27617,7 @@ if(cnt >= CONNECTMAX)
 
 						char name[32] = { 0 };
 
-						sprintf_s(name, sizeof(name), lpPlayInfo->getName());
+						lstrcpynA(name, lpPlayInfo->getName() ? lpPlayInfo->getName() : "", sizeof(name));
 
 						db->BindInputParameter(name, 1, PARAMTYPE_String);
 

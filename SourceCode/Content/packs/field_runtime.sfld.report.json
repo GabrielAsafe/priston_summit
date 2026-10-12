@@ -4,14 +4,14 @@
   "sections": {
     "stage_spawns": {
       "tag": "SSPB",
-      "bytes": 17624,
-      "sha256": "7091778f5c8454b44a291e74a8e806a99869c4521c3ec164a4ca9e4dc3c25e27"
+      "bytes": 18740,
+      "sha256": "ca238364d787eeaaf06d7acb116e2500bea98deb1045666562fa315471fa80f5"
     },
     "stage_start_points": {
-      "maps": 65,
-      "points": 6604,
-      "bytes": 110265,
-      "sha256": "4697a79262b68bb6a23a3b1b6c0125b3d102ceb07a20c9737bf36fcb18d5c06f"
+      "maps": 69,
+      "points": 6734,
+      "bytes": 112701,
+      "sha256": "ae9890062d6b92036175c56717733fdd3bd11a4bfc4ccb3604332c653ae60229"
     },
     "fixed_npcs": {
       "maps": 24,
@@ -20,6 +20,6 @@
       "sha256": "a044edf5392fb8245aa32afc2c6aeed139872431e2a98dfa384839f3266b0fa6"
     }
   },
-  "bytes": 139371,
-  "sha256": "6ce699c1f5dac070de15041348c6ffdbebb757f98eec37f4833acf7a895e3bf1"
+  "bytes": 142923,
+  "sha256": "1d6c46942bdbb7936b432a8e7b9d12869c13fdc8219c0e2ac777789160ed7b83"
 }

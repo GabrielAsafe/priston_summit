@@ -1,5 +1,7 @@
 #include "compat/server_build/server_compat_packets.h"
 #include <cstring>
+#include <cstdlib>
+#include <cstdio>
 #include "systems/network/protocol/server/opcodes.h"
 
 #include "systems/rendering/legacy_3d/smd3d.h"
@@ -2602,6 +2604,26 @@ int rsRECORD_DBASE::SendRecordDataToClient(rsPLAYINFO *lpPlayInfo, char *szName,
 	if(rsServerConfig.FixedStartField)
 		lpTransRecord->GameSaveInfo.PlayStageNum = rsServerConfig.FixedStartField;
 
+	// WSB rescue: opt-in, one login only; not a persistent map configuration.
+	// The disk record is not edited here. A normal successful logout saves a safe position.
+	const char *wsbRescue = std::getenv("SUMMIT_WSB_RESCUE_FIELDS");
+	if(wsbRescue && std::strcmp(wsbRescue, "1") == 0 &&
+		lpTransRecord->GameSaveInfo.PlayStageNum >= 53 &&
+		lpTransRecord->GameSaveInfo.PlayStageNum <= 58)
+	{
+		auto &wsbInfo = lpTransRecord->GameSaveInfo;
+		const int oldField = wsbInfo.PlayStageNum;
+		const auto decodedExp = wsbInfo.TotalExp ^ wsbInfo.PosX;
+		const auto decodedMoney = wsbInfo.TotalMoney ^ wsbInfo.PosZ;
+		wsbInfo.PlayStageNum = 3;
+		wsbInfo.PosX = 663552;  // Ricarten known-good start: 2592 * 256
+		wsbInfo.PosZ = -4752896; // Ricarten known-good start: -18566 * 256
+		wsbInfo.TotalExp = decodedExp ^ wsbInfo.PosX;
+		wsbInfo.TotalMoney = decodedMoney ^ wsbInfo.PosZ;
+		std::fprintf(stderr, "[WSB][CHAR_RESCUE] record char=%s field=%d->3 x=663552 z=-4752896\n",
+			lpTransRecord->smCharInfo.szName, oldField);
+	}
+
 
 	rsSet_LoginServerSafeKey(&lpTransRecord->smCharInfo);
 
@@ -3805,6 +3827,19 @@ int rsRECORD_DBASE::SendUserDataToClient(const char *szID, smWINSOCK *lpsmSock, 
 					{
 						lpCharInfo->PosX = TransRecordData.GameSaveInfo.PosX;
 						lpCharInfo->PosZ = TransRecordData.GameSaveInfo.PosZ;
+					}
+
+					// WSB rescue: character-select position must agree with loaded record.
+					const char *wsbRescueSelect = std::getenv("SUMMIT_WSB_RESCUE_FIELDS");
+					if(wsbRescueSelect && std::strcmp(wsbRescueSelect, "1") == 0 &&
+						TransRecordData.GameSaveInfo.PlayStageNum >= 53 &&
+						TransRecordData.GameSaveInfo.PlayStageNum <= 58)
+					{
+						lpCharInfo->StartField = 3;
+						lpCharInfo->PosX = 663552;
+						lpCharInfo->PosZ = -4752896;
+						std::fprintf(stderr, "[WSB][CHAR_RESCUE] select char=%s field=%d->3\n",
+							TransRecordData.smCharInfo.szName, TransRecordData.GameSaveInfo.PlayStageNum);
 					}
 
 					if(LevelMax < lpCharInfo->Level) LevelMax = lpCharInfo->Level;

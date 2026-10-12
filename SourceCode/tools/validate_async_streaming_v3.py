@@ -104,7 +104,11 @@ require(play, '!gStageBootstrapSpawnResolved', 'bootstrap fails closed while spa
 require(play, 'floorHeight, floorFace', 'spawn visual selection shares the resolved floor surface')
 require('Shared/rendering/legacy_3d/material/smTexture_legacy_client.inl', 'prepared->priority = priority;', 'texture GPU completion preserves request priority')
 require('Shared/rendering/legacy_3d/material/smTexture_legacy_client.inl', 'SummitPreparedTextureQueue.insert(position, prepared);', 'GPU upload queue lets HIGH demand overtake LOW prewarm')
-require('Shared/rendering/legacy_3d/material/smTexture_legacy_client.inl', 'SummitTextureAdmissionLimit(priority)', 'HIGH texture demand has reserved worker admission')
+require('Shared/rendering/legacy_3d/material/smTexture_legacy_client.inl', 'TextureQueueCanAdmit(pressure, normalLimit, priority)', 'HIGH texture demand has reserved worker admission')
+require('Shared/rendering/legacy_3d/material/smTexture_legacy_client.inl', 'SummitTexturePreparingCount.fetch_sub(1u', 'CPU preparation releases admission independently of GPU uploads')
+require('Shared/rendering/legacy_3d/material/smTexture_legacy_client.inl', 'SummitTextureGPUReadyCount.fetch_sub(1u', 'GPU ready queue depth decrements at commit')
+require('Shared/rendering/legacy_3d/material/smTexture_legacy_client.inl', 'SUMMIT_TEXTURE_QUEUE_DIAG', 'queue diagnostics can be enabled explicitly')
+require('Shared/rendering/legacy_3d/material/smTexture_legacy_client.inl', 'SUMMIT_TEXTURE_QUEUE_FAIR', 'queue admission has an A/B rollback switch')
 require(play, 'if (request->field && !bootstrapPrimary)', 'bootstrap queues critical stage textures before global field-map prewarm')
 
 # Stage/prewarm has one frame-loop owner; FieldMain must not double-pump.
@@ -147,14 +151,17 @@ require(tex, 'prepared->cookedDDS = true;', 'worker marks cooked DDS payloads ex
 require(tex, 'D3DX_FILTER_NONE', 'cooked DDS fast path avoids runtime resampling filters')
 require(tex, 'COOKED_DDS_HIT', 'cooked DDS hit telemetry exists')
 require(tex, 'SummitRejectCookedTexture', 'invalid cooked DDS falls back to source on retry')
-require('tools/cook_textures_dds.py', '"DXT5" if source.suffix.lower() in ALPHA_EXTENSIONS else "DXT1"', 'offline cooker mirrors DXT1/DXT5 opacity policy')
+require('tools/cook_textures_dds.py', 'return "DXT5" if has_semantic_alpha(image) else "DXT1"', 'offline cooker selects DXT5 based on semantic alpha')
+require(tex, 'summit::rendering::cooked::BuildRelativePath(logicalPath, profile)', 'runtime uses profile-aware collision-free DDS identity')
+require(tex, 'DIB_COOKED_DDS_HIT', 'offscreen DIB loader imports profiled cooked DDS')
+require('tools/cook_textures_dds.py', 'preflight_casefold_destinations(scoped_sources, source_root)', 'cooker rejects case-only destination ambiguity before publishing')
 require('tools/cook_textures_dds.py', 'default=1.0', 'offline cooker covers 512x512-and-larger texture stalls by default')
 require('tools/cook_textures_dds.py', '--mipmaps', 'offline cooker can precompute mip chains')
 require('tools/cook_textures_dds.py', 'ITEM_ICON_PREFIXES', 'item icons have an explicit cooked-runtime family')
 require('tools/cook_textures_dds.py', '--item-icons-only', 'DDS cooker supports focused item-icon cooking')
 require('tools/cook_textures_dds.py', '--no-item-icons-required', 'item-icon required policy has an explicit A/B escape hatch')
 require('tools/cook_textures_dds.py', 'item-icon-runtime-required-lossless', 'small/non-DXT item icons are cooked losslessly instead of skipped')
-require('tools/cook_textures_dds.py', 'probe_dds_header(target)', 'item-icon incremental reuse validates cooked DDS dimensions and format')
+require('tools/cook_textures_dds.py', 'can_reuse_cooked(source, target, prior, profile)', 'incremental reuse validates identity/profile/content/format')
 
 # Login / character-selection startup no longer front-loads the selection stage
 # and preview models synchronously before the opening screen. The selection
@@ -230,7 +237,7 @@ require('SrcGame/src/systems/rendering/sky/legacy/HoSky.cpp', 'DrawIndex < -1 ||
 require_if_present('build_client_mingw_i686_multicore.sh', 'SUMMIT_AUTO_COOK_DDS', 'client build has automatic DDS cooking switch')
 require_if_present('build_client_mingw_i686_multicore.sh', 'AUTO_COOK_DDS="${SUMMIT_AUTO_COOK_DDS:-0}"', 'DDS auto-cook is opt-in after login UI cooked regression')
 require('tools/cook_textures_dds.py', '--login-ui-only', 'DDS cooker supports focused login UI cooking')
-require('tools/cook_textures_dds.py', 'Fast incremental path', 'DDS cooker skips decode for up-to-date cooked UI')
+require('tools/cook_textures_dds.py', 'can_reuse_cooked(source, target, prior, profile)', 'DDS reuse validates source hash, profile and artifact before skipping decode')
 require('Shared/rendering/legacy_3d/material/smTexture_legacy_client.inl', 'SUMMIT_TEXTURE_COOKED_UI', 'cooked login UI has an explicit runtime A/B opt-in')
 require('Shared/rendering/legacy_3d/material/smTexture_legacy_client.inl', 'SummitCookedTextureRuntimeEligible(prepared->path)', 'runtime bypasses cooked DDS for incompatible interactive UI')
 require('Shared/rendering/legacy_3d/material/smTexture_legacy_client.inl', '"startimage/login/"', 'interactive UI cooked bypass covers login roots')

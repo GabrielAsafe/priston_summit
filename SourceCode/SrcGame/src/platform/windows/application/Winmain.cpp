@@ -3,6 +3,9 @@
 // STL INCLUDES
 #include <memory>
 #include <vector>
+#include <chrono>
+#include <cstdlib>
+#include <cstdint>
 
 
 #include <windows.h>
@@ -14,6 +17,7 @@
 #include "systems/security/legacy/process_integrity/cracker.h"
 
 #include "systems/rendering/legacy_3d/smd3d.h"
+#include "systems/rendering/legacy_3d/NativeModelVerify261.h"
 #include "systems/network/transport/legacy/smwsock.h"
 #include "platform/windows/registry/smreg.h"
 
@@ -21,6 +25,7 @@
 #include "systems/gameplay/character/core/CharacterModelStreamingV3.h"
 #include "systems/rendering/sky/SkyStreamingV3.h"
 #include "systems/rendering/effects/legacy_sin/AssaUtil.h"
+#include "systems/rendering/effects/legacy_new/core/HoEffectResMgr.h"
 #include "core/concurrency/JobSystem.h"
 #include "systems/rendering/assets/v3/AssetStreamingV3.h"
 #include "core/gameplay/runtime/playmain.h"
@@ -513,15 +518,11 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
 {
     // BUGFIX_014_STARTUP_DEBUG_BOX_DISABLED: MessageBoxA(NULL, "ENTROU NO WINMAIN", "DEBUG MINGW", MB_OK);
 
-    {
-        HANDLE f = CreateFileA("LOGS\\mingw_winmain_reached.txt", GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-        if (f != INVALID_HANDLE_VALUE) {
-            const char *msg = "ENTROU NO WINMAIN\n";
-            DWORD written = 0;
-            WriteFile(f, msg, lstrlenA(msg), &written, NULL);
-            CloseHandle(f);
-        }
-    }
+    // Explicit offline validation must precede anti-cheat, audio, D3D and UI.
+    // Normal startup never creates the old mingw_winmain_reached.txt log.
+    const char* offlineFlag = "--summit-verify-model";
+    if (lpCmdLine && std::strncmp(lpCmdLine, offlineFlag, std::strlen(offlineFlag)) == 0)
+        return summit_offline_model_261::RunFromCommandLine(lpCmdLine);
 
 
 	//HANDLE mutex = CreateMutex(NULL, FALSE, "GameSoul");
@@ -2838,6 +2839,102 @@ void showFPS()
 }
 
 
+// PATCH 239: opt-in, independent diagnostics; no renderer or asset policy changes.
+// PATCH 292: mutable per-client-session fog override. The existing environment
+// switch remains the initial value; Shift+F can subsequently toggle it.
+static bool& Summit292ForceFogOffState()
+{
+    static bool off = []() -> bool {
+        const char *value = std::getenv("SUMMIT_FOG_FORCE_OFF");
+        return value && value[0] == '1' && value[1] == 0;
+    }();
+    return off;
+}
+
+static bool Summit239ForceD3DFogOff()
+{
+    return Summit292ForceFogOffState();
+}
+
+static bool Summit239FrameDiagnosticEnabled()
+{
+    static const bool enabled = []() -> bool {
+        const char *value = std::getenv("SUMMIT_FRAME_DIAG_239");
+        return value && value[0] == '1' && value[1] == 0;
+    }();
+    return enabled;
+}
+
+static std::uint64_t Summit239Micros(
+    std::chrono::steady_clock::time_point begin,
+    std::chrono::steady_clock::time_point end)
+{
+    return static_cast<std::uint64_t>(
+        std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count());
+}
+
+// Render thread only. Bounded instrumentation: one sample each 120 frames,
+// plus events for slow pumps or long time between frame entries. The latter
+// includes work OUTSIDE the streaming pumps and is not stage-worker latency.
+static void Summit239FrameSample(std::uint64_t gapUs, std::uint64_t modelUs,
+    std::uint64_t skyUs, std::uint64_t stageUs, std::uint64_t prewarmUs,
+    std::uint64_t effectUs, std::uint64_t uploadUs)
+{
+    static unsigned frames = 0;
+    static std::uint64_t maxGap = 0;
+    static std::uint64_t maxModel = 0;
+    static std::uint64_t maxSky = 0;
+    static std::uint64_t maxStage = 0;
+    static std::uint64_t maxPrewarm = 0;
+    static std::uint64_t maxEffect = 0;
+    static std::uint64_t maxUpload = 0;
+    ++frames;
+    if (gapUs > maxGap) maxGap = gapUs;
+    if (modelUs > maxModel) maxModel = modelUs;
+    if (skyUs > maxSky) maxSky = skyUs;
+    if (stageUs > maxStage) maxStage = stageUs;
+    if (prewarmUs > maxPrewarm) maxPrewarm = prewarmUs;
+    if (effectUs > maxEffect) maxEffect = effectUs;
+    if (uploadUs > maxUpload) maxUpload = uploadUs;
+    const bool slow = gapUs >= 100000u || stageUs >= 30000u ||
+        uploadUs >= 30000u || modelUs >= 30000u || skyUs >= 30000u ||
+        prewarmUs >= 30000u || effectUs >= 30000u;
+    if (!slow && frames < 120u)
+        return;
+
+    const int slot = lpCurPlayer ? lpCurPlayer->OnStageField : -1;
+    const int validSlot = slot >= 0 && slot < 2 ? slot : -1;
+    const int field = validSlot >= 0 && StageField[validSlot]
+        ? StageField[validSlot]->FieldCode : -1;
+    const int stagePresent = validSlot >= 0 && smGameStage[validSlot] ? 1 : 0;
+    FILE *file = NULL;
+    fopen_s(&file, "LOGS\\frame_stage_239_diag.tsv", "a");
+    if (file)
+    {
+        fprintf(file,
+            "%s\tms=%lu\tfield=%d\tslot=%d\tstage_present=%d\tfog_force=%d\tfog_wanted=%d\t"
+            "gap_us=%llu\tmodel_us=%llu\tsky_us=%llu\tstage_pump_us=%llu\t"
+            "prewarm_us=%llu\teffect_us=%llu\tupload_pump_us=%llu\tframes=%u\n",
+            slow ? "FRAME_SLOW" : "FRAME_120F", static_cast<unsigned long>(GetTickCount()),
+            field, slot, stagePresent, Summit239ForceD3DFogOff() ? 1 : 0,
+            smRender.m_FogIsRend && smRender.m_FogMode ? 1 : 0,
+            static_cast<unsigned long long>(slow ? gapUs : maxGap),
+            static_cast<unsigned long long>(slow ? modelUs : maxModel),
+            static_cast<unsigned long long>(slow ? skyUs : maxSky),
+            static_cast<unsigned long long>(slow ? stageUs : maxStage),
+            static_cast<unsigned long long>(slow ? prewarmUs : maxPrewarm),
+            static_cast<unsigned long long>(slow ? effectUs : maxEffect),
+            static_cast<unsigned long long>(slow ? uploadUs : maxUpload), frames);
+        fclose(file);
+    }
+    if (frames >= 120u)
+    {
+        frames = 0;
+        maxGap = maxModel = maxSky = maxStage = 0;
+        maxPrewarm = maxEffect = maxUpload = 0;
+    }
+}
+
 void PlayD3D()
 {
 	DWORD dwTime = GetCurrentTime();
@@ -2846,15 +2943,48 @@ void PlayD3D()
 	// stage publication/prewarm here, including while gameplay is behind the
 	// bootstrap barrier. Keeping these pumps independent from FieldMain avoids
 	// changing streaming cadence at the exact frame gameplay becomes enabled.
-	SummitPumpModelStreamingV3();
-	SummitPumpSkyStreamingV3();
-	PumpStageStreamingV3();
-	PumpStageTexturePrewarm();
-	// Keep low-priority effect materials moving even after opening/selection.
-	// If gameplay reaches an effect before this finishes, AssaSearchRes has an
-	// exact synchronous fallback for that one texture instead of drawing white.
-	SummitPrewarmAssaEffectTexturesStep(1, 2);
-	AssetLoadV3PumpTextureUploads();
+	if (Summit239FrameDiagnosticEnabled())
+	{
+		static std::chrono::steady_clock::time_point previous;
+		const std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
+		const std::uint64_t gap = previous.time_since_epoch().count()
+			? Summit239Micros(previous, start) : 0u;
+		previous = start;
+		HoEffectResManager::GetInstance()->PumpPreparedResMeshes(2u);
+		HoEffectResManager::GetInstance()->PumpResTexturePrewarm(2u);
+		SummitPumpModelStreamingV3();
+		const std::chrono::steady_clock::time_point afterModel = std::chrono::steady_clock::now();
+		SummitPumpSkyStreamingV3();
+		const std::chrono::steady_clock::time_point afterSky = std::chrono::steady_clock::now();
+		PumpStageStreamingV3();
+		const std::chrono::steady_clock::time_point afterStage = std::chrono::steady_clock::now();
+		PumpStageTexturePrewarm();
+		const std::chrono::steady_clock::time_point afterPrewarm = std::chrono::steady_clock::now();
+		SummitPrewarmAssaEffectTexturesStep(1, 2);
+        SummitPumpAssaEffectModels256(1u);
+        SummitPrewarmAssaEffectModelsStep256(1u);
+		const std::chrono::steady_clock::time_point afterEffect = std::chrono::steady_clock::now();
+		AssetLoadV3PumpTextureUploads();
+		const std::chrono::steady_clock::time_point afterUpload = std::chrono::steady_clock::now();
+		Summit239FrameSample(gap, Summit239Micros(start, afterModel),
+			Summit239Micros(afterModel, afterSky), Summit239Micros(afterSky, afterStage),
+			Summit239Micros(afterStage, afterPrewarm),
+			Summit239Micros(afterPrewarm, afterEffect), Summit239Micros(afterEffect, afterUpload));
+	}
+	else
+	{
+		HoEffectResManager::GetInstance()->PumpPreparedResMeshes(2u);
+		HoEffectResManager::GetInstance()->PumpResTexturePrewarm(2u);
+		SummitPumpModelStreamingV3();
+		SummitPumpSkyStreamingV3();
+		PumpStageStreamingV3();
+		PumpStageTexturePrewarm();
+		// Effect prewarm and GPU upload behavior unchanged when tracing is disabled.
+		SummitPrewarmAssaEffectTexturesStep(1, 2);
+        SummitPumpAssaEffectModels256(1u);
+        SummitPrewarmAssaEffectModelsStep256(1u);
+		AssetLoadV3PumpTextureUploads();
+	}
 
 	if (dwLastPlayTime)
 	{
@@ -4998,8 +5128,22 @@ void smPlayD3D(int x, int y, int z, int ax, int ay, int az)
 
 	ActionGameMode = FALSE;
 
+	// StarArena (field 58) is declared ACTION in the canonical map, but its
+	// ActionCamera was never populated. An all-zero camera clamps world X/Z
+	// to 0 and suppresses stage drawing. Preserve the field state, while
+	// falling back to the normal chase camera ONLY in that exact case.
+	sFIELD *wsbCameraField = lpCurPlayer && lpCurPlayer->OnStageField >= 0 &&
+		lpCurPlayer->OnStageField < 2
+		? StageField[lpCurPlayer->OnStageField] : 0;
+	const bool wsbStarArenaCameraMissing = wsbCameraField &&
+		wsbCameraField->FieldCode == 58 &&
+		wsbCameraField->State == FIELD_STATE_ACTION &&
+		wsbCameraField->ActionCamera.LeftX == 0 &&
+		wsbCameraField->ActionCamera.RightX == 0 &&
+		wsbCameraField->ActionCamera.FixPos.z == 0;
 
-	if (lpCurPlayer && lpCurPlayer->OnStageField >= 0 && StageField[lpCurPlayer->OnStageField]->State == FIELD_STATE_ACTION)
+	if (wsbCameraField && wsbCameraField->State == FIELD_STATE_ACTION &&
+		!wsbStarArenaCameraMissing)
 	{
 
 		x = lpCurPlayer->pX;
@@ -5052,12 +5196,17 @@ void smPlayD3D(int x, int y, int z, int ax, int ay, int az)
 
 	DynLightApply();
 
+	// Opt-in A/B: explicitly disable D3D9 fog before sky and world rendering.
+	// This does NOT suppress textured fog planes, geometry or sky assets.
+	if (Summit239ForceD3DFogOff())
+		d3ddev->SetRenderState(D3DRS_FOGENABLE, FALSE);
 	DrawSky(x, y, z, ax, ay, az);
 
 	smRender.DeviceRendMode = FALSE;
 
-
-	if (smRender.m_FogIsRend && smRender.m_FogMode)
+	if (Summit239ForceD3DFogOff())
+		d3ddev->SetRenderState(D3DRS_FOGENABLE, FALSE);
+	else if (smRender.m_FogIsRend && smRender.m_FogMode)
 		d3ddev->SetRenderState(D3DRS_FOGENABLE, TRUE);
 
 	smRender.bApplyRendObjLight = TRUE;
@@ -5071,7 +5220,7 @@ void smPlayD3D(int x, int y, int z, int ax, int ay, int az)
 
 	smRender.ClearObjLight();
 
-	if (smRender.m_FogIsRend && smRender.m_FogMode)
+	if (Summit239ForceD3DFogOff() || (smRender.m_FogIsRend && smRender.m_FogMode))
 		d3ddev->SetRenderState(D3DRS_FOGENABLE, FALSE);
 
 	smRender.ClearLight();
@@ -5320,6 +5469,15 @@ DWORD GameWindowMessage(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 
 			if (smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR)
 			{
+				// PATCH 292: GM-only Shift+F toggles D3D fog, not sky/fog geometry.
+				// Ignore chat focus and key autorepeat; Ctrl+F remains untouched.
+				if (!hFocusWnd && !sinMessageBoxShowFlag &&
+					VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_CONTROL] && !VRKeyBuff[VK_MENU] &&
+					wParam == 'F' && VRKeyBuff['F'] == 0)
+				{
+					Summit292ForceFogOffState() = !Summit292ForceFogOffState();
+				}
+
 				// SUMMIT_PATCH_221_GM_SKY_DEBUG: moderator-only reversible sky preview.
 				// Ctrl+F9 stays CoinShop; Shift+F9 stays debug overlay.
 				if (VRKeyBuff[VK_CONTROL] && VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_MENU] &&

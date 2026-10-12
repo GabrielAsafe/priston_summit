@@ -1,19 +1,19 @@
 {
   "schema": "summit.localization-report/v1",
-  "keys": 3692,
-  "english_keys": 3692,
+  "keys": 3779,
+  "english_keys": 3779,
   "locales": {
-    "en": 3692,
-    "pt-BR": 3692,
+    "en": 3779,
+    "pt-BR": 3779,
     "zh-TW": 18,
-    "ko": 284
+    "ko": 286
   },
-  "bindings": 2483,
+  "bindings": 2493,
   "fallbacks": {
-    "english_name_fallbacks": 645,
+    "english_name_fallbacks": 653,
     "english_chat_fallbacks": 434,
     "english_standalone_fallbacks": 791,
-    "pt_br_canonical_overrides": 3692
+    "pt_br_canonical_overrides": 3779
   },
   "missing_english_fallback": 0
 }

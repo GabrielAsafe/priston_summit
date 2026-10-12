@@ -19,204 +19,118 @@ void HoNewParticleResMgr::init()
 
 HoNewParticleScriptRes *HoNewParticleResMgr::FindScript(char *find)
 {
-
-	if(ScriptRes.size() == 0)
-		return NULL;
-
-	for(int index = 0; index < NumScriptRes; index++)
-	{
-
-		char fileName[256];
-		memset(fileName, 0, sizeof(fileName));
-		strcpy(fileName, ScriptRes[index].name.c_str());
-
-		if(stricmp(fileName, find) == 0)
-			return &ScriptRes[index];
-	}
-
-
-	return NULL;
+    if (!find || !find[0]) return NULL;
+    // Compare the registered string directly; the old temporary[256] copy
+    // could overflow for an externally registered name.
+    for (size_t index = 0; index < ScriptRes.size(); ++index)
+        if (stricmp(ScriptRes[index].name.c_str(), find) == 0)
+            return &ScriptRes[index];
+    return NULL;
 }
 
 bool HoNewParticleResMgr::LoadScript(char *scr)
 {
-	if(scr) summit::diagnostics::RuntimeAssetProbeAttempt("PARTICLE_SCRIPT", "OPEN", scr);
-	if(scr == NULL)
-		return false;
+    if (!scr || !scr[0]) return false;
+    const size_t pathLength = strlen(scr);
+    if (pathLength > 1023u) return false;
 
+    const char *nameStart = scr;
+    for (const char *cursor = scr; *cursor; ++cursor)
+        if (*cursor == '/' || *cursor == '\\') nameStart = cursor + 1;
+    const char *extension = strrchr(nameStart, '.');
+    const size_t keyLength = extension ? static_cast<size_t>(extension - nameStart) : strlen(nameStart);
+    if (keyLength == 0 || keyLength >= 256u) return false;
+    char existingKey[256];
+    memcpy(existingKey, nameStart, keyLength);
+    existingKey[keyLength] = 0;
+    if (FindScript(existingKey)) return true;
 
-	FILE *fp;
-	fp = fopen(scr, "rb");
-	summit::diagnostics::RuntimeAssetProbeResult("PARTICLE_SCRIPT", "OPEN", scr, fp != NULL);
-	if(fp == NULL)
-	{
-#ifndef _W_SERVER
-		DWORD attributes = GetFileAttributesA(scr);
-		FILE *diagFp = fopen("LOGS\\mingw_missing_particle_scripts.txt", "a");
-		if(diagFp)
-		{
-			fprintf(diagFp,
-				"OPEN_FAIL path=%s exists=%d readonly=%d attributes=0x%08lX\\n",
-				scr,
-				attributes != INVALID_FILE_ATTRIBUTES ? 1 : 0,
-				(attributes != INVALID_FILE_ATTRIBUTES &&
-				 (attributes & FILE_ATTRIBUTE_READONLY)) ? 1 : 0,
-				(unsigned long)attributes);
-			fclose(diagFp);
-		}
-#endif
-		return false;
-	}
-
-	if(fseek(fp, 0, SEEK_END) != 0)
-	{
-		fclose(fp);
-		return false;
-	}
-	long scriptSize = ftell(fp);
-	if(scriptSize < 0 || fseek(fp, 0, SEEK_SET) != 0)
-	{
-		fclose(fp);
-		return false;
-	}
-
-	// The old fixed 6000-byte buffer could truncate scripts and lose the NUL
-	// terminator. Read the complete local asset and always append a terminator.
-	std::vector<char> particleBuffer((size_t)scriptSize + 1, 0);
-	if(scriptSize > 0 &&
-		fread(&particleBuffer[0], 1, (size_t)scriptSize, fp) != (size_t)scriptSize)
-	{
-		fclose(fp);
-		return false;
-	}
-	fclose(fp);
-
-	char directoryBuffer[1024];
-	char fileBuffer[256];
-	memset(directoryBuffer, 0, sizeof(directoryBuffer));
-	memset(fileBuffer, 0, sizeof(fileBuffer));
-
-	strcpy(directoryBuffer, scr);
-
-	for(int index = (strlen(directoryBuffer) - 1); index > 0; index--)
-	{
-		if(directoryBuffer[index] == '.')
-		{
-			directoryBuffer[index] = '\0';
-			break;
-		}
-	}
-
-	for(int index = (strlen(directoryBuffer) - 1); index > 0; index--)
-	{
-		if(directoryBuffer[index] == '/' || directoryBuffer[index] == '\\')
-		{
-			strcpy(fileBuffer, &directoryBuffer[index + 1]);
-			break;
-		}
-	}
-
-	AddScript(&particleBuffer[0], fileBuffer);
-	return true;
+    summit::diagnostics::RuntimeAssetProbeAttempt("PARTICLE_SCRIPT", "OPEN", scr);
+    FILE *fp = fopen(scr, "rb");
+    summit::diagnostics::RuntimeAssetProbeResult("PARTICLE_SCRIPT", "OPEN", scr, fp != NULL);
+    // Missing scripts are normal on some legacy content paths. Do not
+    // synchronously open an additional permanent diagnostics file.
+    if (!fp) return false;
+    if (fseek(fp, 0, SEEK_END) != 0) { fclose(fp); return false; }
+    const long scriptSize = ftell(fp);
+    if (scriptSize < 0 || scriptSize > 8L * 1024L * 1024L || fseek(fp, 0, SEEK_SET) != 0)
+    {
+        fclose(fp);
+        return false;
+    }
+    std::vector<char> particleBuffer(static_cast<size_t>(scriptSize) + 1u, 0);
+    if (scriptSize > 0 && fread(particleBuffer.data(), 1, static_cast<size_t>(scriptSize), fp) != static_cast<size_t>(scriptSize))
+    {
+        fclose(fp);
+        return false;
+    }
+    fclose(fp);
+    return AddScript(particleBuffer.data(), existingKey) != NULL;
 }
 
 HoNewParticleScriptRes *HoNewParticleResMgr::AddScript(char *scr, char *indexName)
 {
-	if(MAX_TOKEN_VECTORS <= NumScriptRes)
-		return NULL;
+    if (!scr || !indexName || !indexName[0] || MAX_TOKEN_VECTORS <= NumScriptRes)
+        return NULL;
+    if (FindScript(indexName)) return NULL;
 
-	if(FindScript(indexName) != NULL)
-		return NULL;
-
-	HoNewParticleScriptRes particleScriptRes;
-
-	particleScriptRes.name.reserve(strlen(indexName));
-
-
-	particleScriptRes.name = indexName;
-	particleScriptRes.emitterTokenizer.Tokenize(scr);
-
-	ScriptRes.push_back(particleScriptRes);
-	NumScriptRes++;
-
-	return &ScriptRes[NumScriptRes - 1];
+    HoNewParticleScriptRes particleScriptRes;
+    particleScriptRes.name = indexName;
+    particleScriptRes.emitterTokenizer.Tokenize(scr);
+    ScriptRes.push_back(particleScriptRes);
+    NumScriptRes = static_cast<int>(ScriptRes.size());
+    return &ScriptRes.back();
 }
 
 int HoNewParticleResMgr::SearchingAddTexture(const char *directory)
 {
-	HANDLE hSrch;
-	WIN32_FIND_DATA wfd;
-	BOOL    bResult = TRUE;
-	hSrch = FindFirstFile(directory, &wfd);
-	char drive[200];
-	char dir[200];
-
-
-	hSrch = FindFirstFile(directory, &wfd);
-
-	_splitpath(directory, drive, dir, NULL, NULL);
-	while(bResult)
-	{
-		if(!(wfd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
-		{
-			if(strlen(wfd.cFileName) > 3)
-			{
-
-
-				std::string texBuffer;
-				texBuffer = wfd.cFileName;
-				MakeUpperCase(texBuffer);
-				AddTexture(texBuffer.c_str());
-			}
-
-		}
-
-		bResult = FindNextFile(hSrch, &wfd);
-	}
-	FindClose(hSrch);
-
-	return TRUE;
+    if (!directory || !directory[0]) return FALSE;
+    WIN32_FIND_DATA wfd;
+    HANDLE hSrch = FindFirstFile(directory, &wfd);
+    // The legacy function opened the same search twice and leaked the first
+    // handle, then read uninitialized wfd if FindFirstFile failed.
+    if (hSrch == INVALID_HANDLE_VALUE) return FALSE;
+    do
+    {
+        if (!(wfd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) && strlen(wfd.cFileName) > 3u)
+        {
+            std::string texBuffer = wfd.cFileName;
+            MakeUpperCase(texBuffer);
+            AddTexture(texBuffer.c_str());
+        }
+    } while (FindNextFile(hSrch, &wfd));
+    FindClose(hSrch);
+    return TRUE;
 }
 
 int HoNewParticleResMgr::AddTexture(const char *mat)
 {
-	if(MAX_MATERIAL <= NumMaterial)
-		return false;
+    if (!mat || !mat[0]) return -1;
+    const size_t nameLength = strlen(mat);
+    // The registered name and the material path must both be representable.
+    if (nameLength >= 256u || nameLength + sizeof("effect//particle//") > 500u)
+        return -1;
+    std::string normalized = mat;
+    MakeUpperCase(normalized);
+    for (size_t index = 0; index < MatRes.size(); ++index)
+        if (MatRes[index].matName == normalized)
+            return MatRes[index].matNum;
+    if (MAX_MATERIAL <= NumMaterial) return -1;
 
-
-	char testBuffer[256];
-	memset(testBuffer, 0, sizeof(testBuffer));
-
-	for(int index = 0; index < NumMaterial; index++)
-	{
-		strcpy(testBuffer, MatRes[index].matName.c_str());
-
-		if(strcmp(MatRes[index].matName.c_str(), mat) == 0)
-
-			return MatRes[index].matNum;
-	}
-
-	char buffer[256];
-	char FullDirectoryName[500];
-	memset(buffer, 0, sizeof(buffer));
-	strcpy(buffer, mat);
-
-	HoNewParticleMatRes partScriptRes;
-	partScriptRes.matName = buffer;
-	MakeUpperCase(partScriptRes.matName);
-
-	wsprintf(FullDirectoryName, "%s%s", "effect//particle//", mat);
-	partScriptRes.matNum = CreateTextureMaterial(FullDirectoryName, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
-
-	MatRes.push_back(partScriptRes);
-	if(MatRes[NumMaterial].matNum != -1)
-	{
-
-		smMaterialGroup->ReadTextures();
-		NumMaterial++;
-		return MatRes[NumMaterial - 1].matNum;
-	}
-	return -1;
+    char fullDirectoryName[500];
+    const int written = snprintf(fullDirectoryName, sizeof(fullDirectoryName),
+                                 "%s%s", "effect//particle//", mat);
+    if (written < 0 || static_cast<size_t>(written) >= sizeof(fullDirectoryName))
+        return -1;
+    const int materialNum = CreateTextureMaterial(fullDirectoryName, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+    if (materialNum < 0) return -1; // Do not leave a failed entry in MatRes.
+    HoNewParticleMatRes resource;
+    resource.matName = normalized;
+    resource.matNum = materialNum;
+    MatRes.push_back(resource);
+    NumMaterial = static_cast<int>(MatRes.size());
+    if (smMaterialGroup) smMaterialGroup->ReadTextures();
+    return materialNum;
 }
 
 void HoNewParticleMgr::Main(float elapsedTime, float timeDelta)

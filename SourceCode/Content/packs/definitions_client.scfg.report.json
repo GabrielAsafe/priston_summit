@@ -2,1510 +2,1821 @@
   "format": "SCFG",
   "version": 1,
   "profile": "client",
-  "definitions": 2183,
-  "directives": 36294,
-  "flattened_links": 1738,
-  "filtered_open_items": 300,
+  "definitions": 2195,
+  "directives": 36766,
+  "flattened_links": 1739,
+  "filtered_open_items": 298,
   "filtered_open_item_rows": [
     {
       "id": "item.2_wd109",
       "path": "GameServer/OpenItem/2_WD109.txt",
-      "code": "wd109"
+      "code": "wd109",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.2_wn109",
       "path": "GameServer/OpenItem/2_WN109.txt",
-      "code": "wn109"
+      "code": "wn109",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.bc117",
       "path": "GameServer/OpenItem/BC117.txt",
-      "code": "bc117"
+      "code": "bc117",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.bc118",
       "path": "GameServer/OpenItem/BC118.txt",
-      "code": "bc118"
+      "code": "bc118",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.bc133",
       "path": "GameServer/OpenItem/BC133.txt",
-      "code": "bc133"
+      "code": "bc133",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.bi160",
       "path": "GameServer/OpenItem/BI160.txt",
-      "code": "bi160"
+      "code": "bi160",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.bi161",
       "path": "GameServer/OpenItem/BI161.txt",
-      "code": "bi161"
+      "code": "bi161",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.bi185",
       "path": "GameServer/OpenItem/BI185.txt",
-      "code": "bi185"
+      "code": "bi185",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.bi199",
       "path": "GameServer/OpenItem/BI199.txt",
-      "code": "bi199"
+      "code": "bi199",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.bi200",
       "path": "GameServer/OpenItem/BI200.txt",
-      "code": "bi200"
+      "code": "bi200",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.bi238",
       "path": "GameServer/OpenItem/BI238.txt",
-      "code": "bi238"
+      "code": "bi238",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.bi239",
       "path": "GameServer/OpenItem/BI239.txt",
-      "code": "bi239"
+      "code": "bi239",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.bi254",
       "path": "GameServer/OpenItem/BI254.txt",
-      "code": "bi254"
+      "code": "bi254",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.bi299",
       "path": "GameServer/OpenItem/BI299.txt",
-      "code": "bi299"
+      "code": "bi299",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.bi325",
       "path": "GameServer/OpenItem/BI325.txt",
-      "code": "bi325"
+      "code": "bi325",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.bi901",
       "path": "GameServer/OpenItem/BI901.txt",
-      "code": "bi901"
+      "code": "bi901",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.ca201",
       "path": "GameServer/OpenItem/CA201.txt",
-      "code": "ca201"
+      "code": "ca201",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.ca202",
       "path": "GameServer/OpenItem/CA202.txt",
-      "code": "ca202"
+      "code": "ca202",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.ca203",
       "path": "GameServer/OpenItem/CA203.txt",
-      "code": "ca203"
+      "code": "ca203",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.ca204",
       "path": "GameServer/OpenItem/CA204.txt",
-      "code": "ca204"
+      "code": "ca204",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.ca205",
       "path": "GameServer/OpenItem/CA205.txt",
-      "code": "ca205"
+      "code": "ca205",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.ca206",
       "path": "GameServer/OpenItem/CA206.txt",
-      "code": "ca206"
+      "code": "ca206",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.ca207",
       "path": "GameServer/OpenItem/CA207.txt",
-      "code": "ca207"
+      "code": "ca207",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.ca208",
       "path": "GameServer/OpenItem/CA208.txt",
-      "code": "ca208"
+      "code": "ca208",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.ca209",
       "path": "GameServer/OpenItem/CA209.txt",
-      "code": "ca209"
+      "code": "ca209",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.ca210",
       "path": "GameServer/OpenItem/CA210.txt",
-      "code": "ca209"
+      "code": "ca209",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.ca211",
       "path": "GameServer/OpenItem/CA211.txt",
-      "code": "ca210"
+      "code": "ca210",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.ca212",
       "path": "GameServer/OpenItem/CA212.txt",
-      "code": "ca212"
+      "code": "ca212",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.cx114",
       "path": "GameServer/OpenItem/CX114.txt",
-      "code": "cx114"
+      "code": "cx114",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.cx115",
       "path": "GameServer/OpenItem/CX115.txt",
-      "code": "cx115"
+      "code": "cx115",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.da130",
       "path": "GameServer/OpenItem/DA130.txt",
-      "code": "da130"
+      "code": "da130",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.da166",
       "path": "GameServer/OpenItem/da166.txt",
-      "code": "da166"
+      "code": "da166",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.da167",
       "path": "GameServer/OpenItem/da167.txt",
-      "code": "da167"
+      "code": "da167",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.da168",
       "path": "GameServer/OpenItem/da168.txt",
-      "code": "da168"
+      "code": "da168",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.da169",
       "path": "GameServer/OpenItem/da169.txt",
-      "code": "da169"
+      "code": "da169",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.da170",
       "path": "GameServer/OpenItem/da170.txt",
-      "code": "da170"
+      "code": "da170",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.da230",
       "path": "GameServer/OpenItem/DA230.txt",
-      "code": "da230"
+      "code": "da230",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.da266",
       "path": "GameServer/OpenItem/da266.txt",
-      "code": "da266"
+      "code": "da266",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.da267",
       "path": "GameServer/OpenItem/da267.txt",
-      "code": "da267"
+      "code": "da267",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.da268",
       "path": "GameServer/OpenItem/da268.txt",
-      "code": "da268"
+      "code": "da268",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.da269",
       "path": "GameServer/OpenItem/da269.txt",
-      "code": "da269"
+      "code": "da269",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.da270",
       "path": "GameServer/OpenItem/da270.txt",
-      "code": "da270"
+      "code": "da270",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.da649",
       "path": "GameServer/OpenItem/DA649.txt",
-      "code": "da649"
+      "code": "da649",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.da650",
       "path": "GameServer/OpenItem/DA650.txt",
-      "code": "da650"
+      "code": "da650",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.da651",
       "path": "GameServer/OpenItem/DA651.txt",
-      "code": "da651"
+      "code": "da651",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.da652",
       "path": "GameServer/OpenItem/DA652.txt",
-      "code": "da652"
+      "code": "da652",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.da653",
       "path": "GameServer/OpenItem/DA653.txt",
-      "code": "da653"
+      "code": "da653",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.da654",
       "path": "GameServer/OpenItem/DA654.txt",
-      "code": "da654"
+      "code": "da654",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.da655",
       "path": "GameServer/OpenItem/DA655.txt",
-      "code": "da655"
+      "code": "da655",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.da656",
       "path": "GameServer/OpenItem/DA656.txt",
-      "code": "da656"
+      "code": "da656",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.da657",
       "path": "GameServer/OpenItem/DA657.txt",
-      "code": "da657"
+      "code": "da657",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.da658",
       "path": "GameServer/OpenItem/DA658.txt",
-      "code": "da658"
+      "code": "da658",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.da659",
       "path": "GameServer/OpenItem/DA659.txt",
-      "code": "da659"
+      "code": "da659",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.da660",
       "path": "GameServer/OpenItem/DA660.txt",
-      "code": "da660"
+      "code": "da660",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.da661",
       "path": "GameServer/OpenItem/DA661.txt",
-      "code": "da661"
+      "code": "da661",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.da662",
       "path": "GameServer/OpenItem/DA662.txt",
-      "code": "da662"
+      "code": "da662",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.da663",
       "path": "GameServer/OpenItem/DA663.txt",
-      "code": "da663"
+      "code": "da663",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.da664",
       "path": "GameServer/OpenItem/DA664.txt",
-      "code": "da664"
+      "code": "da664",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.db136",
       "path": "GameServer/OpenItem/db136.txt",
-      "code": "db136"
+      "code": "db136",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.db137",
       "path": "GameServer/OpenItem/db137.txt",
-      "code": "db137"
+      "code": "db137",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.db138",
       "path": "GameServer/OpenItem/DB138.txt",
-      "code": "db138"
+      "code": "db138",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.db144",
       "path": "GameServer/OpenItem/DB144.txt",
-      "code": "db144"
+      "code": "db144",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.db145",
       "path": "GameServer/OpenItem/DB145.txt",
-      "code": "db145"
+      "code": "db145",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.db153",
       "path": "GameServer/OpenItem/db153.txt",
-      "code": "db153"
+      "code": "db153",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.db226",
       "path": "GameServer/OpenItem/db226.txt",
-      "code": "db226"
+      "code": "db226",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.dg131",
       "path": "GameServer/OpenItem/DG131.txt",
-      "code": "dg131"
+      "code": "dg131",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.dg135",
       "path": "GameServer/OpenItem/DG135.txt",
-      "code": "dg135"
+      "code": "dg135",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.dg136",
       "path": "GameServer/OpenItem/DG136.txt",
-      "code": "dg136"
+      "code": "dg136",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.dg144",
       "path": "GameServer/OpenItem/DG144.txt",
-      "code": "dg144"
+      "code": "dg144",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.dg145",
       "path": "GameServer/OpenItem/DG145.txt",
-      "code": "dg145"
+      "code": "dg145",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.dg153",
       "path": "GameServer/OpenItem/DG153.txt",
-      "code": "dg153"
+      "code": "dg153",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.dg226",
       "path": "GameServer/OpenItem/DG226.txt",
-      "code": "dg226"
+      "code": "dg226",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.ds129",
       "path": "GameServer/OpenItem/DS129.txt",
-      "code": "ds129"
+      "code": "ds129",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.ds130",
       "path": "GameServer/OpenItem/DS130.txt",
-      "code": "ds130"
+      "code": "ds130",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.ds134",
       "path": "GameServer/OpenItem/DS134.txt",
-      "code": "ds134"
+      "code": "ds134",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.ds135",
       "path": "GameServer/OpenItem/DS135.txt",
-      "code": "ds135"
+      "code": "ds135",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.ds136",
       "path": "GameServer/OpenItem/DS136.txt",
-      "code": "ds136"
+      "code": "ds136",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.ds137",
       "path": "GameServer/OpenItem/DS137.txt",
-      "code": "ds137"
+      "code": "ds137",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.ds138",
       "path": "GameServer/OpenItem/DS138.txt",
-      "code": "ds138"
+      "code": "ds138",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.ds139",
       "path": "GameServer/OpenItem/DS139.txt",
-      "code": "ds139"
+      "code": "ds139",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.ds160",
       "path": "GameServer/OpenItem/DS160.txt",
-      "code": "ds160"
+      "code": "ds160",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.gb105",
       "path": "GameServer/OpenItem/GB105.txt",
-      "code": "gb105"
+      "code": "gb105",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.gb106",
       "path": "GameServer/OpenItem/GB106.txt",
-      "code": "gb106"
+      "code": "gb106",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.jv101",
       "path": "GameServer/OpenItem/JV101.txt",
-      "code": "jv101"
+      "code": "jv101",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.jv102",
       "path": "GameServer/OpenItem/JV102.txt",
-      "code": "jv102"
+      "code": "jv102",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.jv103",
       "path": "GameServer/OpenItem/JV103.txt",
-      "code": "jv103"
+      "code": "jv103",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.jv104",
       "path": "GameServer/OpenItem/JV104.txt",
-      "code": "jv104"
+      "code": "jv104",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.jv105",
       "path": "GameServer/OpenItem/JV105.txt",
-      "code": "jv105"
+      "code": "jv105",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.jv106",
       "path": "GameServer/OpenItem/JV106.txt",
-      "code": "jv106"
+      "code": "jv106",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.jv107",
       "path": "GameServer/OpenItem/JV107.txt",
-      "code": "jv107"
+      "code": "jv107",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.jv108",
       "path": "GameServer/OpenItem/JV108.txt",
-      "code": "jv108"
+      "code": "jv108",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.oa129",
       "path": "GameServer/OpenItem/OA129.txt",
-      "code": "oa129"
+      "code": "oa129",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.oa130",
       "path": "GameServer/OpenItem/OA130.txt",
-      "code": "oa130"
+      "code": "oa130",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.oa131",
       "path": "GameServer/OpenItem/OA131.txt",
-      "code": "oa131"
+      "code": "oa131",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.oa132",
       "path": "GameServer/OpenItem/OA132.txt",
-      "code": "oa132"
+      "code": "oa132",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.oa133",
       "path": "GameServer/OpenItem/OA133.txt",
-      "code": "oa133"
+      "code": "oa133",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.oa144",
       "path": "GameServer/OpenItem/OA144.txt",
-      "code": "oa144"
+      "code": "oa144",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.oa153",
       "path": "GameServer/OpenItem/OA153.txt",
-      "code": "oa153"
+      "code": "oa153",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.oa154",
       "path": "GameServer/OpenItem/OA154.txt",
-      "code": "oa154"
+      "code": "oa154",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.oa155",
       "path": "GameServer/OpenItem/OA155.txt",
-      "code": "oa155"
+      "code": "oa155",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.oa156",
       "path": "GameServer/OpenItem/OA156.txt",
-      "code": "oa156"
+      "code": "oa156",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.oa230",
       "path": "GameServer/OpenItem/oa230.txt",
-      "code": "oa230"
+      "code": "oa230",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.oa235",
       "path": "GameServer/OpenItem/oa235.txt",
-      "code": "oa235"
+      "code": "oa235",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.oa237",
       "path": "GameServer/OpenItem/oa237.txt",
-      "code": "oa237"
+      "code": "oa237",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.oa244",
       "path": "GameServer/OpenItem/OA244.txt",
-      "code": "oa244"
+      "code": "oa244",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.oa245",
       "path": "GameServer/OpenItem/OA245.txt",
-      "code": "oa245"
+      "code": "oa245",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.oa252",
       "path": "GameServer/OpenItem/oa252.txt",
-      "code": "oa252"
+      "code": "oa252",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.oa253",
       "path": "GameServer/OpenItem/oa253.txt",
-      "code": "oa253"
+      "code": "oa253",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.oe104",
       "path": "GameServer/OpenItem/OE104.txt",
-      "code": "oe104"
+      "code": "oe104",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.oe105",
       "path": "GameServer/OpenItem/OE105.txt",
-      "code": "oe105"
+      "code": "oe105",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.oe106",
       "path": "GameServer/OpenItem/OE106.txt",
-      "code": "oe106"
+      "code": "oe106",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.oe107",
       "path": "GameServer/OpenItem/OE107.txt",
-      "code": "oe107"
+      "code": "oe107",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.oe130",
       "path": "GameServer/OpenItem/OE130.txt",
-      "code": "oe130"
+      "code": "oe130",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.oe131",
       "path": "GameServer/OpenItem/OE131.txt",
-      "code": "oe131"
+      "code": "oe131",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.om126",
       "path": "GameServer/OpenItem/OM126.txt",
-      "code": "om126"
+      "code": "om126",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.om127",
       "path": "GameServer/OpenItem/OM127.txt",
-      "code": "om127"
+      "code": "om127",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.om128",
       "path": "GameServer/OpenItem/OM128.txt",
-      "code": "om128"
+      "code": "om128",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.om129",
       "path": "GameServer/OpenItem/OM129.txt",
-      "code": "om129"
+      "code": "om129",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.om130",
       "path": "GameServer/OpenItem/OM130.txt",
-      "code": "om130"
+      "code": "om130",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.om131",
       "path": "GameServer/OpenItem/OM131.txt",
-      "code": "om131"
+      "code": "om131",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.om226",
       "path": "GameServer/OpenItem/OM226.txt",
-      "code": "om226"
+      "code": "om226",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or129",
       "path": "GameServer/OpenItem/OR129.txt",
-      "code": "or129"
+      "code": "or129",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or131",
       "path": "GameServer/OpenItem/OR131.txt",
-      "code": "or131"
+      "code": "or131",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or132",
       "path": "GameServer/OpenItem/OR132.txt",
-      "code": "or132"
+      "code": "or132",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or151",
       "path": "GameServer/OpenItem/OR151.txt",
-      "code": "or151"
+      "code": "or151",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or152",
       "path": "GameServer/OpenItem/OR152.txt",
-      "code": "or152"
+      "code": "or152",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or206",
       "path": "GameServer/OpenItem/OR206.txt",
-      "code": "or206"
+      "code": "or206",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or207",
       "path": "GameServer/OpenItem/OR207.txt",
-      "code": "or207"
+      "code": "or207",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or208",
       "path": "GameServer/OpenItem/OR208.txt",
-      "code": "or208"
+      "code": "or208",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or209",
       "path": "GameServer/OpenItem/OR209.txt",
-      "code": "or209"
+      "code": "or209",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or210",
       "path": "GameServer/OpenItem/OR210.txt",
-      "code": "or210"
+      "code": "or210",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or211",
       "path": "GameServer/OpenItem/OR211.txt",
-      "code": "or211"
+      "code": "or211",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or212",
       "path": "GameServer/OpenItem/OR212.txt",
-      "code": "or212"
+      "code": "or212",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or213",
       "path": "GameServer/OpenItem/OR213.txt",
-      "code": "or213"
+      "code": "or213",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or214",
       "path": "GameServer/OpenItem/OR214.txt",
-      "code": "or214"
+      "code": "or214",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or215",
       "path": "GameServer/OpenItem/OR215.txt",
-      "code": "or215"
+      "code": "or215",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or216",
       "path": "GameServer/OpenItem/OR216.txt",
-      "code": "or216"
+      "code": "or216",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or217",
       "path": "GameServer/OpenItem/OR217.txt",
-      "code": "or217"
+      "code": "or217",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or218",
       "path": "GameServer/OpenItem/OR218.txt",
-      "code": "or218"
+      "code": "or218",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or219",
       "path": "GameServer/OpenItem/OR219.txt",
-      "code": "or219"
+      "code": "or219",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or220",
       "path": "GameServer/OpenItem/OR220.txt",
-      "code": "or220"
+      "code": "or220",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or221",
       "path": "GameServer/OpenItem/OR221.txt",
-      "code": "or221"
+      "code": "or221",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or222",
       "path": "GameServer/OpenItem/OR222.txt",
-      "code": "or222"
+      "code": "or222",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or223",
       "path": "GameServer/OpenItem/OR223.txt",
-      "code": "or223"
+      "code": "or223",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or224",
       "path": "GameServer/OpenItem/OR224.txt",
-      "code": "or224"
+      "code": "or224",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or225",
       "path": "GameServer/OpenItem/OR225.txt",
-      "code": "or225"
+      "code": "or225",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or243",
       "path": "GameServer/OpenItem/OR243.txt",
-      "code": "or243"
+      "code": "or243",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or244",
       "path": "GameServer/OpenItem/OR244.txt",
-      "code": "or244"
+      "code": "or244",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or245",
       "path": "GameServer/OpenItem/OR245.txt",
-      "code": "or245"
+      "code": "or245",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or246",
       "path": "GameServer/OpenItem/OR246.txt",
-      "code": "or246"
+      "code": "or246",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or247",
       "path": "GameServer/OpenItem/OR247.txt",
-      "code": "or247"
+      "code": "or247",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or248",
       "path": "GameServer/OpenItem/OR248.txt",
-      "code": "or248"
+      "code": "or248",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or249",
       "path": "GameServer/OpenItem/OR249.txt",
-      "code": "or249"
+      "code": "or249",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or254",
       "path": "GameServer/OpenItem/OR254.txt",
-      "code": "or254"
+      "code": "or254",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or255",
       "path": "GameServer/OpenItem/OR255.txt",
-      "code": "or255"
+      "code": "or255",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.or256",
       "path": "GameServer/OpenItem/OR256.txt",
-      "code": "or256"
+      "code": "or256",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.os120",
       "path": "GameServer/OpenItem/OS120.txt",
-      "code": "os120"
+      "code": "os120",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.os135",
       "path": "GameServer/OpenItem/OS135.txt",
-      "code": "os135"
+      "code": "os135",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.os136",
       "path": "GameServer/OpenItem/OS136.txt",
-      "code": "os136"
+      "code": "os136",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.qt117",
       "path": "GameServer/OpenItem/QT117.txt",
-      "code": "qt117"
+      "code": "qt117",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.qt118",
       "path": "GameServer/OpenItem/QT118.txt",
-      "code": "qt118"
+      "code": "qt118",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.qt119",
       "path": "GameServer/OpenItem/QT119.txt",
-      "code": "qt119"
+      "code": "qt119",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.qt120",
       "path": "GameServer/OpenItem/QT120.txt",
-      "code": "qt120"
+      "code": "qt120",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.qt121",
       "path": "GameServer/OpenItem/QT121.txt",
-      "code": "qt121"
+      "code": "qt121",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.qt122",
       "path": "GameServer/OpenItem/QT122.txt",
-      "code": "qt122"
+      "code": "qt122",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.qt123",
       "path": "GameServer/OpenItem/QT123.txt",
-      "code": "qt123"
+      "code": "qt123",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.qt124",
       "path": "GameServer/OpenItem/QT124.txt",
-      "code": "qt124"
+      "code": "qt124",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.qt125",
       "path": "GameServer/OpenItem/QT125.txt",
-      "code": "qt125"
+      "code": "qt125",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.qt126",
       "path": "GameServer/OpenItem/QT126.txt",
-      "code": "qt126"
+      "code": "qt126",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.qt127",
       "path": "GameServer/OpenItem/QT127.txt",
-      "code": "qt127"
+      "code": "qt127",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.qt128",
       "path": "GameServer/OpenItem/QT128.txt",
-      "code": "qt128"
+      "code": "qt128",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.qt129",
       "path": "GameServer/OpenItem/QT129.txt",
-      "code": "qt129"
+      "code": "qt129",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.qt130",
       "path": "GameServer/OpenItem/QT130.txt",
-      "code": "qt130"
+      "code": "qt130",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.qt131",
       "path": "GameServer/OpenItem/QT131.txt",
-      "code": "qt131"
+      "code": "qt131",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.qt132",
       "path": "GameServer/OpenItem/QT132.txt",
-      "code": "qt132"
+      "code": "qt132",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.qt133",
       "path": "GameServer/OpenItem/QT133.txt",
-      "code": "qt133"
+      "code": "qt133",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.se105",
       "path": "GameServer/OpenItem/SE105.txt",
-      "code": "se105"
+      "code": "se105",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.sk306",
       "path": "GameServer/OpenItem/SK306.txt",
-      "code": "sk306"
+      "code": "sk306",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.sk406",
       "path": "GameServer/OpenItem/SK406.txt",
-      "code": "sk406"
+      "code": "sk406",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.sp111",
       "path": "GameServer/OpenItem/SP111.txt",
-      "code": "sp111"
+      "code": "sp111",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.sp112",
       "path": "GameServer/OpenItem/SP112.txt",
-      "code": "sp112"
+      "code": "sp112",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.sp113",
       "path": "GameServer/OpenItem/SP113.txt",
-      "code": "sp113"
-    },
-    {
-      "id": "item.sp123",
-      "path": "GameServer/OpenItem/SP123.txt",
-      "code": "sp123"
+      "code": "sp113",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.sp124",
       "path": "GameServer/OpenItem/SP124.txt",
-      "code": "sp124"
+      "code": "sp124",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.sp125",
       "path": "GameServer/OpenItem/SP125.txt",
-      "code": "sp125"
-    },
-    {
-      "id": "item.sp179",
-      "path": "GameServer/OpenItem/SP179.txt",
-      "code": "sp179"
-    },
-    {
-      "id": "item.tw160",
-      "path": "GameServer/OpenItem/TW160.txt",
-      "code": "tw160"
-    },
-    {
-      "id": "item.uwd121_enigma_dagger",
-      "path": "GameServer/OpenItem/UWD121_Enigma Dagger.txt",
-      "code": "wd121"
-    },
-    {
-      "id": "item.uwn121_kahsehtha_phantom",
-      "path": "GameServer/OpenItem/UWN121_Kahsehtha  Phantom.txt",
-      "code": "wn121"
-    },
-    {
-      "id": "item.wa153",
-      "path": "GameServer/OpenItem/WA153.txt",
-      "code": "wa153"
-    },
-    {
-      "id": "item.wa160",
-      "path": "GameServer/OpenItem/WA160.txt",
-      "code": "wa160"
-    },
-    {
-      "id": "item.wc153",
-      "path": "GameServer/OpenItem/WC153.txt",
-      "code": "wc153"
-    },
-    {
-      "id": "item.wc160",
-      "path": "GameServer/OpenItem/WC160.txt",
-      "code": "wc160"
-    },
-    {
-      "id": "item.wc161",
-      "path": "GameServer/OpenItem/WC161.txt",
-      "code": "wc161"
+      "code": "sp125",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd101",
       "path": "GameServer/OpenItem/Tier5/WD101.txt",
-      "code": "wd101"
+      "code": "wd101",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd102",
       "path": "GameServer/OpenItem/Tier5/WD102.txt",
-      "code": "wd102"
+      "code": "wd102",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd103",
       "path": "GameServer/OpenItem/Tier5/WD103.txt",
-      "code": "wd103"
+      "code": "wd103",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd104",
       "path": "GameServer/OpenItem/Tier5/WD104.txt",
-      "code": "wd104"
+      "code": "wd104",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd105",
       "path": "GameServer/OpenItem/Tier5/WD105.txt",
-      "code": "wd105"
+      "code": "wd105",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd106",
       "path": "GameServer/OpenItem/Tier5/WD106.txt",
-      "code": "wd106"
+      "code": "wd106",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd107",
       "path": "GameServer/OpenItem/Tier5/WD107.txt",
-      "code": "wd107"
+      "code": "wd107",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd108",
       "path": "GameServer/OpenItem/Tier5/WD108.txt",
-      "code": "wd108"
+      "code": "wd108",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd109",
       "path": "GameServer/OpenItem/Tier5/WD109.txt",
-      "code": "wd109"
+      "code": "wd109",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd110",
       "path": "GameServer/OpenItem/Tier5/WD110.txt",
-      "code": "wd110"
+      "code": "wd110",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd111",
       "path": "GameServer/OpenItem/Tier5/WD111.txt",
-      "code": "wd111"
+      "code": "wd111",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd112",
       "path": "GameServer/OpenItem/Tier5/WD112.txt",
-      "code": "wd112"
+      "code": "wd112",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd113",
       "path": "GameServer/OpenItem/Tier5/WD113.txt",
-      "code": "wd113"
+      "code": "wd113",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd114",
       "path": "GameServer/OpenItem/Tier5/WD114.txt",
-      "code": "wd114"
+      "code": "wd114",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd115",
       "path": "GameServer/OpenItem/Tier5/WD115.txt",
-      "code": "wd115"
+      "code": "wd115",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd116",
       "path": "GameServer/OpenItem/Tier5/WD116.txt",
-      "code": "wd116"
+      "code": "wd116",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd117",
       "path": "GameServer/OpenItem/Tier5/WD117.txt",
-      "code": "wd117"
+      "code": "wd117",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd118",
       "path": "GameServer/OpenItem/Tier5/WD118.txt",
-      "code": "wd118"
+      "code": "wd118",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd119",
       "path": "GameServer/OpenItem/Tier5/WD119.txt",
-      "code": "wd119"
+      "code": "wd119",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd120",
       "path": "GameServer/OpenItem/Tier5/WD120.txt",
-      "code": "wd120"
+      "code": "wd120",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd122",
       "path": "GameServer/OpenItem/Tier5/WD122.txt",
-      "code": "wd122"
+      "code": "wd122",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd123",
       "path": "GameServer/OpenItem/Tier5/WD123.txt",
-      "code": "wd123"
+      "code": "wd123",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd124",
       "path": "GameServer/OpenItem/Tier5/WD124.txt",
-      "code": "wd124"
+      "code": "wd124",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd125",
       "path": "GameServer/OpenItem/Tier5/WD125.txt",
-      "code": "wd125"
+      "code": "wd125",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd126",
       "path": "GameServer/OpenItem/Tier5/WD126.txt",
-      "code": "wd126"
+      "code": "wd126",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd127",
       "path": "GameServer/OpenItem/Tier5/WD127.txt",
-      "code": "wd127"
+      "code": "wd127",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd128",
       "path": "GameServer/OpenItem/Tier5/WD128.txt",
-      "code": "wd128"
+      "code": "wd128",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd129",
       "path": "GameServer/OpenItem/Tier5/WD129.txt",
-      "code": "wd129"
+      "code": "wd129",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd151",
       "path": "GameServer/OpenItem/Tier5/WD151.txt",
-      "code": "wd151"
+      "code": "wd151",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd152",
       "path": "GameServer/OpenItem/Tier5/WD152.txt",
-      "code": "wd152"
+      "code": "wd152",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wd153",
       "path": "GameServer/OpenItem/Tier5/WD153.txt",
-      "code": "wd153"
-    },
-    {
-      "id": "item.wh153",
-      "path": "GameServer/OpenItem/WH153.txt",
-      "code": "wh153"
-    },
-    {
-      "id": "item.wh160",
-      "path": "GameServer/OpenItem/WH160.txt",
-      "code": "wh160"
-    },
-    {
-      "id": "item.wm153",
-      "path": "GameServer/OpenItem/WM153.txt",
-      "code": "wm153"
+      "code": "wd153",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn101",
       "path": "GameServer/OpenItem/Tier5/WN101.txt",
-      "code": "wn101"
+      "code": "wn101",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn102",
       "path": "GameServer/OpenItem/Tier5/WN102.txt",
-      "code": "wn102"
+      "code": "wn102",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn103",
       "path": "GameServer/OpenItem/Tier5/WN103.txt",
-      "code": "wn103"
+      "code": "wn103",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn104",
       "path": "GameServer/OpenItem/Tier5/WN104.txt",
-      "code": "wn104"
+      "code": "wn104",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn105",
       "path": "GameServer/OpenItem/Tier5/WN105.txt",
-      "code": "wn105"
+      "code": "wn105",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn106",
       "path": "GameServer/OpenItem/Tier5/WN106.txt",
-      "code": "wn106"
+      "code": "wn106",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn107",
       "path": "GameServer/OpenItem/Tier5/WN107.txt",
-      "code": "wn107"
+      "code": "wn107",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn108",
       "path": "GameServer/OpenItem/Tier5/WN108.txt",
-      "code": "wn108"
+      "code": "wn108",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn109",
       "path": "GameServer/OpenItem/Tier5/WN109.txt",
-      "code": "wn109"
+      "code": "wn109",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn110",
       "path": "GameServer/OpenItem/Tier5/WN110.txt",
-      "code": "wn110"
+      "code": "wn110",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn111",
       "path": "GameServer/OpenItem/Tier5/WN111.txt",
-      "code": "wn111"
+      "code": "wn111",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn112",
       "path": "GameServer/OpenItem/Tier5/WN112.txt",
-      "code": "wn112"
+      "code": "wn112",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn113",
       "path": "GameServer/OpenItem/Tier5/WN113.txt",
-      "code": "wn113"
+      "code": "wn113",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn114",
       "path": "GameServer/OpenItem/Tier5/WN114.txt",
-      "code": "wn114"
+      "code": "wn114",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn115",
       "path": "GameServer/OpenItem/Tier5/WN115.txt",
-      "code": "wn115"
+      "code": "wn115",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn116",
       "path": "GameServer/OpenItem/Tier5/WN116.txt",
-      "code": "wn116"
+      "code": "wn116",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn117",
       "path": "GameServer/OpenItem/Tier5/WN117.txt",
-      "code": "wn117"
+      "code": "wn117",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn118",
       "path": "GameServer/OpenItem/Tier5/WN118.txt",
-      "code": "wn118"
+      "code": "wn118",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn119",
       "path": "GameServer/OpenItem/Tier5/WN119.txt",
-      "code": "wn119"
+      "code": "wn119",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn120",
       "path": "GameServer/OpenItem/Tier5/WN120.txt",
-      "code": "wn120"
+      "code": "wn120",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn122",
       "path": "GameServer/OpenItem/Tier5/WN122.txt",
-      "code": "wn122"
+      "code": "wn122",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn123",
       "path": "GameServer/OpenItem/Tier5/WN123.txt",
-      "code": "wn123"
+      "code": "wn123",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn124",
       "path": "GameServer/OpenItem/Tier5/WN124.txt",
-      "code": "wn124"
+      "code": "wn124",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn125",
       "path": "GameServer/OpenItem/Tier5/WN125.txt",
-      "code": "wn125"
+      "code": "wn125",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn126",
       "path": "GameServer/OpenItem/Tier5/WN126.txt",
-      "code": "wn126"
+      "code": "wn126",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn127",
       "path": "GameServer/OpenItem/Tier5/WN127.txt",
-      "code": "wn127"
+      "code": "wn127",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn128",
       "path": "GameServer/OpenItem/Tier5/WN128.txt",
-      "code": "wn128"
+      "code": "wn128",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn129",
       "path": "GameServer/OpenItem/Tier5/WN129.txt",
-      "code": "wn129"
+      "code": "wn129",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn151",
       "path": "GameServer/OpenItem/Tier5/WN151.txt",
-      "code": "wn151"
+      "code": "wn151",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn152",
       "path": "GameServer/OpenItem/Tier5/WN152.txt",
-      "code": "wn152"
+      "code": "wn152",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wn153",
       "path": "GameServer/OpenItem/Tier5/WN153.txt",
-      "code": "wn153"
-    },
-    {
-      "id": "item.wp153",
-      "path": "GameServer/OpenItem/WP153.txt",
-      "code": "wp153"
-    },
-    {
-      "id": "item.wp160",
-      "path": "GameServer/OpenItem/WP160.txt",
-      "code": "wp160"
-    },
-    {
-      "id": "item.ws153",
-      "path": "GameServer/OpenItem/WS153.txt",
-      "code": "ws153"
-    },
-    {
-      "id": "item.ws160",
-      "path": "GameServer/OpenItem/WS160.txt",
-      "code": "ws160"
-    },
-    {
-      "id": "item.ws161",
-      "path": "GameServer/OpenItem/WS161.txt",
-      "code": "ws161"
-    },
-    {
-      "id": "item.ws253",
-      "path": "GameServer/OpenItem/WS253.txt",
-      "code": "ws253"
-    },
-    {
-      "id": "item.ws260",
-      "path": "GameServer/OpenItem/WS260.txt",
-      "code": "ws260"
-    },
-    {
-      "id": "item.ws261",
-      "path": "GameServer/OpenItem/WS261.txt",
-      "code": "ws261"
+      "code": "wn153",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv101",
       "path": "GameServer/OpenItem/Tier5/WV101.txt",
-      "code": "wv101"
+      "code": "wv101",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv102",
       "path": "GameServer/OpenItem/Tier5/WV102.txt",
-      "code": "wv102"
+      "code": "wv102",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv103",
       "path": "GameServer/OpenItem/Tier5/WV103.txt",
-      "code": "wv103"
+      "code": "wv103",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv104",
       "path": "GameServer/OpenItem/Tier5/WV104.txt",
-      "code": "wv104"
+      "code": "wv104",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv105",
       "path": "GameServer/OpenItem/Tier5/WV105.txt",
-      "code": "wv105"
+      "code": "wv105",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv106",
       "path": "GameServer/OpenItem/Tier5/WV106.txt",
-      "code": "wv106"
+      "code": "wv106",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv107",
       "path": "GameServer/OpenItem/Tier5/WV107.txt",
-      "code": "wv107"
+      "code": "wv107",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv108",
       "path": "GameServer/OpenItem/Tier5/WV108.txt",
-      "code": "wv108"
+      "code": "wv108",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv109",
       "path": "GameServer/OpenItem/Tier5/WV109.txt",
-      "code": "wv109"
+      "code": "wv109",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv110",
       "path": "GameServer/OpenItem/Tier5/WV110.txt",
-      "code": "wv110"
+      "code": "wv110",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv111",
       "path": "GameServer/OpenItem/Tier5/WV111.txt",
-      "code": "wv111"
+      "code": "wv111",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv112",
       "path": "GameServer/OpenItem/Tier5/WV112.txt",
-      "code": "wv112"
+      "code": "wv112",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv113",
       "path": "GameServer/OpenItem/Tier5/WV113.txt",
-      "code": "wv113"
+      "code": "wv113",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv114",
       "path": "GameServer/OpenItem/Tier5/WV114.txt",
-      "code": "wv114"
+      "code": "wv114",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv115",
       "path": "GameServer/OpenItem/Tier5/WV115.txt",
-      "code": "wv115"
+      "code": "wv115",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv116",
       "path": "GameServer/OpenItem/Tier5/WV116.txt",
-      "code": "wv116"
+      "code": "wv116",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv117",
       "path": "GameServer/OpenItem/Tier5/WV117.txt",
-      "code": "wv117"
+      "code": "wv117",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv118",
       "path": "GameServer/OpenItem/Tier5/WV118.txt",
-      "code": "wv118"
+      "code": "wv118",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv119",
       "path": "GameServer/OpenItem/Tier5/WV119.txt",
-      "code": "wv119"
+      "code": "wv119",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv120",
       "path": "GameServer/OpenItem/Tier5/WV120.txt",
-      "code": "wv120"
+      "code": "wv120",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv121",
       "path": "GameServer/OpenItem/Tier5/WV121.txt",
-      "code": "wv121"
+      "code": "wv121",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv122",
       "path": "GameServer/OpenItem/Tier5/WV122.txt",
-      "code": "wv122"
+      "code": "wv122",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv123",
       "path": "GameServer/OpenItem/Tier5/WV123.txt",
-      "code": "wv123"
+      "code": "wv123",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv124",
       "path": "GameServer/OpenItem/Tier5/WV124.txt",
-      "code": "wv124"
+      "code": "wv124",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv125",
       "path": "GameServer/OpenItem/Tier5/WV125.txt",
-      "code": "wv125"
+      "code": "wv125",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv126",
       "path": "GameServer/OpenItem/Tier5/WV126.txt",
-      "code": "wv126"
+      "code": "wv126",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv127",
       "path": "GameServer/OpenItem/Tier5/WV127.txt",
-      "code": "wv127"
+      "code": "wv127",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv128",
       "path": "GameServer/OpenItem/Tier5/WV128.txt",
-      "code": "wv128"
+      "code": "wv128",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv129",
       "path": "GameServer/OpenItem/Tier5/WV129.txt",
-      "code": "wv129"
+      "code": "wv129",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv130",
       "path": "GameServer/OpenItem/Tier5/WV130.txt",
-      "code": "wv130"
+      "code": "wv130",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv151",
       "path": "GameServer/OpenItem/Tier5/WV151.txt",
-      "code": "wv151"
+      "code": "wv151",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv152",
       "path": "GameServer/OpenItem/Tier5/WV152.txt",
-      "code": "wv152"
+      "code": "wv152",
+      "filter_source": "legacy_profile_fallback"
     },
     {
       "id": "item.wv153",
       "path": "GameServer/OpenItem/Tier5/WV153.txt",
-      "code": "wv153"
+      "code": "wv153",
+      "filter_source": "legacy_profile_fallback"
+    },
+    {
+      "id": "item.tw160",
+      "path": "GameServer/OpenItem/TW160.txt",
+      "code": "tw160",
+      "filter_source": "legacy_profile_fallback"
+    },
+    {
+      "id": "item.uwd121_enigma_dagger",
+      "path": "GameServer/OpenItem/UWD121_Enigma Dagger.txt",
+      "code": "wd121",
+      "filter_source": "legacy_profile_fallback"
+    },
+    {
+      "id": "item.uwn121_kahsehtha_phantom",
+      "path": "GameServer/OpenItem/UWN121_Kahsehtha  Phantom.txt",
+      "code": "wn121",
+      "filter_source": "legacy_profile_fallback"
+    },
+    {
+      "id": "item.wa153",
+      "path": "GameServer/OpenItem/WA153.txt",
+      "code": "wa153",
+      "filter_source": "legacy_profile_fallback"
+    },
+    {
+      "id": "item.wa160",
+      "path": "GameServer/OpenItem/WA160.txt",
+      "code": "wa160",
+      "filter_source": "legacy_profile_fallback"
+    },
+    {
+      "id": "item.wc153",
+      "path": "GameServer/OpenItem/WC153.txt",
+      "code": "wc153",
+      "filter_source": "legacy_profile_fallback"
+    },
+    {
+      "id": "item.wc160",
+      "path": "GameServer/OpenItem/WC160.txt",
+      "code": "wc160",
+      "filter_source": "legacy_profile_fallback"
+    },
+    {
+      "id": "item.wc161",
+      "path": "GameServer/OpenItem/WC161.txt",
+      "code": "wc161",
+      "filter_source": "legacy_profile_fallback"
+    },
+    {
+      "id": "item.wh153",
+      "path": "GameServer/OpenItem/WH153.txt",
+      "code": "wh153",
+      "filter_source": "legacy_profile_fallback"
+    },
+    {
+      "id": "item.wh160",
+      "path": "GameServer/OpenItem/WH160.txt",
+      "code": "wh160",
+      "filter_source": "legacy_profile_fallback"
+    },
+    {
+      "id": "item.wm153",
+      "path": "GameServer/OpenItem/WM153.txt",
+      "code": "wm153",
+      "filter_source": "legacy_profile_fallback"
+    },
+    {
+      "id": "item.wp153",
+      "path": "GameServer/OpenItem/WP153.txt",
+      "code": "wp153",
+      "filter_source": "legacy_profile_fallback"
+    },
+    {
+      "id": "item.wp160",
+      "path": "GameServer/OpenItem/WP160.txt",
+      "code": "wp160",
+      "filter_source": "legacy_profile_fallback"
+    },
+    {
+      "id": "item.ws153",
+      "path": "GameServer/OpenItem/WS153.txt",
+      "code": "ws153",
+      "filter_source": "legacy_profile_fallback"
+    },
+    {
+      "id": "item.ws160",
+      "path": "GameServer/OpenItem/WS160.txt",
+      "code": "ws160",
+      "filter_source": "legacy_profile_fallback"
+    },
+    {
+      "id": "item.ws161",
+      "path": "GameServer/OpenItem/WS161.txt",
+      "code": "ws161",
+      "filter_source": "legacy_profile_fallback"
+    },
+    {
+      "id": "item.ws253",
+      "path": "GameServer/OpenItem/WS253.txt",
+      "code": "ws253",
+      "filter_source": "legacy_profile_fallback"
+    },
+    {
+      "id": "item.ws260",
+      "path": "GameServer/OpenItem/WS260.txt",
+      "code": "ws260",
+      "filter_source": "legacy_profile_fallback"
+    },
+    {
+      "id": "item.ws261",
+      "path": "GameServer/OpenItem/WS261.txt",
+      "code": "ws261",
+      "filter_source": "legacy_profile_fallback"
+    }
+  ],
+  "canonical_profile_overrides": 2,
+  "canonical_profile_override_rows": [
+    {
+      "id": "item.sp123",
+      "path": "GameServer/OpenItem/SP123.txt",
+      "code": "sp123",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.sp179",
+      "path": "GameServer/OpenItem/SP179.txt",
+      "code": "sp179",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
     }
   ],
   "filtered_shop_tokens": [
@@ -1538,12 +1849,6 @@
       "path": "GameServer/NPC/Donation Box.NPC",
       "key": "sell_weapon",
       "token": "WN114"
-    },
-    {
-      "id": "npc.marina",
-      "path": "GameServer/NPC/Marina.npc",
-      "key": "sell_etc",
-      "token": "SP179"
     },
     {
       "id": "npc.premium",
@@ -1761,6 +2066,41 @@
       "target": "gameserver/monster/name/name.zhoon"
     },
     {
+      "id": "monster.172_igniculus",
+      "path": "GameServer/Monster/172_Igniculus.inf",
+      "target": "gameserver/monster/name/name.zhoon"
+    },
+    {
+      "id": "monster.174_lavaarmor",
+      "path": "GameServer/Monster/174_LavaArmor.inf",
+      "target": "gameserver/monster/name/name.zhoon"
+    },
+    {
+      "id": "monster.175_lavaarcher",
+      "path": "GameServer/Monster/175_LavaArcher.inf",
+      "target": "gameserver/monster/name/name.zhoon"
+    },
+    {
+      "id": "monster.176_insec",
+      "path": "GameServer/Monster/176_Insec.inf",
+      "target": "gameserver/monster/name/name.zhoon"
+    },
+    {
+      "id": "monster.177_lavagolem",
+      "path": "GameServer/Monster/177_LavaGolem.inf",
+      "target": "gameserver/monster/name/name.zhoon"
+    },
+    {
+      "id": "monster.178_lavagiant",
+      "path": "GameServer/Monster/178_LavaGiant.inf",
+      "target": "gameserver/monster/name/name.zhoon"
+    },
+    {
+      "id": "monster.179_flamo",
+      "path": "GameServer/Monster/179_Flamo.inf",
+      "target": "gameserver/monster/name/name.zhoon"
+    },
+    {
       "id": "monster.17_esqueleto",
       "path": "GameServer/Monster/17_Esqueleto.inf",
       "target": "gameserver/monster/name/name.zhoon"
@@ -1768,6 +2108,11 @@
     {
       "id": "monster.17_planta_mort_u00edfera",
       "path": "GameServer/Monster/17_Planta Mort#U00edfera.inf",
+      "target": "gameserver/monster/name/name.zhoon"
+    },
+    {
+      "id": "monster.190_flamemaiden",
+      "path": "GameServer/Monster/190_FlameMaiden.inf",
       "target": "gameserver/monster/name/name.zhoon"
     },
     {
@@ -1834,6 +2179,16 @@
       "id": "monster.2_cogumelo_fantasma",
       "path": "GameServer/Monster/2_Cogumelo Fantasma.inf",
       "target": "gameserver/monster/name/name.zhoon"
+    },
+    {
+      "id": "monster.30_maplefairy",
+      "path": "GameServer/Monster/30_MapleFairy.inf",
+      "target": "gameserver/monster/name/maplefairy.zhoon"
+    },
+    {
+      "id": "monster.30_mapletree",
+      "path": "GameServer/Monster/30_MapleTree.inf",
+      "target": "gameserver/monster/name/mapletree.zhoon"
     },
     {
       "id": "monster.30_parasita",
@@ -3234,8 +3589,13 @@
       "id": "item.ca652",
       "path": "GameServer/OpenItem/CA652.txt",
       "target": "gameserver/openitem/name/ca652.zhoon"
+    },
+    {
+      "id": "item.sp179",
+      "path": "GameServer/OpenItem/SP179.txt",
+      "target": "gameserver/openitem/name/sp179.zhoon"
     }
   ],
-  "bytes": 755186,
-  "sha256": "48a7b6dc8c1a33ab5b95f82c58cc57f8b5d50aeb97e6823f21b547bf86b20e57"
+  "bytes": 767564,
+  "sha256": "88dc78ccc46f412befec2686e9ca352c85c0402a5b4efd23d2e98feaf15b907f"
 }

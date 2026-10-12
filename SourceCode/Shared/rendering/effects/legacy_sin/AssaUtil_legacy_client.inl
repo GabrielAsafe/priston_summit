@@ -2,6 +2,15 @@
 
 #include "compat/legacy/sin/sinLinkHeader.h"
 #include <new>
+#include <deque>
+#include <memory>
+#include <mutex>
+#include <set>
+#include <string>
+#include "core/concurrency/JobSystem.h"
+#include "core/concurrency/SourceAssetLock.h"
+#include "rendering/effects/legacy_sin/SummitAssaCatalog251.h"
+#include "rendering/effects/legacy_sin/SummitAssaLookup252.h"
 
 
 #define MAX_RES_PATH	300
@@ -31,7 +40,12 @@ BOOL FindFileRecursive(char *path, char *fileName)
 		{
 			if(wfd.cFileName[0] != '.')
 			{
-				wsprintf(newpath, "%s%s%s//*.*", drive, dir, wfd.cFileName);
+                if (!summit::effects::JoinCatalogPath251(newpath, drive, dir,
+                    wfd.cFileName, "//*.*"))
+                {
+                    bResult = FindNextFile(hSrch, &wfd);
+                    continue;
+                }
 				if(FindFileRecursive(newpath, fileName))
 				{
 					FindClose(hSrch);
@@ -43,9 +57,12 @@ BOOL FindFileRecursive(char *path, char *fileName)
 		{
 			if(stricmp(wfd.cFileName, fileName) == 0)
 			{
-				wsprintf(FindFileName, "%s%s%s", drive, dir, wfd.cFileName);
-				FindClose(hSrch);
-				return TRUE;
+                if (summit::effects::JoinCatalogPath251(FindFileName,
+                    drive, dir, wfd.cFileName))
+                {
+                    FindClose(hSrch);
+                    return TRUE;
+                }
 			}
 		}
 		bResult = FindNextFile(hSrch, &wfd);
@@ -59,8 +76,13 @@ BOOL FindFileRecursive(char *path, char *fileName)
 char *FindFile(char *fileName)
 {
 	char Path[MAX_RES_PATH] = { 0 };
-	GetCurrentDirectory(MAX_RES_PATH, Path);
-	strcat(Path, "//image//Sinimage//TestEffect//*.*");
+    const DWORD size = GetCurrentDirectory(MAX_RES_PATH, Path);
+    if (!size || size >= MAX_RES_PATH ||
+        !summit::effects::AppendCatalogPath251(Path, "//image//Sinimage//TestEffect//*.*"))
+    {
+        FindFileName[0] = 0;
+        return FindFileName;
+    }
 
 
 	memset(FindFileName, 0, sizeof(FindFileName));
@@ -90,7 +112,223 @@ struct cASSARES
 cASSARES AssaRes[MAX_RES_BUFFER];
 int		 AssaResCount;
 
+// Cache the first matching catalog index, preserving the legacy first-match
+// rule for names duplicated across effect directories.
+static summit::effects::AssaLookup252 summitAssaLookup252;
 
+static int SummitFindAssaRes252(const char *name)
+{
+    if (!name || !*name) return -1;
+    if (summitAssaLookup252.Count() != AssaResCount)
+        summitAssaLookup252.Rebuild(AssaRes, AssaResCount);
+    const int found = summitAssaLookup252.Find(name);
+    if (found >= 0 && found < AssaResCount &&
+        stricmp(AssaRes[found].resName, name) == 0)
+        return found;
+    // Preserve Win32 stricmp behavior for non-ASCII filenames and unexpected
+    // locale mappings absent from the ASCII index.
+    for (int index = 0; index < AssaResCount; ++index)
+        if (stricmp(AssaRes[index].resName, name) == 0)
+            return index;
+    return -1;
+}
+
+
+
+// SUMMIT_ASSA_ASYNC_256_BEGIN
+namespace
+{
+struct SummitAssaJob256
+{
+    int slot;
+    int type;
+    unsigned long long generation;
+    std::string meshPath;
+    std::string bonePath;
+    smPAT3D *mesh;
+    smPAT3D *bone;
+    SummitAssaJob256(int s, int t, unsigned long long g, const std::string &m, const std::string &b)
+        : slot(s), type(t), generation(g), meshPath(m), bonePath(b), mesh(NULL), bone(NULL) {}
+};
+struct SummitAssaState256
+{
+    std::mutex mutex;
+    std::set<int> pending;
+    std::set<int> failed;
+    std::deque<std::shared_ptr<SummitAssaJob256> > complete;
+    unsigned long long generation;
+    int cursor;
+    SummitAssaState256() : generation(1ull), cursor(0) {}
+};
+static SummitAssaState256 &SummitAssaState()
+{
+    static SummitAssaState256 *state = new SummitAssaState256();
+    return *state;
+}
+static void SummitAssaDiscardOnOwner(SummitAssaJob256 &job)
+{
+    // Destroy the mesh before the bone; worker may have attached mesh to bone.
+    delete job.mesh;
+    job.mesh = NULL;
+    delete job.bone;
+    job.bone = NULL;
+}
+}
+
+void SummitResetAssaEffectModels256()
+{
+    SummitAssaState256 &state = SummitAssaState();
+    std::deque<std::shared_ptr<SummitAssaJob256> > discarded;
+    {
+        std::lock_guard<std::mutex> lock(state.mutex);
+        ++state.generation;
+        state.pending.clear();
+        state.failed.clear();
+        state.cursor = 0;
+        discarded.swap(state.complete);
+    }
+    for (std::size_t i = 0; i < discarded.size(); ++i)
+        SummitAssaDiscardOnOwner(*discarded[i]);
+}
+
+void SummitPumpAssaEffectModels256(unsigned int maxCommits)
+{
+    SummitAssaState256 &state = SummitAssaState();
+    if (maxCommits > 2u) maxCommits = 2u;
+    for (unsigned int i = 0; i < maxCommits; ++i)
+    {
+        std::shared_ptr<SummitAssaJob256> job;
+        bool current = false;
+        {
+            std::lock_guard<std::mutex> lock(state.mutex);
+            if (state.complete.empty()) break;
+            job = state.complete.front();
+            state.complete.pop_front();
+            current = (job->generation == state.generation);
+            if (current)
+            {
+                state.pending.erase(job->slot);
+                if (!job->mesh || (job->type == TYPE_BONE && !job->bone))
+                    state.failed.insert(job->slot);
+            }
+        }
+        if (current && job->mesh && (job->type != TYPE_BONE || job->bone) &&
+            job->slot < AssaResCount && job->slot >= 0 &&
+            AssaRes[job->slot].type == job->type &&
+            !AssaRes[job->slot].LoadFlag && !AssaRes[job->slot].res &&
+            job->meshPath == AssaRes[job->slot].resFullName)
+        {
+            bool canPublish = true;
+            if (job->type == TYPE_BONE)
+                canPublish = job->slot > 0 &&
+                    AssaRes[job->slot - 1].type == TYPE_BONE_ANI &&
+                    !AssaRes[job->slot - 1].LoadFlag && !AssaRes[job->slot - 1].res &&
+                    job->bonePath == AssaRes[job->slot - 1].resFullName;
+            if (canPublish)
+            {
+                if (job->type == TYPE_BONE)
+                {
+                    AssaRes[job->slot - 1].res = job->bone;
+                    AssaRes[job->slot - 1].LoadFlag = TRUE;
+                    job->bone = NULL;
+                }
+                AssaRes[job->slot].res = job->mesh;
+                AssaRes[job->slot].LoadFlag = TRUE;
+                job->mesh = NULL;
+                smPAT3D *resident = (smPAT3D *)AssaRes[job->slot].res;
+                if (resident->smMaterialGroup)
+                    AssetLoadV2ReadMaterialGroup(resident->smMaterialGroup, SMASSET_OWNER_EFFECT);
+            }
+        }
+        SummitAssaDiscardOnOwner(*job);
+    }
+}
+
+void SummitPrewarmAssaEffectModelsStep256(unsigned int maxRequests)
+{
+    if (AssaResCount <= 0 || !maxRequests) return;
+    if (maxRequests > 2u) maxRequests = 2u;
+    SummitAssaState256 &state = SummitAssaState();
+    unsigned int submitted = 0;
+    int scanned = 0;
+    // Scan is bounded too: never walk the whole effect catalog on one frame.
+    while (submitted < maxRequests && scanned < 48 && scanned < AssaResCount)
+    {
+        int index = 0;
+        {
+            std::lock_guard<std::mutex> lock(state.mutex);
+            if (state.cursor >= AssaResCount) state.cursor = 0;
+            index = state.cursor++;
+        }
+        ++scanned;
+        const int type = AssaRes[index].type;
+        if ((type != TYPE_ASE && type != TYPE_BONE) ||
+            AssaRes[index].LoadFlag || AssaRes[index].res)
+            continue;
+        if (type == TYPE_BONE && (index == 0 || AssaRes[index - 1].type != TYPE_BONE_ANI ||
+            AssaRes[index - 1].LoadFlag || AssaRes[index - 1].res))
+            continue;
+
+        const std::string mesh = AssaRes[index].resFullName;
+        const std::string bone = type == TYPE_BONE ? AssaRes[index - 1].resFullName : "";
+        if (mesh.empty() || (type == TYPE_BONE && bone.empty())) continue;
+        unsigned long long generation = 0ull;
+        {
+            std::lock_guard<std::mutex> lock(state.mutex);
+            if (state.pending.size() >= 8u || state.failed.count(index) ||
+                !state.pending.insert(index).second)
+                continue;
+            generation = state.generation;
+        }
+        const std::shared_ptr<SummitAssaJob256> job(
+            new(std::nothrow) SummitAssaJob256(index, type, generation, mesh, bone));
+        if (!job)
+        {
+            std::lock_guard<std::mutex> lock(state.mutex);
+            state.pending.erase(index);
+            continue;
+        }
+        const bool queued = summit::core::concurrency::JobSystem::Instance().Submit(
+            [job]()
+            {
+                smASE_SetPhysique(NULL);
+                if (!job->bonePath.empty())
+                {
+                    summit::core::concurrency::SourceAssetLock lock(job->bonePath.c_str());
+                    char boneBuffer[MAX_RES_FULL_NAME];
+                    if (job->bonePath.size() < sizeof(boneBuffer))
+                    {
+                        memcpy(boneBuffer, job->bonePath.c_str(), job->bonePath.size() + 1u);
+                        job->bone = smASE_ReadBone(boneBuffer);
+                    }
+                    if (job->bone) smASE_SetPhysique(job->bone);
+                }
+                if (job->bonePath.empty() || job->bone)
+                {
+                    summit::core::concurrency::SourceAssetLock lock(job->meshPath.c_str());
+                    char meshBuffer[MAX_RES_FULL_NAME];
+                    if (job->meshPath.size() < sizeof(meshBuffer))
+                    {
+                        memcpy(meshBuffer, job->meshPath.c_str(), job->meshPath.size() + 1u);
+                        job->mesh = smASE_Read(meshBuffer);
+                        if (job->mesh) job->mesh->ZeroNormals();
+                    }
+                }
+                smASE_SetPhysique(NULL);
+                SummitAssaState256 &state = SummitAssaState();
+                std::lock_guard<std::mutex> lock(state.mutex);
+                state.complete.push_back(job);
+            }, summit::core::concurrency::JobPriority::Low);
+        if (!queued)
+        {
+            std::lock_guard<std::mutex> lock(state.mutex);
+            state.pending.erase(index);
+        }
+        else
+            ++submitted;
+    }
+}
+// SUMMIT_ASSA_ASYNC_256_END
 
 bool GetLoadedFile(char *searchFileName)
 {
@@ -145,15 +383,7 @@ void LoadResFile(char *path, bool aseExistFlag)
 	char newpath[MAX_RES_PATH] = { 0 };
 	hSrch = FindFirstFile(path, &wfd);
 	if(hSrch == INVALID_HANDLE_VALUE)
-	{
-		FILE *f = fopen("LOGS\\mingw_loadresfile_errors.txt", "a");
-		if(f)
-		{
-			fprintf(f, "FindFirstFile failed path=%s lastError=%lu\n", path, GetLastError());
-			fclose(f);
-		}
 		return;
-	}
 
 	while(bResult)
 	{
@@ -162,20 +392,32 @@ void LoadResFile(char *path, bool aseExistFlag)
 		{
 			if(wfd.cFileName[0] != '.')
 			{
-				wsprintf(newpath, "%s%s%s//*.*", drive, dir, wfd.cFileName);
-				LoadResFile(newpath, ExistAseFile(newpath));
+                if (summit::effects::JoinCatalogPath251(newpath, drive, dir,
+                    wfd.cFileName, "//*.*"))
+                    LoadResFile(newpath, ExistAseFile(newpath));
 			}
 		}
 		else
 		{
 			if(strlen(wfd.cFileName) > 4)
 			{
-				if(AssaResCount >= MAX_RES_BUFFER)
-					return;
+                if (AssaResCount >= MAX_RES_BUFFER)
+                    break; // release FindFirstFile handle below
 
 				char fileDirectoryName[1024];
 				memset(fileDirectoryName, 0, sizeof(fileDirectoryName));
-				wsprintf(fileDirectoryName, "%s%s%s", drive, dir, wfd.cFileName);
+                if (strlen(wfd.cFileName) >= MAX_RES_NAME ||
+                    !summit::effects::JoinCatalogPath251(fileDirectoryName,
+                        drive, dir, wfd.cFileName))
+                {
+                    bResult = FindNextFile(hSrch, &wfd);
+                    continue;
+                }
+                if (strlen(fileDirectoryName) >= MAX_RES_FULL_NAME)
+                {
+                    bResult = FindNextFile(hSrch, &wfd);
+                    continue;
+                }
 
 				const char *tempExtName = strrchr(wfd.cFileName, '.');
 				if(tempExtName) tempExtName++;
@@ -186,19 +428,7 @@ void LoadResFile(char *path, bool aseExistFlag)
 
 					if(stricmp(tempExtName, "bmp") == 0 || stricmp(tempExtName, "tga") == 0)
 					{
-						if(smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR)
-						{
-							FILE *loadFp;
-							loadFp = fopen(AssaLoadingFile, "at");
-							fprintf(loadFp, "%s/n", fileDirectoryName);
-							fclose(loadFp);
 
-
-							FILE *errorFp;
-							errorFp = fopen(AssaErrorFile, "wt");
-							fprintf(errorFp, "%s/n", fileDirectoryName);
-							fclose(errorFp);
-						}
 						strcpy(AssaRes[AssaResCount].resName, wfd.cFileName);
 
 						AssaRes[AssaResCount].type = TYPE_MAT;
@@ -245,7 +475,13 @@ void LoadResFile(char *path, bool aseExistFlag)
 					}
 
 					memset(fileDirectoryName, 0, sizeof(fileDirectoryName));
-					wsprintf(fileDirectoryName, "%s%s%s", drive, dir, aseName);
+                    if (!summit::effects::JoinCatalogPath251(fileDirectoryName,
+                        drive, dir, aseName) ||
+                        strlen(fileDirectoryName) >= MAX_RES_FULL_NAME)
+                    {
+                        bResult = FindNextFile(hSrch, &wfd);
+                        continue;
+                    }
 
 					if(GetLoadedFile(aseName) == true)
 					{
@@ -253,22 +489,15 @@ void LoadResFile(char *path, bool aseExistFlag)
 						continue;
 					}
 
-					if(smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR)
-					{
-						FILE *loadFp;
-						loadFp = fopen(AssaLoadingFile, "at");
-						fprintf(loadFp, "%s/n", fileDirectoryName);
-						fclose(loadFp);
 
-
-						FILE *errorFp;
-						errorFp = fopen(AssaErrorFile, "wt");
-						fprintf(errorFp, "%s/n", fileDirectoryName);
-						fclose(errorFp);
-					}
-
-					if(stricmp(boneName, "b_") == 0)
-					{
+                    if(stricmp(boneName, "b_") == 0)
+                    {
+                        // Bone + paired mesh occupy two adjacent catalog slots.
+                        if (AssaResCount + 1 >= MAX_RES_BUFFER)
+                        {
+                            bResult = FindNextFile(hSrch, &wfd);
+                            continue;
+                        }
 						strcpy(AssaRes[AssaResCount].resName, aseName);
 						strcpy(AssaRes[AssaResCount].resFullName, fileDirectoryName);
 						AssaRes[AssaResCount].type = TYPE_BONE_ANI;
@@ -349,6 +578,8 @@ void LoadResFile(char *path, bool aseExistFlag)
 
 void InitAssaRes()
 {
+    summitAssaLookup252.Invalidate();
+    SummitResetAssaEffectModels256();
 	AssaResCount = 0;
 	memset(AssaRes, 0, sizeof(AssaRes));
 }
@@ -356,6 +587,8 @@ void InitAssaRes()
 
 void CloseAssaRes()
 {
+    summitAssaLookup252.Invalidate();
+    SummitResetAssaEffectModels256();
     for(int index = 0; index < AssaResCount; index++)
     {
         if(AssaRes[index].res == NULL)
@@ -395,8 +628,6 @@ void LoadAssaRes()
 
 	char Path[MAX_RES_PATH] = { 0 };
 
-	if(smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR)
-		DeleteFile(AssaLoadingFile);
 
 	strcpy(Path, "image//Sinimage//AssaEffect//*.*");
 	LoadResFile(Path, false);
@@ -404,8 +635,6 @@ void LoadAssaRes()
 	strcpy(Path, "Effect//AssaEffect//*.*");
 	LoadResFile(Path, false);
 
-	if(smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR)
-		DeleteFile(AssaErrorFile);
 
 }
 
@@ -457,16 +686,20 @@ void SummitPrewarmAssaEffectTexturesStep(int maxAttempts, int requestPriority)
 
 void *AssaSearchRes(char *resName, int blendType)
 {
-	for(int index = 0; index < AssaResCount; index++)
-	{
-		if(stricmp(AssaRes[index].resName, resName) == 0)
-		{
+    const int index = SummitFindAssaRes252(resName);
+    if (index >= 0)
+    {
 			if(AssaRes[index].type == TYPE_ASE)
 			{
 				if(AssaRes[index].LoadFlag == FALSE)
 				{
 					smASE_SetPhysique(NULL);
-					AssaRes[index].res = (void *)smASE_Read(AssaRes[index].resFullName);
+					{
+                        summit::core::concurrency::SourceAssetLock lock(AssaRes[index].resFullName);
+                        AssaRes[index].res = (void *)smASE_Read(AssaRes[index].resFullName);
+                    }
+                    if (!AssaRes[index].res)
+                        return NULL;
 
 					((smPAT3D *)AssaRes[index].res)->ZeroNormals();
 					AssaRes[index].LoadFlag = TRUE;
@@ -485,6 +718,8 @@ void *AssaSearchRes(char *resName, int blendType)
 			}
 			else if(AssaRes[index].type == TYPE_BONE)
 			{
+                if (index == 0)
+                    return NULL;
 				if(AssaRes[index].LoadFlag == FALSE)
 				{
 					if((index - 1) >= 0)
@@ -493,16 +728,28 @@ void *AssaSearchRes(char *resName, int blendType)
 						if(AssaRes[index - 1].LoadFlag == FALSE)
 						{
 
-							AssaRes[index - 1].res = (void *)smASE_ReadBone(AssaRes[index - 1].resFullName);
+							{
+                                summit::core::concurrency::SourceAssetLock lock(AssaRes[index - 1].resFullName);
+                                AssaRes[index - 1].res = (void *)smASE_ReadBone(AssaRes[index - 1].resFullName);
+                            }
+                            if (!AssaRes[index - 1].res)
+                                return NULL;
 							AssaRes[index - 1].LoadFlag = TRUE;
 						}
 
+                        if (!AssaRes[index - 1].res)
+                            return NULL;
 						smASE_SetPhysique(((smPAT3D *)AssaRes[index - 1].res));
 
 
-						AssaRes[index].res = (void *)smASE_Read(AssaRes[index].resFullName);
+						{
+                        summit::core::concurrency::SourceAssetLock lock(AssaRes[index].resFullName);
+                        AssaRes[index].res = (void *)smASE_Read(AssaRes[index].resFullName);
+                    }
+                        smASE_SetPhysique(NULL);
+                        if (!AssaRes[index].res)
+                            return NULL;
 						((smPAT3D *)AssaRes[index].res)->ZeroNormals();
-						smASE_SetPhysique(NULL);
 
 						AssaRes[index].LoadFlag = TRUE;
 						AssetLoadV2ReadMaterialGroup(((smPAT3D *)AssaRes[index].res)->smMaterialGroup, SMASSET_OWNER_EFFECT);
@@ -521,11 +768,18 @@ void *AssaSearchRes(char *resName, int blendType)
 			}
 			else if(AssaRes[index].type == TYPE_BONE_ANI)
 			{
+                if (index == 0)
+                    return NULL;
 				if(AssaRes[index - 1].LoadFlag == FALSE)
 				{
 
 
-					AssaRes[index - 1].res = (void *)smASE_ReadBone(AssaRes[index - 1].resFullName);
+					{
+                                summit::core::concurrency::SourceAssetLock lock(AssaRes[index - 1].resFullName);
+                                AssaRes[index - 1].res = (void *)smASE_ReadBone(AssaRes[index - 1].resFullName);
+                            }
+                    if (!AssaRes[index - 1].res)
+                        return NULL;
 					AssaRes[index - 1].LoadFlag = TRUE;
 				}
 				return AssaRes[index].res;
@@ -536,11 +790,20 @@ void *AssaSearchRes(char *resName, int blendType)
 				{
 					int *matNum = new int;
 					(*matNum) = CreateTextureMaterial(AssaRes[index].resFullName, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+                    if (*matNum < 0 || !smMaterialGroup)
+                    {
+                        delete matNum;
+                        return NULL;
+                    }
 					AssaRes[index].res = matNum;
 					AssaRes[index].LoadFlag = TRUE;
 				}
 
+                if (!AssaRes[index].res || !smMaterialGroup)
+                    return NULL;
 				int matNum = *((int *)AssaRes[index].res);
+                if (matNum < 0 || matNum >= static_cast<int>(smMaterialGroup->MaterialCount))
+                    return NULL;
 				smMATERIAL &material = smMaterialGroup->smMaterial[matNum];
 				material.TwoSide = TRUE;
 				material.BlendType = blendType;
@@ -553,10 +816,8 @@ void *AssaSearchRes(char *resName, int blendType)
 				return AssaRes[index].res;
 			}
 
-		}
-	}
-
-	return NULL;
+    }
+    return NULL;
 }
 
 
@@ -1315,7 +1576,7 @@ int AssaTestEffectImage()
 
 
 
-		if(!NextFlag && lstrcmp(sinDecode, "*ÆÄÀÏÀÌ¸§") == 0)
+		if(!NextFlag && lstrcmp(sinDecode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½") == 0)
 		{
 			char boneName2[8];
 			char MeshName[32];
@@ -1341,7 +1602,7 @@ int AssaTestEffectImage()
 
 		}
 
-		if(!NextFlag && lstrcmp(sinDecode, "*ÇÁ·¹ÀÓ") == 0)
+		if(!NextFlag && lstrcmp(sinDecode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			cAssaEffect[Index]->AniMaxCount = atoi(strBuff);
@@ -1349,14 +1610,14 @@ int AssaTestEffectImage()
 
 		}
 
-		if(!NextFlag && lstrcmp(sinDecode, "*ÇÁ·¹ÀÓµô·¹ÀÌ") == 0)
+		if(!NextFlag && lstrcmp(sinDecode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			cAssaEffect[Index]->AniDelayTime = atoi(strBuff);
 			NextFlag = TRUE;
 
 		}
-		if(!NextFlag && lstrcmp(sinDecode, "*³ôÀÌ") == 0)
+		if(!NextFlag && lstrcmp(sinDecode, "*ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			cAssaEffect[Index]->Posi.y += atoi(strBuff);

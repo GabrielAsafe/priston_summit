@@ -1,4 +1,7 @@
 #include "diagnostics/RuntimeAssetProbe.h"
+#include "SummitWavSlotReuse247.h"
+#include "SummitWavPath250.h"
+#include "SummitSoundBufferGuard253.h"
 
 #include "Dxwav.h"
 #include <windowsx.h>
@@ -24,6 +27,23 @@ BOOL wav_opt = 1;
 LPDIRECTSOUND           g_lpDS = NULL;
 BOOL                    g_bSoundPresent = FALSE;
 LPDIRECTSOUNDBUFFER     g_lpSounds[NUM_SOUNDS];
+
+// Identical WAVs may reuse an already-filled DirectSound buffer within the
+// same slot. Never share DirectSound buffers across slots or device resets.
+static summit::audio::WavSlotReuse247<NUM_SOUNDS> summitWavSlots247;
+
+static bool SummitWavStamp247(const char *path, summit::audio::WavStamp247 *stamp)
+{
+    if (!path || !*path || !stamp) return false;
+    WIN32_FILE_ATTRIBUTE_DATA info = {};
+    if (!GetFileAttributesExA(path, GetFileExInfoStandard, &info) ||
+        (info.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) return false;
+    stamp->size = (static_cast<unsigned long long>(info.nFileSizeHigh) << 32) | info.nFileSizeLow;
+    stamp->write_time = (static_cast<unsigned long long>(info.ftLastWriteTime.dwHighDateTime) << 32) |
+                        info.ftLastWriteTime.dwLowDateTime;
+    return true;
+}
+
 BOOL                    g_bSoundPaused = FALSE;
 
 
@@ -36,6 +56,7 @@ int  sangJuWav_F[NUM_SOUNDS] = { 1, };
 
 int chk_load_sangJuWav(int wavN)
 {
+    if (wavN <= 0 || wavN >= NUM_SOUNDS) return 0;
 	if(sangJuWav_F[wavN - 1] == 1) return 1;
 	sangJuWav_F[wavN - 1] = 1;
 	CreateBufferFromWaveFile(sangJuWav[wavN - 1], wavN);
@@ -92,12 +113,13 @@ NULL,
 
 int  BackMusic_Load(int stageNumber)
 {
-	if(g_bSoundPresent == FALSE) return 0;
-
-	char strFilename[128];
-	strcpy(strFilename, dataDir);
-
-	strcat(strFilename, backMusicWav[stageNumber]);
+    if (!g_bSoundPresent || stageNumber < 0 ||
+        stageNumber >= static_cast<int>(_countof(backMusicWav)) ||
+        !backMusicWav[stageNumber]) return 0;
+    char strFilename[128];
+    if (!summit::audio::JoinWavPath250(dataDir, sizeof(dataDir),
+        backMusicWav[stageNumber], strlen(backMusicWav[stageNumber]) + 1,
+        strFilename, sizeof(strFilename))) return 0;
 
 	if(!CreateBufferFromWaveFile(strFilename, 0))
 	{
@@ -139,6 +161,7 @@ void BackMusic_Stop()
 
 BOOL InitDX_Wav(HWND g_hwnd)
 {
+	summitWavSlots247.Clear();
 	if(!wav_opt)
 	{
 		g_bSoundPresent = FALSE;
@@ -199,6 +222,7 @@ BOOL InitDX_Wav(HWND g_hwnd)
 
 void TermDX_Wav()
 {
+	summitWavSlots247.Clear();
 	if(!g_bSoundPresent) return;
 
 
@@ -229,6 +253,8 @@ void TermDX_Wav()
 
 BOOL CreateSoundBuffer(DWORD dwBuf, DWORD dwBufSize, DWORD dwFreq, DWORD dwBitsPerSample, DWORD dwBlkAlign, BOOL bStereo)
 {
+	if (dwBuf >= NUM_SOUNDS || !g_lpDS) return FALSE;
+	summitWavSlots247.Forget(dwBuf);
 	PCMWAVEFORMAT pcmwf;
 	DSBUFFERDESC dsbdesc;
 
@@ -250,8 +276,9 @@ BOOL CreateSoundBuffer(DWORD dwBuf, DWORD dwBufSize, DWORD dwFreq, DWORD dwBitsP
 	dsbdesc.dwBufferBytes = dwBufSize;
 	dsbdesc.lpwfxFormat = (LPWAVEFORMATEX)&pcmwf;
 
-	g_lpDS->CreateSoundBuffer(&dsbdesc, &g_lpSounds[dwBuf], NULL);
-	return TRUE;
+    g_lpSounds[dwBuf] = NULL;
+    return SUCCEEDED(g_lpDS->CreateSoundBuffer(&dsbdesc,
+        &g_lpSounds[dwBuf], NULL)) && g_lpSounds[dwBuf] ? TRUE : FALSE;
 }
 
 
@@ -263,6 +290,7 @@ BOOL CreateSoundBuffer(DWORD dwBuf, DWORD dwBufSize, DWORD dwFreq, DWORD dwBitsP
 
 BOOL ReadData(LPDIRECTSOUNDBUFFER lpDSB, FILE* pFile, DWORD dwSize, DWORD dwPos)
 {
+    if (!lpDSB || !pFile || !dwSize) return FALSE;
 
 	if(dwPos != 0xffffffff)
 	{
@@ -285,37 +313,19 @@ BOOL ReadData(LPDIRECTSOUNDBUFFER lpDSB, FILE* pFile, DWORD dwSize, DWORD dwPos)
 	}
 
 
-	if(dwData1Size > 0)
-	{
-		if(fread(pData1, dwData1Size, 1, pFile) != 1)
-		{
-			return FALSE;
-		}
-
-		if(mouThRead == 0)
-		{
-			mouThdataOfs = (BYTE*)pData1;
-		}
-
-	}
-
-	if(dwData2Size > 0)
-	{
-		if(fread(pData2, dwData2Size, 1, pFile) != 1)
-		{
-			return FALSE;
-		}
-	}
-
-
-	rval = lpDSB->Unlock(pData1, dwData1Size, pData2, dwData2Size);
-	if(rval != DS_OK)
-	{
-		return FALSE;
-	}
-
-
-	return TRUE;
+    // Every successful Lock must be followed by exactly one Unlock, including
+    // short/corrupt WAV reads. The old early returns left DirectSound locked.
+    bool readOk = true;
+    if (dwData1Size > 0)
+    {
+        readOk = fread(pData1, dwData1Size, 1, pFile) == 1;
+        if (readOk && mouThRead == 0)
+            mouThdataOfs = (BYTE*)pData1;
+    }
+    if (readOk && dwData2Size > 0)
+        readOk = fread(pData2, dwData2Size, 1, pFile) == 1;
+    rval = lpDSB->Unlock(pData1, dwData1Size, pData2, dwData2Size);
+    return readOk && SUCCEEDED(rval) ? TRUE : FALSE;
 }
 
 
@@ -328,6 +338,10 @@ BOOL ReadData(LPDIRECTSOUNDBUFFER lpDSB, FILE* pFile, DWORD dwSize, DWORD dwPos)
 
 BOOL CreateBufferFromWaveFile(char* FileName, DWORD dwBuf)
 {
+	if (!FileName || dwBuf >= NUM_SOUNDS) return FALSE;
+	summitWavSlots247.Forget(dwBuf);
+	summit::audio::WavStamp247 stampBefore = {};
+	const bool couldRemember = SummitWavStamp247(FileName, &stampBefore);
 	summit::diagnostics::RuntimeAssetProbeAttempt("AUDIO_WAV", "OPEN", FileName);
 	DWORD dwSize;
 	BOOL bStereo;
@@ -350,12 +364,15 @@ BOOL CreateBufferFromWaveFile(char* FileName, DWORD dwBuf)
 	if(wavHdr.DATA[0] == 'd' && wavHdr.DATA[1] == 'a')
 	{
 
-		fseek(pFile, 0, SEEK_SET);
-		fread(&wavHdr1, sizeof(wavHdr1), 1, pFile);
+        if (fseek(pFile, 0, SEEK_SET) != 0 ||
+            fread(&wavHdr1, sizeof(wavHdr1), 1, pFile) != 1)
+        { fclose(pFile); return FALSE; }
 		dwSize = wavHdr1.dwDSize;
 
 		bStereo = wavHdr1.wChnls > 1 ? TRUE : FALSE;
 
+        if (!dwSize) { fclose(pFile); return FALSE; }
+        summit::audio::ReleaseSoundBuffer253(g_lpSounds[dwBuf]);
 		if(!CreateSoundBuffer(dwBuf, dwSize, wavHdr1.dwSRate, wavHdr1.BitsPerSample, wavHdr1.wBlkAlign, bStereo))
 		{
 
@@ -371,22 +388,26 @@ BOOL CreateBufferFromWaveFile(char* FileName, DWORD dwBuf)
 		mouThRead = dwBuf;
 
 		if(!ReadData(g_lpSounds[dwBuf], pFile, dwSize, sizeof(wavHdr1)))
-		{
-			fclose(pFile);
-			return FALSE;
-		}
+        {
+            summit::audio::ReleaseSoundBuffer253(g_lpSounds[dwBuf]);
+            fclose(pFile);
+            return FALSE;
+        }
 	}
 	else if(wavHdr.DATA[0] == 'f' && wavHdr.DATA[1] == 'a')
 	{
 
-		fseek(pFile, 0, SEEK_SET);
-		fread(&wavHdr2, sizeof(wavHdr2), 1, pFile);
+        if (fseek(pFile, 0, SEEK_SET) != 0 ||
+            fread(&wavHdr2, sizeof(wavHdr2), 1, pFile) != 1)
+        { fclose(pFile); return FALSE; }
 
 		dwSize = wavHdr2.dwDSize;
 
 		bStereo = wavHdr2.wChnls > 1 ? TRUE : FALSE;
 
 
+        if (!dwSize) { fclose(pFile); return FALSE; }
+        summit::audio::ReleaseSoundBuffer253(g_lpSounds[dwBuf]);
 		if(!CreateSoundBuffer(dwBuf, dwSize, wavHdr2.dwSRate, wavHdr2.BitsPerSample, wavHdr2.wBlkAlign, bStereo))
 		{
 
@@ -398,10 +419,11 @@ BOOL CreateBufferFromWaveFile(char* FileName, DWORD dwBuf)
 		mouThRead = dwBuf;
 
 		if(!ReadData(g_lpSounds[dwBuf], pFile, dwSize, sizeof(wavHdr2)))
-		{
-			fclose(pFile);
-			return FALSE;
-		}
+        {
+            summit::audio::ReleaseSoundBuffer253(g_lpSounds[dwBuf]);
+            fclose(pFile);
+            return FALSE;
+        }
 	}
 	else
 	{
@@ -412,6 +434,8 @@ BOOL CreateBufferFromWaveFile(char* FileName, DWORD dwBuf)
 		bStereo = wavHdr.wChnls > 1 ? TRUE : FALSE;
 
 
+        if (!dwSize) { fclose(pFile); return FALSE; }
+        summit::audio::ReleaseSoundBuffer253(g_lpSounds[dwBuf]);
 		if(!CreateSoundBuffer(dwBuf, dwSize, wavHdr.dwSRate, wavHdr.BitsPerSample, wavHdr.wBlkAlign, bStereo))
 		{
 
@@ -424,13 +448,21 @@ BOOL CreateBufferFromWaveFile(char* FileName, DWORD dwBuf)
 
 		if(!ReadData(g_lpSounds[dwBuf], pFile, dwSize, sizeof(wavHdr)))
 		{
-			fclose(pFile);
+			summit::audio::ReleaseSoundBuffer253(g_lpSounds[dwBuf]);
+            fclose(pFile);
 			return FALSE;
 		}
 	}
 
 
 	fclose(pFile);
+	// Same source both before and after read; failed loads never become reusable.
+	summit::audio::WavStamp247 stampAfter = {};
+	if (g_lpSounds[dwBuf] && couldRemember &&
+	    SummitWavStamp247(FileName, &stampAfter) &&
+	    stampBefore.size == stampAfter.size &&
+	    stampBefore.write_time == stampAfter.write_time)
+	    summitWavSlots247.Remember(dwBuf, FileName, stampAfter);
 
 	return TRUE;
 }
@@ -931,6 +963,7 @@ void check_backMus(int flag)
 
 BOOL InitDX_Wav2(HWND g_hwnd)
 {
+	summitWavSlots247.Clear();
 	char strFilename[128];
 	if(!wav_opt)
 	{
@@ -972,8 +1005,10 @@ BOOL InitDX_Wav2(HWND g_hwnd)
 				if(sangJuWav_F[i - 1] == 0)
 					continue;
 
-				strcpy(strFilename, dataDir);
-				strcat(strFilename, sangJuWav[i - 1]);
+                if (!summit::audio::JoinWavPath250(dataDir, sizeof(dataDir),
+                    sangJuWav[i - 1], sizeof(sangJuWav[i - 1]),
+                    strFilename, sizeof(strFilename)))
+                    continue;
 
 				if(!CreateBufferFromWaveFile(strFilename, i))
 				{
@@ -1003,6 +1038,7 @@ BOOL InitDX_Wav2(HWND g_hwnd)
 
 void TermDX_Wav2()
 {
+	summitWavSlots247.Clear();
 	if(!g_bSoundPresent) return;
 
 	for(int i = 0; i < NUM_SOUNDS; i++)
@@ -1025,24 +1061,39 @@ void TermDX_Wav2()
 
 BOOL CreateBufferFromWaveFile2(char* FileName, int sbufN)
 {
-	if(!g_bSoundPresent)
-	{
-		return FALSE;
-	}
-	StopWav(sbufN);
-	sBufferClear(sbufN);
+    if (!g_bSoundPresent || !FileName || sbufN < 0 || sbufN >= NUM_SOUNDS)
+        return FALSE;
 
-	if(!CreateBufferFromWaveFile(FileName, sbufN))
-	{
-		sBufferClear(sbufN);
-		return FALSE;
-	}
-	return TRUE;
+    summit::audio::WavStamp247 stamp = {};
+    if (g_lpSounds[sbufN] && SummitWavStamp247(FileName, &stamp) &&
+        summitWavSlots247.Matches(sbufN, FileName, stamp))
+    {
+        StopWav(sbufN);
+        // Even if PlayWav2 is called after the previous sound stopped, replay
+        // must start at position zero, just as a freshly created buffer does.
+        if (SUCCEEDED(g_lpSounds[sbufN]->SetCurrentPosition(0)))
+        {
+            mouThRead = sbufN; // Preserve CreateBufferFromWaveFile side effect.
+            return TRUE;
+        }
+        summitWavSlots247.Forget(sbufN); // device lost: reload via legacy path
+    }
+
+    StopWav(sbufN);
+    sBufferClear(sbufN);
+    if (!CreateBufferFromWaveFile(FileName, sbufN))
+    {
+        sBufferClear(sbufN);
+        return FALSE;
+    }
+    return TRUE;
 }
 
 
 BOOL sBufferClear(int sbufN)
 {
+    if (sbufN < 0 || sbufN >= NUM_SOUNDS) return FALSE;
+    summitWavSlots247.Forget(sbufN);
 	if(!g_bSoundPresent)
 	{
 		return FALSE;
@@ -1060,6 +1111,7 @@ BOOL sBufferClear(int sbufN)
 
 BOOL StopWav(int i)
 {
+    if (i < 0 || i >= NUM_SOUNDS) return FALSE;
 	if(!g_bSoundPresent)
 	{
 		return FALSE;

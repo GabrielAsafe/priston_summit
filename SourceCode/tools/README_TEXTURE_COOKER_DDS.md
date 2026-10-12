@@ -2,8 +2,9 @@
 
 This is an additive optimization for `AssetStreamingV3`. The game keeps each
 legacy logical texture name (for example `field\\foo\\ground.png`), while the
-worker first probes `cooked\\field\\foo\\ground.dds`. If no compatible cooked
-artifact exists, the original source path is loaded exactly as before. A cooked file older than its source is treated as stale and ignored.
+worker first probes `cooked\\material\\field\\foo\\ground.png.dds`. The
+DIB inventory loader probes `cooked\\dib\\image\\Sinimage\\Items\\...bmp.dds`.
+If no compatible cooked artifact exists, the original source path is loaded exactly as before. A cooked file older than its source is treated as stale and ignored.
 
 ## Runtime behavior
 
@@ -41,26 +42,28 @@ world textures: only textures whose uncompressed RGBA footprint is at least 1 Mi
 (512x512 RGBA) and whose top level is DXT block-compatible are emitted. This
 threshold is intentionally lower than the old 16 MiB rollout because runtime traces
 showed 512x512 and 1024x1024 source uploads already causing visible frame stalls.
-PNG/TGA/STA use DXT5; opaque JPG/BMP/STG use DXT1. Sources remain untouched.
+DXT5 is chosen when the consumer-profiled image has semantic alpha; otherwise DXT1. Sources remain untouched.
 
-Item icons under `image/Sinimage/Items/**` are runtime-required by default and are
-never skipped solely because they are below the world-texture threshold or are not
-DXT block-compatible. Large/default-eligible item icons keep DXT1/DXT5; smaller or
-non-block-compatible icons are cooked losslessly as A8R8G8B8 DDS. This keeps the
-legacy/protected source representation as authoring evidence while allowing runtime
-to consume a deterministic cooked DDS. Use `--no-item-icons-required` only for A/B
-against the historical threshold behavior.
+The pre-existing Patch24 `item-icons-required` policy is preserved as an
+**opt-in-to-cooking** rule during ordinary scans. Assets under
+`image/Sinimage/Items/**` are not skipped merely for size; block-compatible
+large images get alpha-aware DXT1/DXT5; smaller or non-block-compatible images
+get A8R8G8B8. This does not prove every historical physical file is runtime
+reachable. `--no-item-icons-required` retains the old threshold behavior for A/B.
 
-For a focused item-icon cook:
+For a **safe focused** inventory-icon cook (only BMP icons under
+`image/Sinimage/Items/**` except `DropItem`, not the old broad physical-family
+scan):
 
 ```bash
 python3 /path/to/SourceCode/tools/cook_textures_dds.py --input . --item-icons-only
 ```
 
-The item-icon incremental path does not trust mtime alone. Before an existing DDS is
-accepted as up-to-date, the cooker decodes the source with the official legacy codec
-and verifies the cooked DDS width, height and expected pixel format. A stale/mismatched
-DDS is rebuilt even if its mtime is newer than the source.
+The incremental reuse check is stronger than Patch24: an existing DDS is
+up-to-date only if manifest profile/revision, source SHA-256, source size,
+DDS SHA-256, source freshness, DDS dimensions and DDS pixel format all match.
+A stale, mismatched or pre-profile DDS is rebuilt even if its mtime is newer.
+The old flat `cooked/foo.dds` path is never used by either loader.
 
 To preview without writing:
 
@@ -68,7 +71,13 @@ To preview without writing:
 python3 /path/to/SourceCode/tools/cook_textures_dds.py --input . --dry-run
 ```
 
-To rebuild everything eligible:
+**Do not use an unrestricted broad cook yet.** The material dependency graph,
+41 historical collisions, unverified sources and excluded UI/sky families must
+be resolved before any broad runtime publish. Use synthetic/test roots until
+CLI gates pass, then a staged isolated `--item-icons-only` test; do not run it
+against the production client before validating the handoff's acceptance gates.
+
+To rebuild everything eligible (reference only; not authorized against runtime):
 
 ```bash
 python3 /path/to/SourceCode/tools/cook_textures_dds.py --input . --force
@@ -84,15 +93,22 @@ Mipmaps are off by default in the first rollout so the cooked path preserves
 the current V3 visual/runtime behavior as closely as possible. The runtime can
 import precomputed mip chains when a texture request asks for mipmaps.
 
-The cooker writes `cooked/manifest.json` for audit/debug purposes. The runtime
-does not depend on the manifest: lookup is deterministic from the logical path.
+The cooker writes `cooked/manifest.json` with profile, profile revision,
+semantic alpha, source and cooked SHA-256, source dimensions, pixel format and
+cooked path. Reuse is conditional on this metadata. Runtime path lookup is
+profile-qualified and deterministic and does not yet consume the manifest;
+source fallback remains required during the transition.
 
-## Recommended first A/B
+## Validation order (no UI until all CLI gates pass)
 
-1. Cook with defaults (no `--mipmaps`).
-2. Start once with `SUMMIT_TEXTURE_COOKED=0` and reproduce the same map route.
-3. Start with default cooked lookup and compare stutters/loading.
-4. Enable `SUMMIT_ASSET_TRACE=1` if you need to confirm `COOKED_DDS_HIT` events.
+1. Run `bash tools/run_cooked_images_cli_gates.sh` from `SourceCode`.
+2. Run the existing streaming/media validations and `sh compboth.sh`.
+3. Stage a small set of authoritative inventory BMPs in an isolated test tree.
+4. Run the focused `--item-icons-only` cooker against that staging tree.
+5. Only after those checks pass, use an explicit, limited Wine/runtime A/B.
+6. To examine DIB cooked hits, set `SUMMIT_COOKED_DIB_TRACE=1` temporarily.
+
+`SUMMIT_ASSET_TRACE=1` continues to report material `COOKED_DDS_HIT` events.
 
 Do not raise texture budgets solely because the cooked path exists. Resident
 and staging budgets remain part of the i686 safety policy.
@@ -273,3 +289,165 @@ integrity metadata from the previous manifest instead of replacing it with a
 minimal `up-to-date` row. This progressively reduces `UNKNOWN` decode-mode
 entries as assets are actually decoded by new/full/retry cooks, without forcing
 an expensive recook solely for metadata.
+
+
+## Profiled Cooked Identity — Summit cooked-image bugfix (2026-10-10)
+
+The legacy *logical filename* remains the request identity. The consumer owns
+its color-key profile. The new destinations preserve the source extension:
+
+| Consumer | Legacy request | New cooked path |
+|---|---|---|
+| smTexture / material | `Field/foo.bmp` | `cooked/material/Field/foo.bmp.dds` |
+| smTexture / material | `Field/foo.tga` | `cooked/material/Field/foo.tga.dds` |
+| Inventory DIB icon | `image/Sinimage/Items/WA/itwa101.bmp` | `cooked/dib/image/Sinimage/Items/WA/itwa101.bmp.dds` |
+
+**Do not reuse older `cooked/Field/foo.dds`**. It could be the winner of a
+`.bmp`/`.tga` name collision and is deliberately invisible to the new resolver.
+Never delete quarantined or legacy assets as part of this patch.
+
+### Decode and alpha contracts
+
+`open_legacy_image_with_info()` decrypts/decodes to **authored RGBA only**.
+`apply_cook_profile()` is a separate operation:
+
+- **DIB**: BMP uses RGB `(0,0,0)` as a transparent key.
+- **MATERIAL**: BMP uses RGB `(240,255,255)` as a transparent key.
+- TGA/PNG retain their authored alpha for either consumer.
+- Source alpha is combined with, not replaced by, the relevant BMP key.
+- Large, aligned textures with semantic alpha use **DXT5**, not DXT1.
+- Small or non-aligned, runtime-required inventory images use **A8R8G8B8**.
+
+Profiles are assigned by verified consumer paths, **not by extension alone**.
+Currently only `image/Sinimage/Items/<category>/*.bmp`, excluding
+`DropItem`, is automatically classified as DIB. Other DIB consumers remain on
+legacy source fallback until their reachability is recorded. ASE material
+textures use the MATERIAL consumer; unusual `DropItem/DRboots.bmp` black-key
+semantics remain under investigation rather than being auto-guessed.
+
+### Cache and collision policy
+
+The manifest records `cook_profile`, `profile_revision`, `semantic_alpha`,
+`source_sha256`, `cooked_sha256`, dimensions and format. Incremental reuse
+requires **all** these fields, a valid DDS header, matching file hashes and a
+source that has not become newer than the DDS. Missing or legacy metadata
+forces a new cook. All Windows case-insensitive destination collisions fail
+closed *before writing any DDS or manifest*.
+
+The runtime identity constructor and cooker use the same profile + extension
+scheme. DIB tries cooked DDS first; a missing, stale or rejected DDS uses the
+old source loader. DDS is imported without decrypting BMP or applying an
+additional DIB color key. Existing `SUMMIT_TEXTURE_COOKED=0` can disable the
+new runtime path for comparison. DIB telemetry is **off by default** to avoid
+per-icon disk logging; set `SUMMIT_COOKED_DIB_TRACE=1` to emit
+`DIB_COOKED_DDS_HIT`, `DIB_COOKED_REJECT` and `DIB_SOURCE_FALLBACK` while
+`SUMMIT_ASSET_TRACE` is enabled.
+
+### Required CLI gates (no UI)
+
+From `SourceCode` run:
+
+```bash
+bash tools/run_cooked_images_cli_gates.sh
+python3 tools/validate_async_streaming_v3.py
+```
+
+A *synthetic* cook is included in the regression suite. **Do not run a new
+broad cook on `cliente/`** or rerun the old broad `--item-icons-only` script.
+After CLI and MinGW build validation, start with a separate copied test
+fixture containing a few known inventory BMPs and run the new focused command:
+
+```bash
+python3 tools/cook_textures_dds.py --input /path/to/test-client-assets --item-icons-only
+```
+
+Do not publish this test fixture to `cliente/cooked` until its manifest and
+visual behavior have been checked. Never move source files, quarantine outputs
+or enable runtime-only cooked under this patch. The long-term target is 100%
+of **runtime-reachable** assets cooked, using canonical reachability and
+consumer-role manifest ownership. Sky/fog, login legacy UI and historical
+quarantine remain frozen for this intervention.
+
+
+## PATCH 237 — Regressão de arranque / recuperação de DDS anteriores
+
+A identidade nova `cooked/material/<legacy-file.ext>.dds` é incompatível com
+DDS históricos `cooked/<legacy-file>.dds`. Quando os DDS material novos ainda
+não existem, o runtime usa o source legacy e D3DX pode fazer decode/conversão
+no arranque, com custo elevado de CPU/GPU. **O Game.exe não executa o cooker
+Python**; esse decode no cliente pode parecer um cook em runtime.
+
+O cliente evita agora procurar caminhos cozinhados em perfis sem diretório e
+só testa o perfil DIB para ícones BMP de inventário comprovados.
+`SUMMIT_COOKED_DIB=0` desativa apenas o novo caminho DIB para A/B;
+`SUMMIT_TEXTURE_COOKED=0` desativa ambos os caminhos cooked. Reiniciar depois
+de publicar DDS novos (o cache de existência de perfis é por processo).
+
+**Recuperação offline, nunca no arranque do cliente**: executar com Game.exe
+fechado e os DDS anteriores intactos, a partir de SourceCode:
+
+```bash
+python3 tools/restore_cooked_runtime_performance_v1.py --client ../cliente
+python3 tools/restore_cooked_runtime_performance_v1.py --client ../cliente --apply
+```
+
+O primeiro comando é apenas auditoria sem escrita. O segundo copia somente
+DDS históricos provados por fonte única (sem colisão case-insensitive),
+formato e dimensões, timestamp, conteúdo visual e alpha compatíveis com o
+perfil MATERIAL. Não converte imagens, não sobrescreve DDS novos, não move
+assets legacy nem quarentenas. Assets ambíguos ou sem prova continuam em
+source fallback até serem cozinhados offline sob controlo do manifest canónico.
+O log final indica quantos DDS foram recuperados: zero candidatos recuperáveis
+**não significa** recuperação de performance. Não usar o `--item-icons-only`
+antigo contra o client vivo. A auditoria não valida ainda performance real:
+comparar os mesmos mapas com logs de `COOKED_DDS_HIT` e tempos de frame.
+
+
+## Streaming queue fairness and opt-in 60-frame diagnostics (PATCH 238)
+
+`AssetLoadV3RequestTexture` has independent bounded counts for CPU preparation
+(`preparing`) and GPU-ready staging (`ready`). The previous global-only
+`in-flight` admission included GPU-ready uploads and could reject new HIGH
+requests while worker threads were idle. LOW/NORMAL requests now stop when
+the prepared GPU queue reaches `2 * SUMMIT_TEXTURE_IO_INFLIGHT`; HIGH requests
+keep two extra slots. Total outstanding stays bounded by `3 * limit + reserve`
+and staging remains hard-limited to `SUMMIT_TEXTURE_STAGING_BUDGET_MB` (128 MB
+by default). Existing priority-ordered GPU completion remains intact.
+The worker publishes the READY state **while holding the GPU-queue mutex**;
+this closes a race where the render thread could pop/complete an entry before
+the worker published READY, leaving a permanently pending texture slot.
+
+To A/B the queue admission change without rebuilding, set
+`SUMMIT_TEXTURE_QUEUE_FAIR=0` to restore the previous total-outstanding
+admission limit; unset the variable to re-enable the improved separation.
+
+The upload policy is intentionally **not increased**: gameplay remains at two
+GPU commits per frame and a nominal 1800 us budget by default, because each
+`D3DXCreateTexture...` commit may exceed that time and cause a stall.
+
+Read-only offline gate:
+
+```bash
+cd SourceCode
+python3 tools/validate_texture_queue_v1.py
+```
+
+Optional diagnostic during a *separate* runtime A/B:
+
+```bash
+cd cliente
+SUMMIT_ASSET_TRACE=0 SUMMIT_TEXTURE_QUEUE_DIAG=1 SUMMIT_TEXTURE_COOKED=1 wine Game.exe
+# After exit:
+cd ../SourceCode
+python3 tools/validate_texture_queue_v1.py --log ../cliente/LOGS/texture_queue_v3_diag.tsv
+```
+
+Only one `QUEUE_60F` line is appended per 60 frames; no per-texture diagnostic
+I/O is introduced. Disable `SUMMIT_TEXTURE_QUEUE_DIAG` for normal play.
+Setting `SUMMIT_ASSET_TRACE=0` independently silences legacy detailed event
+files, whose per-DDS `fopen_s` + `fclose` instrumentation can affect Wine.
+Do not interpret the number of historical `COOKED_DDS_HIT` lines as a current
+session count. The 60-frame diagnostic contains separate counters for rejected
+admissions (CPU/GPU/total), upload count, peak ready backlog, largest upload
+time, and staging occupancy. This confirms or excludes queue pressure; it does
+not by itself prove an FPS regression is caused solely by textures.

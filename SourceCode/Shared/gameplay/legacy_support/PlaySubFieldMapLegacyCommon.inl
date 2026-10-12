@@ -2,7 +2,11 @@ int LoadFieldMap(int PosNum, sFIELD *lpField, smSTAGE3D *lpStage)
 {
 	int ReadTexFlag = 0;
 
-	if (!lpField || !lpStage || sCompactMap[PosNum].lpField == lpField)
+	if (PosNum < 0 || PosNum > 1 || !lpField || !lpStage)
+		return FALSE;
+	if (sCompactMap[PosNum].lpField == lpField &&
+		sCompactMap[PosNum].hTexHandle && sCompactMap[PosNum].hTexTitleHandle &&
+		memcmp(&sCompactMap[PosNum].StageRect, &lpStage->StageMapRect, sizeof(RECT)) == 0)
 		return TRUE;
 
 	sCompactMap[PosNum].lpField = lpField;
@@ -24,6 +28,8 @@ int LoadFieldMap(int PosNum, sFIELD *lpField, smSTAGE3D *lpStage)
 	if (lpField->szNameMap[0])
 	{
 		sCompactMap[PosNum].hTexHandle = smTexture.Add(lpField->szNameMap, 0);
+		if (!sCompactMap[PosNum].hTexHandle)
+			return FALSE;
 		sCompactMap[PosNum].hTexHandle->TexSwapMode = FALSE;
 
 		sCompactMap[PosNum].rx = (lpStage->StageMapRect.right - lpStage->StageMapRect.left) >> FLOATNS;
@@ -40,6 +46,8 @@ int LoadFieldMap(int PosNum, sFIELD *lpField, smSTAGE3D *lpStage)
 	if (lpField->szNameTitle[0])
 	{
 		sCompactMap[PosNum].hTexTitleHandle = smTexture.Add(lpField->szNameTitle, 0);
+		if (!sCompactMap[PosNum].hTexTitleHandle)
+			return FALSE;
 		sCompactMap[PosNum].hTexTitleHandle->TexSwapMode = FALSE;
 
 		ReadTexFlag = TRUE;

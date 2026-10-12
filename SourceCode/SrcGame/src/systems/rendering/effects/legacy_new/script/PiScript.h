@@ -11,6 +11,8 @@
 #pragma once
 
 #include "systems/rendering/effects/legacy_new/core/HoNewEffectHeader.h"
+#include <map>
+#include <string>
 #ifndef _HO_NEW_WIN32_
 extern "C"
 {
@@ -39,6 +41,17 @@ public:
 	~PiScript(void);
 
 private:
+    // Bytecode is cached per interpreter. Never cache executed effect groups:
+    // Lua callback closures carry `this` and each invocation has mutable state.
+    struct SummitCachedScript {
+        std::string bytecode;
+        unsigned int sizeLow;
+        unsigned int sizeHigh;
+        unsigned int modifiedLow;
+        unsigned int modifiedHigh;
+    };
+    std::map<std::string, SummitCachedScript> m_cachedScripts;
+    size_t m_cachedScriptBytes;
 	lua_State *m_pLuaState;
 private:
 	void RegisterCommand(lua_State *state);

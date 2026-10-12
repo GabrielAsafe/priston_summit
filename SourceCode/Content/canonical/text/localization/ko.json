@@ -743,6 +743,18 @@
       "source": "item.wn153"
     },
     {
+      "key": "monster.30_maplefairy.name",
+      "text": "단풍 요정",
+      "quality": "legacy_source",
+      "source": "monster.30_maplefairy"
+    },
+    {
+      "key": "monster.30_mapletree.name",
+      "text": "단풍 나무",
+      "quality": "legacy_source",
+      "source": "monster.30_mapletree"
+    },
+    {
       "key": "npc.7crystal.name",
       "text": "노점상 델라",
       "quality": "legacy_source",

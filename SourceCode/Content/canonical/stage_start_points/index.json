@@ -277,6 +277,21 @@
       "json_path": "points/GameServer/Field/ruin-arenaSF.ASE.spp.json"
     },
     {
+      "id": "start_points.ruined_forever_fall_01",
+      "logical_path": "GameServer/Field/ruined-forever-fall-01.ASE.spp",
+      "json_path": "points/GameServer/Field/ruined-forever-fall-01.ASE.spp.json"
+    },
+    {
+      "id": "start_points.ruined_forever_fall_02",
+      "logical_path": "GameServer/Field/ruined-forever-fall-02.ASE.spp",
+      "json_path": "points/GameServer/Field/ruined-forever-fall-02.ASE.spp.json"
+    },
+    {
+      "id": "start_points.ruined_pilai",
+      "logical_path": "GameServer/Field/ruined-pilai.ASE.spp",
+      "json_path": "points/GameServer/Field/ruined-pilai.ASE.spp.json"
+    },
+    {
       "id": "start_points.sanc1",
       "logical_path": "GameServer/Field/sanc1.ase.spp",
       "json_path": "points/GameServer/Field/sanc1.ase.spp.json"
@@ -290,6 +305,11 @@
       "id": "start_points.seaa",
       "logical_path": "GameServer/Field/SeaA.ASE.spp",
       "json_path": "points/GameServer/Field/SeaA.ASE.spp.json"
+    },
+    {
+      "id": "start_points.seaafrozen",
+      "logical_path": "GameServer/Field/SeaAFrozen.ASE.spp",
+      "json_path": "points/GameServer/Field/SeaAFrozen.ASE.spp.json"
     },
     {
       "id": "start_points.slab",

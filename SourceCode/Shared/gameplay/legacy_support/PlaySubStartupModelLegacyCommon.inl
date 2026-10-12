@@ -171,6 +171,12 @@ DWORD	GetSafeCode2()
 
 int	LoadOftenMeshPattern(char *szFileName)
 {
+	// The table is shared by gameplay and server startup.  Refuse overflow
+	// before writing DynTempPat[DynTempPatCnt] or invoking the model loader.
+	if (!szFileName || !szFileName[0] ||
+		DynTempPatCnt < 0 || DynTempPatCnt >= TEMP_DYNPAT_MAX)
+		return FALSE;
+
 	DynTempPat[DynTempPatCnt] = smPattern.LoadCharactor(szFileName);
 	if (DynTempPat[DynTempPatCnt])
 	{
@@ -189,6 +195,10 @@ static DWORD dwOftPatSum = 0;
 int	LoadOftenMeshPatternCheckSum(char *szFileName)
 {
 	smPAT3D *lpPat3D;
+
+	if (!szFileName || !szFileName[0] ||
+		DynTempPatCnt < 0 || DynTempPatCnt >= TEMP_DYNPAT_MAX)
+		return FALSE;
 
 	DynTempPat[DynTempPatCnt] = smPattern.LoadCharactor(szFileName);
 	if (DynTempPat[DynTempPatCnt])

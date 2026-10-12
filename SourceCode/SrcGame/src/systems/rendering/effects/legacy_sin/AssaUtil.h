@@ -13,6 +13,9 @@ void LoadAssaRes();
 void *AssaSearchRes(char *resName, int blendType);
 // Gradually makes catalogued effect textures resident before first use.
 void SummitPrewarmAssaEffectTexturesStep(int maxAttempts = 2, int requestPriority = 2);
+// Model decode runs in low-priority jobs; only the owner thread publishes materials.
+void SummitPrewarmAssaEffectModelsStep256(unsigned int maxRequests = 1u);
+void SummitPumpAssaEffectModels256(unsigned int maxCommits = 1u);
 
 
 #include <list>

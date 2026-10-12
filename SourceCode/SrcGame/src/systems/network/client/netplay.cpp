@@ -184,6 +184,7 @@ struct PACKET_BUFFS
 #include "systems/security/anticheat/AntiCheat.h"
 #include "skillsPacket.h"
 #include "systems/commerce/coin_shop/CoinShop.h"
+#include "gameplay/commerce/v2/PremiumPurchaseWire.h"
 #include "systems/commerce/coin_shop/CoinShop_T.h"
 #include "systems/gameplay/events/hells_gate/cHellsGate.h"
 #include "systems/combat/pvp/kill_notifications/KillHandler.h"
@@ -5045,6 +5046,18 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 
 	case OpCode::OPCODE_GET_SHOPCOIN_T:
 		cCoinShop_T.RecvCoinFromServer((smTRANS_COMMAND*)pData->Buff);
+		break;
+
+	case OpCode::OPCODE_PREMIUM_PURCHASE_RESULT:
+		if(pData->RecvLen >= static_cast<int>(sizeof(smTRANS_COMMAND)) &&
+		   ((smTRANS_COMMAND*)pData->Buff)->size == sizeof(smTRANS_COMMAND))
+		{
+			const smTRANS_COMMAND* result = (const smTRANS_COMMAND*)pData->Buff;
+			if(result->SParam == gameplay::commerce::premium_wire::CoinScope)
+				cCoinShop.RecvPurchaseResult(result);
+			else if(result->SParam == gameplay::commerce::premium_wire::TimeScope)
+				cCoinShop_T.RecvPurchaseResult(result);
+		}
 		break;
 			
 	case OpCode::OPCODE_GET_OPENCOINSHOP_T:

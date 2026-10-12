@@ -11657,6 +11657,48 @@
       "source": "monster.15_u00c1rvore"
     },
     {
+      "key": "monster.172_igniculus.name",
+      "text": "Igniculus",
+      "quality": "untranslated_fallback",
+      "source": "monster.172_igniculus"
+    },
+    {
+      "key": "monster.174_lavaarmor.name",
+      "text": "Lava Guard",
+      "quality": "untranslated_fallback",
+      "source": "monster.174_lavaarmor"
+    },
+    {
+      "key": "monster.175_lavaarcher.name",
+      "text": "Lava Archer",
+      "quality": "untranslated_fallback",
+      "source": "monster.175_lavaarcher"
+    },
+    {
+      "key": "monster.176_insec.name",
+      "text": "Insec",
+      "quality": "untranslated_fallback",
+      "source": "monster.176_insec"
+    },
+    {
+      "key": "monster.177_lavagolem.name",
+      "text": "Lava Golem",
+      "quality": "untranslated_fallback",
+      "source": "monster.177_lavagolem"
+    },
+    {
+      "key": "monster.178_lavagiant.name",
+      "text": "Lava Giant",
+      "quality": "untranslated_fallback",
+      "source": "monster.178_lavagiant"
+    },
+    {
+      "key": "monster.179_flamo.name",
+      "text": "Flamo",
+      "quality": "untranslated_fallback",
+      "source": "monster.179_flamo"
+    },
+    {
       "key": "monster.17_esqueleto.name",
       "text": "Esqueleto",
       "quality": "untranslated_fallback",
@@ -11667,6 +11709,12 @@
       "text": "Planta Mortífera",
       "quality": "untranslated_fallback",
       "source": "monster.17_planta_mort_u00edfera"
+    },
+    {
+      "key": "monster.190_flamemaiden.name",
+      "text": "Flame Maiden",
+      "quality": "untranslated_fallback",
+      "source": "monster.190_flamemaiden"
     },
     {
       "key": "monster.19_esqueleto_do_mal.name",
@@ -11745,6 +11793,18 @@
       "text": "Cogumelo Fantasma",
       "quality": "untranslated_fallback",
       "source": "monster.2_cogumelo_fantasma"
+    },
+    {
+      "key": "monster.30_maplefairy.name",
+      "text": "MapleFairy",
+      "quality": "translated",
+      "source": "monster.30_maplefairy"
+    },
+    {
+      "key": "monster.30_mapletree.name",
+      "text": "MapleTree",
+      "quality": "translated",
+      "source": "monster.30_mapletree"
     },
     {
       "key": "monster.30_parasita.name",
@@ -15978,7 +16038,7 @@
     },
     {
       "key": "npc.quest_de_tier.name",
-      "text": "Wanda, Loja de Missões de Ricarten",
+      "text": "Wanda, Loja de Missões",
       "quality": "untranslated_fallback",
       "source": "text.quest_de_tier"
     },
@@ -17355,6 +17415,294 @@
       "text": "Abaranbo",
       "quality": "translated",
       "source": "text.zarad_o_elengante"
+    },
+    {
+      "key": "premium.active.description",
+      "text": "Premium effect active.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.active.title",
+      "text": "Premium",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.big_head.description",
+      "text": "Big Head effect active.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.big_head.title",
+      "text": "Big Head",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.caravan.description",
+      "text": "Caravan active.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.caravan.title",
+      "text": "Caravan",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.drop_bonus.description",
+      "text": "Drop +{percent}%",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.eor.description",
+      "text": "Eor active: assists in combat.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.eor.title",
+      "text": "Eor",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.exp_bonus.description",
+      "text": "EXP +{percent}%",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.exp_potion.title",
+      "text": "EXP Bonus",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.gold_looter.description",
+      "text": "Automatic gold collection active.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.gold_looter.title",
+      "text": "Gold Collector",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.hp_booster.description",
+      "text": "HP bonus active.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.hp_booster.title",
+      "text": "HP Booster",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.mana_recharge.description",
+      "text": "Converts part of damage into MP.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.mana_recharge.title",
+      "text": "Mana Recharge",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.mana_reduce.description",
+      "text": "MP consumption -{percent}%",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.mana_reduce.title",
+      "text": "Mana Reduction",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.might_awell.description",
+      "text": "Might of Awell active.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.might_awell.title",
+      "text": "Might of Awell",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.mp_booster.description",
+      "text": "MP bonus active.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.mp_booster.title",
+      "text": "MP Booster",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.mut.description",
+      "text": "Mut active: assists in combat.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.mut.title",
+      "text": "Mut",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.nepsys.description",
+      "text": "Nepsys active: assists in combat.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.nepsys.title",
+      "text": "Nepsys",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.phoenix.description",
+      "text": "Phoenix active: assists in combat.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.phoenix.title",
+      "text": "Phoenix",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.res_booster.description",
+      "text": "RES bonus active.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.res_booster.title",
+      "text": "RES Booster",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.stamina_recharge.description",
+      "text": "Stamina regeneration active.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.stamina_recharge.title",
+      "text": "Stamina Recharge",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.stamina_reduce.description",
+      "text": "SP consumption -{percent}%",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.stamina_reduce.title",
+      "text": "Stamina Reduction",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.terry.description",
+      "text": "Terry active: assists in combat.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.terry.title",
+      "text": "Terry",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.third_eyes.title",
+      "text": "Third Eye",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.vampiric.description",
+      "text": "Converts part of damage into HP.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.vampiric.title",
+      "text": "Vampiric Fang",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.vampiric_ex.description",
+      "text": "Super Vampiric Fang active.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "premium.vampiric_ex.title",
+      "text": "Super Vampiric Fang",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "status.active.title",
+      "text": "Active effect",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "status.missing_icon.description",
+      "text": "Icon unresolved; see LOGS/missing_status_icons.log",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "status.remaining.title",
+      "text": "Time remaining: ",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "status.vip.description",
+      "text": "VIP benefits active, according to server configuration.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "status.vip.help",
+      "text": "Use /comandos for VIP shortcuts.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "status.vip.title",
+      "text": "VIP",
+      "quality": "translated",
+      "source": "runtime_messages"
     },
     {
       "key": "text.100_arqueira_das_cinzas.name",
@@ -22157,34 +22505,178 @@
       "source": "text.zinjya"
     },
     {
+      "key": "ui.death.description",
+      "text": "Choose where to respawn.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "ui.death.exit",
+      "text": "Exit",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "ui.death.field",
+      "text": "In the field",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "ui.death.field_blocked",
+      "text": "Field respawn is unavailable in this situation.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "ui.death.timeout",
+      "text": "Without a choice, you will respawn in town automatically.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "ui.death.title",
+      "text": "Character defeated",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "ui.death.town",
+      "text": "In town",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "ui.premium.purchase.delivery",
+      "text": "Delivery rejected; payment rolled back.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "ui.premium.purchase.funds",
+      "text": "Insufficient balance for this purchase.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "ui.premium.purchase.replayed",
+      "text": "Purchase not repeated: request already processed.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "ui.premium.purchase.request",
+      "text": "Purchase rejected: invalid request.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "ui.premium.purchase.success",
+      "text": "Purchase completed. Check your inventory.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "ui.premium.purchase.transaction",
+      "text": "Purchase did not complete. Please try again.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "ui.premium.purchase.unavailable",
+      "text": "Product unavailable: delivery is not implemented.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "ui.premium.purchase.wallet",
+      "text": "Premium balance unavailable on server.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "ui.shop.need.dexterity",
+      "text": "Dexterity {required} (current {current})",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "ui.shop.need.health",
+      "text": "Health {required} (current {current})",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "ui.shop.need.level",
+      "text": "Level {required} (current {current})",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "ui.shop.need.spirit",
+      "text": "Spirit {required} (current {current})",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "ui.shop.need.strength",
+      "text": "Strength {required} (current {current})",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "ui.shop.need.talent",
+      "text": "Talent {required} (current {current})",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "ui.shop.reject.class",
+      "text": "This item is not compatible with your class.",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "ui.shop.reject.requirements",
+      "text": "Missing: {details}",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
+      "key": "ui.shop.restriction.prefix",
+      "text": "Requires: ",
+      "quality": "translated",
+      "source": "runtime_messages"
+    },
+    {
       "key": "ui.shop.server_reject.gold",
       "text": "Purchase rejected: insufficient server gold.",
       "quality": "translated",
-      "source": "summit-patch230"
+      "source": "runtime_messages"
     },
     {
       "key": "ui.shop.server_reject.invalid_item",
       "text": "Purchase rejected: invalid item data.",
       "quality": "translated",
-      "source": "summit-patch230"
+      "source": "runtime_messages"
     },
     {
       "key": "ui.shop.server_reject.invalid_request",
       "text": "Purchase rejected: invalid request.",
       "quality": "translated",
-      "source": "summit-patch230"
+      "source": "runtime_messages"
     },
     {
       "key": "ui.shop.server_reject.inventory",
       "text": "Purchase rejected: inventory unavailable.",
       "quality": "translated",
-      "source": "summit-patch230"
+      "source": "runtime_messages"
     },
     {
       "key": "ui.shop.server_reject.transaction",
       "text": "Purchase rejected by server.",
       "quality": "translated",
-      "source": "summit-patch230"
+      "source": "runtime_messages"
     }
   ]
 }

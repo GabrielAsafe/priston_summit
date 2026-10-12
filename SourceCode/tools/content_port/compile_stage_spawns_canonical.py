@@ -5,17 +5,34 @@ from pathlib import Path
 MAGIC=b'SSPB';VERSION=2
 HEADER=struct.Struct('<4sHHIIIIIIIIII32s');RECORD=struct.Struct('<IIiiIiIIII');ACTOR=struct.Struct('<IIi');BOSS=struct.Struct('<IIIIiII');HOUR=struct.Struct('<I')
 
+def _load_ptbr_runtime_names(root: Path):
+ loc_path=root/'localization'/'pt-BR.json'
+ if not loc_path.is_file():raise FileNotFoundError(f'pt-BR localization catalog not found: {loc_path}')
+ doc=json.loads(loc_path.read_text(encoding='utf-8'));entries=doc.get('entries',[])
+ if not isinstance(entries,list):raise ValueError(f'pt-BR localization entries must be a list: {loc_path}')
+ names={}
+ for row in entries:
+  if not isinstance(row,dict):continue
+  key=row.get('key');text=row.get('text')
+  if not isinstance(key,str) or not key:continue
+  if key in names:raise ValueError(f'duplicate pt-BR localization key: {key}')
+  if isinstance(text,str):names[key]=text
+ return names
+
 def load_monster_names(root: Path):
+ localized=_load_ptbr_runtime_names(root)
  idx=json.loads((root/'index.json').read_text(encoding='utf-8'))['documents']
  names={}
  for entry in idx:
   if entry.get('kind')!='monster_definition':continue
   d=json.loads((root/entry['json_path']).read_text(encoding='utf-8'))
-  mid=d.get('id','');name=d.get('semantic',{}).get('fields',{}).get('name','')
-  if not mid or not name:continue
+  mid=d.get('id','')
+  if not mid:continue
+  key=f'{mid}.name';name=localized.get(key)
+  if not isinstance(name,str) or not name.strip():raise ValueError(f'monster runtime pt-BR display name is missing or empty: {mid}: {key}')
   try:encoded=name.encode('cp1252')
-  except UnicodeEncodeError as exc:raise ValueError(f'monster display name is not CP1252 encodable: {mid}: {name!r}') from exc
-  if len(encoded)>=32:raise ValueError(f'monster display name exceeds legacy capacity: {mid}: {name!r}')
+  except UnicodeEncodeError as exc:raise ValueError(f'monster runtime pt-BR display name is not CP1252 encodable: {mid}: {name!r}') from exc
+  if len(encoded)>=32:raise ValueError(f'monster runtime pt-BR display name exceeds legacy capacity: {mid}: {name!r}')
   names[mid]=encoded
  return names
 

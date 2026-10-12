@@ -15,11 +15,68 @@
   "open_limit": 1,
   "actors": [
     {
-      "monster_id": "",
-      "legacy_name": "Itens 165",
-      "legacy_name_bytes_hex": "4974656e7320313635",
-      "weight": 10,
-      "resolution": "legacy_skip_if_missing"
+      "monster_id": "monster.172_igniculus",
+      "legacy_name": "Igniculus",
+      "legacy_name_bytes_hex": "49676e6963756c7573",
+      "weight": 18,
+      "resolution": "exact",
+      "canonical_name": "Igniculus"
+    },
+    {
+      "monster_id": "monster.174_lavaarmor",
+      "legacy_name": "Lava Guard",
+      "legacy_name_bytes_hex": "4c617661204775617264",
+      "weight": 14,
+      "resolution": "exact",
+      "canonical_name": "Guardião de Lava"
+    },
+    {
+      "monster_id": "monster.175_lavaarcher",
+      "legacy_name": "Lava Archer",
+      "legacy_name_bytes_hex": "4c61766120417263686572",
+      "weight": 14,
+      "resolution": "exact",
+      "canonical_name": "Arqueiro de Lava"
+    },
+    {
+      "monster_id": "monster.176_insec",
+      "legacy_name": "Insec",
+      "legacy_name_bytes_hex": "496e736563",
+      "weight": 14,
+      "resolution": "exact",
+      "canonical_name": "Insec"
+    },
+    {
+      "monster_id": "monster.177_lavagolem",
+      "legacy_name": "Lava Golem",
+      "legacy_name_bytes_hex": "4c61766120476f6c656d",
+      "weight": 14,
+      "resolution": "exact",
+      "canonical_name": "Golem de Lava"
+    },
+    {
+      "monster_id": "monster.178_lavagiant",
+      "legacy_name": "Lava Giant",
+      "legacy_name_bytes_hex": "4c617661204769616e74",
+      "weight": 12,
+      "resolution": "exact",
+      "canonical_name": "Gigante de Lava"
+    },
+    {
+      "monster_id": "monster.179_flamo",
+      "legacy_name": "Flamo",
+      "legacy_name_bytes_hex": "466c616d6f",
+      "weight": 12,
+      "resolution": "exact",
+      "canonical_name": "Flamo"
+    },
+    {
+      "monster_id": "monster.190_flamemaiden",
+      "legacy_name": "Flame Maiden",
+      "legacy_name_bytes_hex": "466c616d65204d616964656e",
+      "weight": 2,
+      "resolution": "exact",
+      "canonical_name": "Dama Flamejante"
     }
   ],
   "bosses": []

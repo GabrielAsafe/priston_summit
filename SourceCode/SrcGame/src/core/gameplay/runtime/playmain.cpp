@@ -1110,6 +1110,14 @@ static void SummitArmFieldTransition(sFIELD *field)
     gFieldTransition.active = false;
     gFieldTransition.field = field;
     gFieldTransition.armedAt = GetCurrentTime();
+    if (field->FieldCode == 53 || field->FieldCode == 54 || field->FieldCode == 58)
+    {
+        char detail[256] = { 0 };
+        sprintf_s(detail, sizeof(detail), "map=%d playerXYZ=%d,%d,%d target=%p",
+            field->FieldCode, lpCurPlayer->pX, lpCurPlayer->pY,
+            lpCurPlayer->pZ, static_cast<void *>(field));
+        SummitBootstrapDiagnosticEvent("wsb-transition-armed", detail);
+    }
 }
 
 static bool SummitTargetTexturesWarming(int slot)
@@ -1142,6 +1150,23 @@ static void SummitTryCommitFieldTransition()
         gFieldTransition.x, gFieldTransition.y, gFieldTransition.z,
         gFieldTransition.ax, gFieldTransition.ay, gFieldTransition.az);
     gFieldTransition.committing = false;
+
+    if (gFieldTransition.field->FieldCode == 53 ||
+        gFieldTransition.field->FieldCode == 54 ||
+        gFieldTransition.field->FieldCode == 58)
+    {
+        const int floorHeight = smGameStage[slot] && smGameStage[slot]->Head
+            ? smGameStage[slot]->GetHeight(lpCurPlayer->pX, lpCurPlayer->pZ)
+            : CLIP_OUT;
+        char detail[320] = { 0 };
+        sprintf_s(detail, sizeof(detail),
+            "map=%d slot=%d requestedXYZ=%d,%d,%d actualXYZ=%d,%d,%d getHeight=%d move=%d",
+            gFieldTransition.field->FieldCode, slot,
+            gFieldTransition.x, gFieldTransition.y, gFieldTransition.z,
+            lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ,
+            floorHeight, lpCurPlayer->MoveFlag);
+        SummitBootstrapDiagnosticEvent("wsb-transition-committed", detail);
+    }
 
     lpCurPlayer->OnStageField = slot;
     lpCurPlayer->MoveFlag = 0;
@@ -1383,6 +1408,16 @@ bool SummitCapturePendingFieldTransitionSetPosi(smCHAR *character,
     gFieldTransition.az = az;
 
     character->MoveFlag = 0;
+    if (gFieldTransition.field &&
+        (gFieldTransition.field->FieldCode == 53 ||
+         gFieldTransition.field->FieldCode == 54 ||
+         gFieldTransition.field->FieldCode == 58))
+    {
+        char detail[256] = { 0 };
+        sprintf_s(detail, sizeof(detail), "map=%d requestedXYZ=%d,%d,%d",
+            gFieldTransition.field->FieldCode, x, y, z);
+        SummitBootstrapDiagnosticEvent("wsb-transition-captured", detail);
+    }
     return true;
 }
 
@@ -2084,6 +2119,7 @@ int DisplayStage(int x, int y, int z, int angX, int angY, int angZ)
 
 	int cnt;
 	int r, g, b, l;
+	int wsbDrawResult[2] = { -1, -1 };
 
 
 
@@ -2121,7 +2157,7 @@ int DisplayStage(int x, int y, int z, int angX, int angY, int angZ)
 				else
 					l = 0;
 
-				if(smGameStage[cnt]->DrawStage2(x, y, z, angX, angY, angZ) == TRUE)
+				if((wsbDrawResult[cnt] = smGameStage[cnt]->DrawStage2(x, y, z, angX, angY, angZ)) == TRUE)
 				{
 
 
@@ -2142,7 +2178,7 @@ int DisplayStage(int x, int y, int z, int angX, int angY, int angZ)
 			}
 			else
 			{
-				if(smGameStage[cnt]->DrawStage2(x, y, z, angX, angY, angZ) == TRUE)
+				if((wsbDrawResult[cnt] = smGameStage[cnt]->DrawStage2(x, y, z, angX, angY, angZ)) == TRUE)
 				{
 
 
@@ -2156,6 +2192,43 @@ int DisplayStage(int x, int y, int z, int angX, int angY, int angZ)
 	}
 
 
+
+	// WSB diagnostics only. Never override movement, camera or scene culling.
+	static DWORD wsbLastFieldDiagAt = 0;
+	const DWORD wsbNow = GetCurrentTime();
+	if (!wsbLastFieldDiagAt || wsbNow - wsbLastFieldDiagAt >= 500u)
+	{
+		const int wsbSlot = lpCurPlayer ? lpCurPlayer->OnStageField : -1;
+		if (wsbSlot >= 0 && wsbSlot < 2 && lpCurPlayer && StageField[wsbSlot])
+		{
+			const int wsbMap = StageField[wsbSlot]->FieldCode;
+			if (wsbMap == 53 || wsbMap == 54 || wsbMap == 58)
+			{
+				const smSTAGE3D *wsbStage = smGameStage[wsbSlot];
+				const int wsbFloor = wsbStage && wsbStage->Head
+					? smGameStage[wsbSlot]->GetHeight(lpCurPlayer->pX, lpCurPlayer->pZ)
+					: CLIP_OUT;
+				const RECT wsbRect = wsbStage ? wsbStage->StageMapRect : RECT{ 0, 0, 0, 0 };
+				char wsbDetail[840] = { 0 };
+				sprintf_s(wsbDetail, sizeof(wsbDetail),
+					"map=%d slot=%d stage=%p head=%d draw0=%d draw1=%d "
+					"cameraXYZ=%d,%d,%d playerXYZ=%d,%d,%d floor=%d "
+					"move=%d mode=%d trace=%d mouse0=%d mouse1=%d pending=%d transition=%d "
+					"rect=%ld,%ld,%ld,%ld",
+					wsbMap, wsbSlot, static_cast<const void *>(wsbStage),
+					wsbStage && wsbStage->Head ? 1 : 0,
+					wsbDrawResult[0], wsbDrawResult[1],
+					x, y, z, lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ,
+					wsbFloor, lpCurPlayer->MoveFlag, lpCurPlayer->MoveMode,
+					MsTraceMode, MouseButton[0], MouseButton[1],
+					gStageBootstrapPending ? 1 : 0, gFieldTransition.active ? 1 : 0,
+					static_cast<long>(wsbRect.left), static_cast<long>(wsbRect.top),
+					static_cast<long>(wsbRect.right), static_cast<long>(wsbRect.bottom));
+				SummitBootstrapDiagnosticEvent("wsb-field-state", wsbDetail);
+				wsbLastFieldDiagAt = wsbNow;
+			}
+		}
+	}
 
 	smRender.ZWriteAuto = FALSE;
 

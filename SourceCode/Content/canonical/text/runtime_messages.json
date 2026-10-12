@@ -423,6 +423,70 @@
       "source": "patch219_death_screen"
     },
     {
+      "key": "ui.premium.purchase.delivery",
+      "locales": {
+        "pt-BR": "Entrega recusada; pagamento revertido.",
+        "en": "Delivery rejected; payment rolled back."
+      },
+      "source": "patch233_premium_ack"
+    },
+    {
+      "key": "ui.premium.purchase.funds",
+      "locales": {
+        "pt-BR": "Saldo insuficiente para esta compra.",
+        "en": "Insufficient balance for this purchase."
+      },
+      "source": "patch233_premium_ack"
+    },
+    {
+      "key": "ui.premium.purchase.replayed",
+      "locales": {
+        "pt-BR": "Compra não repetida: pedido já processado.",
+        "en": "Purchase not repeated: request already processed."
+      },
+      "source": "patch233_premium_ack"
+    },
+    {
+      "key": "ui.premium.purchase.request",
+      "locales": {
+        "pt-BR": "Compra recusada: pedido inválido.",
+        "en": "Purchase rejected: invalid request."
+      },
+      "source": "patch233_premium_ack"
+    },
+    {
+      "key": "ui.premium.purchase.success",
+      "locales": {
+        "pt-BR": "Compra concluída. Confere o item no inventário.",
+        "en": "Purchase completed. Check your inventory."
+      },
+      "source": "patch233_premium_ack"
+    },
+    {
+      "key": "ui.premium.purchase.transaction",
+      "locales": {
+        "pt-BR": "Compra não concluída. Tenta novamente.",
+        "en": "Purchase did not complete. Please try again."
+      },
+      "source": "patch233_premium_ack"
+    },
+    {
+      "key": "ui.premium.purchase.unavailable",
+      "locales": {
+        "pt-BR": "Produto indisponível: entrega não implementada.",
+        "en": "Product unavailable: delivery is not implemented."
+      },
+      "source": "patch233_premium_ack"
+    },
+    {
+      "key": "ui.premium.purchase.wallet",
+      "locales": {
+        "pt-BR": "Saldo premium indisponível no servidor.",
+        "en": "Premium balance unavailable on server."
+      },
+      "source": "patch233_premium_ack"
+    },
+    {
       "key": "ui.shop.need.dexterity",
       "locales": {
         "pt-BR": "Destreza {required} (atual {current})",

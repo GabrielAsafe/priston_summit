@@ -1,0 +1,3077 @@
+{
+  "archive": "/mnt/data/Content(20261012-154324).zip",
+  "archive_sha256": "f526261a9b2c3ffce62541a7abae2987465a2b4bdd251be6dce3c21a355c1db2",
+  "counts": {
+    "total_files": 6204,
+    "total_uncompressed_bytes": 39366924,
+    "zip_testzip_failure": null,
+    "parsed_json": 6190,
+    "non_json": 14,
+    "categories": {
+      "packs": 22,
+      "canonical": 6179,
+      "CANONICAL_SOURCE.json": 1,
+      "BUILD.json": 1,
+      "comoAplicarcenas.txt": 1
+    },
+    "index_integrity": {
+      "text": {
+        "entries": 5615,
+        "missing_referenced_documents": [],
+        "unindexed_documents": [],
+        "id_mismatch": [],
+        "duplicate_ids": {}
+      },
+      "stage_spawns": {
+        "entries": 57,
+        "missing_referenced_documents": [],
+        "unindexed_documents": [],
+        "id_mismatch": [],
+        "duplicate_ids": {},
+        "distinct_logical_paths": 57
+      },
+      "stage_start_points": {
+        "entries": 65,
+        "missing_referenced_documents": [],
+        "unindexed_documents": [],
+        "id_mismatch": [],
+        "duplicate_ids": {},
+        "distinct_logical_paths": 65
+      },
+      "fixed_npcs": {
+        "entries": 24,
+        "missing_referenced_documents": [],
+        "unindexed_documents": [],
+        "id_mismatch": [],
+        "duplicate_ids": {},
+        "distinct_logical_paths": 24
+      },
+      "model_configs": {
+        "entries": 364,
+        "missing_referenced_documents": [],
+        "unindexed_documents": [],
+        "id_mismatch": [],
+        "duplicate_ids": {}
+      }
+    },
+    "text_kinds": {
+      "npc_definition": 176,
+      "message_catalog": 198,
+      "ini_config": 12,
+      "sin_resource": 437,
+      "generic_text": 2,
+      "monster_definition": 393,
+      "localization_resource": 2473,
+      "open_item_definition": 1924
+    },
+    "payload_check": {
+      "decoded_payloads": 5615,
+      "size_checked": 5614,
+      "sha_checked": 5614
+    },
+    "canonical_source_families": {
+      "commerce": {
+        "files": 3,
+        "bytes": 15202,
+        "count_matches_manifest": true,
+        "bytes_match_manifest": true
+      },
+      "covenant_altars": {
+        "files": 1,
+        "bytes": 24134,
+        "count_matches_manifest": true,
+        "bytes_match_manifest": true
+      },
+      "equipment_sets": {
+        "files": 1,
+        "bytes": 1974,
+        "count_matches_manifest": true,
+        "bytes_match_manifest": true
+      },
+      "fixed_npcs": {
+        "files": 25,
+        "bytes": 33337,
+        "count_matches_manifest": true,
+        "bytes_match_manifest": true
+      },
+      "gameplay_balance": {
+        "files": 1,
+        "bytes": 3676,
+        "count_matches_manifest": true,
+        "bytes_match_manifest": true
+      },
+      "gameplay_reference": {
+        "files": 5,
+        "bytes": 273599,
+        "count_matches_manifest": true,
+        "bytes_match_manifest": true
+      },
+      "head_cosmetics": {
+        "files": 1,
+        "bytes": 730,
+        "count_matches_manifest": true,
+        "bytes_match_manifest": true
+      },
+      "item_profiles": {
+        "files": 3,
+        "bytes": 46747,
+        "count_matches_manifest": true,
+        "bytes_match_manifest": true
+      },
+      "legacy_variants": {
+        "files": 17,
+        "bytes": 340462,
+        "count_matches_manifest": true,
+        "bytes_match_manifest": true
+      },
+      "maps": {
+        "files": 2,
+        "bytes": 337023,
+        "count_matches_manifest": true,
+        "bytes_match_manifest": true
+      },
+      "model_configs": {
+        "files": 366,
+        "bytes": 372296,
+        "count_matches_manifest": true,
+        "bytes_match_manifest": true
+      },
+      "stage_spawns": {
+        "files": 60,
+        "bytes": 113163,
+        "count_matches_manifest": true,
+        "bytes_match_manifest": true
+      },
+      "stage_start_points": {
+        "files": 66,
+        "bytes": 596889,
+        "count_matches_manifest": true,
+        "bytes_match_manifest": true
+      },
+      "text": {
+        "files": 5626,
+        "bytes": 30715464,
+        "count_matches_manifest": true,
+        "bytes_match_manifest": true
+      },
+      "world_phases": {
+        "files": 1,
+        "bytes": 587,
+        "count_matches_manifest": true,
+        "bytes_match_manifest": true
+      },
+      "world_story": {
+        "files": 1,
+        "bytes": 742,
+        "count_matches_manifest": true,
+        "bytes_match_manifest": true
+      }
+    }
+  },
+  "schemas": {
+    "(none)": 13,
+    "summit.compiled-map-report/v1": 2,
+    "summit.item-profile/v1": 2,
+    "summit.item-profile-index/v1": 1,
+    "summit.map-catalog/v1": 2,
+    "summit.stage-spawn-index/v1": 1,
+    "summit.stage-spawn/v1": 57,
+    "summit.stage-spawn-reconstruction/v1": 1,
+    "summit.canonical-text-resource/v1": 5615,
+    "summit.canonical-text-report/v1": 1,
+    "summit.localization-catalog/v1": 5,
+    "summit.runtime-localization-source/v1": 1,
+    "summit.canonical-text-index/v1": 1,
+    "summit.localization-bindings/v1": 1,
+    "summit.localization-index/v1": 1,
+    "summit.localization-report/v1": 1,
+    "summit.stage-start-points/v1": 65,
+    "summit.stage-start-points-index/v1": 1,
+    "summit.fixed-npcs/v1": 24,
+    "summit.fixed-npcs-index/v1": 1,
+    "summit.gameplay-reference/v1": 1,
+    "summit.quest-guide-runtime-bindings/v1": 1,
+    "summit.covenant-altar-placement-plan/v1": 1,
+    "summit.equipment-sets/v1": 1,
+    "summit.experience-balance/v1": 1,
+    "summit.head-cosmetics/v1": 1,
+    "summit.legacy-definition-variant/v1": 16,
+    "summit.legacy-definition-variant-catalog/v1": 1,
+    "summit.model-config-catalog/v1": 1,
+    "summit.model-config/v1": 364,
+    "summit.world-phases/v1": 1,
+    "summit.world-story-campaigns/v1": 1,
+    "summit.coin-shop-catalog/v1": 1,
+    "summit.npc-shop-overrides/v1": 1,
+    "summit.canonical-source/v1": 1,
+    "summit.canonical-content-build/v1": 1
+  },
+  "errors": {
+    "json_parse": [],
+    "text_payload_integrity": []
+  },
+  "warnings": {
+    "text_decode": [],
+    "text_index_source_hash_mismatch_count": 390,
+    "pack_not_in_build_manifest": [
+      "Content/packs/definitions.scfg"
+    ],
+    "text_index_source_hash_mismatch_by_kind": {
+      "sin_resource": 38,
+      "generic_text": 1,
+      "localization_resource": 349,
+      "npc_definition": 2
+    },
+    "text_index_source_hash_mismatch_examples": [
+      {
+        "id": "text.haquestcandy_cstart_m.path_42b1b43b0f",
+        "kind": "sin_resource",
+        "index_import_hash": "ed866e8c76dfccfda7725f48e78fb854c12a99b652f8667fcfcd91281dd4812c",
+        "source_payload_hash": "c54734958b1b4bc2ca63fbc8b5dacb30171cfaaba0cf8a4e8f5a13acd3e6df85"
+      },
+      {
+        "id": "text.haquestgoblin_dpass_m.path_83ceda7114",
+        "kind": "sin_resource",
+        "index_import_hash": "3df30c78fe5f531895d03ea413c98e2b5d52a5acdaf6f3db14f8f152cb516d7d",
+        "source_payload_hash": "d1fab67ef403bd65278dcd41e6120a4db653828d8fc8d0fa09565a66b3807592"
+      },
+      {
+        "id": "text.haquestgoblin_dstart_m.path_a287748dd0",
+        "kind": "sin_resource",
+        "index_import_hash": "22af459771440472e4a679404ebee5a7c155321ca42a8122a21f684c531bd379",
+        "source_payload_hash": "0fd1efa7243e65605841b8296732eb2bdf9d60b3515272b25740c6b9fcc4bd0f"
+      },
+      {
+        "id": "text.haquestterrified_bpass_m.path_c00e5acf33",
+        "kind": "sin_resource",
+        "index_import_hash": "568b95f32c42083bc1f59baa0144043b1f7bb88c5a1c5db7f82eefad07aff459",
+        "source_payload_hash": "add91d20a1dd3f83e79d6b28a28a85e8b6f6223c5ba921f11f204ee52d67c64f"
+      },
+      {
+        "id": "text.haquestterrified_bstart_m.path_426e851eea",
+        "kind": "sin_resource",
+        "index_import_hash": "cbbb360b423c4f28bc43047589da6e6304090443646101b9e882de323dad130a",
+        "source_payload_hash": "daee29cff73550530e3164e492f03e4930e62158c67553f1e5f0c1c254a0f78e"
+      },
+      {
+        "id": "text.haquestundead_epass_m.path_a382f4fc21",
+        "kind": "sin_resource",
+        "index_import_hash": "827c8151ce2bd5dab454ea76b220181d192d126b1bcd89a8b9f67c473830baef",
+        "source_payload_hash": "6111e874bbf5279017100a1a24a93b53eaff916e1538224451ea177ac9a383ce"
+      },
+      {
+        "id": "text.haquestundead_estart_m.path_0d0d0958c2",
+        "kind": "sin_resource",
+        "index_import_hash": "44c669a296c10f25058de8819fe2cc798ce8c5f9217e288f7f4c1e6b0a3b6856",
+        "source_payload_hash": "0bc78781a35d6ca5ae0217533fc41849f5c564d9f50caa8ec7de44bc5a65a466"
+      },
+      {
+        "id": "text.help.path_cfc4995dbc",
+        "kind": "sin_resource",
+        "index_import_hash": "ec127fa7a0431317fa799b962604da13b8eb9138f17783f97fefa7d763ec1275",
+        "source_payload_hash": "f6f5fbe0addea7695ceb4b3b25e6c6154ea7fe8bb7b0408b07314b8c10ed3610"
+      },
+      {
+        "id": "text.petmessage",
+        "kind": "generic_text",
+        "index_import_hash": "a970b7ef83b9fd1877b70bc855ad848c254b382dad69d9087793eb368627570d",
+        "source_payload_hash": "7dc63c6cc39194749b9e75a0d8bab125f6b99e7808b7c661f89331f0b205255b"
+      },
+      {
+        "id": "text.haquestcandy_cend",
+        "kind": "sin_resource",
+        "index_import_hash": "8cd6e586a70d93cf94cdd6b0f135d82870d6a9e9b1e9bcd9d449e8155c962eb0",
+        "source_payload_hash": "af7884d8db8d2edba3c2d695d2d1258eab457b57c40809155ddceb992d99195f"
+      },
+      {
+        "id": "text.haquestcandy_cpass",
+        "kind": "sin_resource",
+        "index_import_hash": "e5846ffe1faccf37e6ca67194f5374695b20baf15cfe8f9eefda6b512291fa6c",
+        "source_payload_hash": "14d2495b3e4ab7fe7eb434c0b12e122c7dc551cd7dd5cc31e85cd0a3a837d536"
+      },
+      {
+        "id": "text.haquestcandy_cstart_m.path_53df747966",
+        "kind": "sin_resource",
+        "index_import_hash": "2eca621dc9a89d375df3bf2456c3690760069220ac85bb1c905154abd284022d",
+        "source_payload_hash": "c54734958b1b4bc2ca63fbc8b5dacb30171cfaaba0cf8a4e8f5a13acd3e6df85"
+      },
+      {
+        "id": "text.haquestcandy_cstart_t",
+        "kind": "sin_resource",
+        "index_import_hash": "532406ab8cfb76b4b591ded3d909bb320f3d05d547696f5d1ed536a6bcc892ef",
+        "source_payload_hash": "553a2e4cb81ca54b0ddbd4a642bcccf8fd1c9f27557c6c9c0c1c8eb454f3e75c"
+      },
+      {
+        "id": "text.haquestcyclops_fend",
+        "kind": "sin_resource",
+        "index_import_hash": "9d5ab2b94c3385d61000fc2ed855a2297455f3266f8147d8e2feaaaaf04a6a1d",
+        "source_payload_hash": "165d24df0157267beef8ef41ce1c1ceee11b348935d3568bf4eb3d58ca923a44"
+      },
+      {
+        "id": "text.haquestcyclops_fpass",
+        "kind": "sin_resource",
+        "index_import_hash": "8690a6facb406fcea11fff09b9d27d4575d4a000acf769cf11bc99940b453ded",
+        "source_payload_hash": "fb129ad1cdcf283fcdfff483af3a035357bf08c8923342d121e8e63cca6db8b7"
+      },
+      {
+        "id": "text.haquestcyclops_fstart",
+        "kind": "sin_resource",
+        "index_import_hash": "f52b0b90214139d223734e57eba8dd6dca56ae7b5b8e6846f3ca21ea7ac297f3",
+        "source_payload_hash": "78ea0a29db6e25415776b41a94c51e32ee7aac01b4d7757a15bc37274492689c"
+      },
+      {
+        "id": "text.haquestgoblin_dend",
+        "kind": "sin_resource",
+        "index_import_hash": "d499c2b883d94ae4081a695cad7f629c0c5a51e7cbb65485c6df6c1823f30e4f",
+        "source_payload_hash": "b522019378b7266f4435bf6561cd14c463a9db8f01d84dfa2dd05fc88544d966"
+      },
+      {
+        "id": "text.haquestgoblin_dpass_m.path_d963da8dc6",
+        "kind": "sin_resource",
+        "index_import_hash": "8543e3b827603eecf48e70129759ee3d8ec5768b2bd6c6f7f2b4bccae5787512",
+        "source_payload_hash": "d1fab67ef403bd65278dcd41e6120a4db653828d8fc8d0fa09565a66b3807592"
+      },
+      {
+        "id": "text.haquestgoblin_dpass_t",
+        "kind": "sin_resource",
+        "index_import_hash": "5404fa4f8e52687be059156008c51b0192926b06de56c2f82e05c0785eb5e9ad",
+        "source_payload_hash": "ab5d297d755741abbe0479e4b5a67eecbb9145a88dfcd0aea0e7602cf54a30fd"
+      },
+      {
+        "id": "text.haquestgoblin_dstart_m.path_bdcee73b20",
+        "kind": "sin_resource",
+        "index_import_hash": "19caad8cd2a5c9ed59ef0fb79ae33fe37ed3475f40d43e336f53e43fe8a194db",
+        "source_payload_hash": "0fd1efa7243e65605841b8296732eb2bdf9d60b3515272b25740c6b9fcc4bd0f"
+      }
+    ],
+    "text_index_source_hash_note": "legacy_sha256 in text/index.json is historical import/provenance metadata and need not match current resource.source.legacy_sha256; do not reinterpret as failed payload verification"
+  },
+  "items": {
+    "canonical_source": {
+      "schema": "summit.canonical-source/v1",
+      "source_of_truth": "SourceCode/Content/canonical",
+      "runtime_dependency_on_external_canonical": false,
+      "imported_this_run": false,
+      "imported_families": {},
+      "families": {
+        "commerce": {
+          "files": 3,
+          "bytes": 15202,
+          "sha256": "9cc0406754d955cadb3b4931e59920c779cabbfbafb61aa9d694788ef240e07a"
+        },
+        "covenant_altars": {
+          "files": 1,
+          "bytes": 24134,
+          "sha256": "0ee004c27898e2ff447a610f921cf11edec137827a7d9b8957836b56ce06acf4"
+        },
+        "equipment_sets": {
+          "files": 1,
+          "bytes": 1974,
+          "sha256": "1a325dfebb6fc15d0b3c144459655c0e5d1094dfcf64f2b702ad62fa9c941226"
+        },
+        "fixed_npcs": {
+          "files": 25,
+          "bytes": 33337,
+          "sha256": "9134aa4b5003b23a06450e2d7a430445de1a6386d0313cf8897e54ba2285dccb"
+        },
+        "gameplay_balance": {
+          "files": 1,
+          "bytes": 3676,
+          "sha256": "a0547ebe28c7c8bee3d4d2311d843770104c9af47c80c92ce8f7bc19b0c17138"
+        },
+        "gameplay_reference": {
+          "files": 5,
+          "bytes": 273599,
+          "sha256": "33beb507b69a2ea2d31f06bb0e8127f9d513acd11b60c48587e58bf0e720f2b9"
+        },
+        "head_cosmetics": {
+          "files": 1,
+          "bytes": 730,
+          "sha256": "f21cd41ab3cdeea5aa5116b34441a6e7b1eb85453eecb6a4cbc58612f577cb95"
+        },
+        "item_profiles": {
+          "files": 3,
+          "bytes": 46747,
+          "sha256": "4b0f5252fb8f11d38fa8d5b4ef2f24315b20968708ad8b9190e7381e86727954"
+        },
+        "legacy_variants": {
+          "files": 17,
+          "bytes": 340462,
+          "sha256": "5aa29fec117b585b09cebd4f055939cfc21c5bc62bc36a50f7609700a34adf50"
+        },
+        "maps": {
+          "files": 2,
+          "bytes": 337023,
+          "sha256": "24be4e513e245abae4a5436b39efd1a286598c7ea10034caf72353b38584dea7"
+        },
+        "model_configs": {
+          "files": 366,
+          "bytes": 372296,
+          "sha256": "fd818ee812d962dfc24410b28b98d65c070cd41ae3c761deb0ca562c10439553"
+        },
+        "stage_spawns": {
+          "files": 60,
+          "bytes": 113163,
+          "sha256": "61996a8280592e7946105aad2aaab8648d4782e6b2c275f6dd69d7665c8c6f72"
+        },
+        "stage_start_points": {
+          "files": 66,
+          "bytes": 596889,
+          "sha256": "dddaaef79ca651bb0b17603412df557058062f00a7c49ac5e6ade0ea33ea75ec"
+        },
+        "text": {
+          "files": 5626,
+          "bytes": 30715464,
+          "sha256": "65a70b76df9c39a43387ed5b03c871508b01b3066c2ef1c20466532af138b47d"
+        },
+        "world_phases": {
+          "files": 1,
+          "bytes": 587,
+          "sha256": "2422749bc2c8d29be269aca933c89e7a010caeeeb71da4e1f254915164712b27"
+        },
+        "world_story": {
+          "files": 1,
+          "bytes": 742,
+          "sha256": "b78586da201de5e15933145a9d95fbda329c0fd1900b6df99a4dd6d6d099619a"
+        }
+      },
+      "forever_fall": {
+        "forever-fall-01.ase.spm.json": {
+          "actors": 5,
+          "bosses": 0,
+          "weight_sum": 100
+        },
+        "forever-fall-02.ase.spm.json": {
+          "actors": 6,
+          "bosses": 0,
+          "weight_sum": 100
+        },
+        "forever-fall-03.ase.spm.json": {
+          "actors": 7,
+          "bosses": 0,
+          "weight_sum": 100
+        },
+        "forever-fall-04.ase.spm.json": {
+          "actors": 6,
+          "bosses": 0,
+          "weight_sum": 100
+        }
+      }
+    },
+    "model_configs_index_count": 364,
+    "legacy_variants": 16,
+    "gameplay_reference_index": {
+      "schema": "summit.gameplay-reference/v1",
+      "quest_catalog": "quests/priston_tale_quests.pt-BR.json",
+      "quest_runtime_bindings": "quests/runtime_bindings.json",
+      "mix_catalog": "mix/priston_tale_mix_table.pt-BR.json"
+    },
+    "marina_shop_override": {
+      "sell_etc": {
+        "add": [],
+        "remove": []
+      }
+    },
+    "sp179_runtime_profiles": [
+      "client",
+      "server"
+    ],
+    "target_dailyquest.zhoon.json": [
+      {
+        "path": "Content/canonical/text/resources/Servidor/GameServer/NPC/name/dailyquest.zhoon.json",
+        "semantic": {
+          "entries": [
+            {
+              "line": 4,
+              "legacy_key": "J_Name",
+              "kind": "name",
+              "text": "Removedor de Combinação/Aprim."
+            },
+            {
+              "line": 7,
+              "legacy_key": "J_Chat",
+              "kind": "chat",
+              "text": "Remova com segurança o aprimoramento ou a combinação do seu item."
+            },
+            {
+              "line": 9,
+              "legacy_key": "J_Chat",
+              "kind": "chat",
+              "text": "Limpeza de itens do Summit Tale."
+            },
+            {
+              "line": 11,
+              "legacy_key": "J_Chat",
+              "kind": "chat",
+              "text": "Quer seu item limpinho? Venha falar comigo ;)"
+            }
+          ]
+        },
+        "sha": "d8353b03f23f781643316f5aba2d710d5fad7c899602ed30aa827eab83b047a3"
+      }
+    ],
+    "target_Quest De Tier.Zhoon.json": [
+      {
+        "path": "Content/canonical/text/resources/Servidor/GameServer/NPC/name/Quest De Tier.Zhoon.json",
+        "semantic": {
+          "entries": [
+            {
+              "line": 4,
+              "legacy_key": "J_Name",
+              "kind": "name",
+              "text": "Wanda, Loja de Missões"
+            },
+            {
+              "line": 7,
+              "legacy_key": "J_Chat",
+              "kind": "chat",
+              "text": "Estou aqui para auxiliar em seus desafios!"
+            }
+          ]
+        },
+        "sha": "09feca5240c619bb1c3008aa4e4a6295a70b8467ed018577b9fa24d65f2143aa"
+      }
+    ]
+  },
+  "maps": {
+    "total_client": 59,
+    "total_server": 59,
+    "by_code": [
+      {
+        "code": 0,
+        "map_id": "map.fore_3",
+        "stage": "forest//fore-3.ase",
+        "map_image_id": "fore-3",
+        "level": 0,
+        "server_level": 0,
+        "start_points": [
+          {
+            "x": -10585,
+            "z": -11810
+          },
+          {
+            "x": -13659,
+            "z": -9753
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": -10585,
+            "z": -11810
+          },
+          {
+            "x": -13659,
+            "z": -9753
+          }
+        ],
+        "routing": "server.main",
+        "server_routing": "server.main",
+        "spm_index": [
+          "GameServer/Field/fore-3.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/fore-3.ase.spp"
+        ],
+        "spc_index": [
+          "GameServer/Field/fore-3.ase.spc"
+        ],
+        "spm_actor_count": 6,
+        "spm_boss_count": 0,
+        "spm_weight": 102,
+        "spp_points": 120,
+        "spp_enabled": 120,
+        "spc_npc_count": 2
+      },
+      {
+        "code": 1,
+        "map_id": "map.fore_2",
+        "stage": "forest//fore-2.ase",
+        "map_image_id": "fore-2",
+        "level": 0,
+        "server_level": 0,
+        "start_points": [
+          {
+            "x": -2272,
+            "z": -10314
+          },
+          {
+            "x": -7192,
+            "z": -11175
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": -2272,
+            "z": -10314
+          },
+          {
+            "x": -7192,
+            "z": -11175
+          }
+        ],
+        "routing": "server.main",
+        "server_routing": "server.main",
+        "spm_index": [
+          "GameServer/Field/fore-2.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/fore-2.ase.spp"
+        ],
+        "spc_index": [
+          "GameServer/Field/fore-2.ase.spc"
+        ],
+        "spm_actor_count": 6,
+        "spm_boss_count": 0,
+        "spm_weight": 100,
+        "spp_points": 113,
+        "spp_enabled": 113,
+        "spc_npc_count": 1
+      },
+      {
+        "code": 2,
+        "map_id": "map.fore_1",
+        "stage": "forest//fore-1.ase",
+        "map_image_id": "fore-1",
+        "level": 0,
+        "server_level": 0,
+        "start_points": [
+          {
+            "x": 1350,
+            "z": -13672
+          },
+          {
+            "x": 1761,
+            "z": -10815
+          },
+          {
+            "x": 4777,
+            "z": -10916
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": 1350,
+            "z": -13672
+          },
+          {
+            "x": 1761,
+            "z": -10815
+          },
+          {
+            "x": 4777,
+            "z": -10916
+          }
+        ],
+        "routing": "server.main",
+        "server_routing": "server.main",
+        "spm_index": [
+          "GameServer/Field/fore-1.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/fore-1.ase.spp"
+        ],
+        "spc_index": [
+          "GameServer/Field/fore-1.ase.spc"
+        ],
+        "spm_actor_count": 5,
+        "spm_boss_count": 0,
+        "spm_weight": 100,
+        "spp_points": 168,
+        "spp_enabled": 168,
+        "spc_npc_count": 0
+      },
+      {
+        "code": 3,
+        "map_id": "map.village_2",
+        "stage": "ricarten//village-2.ase",
+        "map_image_id": "village-2",
+        "level": 0,
+        "server_level": 0,
+        "start_points": [
+          {
+            "x": 2592,
+            "z": -18566
+          },
+          {
+            "x": -1047,
+            "z": -16973
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": 2592,
+            "z": -18566
+          },
+          {
+            "x": -1047,
+            "z": -16973
+          }
+        ],
+        "routing": "server.main",
+        "server_routing": "server.main",
+        "spm_index": [
+          "GameServer/Field/Village-2.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/village-2.ase.spp"
+        ],
+        "spc_index": [
+          "GameServer/Field/village-2.ase.spc"
+        ],
+        "spm_actor_count": 0,
+        "spm_boss_count": 0,
+        "spm_weight": 0,
+        "spp_points": 3,
+        "spp_enabled": 3,
+        "spc_npc_count": 41
+      },
+      {
+        "code": 4,
+        "map_id": "map.ruin_4",
+        "stage": "Ruin//ruin-4.ase",
+        "map_image_id": "ruin-4",
+        "level": 0,
+        "server_level": 0,
+        "start_points": [
+          {
+            "x": 2578,
+            "z": -5124
+          },
+          {
+            "x": 1873,
+            "z": 3060
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": 2578,
+            "z": -5124
+          },
+          {
+            "x": 1873,
+            "z": 3060
+          }
+        ],
+        "routing": "server.main",
+        "server_routing": "server.main",
+        "spm_index": [
+          "GameServer/Field/ruin-4.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/ruin-4.ase.spp"
+        ],
+        "spc_index": [],
+        "spm_actor_count": 7,
+        "spm_boss_count": 0,
+        "spm_weight": 100,
+        "spp_points": 200,
+        "spp_enabled": 200
+      },
+      {
+        "code": 5,
+        "map_id": "map.ruin_3",
+        "stage": "Ruin//ruin-3.ase",
+        "map_image_id": "ruin-3",
+        "level": 0,
+        "server_level": 0,
+        "start_points": [
+          {
+            "x": 875,
+            "z": 7910
+          },
+          {
+            "x": 1576,
+            "z": 14307
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": 875,
+            "z": 7910
+          },
+          {
+            "x": 1576,
+            "z": 14307
+          }
+        ],
+        "routing": "server.main",
+        "server_routing": "server.main",
+        "spm_index": [
+          "GameServer/Field/ruin-3.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/ruin-3.ase.spp"
+        ],
+        "spc_index": [
+          "GameServer/Field/ruin-3.ase.spc"
+        ],
+        "spm_actor_count": 11,
+        "spm_boss_count": 2,
+        "spm_weight": 425,
+        "spp_points": 200,
+        "spp_enabled": 200,
+        "spc_npc_count": 1
+      },
+      {
+        "code": 6,
+        "map_id": "map.ruin_2",
+        "stage": "Ruin//ruin-2.ase",
+        "map_image_id": "ruin-2",
+        "level": 0,
+        "server_level": 0,
+        "start_points": [
+          {
+            "x": 3976,
+            "z": 19645
+          },
+          {
+            "x": 5832,
+            "z": 23751
+          },
+          {
+            "x": 5615,
+            "z": 25117
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": 3976,
+            "z": 19645
+          },
+          {
+            "x": 5832,
+            "z": 23751
+          },
+          {
+            "x": 5615,
+            "z": 25117
+          }
+        ],
+        "routing": "server.main",
+        "server_routing": "server.main",
+        "spm_index": [
+          "GameServer/Field/ruin-2.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/ruin-2.ase.spp"
+        ],
+        "spc_index": [
+          "GameServer/Field/ruin-2.ase.spc"
+        ],
+        "spm_actor_count": 6,
+        "spm_boss_count": 0,
+        "spm_weight": 101,
+        "spp_points": 115,
+        "spp_enabled": 115,
+        "spc_npc_count": 4
+      },
+      {
+        "code": 7,
+        "map_id": "map.ruin_1",
+        "stage": "Ruin//ruin-1.ase",
+        "map_image_id": "ruin-1",
+        "level": 0,
+        "server_level": 0,
+        "start_points": [
+          {
+            "x": 12242,
+            "z": 16034
+          },
+          {
+            "x": 12194,
+            "z": 8969
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": 12242,
+            "z": 16034
+          },
+          {
+            "x": 12194,
+            "z": 8969
+          }
+        ],
+        "routing": "server.main",
+        "server_routing": "server.main",
+        "spm_index": [
+          "GameServer/Field/ruin-1.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/ruin-1.ase.spp"
+        ],
+        "spc_index": [
+          "GameServer/Field/ruin-1.ase.spc"
+        ],
+        "spm_actor_count": 6,
+        "spm_boss_count": 0,
+        "spm_weight": 100,
+        "spp_points": 123,
+        "spp_enabled": 123,
+        "spc_npc_count": 1
+      },
+      {
+        "code": 8,
+        "map_id": "map.de_1",
+        "stage": "desert//De-1.ase",
+        "map_image_id": "De-1",
+        "level": 0,
+        "server_level": 0,
+        "start_points": [
+          {
+            "x": 13306,
+            "z": 2000
+          },
+          {
+            "x": 13083,
+            "z": -2249
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": 13306,
+            "z": 2000
+          },
+          {
+            "x": 13083,
+            "z": -2249
+          }
+        ],
+        "routing": "server.main",
+        "server_routing": "server.main",
+        "spm_index": [
+          "GameServer/Field/de-1.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/De-1.ase.spp"
+        ],
+        "spc_index": [],
+        "spm_actor_count": 7,
+        "spm_boss_count": 0,
+        "spm_weight": 105,
+        "spp_points": 200,
+        "spp_enabled": 200
+      },
+      {
+        "code": 9,
+        "map_id": "map.village_1",
+        "stage": "forest//village-1.ase",
+        "map_image_id": "village-1",
+        "level": 0,
+        "server_level": 0,
+        "start_points": [
+          {
+            "x": 22214,
+            "z": -1182
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": 22214,
+            "z": -1182
+          }
+        ],
+        "routing": "server.main",
+        "server_routing": "server.main",
+        "spm_index": [
+          "GameServer/Field/village-1.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/village-1.ase.spp"
+        ],
+        "spc_index": [
+          "GameServer/Field/village-1.ase.spc"
+        ],
+        "spm_actor_count": 4,
+        "spm_boss_count": 0,
+        "spm_weight": 70,
+        "spp_points": 46,
+        "spp_enabled": 46,
+        "spc_npc_count": 11
+      },
+      {
+        "code": 10,
+        "map_id": "map.de_2",
+        "stage": "desert//De-2.ase",
+        "map_image_id": "De-2",
+        "level": 0,
+        "server_level": 0,
+        "start_points": [
+          {
+            "x": 11859,
+            "z": -11257
+          },
+          {
+            "x": 16169,
+            "z": -12768
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": 11859,
+            "z": -11257
+          },
+          {
+            "x": 16169,
+            "z": -12768
+          }
+        ],
+        "routing": "server.main",
+        "server_routing": "server.main",
+        "spm_index": [
+          "GameServer/Field/de-2.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/De-2.ase.spp"
+        ],
+        "spc_index": [],
+        "spm_actor_count": 6,
+        "spm_boss_count": 0,
+        "spm_weight": 103,
+        "spp_points": 165,
+        "spp_enabled": 165
+      },
+      {
+        "code": 11,
+        "map_id": "map.de_3",
+        "stage": "desert//De-3.ase",
+        "map_image_id": "De-3",
+        "level": 55,
+        "server_level": 55,
+        "start_points": [
+          {
+            "x": 34758,
+            "z": -1323
+          },
+          {
+            "x": 29424,
+            "z": 322
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": 34758,
+            "z": -1323
+          },
+          {
+            "x": 29424,
+            "z": 322
+          }
+        ],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/de-3.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/De-3.ase.spp"
+        ],
+        "spc_index": [
+          "GameServer/Field/De-3.ase.spc"
+        ],
+        "spm_actor_count": 6,
+        "spm_boss_count": 0,
+        "spm_weight": 100,
+        "spp_points": 116,
+        "spp_enabled": 116,
+        "spc_npc_count": 2
+      },
+      {
+        "code": 12,
+        "map_id": "map.de_4",
+        "stage": "desert//De-4.ase",
+        "map_image_id": "De-4",
+        "level": 55,
+        "server_level": 55,
+        "start_points": [
+          {
+            "x": 33740,
+            "z": 6491
+          },
+          {
+            "x": 40691,
+            "z": 11056
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": 33740,
+            "z": 6491
+          },
+          {
+            "x": 40691,
+            "z": 11056
+          }
+        ],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/de-4.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/De-4.ase.spp"
+        ],
+        "spc_index": [],
+        "spm_actor_count": 6,
+        "spm_boss_count": 0,
+        "spm_weight": 100,
+        "spp_points": 121,
+        "spp_enabled": 121
+      },
+      {
+        "code": 13,
+        "map_id": "map.dun_1",
+        "stage": "dungeon//dun-1.ase",
+        "map_image_id": "dun-1",
+        "level": 40,
+        "server_level": 40,
+        "start_points": [],
+        "server_start_points": [],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/dun-1.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/dun-1.ase.spp"
+        ],
+        "spc_index": [],
+        "spm_actor_count": 5,
+        "spm_boss_count": 0,
+        "spm_weight": 95,
+        "spp_points": 86,
+        "spp_enabled": 86
+      },
+      {
+        "code": 14,
+        "map_id": "map.dun_2",
+        "stage": "dungeon//dun-2.ase",
+        "map_image_id": "dun-2",
+        "level": 50,
+        "server_level": 50,
+        "start_points": [],
+        "server_start_points": [],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/dun-2.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/dun-2.ase.spp"
+        ],
+        "spc_index": [],
+        "spm_actor_count": 5,
+        "spm_boss_count": 0,
+        "spm_weight": 105,
+        "spp_points": 90,
+        "spp_enabled": 90
+      },
+      {
+        "code": 15,
+        "map_id": "map.dun_3",
+        "stage": "dungeon//dun-3.ase",
+        "map_image_id": "dun-3",
+        "level": 60,
+        "server_level": 60,
+        "start_points": [],
+        "server_start_points": [],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/dun-3.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/dun-3.ase.spp"
+        ],
+        "spc_index": [],
+        "spm_actor_count": 6,
+        "spm_boss_count": 1,
+        "spm_weight": 97,
+        "spp_points": 140,
+        "spp_enabled": 140
+      },
+      {
+        "code": 16,
+        "map_id": "map.office",
+        "stage": "room//office.ase",
+        "map_image_id": null,
+        "level": 0,
+        "server_level": 0,
+        "start_points": [],
+        "server_start_points": [],
+        "routing": "server.main",
+        "server_routing": "server.main",
+        "spm_index": [
+          "GameServer/Field/office.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/office.ase.spp"
+        ],
+        "spc_index": [
+          "GameServer/Field/office.ase.spc"
+        ],
+        "spm_actor_count": 0,
+        "spm_boss_count": 0,
+        "spm_weight": 0,
+        "spp_points": 1,
+        "spp_enabled": 1,
+        "spc_npc_count": 0
+      },
+      {
+        "code": 17,
+        "map_id": "map.forever_fall_04",
+        "stage": "forever-fall//forever-fall-04.ASE",
+        "map_image_id": "forever-fall-04",
+        "level": 0,
+        "server_level": 0,
+        "start_points": [
+          {
+            "x": -2135,
+            "z": 33668
+          },
+          {
+            "x": 4073,
+            "z": 32119
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": -2135,
+            "z": 33668
+          },
+          {
+            "x": 4073,
+            "z": 32119
+          }
+        ],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/forever-fall-04.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/forever-fall-04.ASE.spp"
+        ],
+        "spc_index": [],
+        "spm_actor_count": 6,
+        "spm_boss_count": 0,
+        "spm_weight": 100,
+        "spp_points": 143,
+        "spp_enabled": 143
+      },
+      {
+        "code": 18,
+        "map_id": "map.forever_fall_03",
+        "stage": "forever-fall//forever-fall-03.ASE",
+        "map_image_id": "forever-fall-03",
+        "level": 0,
+        "server_level": 0,
+        "start_points": [
+          {
+            "x": -1516,
+            "z": 45437
+          },
+          {
+            "x": -3586,
+            "z": 42886
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": -1516,
+            "z": 45437
+          },
+          {
+            "x": -3586,
+            "z": 42886
+          }
+        ],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/forever-fall-03.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/forever-fall-03.ASE.spp"
+        ],
+        "spc_index": [
+          "GameServer/Field/forever-fall-03.ASE.spc"
+        ],
+        "spm_actor_count": 7,
+        "spm_boss_count": 0,
+        "spm_weight": 100,
+        "spp_points": 83,
+        "spp_enabled": 83,
+        "spc_npc_count": 2
+      },
+      {
+        "code": 19,
+        "map_id": "map.forever_fall_02",
+        "stage": "forever-fall//forever-fall-02.ASE",
+        "map_image_id": "forever-fall-02",
+        "level": 0,
+        "server_level": 0,
+        "start_points": [
+          {
+            "x": -1024,
+            "z": 45437
+          },
+          {
+            "x": -1543,
+            "z": 52333
+          },
+          {
+            "x": -1310,
+            "z": 54945
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": -1024,
+            "z": 45437
+          },
+          {
+            "x": -1543,
+            "z": 52333
+          },
+          {
+            "x": -1310,
+            "z": 54945
+          }
+        ],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/forever-fall-02.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/forever-fall-02.ASE.spp"
+        ],
+        "spc_index": [],
+        "spm_actor_count": 6,
+        "spm_boss_count": 0,
+        "spm_weight": 100,
+        "spp_points": 98,
+        "spp_enabled": 98
+      },
+      {
+        "code": 20,
+        "map_id": "map.forever_fall_01",
+        "stage": "forever-fall//forever-fall-01.ASE",
+        "map_image_id": "forever-fall-01",
+        "level": 0,
+        "server_level": 0,
+        "start_points": [
+          {
+            "x": 1875,
+            "z": 69871
+          },
+          {
+            "x": 2637,
+            "z": 60219
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": 1875,
+            "z": 69871
+          },
+          {
+            "x": 2637,
+            "z": 60219
+          }
+        ],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/forever-fall-01.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/forever-fall-01.ASE.spp"
+        ],
+        "spc_index": [],
+        "spm_actor_count": 5,
+        "spm_boss_count": 0,
+        "spm_weight": 100,
+        "spp_points": 85,
+        "spp_enabled": 85
+      },
+      {
+        "code": 21,
+        "map_id": "map.pilai",
+        "stage": "forever-fall//pilai.ASE",
+        "map_image_id": "pilai",
+        "level": 0,
+        "server_level": 0,
+        "start_points": [
+          {
+            "x": 2287,
+            "z": 74131
+          },
+          {
+            "x": 3547,
+            "z": 75500
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": 2287,
+            "z": 74131
+          },
+          {
+            "x": 3547,
+            "z": 75500
+          }
+        ],
+        "routing": "server.main",
+        "server_routing": "server.main",
+        "spm_index": [
+          "GameServer/Field/pilai.ASE.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/pilai.ASE.spp"
+        ],
+        "spc_index": [
+          "GameServer/Field/pilai.ase.spc"
+        ],
+        "spm_actor_count": 0,
+        "spm_boss_count": 0,
+        "spm_weight": 0,
+        "spp_points": 0,
+        "spp_enabled": 0,
+        "spc_npc_count": 28
+      },
+      {
+        "code": 22,
+        "map_id": "map.dun_4",
+        "stage": "dungeon//dun-4.ase",
+        "map_image_id": "dun-4",
+        "level": 70,
+        "server_level": 70,
+        "start_points": [],
+        "server_start_points": [],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/dun-4.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/dun-4.ase.spp"
+        ],
+        "spc_index": [],
+        "spm_actor_count": 10,
+        "spm_boss_count": 0,
+        "spm_weight": 102,
+        "spp_points": 200,
+        "spp_enabled": 200
+      },
+      {
+        "code": 23,
+        "map_id": "map.dun_5",
+        "stage": "dungeon//dun-5.ase",
+        "map_image_id": "dun-5",
+        "level": 75,
+        "server_level": 75,
+        "start_points": [],
+        "server_start_points": [],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/dun-5.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/dun-5.ase.spp"
+        ],
+        "spc_index": [
+          "GameServer/Field/dun-5.ase.spc"
+        ],
+        "spm_actor_count": 8,
+        "spm_boss_count": 0,
+        "spm_weight": 105,
+        "spp_points": 130,
+        "spp_enabled": 130,
+        "spc_npc_count": 1
+      },
+      {
+        "code": 24,
+        "map_id": "map.tcave",
+        "stage": "cave//Tcave.ase",
+        "map_image_id": "Tcave",
+        "level": 55,
+        "server_level": 55,
+        "start_points": [
+          {
+            "x": 119319,
+            "z": 26034
+          },
+          {
+            "x": 125606,
+            "z": 24541
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": 119319,
+            "z": 26034
+          },
+          {
+            "x": 125606,
+            "z": 24541
+          }
+        ],
+        "routing": "server.main",
+        "server_routing": "server.main",
+        "spm_index": [
+          "GameServer/Field/tcave.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/Tcave.ase.spp"
+        ],
+        "spc_index": [],
+        "spm_actor_count": 8,
+        "spm_boss_count": 0,
+        "spm_weight": 110,
+        "spp_points": 111,
+        "spp_enabled": 111
+      },
+      {
+        "code": 25,
+        "map_id": "map.mcave",
+        "stage": "cave//Mcave.ase",
+        "map_image_id": "Mcave",
+        "level": 55,
+        "server_level": 55,
+        "start_points": [
+          {
+            "x": 119320,
+            "z": 35680
+          },
+          {
+            "x": 124380,
+            "z": 33260
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": 119320,
+            "z": 35680
+          },
+          {
+            "x": 124380,
+            "z": 33260
+          }
+        ],
+        "routing": "server.main",
+        "server_routing": "server.main",
+        "spm_index": [
+          "GameServer/Field/mcave.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/Mcave.ase.spp"
+        ],
+        "spc_index": [],
+        "spm_actor_count": 8,
+        "spm_boss_count": 0,
+        "spm_weight": 110,
+        "spp_points": 111,
+        "spp_enabled": 111
+      },
+      {
+        "code": 26,
+        "map_id": "map.dcave",
+        "stage": "cave//Dcave.ase",
+        "map_image_id": "Dcave",
+        "level": 65,
+        "server_level": 65,
+        "start_points": [],
+        "server_start_points": [],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/dcave.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/Dcave.ase.spp"
+        ],
+        "spc_index": [],
+        "spm_actor_count": 8,
+        "spm_boss_count": 0,
+        "spm_weight": 100,
+        "spp_points": 170,
+        "spp_enabled": 170
+      },
+      {
+        "code": 27,
+        "map_id": "map.iron_1",
+        "stage": "Iron//iron-1.ASE",
+        "map_image_id": "iron-1",
+        "level": 80,
+        "server_level": 80,
+        "start_points": [
+          {
+            "x": 46905,
+            "z": 13478
+          },
+          {
+            "x": 47357,
+            "z": 20845
+          },
+          {
+            "x": 46741,
+            "z": 21349
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": 46905,
+            "z": 13478
+          },
+          {
+            "x": 47357,
+            "z": 20845
+          },
+          {
+            "x": 46741,
+            "z": 21349
+          }
+        ],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/iron-1.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/iron-1.ASE.spp"
+        ],
+        "spc_index": [
+          "GameServer/Field/iron-1.ASE.spc"
+        ],
+        "spm_actor_count": 8,
+        "spm_boss_count": 1,
+        "spm_weight": 97,
+        "spp_points": 198,
+        "spp_enabled": 198,
+        "spc_npc_count": 2
+      },
+      {
+        "code": 28,
+        "map_id": "map.iron_2",
+        "stage": "Iron//iron-2.ASE",
+        "map_image_id": "iron-2",
+        "level": 85,
+        "server_level": 85,
+        "start_points": [
+          {
+            "x": 35149,
+            "z": 24326
+          },
+          {
+            "x": 44893,
+            "z": 21380
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": 35149,
+            "z": 24326
+          },
+          {
+            "x": 44893,
+            "z": 21380
+          }
+        ],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/iron-2.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/iron-2.ASE.spp"
+        ],
+        "spc_index": [
+          "GameServer/Field/iron-2.ASE.spc"
+        ],
+        "spm_actor_count": 8,
+        "spm_boss_count": 1,
+        "spm_weight": 100,
+        "spp_points": 196,
+        "spp_enabled": 196,
+        "spc_npc_count": 2
+      },
+      {
+        "code": 29,
+        "map_id": "map.ice_ura",
+        "stage": "Ice//ice_ura.ASE",
+        "map_image_id": "ice_ura",
+        "level": 90,
+        "server_level": 90,
+        "start_points": [],
+        "server_start_points": [],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [],
+        "spp_index": [],
+        "spc_index": [
+          "GameServer/Field/ice_ura.ase.spc"
+        ],
+        "spc_npc_count": 4
+      },
+      {
+        "code": 30,
+        "map_id": "map.sod_1",
+        "stage": "Sod//sod-1.ASE",
+        "map_image_id": "sod-1",
+        "level": 0,
+        "server_level": 0,
+        "start_points": [],
+        "server_start_points": [],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/sod-1.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/sod-1.ASE.spp"
+        ],
+        "spc_index": [],
+        "spm_actor_count": 1,
+        "spm_boss_count": 0,
+        "spm_weight": 2,
+        "spp_points": 3,
+        "spp_enabled": 3
+      },
+      {
+        "code": 31,
+        "map_id": "map.ice1",
+        "stage": "Ice//ice1.ASE",
+        "map_image_id": "ice1",
+        "level": 90,
+        "server_level": 90,
+        "start_points": [],
+        "server_start_points": [],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/ice1.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/ice1.ASE.spp"
+        ],
+        "spc_index": [],
+        "spm_actor_count": 6,
+        "spm_boss_count": 2,
+        "spm_weight": 104,
+        "spp_points": 200,
+        "spp_enabled": 200
+      },
+      {
+        "code": 32,
+        "map_id": "map.quest_iv",
+        "stage": "quest//quest_IV.ASE",
+        "map_image_id": "quest_IV",
+        "level": 0,
+        "server_level": 0,
+        "start_points": [],
+        "server_start_points": [],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/quest_iv.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/quest_IV.ASE.spp"
+        ],
+        "spc_index": [],
+        "spm_actor_count": 6,
+        "spm_boss_count": 0,
+        "spm_weight": 91,
+        "spp_points": 1,
+        "spp_enabled": 1
+      },
+      {
+        "code": 33,
+        "map_id": "map.castle",
+        "stage": "castle//castle.ase",
+        "map_image_id": "castle",
+        "level": 50,
+        "server_level": 50,
+        "start_points": [
+          {
+            "x": 33920,
+            "z": -23479
+          },
+          {
+            "x": 35247,
+            "z": -23355
+          },
+          {
+            "x": 36164,
+            "z": -23446
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": 33920,
+            "z": -23479
+          },
+          {
+            "x": 35247,
+            "z": -23355
+          },
+          {
+            "x": 36164,
+            "z": -23446
+          }
+        ],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/castle.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/castle.ase.spp"
+        ],
+        "spc_index": [
+          "GameServer/Field/castle.ase.spc"
+        ],
+        "spm_actor_count": 0,
+        "spm_boss_count": 0,
+        "spm_weight": 0,
+        "spp_points": 19,
+        "spp_enabled": 19,
+        "spc_npc_count": 7
+      },
+      {
+        "code": 34,
+        "map_id": "map.greedy",
+        "stage": "Greedy//Greedy.ase",
+        "map_image_id": "Greedy",
+        "level": 70,
+        "server_level": 115,
+        "start_points": [],
+        "server_start_points": [],
+        "routing": "server.main",
+        "server_routing": "server.main",
+        "spm_index": [
+          "GameServer/Field/greedy.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/Greedy.ase.spp"
+        ],
+        "spc_index": [],
+        "spm_actor_count": 7,
+        "spm_boss_count": 0,
+        "spm_weight": 105,
+        "spp_points": 136,
+        "spp_enabled": 136
+      },
+      {
+        "code": 35,
+        "map_id": "map.ice2",
+        "stage": "Ice//ice_2.ASE",
+        "map_image_id": "ice2",
+        "level": 90,
+        "server_level": 95,
+        "start_points": [],
+        "server_start_points": [],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/ice_2.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/ice_2.ASE.spp"
+        ],
+        "spc_index": [
+          "GameServer/Field/ice_2.ASE.spc"
+        ],
+        "spm_actor_count": 7,
+        "spm_boss_count": 1,
+        "spm_weight": 103,
+        "spp_points": 195,
+        "spp_enabled": 195,
+        "spc_npc_count": 0
+      },
+      {
+        "code": 36,
+        "map_id": "map.boss",
+        "stage": "Boss//Boss.ASE",
+        "map_image_id": "Boss",
+        "level": 90,
+        "server_level": 100,
+        "start_points": [],
+        "server_start_points": [],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/boss.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/Boss.ASE.spp"
+        ],
+        "spc_index": [],
+        "spm_actor_count": 8,
+        "spm_boss_count": 1,
+        "spm_weight": 98,
+        "spp_points": 15,
+        "spp_enabled": 15
+      },
+      {
+        "code": 37,
+        "map_id": "map.lost",
+        "stage": "lost//lostisland.ASE",
+        "map_image_id": "lost",
+        "level": 95,
+        "server_level": 100,
+        "start_points": [],
+        "server_start_points": [],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/lostisland.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/lostisland.ASE.spp"
+        ],
+        "spc_index": [],
+        "spm_actor_count": 7,
+        "spm_boss_count": 1,
+        "spm_weight": 98,
+        "spp_points": 138,
+        "spp_enabled": 138
+      },
+      {
+        "code": 38,
+        "map_id": "map.losttemple",
+        "stage": "Losttemple//lost_temple.ASE",
+        "map_image_id": "Losttemple",
+        "level": 100,
+        "server_level": 105,
+        "start_points": [],
+        "server_start_points": [],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/lost_temple.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/lost_temple.ASE.spp"
+        ],
+        "spc_index": [
+          "GameServer/Field/lost_temple.ASE.spc"
+        ],
+        "spm_actor_count": 6,
+        "spm_boss_count": 1,
+        "spm_weight": 102,
+        "spp_points": 181,
+        "spp_enabled": 181,
+        "spc_npc_count": 2
+      },
+      {
+        "code": 39,
+        "map_id": "map.fall_game",
+        "stage": "Fall_Game//fall_game.ASE",
+        "map_image_id": null,
+        "level": 0,
+        "server_level": 0,
+        "start_points": [],
+        "server_start_points": [],
+        "routing": "server.main",
+        "server_routing": "server.main",
+        "spm_index": [
+          "GameServer/Field/fall_game.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/fall_game.ASE.spp"
+        ],
+        "spc_index": [],
+        "spm_actor_count": 5,
+        "spm_boss_count": 0,
+        "spm_weight": 100,
+        "spp_points": 5,
+        "spp_enabled": 5
+      },
+      {
+        "code": 40,
+        "map_id": "map.dun_7",
+        "stage": "endless//dun-7.ase",
+        "map_image_id": "dun-7",
+        "level": 102,
+        "server_level": 110,
+        "start_points": [],
+        "server_start_points": [],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/dun-7.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/dun-7.ase.spp"
+        ],
+        "spc_index": [
+          "GameServer/Field/dun-7.ASE.spc"
+        ],
+        "spm_actor_count": 6,
+        "spm_boss_count": 1,
+        "spm_weight": 100,
+        "spp_points": 124,
+        "spp_enabled": 124,
+        "spc_npc_count": 0
+      },
+      {
+        "code": 41,
+        "map_id": "map.dun_8",
+        "stage": "endless//dun-8.ase",
+        "map_image_id": "dun-8",
+        "level": 105,
+        "server_level": 105,
+        "start_points": [],
+        "server_start_points": [],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/dun-8.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/dun-8.ase.spp"
+        ],
+        "spc_index": [],
+        "spm_actor_count": 5,
+        "spm_boss_count": 1,
+        "spm_weight": 90,
+        "spp_points": 138,
+        "spp_enabled": 138
+      },
+      {
+        "code": 42,
+        "map_id": "map.dun_6",
+        "stage": "dungeon//Dun-6a.ASE",
+        "map_image_id": "dun-6",
+        "level": 80,
+        "server_level": 80,
+        "start_points": [],
+        "server_start_points": [],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/dun-6a.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/Dun-6a.ASE.spp"
+        ],
+        "spc_index": [
+          "GameServer/Field/Dun-6a.ASE.spc"
+        ],
+        "spm_actor_count": 9,
+        "spm_boss_count": 1,
+        "spm_weight": 110,
+        "spp_points": 169,
+        "spp_enabled": 169,
+        "spc_npc_count": 0
+      },
+      {
+        "code": 43,
+        "map_id": "map.dun_9",
+        "stage": "endless//dun-9.ASE",
+        "map_image_id": "dun-9",
+        "level": 108,
+        "server_level": 120,
+        "start_points": [
+          {
+            "x": 4896,
+            "z": -42330
+          },
+          {
+            "x": 6418,
+            "z": -42330
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": 4896,
+            "z": -42330
+          },
+          {
+            "x": 6418,
+            "z": -42330
+          }
+        ],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/dun-9.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/dun-9.ASE.spp"
+        ],
+        "spc_index": [],
+        "spm_actor_count": 7,
+        "spm_boss_count": 1,
+        "spm_weight": 87,
+        "spp_points": 106,
+        "spp_enabled": 106
+      },
+      {
+        "code": 44,
+        "map_id": "map.mine_1",
+        "stage": "Mine//mine-1.ASE",
+        "map_image_id": "mine-1",
+        "level": 110,
+        "server_level": 125,
+        "start_points": [],
+        "server_start_points": [],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/mine-1.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/Mine-1.ase.spp"
+        ],
+        "spc_index": [
+          "GameServer/Field/Mine-1.ASE.spc"
+        ],
+        "spm_actor_count": 8,
+        "spm_boss_count": 1,
+        "spm_weight": 123,
+        "spp_points": 200,
+        "spp_enabled": 200,
+        "spc_npc_count": 0
+      },
+      {
+        "code": 45,
+        "map_id": "map.sod_2",
+        "stage": "Sod//sod-2.ASE",
+        "map_image_id": "sod-2",
+        "level": 0,
+        "server_level": 0,
+        "start_points": [],
+        "server_start_points": [],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/sod-2.ase.spm"
+        ],
+        "spp_index": [],
+        "spc_index": [],
+        "spm_actor_count": 0,
+        "spm_boss_count": 0,
+        "spm_weight": 0
+      },
+      {
+        "code": 46,
+        "map_id": "map.slab",
+        "stage": "Slab//Slab.ASE",
+        "map_image_id": "Slab",
+        "level": 118,
+        "server_level": 130,
+        "start_points": [],
+        "server_start_points": [],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/slab.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/Slab.ASE.spp"
+        ],
+        "spc_index": [],
+        "spm_actor_count": 7,
+        "spm_boss_count": 1,
+        "spm_weight": 100,
+        "spp_points": 164,
+        "spp_enabled": 164
+      },
+      {
+        "code": 47,
+        "map_id": "map.ancientw",
+        "stage": "AncientW//ancientW.ASE",
+        "map_image_id": "AncientW",
+        "level": 118,
+        "server_level": 135,
+        "start_points": [
+          {
+            "x": 12725,
+            "z": -73112
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": 12725,
+            "z": -73112
+          }
+        ],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/ancientw.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/ancientW.ASE.spp"
+        ],
+        "spc_index": [],
+        "spm_actor_count": 7,
+        "spm_boss_count": 1,
+        "spm_weight": 100,
+        "spp_points": 92,
+        "spp_enabled": 92
+      },
+      {
+        "code": 48,
+        "map_id": "map.seaa",
+        "stage": "SeaA//SeaA.ASE",
+        "map_image_id": "SeaA",
+        "level": 125,
+        "server_level": 140,
+        "start_points": [
+          {
+            "x": -19925,
+            "z": -3858
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": -19925,
+            "z": -3858
+          }
+        ],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/seaa.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/SeaA.ASE.spp"
+        ],
+        "spc_index": [],
+        "spm_actor_count": 7,
+        "spm_boss_count": 1,
+        "spm_weight": 100,
+        "spp_points": 56,
+        "spp_enabled": 56
+      },
+      {
+        "code": 49,
+        "map_id": "map.stemple",
+        "stage": "SeaA//Stemple.ASE",
+        "map_image_id": "Stemple",
+        "level": 0,
+        "server_level": 0,
+        "start_points": [
+          {
+            "x": -28284,
+            "z": 27144
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": -28284,
+            "z": 27144
+          }
+        ],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/stemple.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/Stemple.ASE.spp"
+        ],
+        "spc_index": [],
+        "spm_actor_count": 6,
+        "spm_boss_count": 1,
+        "spm_weight": 100,
+        "spp_points": 25,
+        "spp_enabled": 25
+      },
+      {
+        "code": 50,
+        "map_id": "map.mar",
+        "stage": "mar//ruin-arenaSF.ASE",
+        "map_image_id": "mar",
+        "level": 140,
+        "server_level": 140,
+        "start_points": [
+          {
+            "x": -45533,
+            "z": -23565
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": -45533,
+            "z": -23565
+          }
+        ],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/ruin-arenasf.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/ruin-arenaSF.ASE.spp"
+        ],
+        "spc_index": [],
+        "spm_actor_count": 7,
+        "spm_boss_count": 0,
+        "spm_weight": 100,
+        "spp_points": 25,
+        "spp_enabled": 25
+      },
+      {
+        "code": 51,
+        "map_id": "map.lost3",
+        "stage": "lost//lost3.ASE",
+        "map_image_id": "lost3",
+        "level": 130,
+        "server_level": 130,
+        "start_points": [
+          {
+            "x": 116360,
+            "z": 91328
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": 116360,
+            "z": 91328
+          }
+        ],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/lost3.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/lost3.ASE.spp"
+        ],
+        "spc_index": [],
+        "spm_actor_count": 6,
+        "spm_boss_count": 1,
+        "spm_weight": 102,
+        "spp_points": 92,
+        "spp_enabled": 92
+      },
+      {
+        "code": 52,
+        "map_id": "map.dc1",
+        "stage": "boss//dark_boss.ASE",
+        "map_image_id": "dc1",
+        "level": 1,
+        "server_level": 100,
+        "start_points": [
+          {
+            "x": 198279,
+            "z": 240452
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": 198279,
+            "z": 240452
+          }
+        ],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/dark_boss.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/dark_boss.ASE.spp"
+        ],
+        "spc_index": [
+          "GameServer/Field/dark_boss.ASE.spc"
+        ],
+        "spm_actor_count": 8,
+        "spm_boss_count": 0,
+        "spm_weight": 98,
+        "spp_points": 1,
+        "spp_enabled": 1,
+        "spc_npc_count": 0
+      },
+      {
+        "code": 53,
+        "map_id": "map.heart_of_fire",
+        "stage": "HeartOfFire//HeartOfFire.ASE",
+        "map_image_id": "HeartOfFire",
+        "level": 100,
+        "server_level": 100,
+        "start_points": [
+          {
+            "x": 27554,
+            "z": -74760
+          },
+          {
+            "x": 27853,
+            "z": -74771
+          },
+          {
+            "x": 27513,
+            "z": -75148
+          },
+          {
+            "x": 26994,
+            "z": -75698
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": 27554,
+            "z": -74760
+          },
+          {
+            "x": 27853,
+            "z": -74771
+          },
+          {
+            "x": 27513,
+            "z": -75148
+          },
+          {
+            "x": 26994,
+            "z": -75698
+          }
+        ],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [
+          "GameServer/Field/HeartOfFire.ase.spm"
+        ],
+        "spp_index": [
+          "GameServer/Field/HeartOfFire.ASE.spp"
+        ],
+        "spc_index": [],
+        "spm_actor_count": 8,
+        "spm_boss_count": 0,
+        "spm_weight": 100,
+        "spp_points": 111,
+        "spp_enabled": 111
+      },
+      {
+        "code": 54,
+        "map_id": "map.seaa_frozen",
+        "stage": "SeaAf//SeaAFrozen.ASE",
+        "map_image_id": "SeaAFrozen",
+        "level": 155,
+        "server_level": 155,
+        "start_points": [
+          {
+            "x": -62535,
+            "z": 41247
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": -62535,
+            "z": 41247
+          }
+        ],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [],
+        "spp_index": [],
+        "spc_index": []
+      },
+      {
+        "code": 55,
+        "map_id": "map.ruined_forever_fall_01",
+        "stage": "ruined-foreverfall//ruined-forever-fall-01.ASE",
+        "map_image_id": "ruined-forever-fall-01",
+        "level": 130,
+        "server_level": 130,
+        "start_points": [
+          {
+            "x": 452814,
+            "z": 516270
+          },
+          {
+            "x": 452722,
+            "z": 516173
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": 452814,
+            "z": 516270
+          },
+          {
+            "x": 452722,
+            "z": 516173
+          }
+        ],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [],
+        "spp_index": [],
+        "spc_index": []
+      },
+      {
+        "code": 56,
+        "map_id": "map.ruined_forever_fall_02",
+        "stage": "ruined-foreverfall//ruined-forever-fall-02.ASE",
+        "map_image_id": "ruined-forever-fall-02",
+        "level": 130,
+        "server_level": 130,
+        "start_points": [
+          {
+            "x": 448861,
+            "z": 504690
+          },
+          {
+            "x": 448930,
+            "z": 504577
+          },
+          {
+            "x": 449019,
+            "z": 504695
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": 448861,
+            "z": 504690
+          },
+          {
+            "x": 448930,
+            "z": 504577
+          },
+          {
+            "x": 449019,
+            "z": 504695
+          }
+        ],
+        "routing": "server.extend",
+        "server_routing": "server.extend",
+        "spm_index": [],
+        "spp_index": [],
+        "spc_index": []
+      },
+      {
+        "code": 57,
+        "map_id": "map.ruined_pilai",
+        "stage": "ruined-foreverfall//ruined-pilai.ASE",
+        "map_image_id": "ruined-pilai",
+        "level": 130,
+        "server_level": 130,
+        "start_points": [
+          {
+            "x": 452352,
+            "z": 525476
+          },
+          {
+            "x": 452231,
+            "z": 525401
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": 452352,
+            "z": 525476
+          },
+          {
+            "x": 452231,
+            "z": 525401
+          }
+        ],
+        "routing": "server.main",
+        "server_routing": "server.main",
+        "spm_index": [],
+        "spp_index": [],
+        "spc_index": []
+      },
+      {
+        "code": 58,
+        "map_id": "map.star_arena",
+        "stage": "StarArena//StarArena.ASE",
+        "map_image_id": "StarArena",
+        "level": 1,
+        "server_level": 1,
+        "start_points": [
+          {
+            "x": 251421,
+            "z": 224743
+          }
+        ],
+        "server_start_points": [
+          {
+            "x": 251421,
+            "z": 224743
+          }
+        ],
+        "routing": "server.main",
+        "server_routing": "server.main",
+        "spm_index": [],
+        "spp_index": [],
+        "spc_index": []
+      }
+    ],
+    "client_server_differences_core": [
+      [
+        34,
+        "limit_level",
+        70,
+        115
+      ],
+      [
+        35,
+        "limit_level",
+        90,
+        95
+      ],
+      [
+        36,
+        "limit_level",
+        90,
+        100
+      ],
+      [
+        37,
+        "limit_level",
+        95,
+        100
+      ],
+      [
+        38,
+        "limit_level",
+        100,
+        105
+      ],
+      [
+        40,
+        "limit_level",
+        102,
+        110
+      ],
+      [
+        43,
+        "limit_level",
+        108,
+        120
+      ],
+      [
+        44,
+        "limit_level",
+        110,
+        125
+      ],
+      [
+        46,
+        "limit_level",
+        118,
+        130
+      ],
+      [
+        47,
+        "limit_level",
+        118,
+        135
+      ],
+      [
+        48,
+        "limit_level",
+        125,
+        140
+      ],
+      [
+        52,
+        "limit_level",
+        1,
+        100
+      ]
+    ]
+  },
+  "spawns": {
+    "summary": {
+      "maps": 57,
+      "actors": 318,
+      "bosses": 21,
+      "zero_actor_documents": [
+        "spawn.castle",
+        "spawn.firemap1",
+        "spawn.iron3",
+        "spawn.office",
+        "spawn.pilai",
+        "spawn.sod_2",
+        "spawn.swamp",
+        "spawn.temple2",
+        "spawn.village_2"
+      ],
+      "non_100_weight_documents": [
+        [
+          "spawn.boss",
+          98
+        ],
+        [
+          "spawn.dark_boss",
+          98
+        ],
+        [
+          "spawn.de_1",
+          105
+        ],
+        [
+          "spawn.de_2",
+          103
+        ],
+        [
+          "spawn.dun_1",
+          95
+        ],
+        [
+          "spawn.dun_2",
+          105
+        ],
+        [
+          "spawn.dun_3",
+          97
+        ],
+        [
+          "spawn.dun_4",
+          102
+        ],
+        [
+          "spawn.dun_5",
+          105
+        ],
+        [
+          "spawn.dun_6a",
+          110
+        ],
+        [
+          "spawn.dun_8",
+          90
+        ],
+        [
+          "spawn.dun_9",
+          87
+        ],
+        [
+          "spawn.fore_3",
+          102
+        ],
+        [
+          "spawn.greedy",
+          105
+        ],
+        [
+          "spawn.ice1",
+          104
+        ],
+        [
+          "spawn.ice_2",
+          103
+        ],
+        [
+          "spawn.iron_1",
+          97
+        ],
+        [
+          "spawn.lost3",
+          102
+        ],
+        [
+          "spawn.lost_temple",
+          102
+        ],
+        [
+          "spawn.lostisland",
+          98
+        ],
+        [
+          "spawn.mcave",
+          110
+        ],
+        [
+          "spawn.mine_1",
+          123
+        ],
+        [
+          "spawn.quest_iv",
+          91
+        ],
+        [
+          "spawn.ruin_2",
+          101
+        ],
+        [
+          "spawn.ruin_3",
+          425
+        ],
+        [
+          "spawn.sod_1",
+          2
+        ],
+        [
+          "spawn.tcave",
+          110
+        ],
+        [
+          "spawn.village_1",
+          70
+        ]
+      ]
+    },
+    "unknown_monster_ids": [],
+    "unknown_npc_ids": [],
+    "verified_boss_pairs": 21,
+    "all_spawn_monster_ids_resolve": true
+  },
+  "npcs": {
+    "ricarten_fixed_count": 41,
+    "newter_placement": [
+      {
+        "slot": 29,
+        "npc_id": "npc.newter_o_s_u00e1bio",
+        "x": 134037,
+        "y": 52736,
+        "z": -4881664,
+        "ax": 0,
+        "ay": 2800,
+        "az": 0,
+        "state": 0
+      }
+    ],
+    "wanda_semantic": {
+      "entries": [
+        {
+          "line": 4,
+          "legacy_key": "J_Name",
+          "kind": "name",
+          "text": "Wanda, Loja de Missões"
+        },
+        {
+          "line": 7,
+          "legacy_key": "J_Chat",
+          "kind": "chat",
+          "text": "Estou aqui para auxiliar em seus desafios!"
+        }
+      ]
+    },
+    "dailyquest_semantic": {
+      "entries": [
+        {
+          "line": 4,
+          "legacy_key": "J_Name",
+          "kind": "name",
+          "text": "Removedor de Combinação/Aprim."
+        },
+        {
+          "line": 7,
+          "legacy_key": "J_Chat",
+          "kind": "chat",
+          "text": "Remova com segurança o aprimoramento ou a combinação do seu item."
+        },
+        {
+          "line": 9,
+          "legacy_key": "J_Chat",
+          "kind": "chat",
+          "text": "Limpeza de itens do Summit Tale."
+        },
+        {
+          "line": 11,
+          "legacy_key": "J_Chat",
+          "kind": "chat",
+          "text": "Quer seu item limpinho? Venha falar comigo ;)"
+        }
+      ]
+    }
+  },
+  "models": {
+    "stats": {
+      "models": 364,
+      "source_status_unresolved": 364,
+      "inventory_present_client": 358,
+      "inventory_present_server": 356
+    },
+    "consumer_missing_text_ids": [],
+    "consumer_missing_total": 0,
+    "inventory_not_present": {
+      "client": [
+        {
+          "model_id": "model.char.npc.bt03.battleportal",
+          "logical_config": "char/npc/bt03/battleportal.INI"
+        },
+        {
+          "model_id": "model.char.npc.npc.04",
+          "logical_config": "char/npc/npc-04.ini"
+        },
+        {
+          "model_id": "model.char.npc.npc.09",
+          "logical_config": "char/npc/npc-09.ini"
+        },
+        {
+          "model_id": "model.char.npc.npc.10",
+          "logical_config": "char/npc/npc-10.ini"
+        },
+        {
+          "model_id": "model.char.npc.phl.phl",
+          "logical_config": "char/npc/phl/phl.INI"
+        },
+        {
+          "model_id": "model.char.npcxms.chtree.longbo",
+          "logical_config": "char/npcXms/ChTree_Longbo.ini"
+        }
+      ],
+      "server": [
+        {
+          "model_id": "model.char.monster.g.wolverin.wolverin.a",
+          "logical_config": "char/monster/g_wolverin/wolverin_a.ini"
+        },
+        {
+          "model_id": "model.char.monster.hongky.hongky",
+          "logical_config": "char/monster/hongky/hongky.ini"
+        },
+        {
+          "model_id": "model.char.monster.nihil.nihil1",
+          "logical_config": "char/monster/Nihil/Nihil1.ini"
+        },
+        {
+          "model_id": "model.char.npc.bt03.battleportal",
+          "logical_config": "char/npc/bt03/battleportal.INI"
+        },
+        {
+          "model_id": "model.char.npc.npc.04",
+          "logical_config": "char/npc/npc-04.ini"
+        },
+        {
+          "model_id": "model.char.npc.npc.09",
+          "logical_config": "char/npc/npc-09.ini"
+        },
+        {
+          "model_id": "model.char.npc.npc.10",
+          "logical_config": "char/npc/npc-10.ini"
+        },
+        {
+          "model_id": "model.char.npcxms.chtree.longbo",
+          "logical_config": "char/npcXms/ChTree_Longbo.ini"
+        }
+      ]
+    }
+  },
+  "localization": {
+    "en": {
+      "index_entries": 3779,
+      "actual_type": "dict",
+      "actual_items": 3779
+    },
+    "pt-BR": {
+      "index_entries": 3779,
+      "actual_type": "dict",
+      "actual_items": 3779
+    },
+    "zh-TW": {
+      "index_entries": 18,
+      "actual_type": "dict",
+      "actual_items": 18
+    },
+    "ko": {
+      "index_entries": 286,
+      "actual_type": "dict",
+      "actual_items": 286
+    }
+  },
+  "packs": {
+    "text_resources": {
+      "name": "Content/packs/text_resources.sres",
+      "bytes": 2972926,
+      "manifest_bytes_ok": true,
+      "manifest_sha256_ok": true,
+      "report_exists": true,
+      "report_file_sha256_matches": true,
+      "header_ascii": "b'SRES\\x02\\x00\\x00\\x00'"
+    },
+    "definitions_client": {
+      "name": "Content/packs/definitions_client.scfg",
+      "bytes": 767564,
+      "manifest_bytes_ok": true,
+      "manifest_sha256_ok": true,
+      "report_exists": true,
+      "report_file_sha256_matches": true,
+      "header_ascii": "b'SCFG\\x01\\x00\\x00\\x00'"
+    },
+    "definitions_server": {
+      "name": "Content/packs/definitions_server.scfg",
+      "bytes": 850454,
+      "manifest_bytes_ok": true,
+      "manifest_sha256_ok": true,
+      "report_exists": true,
+      "report_file_sha256_matches": true,
+      "header_ascii": "b'SCFG\\x01\\x00\\x00\\x00'"
+    },
+    "localization": {
+      "name": "Content/packs/localization.sloc",
+      "bytes": 382438,
+      "manifest_bytes_ok": true,
+      "manifest_sha256_ok": true,
+      "report_exists": true,
+      "report_file_sha256_matches": true,
+      "header_ascii": "b'SLOC\\x02\\x00\\x00\\x00'"
+    },
+    "gameplay_config": {
+      "name": "Content/packs/gameplay_config.sgcf",
+      "bytes": 37187,
+      "manifest_bytes_ok": true,
+      "manifest_sha256_ok": true,
+      "report_exists": true,
+      "report_file_sha256_matches": true,
+      "header_ascii": "b'SGCF\\x01\\x00\\x00\\x00'"
+    },
+    "gameplay_reference": {
+      "name": "Content/packs/gameplay_reference.sgrf",
+      "bytes": 71792,
+      "manifest_bytes_ok": true,
+      "manifest_sha256_ok": true,
+      "report_exists": true,
+      "report_file_sha256_matches": true,
+      "header_ascii": "b'SGRF\\x02\\x00\\x00\\x00'"
+    },
+    "coin_shop": {
+      "name": "Content/packs/coin_shop.scsp",
+      "bytes": 6312,
+      "manifest_bytes_ok": true,
+      "manifest_sha256_ok": true,
+      "report_exists": true,
+      "report_file_sha256_matches": true,
+      "header_ascii": "b'SCSP\\x01\\x00\\x00\\x00'"
+    },
+    "field_runtime": {
+      "name": "Content/packs/field_runtime.sfld",
+      "bytes": 140511,
+      "manifest_bytes_ok": true,
+      "manifest_sha256_ok": true,
+      "report_exists": true,
+      "report_file_sha256_matches": true,
+      "header_ascii": "b'SFLD\\x01\\x00\\x00\\x00'"
+    },
+    "maps_client": {
+      "name": "Content/packs/maps_client.smap",
+      "bytes": 29560,
+      "manifest_bytes_ok": true,
+      "manifest_sha256_ok": true,
+      "report_exists": true,
+      "report_file_sha256_matches": null,
+      "header_ascii": "b'SMAP\\x01\\x00\\x80\\x00'"
+    },
+    "maps_server": {
+      "name": "Content/packs/maps_server.smap",
+      "bytes": 29560,
+      "manifest_bytes_ok": true,
+      "manifest_sha256_ok": true,
+      "report_exists": true,
+      "report_file_sha256_matches": null,
+      "header_ascii": "b'SMAP\\x01\\x00\\x80\\x00'"
+    }
+  },
+  "uploaded_build_log": {
+    "client_compiler_ok": 268,
+    "client_compiler_fail": 0,
+    "client_link_success": true,
+    "server_compiler_ok": 299,
+    "server_compiler_fail": 0,
+    "server_link_success": true,
+    "server_deploy_reported": true,
+    "script_exit": 1,
+    "script_exit_reason": "hotuk.ini cp source and destination are the same file",
+    "observation": "Not a compiler or linker failure; the final script exited nonzero after deploying server binary. Remote client push success reported but not independently verified."
+  }
+}

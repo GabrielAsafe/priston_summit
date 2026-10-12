@@ -3,19 +3,19 @@
   "format": "SMAP",
   "version": 1,
   "profile": "client",
-  "sha256_body": "34bab754e1d85a21a518f2455484fc36b750ee0689bfd1c566d836cf5e80c5f5",
-  "maps": 53,
+  "sha256_body": "3de77ed00093b16adff8fa2ae03f62902ac6e262728735e3aa5fe6330423bc18",
+  "maps": 59,
   "stage_objects": 374,
-  "start_points": 58,
+  "start_points": 71,
   "gates": 26,
   "warp_gates": 54,
   "warp_out_gates": 61,
   "ambient": 72,
-  "strings_bytes": 11077,
-  "bytes": 28365,
+  "strings_bytes": 11496,
+  "bytes": 29560,
   "features": {
     "worldcup_field": 1
   },
-  "dynamic_field_code": 53,
-  "static_field_count": 53
+  "dynamic_field_code": 59,
+  "static_field_count": 59
 }

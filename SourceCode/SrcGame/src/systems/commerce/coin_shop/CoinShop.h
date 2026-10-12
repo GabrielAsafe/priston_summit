@@ -14,6 +14,7 @@ public:
 
 	void RecvItemFromServer(smTRANS_SHOPDATA* lpTransShopData);
 	void RecvCoinFromServer(smTRANS_COMMAND* lpTransCommand);
+	void RecvPurchaseResult(const smTRANS_COMMAND* result);
 
 	void Open();
 	bool isOpen();
@@ -38,6 +39,8 @@ public:
     int Coin;
     bool BalanceReceived = false; // PATCH 227: avoid inventing a zero before fetch
     bool RequestBalanceForUI();
+    unsigned int PendingPurchaseId = 0;
+    unsigned int PendingPurchaseAt = 0;
 
 private:
 

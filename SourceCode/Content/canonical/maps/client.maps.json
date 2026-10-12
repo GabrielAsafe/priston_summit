@@ -1,7 +1,7 @@
 {
   "schema": "summit.map-catalog/v1",
   "profile": "client",
-  "map_count": 53,
+  "map_count": 59,
   "maps": [
     {
       "schema": "summit.map/v1",
@@ -6857,6 +6857,424 @@
         "profile": "client",
         "source": "Shared/world/field/field_legacy_client.inl",
         "source_line": 1896
+      }
+    },
+    {
+      "schema": "summit.map/v1",
+      "id": "map.heart_of_fire",
+      "legacy_field_code": 53,
+      "stage": "HeartOfFire//HeartOfFire.ASE",
+      "map_image_id": "HeartOfFire",
+      "environment": {
+        "state": {
+          "id": "state.dungeon",
+          "legacy_value": 1280,
+          "legacy_symbol": "FIELD_STATE_DUNGEON"
+        },
+        "sky": [
+          {
+            "legacy_value": 0
+          },
+          {
+            "legacy_value": 0
+          },
+          {
+            "legacy_value": 0
+          }
+        ],
+        "music": {
+          "id": "music.dungeon",
+          "legacy_value": 5,
+          "legacy_symbol": "BGM_CODE_DUNGEON"
+        },
+        "event": {
+          "legacy_value": 0
+        }
+      },
+      "server": {
+        "routing": {
+          "id": "server.extend",
+          "legacy_value": 3,
+          "legacy_symbol": "PLAY_SERVER_CODE_EXTEND"
+        }
+      },
+      "limit_level": 100,
+      "field_sight": 0,
+      "center": {
+        "x": 28053,
+        "z": -73473
+      },
+      "start_points": [
+        {
+          "x": 27554,
+          "z": -74760
+        },
+        {
+          "x": 27853,
+          "z": -74771
+        },
+        {
+          "x": 27513,
+          "z": -75148
+        },
+        {
+          "x": 26994,
+          "z": -75698
+        }
+      ],
+      "stage_objects": [],
+      "gates": [],
+      "warp_gates": [],
+      "ambient": [],
+      "legacy_orphan_warp_properties": [],
+      "provenance": {
+        "profile": "client",
+        "source": "WORKSTREAM_B_SYNTHETIC_USER_AUTHORIZED_GUESS",
+        "source_line": 0
+      }
+    },
+    {
+      "schema": "summit.map/v1",
+      "id": "map.seaa_frozen",
+      "legacy_field_code": 54,
+      "stage": "SeaAf//SeaAFrozen.ASE",
+      "map_image_id": "SeaAFrozen",
+      "environment": {
+        "state": {
+          "id": "state.ice",
+          "legacy_value": 2304,
+          "legacy_symbol": "FIELD_STATE_ICE"
+        },
+        "sky": [
+          {
+            "legacy_value": 0
+          },
+          {
+            "legacy_value": 0
+          },
+          {
+            "legacy_value": 0
+          }
+        ],
+        "music": {
+          "id": "music.ice",
+          "legacy_value": 11,
+          "legacy_symbol": "BGM_CODE_ICE"
+        },
+        "event": {
+          "legacy_value": 0
+        }
+      },
+      "server": {
+        "routing": {
+          "id": "server.extend",
+          "legacy_value": 3,
+          "legacy_symbol": "PLAY_SERVER_CODE_EXTEND"
+        }
+      },
+      "limit_level": 155,
+      "field_sight": 0,
+      "center": {
+        "x": -62535,
+        "z": 41247
+      },
+      "start_points": [
+        {
+          "x": -62535,
+          "z": 41247
+        }
+      ],
+      "stage_objects": [],
+      "gates": [],
+      "warp_gates": [],
+      "ambient": [],
+      "legacy_orphan_warp_properties": [],
+      "provenance": {
+        "profile": "client",
+        "source": "WORKSTREAM_B_SYNTHETIC_USER_AUTHORIZED_GUESS",
+        "source_line": 0
+      }
+    },
+    {
+      "schema": "summit.map/v1",
+      "id": "map.ruined_forever_fall_01",
+      "legacy_field_code": 55,
+      "stage": "ruined-foreverfall//ruined-forever-fall-01.ASE",
+      "map_image_id": "ruined-forever-fall-01",
+      "environment": {
+        "state": {
+          "id": "state.forest",
+          "legacy_value": 512,
+          "legacy_symbol": "FIELD_STATE_FOREST"
+        },
+        "sky": [
+          {
+            "id": "sky.dayfall",
+            "legacy_value": 18,
+            "legacy_symbol": "FIELD_BACKIMAGE_DAYFALL"
+          },
+          {
+            "id": "sky.glowfall",
+            "legacy_value": 19,
+            "legacy_symbol": "FIELD_BACKIMAGE_GLOWFALL"
+          },
+          {
+            "id": "sky.nightfall",
+            "legacy_value": 17,
+            "legacy_symbol": "FIELD_BACKIMAGE_NIGHTFALL"
+          }
+        ],
+        "music": {
+          "id": "music.forest",
+          "legacy_value": 4,
+          "legacy_symbol": "BGM_CODE_FOREST"
+        },
+        "event": {
+          "legacy_value": 0
+        }
+      },
+      "server": {
+        "routing": {
+          "id": "server.extend",
+          "legacy_value": 3,
+          "legacy_symbol": "PLAY_SERVER_CODE_EXTEND"
+        }
+      },
+      "limit_level": 130,
+      "field_sight": 0,
+      "center": {
+        "x": 452796,
+        "z": 516267
+      },
+      "start_points": [
+        {
+          "x": 452814,
+          "z": 516270
+        },
+        {
+          "x": 452722,
+          "z": 516173
+        }
+      ],
+      "stage_objects": [],
+      "gates": [],
+      "warp_gates": [],
+      "ambient": [],
+      "legacy_orphan_warp_properties": [],
+      "provenance": {
+        "profile": "client",
+        "source": "WORKSTREAM_B_SYNTHETIC_USER_AUTHORIZED_GUESS",
+        "source_line": 0
+      }
+    },
+    {
+      "schema": "summit.map/v1",
+      "id": "map.ruined_forever_fall_02",
+      "legacy_field_code": 56,
+      "stage": "ruined-foreverfall//ruined-forever-fall-02.ASE",
+      "map_image_id": "ruined-forever-fall-02",
+      "environment": {
+        "state": {
+          "id": "state.forest",
+          "legacy_value": 512,
+          "legacy_symbol": "FIELD_STATE_FOREST"
+        },
+        "sky": [
+          {
+            "id": "sky.dayfall",
+            "legacy_value": 18,
+            "legacy_symbol": "FIELD_BACKIMAGE_DAYFALL"
+          },
+          {
+            "id": "sky.glowfall",
+            "legacy_value": 19,
+            "legacy_symbol": "FIELD_BACKIMAGE_GLOWFALL"
+          },
+          {
+            "id": "sky.nightfall",
+            "legacy_value": 17,
+            "legacy_symbol": "FIELD_BACKIMAGE_NIGHTFALL"
+          }
+        ],
+        "music": {
+          "id": "music.forest",
+          "legacy_value": 4,
+          "legacy_symbol": "BGM_CODE_FOREST"
+        },
+        "event": {
+          "legacy_value": 0
+        }
+      },
+      "server": {
+        "routing": {
+          "id": "server.extend",
+          "legacy_value": 3,
+          "legacy_symbol": "PLAY_SERVER_CODE_EXTEND"
+        }
+      },
+      "limit_level": 130,
+      "field_sight": 0,
+      "center": {
+        "x": 448880,
+        "z": 504660
+      },
+      "start_points": [
+        {
+          "x": 448861,
+          "z": 504690
+        },
+        {
+          "x": 448930,
+          "z": 504577
+        },
+        {
+          "x": 449019,
+          "z": 504695
+        }
+      ],
+      "stage_objects": [],
+      "gates": [],
+      "warp_gates": [],
+      "ambient": [],
+      "legacy_orphan_warp_properties": [],
+      "provenance": {
+        "profile": "client",
+        "source": "WORKSTREAM_B_SYNTHETIC_USER_AUTHORIZED_GUESS",
+        "source_line": 0
+      }
+    },
+    {
+      "schema": "summit.map/v1",
+      "id": "map.ruined_pilai",
+      "legacy_field_code": 57,
+      "stage": "ruined-foreverfall//ruined-pilai.ASE",
+      "map_image_id": "ruined-pilai",
+      "environment": {
+        "state": {
+          "id": "state.village",
+          "legacy_value": 256,
+          "legacy_symbol": "FIELD_STATE_VILLAGE"
+        },
+        "sky": [
+          {
+            "id": "sky.dayfall",
+            "legacy_value": 18,
+            "legacy_symbol": "FIELD_BACKIMAGE_DAYFALL"
+          },
+          {
+            "id": "sky.glowfall",
+            "legacy_value": 19,
+            "legacy_symbol": "FIELD_BACKIMAGE_GLOWFALL"
+          },
+          {
+            "id": "sky.nightfall",
+            "legacy_value": 17,
+            "legacy_symbol": "FIELD_BACKIMAGE_NIGHTFALL"
+          }
+        ],
+        "music": {
+          "id": "music.filai",
+          "legacy_value": 6,
+          "legacy_symbol": "BGM_CODE_FILAI"
+        },
+        "event": {
+          "legacy_value": 0
+        }
+      },
+      "server": {
+        "routing": {
+          "id": "server.main",
+          "legacy_value": 1,
+          "legacy_symbol": "PLAY_SERVER_CODE_MAIN"
+        }
+      },
+      "limit_level": 130,
+      "field_sight": 0,
+      "center": {
+        "x": 452332,
+        "z": 525447
+      },
+      "start_points": [
+        {
+          "x": 452352,
+          "z": 525476
+        },
+        {
+          "x": 452231,
+          "z": 525401
+        }
+      ],
+      "stage_objects": [],
+      "gates": [],
+      "warp_gates": [],
+      "ambient": [],
+      "legacy_orphan_warp_properties": [],
+      "provenance": {
+        "profile": "client",
+        "source": "WORKSTREAM_B_SYNTHETIC_USER_AUTHORIZED_GUESS",
+        "source_line": 0
+      }
+    },
+    {
+      "schema": "summit.map/v1",
+      "id": "map.star_arena",
+      "legacy_field_code": 58,
+      "stage": "StarArena//StarArena.ASE",
+      "map_image_id": "StarArena",
+      "environment": {
+        "state": {
+          "id": "state.action",
+          "legacy_value": 2816,
+          "legacy_symbol": "FIELD_STATE_ACTION"
+        },
+        "sky": [
+          {
+            "legacy_value": 0
+          },
+          {
+            "legacy_value": 0
+          },
+          {
+            "legacy_value": 0
+          }
+        ],
+        "music": {
+          "id": "music.forest",
+          "legacy_value": 4,
+          "legacy_symbol": "BGM_CODE_FOREST"
+        },
+        "event": {
+          "legacy_value": 0
+        }
+      },
+      "server": {
+        "routing": {
+          "id": "server.main",
+          "legacy_value": 1,
+          "legacy_symbol": "PLAY_SERVER_CODE_MAIN"
+        }
+      },
+      "limit_level": 1,
+      "field_sight": 0,
+      "center": {
+        "x": 251421,
+        "z": 224743
+      },
+      "start_points": [
+        {
+          "x": 251821,
+          "z": 224843
+        }
+      ],
+      "stage_objects": [],
+      "gates": [],
+      "warp_gates": [],
+      "ambient": [],
+      "legacy_orphan_warp_properties": [],
+      "provenance": {
+        "profile": "client",
+        "source": "WORKSTREAM_B_SYNTHETIC_USER_AUTHORIZED_GUESS",
+        "source_line": 0
       }
     }
   ],

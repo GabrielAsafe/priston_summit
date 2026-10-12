@@ -7,8 +7,8 @@
   "families": {
     "commerce": {
       "files": 3,
-      "bytes": 14935,
-      "sha256": "d63cd127ba444a0ca030d6845fb18f79b49af02c8c511a47bbbbf320766e5d09"
+      "bytes": 15202,
+      "sha256": "9cc0406754d955cadb3b4931e59920c779cabbfbafb61aa9d694788ef240e07a"
     },
     "covenant_altars": {
       "files": 1,
@@ -31,9 +31,9 @@
       "sha256": "a0547ebe28c7c8bee3d4d2311d843770104c9af47c80c92ce8f7bc19b0c17138"
     },
     "gameplay_reference": {
-      "files": 4,
-      "bytes": 246747,
-      "sha256": "9b1d92bfe5d7cb298815001877035473d12c791c7e6d3661e93b882c5d6fb71e"
+      "files": 5,
+      "bytes": 273599,
+      "sha256": "33beb507b69a2ea2d31f06bb0e8127f9d513acd11b60c48587e58bf0e720f2b9"
     },
     "head_cosmetics": {
       "files": 1,
@@ -52,8 +52,8 @@
     },
     "maps": {
       "files": 2,
-      "bytes": 317255,
-      "sha256": "1464b2e7aa859fd9b919c34f1b43d75712bae7c780c9bac3f405c666e5272625"
+      "bytes": 337023,
+      "sha256": "06ee7c785cbb67e6bfd3329b9e9b73429eff179e14ff1cb166ab6089c48c92c7"
     },
     "model_configs": {
       "files": 366,
@@ -61,19 +61,19 @@
       "sha256": "fd818ee812d962dfc24410b28b98d65c070cd41ae3c761deb0ca562c10439553"
     },
     "stage_spawns": {
-      "files": 56,
-      "bytes": 94891,
-      "sha256": "ee5bd88d34646db5869af2c016781f2870a1d47f273650e520b0040ae962821c"
+      "files": 64,
+      "bytes": 121914,
+      "sha256": "cae1bbc69c80e68911f9456de5d0d528e0288b19aa90d4a5aacb34407261b879"
     },
     "stage_start_points": {
-      "files": 66,
-      "bytes": 596889,
-      "sha256": "dddaaef79ca651bb0b17603412df557058062f00a7c49ac5e6ade0ea33ea75ec"
+      "files": 70,
+      "bytes": 606233,
+      "sha256": "f215afbf83e0786ba4aa864eade11a6fe1d59711637269f83d761beafabf04f6"
     },
     "text": {
-      "files": 5615,
-      "bytes": 29910572,
-      "sha256": "bc64930a4f7e97065359693a8b8480673251856bd90d88134b18a2b711842bd7"
+      "files": 5626,
+      "bytes": 30715464,
+      "sha256": "65a70b76df9c39a43387ed5b03c871508b01b3066c2ef1c20466532af138b47d"
     },
     "world_phases": {
       "files": 1,

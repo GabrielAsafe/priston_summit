@@ -12,7 +12,7 @@ icons use DXT1/DXT5 while smaller/non-block-compatible icons use lossless A8R8G8
 Mip generation remains opt-in for world textures.
 
 The runtime keeps the original logical asset name and automatically prefers
-cooked/<logical path with .dds>, falling back to the original file when the
+cooked/<profile>/<logical filename including extension>.dds, falling back to the original file when the
 cooked artifact is absent or invalid.
 """
 
@@ -392,29 +392,136 @@ def decrypt_legacy_bytes(path: Path, data: bytes) -> bytes:
     return decoded
 
 
+# The consumer, not the filename extension alone, owns color-key semantics.
+# Revision is part of the on-disk cache identity: old cooked files are never
+# accepted just because their mtime is newer than the source.
+COOK_PROFILE_REVISION = 1
+COOK_PROFILE_DIB = "dib"
+COOK_PROFILE_MATERIAL = "material"
+
+
 def open_legacy_image_with_info(path: Path) -> tuple[Image.Image, dict[str, object]]:
+    """Decrypt/decode to authored RGBA without applying any consumer color key."""
     raw, decode_info = decrypt_legacy_bytes_with_info(path, path.read_bytes())
     image = Image.open(io.BytesIO(raw))
     image.load()
-    # D3DXCreateTextureFromFileInMemoryEx currently receives 0xFFF0FFFF as a
-    # color key. Bake the same exact RGB key into alpha offline so the cooked
-    # import can use colorKey=0 without changing authored transparency.
     rgba = image.convert("RGBA")
-    rgb = rgba.convert("RGB")
-    key = Image.new("RGB", rgba.size, (240, 255, 255))
-    difference = ImageChops.difference(rgb, key).convert("L")
-    non_key_mask = difference.point(lambda value: 0 if value == 0 else 255)
-    alpha = ImageChops.multiply(rgba.getchannel("A"), non_key_mask)
-    rgba.putalpha(alpha)
     decode_info["decoded_width"] = rgba.width
     decode_info["decoded_height"] = rgba.height
     return rgba, decode_info
 
 
 def open_legacy_image(path: Path) -> Image.Image:
-    """Compatibility wrapper returning only the decoded image."""
     image, _ = open_legacy_image_with_info(path)
     return image
+
+
+def apply_cook_profile(authored: Image.Image, profile: str, extension: str) -> Image.Image:
+    """Preserve authored alpha and apply only the consumer's BMP color key."""
+    rgba = authored.convert("RGBA").copy()
+    if profile not in (COOK_PROFILE_DIB, COOK_PROFILE_MATERIAL):
+        raise ValueError(f"Unknown cooked profile: {profile}")
+    if extension.casefold() != ".bmp":
+        return rgba
+    key_rgb = (0, 0, 0) if profile == COOK_PROFILE_DIB else (240, 255, 255)
+    difference = ImageChops.difference(rgba.convert("RGB"), Image.new("RGB", rgba.size, key_rgb)).convert("L")
+    keep = difference.point(lambda value: 0 if value == 0 else 255)
+    rgba.putalpha(ImageChops.multiply(rgba.getchannel("A"), keep))
+    return rgba
+
+
+def has_semantic_alpha(image: Image.Image) -> bool:
+    return image.convert("RGBA").getchannel("A").getextrema()[0] < 255
+
+
+def select_dds_format(image: Image.Image, lossless: bool = False) -> str:
+    if lossless or min(image.size) < 4 or image.width % 4 or image.height % 4:
+        return "A8R8G8B8"
+    return "DXT5" if has_semantic_alpha(image) else "DXT1"
+
+
+def inventory_dib_image(relative: Path) -> bool:
+    value = relative.as_posix().casefold()
+    return (value.startswith("image/sinimage/items/") and
+            "/dropitem/" not in value and value.endswith(".bmp"))
+
+
+def cook_profile_for(relative: Path) -> str:
+    # Only the inventory BMP consumer has been proven DIB. Other DIB users
+    # remain source-fallback until reachable roles are explicitly catalogued.
+    return COOK_PROFILE_DIB if inventory_dib_image(relative) else COOK_PROFILE_MATERIAL
+
+
+def normalize_cooked_logical_path(relative: Path | str) -> str:
+    raw = str(relative).replace("\\", "/")
+    while raw.startswith("./"):
+        raw = raw[2:]
+    if not raw or raw.startswith("/") or ":" in raw:
+        raise ValueError(f"invalid cooked logical path: {raw!r}")
+    parts = [part for part in raw.split("/") if part and part != "."]
+    if any(part == ".." for part in parts) or not parts:
+        raise ValueError(f"invalid cooked path segment: {raw!r}")
+    if Path(parts[-1]).suffix.casefold() not in SOURCE_EXTENSIONS:
+        raise ValueError(f"unsupported cooked source extension: {raw!r}")
+    return "/".join(parts)
+
+
+def cooked_relative_path(relative: Path | str, profile: str) -> Path:
+    if profile not in (COOK_PROFILE_DIB, COOK_PROFILE_MATERIAL):
+        raise ValueError(f"unsupported profile: {profile}")
+    return Path(f"{profile}/{normalize_cooked_logical_path(relative)}.dds")
+
+
+def preflight_casefold_destinations(sources: list[Path], source_root: Path) -> None:
+    seen: dict[str, str] = {}
+    for source in sources:
+        relative = source.relative_to(source_root)
+        destination = cooked_relative_path(relative, cook_profile_for(relative)).as_posix()
+        key = destination.casefold()
+        if key in seen and seen[key] != destination:
+            raise ValueError(f"ambiguous Windows cooked destination: {seen[key]} vs {destination}")
+        if key in seen and seen[key] == destination:
+            raise ValueError(f"duplicate cooked destination: {destination}")
+        seen[key] = destination
+
+
+def readable_dds_header(path: Path) -> tuple[int, int, str] | None:
+    try:
+        with path.open("rb") as handle:
+            header = handle.read(128)
+        if len(header) < 128 or header[:4] != DDS_MAGIC or struct.unpack_from("<I", header, 4)[0] != 124:
+            return None
+        height, width = struct.unpack_from("<II", header, 12)
+        if not 0 < height <= 8192 or not 0 < width <= 8192:
+            return None
+        flags = struct.unpack_from("<I", header, 80)[0]
+        fourcc = struct.unpack_from("<I", header, 84)[0]
+        if flags & DDPF_FOURCC:
+            fmt = {FOURCC_DXT1: "DXT1", FOURCC_DXT5: "DXT5"}.get(fourcc)
+        elif flags & DDPF_RGB:
+            fmt = "A8R8G8B8" if struct.unpack_from("<I", header, 88)[0] == 32 else None
+        else:
+            fmt = None
+        return (width, height, fmt) if fmt else None
+    except OSError:
+        return None
+
+
+def can_reuse_cooked(source: Path, target: Path, prior: dict[str, object], profile: str) -> bool:
+    if not target.is_file() or not prior or prior.get("cook_profile") != profile:
+        return False
+    if prior.get("profile_revision") != COOK_PROFILE_REVISION:
+        return False
+    if prior.get("source_sha256") != sha256_file(source):
+        return False
+    if prior.get("source_bytes") != source.stat().st_size:
+        return False
+    if target.stat().st_mtime_ns < source.stat().st_mtime_ns:
+        return False
+    if prior.get("cooked_sha256") != sha256_file(target):
+        return False
+    header = readable_dds_header(target)
+    return bool(header and header == (prior.get("width"), prior.get("height"), prior.get("format")))
 
 
 def mip_chain(image: Image.Image) -> list[Image.Image]:
@@ -524,7 +631,7 @@ def item_icon_pixel_format(image: Image.Image, source: Path, min_rgba_bytes: int
     """
     dxt_eligible, _ = should_cook(image, min_rgba_bytes)
     if dxt_eligible:
-        return ("DXT5" if source.suffix.lower() in ALPHA_EXTENSIONS else "DXT1"), "item-icon-runtime-required-dxt"
+        return select_dds_format(image), "item-icon-runtime-required-dxt"
     return "A8R8G8B8", "item-icon-runtime-required-lossless"
 
 
@@ -562,7 +669,7 @@ def encode_dds(image: Image.Image, pixel_format: str, with_mipmaps: bool) -> tup
 
 def output_path_for(source_root: Path, output_root: Path, source: Path) -> Path:
     relative = source.relative_to(source_root)
-    return (output_root / relative).with_suffix(".dds")
+    return output_root / cooked_relative_path(relative, cook_profile_for(relative))
 
 
 def discover_sources(source_root: Path, output_root: Path, login_ui_only: bool = False, item_icons_only: bool = False) -> Iterable[Path]:
@@ -762,7 +869,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--item-icons-only",
         action="store_true",
-        help="only scan/cook image/Sinimage/Items runtime item-icon roots",
+        help="only cook proven inventory item BMP icons (DIB); never broad-scan DropItem",
     )
     parser.add_argument(
         "--no-item-icons-required",
@@ -829,7 +936,21 @@ def main() -> int:
     run_entries: list[dict[str, object]] = []
     started = time.time()
 
-    for source in discover_sources(source_root, output_root, args.login_ui_only, args.item_icons_only):
+    # Refuse Windows case-only ambiguity before touching even a single DDS.
+    # Do not run broad cook until canonical reachability is proven.
+    scoped_sources = [source for source in discover_sources(source_root, output_root, args.login_ui_only)
+                      if not args.item_icons_only or inventory_dib_image(source.relative_to(source_root))]
+    try:
+        # Include non-retried siblings: retrying one side of a Windows-case
+        # collision must not silently overwrite the other side's DDS.
+        preflight_casefold_destinations(scoped_sources, source_root)
+    except ValueError as exc:
+        print(f"ERROR preflight: {exc}; no files changed", file=sys.stderr)
+        return 2
+    sources = [source for source in scoped_sources
+               if retry_sources is None or source.relative_to(source_root).as_posix().casefold() in retry_sources]
+
+    for source in sources:
         relative = source.relative_to(source_root)
         relative_key = relative.as_posix().casefold()
         if retry_sources is not None and relative_key not in retry_sources:
@@ -837,52 +958,38 @@ def main() -> int:
 
         stats["scanned"] += 1
         target = output_path_for(source_root, output_root, source)
-        item_icon = args.item_icons_required and is_item_icon(relative)
+        profile = cook_profile_for(relative)
         stage = "incremental-check"
         try:
-            # Fast incremental path remains valid for ordinary assets. Item
-            # icons are decoded before reuse so stale DDS dimensions/formats
-            # cannot be accepted solely because their mtime is newer.
-            if not item_icon and not args.force and target.exists() and target.stat().st_mtime_ns >= source.stat().st_mtime_ns:
+            prior = dict(prior_entries.get(relative_key) or {})
+            if not args.force and can_reuse_cooked(source, target, prior, profile):
                 stats["eligible"] += 1
                 stats["up_to_date"] += 1
-                prior = dict(prior_entries.get(relative_key) or {})
-                preserved = {
-                    key: prior[key]
-                    for key in (
-                        "legacy_decode_mode", "decoded_width", "decoded_height",
-                        "width", "height", "format", "mips", "asset_integrity_state",
-                        "skip_class", "skip_reason", "documented_outlier",
-                        "asset_classification", "cook_policy", "runtime_note", "outlier_reason",
-                    )
-                    if key in prior
-                }
                 run_entries.append({
+                    **prior,
                     "source": relative.as_posix(),
                     "cooked": target.relative_to(output_root).as_posix(),
-                    "extension": source.suffix.lower(),
-                    "source_bytes": source.stat().st_size,
-                    "source_mtime_ns": source.stat().st_mtime_ns,
-                    "cooked_bytes": target.stat().st_size,
-                    "cooked_mtime_ns": target.stat().st_mtime_ns,
                     "status": "up-to-date",
-                    "asset_integrity_state": preserved.get("asset_integrity_state", "COOK_ARTIFACT_UP_TO_DATE"),
-                    **preserved,
+                    "source_mtime_ns": source.stat().st_mtime_ns,
+                    "cooked_mtime_ns": target.stat().st_mtime_ns,
                 })
                 continue
 
             stage = "decode"
-            image, decode_info = open_legacy_image_with_info(source)
+            authored, decode_info = open_legacy_image_with_info(source)
+            image = apply_cook_profile(authored, profile, source.suffix)
+            semantic_alpha = has_semantic_alpha(image)
             lossless_login_ui = args.login_ui_lossless and is_login_ui(relative)
+            item_icon = args.item_icons_required and is_item_icon(relative)
+            lossless_inventory = inventory_dib_image(relative)
             if lossless_login_ui:
                 eligible, reason = True, "login-ui-lossless"
-                pixel_format = "A8R8G8B8"
             elif item_icon:
                 eligible = True
-                pixel_format, reason = item_icon_pixel_format(image, source, min_rgba_bytes)
+                reason = ("item-icon-runtime-required-dxt" if should_cook(image, min_rgba_bytes)[0]
+                          else "item-icon-runtime-required-lossless")
             else:
                 eligible, reason = should_cook(image, min_rgba_bytes)
-                pixel_format = "DXT5" if source.suffix.lower() in ALPHA_EXTENSIONS else "DXT1"
             if not eligible:
                 stats["skipped"] += 1
                 run_entries.append({
@@ -898,6 +1005,9 @@ def main() -> int:
                     "skip_class": classify_skip_reason(reason),
                     "asset_integrity_state": "VALID_IMAGE_POLICY_SKIPPED",
                     "decoded_ok": True,
+                    "cook_profile": profile,
+                    "profile_revision": COOK_PROFILE_REVISION,
+                    "semantic_alpha": semantic_alpha,
                     "runtime_dds_expected": False,
                     "deletion_authorized": False,
                     **decode_info,
@@ -905,33 +1015,8 @@ def main() -> int:
                 continue
 
             stats["eligible"] += 1
-
-            if item_icon and not args.force and target.exists() and target.stat().st_mtime_ns >= source.stat().st_mtime_ns:
-                try:
-                    cooked_width, cooked_height, cooked_format = probe_dds_header(target)
-                except Exception:
-                    cooked_width = cooked_height = 0
-                    cooked_format = "INVALID"
-                if (cooked_width, cooked_height, cooked_format) == (image.width, image.height, pixel_format):
-                    stats["up_to_date"] += 1
-                    run_entries.append({
-                        "source": relative.as_posix(),
-                        "cooked": target.relative_to(output_root).as_posix(),
-                        "extension": source.suffix.lower(),
-                        "source_bytes": source.stat().st_size,
-                        "source_mtime_ns": source.stat().st_mtime_ns,
-                        "cooked_bytes": target.stat().st_size,
-                        "cooked_mtime_ns": target.stat().st_mtime_ns,
-                        "status": "up-to-date",
-                        "asset_integrity_state": "COOK_ARTIFACT_UP_TO_DATE",
-                        "runtime_dds_expected": True,
-                        "cook_reason": reason,
-                        "format": pixel_format,
-                        "width": image.width,
-                        "height": image.height,
-                        **decode_info,
-                    })
-                    continue
+            pixel_format = select_dds_format(image, lossless_login_ui or
+                                             (item_icon and not should_cook(image, min_rgba_bytes)[0]))
 
             if args.dry_run:
                 run_entries.append({
@@ -941,6 +1026,9 @@ def main() -> int:
                     "width": image.width,
                     "height": image.height,
                     "format": pixel_format,
+                    "cook_profile": profile,
+                    "profile_revision": COOK_PROFILE_REVISION,
+                    "semantic_alpha": semantic_alpha,
                     "status": "would-cook",
                     "cook_reason": reason,
                     "runtime_dds_expected": True,
@@ -972,6 +1060,11 @@ def main() -> int:
                 "height": image.height,
                 "mips": mip_count,
                 "format": pixel_format,
+                "cook_profile": profile,
+                "profile_revision": COOK_PROFILE_REVISION,
+                "semantic_alpha": semantic_alpha,
+                "source_sha256": sha256_file(source),
+                "cooked_sha256": hashlib.sha256(encoded).hexdigest(),
                 "bytes": len(encoded),
                 "source_bytes": source.stat().st_size,
                 "source_mtime_ns": source.stat().st_mtime_ns,
@@ -1011,17 +1104,20 @@ def main() -> int:
         manifest = {
             "format": "SUMMIT_TEXTURE_COOK_MANIFEST_V2",
             "version": 2,
-            "metadata_revision": 3,
+            "metadata_revision": 4,
             "generated_at": time.time(),
             "policy": {
                 "min_rgba_mib": args.min_rgba_mib,
+                "cook_profile_revision": COOK_PROFILE_REVISION,
+                "cooked_identity": "<profile>/<source-path-with-extension>.dds",
+                "windows_casefold_ambiguity": "fail-closed-before-write",
                 "formats": {
                     "opaque": "DXT1",
                     "alpha_capable": "DXT5",
                     "login_ui": "A8R8G8B8" if args.login_ui_lossless else "threshold-policy",
                 },
                 "mipmaps": "full-chain" if args.mipmaps else "top-level-only",
-                "scope": "login-ui-only" if args.login_ui_only else ("item-icons-only" if args.item_icons_only else "all-assets"),
+                "scope": "item-icons-only" if args.item_icons_only else ("login-ui-only" if args.login_ui_only else "all-assets"),
                 "source_assets_are_never_removed_by_cooker": True,
                 "item_icons_runtime_required": args.item_icons_required,
                 "item_icon_policy": "DXT1_DXT5_WHEN_DEFAULT_ELIGIBLE_ELSE_A8R8G8B8",
@@ -1056,7 +1152,7 @@ def main() -> int:
 
         failed_manifest = {
             "format": "SUMMIT_TEXTURE_COOK_FAILURES_V1",
-            "metadata_revision": 3,
+            "metadata_revision": 4,
             "generated_at": manifest["generated_at"],
             "source_root": str(source_root),
             "output_root": str(output_root),

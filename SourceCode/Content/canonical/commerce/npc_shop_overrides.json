@@ -6,22 +6,53 @@
   },
   "vendors": {
     "npc.marina": {
-      "sell_etc": {"add": [], "remove": ["SP179"]}
+      "sell_etc": {
+        "add": [],
+        "remove": []
+      }
     },
     "npc.toolsric": {
-      "sell_etc": {"add": [], "remove": ["TW106"]}
+      "sell_etc": {
+        "add": [],
+        "remove": [
+          "TW106"
+        ]
+      }
     },
     "npc.toolspilai": {
-      "sell_etc": {"add": [], "remove": ["TW106"]}
+      "sell_etc": {
+        "add": [],
+        "remove": [
+          "TW106"
+        ]
+      }
     },
     "npc.bcn01": {
-      "sell_etc": {"add": [], "remove": ["bc101"]}
+      "sell_etc": {
+        "add": [],
+        "remove": [
+          "bc101"
+        ]
+      }
     },
     "npc.donation_box": {
-      "sell_weapon": {"add": [], "remove": ["WD113", "WD114", "WN113", "WN114"]}
+      "sell_weapon": {
+        "add": [],
+        "remove": [
+          "WD113",
+          "WD114",
+          "WN113",
+          "WN114"
+        ]
+      }
     },
     "npc.premium": {
-      "sell_etc": {"add": [], "remove": ["wq106"]}
+      "sell_etc": {
+        "add": [],
+        "remove": [
+          "wq106"
+        ]
+      }
     }
   }
 }

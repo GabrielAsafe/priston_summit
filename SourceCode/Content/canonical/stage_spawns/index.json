@@ -237,9 +237,29 @@
       "json_path": "spawns/GameServer/Field/ruin-arenasf.ase.spm.json"
     },
     {
+      "id": "spawn.ruined_forever_fall_01",
+      "logical_path": "GameServer/Field/ruined-forever-fall-01.ASE.spm",
+      "json_path": "spawns/GameServer/Field/ruined-forever-fall-01.ASE.spm.json"
+    },
+    {
+      "id": "spawn.ruined_forever_fall_02",
+      "logical_path": "GameServer/Field/ruined-forever-fall-02.ASE.spm",
+      "json_path": "spawns/GameServer/Field/ruined-forever-fall-02.ASE.spm.json"
+    },
+    {
+      "id": "spawn.ruined_pilai",
+      "logical_path": "GameServer/Field/ruined-pilai.ASE.spm",
+      "json_path": "spawns/GameServer/Field/ruined-pilai.ASE.spm.json"
+    },
+    {
       "id": "spawn.seaa",
       "logical_path": "GameServer/Field/seaa.ase.spm",
       "json_path": "spawns/GameServer/Field/seaa.ase.spm.json"
+    },
+    {
+      "id": "spawn.seaafrozen",
+      "logical_path": "GameServer/Field/SeaAFrozen.ASE.spm",
+      "json_path": "spawns/GameServer/Field/SeaAFrozen.ASE.spm.json"
     },
     {
       "id": "spawn.slab",

@@ -23,6 +23,10 @@ KNOWN_ROLE_SPECIFIC = {
     'client': ('definitions_server.scfg', 'maps_server.smap'),
     'server': ('definitions_client.scfg', 'maps_client.smap'),
 }
+LEGACY_ROLE_PATHS = {
+    'client': (Path('content/maps/maps_client.smap'),),
+    'server': (Path('content/maps/maps_server.smap'),),
+}
 
 
 def sha256(path: Path) -> str:
@@ -41,6 +45,14 @@ def deploy_role(source_packs: Path, destination_root: Path, role: str) -> dict:
         stale = destination / stale_name
         if stale.exists():
             stale.unlink()
+
+    # Remove stale lowercase map-pack layouts left by pre-Content/packs tools.
+    # On case-sensitive hosts these coexist with Content/packs and can mislead
+    # operators or older launch scripts into consuming a different map catalog.
+    for legacy_rel in LEGACY_ROLE_PATHS[role]:
+        legacy = destination_root / legacy_rel
+        if legacy.is_file():
+            legacy.unlink()
 
     files = []
     for name in ROLE_PACKS[role]:

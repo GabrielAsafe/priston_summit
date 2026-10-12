@@ -1,5 +1,6 @@
 
 #include "systems/rendering/legacy_3d/smd3d.h"
+#include <cstdio>
 
 #define		CLIP_OUT		-32767
 #define		ANGCLIP			ANGLE_MASK
@@ -1657,6 +1658,21 @@ int smOBJ3D::WorldForm()
 
 	if(Physique)
 	{
+		// WSB temporary containment: never dereference an unresolved vertex bone.
+		// Leave all transformed vertices untouched and skip this mesh.
+		for(int wsbBoneIndex = 0; wsbBoneIndex < nVertex; ++wsbBoneIndex)
+		{
+			if(!Physique[wsbBoneIndex])
+			{
+				static int wsbReports = 0;
+				if(wsbReports < 16)
+				{
+					++wsbReports;
+					std::fprintf(stderr, "[WSB][BONE_MAP] unresolved mesh=%.31s vertex=%d count=%d; skipping mesh\n", NodeName, wsbBoneIndex, nVertex);
+				}
+				return FALSE;
+			}
+		}
 		for(cnt = 0; cnt < nVertex; cnt++)
 		{
 
@@ -1802,7 +1818,7 @@ int smOBJ3D::TestRender(POINT3D *camera, POINT3D *angle)
 
 		smRender.SetCameraPosi(CameraPosi.x, CameraPosi.y, CameraPosi.z, angle->x, angle->y, angle->z);
 
-		WorldForm();
+		if(!WorldForm()) return FALSE;
 
 		return TRUE;
 	}
@@ -1851,7 +1867,7 @@ int smOBJ3D::RenderD3D(POINT3D *camera, POINT3D *angle)
 			CameraPosi.z = camera->z - Posi.z;
 		}
 
-		WorldForm();
+		if(!WorldForm()) return FALSE;
 
 		smRender.SetCameraPosi(CameraPosi.x, CameraPosi.y, CameraPosi.z, angle->x, angle->y, angle->z);
 
@@ -1889,7 +1905,7 @@ int smOBJ3D::RenderD3dOpening(POINT3D *camera, POINT3D *angle)
 		CameraPosi.z = camera->z - Posi.z;
 	}
 
-	WorldForm();
+	if(!WorldForm()) return FALSE;
 
 	smRender.SetCameraPosi(CameraPosi.x, CameraPosi.y, CameraPosi.z, angle->x, angle->y, angle->z);
 
@@ -2028,6 +2044,15 @@ int smOBJ3D::LoadFile(HANDLE hFile, smPAT3D *PatPhysique)
 		for(cnt = 0; cnt < nVertex; cnt++)
 		{
 			Physique[cnt] = PatPhysique->GetObjectFromName(szBuff + cnt * 32);
+			if(!Physique[cnt])
+			{
+				static int wsbLoadReports = 0;
+				if(wsbLoadReports < 24)
+				{
+					++wsbLoadReports;
+					std::fprintf(stderr, "[WSB][BONE_MAP] lookup-fail mesh=%.31s vertex=%d bone=%.32s rigNodes=%d\n", NodeName, cnt, szBuff + cnt * 32, PatPhysique->nObj3d);
+				}
+			}
 		}
 
 		delete[] szBuff;
