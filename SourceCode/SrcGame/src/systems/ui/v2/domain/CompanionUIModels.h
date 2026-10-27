@@ -53,7 +53,15 @@ enum class CompanionUiAction
     CycleTacticCondition,
     CycleTacticAction,
     CycleTacticThreshold,
-    MoveTacticRule
+    MoveTacticRule,
+    InventoryPage,
+    EquipInventoryRight,
+    EquipInventoryLeft,
+    SetInventorySlot,
+    TradePage,
+    MoveBag,
+    OrganizeBag,
+    MoveBagCell
 };
 
 struct CompanionUiEntry
@@ -117,6 +125,29 @@ struct CompanionUiSnapshot
     std::array<CompanionUiEntry, CompanionUiMaxCharacters> entries{};
 };
 
+struct CompanionInventoryItemSnapshot
+{
+    int recordIndex = -1;
+    int position = 0;
+    std::uint32_t code = 0;
+    std::uint32_t equipMask = 0;
+    int gridX = -1;
+    int gridY = -1;
+    int bagNumber = 1;
+    std::string name;
+};
+
+struct CompanionInventorySnapshot
+{
+    bool received = false;
+    int status = 0;
+    int page = 0;
+    int totalItems = 0;
+    int itemCount = 0;
+    std::string characterName;
+    std::array<CompanionInventoryItemSnapshot, 10> items{};
+};
+
 struct CompanionRuntimeEffectSnapshot
 {
     std::uint32_t effectCode = 0;
@@ -147,6 +178,36 @@ struct CompanionRuntimeEntrySnapshot
     int effectCount = 0;
     std::array<CompanionRuntimeEffectSnapshot, 6> effects{};
     std::string targetName;
+};
+
+struct CompanionTradePreviewItem
+{
+    int index = -1;
+    int position = 0;
+    std::uint32_t code = 0;
+    std::uint32_t key = 0;
+    std::uint32_t checksum = 0;
+    std::string name;
+};
+struct CompanionTradePreviewPage
+{
+    bool received = false;
+    int status = 0;
+    int side = -1;
+    int page = 0;
+    int totalItems = 0;
+    int itemCount = 0;
+    std::uint64_t revision = 0;
+    std::string characterName;
+    std::array<CompanionTradePreviewItem, 10> items{};
+};
+
+struct CompanionTradeAttemptResult
+{
+    bool received = false;
+    std::int32_t status = 0;
+    std::uint64_t requestId = 0;
+    std::string characterName;
 };
 
 struct CompanionRuntimeSnapshot

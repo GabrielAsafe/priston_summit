@@ -48,6 +48,35 @@ public:
     }
 };
 
+class CompanionTradeConfirmHandler final : public IProtocolHandler
+{
+public:
+    std::uint32_t Opcode() const override { return companions::protocol::OPCODE_COMPANION_TRADE_CONFIRM; }
+    RouteStatus Handle(PlayerId player, const PacketView& packet) override
+    {
+        if(packet.size != sizeof(companions::protocol::CompanionTradeConfirmPacket))
+            return RouteStatus::InvalidPacket;
+        const auto* request = static_cast<const companions::protocol::CompanionTradeConfirmPacket*>(packet.data);
+        companions::legacy::ServerLegacyCompanionUIIngressAdapter().HandleTradeConfirm(player,*request);
+        return RouteStatus::Handled;
+    }
+};
+
+class CompanionTradeApplyAckHandler350Q final : public IProtocolHandler
+{
+public:
+    std::uint32_t Opcode() const override {
+        return companions::protocol::OPCODE_COMPANION_TRADE_APPLY_ACK;
+    }
+    RouteStatus Handle(PlayerId player,const PacketView& packet) override {
+        if(packet.size!=sizeof(companions::protocol::CompanionTradeApplyAckPacket))
+            return RouteStatus::InvalidPacket;
+        const auto* ack=static_cast<const companions::protocol::CompanionTradeApplyAckPacket*>(packet.data);
+        companions::legacy::ServerLegacyCompanionUIIngressAdapter().HandleTradeApplyAck350Q(player,*ack);
+        return RouteStatus::Handled;
+    }
+};
+
 class HellsGateJoinHandler final : public IProtocolHandler
 {
 public:
@@ -155,6 +184,8 @@ PacketRouter& ServerRouter()
     static CompanionHandler companion;
     static HellsGateJoinHandler hellsGateJoin;
     static QuestStartHandler questStart;
+    static CompanionTradeConfirmHandler tradeConfirm;
+    static CompanionTradeApplyAckHandler350Q liveAck;
     static QuestCancelHandler questCancel;
     static QuestRewardHandler questReward;
     static QuestSpoilerHandler questSpoiler;
@@ -164,6 +195,8 @@ PacketRouter& ServerRouter()
     {
         (void)router.Register(covenant);
         (void)router.Register(companion);
+        (void)router.Register(tradeConfirm);
+        (void)router.Register(liveAck);
         (void)router.Register(hellsGateJoin);
         (void)router.Register(questStart);
         (void)router.Register(questCancel);

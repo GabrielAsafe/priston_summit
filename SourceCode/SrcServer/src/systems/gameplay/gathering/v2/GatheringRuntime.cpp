@@ -180,7 +180,15 @@ HarvestResult HarvestGatheringNodeForPlayer(PlayerId playerId,
     if (result.Succeeded())
     {
         ApplyCovenantGathering(request.playerName, roll, result);
-        (void)ServerGatheringRepository().AddInventory(request.playerName, result.resourceKey, result.amount);
+        if (ServerGatheringRepository().AddInventory(request.playerName, result.resourceKey, result.amount))
+        {
+            // Only level an explicitly supported profession. Foraging
+            // without RequiredProfession remains None: no guessed XP mapping.
+            const professions::ProfessionType experienceProfession = ProfessionFor(resource);
+            if (experienceProfession != professions::ProfessionType::None)
+                (void)professions::ServerProfessionService().AddExperience(
+                    request.playerName, experienceProfession, 1u);
+        }
     }
     return result;
 }

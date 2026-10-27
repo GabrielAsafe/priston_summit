@@ -743,6 +743,24 @@
       "source": "item.wn153"
     },
     {
+      "key": "monster.117_rguard.name",
+      "text": "러스트 가드",
+      "quality": "legacy_source",
+      "source": "monster.117_rguard"
+    },
+    {
+      "key": "monster.118_dmystery.name",
+      "text": "다크 미스터리",
+      "quality": "legacy_source",
+      "source": "monster.118_dmystery"
+    },
+    {
+      "key": "monster.123_wlord.name",
+      "text": "위치 로드",
+      "quality": "legacy_source",
+      "source": "monster.123_wlord"
+    },
+    {
       "key": "monster.30_maplefairy.name",
       "text": "단풍 요정",
       "quality": "legacy_source",

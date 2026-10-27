@@ -1,0 +1,15 @@
+{
+  "schema": "summit.hunting-special-drops/experimental-v1",
+  "enabled": false,
+  "runtime_loader": "NOT_IMPLEMENTED_YET",
+  "rules": [],
+  "rule_example_disabled": {
+    "enabled": false,
+    "monster_canonical_name": "SUBSTITUIR_PELO_NOME_EXATO",
+    "item_code": "SUBSTITUIR_PELO_CODIGO_VALIDADO",
+    "chance_per_10000": 1000,
+    "minimum_hunter_profession_level": 0,
+    "quantity": 1,
+    "notes": "Placeholder somente; nao mexe no drop global"
+  }
+}

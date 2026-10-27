@@ -19,6 +19,7 @@ REQUIRED_INTERNAL = (
     "text/index.json",
     "item_profiles/client.items.json",
     "item_profiles/server.items.json",
+    "item_profiles/skin_reforms.json",
 )
 FOREVER_FALL = (
     "forever-fall-01.ase.spm.json",

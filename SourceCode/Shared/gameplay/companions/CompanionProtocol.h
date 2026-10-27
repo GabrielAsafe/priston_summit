@@ -13,6 +13,23 @@ static const std::int32_t OPCODE_COMPANION_UI_ACTION = 0x48479C10;
 static const std::int32_t OPCODE_COMPANION_UI_STATE  = 0x48479C11;
 static const std::int32_t OPCODE_COMPANION_RUNTIME_STATE = 0x48479C12;
 static const std::int32_t OPCODE_COMPANION_VISUAL_STATE = 0x48479C13;
+// Additive inventory page; all existing companion wire formats stay unchanged.
+static const std::int32_t OPCODE_COMPANION_INVENTORY_PAGE = 0x48479C14;
+static const std::int32_t COMPANION_INVENTORY_PROTOCOL_VERSION = 2;
+// Separate trade PREVIEW transport. No commit message exists in this version.
+static const std::int32_t OPCODE_COMPANION_TRADE_PAGE = 0x48479C15;
+static const std::int32_t OPCODE_COMPANION_TRADE_CONFIRM = 0x48479C16;
+static const std::int32_t OPCODE_COMPANION_TRADE_RESULT = 0x48479C17;
+// A committed player-record image is delivered on the authenticated game
+// socket. The receiver applies only the inventory, never full character state.
+static const std::int32_t OPCODE_COMPANION_TRADE_DELIVERY = 0x48479C18;
+static const std::int32_t OPCODE_COMPANION_TRADE_APPLY_ACK = 0x48479C19;
+static const std::int32_t COMPANION_TRADE_DELIVERY_VERSION = 1;
+static const std::int32_t COMPANION_TRADE_CONFIRM_VERSION = 2;
+static const std::int32_t COMPANION_TRADE_PAGE_VERSION = 2;
+static const int COMPANION_TRADE_PAGE_SIZE = 10;
+
+static const int COMPANION_INVENTORY_PAGE_SIZE = 10;
 static const std::int32_t COMPANION_UI_PROTOCOL_VERSION = 6;
 static const int COMPANION_UI_MAX_CHARACTERS = 11;
 static const int COMPANION_UI_TACTIC_RULES = 4;
@@ -55,7 +72,15 @@ enum CompanionUIAction : std::int32_t
     COMPANION_UI_CYCLE_TACTIC_CONDITION,
     COMPANION_UI_CYCLE_TACTIC_ACTION,
     COMPANION_UI_CYCLE_TACTIC_THRESHOLD,
-    COMPANION_UI_MOVE_TACTIC_RULE
+    COMPANION_UI_MOVE_TACTIC_RULE,
+    COMPANION_UI_INVENTORY_PAGE,
+    COMPANION_UI_EQUIP_INVENTORY_RIGHT,
+    COMPANION_UI_EQUIP_INVENTORY_LEFT,
+    COMPANION_UI_SET_INVENTORY_SLOT,
+    COMPANION_UI_TRADE_PAGE, // read-only; value=(side << 16)|page
+    COMPANION_UI_MOVE_BAG, // value=(destinationBag << 16)|recordIndex
+    COMPANION_UI_ORGANIZE_BAG, // value=bag (1 or 2)
+    COMPANION_UI_MOVE_BAG_CELL // value: index[0:7] x[8:11] y[12:14] bag[15:16]
 };
 
 struct CompanionUIActionPacket
@@ -191,6 +216,85 @@ struct CompanionRuntimeEntry
     char targetName[32];
 };
 
+struct CompanionInventoryItem
+{
+    std::int32_t recordIndex;
+    std::int32_t itemPosition;
+    std::uint32_t itemCode;
+    std::uint32_t equipMask; // bit position: server-approved equipment slots 1..16
+    std::int32_t gridX;
+    std::int32_t gridY;
+    std::int32_t bagNumber; // 1 primary, 2 secondary
+    char itemName[32];
+};
+
+struct CompanionInventoryPagePacket
+{
+    std::int32_t size;
+    std::int32_t code;
+    std::int32_t version;
+    std::int32_t status; // 1 loaded, negative means no usable record
+    std::int32_t page;
+    std::int32_t totalItems;
+    std::int32_t itemCount;
+    char characterName[32];
+    CompanionInventoryItem items[COMPANION_INVENTORY_PAGE_SIZE];
+};
+
+// Side 0: authenticated owner's online identity ledger. Side 1: owned,
+// offline Companion DAT. These are previews, never authoritative item grants.
+struct CompanionTradePageItem
+{
+    std::int32_t index;
+    std::int32_t position;
+    std::uint32_t itemCode;
+    std::uint32_t itemKey;
+    std::uint32_t itemChecksum;
+    char name[32];
+};
+struct CompanionTradePagePacket
+{
+    std::int32_t size;
+    std::int32_t code;
+    std::int32_t version;
+    std::int32_t side;
+    std::int32_t status;
+    std::int32_t page;
+    std::int32_t totalItems;
+    std::int32_t itemCount;
+    std::uint64_t sourceRevision;
+    char characterName[32];
+    CompanionTradePageItem items[COMPANION_TRADE_PAGE_SIZE];
+};
+
+// A one-item, server-verified trade request. A valid request is NOT a grant.
+// The two revisions bind both displayed inventories to the player's choice.
+struct CompanionTradeConfirmPacket
+{
+    std::int32_t size, code, version;
+    std::int32_t side, itemIndex;
+    std::uint32_t itemCode;
+    std::uint32_t itemKey;
+    std::uint32_t itemChecksum;
+    std::uint64_t ownerRevision, companionRevision, requestId;
+    char characterName[32];
+};
+// Fail-closed result. A successful validation means ONLY request eligibility;
+// the current server has no complete-authority DAT/session transaction adapter.
+struct CompanionTradeResultPacket
+{
+    std::int32_t size, code, version, status;
+    std::uint64_t requestId;
+    char characterName[32];
+};
+
+struct CompanionTradeApplyAckPacket
+{
+    std::int32_t size, code, version, status; // 1 applied, 2 fresh-save ack, negative aborted
+    std::uint64_t requestId, txnId;
+    char characterName[32];
+};
+
 struct CompanionRuntimeStatePacket
 {
     std::int32_t size;
@@ -259,6 +363,7 @@ struct CompanionVisualStatePacket
 
 static_assert(sizeof(CompanionUIActionPacket) <= 64, "companion action packet unexpectedly large");
 static_assert(sizeof(CompanionUIStatePacket) < 4096, "companion UI state must stay below legacy socket buffer pressure thresholds");
+static_assert(sizeof(CompanionInventoryPagePacket) < 1024, "companion inventory pages must be bounded");
 static_assert(sizeof(CompanionRuntimeStatePacket) < 1024, "companion runtime HUD state must remain compact");
 static_assert(sizeof(CompanionVisualStatePacket) < 1024, "companion visual state must remain compact");
 

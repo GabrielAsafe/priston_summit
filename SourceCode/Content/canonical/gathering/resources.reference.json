@@ -1,0 +1,20 @@
+{
+  "schema": "summit.gathering-resource-references/v1",
+  "purpose": "REFERENCE_ONLY_DB_DEFINITIONS_STAY_AUTHORITATIVE",
+  "resources": [
+    {
+      "resource_key": "iron_ore",
+      "db_resource_id": 1001,
+      "kind": "mining",
+      "profession": "Miner",
+      "icon": "assets/iron_ore_preview.bmp"
+    },
+    {
+      "resource_key": "herb_bundle",
+      "db_resource_id": 2001,
+      "kind": "foraging",
+      "profession": null,
+      "icon": "assets/herb_bundle_preview.bmp"
+    }
+  ]
+}

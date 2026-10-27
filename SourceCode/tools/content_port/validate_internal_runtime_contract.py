@@ -7,6 +7,7 @@ from pathlib import Path
 
 RUNTIME_FILES = (
     'Shared/content/v1/definition/content/DefinitionRuntime.h',
+    'Shared/content/v1/skin_reform/content/SkinReformRuntime.h',
     'Shared/content/v1/text_resource/content/TextResourceRuntime.h',
     'Shared/content/v1/localization/content/LocalizationRuntime.h',
     'Shared/content/v1/gameplay_config/content/GameplayConfigRuntime.h',
@@ -80,6 +81,7 @@ def main() -> int:
         'Shared/content/v1/localization/content/LocalizationRuntime.h': 'ResolveRuntimePackPath("localization.sloc")',
         'Shared/content/v1/gameplay_config/content/GameplayConfigRuntime.h': 'ResolveRuntimePackPath("gameplay_config.sgcf")',
         'Shared/content/v1/gameplay_reference/content/GameplayReferenceRuntime.h': 'ResolveRuntimePackPath("gameplay_reference.sgrf")',
+        'Shared/content/v1/skin_reform/content/SkinReformRuntime.h': 'ResolveRuntimePackPath("skin_reforms.sskm")',
     }
     for rel, needle in expected.items():
         if needle not in texts.get(rel, ''):

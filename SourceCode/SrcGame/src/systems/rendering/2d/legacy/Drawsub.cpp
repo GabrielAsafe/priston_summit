@@ -4,6 +4,9 @@
 
 #include "systems/rendering/font/Font.h"
 
+// Legacy Covenant color boxes need the untextured draw entry point.
+// Keep the declaration local: older smDsx.h revisions lack it.
+void DrawSolidColorQuad(D3DTLVERTEX * Vertex, int AlphaBlend);
 
 extern int WinSizeX;
 extern int WinSizeY;
@@ -278,7 +281,7 @@ int dsDrawColorBoxFloat(DWORD Color, float x, float y, float sizeX, float sizeY)
 	tlVertex[3].sy = (y + sizeY);
 	tlVertex[3].tu = 1;
 	tlVertex[3].tv = 1;
-	DrawTexture(0, tlVertex, 1);
+	DrawSolidColorQuad(tlVertex, 1);
 	return TRUE;
 }
 

@@ -1,4 +1,7 @@
 #include "systems/gameplay/quests/v2/legacy/LegacyQuestViewQuery.h"
+#include "gameplay/quests/v2/QuestCanonicalRegistry351B.h"
+#include "systems/gameplay/quests/v2/legacy/CanonicalQuestExecution351C.h"
+#include <ctime>
 
 #include <cstring>
 #include <memory>
@@ -49,6 +52,41 @@ bool LegacyQuestViewQuery::TryGetDetail(const std::string& playerKey,
                                         QuestDetailView& out) const
 {
     out = QuestDetailView();
+    // Reference-only metadata. Never imitate progress, payout or monster kills.
+    // Canonical IDs are not QuestDB IDs; look them up before any SQL.
+    if(canonical::IsCanonicalQuest351B(quest))
+    {
+        if(playerKey.empty() || playerKey.size() >= 32u) return false;
+        const canonical::Entry351B* entry=canonical::FindCanonicalQuest351B(quest);
+        if(!entry || questKind!=canonical::Kind351B(*entry)) return false;
+        out.quest=quest;
+        out.kind=questKind;
+        out.name=entry->name;
+        out.title=entry->name;
+        out.levelMin=entry->minLevel;
+        out.levelMax=entry->maxLevel;
+        out.description="CATALOGO DE REFERENCIA (nao ativa): etapas e recompensas "
+                        "disponiveis apenas no registo canonico V2.";
+        // Reward values remain deliberately unset: no grant from reference text.
+        if(canonical::Enabled351C()) {
+            canonical::KillStatus351C state;
+            if(canonical::ReadKills351C(playerKey,*entry,std::time(0),state) && state.started) {
+                const canonical::KillObjective351C* base=0;
+                const unsigned int count=canonical::ObjectivesFor351C(entry->id,base);
+                for(unsigned int i=0;i<count;++i) {
+                    QuestObjectiveView obj;
+                    obj.monsterName=base[i].target;
+                    obj.required=base[i].needed;
+                    obj.killed=state.counts[i];
+                    out.objectives.push_back(obj);
+                }
+                out.description=state.ready
+                    ? "Objetivos completos; recompensa ainda requer validacao no NPC legado."
+                    : "Progresso V2 persistido; recompensa nao concedida automaticamente.";
+            }
+        }
+        return true;
+    }
     const char* definitionSql = DefinitionSql(questKind);
     if(!definitionSql || !ValidKey(playerKey, quest))
         return false;

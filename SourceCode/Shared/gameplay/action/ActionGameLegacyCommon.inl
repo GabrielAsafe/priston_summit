@@ -138,9 +138,19 @@ int ActionGameMain()
 		CancelAttack();
 	}
 
-	if(VRKeyBuff[VK_SPACE] || ActionMouseClick[0] == 2)
+	// In Fall Game 39 Space attacks and the left mouse button is reserved
+	// for collecting a ground item. In other ACTION maps, keep mouse drag
+	// attacks exactly as before. A previous 39-only click-to-attack patch
+	// made collecting impossible whenever an enemy was available.
+	const bool fallGame39 = lpCurPlayer->OnStageField >= 0 &&
+		lpCurPlayer->OnStageField < 2 && StageField[lpCurPlayer->OnStageField] &&
+		StageField[lpCurPlayer->OnStageField]->FieldCode == 39;
+	if (fallGame39)
+		ActionMouseClick[0] = 0;
+	const bool actionMouseTrigger = !fallGame39 && ActionMouseClick[0] == 2;
+	if(VRKeyBuff[VK_SPACE] || actionMouseTrigger)
 	{
-		if((!ActionKeySpace || ActionMouseClick[0] == 2) && lpCurPlayer->MotionInfo->State != CHRMOTION_STATE_ATTACK)
+		if((!ActionKeySpace || actionMouseTrigger) && lpCurPlayer->MotionInfo->State != CHRMOTION_STATE_ATTACK)
 		{
 			smCHAR *lpChar = agFindAttack();
 			if(lpChar)
@@ -152,7 +162,8 @@ int ActionGameMain()
 			}
 			else
 			{
-				scITEM *lpItem = agFindItem();
+				// Space never auto-collects in 39. Items are picked by left click.
+				scITEM *lpItem = fallGame39 ? 0 : agFindItem();
 				if(lpItem)
 				{
 					lpCharSelPlayer = 0;

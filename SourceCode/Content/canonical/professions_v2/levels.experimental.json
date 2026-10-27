@@ -1,0 +1,220 @@
+{
+  "schema": "summit.professions-v2-levels/experimental-v1",
+  "mode": "COMPILED_SOURCE_POLICY",
+  "independent_from_legacy_jobs": true,
+  "experience_scope": "total_accumulated_per_character_and_profession",
+  "level_zero_threshold": 0,
+  "max_level": 50,
+  "levels": [
+    {
+      "level": 0,
+      "minimum_total_experience": 0
+    },
+    {
+      "level": 1,
+      "minimum_total_experience": 10
+    },
+    {
+      "level": 2,
+      "minimum_total_experience": 30
+    },
+    {
+      "level": 3,
+      "minimum_total_experience": 60
+    },
+    {
+      "level": 4,
+      "minimum_total_experience": 100
+    },
+    {
+      "level": 5,
+      "minimum_total_experience": 150
+    },
+    {
+      "level": 6,
+      "minimum_total_experience": 210
+    },
+    {
+      "level": 7,
+      "minimum_total_experience": 280
+    },
+    {
+      "level": 8,
+      "minimum_total_experience": 360
+    },
+    {
+      "level": 9,
+      "minimum_total_experience": 450
+    },
+    {
+      "level": 10,
+      "minimum_total_experience": 550
+    },
+    {
+      "level": 11,
+      "minimum_total_experience": 660
+    },
+    {
+      "level": 12,
+      "minimum_total_experience": 780
+    },
+    {
+      "level": 13,
+      "minimum_total_experience": 910
+    },
+    {
+      "level": 14,
+      "minimum_total_experience": 1050
+    },
+    {
+      "level": 15,
+      "minimum_total_experience": 1200
+    },
+    {
+      "level": 16,
+      "minimum_total_experience": 1360
+    },
+    {
+      "level": 17,
+      "minimum_total_experience": 1530
+    },
+    {
+      "level": 18,
+      "minimum_total_experience": 1710
+    },
+    {
+      "level": 19,
+      "minimum_total_experience": 1900
+    },
+    {
+      "level": 20,
+      "minimum_total_experience": 2100
+    },
+    {
+      "level": 21,
+      "minimum_total_experience": 2310
+    },
+    {
+      "level": 22,
+      "minimum_total_experience": 2530
+    },
+    {
+      "level": 23,
+      "minimum_total_experience": 2760
+    },
+    {
+      "level": 24,
+      "minimum_total_experience": 3000
+    },
+    {
+      "level": 25,
+      "minimum_total_experience": 3250
+    },
+    {
+      "level": 26,
+      "minimum_total_experience": 3510
+    },
+    {
+      "level": 27,
+      "minimum_total_experience": 3780
+    },
+    {
+      "level": 28,
+      "minimum_total_experience": 4060
+    },
+    {
+      "level": 29,
+      "minimum_total_experience": 4350
+    },
+    {
+      "level": 30,
+      "minimum_total_experience": 4650
+    },
+    {
+      "level": 31,
+      "minimum_total_experience": 4960
+    },
+    {
+      "level": 32,
+      "minimum_total_experience": 5280
+    },
+    {
+      "level": 33,
+      "minimum_total_experience": 5610
+    },
+    {
+      "level": 34,
+      "minimum_total_experience": 5950
+    },
+    {
+      "level": 35,
+      "minimum_total_experience": 6300
+    },
+    {
+      "level": 36,
+      "minimum_total_experience": 6660
+    },
+    {
+      "level": 37,
+      "minimum_total_experience": 7030
+    },
+    {
+      "level": 38,
+      "minimum_total_experience": 7410
+    },
+    {
+      "level": 39,
+      "minimum_total_experience": 7800
+    },
+    {
+      "level": 40,
+      "minimum_total_experience": 8200
+    },
+    {
+      "level": 41,
+      "minimum_total_experience": 8610
+    },
+    {
+      "level": 42,
+      "minimum_total_experience": 9030
+    },
+    {
+      "level": 43,
+      "minimum_total_experience": 9460
+    },
+    {
+      "level": 44,
+      "minimum_total_experience": 9900
+    },
+    {
+      "level": 45,
+      "minimum_total_experience": 10350
+    },
+    {
+      "level": 46,
+      "minimum_total_experience": 10810
+    },
+    {
+      "level": 47,
+      "minimum_total_experience": 11280
+    },
+    {
+      "level": 48,
+      "minimum_total_experience": 11760
+    },
+    {
+      "level": 49,
+      "minimum_total_experience": 12250
+    },
+    {
+      "level": 50,
+      "minimum_total_experience": 12750
+    }
+  ],
+  "notes": [
+    "Limiares de ensaio Summit, nao oficiais. Nao fazer sincronizacao com JOBS.",
+    "A tabela de thresholds gera um header C++ compilado pelo instalador, nao e carregada do JSON em runtime.",
+    "Nivel anterior superior ao calculado e sempre preservado; o XP nao baixa.",
+    "Ressubir o server apos recompilar; novo nivel so e calculado ao ganhar XP."
+  ]
+}

@@ -15,6 +15,8 @@ public:
     explicit Button(UIId id = InvalidUIId, std::string text = {});
 
     void SetText(std::string text) { text_ = std::move(text); }
+    // Optional catalog texture, rendered by the existing UI renderer (no asset IO).
+    void SetIcon(TextureHandle icon) noexcept { icon_ = icon; }
     [[nodiscard]] const std::string& Text() const noexcept { return text_; }
 
     void SetOnClick(ClickHandler handler) { onClick_ = std::move(handler); }
@@ -28,6 +30,7 @@ protected:
 
 private:
     std::string text_;
+    TextureHandle icon_{};
     ClickHandler onClick_;
     bool hovered_ = false;
     bool pressed_ = false;

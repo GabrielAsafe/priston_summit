@@ -1819,6 +1819,6 @@
   ],
   "source": {
     "path": "SrcGame/src/systems/inventory/legacy/item_catalog_recovered.inc",
-    "sha256": "7d9ddbe6379fa4650cc7d23f0b060f99fd34cf2025dcc520f02bc34e0cdaa7ba"
+    "sha256": "b7686805229c1178678b4c8cbff8291927bcc5cb86614c993d9e41c0391e2aea"
   }
 }

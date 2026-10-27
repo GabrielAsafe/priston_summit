@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.118_dmystery",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/Monster/Name/118_DMystery.zhoon",
+    "GameServer/Monster/Name/118_DMystery.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/Monster/Name/118_DMystery.zhoon",
+    "legacy_sha256": "176743a664e2f159936df45c4f0b890656cf7e663011f3e88e541a5d302c1c65",
+    "legacy_size": 46
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "E_NAME",
+        "kind": "name",
+        "text": "Dark Mystery"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly8xMThfRE15c3RlcnkuaW5mDQoNCipFX05BTUUJCQkiRGFyayBNeXN0ZXJ5Ig=="
+  }
+}

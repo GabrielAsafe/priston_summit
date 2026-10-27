@@ -1,0 +1,273 @@
+{
+  "schema": "summit.professions-v2-recipes/prototype-v1",
+  "mode": "CATALOG_ONLY_NO_RUNTIME_LOADER",
+  "default_enabled": false,
+  "notes": [
+    "Propostas economicas experimentais, NAO equivalem a receitas oficiais.",
+    "Nao criar itens em jogo ate haver transacao segura servidor: reservar/consumir materiais, emitir item real, concluir/compensar entrega com idempotencia.",
+    "Usa materiais V2 em GatheringPlayerInventory e saidas reais do catalogo OpenItem, cliente e servidor.",
+    "Desativado por defeito. Os níveis são ensaio; nenhuma tabela de XP ou desbloqueios é instalada."
+  ],
+  "recipes": [
+    {
+      "id": "arc.pedra_azul",
+      "enabled": false,
+      "profession": "Arcanist",
+      "minimum_profession_level": 0,
+      "ingredients": [
+        {
+          "source": "gathering_inventory",
+          "resource_key": "herb_bundle",
+          "quantity": 2
+        },
+        {
+          "source": "gathering_inventory",
+          "resource_key": "ancient_resin",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "destination": "legacy_player_inventory",
+        "item_code": "BI101",
+        "canonical_item_name": "Pedra Azul",
+        "quantity": 1
+      },
+      "xp_after_committed_grant": 1,
+      "experimental": true
+    },
+    {
+      "id": "arc.pedra_vermelha",
+      "enabled": false,
+      "profession": "Arcanist",
+      "minimum_profession_level": 5,
+      "ingredients": [
+        {
+          "source": "gathering_inventory",
+          "resource_key": "herb_bundle",
+          "quantity": 3
+        },
+        {
+          "source": "gathering_inventory",
+          "resource_key": "mystic_crystal",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "destination": "legacy_player_inventory",
+        "item_code": "BI102",
+        "canonical_item_name": "Pedra Vermelha",
+        "quantity": 1
+      },
+      "xp_after_committed_grant": 3,
+      "experimental": true
+    },
+    {
+      "id": "arc.forca_transparo",
+      "enabled": false,
+      "profession": "Arcanist",
+      "minimum_profession_level": 10,
+      "ingredients": [
+        {
+          "source": "gathering_inventory",
+          "resource_key": "ancient_resin",
+          "quantity": 2
+        },
+        {
+          "source": "gathering_inventory",
+          "resource_key": "mystic_crystal",
+          "quantity": 2
+        }
+      ],
+      "output": {
+        "destination": "legacy_player_inventory",
+        "item_code": "FO106",
+        "canonical_item_name": "Força Transparo",
+        "quantity": 1
+      },
+      "xp_after_committed_grant": 5,
+      "experimental": true
+    },
+    {
+      "id": "smith.machado_pedra",
+      "enabled": false,
+      "profession": "Blacksmith",
+      "minimum_profession_level": 0,
+      "ingredients": [
+        {
+          "source": "gathering_inventory",
+          "resource_key": "iron_ore",
+          "quantity": 4
+        },
+        {
+          "source": "gathering_inventory",
+          "resource_key": "timber",
+          "quantity": 2
+        }
+      ],
+      "output": {
+        "destination": "legacy_player_inventory",
+        "item_code": "WA101",
+        "canonical_item_name": "Machado de Pedra",
+        "quantity": 1
+      },
+      "xp_after_committed_grant": 1,
+      "experimental": true
+    },
+    {
+      "id": "smith.martelo_pequeno",
+      "enabled": false,
+      "profession": "Blacksmith",
+      "minimum_profession_level": 0,
+      "ingredients": [
+        {
+          "source": "gathering_inventory",
+          "resource_key": "iron_ore",
+          "quantity": 3
+        },
+        {
+          "source": "gathering_inventory",
+          "resource_key": "timber",
+          "quantity": 2
+        }
+      ],
+      "output": {
+        "destination": "legacy_player_inventory",
+        "item_code": "WH101",
+        "canonical_item_name": "Martelo Pequeno",
+        "quantity": 1
+      },
+      "xp_after_committed_grant": 1,
+      "experimental": true
+    },
+    {
+      "id": "smith.minerio_ametista",
+      "enabled": false,
+      "profession": "Blacksmith",
+      "minimum_profession_level": 5,
+      "ingredients": [
+        {
+          "source": "gathering_inventory",
+          "resource_key": "iron_ore",
+          "quantity": 5
+        },
+        {
+          "source": "gathering_inventory",
+          "resource_key": "mystic_crystal",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "destination": "legacy_player_inventory",
+        "item_code": "PR101",
+        "canonical_item_name": "Minério de Ametista",
+        "quantity": 1
+      },
+      "xp_after_committed_grant": 3,
+      "experimental": true
+    },
+    {
+      "id": "artisan.pedra_verde",
+      "enabled": false,
+      "profession": "Artisan",
+      "minimum_profession_level": 0,
+      "ingredients": [
+        {
+          "source": "gathering_inventory",
+          "resource_key": "herb_bundle",
+          "quantity": 2
+        },
+        {
+          "source": "gathering_inventory",
+          "resource_key": "ancient_resin",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "destination": "legacy_player_inventory",
+        "item_code": "BI103",
+        "canonical_item_name": "Pedra Verde",
+        "quantity": 1
+      },
+      "xp_after_committed_grant": 1,
+      "experimental": true
+    },
+    {
+      "id": "artisan.reliquia_ametista",
+      "enabled": false,
+      "profession": "Artisan",
+      "minimum_profession_level": 5,
+      "ingredients": [
+        {
+          "source": "gathering_inventory",
+          "resource_key": "iron_ore",
+          "quantity": 5
+        },
+        {
+          "source": "gathering_inventory",
+          "resource_key": "mystic_crystal",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "destination": "legacy_player_inventory",
+        "item_code": "PR201",
+        "canonical_item_name": "Relíquia de Ametista",
+        "quantity": 1
+      },
+      "xp_after_committed_grant": 3,
+      "experimental": true
+    },
+    {
+      "id": "artisan.runa_ametista_a",
+      "enabled": false,
+      "profession": "Artisan",
+      "minimum_profession_level": 10,
+      "ingredients": [
+        {
+          "source": "gathering_inventory",
+          "resource_key": "mystic_crystal",
+          "quantity": 3
+        },
+        {
+          "source": "gathering_inventory",
+          "resource_key": "ancient_resin",
+          "quantity": 2
+        }
+      ],
+      "output": {
+        "destination": "legacy_player_inventory",
+        "item_code": "PR301",
+        "canonical_item_name": "Runa de Ametista A",
+        "quantity": 1
+      },
+      "xp_after_committed_grant": 5,
+      "experimental": true
+    },
+    {
+      "id": "artisan.pedra_jera",
+      "enabled": false,
+      "profession": "Artisan",
+      "minimum_profession_level": 20,
+      "ingredients": [
+        {
+          "source": "gathering_inventory",
+          "resource_key": "mystic_crystal",
+          "quantity": 5
+        },
+        {
+          "source": "gathering_inventory",
+          "resource_key": "ancient_resin",
+          "quantity": 3
+        }
+      ],
+      "output": {
+        "destination": "legacy_player_inventory",
+        "item_code": "SE101",
+        "canonical_item_name": "Pedra Mágica Jera",
+        "quantity": 1
+      },
+      "xp_after_committed_grant": 8,
+      "experimental": true
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.117_rguard",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/Monster/Name/117_RGuard.zhoon",
+    "GameServer/Monster/Name/117_RGuard.zhoon"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/Monster/Name/117_RGuard.zhoon",
+    "legacy_sha256": "f530e48802213862db3f56760af340870d0775708c7fbc71e8d685c2f2a3ca6e",
+    "legacy_size": 41
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 3,
+        "legacy_key": "E_NAME",
+        "kind": "name",
+        "text": "RustGuard"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly8xMTdfUkd1YXJkLmluZg0KDQoqRV9OQU1FCQkJIlJ1c3RHdWFyZCI="
+  }
+}

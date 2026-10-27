@@ -10,6 +10,8 @@ JOBS = ROOT / "SrcServer/src/systems/crafting/professions/JOBS.cpp"
 RUNTIME = ROOT / "SrcServer/src/systems/gameplay/progression/v2/ProgressionRuntime.cpp"
 TRIGGER = ROOT / "SrcServer/src/systems/gameplay/progression/v2/ProgressionTriggerRuntime.cpp"
 GATEWAYS = ROOT / "SrcServer/src/systems/gameplay/progression/v2/LegacyProgressionGateways.cpp"
+ADAPTER = ROOT / "SrcServer/src/systems/gameplay/progression/v2/legacy/LegacyPlayerExperienceAdapter.cpp"
+SERVICE = ROOT / "Shared/gameplay/progression/v2/PlayerExperienceService.h"
 
 
 def fail(message: str) -> None:
@@ -42,7 +44,7 @@ def require(body: str, token: str, where: str) -> None:
 
 
 def main() -> None:
-    for path in (QUESTS, JOBS, RUNTIME, TRIGGER, GATEWAYS):
+    for path in (QUESTS, JOBS, RUNTIME, TRIGGER, GATEWAYS, ADAPTER, SERVICE):
         if not path.is_file():
             fail(f"missing {path.relative_to(ROOT)}")
 
@@ -67,9 +69,30 @@ def main() -> None:
 
     gateways = GATEWAYS.read_text(encoding="utf-8")
     grant = function_body(gateways, "rewards::RewardResult LegacyProgressionRewardGateway::Grant")
-    require(grant, "player->AddExp", "LegacyProgressionRewardGateway::Grant")
-    require(grant, "NotifyServerProgressionPlayerStateChanged(players_.IdOf(player));",
+    # XP authority is the V2 service; only its legacy adapter may invoke AddExp.
+    require(grant, "PlayerExperienceService::Grant(", "LegacyProgressionRewardGateway::Grant")
+    require(grant, "legacy::ServerLegacyPlayerExperienceAdapter()", "LegacyProgressionRewardGateway::Grant")
+    require(grant, "PlayerExperienceGrantRequest(", "LegacyProgressionRewardGateway::Grant")
+    require(grant, "PlayerExperienceSource::ProgressionReward", "LegacyProgressionRewardGateway::Grant")
+    require(grant, "if(!experience.Granted())", "LegacyProgressionRewardGateway::Grant")
+    require(grant, "NotifyServerProgressionPlayerStateChanged(playerId);",
             "LegacyProgressionRewardGateway::Grant XP path")
+    if "player->AddExp" in grant:
+        fail("LegacyProgressionRewardGateway::Grant bypasses PlayerExperienceService")
+    if grant.count("PlayerExperienceService::Grant(") != 1:
+        fail("LegacyProgressionRewardGateway::Grant must call XP service exactly once")
+
+    adapter = ADAPTER.read_text(encoding="utf-8")
+    mutate = function_body(adapter, "PlayerExperienceGrantResult LegacyPlayerExperienceAdapter::Grant")
+    require(mutate, "player->AddExp(", "LegacyPlayerExperienceAdapter::Grant")
+    require(mutate, "PlayerExperienceGrantCode::Granted", "LegacyPlayerExperienceAdapter::Grant")
+    if mutate.count("player->AddExp(") != 1:
+        fail("LegacyPlayerExperienceAdapter::Grant must mutate XP exactly once")
+
+    service = SERVICE.read_text(encoding="utf-8")
+    service_grant = function_body(service, "static PlayerExperienceGrantResult Grant")
+    require(service_grant, "request.amount <= 0", "PlayerExperienceService::Grant")
+    require(service_grant, "port.Grant(request)", "PlayerExperienceService::Grant")
 
     runtime = RUNTIME.read_text(encoding="utf-8")
     process = function_body(runtime, "ProgressionPlayerRunReport ProcessServerProgressionPlayer")

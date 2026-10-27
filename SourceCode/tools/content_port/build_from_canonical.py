@@ -66,6 +66,8 @@ def main() -> None:
     run(py, here / 'materialize_localization_catalog.py', text)
     run(py, here / 'validate_canonical_text.py', text)
     run(py, here / 'validate_canonical_schemas.py', '--canonical-text', text, '--canonical-spawns', spawns, '--canonical-maps', maps, '--canonical-start-points', start_points, '--canonical-fixed-npcs', fixed_npcs)
+    run(py, here / 'validate_single_entry_map_policy.py', '--canonical-maps', maps)
+    run(py, here / 'validate_monster_runtime_limits.py', '--repo-root', here.parents[2])
 
     outputs = {
         'text_resources': packs / 'text_resources.sres',
@@ -75,6 +77,7 @@ def main() -> None:
         'gameplay_config': packs / 'gameplay_config.sgcf',
         'gameplay_reference': packs / 'gameplay_reference.sgrf',
         'coin_shop': packs / 'coin_shop.scsp',
+        'skin_reforms': packs / 'skin_reforms.sskm',
         'field_runtime': packs / 'field_runtime.sfld',
         'maps_client': packs / 'maps_client.smap',
         'maps_server': packs / 'maps_server.smap',
@@ -104,6 +107,7 @@ def main() -> None:
     run(py, here / 'validate_coin_shop_catalog.py', '--repo-root', here.parent.parent)
     run(py, here / 'compile_coin_shop.py', coin_shop_catalog, outputs['coin_shop'])
     run(py, here / 'inspect_coin_shop.py', outputs['coin_shop'])
+    run(py, here / 'compile_skin_reforms.py', item_profiles / 'skin_reforms.json', outputs['skin_reforms'])
     if not gameplay_reference.is_dir():
         raise SystemExit(f'missing canonical gameplay reference root: {gameplay_reference}')
     run(py, here / 'compile_gameplay_reference.py', gameplay_reference, outputs['gameplay_reference'])

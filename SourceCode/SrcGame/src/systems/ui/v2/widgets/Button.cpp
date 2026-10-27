@@ -61,6 +61,15 @@ void Button::OnRender(UIRenderContext& context)
     renderer.DrawRect({bounds.x, bounds.y, 1, bounds.height}, border);
     renderer.DrawRect({bounds.x + bounds.width - 1, bounds.y, 1, bounds.height}, border);
 
+    // The button controls its own image: the parent never draws behind a
+    // later opaque button, and no BMP/D3D creation happens in this draw path.
+    if (icon_.IsValid())
+    {
+        const int side = std::max(1, std::min(bounds.width - 8, bounds.height - 8));
+        renderer.DrawImage(icon_, {bounds.x+(bounds.width-side)/2,
+            bounds.y+(bounds.height-side)/2,side,side}, nullptr);
+        return;
+    }
     const std::string displayText = EllipsizeText(text_, std::max(1, bounds.width - 16), 7);
     renderer.DrawTextUtf8(FontHandle{}, displayText, {bounds.x + 8, bounds.y + 2, bounds.width - 16, bounds.height - 4},
                       TextStyle{IsEnabled() ? UITheme::Text : UITheme::Disabled, selected_, TextAlign::Center});

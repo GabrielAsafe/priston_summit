@@ -22,6 +22,21 @@ void LegacyCompanionUIIngressAdapter::HandleAction(
         companions::HandleUIAction(legacyOwner, &packet);
 }
 
+void LegacyCompanionUIIngressAdapter::HandleTradeConfirm(
+    PlayerId owner, const protocol::CompanionTradeConfirmPacket& packet)
+{
+    rsPLAYINFO* legacyOwner = players_.Resolve(owner);
+    if(legacyOwner)
+        companions::HandleTradeConfirm(legacyOwner, &packet);
+}
+
+void LegacyCompanionUIIngressAdapter::HandleTradeApplyAck350Q(
+    PlayerId owner,const protocol::CompanionTradeApplyAckPacket& packet)
+{
+    rsPLAYINFO* player=players_.Resolve(owner);
+    if(player) companions::HandleTradeApplyAck350Q(player,&packet);
+}
+
 LegacyCompanionUIIngressAdapter& ServerLegacyCompanionUIIngressAdapter()
 {
     static LegacyCompanionUIIngressAdapter adapter(player::legacy::ServerLegacyOnlinePlayerRegistry());

@@ -28,6 +28,13 @@ static char *record_GetWord(char *q, char *p);
 
 #include "systems/security/integrity/isaocheck.h"
 #include "persistence/character_record/WarehouseRecordValidation.h"
+#include "gameplay/companions/v2/CompanionTradeLegacyInventoryStage.h"
+#include "gameplay/companions/v2/CompanionTradeLiveStage351F.h"
+#include "gameplay/companions/v2/CompanionTradeLivePayloadPreserve353.h"
+#include "gameplay/companions/v2/CompanionDiagnostic315.h"
+#include "gameplay/companions/v2/CompanionTradeBufferedPayloadCandidate.h"
+#include "gameplay/companions/v2/CompanionTradeBoundedItemCodec.h"
+#include <vector>
 
 namespace
 {
@@ -2114,6 +2121,151 @@ int rsRECORD_DBASE::ResotrRecordData(smCHAR_INFO *lpCharInfo, sITEM *lpItems, sI
 
 
 
+// The live Companion trade updates only the inventory. Skills, experience,
+// money, location, quest state and the live character model are untouched.
+// The network caller MUST have verified the journal receipt and held the
+// client-side mutation freeze until a fresh post-apply save is accepted.
+// SUMMIT351D: bounded, privacy-safe reason codes for a refused live apply.
+// This does NOT change admission, records, ACK, journal, save or frozen state.
+// event value: 1=precondition; 2=DecodeBounded; 3=unsafe snapshot;
+// 4=stage Prepare; 5=post-stage UI busy.
+// stage result: 0 Ready; 1 UnsafeSnapshot; 2 InvalidCapacity;
+// 3 InvalidOrdering; 4 DecodeRejected; 5 IdentityMismatch;
+// 6 InvalidSlot; 7 DuplicateSlot; 8 DuplicateIdentity.
+static void SummitLiveApplyRefusal351D(int phase,int reason,int extra)
+{
+    static std::mutex m;
+    static int lastPhase=-1,lastReason=-1;
+    static DWORD lastAt=0;
+    const DWORD now=GetTickCount();
+    std::lock_guard<std::mutex> lock(m);
+    if(phase==lastPhase && reason==lastReason &&
+       static_cast<DWORD>(now-lastAt)<10000u) return;
+    lastPhase=phase;lastReason=reason;lastAt=now;
+    summit::companion::diagnostic::Trace("CLIENT","trade-live-record-refused",
+        0,phase,reason,extra);
+}
+
+int ApplyCommittedCompanionTradePlayerInventory(const unsigned char* image, int bytes)
+{
+    namespace trade = gameplay::companions::v2;
+    if(!image || bytes <= 0 || bytes > static_cast<int>(sizeof(TRANS_RECORD_DATA)) ||
+       !lpCurPlayer || !lpCurPlayer->smCharInfo.szName[0] || MouseItem.Flag ||
+       cTrade.OpenFlag || cWareHouse.OpenFlag) {
+        const int flags=(MouseItem.Flag?1:0)|(cTrade.OpenFlag?2:0)|
+                        (cWareHouse.OpenFlag?4:0);
+        SummitLiveApplyRefusal351D(1,flags,bytes);
+        return FALSE;
+    }
+
+    const trade::BufferedTradeEnvelopeLayout layout(
+        offsetof(TRANS_RECORD_DATA,size),offsetof(TRANS_RECORD_DATA,ItemCount),
+        offsetof(TRANS_RECORD_DATA,ItemSubStart),offsetof(TRANS_RECORD_DATA,DataSize),
+        offsetof(TRANS_RECORD_DATA,smCharInfo)+offsetof(smCHAR_INFO,szName),
+        sizeof(((smCHAR_INFO*)0)->szName),offsetof(TRANS_RECORD_DATA,Data),
+        sizeof(TRANS_RECORD_DATA));
+    auto decodeIdentity=[](const std::uint8_t* encoded,std::size_t n,
+                           trade::CompanionTradeDecodedItem& identity) {
+        sRECORD_ITEM r{};
+        if(trade::CompanionTradeBoundedItemCodec::Decode(encoded,n,
+            reinterpret_cast<std::uint8_t*>(&r),sizeof(r))!=
+               trade::TradeItemDecodeStatus::Ok) return false;
+        identity.code=static_cast<std::uint32_t>(r.sItemInfo.CODE);
+        identity.key=static_cast<std::uint32_t>(r.sItemInfo.ItemHeader.Head);
+        identity.checksum=static_cast<std::uint32_t>(r.sItemInfo.ItemHeader.dwChkSum);
+        identity.position=r.ItemPosition;
+        identity.x=r.x; identity.y=r.y;
+        return true;
+    };
+    trade::CompanionTradeInventorySnapshot snapshot;
+    const auto envelope=trade::BufferedTradePayloadPolicy::DecodeBounded(image,
+        static_cast<std::size_t>(bytes),layout,
+        lpCurPlayer->smCharInfo.szName,RECORD_ITEM_MAX,decodeIdentity,snapshot);
+    if(envelope!=trade::BufferedTradeCaptureCode::CandidateReadOnly) {
+        SummitLiveApplyRefusal351D(2,static_cast<int>(envelope),bytes);
+        return FALSE;
+    }
+    if(!snapshot.TradeEligible()) {
+        const int flags=(snapshot.hasMissingInstanceIdentity?1:0)|
+                        (snapshot.hasDuplicateInstanceIdentity?2:0)|
+                        (snapshot.hasCursorItem?4:0)|
+                        (snapshot.hasUnknownPosition?8:0)|
+                        (snapshot.ambiguousSegments?16:0);
+        SummitLiveApplyRefusal351D(3,flags,static_cast<int>(snapshot.records.size()));
+        return FALSE;
+    }
+
+    trade::TradeClientStagedBags<sITEM> bags;
+    const auto decodeLegacy=[&](const std::uint8_t* encoded,std::size_t n,
+        sITEM& item,std::size_t& slot,trade::CompanionTradeDecodedItem& identity) {
+        sRECORD_ITEM r{};
+        if(!decodeIdentity(encoded,n,identity) ||
+           trade::CompanionTradeBoundedItemCodec::Decode(encoded,n,
+             reinterpret_cast<std::uint8_t*>(&r),sizeof(r))!=
+                  trade::TradeItemDecodeStatus::Ok ||
+           (r.ItemPosition==0 &&
+            (r.ItemCount<0 || r.ItemCount>=INVENTORY_MAXITEM))) return false;
+        // SUMMIT353: only backpack records own their saved array index.
+        // The 351F stage allocates a free cell for out-of-range equipment.
+        slot=(r.ItemCount<0 || r.ItemCount>=INVENTORY_MAXITEM) ?
+            static_cast<std::size_t>(INVENTORY_MAXITEM) :
+            static_cast<std::size_t>(r.ItemCount);
+        item.Flag=TRUE;
+        item.x=r.x;item.y=r.y;item.ItemPosition=r.ItemPosition;
+        std::memcpy(&item.sItemInfo,&r.sItemInfo,sizeof(r.sItemInfo));
+        return true;
+    };
+    // SUMMIT351F: keep the installed legacy stage intact. Reconcile only
+    // equipment-vs-bag slot collisions in the committed LIVE after-image.
+    std::size_t equippedRelocations351F=0;
+    const auto staged=trade::PrepareCommittedLiveInventory351F(
+        snapshot, INVENTORY_MAXITEM, decodeLegacy, bags,
+        &equippedRelocations351F);
+    if(staged!=trade::TradeClientStageStatus::Ready) {
+        SummitLiveApplyRefusal351D(4,static_cast<int>(staged),
+                                   static_cast<int>(snapshot.records.size()));
+        return FALSE;
+    }
+    if(MouseItem.Flag || cTrade.OpenFlag || cWareHouse.OpenFlag) {
+        const int flags=(MouseItem.Flag?1:0)|(cTrade.OpenFlag?2:0)|
+                        (cWareHouse.OpenFlag?4:0);
+        SummitLiveApplyRefusal351D(5,flags,bytes);
+        return FALSE;
+    }
+    if(equippedRelocations351F)
+        summit::companion::diagnostic::Trace("CLIENT",
+            "trade-live-equipped-slot-rebased",0,
+            static_cast<int>(equippedRelocations351F),
+            static_cast<int>(snapshot.records.size()),0);
+    // Both complete arrays have been staged before touching the live client.
+    // A caller must also ensure no concurrent inventory renderer/mutator runs.
+    std::memcpy(cInvenTory.InvenItem,bags.primary.data(),
+                sizeof(sITEM)*INVENTORY_MAXITEM);
+    std::memcpy(cInvenTory.InvenItemTemp,bags.secondary.data(),
+                sizeof(sITEM)*INVENTORY_MAXITEM);
+    cInvenTory.LoadItemInfo();
+    // SUMMIT353: LoadItemInfo is not presentation-only; it updates special
+    // item flags and may relocate display coordinates. Restore the exact
+    // journaled payload, but ONLY if every expected item survived with the
+    // same identity and equipment position. A missing item stays fail-closed
+    // and the caller never sends the live APPLY acknowledgement.
+    const auto preserved353=trade::PreserveCommittedPayloadAfterLoad353(
+        bags.primary,bags.primaryUsed,cInvenTory.InvenItem,
+        bags.secondary,bags.secondaryUsed,cInvenTory.InvenItemTemp,
+        INVENTORY_MAXITEM);
+    if(preserved353!=trade::TradeLivePayloadPreserve353::Preserved) {
+        SummitLiveApplyRefusal351D(6,static_cast<int>(preserved353),
+                                   static_cast<int>(snapshot.records.size()));
+        return FALSE;
+    }
+    // SUMMIT350U: the journal-authorised live inventory replacement changes
+    // GetInvenItemCode(). The legacy client integrity baseline must advance
+    // together with the successfully applied inventory (as in P2P trading).
+    // Do not reset on validation/staging failure: those paths return above.
+    ResetInvenItemCode();
+    return TRUE;
+}
+
 int rsRECORD_DBASE::SendRecordDataToServer(smWINSOCK *lpsmSock)
 {
 	int cnt;
@@ -2130,12 +2282,13 @@ int rsRECORD_DBASE::SendRecordDataToServer(smWINSOCK *lpsmSock)
 
 	cnt = 0;
 	TotalLen = 0;
-	PartTotal = lpTransRecord->size / TRANS_RECORD_LEN;
-	if ((lpTransRecord->size%TRANS_RECORD_LEN) != 0)
-	{
-		if (lpTransRecord->size > TRANS_RECORD_LEN)
-			PartTotal++;
-	}
+	// Every accepted save must declare at least one fragment. The legacy
+	// calculation yielded Total=0 for a short single-fragment save, which
+	// left the server trade lease in an incomplete receive state (-38).
+	if(!lpsmSock || lpTransRecord->size <= 0 ||
+	   lpTransRecord->size > static_cast<int>(sizeof(TRANS_RECORD_DATA)))
+		return FALSE;
+	PartTotal = 1 + (lpTransRecord->size - 1) / TRANS_RECORD_LEN;
 
 	while (1)
 	{
@@ -2151,7 +2304,10 @@ int rsRECORD_DBASE::SendRecordDataToServer(smWINSOCK *lpsmSock)
 
 		memcpy(TransRecord.szData, &lpData[TotalLen], len);
 
-		SummitRecordSocketSend(lpsmSock, (char *)&TransRecord, TransRecord.size);
+		// A transport failure must NOT be reported to the UI as a saved record.
+		// A partial multi-fragment transfer cannot authorize a trade commit.
+		if(!SummitRecordSocketSend(lpsmSock, (char *)&TransRecord, TransRecord.size))
+			return FALSE;
 		cnt++;
 
 		TotalLen += len;

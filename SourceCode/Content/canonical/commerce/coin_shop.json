@@ -5,62 +5,12 @@
   "shops": {
     "coin": [
       {
-        "code": "SK181",
-        "section": 2,
-        "price": 1000
-      },
-      {
-        "code": "SK182",
-        "section": 2,
-        "price": 1000
-      },
-      {
-        "code": "SK183",
-        "section": 2,
-        "price": 1000
-      },
-      {
-        "code": "SK184",
-        "section": 2,
-        "price": 1000
-      },
-      {
-        "code": "SK185",
-        "section": 2,
-        "price": 1000
-      },
-      {
-        "code": "SK186",
-        "section": 2,
-        "price": 1000
-      },
-      {
-        "code": "SK187",
-        "section": 2,
-        "price": 1000
-      },
-      {
         "code": "SK101",
         "section": 1,
         "price": 1000
       },
       {
         "code": "SK102",
-        "section": 1,
-        "price": 1000
-      },
-      {
-        "code": "SK103",
-        "section": 1,
-        "price": 1000
-      },
-      {
-        "code": "SK106",
-        "section": 1,
-        "price": 1000
-      },
-      {
-        "code": "SK117",
         "section": 1,
         "price": 1000
       },
@@ -76,11 +26,6 @@
       },
       {
         "code": "SK109",
-        "section": 1,
-        "price": 1000
-      },
-      {
-        "code": "SK110",
         "section": 1,
         "price": 1000
       },
@@ -105,16 +50,6 @@
         "price": 1000
       },
       {
-        "code": "SK115",
-        "section": 1,
-        "price": 1000
-      },
-      {
-        "code": "SK116",
-        "section": 1,
-        "price": 1000
-      },
-      {
         "code": "SK242",
         "section": 1,
         "price": 1000
@@ -135,26 +70,6 @@
         "price": 1000
       },
       {
-        "code": "SK246",
-        "section": 1,
-        "price": 1000
-      },
-      {
-        "code": "SK247",
-        "section": 1,
-        "price": 1000
-      },
-      {
-        "code": "SK248",
-        "section": 1,
-        "price": 1000
-      },
-      {
-        "code": "SK249",
-        "section": 1,
-        "price": 1000
-      },
-      {
         "code": "SK201",
         "section": 1,
         "price": 1000
@@ -165,42 +80,7 @@
         "price": 1000
       },
       {
-        "code": "SK203",
-        "section": 1,
-        "price": 1000
-      },
-      {
-        "code": "SK204",
-        "section": 1,
-        "price": 1000
-      },
-      {
-        "code": "SK205",
-        "section": 1,
-        "price": 1000
-      },
-      {
         "code": "SK265",
-        "section": 1,
-        "price": 1000
-      },
-      {
-        "code": "SK266",
-        "section": 1,
-        "price": 1000
-      },
-      {
-        "code": "SK267",
-        "section": 1,
-        "price": 1000
-      },
-      {
-        "code": "SK268",
-        "section": 1,
-        "price": 1000
-      },
-      {
-        "code": "SK269",
         "section": 1,
         "price": 1000
       },
@@ -240,16 +120,6 @@
         "price": 1000
       },
       {
-        "code": "SK175",
-        "section": 1,
-        "price": 1000
-      },
-      {
-        "code": "SK176",
-        "section": 1,
-        "price": 1000
-      },
-      {
         "code": "SK253",
         "section": 1,
         "price": 1000
@@ -270,27 +140,12 @@
         "price": 1000
       },
       {
-        "code": "SK259",
-        "section": 1,
-        "price": 1000
-      },
-      {
         "code": "SK231",
         "section": 1,
         "price": 1000
       },
       {
         "code": "SK232",
-        "section": 1,
-        "price": 1000
-      },
-      {
-        "code": "SK233",
-        "section": 1,
-        "price": 1000
-      },
-      {
-        "code": "SK234",
         "section": 1,
         "price": 1000
       },

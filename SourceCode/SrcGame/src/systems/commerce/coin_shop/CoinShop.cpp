@@ -312,7 +312,7 @@ void cCOINSHOP::Draw()
 				Item->psItem->x = Item->psItem->SetX = Item->x + BaseX + (Item->w / 2 - Item->psItem->w / 2);
 				Item->psItem->y = Item->psItem->SetY = Item->y + BaseY + (Item->h / 2 - Item->psItem->h / 2);
 
-				DrawSprite(Item->psItem->x, Item->psItem->y, Item->psItem->lpItem, 0, 0, Item->psItem->w, Item->psItem->h);
+				DrawSpriteFullTexture(Item->psItem->x, Item->psItem->y, Item->psItem->lpItem, Item->psItem->w, Item->psItem->h);
 
 				if (isMousePos(Item->psItem->x, Item->psItem->y, Item->psItem->w, Item->psItem->h)) {
 					cItem.ShowItemInfo(Item->psItem, 1);

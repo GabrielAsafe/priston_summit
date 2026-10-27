@@ -13652,6 +13652,27 @@
       "linked_resource_id": null
     },
     {
+      "content_id": "monster.117_inferno",
+      "kind": "monster_definition",
+      "name_key": "monster.117_inferno.name",
+      "chat_keys": [],
+      "linked_resource_id": null
+    },
+    {
+      "content_id": "monster.117_rguard",
+      "kind": "monster_definition",
+      "name_key": "monster.117_rguard.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.117_rguard"
+    },
+    {
+      "content_id": "monster.118_dmystery",
+      "kind": "monster_definition",
+      "name_key": "monster.118_dmystery.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.118_dmystery"
+    },
+    {
       "content_id": "monster.118_tarantulika",
       "kind": "monster_definition",
       "name_key": "monster.118_tarantulika.name",
@@ -13671,6 +13692,13 @@
       "name_key": "monster.119_gurkob.name",
       "chat_keys": [],
       "linked_resource_id": "text.119_gurkob"
+    },
+    {
+      "content_id": "monster.119_ignis",
+      "kind": "monster_definition",
+      "name_key": "monster.119_ignis.name",
+      "chat_keys": [],
+      "linked_resource_id": null
     },
     {
       "content_id": "monster.119_serpente_de_gelo",
@@ -13701,6 +13729,13 @@
       "linked_resource_id": "text.120_koon"
     },
     {
+      "content_id": "monster.120_najan",
+      "kind": "monster_definition",
+      "name_key": "monster.120_najan.name",
+      "chat_keys": [],
+      "linked_resource_id": null
+    },
+    {
       "content_id": "monster.120_nihil",
       "kind": "monster_definition",
       "name_key": "monster.120_nihil.name",
@@ -13711,6 +13746,13 @@
       "content_id": "monster.121_chalybs",
       "kind": "monster_definition",
       "name_key": "monster.121_chalybs.name",
+      "chat_keys": [],
+      "linked_resource_id": null
+    },
+    {
+      "content_id": "monster.121_crios",
+      "kind": "monster_definition",
+      "name_key": "monster.121_crios.name",
       "chat_keys": [],
       "linked_resource_id": null
     },
@@ -13734,6 +13776,13 @@
       "name_key": "monster.123_arhdyra.name",
       "chat_keys": [],
       "linked_resource_id": "text.123_arhdyra"
+    },
+    {
+      "content_id": "monster.123_wlord",
+      "kind": "monster_definition",
+      "name_key": "monster.123_wlord.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.123_wlord"
     },
     {
       "content_id": "monster.124_sathla",

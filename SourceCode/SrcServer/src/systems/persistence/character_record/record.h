@@ -337,6 +337,14 @@ int rsCheckAccountChar(const char *szID, char *szName);
 // complete legacy records and keep account ownership checks server-side.
 int rsGetAccountCharacterNames(const char *szID, char szNames[][32], int maxNames);
 int rsLoadAccountCharacterRecord(const char *szID, const char *szName, TRANS_RECORD_DATA *lpRecordData);
+// Server-owned offline DAT mutation for companion gear slots 3-10,14-16.
+// recordIndex=-1 removes the item from a slot. Returns FALSE unless committed.
+int rsSetOfflineCompanionEquipmentSlot(const char *account, const char *name, int recordIndex, int targetSlot);
+// Server-owned offline DAT mutation for companion gear slots 3-10,14-16.
+// recordIndex=-1 removes the item from a slot. Returns FALSE unless committed.
+int rsSetOfflineCompanionEquipmentSlot(const char *account, const char *name, int recordIndex, int targetSlot);
+// MOVE recordIndex to another bag, or ORGANIZE (recordIndex=-1) chosen bag.
+int rsMutateOfflineCompanionBag(const char *account, const char *name, int recordIndex, int bag, int cellX=-1, int cellY=-1);
 int rsAddOfflineCharacterExp(const char *szID, const char *szName, INT64 Exp, int *lpNewLevel, INT64 *lpNewExperience);
 int rsConsumeOfflineCharacterPotion(const char *szID, const char *szName, int PotionType, int *lpTier, int *lpRemainingCount, int *lpRestoreAmount, DWORD *lpItemCode, int *lpStatus);
 

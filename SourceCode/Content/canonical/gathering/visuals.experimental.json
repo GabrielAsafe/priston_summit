@@ -1,0 +1,22 @@
+{
+  "schema": "summit.gathering-visual-prototypes/v1",
+  "status": "ILLUSTRATIVE_ASSETS_ONLY_NO_ENGINE_BINDING",
+  "preview_assets": [
+    {
+      "resource_key": "iron_ore",
+      "path": "assets/iron_ore_preview.bmp",
+      "runtime_spawn": false,
+      "legacy_item_icon": false,
+      "legacy_3d_model": false
+    },
+    {
+      "resource_key": "herb_bundle",
+      "path": "assets/herb_bundle_preview.bmp",
+      "runtime_spawn": false,
+      "legacy_item_icon": false,
+      "legacy_3d_model": false
+    }
+  ],
+  "world_interaction": "NO_CLICKABLE_ENTITY_IMPLEMENTED",
+  "runtime_requires": "Implement explicit client asset loader + world proxy binding and secure server-side node id routing"
+}

@@ -171,6 +171,9 @@ Shared/gameplay/progression/v2/ProgressionGateways.cpp
 Shared/gameplay/progression/v2/ProgressionContent.cpp
 Shared/gameplay/reputation/v2/ReputationService.cpp
 Shared/gameplay/story/v2/StoryService.cpp
+Shared/gameplay/companions/v2/CompanionTradeDiskJournal.cpp
+Shared/gameplay/companions/v2/CompanionTradeExactPairBackend.cpp
+Shared/gameplay/companions/v2/CompanionTradeExactRecordStore.cpp
 SrcServer/src/platform/windows/application/Winmain.cpp
 SrcServer/src/systems/audio/voice/legacy_ygy/Packet.cpp
 SrcServer/src/systems/audio/voice/legacy_ygy/Process.cpp

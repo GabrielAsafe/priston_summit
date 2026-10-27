@@ -3,6 +3,7 @@
 // New orchestration belongs behind ICraftingService.
 
 #include "systems/commerce/v2/legacy/LegacyWalletAdapter.h"
+#include "content/v1/skin_reform/content/SkinReformRuntime.h"
 
 int rsRecvCraftItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server)
 {
@@ -1049,6 +1050,19 @@ int rsRecvSkinChangeItem(rsPLAYINFO* lpPlayInfo, sSKIN_CHANGE_SERVER* pSkinChang
 	DWORD	SkinClass;
 	int SkinSuccess = FALSE;
 
+	// Reject unavailable mappings BEFORE rsDeleteInvenItem consumes either item.
+	std::uint32_t destination = 0;
+	if (!pSkinChangeItem_Server ||
+	    !summit::content::skin_reform::ResolveSkinReform(
+	        pSkinChangeItem_Server->dwSkinChangeStoneItemCode, destination))
+	{
+		sSkinChange_Recv.Result = FALSE;
+		sSkinChange_Recv.size = 32;
+		sSkinChange_Recv.code = OpCode::OPCODE_SKIN_CHANGE_ITEM;
+		if (lpPlayInfo && lpPlayInfo->lpsmSock)
+			lpPlayInfo->lpsmSock->Send((char*)&sSkinChange_Recv, sSkinChange_Recv.size, TRUE);
+		return TRUE;
+	}
 
 	if(pSkinChangeItem_Server->DesSkinChangeItem.sItemInfo.CODE)
 	{

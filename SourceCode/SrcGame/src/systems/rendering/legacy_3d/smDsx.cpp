@@ -137,10 +137,11 @@ BOOL SetDisplayMode(HWND hWnd, DWORD Width, DWORD Height, DWORD BPP)
 		return FALSE;
 	}
 
-	if (d3dCaps.DevCaps & D3DDEVCAPS_PUREDEVICE)
-	{
-		dwBehaviourFlags |= D3DCREATE_PUREDEVICE;
-	}
+	// Do not request D3DCREATE_PUREDEVICE.  Legacy stage geometry and the
+	// 2D UI need GetRenderState() to preserve depth/blend settings.  D3D9
+	// pure devices do not support GetRenderState, so enabling this optional
+	// optimization silently drops HUD quads and corrupts state restoration.
+	// Keep HW/SW vertex-processing selection below unchanged.
 
 	if ((d3dCaps.DevCaps & D3DDEVCAPS_HWTRANSFORMANDLIGHT) && (d3dCaps.VertexProcessingCaps != 0))
 	{
@@ -338,53 +339,138 @@ void EndRender()
 }
 
 
+// All callers of DrawTexture() provide an image resource. A missing cooked or
+// streamed texture must not become an untextured white quad (potentially the
+// size of the screen). Solid-color rectangles use DrawSolidColorQuad() instead.
+static void DrawTexturePrimitive(LPDIRECT3DTEXTURE9 Texture, D3DTLVERTEX * Vertex,
+                                 int AlphaBlend, bool solidColor)
+{
+    if(!d3ddev || !Vertex || (!Texture && !solidColor))
+        return;
+
+    // This is a pre-transformed 2D primitive. Never depth-test or write to the
+    // world depth buffer: a transparent full-screen image at z=0 otherwise
+    // occludes subsequent HUD elements. Restore the caller's states because V2
+    // and legacy renderers both enter this function.
+    // Both HUD implementations share the D3D device with world rendering.
+    // Restore all render states modified here, not just depth: leaving alpha
+    // blending or culling active can affect the next world/effect pass.
+    DWORD oldZEnable = 0, oldZWrite = 0, oldCull = 0, oldAlphaTest = 0;
+    DWORD oldAlphaBlend = 0, oldSrcBlend = 0, oldDestBlend = 0;
+    DWORD oldMinFilter = 0, oldMagFilter = 0;
+    // DrawPrimitiveUP changes the vertex input state; clearing stages 0..7
+    // also changes global texture bindings. Preserve both for legacy world
+    // rendering and UI V2. GetTexture/GetVertexDeclaration AddRef their results.
+    DWORD oldFVF = 0;
+    LPDIRECT3DVERTEXDECLARATION9 oldVertexDeclaration = nullptr;
+    LPDIRECT3DBASETEXTURE9 oldTextures[8] = {};
+    auto releaseSavedReferences = [&]() {
+        for(int stage = 0; stage < 8; ++stage)
+        {
+            if(oldTextures[stage])
+            {
+                oldTextures[stage]->Release();
+                oldTextures[stage] = nullptr;
+            }
+        }
+        if(oldVertexDeclaration)
+        {
+            oldVertexDeclaration->Release();
+            oldVertexDeclaration = nullptr;
+        }
+    };
+    if(FAILED(d3ddev->GetRenderState(D3DRS_ZENABLE, &oldZEnable)) ||
+       FAILED(d3ddev->GetRenderState(D3DRS_ZWRITEENABLE, &oldZWrite)) ||
+       FAILED(d3ddev->GetRenderState(D3DRS_CULLMODE, &oldCull)) ||
+       FAILED(d3ddev->GetRenderState(D3DRS_ALPHATESTENABLE, &oldAlphaTest)) ||
+       FAILED(d3ddev->GetRenderState(D3DRS_ALPHABLENDENABLE, &oldAlphaBlend)) ||
+       FAILED(d3ddev->GetRenderState(D3DRS_SRCBLEND, &oldSrcBlend)) ||
+       FAILED(d3ddev->GetRenderState(D3DRS_DESTBLEND, &oldDestBlend)) ||
+       FAILED(d3ddev->GetSamplerState(0, D3DSAMP_MINFILTER, &oldMinFilter)) ||
+       FAILED(d3ddev->GetSamplerState(0, D3DSAMP_MAGFILTER, &oldMagFilter)))
+        return;
+
+    // GetFVF can fail when the caller uses a custom vertex declaration that
+    // cannot be represented by fixed-function FVF bits. Such a failure must
+    // not suppress every HUD/UI sprite: capture and restore the declaration.
+    // If both queries fail (or GetFVF fails without a usable declaration),
+    // do not draw because we cannot reliably restore the caller's input state.
+    const HRESULT fvfResult = d3ddev->GetFVF(&oldFVF);
+    if(FAILED(fvfResult) || !oldFVF)
+    {
+        if(FAILED(d3ddev->GetVertexDeclaration(&oldVertexDeclaration)))
+            return;
+        if(FAILED(fvfResult) && !oldVertexDeclaration)
+            return;
+        oldFVF = 0;
+    }
+    for(int stage = 0; stage < 8; ++stage)
+    {
+        if(FAILED(d3ddev->GetTexture(stage, &oldTextures[stage])))
+        {
+            releaseSavedReferences();
+            return;
+        }
+    }
+    d3ddev->SetRenderState(D3DRS_ZENABLE, FALSE);
+    d3ddev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
+    d3ddev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
+    d3ddev->SetRenderState(D3DRS_ALPHATESTENABLE, FALSE);
+
+    if(AlphaBlend)
+    {
+        d3ddev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
+        d3ddev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+        d3ddev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+    }
+    else
+        d3ddev->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
+
+    if(MagFilter)
+    {
+        d3ddev->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_LINEAR);
+        d3ddev->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR);
+    }
+    else
+    {
+        d3ddev->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_POINT);
+        d3ddev->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_POINT);
+    }
+
+    for(int cnt = 0; cnt < 8; cnt++)
+        d3ddev->SetTexture(cnt, 0);
+    d3ddev->SetTexture(0, Texture);
+    d3ddev->SetFVF(D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_SPECULAR | D3DFVF_TEX1);
+    d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, Vertex, sizeof(D3DTLVERTEX));
+
+    // Restore resources before render states: the caller can have a different
+    // texture-stage pipeline, FVF, or explicit vertex declaration bound.
+    for(int stage = 0; stage < 8; ++stage)
+        d3ddev->SetTexture(stage, oldTextures[stage]);
+    if(oldFVF)
+        d3ddev->SetFVF(oldFVF);
+    else
+        d3ddev->SetVertexDeclaration(oldVertexDeclaration);
+    releaseSavedReferences();
+    d3ddev->SetSamplerState(0, D3DSAMP_MINFILTER, oldMinFilter);
+    d3ddev->SetSamplerState(0, D3DSAMP_MAGFILTER, oldMagFilter);
+    d3ddev->SetRenderState(D3DRS_DESTBLEND, oldDestBlend);
+    d3ddev->SetRenderState(D3DRS_SRCBLEND, oldSrcBlend);
+    d3ddev->SetRenderState(D3DRS_ALPHABLENDENABLE, oldAlphaBlend);
+    d3ddev->SetRenderState(D3DRS_ALPHATESTENABLE, oldAlphaTest);
+    d3ddev->SetRenderState(D3DRS_CULLMODE, oldCull);
+    d3ddev->SetRenderState(D3DRS_ZWRITEENABLE, oldZWrite);
+    d3ddev->SetRenderState(D3DRS_ZENABLE, oldZEnable);
+}
+
 void DrawTexture(LPDIRECT3DTEXTURE9 Texture, D3DTLVERTEX * Vertex, int AlphaBlend)
 {
-	if(!d3ddev || !Vertex)
-		return;
-	d3ddev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
-	d3ddev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
-	d3ddev->SetRenderState(D3DRS_ALPHATESTENABLE, FALSE);
+    DrawTexturePrimitive(Texture, Vertex, AlphaBlend, false);
+}
 
-	if (AlphaBlend)
-	{
-		d3ddev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
-		d3ddev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
-		d3ddev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
-	}
-	else
-
-	{
-		d3ddev->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
-	}
-
-	if (MagFilter)
-	{
-		d3ddev->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_LINEAR);
-		d3ddev->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR);
-	}
-	else
-	{
-		d3ddev->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_POINT);
-		d3ddev->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_POINT);
-	}
-
-	for (int cnt = 0; cnt < 8; cnt++)
-		d3ddev->SetTexture(cnt, 0);
-	d3ddev->SetTexture(0, Texture);
-	d3ddev->SetFVF(D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_SPECULAR | D3DFVF_TEX1);
-     
-	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, Vertex, sizeof(D3DTLVERTEX));
-	if (!MagFilter)
-
-	{
-		d3ddev->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_LINEAR);
-		d3ddev->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR);
-	}
-
-
-	d3ddev->SetRenderState(D3DRS_ALPHATESTENABLE, TRUE);
-	d3ddev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CW);
+void DrawSolidColorQuad(D3DTLVERTEX * Vertex, int AlphaBlend)
+{
+    DrawTexturePrimitive(nullptr, Vertex, AlphaBlend, true);
 }
 
 void DrawTexture2D(LPDIRECT3DTEXTURE9 lpTexture, RECT destinationRect, RECT sourceRect, int alphaBlend)
@@ -398,26 +484,20 @@ void DrawTexture2D(LPDIRECT3DTEXTURE9 lpTexture, RECT destinationRect, RECT sour
 		&& sourceRect.right > sourceRect.left
 		&& sourceRect.bottom > sourceRect.top)
 	{
-		D3DSURFACE_DESC Desc;
-		if (lpTexture)
-			lpTexture->GetLevelDesc(0, &Desc);
+		// A missing/non-resident resource is not a valid image. Do not emit
+		// a white quad, nor calculate UVs from an uninitialized descriptor.
+		if (!lpTexture)
+			return;
+		D3DSURFACE_DESC Desc = {};
+		if (FAILED(lpTexture->GetLevelDesc(0, &Desc)) || !Desc.Width || !Desc.Height)
+			return;
 
 		float u1, v1, u2, v2;
 
-		if (lpTexture)
-		{
-			u1 = ((float)sourceRect.left + 0.5f) / Desc.Width;
-			v1 = ((float)sourceRect.top + 0.5f) / Desc.Height;
-			u2 = u1 + ((float)sourceRect.right - sourceRect.left) / Desc.Width;
-			v2 = v1 + ((float)sourceRect.bottom - sourceRect.top) / Desc.Height;
-		}
-		else
-		{
-			u1 = 0.0f;
-			v1 = 0.0f;
-			u2 = 1.0f;
-			v2 = 1.0f;
-		}
+		u1 = ((float)sourceRect.left + 0.5f) / Desc.Width;
+		v1 = ((float)sourceRect.top + 0.5f) / Desc.Height;
+		u2 = u1 + ((float)sourceRect.right - sourceRect.left) / Desc.Width;
+		v2 = v1 + ((float)sourceRect.bottom - sourceRect.top) / Desc.Height;
 
 		D3DTLVERTEX Vertices[4] =
 		{
@@ -427,7 +507,7 @@ void DrawTexture2D(LPDIRECT3DTEXTURE9 lpTexture, RECT destinationRect, RECT sour
 			{ (float)destinationRect.right,(float)destinationRect.bottom, 0.0f, 1.0f, D3DCOLOR_XRGB(255,255,255), 0, u2, v2 },
 		};
 
-		DrawTexture(lpTexture ? lpTexture : nullptr, Vertices, alphaBlend);
+		DrawTexture(lpTexture, Vertices, alphaBlend);
 	}
 }
 

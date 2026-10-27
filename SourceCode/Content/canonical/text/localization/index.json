@@ -4,12 +4,12 @@
     {
       "locale": "en",
       "path": "localization/en.json",
-      "entries": 3779
+      "entries": 3785
     },
     {
       "locale": "pt-BR",
       "path": "localization/pt-BR.json",
-      "entries": 3779
+      "entries": 3785
     },
     {
       "locale": "zh-TW",
@@ -19,7 +19,7 @@
     {
       "locale": "ko",
       "path": "localization/ko.json",
-      "entries": 286
+      "entries": 289
     }
   ],
   "bindings": "localization/bindings.json"

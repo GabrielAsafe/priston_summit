@@ -1,0 +1,3634 @@
+{
+  "quest_json_scanned": 6222,
+  "json_quest_candidates": [
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "progression_quests/0",
+      "id": "instrutora-amanda",
+      "name": "Quests da Instrutora Amanda"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "progression_quests/1",
+      "id": "level-20-1-desafio-classe",
+      "name": "Quest do Level 20 - 1° Desafio de Classe"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "progression_quests/2",
+      "id": "level-30-por-ela",
+      "name": "Quest do Level 30 - Por Ela"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "progression_quests/3",
+      "id": "level-40-2-desafio-classe-melee",
+      "name": "Quest do Level 40 - 2° Desafio de Classe"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "progression_quests/4",
+      "id": "level-40-2-desafio-classe-ranged",
+      "name": "Quest do Level 40 - 2° Desafio de Classe"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "progression_quests/5",
+      "id": "level-40-2-desafio-classe-casters",
+      "name": "Quest do Level 40 - 2° Desafio de Classe"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "progression_quests/6",
+      "id": "level-55-a-caverna",
+      "name": "Quest do Level 55 - A Caverna"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "progression_quests/7",
+      "id": "level-60-3-desafio-classe",
+      "name": "Quest do Level 60 - 3° Desafio de Classe"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "progression_quests/8",
+      "id": "level-70-amizade-de-michelle",
+      "name": "Quest do Level 70 - A Amizade de Michelle"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "progression_quests/9",
+      "id": "level-80-4-desafio-classe",
+      "name": "Quest do Level 80 - 4° Desafio de Classe"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "progression_quests/10",
+      "id": "level-80-quests",
+      "name": "Quests do Level 80"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "progression_quests/11",
+      "id": "level-85-lagrimas-de-calliar",
+      "name": "Quest do Level 85 - As Lágrimas de Calliar"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "progression_quests/12",
+      "id": "level-90-quests",
+      "name": "Quests do Level 90"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "progression_quests/13",
+      "id": "level-100-fantasma-do-furia",
+      "name": "Quest do Level 100 - Fantasma do Fúria"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "progression_quests/14",
+      "id": "level-103",
+      "name": "Quest do Level 103"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "progression_quests/15",
+      "id": "level-110",
+      "name": "Quest do Level 110"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "progression_quests/16",
+      "id": "level-118",
+      "name": "Quest do Level 118"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "progression_quests/17",
+      "id": "level-123",
+      "name": "Quest do Level 123"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "progression_quests/18",
+      "id": "level-130",
+      "name": "Quest do Level 130"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "progression_quests/19",
+      "id": "level-140",
+      "name": "Quest do Level 140"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "progression_quests/20",
+      "id": "level-155",
+      "name": "Quest do Level 155"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "progression_quests/21",
+      "id": "level-165",
+      "name": "Quest do Level 165"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "progression_quests/22",
+      "id": "level-172",
+      "name": "Quest do Level 172"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/0",
+      "id": "daily-8-15-morion",
+      "name": "Level 8 a 15 - Morions"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/1",
+      "id": "daily-16-30-morion",
+      "name": "Level 16 a 30 - Morions"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/2",
+      "id": "daily-8-15-tempskron",
+      "name": "Level 8 a 15 - Tempskrons"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/3",
+      "id": "daily-16-30-tempskron",
+      "name": "Level 16 a 30 - Tempskrons"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/4",
+      "id": "daily-31-49",
+      "name": "Level 31 a 49"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/5",
+      "id": "daily-50-54",
+      "name": "Level 50 a 54"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/6",
+      "id": "daily-55-60",
+      "name": "Level 55 a 60"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/7",
+      "id": "daily-61-69",
+      "name": "Level 61 a 69"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/8",
+      "id": "daily-70-79",
+      "name": "Level 70 a 79"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/9",
+      "id": "daily-80-85",
+      "name": "Level 80 a 85"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/10",
+      "id": "daily-86-90",
+      "name": "Level 86 a 90"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/11",
+      "id": "daily-91-95",
+      "name": "Level 91 a 95"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/12",
+      "id": "daily-96-99",
+      "name": "Level 96 a 99"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/13",
+      "id": "daily-100-102",
+      "name": "Level 100 a 102"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/14",
+      "id": "daily-103-104",
+      "name": "Level 103 a 104"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/15",
+      "id": "daily-105-107",
+      "name": "Level 105 a 107"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/16",
+      "id": "daily-108-109",
+      "name": "Level 108 a 109"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/17",
+      "id": "daily-110-117",
+      "name": "Level 110 a 117"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/18",
+      "id": "daily-118-120",
+      "name": "Level 118 a 120"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/19",
+      "id": "daily-121-122",
+      "name": "Level 121 a 122"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/20",
+      "id": "daily-123-126",
+      "name": "Level 123 a 126"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/21",
+      "id": "daily-127-129",
+      "name": "Level 127 a 129"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/22",
+      "id": "daily-130-134",
+      "name": "Level 130 a 134"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/23",
+      "id": "daily-135-139",
+      "name": "Level 135 a 139"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/24",
+      "id": "daily-140-144",
+      "name": "Level 140 a 144"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/25",
+      "id": "daily-145-149",
+      "name": "Level 145 a 149"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/26",
+      "id": "daily-150-154",
+      "name": "Level 150 a 154"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/27",
+      "id": "daily-155-159",
+      "name": "Level 155 a 159"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/28",
+      "id": "daily-160-164",
+      "name": "Level 160 a 164"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/29",
+      "id": "daily-165-169",
+      "name": "Level 165 a 169"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/30",
+      "id": "daily-170-171",
+      "name": "Level 170 a 171"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/31",
+      "id": "daily-172-174",
+      "name": "Level 172 a 174"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/32",
+      "id": "daily-175-177",
+      "name": "Level 175 a 177"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/33",
+      "id": "daily-178-179",
+      "name": "Level 178 a 179"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "daily_quests/34",
+      "id": "daily-180-plus",
+      "name": "Level 180+"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "aline_daily_quests/0",
+      "id": "aline-treinamento-basico",
+      "name": "Treinamento Básico"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "aline_daily_quests/1",
+      "id": "aline-a-prisao-antiga",
+      "name": "A Prisão Antiga"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "aline_daily_quests/2",
+      "id": "aline-perigos-do-lago",
+      "name": "Perigos do Lago"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "aline_daily_quests/3",
+      "id": "aline-maquinas-de-combate",
+      "name": "Máquinas de Combate"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "aline_daily_quests/4",
+      "id": "aline-engrenagens-do-destino",
+      "name": "Engrenagens do Destino"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "aline_daily_quests/5",
+      "id": "aline-entrando-numa-fria",
+      "name": "Entrando Numa Fria"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "aline_daily_quests/6",
+      "id": "aline-combate-na-ilha",
+      "name": "Combate na Ilha"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "aline_daily_quests/7",
+      "id": "aline-aberracões-mortais",
+      "name": "Aberrações Mortais"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "aline_daily_quests/8",
+      "id": "aline-guerreiros-do-passado",
+      "name": "Guerreiros do Passado"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "aline_daily_quests/9",
+      "id": "aline-guardiões-igolanos",
+      "name": "Guardiões Igolanos"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "aline_daily_quests/10",
+      "id": "aline-combate-congelante",
+      "name": "Combate Congelante"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "aline_daily_quests/11",
+      "id": "aline-maquinas-das-trevas",
+      "name": "Máquinas das Trevas"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "aline_daily_quests/12",
+      "id": "aline-protetores-da-arma",
+      "name": "Protetores da Arma"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "aline_daily_quests/13",
+      "id": "aline-o-mundo-sombrio",
+      "name": "O Mundo Sombrio"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "aline_daily_quests/14",
+      "id": "aline-descobrindo-as-profundezas",
+      "name": "Descobrindo as Profundezas"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "aline_daily_quests/15",
+      "id": "aline-confronto-sob-as-aguas",
+      "name": "Confronto sob as Águas"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "aline_daily_quests/16",
+      "id": "aline-ruinas-da-cidade-antiga",
+      "name": "Ruínas da Cidade Antiga"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "aline_daily_quests/17",
+      "id": "aline-covil-do-dragao-de-gelo",
+      "name": "Covil do Dragão de Gelo"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "aline_daily_quests/18",
+      "id": "aline-o-recomeco-da-guerra",
+      "name": "O Recomeço da Guerra"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "aline_daily_quests/19",
+      "id": "aline-salve-o-reino-do-mar",
+      "name": "Salve o Reino do Mar"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "aline_daily_quests/20",
+      "id": "aline-ameaca-flamejante",
+      "name": "Ameaça Flamejante"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "aline_daily_quests/21",
+      "id": "aline-a-essência-do-fogo",
+      "name": "A Essência do Fogo"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "aline_daily_quests/22",
+      "id": "aline-a-alma-de-fogo",
+      "name": "A Alma de Fogo"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "aline_daily_quests/23",
+      "id": "aline-em-busca-de-respostas",
+      "name": "Em Busca de Respostas"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "weekly_quests/0",
+      "id": "weekly-20-40-ameaca-na-floresta",
+      "name": "Ameaça na Floresta"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "weekly_quests/1",
+      "id": "weekly-20-40-zumbi-enfadonho",
+      "name": "Zumbi Enfadonho"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "weekly_quests/2",
+      "id": "weekly-41-49-protetor-antigo",
+      "name": "Protetor Antigo"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "weekly_quests/3",
+      "id": "weekly-50-64-fantasma-revivido",
+      "name": "Fantasma Revivido"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "weekly_quests/4",
+      "id": "weekly-65-80-assassino-nas-trevas",
+      "name": "Assassino Nas Trevas"
+    },
+    {
+      "file": "SourceCode/Content/canonical/gameplay_reference/quests/priston_tale_quests.pt-BR.json",
+      "json_path": "weekly_quests/5",
+      "id": "weekly-81-90-forca-vs-forca",
+      "name": "Força Vs Força"
+    },
+    {
+      "file": "SourceCode/Content/canonical/model_configs/models/char.npc.quest.ray.quest.ray.json",
+      "json_path": "",
+      "id": "model.char.npc.quest.ray.quest.ray",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/model_configs/models/char.npc.quest.ray.quest.ray.json",
+      "json_path": "consumers/0",
+      "id": "npc.mestre_real_ray",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/model_configs/models/char.npc.quest.ray.quest.ray.json",
+      "json_path": "consumers/1",
+      "id": "npc.ray",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/stage_spawns/spawns/GameServer/Field/quest_iv.ase.spm.json",
+      "json_path": "",
+      "id": "spawn.quest_iv",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/stage_start_points/points/GameServer/Field/quest_IV.ASE.spp.json",
+      "json_path": "",
+      "id": "start_points.quest_iv",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/NPC/BABELQUEST.NPC.json",
+      "json_path": "",
+      "id": "npc.babelquest",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/NPC/Phillai Quest Shop.NPC.json",
+      "json_path": "",
+      "id": "npc.phillai_quest_shop",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/NPC/Pillai Quest Shop.NPC.json",
+      "json_path": "",
+      "id": "npc.pillai_quest_shop",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/NPC/Quest De Tier.NPC.json",
+      "json_path": "",
+      "id": "npc.quest_de_tier",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/NPC/dailyquest.npc.json",
+      "json_path": "",
+      "id": "npc.dailyquest",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/NPC/name/BABELQUEST.zhoon.json",
+      "json_path": "",
+      "id": "text.babelquest",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/NPC/name/Phillai Quest Shop.Zhoon.json",
+      "json_path": "",
+      "id": "text.phillai_quest_shop",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/NPC/name/Pillai Quest Shop.Zhoon.json",
+      "json_path": "",
+      "id": "text.pillai_quest_shop",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/NPC/name/Quest De Tier.Zhoon.json",
+      "json_path": "",
+      "id": "text.quest_de_tier",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/NPC/name/dailyquest.zhoon.json",
+      "json_path": "",
+      "id": "text.dailyquest",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/NPC/name/quest.zhoon.json",
+      "json_path": "",
+      "id": "text.quest",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/NPC/name/questitem.Zhoon.json",
+      "json_path": "",
+      "id": "text.questitem",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/NPC/name/questitem2.Zhoon.json",
+      "json_path": "",
+      "id": "text.questitem2",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/NPC/quest.npc.json",
+      "json_path": "",
+      "id": "npc.quest",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/NPC/sellquest.NPC.json",
+      "json_path": "",
+      "id": "npc.sellquest",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/ZQuest_WA108.txt.json",
+      "json_path": "",
+      "id": "item.zquest_wa108",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/ZQuest_WA120.txt.json",
+      "json_path": "",
+      "id": "item.zquest_wa120",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/ZQuest_WC108.txt.json",
+      "json_path": "",
+      "id": "item.zquest_wc108",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/ZQuest_WC120.txt.json",
+      "json_path": "",
+      "id": "item.zquest_wc120",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/ZQuest_WH109.txt.json",
+      "json_path": "",
+      "id": "item.zquest_wh109",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/ZQuest_WH121.txt.json",
+      "json_path": "",
+      "id": "item.zquest_wh121",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/ZQuest_WM109.txt.json",
+      "json_path": "",
+      "id": "item.zquest_wm109",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/ZQuest_WM121.txt.json",
+      "json_path": "",
+      "id": "item.zquest_wm121",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/ZQuest_WP109.txt.json",
+      "json_path": "",
+      "id": "item.zquest_wp109",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/ZQuest_WP121.txt.json",
+      "json_path": "",
+      "id": "item.zquest_wp121",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/ZQuest_WS110.txt.json",
+      "json_path": "",
+      "id": "item.zquest_ws110",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/ZQuest_WS122.txt.json",
+      "json_path": "",
+      "id": "item.zquest_ws122",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/ZQuest_WS210.txt.json",
+      "json_path": "",
+      "id": "item.zquest_ws210",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/ZQuest_WS223.txt.json",
+      "json_path": "",
+      "id": "item.zquest_ws223",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/ZQuest_WT109.txt.json",
+      "json_path": "",
+      "id": "item.zquest_wt109",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/ZQuest_WT121.txt.json",
+      "json_path": "",
+      "id": "item.zquest_wt121",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/name/ZQuest_WA108.zhoon.json",
+      "json_path": "",
+      "id": "text.zquest_wa108",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/name/ZQuest_WA120.zhoon.json",
+      "json_path": "",
+      "id": "text.zquest_wa120",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/name/ZQuest_WC108.zhoon.json",
+      "json_path": "",
+      "id": "text.zquest_wc108",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/name/ZQuest_WC120.zhoon.json",
+      "json_path": "",
+      "id": "text.zquest_wc120",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/name/ZQuest_WH109.zhoon.json",
+      "json_path": "",
+      "id": "text.zquest_wh109",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/name/ZQuest_WH121.zhoon.json",
+      "json_path": "",
+      "id": "text.zquest_wh121",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/name/ZQuest_WM109.zhoon.json",
+      "json_path": "",
+      "id": "text.zquest_wm109",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/name/ZQuest_WM121.zhoon.json",
+      "json_path": "",
+      "id": "text.zquest_wm121",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/name/ZQuest_WP109.zhoon.json",
+      "json_path": "",
+      "id": "text.zquest_wp109",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/name/ZQuest_WP121.zhoon.json",
+      "json_path": "",
+      "id": "text.zquest_wp121",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/name/ZQuest_WS110.zhoon.json",
+      "json_path": "",
+      "id": "text.zquest_ws110",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/name/ZQuest_WS122.zhoon.json",
+      "json_path": "",
+      "id": "text.zquest_ws122",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/name/ZQuest_WS210.zhoon.json",
+      "json_path": "",
+      "id": "text.zquest_ws210",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/name/ZQuest_WS223.zhoon.json",
+      "json_path": "",
+      "id": "text.zquest_ws223",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/name/ZQuest_WT109.zhoon.json",
+      "json_path": "",
+      "id": "text.zquest_wt109",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/Servidor/GameServer/OpenItem/name/ZQuest_WT121.zhoon.json",
+      "json_path": "",
+      "id": "text.zquest_wt121",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/100LVQuest_1Start.sin.json",
+      "json_path": "",
+      "id": "text.100lvquest_1start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/100LVQuest_2Pass.sin.json",
+      "json_path": "",
+      "id": "text.100lvquest_2pass",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/100LVQuest_2Start.sin.json",
+      "json_path": "",
+      "id": "text.100lvquest_2start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/100LVQuest_3Pass.sin.json",
+      "json_path": "",
+      "id": "text.100lvquest_3pass",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/100LVQuest_3Start.sin.json",
+      "json_path": "",
+      "id": "text.100lvquest_3start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/100LVQuest_4Pass.sin.json",
+      "json_path": "",
+      "id": "text.100lvquest_4pass",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/100LVQuest_4Start.sin.json",
+      "json_path": "",
+      "id": "text.100lvquest_4start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/100LVQuest_5Pass.sin.json",
+      "json_path": "",
+      "id": "text.100lvquest_5pass",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/100LVQuest_5Start.sin.json",
+      "json_path": "",
+      "id": "text.100lvquest_5start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/100LVQuest_6Pass.sin.json",
+      "json_path": "",
+      "id": "text.100lvquest_6pass",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/100LVQuest_6Start.sin.json",
+      "json_path": "",
+      "id": "text.100lvquest_6start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/100LVQuest_7End traduzido.sin.json",
+      "json_path": "",
+      "id": "text.100lvquest_7end_traduzido",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/100LVQuest_7End.sin.json",
+      "json_path": "",
+      "id": "text.100lvquest_7end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/100LVQuest_Victory.sin.json",
+      "json_path": "",
+      "id": "text.100lvquest_victory",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/103LVQuest_1_MStart.sin.json",
+      "json_path": "",
+      "id": "text.103lvquest_1_mstart",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/103LVQuest_1_TStart.sin.json",
+      "json_path": "",
+      "id": "text.103lvquest_1_tstart",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/103LVQuest_2End.sin.json",
+      "json_path": "",
+      "id": "text.103lvquest_2end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/103LVQuest_2Pass.sin.json",
+      "json_path": "",
+      "id": "text.103lvquest_2pass",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/103LVQuest_2Start.sin.json",
+      "json_path": "",
+      "id": "text.103lvquest_2start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/103LVQuest_3Start.sin.json",
+      "json_path": "",
+      "id": "text.103lvquest_3start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/103LVQuest_4End.sin.json",
+      "json_path": "",
+      "id": "text.103lvquest_4end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/103LVQuest_4Pass.sin.json",
+      "json_path": "",
+      "id": "text.103lvquest_4pass",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/103LVQuest_4Start.sin.json",
+      "json_path": "",
+      "id": "text.103lvquest_4start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/103LVQuest_5Start.sin.json",
+      "json_path": "",
+      "id": "text.103lvquest_5start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/103LVQuest_6End.sin.json",
+      "json_path": "",
+      "id": "text.103lvquest_6end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/103LVQuest_6Pass.sin.json",
+      "json_path": "",
+      "id": "text.103lvquest_6pass",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/103LVQuest_6Start.sin.json",
+      "json_path": "",
+      "id": "text.103lvquest_6start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/106LVQuest_1_End.sin.json",
+      "json_path": "",
+      "id": "text.106lvquest_1_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/106LVQuest_1_Path.sin.json",
+      "json_path": "",
+      "id": "text.106lvquest_1_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/106LVQuest_1_Start.sin.json",
+      "json_path": "",
+      "id": "text.106lvquest_1_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/106LVQuest_2_End.sin.json",
+      "json_path": "",
+      "id": "text.106lvquest_2_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/106LVQuest_2_Path.sin.json",
+      "json_path": "",
+      "id": "text.106lvquest_2_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/106LVQuest_2_Start.sin.json",
+      "json_path": "",
+      "id": "text.106lvquest_2_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/106LVQuest_3_End.sin.json",
+      "json_path": "",
+      "id": "text.106lvquest_3_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/106LVQuest_3_Path.sin.json",
+      "json_path": "",
+      "id": "text.106lvquest_3_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/106LVQuest_3_Start.sin.json",
+      "json_path": "",
+      "id": "text.106lvquest_3_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/106LVQuest_4_End.sin.json",
+      "json_path": "",
+      "id": "text.106lvquest_4_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/106LVQuest_4_Path.sin.json",
+      "json_path": "",
+      "id": "text.106lvquest_4_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/106LVQuest_4_Start.sin.json",
+      "json_path": "",
+      "id": "text.106lvquest_4_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/106LVQuest_5_End.sin.json",
+      "json_path": "",
+      "id": "text.106lvquest_5_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/106LVQuest_5_Path.sin.json",
+      "json_path": "",
+      "id": "text.106lvquest_5_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/106LVQuest_5_Start.sin.json",
+      "json_path": "",
+      "id": "text.106lvquest_5_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/106LVQuest_6_End.sin.json",
+      "json_path": "",
+      "id": "text.106lvquest_6_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/106LVQuest_6_Path.sin.json",
+      "json_path": "",
+      "id": "text.106lvquest_6_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/106LVQuest_6_Start.sin.json",
+      "json_path": "",
+      "id": "text.106lvquest_6_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/110LVQuest_1_End.sin.json",
+      "json_path": "",
+      "id": "text.110lvquest_1_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/110LVQuest_1_Path.sin.json",
+      "json_path": "",
+      "id": "text.110lvquest_1_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/110LVQuest_1_Start.sin.json",
+      "json_path": "",
+      "id": "text.110lvquest_1_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/110LVQuest_2_End.sin.json",
+      "json_path": "",
+      "id": "text.110lvquest_2_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/110LVQuest_2_Path.sin.json",
+      "json_path": "",
+      "id": "text.110lvquest_2_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/110LVQuest_2_Start.sin.json",
+      "json_path": "",
+      "id": "text.110lvquest_2_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/110LVQuest_3_End.sin.json",
+      "json_path": "",
+      "id": "text.110lvquest_3_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/110LVQuest_3_Path.sin.json",
+      "json_path": "",
+      "id": "text.110lvquest_3_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/110LVQuest_3_Start.sin.json",
+      "json_path": "",
+      "id": "text.110lvquest_3_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/110LVQuest_4_End.sin.json",
+      "json_path": "",
+      "id": "text.110lvquest_4_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/110LVQuest_4_Path.sin.json",
+      "json_path": "",
+      "id": "text.110lvquest_4_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/110LVQuest_4_Start.sin.json",
+      "json_path": "",
+      "id": "text.110lvquest_4_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/110LVQuest_5_End.sin.json",
+      "json_path": "",
+      "id": "text.110lvquest_5_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/110LVQuest_5_Path.sin.json",
+      "json_path": "",
+      "id": "text.110lvquest_5_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/110LVQuest_5_Start.sin.json",
+      "json_path": "",
+      "id": "text.110lvquest_5_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/110LVQuest_6_End.sin.json",
+      "json_path": "",
+      "id": "text.110lvquest_6_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/110LVQuest_6_Path.sin.json",
+      "json_path": "",
+      "id": "text.110lvquest_6_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/110LVQuest_6_Start.sin.json",
+      "json_path": "",
+      "id": "text.110lvquest_6_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/110LVQuest_7_End.sin.json",
+      "json_path": "",
+      "id": "text.110lvquest_7_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/110LVQuest_7_Path.sin.json",
+      "json_path": "",
+      "id": "text.110lvquest_7_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/110LVQuest_7_Start.sin.json",
+      "json_path": "",
+      "id": "text.110lvquest_7_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/110LVQuest_8_End.sin.json",
+      "json_path": "",
+      "id": "text.110lvquest_8_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/110LVQuest_8_Path.sin.json",
+      "json_path": "",
+      "id": "text.110lvquest_8_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/110LVQuest_8_Start.sin.json",
+      "json_path": "",
+      "id": "text.110lvquest_8_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/114LVQuest_1_End.sin.json",
+      "json_path": "",
+      "id": "text.114lvquest_1_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/114LVQuest_1_Path.sin.json",
+      "json_path": "",
+      "id": "text.114lvquest_1_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/114LVQuest_1_Start.sin.json",
+      "json_path": "",
+      "id": "text.114lvquest_1_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/114LVQuest_2_End.sin.json",
+      "json_path": "",
+      "id": "text.114lvquest_2_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/114LVQuest_2_Path.sin.json",
+      "json_path": "",
+      "id": "text.114lvquest_2_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/114LVQuest_2_Start.sin.json",
+      "json_path": "",
+      "id": "text.114lvquest_2_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/114LVQuest_3_End.sin.json",
+      "json_path": "",
+      "id": "text.114lvquest_3_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/114LVQuest_3_Path.sin.json",
+      "json_path": "",
+      "id": "text.114lvquest_3_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/114LVQuest_3_Start.sin.json",
+      "json_path": "",
+      "id": "text.114lvquest_3_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/114LVQuest_4_End.sin.json",
+      "json_path": "",
+      "id": "text.114lvquest_4_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/114LVQuest_4_Path.sin.json",
+      "json_path": "",
+      "id": "text.114lvquest_4_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/114LVQuest_4_Start.sin.json",
+      "json_path": "",
+      "id": "text.114lvquest_4_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/114LVQuest_5_End.sin.json",
+      "json_path": "",
+      "id": "text.114lvquest_5_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/114LVQuest_5_Path.sin.json",
+      "json_path": "",
+      "id": "text.114lvquest_5_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/114LVQuest_5_Start.sin.json",
+      "json_path": "",
+      "id": "text.114lvquest_5_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/114LVQuest_6_End.sin.json",
+      "json_path": "",
+      "id": "text.114lvquest_6_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/114LVQuest_6_Path.sin.json",
+      "json_path": "",
+      "id": "text.114lvquest_6_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/114LVQuest_6_Start.sin.json",
+      "json_path": "",
+      "id": "text.114lvquest_6_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/114LVQuest_7_End.sin.json",
+      "json_path": "",
+      "id": "text.114lvquest_7_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/114LVQuest_7_Path.sin.json",
+      "json_path": "",
+      "id": "text.114lvquest_7_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/114LVQuest_7_Start.sin.json",
+      "json_path": "",
+      "id": "text.114lvquest_7_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/130LVQuest_1_End.sin.json",
+      "json_path": "",
+      "id": "text.130lvquest_1_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/130LVQuest_1_Path.sin.json",
+      "json_path": "",
+      "id": "text.130lvquest_1_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/130LVQuest_1_Start.sin.json",
+      "json_path": "",
+      "id": "text.130lvquest_1_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/130LVQuest_2_End.sin.json",
+      "json_path": "",
+      "id": "text.130lvquest_2_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/130LVQuest_2_Path.sin.json",
+      "json_path": "",
+      "id": "text.130lvquest_2_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/130LVQuest_2_Start.sin.json",
+      "json_path": "",
+      "id": "text.130lvquest_2_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/130LVQuest_3_End.sin.json",
+      "json_path": "",
+      "id": "text.130lvquest_3_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/130LVQuest_3_Path.sin.json",
+      "json_path": "",
+      "id": "text.130lvquest_3_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/130LVQuest_3_Start.sin.json",
+      "json_path": "",
+      "id": "text.130lvquest_3_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/130LVQuest_4_End.sin.json",
+      "json_path": "",
+      "id": "text.130lvquest_4_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/130LVQuest_4_Path.sin.json",
+      "json_path": "",
+      "id": "text.130lvquest_4_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/130LVQuest_4_Start.sin.json",
+      "json_path": "",
+      "id": "text.130lvquest_4_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/130LVQuest_5_End.sin.json",
+      "json_path": "",
+      "id": "text.130lvquest_5_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/130LVQuest_5_Path.sin.json",
+      "json_path": "",
+      "id": "text.130lvquest_5_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/130LVQuest_5_Start.sin.json",
+      "json_path": "",
+      "id": "text.130lvquest_5_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/130LVQuest_6_End.sin.json",
+      "json_path": "",
+      "id": "text.130lvquest_6_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/130LVQuest_6_Path.sin.json",
+      "json_path": "",
+      "id": "text.130lvquest_6_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/130LVQuest_6_Start.sin.json",
+      "json_path": "",
+      "id": "text.130lvquest_6_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/130LVQuest_7_End.sin.json",
+      "json_path": "",
+      "id": "text.130lvquest_7_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/130LVQuest_7_Path.sin.json",
+      "json_path": "",
+      "id": "text.130lvquest_7_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/130LVQuest_7_Start.sin.json",
+      "json_path": "",
+      "id": "text.130lvquest_7_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/140LVQuest_1_End.sin.json",
+      "json_path": "",
+      "id": "text.140lvquest_1_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/140LVQuest_1_Path.sin.json",
+      "json_path": "",
+      "id": "text.140lvquest_1_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/140LVQuest_1_Start.sin.json",
+      "json_path": "",
+      "id": "text.140lvquest_1_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/140LVQuest_2_End.sin.json",
+      "json_path": "",
+      "id": "text.140lvquest_2_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/140LVQuest_2_Path.sin.json",
+      "json_path": "",
+      "id": "text.140lvquest_2_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/140LVQuest_2_Start.sin.json",
+      "json_path": "",
+      "id": "text.140lvquest_2_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/140LVQuest_3_End.sin.json",
+      "json_path": "",
+      "id": "text.140lvquest_3_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/140LVQuest_3_Path.sin.json",
+      "json_path": "",
+      "id": "text.140lvquest_3_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/140LVQuest_3_Start.sin.json",
+      "json_path": "",
+      "id": "text.140lvquest_3_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/140LVQuest_4_End.sin.json",
+      "json_path": "",
+      "id": "text.140lvquest_4_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/140LVQuest_4_Path.sin.json",
+      "json_path": "",
+      "id": "text.140lvquest_4_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/140LVQuest_4_Start.sin.json",
+      "json_path": "",
+      "id": "text.140lvquest_4_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/140LVQuest_5_End.sin.json",
+      "json_path": "",
+      "id": "text.140lvquest_5_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/140LVQuest_5_Path.sin.json",
+      "json_path": "",
+      "id": "text.140lvquest_5_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/140LVQuest_5_Start.sin.json",
+      "json_path": "",
+      "id": "text.140lvquest_5_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/140LVQuest_6_End.sin.json",
+      "json_path": "",
+      "id": "text.140lvquest_6_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/140LVQuest_6_Path.sin.json",
+      "json_path": "",
+      "id": "text.140lvquest_6_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/140LVQuest_6_Start.sin.json",
+      "json_path": "",
+      "id": "text.140lvquest_6_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/140LVQuest_7_End.sin.json",
+      "json_path": "",
+      "id": "text.140lvquest_7_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/140LVQuest_7_Path.sin.json",
+      "json_path": "",
+      "id": "text.140lvquest_7_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/140LVQuest_7_Start.sin.json",
+      "json_path": "",
+      "id": "text.140lvquest_7_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/155LVQuest_1_End.sin.json",
+      "json_path": "",
+      "id": "text.155lvquest_1_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/155LVQuest_1_Path.sin.json",
+      "json_path": "",
+      "id": "text.155lvquest_1_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/155LVQuest_1_Start.sin.json",
+      "json_path": "",
+      "id": "text.155lvquest_1_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/155LVQuest_2_End.sin.json",
+      "json_path": "",
+      "id": "text.155lvquest_2_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/155LVQuest_2_Path.sin.json",
+      "json_path": "",
+      "id": "text.155lvquest_2_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/155LVQuest_2_Start.sin.json",
+      "json_path": "",
+      "id": "text.155lvquest_2_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/155LVQuest_3_End.sin.json",
+      "json_path": "",
+      "id": "text.155lvquest_3_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/155LVQuest_3_Path.sin.json",
+      "json_path": "",
+      "id": "text.155lvquest_3_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/155LVQuest_3_Start.sin.json",
+      "json_path": "",
+      "id": "text.155lvquest_3_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/155LVQuest_4_End.sin.json",
+      "json_path": "",
+      "id": "text.155lvquest_4_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/155LVQuest_4_Path.sin.json",
+      "json_path": "",
+      "id": "text.155lvquest_4_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/155LVQuest_4_Start.sin.json",
+      "json_path": "",
+      "id": "text.155lvquest_4_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/155LVQuest_5_End.sin.json",
+      "json_path": "",
+      "id": "text.155lvquest_5_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/155LVQuest_5_Path.sin.json",
+      "json_path": "",
+      "id": "text.155lvquest_5_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/155LVQuest_5_Start.sin.json",
+      "json_path": "",
+      "id": "text.155lvquest_5_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/155LVQuest_6_End.sin.json",
+      "json_path": "",
+      "id": "text.155lvquest_6_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/155LVQuest_6_Path.sin.json",
+      "json_path": "",
+      "id": "text.155lvquest_6_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/155LVQuest_6_Start.sin.json",
+      "json_path": "",
+      "id": "text.155lvquest_6_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/155LVQuest_7_End.sin.json",
+      "json_path": "",
+      "id": "text.155lvquest_7_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/155LVQuest_7_Path.sin.json",
+      "json_path": "",
+      "id": "text.155lvquest_7_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/155LVQuest_7_Start.sin.json",
+      "json_path": "",
+      "id": "text.155lvquest_7_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/165LVQuest_1_End.sin.json",
+      "json_path": "",
+      "id": "text.165lvquest_1_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/165LVQuest_1_Path.sin.json",
+      "json_path": "",
+      "id": "text.165lvquest_1_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/165LVQuest_1_Start.sin.json",
+      "json_path": "",
+      "id": "text.165lvquest_1_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/165LVQuest_2_End.sin.json",
+      "json_path": "",
+      "id": "text.165lvquest_2_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/165LVQuest_2_Path.sin.json",
+      "json_path": "",
+      "id": "text.165lvquest_2_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/165LVQuest_2_Start.sin.json",
+      "json_path": "",
+      "id": "text.165lvquest_2_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/165LVQuest_3_End.sin.json",
+      "json_path": "",
+      "id": "text.165lvquest_3_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/165LVQuest_3_Path.sin.json",
+      "json_path": "",
+      "id": "text.165lvquest_3_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/165LVQuest_3_Start.sin.json",
+      "json_path": "",
+      "id": "text.165lvquest_3_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/165LVQuest_4_End.sin.json",
+      "json_path": "",
+      "id": "text.165lvquest_4_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/165LVQuest_4_Path.sin.json",
+      "json_path": "",
+      "id": "text.165lvquest_4_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/165LVQuest_4_Start.sin.json",
+      "json_path": "",
+      "id": "text.165lvquest_4_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/165LVQuest_5_End.sin.json",
+      "json_path": "",
+      "id": "text.165lvquest_5_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/165LVQuest_5_Path.sin.json",
+      "json_path": "",
+      "id": "text.165lvquest_5_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/165LVQuest_5_Start.sin.json",
+      "json_path": "",
+      "id": "text.165lvquest_5_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/165LVQuest_6_End.sin.json",
+      "json_path": "",
+      "id": "text.165lvquest_6_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/165LVQuest_6_Path.sin.json",
+      "json_path": "",
+      "id": "text.165lvquest_6_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/165LVQuest_6_Start.sin.json",
+      "json_path": "",
+      "id": "text.165lvquest_6_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/165LVQuest_7_End.sin.json",
+      "json_path": "",
+      "id": "text.165lvquest_7_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/165LVQuest_7_Path.sin.json",
+      "json_path": "",
+      "id": "text.165lvquest_7_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/165LVQuest_7_Start.sin.json",
+      "json_path": "",
+      "id": "text.165lvquest_7_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/165LVQuest_8_End.sin.json",
+      "json_path": "",
+      "id": "text.165lvquest_8_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/165LVQuest_8_Path.sin.json",
+      "json_path": "",
+      "id": "text.165lvquest_8_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/165LVQuest_8_Start.sin.json",
+      "json_path": "",
+      "id": "text.165lvquest_8_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/172LVQuest_1_End.sin.json",
+      "json_path": "",
+      "id": "text.172lvquest_1_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/172LVQuest_1_Path.sin.json",
+      "json_path": "",
+      "id": "text.172lvquest_1_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/172LVQuest_1_Start.sin.json",
+      "json_path": "",
+      "id": "text.172lvquest_1_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/172LVQuest_2_End.sin.json",
+      "json_path": "",
+      "id": "text.172lvquest_2_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/172LVQuest_2_Path.sin.json",
+      "json_path": "",
+      "id": "text.172lvquest_2_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/172LVQuest_2_Start.sin.json",
+      "json_path": "",
+      "id": "text.172lvquest_2_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/172LVQuest_3_End.sin.json",
+      "json_path": "",
+      "id": "text.172lvquest_3_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/172LVQuest_3_Path.sin.json",
+      "json_path": "",
+      "id": "text.172lvquest_3_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/172LVQuest_3_Start.sin.json",
+      "json_path": "",
+      "id": "text.172lvquest_3_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/172LVQuest_4_End.sin.json",
+      "json_path": "",
+      "id": "text.172lvquest_4_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/172LVQuest_4_Path.sin.json",
+      "json_path": "",
+      "id": "text.172lvquest_4_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/172LVQuest_4_Start.sin.json",
+      "json_path": "",
+      "id": "text.172lvquest_4_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/172LVQuest_5_End.sin.json",
+      "json_path": "",
+      "id": "text.172lvquest_5_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/172LVQuest_5_Path.sin.json",
+      "json_path": "",
+      "id": "text.172lvquest_5_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/172LVQuest_5_Start.sin.json",
+      "json_path": "",
+      "id": "text.172lvquest_5_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/172LVQuest_6_End.sin.json",
+      "json_path": "",
+      "id": "text.172lvquest_6_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/172LVQuest_6_Path.sin.json",
+      "json_path": "",
+      "id": "text.172lvquest_6_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/172LVQuest_6_Start.sin.json",
+      "json_path": "",
+      "id": "text.172lvquest_6_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/Boss_Quest_1_End.sin.json",
+      "json_path": "",
+      "id": "text.boss_quest_1_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/Boss_Quest_1_Path.sin.json",
+      "json_path": "",
+      "id": "text.boss_quest_1_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/Boss_Quest_1_Start.sin.json",
+      "json_path": "",
+      "id": "text.boss_quest_1_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/Boss_Quest_2.msg.json",
+      "json_path": "",
+      "id": "text.boss_quest_2.path_ba752aaf12",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/Boss_Quest_2_End.sin.json",
+      "json_path": "",
+      "id": "text.boss_quest_2_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/Boss_Quest_2_Path.sin.json",
+      "json_path": "",
+      "id": "text.boss_quest_2_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/Boss_Quest_2_Start.sin.json",
+      "json_path": "",
+      "id": "text.boss_quest_2_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/Boss_Quest_3.msg.json",
+      "json_path": "",
+      "id": "text.boss_quest_3.path_80cfe6c1b5",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/Boss_Quest_3_End.sin.json",
+      "json_path": "",
+      "id": "text.boss_quest_3_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/Boss_Quest_3_Path.sin.json",
+      "json_path": "",
+      "id": "text.boss_quest_3_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/Boss_Quest_3_Start.sin.json",
+      "json_path": "",
+      "id": "text.boss_quest_3_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/Boss_Quest_4_End.sin.json",
+      "json_path": "",
+      "id": "text.boss_quest_4_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/Boss_Quest_4_Path.sin.json",
+      "json_path": "",
+      "id": "text.boss_quest_4_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/Boss_Quest_4_Start.sin.json",
+      "json_path": "",
+      "id": "text.boss_quest_4_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/Boss_Quest_5_End.sin.json",
+      "json_path": "",
+      "id": "text.boss_quest_5_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/Boss_Quest_5_Path.sin.json",
+      "json_path": "",
+      "id": "text.boss_quest_5_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/Boss_Quest_5_Start.sin.json",
+      "json_path": "",
+      "id": "text.boss_quest_5_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/Boss_Quest_6_End.sin.json",
+      "json_path": "",
+      "id": "text.boss_quest_6_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/Boss_Quest_6_Path.sin.json",
+      "json_path": "",
+      "id": "text.boss_quest_6_path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/Boss_Quest_6_Start.sin.json",
+      "json_path": "",
+      "id": "text.boss_quest_6_start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest30Path.sin.json",
+      "json_path": "",
+      "id": "text.levelquest30path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest30end.sin.json",
+      "json_path": "",
+      "id": "text.levelquest30end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest30start.sin.json",
+      "json_path": "",
+      "id": "text.levelquest30start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest55-2Path.sin.json",
+      "json_path": "",
+      "id": "text.levelquest55_2path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest55-2end.sin.json",
+      "json_path": "",
+      "id": "text.levelquest55_2end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest55-2start.sin.json",
+      "json_path": "",
+      "id": "text.levelquest55_2start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest55Path.sin.json",
+      "json_path": "",
+      "id": "text.levelquest55path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest55end.sin.json",
+      "json_path": "",
+      "id": "text.levelquest55end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest55start.sin.json",
+      "json_path": "",
+      "id": "text.levelquest55start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest70Path.sin.json",
+      "json_path": "",
+      "id": "text.levelquest70path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest70end.sin.json",
+      "json_path": "",
+      "id": "text.levelquest70end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest70start.sin.json",
+      "json_path": "",
+      "id": "text.levelquest70start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest80Path.sin.json",
+      "json_path": "",
+      "id": "text.levelquest80path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest80_2Path.sin.json",
+      "json_path": "",
+      "id": "text.levelquest80_2path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest80_2Path2.sin.json",
+      "json_path": "",
+      "id": "text.levelquest80_2path2",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest80_2end.sin.json",
+      "json_path": "",
+      "id": "text.levelquest80_2end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest80_2start.sin.json",
+      "json_path": "",
+      "id": "text.levelquest80_2start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest80_2start2.sin.json",
+      "json_path": "",
+      "id": "text.levelquest80_2start2",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest80end.sin.json",
+      "json_path": "",
+      "id": "text.levelquest80end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest80start.sin.json",
+      "json_path": "",
+      "id": "text.levelquest80start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest85Path.sin.json",
+      "json_path": "",
+      "id": "text.levelquest85path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest85Path2.sin.json",
+      "json_path": "",
+      "id": "text.levelquest85path2",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest85end.sin.json",
+      "json_path": "",
+      "id": "text.levelquest85end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest85start.sin.json",
+      "json_path": "",
+      "id": "text.levelquest85start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest90Path.sin.json",
+      "json_path": "",
+      "id": "text.levelquest90path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest90_2Path.sin.json",
+      "json_path": "",
+      "id": "text.levelquest90_2path",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest90_2Path2.sin.json",
+      "json_path": "",
+      "id": "text.levelquest90_2path2",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest90_2end.sin.json",
+      "json_path": "",
+      "id": "text.levelquest90_2end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest90_2start.sin.json",
+      "json_path": "",
+      "id": "text.levelquest90_2start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest90_2start2.sin.json",
+      "json_path": "",
+      "id": "text.levelquest90_2start2",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest90end.sin.json",
+      "json_path": "",
+      "id": "text.levelquest90end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/LevelQuest90start.sin.json",
+      "json_path": "",
+      "id": "text.levelquest90start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/NYQuest_End_1.sin.json",
+      "json_path": "",
+      "id": "text.nyquest_end_1",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/NYQuest_End_2.sin.json",
+      "json_path": "",
+      "id": "text.nyquest_end_2",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/NYQuest_End_3.sin.json",
+      "json_path": "",
+      "id": "text.nyquest_end_3",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/NYQuest_Pass_1.sin.json",
+      "json_path": "",
+      "id": "text.nyquest_pass_1",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/NYQuest_Pass_2.sin.json",
+      "json_path": "",
+      "id": "text.nyquest_pass_2",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/NYQuest_Pass_3.sin.json",
+      "json_path": "",
+      "id": "text.nyquest_pass_3",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/NYQuest_Start_1.sin.json",
+      "json_path": "",
+      "id": "text.nyquest_start_1",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/NYQuest_Start_2.sin.json",
+      "json_path": "",
+      "id": "text.nyquest_start_2",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/NYQuest_Start_3.sin.json",
+      "json_path": "",
+      "id": "text.nyquest_start_3",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/RepeatQuest_End_O.sin.json",
+      "json_path": "",
+      "id": "text.repeatquest_end_o",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/RepeatQuest_End_SJ.sin.json",
+      "json_path": "",
+      "id": "text.repeatquest_end_sj",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/RepeatQuest_Pass_J.sin.json",
+      "json_path": "",
+      "id": "text.repeatquest_pass_j",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/RepeatQuest_Pass_O.sin.json",
+      "json_path": "",
+      "id": "text.repeatquest_pass_o",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/RepeatQuest_Pass_S.sin.json",
+      "json_path": "",
+      "id": "text.repeatquest_pass_s",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/RepeatQuest_Start_J.sin.json",
+      "json_path": "",
+      "id": "text.repeatquest_start_j",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/RepeatQuest_Start_O.sin.json",
+      "json_path": "",
+      "id": "text.repeatquest_start_o",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/RepeatQuest_Start_S.sin.json",
+      "json_path": "",
+      "id": "text.repeatquest_start_s",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestFuryItem1.sin.json",
+      "json_path": "",
+      "id": "text.haquestfuryitem1",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestFuryItem10.sin.json",
+      "json_path": "",
+      "id": "text.haquestfuryitem10",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestFuryItem11.sin.json",
+      "json_path": "",
+      "id": "text.haquestfuryitem11",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestFuryItem2.sin.json",
+      "json_path": "",
+      "id": "text.haquestfuryitem2",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestFuryItem3.sin.json",
+      "json_path": "",
+      "id": "text.haquestfuryitem3",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestFuryItem4.sin.json",
+      "json_path": "",
+      "id": "text.haquestfuryitem4",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestFuryItem5.sin.json",
+      "json_path": "",
+      "id": "text.haquestfuryitem5",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestFuryItem6.sin.json",
+      "json_path": "",
+      "id": "text.haquestfuryitem6",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestFuryItem7.sin.json",
+      "json_path": "",
+      "id": "text.haquestfuryitem7",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestFuryItem8.sin.json",
+      "json_path": "",
+      "id": "text.haquestfuryitem8",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestFuryItem9.sin.json",
+      "json_path": "",
+      "id": "text.haquestfuryitem9",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestGoblin_Dend.sin.json",
+      "json_path": "",
+      "id": "text.haquestgoblin_dend",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestGoblin_Dpass_M.sin.json",
+      "json_path": "",
+      "id": "text.haquestgoblin_dpass_m.path_d963da8dc6",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestGoblin_Dpass_T.sin.json",
+      "json_path": "",
+      "id": "text.haquestgoblin_dpass_t",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestGoblin_Dstart_M.sin.json",
+      "json_path": "",
+      "id": "text.haquestgoblin_dstart_m.path_bdcee73b20",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestGoblin_Dstart_T.sin.json",
+      "json_path": "",
+      "id": "text.haquestgoblin_dstart_t",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestLevel_Over.sin.json",
+      "json_path": "",
+      "id": "text.haquestlevel_over",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestcandy_Cend.sin.json",
+      "json_path": "",
+      "id": "text.haquestcandy_cend",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestcandy_Cpass.sin.json",
+      "json_path": "",
+      "id": "text.haquestcandy_cpass",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestcandy_Cstart_M.sin.json",
+      "json_path": "",
+      "id": "text.haquestcandy_cstart_m.path_53df747966",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestcandy_Cstart_T.sin.json",
+      "json_path": "",
+      "id": "text.haquestcandy_cstart_t",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestcyclops_Fend.sin.json",
+      "json_path": "",
+      "id": "text.haquestcyclops_fend",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestcyclops_Fpass.sin.json",
+      "json_path": "",
+      "id": "text.haquestcyclops_fpass",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestcyclops_Fstart.sin.json",
+      "json_path": "",
+      "id": "text.haquestcyclops_fstart",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuesthammer_Gend.sin.json",
+      "json_path": "",
+      "id": "text.haquesthammer_gend",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuesthammer_Gpass.sin.json",
+      "json_path": "",
+      "id": "text.haquesthammer_gpass",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuesthammer_Gstart.sin.json",
+      "json_path": "",
+      "id": "text.haquesthammer_gstart",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestterrified_Bend.sin.json",
+      "json_path": "",
+      "id": "text.haquestterrified_bend",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestterrified_Bpass_M.sin.json",
+      "json_path": "",
+      "id": "text.haquestterrified_bpass_m.path_6ac3e7037a",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestterrified_Bpass_T.sin.json",
+      "json_path": "",
+      "id": "text.haquestterrified_bpass_t",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestterrified_Bstart_M.sin.json",
+      "json_path": "",
+      "id": "text.haquestterrified_bstart_m.path_211f94f48a",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestterrified_Bstart_T.sin.json",
+      "json_path": "",
+      "id": "text.haquestterrified_bstart_t",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuesttired_Aend.sin.json",
+      "json_path": "",
+      "id": "text.haquesttired_aend",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuesttired_Apass.sin.json",
+      "json_path": "",
+      "id": "text.haquesttired_apass",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuesttired_Apass1.sin.json",
+      "json_path": "",
+      "id": "text.haquesttired_apass1",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuesttired_Astart.sin.json",
+      "json_path": "",
+      "id": "text.haquesttired_astart",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestundead_Eend.sin.json",
+      "json_path": "",
+      "id": "text.haquestundead_eend",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestundead_Epass_M.sin.json",
+      "json_path": "",
+      "id": "text.haquestundead_epass_m.path_ff0c531709",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestundead_Epass_T.sin.json",
+      "json_path": "",
+      "id": "text.haquestundead_epass_t",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestundead_Estart_M.sin.json",
+      "json_path": "",
+      "id": "text.haquestundead_estart_m.path_5bd3e269cc",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/Quest/haQuestundead_Estart_T.sin.json",
+      "json_path": "",
+      "id": "text.haquestundead_estart_t",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/help/DailyQuests.sin.json",
+      "json_path": "",
+      "id": "text.dailyquests",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/help/DailyQuests_BraveryStone.sin.json",
+      "json_path": "",
+      "id": "text.dailyquests_braverystone",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/Sinimage/help/DailyQuests_Lizard.sin.json",
+      "json_path": "",
+      "id": "text.dailyquests_lizard",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/103LVQuest_1.msg.json",
+      "json_path": "",
+      "id": "text.103lvquest_1",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/103LVQuest_2.msg.json",
+      "json_path": "",
+      "id": "text.103lvquest_2",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/103LVQuest_3.msg.json",
+      "json_path": "",
+      "id": "text.103lvquest_3",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/103LVQuest_4.msg.json",
+      "json_path": "",
+      "id": "text.103lvquest_4",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/103LVQuest_5.msg.json",
+      "json_path": "",
+      "id": "text.103lvquest_5",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/103LVQuest_6.msg.json",
+      "json_path": "",
+      "id": "text.103lvquest_6",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/106LVQuest_1.msg.json",
+      "json_path": "",
+      "id": "text.106lvquest_1",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/106LVQuest_2.msg.json",
+      "json_path": "",
+      "id": "text.106lvquest_2",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/106LVQuest_3.msg.json",
+      "json_path": "",
+      "id": "text.106lvquest_3",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/106LVQuest_4.msg.json",
+      "json_path": "",
+      "id": "text.106lvquest_4",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/106LVQuest_5.msg.json",
+      "json_path": "",
+      "id": "text.106lvquest_5",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/106LVQuest_6.msg.json",
+      "json_path": "",
+      "id": "text.106lvquest_6",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/110LVQuest_1.msg.json",
+      "json_path": "",
+      "id": "text.110lvquest_1",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/110LVQuest_2.msg.json",
+      "json_path": "",
+      "id": "text.110lvquest_2",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/110LVQuest_3.msg.json",
+      "json_path": "",
+      "id": "text.110lvquest_3",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/110LVQuest_4.msg.json",
+      "json_path": "",
+      "id": "text.110lvquest_4",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/110LVQuest_5.msg.json",
+      "json_path": "",
+      "id": "text.110lvquest_5",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/110LVQuest_6.msg.json",
+      "json_path": "",
+      "id": "text.110lvquest_6",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/110LVQuest_7.msg.json",
+      "json_path": "",
+      "id": "text.110lvquest_7",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/110LVQuest_8.msg.json",
+      "json_path": "",
+      "id": "text.110lvquest_8",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/114LVQuest_1.msg.json",
+      "json_path": "",
+      "id": "text.114lvquest_1",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/114LVQuest_2.msg.json",
+      "json_path": "",
+      "id": "text.114lvquest_2",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/114LVQuest_3.msg.json",
+      "json_path": "",
+      "id": "text.114lvquest_3",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/114LVQuest_4.msg.json",
+      "json_path": "",
+      "id": "text.114lvquest_4",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/114LVQuest_5.msg.json",
+      "json_path": "",
+      "id": "text.114lvquest_5",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/114LVQuest_6.msg.json",
+      "json_path": "",
+      "id": "text.114lvquest_6",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/114LVQuest_7.msg.json",
+      "json_path": "",
+      "id": "text.114lvquest_7",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/130LVQuest_1.msg.json",
+      "json_path": "",
+      "id": "text.130lvquest_1",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/130LVQuest_2.msg.json",
+      "json_path": "",
+      "id": "text.130lvquest_2",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/130LVQuest_3.msg.json",
+      "json_path": "",
+      "id": "text.130lvquest_3",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/130LVQuest_4.msg.json",
+      "json_path": "",
+      "id": "text.130lvquest_4",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/130LVQuest_5.msg.json",
+      "json_path": "",
+      "id": "text.130lvquest_5",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/130LVQuest_6.msg.json",
+      "json_path": "",
+      "id": "text.130lvquest_6",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/130LVQuest_7.msg.json",
+      "json_path": "",
+      "id": "text.130lvquest_7",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/140LVQuest_1.msg.json",
+      "json_path": "",
+      "id": "text.140lvquest_1",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/140LVQuest_2.msg.json",
+      "json_path": "",
+      "id": "text.140lvquest_2",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/140LVQuest_3.msg.json",
+      "json_path": "",
+      "id": "text.140lvquest_3",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/140LVQuest_4.msg.json",
+      "json_path": "",
+      "id": "text.140lvquest_4",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/140LVQuest_5.msg.json",
+      "json_path": "",
+      "id": "text.140lvquest_5",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/140LVQuest_6.msg.json",
+      "json_path": "",
+      "id": "text.140lvquest_6",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/140LVQuest_7.msg.json",
+      "json_path": "",
+      "id": "text.140lvquest_7",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/155LVQuest_1.msg.json",
+      "json_path": "",
+      "id": "text.155lvquest_1",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/155LVQuest_2.msg.json",
+      "json_path": "",
+      "id": "text.155lvquest_2",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/155LVQuest_3.msg.json",
+      "json_path": "",
+      "id": "text.155lvquest_3",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/155LVQuest_4.msg.json",
+      "json_path": "",
+      "id": "text.155lvquest_4",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/155LVQuest_5.msg.json",
+      "json_path": "",
+      "id": "text.155lvquest_5",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/155LVQuest_6.msg.json",
+      "json_path": "",
+      "id": "text.155lvquest_6",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/155LVQuest_7.msg.json",
+      "json_path": "",
+      "id": "text.155lvquest_7",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/165LVQuest_1.msg.json",
+      "json_path": "",
+      "id": "text.165lvquest_1",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/165LVQuest_2.msg.json",
+      "json_path": "",
+      "id": "text.165lvquest_2",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/165LVQuest_3.msg.json",
+      "json_path": "",
+      "id": "text.165lvquest_3",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/165LVQuest_4.msg.json",
+      "json_path": "",
+      "id": "text.165lvquest_4",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/165LVQuest_5.msg.json",
+      "json_path": "",
+      "id": "text.165lvquest_5",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/165LVQuest_6.msg.json",
+      "json_path": "",
+      "id": "text.165lvquest_6",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/165LVQuest_7.msg.json",
+      "json_path": "",
+      "id": "text.165lvquest_7",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/165LVQuest_8.msg.json",
+      "json_path": "",
+      "id": "text.165lvquest_8",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/172LVQuest_1.msg.json",
+      "json_path": "",
+      "id": "text.172lvquest_1",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/172LVQuest_2.msg.json",
+      "json_path": "",
+      "id": "text.172lvquest_2",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/172LVQuest_3.msg.json",
+      "json_path": "",
+      "id": "text.172lvquest_3",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/172LVQuest_4.msg.json",
+      "json_path": "",
+      "id": "text.172lvquest_4",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/172LVQuest_5.msg.json",
+      "json_path": "",
+      "id": "text.172lvquest_5",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/172LVQuest_6.msg.json",
+      "json_path": "",
+      "id": "text.172lvquest_6",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/Quest_100State_1.msg.json",
+      "json_path": "",
+      "id": "text.quest_100state_1",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/Quest_100State_2.msg.json",
+      "json_path": "",
+      "id": "text.quest_100state_2",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/Quest_100State_3.msg.json",
+      "json_path": "",
+      "id": "text.quest_100state_3",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/Quest_100State_4.msg.json",
+      "json_path": "",
+      "id": "text.quest_100state_4",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/Quest_100State_5.msg.json",
+      "json_path": "",
+      "id": "text.quest_100state_5",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/Quest_100State_6.msg.json",
+      "json_path": "",
+      "id": "text.quest_100state_6",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/Quest_candy_1end.msg.json",
+      "json_path": "",
+      "id": "text.quest_candy_1end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/Quest_candy_1start_M.msg.json",
+      "json_path": "",
+      "id": "text.quest_candy_1start_m",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/Quest_candy_1start_T.msg.json",
+      "json_path": "",
+      "id": "text.quest_candy_1start_t",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/Quest_cyclops_1end.msg.json",
+      "json_path": "",
+      "id": "text.quest_cyclops_1end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/Quest_cyclops_1start.msg.json",
+      "json_path": "",
+      "id": "text.quest_cyclops_1start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/Quest_goblin_1end.msg.json",
+      "json_path": "",
+      "id": "text.quest_goblin_1end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/Quest_goblin_1start_M.msg.json",
+      "json_path": "",
+      "id": "text.quest_goblin_1start_m",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/Quest_goblin_1start_T.msg.json",
+      "json_path": "",
+      "id": "text.quest_goblin_1start_t",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/Quest_hammer_1end.msg.json",
+      "json_path": "",
+      "id": "text.quest_hammer_1end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/Quest_hammer_1start.msg.json",
+      "json_path": "",
+      "id": "text.quest_hammer_1start",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/Quest_terrified_1end.msg.json",
+      "json_path": "",
+      "id": "text.quest_terrified_1end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/Quest_terrified_1start_M.msg.json",
+      "json_path": "",
+      "id": "text.quest_terrified_1start_m",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/Quest_terrified_1start_T.msg.json",
+      "json_path": "",
+      "id": "text.quest_terrified_1start_t",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/Quest_tired_1end.msg.json",
+      "json_path": "",
+      "id": "text.quest_tired_1end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/Quest_tired_1start_M.msg.json",
+      "json_path": "",
+      "id": "text.quest_tired_1start_m",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/Quest_tired_1start_T.msg.json",
+      "json_path": "",
+      "id": "text.quest_tired_1start_t",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/Quest_undead_1end.msg.json",
+      "json_path": "",
+      "id": "text.quest_undead_1end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/Quest_undead_1start_M.msg.json",
+      "json_path": "",
+      "id": "text.quest_undead_1start_m",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/Quest_undead_1start_T.msg.json",
+      "json_path": "",
+      "id": "text.quest_undead_1start_t",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/haQuestGoblin_Dpass_M.sin.json",
+      "json_path": "",
+      "id": "text.haquestgoblin_dpass_m.path_83ceda7114",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/haQuestGoblin_Dstart_M.sin.json",
+      "json_path": "",
+      "id": "text.haquestgoblin_dstart_m.path_a287748dd0",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/haQuestcandy_Cstart_M.sin.json",
+      "json_path": "",
+      "id": "text.haquestcandy_cstart_m.path_42b1b43b0f",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/haQuestterrified_Bpass_M.sin.json",
+      "json_path": "",
+      "id": "text.haquestterrified_bpass_m.path_c00e5acf33",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/haQuestterrified_Bstart_M.sin.json",
+      "json_path": "",
+      "id": "text.haquestterrified_bstart_m.path_426e851eea",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/haQuestundead_Epass_M.sin.json",
+      "json_path": "",
+      "id": "text.haquestundead_epass_m.path_a382f4fc21",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/HaQuest/haQuestundead_Estart_M.sin.json",
+      "json_path": "",
+      "id": "text.haquestundead_estart_m.path_0d0d0958c2",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/LevelQuest/Quest30.Msg.json",
+      "json_path": "",
+      "id": "text.quest30",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/LevelQuest/Quest30a.Msg.json",
+      "json_path": "",
+      "id": "text.quest30a",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/LevelQuest/Quest55.Msg.json",
+      "json_path": "",
+      "id": "text.quest55",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/LevelQuest/Quest55_2.Msg.json",
+      "json_path": "",
+      "id": "text.quest55_2",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/LevelQuest/Quest55_2a.Msg.json",
+      "json_path": "",
+      "id": "text.quest55_2a",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/LevelQuest/Quest55a.Msg.json",
+      "json_path": "",
+      "id": "text.quest55a",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/LevelQuest/Quest70.Msg.json",
+      "json_path": "",
+      "id": "text.quest70",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/LevelQuest/Quest70a.Msg.json",
+      "json_path": "",
+      "id": "text.quest70a",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/LevelQuest/Quest80.Msg.json",
+      "json_path": "",
+      "id": "text.quest80",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/LevelQuest/Quest80a.Msg.json",
+      "json_path": "",
+      "id": "text.quest80a",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/LevelQuest/Quest85.Msg.json",
+      "json_path": "",
+      "id": "text.quest85",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/LevelQuest/Quest85a.Msg.json",
+      "json_path": "",
+      "id": "text.quest85a",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/LevelQuest/Quest90.Msg.json",
+      "json_path": "",
+      "id": "text.quest90",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/LevelQuest/Quest90a.Msg.json",
+      "json_path": "",
+      "id": "text.quest90a",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/LevelQuest/Quest_10State_1.msg.json",
+      "json_path": "",
+      "id": "text.quest_10state_1",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/LevelQuest/Quest_10State_2_1.msg.json",
+      "json_path": "",
+      "id": "text.quest_10state_2_1",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/LevelQuest/Quest_10State_2_2.msg.json",
+      "json_path": "",
+      "id": "text.quest_10state_2_2",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/LevelQuest/Quest_10State_2_3.msg.json",
+      "json_path": "",
+      "id": "text.quest_10state_2_3",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/LevelQuest/Quest_10State_end.msg.json",
+      "json_path": "",
+      "id": "text.quest_10state_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/LevelQuest/Quest_7State_1.msg.json",
+      "json_path": "",
+      "id": "text.quest_7state_1",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/LevelQuest/Quest_7State_2.msg.json",
+      "json_path": "",
+      "id": "text.quest_7state_2",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/LevelQuest/Quest_7State_3.msg.json",
+      "json_path": "",
+      "id": "text.quest_7state_3",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/LevelQuest/Quest_7State_end.msg.json",
+      "json_path": "",
+      "id": "text.quest_7state_end",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/RepeatQuest/NYQuest_1.msg.json",
+      "json_path": "",
+      "id": "text.nyquest_1",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/RepeatQuest/NYQuest_2.msg.json",
+      "json_path": "",
+      "id": "text.nyquest_2",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/RepeatQuest/NYQuest_3.msg.json",
+      "json_path": "",
+      "id": "text.nyquest_3",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/RepeatQuest/RepeatQuest_J.msg.json",
+      "json_path": "",
+      "id": "text.repeatquest_j",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/RepeatQuest/RepeatQuest_O.msg.json",
+      "json_path": "",
+      "id": "text.repeatquest_o",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/RepeatQuest/RepeatQuest_S.msg.json",
+      "json_path": "",
+      "id": "text.repeatquest_s",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/WeekQuest/Boss_Quest_1.msg.json",
+      "json_path": "",
+      "id": "text.boss_quest_1",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/WeekQuest/Boss_Quest_2.msg.json",
+      "json_path": "",
+      "id": "text.boss_quest_2.path_c7819872fd",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/WeekQuest/Boss_Quest_3.msg.json",
+      "json_path": "",
+      "id": "text.boss_quest_3.path_05e6ca9ce7",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/WeekQuest/Boss_Quest_4.msg.json",
+      "json_path": "",
+      "id": "text.boss_quest_4",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/WeekQuest/Boss_Quest_5.msg.json",
+      "json_path": "",
+      "id": "text.boss_quest_5",
+      "name": null
+    },
+    {
+      "file": "SourceCode/Content/canonical/text/resources/cliente/image/party/party_DATA/WeekQuest/Boss_Quest_6.msg.json",
+      "json_path": "",
+      "id": "text.boss_quest_6",
+      "name": null
+    }
+  ],
+  "questdb_path": "Servidor/Database/summit.sqlite3",
+  "questdb_defined": [
+    {
+      "table": "DailyQuest",
+      "id": 16
+    },
+    {
+      "table": "SingleQuest",
+      "id": 11
+    },
+    {
+      "table": "SingleQuest",
+      "id": 12
+    },
+    {
+      "table": "SingleQuest",
+      "id": 13
+    },
+    {
+      "table": "SingleQuest",
+      "id": 14
+    },
+    {
+      "table": "SingleQuest",
+      "id": 15
+    }
+  ],
+  "legacy_code_sources": [
+    {
+      "symbol": "SIN_QUEST_CODE_CHANGEJOB",
+      "code": 1,
+      "v2_id": 3813670913,
+      "source": "SinQuest"
+    },
+    {
+      "symbol": "SIN_QUEST_CODE_CHANGEJOB2_NPC_M",
+      "code": 2,
+      "v2_id": 3813670914,
+      "source": "SinQuest"
+    },
+    {
+      "symbol": "SIN_QUEST_CODE_CHANGEJOB2_NPC_D",
+      "code": 3,
+      "v2_id": 3813670915,
+      "source": "SinQuest"
+    },
+    {
+      "symbol": "SIN_QUEST_CODE_CHANGEJOB3",
+      "code": 4,
+      "v2_id": 3813670916,
+      "source": "SinQuest"
+    },
+    {
+      "symbol": "SIN_QUEST_CODE_LEVEL30",
+      "code": 5,
+      "v2_id": 3813670917,
+      "source": "SinQuest"
+    },
+    {
+      "symbol": "SIN_QUEST_CODE_LEVEL55",
+      "code": 6,
+      "v2_id": 3813670918,
+      "source": "SinQuest"
+    },
+    {
+      "symbol": "SIN_QUEST_CODE_LEVEL55_2",
+      "code": 7,
+      "v2_id": 3813670919,
+      "source": "SinQuest"
+    },
+    {
+      "symbol": "SIN_QUEST_CODE_LEVEL70",
+      "code": 8,
+      "v2_id": 3813670920,
+      "source": "SinQuest"
+    },
+    {
+      "symbol": "SIN_QUEST_CODE_LEVEL80",
+      "code": 9,
+      "v2_id": 3813670921,
+      "source": "SinQuest"
+    },
+    {
+      "symbol": "SIN_QUEST_CODE_LEVEL85",
+      "code": 10,
+      "v2_id": 3813670922,
+      "source": "SinQuest"
+    },
+    {
+      "symbol": "SIN_QUEST_CODE_LEVEL90",
+      "code": 11,
+      "v2_id": 3813670923,
+      "source": "SinQuest"
+    },
+    {
+      "symbol": "SIN_QUEST_CODE_LEVEL80_2",
+      "code": 12,
+      "v2_id": 3813670924,
+      "source": "SinQuest"
+    },
+    {
+      "symbol": "SIN_QUEST_CODE_LEVEL90_2",
+      "code": 13,
+      "v2_id": 3813670925,
+      "source": "SinQuest"
+    },
+    {
+      "symbol": "SIN_QUEST_CODE_CHANGEJOB4",
+      "code": 16,
+      "v2_id": 3813670928,
+      "source": "SinQuest"
+    },
+    {
+      "symbol": "HAQUEST_CODE_ELEMENTARY_A",
+      "code": 32,
+      "v2_id": 3813670944,
+      "source": "HaQuest"
+    },
+    {
+      "symbol": "HAQUEST_CODE_ELEMENTARY_B",
+      "code": 33,
+      "v2_id": 3813670945,
+      "source": "HaQuest"
+    },
+    {
+      "symbol": "HAQUEST_CODE_ELEMENTARY_C",
+      "code": 34,
+      "v2_id": 3813670946,
+      "source": "HaQuest"
+    },
+    {
+      "symbol": "HAQUEST_CODE_ELEMENTARY_D",
+      "code": 35,
+      "v2_id": 3813670947,
+      "source": "HaQuest"
+    },
+    {
+      "symbol": "HAQUEST_CODE_ELEMENTARY_E",
+      "code": 36,
+      "v2_id": 3813670948,
+      "source": "HaQuest"
+    },
+    {
+      "symbol": "HAQUEST_CODE_ELEMENTARY_F",
+      "code": 37,
+      "v2_id": 3813670949,
+      "source": "HaQuest"
+    },
+    {
+      "symbol": "HAQUEST_CODE_ELEMENTARY_G",
+      "code": 38,
+      "v2_id": 3813670950,
+      "source": "HaQuest"
+    },
+    {
+      "symbol": "HAQUEST_CODE_FURYOFPHANTOM",
+      "code": 40,
+      "v2_id": 3813670952,
+      "source": "HaQuest"
+    }
+  ],
+  "notes": [
+    "JSON candidates are not automatically playable quests",
+    "Legacy entries are identified by a separate V2 namespace",
+    "Legacy quest stages and rewards remain authoritative in legacy character records",
+    "Never add SQL rewards for a legacy quest without migrating its authoritative state"
+  ]
+}

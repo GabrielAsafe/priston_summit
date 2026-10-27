@@ -6,3 +6,10 @@
 #include "gameplay/companions/v2/CompanionLifecycle.h"
 #include "gameplay/companions/v2/CompanionQuery.h"
 #include "gameplay/companions/v2/CompanionUIIngress.h"
+
+// SUMMIT350H: timer lifecycle, only outside cSerSection.
+namespace gameplay { namespace companions {
+void StartDetachedTrade350H();
+void PumpDetachedTrade350H();
+void StopDetachedTrade350H();
+}}

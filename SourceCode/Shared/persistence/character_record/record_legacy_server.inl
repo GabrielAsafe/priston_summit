@@ -2,6 +2,10 @@
 #include <cstring>
 #include <cstdlib>
 #include <cstdio>
+#include <vector>
+#include <memory>
+#include <utility>
+#include <string>
 #include "systems/network/protocol/server/opcodes.h"
 
 #include "systems/rendering/legacy_3d/smd3d.h"
@@ -22,6 +26,16 @@
 
 #include "systems/persistence/character_record/record.h"
 #include "systems/gameplay/quests/v2/legacy/LegacyQuestRepository.h"
+#include "systems/gameplay/inventory/v2/legacy/LegacyItemCatalogAdapter.h"
+#include "gameplay/inventory/v2/CompanionBagSpacePolicy.h"
+#include "gameplay/companions/v2/CompanionTradeSaveActivityFence.h"
+#include "gameplay/companions/v2/CompanionTradeParticipantIdentity.h"
+#include "gameplay/companions/v2/CompanionTradeParticipantGate350B.h" // SUMMIT350B
+#include "gameplay/companions/v2/CompanionTradeAcceptedRecord350E.h"
+#include "gameplay/companions/v2/CompanionTradeLiveHandoff350Q.h" // SUMMIT350E
+#include "gameplay/companions/v2/CompanionTradePostSaveEquivalence351G.h" // SUMMIT351G
+#include "gameplay/companions/v2/CompanionTradeDiskJournal.h"
+#include "gameplay/companions/v2/CompanionTradeExactRecordStore.h"
 #include "core/gameplay/legacy_support/playsub.h"
 
 #include "systems/world/field/field.h"
@@ -433,6 +447,7 @@ struct sREC_DATABUFF
 {
 	rsPLAYINFO	*lpPlayInfo;
 	DWORD		dwConnectCount;
+    std::uint64_t summit350fParticipantId; // queue writer hold until durable flush
 	char		szName[32];
 	char		szFileName[128];
 	char		szBackupFileName[128];
@@ -2348,6 +2363,11 @@ int rsRECORD_DBASE::SendRecordDataToServer(smWINSOCK *lpsmSock)
 }
 
 
+// Finish an interrupted two-DAT trade BEFORE returning any character image
+// to a freshly connecting player. A one-sided journal intent is never loaded
+// as if it were a completed transfer.
+static bool SummitRecoverTradesBeforeCharacterLoad(const char* account,const char* player);
+
 extern int RecordHackLogMoney(smCHAR_INFO *lpCharInfo);
 
 int rsRECORD_DBASE::SendRecordDataToClient(rsPLAYINFO *lpPlayInfo, char *szName, smWINSOCK *lpsmSock, int Mode)
@@ -2367,6 +2387,25 @@ int rsRECORD_DBASE::SendRecordDataToClient(rsPLAYINFO *lpPlayInfo, char *szName,
 
 	lpData = (char *)&TransRecordData;
 	lpTransRecord = &TransRecordData;
+
+    // SUMMIT350B: in-memory login/read gate. A concurrent trade cannot
+    // reserve this participant until the complete character load finishes.
+    // Crash recovery from the durable journal remains mandatory below.
+    std::unique_ptr<gameplay::companions::v2::TradeParticipantGate350B::LoadGuard>
+        summit350bLoginGuard;
+    if(Mode==0 && lpPlayInfo && lpPlayInfo->getAccount() &&
+       lpPlayInfo->getAccount()[0] && szName && szName[0]) {
+        summit350bLoginGuard.reset(
+            new gameplay::companions::v2::TradeParticipantGate350B::LoadGuard(
+                gameplay::companions::v2::ServerTradeParticipantGate350B(),
+                gameplay::companions::v2::TradeParticipantId(lpPlayInfo->getAccount(),szName)));
+        if(!summit350bLoginGuard->Allowed()) return FALSE;
+    }
+
+	if(Mode==0 && lpPlayInfo && lpPlayInfo->getAccount() &&
+	   lpPlayInfo->getAccount()[0] && szName && szName[0] &&
+	   !SummitRecoverTradesBeforeCharacterLoad(lpPlayInfo->getAccount(),szName))
+		return FALSE;
 
 	switch(Mode)
 	{
@@ -2842,6 +2881,31 @@ int	CheckPlayExpTable[15] = {
 extern AccountTypes getMasterLevel(rsPLAYINFO* playInfo);
 int rsRECORD_DBASE::RecvRecordDataFromClient(TRANS_RECORD_DATAS *lpTransRecord, rsPLAYINFO *lpPlayInfo)
 {
+    // SUMMIT350F: pair-level writer admission covers the real online save.
+    // This is checked before any legacy record mutation or DAT flush.
+    gameplay::companions::v2::TradeParticipantGate350B::WriteGuard summit350fOnlineWriter(
+        gameplay::companions::v2::ServerTradeParticipantGate350B(),
+        gameplay::companions::v2::TradeParticipantId(
+            lpPlayInfo ? lpPlayInfo->getAccount() : nullptr, lpPlayInfo ? lpPlayInfo->getName() : nullptr));
+    if(!summit350fOnlineWriter.Allowed()) return -32;
+    // SUMMIT328: serialize admission with any future V2 session reservation.
+    // A refused packet does not begin or complete a save fragment.
+    gameplay::companions::v2::SaveMutationAdmission summit328SaveAdmission(
+        gameplay::companions::v2::ServerSaveActivityFence(),
+        gameplay::companions::v2::SaveSessionKey(
+            lpPlayInfo ? static_cast<std::uint32_t>(lpPlayInfo->dwObjectSerial) : 0u,
+            lpPlayInfo ? static_cast<std::uint32_t>(lpPlayInfo->dwConnectCount) : 0u));
+    if (!summit328SaveAdmission.Admitted()) return -32;
+
+	// SUMMIT327: observe each save fragment, including any direct DAT writes.
+	// Observation only: this cannot authorize a trade or block normal saves.
+	gameplay::companions::v2::SaveReceiveActivityScope summit327Receive(
+		gameplay::companions::v2::ServerSaveActivityFence(),
+		gameplay::companions::v2::SaveSessionKey(
+			lpPlayInfo ? static_cast<std::uint32_t>(lpPlayInfo->dwObjectSerial) : 0u,
+			lpPlayInfo ? static_cast<std::uint32_t>(lpPlayInfo->dwConnectCount) : 0u),
+		lpTransRecord ? lpTransRecord->Count : -1,
+		lpTransRecord ? lpTransRecord->Total : -1);
 
 	char *lpData;
 
@@ -2892,9 +2956,17 @@ int rsRECORD_DBASE::RecvRecordDataFromClient(TRANS_RECORD_DATAS *lpTransRecord, 
 			} \
 		} while(0)
 
+	// SUMMIT352A: privacy-preserving result code for rejected post-commit
+	// saves. This is telemetry ONLY: no save or trust decision is altered.
 	#define R25_REC_RETURN(v_) \
 		do { \
 			int r25ret = (v_); \
+			const gameplay::companions::v2::SaveSessionKey diagKey( \
+				static_cast<std::uint32_t>(lpPlayInfo->dwObjectSerial), \
+				static_cast<std::uint32_t>(lpPlayInfo->dwConnectCount)); \
+			if(r25ret<0 && (gameplay::companions::v2::ServerTradeLiveFirstSave350Q().Pending(diagKey) || \
+				gameplay::companions::v2::ServerTradePostSave351G().Pending(diagKey))) \
+				std::printf("[SUMMIT352A_TRADE] stage=postsave-record-rejected code=%d\n",r25ret); \
 			R25_REC_DIAG("return", r25ret); \
 			return r25ret; \
 		} while(0)
@@ -2924,6 +2996,45 @@ int rsRECORD_DBASE::RecvRecordDataFromClient(TRANS_RECORD_DATAS *lpTransRecord, 
 
 	if(lpTransRecord->Count >= lpTransRecord->Total - 1 && TransRecordData.code == OpCode::OPCODE_RECORDDATA)
 	{
+        // SUMMIT350Q: when an online trade just committed, accept only the
+        // exact inventory after-image as the first post-sync save. A replayed
+        // pre-trade save must not overwrite either durable DAT.
+        const gameplay::companions::v2::SaveSessionKey handoffKey(
+            lpPlayInfo ? static_cast<std::uint32_t>(lpPlayInfo->dwObjectSerial) : 0u,
+            lpPlayInfo ? static_cast<std::uint32_t>(lpPlayInfo->dwConnectCount) : 0u);
+        const gameplay::companions::v2::BufferedTradeEnvelopeLayout handoffLayout(
+            offsetof(TRANS_RECORD_DATA,size),offsetof(TRANS_RECORD_DATA,ItemCount),
+            offsetof(TRANS_RECORD_DATA,ItemSubStart),offsetof(TRANS_RECORD_DATA,DataSize),
+            offsetof(TRANS_RECORD_DATA,smCharInfo)+offsetof(smCHAR_INFO,szName),
+            sizeof(((smCHAR_INFO*)0)->szName),offsetof(TRANS_RECORD_DATA,Data),
+            sizeof(TRANS_RECORD_DATA));
+        // SUMMIT351G: keep the original byte-exact gate as first check.
+        // The fallback changes ONLY ItemCount for equipped records.
+        const bool complete351G = TransRecordData.size > 0 &&
+            TransRecordData.size <= static_cast<int>(sizeof(TRANS_RECORD_DATA));
+        const auto* image351G = reinterpret_cast<const std::uint8_t*>(&TransRecordData);
+        const std::size_t length351G = complete351G ?
+            static_cast<std::size_t>(TransRecordData.size) : 0u;
+        const bool exact351G = complete351G &&
+            gameplay::companions::v2::ServerTradeLiveFirstSave350Q().CheckOrReject(
+                handoffKey,image351G,length351G,handoffLayout);
+        const bool equivalent351G = complete351G && !exact351G &&
+            gameplay::companions::v2::ServerTradePostSave351G().Equivalent<sRECORD_ITEM>(
+                handoffKey,image351G,length351G,handoffLayout,
+                RECORD_ITEM_MAX,INVENTORY_MAXITEM);
+        if(!exact351G && !equivalent351G) {
+            // No identities, account IDs or raw item data in the new log.
+            // Distinguishes a missing proof from a mismatching saved image.
+            std::printf("[SUMMIT352A_TRADE] stage=postsave-proof-refused exactPending=%d equivalentPending=%d complete=%d\n",
+                gameplay::companions::v2::ServerTradeLiveFirstSave350Q().Pending(handoffKey)?1:0,
+                gameplay::companions::v2::ServerTradePostSave351G().Pending(handoffKey)?1:0,
+                complete351G?1:0);
+            std::printf("[SUMMIT350Q_TRADE] stage=stale-save-refused\n");
+            TransRecordData.code=0;
+            R25_REC_RETURN(-33);
+        }
+        if(equivalent351G)
+            std::printf("[SUMMIT351G_TRADE] stage=postsave-equivalent-validated\n");
 		TransRecordData.GameSaveInfo.SaveTime = (int)tServerTime;
 
 		if(CheckCharForm(&TransRecordData.smCharInfo) == FALSE)
@@ -3191,6 +3302,21 @@ int rsRECORD_DBASE::RecvRecordDataFromClient(TRANS_RECORD_DATAS *lpTransRecord, 
 
 		}
 
+        // SUMMIT350E: publish an owned image at the real accepted-save path,
+        // after validation and before the receipt is issued. No DAT I/O here.
+        const gameplay::companions::v2::SaveSessionKey summit350eSession(
+            static_cast<std::uint32_t>(lpPlayInfo->dwObjectSerial),
+            static_cast<std::uint32_t>(lpPlayInfo->dwConnectCount));
+        if(lpRecordMemBuff && size<=srRECORD_MEMORY_SIZE) {
+            (void)gameplay::companions::v2::ServerAcceptedRecordBridge350E().Publish(
+                summit350eSession,lpRecordMemBuff,srRECORD_MEMORY_SIZE,
+                srRECORD_DEFAULT_SIZE);
+        } else {
+            gameplay::companions::v2::ServerAcceptedRecordBridge350E().Invalidate(summit350eSession);
+        }
+        gameplay::companions::v2::ServerTradeLiveFirstSave350Q().MarkAccepted(summit350eSession);
+        gameplay::companions::v2::ServerTradePostSave351G().MarkAccepted(summit350eSession);
+		summit327Receive.MarkValidatedComplete();
 		TransRecordData.code = 0;
 		R25_REC_DIAG("complete", TRUE);
 		return TRUE;
@@ -3207,6 +3333,26 @@ int rsRECORD_DBASE::RecvRecordDataFromClient(TRANS_RECORD_DATAS *lpTransRecord, 
 
 int rsRecordMemoryBuffToFile(rsPLAYINFO *lpPlayInfo, const char *szName, char *lpRecordMemBuff)
 {
+    // SUMMIT350F: pair-level writer admission covers the real online save.
+    // This is checked before any legacy record mutation or DAT flush.
+    gameplay::companions::v2::TradeParticipantGate350B::WriteGuard summit350fOnlineWriter(
+        gameplay::companions::v2::ServerTradeParticipantGate350B(),
+        gameplay::companions::v2::TradeParticipantId(
+            lpPlayInfo ? lpPlayInfo->getAccount() : nullptr, szName));
+    if(!summit350fOnlineWriter.Allowed()) return FALSE;
+    gameplay::companions::v2::SaveMutationAdmission summit328FlushAdmission(
+        gameplay::companions::v2::ServerSaveActivityFence(),
+        gameplay::companions::v2::SaveSessionKey(
+            lpPlayInfo ? static_cast<std::uint32_t>(lpPlayInfo->dwObjectSerial) : 0u,
+            lpPlayInfo ? static_cast<std::uint32_t>(lpPlayInfo->dwConnectCount) : 0u));
+    if (!summit328FlushAdmission.Admitted()) return FALSE;
+
+	// SUMMIT327: observe deferred, periodic and logout DAT flushes.
+	gameplay::companions::v2::SaveFlushActivityScope summit327Flush(
+		gameplay::companions::v2::ServerSaveActivityFence(),
+		gameplay::companions::v2::SaveSessionKey(
+			lpPlayInfo ? static_cast<std::uint32_t>(lpPlayInfo->dwObjectSerial) : 0u,
+			lpPlayInfo ? static_cast<std::uint32_t>(lpPlayInfo->dwConnectCount) : 0u));
 	char szFile[256];
 	char szBackupFile[256];
 	FILE	*fp;
@@ -3237,14 +3383,31 @@ int rsRecordMemoryBuffToFile(rsPLAYINFO *lpPlayInfo, const char *szName, char *l
 
 
 
-		fp = fopen(szFile, "wb");
-		if(fp)
-		{
-			fwrite(lpRecordMemBuff, size, 1, fp);
-			fclose(fp);
-
-			return TRUE;
-		}
+		// SUMMIT350I: a write that failed or did not close successfully is
+        // not a persisted record, even if fopen succeeded. Never issue a
+        // durable witness for such a DAT; the journal worker must fail closed.
+        const gameplay::companions::v2::SaveSessionKey summit350iSession(
+            lpPlayInfo ? static_cast<std::uint32_t>(lpPlayInfo->dwObjectSerial) : 0u,
+            lpPlayInfo ? static_cast<std::uint32_t>(lpPlayInfo->dwConnectCount) : 0u);
+        std::uint64_t summit350iSequence=0;
+        const bool summit350iObserved=gameplay::companions::v2::ServerSaveActivityFence()
+            .TryActiveFlushAcceptedSequence(summit350iSession,summit350iSequence);
+        fp = fopen(szFile, "wb");
+        if(fp)
+        {
+            const bool writeOk=fwrite(lpRecordMemBuff,size,1,fp)==1;
+            const bool closeOk=fclose(fp)==0;
+            if(writeOk && closeOk)
+            {
+                if(summit350iObserved)
+                    (void)gameplay::companions::v2::ServerAcceptedRecordBridge350E()
+                        .PublishPersisted(summit350iSession,summit350iSequence,
+                            lpRecordMemBuff,static_cast<std::size_t>(size),
+                            offsetof(TRANS_RECORD_DATA,GameSaveInfo),
+                            sizeof(sGAME_SAVE_INFO));
+                return TRUE;
+            }
+        }
 	}
 
 	return FALSE;
@@ -3284,6 +3447,15 @@ int rsSaveThrowData(rsPLAYINFO *lpPlayInfo)
 
 int rsRecordMemoryBuff_CheckInvenItem(rsPLAYINFO *lpPlayInfo, int Mode)
 {
+    // Called not only from the save ingress but also from logout/periodic
+    // recovery paths. All ledger rewrites must observe the trade lease.
+    gameplay::companions::v2::SaveMutationAdmission summitTradeCheckInventoryAdmission(
+        gameplay::companions::v2::ServerSaveActivityFence(),
+        gameplay::companions::v2::SaveSessionKey(
+            lpPlayInfo ? static_cast<std::uint32_t>(lpPlayInfo->dwObjectSerial) : 0u,
+            lpPlayInfo ? static_cast<std::uint32_t>(lpPlayInfo->dwConnectCount) : 0u));
+    if (!summitTradeCheckInventoryAdmission.Admitted() || !lpPlayInfo)
+        return FALSE;
 
 	BYTE	*lpRecItem;
 	TRANS_RECORD_DATA	*lpTransRecordData;
@@ -3697,6 +3869,13 @@ int RecordDeleteCharacterError(const char *szID, char *szName);
 
 int rsRECORD_DBASE::SendUserDataToClient(const char *szID, smWINSOCK *lpsmSock, char *szServerID)
 {
+    // SUMMIT350G: this legacy path can write/replace character DATs without
+    // an authenticated single-participant identity. Reserve the unknown-writer
+    // exclusion BEFORE reading any record or modifying account metadata.
+    gameplay::companions::v2::TradeParticipantGate350B::UnknownWriterGuard350G summit350gExternalWriter(
+        gameplay::companions::v2::ServerTradeParticipantGate350B());
+    if(!summit350gExternalWriter.Allowed()) return FALSE;
+
 	char	szFile[256];
 	char	szFile2[256];
 	char	szFileInfo[256];
@@ -3898,6 +4077,13 @@ int rsRECORD_DBASE::SendUserDataToClient(const char *szID, smWINSOCK *lpsmSock, 
 
 int rsRECORD_DBASE::InsertCharData(const char *szID, char *szName, int Mode)
 {
+    // SUMMIT350G: this legacy path can write/replace character DATs without
+    // an authenticated single-participant identity. Reserve the unknown-writer
+    // exclusion BEFORE reading any record or modifying account metadata.
+    gameplay::companions::v2::TradeParticipantGate350B::UnknownWriterGuard350G summit350gExternalWriter(
+        gameplay::companions::v2::ServerTradeParticipantGate350B());
+    if(!summit350gExternalWriter.Allowed()) return FALSE;
+
 	char	szFile[256];
 	sPLAY_USER_DATA		sPlayUserData;
 	FILE	*fp;
@@ -3952,6 +4138,13 @@ int rsRECORD_DBASE::InsertCharData(const char *szID, char *szName, int Mode)
 
 int rsRECORD_DBASE::DeleteCharData(const char *szID, char *szName)
 {
+    // SUMMIT350G: this legacy path can write/replace character DATs without
+    // an authenticated single-participant identity. Reserve the unknown-writer
+    // exclusion BEFORE reading any record or modifying account metadata.
+    gameplay::companions::v2::TradeParticipantGate350B::UnknownWriterGuard350G summit350gExternalWriter(
+        gameplay::companions::v2::ServerTradeParticipantGate350B());
+    if(!summit350gExternalWriter.Allowed()) return FALSE;
+
 	char szFile[256];
 	char szDelFile[256];
 	char szDelBackupFile[256];
@@ -4052,6 +4245,13 @@ int rsRECORD_DBASE::IsData(char *szName)
 
 int rsRECORD_DBASE::SaveThrowData(char *szName, sTHROW_ITEM_INFO *lpThrowItemList, int Count, int SaveMoney)
 {
+    // SUMMIT350G: this legacy path can write/replace character DATs without
+    // an authenticated single-participant identity. Reserve the unknown-writer
+    // exclusion BEFORE reading any record or modifying account metadata.
+    gameplay::companions::v2::TradeParticipantGate350B::UnknownWriterGuard350G summit350gExternalWriter(
+        gameplay::companions::v2::ServerTradeParticipantGate350B());
+    if(!summit350gExternalWriter.Allowed()) return FALSE;
+
 	char szFile[256];
 	FILE	*fp;
 
@@ -4108,6 +4308,14 @@ int rsSaveWareHouseData(const char *szID, TRANS_WAREHOUSE *lpTransWareHouse)
 
 int rsLoadWareHouseData(rsPLAYINFO *lpPlayInfo)
 {
+    // The load checks warehouse instances against the online identity ledger.
+    // A trade reservation must not race that reconciliation.
+    gameplay::companions::v2::SaveMutationAdmission summitWarehouseLoadAdmission(
+        gameplay::companions::v2::ServerSaveActivityFence(),
+        gameplay::companions::v2::SaveSessionKey(
+            lpPlayInfo ? static_cast<std::uint32_t>(lpPlayInfo->dwObjectSerial) : 0u,
+            lpPlayInfo ? static_cast<std::uint32_t>(lpPlayInfo->dwConnectCount) : 0u));
+    if (!summitWarehouseLoadAdmission.Admitted()) return FALSE;
 	char szFileName[128];
 	TRANS_WAREHOUSE TransWareHouse;
 	sWAREHOUSE	WareHouseCheck;
@@ -4245,6 +4453,14 @@ int rsLoadWareHouseData(rsPLAYINFO *lpPlayInfo)
 
 int rsLoadWareHouseData(rsPLAYINFO *lpPlayInfo, int Caravan = 0)
 {
+    // The load checks warehouse instances against the online identity ledger.
+    // A trade reservation must not race that reconciliation.
+    gameplay::companions::v2::SaveMutationAdmission summitWarehouseLoadAdmission(
+        gameplay::companions::v2::ServerSaveActivityFence(),
+        gameplay::companions::v2::SaveSessionKey(
+            lpPlayInfo ? static_cast<std::uint32_t>(lpPlayInfo->dwObjectSerial) : 0u,
+            lpPlayInfo ? static_cast<std::uint32_t>(lpPlayInfo->dwConnectCount) : 0u));
+    if (!summitWarehouseLoadAdmission.Admitted()) return FALSE;
 	char szFileName[128];
 	TRANS_WAREHOUSE TransWareHouse;
 	sWAREHOUSE	WareHouseCheck;
@@ -4477,6 +4693,105 @@ int rsGetAccountCharacterNames(const char *szID, char szNames[][32], int maxName
 }
 
 
+
+namespace {
+// On reconnect, the server already knows all account characters and their
+// trusted DAT paths. The sealed journal contains BOTH exact byte images, so
+// replay does not need an online player session or any client item payload.
+class SummitLoginRecoveryBackend final : public gameplay::companions::v2::ICompanionTradeSnapshotBackend {
+public:
+    SummitLoginRecoveryBackend(std::uint64_t player,std::uint64_t companion,
+                               std::string playerPath,std::string companionPath)
+        : player_(player),companion_(companion),
+          playerPath_(std::move(playerPath)),companionPath_(std::move(companionPath)) {}
+    ~SummitLoginRecoveryBackend() override {
+        if(held_) LeaveCriticalSection(&cSaveDataSection);
+    }
+    bool LockPair(std::uint64_t player,std::uint64_t companion) override {
+        if(held_ || player!=player_ || companion!=companion_ ||
+           playerPath_.empty() || companionPath_.empty() ||
+           playerPath_==companionPath_) return false;
+        EnterCriticalSection(&cSaveDataSection);
+        held_=true;return true;
+    }
+    void UnlockPair(std::uint64_t,std::uint64_t) override {
+        if(held_) { LeaveCriticalSection(&cSaveDataSection);held_=false; }
+    }
+    bool Prepare(const gameplay::companions::v2::CompanionTradeOffer&,
+                 gameplay::companions::v2::CompanionTradePrepared&) override {
+        // Reconnect can ONLY replay an already sealed intent.
+        return false;
+    }
+    gameplay::companions::v2::TradeApplyResult ApplyExact(
+        gameplay::companions::v2::TradeParticipant participant,
+        const gameplay::companions::v2::CompanionTradePrepared& prepared) override {
+        using namespace gameplay::companions::v2;
+        if(!held_ || prepared.offer.authenticatedOwner!=player_ ||
+           prepared.offer.companionCharacter!=companion_)
+            return TradeApplyResult::IoUncertain;
+        if(participant==TradeParticipant::OwnerOnline)
+            return CompanionTradeExactRecordStore::Replace(playerPath_,
+                                            prepared.ownerBefore,prepared.ownerAfter);
+        if(participant==TradeParticipant::CompanionOffline)
+            return CompanionTradeExactRecordStore::Replace(companionPath_,
+                                         prepared.companionBefore,prepared.companionAfter);
+        return TradeApplyResult::Conflict;
+    }
+private:
+    std::uint64_t player_,companion_;
+    std::string playerPath_,companionPath_;
+    bool held_=false;
+};
+}
+
+static bool SummitRecoverTradesBeforeCharacterLoad(const char* account,const char* player)
+{
+    using namespace gameplay::companions::v2;
+    if(!account || !*account || !player || !*player ||
+       !rsCheckAccountChar(account,const_cast<char*>(player)))return false;
+    const DWORD rootAttrs=GetFileAttributesA("LOGS\\SummitCompanionTradeJournal");
+    if(rootAttrs==INVALID_FILE_ATTRIBUTES && GetLastError()==ERROR_FILE_NOT_FOUND)
+        return true;  // trade system never created its journal directory
+    if(rootAttrs==INVALID_FILE_ATTRIBUTES ||
+       !(rootAttrs&FILE_ATTRIBUTE_DIRECTORY) || (rootAttrs&FILE_ATTRIBUTE_REPARSE_POINT))
+        return false;
+    char owned[32][32]={{0}};
+    const int count=rsGetAccountCharacterNames(account,owned,32);
+    if(count<=0)return false;
+    char currentFile[256]={};
+    if(!GetUserDataFile(player,currentFile) || !currentFile[0])return false;
+    const std::uint64_t currentId=TradeParticipantId(account,player);
+    for(int n=0;n<count;++n) {
+        const char* another=owned[n];
+        if(!another[0] || lstrcmpiA(player,another)==0)continue;
+        const std::uint64_t anotherId=TradeParticipantId(account,another);
+        char anotherFile[256]={};
+        if(!GetUserDataFile(another,anotherFile) || !anotherFile[0])return false;
+        // A participant may reconnect as either the sender or the recipient.
+        // Search both ordered journal keys; each retains its original owner.
+        for(int orientation=0;orientation<2;++orientation) {
+            const std::uint64_t ownerId=orientation ? anotherId : currentId;
+            const std::uint64_t companionId=orientation ? currentId : anotherId;
+            const char* ownerFile=orientation ? anotherFile : currentFile;
+            const char* companionFile=orientation ? currentFile : anotherFile;
+            SummitLoginRecoveryBackend backend(ownerId,companionId,
+                                               ownerFile,companionFile);
+            CompanionTradeDiskJournal journal("LOGS/SummitCompanionTradeJournal",backend);
+            const CompanionTradePending pending=journal.PendingForPair(ownerId,companionId);
+            if(!journal.Healthy())return false;
+            if(!pending.present)continue;
+            // Never overwrite a live counterpart's active character record.
+            rsPLAYINFO* otherOnline=FindUserFromName(const_cast<char*>(another));
+            if(otherOnline && otherOnline->lpsmSock)return false;
+            CompanionTradeJournalCoordinator coordinator(journal);
+            const TradeJournalResult recovered=coordinator.RecoverPair(ownerId,companionId);
+            if(recovered!=TradeJournalResult::Committed &&
+               recovered!=TradeJournalResult::AlreadyCommitted)return false;
+        }
+    }
+    return true;
+}
+
 int rsLoadAccountCharacterRecord(const char *szID, const char *szName, TRANS_RECORD_DATA *lpRecordData)
 {
     if(!szID || !szID[0] || !szName || !szName[0] || !lpRecordData)
@@ -4524,6 +4839,378 @@ int rsLoadAccountCharacterRecord(const char *szID, const char *szName, TRANS_REC
 }
 
 
+#include "gameplay/companions/v2/CompanionDiagnostic315.h"
+// Offline companion equipment: preserve the exact legacy DAT layout and every
+// item instance. Slot changes are committed only after the entire rebuilt
+// record can be checked, written, flushed and atomically replaced. No client
+// item blobs are trusted and no two-character trade is performed here.
+int rsSetOfflineCompanionEquipmentSlot(const char *account, const char *name,
+    int recordIndex, int targetSlot)
+{
+    // Hands use the existing authoritative Companion loadout; potion slots are
+    // special stacks and must not be rewritten as ordinary equipment.
+    if(!account || !*account || !name || !*name ||
+       (targetSlot < 3 || targetSlot > 16) ||
+       (targetSlot >= 11 && targetSlot <= 13) ||
+       recordIndex < -1 || recordIndex >= RECORD_ITEM_MAX ||
+       !rsCheckAccountChar(account, (char *)name))
+    {
+        summit::companion::diagnostic::Trace("SERVER","writer-validate-input",
+            targetSlot,recordIndex,-14);
+        return -14;
+    }
+    summit::companion::diagnostic::Trace("SERVER","writer-begin",
+        targetSlot,recordIndex,0);
+    // SUMMIT350F: reserve writer admission before touching the offline DAT.
+    // Normal operations are unchanged unless a trade holds the pair.
+    gameplay::companions::v2::TradeParticipantGate350B::WriteGuard summit350fOfflineWriter(
+        gameplay::companions::v2::ServerTradeParticipantGate350B(),
+        gameplay::companions::v2::TradeParticipantId(account,name));
+    if(!summit350fOfflineWriter.Allowed()) return -25;
+    if(sRecDataBuff) EnterCriticalSection(&cSaveDataSection);
+    const char* stage = "open-dat";
+    const int result = [&]() -> int {
+        char path[256], backup[256], temp[320];
+        GetUserDataFile(name, path);
+        GetUserDataBackupFile(name, backup);
+        _snprintf_s(temp, sizeof(temp), _TRUNCATE, "%s.companion-equip.tmp", path);
+        TRANS_RECORD_DATA data;
+        ZeroMemory(&data, sizeof(data));
+        FILE *fp = NULL;
+        if(fopen_s(&fp, path, "rb") != 0 || !fp) return -15;
+        const size_t bytes = fread(&data, 1, sizeof(data), fp);
+        fclose(fp);
+        if(bytes < sizeof(int)*2 || data.size <= 0 ||
+           data.size > (int)sizeof(data) || (size_t)data.size > bytes ||
+           lstrcmpiA(data.smCharInfo.szName, name) != 0 ||
+           data.ItemCount <= 0 || data.ItemCount > RECORD_ITEM_MAX ||
+           data.ItemSubStart < 0 || data.ItemSubStart > data.ItemCount ||
+           data.DataSize <= 0 || data.DataSize > (int)sizeof(data.Data) ||
+           (recordIndex >= 0 && recordIndex >= data.ItemSubStart) ||
+           data.ItemSubStart == 0) return -15;
+
+        stage = "decode-items";
+        // Decode every record, including the secondary bag. Reject a malformed
+        // stream before any mutation and retain all original item information.
+        std::vector<sRECORD_ITEM> items(data.ItemCount);
+        const BYTE *cursor = data.Data, *end = data.Data + data.DataSize;
+        for(int i=0; i<data.ItemCount; ++i) {
+            if(end - cursor < (int)sizeof(int)) return -15;
+            int packed = 0;
+            memcpy(&packed, cursor, sizeof(packed));
+            if(packed <= (int)sizeof(int) || packed > end-cursor) return -15;
+            ZeroMemory(&items[i], sizeof(items[i]));
+            DecodeCompress((BYTE *)cursor, (BYTE *)&items[i], sizeof(items[i]));
+            cursor += packed;
+            if(!items[i].sItemInfo.CODE ||
+               items[i].ItemPosition < -1 || items[i].ItemPosition > 16) return -15;
+        }
+        if(cursor != end) return -15;
+        stage = "find-equipped-slot";
+        int equipped = -1;
+        for(int i=0; i<data.ItemCount; ++i)
+            if(items[i].ItemPosition == targetSlot) {
+                if(equipped >= 0) return -15; // corrupted duplicate slot
+                equipped = i;
+            }
+        if(equipped >= data.ItemSubStart) return -15;
+        const int chosen = recordIndex >= 0 ? recordIndex : equipped;
+        if(chosen < 0) return -14;
+        if(recordIndex >= 0 && items[chosen].ItemPosition == targetSlot)
+            return TRUE; // no-op, no disk mutation
+
+        stage = "policy-v2";
+        // Eligibility is decided in V2. Only this persistence boundary maps
+        // the DAT instance to an equipment request; sItem stays in the adapter.
+        if(recordIndex >= 0) {
+            if(items[chosen].ItemPosition == -1) return -14; // cursor-held item
+            const sITEMINFO &info = items[chosen].sItemInfo;
+            gameplay::inventory::EquipmentRequest request;
+            request.item = gameplay::ItemId(static_cast<std::uint32_t>(info.CODE));
+            request.slot = targetSlot;
+            request.restricted = info.NotUseFlag != 0;
+            request.required.level = info.Level;
+            request.required.strength = info.Strength;
+            request.required.spirit = info.Spirit;
+            request.required.talent = info.Talent;
+            request.required.dexterity = info.Dexterity;
+            request.required.health = info.Health;
+            request.available.level = data.smCharInfo.Level;
+            request.available.strength = data.smCharInfo.Strength;
+            request.available.spirit = data.smCharInfo.Spirit;
+            request.available.talent = data.smCharInfo.Talent;
+            request.available.dexterity = data.smCharInfo.Dexterity;
+            request.available.health = data.smCharInfo.Health;
+            const gameplay::inventory::EquipmentDecision decision =
+                gameplay::inventory::EquipmentPolicy::Evaluate(
+                    gameplay::inventory::legacy::ServerLegacyItemCatalogAdapter(), request);
+            summit::companion::diagnostic::Trace("SERVER","equipment-v2-policy",
+                targetSlot,recordIndex,decision.Allowed() ? 1 : -16,
+                static_cast<int>(decision.code));
+            if(!decision.Allowed()) return -16;
+        }
+        stage = "bag-capacity-v2";
+        const int movedOut = equipped >= 0 && equipped != chosen ? equipped :
+            (recordIndex == -1 ? chosen : -1);
+        // Only the persistence adapter decodes DAT positions and catalog sizes.
+        // All placement, collision and capacity decisions happen in V2.
+        if(movedOut >= 0) {
+            // Inventory footprint is NOT equipment eligibility. An equipped
+            // object may be surrounded by consumables and custom bag items.
+            const gameplay::inventory::IItemFootprintCatalog& footprints =
+                gameplay::inventory::legacy::ServerLegacyItemCatalogAdapter();
+            const gameplay::ItemId movedId(
+                static_cast<std::uint32_t>(items[movedOut].sItemInfo.CODE));
+            gameplay::inventory::ItemFootprint movedFootprint;
+            if(!footprints.TryGetFootprint(movedId, movedFootprint) ||
+               !movedFootprint.ValidFor(movedId)) {
+                summit::companion::diagnostic::Trace("SERVER", "footprint-missing-moved",
+                    targetSlot, movedOut, -17);
+                return -17;
+            }
+            std::vector<gameplay::inventory::BagRect> occupied;
+            occupied.reserve(data.ItemSubStart);
+            for(int i=0; i<data.ItemSubStart; ++i) {
+                if(i==chosen || i==movedOut || items[i].ItemPosition != 0) continue;
+                // Inventory UI has a separate hidden quest-item section
+                // using +10000 legacy coordinates. It is not a physical
+                // rectangle in the regular 12x6 bag.
+                if(items[i].x >= 10000) continue;
+                const gameplay::ItemId bagId(
+                    static_cast<std::uint32_t>(items[i].sItemInfo.CODE));
+                gameplay::inventory::ItemFootprint bagFootprint;
+                if(!footprints.TryGetFootprint(bagId, bagFootprint) ||
+                   !bagFootprint.ValidFor(bagId)) {
+                    summit::companion::diagnostic::Trace("SERVER", "footprint-missing-bag",
+                        targetSlot, i, -17);
+                    return -17;
+                }
+                occupied.emplace_back(items[i].x, items[i].y,
+                                      bagFootprint.widthPixels, bagFootprint.heightPixels);
+            }
+            const gameplay::inventory::BagSpaceResult fit =
+                gameplay::inventory::CompanionBagSpacePolicy::FindFree(
+                    occupied, movedFootprint.widthPixels, movedFootprint.heightPixels);
+            if(!fit.Available()) {
+                if(fit.status == gameplay::inventory::BagSpaceStatus::NoSpace)
+                    return -18;
+                if(fit.status == gameplay::inventory::BagSpaceStatus::CorruptPlacement)
+                    return -19;
+                return -17;
+            }
+            items[movedOut].x = fit.x;
+            items[movedOut].y = fit.y;
+            items[movedOut].ItemPosition = 0;
+        }
+        if(recordIndex >= 0)
+            items[chosen].ItemPosition = targetSlot;
+        // Recompress the entire validated record, without touching the item
+        // identity, codes, stats, drop/quest flags, money or progression.
+        BYTE rebuilt[sizeof(data.Data)] = {};
+        int used = 0;
+        for(int i=0; i<data.ItemCount; ++i) {
+            const int packed = EecodeCompress((BYTE *)&items[i], rebuilt+used,
+                sizeof(items[i]), (int)sizeof(rebuilt)-used);
+            if(packed <= 0 || used+packed > (int)sizeof(rebuilt)) return -20;
+            used += packed;
+        }
+        stage = "rebuild-record";
+        ZeroMemory(data.Data, sizeof(data.Data));
+        memcpy(data.Data, rebuilt, used);
+        data.DataSize = used;
+        data.size = (int)((data.Data + data.DataSize) - (BYTE *)&data);
+        data.GameSaveInfo.SaveTime = (int)tServerTime;
+        int writeSize = data.size;
+        if(writeSize < srRECORD_DEFAULT_SIZE) writeSize = srRECORD_DEFAULT_SIZE;
+        if(writeSize > (int)sizeof(data)) return -20;
+        stage = "write-temp-dat";
+        DeleteFileA(temp);
+        FILE *dest = NULL;
+        if(fopen_s(&dest, temp, "wb") != 0 || !dest) return -20;
+        const bool wrote = fwrite(&data, 1, writeSize, dest) == (size_t)writeSize;
+        const bool flushed = fflush(dest) == 0;
+        fclose(dest);
+        if(!wrote || !flushed) { DeleteFileA(temp); return -20; }
+        stage = "verify-temp-dat";
+        // Fail closed if the persisted temporary record differs from the
+        // complete intended image. No original DAT/backup has changed yet.
+        FILE *verify = NULL;
+        if(fopen_s(&verify, temp, "rb") != 0 || !verify) {
+            DeleteFileA(temp);
+            return -20;
+        }
+        BYTE verifyBlock[4096];
+        const BYTE *expectedBlock = reinterpret_cast<const BYTE *>(&data);
+        int checked = 0;
+        bool identical = true;
+        while(checked < writeSize) {
+            const int wanted = writeSize - checked > (int)sizeof(verifyBlock) ?
+                (int)sizeof(verifyBlock) : writeSize - checked;
+            if(fread(verifyBlock, 1, wanted, verify) != (size_t)wanted ||
+               memcmp(verifyBlock, expectedBlock + checked, wanted) != 0) {
+                identical = false;
+                break;
+            }
+            checked += wanted;
+        }
+        if(identical && fgetc(verify) != EOF) identical = false;
+        if(ferror(verify)) identical = false;
+        fclose(verify);
+        if(!identical) { DeleteFileA(temp); return -20; }
+        stage = "backup-original";
+        if(!CopyFileA(path, backup, FALSE)) { DeleteFileA(temp); return -20; }
+        stage = "commit-replace";
+        if(!MoveFileExA(temp, path, MOVEFILE_REPLACE_EXISTING|MOVEFILE_WRITE_THROUGH)) {
+            DeleteFileA(temp); return -20;
+        }
+        stage = "complete";
+        return TRUE;
+    }();
+    if(sRecDataBuff) LeaveCriticalSection(&cSaveDataSection);
+    summit::companion::diagnostic::Trace("SERVER",stage,targetSlot,recordIndex,result);
+    return result;
+}
+
+// Companion bag A/B transfer and deterministic organize, never player trade.
+// Reuse the established offline-DAT backup + exact replacement boundary.
+#include "gameplay/companions/v2/CompanionBagMutationPolicy.h"
+int rsMutateOfflineCompanionBag(const char *account, const char *name,
+    int recordIndex, int bag, int cellX, int cellY)
+{
+    if(!account || !*account || !name || !*name ||
+       (bag != 1 && bag != 2) || recordIndex < -1 ||
+       recordIndex >= RECORD_ITEM_MAX ||
+       !rsCheckAccountChar(account, (char*)name)) return -14;
+    // SUMMIT350F: reserve writer admission before touching the offline DAT.
+    // Normal operations are unchanged unless a trade holds the pair.
+    gameplay::companions::v2::TradeParticipantGate350B::WriteGuard summit350fOfflineWriter(
+        gameplay::companions::v2::ServerTradeParticipantGate350B(),
+        gameplay::companions::v2::TradeParticipantId(account,name));
+    if(!summit350fOfflineWriter.Allowed()) return -25;
+    if(sRecDataBuff) EnterCriticalSection(&cSaveDataSection);
+    const int result = [&]() -> int {
+        char path[256], backup[256], temp[320];
+        GetUserDataFile(name,path);
+        GetUserDataBackupFile(name,backup);
+        _snprintf_s(temp,sizeof(temp),_TRUNCATE,"%s.companion-bag.tmp",path);
+        TRANS_RECORD_DATA data;
+        ZeroMemory(&data,sizeof(data));
+        FILE *fp=NULL;
+        if(fopen_s(&fp,path,"rb")!=0 || !fp) return -15;
+        const size_t bytes=fread(&data,1,sizeof(data),fp);
+        fclose(fp);
+        if(bytes<sizeof(int)*2 || data.size<=0 || data.size>(int)sizeof(data) ||
+           (size_t)data.size>bytes || lstrcmpiA(data.smCharInfo.szName,name)!=0 ||
+           data.ItemCount<0 || data.ItemCount>RECORD_ITEM_MAX ||
+           data.ItemSubStart<0 || data.ItemSubStart>data.ItemCount ||
+           data.DataSize<0 || data.DataSize>(int)sizeof(data.Data) ||
+           (recordIndex>=0 && recordIndex>=data.ItemCount)) return -15;
+        std::vector<sRECORD_ITEM> records(data.ItemCount);
+        std::vector<gameplay::companions::v2::BagMutationItem> descriptors;
+        descriptors.reserve(data.ItemCount);
+        const BYTE* cursor=data.Data;
+        const BYTE* end=data.Data+data.DataSize;
+        const gameplay::inventory::IItemFootprintCatalog& catalog =
+            gameplay::inventory::legacy::ServerLegacyItemCatalogAdapter();
+        for(int i=0;i<data.ItemCount;++i) {
+            if(end-cursor<(int)sizeof(int)) return -15;
+            int packed=0;
+            memcpy(&packed,cursor,sizeof(packed));
+            if(packed<=(int)sizeof(int) || packed>end-cursor) return -15;
+            ZeroMemory(&records[i],sizeof(records[i]));
+            DecodeCompress((BYTE*)cursor,(BYTE*)&records[i],sizeof(records[i]));
+            cursor+=packed;
+            const auto& item=records[i];
+            if(!item.sItemInfo.CODE || item.ItemPosition < -1 || item.ItemPosition>16)
+                return -15;
+            gameplay::companions::v2::BagMutationItem info;
+            info.bag = i<data.ItemSubStart ? 1 : 2;
+            info.position=item.ItemPosition;
+            info.x=item.x;
+            info.y=item.y;
+            info.hidden=item.x>=10000;
+            if(info.position==0 && !info.hidden) {
+                gameplay::inventory::ItemFootprint fp{};
+                const gameplay::ItemId id(static_cast<std::uint32_t>(item.sItemInfo.CODE));
+                if(!catalog.TryGetFootprint(id,fp) || !fp.ValidFor(id)) return -17;
+                info.width=fp.widthPixels;
+                info.height=fp.heightPixels;
+            }
+            descriptors.push_back(info);
+        }
+        if(cursor!=end) return -15;
+        const auto plan=gameplay::companions::v2::CompanionBagMutationPolicy::Prepare(
+            descriptors,data.ItemSubStart,recordIndex,bag,cellX,cellY);
+        using gameplay::companions::v2::BagMutationCode;
+        if(!plan.Allowed()) {
+            if(plan.status==BagMutationCode::NoSpace) return -18;
+            if(plan.status==BagMutationCode::Corrupt) return -19;
+            if(plan.status==BagMutationCode::FootprintMissing) return -17;
+            return -14;
+        }
+        std::vector<sRECORD_ITEM> reordered;
+        reordered.reserve(records.size());
+        for(int index:plan.order) {
+            sRECORD_ITEM value=records[index];
+            // Item payload and original code/key/checksum are preserved.
+            // Only the validated grid position is changed.
+            value.x=plan.items[index].x;
+            value.y=plan.items[index].y;
+            reordered.push_back(value);
+        }
+        BYTE rebuilt[sizeof(data.Data)]={};
+        int used=0;
+        for(auto& item:reordered) {
+            const int packed=EecodeCompress((BYTE*)&item,rebuilt+used,
+                sizeof(item),(int)sizeof(rebuilt)-used);
+            if(packed<=0 || used+packed>(int)sizeof(rebuilt)) return -20;
+            used+=packed;
+        }
+        ZeroMemory(data.Data,sizeof(data.Data));
+        memcpy(data.Data,rebuilt,used);
+        data.DataSize=used;
+        data.ItemSubStart=plan.split;
+        data.size=(int)((data.Data+data.DataSize)-(BYTE*)&data);
+        data.GameSaveInfo.SaveTime=(int)tServerTime;
+        int writeSize=data.size;
+        if(writeSize<srRECORD_DEFAULT_SIZE) writeSize=srRECORD_DEFAULT_SIZE;
+        if(writeSize>(int)sizeof(data)) return -20;
+        // A failed write cannot replace the original character DAT.
+        DeleteFileA(temp);
+        FILE* out=NULL;
+        if(fopen_s(&out,temp,"wb")!=0 || !out) return -20;
+        const bool written=fwrite(&data,1,writeSize,out)==(size_t)writeSize;
+        const bool flushed=fflush(out)==0;
+        fclose(out);
+        if(!written || !flushed) { DeleteFileA(temp); return -20; }
+        FILE* verify=NULL;
+        if(fopen_s(&verify,temp,"rb")!=0 || !verify) { DeleteFileA(temp);return -20; }
+        BYTE block[4096];
+        const BYTE* expected=(const BYTE*)&data;
+        int checked=0;
+        bool identical=true;
+        while(checked<writeSize) {
+            const int n=writeSize-checked > (int)sizeof(block) ?
+                (int)sizeof(block) : writeSize-checked;
+            if(fread(block,1,n,verify)!=(size_t)n ||
+               memcmp(block,expected+checked,n)!=0) { identical=false;break; }
+            checked+=n;
+        }
+        if(identical && fgetc(verify)!=EOF) identical=false;
+        if(ferror(verify)) identical=false;
+        fclose(verify);
+        if(!identical) { DeleteFileA(temp);return -20; }
+        if(!CopyFileA(path,backup,FALSE)) { DeleteFileA(temp);return -20; }
+        if(!MoveFileExA(temp,path,MOVEFILE_REPLACE_EXISTING|MOVEFILE_WRITE_THROUGH)) {
+            DeleteFileA(temp);return -20;
+        }
+        return TRUE;
+    }();
+    if(sRecDataBuff) LeaveCriticalSection(&cSaveDataSection);
+    summit::companion::diagnostic::Trace("SERVER","companion-bag-mutation",bag,recordIndex,result);
+    return result;
+}
+
 int rsAddOfflineCharacterExp(const char *szID, const char *szName, INT64 Exp, int *lpNewLevel, INT64 *lpNewExperience)
 {
     if(lpNewLevel)
@@ -4537,6 +5224,12 @@ int rsAddOfflineCharacterExp(const char *szID, const char *szName, INT64 Exp, in
     if(!rsCheckAccountChar(szID, (char *)szName))
         return FALSE;
 
+    // SUMMIT350F: reserve writer admission before touching the offline DAT.
+    // Normal operations are unchanged unless a trade holds the pair.
+    gameplay::companions::v2::TradeParticipantGate350B::WriteGuard summit350fOfflineWriter(
+        gameplay::companions::v2::ServerTradeParticipantGate350B(),
+        gameplay::companions::v2::TradeParticipantId(szID,szName));
+    if(!summit350fOfflineWriter.Allowed()) return FALSE;
     char szFile[256];
     char szBackupFile[256];
     GetUserDataFile(szName, szFile);
@@ -4674,6 +5367,12 @@ int rsConsumeOfflineCharacterPotion(const char *szID, const char *szName, int Po
         return FALSE;
     }
 
+    // SUMMIT350F: reserve writer admission before touching the offline DAT.
+    // Normal operations are unchanged unless a trade holds the pair.
+    gameplay::companions::v2::TradeParticipantGate350B::WriteGuard summit350fOfflineWriter(
+        gameplay::companions::v2::ServerTradeParticipantGate350B(),
+        gameplay::companions::v2::TradeParticipantId(szID,szName));
+    if(!summit350fOfflineWriter.Allowed()) return FALSE;
     DWORD potionBase = 0;
     if(PotionType == 0) potionBase = sinPL1;
     else if(PotionType == 1) potionBase = sinPM1;
@@ -5595,6 +6294,13 @@ int rsCompareServerPotion(rsPLAYINFO *lpPlayInfo, sGAME_SAVE_INFO *lpGameSaveInf
 
 int ImportTTServerUser(char *szID, char *szServerID)
 {
+    // SUMMIT350G: this legacy path can write/replace character DATs without
+    // an authenticated single-participant identity. Reserve the unknown-writer
+    // exclusion BEFORE reading any record or modifying account metadata.
+    gameplay::companions::v2::TradeParticipantGate350B::UnknownWriterGuard350G summit350gExternalWriter(
+        gameplay::companions::v2::ServerTradeParticipantGate350B());
+    if(!summit350gExternalWriter.Allowed()) return FALSE;
+
 	char szRealID[32];
 	char szTTServerPath[128];
 	sPLAY_USER_DATA		sPlayUserData;
@@ -5718,13 +6424,24 @@ DWORD WINAPI RecDataThreadProc(void *pInfo)
 			size = recDataBuff[cnt].TransRecData.size;
 			if(size < 16000) size = 16000;
 
-			CopyFile(recDataBuff[cnt].szFileName, recDataBuff[cnt].szBackupFileName, FALSE);
-			fp = fopen(recDataBuff[cnt].szFileName, "wb");
-			if(fp)
-			{
-				fwrite(&recDataBuff[cnt].TransRecData, size, 1, fp);
-				fclose(fp);
-			}
+            // SUMMIT350F: keep pending admission until this writer is done.
+            const bool backedUp=CopyFile(recDataBuff[cnt].szFileName,
+                recDataBuff[cnt].szBackupFileName, FALSE)!=FALSE;
+            fp = fopen(recDataBuff[cnt].szFileName, "wb");
+            const bool wrote=fp && fwrite(&recDataBuff[cnt].TransRecData,
+                size,1,fp)==1;
+            const bool closed=fp && fclose(fp)==0;
+            // SUMMIT350K: backup failure must not falsely mark a successful
+            // main DAT write as an unrecoverable queued-save failure. That
+            // poisoned the participant gate until server restart and caused
+            // permanent -76 at checkpoint 4. Actual DAT write/close failure
+            // still quarantines admission exactly as before.
+            if(!backedUp)
+                printf("[SUMMIT350K_SAVE] stage=backup-unavailable\n");
+            (void)gameplay::companions::v2::ServerTradeParticipantGate350B()
+                .FinishQueuedWrite(recDataBuff[cnt].summit350fParticipantId,
+                    gameplay::companions::v2::TradeParticipantGate350B::
+                      CompletedDatWrite350K(wrote,closed,backedUp));
 		}
 
 		LeaveCriticalSection(&cSaveDataSection);
@@ -5777,41 +6494,53 @@ int rsCloseDataBase()
 
 
 int rsSaveRecData(TRANS_RECORD_DATA *lpTransRecordData, rsPLAYINFO *lpPlayInfo,
-	char *szFileName, char *szBackupFileName)
+    char *szFileName, char *szBackupFileName)
 {
-	if(!lpTransRecordData || lpTransRecordData->size <= 0 || lpTransRecordData->size > (int)sizeof(TRANS_RECORD_DATA)) return FALSE;
-	if(sRecDataBuff && hRecThread)
-	{
+    if(!lpTransRecordData || lpTransRecordData->size<=0 ||
+       lpTransRecordData->size>(int)sizeof(TRANS_RECORD_DATA)) return FALSE;
+    if(!sRecDataBuff || !hRecThread) return FALSE;
 
-		if(sRecDataBuffCount >= REC_DATABUFF_MAX) return FALSE;
-		if(sRecDataBuffCount >= REC_DATABUFF_LIMIT) ResumeThread(hRecThread);
-
-		EnterCriticalSection(&cRecDataSection);
-
-		sRecDataBuff[sRecDataBuffCount].lpPlayInfo = lpPlayInfo;
-		if(lpPlayInfo)
-		{
-			sRecDataBuff[sRecDataBuffCount].dwConnectCount = lpPlayInfo->dwConnectCount;
-		}
-		else
-		{
-			sRecDataBuff[sRecDataBuffCount].dwConnectCount = 0;
-		}
-
-		strcpy_s(sRecDataBuff[sRecDataBuffCount].szName, lpTransRecordData->smCharInfo.szName);
-
-		strcpy_s(sRecDataBuff[sRecDataBuffCount].szFileName, szFileName);
-		strcpy_s(sRecDataBuff[sRecDataBuffCount].szBackupFileName, szBackupFileName);
-		memcpy(&sRecDataBuff[sRecDataBuffCount].TransRecData, lpTransRecordData, lpTransRecordData->size);
-		sRecDataBuffCount++;
-
-		LeaveCriticalSection(&cRecDataSection);
-		return TRUE;
-	}
-
-	return FALSE;
+    // SUMMIT350F: immutable participant identity is retained in the queue
+    // entry until the actual DAT flush. An unknown identity is counted as a
+    // GLOBAL pending write and prevents any pair reservation meanwhile.
+    const char* account=lpPlayInfo ? lpPlayInfo->getAccount() : nullptr;
+    const char* character=lpTransRecordData->smCharInfo.szName;
+    // getAccount() is a legacy C string, not a length-specified packet.
+    // Read only up to its terminator while respecting the fixed maximum.
+    std::size_t accountLength=0;
+    if(account) while(accountLength<32 && account[accountLength]) ++accountLength;
+    if(!account || !accountLength || accountLength==32 ||
+       !memchr(character,0,sizeof(lpTransRecordData->smCharInfo.szName)) ||
+       !*character) account=nullptr;
+    // Never credit this queue entry to a participant unless the target DAT
+    // pathname is exactly the server-derived path for that character.
+    char expectedPath[256]={};
+    if(account && (!GetUserDataFile(character,expectedPath) ||
+                   !szFileName || lstrcmpiA(expectedPath,szFileName)!=0))
+        account=nullptr;
+    const std::uint64_t participant=account ?
+        gameplay::companions::v2::TradeParticipantId(account,character) : 0;
+    EnterCriticalSection(&cRecDataSection);
+    if(sRecDataBuffCount>=REC_DATABUFF_MAX ||
+       !gameplay::companions::v2::ServerTradeParticipantGate350B()
+         .BeginQueuedWrite(participant)) {
+        LeaveCriticalSection(&cRecDataSection);
+        return FALSE;
+    }
+    sREC_DATABUFF& entry=sRecDataBuff[sRecDataBuffCount];
+    entry.lpPlayInfo=lpPlayInfo;
+    entry.dwConnectCount=lpPlayInfo ? lpPlayInfo->dwConnectCount : 0;
+    entry.summit350fParticipantId=participant;
+    strcpy_s(entry.szName,lpTransRecordData->smCharInfo.szName);
+    strcpy_s(entry.szFileName,szFileName);
+    strcpy_s(entry.szBackupFileName,szBackupFileName);
+    memcpy(&entry.TransRecData,lpTransRecordData,lpTransRecordData->size);
+    ++sRecDataBuffCount;
+    const bool wake=sRecDataBuffCount>=REC_DATABUFF_LIMIT;
+    LeaveCriticalSection(&cRecDataSection);
+    if(wake) ResumeThread(hRecThread);
+    return TRUE;
 }
-
 
 int CheckRecWaitData(char *szName)
 {

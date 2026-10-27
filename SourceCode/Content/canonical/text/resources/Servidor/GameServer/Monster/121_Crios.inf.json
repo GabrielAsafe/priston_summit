@@ -1,0 +1,1788 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "monster.121_crios",
+  "kind": "monster_definition",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/Monster/121_Crios.inf",
+    "GameServer/Monster/121_Crios.inf"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/Monster/121_Crios.inf",
+    "legacy_sha256": "22f74b46ced61e77527dbf04d13251692943b38f2d6e389ff845a677bf17362d",
+    "legacy_size": 3878
+  },
+  "semantic": {
+    "fields": {
+      "state": "적",
+      "model_file": "char\\monster\\Crios\\Crios.ini",
+      "name": "Crios",
+      "english_name": "Crios",
+      "level": 121,
+      "active_hour": "제한없음",
+      "generate_group": [
+        1,
+        1
+      ],
+      "iq": 9,
+      "nature": "Evil",
+      "sight": 400,
+      "life": 30000,
+      "skill_rating": 50,
+      "skill_distance": 0,
+      "skill_range": 120,
+      "skill_damage": [
+        810,
+        910
+      ],
+      "attack_damage": [
+        760,
+        860
+      ],
+      "absorption": 85,
+      "block": 44,
+      "stun_percent": 29,
+      "defence": 2000,
+      "attack_speed": 8,
+      "attack_rating": 2500,
+      "special_attack_rate": 45,
+      "size": "중대형",
+      "attack_range": 80,
+      "bionic": 95,
+      "lightning": 95,
+      "ice": 100,
+      "fire": 50,
+      "poison": 90,
+      "unmapped.2ab8c5c1f7": 5,
+      "monster_race": "노멀",
+      "unmapped.2ac0ccb5bfbcd3b5b5": 4,
+      "move_type": 0,
+      "effect_sound": "Crios",
+      "potion_count": 2,
+      "potion_percent": 50,
+      "experience": 4000000,
+      "fall_item_max": 1,
+      "fall_item": {
+        "$repeated": [
+          [
+            22973,
+            "없음"
+          ],
+          [
+            11000,
+            "돈",
+            30000,
+            35000
+          ],
+          [
+            8414,
+            "ps104",
+            "ps104",
+            "ps104",
+            "pm104"
+          ],
+          [
+            1500,
+            "os109",
+            "os110",
+            "os111",
+            "gp144",
+            "fo112",
+            "fo113",
+            "ec105",
+            "ec106",
+            "ec107",
+            "ec105",
+            "ec106",
+            "ec107"
+          ],
+          [
+            500,
+            "os112",
+            "gp144",
+            "fo110",
+            "gp135",
+            "gp136",
+            "gp137",
+            "gp135",
+            "gp136",
+            "gp137",
+            "gp135",
+            "gp136",
+            "gp137",
+            "gp135",
+            "gp136",
+            "gp137",
+            "gp135",
+            "gp136",
+            "gp137",
+            "ec105",
+            "ec106",
+            "ec107"
+          ],
+          [
+            500,
+            "fo131",
+            "gp141",
+            "fo131",
+            "gp141",
+            "fo131",
+            "gp141",
+            "fo131",
+            "gp141",
+            "fo131",
+            "gp141",
+            "fo131",
+            "gp141",
+            "fo131",
+            "gp141",
+            "fo131",
+            "gp141",
+            "fo131",
+            "gp141",
+            "fo131",
+            "gp141"
+          ],
+          [
+            120,
+            "os113",
+            "os114",
+            "se101",
+            "se101",
+            "se105",
+            "se105",
+            "se105",
+            "se105",
+            "se105",
+            "ec105",
+            "ec106",
+            "ec107",
+            "ec105",
+            "ec106",
+            "ec107",
+            "ec105",
+            "ec106",
+            "ec107",
+            "ec105",
+            "ec106",
+            "ec107"
+          ],
+          [
+            100,
+            "os115",
+            "os116",
+            "os117",
+            "se101",
+            "se101",
+            "se101",
+            "se101",
+            "se105",
+            "se105",
+            "se105",
+            "se105",
+            "se105",
+            "ec105",
+            "ec106",
+            "ec107",
+            "ec105",
+            "ec106",
+            "ec107",
+            "ec105",
+            "ec106",
+            "ec107"
+          ],
+          [
+            200,
+            "da228",
+            "da128",
+            "dg125",
+            "db125",
+            "ds125",
+            "oa225",
+            "wa127",
+            "wh128",
+            "wc126",
+            "wm128",
+            "wp127",
+            "ws128",
+            "ws230",
+            "wt127",
+            "wd126",
+            "wn126",
+            "oa124",
+            "or124",
+            "oa123",
+            "or123"
+          ],
+          [
+            50,
+            "da229",
+            "da129",
+            "dg126",
+            "db126",
+            "ds126",
+            "oa226",
+            "wa128",
+            "wh129",
+            "wc127",
+            "wm129",
+            "wp128",
+            "ws129",
+            "ws231",
+            "wt128",
+            "wd127",
+            "wn127",
+            "oa125",
+            "or125",
+            "ec105"
+          ],
+          [
+            10,
+            "da301",
+            "da401",
+            "dg127",
+            "db127",
+            "ds127",
+            "oa227",
+            "wa129",
+            "wh130",
+            "wc128",
+            "wm130",
+            "wp129",
+            "ws130",
+            "ws232",
+            "wt129",
+            "wd128",
+            "wn128",
+            "oa126",
+            "or126"
+          ],
+          [
+            1,
+            "da302",
+            "da402",
+            "dg128",
+            "db128",
+            "ds127",
+            "oa228",
+            "wa130",
+            "wh131",
+            "wc129",
+            "wm131",
+            "wp130",
+            "ws131",
+            "ws233",
+            "wt130",
+            "wd129",
+            "wn129",
+            "oa129",
+            "or129"
+          ],
+          [
+            700,
+            "pr503",
+            "pr506",
+            "pr509",
+            "pr512",
+            "pr515",
+            "pr503",
+            "pr506",
+            "pr509",
+            "pr512",
+            "pr515",
+            "sp266",
+            "sp266",
+            "sp266",
+            "sp266",
+            "sp266",
+            "sp266",
+            "sp266",
+            "sp266",
+            "sp266",
+            "sp266"
+          ],
+          [
+            100,
+            "pr503",
+            "pr506",
+            "pr509",
+            "pr512",
+            "pr515",
+            "pr503",
+            "pr506",
+            "pr509",
+            "pr512",
+            "pr515",
+            "pr503",
+            "pr506",
+            "pr509",
+            "pr512",
+            "pr515",
+            "pr503",
+            "pr506",
+            "pr509",
+            "pr512",
+            "pr515"
+          ],
+          [
+            1,
+            "pr503",
+            "pr506",
+            "pr509",
+            "pr512",
+            "pr515",
+            "pr503",
+            "pr506",
+            "pr509",
+            "pr512",
+            "pr515",
+            "pr503",
+            "pr506",
+            "pr509",
+            "pr512",
+            "pr515",
+            "pr503",
+            "pr506",
+            "pr509",
+            "pr512",
+            "pr515"
+          ],
+          [
+            50,
+            "sp261",
+            "sp262",
+            "sp263",
+            "sp264",
+            "sp265",
+            "ps104",
+            "sp261",
+            "sp262",
+            "sp263",
+            "sp264",
+            "sp265",
+            "sp266",
+            "sp261",
+            "sp262",
+            "sp263",
+            "sp264",
+            "sp265",
+            "sp266",
+            "sp261",
+            "sp262",
+            "sp263",
+            "sp264",
+            "sp265",
+            "sp266"
+          ],
+          [
+            10,
+            "ec105",
+            "ec106",
+            "ec107",
+            "ec105",
+            "ec106",
+            "ec107",
+            "ec105",
+            "ec106",
+            "ec107",
+            "ec105",
+            "ec106",
+            "ec107",
+            "ec105",
+            "ec106",
+            "ec107"
+          ],
+          [
+            1,
+            "ec105",
+            "ec106",
+            "ec107",
+            "ec105",
+            "ec106",
+            "ec107",
+            "ec105",
+            "ec106",
+            "ec107",
+            "ec105",
+            "ec106",
+            "ec107",
+            "ec105",
+            "ec106",
+            "ec107"
+          ]
+        ]
+      },
+      "linked_file": "name\\121_Crios.zhoon"
+    },
+    "directives": [
+      {
+        "line": 3,
+        "key": "state",
+        "legacy_token": "*속성",
+        "legacy_token_hex": "2abcd3bcba",
+        "loader_status": "supported_mapped",
+        "values": [
+          "적"
+        ],
+        "raw_values_hex": [
+          "c0fb"
+        ]
+      },
+      {
+        "line": 4,
+        "key": "model_file",
+        "legacy_token": "*모양파일",
+        "legacy_token_hex": "2ab8f0bee7c6c4c0cf",
+        "loader_status": "supported_mapped",
+        "values": [
+          "char\\monster\\Crios\\Crios.ini"
+        ],
+        "raw_values_hex": [
+          "636861725c6d6f6e737465725c4372696f735c4372696f732e696e69"
+        ],
+        "quoted": [
+          true
+        ]
+      },
+      {
+        "line": 6,
+        "key": "name",
+        "legacy_token": "*이름",
+        "legacy_token_hex": "2ac0ccb8a7",
+        "loader_status": "supported_mapped",
+        "values": [
+          "Crios"
+        ],
+        "raw_values_hex": [
+          "4372696f73"
+        ],
+        "quoted": [
+          true
+        ]
+      },
+      {
+        "line": 7,
+        "key": "english_name",
+        "legacy_token": "*Name",
+        "legacy_token_hex": "2a4e616d65",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          "Crios"
+        ],
+        "raw_values_hex": [
+          "4372696f73"
+        ],
+        "quoted": [
+          true
+        ]
+      },
+      {
+        "line": 9,
+        "key": "level",
+        "legacy_token": "*레벨",
+        "legacy_token_hex": "2ab7b9baa7",
+        "loader_status": "supported_mapped",
+        "values": [
+          121
+        ],
+        "raw_values_hex": [
+          "313231"
+        ]
+      },
+      {
+        "line": 12,
+        "key": "active_hour",
+        "legacy_token": "*활동시간",
+        "legacy_token_hex": "2ac8b0b5bfbdc3b0a3",
+        "loader_status": "supported_mapped",
+        "values": [
+          "제한없음"
+        ],
+        "raw_values_hex": [
+          "c1a6c7d1bef8c0bd"
+        ]
+      },
+      {
+        "line": 15,
+        "key": "generate_group",
+        "legacy_token": "*조직",
+        "legacy_token_hex": "2ac1b6c1f7",
+        "loader_status": "supported_mapped",
+        "values": [
+          1,
+          1
+        ],
+        "raw_values_hex": [
+          "31",
+          "31"
+        ]
+      },
+      {
+        "line": 18,
+        "key": "iq",
+        "legacy_token": "*지능",
+        "legacy_token_hex": "2ac1f6b4c9",
+        "loader_status": "supported_mapped",
+        "values": [
+          9
+        ],
+        "raw_values_hex": [
+          "39"
+        ]
+      },
+      {
+        "line": 21,
+        "key": "nature",
+        "legacy_token": "*품성",
+        "legacy_token_hex": "2ac7b0bcba",
+        "loader_status": "supported_mapped",
+        "values": [
+          "Evil"
+        ],
+        "raw_values_hex": [
+          "4576696c"
+        ]
+      },
+      {
+        "line": 24,
+        "key": "sight",
+        "legacy_token": "*시야",
+        "legacy_token_hex": "2abdc3bedf",
+        "loader_status": "supported_mapped",
+        "values": [
+          400
+        ],
+        "raw_values_hex": [
+          "343030"
+        ]
+      },
+      {
+        "line": 27,
+        "key": "life",
+        "legacy_token": "*생명력",
+        "legacy_token_hex": "2abbfdb8edb7c2",
+        "loader_status": "supported_mapped",
+        "values": [
+          30000
+        ],
+        "raw_values_hex": [
+          "3330303030"
+        ],
+        "quoted": [
+          false
+        ]
+      },
+      {
+        "line": 30,
+        "key": "skill_rating",
+        "legacy_token": "*기술공격률",
+        "legacy_token_hex": "2ab1e2bcfab0f8b0ddb7fc",
+        "loader_status": "supported_mapped",
+        "values": [
+          50
+        ],
+        "raw_values_hex": [
+          "3530"
+        ]
+      },
+      {
+        "line": 31,
+        "key": "skill_distance",
+        "legacy_token": "*기술공격거리",
+        "legacy_token_hex": "2ab1e2bcfab0f8b0ddb0c5b8ae",
+        "loader_status": "supported_mapped",
+        "values": [
+          0
+        ],
+        "raw_values_hex": [
+          "30"
+        ]
+      },
+      {
+        "line": 32,
+        "key": "skill_range",
+        "legacy_token": "*기술공격범위",
+        "legacy_token_hex": "2ab1e2bcfab0f8b0ddb9fcc0a7",
+        "loader_status": "supported_mapped",
+        "values": [
+          120
+        ],
+        "raw_values_hex": [
+          "313230"
+        ]
+      },
+      {
+        "line": 33,
+        "key": "skill_damage",
+        "legacy_token": "*기술공격력",
+        "legacy_token_hex": "2ab1e2bcfab0f8b0ddb7c2",
+        "loader_status": "supported_mapped",
+        "values": [
+          810,
+          910
+        ],
+        "raw_values_hex": [
+          "383130",
+          "393130"
+        ]
+      },
+      {
+        "line": 34,
+        "key": "attack_damage",
+        "legacy_token": "*공격력",
+        "legacy_token_hex": "2ab0f8b0ddb7c2",
+        "loader_status": "supported_mapped",
+        "values": [
+          760,
+          860
+        ],
+        "raw_values_hex": [
+          "373630",
+          "383630"
+        ]
+      },
+      {
+        "line": 37,
+        "key": "absorption",
+        "legacy_token": "*흡수율",
+        "legacy_token_hex": "2ac8edbcf6c0b2",
+        "loader_status": "supported_mapped",
+        "values": [
+          85
+        ],
+        "raw_values_hex": [
+          "3835"
+        ]
+      },
+      {
+        "line": 40,
+        "key": "block",
+        "legacy_token": "*블럭율",
+        "legacy_token_hex": "2abaedb7b0c0b2",
+        "loader_status": "supported_mapped",
+        "values": [
+          44
+        ],
+        "raw_values_hex": [
+          "3434"
+        ]
+      },
+      {
+        "line": 43,
+        "key": "stun_percent",
+        "legacy_token": "*스턴율",
+        "legacy_token_hex": "2abdbac5cfc0b2",
+        "loader_status": "supported_mapped",
+        "values": [
+          29
+        ],
+        "raw_values_hex": [
+          "3239"
+        ]
+      },
+      {
+        "line": 46,
+        "key": "defence",
+        "legacy_token": "*방어력",
+        "legacy_token_hex": "2ab9e6beeeb7c2",
+        "loader_status": "supported_mapped",
+        "values": [
+          2000
+        ],
+        "raw_values_hex": [
+          "32303030"
+        ]
+      },
+      {
+        "line": 49,
+        "key": "attack_speed",
+        "legacy_token": "*공격속도",
+        "legacy_token_hex": "2ab0f8b0ddbcd3b5b5",
+        "loader_status": "supported_mapped",
+        "values": [
+          8
+        ],
+        "raw_values_hex": [
+          "38"
+        ]
+      },
+      {
+        "line": 52,
+        "key": "attack_rating",
+        "legacy_token": "*명중력",
+        "legacy_token_hex": "2ab8edc1dfb7c2",
+        "loader_status": "supported_mapped",
+        "values": [
+          2500
+        ],
+        "raw_values_hex": [
+          "32353030"
+        ]
+      },
+      {
+        "line": 55,
+        "key": "special_attack_rate",
+        "legacy_token": "*특수공격률",
+        "legacy_token_hex": "2ac6afbcf6b0f8b0ddb7fc",
+        "loader_status": "supported_mapped",
+        "values": [
+          45
+        ],
+        "raw_values_hex": [
+          "3435"
+        ]
+      },
+      {
+        "line": 59,
+        "key": "size",
+        "legacy_token": "*크기",
+        "legacy_token_hex": "2ac5a9b1e2",
+        "loader_status": "supported_mapped",
+        "values": [
+          "중대형"
+        ],
+        "raw_values_hex": [
+          "c1dfb4ebc7fc"
+        ]
+      },
+      {
+        "line": 63,
+        "key": "attack_range",
+        "legacy_token": "*공격범위",
+        "legacy_token_hex": "2ab0f8b0ddb9fcc0a7",
+        "loader_status": "supported_mapped",
+        "values": [
+          80
+        ],
+        "raw_values_hex": [
+          "3830"
+        ]
+      },
+      {
+        "line": 69,
+        "key": "bionic",
+        "legacy_token": "*생체",
+        "legacy_token_hex": "2abbfdc3bc",
+        "loader_status": "supported_mapped",
+        "values": [
+          95
+        ],
+        "raw_values_hex": [
+          "3935"
+        ]
+      },
+      {
+        "line": 70,
+        "key": "lightning",
+        "legacy_token": "*번개",
+        "legacy_token_hex": "2ab9f8b0b3",
+        "loader_status": "supported_mapped",
+        "values": [
+          95
+        ],
+        "raw_values_hex": [
+          "3935"
+        ]
+      },
+      {
+        "line": 71,
+        "key": "ice",
+        "legacy_token": "*얼음",
+        "legacy_token_hex": "2abef3c0bd",
+        "loader_status": "supported_mapped",
+        "values": [
+          100
+        ],
+        "raw_values_hex": [
+          "313030"
+        ]
+      },
+      {
+        "line": 72,
+        "key": "fire",
+        "legacy_token": "*불",
+        "legacy_token_hex": "2abad2",
+        "loader_status": "supported_mapped",
+        "values": [
+          50
+        ],
+        "raw_values_hex": [
+          "3530"
+        ]
+      },
+      {
+        "line": 73,
+        "key": "poison",
+        "legacy_token": "*독",
+        "legacy_token_hex": "2ab5b6",
+        "loader_status": "supported_mapped",
+        "values": [
+          90
+        ],
+        "raw_values_hex": [
+          "3930"
+        ]
+      },
+      {
+        "line": 74,
+        "key": "unmapped.2ab8c5c1f7",
+        "legacy_token": "*매직",
+        "legacy_token_hex": "2ab8c5c1f7",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          5
+        ],
+        "raw_values_hex": [
+          "35"
+        ]
+      },
+      {
+        "line": 77,
+        "key": "monster_race",
+        "legacy_token": "*몬스터종족",
+        "legacy_token_hex": "2ab8f3bdbac5cdc1bec1b7",
+        "loader_status": "supported_mapped",
+        "values": [
+          "노멀"
+        ],
+        "raw_values_hex": [
+          "b3ebb8d6"
+        ]
+      },
+      {
+        "line": 80,
+        "key": "unmapped.2ac0ccb5bfbcd3b5b5",
+        "legacy_token": "*이동속도",
+        "legacy_token_hex": "2ac0ccb5bfbcd3b5b5",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          4
+        ],
+        "raw_values_hex": [
+          "34"
+        ]
+      },
+      {
+        "line": 83,
+        "key": "move_type",
+        "legacy_token": "*이동타입",
+        "legacy_token_hex": "2ac0ccb5bfc5b8c0d4",
+        "loader_status": "supported_mapped",
+        "values": [
+          0
+        ],
+        "raw_values_hex": [
+          "30"
+        ]
+      },
+      {
+        "line": 86,
+        "key": "effect_sound",
+        "legacy_token": "*효과음",
+        "legacy_token_hex": "2ac8bfb0fac0bd",
+        "loader_status": "supported_mapped",
+        "values": [
+          "Crios"
+        ],
+        "raw_values_hex": [
+          "4372696f73"
+        ]
+      },
+      {
+        "line": 89,
+        "key": "potion_count",
+        "legacy_token": "*물약보유수",
+        "legacy_token_hex": "2ab9b0bee0bab8c0afbcf6",
+        "loader_status": "supported_mapped",
+        "values": [
+          2
+        ],
+        "raw_values_hex": [
+          "32"
+        ]
+      },
+      {
+        "line": 93,
+        "key": "potion_percent",
+        "legacy_token": "*물약보유률",
+        "legacy_token_hex": "2ab9b0bee0bab8c0afb7fc",
+        "loader_status": "supported_mapped",
+        "values": [
+          50
+        ],
+        "raw_values_hex": [
+          "3530"
+        ]
+      },
+      {
+        "line": 97,
+        "key": "experience",
+        "legacy_token": "*경험치",
+        "legacy_token_hex": "2ab0e6c7e8c4a1",
+        "loader_status": "supported_mapped",
+        "values": [
+          4000000
+        ],
+        "raw_values_hex": [
+          "34303030303030"
+        ]
+      },
+      {
+        "line": 100,
+        "key": "fall_item_max",
+        "legacy_token": "*아이템카운터",
+        "legacy_token_hex": "2abec6c0ccc5dbc4abbfeec5cd",
+        "loader_status": "supported_mapped",
+        "values": [
+          1
+        ],
+        "raw_values_hex": [
+          "31"
+        ]
+      },
+      {
+        "line": 101,
+        "key": "fall_item",
+        "legacy_token": "*아이템",
+        "legacy_token_hex": "2abec6c0ccc5db",
+        "loader_status": "supported_mapped",
+        "values": [
+          22973,
+          "없음"
+        ],
+        "raw_values_hex": [
+          "3232393733",
+          "bef8c0bd"
+        ]
+      },
+      {
+        "line": 102,
+        "key": "fall_item",
+        "legacy_token": "*아이템",
+        "legacy_token_hex": "2abec6c0ccc5db",
+        "loader_status": "supported_mapped",
+        "values": [
+          11000,
+          "돈",
+          30000,
+          35000
+        ],
+        "raw_values_hex": [
+          "3131303030",
+          "b5b7",
+          "3330303030",
+          "3335303030"
+        ]
+      },
+      {
+        "line": 103,
+        "key": "fall_item",
+        "legacy_token": "*아이템",
+        "legacy_token_hex": "2abec6c0ccc5db",
+        "loader_status": "supported_mapped",
+        "values": [
+          8414,
+          "ps104",
+          "ps104",
+          "ps104",
+          "pm104"
+        ],
+        "raw_values_hex": [
+          "38343134",
+          "7073313034",
+          "7073313034",
+          "7073313034",
+          "706d313034"
+        ]
+      },
+      {
+        "line": 104,
+        "key": "fall_item",
+        "legacy_token": "*아이템",
+        "legacy_token_hex": "2abec6c0ccc5db",
+        "loader_status": "supported_mapped",
+        "values": [
+          1500,
+          "os109",
+          "os110",
+          "os111",
+          "gp144",
+          "fo112",
+          "fo113",
+          "ec105",
+          "ec106",
+          "ec107",
+          "ec105",
+          "ec106",
+          "ec107"
+        ],
+        "raw_values_hex": [
+          "31353030",
+          "6f73313039",
+          "6f73313130",
+          "6f73313131",
+          "6770313434",
+          "666f313132",
+          "666f313133",
+          "6563313035",
+          "6563313036",
+          "6563313037",
+          "6563313035",
+          "6563313036",
+          "6563313037"
+        ]
+      },
+      {
+        "line": 105,
+        "key": "fall_item",
+        "legacy_token": "*아이템",
+        "legacy_token_hex": "2abec6c0ccc5db",
+        "loader_status": "supported_mapped",
+        "values": [
+          500,
+          "os112",
+          "gp144",
+          "fo110",
+          "gp135",
+          "gp136",
+          "gp137",
+          "gp135",
+          "gp136",
+          "gp137",
+          "gp135",
+          "gp136",
+          "gp137",
+          "gp135",
+          "gp136",
+          "gp137",
+          "gp135",
+          "gp136",
+          "gp137",
+          "ec105",
+          "ec106",
+          "ec107"
+        ],
+        "raw_values_hex": [
+          "353030",
+          "6f73313132",
+          "6770313434",
+          "666f313130",
+          "6770313335",
+          "6770313336",
+          "6770313337",
+          "6770313335",
+          "6770313336",
+          "6770313337",
+          "6770313335",
+          "6770313336",
+          "6770313337",
+          "6770313335",
+          "6770313336",
+          "6770313337",
+          "6770313335",
+          "6770313336",
+          "6770313337",
+          "6563313035",
+          "6563313036",
+          "6563313037"
+        ]
+      },
+      {
+        "line": 106,
+        "key": "fall_item",
+        "legacy_token": "*아이템",
+        "legacy_token_hex": "2abec6c0ccc5db",
+        "loader_status": "supported_mapped",
+        "values": [
+          500,
+          "fo131",
+          "gp141",
+          "fo131",
+          "gp141",
+          "fo131",
+          "gp141",
+          "fo131",
+          "gp141",
+          "fo131",
+          "gp141",
+          "fo131",
+          "gp141",
+          "fo131",
+          "gp141",
+          "fo131",
+          "gp141",
+          "fo131",
+          "gp141",
+          "fo131",
+          "gp141"
+        ],
+        "raw_values_hex": [
+          "353030",
+          "666f313331",
+          "6770313431",
+          "666f313331",
+          "6770313431",
+          "666f313331",
+          "6770313431",
+          "666f313331",
+          "6770313431",
+          "666f313331",
+          "6770313431",
+          "666f313331",
+          "6770313431",
+          "666f313331",
+          "6770313431",
+          "666f313331",
+          "6770313431",
+          "666f313331",
+          "6770313431",
+          "666f313331",
+          "6770313431"
+        ]
+      },
+      {
+        "line": 107,
+        "key": "fall_item",
+        "legacy_token": "*아이템",
+        "legacy_token_hex": "2abec6c0ccc5db",
+        "loader_status": "supported_mapped",
+        "values": [
+          120,
+          "os113",
+          "os114",
+          "se101",
+          "se101",
+          "se105",
+          "se105",
+          "se105",
+          "se105",
+          "se105",
+          "ec105",
+          "ec106",
+          "ec107",
+          "ec105",
+          "ec106",
+          "ec107",
+          "ec105",
+          "ec106",
+          "ec107",
+          "ec105",
+          "ec106",
+          "ec107"
+        ],
+        "raw_values_hex": [
+          "313230",
+          "6f73313133",
+          "6f73313134",
+          "7365313031",
+          "7365313031",
+          "7365313035",
+          "7365313035",
+          "7365313035",
+          "7365313035",
+          "7365313035",
+          "6563313035",
+          "6563313036",
+          "6563313037",
+          "6563313035",
+          "6563313036",
+          "6563313037",
+          "6563313035",
+          "6563313036",
+          "6563313037",
+          "6563313035",
+          "6563313036",
+          "6563313037"
+        ]
+      },
+      {
+        "line": 108,
+        "key": "fall_item",
+        "legacy_token": "*아이템",
+        "legacy_token_hex": "2abec6c0ccc5db",
+        "loader_status": "supported_mapped",
+        "values": [
+          100,
+          "os115",
+          "os116",
+          "os117",
+          "se101",
+          "se101",
+          "se101",
+          "se101",
+          "se105",
+          "se105",
+          "se105",
+          "se105",
+          "se105",
+          "ec105",
+          "ec106",
+          "ec107",
+          "ec105",
+          "ec106",
+          "ec107",
+          "ec105",
+          "ec106",
+          "ec107"
+        ],
+        "raw_values_hex": [
+          "313030",
+          "6f73313135",
+          "6f73313136",
+          "6f73313137",
+          "7365313031",
+          "7365313031",
+          "7365313031",
+          "7365313031",
+          "7365313035",
+          "7365313035",
+          "7365313035",
+          "7365313035",
+          "7365313035",
+          "6563313035",
+          "6563313036",
+          "6563313037",
+          "6563313035",
+          "6563313036",
+          "6563313037",
+          "6563313035",
+          "6563313036",
+          "6563313037"
+        ]
+      },
+      {
+        "line": 109,
+        "key": "fall_item",
+        "legacy_token": "*아이템",
+        "legacy_token_hex": "2abec6c0ccc5db",
+        "loader_status": "supported_mapped",
+        "values": [
+          200,
+          "da228",
+          "da128",
+          "dg125",
+          "db125",
+          "ds125",
+          "oa225",
+          "wa127",
+          "wh128",
+          "wc126",
+          "wm128",
+          "wp127",
+          "ws128",
+          "ws230",
+          "wt127",
+          "wd126",
+          "wn126",
+          "oa124",
+          "or124",
+          "oa123",
+          "or123"
+        ],
+        "raw_values_hex": [
+          "323030",
+          "6461323238",
+          "6461313238",
+          "6467313235",
+          "6462313235",
+          "6473313235",
+          "6f61323235",
+          "7761313237",
+          "7768313238",
+          "7763313236",
+          "776d313238",
+          "7770313237",
+          "7773313238",
+          "7773323330",
+          "7774313237",
+          "7764313236",
+          "776e313236",
+          "6f61313234",
+          "6f72313234",
+          "6f61313233",
+          "6f72313233"
+        ]
+      },
+      {
+        "line": 110,
+        "key": "fall_item",
+        "legacy_token": "*아이템",
+        "legacy_token_hex": "2abec6c0ccc5db",
+        "loader_status": "supported_mapped",
+        "values": [
+          50,
+          "da229",
+          "da129",
+          "dg126",
+          "db126",
+          "ds126",
+          "oa226",
+          "wa128",
+          "wh129",
+          "wc127",
+          "wm129",
+          "wp128",
+          "ws129",
+          "ws231",
+          "wt128",
+          "wd127",
+          "wn127",
+          "oa125",
+          "or125",
+          "ec105"
+        ],
+        "raw_values_hex": [
+          "3530",
+          "6461323239",
+          "6461313239",
+          "6467313236",
+          "6462313236",
+          "6473313236",
+          "6f61323236",
+          "7761313238",
+          "7768313239",
+          "7763313237",
+          "776d313239",
+          "7770313238",
+          "7773313239",
+          "7773323331",
+          "7774313238",
+          "7764313237",
+          "776e313237",
+          "6f61313235",
+          "6f72313235",
+          "6563313035"
+        ]
+      },
+      {
+        "line": 111,
+        "key": "fall_item",
+        "legacy_token": "*아이템",
+        "legacy_token_hex": "2abec6c0ccc5db",
+        "loader_status": "supported_mapped",
+        "values": [
+          10,
+          "da301",
+          "da401",
+          "dg127",
+          "db127",
+          "ds127",
+          "oa227",
+          "wa129",
+          "wh130",
+          "wc128",
+          "wm130",
+          "wp129",
+          "ws130",
+          "ws232",
+          "wt129",
+          "wd128",
+          "wn128",
+          "oa126",
+          "or126"
+        ],
+        "raw_values_hex": [
+          "3130",
+          "6461333031",
+          "6461343031",
+          "6467313237",
+          "6462313237",
+          "6473313237",
+          "6f61323237",
+          "7761313239",
+          "7768313330",
+          "7763313238",
+          "776d313330",
+          "7770313239",
+          "7773313330",
+          "7773323332",
+          "7774313239",
+          "7764313238",
+          "776e313238",
+          "6f61313236",
+          "6f72313236"
+        ]
+      },
+      {
+        "line": 112,
+        "key": "fall_item",
+        "legacy_token": "*아이템",
+        "legacy_token_hex": "2abec6c0ccc5db",
+        "loader_status": "supported_mapped",
+        "values": [
+          1,
+          "da302",
+          "da402",
+          "dg128",
+          "db128",
+          "ds127",
+          "oa228",
+          "wa130",
+          "wh131",
+          "wc129",
+          "wm131",
+          "wp130",
+          "ws131",
+          "ws233",
+          "wt130",
+          "wd129",
+          "wn129",
+          "oa129",
+          "or129"
+        ],
+        "raw_values_hex": [
+          "31",
+          "6461333032",
+          "6461343032",
+          "6467313238",
+          "6462313238",
+          "6473313237",
+          "6f61323238",
+          "7761313330",
+          "7768313331",
+          "7763313239",
+          "776d313331",
+          "7770313330",
+          "7773313331",
+          "7773323333",
+          "7774313330",
+          "7764313239",
+          "776e313239",
+          "6f61313239",
+          "6f72313239"
+        ]
+      },
+      {
+        "line": 113,
+        "key": "fall_item",
+        "legacy_token": "*아이템",
+        "legacy_token_hex": "2abec6c0ccc5db",
+        "loader_status": "supported_mapped",
+        "values": [
+          700,
+          "pr503",
+          "pr506",
+          "pr509",
+          "pr512",
+          "pr515",
+          "pr503",
+          "pr506",
+          "pr509",
+          "pr512",
+          "pr515",
+          "sp266",
+          "sp266",
+          "sp266",
+          "sp266",
+          "sp266",
+          "sp266",
+          "sp266",
+          "sp266",
+          "sp266",
+          "sp266"
+        ],
+        "raw_values_hex": [
+          "373030",
+          "7072353033",
+          "7072353036",
+          "7072353039",
+          "7072353132",
+          "7072353135",
+          "7072353033",
+          "7072353036",
+          "7072353039",
+          "7072353132",
+          "7072353135",
+          "7370323636",
+          "7370323636",
+          "7370323636",
+          "7370323636",
+          "7370323636",
+          "7370323636",
+          "7370323636",
+          "7370323636",
+          "7370323636",
+          "7370323636"
+        ]
+      },
+      {
+        "line": 114,
+        "key": "fall_item",
+        "legacy_token": "*아이템",
+        "legacy_token_hex": "2abec6c0ccc5db",
+        "loader_status": "supported_mapped",
+        "values": [
+          100,
+          "pr503",
+          "pr506",
+          "pr509",
+          "pr512",
+          "pr515",
+          "pr503",
+          "pr506",
+          "pr509",
+          "pr512",
+          "pr515",
+          "pr503",
+          "pr506",
+          "pr509",
+          "pr512",
+          "pr515",
+          "pr503",
+          "pr506",
+          "pr509",
+          "pr512",
+          "pr515"
+        ],
+        "raw_values_hex": [
+          "313030",
+          "7072353033",
+          "7072353036",
+          "7072353039",
+          "7072353132",
+          "7072353135",
+          "7072353033",
+          "7072353036",
+          "7072353039",
+          "7072353132",
+          "7072353135",
+          "7072353033",
+          "7072353036",
+          "7072353039",
+          "7072353132",
+          "7072353135",
+          "7072353033",
+          "7072353036",
+          "7072353039",
+          "7072353132",
+          "7072353135"
+        ]
+      },
+      {
+        "line": 115,
+        "key": "fall_item",
+        "legacy_token": "*아이템",
+        "legacy_token_hex": "2abec6c0ccc5db",
+        "loader_status": "supported_mapped",
+        "values": [
+          1,
+          "pr503",
+          "pr506",
+          "pr509",
+          "pr512",
+          "pr515",
+          "pr503",
+          "pr506",
+          "pr509",
+          "pr512",
+          "pr515",
+          "pr503",
+          "pr506",
+          "pr509",
+          "pr512",
+          "pr515",
+          "pr503",
+          "pr506",
+          "pr509",
+          "pr512",
+          "pr515"
+        ],
+        "raw_values_hex": [
+          "31",
+          "7072353033",
+          "7072353036",
+          "7072353039",
+          "7072353132",
+          "7072353135",
+          "7072353033",
+          "7072353036",
+          "7072353039",
+          "7072353132",
+          "7072353135",
+          "7072353033",
+          "7072353036",
+          "7072353039",
+          "7072353132",
+          "7072353135",
+          "7072353033",
+          "7072353036",
+          "7072353039",
+          "7072353132",
+          "7072353135"
+        ]
+      },
+      {
+        "line": 116,
+        "key": "fall_item",
+        "legacy_token": "*아이템",
+        "legacy_token_hex": "2abec6c0ccc5db",
+        "loader_status": "supported_mapped",
+        "values": [
+          50,
+          "sp261",
+          "sp262",
+          "sp263",
+          "sp264",
+          "sp265",
+          "ps104",
+          "sp261",
+          "sp262",
+          "sp263",
+          "sp264",
+          "sp265",
+          "sp266",
+          "sp261",
+          "sp262",
+          "sp263",
+          "sp264",
+          "sp265",
+          "sp266",
+          "sp261",
+          "sp262",
+          "sp263",
+          "sp264",
+          "sp265",
+          "sp266"
+        ],
+        "raw_values_hex": [
+          "3530",
+          "7370323631",
+          "7370323632",
+          "7370323633",
+          "7370323634",
+          "7370323635",
+          "7073313034",
+          "7370323631",
+          "7370323632",
+          "7370323633",
+          "7370323634",
+          "7370323635",
+          "7370323636",
+          "7370323631",
+          "7370323632",
+          "7370323633",
+          "7370323634",
+          "7370323635",
+          "7370323636",
+          "7370323631",
+          "7370323632",
+          "7370323633",
+          "7370323634",
+          "7370323635",
+          "7370323636"
+        ]
+      },
+      {
+        "line": 117,
+        "key": "fall_item",
+        "legacy_token": "*아이템",
+        "legacy_token_hex": "2abec6c0ccc5db",
+        "loader_status": "supported_mapped",
+        "values": [
+          10,
+          "ec105",
+          "ec106",
+          "ec107",
+          "ec105",
+          "ec106",
+          "ec107",
+          "ec105",
+          "ec106",
+          "ec107",
+          "ec105",
+          "ec106",
+          "ec107",
+          "ec105",
+          "ec106",
+          "ec107"
+        ],
+        "raw_values_hex": [
+          "3130",
+          "6563313035",
+          "6563313036",
+          "6563313037",
+          "6563313035",
+          "6563313036",
+          "6563313037",
+          "6563313035",
+          "6563313036",
+          "6563313037",
+          "6563313035",
+          "6563313036",
+          "6563313037",
+          "6563313035",
+          "6563313036",
+          "6563313037"
+        ]
+      },
+      {
+        "line": 118,
+        "key": "fall_item",
+        "legacy_token": "*아이템",
+        "legacy_token_hex": "2abec6c0ccc5db",
+        "loader_status": "supported_mapped",
+        "values": [
+          1,
+          "ec105",
+          "ec106",
+          "ec107",
+          "ec105",
+          "ec106",
+          "ec107",
+          "ec105",
+          "ec106",
+          "ec107",
+          "ec105",
+          "ec106",
+          "ec107",
+          "ec105",
+          "ec106",
+          "ec107"
+        ],
+        "raw_values_hex": [
+          "31",
+          "6563313035",
+          "6563313036",
+          "6563313037",
+          "6563313035",
+          "6563313036",
+          "6563313037",
+          "6563313035",
+          "6563313036",
+          "6563313037",
+          "6563313035",
+          "6563313036",
+          "6563313037",
+          "6563313035",
+          "6563313036",
+          "6563313037"
+        ]
+      },
+      {
+        "line": 121,
+        "key": "linked_file",
+        "legacy_token": "*연결파일",
+        "legacy_token_hex": "2abfacb0e1c6c4c0cf",
+        "loader_status": "supported_mapped",
+        "values": [
+          "name\\121_Crios.zhoon"
+        ],
+        "raw_values_hex": [
+          "6e616d655c3132315f4372696f732e7a686f6f6e"
+        ],
+        "quoted": [
+          true
+        ]
+      }
+    ],
+    "unknown_tokens": {
+      "*매직": 1,
+      "*이동속도": 1
+    }
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "DQovLyq48LWoxamx4gkJMS4wDQoqvNO8ugkJCcD7DQoquPC+58bEwM8JCSJjaGFyXG1vbnN0ZXJcQ3Jpb3NcQ3Jpb3MuaW5pIg0KDQoqwMy4pwkJCSLFqbiuv8C9uiINCipOYW1lCQkJIkNyaW9zIg0KDQoqt7m6pwkJCTEyMQ0KDQovL7jzvbrFzbChIMiwtb/Hz7TCIL3DsKMNCirIsLW/vcOwowkJwabH0b74wL0NCg0KLy+5q7iusKEgx8q/5MfRILjzvbrFzcDHILz2IMPWvNJYLcPWtOtYDQoqwbbB9wkJCTEJMSANCg0KLy/B9rTJwMcgsbi60MC6IDEtMTAgse7B9sDHIElRIA0KKsH2tMkJCQk5DQoNCi8vuPO9usXNwMcgvLrH4iBHb29kLCBOZXV0cmFsLCBFdmlsDQoqx7C8ugkJCUV2aWwNCg0KLy+48726xc2woSDEs7ivxc24piDAzr3Ex8+0wiCwxbiuIDFNID0gMjcNCiq9w77fCQkJNDAwDQoNCi8vuPO9usXNwMcgSFANCiq7/bjtt8IJCQkzMA0KDQovL7jzvbrFzcDHILD4sN23wg0KKrHivPqw+LDdt/wJCTUwDQoqseK8+rD4sN2wxbiuCQkwDQoqseK8+rD4sN25/MCnCQkxMjANCiqx4rz6sPiw3bfCCQk4MTAgOTEwDQoqsPiw3bfCCQkJNzYwIDg2MA0KDQovL7jzvbrFzcDHILD4sN0gyO289sCyIFhYJSC4uMWtILWluczB9rimIMjtvPbH0bTZLiANCirI7bz2wLIJCQk4NQ0KDQovL7nmxtC4piC15yC48726xc3AxyCw5r/sILrtt7DAssDMIMG4wOcNCiq67bewwLIJCQk0NA0KDQovL726xc/Gx8GkwLsgud6+0sC7ILDmv+wgJbfOIMDnIMbHwaTH0bTZDQoqvbrFz8CyCQkJMjkNCg0KLy+48726xc3AxyC55r7ut8IgDQoquea+7rfCCQkJMjAwMA0KDQovL7D4sN0gvNO1tcDHILr8uKOx4iDD1rzSIDUgLSDD1rTrIDkNCiqw+LDdvNO1tQkJOA0KDQovL7D4sN29wyCw+LDdwMcguO3B37fCICg4NikNCiq47cHft8IJCQkyNTAwDQoNCi8vuPO9usXNsKEgsKHB9rDtIMDWtMIgsPiw3SDG0MXPwMcgyK63/CCxuLrQICjD1rzSILWluczB9iAvIMPWtOsgtaW5zMH2ID0gbSAvIG0gKCtYKQ0KKsavvPaw+LDdt/wJCTQ1DQoNCg0KLy+48726xc3AxyCx17iywNogxamx4iC80sf8LCDB38f8LCDB37Trx/wsILTrx/wsIL74wL0NCirFqbHiCQkJwd+068f8DQoNCg0KLy+w+LDdufzApyC48726xc2woSCw+LDdIMfSILanILD4sN0gufzAp7imIMelvcMgDQoqsPiw3bn8wKcJCTgwDQoNCg0KLy+807y6DQovLy8vLy8vLy8vILzTvLogwPrH17fCIC8vLy8vLy8vLy8NCg0KKrv9w7wJCQk5NQ0KKrn4sLMJCQk5NQ0KKr7zwL0JCQkxMDANCiq60gkJCTUwDQoqtbYJCQk5MA0KKrjFwfcJCQk1DQoNCi8vvvC1pbXlIMCvuasgDQoquPO9usXNwb7BtwkJs+u41g0KDQovL7jzvbrFzcDHIMDMtb8gvNO1tSAxLTbAxyC5/MCnIA0KKsDMtb+807W1CQk0DQoNCi8vwMy1v8W4wNQNCirAzLW/xbjA1AkJMA0KDQovL7G4utAgKCBDWUNMT1BTIC8gSE9CR09CTElOIC8gSU1QIC8gTUlOSUcgLyBQTEFOVCAvIFNLRUxFVE9OIC8gWk9NQkkgLyBPQklUICkNCirIv7D6wL0JCQlDcmlvcw0KDQovL7mwvuAgsLm89iAouPO9usXNsKEgubC+4MC7ILChwfaw7SDA1rTCILz2KQ0KKrmwvuC6uMCvvPYJCTINCg0KDQovL7mwvuAgu+e/67f8ICi48726xc0gud+7/b3DILmwvuDAuyCwocH2sO0gs6q/wyDIrrf8KQ0KKrmwvuC6uMCvt/wJCTUwDQoNCg0KLy+48726xc0gu+e4wb3DIMCvwPq16b+hsNQgtbm+xrChtMIgsObH6MShwMcgvucNCiqw5sfoxKEJCQk0MDAwMDAwDQoNCi8vuPO9usXNsKEgtrO+7rbfuK60wiC+xsDMxdsgvLPBpCC67bewDQoqvsbAzMXbxKu/7sXNCQkxDQoqvsbAzMXbIAkyMjk3Mwm++MC9DQoqvsbAzMXbIAkxMTAwMAm1tyAzMDAwMAkzNTAwMA0KKr7GwMzF2yAJODQxNAlwczEwNCBwczEwNCBwczEwNCBwbTEwNA0KKr7GwMzF2yAJMTUwMAlvczEwOSBvczExMCBvczExMSBncDE0NCBmbzExMiBmbzExMyBlYzEwNSBlYzEwNiBlYzEwNyBlYzEwNSBlYzEwNiBlYzEwNw0KKr7GwMzF2yAJNTAwCQlvczExMiBncDE0NCBmbzExMCBncDEzNSBncDEzNiBncDEzNyBncDEzNSBncDEzNiBncDEzNyBncDEzNSBncDEzNiBncDEzNyBncDEzNSBncDEzNiBncDEzNyBncDEzNSBncDEzNiBncDEzNyBlYzEwNSBlYzEwNiBlYzEwNw0KKr7GwMzF2yAJNTAwCQlmbzEzMSBncDE0MSBmbzEzMSBncDE0MSBmbzEzMSBncDE0MSBmbzEzMSBncDE0MSBmbzEzMSBncDE0MSBmbzEzMSBncDE0MSBmbzEzMSBncDE0MSBmbzEzMSBncDE0MSBmbzEzMSBncDE0MSBmbzEzMSBncDE0MSANCiq+xsDMxdsgCTEyMAkJb3MxMTMgb3MxMTQgc2UxMDEgc2UxMDEgc2UxMDUgc2UxMDUgc2UxMDUgc2UxMDUgc2UxMDUgZWMxMDUgZWMxMDYgZWMxMDcgZWMxMDUgZWMxMDYgZWMxMDcgZWMxMDUgZWMxMDYgZWMxMDcgZWMxMDUgZWMxMDYgZWMxMDcNCiq+xsDMxdsgCTEwMAkJb3MxMTUgb3MxMTYgb3MxMTcgc2UxMDEgc2UxMDEgc2UxMDEgc2UxMDEgc2UxMDUgc2UxMDUgc2UxMDUgc2UxMDUgc2UxMDUgZWMxMDUgZWMxMDYgZWMxMDcgZWMxMDUgZWMxMDYgZWMxMDcgZWMxMDUgZWMxMDYgZWMxMDcNCiq+xsDMxdsgCTIwMAkJZGEyMjggZGExMjggZGcxMjUgZGIxMjUgZHMxMjUgb2EyMjUgd2ExMjcgd2gxMjggd2MxMjYgd20xMjggd3AxMjcgd3MxMjggd3MyMzAgd3QxMjcgd2QxMjYgd24xMjYgb2ExMjQgb3IxMjQgb2ExMjMgb3IxMjMNCiq+xsDMxdsgCTUwCQlkYTIyOSBkYTEyOSBkZzEyNiBkYjEyNiBkczEyNiBvYTIyNiB3YTEyOCB3aDEyOSB3YzEyNyB3bTEyOSB3cDEyOCB3czEyOSB3czIzMSB3dDEyOCB3ZDEyNyB3bjEyNyBvYTEyNSBvcjEyNSBlYzEwNSAgDQoqvsbAzMXbIAkxMAkJZGEzMDEgZGE0MDEgZGcxMjcgZGIxMjcgZHMxMjcgb2EyMjcgd2ExMjkgd2gxMzAgd2MxMjggd20xMzAgd3AxMjkgd3MxMzAgd3MyMzIgd3QxMjkgd2QxMjggd24xMjggb2ExMjYgb3IxMjYgDQoqvsbAzMXbIAkxCQlkYTMwMiBkYTQwMiBkZzEyOCBkYjEyOCBkczEyNyBvYTIyOCB3YTEzMCB3aDEzMSB3YzEyOSB3bTEzMSB3cDEzMCB3czEzMSB3czIzMyB3dDEzMCB3ZDEyOSB3bjEyOSBvYTEyOSBvcjEyOQ0KKr7GwMzF2yAJNzAwCQlwcjUwMyBwcjUwNiBwcjUwOSBwcjUxMiBwcjUxNSBwcjUwMyBwcjUwNiBwcjUwOSBwcjUxMiBwcjUxNSBzcDI2NiBzcDI2NiBzcDI2NiBzcDI2NiBzcDI2NiBzcDI2NiBzcDI2NiBzcDI2NiBzcDI2NiBzcDI2NiANCiq+xsDMxdsgCTEwMAkJcHI1MDMgcHI1MDYgcHI1MDkgcHI1MTIgcHI1MTUgcHI1MDMgcHI1MDYgcHI1MDkgcHI1MTIgcHI1MTUgcHI1MDMgcHI1MDYgcHI1MDkgcHI1MTIgcHI1MTUgcHI1MDMgcHI1MDYgcHI1MDkgcHI1MTIgcHI1MTUNCiq+xsDMxdsgCTEJCXByNTAzIHByNTA2IHByNTA5IHByNTEyIHByNTE1IHByNTAzIHByNTA2IHByNTA5IHByNTEyIHByNTE1IHByNTAzIHByNTA2IHByNTA5IHByNTEyIHByNTE1IHByNTAzIHByNTA2IHByNTA5IHByNTEyIHByNTE1DQoqvsbAzMXbICA1MAkJc3AyNjEgc3AyNjIgc3AyNjMgc3AyNjQgc3AyNjUgcHMxMDQgc3AyNjEgc3AyNjIgc3AyNjMgc3AyNjQgc3AyNjUgc3AyNjYgc3AyNjEgc3AyNjIgc3AyNjMgc3AyNjQgc3AyNjUgc3AyNjYgc3AyNjEgc3AyNjIgc3AyNjMgc3AyNjQgc3AyNjUgc3AyNjYgDQoqvsbAzMXbIAkxMAkJZWMxMDUgZWMxMDYgZWMxMDcgZWMxMDUgZWMxMDYgZWMxMDcgZWMxMDUgZWMxMDYgZWMxMDcgZWMxMDUgZWMxMDYgZWMxMDcgZWMxMDUgZWMxMDYgZWMxMDcgZWMxMDUgZWMxMDYgZWMxMDcgZWMxMDUgZWMxMDYgZWMxMDcgZWMxMDUgZWMxMDYgZWMxMDcgDQoqvsbAzMXbIAkxCQllYzEwNSBlYzEwNiBlYzEwNyBlYzEwNSBlYzEwNiBlYzEwNyBlYzEwNSBlYzEwNiBlYzEwNyBlYzEwNSBlYzEwNiBlYzEwNyBlYzEwNSBlYzEwNiBlYzEwNyBlYzEwNSBlYzEwNiBlYzEwNyBlYzEwNSBlYzEwNiBlYzEwNyBlYzEwNSBlYzEwNiBlYzEwNyANCgkNCg0KKr+ssOHGxMDPCSJuYW1lXDEyMV9Dcmlvcy56aG9vbiI="
+  }
+}

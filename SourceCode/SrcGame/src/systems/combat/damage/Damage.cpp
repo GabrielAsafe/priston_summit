@@ -39,6 +39,32 @@ int	dmSelected_CharCnt;
 int	dmUseAccuracy;
 DWORD	dmAttackCount = 0;
 
+// [SUMMIT_ATTACK_ROUTE_53_57_V1] Per-attempt evidence, not a combat override.
+// If no event is recorded when clicking a monster, the client never reached
+// dm_SendTransDamage (selection/animation problem). A SEND_OK followed by
+// unchanged HP points instead to server-side damage acceptance or sync.
+static void SummitTraceAttackRoute(const char *phase, const smCHAR *target, int value0, int value1)
+{
+	if (!lpCurPlayer || lpCurPlayer->OnStageField < 0 ||
+		lpCurPlayer->OnStageField >= 2 || !StageField[lpCurPlayer->OnStageField])
+		return;
+	const int field = StageField[lpCurPlayer->OnStageField]->FieldCode;
+	if (field != 53)
+		return;
+	CreateDirectoryA("LOGS", NULL);
+	FILE *file = 0;
+	fopen_s(&file, "LOGS\\summit_attack_53_57.txt", "a");
+	if (!file)
+		return;
+	fprintf(file, "tick=%lu map=%d phase=%s serial=%lu enemy_state=%d life=%d/%d metric=%d,%d\n",
+		(unsigned long)dwPlayTime, field, phase ? phase : "?",
+		target ? (unsigned long)target->dwObjectSerial : 0ul,
+		target ? target->smCharInfo.State : -1,
+		target ? target->smCharInfo.Life[0] : -1,
+		target ? target->smCharInfo.Life[1] : -1, value0, value1);
+	fclose(file);
+}
+
 static void SummitRuthlessLocalHitCost()
 {
 	if(!lpCurPlayer || lpCurPlayer->smCharInfo.JOB_CODE != JOBCODE_FIGHTER) return;
@@ -201,7 +227,8 @@ int dm_SendTransDamage(smCHAR *lpChar, int PowParam1, int PowParam2, int AttackS
 
 	if (RestartPlayCount != 0)
 
-	{	//DrawDamage::GetInstance()->CurAddTargetDamage(0, lpCurPlayer->dwObjectSerial, 4);
+	{	SummitTraceAttackRoute("BLOCK_RESTART", lpChar, RestartPlayCount, 0);
+		//DrawDamage::GetInstance()->CurAddTargetDamage(0, lpCurPlayer->dwObjectSerial, 4);
 		//Attack invalid when no mouse movement more than a few minutes (bots automatically play defense)
 		//Invalid attacks when standing in place for more than a few minutes characters (bots automatically play defense)
 		return FALSE;
@@ -252,6 +279,7 @@ int dm_SendTransDamage(smCHAR *lpChar, int PowParam1, int PowParam2, int AttackS
 #endif
 			if (rnd > accuracy)
 			{
+				SummitTraceAttackRoute("ACCURACY_MISS", lpChar, accuracy, rnd);
 				return FALSE;
 			}
 			break;
@@ -339,6 +367,8 @@ int dm_SendTransDamage(smCHAR *lpChar, int PowParam1, int PowParam2, int AttackS
 		lpsmSendSock = smWsockUserServer;
 
 	if (lpsmSock) lpsmSendSock = lpsmSock;
+	SummitTraceAttackRoute(lpsmSendSock ? "SEND_ATTEMPT" : "NO_TARGET_SOCKET",
+		lpChar, (int)dwSkillCode, (int)TransAttackData.AttackCount);
 
 #ifdef _USE_DYNAMIC_ENCODE
 	if (lpsmSendSock && fnEncodeDamagePacket && fnDecodeDamagePacket)
@@ -350,6 +380,7 @@ int dm_SendTransDamage(smCHAR *lpChar, int PowParam1, int PowParam2, int AttackS
 		result = lpsmSendSock->Send((char *)&TransAttackData, TransAttackData.size, TRUE);
 		if (result)
 		{
+			SummitTraceAttackRoute("SEND_OK", lpChar, dmg, result);
 			SummitRuthlessLocalHitCost();
 			dm_OpenFireAttack(lpChar, dwSkillCode);
 			return dmg;
@@ -366,6 +397,7 @@ int dm_SendTransDamage(smCHAR *lpChar, int PowParam1, int PowParam2, int AttackS
 		result = lpsmSendSock->Send((char *)&TransAttackData, TransAttackData.size, TRUE);
 		if (result)
 		{
+			SummitTraceAttackRoute("SEND_OK", lpChar, dmg, result);
 			SummitRuthlessLocalHitCost();
 			dm_OpenFireAttack(lpChar, dwSkillCode);
 			return dmg;
@@ -373,6 +405,7 @@ int dm_SendTransDamage(smCHAR *lpChar, int PowParam1, int PowParam2, int AttackS
 	}
 #endif
 
+	SummitTraceAttackRoute("SEND_FAILED_OR_UNAVAILABLE", lpChar, 0, 0);
 	return NULL;
 }
 

@@ -34,7 +34,7 @@
       "defence": 5000,
       "absorption": 100,
       "block": 50,
-      "life": 16000000,
+      "life": 16000,
       "sight": 450,
       "arrow_correction": [
         0,
@@ -271,10 +271,10 @@
         "legacy_token_hex": "2abbfdb8edb7c2",
         "loader_status": "supported_mapped",
         "values": [
-          16000000
+          16000
         ],
         "raw_values_hex": [
-          "3136303030303030"
+          "3136303030"
         ]
       },
       {

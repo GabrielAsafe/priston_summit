@@ -6,6 +6,27 @@
 #include "systems/gameplay/companions/v2/legacy/CompanionLegacyCharacterHooks.h"
 #include "systems/gameplay/companions/v2/legacy/CompanionLegacyExperienceRuntime.h"
 #include "gameplay/companions/CompanionProtocol.h"
+#include "gameplay/companions/v2/CompanionTradeConfirmPolicy.h"
+#include "gameplay/companions/v2/CompanionTradeAcceptedRecord350E.h"
+#include "gameplay/companions/v2/CompanionTradeDetachedJournalWorker350B.h"
+#include "gameplay/companions/v2/CompanionTradeResultDispatch350C.h"
+#include "gameplay/companions/v2/CompanionTradeParticipantGate350B.h"
+#include "gameplay/companions/v2/CompanionTradeAdmission350C.h"
+#include "gameplay/companions/v2/CompanionTradeNormalizedRecord350D.h"
+#include "gameplay/companions/v2/CompanionTradeBaseline350J.h"
+#include "gameplay/companions/v2/CompanionTradeDeliveryWire.h"
+#include "gameplay/companions/v2/CompanionTradeCanonicalInventoryDigest.h"
+#include "gameplay/companions/v2/CompanionTradeLiveHandoff350Q.h"
+#include "gameplay/companions/v2/CompanionTradePostSaveEquivalence351G.h" // SUMMIT351G
+#include "gameplay/companions/v2/CompanionTradeDiskJournal.h"
+#include "gameplay/companions/v2/CompanionTradeExactPairBackend.h"
+#include "gameplay/companions/v2/CompanionTradeSaveActivityFence.h"
+#include "gameplay/companions/v2/CompanionTradeRevision.h"
+#include "gameplay/companions/v2/CompanionTradePreviewPolicy350P.h"
+#include "gameplay/companions/v2/CompanionTradeParticipantIdentity.h"
+#include "gameplay/companions/v2/CompanionDiagnostic315.h"
+#include "gameplay/inventory/v2/EquipmentPolicy.h"
+#include "systems/gameplay/inventory/v2/legacy/LegacyItemCatalogAdapter.h"
 #include "gameplay/companions/v2/CompanionSkillProfile.h"
 #include "systems/gameplay/companions/v2/CompanionRuntimeQuery.h"
 #include "systems/gameplay/companions/CompanionProfileStore.h"
@@ -13,6 +34,8 @@
 #include "systems/gameplay/companions/CompanionSkillExecutor.h"
 #include "systems/gameplay/player/v2/legacy/LegacyPlayerAdapter.h"
 #include "systems/gameplay/player/v2/legacy/LegacyCharacterRecordAdapter.h"
+#include "systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h"
+#include "systems/inventory/v2/legacy/LegacyInventoryRuntime.h"
 #include "systems/gameplay/loot/v2/legacy/LegacyLootAdapter.h"
 #include "systems/social/party/v2/legacy/LegacyPartyQueryAdapter.h"
 #include "systems/gameplay/companions/v2/legacy/LegacyCompanionQueryAdapter.h"
@@ -22,6 +45,13 @@
 #include "opcodes.h"
 
 #include <algorithm>
+#include <cstdlib>
+#include <cstring>
+#include <atomic>
+#include <memory>
+#include <cstddef>
+#include <cstdint>
+#include <utility>
 #include <map>
 #include <mutex>
 #include <string>
@@ -53,6 +83,8 @@ extern smCHAR *OpenCharacterCompanionFromRecord(
     rsPLAYINFO *owner,
     const TRANS_RECORD_DATA *recordData);
 
+extern CRITICAL_SECTION cSaveDataSection;
+extern CRITICAL_SECTION cSerSection;
 namespace gameplay
 {
 namespace companions
@@ -1408,6 +1440,16 @@ bool HasChoice(const EquipmentChoice *choices, int count, DWORD code)
     return false;
 }
 
+// A persisted Companion loadout is a selection over the CURRENT DAT, not
+// an inventory or an entitlement to keep equipment which was transferred away.
+// A stale selection is replaced with the actual saved slot. Code zero (empty
+// hand) remains a legitimate UI choice.
+DWORD ResolveOwnedCompanionEquipCode(const EquipmentChoice *choices, int count,
+                                     DWORD requested, DWORD datDefault)
+{
+    return HasChoice(choices, count, requested) ? requested : datDefault;
+}
+
 void AddChoice(EquipmentChoice *choices, int &count, DWORD code, const char *name)
 {
     if(count >= COMPANION_UI_MAX_EQUIP_CHOICES || HasChoice(choices, count, code))
@@ -1483,29 +1525,19 @@ bool ReadEquipmentSnapshot(const player::CharacterPersistentSnapshot &recordData
         if(!code)
             continue;
 
-        const int itemIndex = GetSinItemNumFromCode(code);
-        const DWORD itemClass =
-            itemIndex >= 0 && itemIndex < MAX_ITEM ? sItem[itemIndex].Class : 0;
-
-        if(itemClass == ITEM_CLASS_WEAPON_ONE || itemClass == ITEM_CLASS_WEAPON_TWO)
+        // Hand choices are derived from the same V2 equipment definitions as
+        // every other slot. The old sItem.Class is unpopulated in this MinGW
+        // server and silently hid normal weapons and shields from the UI.
+        gameplay::inventory::EquipmentDefinition equipment;
+        const bool known = gameplay::inventory::legacy::ServerLegacyItemCatalogAdapter()
+            .TryGetEquipment(gameplay::ItemId(static_cast<std::uint32_t>(code)), equipment);
+        const bool canRight = known && (equipment.allowedSlots & (1u << 1)) != 0u;
+        const bool canLeft = known && (equipment.allowedSlots & (1u << 2)) != 0u;
+        if(recordItem.position != -1 && canRight)
             AddChoice(snapshot.right, snapshot.rightCount, code, recordItem.itemName.c_str());
-
-        // The login inventory accepts an item in a slot when the slot's
-        // Position bit intersects the item's Class. Slot 2 is LHAND, so keep
-        // every genuine left-hand class (shield/magical-stuff/custom) except a
-        // two-handed weapon: that weapon is mirrored into position 2 by
-        // SetTwoHandItem and must remain a single right-hand loadout choice.
-        // Also preserve a one-handed weapon explicitly serialized in position
-        // 2 for dual-wield/custom content even though the stock class mask is
-        // RHAND-only.
-        const bool leftHandClass =
-            (itemClass & INVENTORY_POS_LHAND) != 0 &&
-            itemClass != ITEM_CLASS_WEAPON_TWO;
-        if(leftHandClass ||
-            (itemClass == ITEM_CLASS_WEAPON_ONE && recordItem.position == 2))
-        {
+        if(recordItem.position != -1 &&
+           (canLeft || (canRight && !equipment.twoHanded && recordItem.position == 2)))
             AddChoice(snapshot.left, snapshot.leftCount, code, recordItem.itemName.c_str());
-        }
 
         // This is intentionally the same persisted-slot contract used by the
         // real client inventory: sInven[0] is RHAND, sInven[1] is LHAND, and
@@ -1648,9 +1680,11 @@ bool IsCompanionTwoHandCode(DWORD code, int itemIndex)
     if(!code)
         return false;
 
-    if(itemIndex >= 0 && itemIndex < MAX_ITEM &&
-        sItem[itemIndex].Class == ITEM_CLASS_WEAPON_TWO)
-        return true;
+    (void)itemIndex;
+    gameplay::inventory::EquipmentDefinition equipment;
+    if(gameplay::inventory::legacy::ServerLegacyItemCatalogAdapter().TryGetEquipment(
+           gameplay::ItemId(static_cast<std::uint32_t>(code)), equipment))
+        return equipment.twoHanded;
 
     // Captured DATs mirror bow/pike codes into RHAND and LHAND. Custom item
     // catalogues can disagree on Class, so recognize the canonical families too.
@@ -2007,17 +2041,20 @@ void ApplyEquipmentCodes(rsPLAYINFO *owner, smCHAR *companion, DWORD rightCode, 
             (unsigned long)rightCode, rightIndex, (unsigned long)leftCode, leftIndex);
 
     companion->dwActionItemCode = 0;
+    gameplay::inventory::EquipmentDefinition rightDefinition;
     if(rightIndex >= 0 &&
-        (sItem[rightIndex].Class == ITEM_CLASS_WEAPON_ONE ||
-         sItem[rightIndex].Class == ITEM_CLASS_WEAPON_TWO))
-    {
+       gameplay::inventory::legacy::ServerLegacyItemCatalogAdapter().TryGetEquipment(
+           gameplay::ItemId(static_cast<std::uint32_t>(rightCode)), rightDefinition) &&
+       (rightDefinition.allowedSlots & (1u << 1)) != 0u)
         companion->dwActionItemCode = rightCode;
-    }
-    else if(leftIndex >= 0 &&
-        (sItem[leftIndex].Class == ITEM_CLASS_WEAPON_ONE ||
-         sItem[leftIndex].Class == ITEM_CLASS_WEAPON_TWO))
-    {
-        companion->dwActionItemCode = leftCode;
+    else if(leftIndex >= 0) {
+        // A one-handed weapon explicitly present in LHAND may be a genuine
+        // dual-wield weapon; a shield must never become the attack item.
+        gameplay::inventory::EquipmentDefinition leftDefinition;
+        if(gameplay::inventory::legacy::ServerLegacyItemCatalogAdapter().TryGetEquipment(
+               gameplay::ItemId(static_cast<std::uint32_t>(leftCode)), leftDefinition) &&
+           (leftDefinition.allowedSlots & (1u << 1)) != 0u && !leftDefinition.twoHanded)
+            companion->dwActionItemCode = leftCode;
     }
 
     // Re-evaluate the current player motion against the newly selected weapon,
@@ -2076,13 +2113,17 @@ int ChangeEquipment(rsPLAYINFO *owner, const char *characterName, bool rightHand
     }
 
     const LoadoutOverride previous = *loadout;
+    loadout->rightCode = ResolveOwnedCompanionEquipCode(
+        snapshot.right, snapshot.rightCount, loadout->rightCode, snapshot.defaultRight);
+    loadout->leftCode = ResolveOwnedCompanionEquipCode(
+        snapshot.left, snapshot.leftCount, loadout->leftCode, snapshot.defaultLeft);
     if(rightHand)
         loadout->rightCode = CycleChoice(snapshot.right, snapshot.rightCount, loadout->rightCode, direction);
     else
         loadout->leftCode = CycleChoice(snapshot.left, snapshot.leftCount, loadout->leftCode, direction);
 
     const int rightIndex = loadout->rightCode ? GetSinItemNumFromCode(loadout->rightCode) : -1;
-    if(rightIndex >= 0 && rightIndex < MAX_ITEM && sItem[rightIndex].Class == ITEM_CLASS_WEAPON_TWO)
+    if(IsCompanionTwoHandCode(loadout->rightCode, rightIndex))
         loadout->leftCode = 0;
 
     if(!PersistLoadoutOverride(state, *loadout))
@@ -2093,6 +2134,145 @@ int ChangeEquipment(rsPLAYINFO *owner, const char *characterName, bool rightHand
 
     CompanionSlot *slot = FindSlotByName(state, characterName);
     if(slot && IsSlotActive(state, *slot))
+        ApplyEquipmentCodes(owner, slot->entity, loadout->rightCode, loadout->leftCode);
+    return TRUE;
+}
+
+int EquipInventoryItem(rsPLAYINFO *owner, const char *characterName, bool rightHand, int recordIndex)
+{
+    if (!owner || !owner->getAccount() || !owner->getAccount()[0] ||
+        !characterName || !characterName[0] || recordIndex < -1 || recordIndex >= RECORD_ITEM_MAX ||
+        (owner->getName() && lstrcmpiA(owner->getName(), characterName) == 0))
+        return -10;
+    if (!rsCheckAccountChar(owner->getAccount(), (char *)characterName))
+        return -2;
+    rsPLAYINFO *online = FindUserFromName((char *)characterName);
+    if (online && online->lpsmSock)
+        return -4;
+    // -1 is a deliberate empty-hand loadout. This does NOT mutate the DAT or
+    // delete a weapon: the item remains owned by the original character.
+    if (recordIndex == -1)
+    {
+        CharacterEquipmentSnapshot snapshot;
+        if (!LoadCharacterSnapshot(owner, characterName, snapshot)) return -3;
+        std::lock_guard<std::mutex> guard(g_mutex);
+        OwnerState &state = GetOrCreateState(owner);
+        PruneState(state);
+        LoadoutOverride *loadout = FindLoadoutOverride(state, characterName, true);
+        if (!loadout) return -9;
+        const LoadoutOverride previous = *loadout;
+        if (!loadout->active)
+        {
+            loadout->rightCode = snapshot.defaultRight;
+            loadout->leftCode = snapshot.defaultLeft;
+            loadout->active = true;
+        }
+        if (rightHand) loadout->rightCode = 0;
+        else loadout->leftCode = 0;
+        if (!PersistLoadoutOverride(state, *loadout))
+        {
+            *loadout = previous;
+            return -11;
+        }
+        CompanionSlot *slot = FindSlotByName(state, characterName);
+        if (slot && IsSlotActive(state, *slot))
+            ApplyEquipmentCodes(owner, slot->entity, loadout->rightCode, loadout->leftCode);
+        return TRUE;
+    }
+    TRANS_RECORD_DATA record;
+    ZeroMemory(&record, sizeof(record));
+    if (!rsLoadAccountCharacterRecord(owner->getAccount(), characterName, &record) ||
+        record.ItemCount < 0 || record.ItemCount > RECORD_ITEM_MAX ||
+        record.ItemSubStart < 0 || record.ItemSubStart > record.ItemCount ||
+        record.DataSize < 0 || record.DataSize > (int)sizeof(record.Data) ||
+        recordIndex >= record.ItemCount)
+        return -3;
+    // Currently the validated loadout choices operate on the primary DAT bag.
+    // Secondary inventory rows must not bypass those existing validation gates.
+    if (recordIndex >= record.ItemSubStart)
+        return -10;
+    const BYTE *cursor = record.Data;
+    const BYTE *end = cursor + record.DataSize;
+    DWORD selectedCode = 0;
+    sITEMINFO selectedInfo;
+    ZeroMemory(&selectedInfo, sizeof(selectedInfo));
+    for (int i = 0; i <= recordIndex; ++i)
+    {
+        if (end - cursor < (int)sizeof(int)) return -3;
+        int packedSize = 0;
+        memcpy(&packedSize, cursor, sizeof(packedSize));
+        if (packedSize <= (int)sizeof(int) || packedSize > end - cursor) return -3;
+        if (i == recordIndex)
+        {
+            sRECORD_ITEM item;
+            ZeroMemory(&item, sizeof(item));
+            DecodeCompress((BYTE *)cursor, (BYTE *)&item, sizeof(item));
+            selectedCode = item.sItemInfo.CODE;
+            selectedInfo = item.sItemInfo;
+            if(item.ItemPosition == -1) return -14;
+        }
+        cursor += packedSize;
+    }
+    if (!selectedCode) return -10;
+    // Hand choices are validated against the V2 catalog and persistent DAT,
+    // rather than a stale client equipMask or code-only sItem.Class.
+    gameplay::inventory::EquipmentRequest handRequest;
+    handRequest.item = gameplay::ItemId(static_cast<std::uint32_t>(selectedCode));
+    handRequest.slot = rightHand ? 1 : 2;
+    handRequest.restricted = selectedInfo.NotUseFlag != 0;
+    handRequest.required.level = selectedInfo.Level;
+    handRequest.required.strength = selectedInfo.Strength;
+    handRequest.required.spirit = selectedInfo.Spirit;
+    handRequest.required.talent = selectedInfo.Talent;
+    handRequest.required.dexterity = selectedInfo.Dexterity;
+    handRequest.required.health = selectedInfo.Health;
+    handRequest.available.level = record.smCharInfo.Level;
+    handRequest.available.strength = record.smCharInfo.Strength;
+    handRequest.available.spirit = record.smCharInfo.Spirit;
+    handRequest.available.talent = record.smCharInfo.Talent;
+    handRequest.available.dexterity = record.smCharInfo.Dexterity;
+    handRequest.available.health = record.smCharInfo.Health;
+    const auto handDecision = gameplay::inventory::EquipmentPolicy::Evaluate(
+        gameplay::inventory::legacy::ServerLegacyItemCatalogAdapter(), handRequest);
+    summit::companion::diagnostic::Trace("SERVER", "hand-v2-policy",
+        handRequest.slot, recordIndex, handDecision.Allowed() ? 1 : -16,
+        static_cast<int>(handDecision.code));
+    if(!handDecision.Allowed()) return -16;
+    CharacterEquipmentSnapshot snapshot;
+    if (!LoadCharacterSnapshot(owner, characterName, snapshot)) return -3;
+    if (rightHand && !HasChoice(snapshot.right, snapshot.rightCount, selectedCode)) {
+        summit::companion::diagnostic::Trace("SERVER", "hand-choice-missing",1,recordIndex,-10);
+        return -10;
+    }
+    if (!rightHand && !HasChoice(snapshot.left, snapshot.leftCount, selectedCode)) {
+        summit::companion::diagnostic::Trace("SERVER", "hand-choice-missing",2,recordIndex,-10);
+        return -10;
+    }
+
+    std::lock_guard<std::mutex> guard(g_mutex);
+    OwnerState &state = GetOrCreateState(owner);
+    PruneState(state);
+    LoadoutOverride *loadout = FindLoadoutOverride(state, characterName, true);
+    if (!loadout) return -9;
+    const LoadoutOverride previous = *loadout;
+    if (!loadout->active)
+    {
+        loadout->rightCode = snapshot.defaultRight;
+        loadout->leftCode = snapshot.defaultLeft;
+        loadout->active = true;
+    }
+    if (rightHand) loadout->rightCode = selectedCode;
+    else loadout->leftCode = selectedCode;
+    const int rightIndex = loadout->rightCode ? GetSinItemNumFromCode(loadout->rightCode) : -1;
+    if(IsCompanionTwoHandCode(loadout->rightCode, rightIndex))
+        loadout->leftCode = 0;
+    if (!PersistLoadoutOverride(state, *loadout))
+    {
+        *loadout = previous;
+        return -11;
+    }
+    CompanionSlot *slot = FindSlotByName(state, characterName);
+    if (slot && IsSlotActive(state, *slot))
         ApplyEquipmentCodes(owner, slot->entity, loadout->rightCode, loadout->leftCode);
     return TRUE;
 }
@@ -2436,6 +2616,12 @@ int Summon(rsPLAYINFO *owner, const char *characterName)
     if(!rsLoadAccountCharacterRecord(owner->getAccount(), characterName, &recordData))
         return -3;
 
+    // The visual loadout profile can outlive a traded/dropped item. Check the
+    // live DAT before applying any saved override. Failure only disables the
+    // override: the canonical record is still available for normal summon.
+    CharacterEquipmentSnapshot ownedEquipment;
+    const bool ownedEquipmentReady = LoadCharacterSnapshot(owner, characterName, ownedEquipment);
+
     rsPLAYINFO *onlineCharacter = FindUserFromName((char *)characterName);
     if(onlineCharacter && onlineCharacter != owner && onlineCharacter->lpsmSock)
         return -4;
@@ -2521,8 +2707,16 @@ int Summon(rsPLAYINFO *owner, const char *characterName)
             if(!PersistLoadoutOverride(state, *loadout))
                 loadout->formationSlot = previousFormationSlot;
         }
-        if(loadout->active)
-            ApplyEquipmentCodes(owner, entity, loadout->rightCode, loadout->leftCode);
+        if(loadout->active && ownedEquipmentReady)
+        {
+            const DWORD right = ResolveOwnedCompanionEquipCode(
+                ownedEquipment.right, ownedEquipment.rightCount, loadout->rightCode,
+                ownedEquipment.defaultRight);
+            const DWORD left = ResolveOwnedCompanionEquipCode(
+                ownedEquipment.left, ownedEquipment.leftCount, loadout->leftCode,
+                ownedEquipment.defaultLeft);
+            ApplyEquipmentCodes(owner, entity, right, left);
+        }
         else
             SendFullCompanionInfo(owner, entity);
     }
@@ -3921,8 +4115,10 @@ void SendUIState(rsPLAYINFO *owner, int lastResult)
 
                 if(profile && profile->active)
                 {
-                    rightCode = profile->rightCode;
-                    leftCode = profile->leftCode;
+                    rightCode = ResolveOwnedCompanionEquipCode(
+                        snapshot.right, snapshot.rightCount, profile->rightCode, snapshot.defaultRight);
+                    leftCode = ResolveOwnedCompanionEquipCode(
+                        snapshot.left, snapshot.leftCount, profile->leftCode, snapshot.defaultLeft);
                 }
 
                 if(entry.selected && profile)
@@ -3985,6 +4181,135 @@ void SendUIState(rsPLAYINFO *owner, int lastResult)
     (void)SendOwnerPacket(owner, &packet, packet.size, packet.code);
 }
 
+// Read-only, bounded DAT inventory transport. Never trusts client-provided items,
+// never writes any character record and never exposes another account.
+void SendInventoryPage(rsPLAYINFO *owner, const char *characterName, int requestedPage)
+{
+    if (!owner || !owner->getAccount() || !owner->getAccount()[0] ||
+        !characterName || !characterName[0] || requestedPage < 0 || requestedPage > 1000)
+        return;
+
+    protocol::CompanionInventoryPagePacket packet;
+    ZeroMemory(&packet, sizeof(packet));
+    packet.size = sizeof(packet);
+    packet.code = protocol::OPCODE_COMPANION_INVENTORY_PAGE;
+    packet.version = protocol::COMPANION_INVENTORY_PROTOCOL_VERSION;
+    CopyText32(packet.characterName, characterName);
+    packet.status = -3;
+
+    // Never open/display the currently logged-in character's live inventory
+    // through this offline-DAT path.
+    if ((owner->getName() && lstrcmpiA(owner->getName(), characterName) == 0) ||
+        !rsCheckAccountChar(owner->getAccount(), (char *)characterName))
+    {
+        packet.status = -2;
+    }
+    else
+    {
+        rsPLAYINFO *online = FindUserFromName((char *)characterName);
+        if (online && online->lpsmSock)
+            packet.status = -4;
+        else
+        {
+            TRANS_RECORD_DATA record;
+            ZeroMemory(&record, sizeof(record));
+            if (rsLoadAccountCharacterRecord(owner->getAccount(), characterName, &record) &&
+                record.ItemCount >= 0 && record.ItemCount <= RECORD_ITEM_MAX &&
+                record.DataSize >= 0 && record.DataSize <= (int)sizeof(record.Data) &&
+                record.ItemSubStart >= 0 && record.ItemSubStart <= record.ItemCount)
+            {
+                CharacterEquipmentSnapshot snapshot;
+                const bool validEquipment = LoadCharacterSnapshot(owner, characterName, snapshot);
+                std::vector<protocol::CompanionInventoryItem> items;
+                items.reserve(record.ItemCount);
+                const BYTE *cursor = record.Data;
+                const BYTE *end = record.Data + record.DataSize;
+                bool valid = true;
+                for (int i = 0; i < record.ItemCount; ++i)
+                {
+                    if (end - cursor < (int)sizeof(int)) { valid = false; break; }
+                    int packedSize = 0;
+                    memcpy(&packedSize, cursor, sizeof(packedSize));
+                    if (packedSize <= (int)sizeof(int) || packedSize > end - cursor)
+                    { valid = false; break; }
+                    sRECORD_ITEM decoded;
+                    ZeroMemory(&decoded, sizeof(decoded));
+                    DecodeCompress((BYTE *)cursor, (BYTE *)&decoded, sizeof(decoded));
+                    cursor += packedSize;
+                    if (!decoded.sItemInfo.CODE) continue;
+                    protocol::CompanionInventoryItem item;
+                    ZeroMemory(&item, sizeof(item));
+                    item.recordIndex = i;
+                    item.itemPosition = decoded.ItemPosition;
+                    item.itemCode = decoded.sItemInfo.CODE;
+                    item.bagNumber = i < record.ItemSubStart ? 1 : 2;
+                    const int x = decoded.x - 23, y = decoded.y - 436;
+                    item.gridX = decoded.ItemPosition == 0 && x >= 0 && y >= 0 ? x/22 : -1;
+                    item.gridY = decoded.ItemPosition == 0 && x >= 0 && y >= 0 ? y/22 : -1;
+                    // The 306 loadout only validates primary-bag weapon choices;
+                    // never advertise secondary inventory or armor as directly equippable.
+                    if (validEquipment && i < record.ItemSubStart)
+                    {
+                        // Advertise only choices that the existing server loadout
+                        // can really accept, never class/position approximations.
+                        if (HasChoice(snapshot.right, snapshot.rightCount, item.itemCode))
+                            item.equipMask |= (1u << 1);
+                        if (HasChoice(snapshot.left, snapshot.leftCount, item.itemCode))
+                            item.equipMask |= (1u << 2);
+                    }
+                    // One authoritative V2 equipment policy for the display
+                    // and DAT writer. Do not reimplement legacy slot masks here.
+                    if(i < record.ItemSubStart && decoded.ItemPosition != -1)
+                    {
+                        gameplay::inventory::EquipmentRequest request;
+                        request.item = gameplay::ItemId(
+                            static_cast<std::uint32_t>(decoded.sItemInfo.CODE));
+                        request.restricted = decoded.sItemInfo.NotUseFlag != 0;
+                        request.required.level = decoded.sItemInfo.Level;
+                        request.required.strength = decoded.sItemInfo.Strength;
+                        request.required.spirit = decoded.sItemInfo.Spirit;
+                        request.required.talent = decoded.sItemInfo.Talent;
+                        request.required.dexterity = decoded.sItemInfo.Dexterity;
+                        request.required.health = decoded.sItemInfo.Health;
+                        request.available.level = record.smCharInfo.Level;
+                        request.available.strength = record.smCharInfo.Strength;
+                        request.available.spirit = record.smCharInfo.Spirit;
+                        request.available.talent = record.smCharInfo.Talent;
+                        request.available.dexterity = record.smCharInfo.Dexterity;
+                        request.available.health = record.smCharInfo.Health;
+                        for(int slot=3; slot<=16; ++slot) {
+                            request.slot = slot;
+                            if(gameplay::inventory::EquipmentPolicy::Evaluate(
+                                gameplay::inventory::legacy::ServerLegacyItemCatalogAdapter(),
+                                request).Allowed())
+                                item.equipMask |= (1u << slot);
+                        }
+                    }
+                    CopyText32(item.itemName, decoded.sItemInfo.ItemName);
+                    items.push_back(item);
+                }
+                if (valid && cursor == end)
+                {
+                    packet.status = 1;
+                    packet.totalItems = static_cast<int>(items.size());
+                    const int pageSize = protocol::COMPANION_INVENTORY_PAGE_SIZE;
+                    const int lastPage = packet.totalItems > 0 ? (packet.totalItems - 1) / pageSize : 0;
+                    packet.page = std::min(requestedPage, lastPage);
+                    const int begin = packet.page * pageSize;
+                    packet.itemCount = std::min(pageSize, packet.totalItems - begin);
+                    for (int i = 0; i < packet.itemCount; ++i)
+                        packet.items[i] = items[static_cast<std::size_t>(begin + i)];
+                }
+            }
+        }
+    }
+    summit::companion::diagnostic::Trace("SERVER","inventory-page-response",0,
+        requestedPage,packet.status,packet.itemCount);
+    summit::companion::diagnostic::Trace("SERVER","inventory-total",0,
+        requestedPage,packet.status,packet.totalItems);
+    (void)SendOwnerPacket(owner, &packet, packet.size, packet.code);
+}
+
 namespace
 {
 const char *ResolveActionName(rsPLAYINFO *owner, const protocol::CompanionUIActionPacket *packet, char (&buffer)[32])
@@ -4036,6 +4361,134 @@ bool ClearLoadoutOverride(rsPLAYINFO *owner, const char *characterName)
     return true;
 }
 
+// Authenticated server-side pages for the player's trade UI. Do not expose
+// full item records, do not accept an item blob from the client, and never
+// mutate either inventory from a preview request.
+void SendTradePreviewPage(rsPLAYINFO* owner, const char* name, int side, int requestedPage)
+{
+    protocol::CompanionTradePagePacket packet;
+    ZeroMemory(&packet, sizeof(packet));
+    packet.size = sizeof(packet);
+    packet.code = protocol::OPCODE_COMPANION_TRADE_PAGE;
+    packet.version = protocol::COMPANION_TRADE_PAGE_VERSION;
+    packet.side = side;
+    packet.page = requestedPage;
+    packet.status = -2;
+    if(!owner || !owner->lpsmSock || !owner->getAccount() ||
+       !owner->getAccount()[0] || !owner->getName() ||
+       !owner->getName()[0] || !name || !name[0] ||
+       side < 0 || side > 1 || requestedPage < 0 || requestedPage > 1000)
+        return;
+    CopyText32(packet.characterName, name);
+    if(lstrcmpiA(owner->getName(), name) == 0 ||
+       !rsCheckAccountChar(owner->getAccount(), (char*)name))
+    {
+        (void)SendOwnerPacket(owner, &packet, packet.size, packet.code);
+        return;
+    }
+    if(FindUserFromName((char*)name) && FindUserFromName((char*)name)->lpsmSock)
+        packet.status = -4;
+    else if(IsCharacterActive(owner, name))
+        packet.status = -12;
+    else if(side == 0)
+    {
+        const auto& registry = player::legacy::ServerLegacyOnlinePlayerRegistry();
+        const PlayerHandle session = registry.HandleOf(owner);
+        OnlineTradeIdentitySnapshot snapshot;
+        if(inventory::legacy::ServerLegacyInventoryRuntime()
+            .TryGetTradeIdentitySnapshot(session, snapshot))
+        {
+            // 350P: identity-only live ledger does not contain equip slots.
+            // If a validated accepted record is already in memory, use it
+            // ONLY to annotate the preview. No disk IO / journal / saves in
+            // this cSerSection path. Commit still validates a fresh save.
+            v2::CompanionTradeInventorySnapshot acceptedView;
+            v2::AcceptedRecordEvidence350E evidence;
+            const v2::SaveSessionKey saveSession(session.id.value, session.generation);
+            const bool acceptedKnown =
+                v2::ServerAcceptedRecordBridge350E().Copy(saveSession,evidence) &&
+                player::legacy::ServerLegacyCharacterRecordAdapter()
+                    .TryDecodeTradeBufferedPayloadCandidate(
+                        evidence.bytes.data(),evidence.bytes.size(),
+                        owner->getName(),acceptedView) ==
+                    v2::BufferedTradeCaptureCode::CandidateReadOnly;
+            const v2::TradePreviewPositionIndex350P knownPositions(
+                acceptedKnown ? &acceptedView : nullptr);
+            packet.status = 1;
+            packet.sourceRevision = snapshot.revision;
+            packet.totalItems = static_cast<int>(snapshot.entries.size());
+            const int last = packet.totalItems ? (packet.totalItems-1) / protocol::COMPANION_TRADE_PAGE_SIZE : 0;
+            packet.page = std::min(requestedPage, last);
+            const int first = packet.page * protocol::COMPANION_TRADE_PAGE_SIZE;
+            packet.itemCount = std::min(protocol::COMPANION_TRADE_PAGE_SIZE, packet.totalItems-first);
+            for(int i=0; i<packet.itemCount; ++i)
+            {
+                const auto& entry = snapshot.entries[static_cast<std::size_t>(first+i)];
+                auto& item = packet.items[i];
+                item.index = static_cast<int>(entry.slot);
+                item.itemCode = entry.identity.item.value;
+                item.itemKey = entry.identity.key;
+                item.itemChecksum = entry.identity.checksum;
+                // -2: identity absent/ambiguous in the latest accepted save;
+                // this is not a transferable item until the lists are fresh.
+                item.position = knownPositions.PositionOrBag350P(
+                    item.itemCode,item.itemKey,item.itemChecksum);
+                // Online ledger has no trusted item names: show code, not a guess.
+                _snprintf_s(item.name, sizeof(item.name), _TRUNCATE, "Item %08X", item.itemCode);
+            }
+        }
+        else packet.status = -20;
+    }
+    else
+    {
+        v2::CompanionTradeInventorySnapshot snapshot;
+        const player::CharacterRecordKey key(owner->getAccount(), name);
+        const auto read = player::legacy::ServerLegacyCharacterRecordAdapter()
+            .TryLoadTradeInventorySnapshot(key, snapshot);
+        // 350P: the 350O decoder permits anonymous legacy/passive records.
+        // The preview must not reject the whole character because of them.
+        // TradeEligible still rejects duplicates, cursor and corrupt positions;
+        // selection of a passive record remains forbidden by the server.
+        if(v2::CanListTradePreview350P(read,snapshot))
+        {
+            packet.status = 1;
+            packet.totalItems = static_cast<int>(snapshot.records.size());
+            const int last = packet.totalItems ? (packet.totalItems-1) / protocol::COMPANION_TRADE_PAGE_SIZE : 0;
+            packet.page = std::min(requestedPage, last);
+            const int first = packet.page * protocol::COMPANION_TRADE_PAGE_SIZE;
+            packet.itemCount = std::min(protocol::COMPANION_TRADE_PAGE_SIZE, packet.totalItems-first);
+            // Include bag membership in the revision: moving A->B without
+            // changing the item bytes must invalidate an earlier selection.
+            packet.sourceRevision = v2::CompanionTradePreviewRevision(snapshot);
+            if(!packet.sourceRevision) { packet.status=-21; packet.itemCount=0; packet.totalItems=0; }
+
+            for(int i=0; i<packet.itemCount; ++i)
+            {
+                const auto& entry = snapshot.records[static_cast<std::size_t>(first+i)];
+                auto& item = packet.items[i];
+                item.index = static_cast<int>(entry.recordIndex);
+                item.itemCode = entry.itemCode;
+                item.itemKey = entry.itemKey;
+                item.itemChecksum = entry.itemChecksum;
+                item.position = entry.position;
+                _snprintf_s(item.name, sizeof(item.name), _TRUNCATE, "Item %08X", item.itemCode);
+            }
+        }
+        else {
+            packet.status = -21;
+            const unsigned flags =
+                (snapshot.hasMissingInstanceIdentity?1u:0u) |
+                (snapshot.hasDuplicateInstanceIdentity?2u:0u) |
+                (snapshot.hasCursorItem?4u:0u) |
+                (snapshot.hasUnknownPosition?8u:0u) |
+                (snapshot.ambiguousSegments?16u:0u);
+            std::printf("[SUMMIT350P_TRADE] stage=preview-companion-refused read=%d flags=%u\n",
+                        static_cast<int>(read),flags);
+        }
+    }
+    (void)SendOwnerPacket(owner, &packet, packet.size, packet.code);
+}
+
 int ResyncFromDataServer(rsPLAYINFO *owner, const char *characterName)
 {
     if(!owner || !characterName || !characterName[0])
@@ -4061,6 +4514,649 @@ int ResyncFromDataServer(rsPLAYINFO *owner, const char *characterName)
 }
 } // namespace
 
+
+// SUMMIT350H EXPERIMENTAL: a production-shaped detached journal context.
+// No live rsPLAYINFO, socket or packet buffer is used in these classes.
+// Keep admission disabled by default until the MinGW/Wine and disposable-DAT
+// acceptance matrix proves that EVERY competing writer is excluded.
+namespace {
+using v2::DetachedTradeJob;
+using v2::DetachedTradeOutcome;
+
+// SUMMIT350J: real transfer path. A server operator may disable it immediately
+// before start by setting SUMMIT_DISABLE_COMPANION_TRADE=1. Every admission
+// still requires an authenticated, verified save and both participant leases.
+bool Trade350HLabMode() {
+    const char* disabled=std::getenv("SUMMIT_DISABLE_COMPANION_TRADE");
+    if(disabled && std::strcmp(disabled,"1")==0) return false;
+    // Keep the historical LAB variable only as an explicit opt-out; previous
+    // releases required setting it to 1, which prevented normal transfers.
+    const char* enabled=std::getenv("SUMMIT_350H_DISPOSABLE_DAT_LAB");
+    return !enabled || std::strcmp(enabled,"0")!=0;
+}
+
+// SUMMIT350S: live inventory synchronization is on by default after a
+// committed companion trade. Operators may disable only the live handoff
+// (falling back to durable commit + relogin) by setting the existing flag to 0.
+static bool Live350QEnabled() {
+    const char* v=std::getenv("SUMMIT_ENABLE_TRADE_LIVE_350Q");
+    return !v || std::strcmp(v,"0")!=0;
+}
+class DetachedPairHost350H final : public v2::ICompanionTradeExactPairHost {
+public:
+    explicit DetachedPairHost350H(const DetachedTradeJob& job):job_(job){}
+    bool AcquireExternalLease(std::uint64_t owner,std::uint64_t companion) override {
+        if(locked_ || !Matches(owner,companion)) return false;
+        locked_=true;
+        if(!StillOwnsExternalLease(owner,companion)) {locked_=false;return false;}
+        return true;
+    }
+    void ReleaseExternalLease(std::uint64_t,std::uint64_t) override {locked_=false;}
+    bool StillOwnsExternalLease(std::uint64_t owner,std::uint64_t companion) override {
+        const v2::SaveSessionKey session(job_.session.serial,job_.session.generation);
+        std::uint64_t accepted=0;
+        return locked_ && Matches(owner,companion) &&
+            v2::ServerTradeParticipantGate350B().IsReserved(owner) &&
+            v2::ServerTradeParticipantGate350B().IsReserved(companion) &&
+            v2::ServerSaveActivityFence().TryLeasedAcceptedSaveSequence(
+                session,job_.leaseToken,accepted) &&
+            accepted==job_.acceptedSaveSequence;
+    }
+    bool TrustedPathsUnderLease(std::uint64_t owner,std::uint64_t companion,
+                       std::string& a,std::string& b) override {
+        if(!StillOwnsExternalLease(owner,companion) ||
+           job_.trustedOwnerPath.empty() || job_.trustedCompanionPath.empty() ||
+           job_.trustedOwnerPath==job_.trustedCompanionPath) return false;
+        a=job_.trustedOwnerPath; b=job_.trustedCompanionPath; return true;
+    }
+    bool BuildPreparedUnderLease(const v2::CompanionTradeOffer& offer,
+                         v2::CompanionTradePrepared& prepared) override {
+        if(!StillOwnsExternalLease(offer.authenticatedOwner,offer.companionCharacter))return false;
+        std::vector<std::uint8_t> ownerRaw,companionRaw;
+        if(!v2::CompanionTradeExactRecordStore::Read(job_.trustedOwnerPath,ownerRaw)) {
+            std::printf("[SUMMIT350M_TRADE] stage=record-read-failed side=owner\n");
+            return false;
+        }
+        if(!v2::CompanionTradeExactRecordStore::Read(job_.trustedCompanionPath,companionRaw)) {
+            std::printf("[SUMMIT350M_TRADE] stage=record-read-failed side=companion\n");
+            return false;
+        }
+        // Decode the ALREADY READ exact bytes. Calling the usual account DAT
+        // loader here would hit its LoadGuard and reject our own pair lease.
+        v2::CompanionTradeInventorySnapshot companionSnapshot;
+        const auto companionStatus=player::legacy::ServerLegacyCharacterRecordAdapter()
+            .TryDecodeTradeBufferedPayloadCandidate(companionRaw.data(),
+             companionRaw.size(),job_.companionName.c_str(),companionSnapshot);
+        if(companionStatus!=v2::BufferedTradeCaptureCode::CandidateReadOnly) {
+            std::printf("[SUMMIT350M_TRADE] stage=companion-snapshot-invalid reason=%d\n",
+                static_cast<int>(companionStatus));
+            return false;
+        }
+        if(v2::CompanionTradePreviewRevision(companionSnapshot)!=
+              job_.request.companionRevision) {
+            std::printf("[SUMMIT350M_TRADE] stage=companion-revision-stale\n");
+            return false;
+        }
+        const v2::TradeSide side=job_.request.side==0 ?
+            v2::TradeSide::Player : v2::TradeSide::Companion;
+        const v2::TradeSelectedItem item{side,
+            static_cast<std::uint32_t>(job_.request.itemIndex),
+            job_.request.itemCode,job_.request.itemKey,job_.request.itemChecksum};
+        const auto allowed=[](const v2::CompanionTradeItemRecord& r,
+                              v2::TradeSide)->bool {
+            return r.position==0 && r.itemCode && r.itemKey && r.itemChecksum;
+        };
+        // First prove that the accepted online save and companion record can
+        // produce a balanced, valid, two-sided trade. Do not touch either DAT
+        // when item/slot/record validation fails.
+        v2::CompanionTradePrepared verified;
+        player::legacy::TradePairBuildDiagnostic350M buildReason;
+        if(!player::legacy::ServerLegacyCharacterRecordAdapter()
+            .BuildTradePairedRecordImages(job_.acceptedOwnerRecord,companionRaw,
+                job_.ownerName.c_str(),job_.companionName.c_str(),offer,
+                std::vector<v2::TradeSelectedItem>(1,item),allowed,verified,&buildReason)) {
+            // No private names, paths, identities, item codes, or DAT bytes in log.
+            std::printf("[SUMMIT350M_TRADE] stage=pair-build-refused cause=%d decode=%d transfer=%d plan=%d ownerImage=%d companionImage=%d unsafeFlags=%u selectionReason=%d\n",
+                static_cast<int>(buildReason.stage),buildReason.decode,
+                buildReason.transfer,buildReason.plan,buildReason.ownerImage,
+                buildReason.companionImage,buildReason.unsafeFlags350N,
+                buildReason.selection350N);
+            std::printf("[SUMMIT350J_TRADE] stage=prepare-refused\n");
+            return false;
+        }
+        // SUMMIT350J: legacy ACK confirms a save *buffer*, not necessarily an
+        // on-disk DAT. Materialise exactly the validated, normalised online
+        // save outside cSerSection, under both participant gates and the live
+        // session lease. This is an ordinary save, BEFORE trade journal intent.
+        // If interrupted here, only that accepted save (not a half-trade) has
+        // been persisted. All subsequent item moves use the sealed journal.
+        if(ownerRaw!=job_.acceptedOwnerRecord) {
+            const auto flush=v2::MaterializeAcceptedOwner350J(
+                job_.trustedOwnerPath,ownerRaw,job_.acceptedOwnerRecord);
+            if(flush==v2::AcceptedOwnerBaseline350J::Uncertain) {
+                std::printf("[SUMMIT350J_TRADE] stage=preflight-uncertain\n");
+                preflightUncertain_=true;
+                return false;
+            }
+            if(flush!=v2::AcceptedOwnerBaseline350J::Ready) {
+                std::printf("[SUMMIT350J_TRADE] stage=preflight-refused\n");
+                return false;
+            }
+        }
+        // The pair backend re-reads and compares BOTH DATs before intent.
+        if(ownerRaw!=job_.acceptedOwnerRecord) ownerRaw=job_.acceptedOwnerRecord;
+        if(ownerRaw!=job_.acceptedOwnerRecord) return false;
+        prepared=std::move(verified);
+        return true;
+    }
+    bool PreflightUncertain() const {return preflightUncertain_;}
+private:
+    bool preflightUncertain_=false;
+    bool Matches(std::uint64_t owner,std::uint64_t companion) const {
+        return owner==job_.session.owner && companion==job_.session.companion &&
+            job_.session.Valid() && job_.leaseToken &&
+            job_.acceptedSaveSequence && !job_.acceptedOwnerRecord.empty() &&
+            v2::TradeParticipantId(job_.accountName.c_str(),job_.ownerName.c_str())==owner &&
+            v2::TradeParticipantId(job_.accountName.c_str(),job_.companionName.c_str())==companion;
+    }
+    const DetachedTradeJob& job_;
+    bool locked_=false;
+};
+
+bool OpenTradeJournalDirectory350H() {
+    if(!CreateDirectoryA("LOGS",nullptr) && GetLastError()!=ERROR_ALREADY_EXISTS)return false;
+    const char* root="LOGS\\SummitCompanionTradeJournal";
+    if(!CreateDirectoryA(root,nullptr) && GetLastError()!=ERROR_ALREADY_EXISTS)return false;
+    const DWORD attrs=GetFileAttributesA(root);
+    return attrs!=INVALID_FILE_ATTRIBUTES &&
+        (attrs&FILE_ATTRIBUTE_DIRECTORY) && !(attrs&FILE_ATTRIBUTE_REPARSE_POINT);
+}
+class TradeContext350H final : public v2::IDetachedJournalContext {
+public:
+    explicit TradeContext350H(const DetachedTradeJob& job)
+        :host_(job),backend_(host_),journal_("LOGS/SummitCompanionTradeJournal",backend_){}
+    v2::ICompanionTradeJournalPort& Port() override {return journal_;}
+    bool Healthy() const override {return journal_.Healthy() && !host_.PreflightUncertain();}
+private:
+    DetachedPairHost350H host_;
+    v2::CompanionTradeExactPairBackend backend_;
+    v2::CompanionTradeDiskJournal journal_;
+};
+class TradeFactory350H final : public v2::IDetachedJournalContextFactory {
+public:
+    std::unique_ptr<v2::IDetachedJournalContext> Open(const DetachedTradeJob& job) override {
+        if(!job.session.Valid() || job.trustedOwnerPath.empty() ||
+           job.trustedCompanionPath.empty() || !OpenTradeJournalDirectory350H())return nullptr;
+        return std::unique_ptr<v2::IDetachedJournalContext>(new TradeContext350H(job));
+    }
+};
+// SUMMIT350Q: worker-owned durable after-images. Never read DATs in WM_TIMER.
+class CommittedLiveImages350Q final {
+public:
+    void Put(std::uint64_t nonce,std::vector<std::uint8_t> bytes) {
+        if(!nonce || bytes.empty() || bytes.size()>v2::kTradeDeliveryMaxRecord) return;
+        std::lock_guard<std::mutex> lock(mutex_);
+        if(images_.size()<8) images_[nonce]=std::move(bytes);
+    }
+    bool Take(std::uint64_t nonce,std::vector<std::uint8_t>& out) {
+        std::lock_guard<std::mutex> lock(mutex_);
+        auto it=images_.find(nonce);
+        if(it==images_.end()) return false;
+        out=std::move(it->second);images_.erase(it);return true;
+    }
+private:
+    std::mutex mutex_;
+    std::map<std::uint64_t,std::vector<std::uint8_t>> images_;
+};
+CommittedLiveImages350Q& LiveImages350Q() {
+    static CommittedLiveImages350Q images;return images;
+}
+class TradeExecutor350H final : public v2::IDetachedTradeExecutor {
+public:
+    TradeExecutor350H():journal_(factory_){}
+    DetachedTradeOutcome Execute(const DetachedTradeJob& job) override {
+        DetachedTradeOutcome outcome=DetachedTradeOutcome::Unknown();
+        try {outcome=journal_.Execute(job);}
+        catch(...) {outcome=DetachedTradeOutcome::Unknown();}
+        const v2::SaveSessionKey key(job.session.serial,job.session.generation);
+        if((outcome.status==2 || outcome.status==3) && outcome.durableOrUncertain) {
+            // Read only AFTER the journal has durably committed and while
+            // both participant gates still prevent a competing writer.
+            std::vector<std::uint8_t> ownerAfter;
+            if(v2::CompanionTradeExactRecordStore::Read(job.trustedOwnerPath,ownerAfter))
+                LiveImages350Q().Put(job.tradeNonce,std::move(ownerAfter));
+        }
+        if(outcome.durableOrUncertain) {
+            // No old save may overwrite either DAT, even if delivery fails.
+            if(!v2::ServerSaveActivityFence().SealCommittedForReconnect(key,job.leaseToken))
+                return DetachedTradeOutcome::Unknown();
+        } else {
+            (void)v2::ServerSaveActivityFence().ReleaseReservation(key,job.leaseToken);
+            (void)v2::ServerTradeParticipantGate350B().ReleaseVerified(
+                job.session.owner,job.session.companion);
+        }
+        return outcome;
+    }
+private:
+    TradeFactory350H factory_;
+    v2::DetachedJournalExecutor350B journal_;
+};
+
+v2::DetachedTradeWorker& ServerTradeWorker350H() {
+    static TradeExecutor350H executor;
+    static v2::DetachedTradeWorker worker(executor,4);
+    return worker;
+}
+std::atomic<bool>& TradeWorkerStarted350H() {
+    static std::atomic<bool> started{false}; return started;
+}
+// Only the world/timer thread touches this list, with cSerSection held.
+struct VerifiedCommitHold350H {
+    v2::DetachedTradeSession session;
+    std::string account,owner;
+};
+std::vector<VerifiedCommitHold350H>& VerifiedCommittedHolds350H() {
+    static std::vector<VerifiedCommitHold350H> holds;
+    return holds;
+}
+struct LivePending350Q {
+    DetachedTradeJob job;
+    std::vector<std::uint8_t> ownerAfter;
+    v2::TradeSha256Digest expectedAfterInventory{};
+};
+std::vector<LivePending350Q>& PendingLive350Q() {
+    static std::vector<LivePending350Q> pending;return pending;
+}
+static v2::BufferedTradeEnvelopeLayout LiveLayout350Q() {
+    return v2::BufferedTradeEnvelopeLayout(
+        offsetof(TRANS_RECORD_DATA,size),offsetof(TRANS_RECORD_DATA,ItemCount),
+        offsetof(TRANS_RECORD_DATA,ItemSubStart),offsetof(TRANS_RECORD_DATA,DataSize),
+        offsetof(TRANS_RECORD_DATA,smCharInfo)+offsetof(smCHAR_INFO,szName),
+        sizeof(((smCHAR_INFO*)0)->szName),offsetof(TRANS_RECORD_DATA,Data),
+        sizeof(TRANS_RECORD_DATA));
+}
+// Validate ALL index and sizes before the one inventory-only server cache rebase.
+// No I/O, no legacy full-record restoration and no character-stat replacement.
+static bool RebaseLivePlayer350Q(rsPLAYINFO* owner,const LivePending350Q& pending) {
+    if(!owner || !owner->lpRecordDataBuff ||
+       pending.ownerAfter.size()<offsetof(TRANS_RECORD_DATA,Data) ||
+       pending.ownerAfter.size()>sizeof(TRANS_RECORD_DATA) ||
+       pending.ownerAfter.size()>srRECORD_MEMORY_SIZE) return false;
+    auto* cache=reinterpret_cast<TRANS_RECORD_DATA*>(owner->lpRecordDataBuff);
+    const auto* after=reinterpret_cast<const TRANS_RECORD_DATA*>(pending.ownerAfter.data());
+    if(cache->size<=0 || cache->size>srRECORD_MEMORY_SIZE ||
+       after->size<=0 || static_cast<std::size_t>(after->size)>pending.ownerAfter.size() ||
+       after->DataSize<0 || static_cast<std::size_t>(after->DataSize)>
+           pending.ownerAfter.size()-offsetof(TRANS_RECORD_DATA,Data) ||
+       cache->DataSize<0 || static_cast<std::size_t>(cache->DataSize)>
+           static_cast<std::size_t>(srRECORD_MEMORY_SIZE)-offsetof(TRANS_RECORD_DATA,Data))
+        return false;
+    const auto& r=pending.job.request;
+    if(!r.itemCode || !r.itemKey || !r.itemChecksum || (r.side!=0 && r.side!=1) ||
+       !rsServerConfig.ServerInventoryMode) return false;
+    int matching=-1,empty=-1;
+    for(int n=0;n<INVEN_ITEM_INFO_MAX;++n) {
+        const auto& entry=owner->InvenItemInfo[n];
+        if(!entry.dwCode) empty=n;
+        if(entry.dwCode==r.itemCode && entry.dwKey==r.itemKey &&
+           entry.dwSum==r.itemChecksum) {
+            if(matching!=-1) return false;
+            matching=n;
+        }
+    }
+    // Player->Companion needs exactly one registered identity. Reverse
+    // direction needs exactly one free ledger position and no duplicate.
+    if((r.side==0 && matching<0) || (r.side==1 && (matching>=0 || empty<0)))
+        return false;
+    if(r.side==0) owner->InvenItemInfo[matching].dwCode=0;
+    else {
+        auto& e=owner->InvenItemInfo[empty];
+        e.dwCode=r.itemCode;e.dwKey=r.itemKey;e.dwSum=r.itemChecksum;
+    }
+    const std::size_t oldSize=static_cast<std::size_t>(cache->DataSize);
+    const std::size_t newSize=static_cast<std::size_t>(after->DataSize);
+    cache->ItemCount=after->ItemCount;
+    cache->ItemSubStart=after->ItemSubStart;
+    cache->DataSize=after->DataSize;
+    cache->size=after->size;
+    std::memcpy(cache->Data,after->Data,newSize);
+    if(newSize<oldSize) std::memset(reinterpret_cast<unsigned char*>(cache->Data)+newSize,
+                                 0,oldSize-newSize);
+    return true;
+}
+void ReapCommittedDisconnected350H() {
+    auto& holds=VerifiedCommittedHolds350H();
+    for(auto it=holds.begin();it!=holds.end();) {
+        rsPLAYINFO* online=FindUserFromName(const_cast<char*>(it->owner.c_str()));
+        const bool same=online && online->lpsmSock &&
+            online->dwObjectSerial==it->session.serial &&
+            online->dwConnectCount==it->session.generation &&
+            online->getAccount() && it->account==online->getAccount();
+        if(same){++it;continue;}
+        // Old or disconnected client can never receive a live commit image.
+        auto& pending=PendingLive350Q();
+        for(auto p=pending.begin();p!=pending.end();) {
+            if(p->job.session.SameConnection(it->session)) p=pending.erase(p);
+            else ++p;
+        }
+        // Only a verified worker COMMIT can appear here. The old session is
+        // no longer connected, and its saved fence remains sealed. The pair
+        // gate can now be released to permit a NEW login in this process.
+        if(ServerTradeWorker350H().ReleaseAfterVerifiedRecovery(
+               it->session.owner,it->session.companion)) {
+            (void)v2::ServerTradeParticipantGate350B().ReleaseVerified(
+                it->session.owner,it->session.companion);
+            it=holds.erase(it);
+        } else ++it;
+    }
+}
+std::uint64_t TradeNonce350H(const v2::SaveSessionKey& key,std::uint64_t request) {
+    static std::atomic<std::uint64_t> counter{1};
+    FILETIME clock{};
+    GetSystemTimeAsFileTime(&clock);
+    const std::uint64_t time=(static_cast<std::uint64_t>(clock.dwHighDateTime)<<32)|clock.dwLowDateTime;
+    std::uint64_t value=(static_cast<std::uint64_t>(key.serial)<<32)^
+       key.generation^time^counter.fetch_add(1,std::memory_order_relaxed)^request;
+    return value ? value : 1;
+}
+} // anonymous namespace SUMMIT350H
+
+// WM_TIMER calls these OUTSIDE the world critical section; no IO in pump.
+void StartDetachedTrade350H() {
+    if(!Trade350HLabMode() || TradeWorkerStarted350H().load())return;
+    if(ServerTradeWorker350H().Start())TradeWorkerStarted350H().store(true);
+}
+void StopDetachedTrade350H() {
+    if(TradeWorkerStarted350H().exchange(false))ServerTradeWorker350H().Stop();
+}
+void PumpDetachedTrade350H() {
+    if(!TradeWorkerStarted350H().load())return;
+    // Resolve the current, authenticated session only AFTER entering cSerSection.
+    EnterCriticalSection(&cSerSection);
+    ReapCommittedDisconnected350H();
+    for(int count=0;count<4;++count) {
+        DetachedTradeJob job;
+        int status=0;
+        if(!ServerTradeWorker350H().TryTakeCompletion(job,status))break;
+        std::printf("[SUMMIT350J_TRADE] stage=worker-result status=%d\n",status);
+        if(status==2 || status==3) {
+            VerifiedCommitHold350H hold;
+            hold.session=job.session;
+            hold.account=job.accountName;hold.owner=job.ownerName;
+            VerifiedCommittedHolds350H().push_back(std::move(hold));
+        }
+        rsPLAYINFO* owner=FindUserFromName(const_cast<char*>(job.ownerName.c_str()));
+        v2::ResolvedTradeSession350C live;
+        live.session=job.session;
+        live.account=job.accountName; live.owner=job.ownerName;
+        live.companion=job.companionName;
+        live.connected=owner && owner->lpsmSock &&
+            owner->dwObjectSerial==job.session.serial &&
+            owner->dwConnectCount==job.session.generation &&
+            owner->getAccount() && job.accountName==owner->getAccount() &&
+            owner->getName() && job.ownerName==owner->getName();
+        live.staleSaveWritesSealed=v2::ServerSaveActivityFence().IsSealedForReconnect(
+            v2::SaveSessionKey(job.session.serial,job.session.generation));
+        const auto decision=v2::DecideReply350C(job,status,live);
+        if(decision==v2::TradeReplyDecision350C::Drop)continue;
+        protocol::CompanionTradeResultPacket result{};
+        result.size=sizeof(result);
+        result.code=protocol::OPCODE_COMPANION_TRADE_RESULT;
+        result.version=protocol::COMPANION_TRADE_CONFIRM_VERSION;
+        result.requestId=job.request.requestId;
+        result.status=status;
+        CopyText32(result.characterName,job.companionName.c_str());
+        (void)SendOwnerPacket(owner,&result,result.size,result.code);
+        std::vector<std::uint8_t> committed350Q;
+        const bool imageAvailable350Q=(status==2 || status==3) &&
+            LiveImages350Q().Take(job.tradeNonce,committed350Q);
+        if(status==2 && Live350QEnabled() && live.connected && live.staleSaveWritesSealed) {
+            v2::TradeSha256Digest before{},after{};
+            const auto layout=LiveLayout350Q();
+            if(imageAvailable350Q &&
+               v2::TradeCanonicalInventoryDigest::Compute(job.acceptedOwnerRecord,layout,before) &&
+               v2::TradeCanonicalInventoryDigest::Compute(committed350Q,layout,after) &&
+               PendingLive350Q().size()<8) {
+                LivePending350Q pending;
+                pending.job=job;
+                pending.ownerAfter=std::move(committed350Q);
+                pending.expectedAfterInventory=after;
+                const bool sent=v2::SendCommittedImage(pending.ownerAfter,
+                    protocol::OPCODE_COMPANION_TRADE_DELIVERY,
+                    protocol::COMPANION_TRADE_DELIVERY_VERSION,
+                    job.request.requestId,job.tradeNonce,before,
+                    job.ownerName.c_str(),job.companionName.c_str(),
+                    [owner](const v2::TradeDeliveryChunk& chunk) {
+                        return SendOwnerPacket(owner,&chunk,chunk.size,chunk.code).Succeeded();
+                    });
+                if(sent) {
+                    PendingLive350Q().push_back(std::move(pending));
+                    std::printf("[SUMMIT350Q_TRADE] stage=live-image-sent\n");
+                }
+            }
+        }
+    }
+    ReapCommittedDisconnected350H();
+    LeaveCriticalSection(&cSerSection);
+}
+
+// Called by the authenticated gameplay router under cSerSection. The client
+// ACK by itself is NOT durable authority: the transaction had already been
+// committed by the journal and its image independently read by the worker.
+void HandleTradeApplyAck350Q(rsPLAYINFO* owner,
+    const protocol::CompanionTradeApplyAckPacket* ack) {
+    if(!owner || !owner->lpsmSock || !ack ||
+       ack->size!=sizeof(*ack) ||
+       ack->code!=protocol::OPCODE_COMPANION_TRADE_APPLY_ACK ||
+       ack->version!=protocol::COMPANION_TRADE_DELIVERY_VERSION ||
+       ack->status!=1 || !ack->requestId || !ack->txnId ||
+       !std::memchr(ack->characterName,0,sizeof(ack->characterName))) return;
+    auto& pending=PendingLive350Q();
+    for(auto it=pending.begin();it!=pending.end();++it) {
+        const auto& job=it->job;
+        if(ack->requestId!=job.request.requestId || ack->txnId!=job.tradeNonce ||
+           job.companionName!=ack->characterName ||
+           owner->dwObjectSerial!=job.session.serial ||
+           owner->dwConnectCount!=job.session.generation ||
+           !owner->getAccount() || job.accountName!=owner->getAccount() ||
+           !owner->getName() || job.ownerName!=owner->getName() ||
+           !v2::ServerSaveActivityFence().IsSealedForReconnect(
+               v2::SaveSessionKey(job.session.serial,job.session.generation))) continue;
+        const v2::SaveSessionKey key(job.session.serial,job.session.generation);
+        // First-save digest is armed BEFORE the reserved gate is released.
+        // A stale client save then fails closed even if it arrives immediately.
+        if(!v2::ServerTradeLiveFirstSave350Q().Arm(key,it->expectedAfterInventory))return;
+        // SUMMIT351G: optional exact-equivalence proof from VERIFIED journaled
+        // owner-after bytes. Failure leaves the original 350Q strict gate.
+        // SUMMIT351H: the legacy inventory holds 100 entries per bag.
+        // INVENTORY_MAXITEM is defined only by sinInvenTory.h, not in this
+        // translation unit. The installer checks its authoritative value.
+        const std::size_t slotsPerBag351H = 100u;
+        const bool proof351G = v2::ServerTradePostSave351G().Arm<sRECORD_ITEM>(
+            key,it->ownerAfter,LiveLayout350Q(),RECORD_ITEM_MAX,slotsPerBag351H);
+        std::printf("[SUMMIT351G_TRADE] stage=postsave-proof-%s\n",
+                    proof351G ? "armed" : "exact-only");
+        if(!RebaseLivePlayer350Q(owner,*it)) {
+            v2::ServerTradeLiveFirstSave350Q().Forget(key);
+            v2::ServerTradePostSave351G().Forget(key); // SUMMIT351G
+            std::printf("[SUMMIT350Q_TRADE] stage=live-rebase-refused\n");
+            return; // keep old session sealed; relogin fallback
+        }
+        if(!v2::ServerSaveActivityFence().ReleaseAfterVerifiedLiveApply(key,job.leaseToken))
+            return; // still sealed: no save may run
+        const bool pairReleased=v2::ServerTradeParticipantGate350B().ReleaseVerified(
+            job.session.owner,job.session.companion);
+        const bool durableReleased=ServerTradeWorker350H().ReleaseAfterVerifiedRecovery(
+            job.session.owner,job.session.companion);
+        if(!pairReleased || !durableReleased) return; // keep client frozen
+        auto& holds=VerifiedCommittedHolds350H();
+        for(auto h=holds.begin();h!=holds.end();) {
+            if(h->session.SameConnection(job.session)) h=holds.erase(h);
+            else ++h;
+        }
+        protocol::CompanionTradeResultPacket complete{};
+        complete.size=sizeof(complete);
+        complete.code=protocol::OPCODE_COMPANION_TRADE_RESULT;
+        complete.version=protocol::COMPANION_TRADE_CONFIRM_VERSION;
+        complete.requestId=job.request.requestId;
+        complete.status=1; // LIVE: first post-apply save must match after-image
+        CopyText32(complete.characterName,job.companionName.c_str());
+        (void)SendOwnerPacket(owner,&complete,complete.size,complete.code);
+        pending.erase(it);
+        std::printf("[SUMMIT350Q_TRADE] stage=live-rebased\n");
+        return;
+    }
+}
+
+// SUMMIT 350A: fail-closed boundary before the asynchronous rewrite.
+//
+// RecvMessage routes this command while holding cSerSection. The legacy
+// synchronous transaction (347-349) performed filesystem I/O, journal
+// recovery, a fresh DAT save and a second legacy lock acquisition on this
+// path. The world tick shares the lock. It MUST NOT run here.
+//
+// This intermediate patch intentionally DOES NOT claim successful transfer:
+// no journal and no DAT are even opened by this handler. Until the fully
+// detached session snapshot, persistence worker, login gate and safe result
+// pump have been compiled and tested together, -76 is a definitive rejection.
+// The client recognises negative replies and unfreezes its inventory.
+void HandleTradeConfirm(rsPLAYINFO* owner,
+    const protocol::CompanionTradeConfirmPacket* request)
+{
+    if(!owner || !owner->lpsmSock || !request ||
+       !v2::ValidTradeConfirmRequest(*request))return;
+    // Experimental engine only with disposable DATs; default production
+    // remains -76 until MinGW, Wine, failpoint and recovery checks pass.
+    bool admitted=false;
+    int admissionStage=0;
+    // SUMMIT350K: independently distinguish immutable-capture refusal from
+    // the pair gate, rather than showing checkpoint=4 for both conditions.
+    int captureRejection350K=0;
+    int gateRejection350K=0;
+    if(Trade350HLabMode() && TradeWorkerStarted350H().load() &&
+       owner->getAccount() && owner->getAccount()[0] &&
+       owner->getName() && owner->getName()[0] &&
+       owner->lpRecordDataBuff && !owner->szServerID[0]) {
+        const std::string account(owner->getAccount());
+        const std::string playerName(owner->getName());
+        const std::string companionName(request->characterName);
+        if(account.size()<=31 && playerName.size()<=31 &&
+           companionName.size()<=31 && playerName!=companionName &&
+           rsCheckAccountChar(owner->getAccount(),const_cast<char*>(companionName.c_str())) &&
+           !IsCharacterActive(owner,companionName.c_str()) &&
+           (!FindUserFromName(const_cast<char*>(companionName.c_str())) ||
+           !FindUserFromName(const_cast<char*>(companionName.c_str()))->lpsmSock)) {
+            const v2::SaveSessionKey session(
+                static_cast<std::uint32_t>(owner->dwObjectSerial),
+                static_cast<std::uint32_t>(owner->dwConnectCount));
+            // A previous committed live delivery cannot be traded again until
+            // its first post-apply save has matched the durable inventory.
+            std::uint64_t token=0;
+            if(!v2::ServerTradeLiveFirstSave350Q().Pending(session) &&
+               v2::ServerSaveActivityFence().TryReserve(session,token)) {
+                do {
+                    admissionStage=1;
+                    std::uint64_t sequence=0;
+                    v2::AcceptedRecordEvidence350E evidence;
+                    if(!v2::ServerSaveActivityFence().TryLeasedAcceptedSaveSequence(
+                            session,token,sequence) || !sequence ||
+                       !v2::ServerAcceptedRecordBridge350E().Copy(session,evidence) ||
+                       evidence.bytes.size()!=evidence.exactWriteBytes)break;
+                    admissionStage=2;
+                    // SUMMIT350J: an accepted client save may still be only
+                    // in the legacy server's memory buffer when ACK arrives.
+                    // Produce its exact normalised disk image from an OWNED
+                    // copy. These two short adapters only read the authenticated
+                    // live player's potion/effect fields; no DAT or journal IO.
+                    const v2::TradeLegacyRecordLayout350D layout={
+                        offsetof(TRANS_RECORD_DATA,size),srRECORD_DEFAULT_SIZE,
+                        offsetof(TRANS_RECORD_DATA,GameSaveInfo),sizeof(sGAME_SAVE_INFO),
+                        offsetof(TRANS_RECORD_DATA,Data)};
+                    v2::TradeNormalizedRecord350D normalized;
+                    const auto norm=v2::BuildNormalizedRecord350D(
+                        evidence.bytes.data(),evidence.bytes.size(),layout,
+                        [owner](std::uint8_t* dst,std::size_t length)->bool {
+                            if(length!=sizeof(sGAME_SAVE_INFO)) return false;
+                            sGAME_SAVE_INFO save{};
+                            std::memcpy(&save,dst,sizeof(save));
+                            if(rsSaveServerPotion(owner,&save)!=TRUE ||
+                               rsSaveServerForce(owner,&save)!=TRUE) return false;
+                            std::memcpy(dst,&save,sizeof(save));
+                            return true;
+                        },normalized);
+                    if(norm!=v2::TradeRecordNormalizeCode350D::Ready ||
+                       normalized.exactWriteBytes!=evidence.exactWriteBytes)
+                        break;
+                    admissionStage=3;
+                    const PlayerHandle live=player::legacy::ServerLegacyOnlinePlayerRegistry().HandleOf(owner);
+                    OnlineTradeIdentitySnapshot online;
+                    if(!live.Valid() || live.id.value!=session.serial ||
+                       live.generation!=session.generation ||
+                       !inventory::legacy::ServerLegacyInventoryRuntime()
+                          .TryGetTradeIdentitySnapshot(live,online) ||
+                       online.revision!=request->ownerRevision)break;
+                    char a[256]={},b[256]={};
+                    if(!GetUserDataFile(playerName.c_str(),a) ||
+                       !GetUserDataFile(companionName.c_str(),b) ||
+                       !a[0] || !b[0] || lstrcmpiA(a,b)==0)break;
+                    admissionStage=4;
+                    v2::AcceptedTradeSource350C source;
+                    source.session.serial=session.serial;
+                    source.session.generation=session.generation;
+                    source.session.account=v2::TradeParticipantId(account.c_str(),
+                        "__summit_account_350h__");
+                    source.session.owner=v2::TradeParticipantId(account.c_str(),playerName.c_str());
+                    source.session.companion=v2::TradeParticipantId(account.c_str(),companionName.c_str());
+                    source.account=account;source.owner=playerName;
+                    source.companion=companionName;
+                    source.acceptedSaveSequence=sequence;source.leaseToken=token;
+                    source.tradeNonce=TradeNonce350H(session,request->requestId);
+                    source.completeRecord=normalized.bytes.data();
+                    source.allocatedRecordBytes=normalized.bytes.size();
+                    source.acknowledgedRecordBytes=normalized.bytes.size();
+                    source.acknowledgedDigest=normalized.digest;
+                    DetachedTradeJob job;
+                    const auto captured=v2::CaptureAcceptedTrade350C(source,*request,job);
+                    if(captured!=v2::TradeCaptureCode350C::Captured) {
+                        captureRejection350K=static_cast<int>(captured);
+                        break;
+                    }
+                    job.trustedOwnerPath=a;
+                    job.trustedCompanionPath=b;
+                    v2::TradeParticipantGate350B::ReservationBlock350K blocked=
+                        v2::TradeParticipantGate350B::ReservationBlock350K::None;
+                    if(!v2::ServerTradeParticipantGate350B().TryReserve(
+                         job.session.owner,job.session.companion,&blocked)) {
+                        gateRejection350K=static_cast<int>(blocked);
+                        break;
+                    }
+                    admissionStage=5;
+                    const auto enqueue=ServerTradeWorker350H().Enqueue(job);
+                    if(enqueue==v2::DetachedAdmission::Accepted) {
+                        admitted=true;
+                        std::printf("[SUMMIT350J_TRADE] stage=queued\n");
+                    } else {
+                        (void)v2::ServerTradeParticipantGate350B().ReleaseVerified(
+                             job.session.owner,job.session.companion);
+                    }
+                } while(false);
+                if(!admitted)(void)v2::ServerSaveActivityFence().ReleaseReservation(session,token);
+            }
+        }
+    }
+    if(admitted)return; // outcome ONLY from timer pump after durable journal processing
+    std::printf("[SUMMIT350K_TRADE] stage=admission-refused checkpoint=%d capture=%d gate=%d\n",
+                admissionStage,captureRejection350K,gateRejection350K);
+    protocol::CompanionTradeResultPacket result{};
+    result.size=sizeof(result);
+    result.code=protocol::OPCODE_COMPANION_TRADE_RESULT;
+    result.version=protocol::COMPANION_TRADE_CONFIRM_VERSION;
+    result.requestId=request->requestId;
+    result.status=-76;
+    CopyText32(result.characterName,request->characterName);
+    (void)SendOwnerPacket(owner,&result,result.size,result.code);
+}
+
 void HandleUIAction(rsPLAYINFO *owner, const protocol::CompanionUIActionPacket *packet)
 {
     if(!owner || !packet ||
@@ -4068,9 +5164,17 @@ void HandleUIAction(rsPLAYINFO *owner, const protocol::CompanionUIActionPacket *
         packet->code != protocol::OPCODE_COMPANION_UI_ACTION ||
         packet->version != protocol::COMPANION_UI_PROTOCOL_VERSION)
     {
+        summit::companion::diagnostic::Trace("SERVER","malformed-ui-packet",0,0,-104);
         return;
     }
 
+    summit::companion::diagnostic::Trace("SERVER","received-ui-action",packet->action,
+        packet->value,0);
+    // New trade pages require a terminated, explicit owned character name.
+    if(packet->action == protocol::COMPANION_UI_TRADE_PAGE &&
+       (!packet->characterName[0] ||
+        !memchr(packet->characterName, 0, sizeof(packet->characterName))))
+        return;
     int result = 0;
     char actionName[32] = { 0 };
     const char *name = ResolveActionName(owner, packet, actionName);
@@ -4079,6 +5183,91 @@ void HandleUIAction(rsPLAYINFO *owner, const protocol::CompanionUIActionPacket *
     {
         case protocol::COMPANION_UI_REFRESH:
             result = 0;
+            break;
+
+        case protocol::COMPANION_UI_EQUIP_INVENTORY_RIGHT:
+            result = name[0] ? EquipInventoryItem(owner, name, true, packet->value) : -8;
+            break;
+        case protocol::COMPANION_UI_EQUIP_INVENTORY_LEFT:
+            result = name[0] ? EquipInventoryItem(owner, name, false, packet->value) : -8;
+            break;
+
+        case protocol::COMPANION_UI_SET_INVENTORY_SLOT:
+            {
+                const int slot = (static_cast<unsigned>(packet->value) >> 16) & 0xFF;
+                const int encodedIndex = packet->value & 0xFFFF;
+                const int itemIndex = encodedIndex == 0xFFFF ? -1 : encodedIndex;
+                if(!name[0] || !owner->getAccount() || !owner->getAccount()[0] ||
+                   (owner->getName() && lstrcmpiA(owner->getName(), name) == 0) ||
+                   !rsCheckAccountChar(owner->getAccount(), (char *)name))
+                    result = -2;
+                else if (FindUserFromName((char *)name) &&
+                         FindUserFromName((char *)name)->lpsmSock)
+                    result = -4;
+                else if (IsCharacterActive(owner, name))
+                    result = -12; // dismiss companion before editing the live DAT
+                else
+                {
+                    summit::companion::diagnostic::Trace("SERVER","dat-write-request",
+                        packet->action,itemIndex,0,slot);
+                    const int writeResult = rsSetOfflineCompanionEquipmentSlot(
+                        owner->getAccount(), name, itemIndex, slot);
+                    summit::companion::diagnostic::Trace("SERVER","dat-write-result",
+                        packet->action,itemIndex,writeResult,slot);
+                    result = writeResult == TRUE ? TRUE :
+                        (writeResult < 0 ? writeResult : -13);
+                    if(result == TRUE)
+                        SendInventoryPage(owner, name, 0);
+                }
+            }
+            break;
+
+        case protocol::COMPANION_UI_MOVE_BAG:
+        case protocol::COMPANION_UI_ORGANIZE_BAG:
+        case protocol::COMPANION_UI_MOVE_BAG_CELL:
+            {
+                const bool manual=packet->action==protocol::COMPANION_UI_MOVE_BAG_CELL;
+                const int targetBag=manual ?
+                    ((static_cast<unsigned>(packet->value)>>15)&3) :
+                    (packet->action==protocol::COMPANION_UI_MOVE_BAG ?
+                    ((static_cast<unsigned>(packet->value)>>16)&0xffff) : packet->value);
+                const int index=manual ? (packet->value&255) :
+                    (packet->action==protocol::COMPANION_UI_MOVE_BAG ?
+                    (packet->value&0xffff) : -1);
+                const int cellX=manual ? ((static_cast<unsigned>(packet->value)>>8)&15) : -1;
+                const int cellY=manual ? ((static_cast<unsigned>(packet->value)>>12)&7) : -1;
+                if(!name[0] || !owner->getAccount() || !owner->getAccount()[0] ||
+                   (owner->getName() && lstrcmpiA(owner->getName(),name)==0) ||
+                   !rsCheckAccountChar(owner->getAccount(),(char*)name)) result=-2;
+                else if((FindUserFromName((char*)name) &&
+                        FindUserFromName((char*)name)->lpsmSock) || IsCharacterActive(owner,name))
+                    result=-12;
+                else if(targetBag!=1 && targetBag!=2) result=-14;
+                else {
+                    result=rsMutateOfflineCompanionBag(owner->getAccount(),name,index,targetBag,cellX,cellY);
+                    if(result==TRUE) SendInventoryPage(owner,name,0);
+                }
+            }
+            break;
+
+        case protocol::COMPANION_UI_TRADE_PAGE:
+            if(name[0] && packet->value >= 0 &&
+               (packet->value >> 16) <= 1 && (packet->value & 0xFFFF) <= 1000)
+            {
+                SendTradePreviewPage(owner, name, packet->value >> 16,
+                                     packet->value & 0xFFFF);
+                result = 0;
+            }
+            else result = -10;
+            break;
+
+        case protocol::COMPANION_UI_INVENTORY_PAGE:
+            if (name[0] && packet->value >= 0 && packet->value <= 1000)
+            {
+                SendInventoryPage(owner, name, packet->value);
+                result = 0;
+            }
+            else result = -10;
             break;
 
         case protocol::COMPANION_UI_SELECT:
@@ -4195,6 +5384,8 @@ void HandleUIAction(rsPLAYINFO *owner, const protocol::CompanionUIActionPacket *
             break;
     }
 
+    summit::companion::diagnostic::Trace("SERVER","completed-ui-action",packet->action,
+        packet->value,result);
     SendUIState(owner, result);
 }
 

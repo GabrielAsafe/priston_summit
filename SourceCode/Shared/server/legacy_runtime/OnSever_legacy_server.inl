@@ -18,6 +18,12 @@
 // Desenvolvimento novo deve usar contracts/ports/adapters AMBER existentes.
 // =============================================================================
 
+// SUMMIT350H: lifecycle forward declarations, no inclusion of modern facade.
+namespace gameplay { namespace companions {
+void StartDetachedTrade350H();
+void PumpDetachedTrade350H();
+void StopDetachedTrade350H();
+}}
 #include "content/v1/text_resource/content/TextResourceRuntime.h"
 #include "gameplay/commerce/v2/NpcShopWireResult.h"
 #include "content/v1/localization/legacy/LocalizationLegacyEncoding.h"
@@ -71,6 +77,7 @@ static FILE *SummitServerRuntimeTraceFile(const char *path)
 }
 #include "systems/admin/cli/CLI.h"
 #include "admin/v2/AdminCommandAuthorization.h"
+#include "admin/v2/AdminModeActivation354.h"
 #include "systems/admin/v2/legacy/LegacyAdminAuditAdapter.h"
 
 #include "platform/windows/resources/legacy_runtime/resource.h"
@@ -86,6 +93,7 @@ static FILE *SummitServerRuntimeTraceFile(const char *path)
 #include "systems/commerce/v2/legacy/LegacyTimeCreditWalletAdapter.h"
 #include "systems/gameplay/player/v2/legacy/LegacyOnlinePlayerRegistry.h"
 #include "systems/inventory/v2/legacy/LegacyInventoryRuntime.h"
+#include "gameplay/companions/v2/CompanionTradeSaveActivityFence.h" // SUMMIT329: required for SaveMutationAdmission
 #include "systems/social/party/v2/legacy/LegacyPartyCommandsAdapter.h"
 #include "systems/social/clan/v2/legacy/LegacyClanQueryAdapter.h"
 #include "systems/social/clan/v2/legacy/LegacyClanMembershipAdapter.h"
@@ -6141,6 +6149,8 @@ smCHAR *OpenMonsterFromName(char *szName, int x, int y, int z, rsPLAYINFO *lpPla
 	return FALSE;
 }
 
+#include "gameplay/gathering/v2/legacy/VisualNodeCombatRuntime.inl"
+
 int rsGetMonCountFlag(smCHAR *lpChar)
 {
 	STG_AREA	*lpStgArea;
@@ -11520,6 +11530,8 @@ int	SendSaveClientData(rsPLAYINFO* lpPlayInfo);
 
 int rsOpen_MonsterItemExp(smCHAR *lpChar, rsPLAYINFO *lprsPlayInfo)
 {
+	if (SummitVisualNodeCombatKill(lpChar, lprsPlayInfo, static_cast<std::uint32_t>(dwPlayServTime)))
+		return TRUE;
 	psITEM		sItem;
 	psITEM		*lpsItem = &sItem;
 	STG_ITEMS	*lpStgItem;
@@ -15462,6 +15474,14 @@ int	rsCheckInvenItem(rsPLAYINFO *lpPlayInfo, DWORD dwCode)
 
 int	rsDeleteInvenItem(rsPLAYINFO *lpPlayInfo, DWORD dwCode, DWORD dwHead, DWORD dwChkSum)
 {
+    // SUMMIT328: protect the legacy identity-ledger mutation entry.
+    gameplay::companions::v2::SaveMutationAdmission summit328InventoryAdmission(
+        gameplay::companions::v2::ServerSaveActivityFence(),
+        gameplay::companions::v2::SaveSessionKey(
+            lpPlayInfo ? static_cast<std::uint32_t>(lpPlayInfo->dwObjectSerial) : 0u,
+            lpPlayInfo ? static_cast<std::uint32_t>(lpPlayInfo->dwConnectCount) : 0u));
+    if (!summit328InventoryAdmission.Admitted()) return -1;
+
 	int cnt;
 
 	if(!rsServerConfig.ServerInventoryMode) return INVEN_ITEM_INFO_MAX;
@@ -15505,6 +15525,14 @@ int	rsDeleteInvenItem(rsPLAYINFO *lpPlayInfo, DWORD dwCode, DWORD dwHead, DWORD 
 
 int	rsAddInvenItem(rsPLAYINFO *lpPlayInfo, DWORD dwCode, DWORD dwHead, DWORD dwChkSum)
 {
+    // SUMMIT328: protect the legacy identity-ledger mutation entry.
+    gameplay::companions::v2::SaveMutationAdmission summit328InventoryAdmission(
+        gameplay::companions::v2::ServerSaveActivityFence(),
+        gameplay::companions::v2::SaveSessionKey(
+            lpPlayInfo ? static_cast<std::uint32_t>(lpPlayInfo->dwObjectSerial) : 0u,
+            lpPlayInfo ? static_cast<std::uint32_t>(lpPlayInfo->dwConnectCount) : 0u));
+    if (!summit328InventoryAdmission.Admitted()) return -1;
+
 	int	cnt;
 	int	Empty;
 
@@ -21349,30 +21377,50 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			return FALSE;
 		}
 
-		AccountTypes security = handleSecurityCommand(lpPlayInfo, szCmdBuff);
+		const AccountTypes verifiedLevel = handleSecurityCommand(lpPlayInfo, szCmdBuff);
+		const gameplay::admin::AdminModeActivation354 activation =
+			gameplay::admin::ResolveAdminModeActivation354(
+				static_cast<int>(verifiedLevel),
+				static_cast<int>(lpPlayInfo->getSecurity()),
+				static_cast<int>(AccountTypes::SEC_PLAYER),
+				static_cast<int>(AccountTypes::SEC_ADMINISTRATOR));
 
-		if(security != AccountTypes::SEC_PLAYER)
+		// The verified level is authoritative; /ativar is idempotent.
+		// Even a refused reauthentication revokes the old privilege (fail closed).
+		lpPlayInfo->AdminMode = activation.effectiveLevel;
+		smTransCommand = {};
+		smTransCommand.code = OpCode::OPCODE_AUTH_ADMIN_MODE;
+		smTransCommand.size = sizeof(smTRANS_COMMAND);
+		smTransCommand.WParam = activation.effectiveLevel;
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
+
+		if(!activation.authorized)
 		{
-			// Se o player já está com o POWER USER ativado e digitar o comando de ativação novamente, desativar.
-			if(lpPlayInfo->getSecurity() > AccountTypes::SEC_PLAYER)
-			{
-				security = AccountTypes::SEC_PLAYER;
-			}
-
-			lpPlayInfo->AdminMode = static_cast<int>(security);
-
-			smTransCommand.code = OpCode::OPCODE_AUTH_ADMIN_MODE;
-			smTransCommand.size = sizeof(smTRANS_COMMAND);
-			smTransCommand.WParam = (int)security;
-			smTransCommand.LParam = 0;
-			smTransCommand.SParam = 0;
-
-			SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
-
-			sprintf_s(szTempBuff, sizeof(szTempBuff), "GameMode Ativado! [nivel %d]", static_cast<int>(security));
-			SendQuickMessage(lpPlayInfo, szTempBuff);
+			SendQuickMessage(lpPlayInfo, (char*)"GameMode nao ativado: autenticacao recusada.");
+			printf("[SUMMIT354_GM] stage=activation-denied level=0\n");
+			return TRUE;
 		}
 
+		sprintf_s(szTempBuff, sizeof(szTempBuff),
+			"GameMode Ativado! [nivel %d]", activation.effectiveLevel);
+		SendQuickMessage(lpPlayInfo, szTempBuff);
+		printf("[SUMMIT354_GM] stage=%s level=%d\n",
+			activation.alreadyActive ? "reauthorized" : "authorized", activation.effectiveLevel);
+		return TRUE;
+	}
+
+	// Turning GM mode off is now explicit; repeating /ativar never does it.
+	len = rsCompString("/desativar", szChatCommand);
+	if(len)
+	{
+		lpPlayInfo->AdminMode = static_cast<int>(AccountTypes::SEC_PLAYER);
+		smTransCommand = {};
+		smTransCommand.code = OpCode::OPCODE_AUTH_ADMIN_MODE;
+		smTransCommand.size = sizeof(smTRANS_COMMAND);
+		smTransCommand.WParam = static_cast<int>(AccountTypes::SEC_PLAYER);
+		SendOnServerLegacySocket(lpPlayInfo->lpsmSock, (char *)&smTransCommand, smTransCommand.size);
+		SendQuickMessage(lpPlayInfo, (char*)"GameMode Desativado! [nivel 0]");
+		printf("[SUMMIT354_GM] stage=deactivated level=0\n");
 		return TRUE;
 	}
 
@@ -30024,8 +30072,15 @@ if(cnt >= CONNECTMAX)
 				gameplay::player::legacy::ServerLegacyOnlinePlayerRegistry().IdOf(lpPlayInfo));
 			break;
 
-		case OpCode::OPCODE_WAREHOUSE:
-
+        case OpCode::OPCODE_WAREHOUSE:
+        {
+            // Warehouse packet persistence must not bypass the trade lease.
+            gameplay::companions::v2::SaveMutationAdmission summitWarehouseSaveAdmission(
+                gameplay::companions::v2::ServerSaveActivityFence(),
+                gameplay::companions::v2::SaveSessionKey(
+                    lpPlayInfo ? static_cast<std::uint32_t>(lpPlayInfo->dwObjectSerial) : 0u,
+                    lpPlayInfo ? static_cast<std::uint32_t>(lpPlayInfo->dwConnectCount) : 0u));
+            if (!summitWarehouseSaveAdmission.Admitted()) break;
 
 			if(lpPlayInfo->dwFuncChkErrorFlag)
 			{
@@ -30045,6 +30100,7 @@ if(cnt >= CONNECTMAX)
 				lpPlayInfo->dwRecordDataTime = 1;
 			}
 			break;
+        }
 
 		case OpCode::OPCODE_OPEN_WAREHOUSE:
 
@@ -32384,6 +32440,7 @@ LONG APIENTRY WndProc(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 		break;
 
 	case WM_DESTROY:
+		gameplay::companions::StopDetachedTrade350H();
 		WSACleanup();
 		PostQuitMessage(0);
 		break;
@@ -32410,7 +32467,10 @@ LONG APIENTRY WndProc(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 			RecordShutdownLog(50000, dwOldTime, dwPlayServTime);
 		}
 
+		gameplay::companions::StartDetachedTrade350H();
 		srPlayMain();
+		gameplay::companions::PumpDetachedTrade350H();
+		SummitVisualNodeCombatTick(static_cast<std::uint32_t>(dwPlayServTime));
 
 		if ((dwTimeCounter & 0x1FF) == 0)
 		{
@@ -39234,6 +39294,15 @@ static int	TestStarPoint = 0;
 
 int rsRecvStarPoint(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 {
+
+    // SUMMIT trade: legacy StarPoint debits touch inventory identity directly.
+    // Admit the entire read/log/debit sequence under the same save reservation.
+    gameplay::companions::v2::SaveMutationAdmission tradeStarPointAdmission(
+        gameplay::companions::v2::ServerSaveActivityFence(),
+        gameplay::companions::v2::SaveSessionKey(
+            lpPlayInfo ? static_cast<std::uint32_t>(lpPlayInfo->dwObjectSerial) : 0u,
+            lpPlayInfo ? static_cast<std::uint32_t>(lpPlayInfo->dwConnectCount) : 0u));
+    if (!tradeStarPointAdmission.Admitted()) return FALSE;
 
 	int cnt;
 	int InvFlag;

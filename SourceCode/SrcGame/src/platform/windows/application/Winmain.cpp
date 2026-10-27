@@ -6,6 +6,7 @@
 #include <chrono>
 #include <cstdlib>
 #include <cstdint>
+#include <cstring>
 
 
 #include <windows.h>
@@ -1084,6 +1085,87 @@ bool bCaptureScreen = false;
 extern void resizeOpening();
 extern void resizeLogin();
 
+// SUMMIT_CAPTURE_WORLD_POINT_V1: developer-only, read-only world coordinate capture.
+// The same units as the debug overlay and canonical maps (raw pX/pY/pZ >> FLOATNS).
+// Writes next to Game.exe rather than relying on the process working directory.
+static bool SummitCaptureCanonicalMapStartPoint()
+{
+    if (GameMode != 2 || !lpCurPlayer)
+        return false;
+    const int slot = lpCurPlayer->OnStageField;
+    if (slot < 0 || slot >= 2 || !StageField[slot])
+        return false;
+
+    char exe[MAX_PATH] = { 0 };
+    DWORD n = GetModuleFileNameA(NULL, exe, MAX_PATH);
+    if (!n || n >= MAX_PATH)
+        return false;
+    char *tail = strrchr(exe, '\\');
+    if (!tail)
+        return false;
+    *tail = '\0';
+
+    char folder[MAX_PATH] = { 0 };
+    const int folderLen = snprintf(folder, sizeof(folder), "%s\\LOGS", exe);
+    if (folderLen <= 0 || static_cast<size_t>(folderLen) >= sizeof(folder))
+        return false;
+    if (!CreateDirectoryA(folder, NULL) && GetLastError() != ERROR_ALREADY_EXISTS)
+        return false;
+
+    const int mapId = StageField[slot]->FieldCode;
+    const int x = lpCurPlayer->pX >> FLOATNS;
+    const int y = lpCurPlayer->pY >> FLOATNS;
+    const int z = lpCurPlayer->pZ >> FLOATNS;
+    char pointPath[MAX_PATH] = { 0 };
+    char detailPath[MAX_PATH] = { 0 };
+    if (snprintf(pointPath, sizeof(pointPath), "%s\\summit_map_%d_start_point.json", folder, mapId) >= static_cast<int>(sizeof(pointPath)) ||
+        snprintf(detailPath, sizeof(detailPath), "%s\\summit_map_%d_world_position.json", folder, mapId) >= static_cast<int>(sizeof(detailPath)))
+        return false;
+
+    // Exact object accepted in canonical/maps/{client,server}.maps.json -> start_points[i].
+    FILE *point = fopen(pointPath, "wb");
+    if (!point)
+        return false;
+    int wrotePoint = fprintf(point, "{\n  \"x\": %d,\n  \"z\": %d\n}\n", x, z);
+    int pointOK = wrotePoint > 0 && fclose(point) == 0;
+    if (!pointOK)
+        return false;
+
+    // Audit metadata: Y cannot be placed in SMAP v1's two-dimensional start_points.
+    FILE *detail = fopen(detailPath, "wb");
+    if (!detail)
+        return false;
+    int wroteDetail = fprintf(detail,
+        "{\n  \"schema\": \"summit.world-position-capture/v1\",\n"
+        "  \"map\": %d,\n  \"position\": {\"x\": %d, \"y\": %d, \"z\": %d},\n"
+        "  \"canonical_start_point\": {\"x\": %d, \"z\": %d},\n"
+        "  \"coordinate_units\": \"debug_overlay_and_canonical_maps\"\n}\n",
+        mapId, x, y, z, x, z);
+    const bool detailOK = wroteDetail > 0 && fclose(detail) == 0;
+    if (!detailOK)
+        return false;
+
+    // Preserve every sampled point even though the two latest JSON snapshots
+    // are deliberately overwritten for immediate copy/paste into Content.
+    char historyPath[MAX_PATH] = { 0 };
+    if (snprintf(historyPath, sizeof(historyPath), "%s\\summit_world_position_history.jsonl", folder) < static_cast<int>(sizeof(historyPath)))
+    {
+        FILE *history = fopen(historyPath, "ab");
+        if (history)
+        {
+            SYSTEMTIME now = {};
+            GetLocalTime(&now);
+            fprintf(history,
+                "{\"map\":%d,\"x\":%d,\"y\":%d,\"z\":%d,\"local_time\":\"%04u-%02u-%02uT%02u:%02u:%02u\"}\n",
+                mapId, x, y, z,
+                (unsigned)now.wYear, (unsigned)now.wMonth, (unsigned)now.wDay,
+                (unsigned)now.wHour, (unsigned)now.wMinute, (unsigned)now.wSecond);
+            fclose(history);
+        }
+    }
+    return true;
+}
+
 LONG APIENTRY WndProc(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 {
 	static bool mouse_left_click = false;
@@ -1338,6 +1420,24 @@ switch (messg)
 		}
 
 #endif
+
+		// SUMMIT_CAPTURE_WORLD_POINT_V1: Ctrl+Shift+F12 saves an exact
+		// map start_point JSON and a separate 3D audit JSON next to Game.exe.
+		// Does not mutate runtime world, canonical source or server state.
+		if (wParam == VK_F12 && (GetKeyState(VK_CONTROL) & 0x8000) &&
+			(GetKeyState(VK_SHIFT) & 0x8000) && !(GetKeyState(VK_MENU) & 0x8000))
+		{
+			if ((lParam & (static_cast<LPARAM>(1) << 30)) == 0 &&
+				GameMode == 2 && !hFocusWnd && !sinMessageBoxShowFlag)
+			{
+				const bool saved = SummitCaptureCanonicalMapStartPoint();
+				cMessageBox.ShowMessageEvent(saved ?
+					"Posicao guardada em LOGS (map start point JSON)" :
+					"Falha ao guardar posicao em LOGS");
+			}
+			VRKeyBuff[wParam] = 1;
+			return TRUE;
+		}
 
 		if (!VRKeyBuff[VK_CONTROL] && wParam == VK_F12 && GameMode != 2)
 		{
@@ -3342,10 +3442,58 @@ int GetActionGame_PlayMouseAngle()
 	int ax, az, ay;
 
 	ax = xPs - lpCurPlayer->RendPoint.x;
-	az = yPs - lpCurPlayer->RendPoint.x;
+	// ACTION cursor is screen-space: Y must be relative to RendPoint.y.
+	// Subtracting RendPoint.x here offsets the click angle unpredictably.
+	az = yPs - lpCurPlayer->RendPoint.y;
 	ay = GetRadian2D(0, 0, ax, -az);
 
 	return ay;;
+}
+
+// [SUMMIT_HEARTOF_FIRE_MODEL_DIAG_V2] Log model/readiness for every
+// visible or server-present enemy on an actual left click in field 53.
+// Diagnostic only; no replacement asset, hitbox or gameplay alteration.
+static void SummitTraceHeartOfFireClick()
+{
+	if (!lpCurPlayer || lpCurPlayer->OnStageField < 0 ||
+		lpCurPlayer->OnStageField >= 2 || !StageField[lpCurPlayer->OnStageField] ||
+		StageField[lpCurPlayer->OnStageField]->FieldCode != 53)
+		return;
+	CreateDirectoryA("LOGS", NULL);
+	FILE *log = 0;
+	fopen_s(&log, "LOGS\\summit_heartoffire_click_models.txt", "a");
+	if (!log)
+		return;
+	fprintf(log, "CLICK tick=%lu mouse=%ld,%ld selected_char=%lu selected_item=%d\n",
+		(unsigned long)dwPlayTime, pCursorPos.x, pCursorPos.y,
+		lpCharSelPlayer ? (unsigned long)lpCharSelPlayer->dwObjectSerial : 0ul,
+		lpSelItem && lpSelItem->Flag ? 1 : 0);
+	int total = 0;
+	for (int i = 0; i < OTHER_PLAYER_MAX; ++i)
+	{
+		const smCHAR &ch = chrOtherPlayer[i];
+		if (!ch.Flag || ch.smCharInfo.State != smCHAR_STATE_ENEMY)
+			continue;
+		++total;
+		if (total > 64)
+			continue;
+		const RECT &r = ch.RendRect2D;
+		const bool within = pCursorPos.x > r.left && pCursorPos.x < r.right &&
+			pCursorPos.y > r.top && pCursorPos.y < r.bottom;
+		fprintf(log,
+			"MOB serial=%lu name=%.63s life=%d/%d model=%p model2=%p anim=%p motion=%p"
+			" loading=%d rend=%d display=%d alpha=%d rect=%ld,%ld,%ld,%ld hit=%d"
+			" screen=%d,%d,%d world=%d,%d,%d\n",
+			(unsigned long)ch.dwObjectSerial, ch.smCharInfo.szName,
+			ch.smCharInfo.Life[0], ch.smCharInfo.Life[1],
+			(void *)ch.Pattern, (void *)ch.Pattern2, (void *)ch.AnimPattern,
+			(void *)ch.MotionInfo, ch.PatLoading, ch.RendSucess,
+			ch.DisplayFlag, ch.DisplayAlpha, r.left, r.top, r.right, r.bottom,
+			within ? 1 : 0, ch.RendPoint.x, ch.RendPoint.y, ch.RendPoint.z,
+			ch.pX >> FLOATNS, ch.pY >> FLOATNS, ch.pZ >> FLOATNS);
+	}
+	fprintf(log, "END mobs=%d\n", total);
+	fclose(log);
 }
 
 int SetMousePlay(int flag)
@@ -3508,8 +3656,26 @@ int SetMousePlay(int flag)
 		}
 		else
 		{
-			ActionMouseClick[0] = 1;
+			const bool fallGame39 = lpCurPlayer->OnStageField >= 0 &&
+				lpCurPlayer->OnStageField < 2 && StageField[lpCurPlayer->OnStageField] &&
+				StageField[lpCurPlayer->OnStageField]->FieldCode == 39;
+			if (fallGame39)
+			{
+				// Left click only collects the item actually under the cursor.
+				// Space still handles directional combat in ActionGameMain.
+				ActionMouseClick[0] = 0;
+				if (lpSelItem && lpSelItem->Flag)
+				{
+					lpCharSelPlayer = 0;
+					SelMouseButton = 1;
+					TraceAttackPlay();
+					AutoCameraFlag = FALSE;
+				}
+			}
+			else
+				ActionMouseClick[0] = 1;
 		}
+		SummitTraceHeartOfFireClick();
 
 		AutoMouse_WM_Count++;
 
@@ -5141,7 +5307,28 @@ void smPlayD3D(int x, int y, int z, int ax, int ay, int az)
 		wsbCameraField->ActionCamera.LeftX == 0 &&
 		wsbCameraField->ActionCamera.RightX == 0 &&
 		wsbCameraField->ActionCamera.FixPos.z == 0;
+	// Fall Game (39) is a sideways ACTION minigame, not a chase-camera map.
+	// The imported field has no ActionCamera data. Only initialize it when
+	// its legacy camera bounds and Z are all zero; preserve any valid setup.
+	// TRIAL values: X limits from the two corridor end gates (5563, 11502);
+	// Y floor near the exit gates (840); fixed Z from map centre minus 320.
+	// View offset is provisional and must be checked in the live minigame.
+	const bool wsbFallGameCameraMissing = wsbCameraField &&
+		wsbCameraField->FieldCode == 39 &&
+		wsbCameraField->State == FIELD_STATE_ACTION &&
+		wsbCameraField->ActionCamera.LeftX == 0 &&
+		wsbCameraField->ActionCamera.RightX == 0 &&
+		wsbCameraField->ActionCamera.FixPos.z == 0;
+	if (wsbFallGameCameraMissing)
+	{
+		wsbCameraField->ActionCamera.LeftX = 5563;
+		wsbCameraField->ActionCamera.RightX = 11502;
+		wsbCameraField->ActionCamera.FixPos.y = 840 * fONE;
+		wsbCameraField->ActionCamera.FixPos.z = wsbCameraField->cZ - 320;
+	}
 
+	// Keep ACTION active for 39: ActionGameMain() owns the minigame keys.
+	// Only the zero-camera StarArena (58) falls back to chase mode.
 	if (wsbCameraField && wsbCameraField->State == FIELD_STATE_ACTION &&
 		!wsbStarArenaCameraMissing)
 	{

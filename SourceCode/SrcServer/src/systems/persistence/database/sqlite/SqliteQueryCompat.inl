@@ -275,6 +275,12 @@ bool RewriteBareTables(std::string &query, EDatabaseID currentDatabase, std::str
 		if(i >= query.size() || query[i] == '(')
 			continue;
 
+		// SQLite UPSERT has "DO UPDATE SET ..." with no table after UPDATE.
+		// Only bare UPDATE <table> statements need physical table rewriting.
+		// Without this guard, SET becomes [ServerDB__SET] and XP persistence fails.
+		if(std::strcmp(matched, "UPDATE") == 0 && IsKeywordAt(query, i, "SET"))
+			continue;
+
 		std::size_t p = i;
 		std::string table;
 		if(!ReadIdentifier(query, p, table))

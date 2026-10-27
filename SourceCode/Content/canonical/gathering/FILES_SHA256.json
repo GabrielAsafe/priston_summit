@@ -1,0 +1,13 @@
+{
+  "schema": "summit.gathering-content-manifest/v1",
+  "hashes": {
+    "visuals.experimental.json": "3a09b24898adb0a5b17fa61322248f730be1fdcfa58cba8434eeb41b50b23609",
+    "nodes.experimental.json": "796af2e756a531a4f50378e7aa5db6f91f950b3a10cb22158e9d64900fbee6a5",
+    "resources.reference.json": "380f913e66f54e27774ba50a78572509fa871b8e108edabe953a9b6d8f266b91",
+    "README.md": "647c0a4e50c690f371e375750d95499ad0ab7b255ff326ece4d7e4304a229dab",
+    "assets/herb_bundle_preview.png": "b37c6881356045a9ce98c85675c0dca4b5112bd9cee02c0eb17f78ed746bc5d9",
+    "assets/herb_bundle_preview.bmp": "9a3398e528b7038516d0f8d9499d53f61cdba0084fe58b3b45b1278832b82533",
+    "assets/iron_ore_preview.bmp": "5cb90893368242343ec5c9ca05fda4b466fd78cedc5529a5ca0d5e1b069600a0",
+    "assets/iron_ore_preview.png": "c574a581d9e208b5466c380c706405d635db4f8a84e470ab58d1777ab3fdb170"
+  }
+}

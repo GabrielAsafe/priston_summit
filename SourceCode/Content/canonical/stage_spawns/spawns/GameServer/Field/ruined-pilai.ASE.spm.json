@@ -15,45 +15,52 @@
   "open_limit": 2,
   "actors": [
     {
-      "monster_id": "monster.slab_118_t_u00e9cnico_zumbi",
-      "legacy_name": "Técnico Zumbi",
-      "legacy_name_bytes_hex": "54e9636e69636f205a756d6269",
-      "weight": 20,
-      "resolution": "source_monster_signature"
-    },
-    {
-      "monster_id": "monster.slab_118_soldado_zumbi",
-      "legacy_name": "Soldado Zumbi",
-      "legacy_name_bytes_hex": "536f6c6461646f205a756d6269",
-      "weight": 20,
-      "resolution": "source_monster_signature"
-    },
-    {
-      "monster_id": "monster.slab_119_bombardeiro_zumbi",
-      "legacy_name": "Bombardeiro Zumbi",
-      "legacy_name_bytes_hex": "426f6d626172646569726f205a756d6269",
-      "weight": 20,
-      "resolution": "source_monster_signature"
-    },
-    {
-      "monster_id": "monster.112_capataz_das_cinzas",
-      "legacy_name": "Capataz das Cinzas",
-      "legacy_name_bytes_hex": "4361706174617a206461732043696e7a6173",
-      "weight": 15,
+      "monster_id": "monster.117_inferno",
+      "legacy_name": "Inferno",
+      "legacy_name_bytes_hex": "496e6665726e6f",
+      "weight": 16,
       "resolution": "exact"
     },
     {
-      "monster_id": "monster.111_mineiro_das_cinzas",
-      "legacy_name": "Mineiro das Cinzas",
-      "legacy_name_bytes_hex": "4d696e6569726f206461732043696e7a6173",
-      "weight": 15,
+      "monster_id": "monster.119_ignis",
+      "legacy_name": "Ignis",
+      "legacy_name_bytes_hex": "49676e6973",
+      "weight": 16,
       "resolution": "exact"
     },
     {
-      "monster_id": "monster.112_explos_u00e3o_selada",
-      "legacy_name": "Explos? Selada",
-      "legacy_name_bytes_hex": "4578706c6f733f2053656c616461",
-      "weight": 10,
+      "monster_id": "monster.120_najan",
+      "legacy_name": "Najan",
+      "legacy_name_bytes_hex": "4e616a616e",
+      "weight": 16,
+      "resolution": "exact"
+    },
+    {
+      "monster_id": "monster.121_crios",
+      "legacy_name": "Crios",
+      "legacy_name_bytes_hex": "4372696f73",
+      "weight": 16,
+      "resolution": "exact"
+    },
+    {
+      "monster_id": "monster.117_rguard",
+      "legacy_name": "러스트 가드",
+      "legacy_name_bytes_hex": "b7afbdbac6ae20b0a1b5e5",
+      "weight": 12,
+      "resolution": "exact"
+    },
+    {
+      "monster_id": "monster.118_dmystery",
+      "legacy_name": "다크 미스터리",
+      "legacy_name_bytes_hex": "b4d9c5a920b9ccbdbac5cdb8ae",
+      "weight": 12,
+      "resolution": "exact"
+    },
+    {
+      "monster_id": "monster.123_wlord",
+      "legacy_name": "위치 로드",
+      "legacy_name_bytes_hex": "c0a7c4a120b7ceb5e5",
+      "weight": 12,
       "resolution": "exact"
     }
   ],

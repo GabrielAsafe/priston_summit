@@ -1,4 +1,6 @@
 #include "systems/gameplay/quests/v2/legacy/LegacyQuestCatalog.h"
+#include "gameplay/quests/v2/QuestLegacySource350Z.h"
+#include "gameplay/quests/v2/QuestCanonicalRegistry351B.h"
 
 #include <memory>
 #include <string>
@@ -72,6 +74,14 @@ bool LegacyQuestCatalog::TryGetDefinition(QuestId quest, QuestDefinition& out) c
 {
     if(!quest.Valid())
         return false;
+
+    // The old character-record quests have their own persisted stage machine.
+    // Expose their definitions under a *separate* V2 namespace, never by bare
+    // numeric code (DB QuestID=16 is distinct from SIN change-job 4=0x10).
+    if(IsLegacyNamespacedQuest350Z(quest))
+        return TryGetLegacyDefinition350Z(quest, out);
+    if(canonical::IsCanonicalQuest351B(quest))
+        return canonical::TryGetCanonicalDefinition351B(quest, out);
 
     int matches = 0;
     QuestDefinition match;

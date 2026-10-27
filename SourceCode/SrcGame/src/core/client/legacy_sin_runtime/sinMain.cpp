@@ -693,12 +693,8 @@ void sinProc(int Message)
 				else sinTestFlag = 1;
 			}
 
-			if (sinGetKeyClick('F') && VRKeyBuff[VK_CONTROL] && !VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_MENU])
-			{
-				if (cShop.OpenFlag == SIN_CLOSE)cShop.OpenFlag = SIN_OPEN;
-				else cShop.OpenFlag = SIN_CLOSE;
-
-			}
+			// SUMMIT320: Ctrl+F no longer opens cShop without an NPC shop context.
+			// The normal shop entry remains unchanged.
 			if (sinGetKeyClick('G') && VRKeyBuff[VK_CONTROL] && !VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_MENU])
 			{
 				if (cCraftItem.OpenFlag == SIN_CLOSE)cCraftItem.OpenFlag = SIN_OPEN;

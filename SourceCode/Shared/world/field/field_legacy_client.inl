@@ -2132,8 +2132,16 @@ int WarpField(int FieldNum, int *mx, int *mz)
 	LoadStageFromField(&sField[FieldNum], 0);
 
 
-	*mx = sField[FieldNum].cX * fONE;
-	*mz = sField[FieldNum].cZ * fONE;
+	// SUMMIT_WARP_SINGLE_START_POLICY_V1: clear, backward-compatible destination rules.
+	// No start points: center. One start point: that point.
+	// Multiple start points: center for generic warp; nearest for contextual warp.
+	if (sField[FieldNum].StartPointCnt == 1)
+		sField[FieldNum].GetStartPoint(0, 0, mx, mz);
+	else
+	{
+		*mx = sField[FieldNum].cX * fONE;
+		*mz = sField[FieldNum].cZ * fONE;
+	}
 
 
 	return TRUE;

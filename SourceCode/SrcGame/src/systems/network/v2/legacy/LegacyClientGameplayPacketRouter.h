@@ -4,6 +4,9 @@
 #include <cstdint>
 
 #include "gameplay/companions/CompanionProtocol.h"
+#include "gameplay/companions/v2/CompanionTradePagePolicy.h"
+#include "gameplay/companions/v2/CompanionTradeConfirmPolicy.h"
+#include "gameplay/companions/v2/CompanionTradeDeliveryWire.h"
 #include "gameplay/covenants/v2/CovenantUIProtocol.h"
 #include "systems/ui/v2/legacy/LegacyCompanionGateway.h"
 #include "systems/ui/v2/legacy/LegacyCovenantGateway.h"
@@ -52,6 +55,45 @@ inline bool RouteClientGameplayPacket(std::uint32_t opcode, const void* data, st
             if (packet->size == static_cast<std::int32_t>(sizeof(*packet)) &&
                 packet->version == companions::protocol::COMPANION_UI_PROTOCOL_VERSION)
                 ui::v2::ApplyLegacyCompanionStatePacket(*packet);
+        }
+        return true;
+    }
+    case static_cast<std::uint32_t>(companions::protocol::OPCODE_COMPANION_INVENTORY_PAGE):
+    {
+        if (data && size == sizeof(companions::protocol::CompanionInventoryPagePacket))
+        {
+            const auto* packet = static_cast<const companions::protocol::CompanionInventoryPagePacket*>(data);
+            if (packet->size == static_cast<std::int32_t>(sizeof(*packet)) &&
+                packet->version == companions::protocol::COMPANION_INVENTORY_PROTOCOL_VERSION)
+                ui::v2::ApplyLegacyCompanionInventoryPacket(*packet);
+        }
+        return true;
+    }
+    case static_cast<std::uint32_t>(companions::protocol::OPCODE_COMPANION_TRADE_PAGE):
+    {
+        if(data && size == sizeof(companions::protocol::CompanionTradePagePacket))
+        {
+            const auto* packet = static_cast<const companions::protocol::CompanionTradePagePacket*>(data);
+            if(companions::v2::ValidTradePreviewPage(*packet))
+                ui::v2::ApplyLegacyCompanionTradePagePacket(*packet);
+        }
+        return true;
+    }
+    case static_cast<std::uint32_t>(companions::protocol::OPCODE_COMPANION_TRADE_RESULT):
+    {
+        if(data && size == sizeof(companions::protocol::CompanionTradeResultPacket))
+        {
+            const auto* packet = static_cast<const companions::protocol::CompanionTradeResultPacket*>(data);
+            if(companions::v2::ValidTradeResult(*packet))
+                ui::v2::ApplyLegacyCompanionTradeResultPacket(*packet);
+        }
+        return true;
+    }
+    case static_cast<std::uint32_t>(companions::protocol::OPCODE_COMPANION_TRADE_DELIVERY):
+    {
+        if(data && size==sizeof(companions::v2::TradeDeliveryChunk)) {
+            const auto* packet=static_cast<const companions::v2::TradeDeliveryChunk*>(data);
+            ui::v2::GetLegacyCompanionGateway().ApplyCommittedDeliveryChunk(*packet);
         }
         return true;
     }

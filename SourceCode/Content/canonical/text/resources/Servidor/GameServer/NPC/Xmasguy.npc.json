@@ -16,7 +16,7 @@
   "semantic": {
     "fields": {
       "name": "크리스 마스 롱보",
-      "model_file": "char\\npcXms\\ChTree_Longbo.ini",
+      "model_file": "char\\npc\\XM\\ChTree_Longbo.ini",
       "level": 100,
       "linked_file": "name\\Xmasguy.zhoon",
       "model_config_id": "model.char.npcxms.chtree.longbo"
@@ -45,10 +45,10 @@
         "legacy_token_hex": "2ab8f0bee7c6c4c0cf",
         "loader_status": "supported_mapped",
         "values": [
-          "char\\npcXms\\ChTree_Longbo.ini"
+          "char\\npc\\XM\\ChTree_Longbo.ini"
         ],
         "raw_values_hex": [
-          "636861725c6e7063586d735c4368547265655f4c6f6e67626f2e696e69"
+          "636861725c6e70635c584d5c4368547265655f4c6f6e67626f2e696e69"
         ],
         "quoted": [
           true

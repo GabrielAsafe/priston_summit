@@ -8,6 +8,7 @@
 
 #include "compat/legacy/sin/sinLinkHeader.h"
 #include "systems/inventory/legacy/sinItem.h"
+#include "gameplay/companions/v2/CompanionTradeClientFreeze.h"
 
 extern char szInfoBuff[5000];
 extern char szInfoBuff2[5000];
@@ -235,6 +236,7 @@ std::vector<DetailLineSnapshot> LegacyInventoryGateway::GetItemDetails(int itemI
 
 bool LegacyInventoryGateway::BeginDrag(int itemIndex)
 {
+    if(gameplay::companions::v2::TradeClientFrozen()) return false;
     if (!ValidInventoryIndex(itemIndex) || MouseItem.Flag)
         return false;
 
@@ -263,6 +265,7 @@ bool LegacyInventoryGateway::BeginDrag(int itemIndex)
 
 bool LegacyInventoryGateway::DropAtLegacyPoint(int x, int y)
 {
+    if(gameplay::companions::v2::TradeClientFrozen()) return false;
     if (!MouseItem.Flag)
         return false;
 

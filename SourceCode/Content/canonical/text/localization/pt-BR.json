@@ -11519,6 +11519,24 @@
       "source": "monster.117_golem_minerador"
     },
     {
+      "key": "monster.117_inferno.name",
+      "text": "Inferno",
+      "quality": "translated",
+      "source": "monster.117_inferno"
+    },
+    {
+      "key": "monster.117_rguard.name",
+      "text": "Guardião Enferrujado",
+      "quality": "translated",
+      "source": "Pillai_DONOR2_identity_verified"
+    },
+    {
+      "key": "monster.118_dmystery.name",
+      "text": "Sombra Misteriosa",
+      "quality": "translated",
+      "source": "Pillai_DONOR2_identity_verified"
+    },
+    {
       "key": "monster.118_tarantulika.name",
       "text": "Tarantulika",
       "quality": "translated",
@@ -11535,6 +11553,12 @@
       "text": "Gurkob",
       "quality": "translated",
       "source": "text.119_gurkob"
+    },
+    {
+      "key": "monster.119_ignis.name",
+      "text": "Ignis",
+      "quality": "translated",
+      "source": "monster.119_ignis"
     },
     {
       "key": "monster.119_serpente_de_gelo.name",
@@ -11561,6 +11585,12 @@
       "source": "text.120_koon"
     },
     {
+      "key": "monster.120_najan.name",
+      "text": "Najan",
+      "quality": "translated",
+      "source": "monster.120_najan"
+    },
+    {
       "key": "monster.120_nihil.name",
       "text": "Nihil",
       "quality": "translated",
@@ -11571,6 +11601,12 @@
       "text": "Chalybs",
       "quality": "translated",
       "source": "monster.121_chalybs"
+    },
+    {
+      "key": "monster.121_crios.name",
+      "text": "Crios",
+      "quality": "translated",
+      "source": "monster.121_crios"
     },
     {
       "key": "monster.121_faugn.name",
@@ -11589,6 +11625,12 @@
       "text": "Arhdyra",
       "quality": "translated",
       "source": "text.123_arhdyra"
+    },
+    {
+      "key": "monster.123_wlord.name",
+      "text": "Bruxa Mestre",
+      "quality": "translated",
+      "source": "Pillai_DONOR2_identity_verified"
     },
     {
       "key": "monster.124_sathla.name",
@@ -18093,12 +18135,6 @@
       "text": "Koon",
       "quality": "translated",
       "source": "text.123_koon"
-    },
-    {
-      "key": "text.123_wlord.name",
-      "text": "Bruxa Mestre",
-      "quality": "translated",
-      "source": "text.123_wlord"
     },
     {
       "key": "text.124_arhdyra.name",

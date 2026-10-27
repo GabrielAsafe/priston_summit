@@ -24,11 +24,17 @@ ANCHOR_WORLD = '\tDrawPat3D_Alpha();'
 ANCHOR_TEXT = '\tDrawPat2D(x, y, z, ax, ay, az);'
 RENDER = '\tSummitCookedGallery287Draw(x, y, z, ax, ay, az); ' + MARK
 OVERLAY = '\tSummitCookedGallery287Labels(); ' + MARK
-# Only the two audited Winmain snapshots are accepted. Unknown user edits
+# Only the explicitly audited Winmain snapshots are accepted. Unknown user edits
 # require re-audit, not a blind injection into current gameplay code.
 ALLOWED_WINMAIN_SHA256 = {
     'de12fa015a940883e4067ad750ef0e63e3e8abc47ee66f7ec365b25d81af01b8',
     '8d2c1182eea5adb333228440aff01f09b992e98060302b435f019e42e51bf935',
+    # PATCH 290: current local revision audited against the reconstructed source.
+    '44559eba3bfd485816a08feb681850d8b62d3aa11dcdd09bccc0a0870badaafd',
+    # StarArena camera guard, before GM fog hotkey.
+    'be1fa2f3430cb4020b6044c955f6d618c66621745b57576d1585703e3df5ecf3',
+    # PATCH 292S: StarArena + optional GM Shift+F fog toggle.
+    '3d9111d264a8e6003717376bc81615d1606f5c2f1a9d8c0c8fc32a148e752b8b',
 }
 
 def digest(p: Path) -> str:
@@ -126,8 +132,8 @@ static void SummitCookedGallery287Draw(int cx, int cy, int cz, int ax, int ay, i
     }
     const bool modifier = (GetAsyncKeyState(VK_CONTROL) & 0x8000) &&
                           (GetAsyncKeyState(VK_SHIFT) & 0x8000);
-    const bool next = modifier && (GetAsyncKeyState(VK_NEXT) & 0x8000);
-    const bool prev = modifier && (GetAsyncKeyState(VK_PRIOR) & 0x8000);
+    const bool next = modifier && (GetAsyncKeyState('0') & 0x8000);
+    const bool prev = modifier && (GetAsyncKeyState('9') & 0x8000);
     const int pageCount = (kSummitGalleryCount287 + kSummitGalleryPageSize287 - 1) / kSummitGalleryPageSize287;
     if (next && !gSummitGalleryWasNext287 && gSummitGalleryPage287 + 1 < pageCount) ++gSummitGalleryPage287;
     if (prev && !gSummitGalleryWasPrev287 && gSummitGalleryPage287 > 0) --gSummitGalleryPage287;
@@ -208,7 +214,7 @@ static void SummitCookedGallery287Labels() {
     if (!gSummitGalleryInMap287) return;
     char text[270];
     const int pages = (kSummitGalleryCount287 + kSummitGalleryPageSize287 - 1) / kSummitGalleryPageSize287;
-    sprintf_s(text, sizeof(text), "COOKED GALLERY 287 page %d/%d | Ctrl+Shift+PgUp/PgDn", gSummitGalleryPage287 + 1, pages);
+    sprintf_s(text, sizeof(text), "COOKED GALLERY 287 page %d/%d | Ctrl+Shift+9=Prev 0=Next", gSummitGalleryPage287 + 1, pages);
     dsTextLineOut(10, 265, text, lstrlen(text));
     for (int slot = 0; slot < kSummitGalleryPageSize287; ++slot) {
         const int index = gSummitGalleryPage287 * kSummitGalleryPageSize287 + slot;
@@ -255,8 +261,43 @@ def checklist(rows: list[dict]) -> str:
               '- Uma malha carregada não comprova animação/efeito funcional em gameplay.', '']
     return '\n'.join(lines)
 
-def prepare(root: Path, stage: Path, client: Path, server: Path, exe: Path, backup: Path) -> None:
+
+def verify_gallery_readonly_289(client: Path, server: Path, stage: Path,
+                                exe: Path) -> tuple[str, list[str]]:
+    """Read-only evidence for a temporary gallery, NEVER for publication.
+
+    Current gate 267 is always preferred. The *only* permitted fallback is
+    the recognized executable/converter identity drift. Archival gate 279
+    then checks original ASE hashes, catalog coverage, recorded readbacks,
+    all model hashes, and suspicious/symlinked paths without writing to client.
+    """
     import verify_native_model_stage_267 as verifier
+    try:
+        verified = verifier.verify_staging(client, server, stage,
+                                           allow_partial=False, client_exe=exe)
+    except ValueError as exc:
+        if str(exc).strip() != 'client/server/converter version differs from verified staging':
+            raise
+        from verify_archived_native_stage_279 import verify_archived_readonly
+        archived = verify_archived_readonly(client, server, stage, exe)
+        if (archived.get('verified') != 134 or archived.get('expected') != 134 or
+                archived.get('missing') != 0 or archived.get('complete') is not True or
+                archived.get('read_only') is not True or
+                archived.get('deployment_allowed') is not False):
+            raise ValueError('archival provenance incomplete; gallery refused')
+        changed = archived.get('identity_changed')
+        allowed = {'server_sha256', 'client_sha256', 'converter_tool_sha256'}
+        if (not isinstance(changed, list) or not changed or
+                any(not isinstance(k, str) or k not in allowed for k in changed) or
+                len(set(changed)) != len(changed)):
+            raise ValueError('archival identity drift not proven')
+        return 'ARCHIVAL_279', changed
+    if (verified.get('verified') != 134 or verified.get('missing') != 0 or
+            verified.get('complete') is not True):
+        raise ValueError('full native gate 267 required before gallery preparation')
+    return 'CURRENT_267', []
+
+def prepare(root: Path, stage: Path, client: Path, server: Path, exe: Path, backup: Path) -> None:
     from cook_native_models_259 import no_symlink_ancestors
     for p in [root, stage, client, server, exe, backup]:
         no_symlink_ancestors(p)
@@ -266,10 +307,10 @@ def prepare(root: Path, stage: Path, client: Path, server: Path, exe: Path, back
         raise ValueError('expected client in project root')
     if not (root / 'SourceCode').is_dir():
         raise ValueError('missing SourceCode')
-    # Fail closed on current binary identity before compiling the temporary viewer.
-    verified = verifier.verify_staging(client, server, stage, allow_partial=False, client_exe=exe)
-    if verified['verified'] != 134 or verified['missing'] or not verified['complete']:
-        raise ValueError('full native gate 267 required before gallery preparation')
+    # A temporary PREVIEW only reads staged artifacts. Prefer the live 267
+    # gate, and allow historical verification ONLY for its known identity drift.
+    # All other gate failures stay fatal. Neither branch authorizes deployment.
+    provenance, drift = verify_gallery_readonly_289(client, server, stage, exe)
     _, rows = validate_manifest(stage)
     target = root / SRC_REL
     hdr = root / HDR_REL
@@ -295,12 +336,17 @@ def prepare(root: Path, stage: Path, client: Path, server: Path, exe: Path, back
     hdr.write_text(header(rows, stage.name), encoding='utf-8')
     (backup / 'CHECKLIST_134.md').write_text(checklist(rows), encoding='utf-8')
     target.write_text(new, encoding='utf-8')
-    receipt = {'format': 'SUMMIT_GALLERY_287', 'before': hashlib.sha256(original).hexdigest(),
+    receipt = {'format': 'SUMMIT_GALLERY_287', 'preview_provenance': provenance,
+               'identity_changed': drift, 'deployment_allowed': False,
+               'before': hashlib.sha256(original).hexdigest(),
                'after': digest(target), 'header': digest(hdr), 'staging_manifest': digest(stage / 'manifest.json'),
                'rows': len(rows)}
     (backup / 'receipt.json').write_text(json.dumps(receipt, indent=2) + '\n')
     print('GALLERY287=PREPARED entries=134 smd=' + str(sum(r['cache'].endswith('.smd') for r in rows)) +
           ' smb=' + str(sum(r['cache'].endswith('.smb') for r in rows)) + ' pages=17 client_writes=0')
+    print('GALLERY289_PREVIEW=READONLY provenance=' + provenance +
+          ' identity_changed=' + (','.join(drift) if drift else 'none') +
+          ' deployment_allowed=0')
     print('SOURCE_BACKUP=' + str(backup))
 
 def restore(root: Path, backup: Path) -> None:

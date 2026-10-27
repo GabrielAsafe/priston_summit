@@ -6,6 +6,11 @@
   "legacy_cache": "char/monster/WLord/WLord.inx",
   "consumers": [
     {
+      "id": "monster.123_wlord",
+      "kind": "monster_definition",
+      "json_path": "text/resources/Servidor/GameServer/Monster/123_WLord.inf.json"
+    },
+    {
       "id": "monster.129_bruxa_da_noite",
       "kind": "monster_definition",
       "json_path": "text/resources/Servidor/GameServer/Monster/129_Bruxa da Noite.inf.json"

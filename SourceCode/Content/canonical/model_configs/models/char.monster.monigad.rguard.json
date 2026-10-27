@@ -1,0 +1,28 @@
+{
+  "schema": "summit.model-config/v1",
+  "schema_version": 1,
+  "id": "model.char.monster.monigad.rguard",
+  "logical_config": "char/monster/Monigad/RGuard.ini",
+  "legacy_cache": "char/monster/Monigad/RGuard.inx",
+  "consumers": [
+    {
+      "id": "monster.117_rguard",
+      "kind": "monster_definition",
+      "json_path": "text/resources/Servidor/GameServer/Monster/117_RGuard.inf.json"
+    }
+  ],
+  "source": {
+    "status": "unresolved"
+  },
+  "semantic": {},
+  "inventory_presence": {
+    "server": {
+      "present": true,
+      "path": "char/monster/Monigad/RGuard.inx"
+    },
+    "client": {
+      "present": true,
+      "path": "char/monster/Monigad/RGuard.inx"
+    }
+  }
+}

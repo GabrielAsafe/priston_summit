@@ -2,9 +2,9 @@
   "format": "SCFG",
   "version": 1,
   "profile": "client",
-  "definitions": 2195,
-  "directives": 36766,
-  "flattened_links": 1739,
+  "definitions": 2202,
+  "directives": 37155,
+  "flattened_links": 1742,
   "filtered_open_items": 298,
   "filtered_open_item_rows": [
     {
@@ -2001,9 +2001,19 @@
       "target": "gameserver/monster/name/name.zhoon"
     },
     {
+      "id": "monster.117_inferno",
+      "path": "GameServer/Monster/117_Inferno.inf",
+      "target": "gameserver/monster/name/117_inferno.zhoon"
+    },
+    {
       "id": "monster.118_tarantulika",
       "path": "GameServer/Monster/118_Tarantulika.inf",
       "target": "gameserver/monster/name/name.zhoon"
+    },
+    {
+      "id": "monster.119_ignis",
+      "path": "GameServer/Monster/119_Ignis.inf",
+      "target": "gameserver/monster/name/119_ignis.zhoon"
     },
     {
       "id": "monster.119_serpente_de_gelo",
@@ -2021,6 +2031,11 @@
       "target": "gameserver/monster/name/name.zhoon"
     },
     {
+      "id": "monster.120_najan",
+      "path": "GameServer/Monster/120_Najan.inf",
+      "target": "gameserver/monster/name/120_najan.zhoon"
+    },
+    {
       "id": "monster.120_nihil",
       "path": "GameServer/Monster/120_Nihil.inf",
       "target": "gameserver/monster/name/name.zhoon"
@@ -2029,6 +2044,11 @@
       "id": "monster.121_chalybs",
       "path": "GameServer/Monster/121_Chalybs.inf",
       "target": "gameserver/monster/name/name.zhoon"
+    },
+    {
+      "id": "monster.121_crios",
+      "path": "GameServer/Monster/121_Crios.inf",
+      "target": "gameserver/monster/name/121_crios.zhoon"
     },
     {
       "id": "monster.129_bruxa_da_noite",
@@ -3596,6 +3616,6 @@
       "target": "gameserver/openitem/name/sp179.zhoon"
     }
   ],
-  "bytes": 767564,
-  "sha256": "88dc78ccc46f412befec2686e9ca352c85c0402a5b4efd23d2e98feaf15b907f"
+  "bytes": 777193,
+  "sha256": "183a9dedc2f3c8677c082ef403bfe99ecbff8342c67d8fcd2a5edd8a7a90c156"
 }

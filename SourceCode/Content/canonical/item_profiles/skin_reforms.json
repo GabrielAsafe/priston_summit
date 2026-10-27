@@ -1,0 +1,1080 @@
+{
+  "schema": "summit.skin-reforms/v1",
+  "authority": "canonical_static_mapping",
+  "mappings": [
+    {
+      "skin": "SK101",
+      "skin_code": "0x081A0100",
+      "equipment": "WA131",
+      "equipment_code": "0x01012F00"
+    },
+    {
+      "skin": "SK102",
+      "skin_code": "0x081A0200",
+      "equipment": "WA133",
+      "equipment_code": "0x01013100"
+    },
+    {
+      "skin": "SK103",
+      "skin_code": "0x081A0300",
+      "equipment": "WA137",
+      "equipment_code": "0x01013500"
+    },
+    {
+      "skin": "SK106",
+      "skin_code": "0x081A0600",
+      "equipment": "WA139",
+      "equipment_code": "0x01013700"
+    },
+    {
+      "skin": "SK107",
+      "skin_code": "0x081A0700",
+      "equipment": "WS235",
+      "equipment_code": "0x01073300"
+    },
+    {
+      "skin": "SK108",
+      "skin_code": "0x081A0800",
+      "equipment": "WS236",
+      "equipment_code": "0x01073400"
+    },
+    {
+      "skin": "SK109",
+      "skin_code": "0x081A0900",
+      "equipment": "WS237",
+      "equipment_code": "0x01073500"
+    },
+    {
+      "skin": "SK110",
+      "skin_code": "0x081A0A00",
+      "equipment": "WS240",
+      "equipment_code": "0x01073800"
+    },
+    {
+      "skin": "SK111",
+      "skin_code": "0x081A0B00",
+      "equipment": "WC130",
+      "equipment_code": "0x01022E00"
+    },
+    {
+      "skin": "SK112",
+      "skin_code": "0x081A0C00",
+      "equipment": "WC131",
+      "equipment_code": "0x01022F00"
+    },
+    {
+      "skin": "SK113",
+      "skin_code": "0x081A0D00",
+      "equipment": "WC132",
+      "equipment_code": "0x01023000"
+    },
+    {
+      "skin": "SK114",
+      "skin_code": "0x081A0E00",
+      "equipment": "WC133",
+      "equipment_code": "0x01023100"
+    },
+    {
+      "skin": "SK115",
+      "skin_code": "0x081A0F00",
+      "equipment": "WC134",
+      "equipment_code": "0x01023200"
+    },
+    {
+      "skin": "SK116",
+      "skin_code": "0x081A1000",
+      "equipment": "WC135",
+      "equipment_code": "0x01023300"
+    },
+    {
+      "skin": "SK117",
+      "skin_code": "0x081A1100",
+      "equipment": "WA139",
+      "equipment_code": "0x01013700"
+    },
+    {
+      "skin": "SK118",
+      "skin_code": "0x081A1200",
+      "equipment": "WC136",
+      "equipment_code": "0x01023400"
+    },
+    {
+      "skin": "SK119",
+      "skin_code": "0x081A1300",
+      "equipment": "WC137",
+      "equipment_code": "0x01023500"
+    },
+    {
+      "skin": "SK120",
+      "skin_code": "0x081A1400",
+      "equipment": "WC138",
+      "equipment_code": "0x01023600"
+    },
+    {
+      "skin": "SK121",
+      "skin_code": "0x081A1500",
+      "equipment": "WC139",
+      "equipment_code": "0x01023700"
+    },
+    {
+      "skin": "SK122",
+      "skin_code": "0x081A1600",
+      "equipment": "WC140",
+      "equipment_code": "0x01023800"
+    },
+    {
+      "skin": "SK123",
+      "skin_code": "0x081A1700",
+      "equipment": "WC141",
+      "equipment_code": "0x01023900"
+    },
+    {
+      "skin": "SK124",
+      "skin_code": "0x081A1800",
+      "equipment": "WC142",
+      "equipment_code": "0x01023A00"
+    },
+    {
+      "skin": "SK132",
+      "skin_code": "0x081A3000",
+      "equipment": "WT138",
+      "equipment_code": "0x01083600"
+    },
+    {
+      "skin": "SK133",
+      "skin_code": "0x081A3100",
+      "equipment": "WT139",
+      "equipment_code": "0x01083700"
+    },
+    {
+      "skin": "SK134",
+      "skin_code": "0x081A3200",
+      "equipment": "WT140",
+      "equipment_code": "0x01083800"
+    },
+    {
+      "skin": "SK135",
+      "skin_code": "0x081A3300",
+      "equipment": "WT141",
+      "equipment_code": "0x01083900"
+    },
+    {
+      "skin": "SK136",
+      "skin_code": "0x081A3400",
+      "equipment": "WT142",
+      "equipment_code": "0x01083A00"
+    },
+    {
+      "skin": "SK137",
+      "skin_code": "0x081A3500",
+      "equipment": "WT143",
+      "equipment_code": "0x01083B00"
+    },
+    {
+      "skin": "SK138",
+      "skin_code": "0x081A3600",
+      "equipment": "WT144",
+      "equipment_code": "0x01083C00"
+    },
+    {
+      "skin": "SK139",
+      "skin_code": "0x081A3700",
+      "equipment": "WT145",
+      "equipment_code": "0x01083D00"
+    },
+    {
+      "skin": "SK140",
+      "skin_code": "0x081A3800",
+      "equipment": "WT146",
+      "equipment_code": "0x01083E00"
+    },
+    {
+      "skin": "SK141",
+      "skin_code": "0x081A3900",
+      "equipment": "WT147",
+      "equipment_code": "0x01083F00"
+    },
+    {
+      "skin": "SK142",
+      "skin_code": "0x081A3A00",
+      "equipment": "WT148",
+      "equipment_code": "0x01084000"
+    },
+    {
+      "skin": "SK143",
+      "skin_code": "0x081A3B00",
+      "equipment": "WT149",
+      "equipment_code": "0x01084100"
+    },
+    {
+      "skin": "SK144",
+      "skin_code": "0x081A3C00",
+      "equipment": "WT150",
+      "equipment_code": "0x01084200"
+    },
+    {
+      "skin": "SK145",
+      "skin_code": "0x081A3D00",
+      "equipment": "WT151",
+      "equipment_code": "0x01084300"
+    },
+    {
+      "skin": "SK146",
+      "skin_code": "0x081A3E00",
+      "equipment": "WT152",
+      "equipment_code": "0x01084400"
+    },
+    {
+      "skin": "SK147",
+      "skin_code": "0x081A3F00",
+      "equipment": "WT153",
+      "equipment_code": "0x01084500"
+    },
+    {
+      "skin": "SK148",
+      "skin_code": "0x081A4000",
+      "equipment": "WT154",
+      "equipment_code": "0x01084600"
+    },
+    {
+      "skin": "SK149",
+      "skin_code": "0x081A4100",
+      "equipment": "WT155",
+      "equipment_code": "0x01084700"
+    },
+    {
+      "skin": "SK150",
+      "skin_code": "0x081A4200",
+      "equipment": "WT156",
+      "equipment_code": "0x01084800"
+    },
+    {
+      "skin": "SK151",
+      "skin_code": "0x081A4300",
+      "equipment": "WT157",
+      "equipment_code": "0x01084900"
+    },
+    {
+      "skin": "SK152",
+      "skin_code": "0x081A4400",
+      "equipment": "WT158",
+      "equipment_code": "0x01084A00"
+    },
+    {
+      "skin": "SK153",
+      "skin_code": "0x081A4500",
+      "equipment": "WT159",
+      "equipment_code": "0x01084B00"
+    },
+    {
+      "skin": "SK154",
+      "skin_code": "0x081A4600",
+      "equipment": "WT160",
+      "equipment_code": "0x01084C00"
+    },
+    {
+      "skin": "SK155",
+      "skin_code": "0x081A4700",
+      "equipment": "WT161",
+      "equipment_code": "0x01084D00"
+    },
+    {
+      "skin": "SK156",
+      "skin_code": "0x081A4800",
+      "equipment": "WT162",
+      "equipment_code": "0x01084E00"
+    },
+    {
+      "skin": "SK157",
+      "skin_code": "0x081A4900",
+      "equipment": "WT163",
+      "equipment_code": "0x01084F00"
+    },
+    {
+      "skin": "SK171",
+      "skin_code": "0x081A5700",
+      "equipment": "WT131",
+      "equipment_code": "0x01082F00"
+    },
+    {
+      "skin": "SK172",
+      "skin_code": "0x081A5800",
+      "equipment": "WT132",
+      "equipment_code": "0x01083000"
+    },
+    {
+      "skin": "SK173",
+      "skin_code": "0x081A5900",
+      "equipment": "WT133",
+      "equipment_code": "0x01083100"
+    },
+    {
+      "skin": "SK174",
+      "skin_code": "0x081A5A00",
+      "equipment": "WT134",
+      "equipment_code": "0x01083200"
+    },
+    {
+      "skin": "SK175",
+      "skin_code": "0x081A5B00",
+      "equipment": "WT135",
+      "equipment_code": "0x01083300"
+    },
+    {
+      "skin": "SK176",
+      "skin_code": "0x081A5C00",
+      "equipment": "WT136",
+      "equipment_code": "0x01083400"
+    },
+    {
+      "skin": "SK177",
+      "skin_code": "0x081A5D00",
+      "equipment": "WT137",
+      "equipment_code": "0x01083500"
+    },
+    {
+      "skin": "SK181",
+      "skin_code": "0x081A6100",
+      "equipment": "DS140",
+      "equipment_code": "0x02043800"
+    },
+    {
+      "skin": "SK182",
+      "skin_code": "0x081A6200",
+      "equipment": "DS141",
+      "equipment_code": "0x02043900"
+    },
+    {
+      "skin": "SK183",
+      "skin_code": "0x081A6300",
+      "equipment": "DS142",
+      "equipment_code": "0x02043A00"
+    },
+    {
+      "skin": "SK184",
+      "skin_code": "0x081A6400",
+      "equipment": "DS143",
+      "equipment_code": "0x02043B00"
+    },
+    {
+      "skin": "SK185",
+      "skin_code": "0x081A6500",
+      "equipment": "DS144",
+      "equipment_code": "0x02043C00"
+    },
+    {
+      "skin": "SK186",
+      "skin_code": "0x081A6600",
+      "equipment": "DS145",
+      "equipment_code": "0x02043D00"
+    },
+    {
+      "skin": "SK187",
+      "skin_code": "0x081A6700",
+      "equipment": "DS146",
+      "equipment_code": "0x02043E00"
+    },
+    {
+      "skin": "SK188",
+      "skin_code": "0x081A6800",
+      "equipment": "DS147",
+      "equipment_code": "0x02043F00"
+    },
+    {
+      "skin": "SK189",
+      "skin_code": "0x081A6900",
+      "equipment": "DS148",
+      "equipment_code": "0x02044000"
+    },
+    {
+      "skin": "SK190",
+      "skin_code": "0x081A6A00",
+      "equipment": "DS149",
+      "equipment_code": "0x02044100"
+    },
+    {
+      "skin": "SK191",
+      "skin_code": "0x081A6B00",
+      "equipment": "DS150",
+      "equipment_code": "0x02044200"
+    },
+    {
+      "skin": "SK192",
+      "skin_code": "0x081A6C00",
+      "equipment": "DS151",
+      "equipment_code": "0x02044300"
+    },
+    {
+      "skin": "SK193",
+      "skin_code": "0x081A6D00",
+      "equipment": "DS152",
+      "equipment_code": "0x02044400"
+    },
+    {
+      "skin": "SK194",
+      "skin_code": "0x081A6E00",
+      "equipment": "DS153",
+      "equipment_code": "0x02044500"
+    },
+    {
+      "skin": "SK195",
+      "skin_code": "0x081A6F00",
+      "equipment": "DS155",
+      "equipment_code": "0x02044700"
+    },
+    {
+      "skin": "SK196",
+      "skin_code": "0x081A7000",
+      "equipment": "DS156",
+      "equipment_code": "0x02044800"
+    },
+    {
+      "skin": "SK197",
+      "skin_code": "0x081A7100",
+      "equipment": "DS157",
+      "equipment_code": "0x02044900"
+    },
+    {
+      "skin": "SK201",
+      "skin_code": "0x081B0100",
+      "equipment": "WA132",
+      "equipment_code": "0x01013000"
+    },
+    {
+      "skin": "SK202",
+      "skin_code": "0x081B0200",
+      "equipment": "WA134",
+      "equipment_code": "0x01013200"
+    },
+    {
+      "skin": "SK203",
+      "skin_code": "0x081B0300",
+      "equipment": "WA135",
+      "equipment_code": "0x01013300"
+    },
+    {
+      "skin": "SK204",
+      "skin_code": "0x081B0400",
+      "equipment": "WA136",
+      "equipment_code": "0x01013400"
+    },
+    {
+      "skin": "SK205",
+      "skin_code": "0x081B0500",
+      "equipment": "WA138",
+      "equipment_code": "0x01013600"
+    },
+    {
+      "skin": "SK206",
+      "skin_code": "0x081B0600",
+      "equipment": "WA140",
+      "equipment_code": "0x01013800"
+    },
+    {
+      "skin": "SK207",
+      "skin_code": "0x081B0700",
+      "equipment": "WA141",
+      "equipment_code": "0x01013900"
+    },
+    {
+      "skin": "SK208",
+      "skin_code": "0x081B0800",
+      "equipment": "WA142",
+      "equipment_code": "0x01013A00"
+    },
+    {
+      "skin": "SK209",
+      "skin_code": "0x081B0900",
+      "equipment": "WA143",
+      "equipment_code": "0x01013B00"
+    },
+    {
+      "skin": "SK210",
+      "skin_code": "0x081B0A00",
+      "equipment": "WA144",
+      "equipment_code": "0x01013C00"
+    },
+    {
+      "skin": "SK211",
+      "skin_code": "0x081B0B00",
+      "equipment": "WA145",
+      "equipment_code": "0x01013D00"
+    },
+    {
+      "skin": "SK212",
+      "skin_code": "0x081B0C00",
+      "equipment": "WA146",
+      "equipment_code": "0x01013E00"
+    },
+    {
+      "skin": "SK213",
+      "skin_code": "0x081B0D00",
+      "equipment": "WA147",
+      "equipment_code": "0x01013F00"
+    },
+    {
+      "skin": "SK214",
+      "skin_code": "0x081B0E00",
+      "equipment": "WA148",
+      "equipment_code": "0x01014000"
+    },
+    {
+      "skin": "SK215",
+      "skin_code": "0x081B0F00",
+      "equipment": "WA149",
+      "equipment_code": "0x01014100"
+    },
+    {
+      "skin": "SK216",
+      "skin_code": "0x081B1000",
+      "equipment": "WA150",
+      "equipment_code": "0x01014200"
+    },
+    {
+      "skin": "SK217",
+      "skin_code": "0x081B1100",
+      "equipment": "WA151",
+      "equipment_code": "0x01014300"
+    },
+    {
+      "skin": "SK218",
+      "skin_code": "0x081B1200",
+      "equipment": "WS244",
+      "equipment_code": "0x01073C00"
+    },
+    {
+      "skin": "SK219",
+      "skin_code": "0x081B1300",
+      "equipment": "WS245",
+      "equipment_code": "0x01073D00"
+    },
+    {
+      "skin": "SK220",
+      "skin_code": "0x081B1400",
+      "equipment": "WS243",
+      "equipment_code": "0x01073B00"
+    },
+    {
+      "skin": "SK221",
+      "skin_code": "0x081B1500",
+      "equipment": "WH132",
+      "equipment_code": "0x01033000"
+    },
+    {
+      "skin": "SK222",
+      "skin_code": "0x081B1600",
+      "equipment": "WH133",
+      "equipment_code": "0x01033100"
+    },
+    {
+      "skin": "SK223",
+      "skin_code": "0x081B1700",
+      "equipment": "WH134",
+      "equipment_code": "0x01033200"
+    },
+    {
+      "skin": "SK224",
+      "skin_code": "0x081B1800",
+      "equipment": "WH135",
+      "equipment_code": "0x01033300"
+    },
+    {
+      "skin": "SK225",
+      "skin_code": "0x081B1900",
+      "equipment": "WH136",
+      "equipment_code": "0x01033400"
+    },
+    {
+      "skin": "SK226",
+      "skin_code": "0x081B2A00",
+      "equipment": "WH137",
+      "equipment_code": "0x01033500"
+    },
+    {
+      "skin": "SK227",
+      "skin_code": "0x081B2B00",
+      "equipment": "WH138",
+      "equipment_code": "0x01033600"
+    },
+    {
+      "skin": "SK228",
+      "skin_code": "0x081B2C00",
+      "equipment": "WH139",
+      "equipment_code": "0x01033700"
+    },
+    {
+      "skin": "SK229",
+      "skin_code": "0x081B2D00",
+      "equipment": "WH140",
+      "equipment_code": "0x01033800"
+    },
+    {
+      "skin": "SK230",
+      "skin_code": "0x081B2E00",
+      "equipment": "WH141",
+      "equipment_code": "0x01033900"
+    },
+    {
+      "skin": "SK231",
+      "skin_code": "0x081B2F00",
+      "equipment": "WM132",
+      "equipment_code": "0x01043000"
+    },
+    {
+      "skin": "SK232",
+      "skin_code": "0x081B3000",
+      "equipment": "WM134",
+      "equipment_code": "0x01043200"
+    },
+    {
+      "skin": "SK233",
+      "skin_code": "0x081B3100",
+      "equipment": "WM136",
+      "equipment_code": "0x01043400"
+    },
+    {
+      "skin": "SK234",
+      "skin_code": "0x081B3200",
+      "equipment": "WM137",
+      "equipment_code": "0x01043500"
+    },
+    {
+      "skin": "SK235",
+      "skin_code": "0x081B3300",
+      "equipment": "WH142",
+      "equipment_code": "0x01033A00"
+    },
+    {
+      "skin": "SK236",
+      "skin_code": "0x081B3400",
+      "equipment": "WH143",
+      "equipment_code": "0x01033B00"
+    },
+    {
+      "skin": "SK237",
+      "skin_code": "0x081B3500",
+      "equipment": "WS142",
+      "equipment_code": "0x01063A00"
+    },
+    {
+      "skin": "SK238",
+      "skin_code": "0x081B3600",
+      "equipment": "WS143",
+      "equipment_code": "0x01063B00"
+    },
+    {
+      "skin": "SK239",
+      "skin_code": "0x081B3700",
+      "equipment": "WS144",
+      "equipment_code": "0x01063C00"
+    },
+    {
+      "skin": "SK240",
+      "skin_code": "0x081B3800",
+      "equipment": "WS141",
+      "equipment_code": "0x01063900"
+    },
+    {
+      "skin": "SK242",
+      "skin_code": "0x081B3A00",
+      "equipment": "WP131",
+      "equipment_code": "0x01052F00"
+    },
+    {
+      "skin": "SK243",
+      "skin_code": "0x081B3B00",
+      "equipment": "WP132",
+      "equipment_code": "0x01053000"
+    },
+    {
+      "skin": "SK244",
+      "skin_code": "0x081B3C00",
+      "equipment": "WP133",
+      "equipment_code": "0x01053100"
+    },
+    {
+      "skin": "SK245",
+      "skin_code": "0x081B3D00",
+      "equipment": "WP134",
+      "equipment_code": "0x01053200"
+    },
+    {
+      "skin": "SK246",
+      "skin_code": "0x081B3E00",
+      "equipment": "WP135",
+      "equipment_code": "0x01053300"
+    },
+    {
+      "skin": "SK247",
+      "skin_code": "0x081B3F00",
+      "equipment": "WP136",
+      "equipment_code": "0x01053400"
+    },
+    {
+      "skin": "SK248",
+      "skin_code": "0x081B4000",
+      "equipment": "WP137",
+      "equipment_code": "0x01053500"
+    },
+    {
+      "skin": "SK249",
+      "skin_code": "0x081B4100",
+      "equipment": "WP138",
+      "equipment_code": "0x01053600"
+    },
+    {
+      "skin": "SK251",
+      "skin_code": "0x081B4300",
+      "equipment": "WS139",
+      "equipment_code": "0x01063700"
+    },
+    {
+      "skin": "SK252",
+      "skin_code": "0x081B4400",
+      "equipment": "WS140",
+      "equipment_code": "0x01063800"
+    },
+    {
+      "skin": "SK253",
+      "skin_code": "0x081B4500",
+      "equipment": "WS132",
+      "equipment_code": "0x01063000"
+    },
+    {
+      "skin": "SK254",
+      "skin_code": "0x081B4600",
+      "equipment": "WS133",
+      "equipment_code": "0x01063100"
+    },
+    {
+      "skin": "SK255",
+      "skin_code": "0x081B4700",
+      "equipment": "WS134",
+      "equipment_code": "0x01063200"
+    },
+    {
+      "skin": "SK256",
+      "skin_code": "0x081B4800",
+      "equipment": "WS135",
+      "equipment_code": "0x01063300"
+    },
+    {
+      "skin": "SK257",
+      "skin_code": "0x081B4900",
+      "equipment": "WS136",
+      "equipment_code": "0x01063400"
+    },
+    {
+      "skin": "SK258",
+      "skin_code": "0x081B4A00",
+      "equipment": "WS137",
+      "equipment_code": "0x01063500"
+    },
+    {
+      "skin": "SK259",
+      "skin_code": "0x081B4B00",
+      "equipment": "WS138",
+      "equipment_code": "0x01063600"
+    },
+    {
+      "skin": "SK260",
+      "skin_code": "0x081B4C00",
+      "equipment": "WS145",
+      "equipment_code": "0x01063D00"
+    },
+    {
+      "skin": "SK261",
+      "skin_code": "0x081B4D00",
+      "equipment": "WS146",
+      "equipment_code": "0x01063E00"
+    },
+    {
+      "skin": "SK262",
+      "skin_code": "0x081B4E00",
+      "equipment": "WS147",
+      "equipment_code": "0x01063F00"
+    },
+    {
+      "skin": "SK263",
+      "skin_code": "0x081B4F00",
+      "equipment": "WS148",
+      "equipment_code": "0x01064000"
+    },
+    {
+      "skin": "SK264",
+      "skin_code": "0x081B5000",
+      "equipment": "WS149",
+      "equipment_code": "0x01064100"
+    },
+    {
+      "skin": "SK265",
+      "skin_code": "0x081B5100",
+      "equipment": "WS234",
+      "equipment_code": "0x01073200"
+    },
+    {
+      "skin": "SK266",
+      "skin_code": "0x081B5200",
+      "equipment": "WS238",
+      "equipment_code": "0x01073600"
+    },
+    {
+      "skin": "SK267",
+      "skin_code": "0x081B5300",
+      "equipment": "WS239",
+      "equipment_code": "0x01073700"
+    },
+    {
+      "skin": "SK268",
+      "skin_code": "0x081B5400",
+      "equipment": "WS241",
+      "equipment_code": "0x01073900"
+    },
+    {
+      "skin": "SK269",
+      "skin_code": "0x081B5500",
+      "equipment": "WS242",
+      "equipment_code": "0x01073A00"
+    },
+    {
+      "skin": "SK270",
+      "skin_code": "0x081B5600",
+      "equipment": "WM138",
+      "equipment_code": "0x01043600"
+    },
+    {
+      "skin": "SK271",
+      "skin_code": "0x081B5700",
+      "equipment": "WM139",
+      "equipment_code": "0x01043700"
+    },
+    {
+      "skin": "SK272",
+      "skin_code": "0x081B5800",
+      "equipment": "WM140",
+      "equipment_code": "0x01043800"
+    },
+    {
+      "skin": "SK273",
+      "skin_code": "0x081B5900",
+      "equipment": "WM141",
+      "equipment_code": "0x01043900"
+    },
+    {
+      "skin": "SK274",
+      "skin_code": "0x081B5A00",
+      "equipment": "WM142",
+      "equipment_code": "0x01043A00"
+    },
+    {
+      "skin": "SK275",
+      "skin_code": "0x081B5B00",
+      "equipment": "WM143",
+      "equipment_code": "0x01043B00"
+    },
+    {
+      "skin": "SK276",
+      "skin_code": "0x081B5C00",
+      "equipment": "WM144",
+      "equipment_code": "0x01043C00"
+    },
+    {
+      "skin": "SK277",
+      "skin_code": "0x081B5D00",
+      "equipment": "WM145",
+      "equipment_code": "0x01043D00"
+    },
+    {
+      "skin": "SK278",
+      "skin_code": "0x081B5E00",
+      "equipment": "WM146",
+      "equipment_code": "0x01043E00"
+    },
+    {
+      "skin": "SK279",
+      "skin_code": "0x081B5F00",
+      "equipment": "WM147",
+      "equipment_code": "0x01043F00"
+    },
+    {
+      "skin": "SK280",
+      "skin_code": "0x081B6000",
+      "equipment": "WM148",
+      "equipment_code": "0x01044000"
+    },
+    {
+      "skin": "SK281",
+      "skin_code": "0x081B6100",
+      "equipment": "WM149",
+      "equipment_code": "0x01044100"
+    },
+    {
+      "skin": "SK282",
+      "skin_code": "0x081B6200",
+      "equipment": "WS248",
+      "equipment_code": "0x01074000"
+    },
+    {
+      "skin": "SK283",
+      "skin_code": "0x081B6300",
+      "equipment": "WS249",
+      "equipment_code": "0x01074100"
+    },
+    {
+      "skin": "SK284",
+      "skin_code": "0x081B6400",
+      "equipment": "WP139",
+      "equipment_code": "0x01053700"
+    },
+    {
+      "skin": "SK285",
+      "skin_code": "0x081B6500",
+      "equipment": "WP140",
+      "equipment_code": "0x01053800"
+    },
+    {
+      "skin": "SK286",
+      "skin_code": "0x081B6600",
+      "equipment": "WP141",
+      "equipment_code": "0x01053900"
+    },
+    {
+      "skin": "SK287",
+      "skin_code": "0x081B6700",
+      "equipment": "WP142",
+      "equipment_code": "0x01053A00"
+    },
+    {
+      "skin": "SK288",
+      "skin_code": "0x081B6800",
+      "equipment": "WP143",
+      "equipment_code": "0x01053B00"
+    },
+    {
+      "skin": "SK289",
+      "skin_code": "0x081B6900",
+      "equipment": "WP144",
+      "equipment_code": "0x01053C00"
+    },
+    {
+      "skin": "SK290",
+      "skin_code": "0x081B6A00",
+      "equipment": "WP145",
+      "equipment_code": "0x01053D00"
+    },
+    {
+      "skin": "SK291",
+      "skin_code": "0x081B6B00",
+      "equipment": "WP146",
+      "equipment_code": "0x01053E00"
+    },
+    {
+      "skin": "SK292",
+      "skin_code": "0x081B6C00",
+      "equipment": "WP147",
+      "equipment_code": "0x01053F00"
+    },
+    {
+      "skin": "SK293",
+      "skin_code": "0x081B6D00",
+      "equipment": "WP148",
+      "equipment_code": "0x01054000"
+    },
+    {
+      "skin": "SK294",
+      "skin_code": "0x081B6E00",
+      "equipment": "WP149",
+      "equipment_code": "0x01054100"
+    },
+    {
+      "skin": "SK295",
+      "skin_code": "0x081B6F00",
+      "equipment": "WP150",
+      "equipment_code": "0x01054200"
+    },
+    {
+      "skin": "SK296",
+      "skin_code": "0x081B7000",
+      "equipment": "WP151",
+      "equipment_code": "0x01054300"
+    },
+    {
+      "skin": "SK297",
+      "skin_code": "0x081B7100",
+      "equipment": "WP152",
+      "equipment_code": "0x01054400"
+    },
+    {
+      "skin": "SK298",
+      "skin_code": "0x081B7200",
+      "equipment": "WS246",
+      "equipment_code": "0x01073E00"
+    },
+    {
+      "skin": "SK299",
+      "skin_code": "0x081B7300",
+      "equipment": "WS247",
+      "equipment_code": "0x01073F00"
+    },
+    {
+      "skin": "SK301",
+      "skin_code": "0x081C0100",
+      "equipment": "DA307",
+      "equipment_code": "0x02120700"
+    },
+    {
+      "skin": "SK302",
+      "skin_code": "0x081C0200",
+      "equipment": "DA308",
+      "equipment_code": "0x02120800"
+    },
+    {
+      "skin": "SK303",
+      "skin_code": "0x081C0300",
+      "equipment": "DA309",
+      "equipment_code": "0x02120900"
+    },
+    {
+      "skin": "SK304",
+      "skin_code": "0x081C0400",
+      "equipment": "DA310",
+      "equipment_code": "0x02120A00"
+    },
+    {
+      "skin": "SK305",
+      "skin_code": "0x081C0500",
+      "equipment": "DA311",
+      "equipment_code": "0x02120B00"
+    },
+    {
+      "skin": "SK401",
+      "skin_code": "0x081D0100",
+      "equipment": "DA407",
+      "equipment_code": "0x02130700"
+    },
+    {
+      "skin": "SK402",
+      "skin_code": "0x081D0200",
+      "equipment": "DA408",
+      "equipment_code": "0x02130800"
+    },
+    {
+      "skin": "SK403",
+      "skin_code": "0x081D0300",
+      "equipment": "DA409",
+      "equipment_code": "0x02130900"
+    },
+    {
+      "skin": "SK404",
+      "skin_code": "0x081D0400",
+      "equipment": "DA410",
+      "equipment_code": "0x02130A00"
+    },
+    {
+      "skin": "SK405",
+      "skin_code": "0x081D0500",
+      "equipment": "DA411",
+      "equipment_code": "0x02130B00"
+    }
+  ]
+}

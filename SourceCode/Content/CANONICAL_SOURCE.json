@@ -7,8 +7,8 @@
   "families": {
     "commerce": {
       "files": 3,
-      "bytes": 15202,
-      "sha256": "9cc0406754d955cadb3b4931e59920c779cabbfbafb61aa9d694788ef240e07a"
+      "bytes": 12708,
+      "sha256": "e80db6e73937339122d34222e762d3b09c3af26a8b146a68885818dfdc35f21f"
     },
     "covenant_altars": {
       "files": 1,
@@ -35,15 +35,20 @@
       "bytes": 273599,
       "sha256": "33beb507b69a2ea2d31f06bb0e8127f9d513acd11b60c48587e58bf0e720f2b9"
     },
+    "gathering": {
+      "files": 9,
+      "bytes": 72693,
+      "sha256": "f08d3070093b73aaa398720f9447fbb6c860efe936a85be7db2242f0583eef35"
+    },
     "head_cosmetics": {
       "files": 1,
       "bytes": 730,
       "sha256": "f21cd41ab3cdeea5aa5116b34441a6e7b1eb85453eecb6a4cbc58612f577cb95"
     },
     "item_profiles": {
-      "files": 3,
-      "bytes": 46747,
-      "sha256": "4b0f5252fb8f11d38fa8d5b4ef2f24315b20968708ad8b9190e7381e86727954"
+      "files": 4,
+      "bytes": 70837,
+      "sha256": "033ca0a1a86a0cbff4364c0a434a2016d9d09811ee313464d55d2dcc9d4c13e4"
     },
     "legacy_variants": {
       "files": 17,
@@ -52,18 +57,23 @@
     },
     "maps": {
       "files": 2,
-      "bytes": 337023,
-      "sha256": "06ee7c785cbb67e6bfd3329b9e9b73429eff179e14ff1cb166ab6089c48c92c7"
+      "bytes": 337019,
+      "sha256": "1280dbf6d7d410ae5a05ec161f30b8082923db5d1597ad7f9712ce67de1bd9af"
     },
     "model_configs": {
-      "files": 366,
-      "bytes": 372296,
-      "sha256": "fd818ee812d962dfc24410b28b98d65c070cd41ae3c761deb0ca562c10439553"
+      "files": 368,
+      "bytes": 374325,
+      "sha256": "5d3db52eab100ce587ddf2ecad487d8c7b06d5b16491dd5e029f0304721667a4"
+    },
+    "professions_v2": {
+      "files": 4,
+      "bytes": 14732,
+      "sha256": "23b7c9c465f1a563d7769109424f48e22c3203de93ef9b9f9d642c95a2883879"
     },
     "stage_spawns": {
       "files": 64,
-      "bytes": 121914,
-      "sha256": "cae1bbc69c80e68911f9456de5d0d528e0288b19aa90d4a5aacb34407261b879"
+      "bytes": 119991,
+      "sha256": "3693cc5a07e9895657995efe47b15639f8721453e14bda6cacb13fc72b1da1ed"
     },
     "stage_start_points": {
       "files": 70,
@@ -71,9 +81,9 @@
       "sha256": "f215afbf83e0786ba4aa864eade11a6fe1d59711637269f83d761beafabf04f6"
     },
     "text": {
-      "files": 5626,
-      "bytes": 30715464,
-      "sha256": "65a70b76df9c39a43387ed5b03c871508b01b3066c2ef1c20466532af138b47d"
+      "files": 5637,
+      "bytes": 31065273,
+      "sha256": "76b44d0af5a4b2a90481a036ddac93e609e2eecf8ae003111272a4eac155cd1b"
     },
     "world_phases": {
       "files": 1,

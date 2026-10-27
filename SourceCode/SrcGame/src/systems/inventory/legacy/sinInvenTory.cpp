@@ -34,6 +34,7 @@
 #include "gameplay/classes/v2/services/ClassService.h"
 #include "gameplay/inventory/v2/InventoryUseDelayPolicy.h"
 #include "gameplay/inventory/v2/InventoryIntegrityService.h"
+#include "gameplay/companions/v2/CompanionTradeClientFreeze.h"
 
 #ifdef _XTRAP_GUARD_4_CLIENT 
 #include "XTrapSrcD5/ClientExt/XTrap4ClientExt1.h"	
@@ -4913,6 +4914,15 @@ int cINVENTORY::LoadItemInfo()
 
 	int TempItemIndex[15] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
 	int TempItemIndex2[15] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
+    // SUMMIT350W: LoadItemInfo also runs during journal-authorised live
+    // inventory replacement.  A zero ItemIndex is normal for an empty
+    // equipment slot; subtracting one must never index InvenItem[-1].
+    const auto ValidInventoryIndex350W = [](int slot) -> bool {
+        return slot > 0 && slot <= INVENTORY_MAXITEM;
+    };
+    const auto ValidEquipmentPos350W = [](int pos) -> bool {
+        return pos > 0 && pos < 15;
+    };
 
 	char szFilePath[256];
 
@@ -4955,10 +4965,14 @@ int cINVENTORY::LoadItemInfo()
 								if(sItem[cnt].sItemInfo.CODE == (sinPZ1 | sin00))
 									break;
 							}
-							wsprintf(szFilePath, "image//Sinimage//Items//%s//it%s.bmp", sItem[cnt].ItemFilePath, sItem[cnt].LastCategory);
-							sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
-							sinTempItem.w = sItem[cnt].w;
-							sinTempItem.h = sItem[cnt].h;
+							if(cnt < MAX_ITEM) {
+                                wsprintf(szFilePath, "image//Sinimage//Items//%s//it%s.bmp", sItem[cnt].ItemFilePath, sItem[cnt].LastCategory);
+                                // Preserve the legacy D3D texture ownership.
+                                // This guard changes only the bounds check.
+                                sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
+                                sinTempItem.w = sItem[cnt].w;
+                                sinTempItem.h = sItem[cnt].h;
+                            }
 						}
 						else
 						{
@@ -4975,7 +4989,7 @@ int cINVENTORY::LoadItemInfo()
 					sinTempItem.ItemPosition = InvenItem[i].ItemPosition;
 					sinTempItem.Flag = 1;
 					memcpy(&InvenItem[i], &sinTempItem, sizeof(sITEM));
-					if(InvenItem[i].ItemPosition)
+					if(ValidEquipmentPos350W(InvenItem[i].ItemPosition))
 					{
 						sInven[InvenItem[i].ItemPosition - 1].ItemIndex = i + 1;
 						sinSetCharItem(InvenItem[i].CODE, InvenItem[i].SetModelPosi, TRUE);
@@ -5019,10 +5033,14 @@ int cINVENTORY::LoadItemInfo()
 								if(sItem[cnt].sItemInfo.CODE == (sinPZ1 | sin00))
 									break;
 							}
-							wsprintf(szFilePath, "image//Sinimage//Items//%s//it%s.bmp", sItem[cnt].ItemFilePath, sItem[cnt].LastCategory);
-							sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
-							sinTempItem.w = sItem[cnt].w;
-							sinTempItem.h = sItem[cnt].h;
+							if(cnt < MAX_ITEM) {
+                                wsprintf(szFilePath, "image//Sinimage//Items//%s//it%s.bmp", sItem[cnt].ItemFilePath, sItem[cnt].LastCategory);
+                                // Preserve the legacy D3D texture ownership.
+                                // This guard changes only the bounds check.
+                                sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
+                                sinTempItem.w = sItem[cnt].w;
+                                sinTempItem.h = sItem[cnt].h;
+                            }
 						}
 						else
 						{
@@ -5055,7 +5073,7 @@ int cINVENTORY::LoadItemInfo()
 			if(InvenItemTemp[i].x < StartX || InvenItemTemp[i].x > 800 || InvenItemTemp[i].y < StartY || InvenItemTemp[i].y > 600)
 				ReSetPotionXY(&InvenItemTemp[i], 1);
 
-			if(InvenItemTemp[i].ItemPosition)
+			if(ValidEquipmentPos350W(InvenItemTemp[i].ItemPosition))
 			{
 				if(!TempItemIndex2[InvenItemTemp[i].ItemPosition])
 				{
@@ -5096,7 +5114,7 @@ int cINVENTORY::LoadItemInfo()
 
 			if(InvenItem[i].ItemPosition > 0)
 			{
-				if(InvenItem[i].ItemPosition >= 15)
+				if(!ValidEquipmentPos350W(InvenItem[i].ItemPosition))
 					continue;
 
 
@@ -5115,23 +5133,27 @@ int cINVENTORY::LoadItemInfo()
 					{
 						if(InvenItem[TempItemIndex[InvenItem[i].ItemPosition] - 1].ItemPosition == 1)
 						{
-							if(InvenItem[TempItemIndex[InvenItem[i].ItemPosition] - 1].CODE == InvenItem[sInven[1].ItemIndex - 1].CODE)
+							if(ValidInventoryIndex350W(sInven[1].ItemIndex) &&
+                            InvenItem[TempItemIndex[InvenItem[i].ItemPosition] - 1].CODE == InvenItem[sInven[1].ItemIndex - 1].CODE)
 							{
-								InvenItem[sInven[1].ItemIndex - 1].Flag = 0;
+								if(ValidInventoryIndex350W(sInven[1].ItemIndex))
+                            InvenItem[sInven[1].ItemIndex - 1].Flag = 0;
 								sInven[1].ItemIndex = 0;
 							}
 						}
 						if(InvenItem[TempItemIndex[InvenItem[i].ItemPosition] - 1].ItemPosition == 2)
 						{
-							if(InvenItem[TempItemIndex[InvenItem[i].ItemPosition] - 1].CODE == InvenItem[sInven[0].ItemIndex - 1].CODE)
+							if(ValidInventoryIndex350W(sInven[0].ItemIndex) &&
+                            InvenItem[TempItemIndex[InvenItem[i].ItemPosition] - 1].CODE == InvenItem[sInven[0].ItemIndex - 1].CODE)
 							{
-								InvenItem[sInven[0].ItemIndex - 1].Flag = 0;
+								if(ValidInventoryIndex350W(sInven[0].ItemIndex))
+                            InvenItem[sInven[0].ItemIndex - 1].Flag = 0;
 								sInven[0].ItemIndex = 0;
 							}
 						}
 					}
 					if(InvenItem[TempItemIndex[InvenItem[i].ItemPosition] - 1].ItemPosition)
-						sInven[TempItemIndex[InvenItem[i].ItemPosition] - 1].ItemIndex = 0;
+						sInven[InvenItem[i].ItemPosition - 1].ItemIndex = 0;
 
 					if(InvenItem[i].SetModelPosi)
 						sinSetCharItem(InvenItem[i].CODE, InvenItem[i].SetModelPosi, FALSE);
@@ -5139,24 +5161,28 @@ int cINVENTORY::LoadItemInfo()
 					if(InvenItem[TempItemIndex[InvenItem[i].ItemPosition] - 1].SetModelPosi)
 						sinSetCharItem(InvenItem[TempItemIndex[InvenItem[i].ItemPosition] - 1].CODE, InvenItem[TempItemIndex[InvenItem[i].ItemPosition] - 1].SetModelPosi, FALSE);
 
-					if(InvenItem[i].ItemPosition)
+					if(ValidEquipmentPos350W(InvenItem[i].ItemPosition))
 						sInven[InvenItem[i].ItemPosition - 1].ItemIndex = 0;
 
 					if(InvenItem[i].Class == ITEM_CLASS_WEAPON_TWO)
 					{
 						if(InvenItem[i].ItemPosition == 1)
 						{
-							if(InvenItem[i].CODE == InvenItem[sInven[1].ItemIndex - 1].CODE)
+							if(ValidInventoryIndex350W(sInven[1].ItemIndex) &&
+                            InvenItem[i].CODE == InvenItem[sInven[1].ItemIndex - 1].CODE)
 							{
-								InvenItem[sInven[1].ItemIndex - 1].Flag = 0;
+								if(ValidInventoryIndex350W(sInven[1].ItemIndex))
+                            InvenItem[sInven[1].ItemIndex - 1].Flag = 0;
 								sInven[1].ItemIndex = 0;
 							}
 						}
 						if(InvenItem[i].ItemPosition == 2)
 						{
-							if(InvenItem[i].CODE == InvenItem[sInven[0].ItemIndex - 1].CODE)
+							if(ValidInventoryIndex350W(sInven[0].ItemIndex) &&
+                            InvenItem[i].CODE == InvenItem[sInven[0].ItemIndex - 1].CODE)
 							{
-								InvenItem[sInven[0].ItemIndex - 1].Flag = 0;
+								if(ValidInventoryIndex350W(sInven[0].ItemIndex))
+                            InvenItem[sInven[0].ItemIndex - 1].Flag = 0;
 								sInven[0].ItemIndex = 0;
 							}
 						}
@@ -5168,9 +5194,11 @@ int cINVENTORY::LoadItemInfo()
 				{
 					if(InvenItem[i].ItemPosition == 1)
 					{
-						if(InvenItem[i].CODE != InvenItem[sInven[1].ItemIndex - 1].CODE)
+						if(ValidInventoryIndex350W(sInven[1].ItemIndex) &&
+                            InvenItem[i].CODE != InvenItem[sInven[1].ItemIndex - 1].CODE)
 						{
-							InvenItem[sInven[1].ItemIndex - 1].Flag = 0;
+							if(ValidInventoryIndex350W(sInven[1].ItemIndex))
+                            InvenItem[sInven[1].ItemIndex - 1].Flag = 0;
 							InvenItem[i].Flag = 0;
 							sInven[1].ItemIndex = 0;
 							sInven[0].ItemIndex = 0;
@@ -5180,9 +5208,11 @@ int cINVENTORY::LoadItemInfo()
 					}
 					if(InvenItem[i].ItemPosition == 2)
 					{
-						if(InvenItem[i].CODE != InvenItem[sInven[0].ItemIndex - 1].CODE)
+						if(ValidInventoryIndex350W(sInven[0].ItemIndex) &&
+                            InvenItem[i].CODE != InvenItem[sInven[0].ItemIndex - 1].CODE)
 						{
-							InvenItem[sInven[0].ItemIndex - 1].Flag = 0;
+							if(ValidInventoryIndex350W(sInven[0].ItemIndex))
+                            InvenItem[sInven[0].ItemIndex - 1].Flag = 0;
 							InvenItem[i].Flag = 0;
 							sInven[0].ItemIndex = 0;
 							sInven[1].ItemIndex = 0;
@@ -5210,14 +5240,15 @@ int cINVENTORY::LoadItemInfo()
 			{
 				SendSetHackUser(FALSE);
 				InvenItem[i].Flag = 0;
-				if(InvenItem[i].ItemPosition)
+				if(ValidEquipmentPos350W(InvenItem[i].ItemPosition))
 				{
 					sInven[InvenItem[i].ItemPosition - 1].ItemIndex = 0;
 					sinSetCharItem(InvenItem[i].CODE, InvenItem[i].SetModelPosi, FALSE);
 				}
 				if(InvenItem[i].Class == ITEM_CLASS_WEAPON_TWO)
 				{
-					InvenItem[sInven[1].ItemIndex - 1].Flag = 0;
+					if(ValidInventoryIndex350W(sInven[1].ItemIndex))
+                            InvenItem[sInven[1].ItemIndex - 1].Flag = 0;
 					sInven[1].ItemIndex = 0;
 				}
 			}
@@ -6235,6 +6266,7 @@ int cINVENTORY::InvenNotOpenCheck(sITEM *pItem)
 
 int cINVENTORY::PickUpInvenItem(int x, int y, int PickUpFlag)
 {
+    if(gameplay::companions::v2::TradeClientFrozen()) return FALSE;
 	NotPotionFlag = 0;
 	sITEMPRICE sinItemPriceTemp;
 	SelectInvenItemIndex = 0;
@@ -9210,6 +9242,7 @@ void cINVENTORY::LoadCharState()
 
 int cINVENTORY::ChangeABItem(int Posi)
 {
+    if(gameplay::companions::v2::TradeClientFrozen()) return FALSE;
 	SetDelayFlag = 1;
 
 

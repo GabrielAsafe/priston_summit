@@ -1310,8 +1310,8 @@ void cCHARSTATUS::CheckLevel()
 		ResetEnergyGraph(3);
 
 
-		void InitHelp();
-		InitHelp();
+		// SUMMIT352A: level-up preserves progression and pet tips, but the
+		// generic Guide V2 opens only on an explicit help action.
 
 
 

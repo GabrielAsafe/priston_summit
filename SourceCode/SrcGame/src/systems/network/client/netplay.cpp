@@ -25,6 +25,9 @@
 
 #include "systems/network/transport/legacy/smwsock.h"
 #include "systems/network/v2/legacy/LegacyBackendChannelSender.h"
+#include "gameplay/companions/v2/CompanionTradeClientSaveReceipt.h"
+#include "gameplay/companions/v2/CompanionTradeClientFreeze.h"
+#include "gameplay/companions/v2/CompanionDiagnostic315.h"
 #include "systems/network/v2/legacy/LegacyClientCommandSender.h"
 #include "systems/network/v2/legacy/LegacyClientGameplayPacketRouter.h"
 #include "systems/gameplay/character/core/character.h"
@@ -348,6 +351,23 @@ DWORD	dwLastRecvGameServerTime = 0;
 DWORD	dwLastRecvGameServerTime2 = 0;
 DWORD	dwLastRecvGameServerTime3 = 0;
 DWORD	dwLastRecvGameServerTime4 = 0;
+
+// SUMMIT350T: distinguish socket loss, legacy watchdog timeouts and an
+// explicit server close. Logging is called ONLY on an existing disconnect
+// branch and must NEVER alter socket state, inventory or gameplay.
+// action = original legacy disconnect site; value = DisconnectServerCode;
+// result/ info = age in ms of main/data heartbeat (or -1 if not observed).
+static void Summit350TTraceDisconnect(const char* stage, int legacySite)
+{
+    const DWORD now=GetCurrentTime();
+    const int mainAge=dwLastRecvGameServerTime ?
+        static_cast<int>(now-dwLastRecvGameServerTime) : -1;
+    const int dataAge=dwLastRecvGameServerTime2 ?
+        static_cast<int>(now-dwLastRecvGameServerTime2) : -1;
+    summit::companion::diagnostic::Trace("CLIENT",stage,legacySite,
+        DisconnectServerCode,mainAge,dataAge);
+}
+
 
 typedef DWORD(*LPFN_CheckMem)(TRANS_FUNC_MEMORY *TransFuncMem, smTRANS_COMMAND	*lpTransCommand);
 LPFN_CheckMem	fnChkMem2;
@@ -2757,6 +2777,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 			else
 			{
 				smConfig.setSecurity(AccountTypes::SEC_PLAYER);
+				smConfig.setSecurityAuth(false); // SUMMIT354: avoid stale GM-auth state on revoke.
 			}
 		}
 	}
@@ -3844,6 +3865,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 			}
 
 			//Utils_Log(LOG_DEBUG, "SetDisconnectFlag: 11");
+			Summit350TTraceDisconnect("net-failrecord-job0",11);
 			DisconnectFlag = GetCurrentTime();
 			break;
 		}
@@ -3865,6 +3887,12 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 	case OpCode::OPCODE_RECORDRESULT:
 
 		lpTransCommand = (smTRANS_COMMAND *)pData->Buff;
+        gameplay::companions::v2::OnTradeClientSaveResult(lpTransCommand->WParam != 0);
+        // Correlate the legacy save ACK with the trade handshake, but log
+        // no account, item data or record payload.
+        if(gameplay::companions::v2::TradeClientFrozen())
+            summit::companion::diagnostic::Trace("CLIENT", "trade-record-ack",
+                0, 0, lpTransCommand->WParam ? 1 : -1);
 		rsRecorder.dwRecordTime = 0;
 		rsRecorder.dwNextRecordTime = dwPlayTime + RECORD_TIME_STEP;
 		dwLastRecordTime = dwPlayTime;
@@ -4164,7 +4192,16 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 
 		WarpFieldNearPos(lpTransCommand->WParam, lpTransCommand->SParam, lpTransCommand->LParam, &x, &z);
 
-		lpCurPlayer->SetPosi(lpTransCommand->SParam, 0, lpTransCommand->LParam, 0, 0, 0);
+		// Map 58: use the resolved canonical entrance for legacy server warps.
+		// Other maps retain the explicit packet coordinates, and a future
+		// multi-start-point Arena can handle its own round positions.
+		{
+			const bool summitArenaEntrance = lpTransCommand->WParam == 58 &&
+				sField[58].StartPointCnt == 1;
+			const int summitWarpX = summitArenaEntrance ? x : lpTransCommand->SParam;
+			const int summitWarpZ = summitArenaEntrance ? z : lpTransCommand->LParam;
+			lpCurPlayer->SetPosi(summitWarpX, 0, summitWarpZ, 0, 0, 0);
+		}
 		TraceCameraPosi.x = lpCurPlayer->pX;
 		TraceCameraPosi.y = lpCurPlayer->pY;
 		TraceCameraPosi.z = lpCurPlayer->pZ;
@@ -4725,6 +4762,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 
 		DisconnectServerCode = 0;
 		//Utils_Log(LOG_DEBUG, "SetDisconnectFlag: 13");
+		Summit350TTraceDisconnect("net-server-close-command",13);
 		DisconnectFlag = GetCurrentTime();
 		break;
 
@@ -7732,6 +7770,7 @@ int DisconnectPlayer(smWINSOCK *lpsmSock)
 
 		smWsockServer = 0;
 		//Utils_Log(LOG_DEBUG, "SetDisconnectFlag: 14");
+		Summit350TTraceDisconnect("net-main-socket-closed",14);
 		DisconnectFlag = dwTime;
 
 
@@ -7748,6 +7787,7 @@ int DisconnectPlayer(smWINSOCK *lpsmSock)
 		AddChatBuff("Connection lost to Dataserver");
 		smWsockDataServer = 0;
 		//Utils_Log(LOG_DEBUG, "SetDisconnectFlag: 15");
+		Summit350TTraceDisconnect("net-data-socket-closed",15);
 		DisconnectFlag = dwTime;
 
 
@@ -7765,6 +7805,7 @@ int DisconnectPlayer(smWINSOCK *lpsmSock)
 		AddChatBuff("Connection lost to Server");
 		smWsockUserServer = 0;
 		//Utils_Log(LOG_DEBUG, "SetDisconnectFlag: 16");
+		Summit350TTraceDisconnect("net-user-socket-closed",16);
 		DisconnectFlag = dwTime;
 
 
@@ -7781,6 +7822,7 @@ int DisconnectPlayer(smWINSOCK *lpsmSock)
 		AddChatBuff("Connection lost to Server");
 		smWsockExtendServer = 0;
 		//Utils_Log(LOG_DEBUG, "SetDisconnectFlag: 18");
+		Summit350TTraceDisconnect("net-extend-socket-closed",18);
 		DisconnectFlag = dwTime;
 
 
@@ -8405,6 +8447,7 @@ int NetWorkPlay()
 			{
 
 				//Utils_Log(LOG_DEBUG, "SetDisconnectFlag: 19");
+				Summit350TTraceDisconnect("net-loading-timeout",19);
 				DisconnectFlag = GetCurrentTime();
 				dwLoadingTime = 0;
 			}
@@ -9426,19 +9469,25 @@ int	SaveGameData()
 			CodeXorCharInfo();
 			ReformCharForm();
 
-			rsRecorder.MakeRecordData(&lpCurPlayer->smCharInfo, cInvenTory.InvenItem, cInvenTory.InvenItemTemp, &MouseItem);
-			rsRecorder.SendRecordDataToServer(smWsockDataServer);
-			rsRecorder.dwRecordTime = dwPlayTime;
-
-		/*    if(smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR)
-			{*/
+			// SUMMIT trade sync prerequisite: never send an earlier/partial
+			// TransRecordData if current inventory serialization overflowed.
+			// This also protects ordinary saves without changing the wire format.
+			const bool recordReady = rsRecorder.MakeRecordData(
+				&lpCurPlayer->smCharInfo, cInvenTory.InvenItem,
+				cInvenTory.InvenItemTemp, &MouseItem) == TRUE;
+			const bool recordSent = recordReady &&
+				rsRecorder.SendRecordDataToServer(smWsockDataServer) == TRUE;
+			if(recordSent)
+			{
+				rsRecorder.dwRecordTime = dwPlayTime;
 				AddChatBuff("Salvando o jogo");
-			/*}	*/
+			}
 
+			// Balance the transformed character state on BOTH paths.
 			CodeXorCharInfo();
 			ReformCharForm();
 			CheckPlaySkill();
-			return TRUE;
+			return recordSent ? TRUE : FALSE;
 		}
 	}
 	return FALSE;
@@ -9720,6 +9769,7 @@ int	TransCheckNetwork()
 
 		DisconnectServerCode = 1;
 		//Utils_Log(LOG_DEBUG, "SetDisconnectFlag: 20");
+		Summit350TTraceDisconnect("net-main-timeout",20);
 		DisconnectFlag = GetCurrentTime();
 		return FALSE;
 	}
@@ -9745,6 +9795,7 @@ int	TransCheckNetwork()
 		if(dwLastRecvGameServerTime2 && (dwLastRecvGameServerTime2 + DEADLOCK_CHECK_LIMIT_TIME2) < dwTime2)
 		{
 			//Utils_Log(LOG_DEBUG, "SetDisconnectFlag: 21");
+			Summit350TTraceDisconnect("net-data-heartbeat-timeout",21);
 			DisconnectFlag = GetCurrentTime();
 			DisconnectServerCode = 2;
 			return FALSE;
@@ -9797,6 +9848,7 @@ int	TransCheckNetwork()
 
 			DisconnectServerCode = 3;
 			//Utils_Log(LOG_DEBUG, "SetDisconnectFlag: 22");
+			Summit350TTraceDisconnect("net-user-timeout",22);
 			DisconnectFlag = GetCurrentTime();
 			return FALSE;
 		}
@@ -9836,6 +9888,7 @@ int	TransCheckNetwork()
 
 			DisconnectServerCode = 3;
 			//Utils_Log(LOG_DEBUG, "SetDisconnectFlag: 23");
+			Summit350TTraceDisconnect("net-extend-timeout",23);
 			DisconnectFlag = GetCurrentTime();
 			return FALSE;
 		}
@@ -10164,6 +10217,7 @@ int SendSetHackUser(int StopGame)
 	{
 		DisconnectServerCode = 4;
 		//Utils_Log(LOG_DEBUG, "SetDisconnectFlag: 25");
+		Summit350TTraceDisconnect("net-client-security",25);
 		DisconnectFlag = GetCurrentTime();
 	}
 

@@ -1026,6 +1026,10 @@ void Update()
     const DWORD elapsed = lastTick ? (now - lastTick) : 0;
     lastTick = now;
     const float deltaSeconds = static_cast<float>(elapsed) / 1000.0f;
+    // SUMMIT350V: transaction/save-ACK pump must run on EVERY client UI tick.
+    // Hidden tabs and closed CharacterWindow do not receive Container::Update.
+    // Keep this on the main client thread, outside the network packet callback.
+    companionGateway.PumpTradeExecution();
     runtime.Update(deltaSeconds);
 }
 

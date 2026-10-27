@@ -2,6 +2,7 @@
 
 #include "systems/gameplay/mining/v2/MiningInteractionService.h"
 #include "systems/gameplay/mining/v2/MiningRuntime.h"
+#include "systems/gameplay/professions/v2/ProfessionRuntime.h"
 #include "systems/gameplay/gathering/v2/GatheringRuntime.h"
 #include "systems/gameplay/gathering/v2/legacy/LegacyHarvestPlayerQueryAdapter.h"
 
@@ -32,8 +33,14 @@ gathering::HarvestResult HarvestMiningNodeForPlayer(PlayerId playerId,
 
     static MiningInteractionService interaction(ServerMiningService());
     gathering::HarvestResult result = interaction.Harvest(actor, nodeId, nowMilliseconds, roll);
-    if (result.Succeeded())
-        (void)gathering::ServerGatheringRepository().AddInventory(actor.playerName, result.resourceKey, result.amount);
+    if (result.Succeeded() &&
+        gathering::ServerGatheringRepository().AddInventory(actor.playerName, result.resourceKey, result.amount))
+    {
+        // Trial policy: one Miner XP per successful, persisted harvest.
+        // Covenant yield modifiers must not multiply profession XP.
+        (void)professions::ServerProfessionService().AddExperience(
+            actor.playerName, professions::ProfessionType::Miner, 1u);
+    }
     return result;
 }
 }

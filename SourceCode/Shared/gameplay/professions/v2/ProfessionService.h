@@ -9,6 +9,7 @@
 
 #include "gameplay/professions/v2/IProfessionRepository.h"
 #include "gameplay/professions/v2/IProfessionService.h"
+#include "gameplay/professions/v2/ProfessionLevelRules.h"
 #include "gameplay/events/v2/GameplayEventHub.h"
 #include "gameplay/events/v2/ProfessionProgressedEvent.h"
 
@@ -102,7 +103,10 @@ public:
         if (current.experience > std::numeric_limits<std::uint64_t>::max() - amount)
             return false;
 
-        ProfessionProgress next(current.level, current.experience + amount);
+        const std::uint64_t newExperience = current.experience + amount;
+        const int earnedLevel = ProfessionLevelForExperience(newExperience);
+        const int newLevel = current.level > earnedLevel ? current.level : earnedLevel;
+        ProfessionProgress next(newLevel, newExperience);
         if (repository_ && !repository_->SaveProgress(playerName, type, next))
             return false;
         progressByPlayer_[playerName][type] = next;

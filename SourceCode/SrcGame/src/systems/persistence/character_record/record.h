@@ -413,7 +413,15 @@ struct	sBILLING_INFO
 extern sBILLING_INFO	*sBiInfo;
 
 
+// Apply an ALREADY DURABLY COMMITTED Companion trade record to the live
+// player inventory ONLY. Must be called on the game/UI thread after receipt
+// verification and after freezing all client inventory mutation paths.
+// Never use ResotrRecordData() during a live trade: it resets character state.
+int ApplyCommittedCompanionTradePlayerInventory(const unsigned char* image, int bytes);
+
+
 #endif
+
 
 
 

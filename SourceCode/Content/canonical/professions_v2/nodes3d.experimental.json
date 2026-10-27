@@ -1,0 +1,84 @@
+{
+  "schema": "summit.professions-v2-attackable-nodes/experimental-v1",
+  "mode": "COMPILED_SOURCE_POLICY",
+  "description": "Quatro entidades de Gathering atacaveis no mapa 58 em posicoes reais exportadas, independentes das tabelas de drop dos monstros. Code item temporario nao equivale ao material V2. Sem edicoes de JOBS ou personagens.",
+  "nodes": [
+    {
+      "node_id": 910001,
+      "resource_key": "iron_ore",
+      "kind": "Mining",
+      "enabled": true,
+      "map": 58,
+      "position": {
+        "x": 251671,
+        "y": 627,
+        "z": 225035
+      },
+      "monster_template": "Mineiro das Cinzas",
+      "model_reference": "char/monster/undeadminer/undeadminer.ini",
+      "drop_item_code": "PR101",
+      "item_chance_per_10000": 10000,
+      "minimum_respawn_ms": 30000,
+      "loot_delivery": "temporary_legacy_item_alongside_resource_inventory",
+      "test_only": true
+    },
+    {
+      "node_id": 910002,
+      "resource_key": "herb_bundle",
+      "kind": "Foraging",
+      "enabled": true,
+      "map": 58,
+      "position": {
+        "x": 251524,
+        "y": 627,
+        "z": 225037
+      },
+      "monster_template": "Árvore Maldita",
+      "model_reference": "char/monster/monplant/monplant-d.ini",
+      "drop_item_code": "BI103",
+      "item_chance_per_10000": 10000,
+      "minimum_respawn_ms": 30000,
+      "loot_delivery": "temporary_legacy_item_alongside_resource_inventory",
+      "test_only": true
+    },
+    {
+      "node_id": 910003,
+      "resource_key": "timber",
+      "kind": "Woodcutting",
+      "enabled": true,
+      "map": 58,
+      "position": {
+        "x": 251360,
+        "y": 627,
+        "z": 225033
+      },
+      "monster_template": "Árvore Maldita",
+      "model_reference": "char/monster/monplant/monplant-d.ini",
+      "drop_item_code": "TW102",
+      "item_chance_per_10000": 10000,
+      "minimum_respawn_ms": 30000,
+      "loot_delivery": "temporary_legacy_item_alongside_resource_inventory",
+      "test_only": true
+    },
+    {
+      "node_id": 910004,
+      "resource_key": "river_trout",
+      "kind": "Fishing",
+      "enabled": true,
+      "map": 58,
+      "position": {
+        "x": 251380,
+        "y": 866,
+        "z": 226790
+      },
+      "monster_template": "Tartaruga Blindada",
+      "model_reference": "char/monster/turtlecannon/turtlecannon.ini",
+      "drop_item_code": "BI102",
+      "item_chance_per_10000": 10000,
+      "minimum_respawn_ms": 30000,
+      "loot_delivery": "temporary_legacy_item_alongside_resource_inventory",
+      "test_only": true
+    }
+  ],
+  "measured_position_provenance": "summit_world_position_history(3).jsonl; 2026-10-14/17"
+}

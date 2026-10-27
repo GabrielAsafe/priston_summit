@@ -803,6 +803,23 @@ static void SummitTryReleaseBootstrapVisualBarrier()
     AssetLoadV3SetLoadingBoost(false);
 }
 
+// StarArena 58 trial: Ctrl+Shift+F12 captured (251369,225033) at Y=493.
+// Elevate the first entry to Y>=742 (trial); SMAP v1 stores only X/Z.
+// Keep the general floor/collision resolution unchanged for every other field.
+static bool SummitIsStarArenaRaisedStart(const sFIELD *field, int x, int z)
+{
+    return field && field->FieldCode == 58 &&
+        (x >> FLOATNS) == 251369 && (z >> FLOATNS) == 225033;
+}
+
+static int SummitStarArenaTrialPositionY(int floorHeight)
+{
+    const int requestedY = 742 * fONE;
+    // Never spawn below an observed floor.  If the mesh reports a higher
+    // surface, use that height instead of burying the character in geometry.
+    return floorHeight > requestedY ? floorHeight : requestedY;
+}
+
 static bool SummitFinalizeBootstrapPlayerPlacement(int slot)
 {
     if (!gStageBootstrapPending || slot < 0 || slot > 1 || !lpCurPlayer ||
@@ -824,10 +841,14 @@ static bool SummitFinalizeBootstrapPlayerPlacement(int slot)
     // Reproduce the semantic guarantee of the old synchronous bootstrap: the
     // first playable frame starts on a real collision surface.  Never use the
     // temporary pY produced while the stage was absent as an input here.
+    const sFIELD *entryField = slot >= 0 && slot < 2 ? StageField[slot] : 0;
+    const int entryY = SummitIsStarArenaRaisedStart(
+        entryField, gStageBootstrapSpawnX, gStageBootstrapSpawnZ)
+        ? SummitStarArenaTrialPositionY(floorHeight) : floorHeight;
     lpCurPlayer->pX = gStageBootstrapSpawnX;
     lpCurPlayer->pZ = gStageBootstrapSpawnZ;
-    lpCurPlayer->pY = floorHeight;
-    lpCurPlayer->PHeight = floorHeight;
+    lpCurPlayer->pY = entryY;
+    lpCurPlayer->PHeight = entryY;
     lpCurPlayer->FallHeight = 0;
     lpCurPlayer->OnStageField = slot;
     lpCurPlayer->MoveFlag = 0;
@@ -836,7 +857,7 @@ static bool SummitFinalizeBootstrapPlayerPlacement(int slot)
     gStageBootstrapResolvedFloorY = floorHeight;
 
     TraceCameraPosi.x = gStageBootstrapSpawnX;
-    TraceCameraPosi.y = floorHeight;
+    TraceCameraPosi.y = entryY;
     TraceCameraPosi.z = gStageBootstrapSpawnZ;
     TraceTargetPosi = TraceCameraPosi;
 
@@ -1145,9 +1166,22 @@ static void SummitTryCommitFieldTransition()
         return;
     }
 
+    // SMAP v1 stores X/Z only.  A guarded runtime Y trial is necessary for
+    // this one measured StarArena start until vertical spawn metadata exists.
+    int commitY = gFieldTransition.y;
+    if (SummitIsStarArenaRaisedStart(gFieldTransition.field,
+            gFieldTransition.x, gFieldTransition.z))
+    {
+        const int floorY = smGameStage[slot] && smGameStage[slot]->Head
+            ? smGameStage[slot]->GetHeight(gFieldTransition.x, gFieldTransition.z)
+            : CLIP_OUT;
+        if (floorY != CLIP_OUT && floorY > -200 * fONE)
+            commitY = SummitStarArenaTrialPositionY(floorY) + 2 * fONE;
+        // SetPosi subtracts 2*fONE from every supplied Y.
+    }
     gFieldTransition.committing = true;
     lpCurPlayer->SetPosi(
-        gFieldTransition.x, gFieldTransition.y, gFieldTransition.z,
+        gFieldTransition.x, commitY, gFieldTransition.z,
         gFieldTransition.ax, gFieldTransition.ay, gFieldTransition.az);
     gFieldTransition.committing = false;
 
@@ -5023,6 +5057,72 @@ int DrawPat3D(int x, int y, int z, int ax, int ay, int az)
 	}
 
 
+	// [SUMMIT_TARGET_PICK_53_ONLY_V2]
+	// A few imported monster models report a narrower or invalid 2D selection
+	// rectangle despite being present in the field. Preserve the normal model
+	// hit-test first, and recover only enemy picking in map 53.
+	// The fallback projects the *world* monster position through the currently
+	// active camera; it never changes the model, collision, server or hit damage.
+	// In particular, other maps/NPCs/players/items retain original semantics.
+	int summitPickField = -1;
+	if (lpCurPlayer->OnStageField >= 0 && lpCurPlayer->OnStageField < 2 &&
+		StageField[lpCurPlayer->OnStageField])
+		summitPickField = StageField[lpCurPlayer->OnStageField]->FieldCode;
+	if (!lpSelChar && summitPickField == 53)
+	{
+		const int pickHeight = 96 * fONE;
+		const int pickWidth = 96 * fONE;
+		int nearestDepth = SelZ;
+		smCHAR *recovered = 0;
+		smRender.SetCameraPosi(x, y, z, ax, ay, az);
+		for (int i = 0; i < OTHER_PLAYER_MAX; ++i)
+		{
+			smCHAR &candidate = chrOtherPlayer[i];
+			if (!candidate.Flag || !candidate.DisplayFlag || candidate.DisplayAlpha ||
+				!candidate.MotionInfo || candidate.MotionInfo->State == CHRMOTION_STATE_DEAD ||
+				candidate.smCharInfo.State != smCHAR_STATE_ENEMY ||
+				candidate.smCharInfo.Brood == smCHAR_MONSTER_USER ||
+				candidate.smCharInfo.Life[0] <= 0 || candidate.PlayVanish > 0 ||
+				candidate.RenderLatter || candidate.RendAlpha || candidate.AttackIce)
+				continue;
+			RECT recoveredRect = { 0, 0, 0, 0 };
+			POINT recoveredPos = { 0, 0 };
+			const int depth = smRender.GetRect2D(candidate.pX,
+				candidate.pY + 48 * fONE, candidate.pZ,
+				pickWidth, pickHeight, &recoveredRect, &recoveredPos);
+			if (depth <= 96 * fONE || depth >= nearestDepth ||
+				recoveredPos.x <= 0 || recoveredPos.x >= WinSizeX ||
+				recoveredPos.y <= 0 || recoveredPos.y >= WinSizeY)
+				continue;
+			if (recoveredRect.left < pCursorPos.x && recoveredRect.right > pCursorPos.x &&
+				recoveredRect.top < pCursorPos.y && recoveredRect.bottom > pCursorPos.y)
+			{
+				nearestDepth = depth;
+				recovered = &candidate;
+			}
+		}
+		if (recovered)
+		{
+			lpSelChar = recovered;
+			SelZ = nearestDepth;
+			// One entry per attempted click, not one entry per rendered frame.
+			if (MouseButton[0])
+			{
+				static DWORD lastPickLog = 0;
+				if (dwPlayTime - lastPickLog > 750)
+				{
+					char detail[192];
+					sprintf_s(detail, sizeof(detail),
+						"map=%d serial=%lu rend=%d mouse=%ld,%ld depth=%d",
+						summitPickField, (unsigned long)recovered->dwObjectSerial,
+						recovered->RendSucess, pCursorPos.x, pCursorPos.y, nearestDepth);
+					SummitBootstrapDiagnosticEvent("target-pick-recovered", detail);
+					lastPickLog = dwPlayTime;
+				}
+			}
+		}
+	}
+
 	LastRendSucessCount = RendSucessCount;
 
 
@@ -5044,6 +5144,14 @@ int DrawPat3D(int x, int y, int z, int ax, int ay, int az)
 	}
 
 
+	// In Fall Game 39 the cursor selects *only* ground items, regardless
+	// of an enemy occupying the same screen pixel. Space still finds and
+	// attacks enemies independently via agFindAttack().
+	if (summitPickField == 39)
+	{
+		lpSelChar = 0;
+		SelZ = 65536 * 16384;
+	}
 	lpItem = 0;
 
 	for(cnt = 0; cnt < DISP_ITEM_MAX; cnt++)

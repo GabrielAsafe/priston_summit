@@ -7439,6 +7439,39 @@
       "legacy_sha256": "5d4985228706ca70df35ac14cbdb90a0c3155f604e593cac66ae6b676a1e55e4"
     },
     {
+      "id": "monster.117_inferno",
+      "kind": "monster_definition",
+      "legacy_path": "Servidor/GameServer/Monster/117_Inferno.inf",
+      "json_path": "resources/Servidor/GameServer/Monster/117_Inferno.inf.json",
+      "runtime_paths": [
+        "Servidor/GameServer/Monster/117_Inferno.inf",
+        "GameServer/Monster/117_Inferno.inf"
+      ],
+      "legacy_sha256": "f99d48dfab1fbd77a1b9a0362a44736ec97b42f66976647533d524df390f5fc8"
+    },
+    {
+      "id": "monster.117_rguard",
+      "kind": "monster_definition",
+      "legacy_path": "Servidor/GameServer/Monster/117_RGuard.inf",
+      "json_path": "resources/Servidor/GameServer/Monster/117_RGuard.inf.json",
+      "runtime_paths": [
+        "Servidor/GameServer/Monster/117_RGuard.inf",
+        "GameServer/Monster/117_RGuard.inf"
+      ],
+      "legacy_sha256": "f16a689eccdf55a334bee1f00bcf618a2326fbcb0ceacb0428ba4f1790bde4f7"
+    },
+    {
+      "id": "monster.118_dmystery",
+      "kind": "monster_definition",
+      "legacy_path": "Servidor/GameServer/Monster/118_DMystery.inf",
+      "json_path": "resources/Servidor/GameServer/Monster/118_DMystery.inf.json",
+      "runtime_paths": [
+        "Servidor/GameServer/Monster/118_DMystery.inf",
+        "GameServer/Monster/118_DMystery.inf"
+      ],
+      "legacy_sha256": "7566249ff99d5b1c6579be10c89ae87ef188ce32b08872b87b6db21519b1af1d"
+    },
+    {
       "id": "monster.118_tarantulika",
       "kind": "monster_definition",
       "legacy_path": "Servidor/GameServer/Monster/118_Tarantulika.inf",
@@ -7470,6 +7503,17 @@
         "GameServer/Monster/119_Gurkob.inf"
       ],
       "legacy_sha256": "6ead03c8994b45d93b1b8e7bec4028e93f863649af5361436ad2b1bc32e3d4a0"
+    },
+    {
+      "id": "monster.119_ignis",
+      "kind": "monster_definition",
+      "legacy_path": "Servidor/GameServer/Monster/119_Ignis.inf",
+      "json_path": "resources/Servidor/GameServer/Monster/119_Ignis.inf.json",
+      "runtime_paths": [
+        "Servidor/GameServer/Monster/119_Ignis.inf",
+        "GameServer/Monster/119_Ignis.inf"
+      ],
+      "legacy_sha256": "d91e93fcce1efd70888c548776c9cf2ffb0617681a974871880694d6a04ee451"
     },
     {
       "id": "monster.119_serpente_de_gelo",
@@ -7516,6 +7560,17 @@
       "legacy_sha256": "f064006e146fb4ae83a96a69def2d412ae63d88c02722911143c271abf967cb9"
     },
     {
+      "id": "monster.120_najan",
+      "kind": "monster_definition",
+      "legacy_path": "Servidor/GameServer/Monster/120_Najan.inf",
+      "json_path": "resources/Servidor/GameServer/Monster/120_Najan.inf.json",
+      "runtime_paths": [
+        "Servidor/GameServer/Monster/120_Najan.inf",
+        "GameServer/Monster/120_Najan.inf"
+      ],
+      "legacy_sha256": "02bbcba096c6d6b21e200f9aea2f8d9c3f437800acb6c6efa928b2c085ef4a9c"
+    },
+    {
       "id": "monster.120_nihil",
       "kind": "monster_definition",
       "legacy_path": "Servidor/GameServer/Monster/120_Nihil.inf",
@@ -7536,6 +7591,17 @@
         "GameServer/Monster/121_Chalybs.inf"
       ],
       "legacy_sha256": "0cd73681370db61fffb10e105ad1ad24e18d4c85a79d3a0344eb9fb0caeb13e8"
+    },
+    {
+      "id": "monster.121_crios",
+      "kind": "monster_definition",
+      "legacy_path": "Servidor/GameServer/Monster/121_Crios.inf",
+      "json_path": "resources/Servidor/GameServer/Monster/121_Crios.inf.json",
+      "runtime_paths": [
+        "Servidor/GameServer/Monster/121_Crios.inf",
+        "GameServer/Monster/121_Crios.inf"
+      ],
+      "legacy_sha256": "22f74b46ced61e77527dbf04d13251692943b38f2d6e389ff845a677bf17362d"
     },
     {
       "id": "monster.121_faugn",
@@ -7569,6 +7635,17 @@
         "GameServer/Monster/123_Arhdyra.inf"
       ],
       "legacy_sha256": "25c6ea26436dcad45f2624ccb72cce43f745a19c844f6c39bf92aee2c7a29a84"
+    },
+    {
+      "id": "monster.123_wlord",
+      "kind": "monster_definition",
+      "legacy_path": "Servidor/GameServer/Monster/123_WLord.inf",
+      "json_path": "resources/Servidor/GameServer/Monster/123_WLord.inf.json",
+      "runtime_paths": [
+        "Servidor/GameServer/Monster/123_WLord.inf",
+        "GameServer/Monster/123_WLord.inf"
+      ],
+      "legacy_sha256": "c84da9af17b9569b6ef73c8007ec9ec7e0084a09ff72e5db32fdc2eda8330ede"
     },
     {
       "id": "monster.124_sathla",
@@ -10970,6 +11047,17 @@
       "legacy_sha256": "1b5aebbd56ea28cefd06ca855b2754bbf7f5b6ec4e661d0fa11e3d5347677b27"
     },
     {
+      "id": "text.117_rguard",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/Monster/Name/117_RGuard.zhoon",
+      "json_path": "resources/Servidor/GameServer/Monster/Name/117_RGuard.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/Monster/Name/117_RGuard.zhoon",
+        "GameServer/Monster/Name/117_RGuard.zhoon"
+      ],
+      "legacy_sha256": "f530e48802213862db3f56760af340870d0775708c7fbc71e8d685c2f2a3ca6e"
+    },
+    {
       "id": "text.118_f_u00faria",
       "kind": "localization_resource",
       "legacy_path": "Servidor/GameServer/Monster/Name/118_ F#U00faria .zhoon",
@@ -10979,6 +11067,17 @@
         "GameServer/Monster/Name/118_ F#U00faria .zhoon"
       ],
       "legacy_sha256": "afcbad296721284892931d541f528ef1e738bd22c91652a24f29b86ee14f2384"
+    },
+    {
+      "id": "text.118_dmystery",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/Monster/Name/118_DMystery.zhoon",
+      "json_path": "resources/Servidor/GameServer/Monster/Name/118_DMystery.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/Monster/Name/118_DMystery.zhoon",
+        "GameServer/Monster/Name/118_DMystery.zhoon"
+      ],
+      "legacy_sha256": "176743a664e2f159936df45c4f0b890656cf7e663011f3e88e541a5d302c1c65"
     },
     {
       "id": "text.118_soldado_zumbi",

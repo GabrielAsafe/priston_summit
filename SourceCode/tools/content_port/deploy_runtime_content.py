@@ -9,6 +9,7 @@ from pathlib import Path
 
 COMMON_PACKS = (
     'field_runtime.sfld',
+    'skin_reforms.sskm',
     'text_resources.sres',
     'localization.sloc',
     'gameplay_config.sgcf',

@@ -87,8 +87,12 @@ HOTUK_DEST="$DEST/Configs/hotuk.ini"
 
 if [[ -f "$HOTUK" ]]; then
     mkdir -p "$DEST/Configs"
-    cp -av "$HOTUK" "$HOTUK_DEST"
-    ok "hotuk.ini"
+    if [[ "$HOTUK" -ef "$HOTUK_DEST" ]]; then
+        ok "hotuk.ini já está no destino (sem autocópia)"
+    else
+        cp -av "$HOTUK" "$HOTUK_DEST"
+        ok "hotuk.ini"
+    fi
 else
     echo "[AVISO] hotuk.ini original não encontrado: $HOTUK"
 fi

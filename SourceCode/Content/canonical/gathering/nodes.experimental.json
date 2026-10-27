@@ -1,0 +1,44 @@
+{
+  "schema": "summit.experimental-gathering-nodes/v1",
+  "source_capture": "summit_map_58_world_position(3).json",
+  "coordinate_units": "debug_overlay_and_canonical_maps",
+  "purpose": "TEST_ONLY_RESOURCE_KEYS_NOT_LEGACY_ITEM_DROPS",
+  "nodes": [
+    {
+      "node_id": 910001,
+      "resource_key": "iron_ore",
+      "area": 58,
+      "x": 251671,
+      "y": 627,
+      "z": 225035,
+      "interaction_radius": 160,
+      "respawn_ms": 30000,
+      "enabled": true,
+      "visual_proxy": {
+        "kind": "image_preview_only",
+        "identifier": "assets/iron_ore_preview.bmp",
+        "mode": "NOT_SPAWNED_IN_WORLD"
+      },
+      "note": "Mineracao experimental"
+    },
+    {
+      "node_id": 910002,
+      "resource_key": "herb_bundle",
+      "area": 58,
+      "x": 251671,
+      "y": 627,
+      "z": 225035,
+      "interaction_radius": 160,
+      "respawn_ms": 30000,
+      "enabled": true,
+      "visual_proxy": {
+        "kind": "image_preview_only",
+        "identifier": "assets/herb_bundle_preview.bmp",
+        "mode": "NOT_SPAWNED_IN_WORLD"
+      },
+      "note": "Recolha experimental"
+    }
+  ],
+  "content_lifecycle": "PILOT_IN_STARENA58_IMPORT_TO_SQLITE_EXPLICIT",
+  "runtime_loader": "SQLITE_GATHERING_RESOURCE_AND_NODE_TABLES_NOT_JSON"
+}
