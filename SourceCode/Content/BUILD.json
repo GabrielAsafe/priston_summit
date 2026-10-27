@@ -1,35 +1,35 @@
 {
   "schema": "summit.canonical-content-build/v1",
   "inputs": {
-    "canonical_text": "Content/canonical/text",
-    "canonical_spawns": "Content/canonical/stage_spawns",
-    "canonical_maps": "Content/canonical/maps",
-    "canonical_start_points": "Content/canonical/stage_start_points",
-    "canonical_fixed_npcs": "Content/canonical/fixed_npcs",
-    "canonical_item_profiles": "Content/canonical/item_profiles",
-    "canonical_gameplay_reference": "Content/canonical/gameplay_reference",
-    "canonical_commerce": "Content/canonical/commerce"
+    "canonical_text": "SourceCode/Content/canonical/text",
+    "canonical_spawns": "SourceCode/Content/canonical/stage_spawns",
+    "canonical_maps": "SourceCode/Content/canonical/maps",
+    "canonical_start_points": "SourceCode/Content/canonical/stage_start_points",
+    "canonical_fixed_npcs": "SourceCode/Content/canonical/fixed_npcs",
+    "canonical_item_profiles": "SourceCode/Content/canonical/item_profiles",
+    "canonical_gameplay_reference": "SourceCode/Content/canonical/gameplay_reference",
+    "canonical_commerce": "SourceCode/Content/canonical/commerce"
   },
   "packs": {
     "text_resources": {
       "path": "packs/text_resources.sres",
-      "bytes": 2998545,
-      "sha256": "7f0ded33f483230b70c8b50564dac0f68c8683e7edab1931f7d54d90422f07c7"
+      "bytes": 2998549,
+      "sha256": "dbf08d4e07968c84a274ddcf1edb1d72757c8e899151f7297eb17debfe12d039"
     },
     "definitions_client": {
       "path": "packs/definitions_client.scfg",
-      "bytes": 777193,
-      "sha256": "183a9dedc2f3c8677c082ef403bfe99ecbff8342c67d8fcd2a5edd8a7a90c156"
+      "bytes": 777177,
+      "sha256": "ac1dca3050958a26ef883e5cc259026d946dbdc5c35d5293f422541b40e68dff"
     },
     "definitions_server": {
       "path": "packs/definitions_server.scfg",
-      "bytes": 860101,
-      "sha256": "25a2e96687b6deb112d9a26b5561e25a83a61c8f06ccb9cf8f72472bb7e7a344"
+      "bytes": 860085,
+      "sha256": "e3866c4179c73ff0f5de5f1a77bd561876ebfd9c4d2679a8f62504fed93e9338"
     },
     "localization": {
       "path": "packs/localization.sloc",
-      "bytes": 383168,
-      "sha256": "d3dde2a05922b83b8538945ae8def1f9239e7c1a1ba34a01a790d050177941a2"
+      "bytes": 383186,
+      "sha256": "8c888609db36eeda1eb20c200351fbd1428b89e757547eaa24747fee4e999ae8"
     },
     "gameplay_config": {
       "path": "packs/gameplay_config.sgcf",

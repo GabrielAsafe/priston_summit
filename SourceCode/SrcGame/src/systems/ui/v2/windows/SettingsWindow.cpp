@@ -1,4 +1,5 @@
 #include "systems/ui/v2/windows/SettingsWindow.h"
+#include "systems/ui/v2/windows/GmChoiceCatalog.h"
 
 // SUMMIT_COMMAND_HOTKEYS_V17
 // SUMMIT_COMMAND_HOTKEYS_SAFETY_V17_1
@@ -6,6 +7,8 @@
 #include <algorithm>
 #include <cstdio>
 #include <string>
+#include <vector>
+#include <cstdlib>
 
 #include "systems/configuration/client/Settings.h"
 #include "content/v1/localization/content/LocalizationRuntime.h"
@@ -63,6 +66,7 @@ SettingsWindow::SettingsWindow(UIId id)
     BuildGeneralPage();
     BuildLootPage();
     BuildCommandsPage();
+    BuildGMPage();
     Layout();
     ReloadFromRuntime();
     SetActiveTab(SettingsTab::Video);
@@ -89,6 +93,10 @@ void SettingsWindow::BuildChrome()
     auto& commands = AddChild<Button>(707, "Comandos");
     commands.SetOnClick([this](const UIEvent&) { SetActiveTab(SettingsTab::Commands); });
     commandsTab_ = &commands;
+
+    auto& gmTab = AddChild<Button>(708, "GM");
+    gmTab.SetOnClick([this](const UIEvent&) { SetActiveTab(SettingsTab::GM); RefreshGMPage(); });
+    gmTab_ = &gmTab;
 
     auto& close = AddChild<Button>(704, "X");
     close.SetOnClick([this](const UIEvent&) { if (onClose_) onClose_(); });
@@ -329,6 +337,354 @@ void SettingsWindow::RefreshCommandPage()
         commandLabels_[i]->SetText((*list)[i]);
 }
 
+// SUMMIT 355 — clicavel, mas sem substituir autorizacao do servidor.
+void SettingsWindow::SetGmBridge(SecurityProvider security, GmDispatch dispatch, NameProvider names)
+{
+    gmSecurity_ = std::move(security);
+    gmDispatch_ = std::move(dispatch);
+    gmNames_ = std::move(names);
+}
+
+void SettingsWindow::BuildGMPage()
+{
+    auto& page = AddChild<Container>(880);
+    gmPage_ = &page;
+    static const char* sections[] = {"Acesso / Testes", "Moderator 2+", "Game Master 3+", "Admin 4+"};
+    for (int i=0;i<4;++i) {
+        auto& b=page.AddChild<Button>(881+i,sections[i]);
+        b.SetBounds({12+i*169,9,160,28});
+        b.SetOnClick([this,i](const UIEvent&){SelectGMGroup(i);});
+        gmGroups_[static_cast<size_t>(i)]=&b;
+    }
+    for(int i=0;i<10;++i) {
+        auto& b=page.AddChild<Button>(890+i,"");
+        b.SetBounds({12,45+i*30,258,27});
+        b.SetOnClick([this,i](const UIEvent&){ChooseGMListEntry(i);});
+        gmCommands_[static_cast<size_t>(i)]=&b;
+    }
+    auto& previous=page.AddChild<Button>(902,"< Anterior");
+    previous.SetBounds({12,349,120,27});
+    previous.SetOnClick([this](const UIEvent&){if(gmPickerField_>=0){if(gmPickerPage_>0)--gmPickerPage_;else if(gmPickerStage_>0){gmPickerStage_=0;gmPickerPrefix_.clear();}}else if(gmPageIndex_>0){--gmPageIndex_;SelectGMCommand(-1);}RefreshGMPage();});
+    gmPrevious_=&previous;
+    auto& next=page.AddChild<Button>(903,"Seguinte >");
+    next.SetBounds({150,349,120,27});
+    next.SetOnClick([this](const UIEvent&){if(gmPickerField_>=0)++gmPickerPage_;else{++gmPageIndex_;SelectGMCommand(-1);}RefreshGMPage();});
+    gmNext_=&next;
+    auto& title=page.AddChild<Label>(904,""); title.SetBounds({280,43,405,26});
+    title.SetStyle(TextStyle{UITheme::Text,true,TextAlign::Left}); gmTitle_=&title;
+    auto& hint=page.AddChild<Label>(905,""); hint.SetBounds({280,72,405,26});
+    hint.SetStyle(TextStyle{UITheme::TextMuted,false,TextAlign::Left});gmHint_=&hint;
+    auto& permission=page.AddChild<Label>(906,"");permission.SetBounds({280,98,405,26});
+    permission.SetStyle(TextStyle{UITheme::TextMuted,false,TextAlign::Left});gmPermission_=&permission;
+    for(int i=0;i<3;++i){
+        const int y=148+i*60;
+        auto& label=page.AddChild<Label>(910+i,"");label.SetBounds({280,y-19,350,18});
+        label.SetStyle(TextStyle{UITheme::TextMuted,false,TextAlign::Left});
+        gmFieldLabels_[static_cast<size_t>(i)]=&label;
+        auto& b=page.AddChild<Button>(914+i,"");b.SetBounds({280,y,290,29});
+        b.SetOnClick([this,i](const UIEvent&){CycleGMField(i);});
+        gmFields_[static_cast<size_t>(i)]=&b;
+        auto& edit=page.AddChild<Button>(918+i,"Editar");edit.SetBounds({575,y,111,29});
+        edit.SetOnClick([this,i](const UIEvent&){EditGMField(i);});
+        gmEditButtons_[static_cast<size_t>(i)]=&edit;
+    }
+    auto& preview=page.AddChild<Label>(922,"");preview.SetBounds({280,327,405,19});
+    preview.SetStyle(TextStyle{UITheme::TextMuted,false,TextAlign::Left});gmPreview_=&preview;
+    auto& execute=page.AddChild<Button>(923,"Executar");execute.SetBounds({280,350,406,29});
+    execute.SetOnClick([this](const UIEvent&){ExecuteGM();});gmExecute_=&execute;
+    auto& feedback=page.AddChild<Label>(924,"");feedback.SetBounds({12,382,678,19});
+    feedback.SetStyle(TextStyle{UITheme::TextMuted,false,TextAlign::Left});gmFeedback_=&feedback;
+    SelectGMGroup(0);
+}
+
+std::vector<std::string> SettingsWindow::GMOptions(gm::Arg arg) const
+{
+    using gm::Arg;
+    std::vector<std::string> options;
+    if (gm::Optional(arg)) options.emplace_back("(omitir)");
+    if(arg==Arg::Player || arg==Arg::OptionalPlayer) {
+        if(gmNames_) {
+            for(const std::string& n:gmNames_())
+                if(!n.empty() && std::find(options.begin(),options.end(),n)==options.end()) options.push_back(n);
+        }
+    }
+    if(arg==Arg::Item) {const auto& v=gm::ItemSuggestions();options.insert(options.end(),v.begin(),v.end());return options;}
+    if(arg==Arg::Monster) {const auto& v=gm::MonsterSuggestions();options.insert(options.end(),v.begin(),v.end());return options;}
+    const char* values="";
+    switch(arg) {
+        case Arg::Level: values="1,10,20,40,60,80,90,100,110,120,130,140,150";break;
+        case Arg::Days: values="-30,-7,-1,0,1,7,15,30";break;
+        case Arg::Minutes: case Arg::OptionalMinutes: values="1,5,10,15,30,60,120,180";break;
+        case Arg::Seconds: values="0,1,3,5,10,30,60";break;
+        case Arg::Amount: values="1,10,100,1000,10000,100000,1000000";break;
+        case Arg::Quantity: case Arg::OptionalQuantity: values="1,2,3,5,8,10,12";break;
+        case Arg::OptionalMonsterCount: values="0,1,2,5,10,15,20";break;
+        case Arg::PotionCount: values="2,10,20,50,100,200,300";break;
+        case Arg::BossMinute: values="0,5,10,15,20,30,45,59";break;
+        case Arg::Permil: values="0,10,50,100,250,500,750,1000";break;
+        case Arg::Job: values="1,2,3,4,5,6,7,8";break;
+        case Arg::Number: values="0,1,2,3,5,10,20,30,50,100";break;
+        case Arg::OptionalMode: values="0,1,2";break;
+        case Arg::Id: case Arg::OptionalId: case Arg::Code: case Arg::OptionalCode: values="0,1,2,3,10,100";break;
+        default: break;
+    }
+    std::string s=values;
+    size_t begin=0;
+    while(begin<s.size()) {
+        const size_t end=s.find(',',begin);
+        options.emplace_back(s.substr(begin,end==std::string::npos?std::string::npos:end-begin));
+        if(end==std::string::npos)break;
+        begin=end+1;
+    }
+    return options;
+}
+
+void SettingsWindow::SelectGMGroup(int group)
+{
+    gmGroup_=std::clamp(group,0,3);
+    gmPageIndex_=0;
+    gmPickerField_=-1;
+    gmStatus_.clear();
+    SelectGMCommand(-1);
+    RefreshGMPage();
+}
+
+void SettingsWindow::SelectGMCommand(int index)
+{
+    gmSelected_=index;
+    gmEditing_=-1;
+    gmConfirmArmed_=false;
+    gmValues_={};
+    gmTyped_={};
+    gmPickerField_=-1;
+    gmPickerPage_=0;
+    gmPickerStage_=0;
+    gmPickerPrefix_.clear();
+    gmStatus_.clear();
+    if(index>=0){
+        const auto& cmd=gm::Catalog()[static_cast<size_t>(index)];
+        for(int i=0;i<3;++i){
+            const auto v=GMOptions(cmd.args[static_cast<size_t>(i)]);
+            // Nenhuma acao perigosa arranca com valores arbitrarios preselecionados.
+            if(gm::Optional(cmd.args[static_cast<size_t>(i)]))gmValues_[static_cast<size_t>(i)]="(omitir)";
+        }
+    }
+    RefreshGMPage();
+}
+
+std::vector<std::string> SettingsWindow::GMPickerOptions() const
+{
+    if(gmPickerField_<0 || gmSelected_<0)return {};
+    const auto& cmd=gm::Catalog()[static_cast<size_t>(gmSelected_)];
+    const auto kind=cmd.args[static_cast<size_t>(gmPickerField_)];
+    std::vector<std::string> values=GMOptions(kind);
+    const bool category=(kind==gm::Arg::Item || kind==gm::Arg::Monster);
+    if(gmPickerStage_==0 && category) {
+        std::vector<std::string> prefixes;
+        const size_t chars=kind==gm::Arg::Item?2:1;
+        for(const auto& v:values) {
+            if(v.empty())continue;
+            const std::string prefix=v.substr(0,chars);
+            if(std::find(prefixes.begin(),prefixes.end(),prefix)==prefixes.end())prefixes.push_back(prefix);
+        }
+        return prefixes;
+    }
+    if(gmPickerStage_>0 && !gmPickerPrefix_.empty()) {
+        values.erase(std::remove_if(values.begin(),values.end(),[this](const std::string& v){
+            return v.compare(0,gmPickerPrefix_.size(),gmPickerPrefix_)!=0;
+        }),values.end());
+    }
+    if(gmTyped_[static_cast<size_t>(gmPickerField_)] && !gmValues_[static_cast<size_t>(gmPickerField_)].empty()) {
+        const std::string query=gmValues_[static_cast<size_t>(gmPickerField_)];
+        values.erase(std::remove_if(values.begin(),values.end(),[&query](const std::string& v){
+            return v.find(query)==std::string::npos;
+        }),values.end());
+    }
+    return values;
+}
+
+void SettingsWindow::ChooseGMListEntry(int index)
+{
+    if(index<0 || index>=10)return;
+    if(gmPickerField_<0){
+        int position=0;
+        for(size_t j=0;j<gm::Catalog().size();++j){
+            if(gm::Catalog()[j].group!=gmGroup_)continue;
+            if(position++==gmPageIndex_*10+index){SelectGMCommand(static_cast<int>(j));return;}
+        }
+        return;
+    }
+    const auto options=GMPickerOptions();
+    const int offset=gmPickerPage_*10+index;
+    if(offset>=static_cast<int>(options.size()))return;
+    const auto& cmd=gm::Catalog()[static_cast<size_t>(gmSelected_)];
+    const auto kind=cmd.args[static_cast<size_t>(gmPickerField_)];
+    if(gmPickerStage_==0 && (kind==gm::Arg::Item || kind==gm::Arg::Monster)) {
+        gmPickerPrefix_=options[static_cast<size_t>(offset)];
+        gmPickerStage_=1;
+        gmPickerPage_=0;
+        RefreshGMPage();
+        return;
+    }
+    gmValues_[static_cast<size_t>(gmPickerField_)]=options[static_cast<size_t>(offset)];
+    gmTyped_[static_cast<size_t>(gmPickerField_)]=false;
+    gmPickerField_=-1;
+    gmPickerPage_=0;
+    gmPickerPrefix_.clear();
+    gmPickerStage_=0;
+    gmConfirmArmed_=false;
+    gmStatus_="Opcao selecionada; podes executar ou alterar parametros";
+    RefreshGMPage();
+}
+
+void SettingsWindow::CycleGMField(int index)
+{
+    if(gmSelected_<0 || index<0 || index>=3)return;
+    const auto& cmd=gm::Catalog()[static_cast<size_t>(gmSelected_)];
+    if(cmd.args[static_cast<size_t>(index)]==gm::Arg::Secret ||
+       cmd.args[static_cast<size_t>(index)]==gm::Arg::Message ||
+       cmd.args[static_cast<size_t>(index)]==gm::Arg::Account ||
+       cmd.args[static_cast<size_t>(index)]==gm::Arg::OptionalText) {
+        EditGMField(index);return;
+    }
+    gmPickerField_=index;
+    gmPickerPage_=0;
+    gmPickerStage_=0;
+    gmPickerPrefix_.clear();
+    gmEditing_=-1;
+    gmStatus_="Escolhe uma opcao na lista a esquerda (ou clica Digitar)";
+    gmConfirmArmed_=false;
+    RefreshGMPage();
+}
+
+void SettingsWindow::EditGMField(int index)
+{
+    if(gmSelected_<0 || index<0 || index>=3)return;
+    const auto& cmd=gm::Catalog()[static_cast<size_t>(gmSelected_)];
+    if(cmd.args[static_cast<size_t>(index)]==gm::Arg::None)return;
+    if((gmSecurity_?gmSecurity_():0)<cmd.level)return;
+    gmEditing_=index;
+    gmPickerField_=-1;
+    gmValues_[static_cast<size_t>(index)].clear();
+    gmTyped_[static_cast<size_t>(index)]=true;
+    gmStatus_="A escrever: Enter confirma, Esc cancela, Backspace apaga";
+    gmConfirmArmed_=false;RefreshGMPage();
+}
+
+void SettingsWindow::ResetGmTransient()
+{
+    gmEditing_=-1;
+    gmPickerField_=-1;
+    gmConfirmArmed_=false;
+    gmStatus_.clear();
+    if(gmSelected_>=0 && gm::Catalog()[static_cast<size_t>(gmSelected_)].args[0]==gm::Arg::Secret)
+        gmValues_[0].clear();
+}
+
+bool SettingsWindow::HandleGmKey(std::uint32_t key)
+{
+    if(!EditingGmField())return false;
+    if(key==13 || key==27) {
+        if(key==27)gmValues_[static_cast<size_t>(gmEditing_)].clear();
+        gmEditing_=-1;gmStatus_=key==13?"Campo atualizado":"Edicao cancelada";
+        RefreshGMPage();return true;
+    }
+    if(key==8) {auto& value=gmValues_[static_cast<size_t>(gmEditing_)];if(!value.empty())value.pop_back();RefreshGMPage();return true;}
+    return true; // consumir qualquer tecla enquanto se edita (sem atalhos do mundo)
+}
+
+bool SettingsWindow::HandleGmChar(std::uint32_t ch)
+{
+    if(!EditingGmField())return false;
+    if(ch==8 || ch==13 || ch==27)return true;
+    if(ch>=32 && ch<127) {
+        auto& value=gmValues_[static_cast<size_t>(gmEditing_)];
+        if(value.size()<74)value.push_back(static_cast<char>(ch));
+        RefreshGMPage();
+    }
+    return true;
+}
+
+void SettingsWindow::ExecuteGM()
+{
+    if(gmSelected_<0 || !gmDispatch_)return;
+    const auto& cmd=gm::Catalog()[static_cast<size_t>(gmSelected_)];
+    const int level=gmSecurity_?gmSecurity_():0;
+    if(level<cmd.level) {gmStatus_="Sem autorizacao GM suficiente";RefreshGMPage();return;}
+    if(gmEditing_>=0){gmStatus_="Confirma primeiro o campo com Enter";RefreshGMPage();return;}
+    std::string message;
+    if(!gm::Build(cmd,gmValues_,message)) {gmStatus_="Seleciona ou edita todos os parametros obrigatorios";gmConfirmArmed_=false;RefreshGMPage();return;}
+    if(cmd.confirm && !gmConfirmArmed_) {gmConfirmArmed_=true;gmStatus_="Confirmar: clica EXECUTAR novamente";RefreshGMPage();return;}
+    // Evitar conservar credenciais em estado de UI, mesmo se a rede recusar envio.
+    gmConfirmArmed_=false;
+    const bool ok=gmDispatch_(message,cmd.local);
+    if(cmd.args[0]==gm::Arg::Secret) gmValues_[0].clear();
+    gmStatus_=ok ? "Comando entregue ao fluxo do jogo; aguarda resposta" : "Comando nao executado / envio recusado";
+    RefreshGMPage();
+}
+
+void SettingsWindow::RefreshGMPage()
+{
+    if(!gmPage_)return;
+    const int level=gmSecurity_?gmSecurity_():0;
+    int shown=0,total=0;
+    if(gmPickerField_>=0){
+        const auto choices=GMPickerOptions();
+        total=static_cast<int>(choices.size());
+        for(int i=gmPickerPage_*10;i<total && shown<10;++i) {
+            auto* b=gmCommands_[static_cast<size_t>(shown++)];
+            b->SetVisible(true);b->SetText(choices[static_cast<size_t>(i)]);b->SetSelected(false);
+        }
+        gmPrevious_->SetText(gmPickerPage_==0 && gmPickerStage_>0?"< Categorias":"< Anterior");
+    } else {
+        for(size_t j=0;j<gm::Catalog().size();++j){
+            const auto& c=gm::Catalog()[j];
+            if(c.group!=gmGroup_)continue;
+            if(total>=gmPageIndex_*10 && shown<10){
+                auto* b=gmCommands_[static_cast<size_t>(shown)];
+                b->SetVisible(true);b->SetText(std::string(c.label)+(level<c.level?" [bloqueado]":""));
+                b->SetSelected(gmSelected_==static_cast<int>(j));
+                ++shown;
+            }
+            ++total;
+        }
+        gmPrevious_->SetText("< Anterior");
+    }
+    for(int i=shown;i<10;++i)gmCommands_[static_cast<size_t>(i)]->SetVisible(false);
+    const int page=gmPickerField_>=0?gmPickerPage_:gmPageIndex_;
+    gmPrevious_->SetEnabled(page>0 || (gmPickerField_>=0 && gmPickerStage_>0));
+    gmNext_->SetEnabled((page+1)*10<total);
+    for(int i=0;i<4;++i)gmGroups_[static_cast<size_t>(i)]->SetSelected(i==gmGroup_);
+    const bool selected=gmSelected_>=0;
+    const gm::Command* c=selected?&gm::Catalog()[static_cast<size_t>(gmSelected_)]:nullptr;
+    gmTitle_->SetText(c?c->label:"Seleciona um comando");
+    gmHint_->SetText(c?c->hint:"Escolhe categoria e comando, depois os parametros");
+    gmPermission_->SetText(c?"Requer security "+std::to_string(c->level)+"  |  Atual: "+std::to_string(level):"Comandos GM continuam validados pelo servidor");
+    for(int i=0;i<3;++i){
+        const gm::Arg arg=c?c->args[static_cast<size_t>(i)]:gm::Arg::None;
+        const bool visible=arg!=gm::Arg::None;
+        gmFieldLabels_[static_cast<size_t>(i)]->SetVisible(visible);
+        gmFields_[static_cast<size_t>(i)]->SetVisible(visible);
+        gmEditButtons_[static_cast<size_t>(i)]->SetVisible(visible);
+        if(!visible)continue;
+        gmFieldLabels_[static_cast<size_t>(i)]->SetText(gm::ArgLabel(arg));
+        const auto& v=gmValues_[static_cast<size_t>(i)];
+        gmFields_[static_cast<size_t>(i)]->SetText(arg==gm::Arg::Secret?(v.empty()?"[escrever senha]":"********"):(v.empty()?"[escolher / editar]":v));
+        gmFields_[static_cast<size_t>(i)]->SetEnabled(level>=c->level);
+        gmEditButtons_[static_cast<size_t>(i)]->SetEnabled(level>=c->level);
+        gmEditButtons_[static_cast<size_t>(i)]->SetText(i==gmEditing_?"A escrever...":"Digitar");
+    }
+    gmExecute_->SetEnabled(c && level>=c->level);
+    gmExecute_->SetText(gmConfirmArmed_?"CONFIRMAR execucao":"Executar comando");
+    std::string preview;
+    if(c){
+        if(c->args[0]==gm::Arg::Secret)preview="Pre-visualizacao: /ativar [senha oculta]";
+        else if(!gm::Build(*c,gmValues_,preview)) preview="Faltam parametros obrigatorios";
+    }
+    gmPreview_->SetText(preview);
+    gmFeedback_->SetText(gmStatus_.empty()?"Parametros: clica para alternar; Digitar para editar valores livres.":gmStatus_);
+}
+
 void SettingsWindow::Layout()
 {
     const Rect bounds = Bounds();
@@ -337,6 +693,7 @@ void SettingsWindow::Layout()
     generalTab_->SetBounds({246, 40, 110, 30});
     lootTab_->SetBounds({362, 40, 110, 30});
     commandsTab_->SetBounds({478, 40, 110, 30});
+    gmTab_->SetBounds({594, 40, 110, 30});
     closeButton_->SetBounds({bounds.width - 42, 5, 30, 24});
 
     const Rect pageBounds{8, kPageTop, bounds.width - 16, kFooterTop - kPageTop - 6};
@@ -345,6 +702,7 @@ void SettingsWindow::Layout()
     generalPage_->SetBounds(pageBounds);
     lootPage_->SetBounds(pageBounds);
     commandsPage_->SetBounds(pageBounds);
+    gmPage_->SetBounds(pageBounds);
 
     resetButton_->SetBounds({bounds.width - 226, kFooterTop, 100, 30});
     saveButton_->SetBounds({bounds.width - 118, kFooterTop, 100, 30});
@@ -369,15 +727,19 @@ void SettingsWindow::SetActiveTab(SettingsTab tab)
     generalPage_->SetVisible(tab == SettingsTab::General);
     lootPage_->SetVisible(tab == SettingsTab::Loot);
     commandsPage_->SetVisible(tab == SettingsTab::Commands);
+    gmPage_->SetVisible(tab == SettingsTab::GM);
     videoTab_->SetSelected(tab == SettingsTab::Video);
     audioTab_->SetSelected(tab == SettingsTab::Audio);
     generalTab_->SetSelected(tab == SettingsTab::General);
     lootTab_->SetSelected(tab == SettingsTab::Loot);
     commandsTab_->SetSelected(tab == SettingsTab::Commands);
+    gmTab_->SetSelected(tab == SettingsTab::GM);
+    if (tab != SettingsTab::GM) { gmEditing_ = -1; gmConfirmArmed_ = false; if (gmSelected_ >= 0 && gm::Catalog()[static_cast<size_t>(gmSelected_)].args[0] == gm::Arg::Secret) gmValues_[0].clear(); }
 }
 
 void SettingsWindow::ReloadFromRuntime()
 {
+    ResetGmTransient();
     state_.windowed = SETTINGSHANDLER->getWindowMode();
     state_.autoAdjust = SETTINGSHANDLER->getAutoAdjust();
     state_.startMaximized = SETTINGSHANDLER->getStartMaximized();

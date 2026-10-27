@@ -186,6 +186,7 @@ void cCOINSHOP_T::SetSection(int iID)
 	SetButtonSelection(iID);
 
 	CurrentSection = iID;
+	CurrentPage = 0;
 	SelectBox(0);
 
 	if (!vItemBox[iID - 1].size())
@@ -239,7 +240,7 @@ void cCOINSHOP_T::RecvItemFromServer(smTRANS_SHOPDATA * lpTransShopData)
 		}
 	}
 
-	PageCount[Section] = vItemBox[Section].size() / 12;
+	PageCount[Section] = vItemBox[Section].empty() ? 0 : (vItemBox[Section].size() - 1) / 12;
 	/*if(vItemBox[Section].size() % 12)
 		PageCount[Section]++;*/
 

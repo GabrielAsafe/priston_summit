@@ -15,6 +15,9 @@ bool HandleMainHudHotkeys();
 // SUMMIT_PATCH_214_GM_WARP_LIST_V2_DECL
 void ToggleGMWarpListWindow();
 void ToggleSettingsWindow();
+// SUMMIT 355: captura exclusivamente enquanto se edita um parametro GM.
+bool HandleGMEditorKey(unsigned int key);
+bool HandleGMEditorChar(unsigned int character);
 bool OpenGuideWindow();
 bool OpenSocialWindow();
 bool OpenFriendsWindow();

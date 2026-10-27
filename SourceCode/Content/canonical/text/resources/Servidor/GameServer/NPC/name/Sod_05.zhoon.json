@@ -10,8 +10,8 @@
   ],
   "source": {
     "legacy_path": "Servidor/GameServer/NPC/name/Sod_05.zhoon",
-    "legacy_sha256": "7b1858173875d83852937e04f31cc0e60bf45183f4760d7e53097f87628899b5",
-    "legacy_size": 163
+    "legacy_sha256": "963308671943da39e0d3d1663e8979ce91b560c78ca8dfe3e2c38ccb0820a9c0",
+    "legacy_size": 167
   },
   "semantic": {
     "entries": [
@@ -19,7 +19,7 @@
         "line": 4,
         "legacy_key": "J_Name",
         "kind": "name",
-        "text": "Most,Rankings"
+        "text": "Secretaria Karina"
       },
       {
         "line": 7,
@@ -43,6 +43,6 @@
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly9Tb2RfMDUuTlBDDQoNCg0KKkpfTmFtZQkiTW9zdCxSYW5raW5ncyINCg0KDQoqSl9DaGF0CSJPbOEsIEFxdWkgRXN0428gYSBsaXN0YSBkb3MgbWVsaG9yZXMuIg0KDQoqSl9DaGF0CSJFbSBxdWUgcG9zc28gbGhlIGFqdWRhcj8iDQoNCipKX0NoYXQJIk9s4SBUdWRvIEJlbT8iDQoNCg=="
+    "legacy_payload_base64": "Ly9Tb2RfMDUuTlBDDQoNCg0KKkpfTmFtZQkiU2VjcmV0YXJpYSBLYXJpbmEiDQoNCg0KKkpfQ2hhdAkiT2zhLCBBcXVpIEVzdONvIGEgbGlzdGEgZG9zIG1lbGhvcmVzLiINCg0KKkpfQ2hhdAkiRW0gcXVlIHBvc3NvIGxoZSBhanVkYXI/Ig0KDQoqSl9DaGF0CSJPbOEgVHVkbyBCZW0/Ig0KDQo="
   }
 }

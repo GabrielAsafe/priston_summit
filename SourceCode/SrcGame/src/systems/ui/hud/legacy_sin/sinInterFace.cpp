@@ -1981,6 +1981,27 @@ char InputSecretCode[256];
 char sinBuff[256];
 int  ResetQuset3Flag = 0;
 
+// SUMMIT 355: /level e /Levelup partilham a mesma aplicacao local.
+// Nao enviar estes dois comandos ao servidor como chat: historicamente
+// eram executados no cliente, com SaveGameData e CheckLevel.
+extern cCHARSTATUS cCharStatus;
+bool SummitApplyGMLevel(int desiredLevel)
+{
+    if (smConfig.getSecurity() < AccountTypes::SEC_MODERATOR || !sinChar ||
+        desiredLevel < 1 || desiredLevel > CHAR_LEVEL_MAX)
+        return false;
+    CheckCharForm();
+    sinChar->Level = desiredLevel;
+    SetExp64(sinChar, ExpLevelTable[desiredLevel - 1]);
+    CodeXorCharInfo_Exp();
+    ReformCharForm();
+    SendPlayUpdateInfo();
+    SaveGameData();
+    cCharStatus.CheckLevel();
+    SendChatMessageToServer("SUMMIT_DEV: level atualizado por comando GM.");
+    return true;
+}
+
 void cINTERFACE::KeyDown()
 {
 
@@ -2228,26 +2249,7 @@ void cINTERFACE::KeyDown()
 				extern cCHARSTATUS cCharStatus;
 				if(lstrcmpi(sinTestBuff5, "/level") == 0 || lstrcmpi(sinTestBuff5, "/Levelup") == 0)
 				{
-					if(sinTestBuff6[0] && smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR)
-					{
-						int iDevLevel = atoi(sinTestBuff6);
-
-						if(iDevLevel >= 1 && iDevLevel <= CHAR_LEVEL_MAX)
-						{
-							CheckCharForm();
-							sinChar->Level = iDevLevel;
-							SetExp64(sinChar, ExpLevelTable[iDevLevel - 1]);
-							CodeXorCharInfo_Exp();
-
-							ReformCharForm();
-							SendPlayUpdateInfo();
-							SaveGameData();
-							cCharStatus.CheckLevel();
-
-							SendChatMessageToServer("SUMMIT_DEV: level atualizado por comando GM.");
-						}
-					}
-
+					if(sinTestBuff6[0]) SummitApplyGMLevel(atoi(sinTestBuff6));
 					memset(sinTestBuff5, 0, sizeof(sinTestBuff5));
 					memset(sinTestBuff6, 0, sizeof(sinTestBuff6));
 					memset(sinBuff, 0, sizeof(sinBuff));

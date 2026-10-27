@@ -57,8 +57,10 @@ extern int CustomField;
 #include "systems/ui/v2/widgets/Panel.h"
 #include "systems/ui/v2/windows/CharacterWindow.h"
 #include "systems/ui/v2/windows/SettingsWindow.h"
+#include "systems/network/client/netplay.h"
 
 extern int SetChatingLine(char* szMessage);
+extern bool SummitApplyGMLevel(int desiredLevel);
 // PATCH 220: restart state flags are defined in sinInterFace.cpp.
 extern int CheckExpFlag;
 extern int CheckExpFlag2;
@@ -692,8 +694,40 @@ void BuildSettingsWindow()
     auto window = std::make_unique<SettingsWindow>(210);
     settingsWindow = window.get();
     settingsWindow->SetViewport(WinSizeX, WinSizeY);
+    // SUMMIT 355: reutiliza autorizacao e parser reais; nao ha bypass de security.
+    settingsWindow->SetGmBridge(
+        []() -> int { return GameMode == 2 ? static_cast<int>(smConfig.getSecurity()) : 0; },
+        [](const std::string& command, bool local) -> bool {
+            if (GameMode != 2 || !lpCurPlayer || command.empty() || command.size() > 88)
+                return false;
+            if (local) {
+                const size_t space = command.find(' ');
+                if(space==std::string::npos) return false;
+                const std::string action=command.substr(0,space);
+                if(action!="/level" && action!="/Levelup") return false;
+                const int level=std::atoi(command.c_str()+space+1);
+                return SummitApplyGMLevel(level);
+            }
+            char message[256] = {};
+            std::memcpy(message, command.c_str(), command.size());
+            return SendChatMessageToServer(message) != 0;
+        },
+        []() -> std::vector<std::string> {
+            std::vector<std::string> names;
+            if(GameMode != 2 || !lpCurPlayer) return names;
+            const char* self=lpCurPlayer->smCharInfo.szName;
+            if(self && self[0])names.emplace_back(self);
+            for(int i=0;i<OTHER_PLAYER_MAX && names.size()<128;++i) {
+                const smCHAR& other=chrOtherPlayer[i];
+                if(!other.Flag || !other.dwObjectSerial || !other.smCharInfo.szName[0]) continue;
+                const std::string name(other.smCharInfo.szName);
+                if(std::find(names.begin(),names.end(),name)==names.end()) names.push_back(name);
+            }
+            return names;
+        });
     settingsWindow->SetOnClose([]()
     {
+        if(settingsWindow)settingsWindow->ResetGmTransient();
         runtime.Windows().Close(SettingsWindowId);
     });
     runtime.Windows().Register(SettingsWindowId, std::move(window), UIWindowLayer::NormalWindow);
@@ -1255,6 +1289,18 @@ void ToggleGMWarpListWindow()
 #endif
 }
 
+bool HandleGMEditorKey(unsigned int key)
+{
+    if(!runtime.IsInitialized() || !settingsWindow || !runtime.Windows().IsOpen(SettingsWindowId))return false;
+    return settingsWindow->HandleGmKey(key);
+}
+
+bool HandleGMEditorChar(unsigned int character)
+{
+    if(!runtime.IsInitialized() || !settingsWindow || !runtime.Windows().IsOpen(SettingsWindowId))return false;
+    return settingsWindow->HandleGmChar(character);
+}
+
 void ToggleSettingsWindow()
 {
     if (!runtime.IsInitialized() || !settingsWindow)
@@ -1262,6 +1308,7 @@ void ToggleSettingsWindow()
 
     if (runtime.Windows().IsOpen(SettingsWindowId))
     {
+        settingsWindow->ResetGmTransient();
         runtime.Windows().Close(SettingsWindowId);
         return;
     }

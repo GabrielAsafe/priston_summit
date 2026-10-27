@@ -966,6 +966,7 @@ LRESULT CALLBACK EditWndProc01(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 	case WM_KEYDOWN:
 
 
+
 #ifdef	_IME_ACTIVE
 		IMETest.GetInfoPerTime();
 #endif
@@ -1369,6 +1370,10 @@ switch (messg)
 
 
 	case WM_KEYDOWN:
+		// SUMMIT 355: capturar teclas de edicao GM antes dos atalhos do chat e Escape.
+		if (ui::v2::legacy::HandleGMEditorKey(static_cast<unsigned int>(wParam)))
+			return TRUE;
+
 
 
 
@@ -2224,6 +2229,8 @@ switch (messg)
 	}
 			
 	case WM_CHAR:
+        if (ui::v2::legacy::HandleGMEditorChar(static_cast<unsigned int>(wParam)))
+            return TRUE;
 		if (wParam == 0x0D || wParam == 0x0A || (GameMode == 2 && wParam == VK_TAB)) return TRUE;
 		if (lpCurPlayer && smConfig.getSecurity() < AccountTypes::SEC_MODERATOR && wParam == 22 && lpCurPlayer->szChatMessage[0]) return TRUE;
 
@@ -5565,7 +5572,6 @@ DWORD GameWindowMessage(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 
 
 	case WM_KEYDOWN:
-
 		if (GameMode == 2)
 		{
 
