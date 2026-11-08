@@ -1,0 +1,183 @@
+{
+  "schema": "summit.item-visuals/v1",
+  "items": [
+    {
+      "code": "CA871",
+      "id": "0x02116800",
+      "kind": "costume",
+      "slot": 14,
+      "icon": "image/Sinimage/Items/Defense/itCA871.BMP",
+      "dropModel": "image/Sinimage/Items/DropItem/itca871.smd",
+      "equippedModels": {
+        "fighter": "char/tmABCD/CA871_FS.smd",
+        "mechanician": "char/tmABCD/CA871_MS.smd",
+        "pikeman": "char/tmABCD/CA871_PS.smd",
+        "knight": "char/tmABCD/CA871_KS.smd",
+        "magician": "char/tmABCD/CA871_MG.smd",
+        "shaman": "char/tmABCD/CA871_XM.smd"
+      }
+    },
+    {
+      "code": "CA872",
+      "id": "0x02116900",
+      "kind": "costume",
+      "slot": 14,
+      "icon": "image/Sinimage/Items/Defense/itCA872.BMP",
+      "dropModel": "image/Sinimage/Items/DropItem/itca872.smd",
+      "equippedModels": {
+        "archer": "char/tmABCD/CA872_AS.smd",
+        "atalanta": "char/tmABCD/CA872_AT.smd",
+        "priestess": "char/tmABCD/CA872_SC.smd",
+        "assassin": "char/tmABCD/CA872_SS.smd"
+      }
+    },
+    {
+      "code": "CA873",
+      "id": "0x02116A00",
+      "kind": "costume",
+      "slot": 14,
+      "icon": "image/Sinimage/Items/Defense/itCA873.BMP",
+      "dropModel": "image/Sinimage/Items/DropItem/itca873.smd",
+      "equippedModels": {
+        "fighter": "char/tmABCD/CA873_FS.smd",
+        "mechanician": "char/tmABCD/CA873_MS.smd",
+        "pikeman": "char/tmABCD/CA873_PS.smd",
+        "knight": "char/tmABCD/CA873_KS.smd",
+        "magician": "char/tmABCD/CA873_MG.smd",
+        "shaman": "char/tmABCD/CA873_XM.smd"
+      }
+    },
+    {
+      "code": "CA874",
+      "id": "0x02116B00",
+      "kind": "costume",
+      "slot": 14,
+      "icon": "image/Sinimage/Items/Defense/itCA874.BMP",
+      "dropModel": "image/Sinimage/Items/DropItem/itca874.smd",
+      "equippedModels": {
+        "archer": "char/tmABCD/CA874_AS.smd",
+        "atalanta": "char/tmABCD/CA874_AT.smd",
+        "priestess": "char/tmABCD/CA874_SC.smd",
+        "assassin": "char/tmABCD/CA874_SS.smd"
+      }
+    },
+    {
+      "code": "CA115",
+      "id": "0x02105F00",
+      "kind": "costume",
+      "slot": 14,
+      "equippedModels": {
+        "fighter": "char/tmABCD/CtmbB11.smd",
+        "mechanician": "char/tmABCD/CtmbA11.smd",
+        "archer": "char/tmABCD/CtfbD11.smd",
+        "pikeman": "char/tmABCD/CtmbC11.smd",
+        "atalanta": "char/tmABCD/CmfbB11.smd",
+        "knight": "char/tmABCD/CmmbA11.smd",
+        "magician": "char/tmABCD/CmmbD11.smd",
+        "priestess": "char/tmABCD/CmfbC11.smd",
+        "assassin": "char/tmABCD/CtfbE11.smd",
+        "shaman": "char/tmABCD/CmmbE11.smd"
+      },
+      "equippedConfigs": {
+        "fighter": "char/tmABCD/Cb011.ini",
+        "mechanician": "char/tmABCD/Ca011.ini",
+        "archer": "char/tmABCD/Cd011.ini",
+        "pikeman": "char/tmABCD/Cc011.ini",
+        "atalanta": "char/tmABCD/Cmb011.ini",
+        "knight": "char/tmABCD/Cma011.ini",
+        "magician": "char/tmABCD/Cmd011.ini",
+        "priestess": "char/tmABCD/Cmc011.ini",
+        "assassin": "char/tmABCD/Ce011.ini",
+        "shaman": "char/tmABCD/Cme011.ini"
+      },
+      "visual_policy": "Candidate: same visual by class for both historic item identities; shop eligibility unchanged"
+    },
+    {
+      "code": "CA715",
+      "id": "0x02115F00",
+      "kind": "costume",
+      "slot": 14,
+      "equippedModels": {
+        "fighter": "char/tmABCD/CtmbB11.smd",
+        "mechanician": "char/tmABCD/CtmbA11.smd",
+        "archer": "char/tmABCD/CtfbD11.smd",
+        "pikeman": "char/tmABCD/CtmbC11.smd",
+        "atalanta": "char/tmABCD/CmfbB11.smd",
+        "knight": "char/tmABCD/CmmbA11.smd",
+        "magician": "char/tmABCD/CmmbD11.smd",
+        "priestess": "char/tmABCD/CmfbC11.smd",
+        "assassin": "char/tmABCD/CtfbE11.smd",
+        "shaman": "char/tmABCD/CmmbE11.smd"
+      },
+      "equippedConfigs": {
+        "fighter": "char/tmABCD/Cb011.ini",
+        "mechanician": "char/tmABCD/Ca011.ini",
+        "archer": "char/tmABCD/Cd011.ini",
+        "pikeman": "char/tmABCD/Cc011.ini",
+        "atalanta": "char/tmABCD/Cmb011.ini",
+        "knight": "char/tmABCD/Cma011.ini",
+        "magician": "char/tmABCD/Cmd011.ini",
+        "priestess": "char/tmABCD/Cmc011.ini",
+        "assassin": "char/tmABCD/Ce011.ini",
+        "shaman": "char/tmABCD/Cme011.ini"
+      },
+      "visual_policy": "Candidate: same visual by class for both historic item identities; shop eligibility unchanged"
+    },
+    {
+      "code": "DA147",
+      "id": "0x02013F00",
+      "kind": "costume",
+      "slot": 14,
+      "equippedModels": {
+        "fighter": "char/tmABCD/StylishUniform.smd",
+        "mechanician": "char/tmABCD/StylishUniform.smd",
+        "archer": "char/tmABCD/StylishUniform.smd",
+        "pikeman": "char/tmABCD/StylishUniform.smd",
+        "atalanta": "char/tmABCD/StylishUniform.smd",
+        "knight": "char/tmABCD/StylishUniform.smd",
+        "assassin": "char/tmABCD/StylishUniform.smd"
+      },
+      "equippedConfigs": {
+        "fighter": "char/tmABCD/StylishUniform_Fighter.ini",
+        "mechanician": "char/tmABCD/StylishUniform_Fighter.ini",
+        "archer": "char/tmABCD/StylishUniform_M2.ini",
+        "pikeman": "char/tmABCD/StylishUniform_M4.ini",
+        "atalanta": "char/tmABCD/StylishUniform_M2.ini",
+        "knight": "char/tmABCD/StylishUniform_Fighter.ini",
+        "assassin": "char/tmABCD/StylishUniform_M6.ini"
+      },
+      "equippedGroups": {
+        "fighter": "fig_pa_01body",
+        "mechanician": "fig_pa_01body",
+        "archer": "fig_pa_01body",
+        "pikeman": "fig_pa_01body",
+        "atalanta": "fig_pa_01body",
+        "knight": "fig_pa_01body",
+        "assassin": "fig_pa_01body"
+      },
+      "visual_policy": "Candidate per original CharOnlySetItem caster/non-caster eligibility; no gender/shop rule changes; skeleton runtime pending"
+    },
+    {
+      "code": "DA247",
+      "id": "0x02053F00",
+      "kind": "costume",
+      "slot": 14,
+      "equippedModels": {
+        "magician": "char/tmABCD/StylishUniform.smd",
+        "priestess": "char/tmABCD/StylishUniform.smd",
+        "shaman": "char/tmABCD/StylishUniform.smd"
+      },
+      "equippedConfigs": {
+        "magician": "char/tmABCD/StylishUniform_M3.ini",
+        "priestess": "char/tmABCD/StylishUniform_M5.ini",
+        "shaman": "char/tmABCD/StylishUniform_M7.ini"
+      },
+      "equippedGroups": {
+        "magician": "fig_pa_01body",
+        "priestess": "fig_pa_01body",
+        "shaman": "fig_pa_01body"
+      },
+      "visual_policy": "Candidate per original CharOnlySetItem caster/non-caster eligibility; no gender/shop rule changes; skeleton runtime pending"
+    }
+  ]
+}

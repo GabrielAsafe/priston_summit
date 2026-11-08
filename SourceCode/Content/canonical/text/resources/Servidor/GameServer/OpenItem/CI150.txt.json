@@ -1,0 +1,127 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "item.ci150",
+  "kind": "open_item_definition",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/CI150.txt",
+    "GameServer/OpenItem/CI150.txt"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/CI150.txt",
+    "legacy_sha256": "fa5408e599fdfc258165cb8850a6ea57b9fa7a09eb1edb079f63882eb551d6cd",
+    "legacy_size": 198
+  },
+  "semantic": {
+    "fields": {
+      "code": "CI150",
+      "name": "Essência Primordial",
+      "english_name": "Essência Primordial",
+      "weight": 1,
+      "price": 0,
+      "linked_file": "Name\\CI150.zhoon"
+    },
+    "directives": [
+      {
+        "line": 2,
+        "key": "code",
+        "legacy_token": "*코드",
+        "legacy_token_hex": "2ac4dab5e5",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          "CI150"
+        ],
+        "raw_values_hex": [
+          "4349313530"
+        ],
+        "quoted": [
+          true
+        ]
+      },
+      {
+        "line": 5,
+        "key": "name",
+        "legacy_token": "*이름",
+        "legacy_token_hex": "2ac0ccb8a7",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          "Essência Primordial"
+        ],
+        "raw_values_hex": [
+          "457373ea6e636961205072696d6f726469616c"
+        ],
+        "quoted": [
+          true
+        ]
+      },
+      {
+        "line": 8,
+        "key": "english_name",
+        "legacy_token": "*Name",
+        "legacy_token_hex": "2a4e616d65",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          "Essência Primordial"
+        ],
+        "raw_values_hex": [
+          "457373ea6e636961205072696d6f726469616c"
+        ],
+        "quoted": [
+          true
+        ]
+      },
+      {
+        "line": 11,
+        "key": "weight",
+        "legacy_token": "*무게",
+        "legacy_token_hex": "2ab9abb0d4",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          1
+        ],
+        "raw_values_hex": [
+          "31"
+        ]
+      },
+      {
+        "line": 14,
+        "key": "price",
+        "legacy_token": "*가격",
+        "legacy_token_hex": "2ab0a1b0dd",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          0
+        ],
+        "raw_values_hex": [
+          "30"
+        ]
+      },
+      {
+        "line": 17,
+        "key": "linked_file",
+        "legacy_token": "*연결파일",
+        "legacy_token_hex": "2abfacb0e1c6c4c0cf",
+        "loader_status": "supported_mapped",
+        "values": [
+          "Name\\CI150.zhoon"
+        ],
+        "raw_values_hex": [
+          "4e616d655c43493135302e7a686f6f6e"
+        ],
+        "quoted": [
+          true
+        ]
+      }
+    ],
+    "unknown_tokens": {}
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9JRA0KKsTateUgIkNJMTUwIg0KDQovL0tvcmVhbiBOYW1lDQoqwMy4pyAiRXNz6m5jaWEgUHJpbW9yZGlhbCINCg0KLy9FbmdsaXNoIE5hbWUNCipOYW1lICJFc3PqbmNpYSBQcmltb3JkaWFsIg0KDQovL1dlaWdodA0KKrmrsNQgMQ0KDQovL1ByaWNlDQoqsKGw3SAwDQoNCi8vTmFtZSBGaWxlDQoqv6yw4cbEwM8gIk5hbWVcQ0kxNTAuemhvb24i"
+  },
+  "runtime_profiles": [
+    "client",
+    "server"
+  ]
+}

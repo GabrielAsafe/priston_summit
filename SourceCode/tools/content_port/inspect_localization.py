@@ -2,9 +2,10 @@
 from __future__ import annotations
 import argparse, hashlib, json, struct
 from pathlib import Path
+from sres_embedded_localization import extract_sloc_bytes
 MAGIC=b'SLOC'; HEADER=struct.Struct('<4sHH10I32s'); RECORD=struct.Struct('<5I')
 def main():
- ap=argparse.ArgumentParser(); ap.add_argument('pack',type=Path); a=ap.parse_args(); data=a.pack.read_bytes()
+ ap=argparse.ArgumentParser(); ap.add_argument('pack',type=Path); a=ap.parse_args(); data=extract_sloc_bytes(a.pack) if a.pack.suffix.lower()=='.sres' else a.pack.read_bytes()
  if len(data)<HEADER.size: raise SystemExit('SLOC too small')
  h=HEADER.unpack_from(data); magic,ver,flags=h[:3]; vals=h[3:13]; digest=h[13]
  rc,ro,rs,so,ss,z0,z1,z2,z3,z4=vals

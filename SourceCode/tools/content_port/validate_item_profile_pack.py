@@ -9,6 +9,7 @@ import struct
 from pathlib import Path
 
 from item_profile_policy import effective_profile_codes,item_enabled_for_profile,load_open_item_documents
+from client_profile_map_383a import verify_client_snapshot_383a  # SUMMIT383A_VALIDATE_CLIENT_JSON
 
 HEADER = struct.Struct('<4sHH10I32s')
 RECORD = struct.Struct('<5I')
@@ -123,6 +124,8 @@ def load_profile(path: Path, source_root: Path) -> tuple[dict, set[str]]:
     actual = sha256(src)
     if actual != expected:
         raise ValueError(f'profile source hash is stale: {src}')
+    if doc.get('profile') == 'client' and rel == 'Content/canonical/item_profiles/client_item_code_map.json':
+        verify_client_snapshot_383a(doc, source_root, src)
     return doc, codes
 
 

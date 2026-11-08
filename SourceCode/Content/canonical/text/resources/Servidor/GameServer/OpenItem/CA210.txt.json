@@ -16,7 +16,7 @@
   "semantic": {
     "fields": {
       "name": "Vampire Costume (F)",
-      "code": "CA209",
+      "code": "CA210",
       "weight": 1,
       "absorb": 10.0,
       "defence": 350,
@@ -49,10 +49,10 @@
         "legacy_token_hex": "2ac4dab5e5",
         "loader_status": "not_consumed_by_active_loader",
         "values": [
-          "CA209"
+          "CA210"
         ],
         "raw_values_hex": [
-          "4341323039"
+          "4341323130"
         ],
         "quoted": [
           true

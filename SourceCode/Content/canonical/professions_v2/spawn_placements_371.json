@@ -1,0 +1,123 @@
+{
+  "schema": "summit.professions-visual-placements/v1",
+  "policy": "DISABLED_UNTIL_REAL_COORDINATES_AND_EXPLICIT_PUBLISH",
+  "existing_nodes_preserved": [
+    910001,
+    910002,
+    910003,
+    910004
+  ],
+  "preview_optional": "--preview-map58: mineiro 910001 -> raw_ore_crystalline; arvore 910003 -> common_logs (materiais SQLite; items fisicos legacy iguais)",
+  "nodes": [
+    {
+      "node_id": 920001,
+      "family_id": "vein_crystalline",
+      "enabled": false,
+      "map_id": null,
+      "x": null,
+      "y": null,
+      "z": null,
+      "interaction_radius": 160,
+      "respawn_ms": 30000
+    },
+    {
+      "node_id": 920002,
+      "family_id": "vein_energetic",
+      "enabled": false,
+      "map_id": null,
+      "x": null,
+      "y": null,
+      "z": null,
+      "interaction_radius": 160,
+      "respawn_ms": 30000
+    },
+    {
+      "node_id": 920003,
+      "family_id": "vein_deep",
+      "enabled": false,
+      "map_id": null,
+      "x": null,
+      "y": null,
+      "z": null,
+      "interaction_radius": 160,
+      "respawn_ms": 30000
+    },
+    {
+      "node_id": 920004,
+      "family_id": "vein_arcane",
+      "enabled": false,
+      "map_id": null,
+      "x": null,
+      "y": null,
+      "z": null,
+      "interaction_radius": 160,
+      "respawn_ms": 30000
+    },
+    {
+      "node_id": 920005,
+      "family_id": "vein_runic",
+      "enabled": false,
+      "map_id": null,
+      "x": null,
+      "y": null,
+      "z": null,
+      "interaction_radius": 160,
+      "respawn_ms": 30000
+    },
+    {
+      "node_id": 920006,
+      "family_id": "vein_primordial",
+      "enabled": false,
+      "map_id": null,
+      "x": null,
+      "y": null,
+      "z": null,
+      "interaction_radius": 160,
+      "respawn_ms": 30000
+    },
+    {
+      "node_id": 920007,
+      "family_id": "tree_oak",
+      "enabled": false,
+      "map_id": null,
+      "x": null,
+      "y": null,
+      "z": null,
+      "interaction_radius": 160,
+      "respawn_ms": 30000
+    },
+    {
+      "node_id": 920008,
+      "family_id": "tree_ironwood",
+      "enabled": false,
+      "map_id": null,
+      "x": null,
+      "y": null,
+      "z": null,
+      "interaction_radius": 160,
+      "respawn_ms": 30000
+    },
+    {
+      "node_id": 920009,
+      "family_id": "tree_crystal_tree",
+      "enabled": false,
+      "map_id": null,
+      "x": null,
+      "y": null,
+      "z": null,
+      "interaction_radius": 160,
+      "respawn_ms": 30000
+    },
+    {
+      "node_id": 920010,
+      "family_id": "tree_arcane_tree",
+      "enabled": false,
+      "map_id": null,
+      "x": null,
+      "y": null,
+      "z": null,
+      "interaction_radius": 160,
+      "respawn_ms": 30000
+    }
+  ]
+}

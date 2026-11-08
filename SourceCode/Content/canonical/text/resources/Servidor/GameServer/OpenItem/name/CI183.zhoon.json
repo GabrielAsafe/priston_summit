@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.ci183",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/CI183.zhoon",
+    "GameServer/OpenItem/name/CI183.zhoon"
+  ],
+  "source": {
+    "migration_status": "native_canonical_generated",
+    "generated_from": "item.ci183",
+    "generated_by": "SUMMIT467A"
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 1,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "Catalisador de Encantamento"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "KkpfTkFNRSAiQ2F0YWxpc2Fkb3IgZGUgRW5jYW50YW1lbnRvIg=="
+  }
+}

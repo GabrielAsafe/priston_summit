@@ -33,14 +33,22 @@ gathering::HarvestResult HarvestMiningNodeForPlayer(PlayerId playerId,
 
     static MiningInteractionService interaction(ServerMiningService());
     gathering::HarvestResult result = interaction.Harvest(actor, nodeId, nowMilliseconds, roll);
-    if (result.Succeeded() &&
-        gathering::ServerGatheringRepository().AddInventory(actor.playerName, result.resourceKey, result.amount))
+    if (!result.Succeeded()) return result;
+    int summitHarvestXP=0;
+    if (!gathering::ServerGatheringRepository().AddHarvestBundle(actor.playerName,
+        result.resourceKey, result.amount, roll, 1, summitHarvestXP))
     {
-        // Trial policy: one Miner XP per successful, persisted harvest.
-        // Covenant yield modifiers must not multiply profession XP.
-        (void)professions::ServerProfessionService().AddExperience(
-            actor.playerName, professions::ProfessionType::Miner, 1u);
+        // Fail closed: do not tell the player the ore was obtained, and allow
+        // another harvest once the DB recovers. Never award profession XP.
+        ServerMiningService().Gathering().ResetNode(nodeId);
+        result.status = gathering::HarvestStatus::PersistenceFailed;
+        result.amount = 0;
+        return result;
     }
+    // Only saved resources can earn XP. We keep rewards and level progression
+    // separate; a failed XP write must never undo an already persisted resource.
+    (void)professions::ServerProfessionService().AddExperience(
+        actor.playerName, professions::ProfessionType::Miner, static_cast<std::uint64_t>(summitHarvestXP));
     return result;
 }
 }

@@ -113,22 +113,88 @@ bool SQLiteGatheringRepository::AddInventory(const std::string& playerKey,
     if (!OpenDb(db)) return false;
     char player[256], resource[128];
     CopyText(player,sizeof(player),playerKey); CopyText(resource,sizeof(resource),resourceKey);
-    int current = 0;
-    bool ok = db->Prepare("SELECT Quantity FROM GatheringPlayerInventory WHERE PlayerKey=? AND ResourceKey=?") &&
-              db->BindInputParameter(player,1,PARAMTYPE_String) &&
-              db->BindInputParameter(resource,2,PARAMTYPE_String) && db->Execute(false);
-    if (ok && db->NextRow())
-        ok = db->GetData(&current,sizeof(current),1,PARAMTYPE_Integer) != FALSE;
-    if (!ok) { db->Close(); return false; }
-    int next = current + amount;
-    ok = db->Prepare(
-        "INSERT OR REPLACE INTO GatheringPlayerInventory(PlayerKey,ResourceKey,Quantity,UpdatedAt) "
-        "VALUES(?,?,?,datetime('now','localtime'))") &&
+    // One atomic SQLite UPSERT. A SELECT+INSERT OR REPLACE could overwrite
+    // another concurrently completed harvest with an obsolete quantity.
+    const bool wrote = db->Prepare(
+        "INSERT INTO GatheringPlayerInventory(PlayerKey,ResourceKey,Quantity,UpdatedAt) "
+        "VALUES(?,?,?,datetime('now','localtime')) "
+        "ON CONFLICT(PlayerKey,ResourceKey) DO UPDATE SET "
+        "Quantity=Quantity+excluded.Quantity, "
+        "UpdatedAt=excluded.UpdatedAt "
+        "WHERE Quantity>=0 AND "
+        "Quantity<=2147483647-excluded.Quantity") &&
         db->BindInputParameter(player,1,PARAMTYPE_String) &&
         db->BindInputParameter(resource,2,PARAMTYPE_String) &&
-        db->BindInputParameter((void*)&next,3,PARAMTYPE_Integer) && db->Execute(false);
+        db->BindInputParameter(&amount,3,PARAMTYPE_Integer) && db->Execute(false);
+    int changed = 0;
+    const bool ok = wrote && db->Prepare("SELECT changes()") &&
+        db->Execute(false) && db->NextRow() &&
+        ReadInt(*db,1,changed) && changed == 1;
     db->Close();
     return ok;
+}
+
+
+// 372A: one SQLite transaction for the main material plus optional weighted
+// secondary materials. Never perform a DAT write or award XP before commit.
+bool SQLiteGatheringRepository::AddHarvestBundle(const std::string& playerKey,
+    const std::string& resourceKey, int amount, std::uint32_t roll,
+    int defaultXP, int& experienceAward)
+{
+    experienceAward = 0;
+    if (playerKey.empty() || playerKey.size() > 255 || resourceKey.empty() ||
+        resourceKey.size() > 127 || amount <= 0 || amount > 1000000) return false;
+    std::shared_ptr<SQLConnection> db;
+    if (!OpenDb(db) || !db->BeginTransaction()) return false;
+    struct Drop { std::string key; int amount; };
+    std::vector<Drop> drops;
+    drops.push_back(Drop{resourceKey,amount});
+    char resource[128]={0},player[256]={0};
+    CopyText(resource,sizeof(resource),resourceKey);
+    CopyText(player,sizeof(player),playerKey);
+    int xp=defaultXP;
+    bool ok = db->Prepare("SELECT XP FROM GatheringXP378 WHERE ResourceKey=? AND Enabled=1") &&
+              db->BindInputParameter(resource,1,PARAMTYPE_String) && db->Execute(false);
+    if (ok && db->NextRow()) ok = ReadInt(*db,1,xp);
+    if (ok) ok = db->Prepare(
+        "SELECT ExtraResourceKey,ChancePer10000,MinAmount,MaxAmount "
+        "FROM GatheringBonusDrop378 WHERE PrimaryResourceKey=? AND Enabled=1 ORDER BY ExtraResourceKey") &&
+        db->BindInputParameter(resource,1,PARAMTYPE_String) && db->Execute(false);
+    std::uint32_t selector=roll;
+    while (ok && db->NextRow())
+    {
+        std::string key; int chance=0,minAmount=0,maxAmount=0;
+        ok=ReadText(*db,1,key) && ReadInt(*db,2,chance) &&
+            ReadInt(*db,3,minAmount) && ReadInt(*db,4,maxAmount);
+        if (!ok || key.empty() || key.size() > 127 || chance < 0 || chance > 10000 ||
+            minAmount <= 0 || maxAmount < minAmount || maxAmount > 100) { ok=false;break; }
+        selector=selector*1664525u+1013904223u;
+        if (selector % 10000u < static_cast<std::uint32_t>(chance))
+        {
+            selector=selector*1664525u+1013904223u;
+            drops.push_back(Drop{key,minAmount+static_cast<int>(selector %
+                static_cast<std::uint32_t>(maxAmount-minAmount+1))});
+        }
+        if(drops.size() > 16) {ok=false;break;}
+    }
+    for (std::size_t i=0;ok && i<drops.size();++i)
+    {
+        char key[128]={0};CopyText(key,sizeof(key),drops[i].key);
+        int count=drops[i].amount;
+        ok=db->Prepare("INSERT INTO GatheringPlayerInventory(PlayerKey,ResourceKey,Quantity,UpdatedAt) "
+            "VALUES(?,?,?,datetime('now')) ON CONFLICT(PlayerKey,ResourceKey) DO UPDATE SET "
+            "Quantity=Quantity+excluded.Quantity,UpdatedAt=excluded.UpdatedAt "
+            "WHERE Quantity>=0 AND Quantity<=2147483647-excluded.Quantity") &&
+           db->BindInputParameter(player,1,PARAMTYPE_String) &&
+           db->BindInputParameter(key,2,PARAMTYPE_String) &&
+           db->BindInputParameter(&count,3,PARAMTYPE_Integer) && db->Execute(false);
+        int changed=0;
+        if(ok) ok=db->Prepare("SELECT changes()") && db->Execute(false) &&
+            db->NextRow() && ReadInt(*db,1,changed) && changed==1;
+    }
+    if (ok && xp>=0 && xp<=1000 && db->CommitTransaction())
+    { db->Close(); experienceAward=xp; return true; }
+    (void)db->RollbackTransaction();db->Close();return false;
 }
 
 bool SQLiteGatheringRepository::GetInventory(const std::string& playerKey,

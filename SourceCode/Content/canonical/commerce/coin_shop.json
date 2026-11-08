@@ -403,6 +403,26 @@
         "code": "RS108",
         "section": 7,
         "price": 200
+      },
+      {
+        "code": "CA871",
+        "section": 3,
+        "price": 1
+      },
+      {
+        "code": "CA872",
+        "section": 3,
+        "price": 1
+      },
+      {
+        "code": "CA873",
+        "section": 3,
+        "price": 1
+      },
+      {
+        "code": "CA874",
+        "section": 3,
+        "price": 1
       }
     ],
     "time": [

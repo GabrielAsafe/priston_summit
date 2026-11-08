@@ -1,0 +1,7269 @@
+{
+  "schema": "summit.item-code-map/v1",
+  "entries": [
+    {
+      "code": "BC102",
+      "numeric": "0x080A0200"
+    },
+    {
+      "code": "BC103",
+      "numeric": "0x080A0300"
+    },
+    {
+      "code": "BC104",
+      "numeric": "0x080A0400"
+    },
+    {
+      "code": "BC105",
+      "numeric": "0x080A0500"
+    },
+    {
+      "code": "BC106",
+      "numeric": "0x080A0600"
+    },
+    {
+      "code": "BC107",
+      "numeric": "0x080A0700"
+    },
+    {
+      "code": "BC108",
+      "numeric": "0x080A0800"
+    },
+    {
+      "code": "BC109",
+      "numeric": "0x080A0900"
+    },
+    {
+      "code": "BC110",
+      "numeric": "0x080A0A00"
+    },
+    {
+      "code": "BC111",
+      "numeric": "0x080A0B00"
+    },
+    {
+      "code": "BC112",
+      "numeric": "0x080A0C00"
+    },
+    {
+      "code": "BC113",
+      "numeric": "0x080A0D00"
+    },
+    {
+      "code": "BC114",
+      "numeric": "0x080A0E00"
+    },
+    {
+      "code": "BC115",
+      "numeric": "0x080A0F00"
+    },
+    {
+      "code": "BC116",
+      "numeric": "0x080A1000"
+    },
+    {
+      "code": "BC117",
+      "numeric": "0x080A1100"
+    },
+    {
+      "code": "BC118",
+      "numeric": "0x080A1200"
+    },
+    {
+      "code": "BC121",
+      "numeric": "0x080A1500"
+    },
+    {
+      "code": "BC122",
+      "numeric": "0x080A1600"
+    },
+    {
+      "code": "BC123",
+      "numeric": "0x080A1700"
+    },
+    {
+      "code": "BC124",
+      "numeric": "0x080A1800"
+    },
+    {
+      "code": "BC125",
+      "numeric": "0x080A1900"
+    },
+    {
+      "code": "BC126",
+      "numeric": "0x080A2A00"
+    },
+    {
+      "code": "BC127",
+      "numeric": "0x080A2B00"
+    },
+    {
+      "code": "BC128",
+      "numeric": "0x080A2C00"
+    },
+    {
+      "code": "BC129",
+      "numeric": "0x080A2D00"
+    },
+    {
+      "code": "BC130",
+      "numeric": "0x080A2E00"
+    },
+    {
+      "code": "BC131",
+      "numeric": "0x080A2F00"
+    },
+    {
+      "code": "BC132",
+      "numeric": "0x080A3000"
+    },
+    {
+      "code": "BC133",
+      "numeric": "0x080A3100"
+    },
+    {
+      "code": "BI101",
+      "numeric": "0x080B0100"
+    },
+    {
+      "code": "BI102",
+      "numeric": "0x080B0200"
+    },
+    {
+      "code": "BI103",
+      "numeric": "0x080B0300"
+    },
+    {
+      "code": "BI104",
+      "numeric": "0x080B0400"
+    },
+    {
+      "code": "BI105",
+      "numeric": "0x080B0500"
+    },
+    {
+      "code": "BI106",
+      "numeric": "0x080B0600"
+    },
+    {
+      "code": "BI107",
+      "numeric": "0x080B0700"
+    },
+    {
+      "code": "BI108",
+      "numeric": "0x080B0800"
+    },
+    {
+      "code": "BI109",
+      "numeric": "0x080B0900"
+    },
+    {
+      "code": "BI110",
+      "numeric": "0x080B0A00"
+    },
+    {
+      "code": "BI111",
+      "numeric": "0x080B0B00"
+    },
+    {
+      "code": "BI112",
+      "numeric": "0x080B0C00"
+    },
+    {
+      "code": "BI113",
+      "numeric": "0x080B0D00"
+    },
+    {
+      "code": "BI114",
+      "numeric": "0x080B0E00"
+    },
+    {
+      "code": "BI115",
+      "numeric": "0x080B0F00"
+    },
+    {
+      "code": "BI116",
+      "numeric": "0x080B1000"
+    },
+    {
+      "code": "BI117",
+      "numeric": "0x080B1100"
+    },
+    {
+      "code": "BI118",
+      "numeric": "0x080B1200"
+    },
+    {
+      "code": "BI119",
+      "numeric": "0x080B1300"
+    },
+    {
+      "code": "BI120",
+      "numeric": "0x080B1400"
+    },
+    {
+      "code": "BI121",
+      "numeric": "0x080B1500"
+    },
+    {
+      "code": "BI122",
+      "numeric": "0x080B1600"
+    },
+    {
+      "code": "BI123",
+      "numeric": "0x080B1700"
+    },
+    {
+      "code": "BI124",
+      "numeric": "0x080B1800"
+    },
+    {
+      "code": "BI125",
+      "numeric": "0x080B1900"
+    },
+    {
+      "code": "BI126",
+      "numeric": "0x080B2A00"
+    },
+    {
+      "code": "BI127",
+      "numeric": "0x080B2B00"
+    },
+    {
+      "code": "BI128",
+      "numeric": "0x080B2C00"
+    },
+    {
+      "code": "BI129",
+      "numeric": "0x080B2D00"
+    },
+    {
+      "code": "BI130",
+      "numeric": "0x080B2E00"
+    },
+    {
+      "code": "BI131",
+      "numeric": "0x080B2F00"
+    },
+    {
+      "code": "BI132",
+      "numeric": "0x080B3000"
+    },
+    {
+      "code": "BI133",
+      "numeric": "0x080B3100"
+    },
+    {
+      "code": "BI134",
+      "numeric": "0x080B3200"
+    },
+    {
+      "code": "BI136",
+      "numeric": "0x080B3400"
+    },
+    {
+      "code": "BI137",
+      "numeric": "0x080B3500"
+    },
+    {
+      "code": "BI138",
+      "numeric": "0x080B3600"
+    },
+    {
+      "code": "BI139",
+      "numeric": "0x080B3700"
+    },
+    {
+      "code": "BI140",
+      "numeric": "0x080B3800"
+    },
+    {
+      "code": "BI141",
+      "numeric": "0x080B3900"
+    },
+    {
+      "code": "BI142",
+      "numeric": "0x080B3A00"
+    },
+    {
+      "code": "BI143",
+      "numeric": "0x080B3B00"
+    },
+    {
+      "code": "BI144",
+      "numeric": "0x080B3C00"
+    },
+    {
+      "code": "BI145",
+      "numeric": "0x080B3D00"
+    },
+    {
+      "code": "BI146",
+      "numeric": "0x080B3E00"
+    },
+    {
+      "code": "BI147",
+      "numeric": "0x080B3F00"
+    },
+    {
+      "code": "BI148",
+      "numeric": "0x080B4000"
+    },
+    {
+      "code": "BI149",
+      "numeric": "0x080B4100"
+    },
+    {
+      "code": "BI150",
+      "numeric": "0x080B4200"
+    },
+    {
+      "code": "BI151",
+      "numeric": "0x080B4300"
+    },
+    {
+      "code": "BI152",
+      "numeric": "0x080B4400"
+    },
+    {
+      "code": "BI153",
+      "numeric": "0x080B4500"
+    },
+    {
+      "code": "BI154",
+      "numeric": "0x080B4600"
+    },
+    {
+      "code": "BI155",
+      "numeric": "0x080B4700"
+    },
+    {
+      "code": "BI156",
+      "numeric": "0x080B4800"
+    },
+    {
+      "code": "BI157",
+      "numeric": "0x080B4900"
+    },
+    {
+      "code": "BI158",
+      "numeric": "0x080B4A00"
+    },
+    {
+      "code": "BI160",
+      "numeric": "0x080B4C00"
+    },
+    {
+      "code": "BI161",
+      "numeric": "0x080B4D00"
+    },
+    {
+      "code": "BI162",
+      "numeric": "0x080B4E00"
+    },
+    {
+      "code": "BI163",
+      "numeric": "0x080B4F00"
+    },
+    {
+      "code": "BI164",
+      "numeric": "0x080B5000"
+    },
+    {
+      "code": "BI165",
+      "numeric": "0x080B5100"
+    },
+    {
+      "code": "BI166",
+      "numeric": "0x080B5200"
+    },
+    {
+      "code": "BI167",
+      "numeric": "0x080B5300"
+    },
+    {
+      "code": "BI168",
+      "numeric": "0x080B5400"
+    },
+    {
+      "code": "BI169",
+      "numeric": "0x080B5500"
+    },
+    {
+      "code": "BI170",
+      "numeric": "0x080B5600"
+    },
+    {
+      "code": "BI171",
+      "numeric": "0x080B5700"
+    },
+    {
+      "code": "BI172",
+      "numeric": "0x080B5800"
+    },
+    {
+      "code": "BI173",
+      "numeric": "0x080B5900"
+    },
+    {
+      "code": "BI174",
+      "numeric": "0x080B5A00"
+    },
+    {
+      "code": "BI175",
+      "numeric": "0x080B5B00"
+    },
+    {
+      "code": "BI176",
+      "numeric": "0x080B5C00"
+    },
+    {
+      "code": "BI177",
+      "numeric": "0x080B5D00"
+    },
+    {
+      "code": "BI178",
+      "numeric": "0x080B5E00"
+    },
+    {
+      "code": "BI179",
+      "numeric": "0x080B5F00"
+    },
+    {
+      "code": "BI180",
+      "numeric": "0x080B6000"
+    },
+    {
+      "code": "BI181",
+      "numeric": "0x080B6100"
+    },
+    {
+      "code": "BI182",
+      "numeric": "0x080B6200"
+    },
+    {
+      "code": "BI183",
+      "numeric": "0x080B6300"
+    },
+    {
+      "code": "BI184",
+      "numeric": "0x080B6400"
+    },
+    {
+      "code": "BI185",
+      "numeric": "0x080B6500"
+    },
+    {
+      "code": "BI186",
+      "numeric": "0x080B6600"
+    },
+    {
+      "code": "BI187",
+      "numeric": "0x080B6700"
+    },
+    {
+      "code": "BI188",
+      "numeric": "0x080B6800"
+    },
+    {
+      "code": "BI189",
+      "numeric": "0x080B6900"
+    },
+    {
+      "code": "BI190",
+      "numeric": "0x080B6A00"
+    },
+    {
+      "code": "BI191",
+      "numeric": "0x080B6B00"
+    },
+    {
+      "code": "BI192",
+      "numeric": "0x080B6C00"
+    },
+    {
+      "code": "BI193",
+      "numeric": "0x080B6D00"
+    },
+    {
+      "code": "BI194",
+      "numeric": "0x080B6E00"
+    },
+    {
+      "code": "BI195",
+      "numeric": "0x080B6F00"
+    },
+    {
+      "code": "BI196",
+      "numeric": "0x080B7000"
+    },
+    {
+      "code": "BI197",
+      "numeric": "0x080B7100"
+    },
+    {
+      "code": "BI198",
+      "numeric": "0x080B7200"
+    },
+    {
+      "code": "BI199",
+      "numeric": "0x080B7300"
+    },
+    {
+      "code": "BI200",
+      "numeric": "0x080C0000"
+    },
+    {
+      "code": "BI201",
+      "numeric": "0x080C0100"
+    },
+    {
+      "code": "BI202",
+      "numeric": "0x080C0200"
+    },
+    {
+      "code": "BI203",
+      "numeric": "0x080C0300"
+    },
+    {
+      "code": "BI204",
+      "numeric": "0x080C0400"
+    },
+    {
+      "code": "BI205",
+      "numeric": "0x080C0500"
+    },
+    {
+      "code": "BI206",
+      "numeric": "0x080C0600"
+    },
+    {
+      "code": "BI207",
+      "numeric": "0x080C0700"
+    },
+    {
+      "code": "BI208",
+      "numeric": "0x080C0800"
+    },
+    {
+      "code": "BI209",
+      "numeric": "0x080C0900"
+    },
+    {
+      "code": "BI210",
+      "numeric": "0x080C0A00"
+    },
+    {
+      "code": "BI211",
+      "numeric": "0x080C0B00"
+    },
+    {
+      "code": "BI212",
+      "numeric": "0x080C0C00"
+    },
+    {
+      "code": "BI213",
+      "numeric": "0x080C0D00"
+    },
+    {
+      "code": "BI214",
+      "numeric": "0x080C0E00"
+    },
+    {
+      "code": "BI215",
+      "numeric": "0x080C0F00"
+    },
+    {
+      "code": "BI216",
+      "numeric": "0x080C1000"
+    },
+    {
+      "code": "BI217",
+      "numeric": "0x080C1100"
+    },
+    {
+      "code": "BI218",
+      "numeric": "0x080C1200"
+    },
+    {
+      "code": "BI219",
+      "numeric": "0x080C1300"
+    },
+    {
+      "code": "BI220",
+      "numeric": "0x080C1400"
+    },
+    {
+      "code": "BI221",
+      "numeric": "0x080C1500"
+    },
+    {
+      "code": "BI222",
+      "numeric": "0x080C1600"
+    },
+    {
+      "code": "BI223",
+      "numeric": "0x080C1700"
+    },
+    {
+      "code": "BI224",
+      "numeric": "0x080C1800"
+    },
+    {
+      "code": "BI225",
+      "numeric": "0x080C1900"
+    },
+    {
+      "code": "BI226",
+      "numeric": "0x080C2A00"
+    },
+    {
+      "code": "BI227",
+      "numeric": "0x080C2B00"
+    },
+    {
+      "code": "BI228",
+      "numeric": "0x080C2C00"
+    },
+    {
+      "code": "BI229",
+      "numeric": "0x080C2D00"
+    },
+    {
+      "code": "BI230",
+      "numeric": "0x080C2E00"
+    },
+    {
+      "code": "BI231",
+      "numeric": "0x080C2F00"
+    },
+    {
+      "code": "BI232",
+      "numeric": "0x080C3000"
+    },
+    {
+      "code": "BI233",
+      "numeric": "0x080C3100"
+    },
+    {
+      "code": "BI234",
+      "numeric": "0x080C3200"
+    },
+    {
+      "code": "BI235",
+      "numeric": "0x080C3300"
+    },
+    {
+      "code": "BI236",
+      "numeric": "0x080C3400"
+    },
+    {
+      "code": "BI237",
+      "numeric": "0x080C3500"
+    },
+    {
+      "code": "BI238",
+      "numeric": "0x080C3600"
+    },
+    {
+      "code": "BI239",
+      "numeric": "0x080C3700"
+    },
+    {
+      "code": "BI240",
+      "numeric": "0x080C3800"
+    },
+    {
+      "code": "BI241",
+      "numeric": "0x080C3900"
+    },
+    {
+      "code": "BI242",
+      "numeric": "0x080C3A00"
+    },
+    {
+      "code": "BI243",
+      "numeric": "0x080C3B00"
+    },
+    {
+      "code": "BI244",
+      "numeric": "0x080C3C00"
+    },
+    {
+      "code": "BI245",
+      "numeric": "0x080C3D00"
+    },
+    {
+      "code": "BI246",
+      "numeric": "0x080C3E00"
+    },
+    {
+      "code": "BI247",
+      "numeric": "0x080C3F00"
+    },
+    {
+      "code": "BI248",
+      "numeric": "0x080C4000"
+    },
+    {
+      "code": "BI249",
+      "numeric": "0x080C4100"
+    },
+    {
+      "code": "BI250",
+      "numeric": "0x080C4200"
+    },
+    {
+      "code": "BI251",
+      "numeric": "0x080C4300"
+    },
+    {
+      "code": "BI252",
+      "numeric": "0x080C4400"
+    },
+    {
+      "code": "BI253",
+      "numeric": "0x080C4500"
+    },
+    {
+      "code": "BI254",
+      "numeric": "0x080C4600"
+    },
+    {
+      "code": "BI273",
+      "numeric": "0x080C5900"
+    },
+    {
+      "code": "BI283",
+      "numeric": "0x080C6300"
+    },
+    {
+      "code": "BI290",
+      "numeric": "0x080C6A00"
+    },
+    {
+      "code": "BI291",
+      "numeric": "0x080C6B00"
+    },
+    {
+      "code": "BI292",
+      "numeric": "0x080C6C00"
+    },
+    {
+      "code": "BI293",
+      "numeric": "0x080C6D00"
+    },
+    {
+      "code": "BI294",
+      "numeric": "0x080C6E00"
+    },
+    {
+      "code": "BI295",
+      "numeric": "0x080C6F00"
+    },
+    {
+      "code": "BI296",
+      "numeric": "0x080C7000"
+    },
+    {
+      "code": "BI299",
+      "numeric": "0x080C7300"
+    },
+    {
+      "code": "BI301",
+      "numeric": "0x080F0D00"
+    },
+    {
+      "code": "BI302",
+      "numeric": "0x080F0E00"
+    },
+    {
+      "code": "BI303",
+      "numeric": "0x080F0F00"
+    },
+    {
+      "code": "BI304",
+      "numeric": "0x080F1100"
+    },
+    {
+      "code": "BI305",
+      "numeric": "0x080F1200"
+    },
+    {
+      "code": "BI306",
+      "numeric": "0x080F1300"
+    },
+    {
+      "code": "BI307",
+      "numeric": "0x080F1400"
+    },
+    {
+      "code": "BI308",
+      "numeric": "0x080F1500"
+    },
+    {
+      "code": "BI309",
+      "numeric": "0x080F1600"
+    },
+    {
+      "code": "BI310",
+      "numeric": "0x080F1700"
+    },
+    {
+      "code": "BI311",
+      "numeric": "0x080F1800"
+    },
+    {
+      "code": "BI312",
+      "numeric": "0x080F1900"
+    },
+    {
+      "code": "BI313",
+      "numeric": "0x080F2A00"
+    },
+    {
+      "code": "BI314",
+      "numeric": "0x080F2B00"
+    },
+    {
+      "code": "BI315",
+      "numeric": "0x080F2C00"
+    },
+    {
+      "code": "BI316",
+      "numeric": "0x080F3000"
+    },
+    {
+      "code": "BI317",
+      "numeric": "0x080F3100"
+    },
+    {
+      "code": "BI318",
+      "numeric": "0x080F3200"
+    },
+    {
+      "code": "BI325",
+      "numeric": "0x080F1900"
+    },
+    {
+      "code": "BI330",
+      "numeric": "0x080F2E00"
+    },
+    {
+      "code": "BI331",
+      "numeric": "0x080F2F00"
+    },
+    {
+      "code": "BS101",
+      "numeric": "0x05020100"
+    },
+    {
+      "code": "BS102",
+      "numeric": "0x05020200"
+    },
+    {
+      "code": "BS103",
+      "numeric": "0x05020300"
+    },
+    {
+      "code": "CA101",
+      "numeric": "0x02105100"
+    },
+    {
+      "code": "CA102",
+      "numeric": "0x02105200"
+    },
+    {
+      "code": "CA103",
+      "numeric": "0x02105300"
+    },
+    {
+      "code": "CA104",
+      "numeric": "0x02105400"
+    },
+    {
+      "code": "CA105",
+      "numeric": "0x02105500"
+    },
+    {
+      "code": "CA106",
+      "numeric": "0x02105600"
+    },
+    {
+      "code": "CA107",
+      "numeric": "0x02105700"
+    },
+    {
+      "code": "CA108",
+      "numeric": "0x02105800"
+    },
+    {
+      "code": "CA109",
+      "numeric": "0x02105900"
+    },
+    {
+      "code": "CA110",
+      "numeric": "0x02105A00"
+    },
+    {
+      "code": "CA111",
+      "numeric": "0x02105B00"
+    },
+    {
+      "code": "CA112",
+      "numeric": "0x02105C00"
+    },
+    {
+      "code": "CA113",
+      "numeric": "0x02105D00"
+    },
+    {
+      "code": "CA114",
+      "numeric": "0x02105E00"
+    },
+    {
+      "code": "CA115",
+      "numeric": "0x02105F00"
+    },
+    {
+      "code": "CA116",
+      "numeric": "0x02106000"
+    },
+    {
+      "code": "CA117",
+      "numeric": "0x02106100"
+    },
+    {
+      "code": "CA118",
+      "numeric": "0x02106200"
+    },
+    {
+      "code": "CA119",
+      "numeric": "0x02106300"
+    },
+    {
+      "code": "CA120",
+      "numeric": "0x02106400"
+    },
+    {
+      "code": "CA121",
+      "numeric": "0x02106500"
+    },
+    {
+      "code": "CA122",
+      "numeric": "0x02106600"
+    },
+    {
+      "code": "CA123",
+      "numeric": "0x02106700"
+    },
+    {
+      "code": "CA131",
+      "numeric": "0x02062F00"
+    },
+    {
+      "code": "CA133",
+      "numeric": "0x02063100"
+    },
+    {
+      "code": "CA135",
+      "numeric": "0x02063300"
+    },
+    {
+      "code": "CA137",
+      "numeric": "0x02063500"
+    },
+    {
+      "code": "CA143",
+      "numeric": "0x02063B00"
+    },
+    {
+      "code": "CA145",
+      "numeric": "0x02063D00"
+    },
+    {
+      "code": "CA154",
+      "numeric": "0x02064600"
+    },
+    {
+      "code": "CA155",
+      "numeric": "0x02064700"
+    },
+    {
+      "code": "CA166",
+      "numeric": "0x02065200"
+    },
+    {
+      "code": "CA167",
+      "numeric": "0x02065300"
+    },
+    {
+      "code": "CA168",
+      "numeric": "0x02065400"
+    },
+    {
+      "code": "CA169",
+      "numeric": "0x02065500"
+    },
+    {
+      "code": "CA185",
+      "numeric": "0x02066500"
+    },
+    {
+      "code": "CA186",
+      "numeric": "0x02066600"
+    },
+    {
+      "code": "CA187",
+      "numeric": "0x02066700"
+    },
+    {
+      "code": "CA188",
+      "numeric": "0x02066800"
+    },
+    {
+      "code": "CA189",
+      "numeric": "0x02066900"
+    },
+    {
+      "code": "CA190",
+      "numeric": "0x02066A00"
+    },
+    {
+      "code": "CA191",
+      "numeric": "0x02066B00"
+    },
+    {
+      "code": "CA192",
+      "numeric": "0x02066C00"
+    },
+    {
+      "code": "CA193",
+      "numeric": "0x02066D00"
+    },
+    {
+      "code": "CA194",
+      "numeric": "0x02066E00"
+    },
+    {
+      "code": "CA195",
+      "numeric": "0x02066F00"
+    },
+    {
+      "code": "CA196",
+      "numeric": "0x02067000"
+    },
+    {
+      "code": "CA201",
+      "numeric": "0x02070100"
+    },
+    {
+      "code": "CA202",
+      "numeric": "0x02070200"
+    },
+    {
+      "code": "CA203",
+      "numeric": "0x02070300"
+    },
+    {
+      "code": "CA204",
+      "numeric": "0x02070400"
+    },
+    {
+      "code": "CA205",
+      "numeric": "0x02070500"
+    },
+    {
+      "code": "CA206",
+      "numeric": "0x02070600"
+    },
+    {
+      "code": "CA207",
+      "numeric": "0x02070700"
+    },
+    {
+      "code": "CA208",
+      "numeric": "0x02070800"
+    },
+    {
+      "code": "CA209",
+      "numeric": "0x02070900"
+    },
+    {
+      "code": "CA210",
+      "numeric": "0x02070A00"
+    },
+    {
+      "code": "CA212",
+      "numeric": "0x02070C00"
+    },
+    {
+      "code": "CA232",
+      "numeric": "0x02073000"
+    },
+    {
+      "code": "CA234",
+      "numeric": "0x02073200"
+    },
+    {
+      "code": "CA235",
+      "numeric": "0x02073300"
+    },
+    {
+      "code": "CA237",
+      "numeric": "0x02073500"
+    },
+    {
+      "code": "CA243",
+      "numeric": "0x02073B00"
+    },
+    {
+      "code": "CA245",
+      "numeric": "0x02073D00"
+    },
+    {
+      "code": "CA254",
+      "numeric": "0x02074600"
+    },
+    {
+      "code": "CA255",
+      "numeric": "0x02074700"
+    },
+    {
+      "code": "CA266",
+      "numeric": "0x02075200"
+    },
+    {
+      "code": "CA267",
+      "numeric": "0x02075300"
+    },
+    {
+      "code": "CA268",
+      "numeric": "0x02075400"
+    },
+    {
+      "code": "CA269",
+      "numeric": "0x02075500"
+    },
+    {
+      "code": "CA285",
+      "numeric": "0x02076500"
+    },
+    {
+      "code": "CA286",
+      "numeric": "0x02076600"
+    },
+    {
+      "code": "CA287",
+      "numeric": "0x02076700"
+    },
+    {
+      "code": "CA288",
+      "numeric": "0x02076800"
+    },
+    {
+      "code": "CA289",
+      "numeric": "0x02076900"
+    },
+    {
+      "code": "CA290",
+      "numeric": "0x02076A00"
+    },
+    {
+      "code": "CA291",
+      "numeric": "0x02076B00"
+    },
+    {
+      "code": "CA292",
+      "numeric": "0x02076C00"
+    },
+    {
+      "code": "CA293",
+      "numeric": "0x02076D00"
+    },
+    {
+      "code": "CA294",
+      "numeric": "0x02076E00"
+    },
+    {
+      "code": "CA295",
+      "numeric": "0x02076F00"
+    },
+    {
+      "code": "CA296",
+      "numeric": "0x02077000"
+    },
+    {
+      "code": "CA501",
+      "numeric": "0x02100100"
+    },
+    {
+      "code": "CA502",
+      "numeric": "0x02100200"
+    },
+    {
+      "code": "CA503",
+      "numeric": "0x02100300"
+    },
+    {
+      "code": "CA504",
+      "numeric": "0x02100400"
+    },
+    {
+      "code": "CA505",
+      "numeric": "0x02100500"
+    },
+    {
+      "code": "CA506",
+      "numeric": "0x02100600"
+    },
+    {
+      "code": "CA507",
+      "numeric": "0x02100700"
+    },
+    {
+      "code": "CA508",
+      "numeric": "0x02100800"
+    },
+    {
+      "code": "CA509",
+      "numeric": "0x02100900"
+    },
+    {
+      "code": "CA510",
+      "numeric": "0x02100A00"
+    },
+    {
+      "code": "CA511",
+      "numeric": "0x02100B00"
+    },
+    {
+      "code": "CA512",
+      "numeric": "0x02100C00"
+    },
+    {
+      "code": "CA515",
+      "numeric": "0x02100F00"
+    },
+    {
+      "code": "CA516",
+      "numeric": "0x02101000"
+    },
+    {
+      "code": "CA517",
+      "numeric": "0x02101100"
+    },
+    {
+      "code": "CA518",
+      "numeric": "0x02101200"
+    },
+    {
+      "code": "CA519",
+      "numeric": "0x02101300"
+    },
+    {
+      "code": "CA520",
+      "numeric": "0x02101400"
+    },
+    {
+      "code": "CA521",
+      "numeric": "0x02101500"
+    },
+    {
+      "code": "CA522",
+      "numeric": "0x02101600"
+    },
+    {
+      "code": "CA523",
+      "numeric": "0x02101700"
+    },
+    {
+      "code": "CA524",
+      "numeric": "0x02101800"
+    },
+    {
+      "code": "CA525",
+      "numeric": "0x02101900"
+    },
+    {
+      "code": "CA526",
+      "numeric": "0x02102A00"
+    },
+    {
+      "code": "CA527",
+      "numeric": "0x02102B00"
+    },
+    {
+      "code": "CA528",
+      "numeric": "0x02102C00"
+    },
+    {
+      "code": "CA531",
+      "numeric": "0x02102F00"
+    },
+    {
+      "code": "CA532",
+      "numeric": "0x02103000"
+    },
+    {
+      "code": "CA533",
+      "numeric": "0x02103100"
+    },
+    {
+      "code": "CA534",
+      "numeric": "0x02103200"
+    },
+    {
+      "code": "CA535",
+      "numeric": "0x02103300"
+    },
+    {
+      "code": "CA536",
+      "numeric": "0x02103400"
+    },
+    {
+      "code": "CA537",
+      "numeric": "0x02103500"
+    },
+    {
+      "code": "CA538",
+      "numeric": "0x02103600"
+    },
+    {
+      "code": "CA539",
+      "numeric": "0x02103700"
+    },
+    {
+      "code": "CA540",
+      "numeric": "0x02103800"
+    },
+    {
+      "code": "CA541",
+      "numeric": "0x02103900"
+    },
+    {
+      "code": "CA542",
+      "numeric": "0x02103A00"
+    },
+    {
+      "code": "CA543",
+      "numeric": "0x02103B00"
+    },
+    {
+      "code": "CA544",
+      "numeric": "0x02103C00"
+    },
+    {
+      "code": "CA545",
+      "numeric": "0x02103D00"
+    },
+    {
+      "code": "CA546",
+      "numeric": "0x02103E00"
+    },
+    {
+      "code": "CA547",
+      "numeric": "0x02103F00"
+    },
+    {
+      "code": "CA548",
+      "numeric": "0x02104000"
+    },
+    {
+      "code": "CA549",
+      "numeric": "0x02104100"
+    },
+    {
+      "code": "CA550",
+      "numeric": "0x02104200"
+    },
+    {
+      "code": "CA551",
+      "numeric": "0x02104300"
+    },
+    {
+      "code": "CA552",
+      "numeric": "0x02104400"
+    },
+    {
+      "code": "CA553",
+      "numeric": "0x02104500"
+    },
+    {
+      "code": "CA554",
+      "numeric": "0x02104600"
+    },
+    {
+      "code": "CA555",
+      "numeric": "0x02104700"
+    },
+    {
+      "code": "CA556",
+      "numeric": "0x02104800"
+    },
+    {
+      "code": "CA557",
+      "numeric": "0x02104900"
+    },
+    {
+      "code": "CA558",
+      "numeric": "0x02104A00"
+    },
+    {
+      "code": "CA559",
+      "numeric": "0x02104B00"
+    },
+    {
+      "code": "CA560",
+      "numeric": "0x02104C00"
+    },
+    {
+      "code": "CA561",
+      "numeric": "0x02104D00"
+    },
+    {
+      "code": "CA562",
+      "numeric": "0x02104E00"
+    },
+    {
+      "code": "CA563",
+      "numeric": "0x02104F00"
+    },
+    {
+      "code": "CA564",
+      "numeric": "0x02105000"
+    },
+    {
+      "code": "CA601",
+      "numeric": "0x02110100"
+    },
+    {
+      "code": "CA602",
+      "numeric": "0x02110200"
+    },
+    {
+      "code": "CA603",
+      "numeric": "0x02110300"
+    },
+    {
+      "code": "CA604",
+      "numeric": "0x02110400"
+    },
+    {
+      "code": "CA605",
+      "numeric": "0x02110500"
+    },
+    {
+      "code": "CA606",
+      "numeric": "0x02110600"
+    },
+    {
+      "code": "CA607",
+      "numeric": "0x02110700"
+    },
+    {
+      "code": "CA608",
+      "numeric": "0x02110800"
+    },
+    {
+      "code": "CA609",
+      "numeric": "0x02110900"
+    },
+    {
+      "code": "CA610",
+      "numeric": "0x02110A00"
+    },
+    {
+      "code": "CA611",
+      "numeric": "0x02110B00"
+    },
+    {
+      "code": "CA612",
+      "numeric": "0x02110C00"
+    },
+    {
+      "code": "CA615",
+      "numeric": "0x02110F00"
+    },
+    {
+      "code": "CA616",
+      "numeric": "0x02111000"
+    },
+    {
+      "code": "CA617",
+      "numeric": "0x02111100"
+    },
+    {
+      "code": "CA618",
+      "numeric": "0x02111200"
+    },
+    {
+      "code": "CA619",
+      "numeric": "0x02111300"
+    },
+    {
+      "code": "CA620",
+      "numeric": "0x02111400"
+    },
+    {
+      "code": "CA621",
+      "numeric": "0x02111500"
+    },
+    {
+      "code": "CA622",
+      "numeric": "0x02111600"
+    },
+    {
+      "code": "CA623",
+      "numeric": "0x02111700"
+    },
+    {
+      "code": "CA624",
+      "numeric": "0x02111800"
+    },
+    {
+      "code": "CA625",
+      "numeric": "0x02111900"
+    },
+    {
+      "code": "CA626",
+      "numeric": "0x02112A00"
+    },
+    {
+      "code": "CA627",
+      "numeric": "0x02112B00"
+    },
+    {
+      "code": "CA628",
+      "numeric": "0x02112C00"
+    },
+    {
+      "code": "CA631",
+      "numeric": "0x02112F00"
+    },
+    {
+      "code": "CA632",
+      "numeric": "0x02113000"
+    },
+    {
+      "code": "CA633",
+      "numeric": "0x02113100"
+    },
+    {
+      "code": "CA634",
+      "numeric": "0x02113200"
+    },
+    {
+      "code": "CA635",
+      "numeric": "0x02113300"
+    },
+    {
+      "code": "CA636",
+      "numeric": "0x02113400"
+    },
+    {
+      "code": "CA637",
+      "numeric": "0x02113500"
+    },
+    {
+      "code": "CA638",
+      "numeric": "0x02113600"
+    },
+    {
+      "code": "CA639",
+      "numeric": "0x02113700"
+    },
+    {
+      "code": "CA640",
+      "numeric": "0x02113800"
+    },
+    {
+      "code": "CA641",
+      "numeric": "0x02113900"
+    },
+    {
+      "code": "CA642",
+      "numeric": "0x02113A00"
+    },
+    {
+      "code": "CA643",
+      "numeric": "0x02113B00"
+    },
+    {
+      "code": "CA644",
+      "numeric": "0x02113C00"
+    },
+    {
+      "code": "CA645",
+      "numeric": "0x02113D00"
+    },
+    {
+      "code": "CA646",
+      "numeric": "0x02113E00"
+    },
+    {
+      "code": "CA647",
+      "numeric": "0x02113F00"
+    },
+    {
+      "code": "CA648",
+      "numeric": "0x02114000"
+    },
+    {
+      "code": "CA649",
+      "numeric": "0x02114100"
+    },
+    {
+      "code": "CA651",
+      "numeric": "0x02114300"
+    },
+    {
+      "code": "CA652",
+      "numeric": "0x02114400"
+    },
+    {
+      "code": "CA653",
+      "numeric": "0x02114500"
+    },
+    {
+      "code": "CA654",
+      "numeric": "0x02114600"
+    },
+    {
+      "code": "CA655",
+      "numeric": "0x02114700"
+    },
+    {
+      "code": "CA656",
+      "numeric": "0x02114800"
+    },
+    {
+      "code": "CA657",
+      "numeric": "0x02114900"
+    },
+    {
+      "code": "CA658",
+      "numeric": "0x02114A00"
+    },
+    {
+      "code": "CA659",
+      "numeric": "0x02114B00"
+    },
+    {
+      "code": "CA660",
+      "numeric": "0x02114C00"
+    },
+    {
+      "code": "CA661",
+      "numeric": "0x02114D00"
+    },
+    {
+      "code": "CA662",
+      "numeric": "0x02114E00"
+    },
+    {
+      "code": "CA663",
+      "numeric": "0x02114F00"
+    },
+    {
+      "code": "CA664",
+      "numeric": "0x02115000"
+    },
+    {
+      "code": "CA701",
+      "numeric": "0x02115100"
+    },
+    {
+      "code": "CA702",
+      "numeric": "0x02115200"
+    },
+    {
+      "code": "CA703",
+      "numeric": "0x02115300"
+    },
+    {
+      "code": "CA704",
+      "numeric": "0x02115400"
+    },
+    {
+      "code": "CA705",
+      "numeric": "0x02115500"
+    },
+    {
+      "code": "CA706",
+      "numeric": "0x02115600"
+    },
+    {
+      "code": "CA707",
+      "numeric": "0x02115700"
+    },
+    {
+      "code": "CA708",
+      "numeric": "0x02115800"
+    },
+    {
+      "code": "CA709",
+      "numeric": "0x02115900"
+    },
+    {
+      "code": "CA710",
+      "numeric": "0x02115A00"
+    },
+    {
+      "code": "CA711",
+      "numeric": "0x02115B00"
+    },
+    {
+      "code": "CA712",
+      "numeric": "0x02115C00"
+    },
+    {
+      "code": "CA713",
+      "numeric": "0x02115D00"
+    },
+    {
+      "code": "CA714",
+      "numeric": "0x02115E00"
+    },
+    {
+      "code": "CA715",
+      "numeric": "0x02115F00"
+    },
+    {
+      "code": "CA716",
+      "numeric": "0x02116000"
+    },
+    {
+      "code": "CA717",
+      "numeric": "0x02116100"
+    },
+    {
+      "code": "CA718",
+      "numeric": "0x02116200"
+    },
+    {
+      "code": "CA719",
+      "numeric": "0x02116300"
+    },
+    {
+      "code": "CA720",
+      "numeric": "0x02116400"
+    },
+    {
+      "code": "CA721",
+      "numeric": "0x02116500"
+    },
+    {
+      "code": "CA722",
+      "numeric": "0x02116600"
+    },
+    {
+      "code": "CA723",
+      "numeric": "0x02116700"
+    },
+    {
+      "code": "CA871",
+      "numeric": "0x02116800"
+    },
+    {
+      "code": "CA872",
+      "numeric": "0x02116900"
+    },
+    {
+      "code": "CA873",
+      "numeric": "0x02116A00"
+    },
+    {
+      "code": "CA874",
+      "numeric": "0x02116B00"
+    },
+    {
+      "code": "CH101",
+      "numeric": "0x08080100"
+    },
+    {
+      "code": "CH102",
+      "numeric": "0x08080200"
+    },
+    {
+      "code": "CH103",
+      "numeric": "0x08080300"
+    },
+    {
+      "code": "CH104",
+      "numeric": "0x08080400"
+    },
+    {
+      "code": "CX101",
+      "numeric": "0x080F0100"
+    },
+    {
+      "code": "CX102",
+      "numeric": "0x080F0200"
+    },
+    {
+      "code": "CX103",
+      "numeric": "0x080F0300"
+    },
+    {
+      "code": "CX104",
+      "numeric": "0x080F0400"
+    },
+    {
+      "code": "CX105",
+      "numeric": "0x080F0500"
+    },
+    {
+      "code": "CX106",
+      "numeric": "0x080F0600"
+    },
+    {
+      "code": "CX107",
+      "numeric": "0x080F0700"
+    },
+    {
+      "code": "CX108",
+      "numeric": "0x080F0800"
+    },
+    {
+      "code": "CX109",
+      "numeric": "0x080F0900"
+    },
+    {
+      "code": "CX110",
+      "numeric": "0x080F0A00"
+    },
+    {
+      "code": "CX111",
+      "numeric": "0x080F0B00"
+    },
+    {
+      "code": "CX112",
+      "numeric": "0x080F0C00"
+    },
+    {
+      "code": "CX113",
+      "numeric": "0x080F1000"
+    },
+    {
+      "code": "DA102",
+      "numeric": "0x02010200"
+    },
+    {
+      "code": "DA103",
+      "numeric": "0x02010300"
+    },
+    {
+      "code": "DA104",
+      "numeric": "0x02010400"
+    },
+    {
+      "code": "DA105",
+      "numeric": "0x02010500"
+    },
+    {
+      "code": "DA106",
+      "numeric": "0x02010600"
+    },
+    {
+      "code": "DA107",
+      "numeric": "0x02010700"
+    },
+    {
+      "code": "DA108",
+      "numeric": "0x02010800"
+    },
+    {
+      "code": "DA109",
+      "numeric": "0x02010900"
+    },
+    {
+      "code": "DA110",
+      "numeric": "0x02010A00"
+    },
+    {
+      "code": "DA111",
+      "numeric": "0x02010B00"
+    },
+    {
+      "code": "DA112",
+      "numeric": "0x02010C00"
+    },
+    {
+      "code": "DA113",
+      "numeric": "0x02010D00"
+    },
+    {
+      "code": "DA114",
+      "numeric": "0x02010E00"
+    },
+    {
+      "code": "DA115",
+      "numeric": "0x02010F00"
+    },
+    {
+      "code": "DA116",
+      "numeric": "0x02011000"
+    },
+    {
+      "code": "DA117",
+      "numeric": "0x02011100"
+    },
+    {
+      "code": "DA118",
+      "numeric": "0x02011200"
+    },
+    {
+      "code": "DA119",
+      "numeric": "0x02011300"
+    },
+    {
+      "code": "DA120",
+      "numeric": "0x02011400"
+    },
+    {
+      "code": "DA121",
+      "numeric": "0x02011500"
+    },
+    {
+      "code": "DA122",
+      "numeric": "0x02011600"
+    },
+    {
+      "code": "DA123",
+      "numeric": "0x02011700"
+    },
+    {
+      "code": "DA124",
+      "numeric": "0x02011800"
+    },
+    {
+      "code": "DA125",
+      "numeric": "0x02011900"
+    },
+    {
+      "code": "DA126",
+      "numeric": "0x02012A00"
+    },
+    {
+      "code": "DA127",
+      "numeric": "0x02012B00"
+    },
+    {
+      "code": "DA128",
+      "numeric": "0x02012C00"
+    },
+    {
+      "code": "DA129",
+      "numeric": "0x02012D00"
+    },
+    {
+      "code": "DA130",
+      "numeric": "0x02012E00"
+    },
+    {
+      "code": "DA131",
+      "numeric": "0x02012F00"
+    },
+    {
+      "code": "DA132",
+      "numeric": "0x02013000"
+    },
+    {
+      "code": "DA133",
+      "numeric": "0x02013100"
+    },
+    {
+      "code": "DA134",
+      "numeric": "0x02013200"
+    },
+    {
+      "code": "DA135",
+      "numeric": "0x02013300"
+    },
+    {
+      "code": "DA136",
+      "numeric": "0x02013400"
+    },
+    {
+      "code": "DA137",
+      "numeric": "0x02013500"
+    },
+    {
+      "code": "DA138",
+      "numeric": "0x02013600"
+    },
+    {
+      "code": "DA139",
+      "numeric": "0x02013700"
+    },
+    {
+      "code": "DA140",
+      "numeric": "0x02013800"
+    },
+    {
+      "code": "DA141",
+      "numeric": "0x02013900"
+    },
+    {
+      "code": "DA142",
+      "numeric": "0x02013A00"
+    },
+    {
+      "code": "DA143",
+      "numeric": "0x02013B00"
+    },
+    {
+      "code": "DA144",
+      "numeric": "0x02013C00"
+    },
+    {
+      "code": "DA145",
+      "numeric": "0x02013D00"
+    },
+    {
+      "code": "DA146",
+      "numeric": "0x02013E00"
+    },
+    {
+      "code": "DA147",
+      "numeric": "0x02013F00"
+    },
+    {
+      "code": "DA148",
+      "numeric": "0x02014000"
+    },
+    {
+      "code": "DA149",
+      "numeric": "0x02014100"
+    },
+    {
+      "code": "DA150",
+      "numeric": "0x02014200"
+    },
+    {
+      "code": "DA151",
+      "numeric": "0x02014300"
+    },
+    {
+      "code": "DA152",
+      "numeric": "0x02014400"
+    },
+    {
+      "code": "DA153",
+      "numeric": "0x02014500"
+    },
+    {
+      "code": "DA154",
+      "numeric": "0x02014600"
+    },
+    {
+      "code": "DA155",
+      "numeric": "0x02014700"
+    },
+    {
+      "code": "DA156",
+      "numeric": "0x02014800"
+    },
+    {
+      "code": "DA157",
+      "numeric": "0x02014900"
+    },
+    {
+      "code": "DA158",
+      "numeric": "0x02014A00"
+    },
+    {
+      "code": "DA159",
+      "numeric": "0x02014B00"
+    },
+    {
+      "code": "DA160",
+      "numeric": "0x02014C00"
+    },
+    {
+      "code": "DA161",
+      "numeric": "0x02014D00"
+    },
+    {
+      "code": "DA162",
+      "numeric": "0x02014E00"
+    },
+    {
+      "code": "DA163",
+      "numeric": "0x02014F00"
+    },
+    {
+      "code": "DA164",
+      "numeric": "0x02015000"
+    },
+    {
+      "code": "DA165",
+      "numeric": "0x02015100"
+    },
+    {
+      "code": "DA166",
+      "numeric": "0x02015200"
+    },
+    {
+      "code": "DA167",
+      "numeric": "0x02015300"
+    },
+    {
+      "code": "DA168",
+      "numeric": "0x02015400"
+    },
+    {
+      "code": "DA169",
+      "numeric": "0x02015500"
+    },
+    {
+      "code": "DA170",
+      "numeric": "0x02015600"
+    },
+    {
+      "code": "DA171",
+      "numeric": "0x02015700"
+    },
+    {
+      "code": "DA172",
+      "numeric": "0x02015800"
+    },
+    {
+      "code": "DA173",
+      "numeric": "0x02015900"
+    },
+    {
+      "code": "DA174",
+      "numeric": "0x02015A00"
+    },
+    {
+      "code": "DA175",
+      "numeric": "0x02015B00"
+    },
+    {
+      "code": "DA176",
+      "numeric": "0x02015C00"
+    },
+    {
+      "code": "DA177",
+      "numeric": "0x02015D00"
+    },
+    {
+      "code": "DA178",
+      "numeric": "0x02015E00"
+    },
+    {
+      "code": "DA179",
+      "numeric": "0x02015F00"
+    },
+    {
+      "code": "DA180",
+      "numeric": "0x02016000"
+    },
+    {
+      "code": "DA181",
+      "numeric": "0x02016100"
+    },
+    {
+      "code": "DA182",
+      "numeric": "0x02016200"
+    },
+    {
+      "code": "DA183",
+      "numeric": "0x02016300"
+    },
+    {
+      "code": "DA184",
+      "numeric": "0x02016400"
+    },
+    {
+      "code": "DA202",
+      "numeric": "0x02050200"
+    },
+    {
+      "code": "DA203",
+      "numeric": "0x02050300"
+    },
+    {
+      "code": "DA204",
+      "numeric": "0x02050400"
+    },
+    {
+      "code": "DA205",
+      "numeric": "0x02050500"
+    },
+    {
+      "code": "DA206",
+      "numeric": "0x02050600"
+    },
+    {
+      "code": "DA207",
+      "numeric": "0x02050700"
+    },
+    {
+      "code": "DA208",
+      "numeric": "0x02050800"
+    },
+    {
+      "code": "DA209",
+      "numeric": "0x02050900"
+    },
+    {
+      "code": "DA210",
+      "numeric": "0x02050A00"
+    },
+    {
+      "code": "DA211",
+      "numeric": "0x02050B00"
+    },
+    {
+      "code": "DA212",
+      "numeric": "0x02050C00"
+    },
+    {
+      "code": "DA213",
+      "numeric": "0x02050D00"
+    },
+    {
+      "code": "DA214",
+      "numeric": "0x02050E00"
+    },
+    {
+      "code": "DA215",
+      "numeric": "0x02050F00"
+    },
+    {
+      "code": "DA216",
+      "numeric": "0x02051000"
+    },
+    {
+      "code": "DA217",
+      "numeric": "0x02051100"
+    },
+    {
+      "code": "DA218",
+      "numeric": "0x02051200"
+    },
+    {
+      "code": "DA219",
+      "numeric": "0x02051300"
+    },
+    {
+      "code": "DA220",
+      "numeric": "0x02051400"
+    },
+    {
+      "code": "DA221",
+      "numeric": "0x02051500"
+    },
+    {
+      "code": "DA222",
+      "numeric": "0x02051600"
+    },
+    {
+      "code": "DA223",
+      "numeric": "0x02051700"
+    },
+    {
+      "code": "DA224",
+      "numeric": "0x02051800"
+    },
+    {
+      "code": "DA225",
+      "numeric": "0x02051900"
+    },
+    {
+      "code": "DA226",
+      "numeric": "0x02052A00"
+    },
+    {
+      "code": "DA227",
+      "numeric": "0x02052B00"
+    },
+    {
+      "code": "DA228",
+      "numeric": "0x02052C00"
+    },
+    {
+      "code": "DA229",
+      "numeric": "0x02052D00"
+    },
+    {
+      "code": "DA230",
+      "numeric": "0x02052E00"
+    },
+    {
+      "code": "DA231",
+      "numeric": "0x02052F00"
+    },
+    {
+      "code": "DA232",
+      "numeric": "0x02053000"
+    },
+    {
+      "code": "DA233",
+      "numeric": "0x02053100"
+    },
+    {
+      "code": "DA234",
+      "numeric": "0x02053200"
+    },
+    {
+      "code": "DA235",
+      "numeric": "0x02053300"
+    },
+    {
+      "code": "DA236",
+      "numeric": "0x02053400"
+    },
+    {
+      "code": "DA237",
+      "numeric": "0x02053500"
+    },
+    {
+      "code": "DA238",
+      "numeric": "0x02053600"
+    },
+    {
+      "code": "DA239",
+      "numeric": "0x02053700"
+    },
+    {
+      "code": "DA240",
+      "numeric": "0x02053800"
+    },
+    {
+      "code": "DA241",
+      "numeric": "0x02053900"
+    },
+    {
+      "code": "DA242",
+      "numeric": "0x02053A00"
+    },
+    {
+      "code": "DA243",
+      "numeric": "0x02053B00"
+    },
+    {
+      "code": "DA244",
+      "numeric": "0x02053C00"
+    },
+    {
+      "code": "DA245",
+      "numeric": "0x02053D00"
+    },
+    {
+      "code": "DA246",
+      "numeric": "0x02053E00"
+    },
+    {
+      "code": "DA247",
+      "numeric": "0x02053F00"
+    },
+    {
+      "code": "DA248",
+      "numeric": "0x02054000"
+    },
+    {
+      "code": "DA249",
+      "numeric": "0x02054100"
+    },
+    {
+      "code": "DA250",
+      "numeric": "0x02054200"
+    },
+    {
+      "code": "DA251",
+      "numeric": "0x02054300"
+    },
+    {
+      "code": "DA252",
+      "numeric": "0x02054400"
+    },
+    {
+      "code": "DA253",
+      "numeric": "0x02054500"
+    },
+    {
+      "code": "DA254",
+      "numeric": "0x02054600"
+    },
+    {
+      "code": "DA255",
+      "numeric": "0x02054700"
+    },
+    {
+      "code": "DA256",
+      "numeric": "0x02054800"
+    },
+    {
+      "code": "DA257",
+      "numeric": "0x02054900"
+    },
+    {
+      "code": "DA258",
+      "numeric": "0x02054A00"
+    },
+    {
+      "code": "DA259",
+      "numeric": "0x02054B00"
+    },
+    {
+      "code": "DA260",
+      "numeric": "0x02054C00"
+    },
+    {
+      "code": "DA261",
+      "numeric": "0x02054D00"
+    },
+    {
+      "code": "DA262",
+      "numeric": "0x02054E00"
+    },
+    {
+      "code": "DA263",
+      "numeric": "0x02054F00"
+    },
+    {
+      "code": "DA264",
+      "numeric": "0x02055000"
+    },
+    {
+      "code": "DA265",
+      "numeric": "0x02055100"
+    },
+    {
+      "code": "DA266",
+      "numeric": "0x02055200"
+    },
+    {
+      "code": "DA267",
+      "numeric": "0x02055300"
+    },
+    {
+      "code": "DA268",
+      "numeric": "0x02055400"
+    },
+    {
+      "code": "DA269",
+      "numeric": "0x02055500"
+    },
+    {
+      "code": "DA270",
+      "numeric": "0x02055600"
+    },
+    {
+      "code": "DA271",
+      "numeric": "0x02055700"
+    },
+    {
+      "code": "DA272",
+      "numeric": "0x02055800"
+    },
+    {
+      "code": "DA273",
+      "numeric": "0x02055900"
+    },
+    {
+      "code": "DA274",
+      "numeric": "0x02055A00"
+    },
+    {
+      "code": "DA275",
+      "numeric": "0x02055B00"
+    },
+    {
+      "code": "DA276",
+      "numeric": "0x02055C00"
+    },
+    {
+      "code": "DA277",
+      "numeric": "0x02055D00"
+    },
+    {
+      "code": "DA278",
+      "numeric": "0x02055E00"
+    },
+    {
+      "code": "DA279",
+      "numeric": "0x02055F00"
+    },
+    {
+      "code": "DA280",
+      "numeric": "0x02056000"
+    },
+    {
+      "code": "DA281",
+      "numeric": "0x02056100"
+    },
+    {
+      "code": "DA282",
+      "numeric": "0x02056200"
+    },
+    {
+      "code": "DA283",
+      "numeric": "0x02056300"
+    },
+    {
+      "code": "DA284",
+      "numeric": "0x02056400"
+    },
+    {
+      "code": "DA301",
+      "numeric": "0x02120100"
+    },
+    {
+      "code": "DA302",
+      "numeric": "0x02120200"
+    },
+    {
+      "code": "DA303",
+      "numeric": "0x02120300"
+    },
+    {
+      "code": "DA304",
+      "numeric": "0x02120400"
+    },
+    {
+      "code": "DA305",
+      "numeric": "0x02120500"
+    },
+    {
+      "code": "DA306",
+      "numeric": "0x02120600"
+    },
+    {
+      "code": "DA307",
+      "numeric": "0x02120700"
+    },
+    {
+      "code": "DA308",
+      "numeric": "0x02120800"
+    },
+    {
+      "code": "DA401",
+      "numeric": "0x02130100"
+    },
+    {
+      "code": "DA402",
+      "numeric": "0x02130200"
+    },
+    {
+      "code": "DA403",
+      "numeric": "0x02130300"
+    },
+    {
+      "code": "DA404",
+      "numeric": "0x02130400"
+    },
+    {
+      "code": "DA405",
+      "numeric": "0x02130500"
+    },
+    {
+      "code": "DA406",
+      "numeric": "0x02130600"
+    },
+    {
+      "code": "DA407",
+      "numeric": "0x02130700"
+    },
+    {
+      "code": "DA408",
+      "numeric": "0x02130800"
+    },
+    {
+      "code": "DA409",
+      "numeric": "0x02130900"
+    },
+    {
+      "code": "DA410",
+      "numeric": "0x02130A00"
+    },
+    {
+      "code": "DA411",
+      "numeric": "0x02130B00"
+    },
+    {
+      "code": "DB101",
+      "numeric": "0x02020100"
+    },
+    {
+      "code": "DB102",
+      "numeric": "0x02020200"
+    },
+    {
+      "code": "DB103",
+      "numeric": "0x02020300"
+    },
+    {
+      "code": "DB104",
+      "numeric": "0x02020400"
+    },
+    {
+      "code": "DB105",
+      "numeric": "0x02020500"
+    },
+    {
+      "code": "DB106",
+      "numeric": "0x02020600"
+    },
+    {
+      "code": "DB107",
+      "numeric": "0x02020700"
+    },
+    {
+      "code": "DB108",
+      "numeric": "0x02020800"
+    },
+    {
+      "code": "DB109",
+      "numeric": "0x02020900"
+    },
+    {
+      "code": "DB110",
+      "numeric": "0x02020A00"
+    },
+    {
+      "code": "DB111",
+      "numeric": "0x02020B00"
+    },
+    {
+      "code": "DB112",
+      "numeric": "0x02020C00"
+    },
+    {
+      "code": "DB113",
+      "numeric": "0x02020D00"
+    },
+    {
+      "code": "DB114",
+      "numeric": "0x02020E00"
+    },
+    {
+      "code": "DB115",
+      "numeric": "0x02020F00"
+    },
+    {
+      "code": "DB116",
+      "numeric": "0x02021000"
+    },
+    {
+      "code": "DB117",
+      "numeric": "0x02021100"
+    },
+    {
+      "code": "DB118",
+      "numeric": "0x02021200"
+    },
+    {
+      "code": "DB119",
+      "numeric": "0x02021300"
+    },
+    {
+      "code": "DB120",
+      "numeric": "0x02021400"
+    },
+    {
+      "code": "DB121",
+      "numeric": "0x02021500"
+    },
+    {
+      "code": "DB122",
+      "numeric": "0x02021600"
+    },
+    {
+      "code": "DB123",
+      "numeric": "0x02021700"
+    },
+    {
+      "code": "DB124",
+      "numeric": "0x02021800"
+    },
+    {
+      "code": "DB125",
+      "numeric": "0x02021900"
+    },
+    {
+      "code": "DB126",
+      "numeric": "0x02022A00"
+    },
+    {
+      "code": "DB127",
+      "numeric": "0x02022B00"
+    },
+    {
+      "code": "DB128",
+      "numeric": "0x02022C00"
+    },
+    {
+      "code": "DB129",
+      "numeric": "0x02022D00"
+    },
+    {
+      "code": "DB130",
+      "numeric": "0x02022E00"
+    },
+    {
+      "code": "DB131",
+      "numeric": "0x02022F00"
+    },
+    {
+      "code": "DB132",
+      "numeric": "0x02023000"
+    },
+    {
+      "code": "DB133",
+      "numeric": "0x02023100"
+    },
+    {
+      "code": "DB134",
+      "numeric": "0x02023200"
+    },
+    {
+      "code": "DB135",
+      "numeric": "0x02023300"
+    },
+    {
+      "code": "DB136",
+      "numeric": "0x02023400"
+    },
+    {
+      "code": "DB137",
+      "numeric": "0x02023500"
+    },
+    {
+      "code": "DB138",
+      "numeric": "0x02023600"
+    },
+    {
+      "code": "DB140",
+      "numeric": "0x02023800"
+    },
+    {
+      "code": "DB141",
+      "numeric": "0x02023900"
+    },
+    {
+      "code": "DB142",
+      "numeric": "0x02023A00"
+    },
+    {
+      "code": "DB143",
+      "numeric": "0x02023B00"
+    },
+    {
+      "code": "DB144",
+      "numeric": "0x02023C00"
+    },
+    {
+      "code": "DB145",
+      "numeric": "0x02023D00"
+    },
+    {
+      "code": "DB153",
+      "numeric": "0x02024500"
+    },
+    {
+      "code": "DG101",
+      "numeric": "0x02030100"
+    },
+    {
+      "code": "DG102",
+      "numeric": "0x02030200"
+    },
+    {
+      "code": "DG103",
+      "numeric": "0x02030300"
+    },
+    {
+      "code": "DG104",
+      "numeric": "0x02030400"
+    },
+    {
+      "code": "DG105",
+      "numeric": "0x02030500"
+    },
+    {
+      "code": "DG106",
+      "numeric": "0x02030600"
+    },
+    {
+      "code": "DG107",
+      "numeric": "0x02030700"
+    },
+    {
+      "code": "DG108",
+      "numeric": "0x02030800"
+    },
+    {
+      "code": "DG109",
+      "numeric": "0x02030900"
+    },
+    {
+      "code": "DG110",
+      "numeric": "0x02030A00"
+    },
+    {
+      "code": "DG111",
+      "numeric": "0x02030B00"
+    },
+    {
+      "code": "DG112",
+      "numeric": "0x02030C00"
+    },
+    {
+      "code": "DG113",
+      "numeric": "0x02030D00"
+    },
+    {
+      "code": "DG114",
+      "numeric": "0x02030E00"
+    },
+    {
+      "code": "DG115",
+      "numeric": "0x02030F00"
+    },
+    {
+      "code": "DG116",
+      "numeric": "0x02031000"
+    },
+    {
+      "code": "DG117",
+      "numeric": "0x02031100"
+    },
+    {
+      "code": "DG118",
+      "numeric": "0x02031200"
+    },
+    {
+      "code": "DG119",
+      "numeric": "0x02031300"
+    },
+    {
+      "code": "DG120",
+      "numeric": "0x02031400"
+    },
+    {
+      "code": "DG121",
+      "numeric": "0x02031500"
+    },
+    {
+      "code": "DG122",
+      "numeric": "0x02031600"
+    },
+    {
+      "code": "DG123",
+      "numeric": "0x02031700"
+    },
+    {
+      "code": "DG124",
+      "numeric": "0x02031800"
+    },
+    {
+      "code": "DG125",
+      "numeric": "0x02031900"
+    },
+    {
+      "code": "DG126",
+      "numeric": "0x02032A00"
+    },
+    {
+      "code": "DG127",
+      "numeric": "0x02032B00"
+    },
+    {
+      "code": "DG128",
+      "numeric": "0x02032C00"
+    },
+    {
+      "code": "DG129",
+      "numeric": "0x02032D00"
+    },
+    {
+      "code": "DG130",
+      "numeric": "0x02032E00"
+    },
+    {
+      "code": "DG131",
+      "numeric": "0x02032F00"
+    },
+    {
+      "code": "DG135",
+      "numeric": "0x02033300"
+    },
+    {
+      "code": "DG136",
+      "numeric": "0x02033400"
+    },
+    {
+      "code": "DG140",
+      "numeric": "0x02033800"
+    },
+    {
+      "code": "DG141",
+      "numeric": "0x02033900"
+    },
+    {
+      "code": "DG142",
+      "numeric": "0x02033A00"
+    },
+    {
+      "code": "DG143",
+      "numeric": "0x02033B00"
+    },
+    {
+      "code": "DG144",
+      "numeric": "0x02033C00"
+    },
+    {
+      "code": "DG145",
+      "numeric": "0x02033D00"
+    },
+    {
+      "code": "DG153",
+      "numeric": "0x02034500"
+    },
+    {
+      "code": "DR101",
+      "numeric": "0x0A020100"
+    },
+    {
+      "code": "DR102",
+      "numeric": "0x0A020200"
+    },
+    {
+      "code": "DR103",
+      "numeric": "0x0A020300"
+    },
+    {
+      "code": "DR104",
+      "numeric": "0x0A020400"
+    },
+    {
+      "code": "DR105",
+      "numeric": "0x0A020500"
+    },
+    {
+      "code": "DR106",
+      "numeric": "0x0A020600"
+    },
+    {
+      "code": "DR107",
+      "numeric": "0x0A020700"
+    },
+    {
+      "code": "DR108",
+      "numeric": "0x0A020800"
+    },
+    {
+      "code": "DR109",
+      "numeric": "0x0A020900"
+    },
+    {
+      "code": "DR110",
+      "numeric": "0x0A020A00"
+    },
+    {
+      "code": "DR111",
+      "numeric": "0x0A020B00"
+    },
+    {
+      "code": "DS101",
+      "numeric": "0x02040100"
+    },
+    {
+      "code": "DS102",
+      "numeric": "0x02040200"
+    },
+    {
+      "code": "DS103",
+      "numeric": "0x02040300"
+    },
+    {
+      "code": "DS104",
+      "numeric": "0x02040400"
+    },
+    {
+      "code": "DS105",
+      "numeric": "0x02040500"
+    },
+    {
+      "code": "DS106",
+      "numeric": "0x02040600"
+    },
+    {
+      "code": "DS107",
+      "numeric": "0x02040700"
+    },
+    {
+      "code": "DS108",
+      "numeric": "0x02040800"
+    },
+    {
+      "code": "DS109",
+      "numeric": "0x02040900"
+    },
+    {
+      "code": "DS110",
+      "numeric": "0x02040A00"
+    },
+    {
+      "code": "DS111",
+      "numeric": "0x02040B00"
+    },
+    {
+      "code": "DS112",
+      "numeric": "0x02040C00"
+    },
+    {
+      "code": "DS113",
+      "numeric": "0x02040D00"
+    },
+    {
+      "code": "DS114",
+      "numeric": "0x02040E00"
+    },
+    {
+      "code": "DS115",
+      "numeric": "0x02040F00"
+    },
+    {
+      "code": "DS116",
+      "numeric": "0x02041000"
+    },
+    {
+      "code": "DS117",
+      "numeric": "0x02041100"
+    },
+    {
+      "code": "DS118",
+      "numeric": "0x02041200"
+    },
+    {
+      "code": "DS119",
+      "numeric": "0x02041300"
+    },
+    {
+      "code": "DS120",
+      "numeric": "0x02041400"
+    },
+    {
+      "code": "DS121",
+      "numeric": "0x02041500"
+    },
+    {
+      "code": "DS122",
+      "numeric": "0x02041600"
+    },
+    {
+      "code": "DS123",
+      "numeric": "0x02041700"
+    },
+    {
+      "code": "DS124",
+      "numeric": "0x02041800"
+    },
+    {
+      "code": "DS125",
+      "numeric": "0x02041900"
+    },
+    {
+      "code": "DS126",
+      "numeric": "0x02042A00"
+    },
+    {
+      "code": "DS127",
+      "numeric": "0x02042B00"
+    },
+    {
+      "code": "DS128",
+      "numeric": "0x02042C00"
+    },
+    {
+      "code": "DS129",
+      "numeric": "0x02042D00"
+    },
+    {
+      "code": "DS130",
+      "numeric": "0x02042E00"
+    },
+    {
+      "code": "DS131",
+      "numeric": "0x02042F00"
+    },
+    {
+      "code": "DS132",
+      "numeric": "0x02043000"
+    },
+    {
+      "code": "DS133",
+      "numeric": "0x02043100"
+    },
+    {
+      "code": "DS134",
+      "numeric": "0x02043200"
+    },
+    {
+      "code": "DS135",
+      "numeric": "0x02043300"
+    },
+    {
+      "code": "DS136",
+      "numeric": "0x02043400"
+    },
+    {
+      "code": "DS137",
+      "numeric": "0x02043500"
+    },
+    {
+      "code": "DS138",
+      "numeric": "0x02043600"
+    },
+    {
+      "code": "DS139",
+      "numeric": "0x02043700"
+    },
+    {
+      "code": "DS140",
+      "numeric": "0x02043800"
+    },
+    {
+      "code": "DS141",
+      "numeric": "0x02043900"
+    },
+    {
+      "code": "DS142",
+      "numeric": "0x02043A00"
+    },
+    {
+      "code": "DS143",
+      "numeric": "0x02043B00"
+    },
+    {
+      "code": "DS144",
+      "numeric": "0x02043C00"
+    },
+    {
+      "code": "DS145",
+      "numeric": "0x02043D00"
+    },
+    {
+      "code": "DS160",
+      "numeric": "0x02044C00"
+    },
+    {
+      "code": "EC101",
+      "numeric": "0x06010100"
+    },
+    {
+      "code": "EC102",
+      "numeric": "0x06010200"
+    },
+    {
+      "code": "EC103",
+      "numeric": "0x06010300"
+    },
+    {
+      "code": "EC104",
+      "numeric": "0x06010400"
+    },
+    {
+      "code": "EC105",
+      "numeric": "0x06010500"
+    },
+    {
+      "code": "EC106",
+      "numeric": "0x06010600"
+    },
+    {
+      "code": "EC107",
+      "numeric": "0x06010700"
+    },
+    {
+      "code": "FO101",
+      "numeric": "0x03060100"
+    },
+    {
+      "code": "FO102",
+      "numeric": "0x03060200"
+    },
+    {
+      "code": "FO103",
+      "numeric": "0x03060300"
+    },
+    {
+      "code": "FO104",
+      "numeric": "0x03060400"
+    },
+    {
+      "code": "FO105",
+      "numeric": "0x03060500"
+    },
+    {
+      "code": "FO106",
+      "numeric": "0x03060600"
+    },
+    {
+      "code": "FO107",
+      "numeric": "0x03060700"
+    },
+    {
+      "code": "FO108",
+      "numeric": "0x03060800"
+    },
+    {
+      "code": "FO109",
+      "numeric": "0x03060900"
+    },
+    {
+      "code": "FO110",
+      "numeric": "0x03060A00"
+    },
+    {
+      "code": "FO111",
+      "numeric": "0x03060B00"
+    },
+    {
+      "code": "FO112",
+      "numeric": "0x03060C00"
+    },
+    {
+      "code": "FO113",
+      "numeric": "0x03060D00"
+    },
+    {
+      "code": "FO114",
+      "numeric": "0x03060E00"
+    },
+    {
+      "code": "FO115",
+      "numeric": "0x03060F00"
+    },
+    {
+      "code": "FO116",
+      "numeric": "0x03061000"
+    },
+    {
+      "code": "FO121",
+      "numeric": "0x03061500"
+    },
+    {
+      "code": "FO122",
+      "numeric": "0x03061600"
+    },
+    {
+      "code": "FO123",
+      "numeric": "0x03061700"
+    },
+    {
+      "code": "FO124",
+      "numeric": "0x03061800"
+    },
+    {
+      "code": "FO125",
+      "numeric": "0x03061900"
+    },
+    {
+      "code": "FO126",
+      "numeric": "0x03062A00"
+    },
+    {
+      "code": "FO127",
+      "numeric": "0x03062B00"
+    },
+    {
+      "code": "FO128",
+      "numeric": "0x03062C00"
+    },
+    {
+      "code": "FO129",
+      "numeric": "0x03062D00"
+    },
+    {
+      "code": "FO130",
+      "numeric": "0x03062E00"
+    },
+    {
+      "code": "FO131",
+      "numeric": "0x03062F00"
+    },
+    {
+      "code": "FO132",
+      "numeric": "0x03063000"
+    },
+    {
+      "code": "FO133",
+      "numeric": "0x03063100"
+    },
+    {
+      "code": "FO134",
+      "numeric": "0x03063200"
+    },
+    {
+      "code": "FO135",
+      "numeric": "0x03063300"
+    },
+    {
+      "code": "FO136",
+      "numeric": "0x03063400"
+    },
+    {
+      "code": "FO137",
+      "numeric": "0x03063500"
+    },
+    {
+      "code": "GB101",
+      "numeric": "0x080E0100"
+    },
+    {
+      "code": "GB102",
+      "numeric": "0x080E0200"
+    },
+    {
+      "code": "GB103",
+      "numeric": "0x080E0300"
+    },
+    {
+      "code": "GB104",
+      "numeric": "0x080E0400"
+    },
+    {
+      "code": "GB105",
+      "numeric": "0x080E0500"
+    },
+    {
+      "code": "GB106",
+      "numeric": "0x080E0600"
+    },
+    {
+      "code": "GF101",
+      "numeric": "0x08040100"
+    },
+    {
+      "code": "GF102",
+      "numeric": "0x08040200"
+    },
+    {
+      "code": "GF103",
+      "numeric": "0x08040300"
+    },
+    {
+      "code": "GF104",
+      "numeric": "0x08040400"
+    },
+    {
+      "code": "GF105",
+      "numeric": "0x08040500"
+    },
+    {
+      "code": "GF106",
+      "numeric": "0x08040600"
+    },
+    {
+      "code": "GF107",
+      "numeric": "0x08040700"
+    },
+    {
+      "code": "GF108",
+      "numeric": "0x08040800"
+    },
+    {
+      "code": "GP101",
+      "numeric": "0x08020100"
+    },
+    {
+      "code": "GP102",
+      "numeric": "0x08020200"
+    },
+    {
+      "code": "GP103",
+      "numeric": "0x08020300"
+    },
+    {
+      "code": "GP104",
+      "numeric": "0x08020400"
+    },
+    {
+      "code": "GP105",
+      "numeric": "0x08020500"
+    },
+    {
+      "code": "GP106",
+      "numeric": "0x08020600"
+    },
+    {
+      "code": "GP107",
+      "numeric": "0x08020700"
+    },
+    {
+      "code": "GP108",
+      "numeric": "0x08020800"
+    },
+    {
+      "code": "GP109",
+      "numeric": "0x08020900"
+    },
+    {
+      "code": "GP110",
+      "numeric": "0x08020A00"
+    },
+    {
+      "code": "GP111",
+      "numeric": "0x08020B00"
+    },
+    {
+      "code": "GP112",
+      "numeric": "0x08020C00"
+    },
+    {
+      "code": "GP113",
+      "numeric": "0x08020D00"
+    },
+    {
+      "code": "GP114",
+      "numeric": "0x08020E00"
+    },
+    {
+      "code": "GP115",
+      "numeric": "0x08020F00"
+    },
+    {
+      "code": "GP116",
+      "numeric": "0x08021000"
+    },
+    {
+      "code": "GP117",
+      "numeric": "0x08021100"
+    },
+    {
+      "code": "GP118",
+      "numeric": "0x08021200"
+    },
+    {
+      "code": "GP119",
+      "numeric": "0x08021300"
+    },
+    {
+      "code": "GP120",
+      "numeric": "0x08021400"
+    },
+    {
+      "code": "GP121",
+      "numeric": "0x08021500"
+    },
+    {
+      "code": "GP122",
+      "numeric": "0x08021600"
+    },
+    {
+      "code": "GP123",
+      "numeric": "0x08021700"
+    },
+    {
+      "code": "GP124",
+      "numeric": "0x08021800"
+    },
+    {
+      "code": "GP125",
+      "numeric": "0x08021900"
+    },
+    {
+      "code": "GP126",
+      "numeric": "0x08022A00"
+    },
+    {
+      "code": "GP127",
+      "numeric": "0x08022B00"
+    },
+    {
+      "code": "GP135",
+      "numeric": "0x08023300"
+    },
+    {
+      "code": "GP136",
+      "numeric": "0x08023400"
+    },
+    {
+      "code": "GP137",
+      "numeric": "0x08023500"
+    },
+    {
+      "code": "GP138",
+      "numeric": "0x08023600"
+    },
+    {
+      "code": "GP139",
+      "numeric": "0x08023700"
+    },
+    {
+      "code": "GP140",
+      "numeric": "0x08023800"
+    },
+    {
+      "code": "GP141",
+      "numeric": "0x08023900"
+    },
+    {
+      "code": "GP142",
+      "numeric": "0x08023A00"
+    },
+    {
+      "code": "GP143",
+      "numeric": "0x08023B00"
+    },
+    {
+      "code": "GP144",
+      "numeric": "0x08023C00"
+    },
+    {
+      "code": "GP145",
+      "numeric": "0x08023D00"
+    },
+    {
+      "code": "GP146",
+      "numeric": "0x08023E00"
+    },
+    {
+      "code": "GP147",
+      "numeric": "0x08023F00"
+    },
+    {
+      "code": "GP148",
+      "numeric": "0x08024000"
+    },
+    {
+      "code": "GP149",
+      "numeric": "0x08024100"
+    },
+    {
+      "code": "GP150",
+      "numeric": "0x08024200"
+    },
+    {
+      "code": "MA101",
+      "numeric": "0x09010100"
+    },
+    {
+      "code": "MA201",
+      "numeric": "0x09020100"
+    },
+    {
+      "code": "MA202",
+      "numeric": "0x09020200"
+    },
+    {
+      "code": "OA101",
+      "numeric": "0x03010100"
+    },
+    {
+      "code": "OA102",
+      "numeric": "0x03010200"
+    },
+    {
+      "code": "OA103",
+      "numeric": "0x03010300"
+    },
+    {
+      "code": "OA104",
+      "numeric": "0x03010400"
+    },
+    {
+      "code": "OA105",
+      "numeric": "0x03010500"
+    },
+    {
+      "code": "OA106",
+      "numeric": "0x03010600"
+    },
+    {
+      "code": "OA107",
+      "numeric": "0x03010700"
+    },
+    {
+      "code": "OA108",
+      "numeric": "0x03010800"
+    },
+    {
+      "code": "OA109",
+      "numeric": "0x03010900"
+    },
+    {
+      "code": "OA110",
+      "numeric": "0x03010A00"
+    },
+    {
+      "code": "OA111",
+      "numeric": "0x03010B00"
+    },
+    {
+      "code": "OA112",
+      "numeric": "0x03010C00"
+    },
+    {
+      "code": "OA113",
+      "numeric": "0x03010D00"
+    },
+    {
+      "code": "OA114",
+      "numeric": "0x03010E00"
+    },
+    {
+      "code": "OA115",
+      "numeric": "0x03010F00"
+    },
+    {
+      "code": "OA116",
+      "numeric": "0x03011000"
+    },
+    {
+      "code": "OA117",
+      "numeric": "0x03011100"
+    },
+    {
+      "code": "OA118",
+      "numeric": "0x03011200"
+    },
+    {
+      "code": "OA119",
+      "numeric": "0x03011300"
+    },
+    {
+      "code": "OA120",
+      "numeric": "0x03011400"
+    },
+    {
+      "code": "OA121",
+      "numeric": "0x03011500"
+    },
+    {
+      "code": "OA122",
+      "numeric": "0x03011600"
+    },
+    {
+      "code": "OA123",
+      "numeric": "0x03011700"
+    },
+    {
+      "code": "OA124",
+      "numeric": "0x03011800"
+    },
+    {
+      "code": "OA125",
+      "numeric": "0x03011900"
+    },
+    {
+      "code": "OA126",
+      "numeric": "0x03012A00"
+    },
+    {
+      "code": "OA127",
+      "numeric": "0x03012B00"
+    },
+    {
+      "code": "OA128",
+      "numeric": "0x03012C00"
+    },
+    {
+      "code": "OA129",
+      "numeric": "0x03012D00"
+    },
+    {
+      "code": "OA130",
+      "numeric": "0x03012E00"
+    },
+    {
+      "code": "OA131",
+      "numeric": "0x03012F00"
+    },
+    {
+      "code": "OA132",
+      "numeric": "0x03013000"
+    },
+    {
+      "code": "OA133",
+      "numeric": "0x03013100"
+    },
+    {
+      "code": "OA144",
+      "numeric": "0x03013C00"
+    },
+    {
+      "code": "OA150",
+      "numeric": "0x03014200"
+    },
+    {
+      "code": "OA151",
+      "numeric": "0x03014300"
+    },
+    {
+      "code": "OA152",
+      "numeric": "0x03014400"
+    },
+    {
+      "code": "OA153",
+      "numeric": "0x03014500"
+    },
+    {
+      "code": "OA154",
+      "numeric": "0x03014600"
+    },
+    {
+      "code": "OA155",
+      "numeric": "0x03014700"
+    },
+    {
+      "code": "OA156",
+      "numeric": "0x03014800"
+    },
+    {
+      "code": "OA201",
+      "numeric": "0x03020100"
+    },
+    {
+      "code": "OA202",
+      "numeric": "0x03020200"
+    },
+    {
+      "code": "OA203",
+      "numeric": "0x03020300"
+    },
+    {
+      "code": "OA204",
+      "numeric": "0x03020400"
+    },
+    {
+      "code": "OA205",
+      "numeric": "0x03020500"
+    },
+    {
+      "code": "OA206",
+      "numeric": "0x03020600"
+    },
+    {
+      "code": "OA207",
+      "numeric": "0x03020700"
+    },
+    {
+      "code": "OA208",
+      "numeric": "0x03020800"
+    },
+    {
+      "code": "OA209",
+      "numeric": "0x03020900"
+    },
+    {
+      "code": "OA210",
+      "numeric": "0x03020A00"
+    },
+    {
+      "code": "OA211",
+      "numeric": "0x03020B00"
+    },
+    {
+      "code": "OA212",
+      "numeric": "0x03020C00"
+    },
+    {
+      "code": "OA213",
+      "numeric": "0x03020D00"
+    },
+    {
+      "code": "OA214",
+      "numeric": "0x03020E00"
+    },
+    {
+      "code": "OA215",
+      "numeric": "0x03020F00"
+    },
+    {
+      "code": "OA216",
+      "numeric": "0x03021000"
+    },
+    {
+      "code": "OA217",
+      "numeric": "0x03021100"
+    },
+    {
+      "code": "OA218",
+      "numeric": "0x03021200"
+    },
+    {
+      "code": "OA219",
+      "numeric": "0x03021300"
+    },
+    {
+      "code": "OA220",
+      "numeric": "0x03021400"
+    },
+    {
+      "code": "OA221",
+      "numeric": "0x03021500"
+    },
+    {
+      "code": "OA222",
+      "numeric": "0x03021600"
+    },
+    {
+      "code": "OA223",
+      "numeric": "0x03021700"
+    },
+    {
+      "code": "OA224",
+      "numeric": "0x03021800"
+    },
+    {
+      "code": "OA225",
+      "numeric": "0x03021900"
+    },
+    {
+      "code": "OA226",
+      "numeric": "0x03022A00"
+    },
+    {
+      "code": "OA227",
+      "numeric": "0x03022B00"
+    },
+    {
+      "code": "OA228",
+      "numeric": "0x03022C00"
+    },
+    {
+      "code": "OA229",
+      "numeric": "0x03022D00"
+    },
+    {
+      "code": "OA230",
+      "numeric": "0x03022E00"
+    },
+    {
+      "code": "OA231",
+      "numeric": "0x03022F00"
+    },
+    {
+      "code": "OA232",
+      "numeric": "0x03023000"
+    },
+    {
+      "code": "OA233",
+      "numeric": "0x03023100"
+    },
+    {
+      "code": "OA234",
+      "numeric": "0x03023200"
+    },
+    {
+      "code": "OA235",
+      "numeric": "0x03023300"
+    },
+    {
+      "code": "OA237",
+      "numeric": "0x03023500"
+    },
+    {
+      "code": "OA240",
+      "numeric": "0x03023800"
+    },
+    {
+      "code": "OA241",
+      "numeric": "0x03023900"
+    },
+    {
+      "code": "OA242",
+      "numeric": "0x03023A00"
+    },
+    {
+      "code": "OA243",
+      "numeric": "0x03023B00"
+    },
+    {
+      "code": "OA244",
+      "numeric": "0x03023C00"
+    },
+    {
+      "code": "OA245",
+      "numeric": "0x03023D00"
+    },
+    {
+      "code": "OA252",
+      "numeric": "0x03024400"
+    },
+    {
+      "code": "OA253",
+      "numeric": "0x03024500"
+    },
+    {
+      "code": "OE101",
+      "numeric": "0x030A0100"
+    },
+    {
+      "code": "OE102",
+      "numeric": "0x030A0200"
+    },
+    {
+      "code": "OE103",
+      "numeric": "0x030A0300"
+    },
+    {
+      "code": "OE104",
+      "numeric": "0x030A0400"
+    },
+    {
+      "code": "OE105",
+      "numeric": "0x030A0500"
+    },
+    {
+      "code": "OE106",
+      "numeric": "0x030A0600"
+    },
+    {
+      "code": "OE107",
+      "numeric": "0x030A0700"
+    },
+    {
+      "code": "OE130",
+      "numeric": "0x030A2E00"
+    },
+    {
+      "code": "OE131",
+      "numeric": "0x030A2F00"
+    },
+    {
+      "code": "OM101",
+      "numeric": "0x03030100"
+    },
+    {
+      "code": "OM102",
+      "numeric": "0x03030200"
+    },
+    {
+      "code": "OM103",
+      "numeric": "0x03030300"
+    },
+    {
+      "code": "OM104",
+      "numeric": "0x03030400"
+    },
+    {
+      "code": "OM105",
+      "numeric": "0x03030500"
+    },
+    {
+      "code": "OM106",
+      "numeric": "0x03030600"
+    },
+    {
+      "code": "OM107",
+      "numeric": "0x03030700"
+    },
+    {
+      "code": "OM108",
+      "numeric": "0x03030800"
+    },
+    {
+      "code": "OM109",
+      "numeric": "0x03030900"
+    },
+    {
+      "code": "OM110",
+      "numeric": "0x03030A00"
+    },
+    {
+      "code": "OM111",
+      "numeric": "0x03030B00"
+    },
+    {
+      "code": "OM112",
+      "numeric": "0x03030C00"
+    },
+    {
+      "code": "OM113",
+      "numeric": "0x03030D00"
+    },
+    {
+      "code": "OM114",
+      "numeric": "0x03030E00"
+    },
+    {
+      "code": "OM115",
+      "numeric": "0x03030F00"
+    },
+    {
+      "code": "OM116",
+      "numeric": "0x03031000"
+    },
+    {
+      "code": "OM117",
+      "numeric": "0x03031100"
+    },
+    {
+      "code": "OM118",
+      "numeric": "0x03031200"
+    },
+    {
+      "code": "OM119",
+      "numeric": "0x03031300"
+    },
+    {
+      "code": "OM120",
+      "numeric": "0x03031400"
+    },
+    {
+      "code": "OM121",
+      "numeric": "0x03031500"
+    },
+    {
+      "code": "OM122",
+      "numeric": "0x03031600"
+    },
+    {
+      "code": "OM123",
+      "numeric": "0x03031700"
+    },
+    {
+      "code": "OM124",
+      "numeric": "0x03031800"
+    },
+    {
+      "code": "OM125",
+      "numeric": "0x03031900"
+    },
+    {
+      "code": "OM126",
+      "numeric": "0x03032A00"
+    },
+    {
+      "code": "OM127",
+      "numeric": "0x03032B00"
+    },
+    {
+      "code": "OM128",
+      "numeric": "0x03032C00"
+    },
+    {
+      "code": "OM129",
+      "numeric": "0x03032D00"
+    },
+    {
+      "code": "OM130",
+      "numeric": "0x03032E00"
+    },
+    {
+      "code": "OM131",
+      "numeric": "0x03032F00"
+    },
+    {
+      "code": "OR101",
+      "numeric": "0x03040100"
+    },
+    {
+      "code": "OR102",
+      "numeric": "0x03040200"
+    },
+    {
+      "code": "OR103",
+      "numeric": "0x03040300"
+    },
+    {
+      "code": "OR104",
+      "numeric": "0x03040400"
+    },
+    {
+      "code": "OR105",
+      "numeric": "0x03040500"
+    },
+    {
+      "code": "OR106",
+      "numeric": "0x03040600"
+    },
+    {
+      "code": "OR107",
+      "numeric": "0x03040700"
+    },
+    {
+      "code": "OR108",
+      "numeric": "0x03040800"
+    },
+    {
+      "code": "OR109",
+      "numeric": "0x03040900"
+    },
+    {
+      "code": "OR110",
+      "numeric": "0x03040A00"
+    },
+    {
+      "code": "OR111",
+      "numeric": "0x03040B00"
+    },
+    {
+      "code": "OR112",
+      "numeric": "0x03040C00"
+    },
+    {
+      "code": "OR113",
+      "numeric": "0x03040D00"
+    },
+    {
+      "code": "OR114",
+      "numeric": "0x03040E00"
+    },
+    {
+      "code": "OR115",
+      "numeric": "0x03040F00"
+    },
+    {
+      "code": "OR116",
+      "numeric": "0x03041000"
+    },
+    {
+      "code": "OR117",
+      "numeric": "0x03041100"
+    },
+    {
+      "code": "OR118",
+      "numeric": "0x03041200"
+    },
+    {
+      "code": "OR119",
+      "numeric": "0x03041300"
+    },
+    {
+      "code": "OR120",
+      "numeric": "0x03041400"
+    },
+    {
+      "code": "OR121",
+      "numeric": "0x03041500"
+    },
+    {
+      "code": "OR122",
+      "numeric": "0x03041600"
+    },
+    {
+      "code": "OR123",
+      "numeric": "0x03041700"
+    },
+    {
+      "code": "OR124",
+      "numeric": "0x03041800"
+    },
+    {
+      "code": "OR125",
+      "numeric": "0x03041900"
+    },
+    {
+      "code": "OR126",
+      "numeric": "0x03042A00"
+    },
+    {
+      "code": "OR127",
+      "numeric": "0x03042B00"
+    },
+    {
+      "code": "OR128",
+      "numeric": "0x03042C00"
+    },
+    {
+      "code": "OR129",
+      "numeric": "0x03042D00"
+    },
+    {
+      "code": "OR131",
+      "numeric": "0x03042F00"
+    },
+    {
+      "code": "OR132",
+      "numeric": "0x03043000"
+    },
+    {
+      "code": "OR151",
+      "numeric": "0x03044300"
+    },
+    {
+      "code": "OR152",
+      "numeric": "0x03044400"
+    },
+    {
+      "code": "OR201",
+      "numeric": "0x03050100"
+    },
+    {
+      "code": "OR202",
+      "numeric": "0x03050200"
+    },
+    {
+      "code": "OR203",
+      "numeric": "0x03050300"
+    },
+    {
+      "code": "OR204",
+      "numeric": "0x03050400"
+    },
+    {
+      "code": "OR205",
+      "numeric": "0x03050500"
+    },
+    {
+      "code": "OR206",
+      "numeric": "0x03050600"
+    },
+    {
+      "code": "OR207",
+      "numeric": "0x03050700"
+    },
+    {
+      "code": "OR208",
+      "numeric": "0x03050800"
+    },
+    {
+      "code": "OR209",
+      "numeric": "0x03050900"
+    },
+    {
+      "code": "OR210",
+      "numeric": "0x03050A00"
+    },
+    {
+      "code": "OR211",
+      "numeric": "0x03050B00"
+    },
+    {
+      "code": "OR212",
+      "numeric": "0x03050C00"
+    },
+    {
+      "code": "OR213",
+      "numeric": "0x03050D00"
+    },
+    {
+      "code": "OR214",
+      "numeric": "0x03050E00"
+    },
+    {
+      "code": "OR215",
+      "numeric": "0x03050F00"
+    },
+    {
+      "code": "OR216",
+      "numeric": "0x03051000"
+    },
+    {
+      "code": "OR217",
+      "numeric": "0x03051100"
+    },
+    {
+      "code": "OR218",
+      "numeric": "0x03051200"
+    },
+    {
+      "code": "OR219",
+      "numeric": "0x03051300"
+    },
+    {
+      "code": "OR220",
+      "numeric": "0x03051400"
+    },
+    {
+      "code": "OR221",
+      "numeric": "0x03051500"
+    },
+    {
+      "code": "OR222",
+      "numeric": "0x03051600"
+    },
+    {
+      "code": "OR223",
+      "numeric": "0x03051700"
+    },
+    {
+      "code": "OR224",
+      "numeric": "0x03051800"
+    },
+    {
+      "code": "OR225",
+      "numeric": "0x03051900"
+    },
+    {
+      "code": "OR227",
+      "numeric": "0x03052B00"
+    },
+    {
+      "code": "OR228",
+      "numeric": "0x03052C00"
+    },
+    {
+      "code": "OR229",
+      "numeric": "0x03052D00"
+    },
+    {
+      "code": "OR230",
+      "numeric": "0x03052E00"
+    },
+    {
+      "code": "OR231",
+      "numeric": "0x03052F00"
+    },
+    {
+      "code": "OR232",
+      "numeric": "0x03053000"
+    },
+    {
+      "code": "OR233",
+      "numeric": "0x03053100"
+    },
+    {
+      "code": "OR234",
+      "numeric": "0x03053200"
+    },
+    {
+      "code": "OR235",
+      "numeric": "0x03053300"
+    },
+    {
+      "code": "OR236",
+      "numeric": "0x03053400"
+    },
+    {
+      "code": "OR237",
+      "numeric": "0x03053500"
+    },
+    {
+      "code": "OR238",
+      "numeric": "0x03053600"
+    },
+    {
+      "code": "OR239",
+      "numeric": "0x03053700"
+    },
+    {
+      "code": "OR240",
+      "numeric": "0x03053800"
+    },
+    {
+      "code": "OR243",
+      "numeric": "0x03053B00"
+    },
+    {
+      "code": "OR244",
+      "numeric": "0x03053C00"
+    },
+    {
+      "code": "OR245",
+      "numeric": "0x03053D00"
+    },
+    {
+      "code": "OR246",
+      "numeric": "0x03053E00"
+    },
+    {
+      "code": "OR247",
+      "numeric": "0x03053F00"
+    },
+    {
+      "code": "OR248",
+      "numeric": "0x03054000"
+    },
+    {
+      "code": "OR249",
+      "numeric": "0x03054100"
+    },
+    {
+      "code": "OR250",
+      "numeric": "0x03054200"
+    },
+    {
+      "code": "OR251",
+      "numeric": "0x03054300"
+    },
+    {
+      "code": "OR252",
+      "numeric": "0x03054400"
+    },
+    {
+      "code": "OR253",
+      "numeric": "0x03054500"
+    },
+    {
+      "code": "OR254",
+      "numeric": "0x03054600"
+    },
+    {
+      "code": "OR255",
+      "numeric": "0x03054700"
+    },
+    {
+      "code": "OR256",
+      "numeric": "0x03054800"
+    },
+    {
+      "code": "OS101",
+      "numeric": "0x02350100"
+    },
+    {
+      "code": "OS102",
+      "numeric": "0x02350200"
+    },
+    {
+      "code": "OS103",
+      "numeric": "0x02350300"
+    },
+    {
+      "code": "OS104",
+      "numeric": "0x02350400"
+    },
+    {
+      "code": "OS105",
+      "numeric": "0x02350500"
+    },
+    {
+      "code": "OS106",
+      "numeric": "0x02350600"
+    },
+    {
+      "code": "OS107",
+      "numeric": "0x02350700"
+    },
+    {
+      "code": "OS108",
+      "numeric": "0x02350800"
+    },
+    {
+      "code": "OS109",
+      "numeric": "0x02350900"
+    },
+    {
+      "code": "OS110",
+      "numeric": "0x02350A00"
+    },
+    {
+      "code": "OS111",
+      "numeric": "0x02350B00"
+    },
+    {
+      "code": "OS112",
+      "numeric": "0x02350C00"
+    },
+    {
+      "code": "OS113",
+      "numeric": "0x02350D00"
+    },
+    {
+      "code": "OS114",
+      "numeric": "0x02350E00"
+    },
+    {
+      "code": "OS115",
+      "numeric": "0x02350F00"
+    },
+    {
+      "code": "OS116",
+      "numeric": "0x02351000"
+    },
+    {
+      "code": "OS117",
+      "numeric": "0x02351100"
+    },
+    {
+      "code": "OS118",
+      "numeric": "0x02351200"
+    },
+    {
+      "code": "OS119",
+      "numeric": "0x02351300"
+    },
+    {
+      "code": "OS120",
+      "numeric": "0x02351400"
+    },
+    {
+      "code": "OS121",
+      "numeric": "0x02351500"
+    },
+    {
+      "code": "OS122",
+      "numeric": "0x02351600"
+    },
+    {
+      "code": "OS123",
+      "numeric": "0x02351700"
+    },
+    {
+      "code": "OS124",
+      "numeric": "0x02351800"
+    },
+    {
+      "code": "OS125",
+      "numeric": "0x02351900"
+    },
+    {
+      "code": "OS126",
+      "numeric": "0x02352A00"
+    },
+    {
+      "code": "OS127",
+      "numeric": "0x02352B00"
+    },
+    {
+      "code": "OS128",
+      "numeric": "0x02352C00"
+    },
+    {
+      "code": "OS129",
+      "numeric": "0x02352D00"
+    },
+    {
+      "code": "OS130",
+      "numeric": "0x02352E00"
+    },
+    {
+      "code": "OS131",
+      "numeric": "0x02352F00"
+    },
+    {
+      "code": "OS132",
+      "numeric": "0x02353000"
+    },
+    {
+      "code": "OS133",
+      "numeric": "0x02353100"
+    },
+    {
+      "code": "OS134",
+      "numeric": "0x02353200"
+    },
+    {
+      "code": "OS135",
+      "numeric": "0x02353300"
+    },
+    {
+      "code": "OS136",
+      "numeric": "0x02353400"
+    },
+    {
+      "code": "OS140",
+      "numeric": "0x02353800"
+    },
+    {
+      "code": "PL101",
+      "numeric": "0x04020100"
+    },
+    {
+      "code": "PL102",
+      "numeric": "0x04020200"
+    },
+    {
+      "code": "PL103",
+      "numeric": "0x04020300"
+    },
+    {
+      "code": "PL104",
+      "numeric": "0x04020400"
+    },
+    {
+      "code": "PL105",
+      "numeric": "0x04020500"
+    },
+    {
+      "code": "PM101",
+      "numeric": "0x04010100"
+    },
+    {
+      "code": "PM102",
+      "numeric": "0x04010200"
+    },
+    {
+      "code": "PM103",
+      "numeric": "0x04010300"
+    },
+    {
+      "code": "PM104",
+      "numeric": "0x04010400"
+    },
+    {
+      "code": "PM105",
+      "numeric": "0x04010500"
+    },
+    {
+      "code": "PR101",
+      "numeric": "0x03080100"
+    },
+    {
+      "code": "PR102",
+      "numeric": "0x03080200"
+    },
+    {
+      "code": "PR103",
+      "numeric": "0x03080300"
+    },
+    {
+      "code": "PR104",
+      "numeric": "0x03080400"
+    },
+    {
+      "code": "PR105",
+      "numeric": "0x03080500"
+    },
+    {
+      "code": "PR106",
+      "numeric": "0x03080600"
+    },
+    {
+      "code": "PR107",
+      "numeric": "0x03080700"
+    },
+    {
+      "code": "PR108",
+      "numeric": "0x03080800"
+    },
+    {
+      "code": "PR201",
+      "numeric": "0x03090100"
+    },
+    {
+      "code": "PR202",
+      "numeric": "0x03090200"
+    },
+    {
+      "code": "PR203",
+      "numeric": "0x03090300"
+    },
+    {
+      "code": "PR204",
+      "numeric": "0x03090400"
+    },
+    {
+      "code": "PR205",
+      "numeric": "0x03090500"
+    },
+    {
+      "code": "PR206",
+      "numeric": "0x03090600"
+    },
+    {
+      "code": "PR207",
+      "numeric": "0x03090700"
+    },
+    {
+      "code": "PR208",
+      "numeric": "0x03090800"
+    },
+    {
+      "code": "PR209",
+      "numeric": "0x03090900"
+    },
+    {
+      "code": "PR210",
+      "numeric": "0x03090A00"
+    },
+    {
+      "code": "PR211",
+      "numeric": "0x03090B00"
+    },
+    {
+      "code": "PR212",
+      "numeric": "0x03090C00"
+    },
+    {
+      "code": "PR213",
+      "numeric": "0x03090D00"
+    },
+    {
+      "code": "PR214",
+      "numeric": "0x03090E00"
+    },
+    {
+      "code": "PR301",
+      "numeric": "0x03100100"
+    },
+    {
+      "code": "PR302",
+      "numeric": "0x03100200"
+    },
+    {
+      "code": "PR303",
+      "numeric": "0x03100300"
+    },
+    {
+      "code": "PR304",
+      "numeric": "0x03100400"
+    },
+    {
+      "code": "PR305",
+      "numeric": "0x03100500"
+    },
+    {
+      "code": "PR306",
+      "numeric": "0x03100600"
+    },
+    {
+      "code": "PR307",
+      "numeric": "0x03100700"
+    },
+    {
+      "code": "PR308",
+      "numeric": "0x03100800"
+    },
+    {
+      "code": "PR309",
+      "numeric": "0x03100900"
+    },
+    {
+      "code": "PR310",
+      "numeric": "0x03100A00"
+    },
+    {
+      "code": "PR311",
+      "numeric": "0x03100B00"
+    },
+    {
+      "code": "PR312",
+      "numeric": "0x03100C00"
+    },
+    {
+      "code": "PR313",
+      "numeric": "0x03100D00"
+    },
+    {
+      "code": "PR314",
+      "numeric": "0x03100E00"
+    },
+    {
+      "code": "PR316",
+      "numeric": "0x03101000"
+    },
+    {
+      "code": "PR317",
+      "numeric": "0x03101100"
+    },
+    {
+      "code": "PR318",
+      "numeric": "0x03101200"
+    },
+    {
+      "code": "PR401",
+      "numeric": "0x03110100"
+    },
+    {
+      "code": "PR402",
+      "numeric": "0x03110200"
+    },
+    {
+      "code": "PR403",
+      "numeric": "0x03110300"
+    },
+    {
+      "code": "PR404",
+      "numeric": "0x03110400"
+    },
+    {
+      "code": "PR405",
+      "numeric": "0x03110500"
+    },
+    {
+      "code": "PR406",
+      "numeric": "0x03110600"
+    },
+    {
+      "code": "PR407",
+      "numeric": "0x03110700"
+    },
+    {
+      "code": "PR408",
+      "numeric": "0x03110800"
+    },
+    {
+      "code": "PR409",
+      "numeric": "0x03110900"
+    },
+    {
+      "code": "PR410",
+      "numeric": "0x03110A00"
+    },
+    {
+      "code": "PR411",
+      "numeric": "0x03110B00"
+    },
+    {
+      "code": "PR412",
+      "numeric": "0x03110C00"
+    },
+    {
+      "code": "PR413",
+      "numeric": "0x03110D00"
+    },
+    {
+      "code": "PR414",
+      "numeric": "0x03110E00"
+    },
+    {
+      "code": "PS101",
+      "numeric": "0x04030100"
+    },
+    {
+      "code": "PS102",
+      "numeric": "0x04030200"
+    },
+    {
+      "code": "PS103",
+      "numeric": "0x04030300"
+    },
+    {
+      "code": "PS104",
+      "numeric": "0x04030400"
+    },
+    {
+      "code": "PS105",
+      "numeric": "0x04030500"
+    },
+    {
+      "code": "PZ100",
+      "numeric": "0x08060000"
+    },
+    {
+      "code": "PZ101",
+      "numeric": "0x08060100"
+    },
+    {
+      "code": "PZ102",
+      "numeric": "0x08060200"
+    },
+    {
+      "code": "PZ103",
+      "numeric": "0x08060300"
+    },
+    {
+      "code": "PZ104",
+      "numeric": "0x08060400"
+    },
+    {
+      "code": "PZ105",
+      "numeric": "0x08060500"
+    },
+    {
+      "code": "PZ106",
+      "numeric": "0x08060600"
+    },
+    {
+      "code": "PZ107",
+      "numeric": "0x08060700"
+    },
+    {
+      "code": "PZ108",
+      "numeric": "0x08060800"
+    },
+    {
+      "code": "PZ201",
+      "numeric": "0x08070100"
+    },
+    {
+      "code": "PZ202",
+      "numeric": "0x08070200"
+    },
+    {
+      "code": "PZ203",
+      "numeric": "0x08070300"
+    },
+    {
+      "code": "PZ204",
+      "numeric": "0x08070400"
+    },
+    {
+      "code": "PZ205",
+      "numeric": "0x08070500"
+    },
+    {
+      "code": "PZ206",
+      "numeric": "0x08070600"
+    },
+    {
+      "code": "PZ207",
+      "numeric": "0x08070700"
+    },
+    {
+      "code": "PZ208",
+      "numeric": "0x08070800"
+    },
+    {
+      "code": "QT101",
+      "numeric": "0x07010100"
+    },
+    {
+      "code": "QT102",
+      "numeric": "0x07010200"
+    },
+    {
+      "code": "QT103",
+      "numeric": "0x07010300"
+    },
+    {
+      "code": "QT104",
+      "numeric": "0x07010400"
+    },
+    {
+      "code": "QT105",
+      "numeric": "0x07010500"
+    },
+    {
+      "code": "QT106",
+      "numeric": "0x07010600"
+    },
+    {
+      "code": "QT107",
+      "numeric": "0x07010700"
+    },
+    {
+      "code": "QT108",
+      "numeric": "0x07010800"
+    },
+    {
+      "code": "QT109",
+      "numeric": "0x07010900"
+    },
+    {
+      "code": "QT110",
+      "numeric": "0x07010A00"
+    },
+    {
+      "code": "QT111",
+      "numeric": "0x07010B00"
+    },
+    {
+      "code": "QT112",
+      "numeric": "0x07010C00"
+    },
+    {
+      "code": "QT113",
+      "numeric": "0x07010D00"
+    },
+    {
+      "code": "QT114",
+      "numeric": "0x07010E00"
+    },
+    {
+      "code": "QT115",
+      "numeric": "0x07010F00"
+    },
+    {
+      "code": "QT116",
+      "numeric": "0x07011000"
+    },
+    {
+      "code": "QT117",
+      "numeric": "0x07011100"
+    },
+    {
+      "code": "QT118",
+      "numeric": "0x07011200"
+    },
+    {
+      "code": "QT119",
+      "numeric": "0x07011300"
+    },
+    {
+      "code": "QT120",
+      "numeric": "0x07011400"
+    },
+    {
+      "code": "QT121",
+      "numeric": "0x07011500"
+    },
+    {
+      "code": "QT122",
+      "numeric": "0x07011600"
+    },
+    {
+      "code": "QT123",
+      "numeric": "0x07011700"
+    },
+    {
+      "code": "QT124",
+      "numeric": "0x07011800"
+    },
+    {
+      "code": "QT125",
+      "numeric": "0x07011900"
+    },
+    {
+      "code": "QT126",
+      "numeric": "0x07012A00"
+    },
+    {
+      "code": "QT127",
+      "numeric": "0x07012B00"
+    },
+    {
+      "code": "QT128",
+      "numeric": "0x07012C00"
+    },
+    {
+      "code": "QT129",
+      "numeric": "0x07012D00"
+    },
+    {
+      "code": "QT130",
+      "numeric": "0x07012E00"
+    },
+    {
+      "code": "QT131",
+      "numeric": "0x07012F00"
+    },
+    {
+      "code": "QT132",
+      "numeric": "0x07013000"
+    },
+    {
+      "code": "QT133",
+      "numeric": "0x07013100"
+    },
+    {
+      "code": "QT134",
+      "numeric": "0x07013200"
+    },
+    {
+      "code": "QT135",
+      "numeric": "0x07013300"
+    },
+    {
+      "code": "QT136",
+      "numeric": "0x07013400"
+    },
+    {
+      "code": "QW101",
+      "numeric": "0x08030100"
+    },
+    {
+      "code": "QW102",
+      "numeric": "0x08030200"
+    },
+    {
+      "code": "QW103",
+      "numeric": "0x08030300"
+    },
+    {
+      "code": "QW104",
+      "numeric": "0x08030400"
+    },
+    {
+      "code": "QW105",
+      "numeric": "0x08030500"
+    },
+    {
+      "code": "QW106",
+      "numeric": "0x08030600"
+    },
+    {
+      "code": "RS101",
+      "numeric": "0x03070500"
+    },
+    {
+      "code": "RS102",
+      "numeric": "0x03070600"
+    },
+    {
+      "code": "RS103",
+      "numeric": "0x03070700"
+    },
+    {
+      "code": "RS104",
+      "numeric": "0x03070800"
+    },
+    {
+      "code": "RS105",
+      "numeric": "0x03070900"
+    },
+    {
+      "code": "RS106",
+      "numeric": "0x03070A00"
+    },
+    {
+      "code": "RS107",
+      "numeric": "0x03070B00"
+    },
+    {
+      "code": "RS108",
+      "numeric": "0x03070C00"
+    },
+    {
+      "code": "SE101",
+      "numeric": "0x03070100"
+    },
+    {
+      "code": "SE102",
+      "numeric": "0x03070200"
+    },
+    {
+      "code": "SE103",
+      "numeric": "0x03070300"
+    },
+    {
+      "code": "SE104",
+      "numeric": "0x03070400"
+    },
+    {
+      "code": "SE105",
+      "numeric": "0x03070500"
+    },
+    {
+      "code": "SE113",
+      "numeric": "0x03070D00"
+    },
+    {
+      "code": "SK101",
+      "numeric": "0x081A0100"
+    },
+    {
+      "code": "SK102",
+      "numeric": "0x081A0200"
+    },
+    {
+      "code": "SK103",
+      "numeric": "0x081A0300"
+    },
+    {
+      "code": "SK105",
+      "numeric": "0x081A0500"
+    },
+    {
+      "code": "SK106",
+      "numeric": "0x081A0600"
+    },
+    {
+      "code": "SK107",
+      "numeric": "0x081A0700"
+    },
+    {
+      "code": "SK108",
+      "numeric": "0x081A0800"
+    },
+    {
+      "code": "SK109",
+      "numeric": "0x081A0900"
+    },
+    {
+      "code": "SK110",
+      "numeric": "0x081A0A00"
+    },
+    {
+      "code": "SK111",
+      "numeric": "0x081A0B00"
+    },
+    {
+      "code": "SK112",
+      "numeric": "0x081A0C00"
+    },
+    {
+      "code": "SK113",
+      "numeric": "0x081A0D00"
+    },
+    {
+      "code": "SK114",
+      "numeric": "0x081A0E00"
+    },
+    {
+      "code": "SK115",
+      "numeric": "0x081A0F00"
+    },
+    {
+      "code": "SK116",
+      "numeric": "0x081A1000"
+    },
+    {
+      "code": "SK117",
+      "numeric": "0x081A1100"
+    },
+    {
+      "code": "SK172",
+      "numeric": "0x081A5800"
+    },
+    {
+      "code": "SK173",
+      "numeric": "0x081A5900"
+    },
+    {
+      "code": "SK174",
+      "numeric": "0x081A5A00"
+    },
+    {
+      "code": "SK175",
+      "numeric": "0x081A5B00"
+    },
+    {
+      "code": "SK176",
+      "numeric": "0x081A5C00"
+    },
+    {
+      "code": "SK181",
+      "numeric": "0x081A6100"
+    },
+    {
+      "code": "SK182",
+      "numeric": "0x081A6200"
+    },
+    {
+      "code": "SK183",
+      "numeric": "0x081A6300"
+    },
+    {
+      "code": "SK184",
+      "numeric": "0x081A6400"
+    },
+    {
+      "code": "SK185",
+      "numeric": "0x081A6500"
+    },
+    {
+      "code": "SK186",
+      "numeric": "0x081A6600"
+    },
+    {
+      "code": "SK187",
+      "numeric": "0x081A6700"
+    },
+    {
+      "code": "SK201",
+      "numeric": "0x081B0100"
+    },
+    {
+      "code": "SK202",
+      "numeric": "0x081B0200"
+    },
+    {
+      "code": "SK203",
+      "numeric": "0x081B0300"
+    },
+    {
+      "code": "SK204",
+      "numeric": "0x081B0400"
+    },
+    {
+      "code": "SK205",
+      "numeric": "0x081B0500"
+    },
+    {
+      "code": "SK221",
+      "numeric": "0x081B1500"
+    },
+    {
+      "code": "SK222",
+      "numeric": "0x081B1600"
+    },
+    {
+      "code": "SK223",
+      "numeric": "0x081B1700"
+    },
+    {
+      "code": "SK224",
+      "numeric": "0x081B1800"
+    },
+    {
+      "code": "SK231",
+      "numeric": "0x081B2F00"
+    },
+    {
+      "code": "SK232",
+      "numeric": "0x081B3000"
+    },
+    {
+      "code": "SK233",
+      "numeric": "0x081B3100"
+    },
+    {
+      "code": "SK234",
+      "numeric": "0x081B3200"
+    },
+    {
+      "code": "SK241",
+      "numeric": "0x081B3900"
+    },
+    {
+      "code": "SK242",
+      "numeric": "0x081B3A00"
+    },
+    {
+      "code": "SK243",
+      "numeric": "0x081B3B00"
+    },
+    {
+      "code": "SK244",
+      "numeric": "0x081B3C00"
+    },
+    {
+      "code": "SK245",
+      "numeric": "0x081B3D00"
+    },
+    {
+      "code": "SK246",
+      "numeric": "0x081B3E00"
+    },
+    {
+      "code": "SK247",
+      "numeric": "0x081B3F00"
+    },
+    {
+      "code": "SK248",
+      "numeric": "0x081B4000"
+    },
+    {
+      "code": "SK249",
+      "numeric": "0x081B4100"
+    },
+    {
+      "code": "SK253",
+      "numeric": "0x081B4500"
+    },
+    {
+      "code": "SK254",
+      "numeric": "0x081B4600"
+    },
+    {
+      "code": "SK255",
+      "numeric": "0x081B4700"
+    },
+    {
+      "code": "SK256",
+      "numeric": "0x081B4800"
+    },
+    {
+      "code": "SK257",
+      "numeric": "0x081B4900"
+    },
+    {
+      "code": "SK258",
+      "numeric": "0x081B4A00"
+    },
+    {
+      "code": "SK259",
+      "numeric": "0x081B4B00"
+    },
+    {
+      "code": "SK265",
+      "numeric": "0x081B5100"
+    },
+    {
+      "code": "SK266",
+      "numeric": "0x081B5200"
+    },
+    {
+      "code": "SK267",
+      "numeric": "0x081B5300"
+    },
+    {
+      "code": "SK268",
+      "numeric": "0x081B5400"
+    },
+    {
+      "code": "SK269",
+      "numeric": "0x081B5500"
+    },
+    {
+      "code": "SK270",
+      "numeric": "0x081B5600"
+    },
+    {
+      "code": "SK301",
+      "numeric": "0x081C0100"
+    },
+    {
+      "code": "SK302",
+      "numeric": "0x081C0200"
+    },
+    {
+      "code": "SK303",
+      "numeric": "0x081C0300"
+    },
+    {
+      "code": "SK304",
+      "numeric": "0x081C0400"
+    },
+    {
+      "code": "SK305",
+      "numeric": "0x081C0500"
+    },
+    {
+      "code": "SK306",
+      "numeric": "0x081C0600"
+    },
+    {
+      "code": "SK401",
+      "numeric": "0x081D0100"
+    },
+    {
+      "code": "SK402",
+      "numeric": "0x081D0200"
+    },
+    {
+      "code": "SK403",
+      "numeric": "0x081D0300"
+    },
+    {
+      "code": "SK404",
+      "numeric": "0x081D0400"
+    },
+    {
+      "code": "SK405",
+      "numeric": "0x081D0500"
+    },
+    {
+      "code": "SK406",
+      "numeric": "0x081D0600"
+    },
+    {
+      "code": "SP101",
+      "numeric": "0x08010100"
+    },
+    {
+      "code": "SP102",
+      "numeric": "0x08010200"
+    },
+    {
+      "code": "SP103",
+      "numeric": "0x08010300"
+    },
+    {
+      "code": "SP105",
+      "numeric": "0x08010500"
+    },
+    {
+      "code": "SP106",
+      "numeric": "0x08010600"
+    },
+    {
+      "code": "SP107",
+      "numeric": "0x08010700"
+    },
+    {
+      "code": "SP108",
+      "numeric": "0x08010800"
+    },
+    {
+      "code": "SP109",
+      "numeric": "0x08010900"
+    },
+    {
+      "code": "SP110",
+      "numeric": "0x08010A00"
+    },
+    {
+      "code": "SP111",
+      "numeric": "0x08010B00"
+    },
+    {
+      "code": "SP112",
+      "numeric": "0x08010C00"
+    },
+    {
+      "code": "SP113",
+      "numeric": "0x08010D00"
+    },
+    {
+      "code": "SP115",
+      "numeric": "0x08010F00"
+    },
+    {
+      "code": "SP123",
+      "numeric": "0x08011700"
+    },
+    {
+      "code": "SP124",
+      "numeric": "0x08011800"
+    },
+    {
+      "code": "SP125",
+      "numeric": "0x08011900"
+    },
+    {
+      "code": "SP126",
+      "numeric": "0x08012A00"
+    },
+    {
+      "code": "SP127",
+      "numeric": "0x08012B00"
+    },
+    {
+      "code": "SP128",
+      "numeric": "0x08012C00"
+    },
+    {
+      "code": "SP129",
+      "numeric": "0x08012D00"
+    },
+    {
+      "code": "SP130",
+      "numeric": "0x08012E00"
+    },
+    {
+      "code": "SP131",
+      "numeric": "0x08012F00"
+    },
+    {
+      "code": "SP132",
+      "numeric": "0x08013000"
+    },
+    {
+      "code": "SP133",
+      "numeric": "0x08013100"
+    },
+    {
+      "code": "SP134",
+      "numeric": "0x08013200"
+    },
+    {
+      "code": "SP135",
+      "numeric": "0x08013300"
+    },
+    {
+      "code": "SP136",
+      "numeric": "0x08013400"
+    },
+    {
+      "code": "SP137",
+      "numeric": "0x08013500"
+    },
+    {
+      "code": "SP138",
+      "numeric": "0x08013600"
+    },
+    {
+      "code": "SP139",
+      "numeric": "0x08013700"
+    },
+    {
+      "code": "SP140",
+      "numeric": "0x08013800"
+    },
+    {
+      "code": "SP142",
+      "numeric": "0x08013A00"
+    },
+    {
+      "code": "SP160",
+      "numeric": "0x08014C00"
+    },
+    {
+      "code": "SP161",
+      "numeric": "0x08014D00"
+    },
+    {
+      "code": "SP162",
+      "numeric": "0x08014E00"
+    },
+    {
+      "code": "SP163",
+      "numeric": "0x08014F00"
+    },
+    {
+      "code": "SP179",
+      "numeric": "0x08015F00"
+    },
+    {
+      "code": "TW101",
+      "numeric": "0x01074C00"
+    },
+    {
+      "code": "TW102",
+      "numeric": "0x01074D00"
+    },
+    {
+      "code": "TW103",
+      "numeric": "0x01034C00"
+    },
+    {
+      "code": "TW104",
+      "numeric": "0x01074E00"
+    },
+    {
+      "code": "TW105",
+      "numeric": "0x01044C00"
+    },
+    {
+      "code": "TW107",
+      "numeric": "0x01064C00"
+    },
+    {
+      "code": "TW108",
+      "numeric": "0x01054C00"
+    },
+    {
+      "code": "TW109",
+      "numeric": "0x01054D00"
+    },
+    {
+      "code": "TW110",
+      "numeric": "0x01074F00"
+    },
+    {
+      "code": "TW111",
+      "numeric": "0x01075000"
+    },
+    {
+      "code": "TW112",
+      "numeric": "0x01064D00"
+    },
+    {
+      "code": "TW113",
+      "numeric": "0x01064E00"
+    },
+    {
+      "code": "TW114",
+      "numeric": "0x01054E00"
+    },
+    {
+      "code": "TW115",
+      "numeric": "0x01024C00"
+    },
+    {
+      "code": "TW116",
+      "numeric": "0x01054F00"
+    },
+    {
+      "code": "TW117",
+      "numeric": "0x02044C00"
+    },
+    {
+      "code": "WA101",
+      "numeric": "0x01010100"
+    },
+    {
+      "code": "WA102",
+      "numeric": "0x01010200"
+    },
+    {
+      "code": "WA103",
+      "numeric": "0x01010300"
+    },
+    {
+      "code": "WA104",
+      "numeric": "0x01010400"
+    },
+    {
+      "code": "WA105",
+      "numeric": "0x01010500"
+    },
+    {
+      "code": "WA106",
+      "numeric": "0x01010600"
+    },
+    {
+      "code": "WA107",
+      "numeric": "0x01010700"
+    },
+    {
+      "code": "WA108",
+      "numeric": "0x01010800"
+    },
+    {
+      "code": "WA109",
+      "numeric": "0x01010900"
+    },
+    {
+      "code": "WA110",
+      "numeric": "0x01010A00"
+    },
+    {
+      "code": "WA111",
+      "numeric": "0x01010B00"
+    },
+    {
+      "code": "WA112",
+      "numeric": "0x01010C00"
+    },
+    {
+      "code": "WA113",
+      "numeric": "0x01010D00"
+    },
+    {
+      "code": "WA114",
+      "numeric": "0x01010E00"
+    },
+    {
+      "code": "WA115",
+      "numeric": "0x01010F00"
+    },
+    {
+      "code": "WA116",
+      "numeric": "0x01011000"
+    },
+    {
+      "code": "WA117",
+      "numeric": "0x01011100"
+    },
+    {
+      "code": "WA118",
+      "numeric": "0x01011200"
+    },
+    {
+      "code": "WA119",
+      "numeric": "0x01011300"
+    },
+    {
+      "code": "WA120",
+      "numeric": "0x01011400"
+    },
+    {
+      "code": "WA121",
+      "numeric": "0x01011500"
+    },
+    {
+      "code": "WA122",
+      "numeric": "0x01011600"
+    },
+    {
+      "code": "WA123",
+      "numeric": "0x01011700"
+    },
+    {
+      "code": "WA124",
+      "numeric": "0x01011800"
+    },
+    {
+      "code": "WA125",
+      "numeric": "0x01011900"
+    },
+    {
+      "code": "WA126",
+      "numeric": "0x01012A00"
+    },
+    {
+      "code": "WA127",
+      "numeric": "0x01012B00"
+    },
+    {
+      "code": "WA128",
+      "numeric": "0x01012C00"
+    },
+    {
+      "code": "WA129",
+      "numeric": "0x01012D00"
+    },
+    {
+      "code": "WA130",
+      "numeric": "0x01012E00"
+    },
+    {
+      "code": "WA131",
+      "numeric": "0x01012F00"
+    },
+    {
+      "code": "WA132",
+      "numeric": "0x01013000"
+    },
+    {
+      "code": "WA133",
+      "numeric": "0x01013100"
+    },
+    {
+      "code": "WA134",
+      "numeric": "0x01013200"
+    },
+    {
+      "code": "WA135",
+      "numeric": "0x01013300"
+    },
+    {
+      "code": "WA136",
+      "numeric": "0x01013400"
+    },
+    {
+      "code": "WA137",
+      "numeric": "0x01013500"
+    },
+    {
+      "code": "WA138",
+      "numeric": "0x01013600"
+    },
+    {
+      "code": "WA153",
+      "numeric": "0x01014500"
+    },
+    {
+      "code": "WA160",
+      "numeric": "0x01014C00"
+    },
+    {
+      "code": "WC101",
+      "numeric": "0x01020100"
+    },
+    {
+      "code": "WC102",
+      "numeric": "0x01020200"
+    },
+    {
+      "code": "WC103",
+      "numeric": "0x01020300"
+    },
+    {
+      "code": "WC104",
+      "numeric": "0x01020400"
+    },
+    {
+      "code": "WC105",
+      "numeric": "0x01020500"
+    },
+    {
+      "code": "WC106",
+      "numeric": "0x01020600"
+    },
+    {
+      "code": "WC107",
+      "numeric": "0x01020700"
+    },
+    {
+      "code": "WC108",
+      "numeric": "0x01020800"
+    },
+    {
+      "code": "WC109",
+      "numeric": "0x01020900"
+    },
+    {
+      "code": "WC110",
+      "numeric": "0x01020A00"
+    },
+    {
+      "code": "WC111",
+      "numeric": "0x01020B00"
+    },
+    {
+      "code": "WC112",
+      "numeric": "0x01020C00"
+    },
+    {
+      "code": "WC113",
+      "numeric": "0x01020D00"
+    },
+    {
+      "code": "WC114",
+      "numeric": "0x01020E00"
+    },
+    {
+      "code": "WC115",
+      "numeric": "0x01020F00"
+    },
+    {
+      "code": "WC116",
+      "numeric": "0x01021000"
+    },
+    {
+      "code": "WC117",
+      "numeric": "0x01021100"
+    },
+    {
+      "code": "WC118",
+      "numeric": "0x01021200"
+    },
+    {
+      "code": "WC119",
+      "numeric": "0x01021300"
+    },
+    {
+      "code": "WC120",
+      "numeric": "0x01021400"
+    },
+    {
+      "code": "WC121",
+      "numeric": "0x01021500"
+    },
+    {
+      "code": "WC122",
+      "numeric": "0x01021600"
+    },
+    {
+      "code": "WC123",
+      "numeric": "0x01021700"
+    },
+    {
+      "code": "WC124",
+      "numeric": "0x01021800"
+    },
+    {
+      "code": "WC125",
+      "numeric": "0x01021900"
+    },
+    {
+      "code": "WC126",
+      "numeric": "0x01022A00"
+    },
+    {
+      "code": "WC127",
+      "numeric": "0x01022B00"
+    },
+    {
+      "code": "WC128",
+      "numeric": "0x01022C00"
+    },
+    {
+      "code": "WC129",
+      "numeric": "0x01022D00"
+    },
+    {
+      "code": "WC130",
+      "numeric": "0x01022E00"
+    },
+    {
+      "code": "WC131",
+      "numeric": "0x01022F00"
+    },
+    {
+      "code": "WC132",
+      "numeric": "0x01023000"
+    },
+    {
+      "code": "WC133",
+      "numeric": "0x01023100"
+    },
+    {
+      "code": "WC134",
+      "numeric": "0x01023200"
+    },
+    {
+      "code": "WC153",
+      "numeric": "0x01024500"
+    },
+    {
+      "code": "WC154",
+      "numeric": "0x01024600"
+    },
+    {
+      "code": "WC160",
+      "numeric": "0x01024C00"
+    },
+    {
+      "code": "WC161",
+      "numeric": "0x01024D00"
+    },
+    {
+      "code": "WH101",
+      "numeric": "0x01030100"
+    },
+    {
+      "code": "WH102",
+      "numeric": "0x01030200"
+    },
+    {
+      "code": "WH103",
+      "numeric": "0x01030300"
+    },
+    {
+      "code": "WH104",
+      "numeric": "0x01030400"
+    },
+    {
+      "code": "WH105",
+      "numeric": "0x01030500"
+    },
+    {
+      "code": "WH106",
+      "numeric": "0x01030600"
+    },
+    {
+      "code": "WH107",
+      "numeric": "0x01030700"
+    },
+    {
+      "code": "WH108",
+      "numeric": "0x01030800"
+    },
+    {
+      "code": "WH109",
+      "numeric": "0x01030900"
+    },
+    {
+      "code": "WH110",
+      "numeric": "0x01030A00"
+    },
+    {
+      "code": "WH111",
+      "numeric": "0x01030B00"
+    },
+    {
+      "code": "WH112",
+      "numeric": "0x01030C00"
+    },
+    {
+      "code": "WH113",
+      "numeric": "0x01030D00"
+    },
+    {
+      "code": "WH114",
+      "numeric": "0x01030E00"
+    },
+    {
+      "code": "WH115",
+      "numeric": "0x01030F00"
+    },
+    {
+      "code": "WH116",
+      "numeric": "0x01031000"
+    },
+    {
+      "code": "WH117",
+      "numeric": "0x01031100"
+    },
+    {
+      "code": "WH118",
+      "numeric": "0x01031200"
+    },
+    {
+      "code": "WH119",
+      "numeric": "0x01031300"
+    },
+    {
+      "code": "WH120",
+      "numeric": "0x01031400"
+    },
+    {
+      "code": "WH121",
+      "numeric": "0x01031500"
+    },
+    {
+      "code": "WH122",
+      "numeric": "0x01031600"
+    },
+    {
+      "code": "WH123",
+      "numeric": "0x01031700"
+    },
+    {
+      "code": "WH124",
+      "numeric": "0x01031800"
+    },
+    {
+      "code": "WH125",
+      "numeric": "0x01031900"
+    },
+    {
+      "code": "WH126",
+      "numeric": "0x01032A00"
+    },
+    {
+      "code": "WH127",
+      "numeric": "0x01032B00"
+    },
+    {
+      "code": "WH128",
+      "numeric": "0x01032C00"
+    },
+    {
+      "code": "WH129",
+      "numeric": "0x01032D00"
+    },
+    {
+      "code": "WH130",
+      "numeric": "0x01032E00"
+    },
+    {
+      "code": "WH131",
+      "numeric": "0x01032F00"
+    },
+    {
+      "code": "WH132",
+      "numeric": "0x01033000"
+    },
+    {
+      "code": "WH133",
+      "numeric": "0x01033100"
+    },
+    {
+      "code": "WH134",
+      "numeric": "0x01033200"
+    },
+    {
+      "code": "WH135",
+      "numeric": "0x01033300"
+    },
+    {
+      "code": "WH136",
+      "numeric": "0x01033400"
+    },
+    {
+      "code": "WH137",
+      "numeric": "0x01033500"
+    },
+    {
+      "code": "WH138",
+      "numeric": "0x01033600"
+    },
+    {
+      "code": "WH153",
+      "numeric": "0x01034500"
+    },
+    {
+      "code": "WH154",
+      "numeric": "0x01034600"
+    },
+    {
+      "code": "WH160",
+      "numeric": "0x01034C00"
+    },
+    {
+      "code": "WM101",
+      "numeric": "0x01040100"
+    },
+    {
+      "code": "WM102",
+      "numeric": "0x01040200"
+    },
+    {
+      "code": "WM103",
+      "numeric": "0x01040300"
+    },
+    {
+      "code": "WM104",
+      "numeric": "0x01040400"
+    },
+    {
+      "code": "WM105",
+      "numeric": "0x01040500"
+    },
+    {
+      "code": "WM106",
+      "numeric": "0x01040600"
+    },
+    {
+      "code": "WM107",
+      "numeric": "0x01040700"
+    },
+    {
+      "code": "WM108",
+      "numeric": "0x01040800"
+    },
+    {
+      "code": "WM109",
+      "numeric": "0x01040900"
+    },
+    {
+      "code": "WM110",
+      "numeric": "0x01040A00"
+    },
+    {
+      "code": "WM111",
+      "numeric": "0x01040B00"
+    },
+    {
+      "code": "WM112",
+      "numeric": "0x01040C00"
+    },
+    {
+      "code": "WM113",
+      "numeric": "0x01040D00"
+    },
+    {
+      "code": "WM114",
+      "numeric": "0x01040E00"
+    },
+    {
+      "code": "WM115",
+      "numeric": "0x01040F00"
+    },
+    {
+      "code": "WM116",
+      "numeric": "0x01041000"
+    },
+    {
+      "code": "WM117",
+      "numeric": "0x01041100"
+    },
+    {
+      "code": "WM118",
+      "numeric": "0x01041200"
+    },
+    {
+      "code": "WM119",
+      "numeric": "0x01041300"
+    },
+    {
+      "code": "WM120",
+      "numeric": "0x01041400"
+    },
+    {
+      "code": "WM121",
+      "numeric": "0x01041500"
+    },
+    {
+      "code": "WM122",
+      "numeric": "0x01041600"
+    },
+    {
+      "code": "WM123",
+      "numeric": "0x01041700"
+    },
+    {
+      "code": "WM124",
+      "numeric": "0x01041800"
+    },
+    {
+      "code": "WM125",
+      "numeric": "0x01041900"
+    },
+    {
+      "code": "WM126",
+      "numeric": "0x01042A00"
+    },
+    {
+      "code": "WM127",
+      "numeric": "0x01042B00"
+    },
+    {
+      "code": "WM128",
+      "numeric": "0x01042C00"
+    },
+    {
+      "code": "WM129",
+      "numeric": "0x01042D00"
+    },
+    {
+      "code": "WM130",
+      "numeric": "0x01042E00"
+    },
+    {
+      "code": "WM131",
+      "numeric": "0x01042F00"
+    },
+    {
+      "code": "WM132",
+      "numeric": "0x01043000"
+    },
+    {
+      "code": "WM133",
+      "numeric": "0x01043100"
+    },
+    {
+      "code": "WM134",
+      "numeric": "0x01043200"
+    },
+    {
+      "code": "WM135",
+      "numeric": "0x01043300"
+    },
+    {
+      "code": "WM136",
+      "numeric": "0x01043400"
+    },
+    {
+      "code": "WM137",
+      "numeric": "0x01043500"
+    },
+    {
+      "code": "WM138",
+      "numeric": "0x01043600"
+    },
+    {
+      "code": "WM153",
+      "numeric": "0x01044500"
+    },
+    {
+      "code": "WM154",
+      "numeric": "0x01044600"
+    },
+    {
+      "code": "WP101",
+      "numeric": "0x01050100"
+    },
+    {
+      "code": "WP102",
+      "numeric": "0x01050200"
+    },
+    {
+      "code": "WP103",
+      "numeric": "0x01050300"
+    },
+    {
+      "code": "WP104",
+      "numeric": "0x01050400"
+    },
+    {
+      "code": "WP105",
+      "numeric": "0x01050500"
+    },
+    {
+      "code": "WP106",
+      "numeric": "0x01050600"
+    },
+    {
+      "code": "WP107",
+      "numeric": "0x01050700"
+    },
+    {
+      "code": "WP108",
+      "numeric": "0x01050800"
+    },
+    {
+      "code": "WP109",
+      "numeric": "0x01050900"
+    },
+    {
+      "code": "WP110",
+      "numeric": "0x01050A00"
+    },
+    {
+      "code": "WP111",
+      "numeric": "0x01050B00"
+    },
+    {
+      "code": "WP112",
+      "numeric": "0x01050C00"
+    },
+    {
+      "code": "WP113",
+      "numeric": "0x01050D00"
+    },
+    {
+      "code": "WP114",
+      "numeric": "0x01050E00"
+    },
+    {
+      "code": "WP115",
+      "numeric": "0x01050F00"
+    },
+    {
+      "code": "WP116",
+      "numeric": "0x01051000"
+    },
+    {
+      "code": "WP117",
+      "numeric": "0x01051100"
+    },
+    {
+      "code": "WP118",
+      "numeric": "0x01051200"
+    },
+    {
+      "code": "WP119",
+      "numeric": "0x01051300"
+    },
+    {
+      "code": "WP120",
+      "numeric": "0x01051400"
+    },
+    {
+      "code": "WP121",
+      "numeric": "0x01051500"
+    },
+    {
+      "code": "WP122",
+      "numeric": "0x01051600"
+    },
+    {
+      "code": "WP123",
+      "numeric": "0x01051700"
+    },
+    {
+      "code": "WP124",
+      "numeric": "0x01051800"
+    },
+    {
+      "code": "WP125",
+      "numeric": "0x01051900"
+    },
+    {
+      "code": "WP126",
+      "numeric": "0x01052A00"
+    },
+    {
+      "code": "WP127",
+      "numeric": "0x01052B00"
+    },
+    {
+      "code": "WP128",
+      "numeric": "0x01052C00"
+    },
+    {
+      "code": "WP129",
+      "numeric": "0x01052D00"
+    },
+    {
+      "code": "WP130",
+      "numeric": "0x01052E00"
+    },
+    {
+      "code": "WP131",
+      "numeric": "0x01052F00"
+    },
+    {
+      "code": "WP132",
+      "numeric": "0x01053000"
+    },
+    {
+      "code": "WP133",
+      "numeric": "0x01053100"
+    },
+    {
+      "code": "WP134",
+      "numeric": "0x01053200"
+    },
+    {
+      "code": "WP135",
+      "numeric": "0x01053300"
+    },
+    {
+      "code": "WP136",
+      "numeric": "0x01053400"
+    },
+    {
+      "code": "WP153",
+      "numeric": "0x01054500"
+    },
+    {
+      "code": "WP154",
+      "numeric": "0x01054600"
+    },
+    {
+      "code": "WP160",
+      "numeric": "0x01054C00"
+    },
+    {
+      "code": "WR101",
+      "numeric": "0x0A010100"
+    },
+    {
+      "code": "WR102",
+      "numeric": "0x0A010200"
+    },
+    {
+      "code": "WR103",
+      "numeric": "0x0A010300"
+    },
+    {
+      "code": "WR104",
+      "numeric": "0x0A010400"
+    },
+    {
+      "code": "WR105",
+      "numeric": "0x0A010500"
+    },
+    {
+      "code": "WR106",
+      "numeric": "0x0A010600"
+    },
+    {
+      "code": "WR107",
+      "numeric": "0x0A010700"
+    },
+    {
+      "code": "WR108",
+      "numeric": "0x0A010800"
+    },
+    {
+      "code": "WR109",
+      "numeric": "0x0A010900"
+    },
+    {
+      "code": "WS101",
+      "numeric": "0x01060100"
+    },
+    {
+      "code": "WS102",
+      "numeric": "0x01060200"
+    },
+    {
+      "code": "WS103",
+      "numeric": "0x01060300"
+    },
+    {
+      "code": "WS104",
+      "numeric": "0x01060400"
+    },
+    {
+      "code": "WS105",
+      "numeric": "0x01060500"
+    },
+    {
+      "code": "WS106",
+      "numeric": "0x01060600"
+    },
+    {
+      "code": "WS107",
+      "numeric": "0x01060700"
+    },
+    {
+      "code": "WS108",
+      "numeric": "0x01060800"
+    },
+    {
+      "code": "WS109",
+      "numeric": "0x01060900"
+    },
+    {
+      "code": "WS110",
+      "numeric": "0x01060A00"
+    },
+    {
+      "code": "WS111",
+      "numeric": "0x01060B00"
+    },
+    {
+      "code": "WS112",
+      "numeric": "0x01060C00"
+    },
+    {
+      "code": "WS113",
+      "numeric": "0x01060D00"
+    },
+    {
+      "code": "WS114",
+      "numeric": "0x01060E00"
+    },
+    {
+      "code": "WS115",
+      "numeric": "0x01060F00"
+    },
+    {
+      "code": "WS116",
+      "numeric": "0x01061000"
+    },
+    {
+      "code": "WS117",
+      "numeric": "0x01061100"
+    },
+    {
+      "code": "WS118",
+      "numeric": "0x01061200"
+    },
+    {
+      "code": "WS119",
+      "numeric": "0x01061300"
+    },
+    {
+      "code": "WS120",
+      "numeric": "0x01061400"
+    },
+    {
+      "code": "WS121",
+      "numeric": "0x01061500"
+    },
+    {
+      "code": "WS122",
+      "numeric": "0x01061600"
+    },
+    {
+      "code": "WS123",
+      "numeric": "0x01061700"
+    },
+    {
+      "code": "WS124",
+      "numeric": "0x01061800"
+    },
+    {
+      "code": "WS125",
+      "numeric": "0x01061900"
+    },
+    {
+      "code": "WS126",
+      "numeric": "0x01062A00"
+    },
+    {
+      "code": "WS127",
+      "numeric": "0x01062B00"
+    },
+    {
+      "code": "WS128",
+      "numeric": "0x01062C00"
+    },
+    {
+      "code": "WS129",
+      "numeric": "0x01062D00"
+    },
+    {
+      "code": "WS130",
+      "numeric": "0x01062E00"
+    },
+    {
+      "code": "WS131",
+      "numeric": "0x01062F00"
+    },
+    {
+      "code": "WS132",
+      "numeric": "0x01063000"
+    },
+    {
+      "code": "WS133",
+      "numeric": "0x01063100"
+    },
+    {
+      "code": "WS134",
+      "numeric": "0x01063200"
+    },
+    {
+      "code": "WS135",
+      "numeric": "0x01063300"
+    },
+    {
+      "code": "WS136",
+      "numeric": "0x01063400"
+    },
+    {
+      "code": "WS137",
+      "numeric": "0x01063500"
+    },
+    {
+      "code": "WS153",
+      "numeric": "0x01064500"
+    },
+    {
+      "code": "WS160",
+      "numeric": "0x01064C00"
+    },
+    {
+      "code": "WS161",
+      "numeric": "0x01064D00"
+    },
+    {
+      "code": "WS201",
+      "numeric": "0x01070100"
+    },
+    {
+      "code": "WS202",
+      "numeric": "0x01070200"
+    },
+    {
+      "code": "WS203",
+      "numeric": "0x01070300"
+    },
+    {
+      "code": "WS204",
+      "numeric": "0x01070400"
+    },
+    {
+      "code": "WS205",
+      "numeric": "0x01070500"
+    },
+    {
+      "code": "WS206",
+      "numeric": "0x01070600"
+    },
+    {
+      "code": "WS207",
+      "numeric": "0x01070700"
+    },
+    {
+      "code": "WS208",
+      "numeric": "0x01070800"
+    },
+    {
+      "code": "WS209",
+      "numeric": "0x01070900"
+    },
+    {
+      "code": "WS210",
+      "numeric": "0x01070A00"
+    },
+    {
+      "code": "WS211",
+      "numeric": "0x01070B00"
+    },
+    {
+      "code": "WS212",
+      "numeric": "0x01070C00"
+    },
+    {
+      "code": "WS213",
+      "numeric": "0x01070D00"
+    },
+    {
+      "code": "WS214",
+      "numeric": "0x01070E00"
+    },
+    {
+      "code": "WS215",
+      "numeric": "0x01070F00"
+    },
+    {
+      "code": "WS216",
+      "numeric": "0x01071000"
+    },
+    {
+      "code": "WS217",
+      "numeric": "0x01071100"
+    },
+    {
+      "code": "WS218",
+      "numeric": "0x01071200"
+    },
+    {
+      "code": "WS219",
+      "numeric": "0x01071300"
+    },
+    {
+      "code": "WS220",
+      "numeric": "0x01071400"
+    },
+    {
+      "code": "WS221",
+      "numeric": "0x01071500"
+    },
+    {
+      "code": "WS222",
+      "numeric": "0x01071600"
+    },
+    {
+      "code": "WS223",
+      "numeric": "0x01071700"
+    },
+    {
+      "code": "WS224",
+      "numeric": "0x01071800"
+    },
+    {
+      "code": "WS225",
+      "numeric": "0x01071900"
+    },
+    {
+      "code": "WS226",
+      "numeric": "0x01072A00"
+    },
+    {
+      "code": "WS227",
+      "numeric": "0x01072B00"
+    },
+    {
+      "code": "WS228",
+      "numeric": "0x01072C00"
+    },
+    {
+      "code": "WS229",
+      "numeric": "0x01072D00"
+    },
+    {
+      "code": "WS230",
+      "numeric": "0x01072E00"
+    },
+    {
+      "code": "WS231",
+      "numeric": "0x01072F00"
+    },
+    {
+      "code": "WS232",
+      "numeric": "0x01073000"
+    },
+    {
+      "code": "WS233",
+      "numeric": "0x01073100"
+    },
+    {
+      "code": "WS234",
+      "numeric": "0x01073200"
+    },
+    {
+      "code": "WS235",
+      "numeric": "0x01073300"
+    },
+    {
+      "code": "WS236",
+      "numeric": "0x01073400"
+    },
+    {
+      "code": "WS237",
+      "numeric": "0x01073500"
+    },
+    {
+      "code": "WS238",
+      "numeric": "0x01073600"
+    },
+    {
+      "code": "WS239",
+      "numeric": "0x01073700"
+    },
+    {
+      "code": "WS240",
+      "numeric": "0x01073800"
+    },
+    {
+      "code": "WS253",
+      "numeric": "0x01074500"
+    },
+    {
+      "code": "WS260",
+      "numeric": "0x01074C00"
+    },
+    {
+      "code": "WS261",
+      "numeric": "0x01074D00"
+    },
+    {
+      "code": "WT101",
+      "numeric": "0x01080100"
+    },
+    {
+      "code": "WT102",
+      "numeric": "0x01080200"
+    },
+    {
+      "code": "WT103",
+      "numeric": "0x01080300"
+    },
+    {
+      "code": "WT104",
+      "numeric": "0x01080400"
+    },
+    {
+      "code": "WT105",
+      "numeric": "0x01080500"
+    },
+    {
+      "code": "WT106",
+      "numeric": "0x01080600"
+    },
+    {
+      "code": "WT107",
+      "numeric": "0x01080700"
+    },
+    {
+      "code": "WT108",
+      "numeric": "0x01080800"
+    },
+    {
+      "code": "WT109",
+      "numeric": "0x01080900"
+    },
+    {
+      "code": "WT110",
+      "numeric": "0x01080A00"
+    },
+    {
+      "code": "WT111",
+      "numeric": "0x01080B00"
+    },
+    {
+      "code": "WT112",
+      "numeric": "0x01080C00"
+    },
+    {
+      "code": "WT113",
+      "numeric": "0x01080D00"
+    },
+    {
+      "code": "WT114",
+      "numeric": "0x01080E00"
+    },
+    {
+      "code": "WT115",
+      "numeric": "0x01080F00"
+    },
+    {
+      "code": "WT116",
+      "numeric": "0x01081000"
+    },
+    {
+      "code": "WT117",
+      "numeric": "0x01081100"
+    },
+    {
+      "code": "WT118",
+      "numeric": "0x01081200"
+    },
+    {
+      "code": "WT119",
+      "numeric": "0x01081300"
+    },
+    {
+      "code": "WT120",
+      "numeric": "0x01081400"
+    },
+    {
+      "code": "WT121",
+      "numeric": "0x01081500"
+    },
+    {
+      "code": "WT122",
+      "numeric": "0x01081600"
+    },
+    {
+      "code": "WT123",
+      "numeric": "0x01081700"
+    },
+    {
+      "code": "WT124",
+      "numeric": "0x01081800"
+    },
+    {
+      "code": "WT125",
+      "numeric": "0x01081900"
+    },
+    {
+      "code": "WT126",
+      "numeric": "0x01082A00"
+    },
+    {
+      "code": "WT127",
+      "numeric": "0x01082B00"
+    },
+    {
+      "code": "WT128",
+      "numeric": "0x01082C00"
+    },
+    {
+      "code": "WT129",
+      "numeric": "0x01082D00"
+    },
+    {
+      "code": "WT130",
+      "numeric": "0x01082E00"
+    },
+    {
+      "code": "WT131",
+      "numeric": "0x01082F00"
+    },
+    {
+      "code": "WT132",
+      "numeric": "0x01083000"
+    },
+    {
+      "code": "WT133",
+      "numeric": "0x01083100"
+    },
+    {
+      "code": "WT134",
+      "numeric": "0x01083200"
+    },
+    {
+      "code": "WT135",
+      "numeric": "0x01083300"
+    },
+    {
+      "code": "WT136",
+      "numeric": "0x01083400"
+    },
+    {
+      "code": "WT153",
+      "numeric": "0x01084500"
+    },
+    {
+      "code": "CI101",
+      "numeric": "0x080B8000"
+    },
+    {
+      "code": "CI102",
+      "numeric": "0x080B8100"
+    },
+    {
+      "code": "CI103",
+      "numeric": "0x080B8200"
+    },
+    {
+      "code": "CI104",
+      "numeric": "0x080B8300"
+    },
+    {
+      "code": "CI105",
+      "numeric": "0x080B8400"
+    },
+    {
+      "code": "CI106",
+      "numeric": "0x080B8500"
+    },
+    {
+      "code": "CI107",
+      "numeric": "0x080B8600"
+    },
+    {
+      "code": "CI108",
+      "numeric": "0x080B8700"
+    },
+    {
+      "code": "CI109",
+      "numeric": "0x080B8800"
+    },
+    {
+      "code": "CI110",
+      "numeric": "0x080B8900"
+    },
+    {
+      "code": "CI111",
+      "numeric": "0x080B8A00"
+    },
+    {
+      "code": "CI112",
+      "numeric": "0x080B8B00"
+    },
+    {
+      "code": "CI113",
+      "numeric": "0x080B8C00"
+    },
+    {
+      "code": "CI114",
+      "numeric": "0x080B8D00"
+    },
+    {
+      "code": "CI115",
+      "numeric": "0x080B8E00"
+    },
+    {
+      "code": "CI116",
+      "numeric": "0x080B8F00"
+    },
+    {
+      "code": "CI117",
+      "numeric": "0x080B9000"
+    },
+    {
+      "code": "CI118",
+      "numeric": "0x080B9100"
+    },
+    {
+      "code": "CI119",
+      "numeric": "0x080B9200"
+    },
+    {
+      "code": "CI120",
+      "numeric": "0x080B9300"
+    },
+    {
+      "code": "CI121",
+      "numeric": "0x080B9400"
+    },
+    {
+      "code": "CI122",
+      "numeric": "0x080B9500"
+    },
+    {
+      "code": "CI123",
+      "numeric": "0x080B9600"
+    },
+    {
+      "code": "CI124",
+      "numeric": "0x080B9700"
+    },
+    {
+      "code": "CI125",
+      "numeric": "0x080B9800"
+    },
+    {
+      "code": "CI126",
+      "numeric": "0x080B9900"
+    },
+    {
+      "code": "CI127",
+      "numeric": "0x080B9A00"
+    },
+    {
+      "code": "CI128",
+      "numeric": "0x080B9B00"
+    },
+    {
+      "code": "CI129",
+      "numeric": "0x080B9C00"
+    },
+    {
+      "code": "CI130",
+      "numeric": "0x080B9D00"
+    },
+    {
+      "code": "CI131",
+      "numeric": "0x080B9E00"
+    },
+    {
+      "code": "CI132",
+      "numeric": "0x080B9F00"
+    },
+    {
+      "code": "CI133",
+      "numeric": "0x080BA000"
+    },
+    {
+      "code": "CI134",
+      "numeric": "0x080BA100"
+    },
+    {
+      "code": "CI135",
+      "numeric": "0x080BA200"
+    },
+    {
+      "code": "CI136",
+      "numeric": "0x080BA300"
+    },
+    {
+      "code": "CI137",
+      "numeric": "0x080BA400"
+    },
+    {
+      "code": "CI138",
+      "numeric": "0x080BA500"
+    },
+    {
+      "code": "CI139",
+      "numeric": "0x080BA600"
+    },
+    {
+      "code": "CI140",
+      "numeric": "0x080BA700"
+    },
+    {
+      "code": "CI141",
+      "numeric": "0x080BA800"
+    },
+    {
+      "code": "CI142",
+      "numeric": "0x080BA900"
+    },
+    {
+      "code": "CI143",
+      "numeric": "0x080BAA00"
+    },
+    {
+      "code": "CI144",
+      "numeric": "0x080BAB00"
+    },
+    {
+      "code": "CI145",
+      "numeric": "0x080BAC00"
+    },
+    {
+      "code": "CI146",
+      "numeric": "0x080BAD00"
+    },
+    {
+      "code": "CI147",
+      "numeric": "0x080BAE00"
+    },
+    {
+      "code": "CI148",
+      "numeric": "0x080BAF00"
+    },
+    {
+      "code": "CI149",
+      "numeric": "0x080BB000"
+    },
+    {
+      "code": "CI150",
+      "numeric": "0x080BB100"
+    },
+    {
+      "code": "CI151",
+      "numeric": "0x080BB200"
+    },
+    {
+      "code": "CI152",
+      "numeric": "0x080BB300"
+    },
+    {
+      "code": "CI153",
+      "numeric": "0x080BB400"
+    },
+    {
+      "code": "CI154",
+      "numeric": "0x080BB500"
+    },
+    {
+      "code": "CI155",
+      "numeric": "0x080BB600"
+    },
+    {
+      "code": "CI156",
+      "numeric": "0x080BB700"
+    },
+    {
+      "code": "CI157",
+      "numeric": "0x080BB800"
+    },
+    {
+      "code": "CI158",
+      "numeric": "0x080BB900"
+    },
+    {
+      "code": "CI159",
+      "numeric": "0x080BBA00"
+    },
+    {
+      "code": "CI160",
+      "numeric": "0x080BBB00"
+    },
+    {
+      "code": "CI161",
+      "numeric": "0x080BBC00"
+    },
+    {
+      "code": "CI162",
+      "numeric": "0x080BBD00"
+    },
+    {
+      "code": "CI163",
+      "numeric": "0x080BBE00"
+    },
+    {
+      "code": "CI164",
+      "numeric": "0x080BBF00"
+    },
+    {
+      "code": "CI165",
+      "numeric": "0x080BC000"
+    },
+    {
+      "code": "CI166",
+      "numeric": "0x080BC100"
+    },
+    {
+      "code": "CI167",
+      "numeric": "0x080BC200"
+    },
+    {
+      "code": "CI168",
+      "numeric": "0x080BC300"
+    },
+    {
+      "code": "CI169",
+      "numeric": "0x080BC400"
+    },
+    {
+      "code": "CI170",
+      "numeric": "0x080BC500"
+    },
+    {
+      "code": "CI171",
+      "numeric": "0x080BC600"
+    },
+    {
+      "code": "CI172",
+      "numeric": "0x080BC700"
+    },
+    {
+      "code": "CI173",
+      "numeric": "0x080BC800"
+    },
+    {
+      "code": "CI174",
+      "numeric": "0x080BC900"
+    },
+    {
+      "code": "CI175",
+      "numeric": "0x080BCA00"
+    },
+    {
+      "code": "CI176",
+      "numeric": "0x080BCB00"
+    },
+    {
+      "code": "CI177",
+      "numeric": "0x080BCC00"
+    },
+    {
+      "code": "CI178",
+      "numeric": "0x080BCD00"
+    },
+    {
+      "code": "CI179",
+      "numeric": "0x080BCE00"
+    },
+    {
+      "code": "CI180",
+      "numeric": "0x080BCF00"
+    },
+    {
+      "code": "CI181",
+      "numeric": "0x080BD000"
+    },
+    {
+      "code": "CI182",
+      "numeric": "0x080BD100"
+    },
+    {
+      "code": "CI183",
+      "numeric": "0x080BD200"
+    },
+    {
+      "code": "CI184",
+      "numeric": "0x080BD300"
+    }
+  ]
+}

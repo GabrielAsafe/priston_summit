@@ -1,0 +1,22 @@
+{
+  "new": {
+    "SourceCode/.summit_432a/state.json": "72dfea414a3a0f651eab53fbc86efe957262b6e6b82f3e2e290e72370c150a90",
+    "SourceCode/SrcGame/src/systems/ui/v2/pages/CraftingPage392.h": "66e27ed09cb2e64d76f681d735599a5a9768e849186ffff3a9b4d4cd4cf99132",
+    "SourceCode/SrcServer/src/systems/network/v2/legacy/LegacyModernChatIngressAdapter.inl": "0c9ccfbd7f105251c38bf9e3699407f71d200b1747c604968665127dff561e4a",
+    "bugfixes/_state_425a_runtime_recipes.json": "d79526402ae420770338a176faa8be44bb1e24b847c2c2e9a66475bc69d35746",
+    "bugfixes/_state_426a_craft_ui.json": "1fac10b50947677515db0681c82d9bd4ae73e86b42d86deda39ef3a883f8e425",
+    "bugfixes/_state_427a_craft_ui.json": "c4b9711a6b5513376162f30a834f33d96b4d9016c399de82c3fb82d04a1b1929",
+    "bugfixes/_state_427b_craft_names.json": "caef4628a0590bc6f206a92fcbbc6bd51a3675f95008f12d3d8315a399242a72"
+  },
+  "old": {
+    "SourceCode/.summit_432a/state.json": "c7039563e29a788c46f0405e3ded7c660dcc1175ddcf25f5d9b2275187513b6f",
+    "SourceCode/SrcGame/src/systems/ui/v2/pages/CraftingPage392.h": "014bcf3d05c5462541df8a1846dd0c41f3d668141d18298f4e6fb99780260f19",
+    "SourceCode/SrcServer/src/systems/network/v2/legacy/LegacyModernChatIngressAdapter.inl": "6c6092cdd67fd4e992be232812bec0a15ea46f76b3ece2c20936c3904459b9ae",
+    "bugfixes/_state_425a_runtime_recipes.json": "098c6a9e24f4d8ff8b3af356f4516e53987320d9d08418c59ae9b75c4a9a6de4",
+    "bugfixes/_state_426a_craft_ui.json": "95e8ff7243304bb6ac99f6bd7613204e1cf7bc4d1141e975ad09e3dbb605db2e",
+    "bugfixes/_state_427a_craft_ui.json": "2020925c60ecd9ce073e7e9cd52f1d5fe39c4c9e2ff90cf939f070f84047ff2e",
+    "bugfixes/_state_427b_craft_names.json": "f49cd7fc1fed044682c07b43f494d669bb75e08121d3580f3fe41638b524d8b9"
+  },
+  "schema": "summit438a/v1",
+  "status": "APPLIED"
+}

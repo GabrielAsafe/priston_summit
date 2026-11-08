@@ -39,10 +39,23 @@
 #include "systems/progression/class_rank/Rank.h"
 #include "systems/gameplay/quests/v2/legacy/LegacyQuestStateQuery.h"
 #include "systems/network/v2/legacy/LegacyPacketSender.h"
+#include "systems/gameplay/gathering/v2/GmCombatResource396.h"
 
 
 namespace
 {
+// SUMMIT397A: active GM58 combat death hook -> 396A server inventory
+inline void Summit397ProcessGm58Death(smCHAR* deadMonster, rsPLAYINFO* creditedPlayer)
+{
+    if (deadMonster && creditedPlayer &&
+        summit_gm396::ProcessDeath(static_cast<unsigned int>(deadMonster->dwObjectSerial), creditedPlayer))
+    {
+        fprintf(stderr, "[SUMMIT_GM_396] DEATH_HOOK_ACTIVE serial=%u\n",
+                static_cast<unsigned int>(deadMonster->dwObjectSerial));
+        fflush(stderr);
+    }
+}
+
 inline bool SummitDamagePlayerSend(rsPLAYINFO* recipient, const void* data, int size)
 {
 	if(!recipient || !data || size <= 0)
@@ -930,6 +943,7 @@ int rsRecvAttackData_Old(rsPLAYINFO *lpPlayInfo, TRANS_ATTACKDATA *lpTransAttack
 				{
 					lpChar->SetMotionFromCode(CHRMOTION_STATE_DEAD);
 					lpChar->lpExt2 = (void *)lpPlayInfo;
+					Summit397ProcessGm58Death(lpChar, lpPlayInfo);
 				}
 
 				/*lpChar->SetMotionFromCode(CHRMOTION_STATE_DEAD);
@@ -2566,6 +2580,7 @@ int RecvRangeAttack(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAt
 						{
 							lpChar->SetMotionFromCode(CHRMOTION_STATE_DEAD);
 							lpChar->lpExt2 = (void *)lpPlayInfo;
+							Summit397ProcessGm58Death(lpChar, lpPlayInfo);
 						}
 
 						break;
@@ -2678,6 +2693,7 @@ int RecvRangeAttack(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAt
 						{
 							lpChar->SetMotionFromCode(CHRMOTION_STATE_DEAD);
 							lpChar->lpExt2 = (void *)lpPlayInfo;
+							Summit397ProcessGm58Death(lpChar, lpPlayInfo);
 						}
 
 						break;
@@ -2819,6 +2835,7 @@ int RecvRangeAttack(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAt
 						{
 							lpChar->SetMotionFromCode(CHRMOTION_STATE_DEAD);
 							lpChar->lpExt2 = (void *)lpPlayInfo;
+							Summit397ProcessGm58Death(lpChar, lpPlayInfo);
 						}
 
 						break;
@@ -2964,6 +2981,7 @@ int RecvRangeAttack(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAt
 						{
 							lpChar->SetMotionFromCode(CHRMOTION_STATE_DEAD);
 							lpChar->lpExt2 = (void *)lpPlayInfo;
+							Summit397ProcessGm58Death(lpChar, lpPlayInfo);
 						}
 
 						break;
@@ -3048,6 +3066,7 @@ int RecvRangeAttack(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAt
 						{
 							lpChar->SetMotionFromCode(CHRMOTION_STATE_DEAD);
 							lpChar->lpExt2 = (void *)lpPlayInfo;
+							Summit397ProcessGm58Death(lpChar, lpPlayInfo);
 						}
 
 						break;
@@ -3153,6 +3172,7 @@ int RecvRangeAttack(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAt
 						{
 							lpChar->SetMotionFromCode(CHRMOTION_STATE_DEAD);
 							lpChar->lpExt2 = (void *)lpPlayInfo;
+							Summit397ProcessGm58Death(lpChar, lpPlayInfo);
 						}
 
 						break;
@@ -3235,6 +3255,7 @@ int RecvRangeAttack(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAt
 						{
 							lpChar->SetMotionFromCode(CHRMOTION_STATE_DEAD);
 							lpChar->lpExt2 = (void *)lpPlayInfo;
+							Summit397ProcessGm58Death(lpChar, lpPlayInfo);
 						}
 
 						break;

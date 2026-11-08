@@ -1,0 +1,12 @@
+{
+  "after": {
+    "SourceCode/SrcServer/src/systems/gameplay/crafting/v2/PhysicalCraftReadiness423.h": "3a7521e9cf2f39ac3f75b8c816a5cf8a7372be32cc815afe98d16f6e61bfb72a",
+    "SourceCode/SrcServer/src/systems/gameplay/crafting/v2/SQLiteProfessionCraftRuntime378.h": "5a85e56cffeec26fd4acfd1fcb2290b83469f55f18062c41f3e46a7ec0cc728d"
+  },
+  "before": {
+    "SourceCode/SrcServer/src/systems/gameplay/crafting/v2/PhysicalCraftReadiness423.h": "894a7aa6873e95ee51cc09311c0e4867fc052e7129b8ff99620b98c0a251db0c",
+    "SourceCode/SrcServer/src/systems/gameplay/crafting/v2/SQLiteProfessionCraftRuntime378.h": "80aac09cf2886724c230976d815d99aefdbf781d2060e17c642c255bbdb4131a"
+  },
+  "status": "APPLIED",
+  "version": 1
+}

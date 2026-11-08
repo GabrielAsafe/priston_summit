@@ -1,3 +1,4 @@
+#include "gameplay/companions/v2/CompanionEquipmentSafety359.h"
 #include "opcodes.h"
 #include "systems/rendering/legacy_3d/smd3d.h"
 
@@ -2237,13 +2238,30 @@ int ApplyCommittedCompanionTradePlayerInventory(const unsigned char* image, int 
             "trade-live-equipped-slot-rebased",0,
             static_cast<int>(equippedRelocations351F),
             static_cast<int>(snapshot.records.size()),0);
+    // SUMMIT359: equipped items are NEVER eligible selections in a trade.
+    // An unrelated scythe/weapon must therefore survive the after-image
+    // with its complete serialized attributes, position and original bag.
+    if(!trade::EquippedItemsUnchanged359(cInvenTory.InvenItem,
+          cInvenTory.InvenItemTemp,INVENTORY_MAXITEM,
+          bags.primary,bags.secondary)) {
+        SummitLiveApplyRefusal351D(7,1,bytes);
+        return FALSE;
+    }
+    // Backup before touching the live arrays, so a legacy renderer refusal
+    // cannot leave half-reconstructed inventory queued for an ordinary save.
+    const std::vector<sITEM> previousA(cInvenTory.InvenItem,
+        cInvenTory.InvenItem+INVENTORY_MAXITEM);
+    const std::vector<sITEM> previousB(cInvenTory.InvenItemTemp,
+        cInvenTory.InvenItemTemp+INVENTORY_MAXITEM);
+    sINVENTORY previousSlots[INVENTORY_MAX_POS];
+    std::memcpy(previousSlots,sInven,sizeof(previousSlots));
     // Both complete arrays have been staged before touching the live client.
     // A caller must also ensure no concurrent inventory renderer/mutator runs.
     std::memcpy(cInvenTory.InvenItem,bags.primary.data(),
                 sizeof(sITEM)*INVENTORY_MAXITEM);
     std::memcpy(cInvenTory.InvenItemTemp,bags.secondary.data(),
                 sizeof(sITEM)*INVENTORY_MAXITEM);
-    cInvenTory.LoadItemInfo();
+    const bool rendered359=cInvenTory.LoadItemInfo()!=FALSE;
     // SUMMIT353: LoadItemInfo is not presentation-only; it updates special
     // item flags and may relocate display coordinates. Restore the exact
     // journaled payload, but ONLY if every expected item survived with the
@@ -2253,9 +2271,17 @@ int ApplyCommittedCompanionTradePlayerInventory(const unsigned char* image, int 
         bags.primary,bags.primaryUsed,cInvenTory.InvenItem,
         bags.secondary,bags.secondaryUsed,cInvenTory.InvenItemTemp,
         INVENTORY_MAXITEM);
-    if(preserved353!=trade::TradeLivePayloadPreserve353::Preserved) {
-        SummitLiveApplyRefusal351D(6,static_cast<int>(preserved353),
-                                   static_cast<int>(snapshot.records.size()));
+    if(!rendered359 ||
+       preserved353!=trade::TradeLivePayloadPreserve353::Preserved) {
+        std::memcpy(cInvenTory.InvenItem,previousA.data(),
+                    sizeof(sITEM)*INVENTORY_MAXITEM);
+        std::memcpy(cInvenTory.InvenItemTemp,previousB.data(),
+                    sizeof(sITEM)*INVENTORY_MAXITEM);
+        std::memcpy(sInven,previousSlots,sizeof(previousSlots));
+        SummitLiveApplyRefusal351D(6,rendered359 ?
+            static_cast<int>(preserved353) : -1,
+            static_cast<int>(snapshot.records.size()));
+        // No APPLY ACK: the existing gate requires relogin/recovery.
         return FALSE;
     }
     // SUMMIT350U: the journal-authorised live inventory replacement changes

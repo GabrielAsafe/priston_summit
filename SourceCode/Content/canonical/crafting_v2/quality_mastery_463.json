@@ -1,0 +1,86 @@
+{
+  "schema": "summit.craft-quality/v2",
+  "status": "AUTHORING_ONLY_COMPILED_AT_BUILD;NO_HOT_RELOAD",
+  "persisted_item_quality_metadata": "LEGACY_ITEM_NAME_SUFFIX_PLUS_NATIVE_STATS_IF_ENABLED",
+  "native_item_factory": "CreateItem/ReformItem EXISTENTES",
+  "recipe_override": "NONE_UNTIL_APPROVED",
+  "max_profession_level_in_snapshot": 50,
+  "quality_rolled_once": "SERVER_ONCE_BEFORE_PREPARE",
+  "tiers": {
+    "normal": {
+      "min_damage_pct": 0,
+      "max_damage_pct": 0,
+      "min_defence_pct": 0,
+      "max_defence_pct": 0
+    },
+    "superior": {
+      "min_damage_pct": 2,
+      "max_damage_pct": 5,
+      "min_defence_pct": 2,
+      "max_defence_pct": 5
+    },
+    "raro": {
+      "min_damage_pct": 6,
+      "max_damage_pct": 10,
+      "min_defence_pct": 6,
+      "max_defence_pct": 10
+    },
+    "epico": {
+      "min_damage_pct": 11,
+      "max_damage_pct": 15,
+      "min_defence_pct": 11,
+      "max_defence_pct": 15
+    }
+  },
+  "chances_by_mastery": [
+    {
+      "level": 0,
+      "normal": 100,
+      "superior": 0,
+      "raro": 0,
+      "epico": 0
+    },
+    {
+      "level": 10,
+      "normal": 90,
+      "superior": 10,
+      "raro": 0,
+      "epico": 0
+    },
+    {
+      "level": 25,
+      "normal": 70,
+      "superior": 25,
+      "raro": 5,
+      "epico": 0
+    },
+    {
+      "level": 40,
+      "normal": 45,
+      "superior": 35,
+      "raro": 17,
+      "epico": 3
+    },
+    {
+      "level": 50,
+      "normal": 30,
+      "superior": 40,
+      "raro": 25,
+      "epico": 5
+    }
+  ],
+  "generation_guards": [
+    "avoid_unsigned_stat_mutation",
+    "native_item_checksum_reform_required",
+    "server_roll_after_recipe_security_gates",
+    "unique_item_identity",
+    "no_stat_boost_for_materials",
+    "defence_gear_uses_defence_not_damage",
+    "quality_storage_and_tooltip_mapping_not_yet_implemented"
+  ],
+  "source_notes": [
+    "Economia experimental: proposta, nao valores oficiais do Priston Tale",
+    "Acesso progressivo ao epico; chances sao exemplificativas"
+  ],
+  "activation_note": "Only recipes with native inputs, profession verification and explicit enabled=true can use this, WA103 stays original."
+}

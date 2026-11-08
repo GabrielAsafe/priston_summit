@@ -1,0 +1,19 @@
+{
+  "installed": {
+    "SourceCode/SrcGame/src/systems/ui/v2/domain/IInventoryGateway.h": "b00617343dbb16b039df941cd0c31540f7667c5ef8d9a55460d45bb107b67b90",
+    "SourceCode/SrcGame/src/systems/ui/v2/legacy/LegacyInventoryGateway.cpp": "e059a72f5fbef0912eae85de55b7d98875af1af5a44d96a08d2cfdc3a49dab3c",
+    "SourceCode/SrcGame/src/systems/ui/v2/legacy/LegacyInventoryGateway.h": "71f62ede4366461d66d478d176e5d77df9e9413cc63eaa56c65a1b9c69cd212a",
+    "SourceCode/SrcGame/src/systems/ui/v2/pages/CraftingPage392.h": "014bcf3d05c5462541df8a1846dd0c41f3d668141d18298f4e6fb99780260f19"
+  },
+  "originals": {
+    "SourceCode/SrcGame/src/systems/ui/v2/domain/IInventoryGateway.h": "b2b5ccee9dcd54d10944e32932c12586be4a43e46c47a0fe7da50044ab503321",
+    "SourceCode/SrcGame/src/systems/ui/v2/legacy/LegacyInventoryGateway.cpp": "e3d282fcc0eaf10bd50e766e3cfbad51996873fc397c6014428e9cd9c36b95a4",
+    "SourceCode/SrcGame/src/systems/ui/v2/legacy/LegacyInventoryGateway.h": "dede4169fa0b74c7f69742bf2f6d8ba884aca3cd0f2379554f8369505467ffb8",
+    "SourceCode/SrcGame/src/systems/ui/v2/pages/CraftingPage392.h": "9376da753f47c463805a5effd10dd6fb775720de55786791e6f710ce6008ef41"
+  },
+  "schema": "summit.patch427a/v1",
+  "state426_installed": "a0d091587af99ddd4b75b91db48b7b206db4a63ec1c671320589c3ca527ebc07",
+  "state426_original": "8e49ab919e1fd4fdcb35358baf75d7d785d413acf685ce494bf33428ab7693f8",
+  "status": "APPLIED",
+  "utc": "2026-11-02T13:15:13.840988+00:00"
+}

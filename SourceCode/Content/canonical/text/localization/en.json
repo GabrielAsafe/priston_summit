@@ -2687,6 +2687,30 @@
       "source": "text.ca723"
     },
     {
+      "key": "item.ca871.name",
+      "text": "Traje Dragão Ancestral Masculino (7D)",
+      "quality": "translated",
+      "source": "item.ca871"
+    },
+    {
+      "key": "item.ca872.name",
+      "text": "Traje Dragão Ancestral Feminino (7D)",
+      "quality": "translated",
+      "source": "item.ca872"
+    },
+    {
+      "key": "item.ca873.name",
+      "text": "Traje Dragão Ancestral Masculino (30D)",
+      "quality": "translated",
+      "source": "item.ca873"
+    },
+    {
+      "key": "item.ca874.name",
+      "text": "Traje Dragão Ancestral Feminino (30D)",
+      "quality": "translated",
+      "source": "item.ca874"
+    },
+    {
       "key": "item.ch101.name",
       "text": "Chocolate Preto",
       "quality": "translated",
@@ -2709,6 +2733,414 @@
       "text": "Pirulito Espiral",
       "quality": "translated",
       "source": "text.ch104"
+    },
+    {
+      "key": "item.ci101.name",
+      "text": "Minério Cristalino Bruto",
+      "quality": "translated",
+      "source": "text.ci101"
+    },
+    {
+      "key": "item.ci102.name",
+      "text": "Núcleo Cristalino",
+      "quality": "translated",
+      "source": "text.ci102"
+    },
+    {
+      "key": "item.ci103.name",
+      "text": "Minério Energético Bruto",
+      "quality": "translated",
+      "source": "text.ci103"
+    },
+    {
+      "key": "item.ci104.name",
+      "text": "Núcleo Energético",
+      "quality": "translated",
+      "source": "text.ci104"
+    },
+    {
+      "key": "item.ci105.name",
+      "text": "Minério Profundo Bruto",
+      "quality": "translated",
+      "source": "text.ci105"
+    },
+    {
+      "key": "item.ci106.name",
+      "text": "Núcleo Profundo",
+      "quality": "translated",
+      "source": "text.ci106"
+    },
+    {
+      "key": "item.ci107.name",
+      "text": "Minério Arcano Bruto",
+      "quality": "translated",
+      "source": "text.ci107"
+    },
+    {
+      "key": "item.ci108.name",
+      "text": "Núcleo Arcano",
+      "quality": "translated",
+      "source": "text.ci108"
+    },
+    {
+      "key": "item.ci109.name",
+      "text": "Minério Rúnico Bruto",
+      "quality": "translated",
+      "source": "text.ci109"
+    },
+    {
+      "key": "item.ci110.name",
+      "text": "Núcleo Rúnico",
+      "quality": "translated",
+      "source": "text.ci110"
+    },
+    {
+      "key": "item.ci111.name",
+      "text": "Minério Primordial Bruto",
+      "quality": "translated",
+      "source": "text.ci111"
+    },
+    {
+      "key": "item.ci112.name",
+      "text": "Núcleo Primordial",
+      "quality": "translated",
+      "source": "text.ci112"
+    },
+    {
+      "key": "item.ci113.name",
+      "text": "Troncos Comuns",
+      "quality": "translated",
+      "source": "text.ci113"
+    },
+    {
+      "key": "item.ci114.name",
+      "text": "Seiva",
+      "quality": "translated",
+      "source": "text.ci114"
+    },
+    {
+      "key": "item.ci115.name",
+      "text": "Casca",
+      "quality": "translated",
+      "source": "text.ci115"
+    },
+    {
+      "key": "item.ci116.name",
+      "text": "Troncos Resistentes",
+      "quality": "translated",
+      "source": "text.ci116"
+    },
+    {
+      "key": "item.ci117.name",
+      "text": "Resina Densa",
+      "quality": "translated",
+      "source": "text.ci117"
+    },
+    {
+      "key": "item.ci118.name",
+      "text": "Madeira Cristalina",
+      "quality": "translated",
+      "source": "text.ci118"
+    },
+    {
+      "key": "item.ci119.name",
+      "text": "Seiva Energética",
+      "quality": "translated",
+      "source": "text.ci119"
+    },
+    {
+      "key": "item.ci120.name",
+      "text": "Madeira Arcana",
+      "quality": "translated",
+      "source": "text.ci120"
+    },
+    {
+      "key": "item.ci121.name",
+      "text": "Resina Mística",
+      "quality": "translated",
+      "source": "text.ci121"
+    },
+    {
+      "key": "item.ci122.name",
+      "text": "Coração de Árvore",
+      "quality": "translated",
+      "source": "text.ci122"
+    },
+    {
+      "key": "item.ci123.name",
+      "text": "Ore de Ametista",
+      "quality": "translated",
+      "source": "text.ci123"
+    },
+    {
+      "key": "item.ci124.name",
+      "text": "Ore de Prata",
+      "quality": "translated",
+      "source": "text.ci124"
+    },
+    {
+      "key": "item.ci125.name",
+      "text": "Ore de Ouro",
+      "quality": "translated",
+      "source": "text.ci125"
+    },
+    {
+      "key": "item.ci126.name",
+      "text": "Ore de Topázio",
+      "quality": "translated",
+      "source": "text.ci126"
+    },
+    {
+      "key": "item.ci127.name",
+      "text": "Ore de Safira",
+      "quality": "translated",
+      "source": "text.ci127"
+    },
+    {
+      "key": "item.ci128.name",
+      "text": "Ore de Citrino",
+      "quality": "translated",
+      "source": "text.ci128"
+    },
+    {
+      "key": "item.ci129.name",
+      "text": "Ore de Rubi",
+      "quality": "translated",
+      "source": "text.ci129"
+    },
+    {
+      "key": "item.ci130.name",
+      "text": "Ore de Esmeralda",
+      "quality": "translated",
+      "source": "text.ci130"
+    },
+    {
+      "key": "item.ci131.name",
+      "text": "Pó de Prata",
+      "quality": "translated",
+      "source": "text.ci131"
+    },
+    {
+      "key": "item.ci132.name",
+      "text": "Ametista Moída",
+      "quality": "translated",
+      "source": "text.ci132"
+    },
+    {
+      "key": "item.ci133.name",
+      "text": "Pó de Ouro",
+      "quality": "translated",
+      "source": "text.ci133"
+    },
+    {
+      "key": "item.ci134.name",
+      "text": "Pó de Topázio",
+      "quality": "translated",
+      "source": "text.ci134"
+    },
+    {
+      "key": "item.ci135.name",
+      "text": "Safira Moída",
+      "quality": "translated",
+      "source": "text.ci135"
+    },
+    {
+      "key": "item.ci136.name",
+      "text": "Citrino Moído",
+      "quality": "translated",
+      "source": "text.ci136"
+    },
+    {
+      "key": "item.ci137.name",
+      "text": "Rubi Moído",
+      "quality": "translated",
+      "source": "text.ci137"
+    },
+    {
+      "key": "item.ci138.name",
+      "text": "Esmeralda Moída",
+      "quality": "translated",
+      "source": "text.ci138"
+    },
+    {
+      "key": "item.ci139.name",
+      "text": "Ferro",
+      "quality": "translated",
+      "source": "text.ci139"
+    },
+    {
+      "key": "item.ci140.name",
+      "text": "Tábuas",
+      "quality": "translated",
+      "source": "text.ci140"
+    },
+    {
+      "key": "item.ci141.name",
+      "text": "Tábuas Resistentes",
+      "quality": "translated",
+      "source": "text.ci141"
+    },
+    {
+      "key": "item.ci142.name",
+      "text": "Tábuas Tratadas",
+      "quality": "translated",
+      "source": "text.ci142"
+    },
+    {
+      "key": "item.ci143.name",
+      "text": "Carvão Vegetal",
+      "quality": "translated",
+      "source": "text.ci143"
+    },
+    {
+      "key": "item.ci144.name",
+      "text": "Cabo Reforçado",
+      "quality": "translated",
+      "source": "text.ci144"
+    },
+    {
+      "key": "item.ci145.name",
+      "text": "Resina Purificada",
+      "quality": "translated",
+      "source": "text.ci145"
+    },
+    {
+      "key": "item.ci146.name",
+      "text": "Carvão Arcano",
+      "quality": "translated",
+      "source": "text.ci146"
+    },
+    {
+      "key": "item.ci147.name",
+      "text": "Seiva Cristalina",
+      "quality": "translated",
+      "source": "text.ci147"
+    },
+    {
+      "key": "item.ci148.name",
+      "text": "Resina Sombria",
+      "quality": "translated",
+      "source": "text.ci148"
+    },
+    {
+      "key": "item.ci149.name",
+      "text": "Cinza Arcana",
+      "quality": "translated",
+      "source": "text.ci149"
+    },
+    {
+      "key": "item.ci150.name",
+      "text": "Essência Primordial",
+      "quality": "translated",
+      "source": "text.ci150"
+    },
+    {
+      "key": "item.ci151.name",
+      "text": "Essência Sombria",
+      "quality": "translated",
+      "source": "text.ci151"
+    },
+    {
+      "key": "item.ci152.name",
+      "text": "Sal Purificado",
+      "quality": "translated",
+      "source": "text.ci152"
+    },
+    {
+      "key": "item.ci153.name",
+      "text": "Essência Ilusória",
+      "quality": "translated",
+      "source": "text.ci153"
+    },
+    {
+      "key": "item.ci154.name",
+      "text": "Essência Arcana",
+      "quality": "translated",
+      "source": "text.ci154"
+    },
+    {
+      "key": "item.ci155.name",
+      "text": "Fragmento Bélico",
+      "quality": "translated",
+      "source": "text.ci155"
+    },
+    {
+      "key": "item.ci156.name",
+      "text": "Ouro Purificado",
+      "quality": "translated",
+      "source": "text.ci156"
+    },
+    {
+      "key": "item.ci157.name",
+      "text": "Pergaminho em Branco",
+      "quality": "translated",
+      "source": "text.ci157"
+    },
+    {
+      "key": "item.ci158.name",
+      "text": "Pergaminho de Melhoria",
+      "quality": "translated",
+      "source": "text.ci158"
+    },
+    {
+      "key": "item.ci159.name",
+      "text": "Solvente Místico",
+      "quality": "translated",
+      "source": "text.ci159"
+    },
+    {
+      "key": "item.ci160.name",
+      "text": "Máquina de Mineração",
+      "quality": "translated",
+      "source": "text.ci160"
+    },
+    {
+      "key": "item.ci161.name",
+      "text": "Ferramenta Reforçada",
+      "quality": "translated",
+      "source": "text.ci161"
+    },
+    {
+      "key": "item.ci162.name",
+      "text": "Lucidi",
+      "quality": "translated",
+      "source": "text.ci162"
+    },
+    {
+      "key": "item.ci163.name",
+      "text": "Sereneo",
+      "quality": "translated",
+      "source": "text.ci163"
+    },
+    {
+      "key": "item.ci164.name",
+      "text": "Fadeo",
+      "quality": "translated",
+      "source": "text.ci164"
+    },
+    {
+      "key": "item.ci165.name",
+      "text": "Madeira / Timber",
+      "quality": "translated",
+      "source": "text.ci165"
+    },
+    {
+      "key": "item.ci166.name",
+      "text": "Minério de Ferro",
+      "quality": "translated",
+      "source": "text.ci166"
+    },
+    {
+      "key": "item.ci167.name",
+      "text": "Feixe de Ervas",
+      "quality": "translated",
+      "source": "text.ci167"
+    },
+    {
+      "key": "item.ci168.name",
+      "text": "Truta do Rio",
+      "quality": "translated",
+      "source": "text.ci168"
     },
     {
       "key": "item.cx101.name",

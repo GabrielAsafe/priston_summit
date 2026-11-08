@@ -1052,9 +1052,28 @@ int rsRecvSkinChangeItem(rsPLAYINFO* lpPlayInfo, sSKIN_CHANGE_SERVER* pSkinChang
 
 	// Reject unavailable mappings BEFORE rsDeleteInvenItem consumes either item.
 	std::uint32_t destination = 0;
-	if (!pSkinChangeItem_Server ||
+	// SUMMIT_SKIN_SERVER_GUARD_20261027: codigo-base valido ANTES de consumir inventario.
+	if (!lpPlayInfo || !pSkinChangeItem_Server ||
+	    !pSkinChangeItem_Server->DesSkinChangeItem.sItemInfo.CODE ||
 	    !summit::content::skin_reform::ResolveSkinReform(
 	        pSkinChangeItem_Server->dwSkinChangeStoneItemCode, destination))
+	{
+		sSkinChange_Recv.Result = FALSE;
+		sSkinChange_Recv.size = 32;
+		sSkinChange_Recv.code = OpCode::OPCODE_SKIN_CHANGE_ITEM;
+		if (lpPlayInfo && lpPlayInfo->lpsmSock)
+			lpPlayInfo->lpsmSock->Send((char*)&sSkinChange_Recv, sSkinChange_Recv.size, TRUE);
+		return TRUE;
+	}
+
+	// Rejeita consumiveis/outros itens como equipamento de base; preserva itens em erro.
+	const DWORD originalFamily = pSkinChangeItem_Server->DesSkinChangeItem.sItemInfo.CODE & sinITEM_MASK2;
+	const bool equipmentFamily = originalFamily == sinWA1 || originalFamily == sinWH1 ||
+	    originalFamily == sinWC1 || originalFamily == sinWM1 || originalFamily == sinWP1 ||
+	    originalFamily == sinWT1 || originalFamily == sinWS1 || originalFamily == sinWS2 ||
+	    originalFamily == sinDA1 || originalFamily == sinDA2 || originalFamily == sinDA3 ||
+	    originalFamily == sinDA4 || originalFamily == sinDS1;
+	if (!equipmentFamily)
 	{
 		sSkinChange_Recv.Result = FALSE;
 		sSkinChange_Recv.size = 32;

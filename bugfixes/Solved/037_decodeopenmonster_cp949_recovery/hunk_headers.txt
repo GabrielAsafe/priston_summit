@@ -1,4 +1,0 @@
-@@ -4653,10 +4654,17 @@ int DecodeOpenMonster(char *szCharFile, rsSTG_MONSTER_LIST *lpStgMonList, smCHAR
-@@ -4673,10 +4681,81 @@ int DecodeOpenMonster(char *szCharFile, rsSTG_MONSTER_LIST *lpStgMonList, smCHAR
-@@ -4717,14 +4796,14 @@ int DecodeOpenMonster(char *szCharFile, rsSTG_MONSTER_LIST *lpStgMonList, smCHAR
-@@ -4737,7 +4816,7 @@ int DecodeOpenMonster(char *szCharFile, rsSTG_MONSTER_LIST *lpStgMonList, smCHAR

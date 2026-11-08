@@ -1,4 +1,4 @@
-# Summit Tale — inventário de comandos administrativos
+/level # Summit Tale — inventário de comandos administrativos
 
 Fonte auditada: parser `RecvCommand()` em `SrcServer/src/core/server/legacy_runtime/OnSever.cpp`, mais os comandos de desenvolvimento Tier 5 adicionados durante esta sessão.
 

@@ -1,3 +1,5 @@
+#include "gameplay/companions/v2/CompanionEquipmentSafety359.h"
+#include <cstdio>
 // =============================================================================
 // MAPA DO MONOLITO LEGACY - CLIENT INVENTORY
 //
@@ -32,6 +34,7 @@
 #include "systems/network/v2/legacy/LegacyBackendChannelSender.h"
 
 #include "gameplay/classes/v2/services/ClassService.h"
+#include "gameplay/classes/v2/services/SummitCostumeGenderPolicy.h"
 #include "gameplay/inventory/v2/InventoryUseDelayPolicy.h"
 #include "gameplay/inventory/v2/InventoryIntegrityService.h"
 #include "gameplay/companions/v2/CompanionTradeClientFreeze.h"
@@ -4750,12 +4753,8 @@ void cINVENTORY::KeyDown()
 
 	}
 	
-	//Traje
-	// SUMMIT_COMMAND_HOTKEYS_V17: player single-key commands never fire through modifiers.
-	if(sinGetKeyClick('T') && !VRKeyBuff[VK_CONTROL] && !VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_MENU])
-	{
-		setCostumer();
-	}
+	// SUMMIT403A: T sem modificadores nao abre/troca interfaces enquanto se escreve no chat.
+	// A opcao Traje permanece na interface; atalhos L e os demais ficam inalterados.
 
 	if (sinGetKeyClick('L') && !VRKeyBuff[VK_CONTROL] && !VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_MENU])
 	{
@@ -4910,6 +4909,19 @@ void cINVENTORY::KeyDown()
 
 int cINVENTORY::LoadItemInfo()
 {
+    // SUMMIT359: a damaged/duplicate equipped layout must not be "fixed"
+    // by erasing two live items (which would then be saved to the DAT).
+    if(!gameplay::companions::v2::EquipmentPositionsUnique359(
+           InvenItem,INVENTORY_MAXITEM) ||
+       !gameplay::companions::v2::EquipmentPositionsUnique359(
+           InvenItemTemp,INVENTORY_MAXITEM)) {
+        std::fprintf(stderr,"[SUMMIT359_INV] stage=equipped-duplicate-refused\n");
+        return FALSE;
+    }
+    // The renderer's previous hand indices are NOT inventory authority.
+    // Reset stale indices before reattaching the items being rebuilt.
+    for(int slot=0;slot<14 && slot<INVENTORY_MAX_POS;++slot)
+        sInven[slot].ItemIndex=0;
 	int i;
 
 	int TempItemIndex[15] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
@@ -5079,11 +5091,10 @@ int cINVENTORY::LoadItemInfo()
 				{
 					TempItemIndex2[InvenItemTemp[i].ItemPosition] = i + 1;
 				}
-				else
-				{
-					InvenItemTemp[i].Flag = 0;
-					InvenItemTemp[TempItemIndex2[InvenItemTemp[i].ItemPosition] - 1].Flag = 0;
-				}
+					else {
+                        std::fprintf(stderr,"[SUMMIT359_INV] stage=secondary-slot-collision-refused\n");
+                        return FALSE;
+                    }
 			}
 
 			if(InvenItemTemp[i].ItemPosition == 2)
@@ -5092,11 +5103,11 @@ int cINVENTORY::LoadItemInfo()
 					break;
 			}
 
-			if(!CheckItemForm(&InvenItemTemp[i].sItemInfo))
-			{
-				SendSetHackUser(FALSE);
-				InvenItemTemp[i].Flag = 0;
-			}
+            if(!CheckItemForm(&InvenItemTemp[i].sItemInfo)) {
+                SendSetHackUser(FALSE);
+                std::fprintf(stderr,"[SUMMIT359_INV] stage=secondary-form-refused\n");
+                return FALSE;
+            }
 
 
 
@@ -5125,102 +5136,24 @@ int cINVENTORY::LoadItemInfo()
 				{
 					TempItemIndex[InvenItem[i].ItemPosition] = i + 1;
 				}
-				else
-				{
-					InvenItem[i].Flag = 0;
-					InvenItem[TempItemIndex[InvenItem[i].ItemPosition] - 1].Flag = 0;
-					if(InvenItem[TempItemIndex[InvenItem[i].ItemPosition] - 1].Class == ITEM_CLASS_WEAPON_TWO)
-					{
-						if(InvenItem[TempItemIndex[InvenItem[i].ItemPosition] - 1].ItemPosition == 1)
-						{
-							if(ValidInventoryIndex350W(sInven[1].ItemIndex) &&
-                            InvenItem[TempItemIndex[InvenItem[i].ItemPosition] - 1].CODE == InvenItem[sInven[1].ItemIndex - 1].CODE)
-							{
-								if(ValidInventoryIndex350W(sInven[1].ItemIndex))
-                            InvenItem[sInven[1].ItemIndex - 1].Flag = 0;
-								sInven[1].ItemIndex = 0;
-							}
-						}
-						if(InvenItem[TempItemIndex[InvenItem[i].ItemPosition] - 1].ItemPosition == 2)
-						{
-							if(ValidInventoryIndex350W(sInven[0].ItemIndex) &&
-                            InvenItem[TempItemIndex[InvenItem[i].ItemPosition] - 1].CODE == InvenItem[sInven[0].ItemIndex - 1].CODE)
-							{
-								if(ValidInventoryIndex350W(sInven[0].ItemIndex))
-                            InvenItem[sInven[0].ItemIndex - 1].Flag = 0;
-								sInven[0].ItemIndex = 0;
-							}
-						}
-					}
-					if(InvenItem[TempItemIndex[InvenItem[i].ItemPosition] - 1].ItemPosition)
-						sInven[InvenItem[i].ItemPosition - 1].ItemIndex = 0;
-
-					if(InvenItem[i].SetModelPosi)
-						sinSetCharItem(InvenItem[i].CODE, InvenItem[i].SetModelPosi, FALSE);
-
-					if(InvenItem[TempItemIndex[InvenItem[i].ItemPosition] - 1].SetModelPosi)
-						sinSetCharItem(InvenItem[TempItemIndex[InvenItem[i].ItemPosition] - 1].CODE, InvenItem[TempItemIndex[InvenItem[i].ItemPosition] - 1].SetModelPosi, FALSE);
-
-					if(ValidEquipmentPos350W(InvenItem[i].ItemPosition))
-						sInven[InvenItem[i].ItemPosition - 1].ItemIndex = 0;
-
-					if(InvenItem[i].Class == ITEM_CLASS_WEAPON_TWO)
-					{
-						if(InvenItem[i].ItemPosition == 1)
-						{
-							if(ValidInventoryIndex350W(sInven[1].ItemIndex) &&
-                            InvenItem[i].CODE == InvenItem[sInven[1].ItemIndex - 1].CODE)
-							{
-								if(ValidInventoryIndex350W(sInven[1].ItemIndex))
-                            InvenItem[sInven[1].ItemIndex - 1].Flag = 0;
-								sInven[1].ItemIndex = 0;
-							}
-						}
-						if(InvenItem[i].ItemPosition == 2)
-						{
-							if(ValidInventoryIndex350W(sInven[0].ItemIndex) &&
-                            InvenItem[i].CODE == InvenItem[sInven[0].ItemIndex - 1].CODE)
-							{
-								if(ValidInventoryIndex350W(sInven[0].ItemIndex))
-                            InvenItem[sInven[0].ItemIndex - 1].Flag = 0;
-								sInven[0].ItemIndex = 0;
-							}
-						}
-					}
-				}
+				else {
+                    std::fprintf(stderr,"[SUMMIT359_INV] stage=primary-slot-collision-refused\n");
+                    return FALSE;
+                }
 
 
-				if(InvenItem[i].Class == ITEM_CLASS_WEAPON_TWO)
-				{
-					if(InvenItem[i].ItemPosition == 1)
-					{
-						if(ValidInventoryIndex350W(sInven[1].ItemIndex) &&
-                            InvenItem[i].CODE != InvenItem[sInven[1].ItemIndex - 1].CODE)
-						{
-							if(ValidInventoryIndex350W(sInven[1].ItemIndex))
-                            InvenItem[sInven[1].ItemIndex - 1].Flag = 0;
-							InvenItem[i].Flag = 0;
-							sInven[1].ItemIndex = 0;
-							sInven[0].ItemIndex = 0;
-							if(InvenItem[i].SetModelPosi)
-								sinSetCharItem(InvenItem[i].CODE, InvenItem[i].SetModelPosi, FALSE);
-						}
-					}
-					if(InvenItem[i].ItemPosition == 2)
-					{
-						if(ValidInventoryIndex350W(sInven[0].ItemIndex) &&
-                            InvenItem[i].CODE != InvenItem[sInven[0].ItemIndex - 1].CODE)
-						{
-							if(ValidInventoryIndex350W(sInven[0].ItemIndex))
-                            InvenItem[sInven[0].ItemIndex - 1].Flag = 0;
-							InvenItem[i].Flag = 0;
-							sInven[0].ItemIndex = 0;
-							sInven[1].ItemIndex = 0;
-							if(InvenItem[i].SetModelPosi)
-								sinSetCharItem(InvenItem[i].CODE, InvenItem[i].SetModelPosi, FALSE);
-						}
-					}
-				}
+				if(InvenItem[i].Class == ITEM_CLASS_WEAPON_TWO &&
+                   (InvenItem[i].ItemPosition==1 || InvenItem[i].ItemPosition==2)) {
+                    const int otherHand=InvenItem[i].ItemPosition==1 ? 1 : 0;
+                    const int otherIndex=sInven[otherHand].ItemIndex;
+                    if(ValidInventoryIndex350W(otherIndex) &&
+                       otherIndex!=i+1 &&
+                       InvenItem[otherIndex-1].Flag &&
+                       InvenItem[otherIndex-1].CODE!=InvenItem[i].CODE) {
+                        std::fprintf(stderr,"[SUMMIT359_INV] stage=two-hand-conflict-refused\n");
+                        return FALSE;
+                    }
+                }
 			}
 
 
@@ -5236,22 +5169,11 @@ int cINVENTORY::LoadItemInfo()
 					continue;
 			}
 
-			if(!CheckItemForm(&InvenItem[i].sItemInfo))
-			{
-				SendSetHackUser(FALSE);
-				InvenItem[i].Flag = 0;
-				if(ValidEquipmentPos350W(InvenItem[i].ItemPosition))
-				{
-					sInven[InvenItem[i].ItemPosition - 1].ItemIndex = 0;
-					sinSetCharItem(InvenItem[i].CODE, InvenItem[i].SetModelPosi, FALSE);
-				}
-				if(InvenItem[i].Class == ITEM_CLASS_WEAPON_TWO)
-				{
-					if(ValidInventoryIndex350W(sInven[1].ItemIndex))
-                            InvenItem[sInven[1].ItemIndex - 1].Flag = 0;
-					sInven[1].ItemIndex = 0;
-				}
-			}
+			if(!CheckItemForm(&InvenItem[i].sItemInfo)) {
+                SendSetHackUser(FALSE);
+                std::fprintf(stderr,"[SUMMIT359_INV] stage=primary-form-refused\n");
+                return FALSE;
+            }
 		}
 
 	}
@@ -7118,6 +7040,19 @@ int cINVENTORY::ThrowInvenItemToField(sITEM *pItem)
 
 int cINVENTORY::CharOnlySetItem(sITEM *pItem)
 {
+    // SUMMIT V5: nao forcar NotUseFlag=0 aqui; requisitos pre-existentes
+    // (nivel, atributos e validade) ja podem ter bloqueado o item.
+    if (!pItem || !sinChar) return FALSE;
+    const std::uint32_t costumeCode = pItem->sItemInfo.CODE;
+    if (gameplay::classes::summit_costumes::RequiredGenderForCode(costumeCode) !=
+        gameplay::classes::summit_costumes::RequiredGender::Any) {
+        gameplay::classes::CharacterGender gender;
+        const bool known = gameplay::classes::DefaultClassService().TryGender(sinChar->JOB_CODE, gender);
+        const bool female = known && gender == gameplay::classes::CharacterGender::Female;
+        if (!gameplay::classes::summit_costumes::GenderAllowed(costumeCode, known, female))
+            pItem->sItemInfo.NotUseFlag = 1;
+        return TRUE;
+    }
 	/*for(int i = 0; i < NUM_COSTUMES; i++)
 	{
 		if(strcmpi(saCostume[i].szItemCode, pItem->LastCategory) == 0)
@@ -7674,6 +7609,8 @@ int cINVENTORY::SetItemToChar(int CheckHackFlag)
 		{
 			if(InvenItem[i].ItemPosition)
 			{
+				// SUMMIT358A: never use a malformed equipment position as an array index.
+				if(InvenItem[i].ItemPosition < 1 || InvenItem[i].ItemPosition > INVENTORY_MAX_POS) continue;
 				if(InvenItem[i].sItemInfo.CODE > sinPM1)continue;
 				if(InvenItem[i].sItemInfo.NotUseFlag)continue;
 
@@ -7691,23 +7628,13 @@ int cINVENTORY::SetItemToChar(int CheckHackFlag)
 					continue;
 
 
-				if(!CheckItemForm(&InvenItem[i].sItemInfo))
-				{
-					SendSetHackUser(1);
-					InvenItem[i].Flag = 0;
-					if(InvenItem[i].ItemPosition)
-					{
-						sInven[InvenItem[i].ItemPosition - 1].ItemIndex = 0;
-						sinSetCharItem(InvenItem[i].CODE, InvenItem[i].SetModelPosi, FALSE);
-
-					}
-					if(InvenItem[i].Class == ITEM_CLASS_WEAPON_TWO)
-					{
-						InvenItem[sInven[1].ItemIndex - 1].Flag = 0;
-						sInven[1].ItemIndex = 0;
-					}
-					continue;
-				}
+                if(!CheckItemForm(&InvenItem[i].sItemInfo)) {
+                    // SUMMIT359: keep the physical item; don't apply invalid bonuses.
+                    // Security and server-side persistence validation remain active.
+                    SendSetHackUser(1);
+                    std::fprintf(stderr,"[SUMMIT359_INV] stage=stat-form-refused\n");
+                    continue;
+                }
 
 
 				sinAttack_Rating += InvenItem[i].sItemInfo.Attack_Rating;
@@ -7878,29 +7805,35 @@ int cINVENTORY::SetItemToChar(int CheckHackFlag)
 
 	}
 
-	if (cInvenTory.InvenItem[sInven[4].ItemIndex - 1].sItemInfo.CODE == (sinOR1 | sin25)) {
+	if (sInven[4].ItemIndex > 0 && sInven[4].ItemIndex <= INVENTORY_MAXITEM &&
+		cInvenTory.InvenItem[sInven[4].ItemIndex - 1].sItemInfo.CODE == (sinOR1 | sin25)) {
 		LValRing = 1;
 	}
 	else { LValRing = 0; }
-	if (cInvenTory.InvenItem[sInven[5].ItemIndex - 1].sItemInfo.CODE == (sinOR1 | sin25)) {
+	if (sInven[5].ItemIndex > 0 && sInven[5].ItemIndex <= INVENTORY_MAXITEM &&
+		cInvenTory.InvenItem[sInven[5].ItemIndex - 1].sItemInfo.CODE == (sinOR1 | sin25)) {
 		RValRing = 1;
 	}
 	else { RValRing = 0; }
-	if (cInvenTory.InvenItem[sInven[3].ItemIndex - 1].sItemInfo.CODE == (sinOA1 | sin25)) {
+	if (sInven[3].ItemIndex > 0 && sInven[3].ItemIndex <= INVENTORY_MAXITEM &&
+		cInvenTory.InvenItem[sInven[3].ItemIndex - 1].sItemInfo.CODE == (sinOA1 | sin25)) {
 		KelAmulet = 1;
 	}
 	else { KelAmulet = 0; }
 
 	//Set Boss #2
-	if (cInvenTory.InvenItem[sInven[4].ItemIndex - 1].sItemInfo.CODE == (sinOR1 | sin26)) {
+	if (sInven[4].ItemIndex > 0 && sInven[4].ItemIndex <= INVENTORY_MAXITEM &&
+		cInvenTory.InvenItem[sInven[4].ItemIndex - 1].sItemInfo.CODE == (sinOR1 | sin26)) {
 		LShyRing = 1;
 	}
 	else { LShyRing = 0; }
-	if (cInvenTory.InvenItem[sInven[5].ItemIndex - 1].sItemInfo.CODE == (sinOR1 | sin26)) {
+	if (sInven[5].ItemIndex > 0 && sInven[5].ItemIndex <= INVENTORY_MAXITEM &&
+		cInvenTory.InvenItem[sInven[5].ItemIndex - 1].sItemInfo.CODE == (sinOR1 | sin26)) {
 		RShyRing = 1;
 	}
 	else { RShyRing = 0; }
-	if (cInvenTory.InvenItem[sInven[3].ItemIndex - 1].sItemInfo.CODE == (sinOA1 | sin26)) {
+	if (sInven[3].ItemIndex > 0 && sInven[3].ItemIndex <= INVENTORY_MAXITEM &&
+		cInvenTory.InvenItem[sInven[3].ItemIndex - 1].sItemInfo.CODE == (sinOA1 | sin26)) {
 		TullaAmulet = 1;
 	}
 	else { TullaAmulet = 0; }
@@ -10698,41 +10631,20 @@ int cINVENTORY::DeleteInvenItemToServer(DWORD CODE, DWORD Head, DWORD CheckSum)
 				if(InvenItem[i].ItemPosition)
 				{
 
-					if(InvenItem[i].Class == ITEM_CLASS_WEAPON_TWO)
-					{
-						if(InvenItem[i].ItemPosition == 1)
-						{
-							if(InvenItem[i].CODE != InvenItem[sInven[1].ItemIndex - 1].CODE)
-							{
-								InvenItem[sInven[1].ItemIndex - 1].Flag = 0;
-								InvenItem[i].Flag = 0;
-								sInven[1].ItemIndex = 0;
-								sInven[0].ItemIndex = 0;
-								if(InvenItem[i].SetModelPosi)
-									sinSetCharItem(InvenItem[i].CODE, InvenItem[i].SetModelPosi, FALSE);
-
-							}
-						}
-						if(InvenItem[i].ItemPosition == 2)
-						{
-							if(InvenItem[i].CODE != InvenItem[sInven[0].ItemIndex - 1].CODE)
-							{
-								InvenItem[sInven[0].ItemIndex - 1].Flag = 0;
-								InvenItem[i].Flag = 0;
-								sInven[0].ItemIndex = 0;
-								sInven[1].ItemIndex = 0;
-								if(InvenItem[i].SetModelPosi)
-									sinSetCharItem(InvenItem[i].CODE, InvenItem[i].SetModelPosi, FALSE);
-
-							}
-						}
-
-					}
-					sInven[InvenItem[i].ItemPosition - 1].ItemIndex = 0;
-					if(InvenItem[i].SetModelPosi)
-						sinSetCharItem(InvenItem[i].CODE, InvenItem[i].SetModelPosi, FALSE);
-
-				}
+                        // SUMMIT359: only the item authenticated by the
+                        // server's CODE+Head+Checksum may be deleted.
+                        const int physicalPos=InvenItem[i].ItemPosition;
+                        if(physicalPos>=1 && physicalPos<=INVENTORY_MAX_POS &&
+                           sInven[physicalPos-1].ItemIndex==i+1)
+                            sInven[physicalPos-1].ItemIndex=0;
+                        if(InvenItem[i].Class==ITEM_CLASS_WEAPON_TWO) {
+                            const int other=physicalPos==1 ? 1 : (physicalPos==2 ? 0 : -1);
+                            if(other>=0 && sInven[other].ItemIndex==i+1)
+                                sInven[other].ItemIndex=0;
+                        }
+                        if(InvenItem[i].SetModelPosi)
+                            sinSetCharItem(InvenItem[i].CODE,InvenItem[i].SetModelPosi,FALSE);
+                    }
 				ReFormInvenItem();
 				ReformCharForm();
 				ReFormPotionNum();
@@ -10762,7 +10674,7 @@ int cINVENTORY::DeleteInvenItemToServer(DWORD CODE, DWORD Head, DWORD CheckSum)
 
 	if(!sInven[0].ItemIndex)
 	{
-		if(sInven[1].ItemIndex)
+		if(sInven[1].ItemIndex>0 && sInven[1].ItemIndex<=INVENTORY_MAXITEM)
 		{
 			if(InvenItem[sInven[1].ItemIndex - 1].Flag)
 			{
@@ -10770,7 +10682,7 @@ int cINVENTORY::DeleteInvenItemToServer(DWORD CODE, DWORD Head, DWORD CheckSum)
 				{
 					if(!InvenItem[sInven[1].ItemIndex - 1].sItemInfo.ItemHeader.Head)
 					{
-						InvenItem[sInven[1].ItemIndex - 1].Flag = 0;
+						/* SUMMIT359: leave the persistent item; clear stale visual only */
 						sInven[1].ItemIndex = 0;
 						ReFormInvenItem();
 						ReformCharForm();

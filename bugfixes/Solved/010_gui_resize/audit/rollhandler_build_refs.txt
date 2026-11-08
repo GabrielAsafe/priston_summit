@@ -1,2 +1,0 @@
-/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/priston.vcxproj:332:    <ClCompile Include="Server\CRollHandler.cpp" />
-/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/priston.vcxproj:577:    <ClInclude Include="Server\CRollHandler.h" />

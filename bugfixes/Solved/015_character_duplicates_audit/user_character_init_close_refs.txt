@@ -1,4 +1,0 @@
-780:			UserCharacter[index].Init();
-1269:		UserCharacter[index].Init();
-1911:			UserCharacter[index].Init();
-2442:				UserCharacter[MouseDownCharacterNum].Init();

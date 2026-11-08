@@ -9,6 +9,8 @@ cd "$SCRIPT_DIR"
 
 CLEAN=1 bash cliente.sh
 CLEAN=1 bash server.sh
+bash send_to_s.sh --apply
+bash send_to_client.sh --apply
 
 if [ ! -f "$CANONICAL_SCRIPT" ]; then
     echo "Erro: consolidador canonical nao encontrado: $CANONICAL_SCRIPT" >&2

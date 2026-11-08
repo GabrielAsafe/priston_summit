@@ -1,3 +1,5 @@
+// SUMMIT466A central client font leading
+#include "../../../../../Shared/ui/fonts/FontSettings466.h"
 // =============================================================================
 // MAPA DO MONOLITO LEGACY - CLIENT NETPLAY
 //
@@ -26,6 +28,11 @@
 #include "systems/network/transport/legacy/smwsock.h"
 #include "systems/network/v2/legacy/LegacyBackendChannelSender.h"
 #include "gameplay/companions/v2/CompanionTradeClientSaveReceipt.h"
+#include "gameplay/crafting/v2/CraftLegacyLiveWire456.h" // SUMMIT456L
+#include <cstdio> // SUMMIT457A client diagnostics
+// SUMMIT457A: one deferred COMMIT per client process.
+namespace summit457 { static std::uint32_t waitingCommitToken=0; }
+#include <vector>
 #include "gameplay/companions/v2/CompanionTradeClientFreeze.h"
 #include "gameplay/companions/v2/CompanionDiagnostic315.h"
 #include "systems/network/v2/legacy/LegacyClientCommandSender.h"
@@ -161,6 +168,7 @@ struct PACKET_BUFFS
 #include "systems/localization/legacy_catalog/language.h"
 #include "compat/legacy/text/jts.h"
 #include "systems/localization/messages/TextMessage.h"
+#include "systems/ui/v2/crafting/CraftNetwork407.h"
 #include "systems/security/legacy/process_integrity/cracker.h"
 #include "systems/social/clan/tjclanDEF.h"
 #include "systems/social/clan/tjclan.h"
@@ -2749,6 +2757,8 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 	break;
 	
 	case OpCode::OPCODE_CHATMESSAGE:
+        // SUMMIT407A: crafting frames; never touch UI on network thread.
+        if(ui::v2::legacy::ReceiveServerCraft407(&pData->Buff[3 * 4])) break;
 
 		ChatCnt = ChatBuffCnt & CHATBUFF_MASK;
 		ChatBuff[ChatCnt].dwIP = IPData[2];
@@ -2792,6 +2802,74 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 		lpTransPlayerInfo = (smTRNAS_PLAYERINFO *)pData->Buff;
 
 		lpChar = FindAutoPlayer(lpTransPlayerInfo->dwObjectSerial);
+
+        // SUMMIT384A_FULLINFO_RECOVERY_BEGIN
+        // A PLAYDATAGROUP can be discarded during MessageLoading while the
+        // following full PLAYERINFO is queued. Recover ONLY the four known
+        // gathering entities on the exact map-58 coordinates; never create a
+        // generic monster from unsolicited PLAYERINFO packets.
+        if (!lpChar && lpTransPlayerInfo->size == sizeof(smTRNAS_PLAYERINFO) &&
+            lpTransPlayerInfo->dwObjectSerial != 0 &&
+            lpTransPlayerInfo->smCharInfo.State == smCHAR_STATE_ENEMY &&
+            lpCurPlayer && lpCurPlayer->OnStageField >= 0 &&
+            StageField[lpCurPlayer->OnStageField] &&
+            StageField[lpCurPlayer->OnStageField]->FieldCode == 58)
+        {
+            const int nodeX = lpTransPlayerInfo->x >> FLOATNS;
+            const int nodeZ = lpTransPlayerInfo->z >> FLOATNS;
+            const char* model = lpTransPlayerInfo->smCharInfo.szModelName;
+            const bool knownNode =
+                (nodeX == 251671 && nodeZ == 225035 &&
+                 lstrcmpi(model, "char\\monster\\undeadminer\\undeadminer.ini") == 0) ||
+                (nodeX == 251524 && nodeZ == 225037 &&
+                 lstrcmpi(model, "char\\monster\\monplant\\monplant-d.ini") == 0) ||
+                (nodeX == 251360 && nodeZ == 225033 &&
+                 lstrcmpi(model, "char\\monster\\monplant\\monplant-d.ini") == 0) ||
+                (nodeX == 251380 && nodeZ == 226790 &&
+                 lstrcmpi(model, "char\\monster\\turtlecannon\\turtlecannon.ini") == 0);
+            if (knownNode)
+            {
+                // Match the standard PLAYDATAGROUP -> FindEmptyChar setup.
+                // The ordinary PLAYERINFO handler below will perform the
+                // model load only after a managed slot has been reserved.
+                smCHAR* recovered = FindEmptyChar();
+                if (recovered)
+                {
+                    recovered->Init();
+                    recovered->Flag = TRUE;
+                    recovered->smCharInfo.szName[0] = 0;
+                    recovered->ActionPattern = 99;
+                    recovered->Pattern = 0;
+                    recovered->AutoPlayer = TRUE;
+                    recovered->TransSock = 0;
+                    recovered->DisplayFlag = FALSE;
+                    recovered->MotionInfo = 0;
+                    recovered->dwObjectSerial = lpTransPlayerInfo->dwObjectSerial;
+                    recovered->ServerCode = PLAY_SERVER_CODE_MAIN;
+                    if (smWsockUserServer == pData->smMySock)
+                        recovered->ServerCode = PLAY_SERVER_CODE_USER;
+                    else if (smWsockExtendServer == pData->smMySock)
+                        recovered->ServerCode = PLAY_SERVER_CODE_EXTEND;
+                    if (AreaServerMode && recovered->ServerCode == PLAY_SERVER_CODE_MAIN)
+                    {
+                        if (lpWSockServer_DispArea[0] == pData->smMySock)
+                            recovered->ServerCode = PLAY_SERVER_CODE_AREA1;
+                        else if (lpWSockServer_DispArea[1] == pData->smMySock)
+                            recovered->ServerCode = PLAY_SERVER_CODE_AREA2;
+                    }
+                    recovered->ResetAttackTrans();
+                    lpChar = recovered;
+                    FILE* log384 = fopen("LOGS\\summit_node_client_384a.log", "a");
+                    if (log384)
+                    {
+                        fprintf(log384, "FULLINFO_RECOVERY serial=%lu grid=%d,%d model=%s\\n",
+                            (unsigned long)recovered->dwObjectSerial, nodeX, nodeZ, model);
+                        fclose(log384);
+                    }
+                }
+            }
+        }
+        // SUMMIT384A_FULLINFO_RECOVERY_END
 
 		if (lpChar)
 		{
@@ -3339,11 +3417,15 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 		break;case OpCode::OPCODE_MESSAGEBOX:
 
 		lpTransChatMessage = (TRANS_CHATMESSAGE *)pData->Buff;
+        // SUMMIT408A: also handle server system-message envelope.
+        if(ui::v2::legacy::ReceiveServerCraft407(lpTransChatMessage->szMessage))break;
 		cMessageBox.ShowMessageEvent(lpTransChatMessage->szMessage);
 		break;
 
 	case OpCode::SEND_ALERT:
 		lpTransChatMessage = (TRANS_CHATMESSAGE*)pData->Buff;
+        // SUMMIT409A: another system-message path used by legacy server notifications.
+        if(ui::v2::legacy::ReceiveServerCraft407(lpTransChatMessage->szMessage))break;
 		cMessageBox.ShowMessage1(lpTransChatMessage->szMessage);
 		break;
 
@@ -3351,6 +3433,9 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 
 
 		lpTransChatMessage = (TRANS_CHATMESSAGE *)pData->Buff;
+        // SUMMIT408A: server quick messages use the private/system message path.
+        // Enqueue only recognized internal frames; do not touch widgets on this thread.
+        if(ui::v2::legacy::ReceiveServerCraft407(lpTransChatMessage->szMessage))break;
 
 		if (lpTransChatMessage->dwIP == 1 && SETTINGSHANDLER->getWhisper())
 			break;
@@ -3894,6 +3979,24 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
             summit::companion::diagnostic::Trace("CLIENT", "trade-record-ack",
                 0, 0, lpTransCommand->WParam ? 1 : -1);
 		rsRecorder.dwRecordTime = 0;
+        // SUMMIT457A: a COMMIT deferred because SaveGameData was already busy
+        // is retried ONLY after the existing OPCODE_RECORDRESULT clears the
+        // outstanding legacy save. The server resends the SAME COMMIT token
+        // and must never debit ingredients a second time.
+        if(summit457::waitingCommitToken){
+            const std::uint32_t waiting457=summit457::waitingCommitToken;
+            const bool saveOk457=lpTransCommand->WParam!=0;
+            const summit456l::Reply answer457=summit456l::MakeReply(waiting457,
+                saveOk457?summit456l::Ready:summit456l::SaveFailed,
+                saveOk457?summit456l::ReasonNone:summit456l::LegacySaveFailed);
+            if(SendClientBackendPacket(gameplay::network::BackendChannel::Data,
+                &answer457,static_cast<int>(sizeof(answer457)))==TRUE){
+                summit457::waitingCommitToken=0;
+                std::fprintf(stderr,
+                    "[SUMMIT457][CLIENT] previous_save_ack=%d resume_commit=%d\n",
+                    saveOk457?1:0,saveOk457?1:0);
+            }
+        }
 		rsRecorder.dwNextRecordTime = dwPlayTime + RECORD_TIME_STEP;
 		dwLastRecordTime = dwPlayTime;
 		if(lpTransCommand->WParam)
@@ -5154,6 +5257,195 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 	
 		SetPartyPosion((smTRANS_COMMAND *)pData->Buff);
 		break;
+
+    // SUMMIT456L: one server-authorised legacy craft, using the existing
+    // client backpack and SaveGameData, NOT the DAT-rewrite path.
+    case summit456l::kOpcode:
+    {
+        using namespace summit456l;
+        typedef Delivery<TRANS_ITEMINFO> LivePacket;
+        const LivePacket *p=reinterpret_cast<const LivePacket*>(pData->Buff);
+        int packetBytes=0;
+        memcpy(&packetBytes,pData->Buff,sizeof(packetBytes));
+        if(packetBytes!=static_cast<int>(sizeof(LivePacket)) ||
+           !p || !ValidDelivery(*p))break;
+        static std::uint32_t preparedToken=0;
+        static std::uint32_t completedToken=0;
+        const auto reply456=[&](int status,int reason)->bool {
+            const Reply r=MakeReply(p->token,status,reason);
+            return SendClientBackendPacket(gameplay::network::BackendChannel::Data,
+                   &r,static_cast<int>(sizeof(r)))==TRUE;
+        };
+        if(p->step==Prepare && completedToken==p->token){
+            (void)reply456(Applied,ReasonNone);break;
+        }
+        if(p->step==Commit && completedToken==p->token){
+            (void)reply456(Applied,ReasonNone);break;
+        }
+        // This routine deliberately supports unit physical CI items only.
+        // Existing authenticated stack identities must NOT be consumed whole
+        // by rsDeleteInvenItem while costing only one unit.
+        int reason457=ReasonNone;
+        if(!lpCurPlayer||!smWsockDataServer)reason457=NoSession;
+        else if(AdminCharDisable||QuitSave||cTrade.OpenFlag||
+                cWareHouse.OpenFlag||MouseItem.Flag)reason457=UiBusy;
+        else if(rsRecorder.dwRecordTime)reason457=SaveBusy;
+        else if(!p->reward.Item.CODE||!p->reward.Item.ItemHeader.Head||
+                !p->reward.Item.ItemHeader.dwChkSum||
+                CheckItemForm(const_cast<sITEMINFO*>(&p->reward.Item))!=TRUE)
+            reason457=RewardInvalid;
+        for(int i=0;reason457==ReasonNone&&i<p->count;++i){
+            const Identity& id=p->inputs[i];
+            sITEMINFO* found=FindInvenItem(id.code,id.head,id.checksum);
+            if(!found)reason457=InputMissing;
+            else if(CheckItemForm(found)!=TRUE ||
+                    found->dwTemp[0]==0x31534943u || // sealed CIS1 stack
+                    found->PotionCount>1)reason457=InputInvalid;
+        }
+        sITEM candidate={};
+        if(reason457==ReasonNone){
+            sITEMINFO item=p->reward.Item;
+            if(LoadItemImage(&item,&candidate)!=TRUE)reason457=ImageInvalid;
+            else if(cInvenTory.CheckRequireItemToSet(&candidate)!=TRUE)
+                reason457=RequirementsInvalid;
+        }
+        if(reason457==SaveBusy && p->step==Commit && preparedToken==p->token){
+            summit457::waitingCommitToken=p->token;
+            (void)reply456(WaitSave,SaveBusy);
+            std::fprintf(stderr,"[SUMMIT457][CLIENT] stage=commit deferred=legacy_save_pending no_mutation=1\n");
+            break;
+        }
+        if(reason457!=ReasonNone){
+            std::fprintf(stderr,"[SUMMIT457][CLIENT] stage=%s reject=%s before_mutation=1\n",
+                p->step==Prepare?"prepare":"commit",ReasonName(reason457));
+            // The server can compensate the ledger on a COMMIT denial only
+            // when this client has made NO item changes for this token.
+            if(p->step==Commit && preparedToken==p->token)preparedToken=0;
+            if(summit457::waitingCommitToken==p->token)
+                summit457::waitingCommitToken=0;
+            (void)reply456(Denied,reason457);break;
+        }
+        if(p->step==Prepare){
+            if(preparedToken && preparedToken!=p->token){
+                (void)reply456(Denied,StalePrepare);break;
+            }
+            // SUMMIT459A: simulate the exact legacy A-backpack occupancy
+            // AFTER removing the selected inputs, BEFORE acknowledging
+            // PREPARE. A WA weapon can need a contiguous rectangle larger
+            // than the 1x1 CI ingredients: waiting until COMMIT would make
+            // the server debit CI first and then discover no room for WA.
+            // Reuse the existing cTRADE::TradeCheckEmptyArea placement gate;
+            // it only modifies its scratch CheckItem and the passed probe.
+            // Never mutate the player's actual A/B backpacks here.
+            static_assert(sizeof(cTrade.CheckItem)==sizeof(cInvenTory.InvenItem),
+                "SUMMIT459A legacy A bag / trade scratch layout mismatch");
+            std::vector<unsigned char> tradeBefore459(sizeof(cTrade.CheckItem));
+            memcpy(tradeBefore459.data(),cTrade.CheckItem,sizeof(cTrade.CheckItem));
+            memcpy(cTrade.CheckItem,cInvenTory.InvenItem,sizeof(cTrade.CheckItem));
+            for(int i=0;i<p->count;++i){
+                const Identity& id=p->inputs[i];
+                for(int j=0;j<INVENTORY_MAXITEM;++j){
+                    sITEM& shadow459=cTrade.CheckItem[j];
+                    if(shadow459.Flag && shadow459.CODE==id.code &&
+                       shadow459.sItemInfo.ItemHeader.Head==id.head &&
+                       shadow459.sItemInfo.ItemHeader.dwChkSum==id.checksum){
+                        shadow459.Flag=0;
+                        break;
+                    }
+                }
+            }
+            sITEM spaceProbe459=candidate;
+            const bool freeRectangle459=
+                cTrade.TradeCheckEmptyArea(&spaceProbe459)==TRUE;
+            memcpy(cTrade.CheckItem,tradeBefore459.data(),tradeBefore459.size());
+            if(!freeRectangle459){
+                std::fprintf(stderr,
+                    "[SUMMIT459][CLIENT] prepare=denied reason=no_free_slot after_virtual_input_debit=1 live_inventory_unchanged=1\n");
+                (void)reply456(Denied,NoFreeSlot);
+                break;
+            }
+            preparedToken=p->token;
+            (void)reply456(Ready,ReasonNone);
+            break;
+        }
+        if(preparedToken!=p->token){
+            if(summit457::waitingCommitToken==p->token)
+                summit457::waitingCommitToken=0;
+            std::fprintf(stderr,"[SUMMIT457][CLIENT] stage=commit reject=stale_prepare before_mutation=1\n");
+            (void)reply456(Denied,StalePrepare);break;
+        }
+        // Preserve the original item slots so every local failure prior to a
+        // completed SaveGameData() can restore the existing legacy backpack.
+        std::vector<unsigned char> oldA(sizeof(cInvenTory.InvenItem));
+        std::vector<unsigned char> oldB(sizeof(cInvenTory.InvenItemTemp));
+        std::vector<unsigned char> oldEquip(sizeof(sInven));
+        memcpy(oldA.data(),cInvenTory.InvenItem,oldA.size());
+        memcpy(oldB.data(),cInvenTory.InvenItemTemp,oldB.size());
+        memcpy(oldEquip.data(),sInven,oldEquip.size());
+        const sITEM oldMouse=MouseItem;
+        for(int i=0;i<p->count;++i){
+            const Identity& id=p->inputs[i];
+            cInvenTory.DeleteInvenItemToServer(id.code,id.head,id.checksum);
+        }
+        bool done=true;
+        int applyReason457=ReasonNone;
+        for(int i=0;i<p->count;++i){
+            const Identity& id=p->inputs[i];
+            if(FindInvenItem(id.code,id.head,id.checksum)){
+                done=false;applyReason457=RemovedItemPresent;
+            }
+        }
+        // Original legacy placement, not a new bag geometry implementation.
+        // SUMMIT458A: CheckInvenEmpty is NOT read-only. It calls the legacy
+        // cTRADE::ChecketInvenItem, which writes pItem->Flag=0 while probing.
+        // Using `candidate` here inserted a Flag=0 reward: AutoSetInvenItem
+        // returned TRUE, but FindInvenItem could not find the invisible item.
+        // Probe a COPY so the real, server-signed item retains Flag=1.
+        sITEM placementProbe458=candidate;
+        if(done && cInvenTory.CheckInvenEmpty(&placementProbe458)!=TRUE){
+            done=false;applyReason457=NoFreeSlot;
+        }
+        if(done && candidate.Flag!=1){
+            done=false;applyReason457=PlacementFailed;
+        }
+        if(done && cInvenTory.AutoSetInvenItem(&candidate)!=TRUE){
+            done=false;applyReason457=PlacementFailed;
+        }
+        if(done && !FindInvenItem(p->reward.Item.CODE,
+            p->reward.Item.ItemHeader.Head,p->reward.Item.ItemHeader.dwChkSum)){
+            done=false;applyReason457=RewardMissing;
+        }
+        if(done){
+            cInvenTory.SetItemToChar();
+            cInvenTory.CheckWeight();
+            ResetInvenItemCode();
+            done=SaveGameData()==TRUE; // exactly one save AFTER both changes
+            if(!done)applyReason457=LegacySaveFailed;
+        }
+        if(!done){
+            memcpy(cInvenTory.InvenItem,oldA.data(),oldA.size());
+            memcpy(cInvenTory.InvenItemTemp,oldB.data(),oldB.size());
+            memcpy(sInven,oldEquip.data(),oldEquip.size());
+            MouseItem=oldMouse;
+            cInvenTory.ReFormInvenItem();
+            cInvenTory.SetItemToChar();
+            cInvenTory.CheckWeight();
+            ReformCharForm();
+            preparedToken=0;
+            if(summit457::waitingCommitToken==p->token)
+                summit457::waitingCommitToken=0;
+            std::fprintf(stderr,"[SUMMIT457][CLIENT] stage=commit failed_after_mutation=%s restored_local=1 no_retry=1\n",
+                ReasonName(applyReason457));
+            (void)reply456(SaveFailed,applyReason457);
+        }else{
+            preparedToken=0;
+            completedToken=p->token;
+            if(summit457::waitingCommitToken==p->token)
+                summit457::waitingCommitToken=0;
+            (void)reply456(Applied,ReasonNone);
+        }
+        break;
+    }
 
 	case OpCode::OPCODE_SAVECLIENT:
 
@@ -7346,7 +7638,7 @@ int DisplayChatMessage(HDC hdc, int x, int y, int MaxLine)
 			}
 			dsTextLineOut( x, y, lpString, lstrlen(lpString)); 
 		}
-		y += 16;
+		y += summit466::FontSettings466::Leading(16, summit466::FontSettings466::Chat);
 	}
 
 	return TRUE;
@@ -7598,7 +7890,7 @@ int DisplayChatMessage2(int x, int y, int StrMax, int LineMax)
 				SetIpColor(ChatBuff2[fl_Count][chatCnt].dwIP);
 				dsTextLineOut( x, y, lpString + CutPos, len - CutPos);
 
-				y -= 12;
+				y -= summit466::FontSettings466::Leading(12, summit466::FontSettings466::Chat);
 				LineCnt++;
 				if(LineCnt >= LineMax) break;
 
@@ -7650,7 +7942,7 @@ int DisplayChatMessage2(int x, int y, int StrMax, int LineMax)
 				}
 				else dsTextLineOut( x, y, lpString, CutPos);
 
-				y -= 12;
+				y -= summit466::FontSettings466::Leading(12, summit466::FontSettings466::Chat);
 				LineCnt++;
 				if(LineCnt >= LineMax) break;
 
@@ -7701,7 +7993,7 @@ int DisplayChatMessage2(int x, int y, int StrMax, int LineMax)
 				else dsTextLineOut( x, y, lpString, len);
 
 
-				y -= 12;
+				y -= summit466::FontSettings466::Leading(12, summit466::FontSettings466::Chat);
 				LineCnt++;
 				if(LineCnt >= LineMax) break;
 			}
@@ -9837,8 +10129,7 @@ int	TransCheckNetwork()
 				if(dwLastRecvGameServerTime3 && dwLastRecvGameServerTime3 < dwTime2) dwLastRecvGameServerTime3 = dwTime2;
 				if(dwLastRecvGameServerTime4 && dwLastRecvGameServerTime4 < dwTime2) dwLastRecvGameServerTime4 = dwTime2;
 
-				ReconnDataServer++;
-
+				// SUMMIT441A: each successful user-channel reconnection counts once.
 				char szBuff[256];
 				wsprintf(szBuff, "> Tentando se reconectar ao servidor: %d/10", ReconnDataServer);
 				AddChatBuff(szBuff);

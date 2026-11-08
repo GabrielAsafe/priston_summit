@@ -1,6 +1,7 @@
 #include "systems/gameplay/fishing/v2/FishingRuntime.h"
 
 #include "systems/gameplay/events/v2/GameplayEventRuntime.h"
+#include "gameplay/events/v2/FishCaughtEvent.h"
 #include "systems/gameplay/gathering/v2/GatheringRuntime.h"
 #include "systems/gameplay/gathering/v2/legacy/LegacyHarvestPlayerQueryAdapter.h"
 #include "systems/gameplay/professions/v2/ProfessionRuntime.h"
@@ -79,8 +80,29 @@ gathering::HarvestResult FishNodeForPlayer(PlayerId playerId,
     request.roll = roll;
 
     gathering::HarvestResult result = ServerFishingService().Fish(request);
-    if (result.Succeeded())
-        (void)gathering::ServerGatheringRepository().AddInventory(request.playerName, result.resourceKey, result.amount);
+    if (!result.Succeeded()) return result;
+    int summitHarvestXP=0;
+    if (!gathering::ServerGatheringRepository().AddHarvestBundle(request.playerName,
+        result.resourceKey, result.amount, roll, result.amount, summitHarvestXP))
+    {
+        ServerFishingService().Gathering().ResetNode(nodeId);
+        result.status = gathering::HarvestStatus::PersistenceFailed;
+        result.amount = 0;
+        return result;
+    }
+    // Covenant credit is likewise gated on durable resource persistence.
+    (void)CovenantBridge().RecordActivity(request.playerName, "gathering.harvest", 1);
+    // XP and gameplay events are not emitted until the resource is durable.
+    (void)professions::ServerProfessionService().AddExperience(request.playerName,
+        professions::ProfessionType::Fisher, static_cast<std::uint64_t>(summitHarvestXP));
+    events::FishCaughtEvent event;
+    event.playerName = request.playerName;
+    event.nodeId = result.nodeId;
+    event.resourceId = result.resourceId;
+    event.resourceKey = result.resourceKey;
+    event.amount = result.amount;
+    event.area = result.area;
+    events::ServerGameplayEventHub().Publish(event);
     return result;
 }
 }

@@ -1,2 +1,0 @@
-raw_cp949 = 25 73 20 b4 d4 c0 cc 20 b8 bb c7 cf bf b4 bd c0 b4 cf b4 d9 2e
-decoded   = %s 님이 말하였습니다.

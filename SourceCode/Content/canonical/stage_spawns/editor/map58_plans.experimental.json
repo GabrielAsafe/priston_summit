@@ -1,0 +1,86 @@
+{
+  "schema": "summit.spawn-editor-zones/experimental-v1",
+  "map_id": 58,
+  "compiled_into_spm": false,
+  "enabled_by_default": false,
+  "note": "7 SQL-authored positions from user log; snapshots not live; export via tool to update, never direct NPC spawn",
+  "zones": [
+    {
+      "plan_id": 1,
+      "map": 58,
+      "x": 250385,
+      "y": 721,
+      "z": 225276,
+      "content_key": "monplant",
+      "density": "low",
+      "max_alive": 2,
+      "enabled": false
+    },
+    {
+      "plan_id": 2,
+      "map": 58,
+      "x": 250357,
+      "y": 721,
+      "z": 225432,
+      "content_key": "monplant",
+      "density": "low",
+      "max_alive": 2,
+      "enabled": false
+    },
+    {
+      "plan_id": 3,
+      "map": 58,
+      "x": 250369,
+      "y": 721,
+      "z": 225440,
+      "content_key": "monplant",
+      "density": "low",
+      "max_alive": 2,
+      "enabled": false
+    },
+    {
+      "plan_id": 4,
+      "map": 58,
+      "x": 250381,
+      "y": 721,
+      "z": 225448,
+      "content_key": "monplant",
+      "density": "low",
+      "max_alive": 2,
+      "enabled": false
+    },
+    {
+      "plan_id": 5,
+      "map": 58,
+      "x": 250389,
+      "y": 817,
+      "z": 226422,
+      "content_key": "undeadminer",
+      "density": "high",
+      "max_alive": 12,
+      "enabled": false
+    },
+    {
+      "plan_id": 6,
+      "map": 58,
+      "x": 250306,
+      "y": 810,
+      "z": 226671,
+      "content_key": "undeadminer",
+      "density": "high",
+      "max_alive": 12,
+      "enabled": false
+    },
+    {
+      "plan_id": 7,
+      "map": 58,
+      "x": 250399,
+      "y": 810,
+      "z": 226748,
+      "content_key": "undeadminer",
+      "density": "high",
+      "max_alive": 12,
+      "enabled": false
+    }
+  ]
+}

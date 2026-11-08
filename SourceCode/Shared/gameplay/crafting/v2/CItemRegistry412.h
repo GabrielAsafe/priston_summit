@@ -1,0 +1,111 @@
+#pragma once
+// SUMMIT412A: stable cross-client/server C_it0x catalogue aliases.
+// These aliases are NOT numeric native item IDs. Do not submit to CreateItem(),
+// OP_PUTITEM or DAT until separate server+client item registration is complete.
+#include <cstddef>
+#include <cstring>
+namespace summit_crafting_412 {
+struct Entry { const char* code; const char* key; const char* display; const char* icon; const char* legacy; };
+static const Entry kEntries[] = {
+    {"C_it0x0001", "raw_ore_crystalline", "Minério Cristalino Bruto", "image/professions/v2/items/dummy/raw_ore_crystalline.png", ""},
+    {"C_it0x0002", "core_crystalline", "Núcleo Cristalino", "image/professions/v2/items/dummy/core_crystalline.png", ""},
+    {"C_it0x0003", "raw_ore_energetic", "Minério Energético Bruto", "image/professions/v2/items/dummy/raw_ore_energetic.png", ""},
+    {"C_it0x0004", "core_energetic", "Núcleo Energético", "image/professions/v2/items/dummy/core_energetic.png", ""},
+    {"C_it0x0005", "raw_ore_deep", "Minério Profundo Bruto", "image/professions/v2/items/dummy/raw_ore_deep.png", ""},
+    {"C_it0x0006", "core_deep", "Núcleo Profundo", "image/professions/v2/items/dummy/core_deep.png", ""},
+    {"C_it0x0007", "raw_ore_arcane", "Minério Arcano Bruto", "image/professions/v2/items/dummy/raw_ore_arcane.png", ""},
+    {"C_it0x0008", "core_arcane", "Núcleo Arcano", "image/professions/v2/items/dummy/core_arcane.png", ""},
+    {"C_it0x0009", "raw_ore_runic", "Minério Rúnico Bruto", "image/professions/v2/items/dummy/raw_ore_runic.png", ""},
+    {"C_it0x000A", "core_runic", "Núcleo Rúnico", "image/professions/v2/items/dummy/core_runic.png", ""},
+    {"C_it0x000B", "raw_ore_primordial", "Minério Primordial Bruto", "image/professions/v2/items/dummy/raw_ore_primordial.png", ""},
+    {"C_it0x000C", "core_primordial", "Núcleo Primordial", "image/professions/v2/items/dummy/core_primordial.png", ""},
+    {"C_it0x000D", "common_logs", "Troncos Comuns", "image/professions/v2/items/dummy/common_logs.png", ""},
+    {"C_it0x000E", "sap", "Seiva", "image/professions/v2/items/dummy/sap.png", ""},
+    {"C_it0x000F", "bark", "Casca", "image/professions/v2/items/dummy/bark.png", ""},
+    {"C_it0x0010", "resistant_logs", "Troncos Resistentes", "image/professions/v2/items/dummy/resistant_logs.png", ""},
+    {"C_it0x0011", "dense_resin", "Resina Densa", "image/professions/v2/items/dummy/dense_resin.png", ""},
+    {"C_it0x0012", "crystalline_wood", "Madeira Cristalina", "image/professions/v2/items/dummy/crystalline_wood.png", ""},
+    {"C_it0x0013", "energetic_sap", "Seiva Energética", "image/professions/v2/items/dummy/energetic_sap.png", ""},
+    {"C_it0x0014", "arcane_wood", "Madeira Arcana", "image/professions/v2/items/dummy/arcane_wood.png", ""},
+    {"C_it0x0015", "mystic_resin", "Resina Mística", "image/professions/v2/items/dummy/mystic_resin.png", ""},
+    {"C_it0x0016", "tree_heart", "Coração de Árvore", "image/professions/v2/items/dummy/tree_heart.png", ""},
+    {"C_it0x0017", "ore_amethyst", "Ore de Ametista", "image/professions/v2/items/dummy/ore_amethyst.png", ""},
+    {"C_it0x0018", "ore_silver", "Ore de Prata", "image/professions/v2/items/dummy/ore_silver.png", ""},
+    {"C_it0x0019", "ore_gold", "Ore de Ouro", "image/professions/v2/items/dummy/ore_gold.png", ""},
+    {"C_it0x001A", "ore_topaz", "Ore de Topázio", "image/professions/v2/items/dummy/ore_topaz.png", ""},
+    {"C_it0x001B", "ore_sapphire", "Ore de Safira", "image/professions/v2/items/dummy/ore_sapphire.png", ""},
+    {"C_it0x001C", "ore_citrine", "Ore de Citrino", "image/professions/v2/items/dummy/ore_citrine.png", ""},
+    {"C_it0x001D", "ore_ruby", "Ore de Rubi", "image/professions/v2/items/dummy/ore_ruby.png", ""},
+    {"C_it0x001E", "ore_emerald", "Ore de Esmeralda", "image/professions/v2/items/dummy/ore_emerald.png", ""},
+    {"C_it0x001F", "silver_dust", "Pó de Prata", "image/professions/v2/items/dummy/silver_dust.png", ""},
+    {"C_it0x0020", "ground_amethyst", "Ametista Moída", "image/professions/v2/items/dummy/ground_amethyst.png", ""},
+    {"C_it0x0021", "gold_dust", "Pó de Ouro", "image/professions/v2/items/dummy/gold_dust.png", ""},
+    {"C_it0x0022", "topaz_dust", "Pó de Topázio", "image/professions/v2/items/dummy/topaz_dust.png", ""},
+    {"C_it0x0023", "ground_sapphire", "Safira Moída", "image/professions/v2/items/dummy/ground_sapphire.png", ""},
+    {"C_it0x0024", "ground_citrine", "Citrino Moído", "image/professions/v2/items/dummy/ground_citrine.png", ""},
+    {"C_it0x0025", "ground_ruby", "Rubi Moído", "image/professions/v2/items/dummy/ground_ruby.png", ""},
+    {"C_it0x0026", "ground_emerald", "Esmeralda Moída", "image/professions/v2/items/dummy/ground_emerald.png", ""},
+    {"C_it0x0027", "iron_ingot", "Ferro", "image/professions/v2/items/dummy/iron_ingot.png", ""},
+    {"C_it0x0028", "planks", "Tábuas", "image/professions/v2/items/dummy/planks.png", ""},
+    {"C_it0x0029", "resistant_planks", "Tábuas Resistentes", "image/professions/v2/items/dummy/resistant_planks.png", ""},
+    {"C_it0x002A", "treated_planks", "Tábuas Tratadas", "image/professions/v2/items/dummy/treated_planks.png", ""},
+    {"C_it0x002B", "charcoal", "Carvão Vegetal", "image/professions/v2/items/dummy/charcoal.png", ""},
+    {"C_it0x002C", "reinforced_handle", "Cabo Reforçado", "image/professions/v2/items/dummy/reinforced_handle.png", ""},
+    {"C_it0x002D", "purified_resin", "Resina Purificada", "image/professions/v2/items/dummy/purified_resin.png", ""},
+    {"C_it0x002E", "arcane_charcoal", "Carvão Arcano", "image/professions/v2/items/dummy/arcane_charcoal.png", ""},
+    {"C_it0x002F", "crystalline_sap", "Seiva Cristalina", "image/professions/v2/items/dummy/crystalline_sap.png", ""},
+    {"C_it0x0030", "dark_resin", "Resina Sombria", "image/professions/v2/items/dummy/dark_resin.png", ""},
+    {"C_it0x0031", "arcane_ash", "Cinza Arcana", "image/professions/v2/items/dummy/arcane_ash.png", ""},
+    {"C_it0x0032", "primordial_essence", "Essência Primordial", "image/professions/v2/items/dummy/primordial_essence.png", ""},
+    {"C_it0x0033", "dark_essence", "Essência Sombria", "image/professions/v2/items/dummy/dark_essence.png", ""},
+    {"C_it0x0034", "purified_salt", "Sal Purificado", "image/professions/v2/items/dummy/purified_salt.png", ""},
+    {"C_it0x0035", "illusory_essence", "Essência Ilusória", "image/professions/v2/items/dummy/illusory_essence.png", ""},
+    {"C_it0x0036", "arcane_essence", "Essência Arcana", "image/professions/v2/items/dummy/arcane_essence.png", ""},
+    {"C_it0x0037", "war_fragment", "Fragmento Bélico", "image/professions/v2/items/dummy/war_fragment.png", ""},
+    {"C_it0x0038", "purified_gold", "Ouro Purificado", "image/professions/v2/items/dummy/purified_gold.png", ""},
+    {"C_it0x0039", "scroll_blank", "Pergaminho em Branco", "image/professions/v2/items/dummy/scroll_blank.png", ""},
+    {"C_it0x003A", "scroll_enhancement", "Pergaminho de Melhoria", "image/professions/v2/items/dummy/scroll_enhancement.png", ""},
+    {"C_it0x003B", "mystic_solvent", "Solvente Místico", "image/professions/v2/items/dummy/mystic_solvent.png", ""},
+    {"C_it0x003C", "machine_treated", "Máquina de Mineração", "image/professions/v2/items/dummy/machine_treated.png", ""},
+    {"C_it0x003D", "tool_reinforced", "Ferramenta Reforçada", "image/professions/v2/items/dummy/tool_reinforced.png", ""},
+    {"C_it0x003E", "sheltom_lucidi", "Lucidi", "OS101", "OS101"},
+    {"C_it0x003F", "sheltom_sereneo", "Sereneo", "OS102", "OS102"},
+    {"C_it0x0040", "sheltom_fadeo", "Fadeo", "OS103", "OS103"},
+    {"C_it0x0041", "sheltom_sparky", "Sparky", "OS104", "OS104"},
+    {"C_it0x0042", "sheltom_raident", "Raident", "OS105", "OS105"},
+    {"C_it0x0043", "sheltom_transparo", "Transparo", "OS106", "OS106"},
+    {"C_it0x0044", "sheltom_murky", "Murky", "OS107", "OS107"},
+    {"C_it0x0045", "sheltom_devine", "Devine", "OS108", "OS108"},
+    {"C_it0x0046", "sheltom_celesto", "Celesto", "OS109", "OS109"},
+    {"C_it0x0047", "sheltom_mirage", "Mirage", "OS110", "OS110"},
+    {"C_it0x0048", "sheltom_inferna", "Inferna", "OS111", "OS111"},
+    {"C_it0x0049", "sheltom_enigma", "Enigma", "OS112", "OS112"},
+    {"C_it0x004A", "sheltom_bellum", "Bellum", "OS113", "OS113"},
+    {"C_it0x004B", "sheltom_ordo", "Ordo", "OS114", "OS114"},
+    {"C_it0x004C", "sheltom_gemma", "Gemma", "OS115", "OS115"},
+    {"C_it0x004D", "sheltom_purus", "Purus", "OS116", "OS116"},
+    {"C_it0x004E", "sheltom_veritas", "Veritas", "OS117", "OS117"},
+    {"C_it0x004F", "potion_hp_enhanced", "Poção de Vida Reforçada", "image/professions/v2/items/dummy/potion_hp_enhanced.png", ""},
+    {"C_it0x0050", "potion_mp_enhanced", "Poção de Mana Reforçada", "image/professions/v2/items/dummy/potion_mp_enhanced.png", ""},
+    {"C_it0x0051", "potion_stamina_enhanced", "Poção de Vigor Reforçada", "image/professions/v2/items/dummy/potion_stamina_enhanced.png", ""},
+    {"C_it0x0052", "crafted_wa103", "Machado de Batalha (melhorado - proposta)", "WA103", "WA103"},
+    {"C_it0x0053", "crafted_da106", "Armadura Reforçada (melhorado - proposta)", "DA106", "DA106"},
+    {"C_it0x0054", "crafted_ws103", "Arco de Mão (melhorado - proposta)", "WS103", "WS103"},
+    {"C_it0x0055", "crafted_wm110", "Cajado Mágico (melhorado - proposta)", "WM110", "WM110"},
+    {"C_it0x0056", "timber", "Madeira / Timber", "image/professions/v2/items/dummy/timber.png", ""},
+    {"C_it0x0057", "iron_ore", "Minério de Ferro", "image/professions/v2/items/dummy/iron_ore.png", ""},
+    {"C_it0x0058", "herb_bundle", "Feixe de Ervas", "image/professions/v2/items/dummy/herb_bundle.png", ""},
+    {"C_it0x0059", "river_trout", "Truta do Rio", "image/professions/v2/items/dummy/river_trout.png", ""},
+};
+static const std::size_t kCount = sizeof(kEntries) / sizeof(kEntries[0]);
+inline const Entry* FindByKey(const char* key) {
+    if (!key) return nullptr;
+    for (std::size_t i=0; i<kCount; ++i) if (std::strcmp(kEntries[i].key,key)==0) return &kEntries[i];
+    return nullptr;
+}
+inline const Entry* FindByCode(const char* code) {
+    if (!code) return nullptr;
+    for (std::size_t i=0; i<kCount; ++i) if (std::strcmp(kEntries[i].code,code)==0) return &kEntries[i];
+    return nullptr;
+}
+} // summit_crafting_412

@@ -1,3 +1,4 @@
+#include <cstdio>
 #include "opcodes.h"
 #include "systems/commerce/coin_shop/CoinShop_T.h"
 #include "systems/commerce/coin_shop/PremiumPurchaseFeedback.h"
@@ -112,8 +113,9 @@ void cCOINSHOP_T::Open()
 	vButton.push_back(new sSHOPBUTTON(MC::SHIELD, Mat[MC::SHIELD], Mat[MC::SHIELD_], 67, 143, 40, 12, false));
 	vButton.push_back(new sSHOPBUTTON(MC::SETBLB, Mat[MC::SETBLB], Mat[MC::SETBLB_], 67, 179, 70, 12, false));
 	vButton.push_back(new sSHOPBUTTON(MC::RINGS, Mat[MC::RINGS], Mat[MC::RINGS_], 67, 217, 56, 12, false));
-	vButton.push_back(new sSHOPBUTTON(MC::SHELTONS, Mat[MC::SHELTONS], Mat[MC::SHELTONS_], 67, 256, 90, 12, false));
-	vButton.push_back(new sSHOPBUTTON(MC::PREMIUM, Mat[MC::PREMIUM], Mat[MC::PREMIUM_], 67, 294, 55, 12, false));
+	vButton.push_back(new sSHOPBUTTON(MC::PREMIUM, Mat[MC::SHELTONS], Mat[MC::SHELTONS_], 67, 256, 90, 12, false));
+	vButton.push_back(new sSHOPBUTTON(MC::SHELTONS, Mat[MC::PREMIUM], Mat[MC::PREMIUM_], 67, 294, 55, 12, false));
+	std::printf("[TIMESHOP][CLIENT] category_map premium=7 services=6 (catalog)\n");
 	SetSection(MC::WEAPON);
 
 
@@ -180,7 +182,7 @@ void cCOINSHOP_T::SetPage(int iID)
 
 void cCOINSHOP_T::SetSection(int iID)
 {
-	if (iID == CurrentSection || iID > 7)
+	if (iID < 1 || iID > 7 || iID == CurrentSection)
 		return;
 
 	SetButtonSelection(iID);
@@ -197,17 +199,26 @@ void cCOINSHOP_T::SetSection(int iID)
 		smTransCommand.code = OpCode::OPCODE_GET_SHOPITEM_T;
 		smTransCommand.WParam = CurrentSection;
 
-		(void)gameplay::network::legacy::ClientLegacyBackendChannelSender().Send(
-			gameplay::network::BackendChannel::Data,
-			gameplay::network::PacketView(&smTransCommand, static_cast<std::size_t>(smTransCommand.size),
-			                              static_cast<std::uint32_t>(smTransCommand.code)));
+        const bool sent = gameplay::network::legacy::ClientLegacyBackendChannelSender().Send(
+            gameplay::network::BackendChannel::Data,
+            gameplay::network::PacketView(&smTransCommand, static_cast<std::size_t>(smTransCommand.size),
+                                          static_cast<std::uint32_t>(smTransCommand.code))).Succeeded();
+        std::printf("[TIMESHOP][CLIENT] request_section=%d sent=%d\n", CurrentSection, sent ? 1 : 0);
 	}
 }
 
 void cCOINSHOP_T::RecvItemFromServer(smTRANS_SHOPDATA * lpTransShopData)
 {
-	if (lpTransShopData->Section <= 0 || lpTransShopData->Section > 7 || !lpTransShopData->Count)
-		return;
+    if (!lpTransShopData || lpTransShopData->Section < 1 || lpTransShopData->Section > 7 ||
+        lpTransShopData->Count <= 0 ||
+        static_cast<std::size_t>(lpTransShopData->Count) >
+          sizeof(lpTransShopData->sCompItem) / sizeof(lpTransShopData->sCompItem[0]))
+    {
+        std::printf("[TIMESHOP][CLIENT] invalid_item_packet\n");
+        return;
+    }
+    std::printf("[TIMESHOP][CLIENT] received_section=%d count=%d\n",
+                lpTransShopData->Section, lpTransShopData->Count);
 
 	int Section = lpTransShopData->Section - 1;
 	sITEMINFO* lpItemInfo = new sITEMINFO[lpTransShopData->Count];
@@ -240,6 +251,8 @@ void cCOINSHOP_T::RecvItemFromServer(smTRANS_SHOPDATA * lpTransShopData)
 		}
 	}
 
+    std::printf("[TIMESHOP][CLIENT] visible_section=%d total=%lu\n",
+                Section + 1, static_cast<unsigned long>(vItemBox[Section].size()));
 	PageCount[Section] = vItemBox[Section].empty() ? 0 : (vItemBox[Section].size() - 1) / 12;
 	/*if(vItemBox[Section].size() % 12)
 		PageCount[Section]++;*/

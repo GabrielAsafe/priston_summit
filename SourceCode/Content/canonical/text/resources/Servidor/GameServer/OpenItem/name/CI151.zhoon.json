@@ -1,0 +1,29 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.ci151",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/CI151.zhoon",
+    "GameServer/OpenItem/name/CI151.zhoon"
+  ],
+  "source": {
+    "migration_status": "native_canonical_generated",
+    "generated_from": "item.ci151"
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 1,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "Essência Sombria"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "KkpfTkFNRSAiRXNz6m5jaWEgU29tYnJpYSI="
+  }
+}

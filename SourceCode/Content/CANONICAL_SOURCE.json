@@ -5,15 +5,25 @@
   "imported_this_run": false,
   "imported_families": {},
   "families": {
+    "asset_recovery": {
+      "files": 1,
+      "bytes": 112814,
+      "sha256": "0b08366e827101635cdfa2242756a780140ae2f855fa31379c96cf75675a53d8"
+    },
     "commerce": {
       "files": 3,
-      "bytes": 12708,
-      "sha256": "e80db6e73937339122d34222e762d3b09c3af26a8b146a68885818dfdc35f21f"
+      "bytes": 13040,
+      "sha256": "ab572128241776fbbc0fd615b7449e9d23905f011f642e6cb81a49652620810a"
     },
     "covenant_altars": {
       "files": 1,
       "bytes": 24134,
       "sha256": "0ee004c27898e2ff447a610f921cf11edec137827a7d9b8957836b56ce06acf4"
+    },
+    "crafting_v2": {
+      "files": 8,
+      "bytes": 1015582,
+      "sha256": "f59c5791c4d6e3f5a9749a5e8682b25d6cd0b182e50180f57a87521e5f9052d1"
     },
     "equipment_sets": {
       "files": 1,
@@ -22,8 +32,8 @@
     },
     "fixed_npcs": {
       "files": 25,
-      "bytes": 33337,
-      "sha256": "9134aa4b5003b23a06450e2d7a430445de1a6386d0313cf8897e54ba2285dccb"
+      "bytes": 33154,
+      "sha256": "af2fdc3c62de782a9495069b2fff73f8cc1dab0a4c4c4c0b5fdc527024d63853"
     },
     "gameplay_balance": {
       "files": 1,
@@ -40,15 +50,25 @@
       "bytes": 72693,
       "sha256": "f08d3070093b73aaa398720f9447fbb6c860efe936a85be7db2242f0583eef35"
     },
+    "gm_spawn_points": {
+      "files": 2,
+      "bytes": 19050,
+      "sha256": "7a85e7efb731ebdd03d14b85e1c5baaf070b52b12ca3142e8c80d20434b15a6e"
+    },
     "head_cosmetics": {
       "files": 1,
       "bytes": 730,
       "sha256": "f21cd41ab3cdeea5aa5116b34441a6e7b1eb85453eecb6a4cbc58612f577cb95"
     },
     "item_profiles": {
-      "files": 4,
-      "bytes": 70837,
-      "sha256": "033ca0a1a86a0cbff4364c0a434a2016d9d09811ee313464d55d2dcc9d4c13e4"
+      "files": 7,
+      "bytes": 320319,
+      "sha256": "e9a1bf3cd5adc105ecdeeb2992f4e4975d0ff098e85215a70b26635df079064d"
+    },
+    "item_visuals": {
+      "files": 1,
+      "bytes": 6667,
+      "sha256": "f8d70fb75c9d0b9d425b0d52afb1c37ba04c21e6fd220492c83314cf3bcfb561"
     },
     "legacy_variants": {
       "files": 17,
@@ -66,24 +86,24 @@
       "sha256": "5d3db52eab100ce587ddf2ecad487d8c7b06d5b16491dd5e029f0304721667a4"
     },
     "professions_v2": {
-      "files": 4,
-      "bytes": 14732,
-      "sha256": "23b7c9c465f1a563d7769109424f48e22c3203de93ef9b9f9d642c95a2883879"
+      "files": 11,
+      "bytes": 142003,
+      "sha256": "fcdf7bff34c7ba07cb59e7fb0f0d074dbf2baa9473f19d21fb9d244c3689050e"
     },
     "stage_spawns": {
-      "files": 64,
-      "bytes": 119991,
-      "sha256": "3693cc5a07e9895657995efe47b15639f8721453e14bda6cacb13fc72b1da1ed"
+      "files": 66,
+      "bytes": 122343,
+      "sha256": "7494b1a8c05cac61282a62933bfd2803f73345d771b7d765ca1886ee023e9830"
     },
     "stage_start_points": {
-      "files": 70,
-      "bytes": 606233,
-      "sha256": "f215afbf83e0786ba4aa864eade11a6fe1d59711637269f83d761beafabf04f6"
+      "files": 71,
+      "bytes": 607165,
+      "sha256": "01f8530f27899595674837aea942a498d6ac65c622e9e4314f06ee894576256a"
     },
     "text": {
-      "files": 5637,
-      "bytes": 31065285,
-      "sha256": "4fadf4a1d5cf121563b859ddfa537cc70cd63d7a9ffe958720b2d0e014e0b120"
+      "files": 5809,
+      "bytes": 31522974,
+      "sha256": "5aee4fac8acf956938402abba2c8057ab50cafd10c606bc36157e2afa1512705"
     },
     "world_phases": {
       "files": 1,

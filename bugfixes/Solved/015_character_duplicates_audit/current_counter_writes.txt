@@ -1,8 +1,0 @@
-285:	UserCharacterCount = 0;
-286:	JobCharacterCount = 0;
-792:			UserCharacterCount++;
-921:		JobCharacterCount++;
-1913:	UserCharacterCount = 0;
-2443:				UserCharacterCount--;
-3205:					JobCharacterCount = 0;
-3260:					JobCharacterCount = 0;

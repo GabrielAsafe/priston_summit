@@ -44,9 +44,9 @@ std::uint64_t DistanceSquared(int x, int y, int z, const GatheringNodeDefinition
     return static_cast<std::uint64_t>(dx*dx + dy*dy + dz*dz);
 }
 
-void ApplyCovenantGathering(const std::string& playerKey,
-                            std::uint32_t roll,
-                            HarvestResult& result)
+void AdjustCovenantGatheringYield(const std::string& playerKey,
+                                  std::uint32_t roll,
+                                  HarvestResult& result)
 {
     if (!result.Succeeded()) return;
     const int baseAmount = result.amount;
@@ -66,6 +66,15 @@ void ApplyCovenantGathering(const std::string& playerKey,
             result.amount += baseAmount;
     }
 
+}
+
+// External Covenant inventory and activity are only updated after the main
+// SQLite material write succeeds. A failed gather must not mint free bonuses.
+void CommitCovenantGatheringActivity(const std::string& playerKey,
+                                     std::uint32_t roll,
+                                     const HarvestResult& result)
+{
+    if (!result.Succeeded()) return;
     covenants::CovenantModifierAggregate special;
     if (progression::GetServerCovenantModifierAggregate(
             playerKey, "gathering.special_material_chance", "gathering", special) && special.matched)
@@ -179,16 +188,23 @@ HarvestResult HarvestGatheringNodeForPlayer(PlayerId playerId,
     HarvestResult result = ServerGatheringService().Harvest(request);
     if (result.Succeeded())
     {
-        ApplyCovenantGathering(request.playerName, roll, result);
-        if (ServerGatheringRepository().AddInventory(request.playerName, result.resourceKey, result.amount))
+        AdjustCovenantGatheringYield(request.playerName, roll, result);
+        int summitHarvestXP=0;
+    if (!ServerGatheringRepository().AddHarvestBundle(request.playerName,
+            result.resourceKey, result.amount, roll, 1, summitHarvestXP))
         {
-            // Only level an explicitly supported profession. Foraging
-            // without RequiredProfession remains None: no guessed XP mapping.
-            const professions::ProfessionType experienceProfession = ProfessionFor(resource);
-            if (experienceProfession != professions::ProfessionType::None)
-                (void)professions::ServerProfessionService().AddExperience(
-                    request.playerName, experienceProfession, 1u);
+            ServerGatheringService().ResetNode(nodeId);
+            result.status = HarvestStatus::PersistenceFailed;
+            result.amount = 0;
+            return result;
         }
+        // No Covenant side effects before the persisted primary reward.
+        CommitCovenantGatheringActivity(request.playerName, roll, result);
+        // Only persisted materials count towards profession progression.
+        const professions::ProfessionType experienceProfession = ProfessionFor(resource);
+        if (experienceProfession != professions::ProfessionType::None)
+            (void)professions::ServerProfessionService().AddExperience(
+                request.playerName, experienceProfession, static_cast<std::uint64_t>(summitHarvestXP));
     }
     return result;
 }

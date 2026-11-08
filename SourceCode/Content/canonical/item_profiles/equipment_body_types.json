@@ -1,0 +1,14 @@
+{
+  "schema": "summit.equipment-body-types/v1",
+  "source": "wiki.priston.com.br/Guia_dos_Itens_(Armas,_Defesas_e_Acessórios)",
+  "overrides": [
+    {
+      "code": "DA147",
+      "slot": "costume"
+    },
+    {
+      "code": "DA247",
+      "slot": "costume"
+    }
+  ]
+}

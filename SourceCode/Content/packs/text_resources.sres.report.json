@@ -1,11 +1,27 @@
 {
   "format": "SRES",
   "version": 2,
-  "resources": 5624,
-  "aliases": 11249,
-  "unique_payloads": 5433,
-  "strings_bytes": 546194,
-  "payload_bytes": 2182299,
-  "bytes": 2998549,
-  "sha256": "dbf08d4e07968c84a274ddcf1edb1d72757c8e899151f7297eb17debfe12d039"
+  "resources": 5765,
+  "aliases": 11530,
+  "unique_payloads": 5571,
+  "strings_bytes": 558415,
+  "payload_bytes": 2586942,
+  "bytes": 3422157,
+  "sha256": "4a3f8d85225f32718d613a9815b19dc83a0b89c4a8a1d1862743f0e87ce71dce",
+  "embedded_localization": {
+    "format": "SLOC",
+    "version": 2,
+    "entries": 8021,
+    "keys": 3857,
+    "english_keys": 3857,
+    "locales": {
+      "en": 3857,
+      "pt-BR": 3857,
+      "zh-TW": 18,
+      "ko": 289
+    },
+    "bytes": 389289,
+    "sha256": "bd9eff2307faaeb39cf69be0235be58a4a57a5c274e13986461a1b59922635d1"
+  },
+  "internal_path": "__summit_internal__/localization.sloc"
 }

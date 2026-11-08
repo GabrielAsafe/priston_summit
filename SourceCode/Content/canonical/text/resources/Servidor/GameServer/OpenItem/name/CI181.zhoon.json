@@ -1,0 +1,30 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.ci181",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/CI181.zhoon",
+    "GameServer/OpenItem/name/CI181.zhoon"
+  ],
+  "source": {
+    "migration_status": "native_canonical_generated",
+    "generated_from": "item.ci181",
+    "generated_by": "SUMMIT467A"
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 1,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "Empunhadura"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "KkpfTkFNRSAiRW1wdW5oYWR1cmEi"
+  }
+}

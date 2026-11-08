@@ -6,6 +6,7 @@
 #include "gameplay/companions/v2/CompanionTradeGridPlanner.h"
 #include "gameplay/companions/v2/CompanionTradeRecordImageBuilder.h"
 #include "gameplay/companions/v2/CompanionTradeJournal.h"
+#include "gameplay/companions/v2/CompanionTradePlacement356.h"
 #include <vector>
 #include <cstdio>
 
@@ -240,10 +241,13 @@ ConcreteTransferResult BuildConcreteTradeTransfer(
         }
         return status;
     }
-    std::vector<TradeMove> moves;
-    std::vector<std::uint32_t> allocatedSlots;
-    moves.reserve(selected.size());
-    allocatedSlots.reserve(selected.size());
+    // SUMMIT356: validate footprints before allocating anything and place
+    // bigger transfers first. The old click-order first-fit fragmented bags,
+    // reporting NoRoom despite enough contiguous space for all requests.
+    // Keep the original order for PlanItemMoves/codec, so the verified
+    // selected index still maps to exactly its authenticated source row.
+    std::vector<TradeIncoming356> incoming;
+    incoming.reserve(selected.size());
     for(const auto& pick:selected) {
         const auto& source=pick.from==TradeSide::Player?owner:companion;
         const auto& r=source.records[pick.recordIndex];
@@ -264,25 +268,26 @@ ConcreteTransferResult BuildConcreteTradeTransfer(
                 static_cast<int>(r.x),static_cast<int>(r.y));
             return status;
         }
-        auto& occupied=pick.from==TradeSide::Player?companionUsed:ownerUsed;
-        auto& destinationSlots=pick.from==TradeSide::Player?companionSlots:ownerSlots;
-        bool placed=false;
-        for(int bag=0;bag<2 && !placed;++bag) {
-            auto fit=inv::CompanionBagSpacePolicy::FindFree(
-                occupied[bag],f.widthPixels,f.heightPixels);
-            if(!fit.Available())continue;
-            std::size_t freeSlot=0;
-            while(freeSlot<slotsPerBag && destinationSlots[bag][freeSlot])
-                ++freeSlot;
-            if(freeSlot==slotsPerBag)continue;
-            destinationSlots[bag][freeSlot]=true;
-            allocatedSlots.push_back(static_cast<std::uint32_t>(freeSlot));
-            occupied[bag].emplace_back(fit.x,fit.y,f.widthPixels,f.heightPixels);
-            moves.push_back({pick.from,pick.recordIndex,pick.code,pick.key,
-                             pick.checksum,bag==1,fit.x,fit.y});
-            placed=true;
-        }
-        if(!placed) {status.code=ConcreteTransferCode::NoRoom;return status;}
+        incoming.push_back({pick.from==TradeSide::Player,f.widthPixels,f.heightPixels});
+    }
+    std::vector<TradePlaced356> placements;
+    if(!PlanTradeIncoming356(ownerUsed,companionUsed,ownerSlots,companionSlots,
+                              slotsPerBag,incoming,placements)) {
+        status.code=ConcreteTransferCode::NoRoom;
+        std::printf("[SUMMIT356_TRADE] stage=placement-unavailable moves=%u\n",
+                    static_cast<unsigned>(selected.size()));
+        return status;
+    }
+    std::vector<TradeMove> moves;
+    std::vector<std::uint32_t> allocatedSlots;
+    moves.reserve(selected.size());
+    allocatedSlots.reserve(selected.size());
+    for(std::size_t i=0;i<selected.size();++i) {
+        const auto& pick=selected[i];
+        const auto& at=placements[i];
+        allocatedSlots.push_back(at.slot);
+        moves.push_back({pick.from,pick.recordIndex,pick.code,pick.key,
+                         pick.checksum,at.secondary,at.x,at.y});
     }
     TradePlan plan;
     std::size_t moveOrdinal=0;

@@ -38,6 +38,7 @@ public:
     using GmDispatch = std::function<bool(const std::string&, bool)>;
     using NameProvider = std::function<std::vector<std::string>()>;
     void SetGmBridge(SecurityProvider security, GmDispatch dispatch, NameProvider names);
+    void SetOnSpawnEditor(std::function<void()> callback) { onSpawnEditor_ = std::move(callback); }
     void ResetGmTransient();
     bool HandleGmKey(std::uint32_t key);
     bool HandleGmChar(std::uint32_t character);
@@ -135,6 +136,8 @@ private:
     SecurityProvider gmSecurity_;
     GmDispatch gmDispatch_;
     NameProvider gmNames_;
+    std::function<void()> onSpawnEditor_;
+    Button* gmSpawnEditor_ = nullptr;
     std::array<Button*, 4> gmGroups_{};
     std::array<Button*, 10> gmCommands_{};
     std::array<Button*, 3> gmFields_{};

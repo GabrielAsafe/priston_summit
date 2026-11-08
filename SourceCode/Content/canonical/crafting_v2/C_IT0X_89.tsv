@@ -1,0 +1,90 @@
+code	key	name_pt	mode	icon_or_legacy	native_numeric
+C_it0x0001	raw_ore_crystalline	Minério Cristalino Bruto	png	image/professions/v2/items/dummy/raw_ore_crystalline.png	
+C_it0x0002	core_crystalline	Núcleo Cristalino	png	image/professions/v2/items/dummy/core_crystalline.png	
+C_it0x0003	raw_ore_energetic	Minério Energético Bruto	png	image/professions/v2/items/dummy/raw_ore_energetic.png	
+C_it0x0004	core_energetic	Núcleo Energético	png	image/professions/v2/items/dummy/core_energetic.png	
+C_it0x0005	raw_ore_deep	Minério Profundo Bruto	png	image/professions/v2/items/dummy/raw_ore_deep.png	
+C_it0x0006	core_deep	Núcleo Profundo	png	image/professions/v2/items/dummy/core_deep.png	
+C_it0x0007	raw_ore_arcane	Minério Arcano Bruto	png	image/professions/v2/items/dummy/raw_ore_arcane.png	
+C_it0x0008	core_arcane	Núcleo Arcano	png	image/professions/v2/items/dummy/core_arcane.png	
+C_it0x0009	raw_ore_runic	Minério Rúnico Bruto	png	image/professions/v2/items/dummy/raw_ore_runic.png	
+C_it0x000A	core_runic	Núcleo Rúnico	png	image/professions/v2/items/dummy/core_runic.png	
+C_it0x000B	raw_ore_primordial	Minério Primordial Bruto	png	image/professions/v2/items/dummy/raw_ore_primordial.png	
+C_it0x000C	core_primordial	Núcleo Primordial	png	image/professions/v2/items/dummy/core_primordial.png	
+C_it0x000D	common_logs	Troncos Comuns	png	image/professions/v2/items/dummy/common_logs.png	
+C_it0x000E	sap	Seiva	png	image/professions/v2/items/dummy/sap.png	
+C_it0x000F	bark	Casca	png	image/professions/v2/items/dummy/bark.png	
+C_it0x0010	resistant_logs	Troncos Resistentes	png	image/professions/v2/items/dummy/resistant_logs.png	
+C_it0x0011	dense_resin	Resina Densa	png	image/professions/v2/items/dummy/dense_resin.png	
+C_it0x0012	crystalline_wood	Madeira Cristalina	png	image/professions/v2/items/dummy/crystalline_wood.png	
+C_it0x0013	energetic_sap	Seiva Energética	png	image/professions/v2/items/dummy/energetic_sap.png	
+C_it0x0014	arcane_wood	Madeira Arcana	png	image/professions/v2/items/dummy/arcane_wood.png	
+C_it0x0015	mystic_resin	Resina Mística	png	image/professions/v2/items/dummy/mystic_resin.png	
+C_it0x0016	tree_heart	Coração de Árvore	png	image/professions/v2/items/dummy/tree_heart.png	
+C_it0x0017	ore_amethyst	Ore de Ametista	png	image/professions/v2/items/dummy/ore_amethyst.png	
+C_it0x0018	ore_silver	Ore de Prata	png	image/professions/v2/items/dummy/ore_silver.png	
+C_it0x0019	ore_gold	Ore de Ouro	png	image/professions/v2/items/dummy/ore_gold.png	
+C_it0x001A	ore_topaz	Ore de Topázio	png	image/professions/v2/items/dummy/ore_topaz.png	
+C_it0x001B	ore_sapphire	Ore de Safira	png	image/professions/v2/items/dummy/ore_sapphire.png	
+C_it0x001C	ore_citrine	Ore de Citrino	png	image/professions/v2/items/dummy/ore_citrine.png	
+C_it0x001D	ore_ruby	Ore de Rubi	png	image/professions/v2/items/dummy/ore_ruby.png	
+C_it0x001E	ore_emerald	Ore de Esmeralda	png	image/professions/v2/items/dummy/ore_emerald.png	
+C_it0x001F	silver_dust	Pó de Prata	png	image/professions/v2/items/dummy/silver_dust.png	
+C_it0x0020	ground_amethyst	Ametista Moída	png	image/professions/v2/items/dummy/ground_amethyst.png	
+C_it0x0021	gold_dust	Pó de Ouro	png	image/professions/v2/items/dummy/gold_dust.png	
+C_it0x0022	topaz_dust	Pó de Topázio	png	image/professions/v2/items/dummy/topaz_dust.png	
+C_it0x0023	ground_sapphire	Safira Moída	png	image/professions/v2/items/dummy/ground_sapphire.png	
+C_it0x0024	ground_citrine	Citrino Moído	png	image/professions/v2/items/dummy/ground_citrine.png	
+C_it0x0025	ground_ruby	Rubi Moído	png	image/professions/v2/items/dummy/ground_ruby.png	
+C_it0x0026	ground_emerald	Esmeralda Moída	png	image/professions/v2/items/dummy/ground_emerald.png	
+C_it0x0027	iron_ingot	Ferro	png	image/professions/v2/items/dummy/iron_ingot.png	
+C_it0x0028	planks	Tábuas	png	image/professions/v2/items/dummy/planks.png	
+C_it0x0029	resistant_planks	Tábuas Resistentes	png	image/professions/v2/items/dummy/resistant_planks.png	
+C_it0x002A	treated_planks	Tábuas Tratadas	png	image/professions/v2/items/dummy/treated_planks.png	
+C_it0x002B	charcoal	Carvão Vegetal	png	image/professions/v2/items/dummy/charcoal.png	
+C_it0x002C	reinforced_handle	Cabo Reforçado	png	image/professions/v2/items/dummy/reinforced_handle.png	
+C_it0x002D	purified_resin	Resina Purificada	png	image/professions/v2/items/dummy/purified_resin.png	
+C_it0x002E	arcane_charcoal	Carvão Arcano	png	image/professions/v2/items/dummy/arcane_charcoal.png	
+C_it0x002F	crystalline_sap	Seiva Cristalina	png	image/professions/v2/items/dummy/crystalline_sap.png	
+C_it0x0030	dark_resin	Resina Sombria	png	image/professions/v2/items/dummy/dark_resin.png	
+C_it0x0031	arcane_ash	Cinza Arcana	png	image/professions/v2/items/dummy/arcane_ash.png	
+C_it0x0032	primordial_essence	Essência Primordial	png	image/professions/v2/items/dummy/primordial_essence.png	
+C_it0x0033	dark_essence	Essência Sombria	png	image/professions/v2/items/dummy/dark_essence.png	
+C_it0x0034	purified_salt	Sal Purificado	png	image/professions/v2/items/dummy/purified_salt.png	
+C_it0x0035	illusory_essence	Essência Ilusória	png	image/professions/v2/items/dummy/illusory_essence.png	
+C_it0x0036	arcane_essence	Essência Arcana	png	image/professions/v2/items/dummy/arcane_essence.png	
+C_it0x0037	war_fragment	Fragmento Bélico	png	image/professions/v2/items/dummy/war_fragment.png	
+C_it0x0038	purified_gold	Ouro Purificado	png	image/professions/v2/items/dummy/purified_gold.png	
+C_it0x0039	scroll_blank	Pergaminho em Branco	png	image/professions/v2/items/dummy/scroll_blank.png	
+C_it0x003A	scroll_enhancement	Pergaminho de Melhoria	png	image/professions/v2/items/dummy/scroll_enhancement.png	
+C_it0x003B	mystic_solvent	Solvente Místico	png	image/professions/v2/items/dummy/mystic_solvent.png	
+C_it0x003C	machine_treated	Máquina de Mineração	png	image/professions/v2/items/dummy/machine_treated.png	
+C_it0x003D	tool_reinforced	Ferramenta Reforçada	png	image/professions/v2/items/dummy/tool_reinforced.png	
+C_it0x003E	sheltom_lucidi	Lucidi	legacy_item	OS101	
+C_it0x003F	sheltom_sereneo	Sereneo	legacy_item	OS102	
+C_it0x0040	sheltom_fadeo	Fadeo	legacy_item	OS103	
+C_it0x0041	sheltom_sparky	Sparky	legacy_item	OS104	
+C_it0x0042	sheltom_raident	Raident	legacy_item	OS105	
+C_it0x0043	sheltom_transparo	Transparo	legacy_item	OS106	
+C_it0x0044	sheltom_murky	Murky	legacy_item	OS107	
+C_it0x0045	sheltom_devine	Devine	legacy_item	OS108	
+C_it0x0046	sheltom_celesto	Celesto	legacy_item	OS109	
+C_it0x0047	sheltom_mirage	Mirage	legacy_item	OS110	
+C_it0x0048	sheltom_inferna	Inferna	legacy_item	OS111	
+C_it0x0049	sheltom_enigma	Enigma	legacy_item	OS112	
+C_it0x004A	sheltom_bellum	Bellum	legacy_item	OS113	
+C_it0x004B	sheltom_ordo	Ordo	legacy_item	OS114	
+C_it0x004C	sheltom_gemma	Gemma	legacy_item	OS115	
+C_it0x004D	sheltom_purus	Purus	legacy_item	OS116	
+C_it0x004E	sheltom_veritas	Veritas	legacy_item	OS117	
+C_it0x004F	potion_hp_enhanced	Poção de Vida Reforçada	png	image/professions/v2/items/dummy/potion_hp_enhanced.png	
+C_it0x0050	potion_mp_enhanced	Poção de Mana Reforçada	png	image/professions/v2/items/dummy/potion_mp_enhanced.png	
+C_it0x0051	potion_stamina_enhanced	Poção de Vigor Reforçada	png	image/professions/v2/items/dummy/potion_stamina_enhanced.png	
+C_it0x0052	crafted_wa103	Machado de Batalha (melhorado - proposta)	legacy_item	WA103	
+C_it0x0053	crafted_da106	Armadura Reforçada (melhorado - proposta)	legacy_item	DA106	
+C_it0x0054	crafted_ws103	Arco de Mão (melhorado - proposta)	legacy_item	WS103	
+C_it0x0055	crafted_wm110	Cajado Mágico (melhorado - proposta)	legacy_item	WM110	
+C_it0x0056	timber	Madeira / Timber	png	image/professions/v2/items/dummy/timber.png	
+C_it0x0057	iron_ore	Minério de Ferro	png	image/professions/v2/items/dummy/iron_ore.png	
+C_it0x0058	herb_bundle	Feixe de Ervas	png	image/professions/v2/items/dummy/herb_bundle.png	
+C_it0x0059	river_trout	Truta do Rio	png	image/professions/v2/items/dummy/river_trout.png	

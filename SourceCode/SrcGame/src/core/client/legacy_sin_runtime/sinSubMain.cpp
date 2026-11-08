@@ -1,3 +1,5 @@
+// SUMMIT466A central client font scaling
+#include "../../../../../Shared/ui/fonts/FontSettings466.h"
 #include <cstdlib>
 #include "opcodes.h"
 #include "compat/legacy/sin/sinLinkHeader.h"
@@ -1234,7 +1236,7 @@ int sinCreatFont()
 	GetPrivateProfileString("FontG", "Type", "", dwFontGame, 32, ".//game//font//Config.ini");
 
 #ifdef _LANGUAGE_BRAZIL
-	                    CreateFont(16,
+	                    CreateFont( summit466::FontSettings466::Height((16), summit466::FontSettings466::Interface),
 						 0,
 						 0,
 						 0,
@@ -1249,7 +1251,7 @@ int sinCreatFont()
 						 VARIABLE_PITCH,
 						 dwFontGame);
 
-	                            CreateFont(16,
+	                            CreateFont( summit466::FontSettings466::Height((16), summit466::FontSettings466::Interface),
 								0,
 								0,
 								0,
@@ -1264,7 +1266,7 @@ int sinCreatFont()
 								VARIABLE_PITCH,
 								dwFontGame);
 
-	                         CreateFont(16,
+	                         CreateFont( summit466::FontSettings466::Height((16), summit466::FontSettings466::Interface),
 							 0,
 							 0,
 							 0,

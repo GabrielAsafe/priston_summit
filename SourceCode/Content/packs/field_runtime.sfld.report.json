@@ -4,22 +4,30 @@
   "sections": {
     "stage_spawns": {
       "tag": "SSPB",
-      "bytes": 18878,
-      "sha256": "83ddf43ce50efecefbba5302686db53c4e1d96ed474be12c5e3bcf8fc02b2048"
+      "bytes": 18972,
+      "sha256": "9d759fefdee4df9ff6da57218823601ce7344f5b13b1a54b6fe7810a49d72e48"
     },
     "stage_start_points": {
-      "maps": 69,
-      "points": 6734,
-      "bytes": 112701,
-      "sha256": "ae9890062d6b92036175c56717733fdd3bd11a4bfc4ccb3604332c653ae60229"
+      "maps": 70,
+      "points": 6738,
+      "bytes": 112842,
+      "sha256": "fc12c886bd60201c020e4f8b092bab8ecbf366efba602c7007f09d55ab8e6c38"
     },
     "fixed_npcs": {
       "maps": 24,
-      "npcs": 113,
-      "bytes": 11274,
-      "sha256": "a044edf5392fb8245aa32afc2c6aeed139872431e2a98dfa384839f3266b0fa6"
+      "npcs": 112,
+      "bytes": 11234,
+      "sha256": "2c9d7129a87c11bb3a9b1ec16eb0bb58a3afc89fc5966ce880bfebb0e8d2386a"
+    },
+    "gm_spawn_points": {
+      "format": "GMS1",
+      "maps": 1,
+      "points": 11,
+      "maximum_monsters": 56,
+      "bytes": 1104,
+      "sha256": "d6694d103170b3fbbb4e5c7aa4e0aeba7f67bca0376952ca9ac7a6653314cb9b"
     }
   },
-  "bytes": 143061,
-  "sha256": "0d7ab3d570c34feefed805e89bd74fd556a6412edd4d617c6d285847c31b51f2"
+  "bytes": 144408,
+  "sha256": "1eda0634ef6d14240e6f07ce17a357668e0b1b2a3c7d2b20071ac74fcbb2c8b3"
 }

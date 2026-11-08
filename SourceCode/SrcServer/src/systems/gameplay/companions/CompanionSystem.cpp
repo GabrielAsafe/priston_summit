@@ -2187,10 +2187,10 @@ int EquipInventoryItem(rsPLAYINFO *owner, const char *characterName, bool rightH
         record.DataSize < 0 || record.DataSize > (int)sizeof(record.Data) ||
         recordIndex >= record.ItemCount)
         return -3;
-    // Currently the validated loadout choices operate on the primary DAT bag.
-    // Secondary inventory rows must not bypass those existing validation gates.
-    if (recordIndex >= record.ItemSubStart)
-        return -10;
+    // SUMMIT357: visual hand loadout is a CODE selection, not a physical DAT
+    // move. The authenticated server DAT may own an eligible item in bag B.
+    // Applying the same EquipmentPolicy below allows that legitimate choice;
+    // the physical-slot writer has separate admission and ownership gates.
     const BYTE *cursor = record.Data;
     const BYTE *end = cursor + record.DataSize;
     DWORD selectedCode = 0;

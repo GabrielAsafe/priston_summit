@@ -1,0 +1,129 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "item.ci183",
+  "kind": "open_item_definition",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/CI183.txt",
+    "GameServer/OpenItem/CI183.txt"
+  ],
+  "source": {
+    "migration_status": "native_canonical_generated",
+    "generated_from": "item.ci168",
+    "generated_by": "SUMMIT467A",
+    "legacy_size": 214,
+    "legacy_sha256": "1ee2d74c5d91670f9bb962543f5f2ebc4420ee56238b6e0ca4da919bed28f575"
+  },
+  "semantic": {
+    "fields": {
+      "code": "CI183",
+      "name": "Catalisador de Encantamento",
+      "english_name": "Catalisador de Encantamento",
+      "weight": 1,
+      "price": 0,
+      "linked_file": "Name\\CI183.zhoon"
+    },
+    "directives": [
+      {
+        "line": 2,
+        "key": "code",
+        "legacy_token": "*코드",
+        "legacy_token_hex": "2ac4dab5e5",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          "CI183"
+        ],
+        "raw_values_hex": [
+          "4349313833"
+        ],
+        "quoted": [
+          true
+        ]
+      },
+      {
+        "line": 5,
+        "key": "name",
+        "legacy_token": "*이름",
+        "legacy_token_hex": "2ac0ccb8a7",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          "Catalisador de Encantamento"
+        ],
+        "raw_values_hex": [
+          "436174616c697361646f7220646520456e63616e74616d656e746f"
+        ],
+        "quoted": [
+          true
+        ]
+      },
+      {
+        "line": 8,
+        "key": "english_name",
+        "legacy_token": "*Name",
+        "legacy_token_hex": "2a4e616d65",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          "Catalisador de Encantamento"
+        ],
+        "raw_values_hex": [
+          "436174616c697361646f7220646520456e63616e74616d656e746f"
+        ],
+        "quoted": [
+          true
+        ]
+      },
+      {
+        "line": 11,
+        "key": "weight",
+        "legacy_token": "*무게",
+        "legacy_token_hex": "2ab9abb0d4",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          1
+        ],
+        "raw_values_hex": [
+          "31"
+        ]
+      },
+      {
+        "line": 14,
+        "key": "price",
+        "legacy_token": "*가격",
+        "legacy_token_hex": "2ab0a1b0dd",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          0
+        ],
+        "raw_values_hex": [
+          "30"
+        ]
+      },
+      {
+        "line": 17,
+        "key": "linked_file",
+        "legacy_token": "*연결파일",
+        "legacy_token_hex": "2abfacb0e1c6c4c0cf",
+        "loader_status": "supported_mapped",
+        "values": [
+          "Name\\CI183.zhoon"
+        ],
+        "raw_values_hex": [
+          "4e616d655c43493138332e7a686f6f6e"
+        ],
+        "quoted": [
+          true
+        ]
+      }
+    ],
+    "unknown_tokens": {}
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9JRA0KKsTateUgIkNJMTgzIg0KDQovL0tvcmVhbiBOYW1lDQoqwMy4pyAiQ2F0YWxpc2Fkb3IgZGUgRW5jYW50YW1lbnRvIg0KDQovL0VuZ2xpc2ggTmFtZQ0KKk5hbWUgIkNhdGFsaXNhZG9yIGRlIEVuY2FudGFtZW50byINCg0KLy9XZWlnaHQNCiq5q7DUIDENCg0KLy9QcmljZQ0KKrChsN0gMA0KDQovL05hbWUgRmlsZQ0KKr+ssOHGxMDPICJOYW1lXENJMTgzLnpob29uIg=="
+  },
+  "runtime_profiles": [
+    "client",
+    "server"
+  ]
+}

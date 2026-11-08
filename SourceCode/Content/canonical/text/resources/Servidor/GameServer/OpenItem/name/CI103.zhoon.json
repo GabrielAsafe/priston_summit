@@ -1,0 +1,29 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "text.ci103",
+  "kind": "localization_resource",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/name/CI103.zhoon",
+    "GameServer/OpenItem/name/CI103.zhoon"
+  ],
+  "source": {
+    "migration_status": "native_canonical_generated",
+    "generated_from": "item.ci103"
+  },
+  "semantic": {
+    "entries": [
+      {
+        "line": 1,
+        "legacy_key": "J_NAME",
+        "kind": "name",
+        "text": "Minério Energético Bruto"
+      }
+    ]
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "KkpfTkFNRSAiTWlu6XJpbyBFbmVyZ+l0aWNvIEJydXRvIg=="
+  }
+}

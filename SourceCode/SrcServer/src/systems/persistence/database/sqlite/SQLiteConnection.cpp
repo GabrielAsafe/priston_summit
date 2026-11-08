@@ -294,7 +294,9 @@ struct SQLiteConnection::Impl
 			{ 44, "044_gathering_mining_runtime.sql" },
 			{ 45, "045_gathering_serverdb_namespace_fix.sql" },
 			{ 46, "046_fishing_vertical.sql" },
-			{ 47, "047_premium_purchase_receipts.sql" }
+			{ 47, "047_premium_purchase_receipts.sql" },
+			{ 48, "048_professions_crafting_clan_spawn_361.sql" },
+			{ 49, "049_professions_bundle_372_378.sql" }
 		};
 
 		int currentVersion = 0;

@@ -11,7 +11,6 @@ COMMON_PACKS = (
     'field_runtime.sfld',
     'skin_reforms.sskm',
     'text_resources.sres',
-    'localization.sloc',
     'gameplay_config.sgcf',
     'gameplay_reference.sgrf',
 )
@@ -19,7 +18,7 @@ ROLE_PACKS = {
     'client': ('definitions_client.scfg', 'maps_client.smap') + COMMON_PACKS,
     'server': ('definitions_server.scfg', 'maps_server.smap', 'coin_shop.scsp') + COMMON_PACKS,
 }
-STALE_COMMON_PACKS = ('stage_spawns.sspb',)
+STALE_COMMON_PACKS = ('stage_spawns.sspb', 'localization.sloc')
 KNOWN_ROLE_SPECIFIC = {
     'client': ('definitions_server.scfg', 'maps_server.smap'),
     'server': ('definitions_client.scfg', 'maps_client.smap'),
@@ -42,11 +41,6 @@ def deploy_role(source_packs: Path, destination_root: Path, role: str) -> dict:
     destination = destination_root / 'Content' / 'packs'
     destination.mkdir(parents=True, exist_ok=True)
 
-    for stale_name in STALE_COMMON_PACKS + KNOWN_ROLE_SPECIFIC[role]:
-        stale = destination / stale_name
-        if stale.exists():
-            stale.unlink()
-
     # Remove stale lowercase map-pack layouts left by pre-Content/packs tools.
     # On case-sensitive hosts these coexist with Content/packs and can mislead
     # operators or older launch scripts into consuming a different map catalog.
@@ -54,6 +48,19 @@ def deploy_role(source_packs: Path, destination_root: Path, role: str) -> dict:
         legacy = destination_root / legacy_rel
         if legacy.is_file():
             legacy.unlink()
+
+    # Validate the complete candidate and old-pack backup before any deployment write.
+    for name in ROLE_PACKS[role]:
+        source = source_packs / name
+        if source.is_symlink() or not source.is_file():
+            raise RuntimeError(f'missing or unsafe source pack: {source}')
+    retired = destination / 'localization.sloc'
+    if retired.is_symlink():
+        raise RuntimeError(f'refusing symlink legacy pack: {retired}')
+    if retired.is_file():
+        backup = destination_root.parent / 'bugfixes' / '.summit_sres_merge' / f'{role}_localization.sloc'
+        if backup.exists() and (backup.is_symlink() or not backup.is_file() or sha256(backup) != sha256(retired)):
+            raise RuntimeError(f'conflicting legacy localization backup: {backup}')
 
     files = []
     for name in ROLE_PACKS[role]:
@@ -69,6 +76,22 @@ def deploy_role(source_packs: Path, destination_root: Path, role: str) -> dict:
             'bytes': target.stat().st_size,
             'sha256': sha256(target),
         })
+
+    # Retire old pack only after the new consolidated SRES is deployed and verified.
+    for stale_name in STALE_COMMON_PACKS + KNOWN_ROLE_SPECIFIC[role]:
+        stale = destination / stale_name
+        if stale.is_symlink():
+            raise RuntimeError(f'refusing to delete symlink: {stale}')
+        if stale.is_file():
+            if stale_name == 'localization.sloc':
+                backup = destination_root.parent / 'bugfixes' / '.summit_sres_merge' / f'{role}_localization.sloc'
+                backup.parent.mkdir(parents=True, exist_ok=True)
+                if backup.exists():
+                    if backup.is_symlink() or not backup.is_file() or sha256(backup) != sha256(stale):
+                        raise RuntimeError(f'conflicting legacy localization backup: {backup}')
+                else:
+                    shutil.copy2(stale, backup)
+            stale.unlink()
 
     manifest = {
         'schema': 'summit.runtime-content-deploy/v1',

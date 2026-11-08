@@ -34,6 +34,8 @@
 #include "systems/ui/v2/quests/QuestJournalWindow.h"
 #include "systems/ui/v2/quests/QuestTrackerHud.h"
 #include "systems/ui/v2/crafting/MixGuideWindow.h"
+#include "systems/ui/v2/crafting/ProfessionTestPanel387.h" // SUMMIT_387_HEADER
+#include "systems/ui/v2/crafting/ProfessionCraftWindow378.h"
 #include "systems/ui/v2/help/GuideWindow.h"
 #include "systems/ui/v2/social/SocialWindow.h"
 #include "systems/ui/v2/social/PartyStatusHud.h"
@@ -51,6 +53,9 @@
 #include <algorithm>
 #include <vector>
 #include <functional>
+#include <deque>
+#include <mutex>
+#include "systems/ui/v2/crafting/CraftNetwork407.h"
 #ifdef GAME_GM
 extern int CustomField;
 #endif
@@ -61,6 +66,9 @@ extern int CustomField;
 
 extern int SetChatingLine(char* szMessage);
 extern bool SummitApplyGMLevel(int desiredLevel);
+// SUMMIT_390A_RATE_LIMIT_GLOBALS: defined once in netplay.cpp.
+extern DWORD dwLastChatTime;
+extern DWORD dwContiueChatCount;
 // PATCH 220: restart state flags are defined in sinInterFace.cpp.
 extern int CheckExpFlag;
 extern int CheckExpFlag2;
@@ -69,8 +77,27 @@ namespace ui::v2::legacy
 {
 namespace
 {
+std::mutex craftMutex407;
+std::deque<std::string> craftMessages407;
+}
+// This is called only from the already decoded server network packet route.
+// Network thread never modifies UI widgets directly.
+bool ReceiveServerCraft407(const char* message) {
+    if(!message || std::strncmp(message,"@S407|",6)!=0)return false;
+    const char* end=static_cast<const char*>(std::memchr(message,0,201));
+    if(!end)return true;
+    const std::size_t length=static_cast<std::size_t>(end-message);
+    if(length<10 || length>200)return true;
+    std::lock_guard<std::mutex> lock(craftMutex407);
+    if(craftMessages407.size()>=128)craftMessages407.pop_front();
+    craftMessages407.emplace_back(message,length);
+    return true; // internal protocol must not pollute normal chat
+}
+namespace
+{
 #ifdef GAME_GM
 constexpr WindowId GMWarpListWindowId = 0x5549563257415250ULL; // "UIV2WARP"
+constexpr WindowId GMSpawnEditorWindowId = 0x5549563253504E33ULL; // "UIV2SPN3"
 #endif
 constexpr WindowId BootstrapWindowId = 0x55495632424F4F54ULL; // "UIV2BOOT"
 constexpr WindowId CharacterWindowId = 0x5549563243484152ULL; // "UIV2CHAR"
@@ -78,6 +105,8 @@ constexpr WindowId PlayerHudWindowId = 0x5549563248554431ULL; // "UIV2HUD1"
 constexpr WindowId CompanionPartyHudWindowId = 0x5549563243485544ULL; // "UIV2CHUD"
 constexpr WindowId QuestJournalWindowId = 0x5549563251554553ULL; // "UIV2QUES"
 constexpr WindowId QuestTrackerWindowId = 0x554956325452414BULL; // "UIV2TRAK"
+constexpr WindowId ProfessionCraft378Id = 0x5549563250524F38ULL;
+constexpr WindowId ProfessionTest387Id = 0x5549563250545337ULL; // SUMMIT_387_ID
 constexpr WindowId MixGuideWindowId = 0x554956324D495847ULL; // "UIV2MIXG"
 constexpr WindowId LegacyMessageWindowId = 0x554956324D534733ULL; // "UIV2MSG3"
 constexpr WindowId LegacyNotificationWindowId = 0x554956324E4F5446ULL;
@@ -216,6 +245,8 @@ CompanionPartyHud* companionPartyHud = nullptr;
 QuestJournalWindow* questJournal = nullptr;
 QuestTrackerHud* questTracker = nullptr;
 MixGuideWindow* mixGuideWindow = nullptr;
+ProfessionTestPanel387* professionTestPanel387 = nullptr; // SUMMIT_387_PTR
+ProfessionCraftWindow378* professionCraftWindow378=nullptr;
 LegacyMessageWindow* legacyMessageWindow = nullptr;
 LegacyNotificationHud* legacyNotificationHud = nullptr;
 DeathWindow* deathWindow = nullptr;
@@ -224,6 +255,8 @@ LegacySkillNpcWindow* skillNpcWindow = nullptr;
 SettingsWindow* settingsWindow = nullptr;
 #ifdef GAME_GM
 GMWarpListWindow* gmWarpListWindow = nullptr;
+class GMSpawnEditorWindow;
+GMSpawnEditorWindow* gmSpawnEditorWindow = nullptr;
 #endif
 GuideWindow* guideWindow = nullptr;
 SocialWindow* socialWindow = nullptr;
@@ -324,7 +357,7 @@ void ClearLegacyCharacterFlags()
 
 void ApplyLegacyTab(CharacterTab tab)
 {
-    if (tab == CharacterTab::Companions || tab == CharacterTab::Covenants)
+    if (tab == CharacterTab::Companions || tab == CharacterTab::Covenants || tab == CharacterTab::Crafting) // SUMMIT392_B_LEGACY
     {
         // Companions is a pure V2 surface. Do not alias it to the legacy
         // inventory button: doing so makes SyncCharacterWindow() immediately
@@ -347,6 +380,19 @@ void BuildCharacterWindow()
 #if UI_V2_CHARACTER_WINDOW
     auto window = std::make_unique<CharacterWindow>(statsGateway, skillGateway, inventoryGateway, contextGateway, companionGateway, covenantGateway, 100);
     characterWindow = window.get();
+    // SUMMIT392_B_CONTEXT: server-authorized text commands; never fabricate success.
+    characterWindow->SetCraftingContext(
+        []() -> std::string { return GameMode == 2 && lpCurPlayer ? std::string(lpCurPlayer->smCharInfo.szName) : std::string(); },
+        [](const std::string& command) -> bool {
+            if (GameMode != 2 || !lpCurPlayer || command.size() < 10 || command.size() > 200 ||
+                (command.compare(0, 12, "/craft make ") != 0 &&
+                 command.compare(0, 12, "/craft sync ") != 0 &&
+                 command.compare(0, 12, "/craft plan ") != 0 && // SUMMIT426A_CRAFT_BRIDGE
+                 command.compare(0, 13, "/craft check ") != 0)) return false;
+            char text[208] = {};
+            std::memcpy(text, command.data(), command.size());
+            return SendChatMessageToServer(text)!=0; // transport result, not recipe ACK
+        });
     characterWindow->SetViewport(WinSizeX, WinSizeY);
     characterWindow->SetOnTabChanged([](CharacterTab tab)
     {
@@ -361,7 +407,7 @@ void BuildCharacterWindow()
         }
 
         companionTabRequested = tab == CharacterTab::Companions;
-        covenantTabRequested = tab == CharacterTab::Covenants;
+        covenantTabRequested = tab == CharacterTab::Covenants || tab == CharacterTab::Crafting; // SUMMIT392_B_TAB_REQUEST
         ApplyLegacyTab(tab);
     });
     characterWindow->SetOnClose([]()
@@ -387,7 +433,7 @@ void ToggleCharacterTab(CharacterTab tab)
         tab = CharacterTab::Inventory;
 
     companionTabRequested = tab == CharacterTab::Companions;
-    covenantTabRequested = tab == CharacterTab::Covenants;
+    covenantTabRequested = tab == CharacterTab::Covenants || tab == CharacterTab::Crafting; // SUMMIT392_B_TOGGLE
     const bool open = runtime.Windows().IsOpen(CharacterWindowId);
     if (open && characterWindow->ActiveTab() == tab && !MigratedContextActive())
     {
@@ -503,6 +549,53 @@ void BuildQuestUI()
 #endif
 }
 
+
+void BuildProfessionCraft378UI()
+{
+    auto window=std::make_unique<ProfessionCraftWindow378>(3780);
+    professionCraftWindow378=window.get();
+    professionCraftWindow378->SetViewport(WinSizeX,WinSizeY);
+    professionCraftWindow378->SetCommand([](const std::string& command)->bool {
+        if(GameMode!=2 || !lpCurPlayer || command.empty() || command.size()>100)return false;
+        char text[128]={0};std::memcpy(text,command.c_str(),command.size());
+        return SendChatMessageToServer(text)!=0;
+    });
+    professionCraftWindow378->SetOnClose([](){runtime.Windows().Close(ProfessionCraft378Id);});
+    runtime.Windows().Register(ProfessionCraft378Id,std::move(window),UIWindowLayer::NormalWindow);
+}
+
+// SUMMIT_387_BUILDER: all commands use the already-authenticated legacy transport.
+void BuildProfessionTest387UI()
+{
+    auto window = std::make_unique<ProfessionTestPanel387>(3870);
+    professionTestPanel387 = window.get();
+    professionTestPanel387->SetViewport(WinSizeX, WinSizeY);
+    // SUMMIT_390A_SEND_DIAGNOSTIC: preserve legacy rate limits and server authority.
+    // A successful handoff is NOT a successful craft or an authenticated server ACK.
+    professionTestPanel387->SetCommand([](const std::string& command) -> std::string {
+        if (GameMode != 2 || !lpCurPlayer)
+            return "NAO ENVIADO: personagem fora do mundo. Entra no jogo.";
+        if (command.empty() || command.size() > 78)
+            return "NAO ENVIADO: comando vazio ou excede o limite legado de 78 bytes.";
+        if (!smWsockServer)
+            return "NAO ENVIADO: socket principal indisponivel. Verifica a ligacao.";
+        if (lpCurPlayer->OnStageField < 0 || lpCurPlayer->OnStageField >= 2 ||
+            !StageField[lpCurPlayer->OnStageField])
+            return "NAO ENVIADO: mapa ainda nao carregado. Tenta depois de entrar.";
+        if (dwLastChatTime && dwLastChatTime > dwPlayTime)
+            return "NAO ENVIADO: chat temporariamente bloqueado. Aguarda e repete.";
+        if (dwLastChatTime && dwPlayTime >= dwLastChatTime &&
+            (dwPlayTime - dwLastChatTime) < 2000 && dwContiueChatCount >= 10)
+            return "NAO ENVIADO: limite de chat atingido. Espera 2 segundos.";
+        char text[128] = {};
+        std::memcpy(text, command.data(), command.size());
+        if (!SendChatMessageToServer(text))
+            return "NAO ENVIADO: transporte legado recusou (limite de chat). Tenta depois.";
+        return "PEDIDO ENCAMINHADO: " + command + " | confirma no servidor/recibo SQLite.";
+    });
+    professionTestPanel387->SetOnClose([]() { runtime.Windows().Close(ProfessionTest387Id); });
+    runtime.Windows().Register(ProfessionTest387Id, std::move(window), UIWindowLayer::NormalWindow);
+}
 
 void BuildMixGuideUI()
 {
@@ -668,6 +761,90 @@ private:
     std::function<void()> onClose_;
 };
 
+// SUMMIT363: native V2 authoring surface. It does not render legacy panels.
+// The already authenticated /spawnplan server ingress is a temporary transport;
+// plans remain disabled until their monster templates are checked/published.
+class GMSpawnEditorWindow final : public Window
+{
+public:
+    explicit GMSpawnEditorWindow(UIId id) : Window(id, "GM - Pontos de spawn")
+    {
+        SetBounds({125, 90, 530, 360});
+        SetTitleBarHeight(34);
+        SetMovable(true);
+        SetClosable(true);
+        auto& close=AddChild<Button>(3701,"X");
+        close.SetBounds({482,5,30,24});
+        close.SetOnClick([this](const UIEvent&) { if(onClose_) onClose_(); });
+        auto& model=AddChild<Button>(3702,"Modelo");
+        model.SetBounds({20,60,490,32});
+        model.SetOnClick([this](const UIEvent&) { model_=(model_+1)%3; Refresh(); });
+        modelButton_=&model;
+        auto& density=AddChild<Button>(3703,"Densidade");
+        density.SetBounds({20,110,490,32});
+        density.SetOnClick([this](const UIEvent&) { density_=(density_+1)%3; Refresh(); });
+        densityButton_=&density;
+        auto& save=AddChild<Button>(3704,"Adicionar ponto nesta posicao");
+        save.SetBounds({20,207,490,36});
+        save.SetOnClick([this](const UIEvent&) { Submit(); });
+        saveButton_=&save;
+        auto& info=AddChild<Label>(3705,"");
+        info.SetBounds({20,158,485,38});
+        info.SetStyle(TextStyle{UITheme::TextMuted,false,TextAlign::Left});
+        info_=&info;
+        auto& status=AddChild<Label>(3706,"");
+        status.SetBounds({20,258,485,23});
+        status.SetStyle(TextStyle{UITheme::Text,false,TextAlign::Left});
+        status_=&status;
+        auto& note=AddChild<Label>(3707,"Os pontos gravados NAO geram monstros ate serem publicados.");
+        note.SetBounds({20,294,490,24});
+        note.SetStyle(TextStyle{UITheme::TextMuted,false,TextAlign::Left});
+        Refresh();
+    }
+    void SetOnClose(std::function<void()> close) { onClose_=std::move(close); }
+    void ResetStatus() { status_->SetText("Seleciona modelo e densidade; o servidor usa a tua posicao atual."); }
+private:
+    void Refresh()
+    {
+        static const char* models[]={"undeadminer","monplant","turtlecannon"};
+        static const char* densities[]={"low","medium","high"};
+        static const char* labels[]={"Baixa (2)","Media (6)","Alta (12)"};
+        modelButton_->SetText(std::string("Modelo experimental: ")+models[model_]);
+        densityButton_->SetText(std::string("Densidade: ")+labels[density_]);
+        info_->SetText("Posicao: capturada do jogador no servidor ao confirmar.");
+    }
+    void Submit()
+    {
+        if(GameMode!=2 || !lpCurPlayer || smConfig.getSecurity()<AccountTypes::SEC_MODERATOR)
+        { status_->SetText("Sem permissao GM para guardar pontos."); return; }
+        static const char* models[]={"undeadminer","monplant","turtlecannon"};
+        static const char* densities[]={"low","medium","high"};
+        char command[112]={};
+        std::snprintf(command,sizeof(command),"/spawnplan add %s %s",models[model_],densities[density_]);
+        // The server resolves coordinates from its authenticated session;
+        // the client never sends claimed world positions or a player name.
+        if(SendChatMessageToServer(command))
+            status_->SetText("Pedido enviado. Confirma a gravacao no chat do servidor.");
+        else
+            status_->SetText("Falha ao enviar pedido. Nenhum ponto foi confirmado.");
+    }
+    int model_=0, density_=0;
+    Button* modelButton_=nullptr;
+    Button* densityButton_=nullptr;
+    Button* saveButton_=nullptr;
+    Label* info_=nullptr;
+    Label* status_=nullptr;
+    std::function<void()> onClose_;
+};
+
+void BuildGMSpawnEditorWindow()
+{
+    auto window=std::make_unique<GMSpawnEditorWindow>(3700);
+    gmSpawnEditorWindow=window.get();
+    gmSpawnEditorWindow->SetOnClose([](){runtime.Windows().Close(GMSpawnEditorWindowId);});
+    runtime.Windows().Register(GMSpawnEditorWindowId,std::move(window),UIWindowLayer::NormalWindow);
+}
+
 void BuildGMWarpListWindow()
 {
     auto window = std::make_unique<GMWarpListWindow>(240);
@@ -725,6 +902,14 @@ void BuildSettingsWindow()
             }
             return names;
         });
+#ifdef GAME_GM
+    settingsWindow->SetOnSpawnEditor([]() {
+        if(GameMode!=2 || !lpCurPlayer || smConfig.getSecurity()<AccountTypes::SEC_MODERATOR ||
+           !gmSpawnEditorWindow || !runtime.IsInitialized()) return;
+        gmSpawnEditorWindow->ResetStatus();
+        runtime.Windows().Open(GMSpawnEditorWindowId);
+    });
+#endif
     settingsWindow->SetOnClose([]()
     {
         if(settingsWindow)settingsWindow->ResetGmTransient();
@@ -901,6 +1086,7 @@ void SyncCharacterWindow()
     }
     const bool wantsCompanions = companionTabRequested && !MigratedContextActive();
     const bool wantsCovenants = covenantTabRequested && !MigratedContextActive();
+    const bool wantsCrafting = wantsCovenants && characterWindow->ActiveTab() == CharacterTab::Crafting; // SUMMIT392_B_WANTS
     const bool wantsWindow = wantsAttributes || wantsSkills || wantsInventory || wantsCompanions || wantsCovenants;
 
     if (!wantsWindow)
@@ -920,6 +1106,8 @@ void SyncCharacterWindow()
     // all three legacy character flags closed.
     if (wantsInventory)
         desired = CharacterTab::Inventory;
+    else if (wantsCrafting)
+        desired = CharacterTab::Crafting; // SUMMIT392_B_DESIRED
     else if (wantsCovenants)
         desired = CharacterTab::Covenants;
     else if (wantsCompanions)
@@ -989,9 +1177,12 @@ void Initialize()
     BuildCompanionPartyHud();
     BuildQuestUI();
     BuildMixGuideUI();
+    BuildProfessionTest387UI(); // SUMMIT_387_INIT
+    BuildProfessionCraft378UI();
     BuildSettingsWindow();
 #ifdef GAME_GM
     BuildGMWarpListWindow();
+    BuildGMSpawnEditorWindow();
 #endif
     BuildGuideWindow();
     BuildSocialWindow();
@@ -1010,6 +1201,8 @@ void Shutdown()
     questJournal = nullptr;
     questTracker = nullptr;
     mixGuideWindow = nullptr;
+    professionTestPanel387 = nullptr; // SUMMIT_387_SHUTDOWN
+    professionCraftWindow378=nullptr;
     legacyMessageWindow = nullptr;
     legacyNotificationHud = nullptr;
     deathWindow = nullptr;
@@ -1018,6 +1211,7 @@ void Shutdown()
     settingsWindow = nullptr;
 #ifdef GAME_GM
     gmWarpListWindow = nullptr;
+    gmSpawnEditorWindow = nullptr;
 #endif
     guideWindow = nullptr;
     socialWindow = nullptr;
@@ -1038,6 +1232,14 @@ void Update()
     if (runtime.ViewportWidth() != WinSizeX || runtime.ViewportHeight() != WinSizeY)
         OnResolutionChanged(WinSizeX, WinSizeY);
 
+    // Drain server-authored receipts on the UI thread before drawing.
+    std::deque<std::string> craftLive;
+    {
+        std::lock_guard<std::mutex> lock(craftMutex407);
+        craftLive.swap(craftMessages407);
+    }
+    if(characterWindow)for(const std::string& frame:craftLive)
+        characterWindow->AcceptCraftingLive407(frame);
     SyncCharacterWindow();
     SyncQuestJournal();
     SyncLegacyDialogUI();
@@ -1107,11 +1309,33 @@ bool HandleMouseWheel(int delta)
     return runtime.HandleEvent(event);
 }
 
+// SUMMIT462A: use the existing polled legacy key events while a Crafting
+// lookup dialog is actually open; do not dispatch game/chat shortcuts then.
+static bool CaptureCraftLookup462(){
+#if UI_V2_CHARACTER_WINDOW
+    if(!runtime.IsInitialized() || !characterWindow ||
+       !runtime.Windows().IsOpen(CharacterWindowId) ||
+       !characterWindow->HasCraftingSearch462())return false;
+    static const int keys[]={VK_RETURN,VK_ESCAPE,VK_BACK,
+        'A','B','C','D','E','F','G','H','I','J','K','L','M',
+        'N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
+        '0','1','2','3','4','5','6','7','8','9'};
+    for(int key:keys)if(sinGetKeyClick(key)){
+        characterWindow->HandleCraftingSearchKey462(static_cast<std::uint32_t>(key));
+        break;
+    }
+    return true;
+#else
+    return false;
+#endif
+}
+
 bool HandleCharacterHotkeys()
 {
 #if UI_V2_CHARACTER_WINDOW
     if (!runtime.IsInitialized() || !characterWindow || RequiresLegacyInventoryUI())
         return false;
+    if(CaptureCraftLookup462())return true;
 
     // SUMMIT_COMMAND_HOTKEYS_V17: simple player shortcuts do not leak through modified chords.
     if (VRKeyBuff[VK_CONTROL] || VRKeyBuff[VK_SHIFT] || VRKeyBuff[VK_MENU])
@@ -1232,6 +1456,7 @@ bool HandleModalHotkeys()
     // Death modal has no keyboard dismiss path; only explicit respawn buttons
     // and the original server-backed automatic timeout are allowed.
     if (ReStartFlag && deathWindow) return true;
+    if(CaptureCraftLookup462())return true;
     const bool messageModal = legacyMessageWindow && runtime.Windows().IsOpen(LegacyMessageWindowId) && legacyMessageWindow->HasModalInput();
     const bool characterModal = characterWindow && runtime.Windows().IsOpen(CharacterWindowId) && characterWindow->HasModalInput();
     const bool questModal = questJournal && runtime.Windows().IsOpen(QuestJournalWindowId) && questJournal->HasModalInput();
@@ -1256,6 +1481,14 @@ bool HandleMainHudHotkeys()
 {
 #if UI_V2_PLAYER_HUD
     if (!SuppressLegacyMainHud() || HandleModalHotkeys()) return false;
+    if (VRKeyBuff[VK_CONTROL] && VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_MENU] &&
+        sinGetKeyClick('Y') && professionCraftWindow378) {
+        if(runtime.Windows().IsOpen(ProfessionCraft378Id))runtime.Windows().Close(ProfessionCraft378Id);
+        else runtime.Windows().Open(ProfessionCraft378Id);
+        return true;
+    }
+    // SUMMIT_388A_WM_ONLY: WinMain handles this combination directly on WM_KEYDOWN.
+    // Never toggle it again via sinGetKeyClick, which can be skipped/consumed.
     if (VRKeyBuff[VK_CONTROL] || VRKeyBuff[VK_SHIFT] || VRKeyBuff[VK_MENU]) return false;
     if (sinGetKeyClick('X')) { ExecuteHudShortcut(HudShortcutAction::System); return true; }
     if (sinGetKeyClick('R')) { ExecuteHudShortcut(HudShortcutAction::RunWalk); return true; }
@@ -1264,6 +1497,23 @@ bool HandleMainHudHotkeys()
     if (sinGetKeyClick('D')) { ExecuteHudShortcut(HudShortcutAction::Party); return true; }
     if (sinGetKeyClick('Q')) { ExecuteHudShortcut(HudShortcutAction::Quests); return true; }
 #endif
+    return false;
+}
+
+// SUMMIT_388A_PANEL_DISPATCH: called at WM_KEYDOWN, independent from HUD shortcuts.
+// The Windows input layer validates the Ctrl+Shift+T chord and ignores repeats.
+bool HandleProfessionTestPanelKey(unsigned int key)
+{
+    if (!runtime.IsInitialized() || !professionTestPanel387) return false;
+    if (key == VK_ESCAPE)
+    {
+        if (!runtime.Windows().IsOpen(ProfessionTest387Id)) return false;
+        runtime.Windows().Close(ProfessionTest387Id);
+        return true;
+    }
+    // 406A: legacy profession TEST window has no T opening path.
+    // Crafting belongs to CharacterWindow; Escape can still close an
+    // already-open test window safely.
     return false;
 }
 
@@ -1372,6 +1622,7 @@ void OnResolutionChanged(int width, int height)
         questJournal->SetViewport(width, height);
     if (questTracker)
         questTracker->SetViewport(width, height);
+    if (professionTestPanel387) professionTestPanel387->SetViewport(width, height); // SUMMIT_387_RESIZE
     if (mixGuideWindow)
         mixGuideWindow->SetViewport(width, height);
     if (legacyMessageWindow)
@@ -1492,6 +1743,8 @@ bool BlocksWorldInputAt(int x, int y)
         if (characterWindow->GlobalBounds().Contains(Point{x, y}))
             return true;
     }
+    if (professionTestPanel387 && runtime.Windows().IsOpen(ProfessionTest387Id) &&
+        professionTestPanel387->GlobalBounds().Contains(Point{x, y})) return true; // SUMMIT_387_BLOCK_WORLD
     if (questJournal && runtime.Windows().IsOpen(QuestJournalWindowId) &&
         questJournal->GlobalBounds().Contains(Point{x, y}))
         return true;

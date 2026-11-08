@@ -103,7 +103,7 @@ void SettingsWindow::BuildChrome()
     closeButton_ = &close;
 
     auto& reset = AddChild<Button>(705, "Padrao");
-    reset.SetOnClick([this](const UIEvent&) { ResetDefaults(); });
+    reset.SetOnClick([this](const UIEvent&) { if (activeTab_ != SettingsTab::GM) ResetDefaults(); });
     resetButton_ = &reset;
 
     auto& save = AddChild<Button>(706, "Salvar");
@@ -392,7 +392,14 @@ void SettingsWindow::BuildGMPage()
     preview.SetStyle(TextStyle{UITheme::TextMuted,false,TextAlign::Left});gmPreview_=&preview;
     auto& execute=page.AddChild<Button>(923,"Executar");execute.SetBounds({280,350,406,29});
     execute.SetOnClick([this](const UIEvent&){ExecuteGM();});gmExecute_=&execute;
-    auto& feedback=page.AddChild<Label>(924,"");feedback.SetBounds({12,382,678,19});
+    // SUMMIT363: visual authoring; the server still authenticates every add.
+    auto& spawn=page.AddChild<Button>(925,"Editor de spawns");
+    spawn.SetBounds({12,382,212,26});
+    spawn.SetOnClick([this](const UIEvent&){
+        if(gmSecurity_ && gmSecurity_() >= 2 && onSpawnEditor_) onSpawnEditor_();
+    });
+    gmSpawnEditor_=&spawn;
+    auto& feedback=page.AddChild<Label>(924,"");feedback.SetBounds({232,382,460,19});
     feedback.SetStyle(TextStyle{UITheme::TextMuted,false,TextAlign::Left});gmFeedback_=&feedback;
     SelectGMGroup(0);
 }
@@ -682,7 +689,11 @@ void SettingsWindow::RefreshGMPage()
         else if(!gm::Build(*c,gmValues_,preview)) preview="Faltam parametros obrigatorios";
     }
     gmPreview_->SetText(preview);
-    gmFeedback_->SetText(gmStatus_.empty()?"Parametros: clica para alternar; Digitar para editar valores livres.":gmStatus_);
+    if(gmSpawnEditor_) {
+        gmSpawnEditor_->SetVisible(level>=2);
+        gmSpawnEditor_->SetEnabled(level>=2 && static_cast<bool>(onSpawnEditor_));
+    }
+    gmFeedback_->SetText(gmStatus_.empty()?"Acoes GM validadas pelo servidor.":gmStatus_);
 }
 
 void SettingsWindow::Layout()
@@ -728,6 +739,8 @@ void SettingsWindow::SetActiveTab(SettingsTab tab)
     lootPage_->SetVisible(tab == SettingsTab::Loot);
     commandsPage_->SetVisible(tab == SettingsTab::Commands);
     gmPage_->SetVisible(tab == SettingsTab::GM);
+    // SUMMIT358A: "Padrao" belongs to the settings tabs, not GM commands.
+    resetButton_->SetVisible(tab != SettingsTab::GM);
     videoTab_->SetSelected(tab == SettingsTab::Video);
     audioTab_->SetSelected(tab == SettingsTab::Audio);
     generalTab_->SetSelected(tab == SettingsTab::General);

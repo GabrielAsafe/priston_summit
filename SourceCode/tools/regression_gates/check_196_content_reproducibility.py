@@ -33,7 +33,6 @@ with tempfile.TemporaryDirectory(prefix='summit_content_repro_') as td:
     shutil.copytree(canonical, temp_canonical, ignore=shutil.ignore_patterns('localization'))
 
     run(sys.executable, tools / 'materialize_localization_catalog.py', temp_canonical)
-    run(sys.executable, tools / 'compile_localization.py', temp_canonical, temp_packs / 'localization.sloc')
     run(sys.executable, tools / 'compile_text_resources.py', temp_canonical, temp_packs / 'text_resources.sres')
     run(sys.executable, tools / 'compile_definitions.py', temp_canonical, temp_packs / 'definitions.scfg')
 
@@ -53,7 +52,7 @@ with tempfile.TemporaryDirectory(prefix='summit_content_repro_') as td:
                 f'checked={sha256(expected)} rebuilt={sha256(actual)}'
             )
 
-    for name in ('localization.sloc','text_resources.sres','definitions.scfg'):
+    for name in ('text_resources.sres','definitions.scfg'):
         for suffix in ('', '.report.json'):
             rel = name + suffix
             expected = packs / rel
@@ -71,4 +70,4 @@ with tempfile.TemporaryDirectory(prefix='summit_content_repro_') as td:
         print('\n'.join('ERROR: ' + e for e in errors), file=sys.stderr)
         raise SystemExit(1)
 
-print('PATCH 196 gate: OK — canonical content regenerates localization/SLOC/SRES/SCFG byte-for-byte')
+print('PATCH 196 gate: OK — canonical content regenerates merged SRES/SCFG byte-for-byte')

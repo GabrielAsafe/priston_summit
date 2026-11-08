@@ -1,0 +1,53 @@
+{
+  "schema": "summit.gm-crafting-drops/v1",
+  "entries": [
+    {
+      "model_contains": "undeadminer",
+      "resource_key": "raw_ore_crystalline",
+      "item_alias": "C_it0x0001",
+      "storage": "physical",
+      "quantity": 1,
+      "chance_bp": 10000
+    },
+    {
+      "model_contains": "mineiro",
+      "resource_key": "raw_ore_crystalline",
+      "item_alias": "C_it0x0001",
+      "storage": "physical",
+      "quantity": 1,
+      "chance_bp": 10000
+    },
+    {
+      "model_contains": "monplant",
+      "resource_key": "common_logs",
+      "item_alias": "C_it0x000D",
+      "storage": "sqlite",
+      "quantity": 1,
+      "chance_bp": 10000
+    },
+    {
+      "model_contains": "planta",
+      "resource_key": "common_logs",
+      "item_alias": "C_it0x000D",
+      "storage": "sqlite",
+      "quantity": 1,
+      "chance_bp": 10000
+    },
+    {
+      "model_contains": "turtlecannon",
+      "resource_key": "river_trout",
+      "item_alias": "C_it0x0059",
+      "storage": "sqlite",
+      "quantity": 1,
+      "chance_bp": 10000
+    },
+    {
+      "model_contains": "tartaruga",
+      "resource_key": "river_trout",
+      "item_alias": "C_it0x0059",
+      "storage": "sqlite",
+      "quantity": 1,
+      "chance_bp": 10000
+    }
+  ]
+}

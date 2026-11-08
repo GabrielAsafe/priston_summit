@@ -1,0 +1,127 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "item.ci130",
+  "kind": "open_item_definition",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/CI130.txt",
+    "GameServer/OpenItem/CI130.txt"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/CI130.txt",
+    "legacy_sha256": "6a904b0e486d55241d1794480d0736d7feaf6da43cd2541895d25ce8595b01e4",
+    "legacy_size": 192
+  },
+  "semantic": {
+    "fields": {
+      "code": "CI130",
+      "name": "Ore de Esmeralda",
+      "english_name": "Ore de Esmeralda",
+      "weight": 1,
+      "price": 0,
+      "linked_file": "Name\\CI130.zhoon"
+    },
+    "directives": [
+      {
+        "line": 2,
+        "key": "code",
+        "legacy_token": "*코드",
+        "legacy_token_hex": "2ac4dab5e5",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          "CI130"
+        ],
+        "raw_values_hex": [
+          "4349313330"
+        ],
+        "quoted": [
+          true
+        ]
+      },
+      {
+        "line": 5,
+        "key": "name",
+        "legacy_token": "*이름",
+        "legacy_token_hex": "2ac0ccb8a7",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          "Ore de Esmeralda"
+        ],
+        "raw_values_hex": [
+          "4f72652064652045736d6572616c6461"
+        ],
+        "quoted": [
+          true
+        ]
+      },
+      {
+        "line": 8,
+        "key": "english_name",
+        "legacy_token": "*Name",
+        "legacy_token_hex": "2a4e616d65",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          "Ore de Esmeralda"
+        ],
+        "raw_values_hex": [
+          "4f72652064652045736d6572616c6461"
+        ],
+        "quoted": [
+          true
+        ]
+      },
+      {
+        "line": 11,
+        "key": "weight",
+        "legacy_token": "*무게",
+        "legacy_token_hex": "2ab9abb0d4",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          1
+        ],
+        "raw_values_hex": [
+          "31"
+        ]
+      },
+      {
+        "line": 14,
+        "key": "price",
+        "legacy_token": "*가격",
+        "legacy_token_hex": "2ab0a1b0dd",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          0
+        ],
+        "raw_values_hex": [
+          "30"
+        ]
+      },
+      {
+        "line": 17,
+        "key": "linked_file",
+        "legacy_token": "*연결파일",
+        "legacy_token_hex": "2abfacb0e1c6c4c0cf",
+        "loader_status": "supported_mapped",
+        "values": [
+          "Name\\CI130.zhoon"
+        ],
+        "raw_values_hex": [
+          "4e616d655c43493133302e7a686f6f6e"
+        ],
+        "quoted": [
+          true
+        ]
+      }
+    ],
+    "unknown_tokens": {}
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9JRA0KKsTateUgIkNJMTMwIg0KDQovL0tvcmVhbiBOYW1lDQoqwMy4pyAiT3JlIGRlIEVzbWVyYWxkYSINCg0KLy9FbmdsaXNoIE5hbWUNCipOYW1lICJPcmUgZGUgRXNtZXJhbGRhIg0KDQovL1dlaWdodA0KKrmrsNQgMQ0KDQovL1ByaWNlDQoqsKGw3SAwDQoNCi8vTmFtZSBGaWxlDQoqv6yw4cbEwM8gIk5hbWVcQ0kxMzAuemhvb24i"
+  },
+  "runtime_profiles": [
+    "client",
+    "server"
+  ]
+}

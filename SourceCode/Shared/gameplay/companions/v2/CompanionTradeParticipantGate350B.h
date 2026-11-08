@@ -78,7 +78,8 @@ public:
     bool BeginQueuedWrite(std::uint64_t participant) {
         std::lock_guard<std::mutex> guard(mutex_);
         if(!participant) {
-            if(!active_.empty()) return false;
+            // SUMMIT445A: an unknown writer cannot overlap a craft single lease.
+            if(!active_.empty() || !singleActive_.empty()) return false;
             ++unknownQueued_;
             return true;
         }
@@ -136,6 +137,41 @@ public:
         return true;
     }
 
+    // SUMMIT445A: single-character exclusion for future Crafting DAT commits.
+    // Reserve BEFORE reading a DAT or preparing a write-ahead journal.
+    // Keep held until durable receipt AND stale-session quarantine; never
+    // release on ambiguous disk outcomes. Does not itself implement craft.
+    bool TryReserveSingle(std::uint64_t participant) {
+        if(!participant) return false;
+        std::lock_guard<std::mutex> guard(mutex_);
+        if(unknownQueued_ || failedUnknownWrite_ || failedQueued_.count(participant) ||
+           queued_.count(participant) || Blocked(participant) ||
+           loading_.count(participant) || writing_.count(participant)) return false;
+        return singleActive_.insert(participant).second;
+    }
+    bool ReleaseSingleVerified(std::uint64_t participant) {
+        std::lock_guard<std::mutex> guard(mutex_);
+        return singleActive_.erase(participant)==1;
+    }
+    bool IsCraftSingleReserved(std::uint64_t participant) const {
+        std::lock_guard<std::mutex> guard(mutex_);
+        return singleActive_.count(participant)!=0;
+    }
+
+    // SUMMIT446A: optional second lease UNDER the existing login LoadGuard.
+    // This prevents recovery-before-login from racing another DAT writer or
+    // deadlocking trying to reserve a participant it is already loading.
+    bool TryReserveSingleUnderLoadGuard446(std::uint64_t participant) {
+        if(!participant) return false;
+        std::lock_guard<std::mutex> guard(mutex_);
+        const auto loaded=loading_.find(participant);
+        if(loaded==loading_.end() || loaded->second!=1 ||
+           unknownQueued_ || failedUnknownWrite_ || failedQueued_.count(participant) ||
+           queued_.count(participant) || writing_.count(participant) ||
+           Blocked(participant)) return false;
+        return singleActive_.insert(participant).second;
+    }
+
     // A successful DAT write is NOT a failed save merely because its optional
     // legacy pre-write backup could not be copied. Failing that backup is
     // worth logging, but cannot justify permanent session quarantine when
@@ -180,12 +216,14 @@ private:
         if(it!=loading_.end() && !--it->second) loading_.erase(it);
     }
     bool Blocked(std::uint64_t participant) const {
+        if(singleActive_.count(participant)) return true;
         for(const auto& pair:active_)
             if(pair.first==participant || pair.second==participant) return true;
         return false;
     }
     mutable std::mutex mutex_;
     std::set<Pair> active_;
+    std::set<std::uint64_t> singleActive_; // SUMMIT445A
     std::map<std::uint64_t,unsigned> loading_;
     std::map<std::uint64_t,unsigned> writing_;
     std::map<std::uint64_t,unsigned> queued_;

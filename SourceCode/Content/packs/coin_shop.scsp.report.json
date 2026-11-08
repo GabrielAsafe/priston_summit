@@ -1,9 +1,9 @@
 {
   "format": "SCSP",
   "version": 1,
-  "entries": 113,
-  "coin_entries": 80,
+  "entries": 117,
+  "coin_entries": 84,
   "time_entries": 33,
-  "bytes": 5036,
-  "sha256": "87efc6695b68c2c20723efe49bdb04c9071182028d94997408f77c599a619cdb"
+  "bytes": 5212,
+  "sha256": "5e4617a3a3d8b59373a8a64827676853d9ee6dff4a7bf87976502de9d04f0232"
 }

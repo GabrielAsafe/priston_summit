@@ -1,3 +1,5 @@
+// SUMMIT466A central client font scaling
+#include "../../../../../../Shared/ui/fonts/FontSettings466.h"
 #include "systems/rendering/font/legacy_gdi_hook/Hook.h"
 #include "systems/rendering/2d/legacy/drawsub.h"
 #include "systems/rendering/legacy_3d/smd3d.h"
@@ -117,25 +119,25 @@ int  DrawFontText(int x, int y, LPCTSTR lpszString, COLORREF Color, int FontType
 		if (Font) 
 			return Font->DrawText(NULL, lpszString, strlen(lpszString), &rc, 0, FontColor);
 		else
-			D3DXCreateFont(d3ddev, 16, 0, FW_NORMAL, 0, 0, ANSI_CHARSET | FS_LATIN1, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY | VARIABLE_PITCH, dwFontGame, &Font);
+			D3DXCreateFont(d3ddev, summit466::FontSettings466::Height((16), summit466::FontSettings466::Interface), 0, FW_NORMAL, 0, 0, ANSI_CHARSET | FS_LATIN1, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY | VARIABLE_PITCH, dwFontGame, &Font);
 		break;
 	case 1:
 		if (FontBold)
 			return FontBold->DrawText(NULL, lpszString, strlen(lpszString), &rc, 0, FontColor);
 		else
-			D3DXCreateFont(d3ddev, 16, 0, FW_BOLD, 1, 0,  ANSI_CHARSET | FS_LATIN1, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY | VARIABLE_PITCH, dwFontGame, &FontBold);
+			D3DXCreateFont(d3ddev, summit466::FontSettings466::Height((16), summit466::FontSettings466::Interface), 0, FW_BOLD, 1, 0,  ANSI_CHARSET | FS_LATIN1, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY | VARIABLE_PITCH, dwFontGame, &FontBold);
 		break;
 	case 2:
 		if (FontTitle)
 			return FontTitle->DrawText(NULL, lpszString, strlen(lpszString), &rc, 0, FontColor);
 		else
-			D3DXCreateFont(d3ddev, 16, 0, FW_NORMAL, 1, 0, ANSI_CHARSET | FS_LATIN1, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY | VARIABLE_PITCH, dwFontGame, &FontTitle);
+			D3DXCreateFont(d3ddev, summit466::FontSettings466::Height((16), summit466::FontSettings466::Interface), 0, FW_NORMAL, 1, 0, ANSI_CHARSET | FS_LATIN1, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY | VARIABLE_PITCH, dwFontGame, &FontTitle);
 		break;
 	case 3:
 		if (FontRank)
 			return FontRank->DrawText(NULL, lpszString, strlen(lpszString), &rc, 0, FontColor);
 		else
-			D3DXCreateFont(d3ddev, 16, 0, FW_NORMAL, 1, 0, ANSI_CHARSET | FS_LATIN1, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY | VARIABLE_PITCH, dwFontGame, &FontRank);
+			D3DXCreateFont(d3ddev, summit466::FontSettings466::Height((16), summit466::FontSettings466::Interface), 0, FW_NORMAL, 1, 0, ANSI_CHARSET | FS_LATIN1, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY | VARIABLE_PITCH, dwFontGame, &FontRank);
 		break;
 	}
 
@@ -158,26 +160,26 @@ int DrawFontRect(RECT rc, char* lpszString, int nCount, UINT uFormat)
 		if (Font)  
 			return Font->DrawText(NULL, lpszString, nCount, &rc, 0, FontColor);
 		else
-			D3DXCreateFont(d3ddev, 16, 0, FW_NORMAL, 0, 0, ANSI_CHARSET | FS_LATIN1, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY | VARIABLE_PITCH, dwFontGame, &Font);
+			D3DXCreateFont(d3ddev, summit466::FontSettings466::Height((16), summit466::FontSettings466::Interface), 0, FW_NORMAL, 0, 0, ANSI_CHARSET | FS_LATIN1, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY | VARIABLE_PITCH, dwFontGame, &Font);
 
 		break;
 	case 1:
 		if (FontBold)
 			return FontBold->DrawText(NULL, lpszString, nCount, &rc, 0, FontColor);
 		else
-			D3DXCreateFont(d3ddev, 16, 0, FW_BOLD, 1, 0, ANSI_CHARSET | FS_LATIN1, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY | VARIABLE_PITCH, dwFontGame, &FontBold);
+			D3DXCreateFont(d3ddev, summit466::FontSettings466::Height((16), summit466::FontSettings466::Interface), 0, FW_BOLD, 1, 0, ANSI_CHARSET | FS_LATIN1, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY | VARIABLE_PITCH, dwFontGame, &FontBold);
 		break;
 	case 2:
 		if (FontTitle)
 			return FontTitle->DrawText(NULL, lpszString, nCount, &rc, 0,  FontColor);
 		else
-			D3DXCreateFont(d3ddev, 16, 0, FW_NORMAL, 1, 0, ANSI_CHARSET | FS_LATIN1, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY | VARIABLE_PITCH, dwFontGame, &FontTitle);
+			D3DXCreateFont(d3ddev, summit466::FontSettings466::Height((16), summit466::FontSettings466::Interface), 0, FW_NORMAL, 1, 0, ANSI_CHARSET | FS_LATIN1, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY | VARIABLE_PITCH, dwFontGame, &FontTitle);
 		break;
 	case 3:
 		if (FontRank)
 			return FontRank->DrawText(NULL, lpszString, strlen(lpszString), &rc, 0, FontColor);
 		else
-			D3DXCreateFont(d3ddev, 16, 0, FW_NORMAL, 1, 0, ANSI_CHARSET | FS_LATIN1, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY | VARIABLE_PITCH, dwFontGame, &FontRank);
+			D3DXCreateFont(d3ddev, summit466::FontSettings466::Height((16), summit466::FontSettings466::Interface), 0, FW_NORMAL, 1, 0, ANSI_CHARSET | FS_LATIN1, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY | VARIABLE_PITCH, dwFontGame, &FontRank);
 		break;
 	}
 	return 0;
@@ -195,13 +197,13 @@ void InitFont()
 	GetPrivateProfileString("FontG", "Type", "", dwFontGame, 32, ".//game//font//Config.ini");
 
 	if (!Font)
-		D3DXCreateFont(d3ddev, 16, 0, FW_NORMAL, 1, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, dwFontGame, &Font);
+		D3DXCreateFont(d3ddev, summit466::FontSettings466::Height((16), summit466::FontSettings466::Interface), 0, FW_NORMAL, 1, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, dwFontGame, &Font);
 
 	if (!FontBold)
-		D3DXCreateFont(d3ddev, 16, 0, FW_BOLD, 1, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, dwFontGame, &FontBold);
+		D3DXCreateFont(d3ddev, summit466::FontSettings466::Height((16), summit466::FontSettings466::Interface), 0, FW_BOLD, 1, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, dwFontGame, &FontBold);
 
 	if (!FontRank)
-		D3DXCreateFont(d3ddev, 16, 0, FW_NORMAL, 1, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, dwFontGame, &FontRank);
+		D3DXCreateFont(d3ddev, summit466::FontSettings466::Height((16), summit466::FontSettings466::Interface), 0, FW_NORMAL, 1, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, dwFontGame, &FontRank);
 
 	HookAPI("gdi32.dll", "TextOutA", &DrawFontText);
 	HookAPI("gdi32.dll", "SetFontTextColor", &SetFontColor);

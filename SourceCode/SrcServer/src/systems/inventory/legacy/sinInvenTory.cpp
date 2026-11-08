@@ -33,6 +33,7 @@
 
 
 #include "gameplay/classes/v2/services/ClassService.h"
+#include "gameplay/classes/v2/services/SummitCostumeGenderPolicy.h"
 #include "gameplay/inventory/v2/InventoryUseDelayPolicy.h"
 #include "gameplay/inventory/v2/InventoryIntegrityService.h"
 #include "systems/network/v2/legacy/LegacyBackendChannelSender.h"
@@ -5329,6 +5330,18 @@ int cINVENTORY::ThrowInvenItemToField(sITEM *pItem)
 
 int cINVENTORY::CharOnlySetItem(sITEM *pItem)
 {
+    // Mesmo contrato CA871-CA874 do cliente, antes das restricoes DA legadas.
+    if (!pItem || !sinChar) return FALSE;
+    const std::uint32_t costumeCode = pItem->sItemInfo.CODE;
+    if (gameplay::classes::summit_costumes::RequiredGenderForCode(costumeCode) !=
+        gameplay::classes::summit_costumes::RequiredGender::Any) {
+        gameplay::classes::CharacterGender gender;
+        const bool known = gameplay::classes::DefaultClassService().TryGender(sinChar->JOB_CODE, gender);
+        const bool female = known && gender == gameplay::classes::CharacterGender::Female;
+        if (!gameplay::classes::summit_costumes::GenderAllowed(costumeCode, known, female))
+            pItem->sItemInfo.NotUseFlag = 1;
+        return TRUE;
+    }
 
 
 	if(gameplay::classes::DefaultClassService().IsGender(sinChar->JOB_CODE, gameplay::classes::CharacterGender::Female))

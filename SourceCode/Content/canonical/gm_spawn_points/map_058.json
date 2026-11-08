@@ -1,0 +1,304 @@
+{
+  "map_id": 58,
+  "origin": "summit_gm_editor_spawnplan361",
+  "points": [
+    {
+      "content_key": "monplant",
+      "density": "low",
+      "id": "gm.plan_000001",
+      "kind": "monster",
+      "map_id": 58,
+      "max_alive": 2,
+      "model_reference": {
+        "candidates": [
+          "char.monster.monplant.monplant.a.json",
+          "char.monster.monplant.monplant.b.json",
+          "char.monster.monplant.monplant.c.json",
+          "char.monster.monplant.monplant.d.json",
+          "char.monster.monplant.mudygolem.json"
+        ],
+        "status": "model_variant_ambiguous"
+      },
+      "plan_id": 1,
+      "position": {
+        "x": 250385,
+        "y": 721,
+        "z": 225276
+      },
+      "radius": 160,
+      "respawn_seconds": 30,
+      "runtime_enabled": false,
+      "source_created_at": "2026-10-29 08:22:03",
+      "status": "draft_requires_runtime_compiler"
+    },
+    {
+      "content_key": "monplant",
+      "density": "low",
+      "id": "gm.plan_000002",
+      "kind": "monster",
+      "map_id": 58,
+      "max_alive": 2,
+      "model_reference": {
+        "candidates": [
+          "char.monster.monplant.monplant.a.json",
+          "char.monster.monplant.monplant.b.json",
+          "char.monster.monplant.monplant.c.json",
+          "char.monster.monplant.monplant.d.json",
+          "char.monster.monplant.mudygolem.json"
+        ],
+        "status": "model_variant_ambiguous"
+      },
+      "plan_id": 2,
+      "position": {
+        "x": 250357,
+        "y": 721,
+        "z": 225432
+      },
+      "radius": 160,
+      "respawn_seconds": 30,
+      "runtime_enabled": false,
+      "source_created_at": "2026-10-29 08:22:11",
+      "status": "draft_requires_runtime_compiler"
+    },
+    {
+      "content_key": "monplant",
+      "density": "low",
+      "id": "gm.plan_000003",
+      "kind": "monster",
+      "map_id": 58,
+      "max_alive": 2,
+      "model_reference": {
+        "candidates": [
+          "char.monster.monplant.monplant.a.json",
+          "char.monster.monplant.monplant.b.json",
+          "char.monster.monplant.monplant.c.json",
+          "char.monster.monplant.monplant.d.json",
+          "char.monster.monplant.mudygolem.json"
+        ],
+        "status": "model_variant_ambiguous"
+      },
+      "plan_id": 3,
+      "position": {
+        "x": 250369,
+        "y": 721,
+        "z": 225440
+      },
+      "radius": 160,
+      "respawn_seconds": 30,
+      "runtime_enabled": false,
+      "source_created_at": "2026-10-29 08:22:13",
+      "status": "draft_requires_runtime_compiler"
+    },
+    {
+      "content_key": "monplant",
+      "density": "low",
+      "id": "gm.plan_000004",
+      "kind": "monster",
+      "map_id": 58,
+      "max_alive": 2,
+      "model_reference": {
+        "candidates": [
+          "char.monster.monplant.monplant.a.json",
+          "char.monster.monplant.monplant.b.json",
+          "char.monster.monplant.monplant.c.json",
+          "char.monster.monplant.monplant.d.json",
+          "char.monster.monplant.mudygolem.json"
+        ],
+        "status": "model_variant_ambiguous"
+      },
+      "plan_id": 4,
+      "position": {
+        "x": 250381,
+        "y": 721,
+        "z": 225448
+      },
+      "radius": 160,
+      "respawn_seconds": 30,
+      "runtime_enabled": false,
+      "source_created_at": "2026-10-29 08:22:13",
+      "status": "draft_requires_runtime_compiler"
+    },
+    {
+      "content_key": "undeadminer",
+      "density": "high",
+      "id": "gm.plan_000005",
+      "kind": "monster",
+      "map_id": 58,
+      "max_alive": 12,
+      "model_reference": {
+        "candidates": [
+          "char.monster.undeadminer.undeadminer.json"
+        ],
+        "status": "model_family_candidate_only"
+      },
+      "plan_id": 5,
+      "position": {
+        "x": 250389,
+        "y": 817,
+        "z": 226422
+      },
+      "radius": 160,
+      "respawn_seconds": 30,
+      "runtime_enabled": false,
+      "source_created_at": "2026-10-29 08:22:35",
+      "status": "draft_requires_runtime_compiler"
+    },
+    {
+      "content_key": "undeadminer",
+      "density": "high",
+      "id": "gm.plan_000006",
+      "kind": "monster",
+      "map_id": 58,
+      "max_alive": 12,
+      "model_reference": {
+        "candidates": [
+          "char.monster.undeadminer.undeadminer.json"
+        ],
+        "status": "model_family_candidate_only"
+      },
+      "plan_id": 6,
+      "position": {
+        "x": 250306,
+        "y": 810,
+        "z": 226671
+      },
+      "radius": 160,
+      "respawn_seconds": 30,
+      "runtime_enabled": false,
+      "source_created_at": "2026-10-29 08:22:39",
+      "status": "draft_requires_runtime_compiler"
+    },
+    {
+      "content_key": "undeadminer",
+      "density": "high",
+      "id": "gm.plan_000007",
+      "kind": "monster",
+      "map_id": 58,
+      "max_alive": 12,
+      "model_reference": {
+        "candidates": [
+          "char.monster.undeadminer.undeadminer.json"
+        ],
+        "status": "model_family_candidate_only"
+      },
+      "plan_id": 7,
+      "position": {
+        "x": 250399,
+        "y": 810,
+        "z": 226748
+      },
+      "radius": 160,
+      "respawn_seconds": 30,
+      "runtime_enabled": false,
+      "source_created_at": "2026-10-29 08:22:41",
+      "status": "draft_requires_runtime_compiler"
+    },
+    {
+      "content_key": "monplant",
+      "density": "low",
+      "id": "gm.plan_000008",
+      "kind": "monster",
+      "map_id": 58,
+      "max_alive": 2,
+      "model_reference": {
+        "candidates": [
+          "char.monster.monplant.monplant.a.json",
+          "char.monster.monplant.monplant.b.json",
+          "char.monster.monplant.monplant.c.json",
+          "char.monster.monplant.monplant.d.json",
+          "char.monster.monplant.mudygolem.json"
+        ],
+        "status": "model_variant_ambiguous"
+      },
+      "plan_id": 8,
+      "position": {
+        "x": 250369,
+        "y": 810,
+        "z": 226667
+      },
+      "radius": 160,
+      "respawn_seconds": 30,
+      "runtime_enabled": false,
+      "source_created_at": "2026-10-30 06:57:05",
+      "status": "draft_requires_runtime_compiler"
+    },
+    {
+      "content_key": "undeadminer",
+      "density": "low",
+      "id": "gm.plan_000009",
+      "kind": "monster",
+      "map_id": 58,
+      "max_alive": 2,
+      "model_reference": {
+        "candidates": [
+          "char.monster.undeadminer.undeadminer.json"
+        ],
+        "status": "model_family_candidate_only"
+      },
+      "plan_id": 9,
+      "position": {
+        "x": 250277,
+        "y": 810,
+        "z": 226824
+      },
+      "radius": 160,
+      "respawn_seconds": 30,
+      "runtime_enabled": false,
+      "source_created_at": "2026-10-30 21:29:17",
+      "status": "draft_requires_runtime_compiler"
+    },
+    {
+      "content_key": "undeadminer",
+      "density": "low",
+      "id": "gm.plan_000010",
+      "kind": "monster",
+      "map_id": 58,
+      "max_alive": 2,
+      "model_reference": {
+        "candidates": [
+          "char.monster.undeadminer.undeadminer.json"
+        ],
+        "status": "model_family_candidate_only"
+      },
+      "plan_id": 10,
+      "position": {
+        "x": 250306,
+        "y": 810,
+        "z": 226852
+      },
+      "radius": 160,
+      "respawn_seconds": 30,
+      "runtime_enabled": false,
+      "source_created_at": "2026-10-30 21:29:19",
+      "status": "draft_requires_runtime_compiler"
+    },
+    {
+      "content_key": "turtlecannon",
+      "density": "medium",
+      "id": "gm.plan_000011",
+      "kind": "monster",
+      "map_id": 58,
+      "max_alive": 6,
+      "model_reference": {
+        "candidates": [
+          "char.monster.turtlecannon.turtlecannon.json",
+          "char.monster.turtlecannon.turtledragon.json"
+        ],
+        "status": "model_variant_ambiguous"
+      },
+      "plan_id": 11,
+      "position": {
+        "x": 250468,
+        "y": 810,
+        "z": 226882
+      },
+      "radius": 160,
+      "respawn_seconds": 30,
+      "runtime_enabled": false,
+      "source_created_at": "2026-10-31 14:46:13",
+      "status": "draft_requires_runtime_compiler"
+    }
+  ],
+  "runtime_activation": "not_implemented",
+  "schema": "summit.gm-spawn-points/v1"
+}

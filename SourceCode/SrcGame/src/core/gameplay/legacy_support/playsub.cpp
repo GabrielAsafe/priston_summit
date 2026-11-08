@@ -74,6 +74,8 @@ static char *szNpcDirectory = "char//npc//";
 
 #include "core/gameplay/legacy_support/playmodel.h"
 #include "gameplay/classes/v2/services/ClassService.h"
+#include "inventory/v2/VerifiedVisualBindingsV2.h"
+#include "inventory/v2/VerifiedVisualCacheV2.h"
 
 static bool LegacyPlaySubDataChannelAvailable()
 {
@@ -164,6 +166,96 @@ int LoadOftenItem()
 #include "gameplay/legacy_support/PlaySubMeshTextureSwapLegacyCommon.inl"
 
 
+// Known Uniform and Football identities awaiting validated INI/INX mappings.
+// Missing class bindings must NEVER fall through to legacy armor-index
+// conversion (another costume or Dragon may occupy that table index).
+static bool SummitIsPendingCostumeVisualV2(DWORD code)
+{
+	switch(static_cast<std::uint32_t>(code))
+	{
+	case 0x02013F00u: // DA147
+	case 0x02053F00u: // DA247
+	case 0x02014500u: // DA153
+	case 0x02054500u: // DA253
+	case 0x02105F00u: // CA115 Football
+	case 0x02115F00u: // CA715 Football
+		return true;
+	default:
+		return false;
+	}
+}
+
+// V2 model bindings are keyed by full item code and a real class job code.
+// A missing class binding is NOT an invitation to treat a costume as armor.
+// -1: not a registered V2 costume; 0: unavailable; 1: queued.
+static int SummitQueueVerifiedCostume(smCHAR *character, DWORD itemCode)
+{
+    using summit::inventory::visual_v2::Find;
+    using summit::inventory::visual_v2::HasAnyBinding;
+    if (!HasAnyBinding(static_cast<std::uint32_t>(itemCode)))
+        return -1;
+    // A character can legitimately have no secondary face/hair model.
+    // V3 already searches saved/default face candidates and supports an
+    // empty secondary argument. Rejecting it here prevented valid costumes
+    // from loading even when the body INI/INX was verified.
+    if (!character || character->PatLoading)
+        return 0;
+    const summit::inventory::visual_v2::Binding *visual =
+        Find(static_cast<std::uint32_t>(itemCode), character->smCharInfo.JOB_CODE);
+    if (!visual)
+        return 0;
+    // V3 publishes the primary logical model name only after a successful
+    // asynchronous commit. Do not enqueue the same already-applied outfit.
+    if (character->Pattern &&
+        (summit::inventory::visual_v2::detail::EqualAssetPath(
+            character->smCharInfo.szModelName, visual->config) ||
+         summit::inventory::visual_v2::detail::EqualAssetPath(
+            character->smCharInfo.szModelName, visual->inx)))
+        return 2;
+    // The loader takes the logical .ini name and resolves its compiled INX.
+    // Never substitute another class or the previous armor on missing cache.
+    const DWORD inxAttributes = GetFileAttributesA(visual->inx);
+    // If a verified logical INI exists but its cache does not, let V3 invoke
+    // the native AddModelDecode path on its worker. V3 verifies the generated
+    // cache against the declared model/family before publishing the result.
+    if (inxAttributes != INVALID_FILE_ATTRIBUTES &&
+        (inxAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0)
+        return 0;
+    const bool compiledCacheExists = inxAttributes != INVALID_FILE_ATTRIBUTES;
+    if (!compiledCacheExists)
+    {
+        const DWORD iniAttributes = GetFileAttributesA(visual->config);
+        if (iniAttributes == INVALID_FILE_ATTRIBUTES ||
+            (iniAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0)
+            return 0;
+    }
+    const DWORD smdAttributes = GetFileAttributesA(visual->smd);
+    if (smdAttributes == INVALID_FILE_ATTRIBUTES ||
+        (smdAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0 ||
+        (compiledCacheExists && !summit::inventory::visual_v2::VerifyNativeInx(
+            visual->inx, visual->smd, visual->motionFamily, visual->meshGroup)))
+        return 0;
+    character->PatLoading = TRUE;
+    if (!AddLoaderPattern(character, const_cast<char *>(visual->config),
+                          character->smCharInfo.szModelName2))
+    {
+        character->PatLoading = FALSE;
+        return 0;
+    }
+    return 1;
+}
+
+// Returns -1 for legacy non-V2 items, 0 for a known costume whose verified
+// visual is unavailable, 1 when V3 queues it, 2 when already rendered.
+// Never use an armor-index fallback for a known costume code.
+static int SummitTryLocalCostumeVisualV2(smCHAR *character, DWORD itemCode)
+{
+    const int result = SummitQueueVerifiedCostume(character, itemCode);
+    if (result >= 0)
+        return result;
+    return SummitIsPendingCostumeVisualV2(itemCode) ? 0 : -1;
+}
+
 int SetPlayerArmor(int nItem_LowCode, int nItem_HiCode)
 {
 	if(PlayerArmor == (nItem_HiCode | nItem_LowCode))
@@ -195,9 +287,22 @@ int SetPlayerArmor(int nItem_LowCode, int nItem_HiCode)
 
 int SetChrArmor(smCHAR *lpChar, int ItemNum)
 {
-	if(!lpChar || !lpChar->DisplayFlag || lpChar->wStickItems[smPLAYBUFF_ITEM_BODY] == ItemNum)
+	if(!lpChar || !lpChar->DisplayFlag || lpChar->PatLoading)
 		return FALSE;
-	if(lpChar->PatLoading || !lpChar->smCharInfo.szModelName2[0])
+	if(ItemNum >= MAX_ITEM)
+		return FALSE;
+	if(ItemNum >= 0)
+	{
+		const DWORD itemCode = sItem[ItemNum].CODE;
+		if (summit::inventory::visual_v2::HasAnyBinding(static_cast<std::uint32_t>(itemCode)))
+		{
+			const int result = SummitQueueVerifiedCostume(lpChar, itemCode);
+			return (result == 1 || result == 2) ? TRUE : FALSE;
+		}
+		if (SummitIsPendingCostumeVisualV2(itemCode))
+			return FALSE;
+	}
+	if(lpChar->wStickItems[smPLAYBUFF_ITEM_BODY] == ItemNum || !lpChar->smCharInfo.szModelName2[0])
 		return FALSE;
 
 	int armor = 0;
@@ -539,6 +644,15 @@ int sinSetCharItem(DWORD CODE, DWORD Posi, BOOL SetFlag)
 		break;
 
 	case INVENTORY_POS_COSTUME:
+		if (cInvenTory.CostumeFlag && CODE != 0 && SetFlag)
+		{
+			// Costume-only route. Do not touch armor placement, equipment
+			// statistics or the legacy armor model index when V2 owns this ID.
+			const int visualResult = SummitTryLocalCostumeVisualV2(lpCurPlayer, CODE);
+			if (visualResult >= 0)
+				return (visualResult == 1 || visualResult == 2) ? TRUE : FALSE;
+		}
+
 
 		if (cInvenTory.CostumeFlag)
 		{

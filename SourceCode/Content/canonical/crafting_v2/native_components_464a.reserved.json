@@ -1,0 +1,152 @@
+{
+  "client_map_sha256": "fcab47b91f11f2cb09e9f026bcf31933b445935e25b19ec71e119e4da5d8c7d8",
+  "materials": [
+    {
+      "code": "CI169",
+      "concept": "MAT_LEATHER_RAW",
+      "icon_462d": "cliente/image/professions/v2/componentes_462d/mat_leather_raw.png",
+      "name": "Pele Bruta",
+      "native_numeric": "0x080BC400",
+      "profession": "Hunter",
+      "status": "RESERVED_ONLY_NOT_NATIVE_ITEM"
+    },
+    {
+      "code": "CI170",
+      "concept": "MAT_LEATHER_TANNED",
+      "icon_462d": "cliente/image/professions/v2/componentes_462d/mat_leather_tanned.png",
+      "name": "Couro Curtido",
+      "native_numeric": "0x080BC500",
+      "profession": "Artisan",
+      "status": "RESERVED_ONLY_NOT_NATIVE_ITEM"
+    },
+    {
+      "code": "CI171",
+      "concept": "MAT_FIBRE_RAW",
+      "icon_462d": null,
+      "name": "Fibra Vegetal",
+      "native_numeric": "0x080BC600",
+      "profession": "Lumberjack",
+      "status": "RESERVED_ONLY_NOT_NATIVE_ITEM"
+    },
+    {
+      "code": "CI172",
+      "concept": "MAT_CLOTH_REINFORCED",
+      "icon_462d": "cliente/image/professions/v2/componentes_462d/mat_cloth_reinforced.png",
+      "name": "Tecido Reforçado",
+      "native_numeric": "0x080BC700",
+      "profession": "Artisan",
+      "status": "RESERVED_ONLY_NOT_NATIVE_ITEM"
+    },
+    {
+      "code": "CI173",
+      "concept": "MAT_SINEW",
+      "icon_462d": null,
+      "name": "Tendão de Criatura",
+      "native_numeric": "0x080BC800",
+      "profession": "Hunter",
+      "status": "RESERVED_ONLY_NOT_NATIVE_ITEM"
+    },
+    {
+      "code": "CI174",
+      "concept": "MAT_BOWSTRING",
+      "icon_462d": "cliente/image/professions/v2/componentes_462d/mat_bowstring.png",
+      "name": "Corda de Arco",
+      "native_numeric": "0x080BC900",
+      "profession": "Artisan",
+      "status": "RESERVED_ONLY_NOT_NATIVE_ITEM"
+    },
+    {
+      "code": "CI175",
+      "concept": "MAT_METAL_PLATE",
+      "icon_462d": null,
+      "name": "Placa Metálica",
+      "native_numeric": "0x080BCA00",
+      "profession": "Blacksmith",
+      "status": "RESERVED_ONLY_NOT_NATIVE_ITEM"
+    },
+    {
+      "code": "CI176",
+      "concept": "MAT_TEMPERED_BLADE",
+      "icon_462d": "cliente/image/professions/v2/componentes_462d/mat_tempered_blade.png",
+      "name": "Lâmina Temperada",
+      "native_numeric": "0x080BCB00",
+      "profession": "Blacksmith",
+      "status": "RESERVED_ONLY_NOT_NATIVE_ITEM"
+    },
+    {
+      "code": "CI177",
+      "concept": "MAT_JEWEL_HOOP",
+      "icon_462d": "cliente/image/professions/v2/componentes_462d/mat_jewel_hoop.png",
+      "name": "Aro de Joalharia",
+      "native_numeric": "0x080BCC00",
+      "profession": "Artisan",
+      "status": "RESERVED_ONLY_NOT_NATIVE_ITEM"
+    },
+    {
+      "code": "CI178",
+      "concept": "MAT_FACETED_GEM",
+      "icon_462d": "cliente/image/professions/v2/componentes_462d/mat_faceted_gem.png",
+      "name": "Gema Lapidada",
+      "native_numeric": "0x080BCD00",
+      "profession": "Artisan",
+      "status": "RESERVED_ONLY_NOT_NATIVE_ITEM"
+    },
+    {
+      "code": "CI179",
+      "concept": "MAT_FISH_OIL",
+      "icon_462d": "cliente/image/professions/v2/componentes_462d/mat_fish_oil.png",
+      "name": "Óleo de Peixe",
+      "native_numeric": "0x080BCE00",
+      "profession": "Alchemist",
+      "status": "RESERVED_ONLY_NOT_NATIVE_ITEM"
+    },
+    {
+      "code": "CI180",
+      "concept": "MAT_TREATED_PLANK",
+      "icon_462d": "cliente/image/professions/v2/componentes_462d/mat_treated_plank.png",
+      "name": "Tábua Tratada",
+      "native_numeric": "0x080BCF00",
+      "profession": "Artisan",
+      "status": "RESERVED_ONLY_NOT_NATIVE_ITEM"
+    },
+    {
+      "code": "CI181",
+      "concept": "MAT_ARCANE_CLOTH",
+      "icon_462d": "cliente/image/professions/v2/componentes_462d/mat_arcane_cloth.png",
+      "name": "Tecido Arcano",
+      "native_numeric": "0x080BD000",
+      "profession": "Artisan",
+      "status": "RESERVED_ONLY_NOT_NATIVE_ITEM"
+    },
+    {
+      "code": "CI182",
+      "concept": "MAT_REINFORCED_GRIP",
+      "icon_462d": null,
+      "name": "Empunhadura Reforçada",
+      "native_numeric": "0x080BD100",
+      "profession": "Blacksmith",
+      "status": "RESERVED_ONLY_NOT_NATIVE_ITEM"
+    },
+    {
+      "code": "CI183",
+      "concept": "MAT_HUNTER_BONE",
+      "icon_462d": null,
+      "name": "Osso Trabalhado",
+      "native_numeric": "0x080BD200",
+      "profession": "Hunter",
+      "status": "RESERVED_ONLY_NOT_NATIVE_ITEM"
+    },
+    {
+      "code": "CI184",
+      "concept": "MAT_MYSTIC_INLAY",
+      "icon_462d": null,
+      "name": "Incrustação Mística",
+      "native_numeric": "0x080BD300",
+      "profession": "Artisan",
+      "status": "RESERVED_ONLY_NOT_NATIVE_ITEM"
+    }
+  ],
+  "schema": "summit.native-id-reservation/v1",
+  "source_map_sha256": "0554795baa93d98aea25571796612b38eab15c6fb52f28453f2f5f140e41e3fe",
+  "status": "RESERVED_NOT_ACTIVE"
+}

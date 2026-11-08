@@ -24,6 +24,8 @@
 #include "core/concurrency/JobSystem.h"
 #include "core/concurrency/SourceAssetLock.h"
 #include "systems/rendering/legacy_3d/smRead3d.h"
+#include "inventory/v2/VerifiedVisualBindingsV2.h"
+#include "inventory/v2/VerifiedVisualCacheV2.h"
 
 extern smPATTERN smPattern;
 extern smPATTERN smBipPattern;
@@ -234,10 +236,17 @@ static bool SummitIsModelConfigSource(const std::string &name)
 static bool SummitDecodeModelInfo(const std::string &source, smMODELINFO &info, bool allowRepair)
 {
     summit::core::concurrency::SourceAssetLock sourceLock(source.c_str());
+    const summit::inventory::visual_v2::Binding *visual =
+        summit::inventory::visual_v2::FindByConfig(source.c_str());
     ZeroMemory(&info, sizeof(info));
     if (smModelDecode(const_cast<char *>(source.c_str()), &info))
-        return true;
-
+    {
+        // A readable but mismatched cache is never trusted. Do not overwrite it
+        // automatically either: retain the last valid appearance and require
+        // an explicit, inspected rebuild of the corrupted asset.
+        return !visual || summit::inventory::visual_v2::VerifyNativeInx(
+            visual->inx, visual->smd, visual->motionFamily, visual->meshGroup);
+    }
     if (!allowRepair || !SummitIsModelConfigSource(source))
         return false;
 
@@ -246,6 +255,10 @@ static bool SummitDecodeModelInfo(const std::string &source, smMODELINFO &info, 
     if (!AddModelDecode(const_cast<char *>(source.c_str()), &repaired))
         return false;
 
+    // A generated cache is not trusted solely because AddModelDecode succeeded.
+    if (visual && !summit::inventory::visual_v2::VerifyNativeInx(
+        visual->inx, visual->smd, visual->motionFamily, visual->meshGroup))
+        return false;
     ZeroMemory(&info, sizeof(info));
     return smModelDecode(const_cast<char *>(source.c_str()), &info) != FALSE;
 }
@@ -399,7 +412,7 @@ static void SummitPrepareRequestOnWorker(const std::shared_ptr<SummitModelReques
         const bool shuttingDown = SummitModelState().shuttingDown.load(std::memory_order_acquire);
         if (!cancelled && !shuttingDown)
         {
-            if (!SummitPrepareModel(request->primaryName, request->primary, false))
+            if (!SummitPrepareModel(request->primaryName, request->primary, true))
             {
                 request->success = false;
             }
@@ -475,6 +488,26 @@ static int SummitFindFreePatternSlot(smPATTERN &cache, int avoidA, int avoidB)
 static void SummitClearPatternEntry(smDPAT &entry)
 {
     ZeroMemory(&entry, sizeof(entry));
+}
+
+// A secondary head may only survive a primary-body replacement when both
+// patterns reference the exact same loaded BIP. Matching animation filenames
+// is insufficient: SetDinaPattern2 compares skeleton pointer identity.
+static bool SummitCanReuseSecondaryWithPrimary(const smDPAT *head, const smDPAT *body)
+{
+    return head && head->Pat && body && body->smDinaLink &&
+           body->smDinaLink->Pat &&
+           head->Pat->TmParent == body->smDinaLink->Pat;
+}
+
+// Only characters and item previews expose PatLoading. A failed tool request
+// does NOT own an scITEM and therefore must not touch target.item.
+static void SummitClearUnpublishedTargetLoading(const SummitModelTarget &target)
+{
+    if (target.kind == SUMMIT_MODEL_TARGET_CHARACTER && target.character)
+        target.character->PatLoading = FALSE;
+    else if (target.kind == SUMMIT_MODEL_TARGET_ITEM && target.item)
+        target.item->PatLoading = FALSE;
 }
 
 static smDPAT *SummitInstallPreparedModelLocked(SummitPreparedModel &prepared,
@@ -799,12 +832,7 @@ static void SummitCompleteRequestOnMain(const std::shared_ptr<SummitModelRequest
     if (!primary)
     {
         for (std::size_t i = 0; i < valid.size(); ++i)
-        {
-            if (valid[i].kind == SUMMIT_MODEL_TARGET_CHARACTER)
-                valid[i].character->PatLoading = FALSE;
-            else
-                valid[i].item->PatLoading = FALSE;
-        }
+            SummitClearUnpublishedTargetLoading(valid[i]);
         return;
     }
 
@@ -865,8 +893,11 @@ static void SummitCompleteRequestOnMain(const std::shared_ptr<SummitModelRequest
             character->SetDinaPattern2(secondary);
             strcpy_s(character->smCharInfo.szModelName2, sizeof(character->smCharInfo.szModelName2), secondary->szPatName);
         }
-        else if (oldSecondary)
+        else if (SummitCanReuseSecondaryWithPrimary(oldSecondary, primary))
         {
+            // Keep the previous head only if it belongs to exactly the same
+            // skeleton object. A head attached to the previous costume's BIP
+            // cannot safely be carried over to a new body.
             character->SetDinaPattern2(oldSecondary);
             oldSecondary = 0;
         }

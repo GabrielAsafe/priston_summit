@@ -1,6 +1,0 @@
-/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/record.cpp:3454:	TransUserCharInfo.PlayUserCount = FindCnt;
-/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Server/OnSever.cpp:10430:	lpPlayInfo->LastTransPlayUserCount = ClipCnt;
-/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Server/OnSever.cpp:11312:	rsPlayInfo[cnt].LastTransPlayUserCount = 0;
-/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/record.cpp:3430:	TransUserCharInfo.PlayUserCount = FindCnt;
-/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:11707:	lpPlayInfo->LastTransPlayUserCount = ClipCnt;
-/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:12758:	rsPlayInfo[cnt].LastTransPlayUserCount = 0;

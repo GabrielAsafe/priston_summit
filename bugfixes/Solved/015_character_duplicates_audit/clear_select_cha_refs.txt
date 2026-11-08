@@ -1,5 +1,0 @@
-/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp:1281:	void ClearSelectCha();
-/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp:1282:	ClearSelectCha();
-/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp:498:	void ClearSelectCha();
-/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp:500:	ClearSelectCha();
-/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:780:void ClearSelectCha()

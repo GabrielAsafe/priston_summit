@@ -1,3 +1,0 @@
-/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp:1604:		InitUserCharacter();
-/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp:1906:int HoLogin::InitUserCharacter()
-/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.h:219:	int		InitUserCharacter();

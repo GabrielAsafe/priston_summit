@@ -1,3 +1,5 @@
+// SUMMIT466A central client font scaling
+#include "../../../../../Shared/ui/fonts/FontSettings466.h"
 #define _SINBARAM
 
 // STL INCLUDES
@@ -1040,7 +1042,7 @@ int WndProc_Japanese(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 			{
 				LOGFONT lf;
 				ZeroMemory(&lf, sizeof(LOGFONT));
-				lf.lfHeight = 12;
+				lf.lfHeight = summit466::FontSettings466::Height(12, summit466::FontSettings466::Interface);
 				lf.lfItalic = FALSE;
 				lf.lfUnderline = FALSE;
 				lf.lfStrikeOut = FALSE;
@@ -1377,6 +1379,33 @@ switch (messg)
 
 
 
+        // SUMMIT_388A_PANEL_WM: toggle once on Windows keydown, not inside the HUD.
+        // GetKeyState sees the actual Wine/Windows modifier state; VRKeyBuff is
+        // an additional fallback for the legacy input pipeline.
+        if (GameMode == 2 && wParam == 'T' &&
+            (lParam & (static_cast<LPARAM>(1) << 30)) == 0 &&
+            ((GetKeyState(VK_CONTROL) & 0x8000) || VRKeyBuff[VK_CONTROL]) &&
+            ((GetKeyState(VK_SHIFT) & 0x8000) || VRKeyBuff[VK_SHIFT]) &&
+            !(GetKeyState(VK_MENU) & 0x8000) && !VRKeyBuff[VK_MENU])
+        {
+            const bool opened = ui::v2::legacy::HandleProfessionTestPanelKey('T');
+            // Optional diagnostic for key dispatch; never logs chat contents.
+            FILE* probe = fopen("LOGS\\summit_profession_hotkey_388a.log", "a");
+            if (probe) {
+                fprintf(probe, "CtrlShiftT received panel_ready=%d\n", opened ? 1 : 0);
+                fclose(probe);
+            }
+            if (opened) {
+                VRKeyBuff[wParam] = 1;
+                return TRUE;
+            }
+        }
+        // SUMMIT_387_PANEL_ESC: close test panel before legacy Escape menus.
+        if (GameMode == 2 && ui::v2::legacy::HandleProfessionTestPanelKey(static_cast<unsigned int>(wParam))) {
+            VRKeyBuff[wParam] = 1;
+            return TRUE;
+        }
+
 		if (g_IsDxProjectZoomIn > 0 && wParam == VK_RETURN)
 			g_BlockFullZoomCloseOnEnter = 1;
 
@@ -1572,6 +1601,23 @@ switch (messg)
 		// Apenas o envio/processamento de chat será limitado ao GameMode == 2.
 		if (hFocusWnd)
 		{
+            // SUMMIT_387_CHAT_ESC: Escape cancels an active chat edit, without sending.
+            // Enter still submits chat normally; never opens the exit menu on cancellation.
+            if (GameMode == 2 && wParam == VK_ESCAPE && VRKeyBuff[wParam] == 0 &&
+                !VRKeyBuff[VK_SHIFT]) {
+                SetWindowText(hFocusWnd, "");
+                hFocusWnd = 0;
+                cInterFace.ChatFlag = 0;
+                sinChatEnter = 0;
+                SetIME_Mode(0);
+                ChatScrollPoint = 0;
+                szLastWhisperName[0] = 0;
+                LastWhisperLen = 0;
+                InterfaceParty.chat_WhisperPartyPlayer_close();
+                chatlistSPEAKERflagChg(0);
+                VRKeyBuff[wParam] = 1;
+                break;
+            }
 			lpString = 0;
 			CrCode = 0;
 
@@ -5543,7 +5589,7 @@ int SetCreateFont()
 	char dwFontGame[32] = { 0 };
 	GetPrivateProfileString("FontG", "Type", "", dwFontGame, 32, ".//game//font//Config.ini");
 
-	hFont = CreateFontA(16, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, NULL, NULL, ANTIALIASED_QUALITY, FF_DONTCARE, dwFontGame);
+	hFont = CreateFontA( summit466::FontSettings466::Height((16), summit466::FontSettings466::Interface), 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, NULL, NULL, ANTIALIASED_QUALITY, FF_DONTCARE, dwFontGame);
 	return TRUE;
 }
 

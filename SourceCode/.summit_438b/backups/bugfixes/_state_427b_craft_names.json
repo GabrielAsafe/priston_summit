@@ -1,0 +1,9 @@
+{
+  "installed_ui": "c1fb13935095646bb400f7149ebe57b1f4f07ef6cf2828634c931c5d13eb032a",
+  "old426": "7ff3e4e9813a2aa68fd6e569e5168ca0a723d14df9d93aa0de2e0f6a55bda38b",
+  "old427": "0c35bb0f5cb9282c8e6e8f6596175cb8437746e6dc94a9aeb7ec1ffc6368125c",
+  "original_ui": "1c9d0840819a7e32ef79f7f3b4d8fe11b9c19f850c64dd84a3f2fafdaab88e3a",
+  "schema": "summit.patch427b/v1",
+  "status": "APPLIED",
+  "utc": "2026-11-02T13:53:56.017175+00:00"
+}

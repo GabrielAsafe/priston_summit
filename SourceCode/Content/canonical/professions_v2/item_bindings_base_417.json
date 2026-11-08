@@ -1,0 +1,135 @@
+{
+  "schema": "summit.base-node-items/v1",
+  "items": [
+    {
+      "resource_key": "arcane_wood",
+      "native_code": "CI120",
+      "inventory_icon": "Crafting/itCI120.bmp"
+    },
+    {
+      "resource_key": "common_logs",
+      "native_code": "CI113",
+      "inventory_icon": "Crafting/itCI113.bmp"
+    },
+    {
+      "resource_key": "dark_essence",
+      "native_code": "CI151",
+      "inventory_icon": "Crafting/itCI151.bmp"
+    },
+    {
+      "resource_key": "dense_resin",
+      "native_code": "CI117",
+      "inventory_icon": "Crafting/itCI117.bmp"
+    },
+    {
+      "resource_key": "energetic_sap",
+      "native_code": "CI119",
+      "inventory_icon": "Crafting/itCI119.bmp"
+    },
+    {
+      "resource_key": "illusory_essence",
+      "native_code": "CI153",
+      "inventory_icon": "Crafting/itCI153.bmp"
+    },
+    {
+      "resource_key": "mystic_resin",
+      "native_code": "CI121",
+      "inventory_icon": "Crafting/itCI121.bmp"
+    },
+    {
+      "resource_key": "ore_amethyst",
+      "native_code": "CI123",
+      "inventory_icon": "Crafting/itCI123.bmp"
+    },
+    {
+      "resource_key": "ore_citrine",
+      "native_code": "CI128",
+      "inventory_icon": "Crafting/itCI128.bmp"
+    },
+    {
+      "resource_key": "ore_emerald",
+      "native_code": "CI130",
+      "inventory_icon": "Crafting/itCI130.bmp"
+    },
+    {
+      "resource_key": "ore_gold",
+      "native_code": "CI125",
+      "inventory_icon": "Crafting/itCI125.bmp"
+    },
+    {
+      "resource_key": "ore_ruby",
+      "native_code": "CI129",
+      "inventory_icon": "Crafting/itCI129.bmp"
+    },
+    {
+      "resource_key": "ore_sapphire",
+      "native_code": "CI127",
+      "inventory_icon": "Crafting/itCI127.bmp"
+    },
+    {
+      "resource_key": "ore_silver",
+      "native_code": "CI124",
+      "inventory_icon": "Crafting/itCI124.bmp"
+    },
+    {
+      "resource_key": "ore_topaz",
+      "native_code": "CI126",
+      "inventory_icon": "Crafting/itCI126.bmp"
+    },
+    {
+      "resource_key": "purified_salt",
+      "native_code": "CI152",
+      "inventory_icon": "Crafting/itCI152.bmp"
+    },
+    {
+      "resource_key": "raw_ore_arcane",
+      "native_code": "CI107",
+      "inventory_icon": "Crafting/itCI107.bmp"
+    },
+    {
+      "resource_key": "raw_ore_crystalline",
+      "native_code": "CI101",
+      "inventory_icon": "Crafting/itCI101.bmp"
+    },
+    {
+      "resource_key": "raw_ore_deep",
+      "native_code": "CI105",
+      "inventory_icon": "Crafting/itCI105.bmp"
+    },
+    {
+      "resource_key": "raw_ore_energetic",
+      "native_code": "CI103",
+      "inventory_icon": "Crafting/itCI103.bmp"
+    },
+    {
+      "resource_key": "raw_ore_primordial",
+      "native_code": "CI111",
+      "inventory_icon": "Crafting/itCI111.bmp"
+    },
+    {
+      "resource_key": "raw_ore_runic",
+      "native_code": "CI109",
+      "inventory_icon": "Crafting/itCI109.bmp"
+    },
+    {
+      "resource_key": "resistant_logs",
+      "native_code": "CI116",
+      "inventory_icon": "Crafting/itCI116.bmp"
+    },
+    {
+      "resource_key": "sap",
+      "native_code": "CI114",
+      "inventory_icon": "Crafting/itCI114.bmp"
+    },
+    {
+      "resource_key": "tree_heart",
+      "native_code": "CI122",
+      "inventory_icon": "Crafting/itCI122.bmp"
+    },
+    {
+      "resource_key": "war_fragment",
+      "native_code": "CI155",
+      "inventory_icon": "Crafting/itCI155.bmp"
+    }
+  ]
+}

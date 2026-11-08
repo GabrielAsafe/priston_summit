@@ -9262,6 +9262,10 @@ int rsOpen_MonsterItemExp(rsKILL_MONSTER_INFO *lpKillMonInfo)
 }
 
 
+#ifdef _W_SERVER
+#include "systems/gameplay/gathering/v2/GmCombatResource396.h"
+#endif
+
 int srAutoCharMain(smCHAR *lpChar)
 {
 
@@ -9360,13 +9364,19 @@ int srAutoCharMain(smCHAR *lpChar)
 
 
 
-					if(rsPushKillMonster(lpChar, lprsPlayInfo, ((STG_AREA *)lpChar->lpExt1)) == FALSE)
+					// SUMMIT396A_GM58_COMBAT_MATERIALS: GM58 resource award before normal loot queue.
+					if (summit_gm396::ProcessDeath(static_cast<unsigned int>(lpChar->dwObjectSerial), lprsPlayInfo))
 					{
-						rsOpen_MonsterItemExp(lpChar, lprsPlayInfo);
+					    fprintf(stderr, "[SUMMIT_GM_396] DEATH_HOOK_ACTIVE serial=%u\n", static_cast<unsigned int>(lpChar->dwObjectSerial));
+					    lprsPlayInfo->MonsterKillCounter++;
+					}
+					else if (rsPushKillMonster(lpChar, lprsPlayInfo, ((STG_AREA *)lpChar->lpExt1)) == FALSE)
+					{
+					    rsOpen_MonsterItemExp(lpChar, lprsPlayInfo);
 					}
 					else
 					{
-						lprsPlayInfo->MonsterKillCounter++;
+					    lprsPlayInfo->MonsterKillCounter++;
 					}
 
 

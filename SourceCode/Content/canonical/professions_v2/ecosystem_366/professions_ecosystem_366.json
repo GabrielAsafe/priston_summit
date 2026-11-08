@@ -1,0 +1,2962 @@
+{
+  "schema": "summit.professions-ecosystem/v1",
+  "release": "366A",
+  "language": "pt-PT",
+  "authority": "CONTENT_DESIGN_AND_VALIDATED_CATALOG_NOT_LIVE_RUNTIME",
+  "default_enabled_for_gameplay": false,
+  "runtime_loader": "PENDING_JSON_TO_SERVER_BRIDGE",
+  "intended_data_flow": "Content canonical JSON -> authoritatively validated server services -> SQLite reserve -> DAT save-confirm -> XP credit -> client UI V2",
+  "user_requirements": {
+    "use_existing_covenant_node_interactions": true,
+    "leave_dummy_monster_models_until_replaced": true,
+    "dummy_png_for_all_2d_resources": true,
+    "no_chat_command_required_for_players": true,
+    "no_new_inventory_item_codes_without_validation": true
+  },
+  "progression": {
+    "levels_reference": "../levels.experimental.json",
+    "existing_level_policy": "MAX_LEVEL_50_COMPILED_SOURCE_POLICY",
+    "tracks": {
+      "Miner": {
+        "display_name": "Miner",
+        "skill_track": "mining",
+        "xp_scope": "per_character_per_profession",
+        "levels_source": "../levels.experimental.json",
+        "level_min": 0,
+        "level_max": 50,
+        "xp_awarded_only_after_durable_commit": true,
+        "description": "Extrai minério bruto dos seis tipos de veio"
+      },
+      "Lumberjack": {
+        "display_name": "Lumberjack",
+        "skill_track": "woodcutting",
+        "xp_scope": "per_character_per_profession",
+        "levels_source": "../levels.experimental.json",
+        "level_min": 0,
+        "level_max": 50,
+        "xp_awarded_only_after_durable_commit": true,
+        "description": "Abate quatro espécies de árvore e recolhe madeira, seiva e resina"
+      },
+      "Fisher": {
+        "display_name": "Fisher",
+        "skill_track": "fishing",
+        "xp_scope": "per_character_per_profession",
+        "levels_source": "../levels.experimental.json",
+        "level_min": 0,
+        "level_max": 50,
+        "xp_awarded_only_after_durable_commit": true,
+        "description": "Pesca nos nodes Sea; minigame previsto"
+      },
+      "Hunter": {
+        "display_name": "Hunter",
+        "skill_track": "hunting",
+        "xp_scope": "per_character_per_profession",
+        "levels_source": "../levels.experimental.json",
+        "level_min": 0,
+        "level_max": 50,
+        "xp_awarded_only_after_durable_commit": true,
+        "description": "Caça monstros e bosses; recursos especiais a validar"
+      },
+      "Artisan": {
+        "display_name": "Artisan",
+        "skill_track": "crafting",
+        "xp_scope": "per_character_per_profession",
+        "levels_source": "../levels.experimental.json",
+        "level_min": 0,
+        "level_max": 50,
+        "xp_awarded_only_after_durable_commit": true,
+        "description": "Prepara componentes, núcleos e Sheltoms com recursos de Miner e Lumberjack"
+      },
+      "Arcanist": {
+        "display_name": "Arcanist",
+        "skill_track": "crafting",
+        "xp_scope": "per_character_per_profession",
+        "levels_source": "../levels.experimental.json",
+        "level_min": 0,
+        "level_max": 50,
+        "xp_awarded_only_after_durable_commit": true,
+        "description": "Usa materiais do Artisan para fabricar poções melhoradas"
+      },
+      "Blacksmith": {
+        "display_name": "Blacksmith",
+        "skill_track": "crafting",
+        "xp_scope": "per_character_per_profession",
+        "levels_source": "../levels.experimental.json",
+        "level_min": 0,
+        "level_max": 50,
+        "xp_awarded_only_after_durable_commit": true,
+        "description": "Usa materiais do Artisan para fabricar equipamento melhorado"
+      }
+    },
+    "tier_to_profession_level_proposal": {
+      "1": 0,
+      "2": 5,
+      "3": 10,
+      "4": 15,
+      "5": 20,
+      "6": 25
+    },
+    "tier_lock_method": "minimum_profession_level",
+    "xp_commit_policy": "no_xp_until_resources_and_items_durably_committed",
+    "balance_status": "PROPOSTA_CONFIGURAVEL_NAO_APLICADA"
+  },
+  "vein_families": [
+    {
+      "family_id": "vein_crystalline",
+      "profession": "Miner",
+      "family_tier": 1,
+      "minimum_profession_level": 0,
+      "display_name": "Veio Cristalino",
+      "raw_resource_key": "raw_ore_crystalline",
+      "possible_sheltoms": [
+        "sheltom_lucidi",
+        "sheltom_sereneo",
+        "sheltom_fadeo"
+      ],
+      "harvest": {
+        "mode": "existing_covenant_combat_node",
+        "raw_resource_count_draft": [
+          1,
+          2
+        ],
+        "xp_draft": 2
+      },
+      "visual": {
+        "mode": "dummy_until_replaced",
+        "monster_template": "Mineiro das Cinzas",
+        "model_path": "char/monster/undeadminer/undeadminer.ini",
+        "swap_model_by_editing_this_json": true
+      },
+      "spawn_refs": [],
+      "enabled_for_live_spawn": false
+    },
+    {
+      "family_id": "vein_energetic",
+      "profession": "Miner",
+      "family_tier": 2,
+      "minimum_profession_level": 5,
+      "display_name": "Veio Energético",
+      "raw_resource_key": "raw_ore_energetic",
+      "possible_sheltoms": [
+        "sheltom_sparky",
+        "sheltom_raident",
+        "sheltom_transparo"
+      ],
+      "harvest": {
+        "mode": "existing_covenant_combat_node",
+        "raw_resource_count_draft": [
+          1,
+          2
+        ],
+        "xp_draft": 3
+      },
+      "visual": {
+        "mode": "dummy_until_replaced",
+        "monster_template": "Mineiro das Cinzas",
+        "model_path": "char/monster/undeadminer/undeadminer.ini",
+        "swap_model_by_editing_this_json": true
+      },
+      "spawn_refs": [],
+      "enabled_for_live_spawn": false
+    },
+    {
+      "family_id": "vein_deep",
+      "profession": "Miner",
+      "family_tier": 3,
+      "minimum_profession_level": 10,
+      "display_name": "Veio Profundo",
+      "raw_resource_key": "raw_ore_deep",
+      "possible_sheltoms": [
+        "sheltom_murky",
+        "sheltom_devine",
+        "sheltom_celesto"
+      ],
+      "harvest": {
+        "mode": "existing_covenant_combat_node",
+        "raw_resource_count_draft": [
+          1,
+          2
+        ],
+        "xp_draft": 4
+      },
+      "visual": {
+        "mode": "dummy_until_replaced",
+        "monster_template": "Mineiro das Cinzas",
+        "model_path": "char/monster/undeadminer/undeadminer.ini",
+        "swap_model_by_editing_this_json": true
+      },
+      "spawn_refs": [],
+      "enabled_for_live_spawn": false
+    },
+    {
+      "family_id": "vein_arcane",
+      "profession": "Miner",
+      "family_tier": 4,
+      "minimum_profession_level": 15,
+      "display_name": "Veio Arcano",
+      "raw_resource_key": "raw_ore_arcane",
+      "possible_sheltoms": [
+        "sheltom_mirage",
+        "sheltom_inferna",
+        "sheltom_enigma"
+      ],
+      "harvest": {
+        "mode": "existing_covenant_combat_node",
+        "raw_resource_count_draft": [
+          1,
+          2
+        ],
+        "xp_draft": 5
+      },
+      "visual": {
+        "mode": "dummy_until_replaced",
+        "monster_template": "Mineiro das Cinzas",
+        "model_path": "char/monster/undeadminer/undeadminer.ini",
+        "swap_model_by_editing_this_json": true
+      },
+      "spawn_refs": [],
+      "enabled_for_live_spawn": false
+    },
+    {
+      "family_id": "vein_runic",
+      "profession": "Miner",
+      "family_tier": 5,
+      "minimum_profession_level": 20,
+      "display_name": "Veio Rúnico",
+      "raw_resource_key": "raw_ore_runic",
+      "possible_sheltoms": [
+        "sheltom_bellum",
+        "sheltom_ordo",
+        "sheltom_gemma"
+      ],
+      "harvest": {
+        "mode": "existing_covenant_combat_node",
+        "raw_resource_count_draft": [
+          1,
+          2
+        ],
+        "xp_draft": 6
+      },
+      "visual": {
+        "mode": "dummy_until_replaced",
+        "monster_template": "Mineiro das Cinzas",
+        "model_path": "char/monster/undeadminer/undeadminer.ini",
+        "swap_model_by_editing_this_json": true
+      },
+      "spawn_refs": [],
+      "enabled_for_live_spawn": false
+    },
+    {
+      "family_id": "vein_primordial",
+      "profession": "Miner",
+      "family_tier": 6,
+      "minimum_profession_level": 25,
+      "display_name": "Veio Primordial",
+      "raw_resource_key": "raw_ore_primordial",
+      "possible_sheltoms": [
+        "sheltom_purus",
+        "sheltom_veritas"
+      ],
+      "harvest": {
+        "mode": "existing_covenant_combat_node",
+        "raw_resource_count_draft": [
+          1,
+          2
+        ],
+        "xp_draft": 7
+      },
+      "visual": {
+        "mode": "dummy_until_replaced",
+        "monster_template": "Mineiro das Cinzas",
+        "model_path": "char/monster/undeadminer/undeadminer.ini",
+        "swap_model_by_editing_this_json": true
+      },
+      "spawn_refs": [],
+      "enabled_for_live_spawn": false
+    }
+  ],
+  "tree_families": [
+    {
+      "family_id": "tree_oak",
+      "profession": "Lumberjack",
+      "family_tier": 1,
+      "minimum_profession_level": 0,
+      "display_name": "Carvalho",
+      "harvest": {
+        "mode": "existing_covenant_combat_node",
+        "xp_draft": 2,
+        "drops_draft": [
+          {
+            "key": "common_logs",
+            "weight": 100,
+            "amount": [
+              1,
+              2
+            ]
+          },
+          {
+            "key": "sap",
+            "weight": 35,
+            "amount": [
+              1,
+              2
+            ]
+          },
+          {
+            "key": "bark",
+            "weight": 10,
+            "amount": [
+              1,
+              2
+            ]
+          }
+        ]
+      },
+      "visual": {
+        "mode": "dummy_until_replaced",
+        "monster_template": "Árvore Maldita",
+        "model_path": "char/monster/monplant/monplant-d.ini",
+        "swap_model_by_editing_this_json": true
+      },
+      "spawn_refs": [],
+      "enabled_for_live_spawn": false
+    },
+    {
+      "family_id": "tree_ironwood",
+      "profession": "Lumberjack",
+      "family_tier": 2,
+      "minimum_profession_level": 5,
+      "display_name": "Madeira de Ferro",
+      "harvest": {
+        "mode": "existing_covenant_combat_node",
+        "xp_draft": 3,
+        "drops_draft": [
+          {
+            "key": "resistant_logs",
+            "weight": 100,
+            "amount": [
+              1,
+              2
+            ]
+          },
+          {
+            "key": "dense_resin",
+            "weight": 35,
+            "amount": [
+              1,
+              2
+            ]
+          }
+        ]
+      },
+      "visual": {
+        "mode": "dummy_until_replaced",
+        "monster_template": "Árvore Maldita",
+        "model_path": "char/monster/monplant/monplant-d.ini",
+        "swap_model_by_editing_this_json": true
+      },
+      "spawn_refs": [],
+      "enabled_for_live_spawn": false
+    },
+    {
+      "family_id": "tree_crystal_tree",
+      "profession": "Lumberjack",
+      "family_tier": 3,
+      "minimum_profession_level": 10,
+      "display_name": "Árvore de Cristal",
+      "harvest": {
+        "mode": "existing_covenant_combat_node",
+        "xp_draft": 4,
+        "drops_draft": [
+          {
+            "key": "crystalline_wood",
+            "weight": 100,
+            "amount": [
+              1,
+              2
+            ]
+          },
+          {
+            "key": "energetic_sap",
+            "weight": 35,
+            "amount": [
+              1,
+              2
+            ]
+          }
+        ]
+      },
+      "visual": {
+        "mode": "dummy_until_replaced",
+        "monster_template": "Árvore Maldita",
+        "model_path": "char/monster/monplant/monplant-d.ini",
+        "swap_model_by_editing_this_json": true
+      },
+      "spawn_refs": [],
+      "enabled_for_live_spawn": false
+    },
+    {
+      "family_id": "tree_arcane_tree",
+      "profession": "Lumberjack",
+      "family_tier": 4,
+      "minimum_profession_level": 15,
+      "display_name": "Árvore Arcana",
+      "harvest": {
+        "mode": "existing_covenant_combat_node",
+        "xp_draft": 5,
+        "drops_draft": [
+          {
+            "key": "arcane_wood",
+            "weight": 100,
+            "amount": [
+              1,
+              2
+            ]
+          },
+          {
+            "key": "mystic_resin",
+            "weight": 35,
+            "amount": [
+              1,
+              2
+            ]
+          },
+          {
+            "key": "tree_heart",
+            "weight": 10,
+            "amount": [
+              1,
+              2
+            ]
+          }
+        ]
+      },
+      "visual": {
+        "mode": "dummy_until_replaced",
+        "monster_template": "Árvore Maldita",
+        "model_path": "char/monster/monplant/monplant-d.ini",
+        "swap_model_by_editing_this_json": true
+      },
+      "spawn_refs": [],
+      "enabled_for_live_spawn": false
+    }
+  ],
+  "resources": [
+    {
+      "key": "raw_ore_crystalline",
+      "name_pt": "Minério Cristalino Bruto",
+      "kind": "raw_ore",
+      "icon_png": "image/professions/v2/items/dummy/raw_ore_crystalline.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Miner",
+      "mining_tier": 1
+    },
+    {
+      "key": "core_crystalline",
+      "name_pt": "Núcleo Cristalino",
+      "kind": "core",
+      "icon_png": "image/professions/v2/items/dummy/core_crystalline.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "mining_tier": 1
+    },
+    {
+      "key": "raw_ore_energetic",
+      "name_pt": "Minério Energético Bruto",
+      "kind": "raw_ore",
+      "icon_png": "image/professions/v2/items/dummy/raw_ore_energetic.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Miner",
+      "mining_tier": 2
+    },
+    {
+      "key": "core_energetic",
+      "name_pt": "Núcleo Energético",
+      "kind": "core",
+      "icon_png": "image/professions/v2/items/dummy/core_energetic.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "mining_tier": 2
+    },
+    {
+      "key": "raw_ore_deep",
+      "name_pt": "Minério Profundo Bruto",
+      "kind": "raw_ore",
+      "icon_png": "image/professions/v2/items/dummy/raw_ore_deep.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Miner",
+      "mining_tier": 3
+    },
+    {
+      "key": "core_deep",
+      "name_pt": "Núcleo Profundo",
+      "kind": "core",
+      "icon_png": "image/professions/v2/items/dummy/core_deep.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "mining_tier": 3
+    },
+    {
+      "key": "raw_ore_arcane",
+      "name_pt": "Minério Arcano Bruto",
+      "kind": "raw_ore",
+      "icon_png": "image/professions/v2/items/dummy/raw_ore_arcane.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Miner",
+      "mining_tier": 4
+    },
+    {
+      "key": "core_arcane",
+      "name_pt": "Núcleo Arcano",
+      "kind": "core",
+      "icon_png": "image/professions/v2/items/dummy/core_arcane.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "mining_tier": 4
+    },
+    {
+      "key": "raw_ore_runic",
+      "name_pt": "Minério Rúnico Bruto",
+      "kind": "raw_ore",
+      "icon_png": "image/professions/v2/items/dummy/raw_ore_runic.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Miner",
+      "mining_tier": 5
+    },
+    {
+      "key": "core_runic",
+      "name_pt": "Núcleo Rúnico",
+      "kind": "core",
+      "icon_png": "image/professions/v2/items/dummy/core_runic.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "mining_tier": 5
+    },
+    {
+      "key": "raw_ore_primordial",
+      "name_pt": "Minério Primordial Bruto",
+      "kind": "raw_ore",
+      "icon_png": "image/professions/v2/items/dummy/raw_ore_primordial.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Miner",
+      "mining_tier": 6
+    },
+    {
+      "key": "core_primordial",
+      "name_pt": "Núcleo Primordial",
+      "kind": "core",
+      "icon_png": "image/professions/v2/items/dummy/core_primordial.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "mining_tier": 6
+    },
+    {
+      "key": "common_logs",
+      "name_pt": "Troncos Comuns",
+      "kind": "wood_primary",
+      "icon_png": "image/professions/v2/items/dummy/common_logs.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Lumberjack"
+    },
+    {
+      "key": "sap",
+      "name_pt": "Seiva",
+      "kind": "wood_primary",
+      "icon_png": "image/professions/v2/items/dummy/sap.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Lumberjack"
+    },
+    {
+      "key": "bark",
+      "name_pt": "Casca",
+      "kind": "wood_primary",
+      "icon_png": "image/professions/v2/items/dummy/bark.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Lumberjack"
+    },
+    {
+      "key": "resistant_logs",
+      "name_pt": "Troncos Resistentes",
+      "kind": "wood_primary",
+      "icon_png": "image/professions/v2/items/dummy/resistant_logs.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Lumberjack"
+    },
+    {
+      "key": "dense_resin",
+      "name_pt": "Resina Densa",
+      "kind": "wood_primary",
+      "icon_png": "image/professions/v2/items/dummy/dense_resin.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Lumberjack"
+    },
+    {
+      "key": "crystalline_wood",
+      "name_pt": "Madeira Cristalina",
+      "kind": "wood_primary",
+      "icon_png": "image/professions/v2/items/dummy/crystalline_wood.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Lumberjack"
+    },
+    {
+      "key": "energetic_sap",
+      "name_pt": "Seiva Energética",
+      "kind": "wood_primary",
+      "icon_png": "image/professions/v2/items/dummy/energetic_sap.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Lumberjack"
+    },
+    {
+      "key": "arcane_wood",
+      "name_pt": "Madeira Arcana",
+      "kind": "wood_primary",
+      "icon_png": "image/professions/v2/items/dummy/arcane_wood.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Lumberjack"
+    },
+    {
+      "key": "mystic_resin",
+      "name_pt": "Resina Mística",
+      "kind": "wood_primary",
+      "icon_png": "image/professions/v2/items/dummy/mystic_resin.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Lumberjack"
+    },
+    {
+      "key": "tree_heart",
+      "name_pt": "Coração de Árvore",
+      "kind": "wood_primary",
+      "icon_png": "image/professions/v2/items/dummy/tree_heart.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Lumberjack"
+    },
+    {
+      "key": "ore_amethyst",
+      "name_pt": "Ore de Ametista",
+      "kind": "ore_gem",
+      "icon_png": "image/professions/v2/items/dummy/ore_amethyst.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Miner",
+      "discovery": "resource_table_future"
+    },
+    {
+      "key": "ore_silver",
+      "name_pt": "Ore de Prata",
+      "kind": "ore_gem",
+      "icon_png": "image/professions/v2/items/dummy/ore_silver.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Miner",
+      "discovery": "resource_table_future"
+    },
+    {
+      "key": "ore_gold",
+      "name_pt": "Ore de Ouro",
+      "kind": "ore_gem",
+      "icon_png": "image/professions/v2/items/dummy/ore_gold.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Miner",
+      "discovery": "resource_table_future"
+    },
+    {
+      "key": "ore_topaz",
+      "name_pt": "Ore de Topázio",
+      "kind": "ore_gem",
+      "icon_png": "image/professions/v2/items/dummy/ore_topaz.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Miner",
+      "discovery": "resource_table_future"
+    },
+    {
+      "key": "ore_sapphire",
+      "name_pt": "Ore de Safira",
+      "kind": "ore_gem",
+      "icon_png": "image/professions/v2/items/dummy/ore_sapphire.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Miner",
+      "discovery": "resource_table_future"
+    },
+    {
+      "key": "ore_citrine",
+      "name_pt": "Ore de Citrino",
+      "kind": "ore_gem",
+      "icon_png": "image/professions/v2/items/dummy/ore_citrine.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Miner",
+      "discovery": "resource_table_future"
+    },
+    {
+      "key": "ore_ruby",
+      "name_pt": "Ore de Rubi",
+      "kind": "ore_gem",
+      "icon_png": "image/professions/v2/items/dummy/ore_ruby.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Miner",
+      "discovery": "resource_table_future"
+    },
+    {
+      "key": "ore_emerald",
+      "name_pt": "Ore de Esmeralda",
+      "kind": "ore_gem",
+      "icon_png": "image/professions/v2/items/dummy/ore_emerald.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Miner",
+      "discovery": "resource_table_future"
+    },
+    {
+      "key": "silver_dust",
+      "name_pt": "Pó de Prata",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/silver_dust.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "PROPOSED"
+    },
+    {
+      "key": "ground_amethyst",
+      "name_pt": "Ametista Moída",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/ground_amethyst.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "PROPOSED"
+    },
+    {
+      "key": "gold_dust",
+      "name_pt": "Pó de Ouro",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/gold_dust.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "PROPOSED"
+    },
+    {
+      "key": "topaz_dust",
+      "name_pt": "Pó de Topázio",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/topaz_dust.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "PROPOSED"
+    },
+    {
+      "key": "ground_sapphire",
+      "name_pt": "Safira Moída",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/ground_sapphire.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "PROPOSED"
+    },
+    {
+      "key": "ground_citrine",
+      "name_pt": "Citrino Moído",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/ground_citrine.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "PROPOSED"
+    },
+    {
+      "key": "ground_ruby",
+      "name_pt": "Rubi Moído",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/ground_ruby.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "PROPOSED"
+    },
+    {
+      "key": "ground_emerald",
+      "name_pt": "Esmeralda Moída",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/ground_emerald.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "PROPOSED"
+    },
+    {
+      "key": "iron_ingot",
+      "name_pt": "Ferro",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/iron_ingot.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "PROPOSED"
+    },
+    {
+      "key": "planks",
+      "name_pt": "Tábuas",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/planks.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "PROPOSED"
+    },
+    {
+      "key": "resistant_planks",
+      "name_pt": "Tábuas Resistentes",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/resistant_planks.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "PROPOSED"
+    },
+    {
+      "key": "treated_planks",
+      "name_pt": "Tábuas Tratadas",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/treated_planks.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "PROPOSED"
+    },
+    {
+      "key": "charcoal",
+      "name_pt": "Carvão Vegetal",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/charcoal.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "PROPOSED"
+    },
+    {
+      "key": "reinforced_handle",
+      "name_pt": "Cabo Reforçado",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/reinforced_handle.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "PROPOSED"
+    },
+    {
+      "key": "purified_resin",
+      "name_pt": "Resina Purificada",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/purified_resin.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "PROPOSED"
+    },
+    {
+      "key": "arcane_charcoal",
+      "name_pt": "Carvão Arcano",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/arcane_charcoal.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "PROPOSED"
+    },
+    {
+      "key": "crystalline_sap",
+      "name_pt": "Seiva Cristalina",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/crystalline_sap.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "PROPOSED"
+    },
+    {
+      "key": "dark_resin",
+      "name_pt": "Resina Sombria",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/dark_resin.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "PROPOSED"
+    },
+    {
+      "key": "arcane_ash",
+      "name_pt": "Cinza Arcana",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/arcane_ash.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "PROPOSED"
+    },
+    {
+      "key": "primordial_essence",
+      "name_pt": "Essência Primordial",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/primordial_essence.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "PROPOSED"
+    },
+    {
+      "key": "dark_essence",
+      "name_pt": "Essência Sombria",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/dark_essence.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "SOURCE_OR_RECIPE_REQUIRED"
+    },
+    {
+      "key": "purified_salt",
+      "name_pt": "Sal Purificado",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/purified_salt.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "SOURCE_OR_RECIPE_REQUIRED"
+    },
+    {
+      "key": "illusory_essence",
+      "name_pt": "Essência Ilusória",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/illusory_essence.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "SOURCE_OR_RECIPE_REQUIRED"
+    },
+    {
+      "key": "arcane_essence",
+      "name_pt": "Essência Arcana",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/arcane_essence.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "PROPOSED"
+    },
+    {
+      "key": "war_fragment",
+      "name_pt": "Fragmento Bélico",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/war_fragment.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "SOURCE_OR_RECIPE_REQUIRED"
+    },
+    {
+      "key": "purified_gold",
+      "name_pt": "Ouro Purificado",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/purified_gold.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "PROPOSED"
+    },
+    {
+      "key": "scroll_blank",
+      "name_pt": "Pergaminho em Branco",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/scroll_blank.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "PROPOSED"
+    },
+    {
+      "key": "scroll_enhancement",
+      "name_pt": "Pergaminho de Melhoria",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/scroll_enhancement.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "PROPOSED"
+    },
+    {
+      "key": "mystic_solvent",
+      "name_pt": "Solvente Místico",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/mystic_solvent.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "PROPOSED"
+    },
+    {
+      "key": "machine_treated",
+      "name_pt": "Máquina de Mineração",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/machine_treated.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "PROPOSED"
+    },
+    {
+      "key": "tool_reinforced",
+      "name_pt": "Ferramenta Reforçada",
+      "kind": "refined_or_reagent",
+      "icon_png": "image/professions/v2/items/dummy/tool_reinforced.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "origin_profession": "Artisan",
+      "status": "PROPOSED"
+    },
+    {
+      "key": "sheltom_lucidi",
+      "name_pt": "Lucidi",
+      "kind": "sheltom",
+      "icon_png": "image/professions/v2/items/dummy/sheltom_lucidi.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "tier": 1,
+      "existing_item_code": null,
+      "item_code_status": "UNRESOLVED_OS101_IS_SKULL",
+      "catalog_alias": "Lucidi"
+    },
+    {
+      "key": "sheltom_sereneo",
+      "name_pt": "Sereneo",
+      "kind": "sheltom",
+      "icon_png": "image/professions/v2/items/dummy/sheltom_sereneo.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "tier": 1,
+      "existing_item_code": "OS102",
+      "item_code_status": "VERIFIED_IN_CLIENT_SERVER_CATALOG",
+      "catalog_alias": "Sereneo"
+    },
+    {
+      "key": "sheltom_fadeo",
+      "name_pt": "Fadeo",
+      "kind": "sheltom",
+      "icon_png": "image/professions/v2/items/dummy/sheltom_fadeo.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "tier": 1,
+      "existing_item_code": "OS103",
+      "item_code_status": "VERIFIED_IN_CLIENT_SERVER_CATALOG",
+      "catalog_alias": "Fadeo"
+    },
+    {
+      "key": "sheltom_sparky",
+      "name_pt": "Sparky",
+      "kind": "sheltom",
+      "icon_png": "image/professions/v2/items/dummy/sheltom_sparky.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "tier": 2,
+      "existing_item_code": "OS104",
+      "item_code_status": "VERIFIED_IN_CLIENT_SERVER_CATALOG",
+      "catalog_alias": "Sparki"
+    },
+    {
+      "key": "sheltom_raident",
+      "name_pt": "Raident",
+      "kind": "sheltom",
+      "icon_png": "image/professions/v2/items/dummy/sheltom_raident.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "tier": 2,
+      "existing_item_code": "OS105",
+      "item_code_status": "VERIFIED_IN_CLIENT_SERVER_CATALOG",
+      "catalog_alias": "Raident"
+    },
+    {
+      "key": "sheltom_transparo",
+      "name_pt": "Transparo",
+      "kind": "sheltom",
+      "icon_png": "image/professions/v2/items/dummy/sheltom_transparo.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "tier": 2,
+      "existing_item_code": "OS106",
+      "item_code_status": "VERIFIED_IN_CLIENT_SERVER_CATALOG",
+      "catalog_alias": "Transparo"
+    },
+    {
+      "key": "sheltom_murky",
+      "name_pt": "Murky",
+      "kind": "sheltom",
+      "icon_png": "image/professions/v2/items/dummy/sheltom_murky.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "tier": 3,
+      "existing_item_code": "OS107",
+      "item_code_status": "VERIFIED_IN_CLIENT_SERVER_CATALOG",
+      "catalog_alias": "Murki"
+    },
+    {
+      "key": "sheltom_devine",
+      "name_pt": "Devine",
+      "kind": "sheltom",
+      "icon_png": "image/professions/v2/items/dummy/sheltom_devine.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "tier": 3,
+      "existing_item_code": "OS108",
+      "item_code_status": "VERIFIED_IN_CLIENT_SERVER_CATALOG",
+      "catalog_alias": "Devine"
+    },
+    {
+      "key": "sheltom_celesto",
+      "name_pt": "Celesto",
+      "kind": "sheltom",
+      "icon_png": "image/professions/v2/items/dummy/sheltom_celesto.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "tier": 3,
+      "existing_item_code": "OS109",
+      "item_code_status": "VERIFIED_IN_CLIENT_SERVER_CATALOG",
+      "catalog_alias": "Celesto"
+    },
+    {
+      "key": "sheltom_mirage",
+      "name_pt": "Mirage",
+      "kind": "sheltom",
+      "icon_png": "image/professions/v2/items/dummy/sheltom_mirage.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "tier": 4,
+      "existing_item_code": "OS110",
+      "item_code_status": "VERIFIED_IN_CLIENT_SERVER_CATALOG",
+      "catalog_alias": "Miragem"
+    },
+    {
+      "key": "sheltom_inferna",
+      "name_pt": "Inferna",
+      "kind": "sheltom",
+      "icon_png": "image/professions/v2/items/dummy/sheltom_inferna.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "tier": 4,
+      "existing_item_code": "OS111",
+      "item_code_status": "VERIFIED_IN_CLIENT_SERVER_CATALOG",
+      "catalog_alias": "Inferna"
+    },
+    {
+      "key": "sheltom_enigma",
+      "name_pt": "Enigma",
+      "kind": "sheltom",
+      "icon_png": "image/professions/v2/items/dummy/sheltom_enigma.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "tier": 4,
+      "existing_item_code": "OS112",
+      "item_code_status": "VERIFIED_IN_CLIENT_SERVER_CATALOG",
+      "catalog_alias": "Enigma"
+    },
+    {
+      "key": "sheltom_bellum",
+      "name_pt": "Bellum",
+      "kind": "sheltom",
+      "icon_png": "image/professions/v2/items/dummy/sheltom_bellum.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "tier": 5,
+      "existing_item_code": "OS113",
+      "item_code_status": "VERIFIED_IN_CLIENT_SERVER_CATALOG",
+      "catalog_alias": "Bellum"
+    },
+    {
+      "key": "sheltom_ordo",
+      "name_pt": "Ordo",
+      "kind": "sheltom",
+      "icon_png": "image/professions/v2/items/dummy/sheltom_ordo.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "tier": 5,
+      "existing_item_code": "OS114",
+      "item_code_status": "VERIFIED_IN_CLIENT_SERVER_CATALOG",
+      "catalog_alias": "Ordo"
+    },
+    {
+      "key": "sheltom_gemma",
+      "name_pt": "Gemma",
+      "kind": "sheltom",
+      "icon_png": "image/professions/v2/items/dummy/sheltom_gemma.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "tier": 5,
+      "existing_item_code": "OS115",
+      "item_code_status": "VERIFIED_IN_CLIENT_SERVER_CATALOG",
+      "catalog_alias": "Gemma"
+    },
+    {
+      "key": "sheltom_purus",
+      "name_pt": "Purus",
+      "kind": "sheltom",
+      "icon_png": "image/professions/v2/items/dummy/sheltom_purus.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "tier": 6,
+      "existing_item_code": "OS116",
+      "item_code_status": "VERIFIED_IN_CLIENT_SERVER_CATALOG",
+      "catalog_alias": "Purus"
+    },
+    {
+      "key": "sheltom_veritas",
+      "name_pt": "Veritas",
+      "kind": "sheltom",
+      "icon_png": "image/professions/v2/items/dummy/sheltom_veritas.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "tier": 6,
+      "existing_item_code": "OS117",
+      "item_code_status": "VERIFIED_IN_CLIENT_SERVER_CATALOG",
+      "catalog_alias": "Veritas"
+    },
+    {
+      "key": "potion_hp_enhanced",
+      "name_pt": "Poção de Vida Reforçada",
+      "kind": "potion_upgrade_design",
+      "icon_png": "image/professions/v2/items/dummy/potion_hp_enhanced.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "legacy_item_code": null,
+      "physical_item_enabled": false
+    },
+    {
+      "key": "potion_mp_enhanced",
+      "name_pt": "Poção de Mana Reforçada",
+      "kind": "potion_upgrade_design",
+      "icon_png": "image/professions/v2/items/dummy/potion_mp_enhanced.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "legacy_item_code": null,
+      "physical_item_enabled": false
+    },
+    {
+      "key": "potion_stamina_enhanced",
+      "name_pt": "Poção de Vigor Reforçada",
+      "kind": "potion_upgrade_design",
+      "icon_png": "image/professions/v2/items/dummy/potion_stamina_enhanced.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "legacy_item_code": null,
+      "physical_item_enabled": false
+    },
+    {
+      "key": "crafted_wa103",
+      "name_pt": "Machado de Batalha (melhorado - proposta)",
+      "kind": "equipment_upgrade_design",
+      "icon_png": "image/professions/v2/items/dummy/crafted_wa103.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "existing_item_code": "WA103",
+      "physical_item_enabled": false
+    },
+    {
+      "key": "crafted_da106",
+      "name_pt": "Armadura Reforçada (melhorado - proposta)",
+      "kind": "equipment_upgrade_design",
+      "icon_png": "image/professions/v2/items/dummy/crafted_da106.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "existing_item_code": "DA106",
+      "physical_item_enabled": false
+    },
+    {
+      "key": "crafted_ws103",
+      "name_pt": "Arco de Mão (melhorado - proposta)",
+      "kind": "equipment_upgrade_design",
+      "icon_png": "image/professions/v2/items/dummy/crafted_ws103.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "existing_item_code": "WS103",
+      "physical_item_enabled": false
+    },
+    {
+      "key": "crafted_wm110",
+      "name_pt": "Cajado Mágico (melhorado - proposta)",
+      "kind": "equipment_upgrade_design",
+      "icon_png": "image/professions/v2/items/dummy/crafted_wm110.png",
+      "icon_status": "PLACEHOLDER_ONLY_NOT_BOUND_TO_LEGACY_ITEM",
+      "stackable": true,
+      "existing_item_code": "WM110",
+      "physical_item_enabled": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "artisan.refine_core_crystalline",
+      "profession": "Artisan",
+      "profession_tier": 1,
+      "minimum_profession_level": 0,
+      "ingredients": [
+        {
+          "key": "raw_ore_crystalline",
+          "quantity": 2
+        }
+      ],
+      "output": {
+        "resource_key": "core_crystalline",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 4,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Proporção de refinação proposta e ajustável, não especificada pelo utilizador."
+    },
+    {
+      "id": "artisan.refine_core_energetic",
+      "profession": "Artisan",
+      "profession_tier": 2,
+      "minimum_profession_level": 5,
+      "ingredients": [
+        {
+          "key": "raw_ore_energetic",
+          "quantity": 2
+        },
+        {
+          "key": "charcoal",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "core_energetic",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 6,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Proporção de refinação proposta e ajustável, não especificada pelo utilizador."
+    },
+    {
+      "id": "artisan.refine_core_deep",
+      "profession": "Artisan",
+      "profession_tier": 3,
+      "minimum_profession_level": 10,
+      "ingredients": [
+        {
+          "key": "raw_ore_deep",
+          "quantity": 2
+        },
+        {
+          "key": "purified_resin",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "core_deep",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 8,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Proporção de refinação proposta e ajustável, não especificada pelo utilizador."
+    },
+    {
+      "id": "artisan.refine_core_arcane",
+      "profession": "Artisan",
+      "profession_tier": 4,
+      "minimum_profession_level": 15,
+      "ingredients": [
+        {
+          "key": "raw_ore_arcane",
+          "quantity": 2
+        },
+        {
+          "key": "crystalline_sap",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "core_arcane",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 10,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Proporção de refinação proposta e ajustável, não especificada pelo utilizador."
+    },
+    {
+      "id": "artisan.refine_core_runic",
+      "profession": "Artisan",
+      "profession_tier": 5,
+      "minimum_profession_level": 20,
+      "ingredients": [
+        {
+          "key": "raw_ore_runic",
+          "quantity": 2
+        },
+        {
+          "key": "arcane_charcoal",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "core_runic",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 12,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Proporção de refinação proposta e ajustável, não especificada pelo utilizador."
+    },
+    {
+      "id": "artisan.refine_core_primordial",
+      "profession": "Artisan",
+      "profession_tier": 6,
+      "minimum_profession_level": 25,
+      "ingredients": [
+        {
+          "key": "raw_ore_primordial",
+          "quantity": 2
+        },
+        {
+          "key": "arcane_ash",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "core_primordial",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 14,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Proporção de refinação proposta e ajustável, não especificada pelo utilizador."
+    },
+    {
+      "id": "artisan.process_silver_dust",
+      "profession": "Artisan",
+      "profession_tier": 1,
+      "minimum_profession_level": 0,
+      "ingredients": [
+        {
+          "key": "ore_silver",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "silver_dust",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 4,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Moagem e purificação preliminares; balanço ajustável."
+    },
+    {
+      "id": "artisan.process_ground_amethyst",
+      "profession": "Artisan",
+      "profession_tier": 1,
+      "minimum_profession_level": 0,
+      "ingredients": [
+        {
+          "key": "ore_amethyst",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "ground_amethyst",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 4,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Moagem e purificação preliminares; balanço ajustável."
+    },
+    {
+      "id": "artisan.process_gold_dust",
+      "profession": "Artisan",
+      "profession_tier": 1,
+      "minimum_profession_level": 0,
+      "ingredients": [
+        {
+          "key": "ore_gold",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "gold_dust",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 4,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Moagem e purificação preliminares; balanço ajustável."
+    },
+    {
+      "id": "artisan.process_topaz_dust",
+      "profession": "Artisan",
+      "profession_tier": 1,
+      "minimum_profession_level": 0,
+      "ingredients": [
+        {
+          "key": "ore_topaz",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "topaz_dust",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 4,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Moagem e purificação preliminares; balanço ajustável."
+    },
+    {
+      "id": "artisan.process_ground_sapphire",
+      "profession": "Artisan",
+      "profession_tier": 1,
+      "minimum_profession_level": 0,
+      "ingredients": [
+        {
+          "key": "ore_sapphire",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "ground_sapphire",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 4,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Moagem e purificação preliminares; balanço ajustável."
+    },
+    {
+      "id": "artisan.process_ground_citrine",
+      "profession": "Artisan",
+      "profession_tier": 1,
+      "minimum_profession_level": 0,
+      "ingredients": [
+        {
+          "key": "ore_citrine",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "ground_citrine",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 4,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Moagem e purificação preliminares; balanço ajustável."
+    },
+    {
+      "id": "artisan.process_ground_ruby",
+      "profession": "Artisan",
+      "profession_tier": 1,
+      "minimum_profession_level": 0,
+      "ingredients": [
+        {
+          "key": "ore_ruby",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "ground_ruby",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 4,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Moagem e purificação preliminares; balanço ajustável."
+    },
+    {
+      "id": "artisan.process_ground_emerald",
+      "profession": "Artisan",
+      "profession_tier": 1,
+      "minimum_profession_level": 0,
+      "ingredients": [
+        {
+          "key": "ore_emerald",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "ground_emerald",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 4,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Moagem e purificação preliminares; balanço ajustável."
+    },
+    {
+      "id": "artisan.make_planks",
+      "profession": "Artisan",
+      "profession_tier": 1,
+      "minimum_profession_level": 0,
+      "ingredients": [
+        {
+          "key": "common_logs",
+          "quantity": 2
+        }
+      ],
+      "output": {
+        "resource_key": "planks",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 4,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true
+    },
+    {
+      "id": "artisan.make_resistant_planks",
+      "profession": "Artisan",
+      "profession_tier": 2,
+      "minimum_profession_level": 5,
+      "ingredients": [
+        {
+          "key": "resistant_logs",
+          "quantity": 2
+        }
+      ],
+      "output": {
+        "resource_key": "resistant_planks",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 6,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true
+    },
+    {
+      "id": "artisan.make_charcoal",
+      "profession": "Artisan",
+      "profession_tier": 1,
+      "minimum_profession_level": 0,
+      "ingredients": [
+        {
+          "key": "common_logs",
+          "quantity": 2
+        }
+      ],
+      "output": {
+        "resource_key": "charcoal",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 4,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true
+    },
+    {
+      "id": "artisan.make_treated_planks",
+      "profession": "Artisan",
+      "profession_tier": 2,
+      "minimum_profession_level": 5,
+      "ingredients": [
+        {
+          "key": "planks",
+          "quantity": 3
+        },
+        {
+          "key": "dense_resin",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "treated_planks",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 6,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true
+    },
+    {
+      "id": "artisan.make_reinforced_handle",
+      "profession": "Artisan",
+      "profession_tier": 2,
+      "minimum_profession_level": 5,
+      "ingredients": [
+        {
+          "key": "resistant_planks",
+          "quantity": 2
+        },
+        {
+          "key": "iron_ingot",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "reinforced_handle",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 6,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true
+    },
+    {
+      "id": "artisan.make_purified_resin",
+      "profession": "Artisan",
+      "profession_tier": 2,
+      "minimum_profession_level": 5,
+      "ingredients": [
+        {
+          "key": "sap",
+          "quantity": 3
+        },
+        {
+          "key": "charcoal",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "purified_resin",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 6,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true
+    },
+    {
+      "id": "artisan.make_arcane_charcoal",
+      "profession": "Artisan",
+      "profession_tier": 4,
+      "minimum_profession_level": 15,
+      "ingredients": [
+        {
+          "key": "arcane_wood",
+          "quantity": 2
+        },
+        {
+          "key": "arcane_essence",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "arcane_charcoal",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 10,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true
+    },
+    {
+      "id": "artisan.make_crystalline_sap",
+      "profession": "Artisan",
+      "profession_tier": 3,
+      "minimum_profession_level": 10,
+      "ingredients": [
+        {
+          "key": "energetic_sap",
+          "quantity": 2
+        },
+        {
+          "key": "purified_resin",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "crystalline_sap",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 8,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true
+    },
+    {
+      "id": "artisan.make_dark_resin",
+      "profession": "Artisan",
+      "profession_tier": 3,
+      "minimum_profession_level": 10,
+      "ingredients": [
+        {
+          "key": "dense_resin",
+          "quantity": 1
+        },
+        {
+          "key": "dark_essence",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "dark_resin",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 8,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true
+    },
+    {
+      "id": "artisan.make_arcane_ash",
+      "profession": "Artisan",
+      "profession_tier": 4,
+      "minimum_profession_level": 15,
+      "ingredients": [
+        {
+          "key": "arcane_wood",
+          "quantity": 1
+        },
+        {
+          "key": "charcoal",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "arcane_ash",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 10,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true
+    },
+    {
+      "id": "artisan.make_primordial_essence",
+      "profession": "Artisan",
+      "profession_tier": 6,
+      "minimum_profession_level": 25,
+      "ingredients": [
+        {
+          "key": "tree_heart",
+          "quantity": 1
+        },
+        {
+          "key": "core_primordial",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "primordial_essence",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 14,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true
+    },
+    {
+      "id": "artisan.make_iron_ingot",
+      "profession": "Artisan",
+      "profession_tier": 1,
+      "minimum_profession_level": 0,
+      "ingredients": [
+        {
+          "key": "raw_ore_crystalline",
+          "quantity": 2
+        },
+        {
+          "key": "charcoal",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "iron_ingot",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 4,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true
+    },
+    {
+      "id": "artisan.make_arcane_essence",
+      "profession": "Artisan",
+      "profession_tier": 4,
+      "minimum_profession_level": 15,
+      "ingredients": [
+        {
+          "key": "mystic_resin",
+          "quantity": 2
+        },
+        {
+          "key": "crystalline_sap",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "arcane_essence",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 10,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true
+    },
+    {
+      "id": "artisan.make_purified_gold",
+      "profession": "Artisan",
+      "profession_tier": 5,
+      "minimum_profession_level": 20,
+      "ingredients": [
+        {
+          "key": "gold_dust",
+          "quantity": 2
+        },
+        {
+          "key": "charcoal",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "purified_gold",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 12,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true
+    },
+    {
+      "id": "artisan.make_scroll_blank",
+      "profession": "Artisan",
+      "profession_tier": 2,
+      "minimum_profession_level": 5,
+      "ingredients": [
+        {
+          "key": "treated_planks",
+          "quantity": 1
+        },
+        {
+          "key": "sap",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "scroll_blank",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 6,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true
+    },
+    {
+      "id": "artisan.make_scroll_enhancement",
+      "profession": "Artisan",
+      "profession_tier": 4,
+      "minimum_profession_level": 15,
+      "ingredients": [
+        {
+          "key": "scroll_blank",
+          "quantity": 1
+        },
+        {
+          "key": "arcane_ash",
+          "quantity": 1
+        },
+        {
+          "key": "ground_citrine",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "scroll_enhancement",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 10,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true
+    },
+    {
+      "id": "artisan.make_mystic_solvent",
+      "profession": "Artisan",
+      "profession_tier": 3,
+      "minimum_profession_level": 10,
+      "ingredients": [
+        {
+          "key": "purified_resin",
+          "quantity": 1
+        },
+        {
+          "key": "crystalline_sap",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "mystic_solvent",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 8,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true
+    },
+    {
+      "id": "artisan.make_machine_treated",
+      "profession": "Artisan",
+      "profession_tier": 3,
+      "minimum_profession_level": 10,
+      "ingredients": [
+        {
+          "key": "treated_planks",
+          "quantity": 3
+        },
+        {
+          "key": "iron_ingot",
+          "quantity": 2
+        }
+      ],
+      "output": {
+        "resource_key": "machine_treated",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 8,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true
+    },
+    {
+      "id": "artisan.make_tool_reinforced",
+      "profession": "Artisan",
+      "profession_tier": 3,
+      "minimum_profession_level": 10,
+      "ingredients": [
+        {
+          "key": "reinforced_handle",
+          "quantity": 1
+        },
+        {
+          "key": "iron_ingot",
+          "quantity": 2
+        }
+      ],
+      "output": {
+        "resource_key": "tool_reinforced",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 8,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true
+    },
+    {
+      "id": "artisan.sheltom_lucidi",
+      "profession": "Artisan",
+      "profession_tier": 1,
+      "minimum_profession_level": 0,
+      "ingredients": [
+        {
+          "key": "core_crystalline",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "sheltom_lucidi",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 4,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Receita fornecida pelo utilizador; saída só habilitável após validar identidade física no catálogo e transação DAT."
+    },
+    {
+      "id": "artisan.sheltom_sereneo",
+      "profession": "Artisan",
+      "profession_tier": 1,
+      "minimum_profession_level": 0,
+      "ingredients": [
+        {
+          "key": "core_crystalline",
+          "quantity": 1
+        },
+        {
+          "key": "silver_dust",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "sheltom_sereneo",
+        "quantity": 1,
+        "legacy_item_code": "OS102"
+      },
+      "xp_after_committed_grant_draft": 4,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Receita fornecida pelo utilizador; saída só habilitável após validar identidade física no catálogo e transação DAT."
+    },
+    {
+      "id": "artisan.sheltom_fadeo",
+      "profession": "Artisan",
+      "profession_tier": 1,
+      "minimum_profession_level": 0,
+      "ingredients": [
+        {
+          "key": "core_crystalline",
+          "quantity": 1
+        },
+        {
+          "key": "ground_amethyst",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "sheltom_fadeo",
+        "quantity": 1,
+        "legacy_item_code": "OS103"
+      },
+      "xp_after_committed_grant_draft": 4,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Receita fornecida pelo utilizador; saída só habilitável após validar identidade física no catálogo e transação DAT."
+    },
+    {
+      "id": "artisan.sheltom_sparky",
+      "profession": "Artisan",
+      "profession_tier": 2,
+      "minimum_profession_level": 5,
+      "ingredients": [
+        {
+          "key": "core_energetic",
+          "quantity": 1
+        },
+        {
+          "key": "sheltom_lucidi",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "sheltom_sparky",
+        "quantity": 1,
+        "legacy_item_code": "OS104"
+      },
+      "xp_after_committed_grant_draft": 6,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Receita fornecida pelo utilizador; saída só habilitável após validar identidade física no catálogo e transação DAT."
+    },
+    {
+      "id": "artisan.sheltom_raident",
+      "profession": "Artisan",
+      "profession_tier": 2,
+      "minimum_profession_level": 5,
+      "ingredients": [
+        {
+          "key": "core_energetic",
+          "quantity": 1
+        },
+        {
+          "key": "sheltom_sereneo",
+          "quantity": 1
+        },
+        {
+          "key": "gold_dust",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "sheltom_raident",
+        "quantity": 1,
+        "legacy_item_code": "OS105"
+      },
+      "xp_after_committed_grant_draft": 6,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Receita fornecida pelo utilizador; saída só habilitável após validar identidade física no catálogo e transação DAT."
+    },
+    {
+      "id": "artisan.sheltom_transparo",
+      "profession": "Artisan",
+      "profession_tier": 2,
+      "minimum_profession_level": 5,
+      "ingredients": [
+        {
+          "key": "core_energetic",
+          "quantity": 1
+        },
+        {
+          "key": "sheltom_fadeo",
+          "quantity": 1
+        },
+        {
+          "key": "topaz_dust",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "sheltom_transparo",
+        "quantity": 1,
+        "legacy_item_code": "OS106"
+      },
+      "xp_after_committed_grant_draft": 6,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Receita fornecida pelo utilizador; saída só habilitável após validar identidade física no catálogo e transação DAT."
+    },
+    {
+      "id": "artisan.sheltom_murky",
+      "profession": "Artisan",
+      "profession_tier": 3,
+      "minimum_profession_level": 10,
+      "ingredients": [
+        {
+          "key": "core_deep",
+          "quantity": 1
+        },
+        {
+          "key": "sheltom_transparo",
+          "quantity": 1
+        },
+        {
+          "key": "dark_essence",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "sheltom_murky",
+        "quantity": 1,
+        "legacy_item_code": "OS107"
+      },
+      "xp_after_committed_grant_draft": 8,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Receita fornecida pelo utilizador; saída só habilitável após validar identidade física no catálogo e transação DAT."
+    },
+    {
+      "id": "artisan.sheltom_devine",
+      "profession": "Artisan",
+      "profession_tier": 3,
+      "minimum_profession_level": 10,
+      "ingredients": [
+        {
+          "key": "core_deep",
+          "quantity": 1
+        },
+        {
+          "key": "sheltom_raident",
+          "quantity": 1
+        },
+        {
+          "key": "purified_salt",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "sheltom_devine",
+        "quantity": 1,
+        "legacy_item_code": "OS108"
+      },
+      "xp_after_committed_grant_draft": 8,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Receita fornecida pelo utilizador; saída só habilitável após validar identidade física no catálogo e transação DAT."
+    },
+    {
+      "id": "artisan.sheltom_celesto",
+      "profession": "Artisan",
+      "profession_tier": 3,
+      "minimum_profession_level": 10,
+      "ingredients": [
+        {
+          "key": "core_deep",
+          "quantity": 1
+        },
+        {
+          "key": "sheltom_sparky",
+          "quantity": 1
+        },
+        {
+          "key": "ground_sapphire",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "sheltom_celesto",
+        "quantity": 1,
+        "legacy_item_code": "OS109"
+      },
+      "xp_after_committed_grant_draft": 8,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Receita fornecida pelo utilizador; saída só habilitável após validar identidade física no catálogo e transação DAT."
+    },
+    {
+      "id": "artisan.sheltom_mirage",
+      "profession": "Artisan",
+      "profession_tier": 4,
+      "minimum_profession_level": 15,
+      "ingredients": [
+        {
+          "key": "core_arcane",
+          "quantity": 1
+        },
+        {
+          "key": "sheltom_murky",
+          "quantity": 1
+        },
+        {
+          "key": "illusory_essence",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "sheltom_mirage",
+        "quantity": 1,
+        "legacy_item_code": "OS110"
+      },
+      "xp_after_committed_grant_draft": 10,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Receita fornecida pelo utilizador; saída só habilitável após validar identidade física no catálogo e transação DAT."
+    },
+    {
+      "id": "artisan.sheltom_inferna",
+      "profession": "Artisan",
+      "profession_tier": 4,
+      "minimum_profession_level": 15,
+      "ingredients": [
+        {
+          "key": "core_arcane",
+          "quantity": 1
+        },
+        {
+          "key": "sheltom_devine",
+          "quantity": 1
+        },
+        {
+          "key": "ground_ruby",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "sheltom_inferna",
+        "quantity": 1,
+        "legacy_item_code": "OS111"
+      },
+      "xp_after_committed_grant_draft": 10,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Receita fornecida pelo utilizador; saída só habilitável após validar identidade física no catálogo e transação DAT."
+    },
+    {
+      "id": "artisan.sheltom_enigma",
+      "profession": "Artisan",
+      "profession_tier": 4,
+      "minimum_profession_level": 15,
+      "ingredients": [
+        {
+          "key": "core_arcane",
+          "quantity": 1
+        },
+        {
+          "key": "sheltom_celesto",
+          "quantity": 1
+        },
+        {
+          "key": "arcane_essence",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "sheltom_enigma",
+        "quantity": 1,
+        "legacy_item_code": "OS112"
+      },
+      "xp_after_committed_grant_draft": 10,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Receita fornecida pelo utilizador; saída só habilitável após validar identidade física no catálogo e transação DAT."
+    },
+    {
+      "id": "artisan.sheltom_bellum",
+      "profession": "Artisan",
+      "profession_tier": 5,
+      "minimum_profession_level": 20,
+      "ingredients": [
+        {
+          "key": "core_runic",
+          "quantity": 1
+        },
+        {
+          "key": "sheltom_inferna",
+          "quantity": 1
+        },
+        {
+          "key": "war_fragment",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "sheltom_bellum",
+        "quantity": 1,
+        "legacy_item_code": "OS113"
+      },
+      "xp_after_committed_grant_draft": 12,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Receita fornecida pelo utilizador; saída só habilitável após validar identidade física no catálogo e transação DAT."
+    },
+    {
+      "id": "artisan.sheltom_ordo",
+      "profession": "Artisan",
+      "profession_tier": 5,
+      "minimum_profession_level": 20,
+      "ingredients": [
+        {
+          "key": "core_runic",
+          "quantity": 1
+        },
+        {
+          "key": "sheltom_enigma",
+          "quantity": 1
+        },
+        {
+          "key": "purified_gold",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "sheltom_ordo",
+        "quantity": 1,
+        "legacy_item_code": "OS114"
+      },
+      "xp_after_committed_grant_draft": 12,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Receita fornecida pelo utilizador; saída só habilitável após validar identidade física no catálogo e transação DAT."
+    },
+    {
+      "id": "artisan.sheltom_gemma",
+      "profession": "Artisan",
+      "profession_tier": 5,
+      "minimum_profession_level": 20,
+      "ingredients": [
+        {
+          "key": "core_runic",
+          "quantity": 1
+        },
+        {
+          "key": "sheltom_mirage",
+          "quantity": 1
+        },
+        {
+          "key": "ground_emerald",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "sheltom_gemma",
+        "quantity": 1,
+        "legacy_item_code": "OS115"
+      },
+      "xp_after_committed_grant_draft": 12,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Receita fornecida pelo utilizador; saída só habilitável após validar identidade física no catálogo e transação DAT."
+    },
+    {
+      "id": "artisan.sheltom_purus",
+      "profession": "Artisan",
+      "profession_tier": 6,
+      "minimum_profession_level": 25,
+      "ingredients": [
+        {
+          "key": "core_primordial",
+          "quantity": 1
+        },
+        {
+          "key": "sheltom_ordo",
+          "quantity": 1
+        },
+        {
+          "key": "sheltom_gemma",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "sheltom_purus",
+        "quantity": 1,
+        "legacy_item_code": "OS116"
+      },
+      "xp_after_committed_grant_draft": 14,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Receita fornecida pelo utilizador; saída só habilitável após validar identidade física no catálogo e transação DAT."
+    },
+    {
+      "id": "artisan.sheltom_veritas",
+      "profession": "Artisan",
+      "profession_tier": 6,
+      "minimum_profession_level": 25,
+      "ingredients": [
+        {
+          "key": "core_primordial",
+          "quantity": 1
+        },
+        {
+          "key": "sheltom_purus",
+          "quantity": 1
+        },
+        {
+          "key": "sheltom_bellum",
+          "quantity": 1
+        },
+        {
+          "key": "primordial_essence",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "sheltom_veritas",
+        "quantity": 1,
+        "legacy_item_code": "OS117"
+      },
+      "xp_after_committed_grant_draft": 14,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Receita fornecida pelo utilizador; saída só habilitável após validar identidade física no catálogo e transação DAT."
+    },
+    {
+      "id": "blacksmith.equip_wa103",
+      "profession": "Blacksmith",
+      "profession_tier": 2,
+      "minimum_profession_level": 5,
+      "ingredients": [
+        {
+          "key": "reinforced_handle",
+          "quantity": 2
+        },
+        {
+          "key": "iron_ingot",
+          "quantity": 2
+        }
+      ],
+      "output": {
+        "resource_key": "crafted_wa103",
+        "quantity": 1,
+        "legacy_item_code": "WA103"
+      },
+      "xp_after_committed_grant_draft": 6,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Código existe no catálogo, mas stats melhorados exigem variante/identidade única validada; nunca entregar item vanilla como se fosse melhorado."
+    },
+    {
+      "id": "blacksmith.equip_da106",
+      "profession": "Blacksmith",
+      "profession_tier": 2,
+      "minimum_profession_level": 5,
+      "ingredients": [
+        {
+          "key": "treated_planks",
+          "quantity": 2
+        },
+        {
+          "key": "iron_ingot",
+          "quantity": 2
+        }
+      ],
+      "output": {
+        "resource_key": "crafted_da106",
+        "quantity": 1,
+        "legacy_item_code": "DA106"
+      },
+      "xp_after_committed_grant_draft": 6,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Código existe no catálogo, mas stats melhorados exigem variante/identidade única validada; nunca entregar item vanilla como se fosse melhorado."
+    },
+    {
+      "id": "blacksmith.equip_ws103",
+      "profession": "Blacksmith",
+      "profession_tier": 1,
+      "minimum_profession_level": 0,
+      "ingredients": [
+        {
+          "key": "planks",
+          "quantity": 2
+        },
+        {
+          "key": "iron_ingot",
+          "quantity": 2
+        }
+      ],
+      "output": {
+        "resource_key": "crafted_ws103",
+        "quantity": 1,
+        "legacy_item_code": "WS103"
+      },
+      "xp_after_committed_grant_draft": 4,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Código existe no catálogo, mas stats melhorados exigem variante/identidade única validada; nunca entregar item vanilla como se fosse melhorado."
+    },
+    {
+      "id": "blacksmith.equip_wm110",
+      "profession": "Blacksmith",
+      "profession_tier": 3,
+      "minimum_profession_level": 10,
+      "ingredients": [
+        {
+          "key": "mystic_solvent",
+          "quantity": 2
+        },
+        {
+          "key": "iron_ingot",
+          "quantity": 2
+        }
+      ],
+      "output": {
+        "resource_key": "crafted_wm110",
+        "quantity": 1,
+        "legacy_item_code": "WM110"
+      },
+      "xp_after_committed_grant_draft": 8,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Código existe no catálogo, mas stats melhorados exigem variante/identidade única validada; nunca entregar item vanilla como se fosse melhorado."
+    },
+    {
+      "id": "arcanist.potion_hp",
+      "profession": "Arcanist",
+      "profession_tier": 1,
+      "minimum_profession_level": 0,
+      "ingredients": [
+        {
+          "key": "purified_resin",
+          "quantity": 1
+        },
+        {
+          "key": "sap",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "potion_hp_enhanced",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 4,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Receita candidata. Código de poção existente e política de atributos aguardam validação; não entrega qualquer objeto."
+    },
+    {
+      "id": "arcanist.potion_mp",
+      "profession": "Arcanist",
+      "profession_tier": 2,
+      "minimum_profession_level": 5,
+      "ingredients": [
+        {
+          "key": "mystic_solvent",
+          "quantity": 1
+        },
+        {
+          "key": "energetic_sap",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "potion_mp_enhanced",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 6,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Receita candidata. Código de poção existente e política de atributos aguardam validação; não entrega qualquer objeto."
+    },
+    {
+      "id": "arcanist.potion_stamina",
+      "profession": "Arcanist",
+      "profession_tier": 3,
+      "minimum_profession_level": 10,
+      "ingredients": [
+        {
+          "key": "crystalline_sap",
+          "quantity": 1
+        },
+        {
+          "key": "arcane_ash",
+          "quantity": 1
+        }
+      ],
+      "output": {
+        "resource_key": "potion_stamina_enhanced",
+        "quantity": 1,
+        "legacy_item_code": null
+      },
+      "xp_after_committed_grant_draft": 8,
+      "enabled_in_live_runtime": false,
+      "requires_atomic_inventory_and_dat_commit": true,
+      "notes": "Receita candidata. Código de poção existente e política de atributos aguardam validação; não entrega qualquer objeto."
+    }
+  ],
+  "ore_gem_types": [
+    {
+      "key": "ore_amethyst",
+      "name": "Ore de Ametista"
+    },
+    {
+      "key": "ore_silver",
+      "name": "Ore de Prata"
+    },
+    {
+      "key": "ore_gold",
+      "name": "Ore de Ouro"
+    },
+    {
+      "key": "ore_topaz",
+      "name": "Ore de Topázio"
+    },
+    {
+      "key": "ore_sapphire",
+      "name": "Ore de Safira"
+    },
+    {
+      "key": "ore_citrine",
+      "name": "Ore de Citrino"
+    },
+    {
+      "key": "ore_ruby",
+      "name": "Ore de Rubi"
+    },
+    {
+      "key": "ore_emerald",
+      "name": "Ore de Esmeralda"
+    }
+  ],
+  "sheltom_order": [
+    {
+      "key": "sheltom_lucidi",
+      "name": "Lucidi",
+      "tier": 1,
+      "catalog_alias": "Lucidi"
+    },
+    {
+      "key": "sheltom_sereneo",
+      "name": "Sereneo",
+      "tier": 1,
+      "catalog_alias": "Sereneo"
+    },
+    {
+      "key": "sheltom_fadeo",
+      "name": "Fadeo",
+      "tier": 1,
+      "catalog_alias": "Fadeo"
+    },
+    {
+      "key": "sheltom_sparky",
+      "name": "Sparky",
+      "tier": 2,
+      "catalog_alias": "Sparki"
+    },
+    {
+      "key": "sheltom_raident",
+      "name": "Raident",
+      "tier": 2,
+      "catalog_alias": "Raident"
+    },
+    {
+      "key": "sheltom_transparo",
+      "name": "Transparo",
+      "tier": 2,
+      "catalog_alias": "Transparo"
+    },
+    {
+      "key": "sheltom_murky",
+      "name": "Murky",
+      "tier": 3,
+      "catalog_alias": "Murki"
+    },
+    {
+      "key": "sheltom_devine",
+      "name": "Devine",
+      "tier": 3,
+      "catalog_alias": "Devine"
+    },
+    {
+      "key": "sheltom_celesto",
+      "name": "Celesto",
+      "tier": 3,
+      "catalog_alias": "Celesto"
+    },
+    {
+      "key": "sheltom_mirage",
+      "name": "Mirage",
+      "tier": 4,
+      "catalog_alias": "Miragem"
+    },
+    {
+      "key": "sheltom_inferna",
+      "name": "Inferna",
+      "tier": 4,
+      "catalog_alias": "Inferna"
+    },
+    {
+      "key": "sheltom_enigma",
+      "name": "Enigma",
+      "tier": 4,
+      "catalog_alias": "Enigma"
+    },
+    {
+      "key": "sheltom_bellum",
+      "name": "Bellum",
+      "tier": 5,
+      "catalog_alias": "Bellum"
+    },
+    {
+      "key": "sheltom_ordo",
+      "name": "Ordo",
+      "tier": 5,
+      "catalog_alias": "Ordo"
+    },
+    {
+      "key": "sheltom_gemma",
+      "name": "Gemma",
+      "tier": 5,
+      "catalog_alias": "Gemma"
+    },
+    {
+      "key": "sheltom_purus",
+      "name": "Purus",
+      "tier": 6,
+      "catalog_alias": "Purus"
+    },
+    {
+      "key": "sheltom_veritas",
+      "name": "Veritas",
+      "tier": 6,
+      "catalog_alias": "Veritas"
+    }
+  ],
+  "existing_map58_nodes_preserved": [
+    {
+      "existing_node_id": 910001,
+      "map_id": 58,
+      "x": 251671,
+      "y": 627,
+      "z": 225035,
+      "runtime_resource_key_unchanged": "iron_ore",
+      "existing_profession_kind": "Mining",
+      "model_reference_unchanged": "char/monster/undeadminer/undeadminer.ini",
+      "profile_assignment": "preview_only_no_runtime_resource_remap",
+      "planned_family_ref": "vein_crystalline"
+    },
+    {
+      "existing_node_id": 910002,
+      "map_id": 58,
+      "x": 251524,
+      "y": 627,
+      "z": 225037,
+      "runtime_resource_key_unchanged": "herb_bundle",
+      "existing_profession_kind": "Foraging",
+      "model_reference_unchanged": "char/monster/monplant/monplant-d.ini",
+      "profile_assignment": "preview_only_no_runtime_resource_remap",
+      "planned_family_ref": "tree_oak"
+    },
+    {
+      "existing_node_id": 910003,
+      "map_id": 58,
+      "x": 251360,
+      "y": 627,
+      "z": 225033,
+      "runtime_resource_key_unchanged": "timber",
+      "existing_profession_kind": "Woodcutting",
+      "model_reference_unchanged": "char/monster/monplant/monplant-d.ini",
+      "profile_assignment": "preview_only_no_runtime_resource_remap",
+      "planned_family_ref": "tree_oak"
+    },
+    {
+      "existing_node_id": 910004,
+      "map_id": 58,
+      "x": 251380,
+      "y": 866,
+      "z": 226790,
+      "runtime_resource_key_unchanged": "river_trout",
+      "existing_profession_kind": "Fishing",
+      "model_reference_unchanged": "char/monster/turtlecannon/turtlecannon.ini",
+      "profile_assignment": "preview_only_no_runtime_resource_remap",
+      "planned_family_ref": null
+    }
+  ],
+  "future_spawn_placements": {
+    "source_of_truth": "Content canonical JSON after explicit GM publish step",
+    "enabled": false,
+    "entries": [],
+    "required_fields": [
+      "map_id",
+      "x",
+      "y",
+      "z",
+      "family_id",
+      "node_id"
+    ],
+    "instructions": "Capturar coordenadas reais pelo editor GM; não inventar posições nem ativar spawns ao instalar este patch."
+  },
+  "model_swap_policy": {
+    "edit_fields": [
+      "vein_families[].visual.model_path",
+      "tree_families[].visual.model_path"
+    ],
+    "also_rebuild_actual_runtime_generated_headers": true,
+    "do_not_assume_json_live_reload": true
+  },
+  "physical_item_policy": {
+    "runtime_enabled": false,
+    "never_consume_resources_without_proven_dat_commit": true,
+    "source_inventory": "GatheringPlayerInventory",
+    "item_destination": "player_DAT_inventory",
+    "transaction_journal_and_idempotency": "REQUIRED_NOT_YET_INTEGRATED",
+    "catalog_issue": "OS101 is Skull/Cranio, not verified Lucidi; disable Lucidi and dependent physical outputs."
+  },
+  "open_integration": [
+    "bind six mining and four wood families to actual JSON node loader",
+    "migrate/register new resource keys in SQLite",
+    "wire real item icons into client inventory only after item registration",
+    "implement atomic resource-to-DAT crafting with journal",
+    "validate Lucidi item identity",
+    "implement fishing minigame, hunter special drops and full NPC V2 crafting UI"
+  ]
+}

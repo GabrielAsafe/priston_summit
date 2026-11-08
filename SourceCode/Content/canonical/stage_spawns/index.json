@@ -277,6 +277,11 @@
       "json_path": "spawns/GameServer/Field/sod-2.ase.spm.json"
     },
     {
+      "id": "spawn.stararena_58",
+      "logical_path": "GameServer/Field/StarArena.ASE.spm",
+      "json_path": "spawns/GameServer/Field/StarArena.ASE.spm.json"
+    },
+    {
       "id": "spawn.stemple",
       "logical_path": "GameServer/Field/stemple.ase.spm",
       "json_path": "spawns/GameServer/Field/stemple.ase.spm.json"

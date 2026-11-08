@@ -3,12 +3,12 @@
 #include <string>
 #include <vector>
 #include "content/v1/localization/content/CompiledLocalizationSource.h"
-#include "content/v1/runtime/RuntimeContentPath.h"
+#include "content/v1/text_resource/content/TextResourceRuntime.h"
 
 namespace summit { namespace content { namespace localization {
 
 inline bool LocalizationStrictMode(){const char*value=std::getenv("SUMMIT_LOCALIZATION_STRICT");return value&&value[0]=='1';}
-inline const char* LocalizationPackPath(){const char*overridePath=std::getenv("SUMMIT_LOCALIZATION_PACK");if(overridePath&&*overridePath)return overridePath;static const std::string p=summit::content::runtime::ResolveRuntimePackPath("localization.sloc");return p.c_str();}
+inline const char* LocalizationPackPath(){return summit::content::text_resource::TextResourcePackPath();}
 inline std::string& LocalizationLocaleOverrideStorage(){static std::string value;return value;}
 inline bool IsSupportedLocalizationLocale(const char*locale){return locale&&(std::string(locale)=="pt-BR"||std::string(locale)=="en");}
 inline void SetLocalizationLocale(const char*locale){LocalizationLocaleOverrideStorage()=IsSupportedLocalizationLocale(locale)?locale:"pt-BR";}
@@ -26,25 +26,20 @@ inline bool LocalizationOverrideEnabled(){return !LocalizationLocaleOverrideStor
 
 inline const CompiledLocalizationSource* ActiveLocalizationSource(){
     struct Holder{
-        std::string path; CompiledLocalizationSource*source;
+        CompiledLocalizationSource*source;
         Holder():source(0){
-            const char*configured=LocalizationPackPath();
-            if(configured && Try(configured)) return;
-            static const char*candidates[]={
-                "Content/packs/localization.sloc",
-                "content/packs/localization.sloc",
-                "packs/localization.sloc",
-                "localization.sloc",
-                "../Content/packs/localization.sloc",
-                "../SourceCode/Content/packs/localization.sloc"
-            };
-            for(std::size_t i=0;i<sizeof(candidates)/sizeof(candidates[0]);++i)
-                if(Try(candidates[i])) return;
-        }
-        bool Try(const char*candidate){
-            CompiledLocalizationSource*next=new CompiledLocalizationSource(candidate);
-            if(next->IsValid()){delete source;source=next;path=candidate;return true;}
-            delete next;return false;
+            // Strictly one binary source for text: the shipped SRES pack.
+            // Preserve canonical SLOC v2 bytes *inside* SRES v2, in memory only.
+            std::vector<unsigned char> bytes;
+            std::string contentId;
+            std::uint32_t kind=0;
+            const summit::content::text_resource::CompiledTextResourceSource* text =
+                summit::content::text_resource::ActiveTextResourceSource();
+            if(!text || !text->IsValid() ||
+               !text->Load("__summit_internal__/localization.sloc", bytes, &contentId, &kind) ||
+               contentId != "summit.localization.catalog.v2" || kind != 4u) return;
+            CompiledLocalizationSource*next=new CompiledLocalizationSource(bytes);
+            if(next->IsValid()) source=next; else delete next;
         }
         ~Holder(){delete source;}
     };

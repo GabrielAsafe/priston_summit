@@ -1,0 +1,2218 @@
+{
+  "schema": "summit-official-assets/v3",
+  "note": "Manifest of physical assets; not a runtime item registration or shop item definition.",
+  "files": [
+    {
+      "destination": "char/monster/Acero/Acero.ini",
+      "sha256": "3ed46602f0722ddf4ece33ba871872535e59a7f0f19d759b68dac66319f9dbed",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Acero/Acero.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/AncientGolem/AncientGolem.ini",
+      "sha256": "144f2cef12784c5a1b9268cb0bdc2a59c036e0d7c1ccde320da0bbcbe7399bea",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Client-v4220/char/monster/AncientGolem/AncientGolem.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/arcuda/arcuda.ini",
+      "sha256": "c52e8c03800bc51e15e9cfa063c68a3095169c4e68836b6d7b6de3651ae73c50",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/arcuda/arcuda.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Arhdyra/Arhdyra.ini",
+      "sha256": "af20514fd22a77a71e8fa49607fe909214d094c42a5e7b57c61004f9a4cce0a5",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Arhdyra/Arhdyra.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/ArmBeetle/ArmBeetle.ini",
+      "sha256": "bb8559f27a8ff24146102eedd74ac49f404429dde4c20c3c140b88dddf236573",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/ArmBeetle/ArmBeetle.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/bal_crystal/bal_crystal.ini",
+      "sha256": "c337257788be38881242f758523ed05d8713c9b1f53134a591670d1e7aae14eb",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/bal_crystal/bal_crystal.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Beetle/beetle.INI",
+      "sha256": "0b8dcca1fc4226470703ee62c57820b164a810e746680b60e262f07d19cbe03f",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Beetle/beetle.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Bguardian/Bguardian.ini",
+      "sha256": "2d8ba68facb0d0fca8c4fe0837e7483063ea39399d518e8bdeadf8a058b3a379",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Bguardian/Bguardian.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Billy/Billy.ini",
+      "sha256": "526c33e17d530de4423e28e0549dd78716678fd9d6731284aadd5b26310ca74c",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Billy/Billy.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Bloodyknight/Bknight.ini",
+      "sha256": "00acb3f692ef2dbcecd9e0495eff027641eeb827265591fc1a7677ea8dd1c15e",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Bloodyknight/Bknight.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Buma/buma.ini",
+      "sha256": "95078c7f9596f1cbe812e29aee5b2d79442ee0a16c852229df6ea54afe8e0b36",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Buma/buma.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Buma/Monbuma-boss.ini",
+      "sha256": "1f1af9569f052accfdfe8fec059a46233e2ee2dae10ae637e1f0a978f5b5a91b",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Buma/Monbuma-boss.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/castledoor/castledoor.ini",
+      "sha256": "64853bb2ff1e1d473281836aeec237a31cc9859edace2a8a852d89e8dacb2aac",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/castledoor/castledoor.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Chalybs/Chalybs.ini",
+      "sha256": "e10a328d4650f5c0bd97bc0454c7c2b8f28c40b65467c0043480c142c1a505c2",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Chalybs/Chalybs.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/chaoscara/chaoscara.ini",
+      "sha256": "95c71d0b733001dab39255630b3903768c099a845aed0f208eb5b79d5036deb0",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/chaoscara/chaoscara.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Chimera/kimera_A.ini",
+      "sha256": "8e1764b87b84967e4fa922a61204342f22f371ddca27cb91a23193f502726dca",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Chimera/kimera_A.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/coldeye/Redeye.ini",
+      "sha256": "840e7da90c5afaac3b67b0c35ae3e306fc35a6ea13d4b73a47ab9f78431c2364",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/coldeye/Redeye.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Cstone/Cstone.ini",
+      "sha256": "d55c63e4da0b8a1482bea43cb3d2c80b3e756e90141b4710653e838ae0636fd8",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Cstone/Cstone.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/cyclopswarrior/cyclopswarrior.ini",
+      "sha256": "cab33037fe9e60518deb8e1a74b1c17e19138049478a430138bd28c61dcfe07c",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/cyclopswarrior/cyclopswarrior.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Darkguard/skullac.ini",
+      "sha256": "4ae705324f905707088d229f50a6ea88f0b10655464f1952cf7d352b9db4135a",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Darkguard/skullac.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Darkmage/skullma.ini",
+      "sha256": "e8be297d828c92a781dccbacf325d67480fcecc537a43d14d7c214b7f85a0fdc",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Darkmage/skullma.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Darkphalanx/darkphalanx.ini",
+      "sha256": "00aebcdecfbf7a20ff5b869ef661f8b1a2a5e41ef9b897a2fba27a745b890968",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Darkphalanx/darkphalanx.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/DarkStalker/DarkStalker.INI",
+      "sha256": "c962caa0dce4402c4a562d70bdf9561f54a6802a11b6db222d47bdee4fe86cb1",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Client-v4220/char/monster/DarkStalker/DarkStalker.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/deadzone/orig convert/deadzone.ini",
+      "sha256": "de83ee441adea6b5969560e10b6c4c48ca4ad654c41214ffe224e033fbdd0649",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/deadzone/orig convert/deadzone.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/death_night/death_knight.ini",
+      "sha256": "59e1ab77f6c345aba1e02368577c4b17a7ee59d1a94beafb1f65f8e3efc5fc6a",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Client-v4220/char/monster/death_night/death_knight.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/decoy/decoy.ini",
+      "sha256": "020df31d5de48bff4b3ff6cea0b8cfb6f8f10245126029a7c399879bb98db51d",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/decoy/decoy.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/decoy/Mondecoy-boss.ini",
+      "sha256": "e608c7237bd7bd48ec32e8c23f1b0b2565af07ea688a5fecf6904be97ff0658d",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/decoy/Mondecoy-boss.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/DevilShy/DevilShy.ini",
+      "sha256": "360bead2605426e3b4fc4592c9967d024331d22b9fed9da8eb062a123b6bde32",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/DevilShy/DevilShy.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Dey/Dey.inx",
+      "sha256": "1ec5c2420683a3d54405dbef583d807930d4d5793a60f9a2dc33835c6894b9f1",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Dey/Dey.inx",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/doral/doral.ini",
+      "sha256": "c0c1fe2acb811ea0ca7dcc887b412e3e897b2f28d40a28515071450b751809ee",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/doral/doral.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Draxos/Draxos.ini",
+      "sha256": "3ed0afc877ecde624ab2ccec37d9e9ba1769840ad7de5556304cf5e50f6ad887",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Draxos/Draxos.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/esnail/esnail.INI",
+      "sha256": "955ee06ba63d8ea298592beec69112802be3bc827f3a13ef8c2dc766429c5bb6",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/esnail/esnail.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/EvilMaple/EvilMaple.INI",
+      "sha256": "a5a90ba8a945b8d4c88fb9fde881512462326464183c36135db235c4e1cea645",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/EvilMaple/EvilMaple.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/EvilSpirit/EvilSpirit.ini",
+      "sha256": "37617f0609f7be7b5b9520bb6b001230c1d44fa4e4eb7c0473876d813f52d9ce",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/EvilSpirit/EvilSpirit.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Faugn/Faugn.ini",
+      "sha256": "f19e511477a25dfe62e25500c336c4813fb5b48cf751a4581200d8fe082b7c8f",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Faugn/Faugn.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/figon/figon.ini",
+      "sha256": "b095c7e0252fd2f896b17db45f7c998824577239f5b0035cba62a1ade373102c",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/figon/figon.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/figon/Monfigon-boss.ini",
+      "sha256": "fc82fc9734e0c1563f294081d151d3534ac16cdbed4d3d3f67ca381869553f28",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/figon/Monfigon-boss.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Firegolem/Firegolem.ini",
+      "sha256": "dd37484556a73c929fb2296c0cb5963fdde969339c9ebf88d3ed82a8d0afdbfd",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Firegolem/Firegolem.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Fireworm/fireworm.ini",
+      "sha256": "09d79fb1862bd3f2b005b99172914efc3d11881d7d416aa0b552495434da52e6",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Fireworm/fireworm.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/frost/frost.ini",
+      "sha256": "309ed593ce16f583c15e68935e376b588e972414b3414e570bf0a83a7c9bec59",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/frost/frost.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/goblinchief/goblinchief.INI",
+      "sha256": "c936f272e7dc529bfd24cc196347c432cc0923778cb8c8be981d7d1a03e0cf9a",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/goblinchief/goblinchief.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/goblinchief/noschief.INI",
+      "sha256": "a2cd867897a102afd8aa0d7e222da20a39a1a92cf02942facb0b64e9deec04ba",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/goblinchief/noschief.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/GoblinShaman/GoblinShaman.ini",
+      "sha256": "9af7d08773685e96feda865973f20824478015a8ec2e75922719708ed22e1a1f",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/GoblinShaman/GoblinShaman.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Golem/golem.ini",
+      "sha256": "7eedc33b8265afd676359835a44bc8f58704d43f69ec8f6b611d9045b81ed7b7",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Golem/golem.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Greedy/Greedy.ini",
+      "sha256": "b4b61ce707764dcc94213468b28d64f95828beff43c828eb8b1d5383f28c37c6",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Greedy/Greedy.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Grotesque/grotesque.INI",
+      "sha256": "839dbfe5318a8fc077a2e620b68f27e6ad6f0b399dee79981ecdf15771d021d4",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Grotesque/grotesque.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Guardian/Guardian.INI",
+      "sha256": "c35b2631d2620318453d1627167895f4ddae440dc46067c5165df51bac4a7727",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Guardian/Guardian.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Gurkob/Gurkob.ini",
+      "sha256": "ebad6f36740ed7b29ccdb542dd58942d2f823741765d143ca1adff42158f4352",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Gurkob/Gurkob.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/headcut/headcut.ini",
+      "sha256": "671693c3d12475328c36da8d72610c4c39d90e621047ed4870d6f80d68394dd2",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/headcut/headcut.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/headcut/headcutaxe.ini",
+      "sha256": "c7dafba05143a17fc2c7565c7a203f095bfa490d1eb5e1f2abe4c438c31d93d1",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/headcut/headcutaxe.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/hellhound/Bonehound.ini",
+      "sha256": "76da7954f1fffbd30eac3547fd68af0ebafc9b4b9d79f488fad25397a26debb7",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/hellhound/Bonehound.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/hellhound/hellhound.ini",
+      "sha256": "aeced2547a5f5015648b53abfc5cef91dc30ca1f34c088a464145a023513677a",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/hellhound/hellhound.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/HellPlant/HellPlant.ini",
+      "sha256": "895dd177da1ba983b0de5d630a9b06d840d464b84814ceba5b8e2c59e6966230",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Client-v4220/char/monster/HellPlant/HellPlant.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Hest/Hest.ini",
+      "sha256": "882e6c8a87988e41c5ee8ffc025c74987e521e1269cabd91eab58483aad5f5c7",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Hest/Hest.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Hestian/Hestian.ini",
+      "sha256": "bd5ab07dbd8a6a95cb57972e7402da29ffbd1d6168a91a3b7dd37e1a966cb32a",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Hestian/Hestian.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/IBomber/IBomber.ini",
+      "sha256": "605aa8d79186fbb91fcf4c78f2a6c568dee163ae02bc81b11070bf962ed3e9d0",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/IBomber/IBomber.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/icegoblin/icegoblin.ini",
+      "sha256": "927f035f69e79b6199eb814ec49f251c969bec855efe6e32ac5fbfb103ddf6d9",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/icegoblin/icegoblin.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/icegolem/icegolem.ini",
+      "sha256": "0641f88f070b61d17fd6bf78d80fd632a74e145c5934ad1b64d8072ecf8a13f0",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/icegolem/icegolem.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/IceSerpent/IceSerpent.ini",
+      "sha256": "710f483f468c9cc72fc415a1f0c864e72781a718f9221e071ab19ceff98b76e5",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/IceSerpent/IceSerpent.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/IceWorm/IceWorm.ini",
+      "sha256": "928977c379ba417b448842bb1da7c6d934cc309592a4b8635b7ae9fde6eaad49",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/IceWorm/IceWorm.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/IElite/IElite.ini",
+      "sha256": "edcc18dd6afabdf752e84e55b6101a22f1f9a7b0b9c6eab2349cdba86fe34c6c",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/IElite/IElite.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/ironfist/ironfist.INI",
+      "sha256": "415a9634eb636b630df890f658dc18c182d83b6121da8fc429d4338b7b7d33ea",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/ironfist/ironfist.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/ISoldier/ISoldier.ini",
+      "sha256": "58b1ae039a7b715f2954a572aeacdf5b83fb7d075c88c3db56074ba7b858db93",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/ISoldier/ISoldier.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/ITechnician/ITechnician.ini",
+      "sha256": "4e29347659671b246bff0b6c48a1caae899ca932a864765848498421fd2fc98f",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/ITechnician/ITechnician.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Kelvezu/kelvezu.ini",
+      "sha256": "31975c7948d47359b2ead2ca97ca6e81b746d47ebcddebd6aba7b868d301cf7c",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Kelvezu/kelvezu.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/KingBat/KingBat.ini",
+      "sha256": "33c83aeb65a16106ed1221cb70a5009bc3ecd07ef4c15bcce86b94aeefd57426",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/KingBat/KingBat.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Koon/Koon.ini",
+      "sha256": "8651dde3a89d05cd6e2bfd6b9f89e5cf254a4ff28800deb78fdca78566caff09",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Koon/Koon.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/LEngineer/LEngineer.ini",
+      "sha256": "13ad7e1515ade9ffe39f345a925ffe4a21fff5b2248b62b06bf2871595b9bb9f",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/LEngineer/LEngineer.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/LGuardian/LGuardian.ini",
+      "sha256": "80c8eb8bd1ad85908a29e5f22a602bd86310034c9b204c59d58c2c32837dda97",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/LGuardian/LGuardian.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/lizardfolk/lizardfolk.ini",
+      "sha256": "bb933af947a5fb243f26c8a9e9bd069655701461ee1ab10224e0e971964de075",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/lizardfolk/lizardfolk.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/LTechnician/LTechnician.ini",
+      "sha256": "f583d72c4cdef9bdbec46c369732d2d301ab695e0d24501b3c775ca83ea2ebb4",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/LTechnician/LTechnician.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/m_lord/m_load.ini",
+      "sha256": "2dead554830ff94d90102d528b7e53c30e120705ce4105b1c4006097f94ac824",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/m_lord/m_load.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Metalgolem/Metalgolem.ini",
+      "sha256": "1e0dc2758355eddc33ea701c359af0425de9b95905731bd666be2ef761ceb93c",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Metalgolem/Metalgolem.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Mimic/Mimic.ini",
+      "sha256": "e2bcdeb7df91a7f16f8088bb1397c694122048c70bc65db984b579f4efdd8e27",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Mimic/Mimic.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Minebat/MineBat.ini",
+      "sha256": "885dc6e799e15492e1f39d2da3e57ebb9797f88d0bac860b94f8673411e96b84",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Minebat/MineBat.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Minegolem/minegolem.ini",
+      "sha256": "872c50f770fdabb6418b75555fa120e4b1b42389be0eaf543ca8a63947e247b3",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Minegolem/minegolem.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monavellriskbow/monavelriskbow.ini",
+      "sha256": "47c8f3525d6910e271d0bcbdf46f66cce313e5011793b62b5cdd689e315d6221",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monavellriskbow/monavelriskbow.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monavellriskstf/monavelriskstf.ini",
+      "sha256": "e4e7cd1941974b9ed20047fdd8c29b6796815feebf927b77234b84cdb8643e65",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monavellriskstf/monavelriskstf.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monavelrisk/Monavelrisk-mass.ini",
+      "sha256": "b29b8e07b3b9c31fe2c5ea55b5e51a569fafef53cf1daab4f1441a8adf05d4eb",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monavelrisk/Monavelrisk-mass.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monavelrisk/Monavelrisk-spear.ini",
+      "sha256": "20c6f6f1524b8552323f06957b560b301a23885d35d9728b0f62f62eb1b13efc",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monavelrisk/Monavelrisk-spear.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monavelrisk/Monavelrisk-sword.ini",
+      "sha256": "b19be9816c1ec4f7f8ce1506d58ef472b18d929c9879e92c0417eb64065145c6",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monavelrisk/Monavelrisk-sword.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monbabyhulk/Monbabyhulk.ini",
+      "sha256": "e5fb978795e6069d0a078bc0bddccd7bad8b229e4ce46087040093608f968470",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monbabyhulk/Monbabyhulk.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monbagon/Monbagon-A.ini",
+      "sha256": "ca7959e1a21a95950da3dfb6b24c493d42edd31d05d095dc170d08c5b5a8ea47",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monbagon/Monbagon-A.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monbagon/Monbagon-B.ini",
+      "sha256": "06cb2c835cdb9481aa48f76f94eec3640158015313bff67537c4bfabd5d7b147",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monbagon/Monbagon-B.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monbagon/Monbagon-Boss.ini",
+      "sha256": "b42ba3fa2a7990592ebb2ad8b87c6f90977a20d4e6fc8deb570277b38af5fd7a",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monbagon/Monbagon-Boss.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monbagon/Monbagon-C.ini",
+      "sha256": "cd934f3ab186f777c6153bf74ce7c73d237f1ce8f69d1324580fbaf6076cf619",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monbagon/Monbagon-C.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monbeechief/monbeechief.ini",
+      "sha256": "29168658422a4f4fcf800d49752720155916aa322b8ec9f7818a58dc92acad88",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monbeechief/monbeechief.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monbeedog/Monbeedog.ini",
+      "sha256": "816c99d634dc805eb7e61983f6cee249db70ed5db8b3f34a0eeee134e65f4a52",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monbeedog/Monbeedog.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monberserker/Monberserker.INI",
+      "sha256": "fb0d81c80b4dfa2e4e38d5ba2d25e17e42b22460a92b5285238c4c31c5450baf",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monberserker/Monberserker.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Moncavemummy/moncavemummy.ini",
+      "sha256": "6b3552c24971c24901083f2303753cab6b5d472158a121a1b54b37c2a86d66d4",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Moncavemummy/moncavemummy.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monclip/Monclip-boss.ini",
+      "sha256": "bec3d1f45d3c06a3e5b071bb4c1697a42b0ab09063cb91405562b59df5844dc3",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monclip/Monclip-boss.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monclip/Monclip.ini",
+      "sha256": "702ae4efb5ed9148d5a688df2e9a2106607dc6ed15be94feccc16be8fd43404c",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monclip/Monclip.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Moncyclops/MonCyclops-a.INI",
+      "sha256": "5e4bca12bcea8c3775ff681d5543852500603901d6f00137dc3345eb208fedd9",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Moncyclops/MonCyclops-a.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Moncyclops/MonCyclops-b.INI",
+      "sha256": "471f5b0cd2d1c6945184626e5f94ac3363a1b85561438335bf3a08df066eca5b",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Moncyclops/MonCyclops-b.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Moncyclops/MonCyclops-c.INI",
+      "sha256": "a509efc8e50681b41a30b45fc6bca4d561540245d8cde12ded03d0861107fa7d",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Moncyclops/MonCyclops-c.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Moncyclops/MonCyclops-d.INI",
+      "sha256": "fc1a0a1d63491b135972271a24cb7e5ff405ca7073778bef046eb5aecb0a7af9",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Moncyclops/MonCyclops-d.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Mondawlin/Mondawlin.ini",
+      "sha256": "e354d45c0f7a876479fc25c4f9cfe97157daab27210d44a1557a15f8cceeeb2c",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Mondawlin/Mondawlin.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Mondirebee/mondirebee.ini",
+      "sha256": "95f1e05d676031db1d306a61007de25d3c32a6cb740a182e981db0614b3b8e97",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Mondirebee/mondirebee.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monegan/Monegan.INI",
+      "sha256": "e2f35f9d7e055e3930ec133a3a900f83035dcc5a5a5d80527a9c12f8213e4b02",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monegan/Monegan.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/MonGknight/MonG2knight.ini",
+      "sha256": "772966cc7daf07678e635ee2d90f154843dac7f8e8fe61563c8f413eca686960",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/MonGknight/MonG2knight.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/MonGknight/MonGknight.ini",
+      "sha256": "41cbdb74c24db5d1c5757af6453b65cfb2d3022bda2ca7db43822cace7ffd614",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/MonGknight/MonGknight.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/MonGreven/MonGreven.ini",
+      "sha256": "b243ee69e12a8d7dc8750f34bf6f242e7b8073812dc24d497063df271f746c9d",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/MonGreven/MonGreven.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monhauntplant/Monhauntmaple.ini",
+      "sha256": "a71ded14343ee073e1eace0acdfa78d93234ca75676dfe39c44349432e2395ad",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monhauntplant/Monhauntmaple.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monhauntplant/Monhauntplant.ini",
+      "sha256": "4761188400b93a4bfb30662e8685741300ce58601a677ee1688f8086c5a1045f",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monhauntplant/Monhauntplant.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monheavygoblin/Monheavygoblin.ini",
+      "sha256": "c86917ca27bd16857279513d1afded1b26860277bda2e0f58be922824c9f7b15",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monheavygoblin/Monheavygoblin.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monhobgoblin/Monhobgoblin-a.INI",
+      "sha256": "56e3cbe708521a40cf319762085ff51ffd7b369ae45037bc2b2a86f3ed6ec98b",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monhobgoblin/Monhobgoblin-a.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monhobgoblin/Monhobgoblin-b.INI",
+      "sha256": "db8e3368201b19b762c1db8531959eaaa85ae43fd1ab2da2effd6493af7e4149",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monhobgoblin/Monhobgoblin-b.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monhulk-1/Monhulk-1.ini",
+      "sha256": "f4c4d449b49d24882cb1df4b60e81ea8e0abd38bff5d496a024e30d4663b9f8a",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monhulk-1/Monhulk-1.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monhulk/Monhulk.ini",
+      "sha256": "7544a62cc522d370eaf559282a4b7645862f31490c1222a49333cedf7c4965fe",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monhulk/Monhulk.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monimp/Monimp-a.INI",
+      "sha256": "1d1d48033888ccb0d23c5894e483fb944fb8537b7db8bba60b3e96878a9c24f7",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monimp/Monimp-a.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monimp/Monimp-b.INI",
+      "sha256": "2811fbe6a6c756c068db8b96e055f96eb48458398d3e825003ea935600497437",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monimp/Monimp-b.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monimp/Monimp-c.INI",
+      "sha256": "e7ba53a36ed7511910bf8f2719270493abc0d8512c46873cdcb2fb787a7c5229",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monimp/Monimp-c.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/MonKingspider/ks.ini",
+      "sha256": "04bf5d55ac1938ccc5781f6d6a9b9ebcdf54126e925c1713ff80974fdb61711c",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/MonKingspider/ks.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monmightygoblin/Monmightygoblin.ini",
+      "sha256": "93bb6f08b3cd70a2537a7bfb3bbd3de88bfcc4a16c2b8c04df622460ff5b4c20",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monmightygoblin/Monmightygoblin.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/MonminiG/MonminiG-a1.ini",
+      "sha256": "eb80017ab5d2a424c6820e807a4616acae446a3ccfd4f8771415d7b9cb0991e4",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/MonminiG/MonminiG-a1.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/MonminiG/MonminiG-b1.ini",
+      "sha256": "11d9bcdfe24743f45513a6b656e487836a6624c67f4951e5be2d2981cd856b51",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/MonminiG/MonminiG-b1.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/MonminiG/MonminiG-c1.ini",
+      "sha256": "9a1d649ac08e66351a4be0b78cc887760d5f5fe5f88199969e01dabdf327ab7d",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/MonminiG/MonminiG-c1.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/MonMokova/mokova.ini",
+      "sha256": "3a561c78e5d22d83aa1d093b4ffe5bb368477034590a94d299e0ae1d6651e1b1",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/MonMokova/mokova.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monmudy/Monmudy.INI",
+      "sha256": "17713565b54a65de2610510ef6c0eb02460ff146228677c6ff12bcf97ad1ed90",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monmudy/Monmudy.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monmudy/monmudyjel.INI",
+      "sha256": "c3f5b107eff91ad32257c2111668feb2b8c8e26aa631627d20548b8ab2703144",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monmudy/monmudyjel.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monmummy/monmummy.INI",
+      "sha256": "1c450d03f7e99bb213972d4af8f96d06db71f9e142f50c110153684629f41636",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monmummy/monmummy.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monnazz-1/Monnazz-1.ini",
+      "sha256": "cf3db51f51e7605b8648eb219696080b82cdb4876cbac5037a5a843aa8a11cfe",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monnazz-1/Monnazz-1.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monnazz/Monnazz.ini",
+      "sha256": "d82ce40b92c218bde188faed10618fcdad17f3e305d30f9cf67650dcbc26901b",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monnazz/Monnazz.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monplant/MonPlant-a.INI",
+      "sha256": "f10091dd31c73be612567660b6d6ffdf45f9a6d7af7f081f19fce7116ce2fb37",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monplant/MonPlant-a.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monplant/MonPlant-b.INI",
+      "sha256": "f2d50acb0143005653ec0661c280e20cae1887f11a80245d739e31246df611d3",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monplant/MonPlant-b.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monplant/MonPlant-c.INI",
+      "sha256": "a76354a8f4745e476406ea20c5365a80fd04f6a34a1ac3f6e60d6e58a76f3920",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monplant/MonPlant-c.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monplant/MonPlant-d.INI",
+      "sha256": "1f952190c2f3a01ba2cd29daac2db920f9292c453122c73c7466bea14117d5c4",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monplant/MonPlant-d.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monplant/MudyGolem.INI",
+      "sha256": "e1ee5bc1ff3c44de12b0a56c6deb99cee5f6c685d895870e55af0d4bbb7430f2",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monplant/MudyGolem.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monrafra/Monrafra.ini",
+      "sha256": "d141562f2692bc0f0990743177a3ce0324fc5cbb16bc3311403ef0e2f6b855f0",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monrafra/Monrafra.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monratoo-1/Monratoo-1.ini",
+      "sha256": "235e91448dec7dfb423696d873afd330b78f0bc3f44997f8dca9f076772bfe92",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monratoo-1/Monratoo-1.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monratoo/Monaratoo.ini",
+      "sha256": "e222dd53fce24b8adf344f62dbe7a5888b0a35be1ea3acfdcba8d24e437d0537",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monratoo/Monaratoo.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monrebion/Monrebion-1.ini",
+      "sha256": "d6416935defc8c978c0f731e7239e8e3127b35465a925203a42aa3af7763a2f2",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monrebion/Monrebion-1.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monrebion/Monrebion.ini",
+      "sha256": "9846e1e0b9999c9c9a1d25777a2d5e97545909872a88a3edd1e7b658930b1ec0",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monrebion/Monrebion.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/MonSArcher/MonSArcher.ini",
+      "sha256": "145ab34a93583f74bc92b5d62e0ca5b8267f53129053c65482424e523e5fe251",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/MonSArcher/MonSArcher.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monsen/Monsen.ini",
+      "sha256": "faecda3e28c503d1ef9bb5d989b365d659854e53d029b21f0b6f9a68723c85bf",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monsen/Monsen.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/MonSeto/seto.ini",
+      "sha256": "ffc6a6d777d3968cc9b30041097d6cd77d6f75afc60d6f9848ccbb397c6747aa",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/MonSeto/seto.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/MonSGuard/Mondoomguard.INI",
+      "sha256": "2baa2914636d7ee1c161ceedcb7d3e844fc66b2e712b55bab9520084841ee0bf",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/MonSGuard/Mondoomguard.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/MonSGuard/Monhauntguard.INI",
+      "sha256": "eff6c78668922ed5b3fff90b3d7390a05e10b3f7d954282f40016f96457cf9a7",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/MonSGuard/Monhauntguard.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monshadow/Monshadow.ini",
+      "sha256": "213a0ba070729bed39a346a282be5c49d7561207adfbaa9cb03cafe353803747",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monshadow/Monshadow.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monskeleton/MonSkeleton-a.INI",
+      "sha256": "bd578d986962ad77fbd341f9b4d4b41b0261c200ed6523bd3fb10753ab8829c3",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monskeleton/MonSkeleton-a.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monskeleton/MonSkeleton-b.INI",
+      "sha256": "bcf39f7c47b8f31cd946a69ffcac769b44bc5d1f521b2d893b9c603bb820b4c2",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monskeleton/MonSkeleton-b.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/MonSKnight/MonSKnight-B.ini",
+      "sha256": "4493003f1b202a19613e1ef04f60c2c7ea8fb665232bbb0218f4981572930f3f",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/MonSKnight/MonSKnight-B.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/MonSKnight/MonSKnight.ini",
+      "sha256": "c349fc97922e61f2bcf50e5fd55313d5eb6976eda3abe45d4028a396e93edaf4",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/MonSKnight/MonSKnight.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monsliver/Monsliver.ini",
+      "sha256": "600e4b21be2d283ed37c3d18364c9e676a8eeeca6d1ef3ca6ec4965f378da888",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monsliver/Monsliver.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/MonSRazorArcher/MonSRazorArcher.ini",
+      "sha256": "dd17fc0fb8f229e6265ffefdd0a327f1b35d0532d7a008c8dea3bd2b320b9a91",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/MonSRazorArcher/MonSRazorArcher.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monstonegolem/Monstonegolem.ini",
+      "sha256": "e7ae33eeff5adda985c79a74d18f1855d2010a0d8c19375f3c4c854b3fd36542",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monstonegolem/Monstonegolem.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monstygianlord-1/Monstygianlord-1.ini",
+      "sha256": "1ee12ac87eca6ffd7439c362e667f09f06eb1d49b6e83caf26e3a75164939dea",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monstygianlord-1/Monstygianlord-1.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monstygianlord/Monstygianlord.ini",
+      "sha256": "45745f5942b895e28fcc7a5241853dc525f0bff63a0e9902ab8acd60c1670bfe",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monstygianlord/Monstygianlord.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/MonSWarrior/MonSWarrior.ini",
+      "sha256": "3c11aa3d72c8396751f4cfc164901709d647999aca5381393451b8aee5fa0fb3",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/MonSWarrior/MonSWarrior.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/MonTempleguard/templeguard.ini",
+      "sha256": "90f14a056b21c93ed046cdf849169cf1c73686cb52ef2cfd193b0c8700e58210",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/MonTempleguard/templeguard.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monwitch/Monwitch.ini",
+      "sha256": "37544146a08203ba1d0dc8910aab19abe641bea74425ec0afd2c0fc37d9e9e5b",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monwitch/Monwitch.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monwitch/Monwitch1.ini",
+      "sha256": "56ad116ab7aa122602497ee419344a1f33f53057d7e48206a5a18c01d70d4fa2",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monwitch/Monwitch1.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monwitch/Monwitch2.ini",
+      "sha256": "2a3b90119d305b6547f95d52e08bdfe1337fa68eeb6d3e3242509406300ab36a",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monwitch/Monwitch2.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/MonWolverin/MonWolverin-01.ini",
+      "sha256": "c8c07b8ba0362c8ac74ea2a82a06fce0d2a372b6fbe7c7779fba65628f3db6bc",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/MonWolverin/MonWolverin-01.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/MonWolverin/MonWolverin-02.ini",
+      "sha256": "0d7bfbdffe2cb6ee81c050852d39c42a353af42f5cb92ea0639d14dcbbf1e348",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/MonWolverin/MonWolverin-02.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/MonWolverin/MonWolverin-03.ini",
+      "sha256": "54d0007d42e3a1185967c1d83e2892a3b334349a24dd832a2be0645107349110",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/MonWolverin/MonWolverin-03.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monzombi/Monzombi-a.INI",
+      "sha256": "6513e0bbdf65b4d3bf965caa3c62e9bb8f96fdcf41736c652dacd5fee8f78ce4",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monzombi/Monzombi-a.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monzombi/Monzombi-b.INI",
+      "sha256": "05f4e4b408ccaf014b03358af352711aecdab80d3174eb6cf3e4b69c800c920c",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monzombi/Monzombi-b.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Monzombi/Monzombi-c.INI",
+      "sha256": "408d2b8203204f270c9fe3b33b34538316a9560b82db224cd072daf7ebc8635f",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Monzombi/Monzombi-c.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Morgon/Morgon.ini",
+      "sha256": "e3ea95693f1cc03049b4cc8202cc51fc8a95cc6f468479d93951de4727b38be0",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Morgon/Morgon.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Morgon/Morgonia.ini",
+      "sha256": "6e0c80680e6cd3b563db434f5e1664ea369bd4bbc27c92b70f8bf3502338dc5a",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Morgon/Morgonia.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Mountain/B_Mountain.ini",
+      "sha256": "88528967983e4e343b5a5b002867e0130f2737ebe05d2098ed9daff13b9d0986",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Mountain/B_Mountain.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Nihil/Nihil.ini",
+      "sha256": "63e9be1e7adc6dcb22ae449469e9cc7210406260a30c6c8b52fa4b26ea840ccb",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Nihil/Nihil.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Niken/Niken.ini",
+      "sha256": "bba4819319092c644e05056f7b878cd02a333d59236ba6e6e1412e998adcb676",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Niken/Niken.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Omicronos/Omicronos.ini",
+      "sha256": "5d90d8d332f62c21a1fe8ab38ea0ead674382a29ee99a97f8a68f1dce090f33d",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Client-v4220/char/monster/Omicronos/Omicronos.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/PumpkinGhost/PumpkinGhost.ini",
+      "sha256": "8a7775c2f8055e39ddb4b383eb19b53a0b040f9eb234dc436ccac2dc402b9c69",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/PumpkinGhost/PumpkinGhost.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Rampage/rampage.INI",
+      "sha256": "5413e8a36513ecb10ad2bbbb39c0d0139b7d869b5ce01982bb8415f6d433023d",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Rampage/rampage.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/RoyalMummy/RoyalMummy.INI",
+      "sha256": "aaf1882874b96cc7896bc94d8e67211a95ced68eb7ebb3e0f85a2e8ebc298aff",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Client-v4220/char/monster/RoyalMummy/RoyalMummy.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/S_Bloodyknight/S_Bknight.ini",
+      "sha256": "34150cbf8eb4671093fda14a2bee3e8c40c342138887f2f14706c70d908f01f9",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/S_Bloodyknight/S_Bknight.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/sandlem/Monsandlem-boss.ini",
+      "sha256": "e3e68bcb0b43a138bfe37db8b4a011d84ea2cdc0058ebce40e89d07ada2eec2f",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/sandlem/Monsandlem-boss.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/sandlem/sandlem.ini",
+      "sha256": "254f13a93ca7c118af8bcd89171205143abc6529e9360ab9b7bb13cba78baef7",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/sandlem/sandlem.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Sathla/Sathla.ini",
+      "sha256": "0cd5070673778904b82f9fe441d454d677135d4d9d6731ddb5dc897fb31cbe2e",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Sathla/Sathla.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/SealCrasher/SealCrasher.ini",
+      "sha256": "7a48946503bc2451c548e719cc8126df897f37f53e60f49d274b747892b4f770",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/SealCrasher/SealCrasher.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Shogoth/Shogoth.ini",
+      "sha256": "d5db891ee9b592a186630ff1befc3cedd96f76efd5caad9475ad44d58425edb2",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Shogoth/Shogoth.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Slayer/Slayer.INI",
+      "sha256": "1ee4bd1fc0303e4bac5c26c3639c3ea2dbcb1a3d3bdd6b56e16467cca2d52421",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Client-v4220/char/monster/Slayer/Slayer.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Snowman/Snowman.ini",
+      "sha256": "4ccaee1a3208cd29b099cf7bff3ab0e2b0ba2a2eddbd04b5a1c9222018d37e8e",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Snowman/Snowman.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Soldier_A/Itwt103.BMP",
+      "sha256": "ffce83879ac8d22e25ef231b1b42689c2e2dd253a0f4562ea0549ee21ecf37bb",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/old/velho/char/monster/Soldier_A/Itwt103.BMP",
+      "code": "WT103",
+      "action": "INSTALL"
+    },
+    {
+      "destination": "char/monster/Soldier_A/soldier_A.INI",
+      "sha256": "98ec1670dec3289ad74b882e318bc8fd26564fb78392b30a30661f02ab9eeeb1",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Soldier_A/soldier_A.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Soldier_B/soldier_B.INI",
+      "sha256": "c1cae9e82313b38b8a93583350987119c207480cd9dc7a02f39f60e5d4de3fbe",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Soldier_B/soldier_B.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Soldier_C/soldier_C.INI",
+      "sha256": "f23284941810aa439f5819346fa665f61ede8eb2f220699a3efb51005ffa6a99",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Soldier_C/soldier_C.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Soldier_D/Soldier_D.ini",
+      "sha256": "27fc2929f4b192435eb8d1d87c831e7ffd0b3ebc1c09e2b01f9a8a8e1f273f42",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Soldier_D/Soldier_D.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/spider/spider.ini",
+      "sha256": "f93fd8ec0cde9bc0049a099e0d8d0266606ebb1f7f1657df922473aabb6b4a28",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/spider/spider.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/ssnail/ssnail.INI",
+      "sha256": "1ccf4b044829f906b4e0f20e16cd26beab0c488eeb817c166566c025fbc8124a",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/ssnail/ssnail.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/strider/strider.ini",
+      "sha256": "b705f12748a1a6da60b4953a1b09d2c5d8f72728f8ee533235c5a94d07f8e612",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/strider/strider.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Tarantulika/tarantulika.ini",
+      "sha256": "c0f5030c45a53b33c82f48b31271434004cf01c541c40f11f48f2149948af659",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Tarantulika/tarantulika.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/TBomber/TBomber.ini",
+      "sha256": "5fb4e83664b946349767b01f9f2c4e2be0594ac8cb971f17de51949822047121",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/TBomber/TBomber.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/TElite/TElite.ini",
+      "sha256": "28829fc0d9b1a0cbaf162e698f1d1ef16719ddd679081c6fc25f256226620269",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/TElite/TElite.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/TowerGolem/towergolem.ini",
+      "sha256": "4648e7fae3c46f475ff7a77933f43000a10db43fbc9385f0b5fdb325e9b016b0",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/TowerGolem/towergolem.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/TSoldier/TSoldier.ini",
+      "sha256": "5adc04cecfef29e96dee30491052d6d871ad78ca4b9623e815736c7ee508ba89",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/TSoldier/TSoldier.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/TTechnician/TTechnician.ini",
+      "sha256": "c9cd5b1fe88ab87a4ec970e0727cc288d4a5ae4ccfc6f80017bbd7d7378aa7f3",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/TTechnician/TTechnician.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Tulla/tulla.ini",
+      "sha256": "b42cd80b7277eeff6897fd3f53ce000846010c2cfcbad83fedd20fcd46ebb9d4",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Tulla/tulla.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/turtlecannon/Turtledragon.ini",
+      "sha256": "be8153987eeddc04d52e0e2bd9146284a12893b0dbee607ae4cac71f7046292c",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/turtlecannon/Turtledragon.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/UndeadManager/UndeadManager.ini",
+      "sha256": "0d8716d0237f39e4c72a00c436de40a93d4ae795d3f4f6ee0d8ce603056ba757",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/UndeadManager/UndeadManager.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/UndeadMiner/UndeadMiner.ini",
+      "sha256": "90a1d05efbf93ff6008da3b9288b4c8c5c931df88b935a93da611e74dff8bd83",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/UndeadMiner/UndeadMiner.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/V_bee/V_bee.ini",
+      "sha256": "4d10bc28d696d8cdbdd0ac514e95187c60cfe0dc93e5ab75f2f9c345c6d430dd",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/V_bee/V_bee.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Vampiric/vemp.ini",
+      "sha256": "6e3b30c84da6178e6f26fb2dc172cfa75d846eee33a0d8513717871b159b0f77",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Vampiric/vemp.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/VampiricBat/VampiricBat.INI",
+      "sha256": "5616aefd7221e4f4f9c94de25c68f83dc57faac9a2f2747a703d8977511f7d7e",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/VampiricBat/VampiricBat.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Web/web.INI",
+      "sha256": "8cc8eb8035991b442013f8bbd7850324c57b5aa2e7845b3daeb1f9c9e34d4d73",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Web/web.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Wolverin/Wolverin_A.ini",
+      "sha256": "3e79161c90e3722a7eea0d3a4f2da2ae149ecdcb37298fa522276dac6c64f475",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Wolverin/Wolverin_A.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/monster/Yagditha/Yagditha.ini",
+      "sha256": "783c319351f5176486d5aec92ac43f3d4cbe20651c5aecc68fcf9d8b53c81811",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/monster/Yagditha/Yagditha.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/Ahin/Ahin.ini",
+      "sha256": "f71c4cb020009879592127b5ca764a187b07bbd8cc354fe98c9d51aae7e7dced",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/Ahin/Ahin.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/Barba/barba.INI",
+      "sha256": "de8c9af292c3fb0748c02a2676d09002aefe6d195228be82778fe816097166f1",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/Barba/barba.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/Baurin/Baurin.ini",
+      "sha256": "4e73eaaa5d5b21517287a7fb941cdbcd6cd2e8b861d24b215769528a87018793",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Client-v4220/char/npc/Baurin/Baurin.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/Bcn01/Bcn01.ini",
+      "sha256": "7ad4a96059693ca9014efc19ca51587248a22343a721af1ed5cdea760e76dc2b",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/Bcn01/Bcn01.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/Bcn02/Bcn02.ini",
+      "sha256": "4553a86af9b80649473ad0adde040e4d12f865852eed6f7b041feb4e5a840dbe",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/Bcn02/Bcn02.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/Bcn03/Bcn03.ini",
+      "sha256": "adc8b000bd8443a16756b1cd6acacb5c7a8cab08ba08174229c5829e1f298a99",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/Bcn03/Bcn03.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/Bcn04/Bcn04.ini",
+      "sha256": "14b8e602537776d3337875d9dea8a843c03e55757affc537fdfdd422602adc69",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/Bcn04/Bcn04.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/Bcn05/Bcn05.ini",
+      "sha256": "536ab26da4b18ac97d18322df989e0d6eda5310a5f210d64e05b61aa6d02f717",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/Bcn05/Bcn05.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/Bcn06/Bcn06.INI",
+      "sha256": "1d1fb0ca0e3a0cb098fdf6c2d629df353613708cef3f225b53720ae8e662e664",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/Bcn06/Bcn06.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/IceN-02/IceN-02.ini",
+      "sha256": "20eee87b8824c86f68c5d20dc156d7ea13f9c7c25418916bf167be003f6c52d0",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/IceN-02/IceN-02.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/IceN-03/IceN-03.ini",
+      "sha256": "c8499cc5b344ae5e7cb10353d2de3ea8e8dc46a3679c51a8e02c746f29c3e155",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/IceN-03/IceN-03.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/Mage/Mage.ini",
+      "sha256": "5319a135a4c8a71cc65186bdb4347805cb62cda6379788e07c6d5866eb768abf",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/Mage/Mage.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/MN-001/MN-001.ini",
+      "sha256": "e007f3665a26b19259ed6b3b1cd740b82aba263d1ef748733d79b4d4b13c41c8",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/MN-001/MN-001.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/MN-002/MN-002.ini",
+      "sha256": "a4aca09c08bdf2756659ebfddc92bd51d2746d8485b5b6afd010be66ff383096",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/MN-002/MN-002.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/MN-003/MN-003.INI",
+      "sha256": "7dd61d2a741d8017edbc92247897b55d203c51fde0317fce30a53a73ca67cb75",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/MN-003/MN-003.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/MN-004/MN-004.ini",
+      "sha256": "d42377ba7c5e3e54b931298fc9c870f6a281fefdd397cc6769b4e3da416835fb",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/MN-004/MN-004.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/MN-005/MN-005.ini",
+      "sha256": "a0479b3766f1c7282c9eb633632155be3fc6253bd55be45610dba322753ca684",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/MN-005/MN-005.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/MN-007/MN-007.ini",
+      "sha256": "cbf88efe7a15d1fa056b1e19c8e153eb5a30d8d056f56895c7841c4fe47d0389",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/MN-007/MN-007.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/MN-008/MN-008.ini",
+      "sha256": "8548e88b3c8dd8cc00d08dc6c08d53fd5b2be7bc9a9cc79e3747966effe033df",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/MN-008/MN-008.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/MN-009/MN-009.ini",
+      "sha256": "0c029ca0e8789e24b34c075350ba77478b8bb3023cd27ff6a528c987b0e14112",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/MN-009/MN-009.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/MN-010/MN-010.ini",
+      "sha256": "39934dbd43cdd1e628f91b06fbac4042263db87c8a9d53da14ddb9d43d4f8257",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/MN-010/MN-010.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/MN-011/MN-011.ini",
+      "sha256": "ef6e850b98aff004565374505fde8043aaaca2508c8684cc8186104dfcea1ceb",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/MN-011/MN-011.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/MN-012/MN-012.INI",
+      "sha256": "96793863cd9f42d88dd2a90947878389c370da36709a192fd604301a4b18b0b7",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/MN-012/MN-012.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/MN-013/MN-013.INI",
+      "sha256": "b28b094c4cc54227e0c3db8583e4f6928b4db4c772c506a4e4a2853d6f9946ec",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/MN-013/MN-013.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/NineFox/npc_ninefox.ini",
+      "sha256": "4213919528d3aefda84b3d138f7639757b489320ceb1630dd86f19a8081cf36d",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/NineFox/npc_ninefox.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/SkillMaster/SkillMaster.ini",
+      "sha256": "7d3fbe4f9f5fee7f3ca2a6fe1a8e6140c6ecfb4c0bcb48935f06965459c9d5de",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/SkillMaster/SkillMaster.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/SN-002/SN-002.ini",
+      "sha256": "d3b28c996da7a6f7bd6d52f9e2d69dd8afee0fb71ba84f5a41e3791fcbb733de",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/SN-002/SN-002.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/SN-003/SN-003.ini",
+      "sha256": "0cc27222ff23b753df7afb88fbe0d5f87b881122ebd354319f46a9e4e8055021",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/SN-003/SN-003.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/SN-004/SN-004.ini",
+      "sha256": "f5d1796c793b0a04095d11eb5f9a2b92980bdff062f9a94c20e87f4a402769bb",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/SN-004/SN-004.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/SN-005/SN-005.ini",
+      "sha256": "fa0ead297432ee0f85942412d5228a76752c9845ec6efe6ecf43ef2f7991843a",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/SN-005/SN-005.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/TN-001/TN-001.INI",
+      "sha256": "ec926b393acc6f7aae50f3122158a95912cf77f197570df842b2fcb2c2ed11f8",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/TN-001/TN-001.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/TN-002/TN-002.INI",
+      "sha256": "4d0375b54255471df93879cd7b8eb940d93edb9ed8af6ec462936922c2e1cb80",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/TN-002/TN-002.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/TN-002/TN-013.INI",
+      "sha256": "5d6742bcabe7884625e6deaa2bace497893a6de7563776c69bc1371eb32b5911",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/TN-002/TN-013.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/TN-003/TN-003.ini",
+      "sha256": "304089a2664a1c8ac5ef00171f4d84229b12961a42931da34620788153890b68",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/TN-003/TN-003.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/TN-004/TN-004.ini",
+      "sha256": "4cd8527973fbf7dcae0a430e3fa4b780d081e418211459a0f4a20683c2259f23",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/TN-004/TN-004.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/TN-005/TN-005.ini",
+      "sha256": "126a750168db2a468bd1d120bb4efdc738c92566460f91e8561480354fff706c",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/TN-005/TN-005.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/TN-006/TN-006.INI",
+      "sha256": "7b71a161909a1b42aa3485379f1b35aa806ad8b952eef52bbcf9d9676f6b22f9",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/TN-006/TN-006.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/TN-007/TN-007.ini",
+      "sha256": "453f35a77c5cea4beedf83aa053dbd103b1d7733f432b28199ef8cd2fd75ca90",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/TN-007/TN-007.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/TN-008/TN-008.INI",
+      "sha256": "ee0e9d6ed5574bb17db18e76d2f448ffddbc6d7f632bd862f92aedf83a274ea4",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/TN-008/TN-008.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/TN-009/TN-009.INI",
+      "sha256": "46b2835222722fa4934ffb2f7e709f7cf4af11a0c333ccd4070de77d2adda2a3",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/TN-009/TN-009.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/TN-010/TN-010.INI",
+      "sha256": "ea33ac6e2ef503a1d3f9f5b36e2d9cdcfffc1da31b85ab8faa0b7ddc64dec9be",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/TN-010/TN-010.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/TN-011/TN-011.INI",
+      "sha256": "de8c9af292c3fb0748c02a2676d09002aefe6d195228be82778fe816097166f1",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/TN-011/TN-011.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/TN-012/TN-012.INI",
+      "sha256": "e3f04a4bd83dc9ac42ceb03c03c5caed6b6d3719098683191b5e5a9d635427d4",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/TN-012/TN-012.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/TN-014/TN-014.ini",
+      "sha256": "d8f33105d180dcec8cef21810fe6c87dc78ce16a01ed0283b2ec4c169752f281",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/TN-014/TN-014.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/TN-015/TN-015.ini",
+      "sha256": "6d6ec9d784409e8afa0d1265acd31061e1db53ea74017219af44a16e8fe30b21",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/TN-015/TN-015.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/TN-016/TN-016.INI",
+      "sha256": "afdd2c3e6266d6f47aff6d6358fa56e7154fa12ac36faee3b475252f345483a9",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/TN-016/TN-016.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/convert/TN-017/TN-017.ini",
+      "sha256": "7e0ff3d21c1f95d8b70c7bb9d6ef30c3ac1c7bb9d37b05be5daaba9a6c171674",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/convert/TN-017/TN-017.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/Derik/Derik.INI",
+      "sha256": "a91deb8b77c76c5b92429920e5af73d9b06c5041b335118947f92a7803a9fe07",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/Derik/Derik.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/evenmorif/evenmorif.ini",
+      "sha256": "90294548007634819215aa530850498c3d251d7af34e0f0cbd274a251714b9d6",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/evenmorif/evenmorif.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/eventmolly/eventmolly.ini",
+      "sha256": "6a60988521663992d2ae8c827a61a7fd3c5352af65e27bbcb9cceb4802c3d46c",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/eventmolly/eventmolly.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/Hermit/Hermit.ini",
+      "sha256": "6eafeb44d0147b3110f0104d43378d625e2299ef061e4bf30b0e6fffbde7543a",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/Hermit/Hermit.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/hobsanta/hobsanta.ini",
+      "sha256": "00ace73a89cf9150d4209bae61f93420d0868da94386fbc0cff89c2b54e0d111",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/hobsanta/hobsanta.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/Hosean/Hosean.ini",
+      "sha256": "bc3311891a8007ee4e22abd38b1424c940aeda6d5813ac4db2766b74d6fd00c2",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/Hosean/Hosean.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/Hunter/Hunter.ini",
+      "sha256": "c6f800a8b937c5e46cd380ecd0c71991d3991b22596a7e5c6eb52700fce13640",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/Hunter/Hunter.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/IceN-02/IceN-02.ini",
+      "sha256": "20eee87b8824c86f68c5d20dc156d7ea13f9c7c25418916bf167be003f6c52d0",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/IceN-02/IceN-02.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/IceN-03/IceN-03.ini",
+      "sha256": "c8499cc5b344ae5e7cb10353d2de3ea8e8dc46a3679c51a8e02c746f29c3e155",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/IceN-03/IceN-03.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/Jin/Jin.ini",
+      "sha256": "3477ff7ab29e339aed62325e8420c961535e7efbf0967aa7213287f16398f8e3",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/Jin/Jin.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/M_Messenger/M_Messenger.ini",
+      "sha256": "fe229ca0b474661256b47d05287535e9b0f89522069b46d4fd8c1d354d7b345e",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/M_Messenger/M_Messenger.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/Mage/Mage.ini",
+      "sha256": "5319a135a4c8a71cc65186bdb4347805cb62cda6379788e07c6d5866eb768abf",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/Mage/Mage.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/Marina/Marina.ini",
+      "sha256": "093597344bb444ba948fce6ba97e655596f1467e4b2352157048fb56c18f104e",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/Marina/Marina.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/MN-001/MN-001.ini",
+      "sha256": "e007f3665a26b19259ed6b3b1cd740b82aba263d1ef748733d79b4d4b13c41c8",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/MN-001/MN-001.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/MN-002/MN-002.ini",
+      "sha256": "a4aca09c08bdf2756659ebfddc92bd51d2746d8485b5b6afd010be66ff383096",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/MN-002/MN-002.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/MN-003/MN-003.INI",
+      "sha256": "7dd61d2a741d8017edbc92247897b55d203c51fde0317fce30a53a73ca67cb75",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/MN-003/MN-003.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/MN-004/MN-004.ini",
+      "sha256": "d42377ba7c5e3e54b931298fc9c870f6a281fefdd397cc6769b4e3da416835fb",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/MN-004/MN-004.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/MN-005/MN-005.ini",
+      "sha256": "a0479b3766f1c7282c9eb633632155be3fc6253bd55be45610dba322753ca684",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/MN-005/MN-005.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/MN-007/MN-007.ini",
+      "sha256": "cbf88efe7a15d1fa056b1e19c8e153eb5a30d8d056f56895c7841c4fe47d0389",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/MN-007/MN-007.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/MN-008/MN-008.ini",
+      "sha256": "8548e88b3c8dd8cc00d08dc6c08d53fd5b2be7bc9a9cc79e3747966effe033df",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/MN-008/MN-008.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/MN-009/MN-009.ini",
+      "sha256": "0c029ca0e8789e24b34c075350ba77478b8bb3023cd27ff6a528c987b0e14112",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/MN-009/MN-009.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/MN-010/MN-010.ini",
+      "sha256": "39934dbd43cdd1e628f91b06fbac4042263db87c8a9d53da14ddb9d43d4f8257",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/MN-010/MN-010.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/MN-011/MN-011.ini",
+      "sha256": "ef6e850b98aff004565374505fde8043aaaca2508c8684cc8186104dfcea1ceb",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/MN-011/MN-011.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/MN-012/MN-012.INI",
+      "sha256": "96793863cd9f42d88dd2a90947878389c370da36709a192fd604301a4b18b0b7",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/MN-012/MN-012.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/MN-013/MN-013.INI",
+      "sha256": "b28b094c4cc54227e0c3db8583e4f6928b4db4c772c506a4e4a2853d6f9946ec",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/MN-013/MN-013.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/Nadia/Nadia.ini",
+      "sha256": "4e7ead7539d43ad21c1eed3404b690b831c296fda0bafe7b83b914692af888a8",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/Nadia/Nadia.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/NineFox/npc_ninefox.ini",
+      "sha256": "4213919528d3aefda84b3d138f7639757b489320ceb1630dd86f19a8081cf36d",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/NineFox/npc_ninefox.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/Packjjangpy/Packjjangpy.ini",
+      "sha256": "036a7275bb83a280cbe5e7eb4e604935ac74c7408a27b6f16320f17f098dce13",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/Packjjangpy/Packjjangpy.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/Rudolf/snowboard.ini",
+      "sha256": "6125bd03100d3afcef635f70afb2a96fc0c0598a3f8ba5127812e4836f44140a",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/Rudolf/snowboard.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/Skadi/Skadi.ini",
+      "sha256": "b8a8b2930a253998f7ab55480c58493c076866378a875c3bd3c24e55dbde669a",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/Skadi/Skadi.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/SkillMaster/SkillMaster.ini",
+      "sha256": "7d3fbe4f9f5fee7f3ca2a6fe1a8e6140c6ecfb4c0bcb48935f06965459c9d5de",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/SkillMaster/SkillMaster.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/SN-002/SN-002.ini",
+      "sha256": "d3b28c996da7a6f7bd6d52f9e2d69dd8afee0fb71ba84f5a41e3791fcbb733de",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/SN-002/SN-002.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/SN-003/SN-003.ini",
+      "sha256": "0cc27222ff23b753df7afb88fbe0d5f87b881122ebd354319f46a9e4e8055021",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/SN-003/SN-003.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/SN-004/SN-004.ini",
+      "sha256": "f5d1796c793b0a04095d11eb5f9a2b92980bdff062f9a94c20e87f4a402769bb",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/SN-004/SN-004.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/SN-005/SN-005.ini",
+      "sha256": "fa0ead297432ee0f85942412d5228a76752c9845ec6efe6ecf43ef2f7991843a",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/SN-005/SN-005.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/stella.bak/Stella.ini",
+      "sha256": "946a577fa7743575d45d8af702cc460d93b38d16f57784e86b5c5cfcdba202ec",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/stella.bak/Stella.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/stella/Celina.ini",
+      "sha256": "46abb3ef33f87959398509d10c7c7ee9f6035786b09d9a4bfd4f40df5fca3d5b",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/stella/Celina.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/stella/Stella.ini",
+      "sha256": "946a577fa7743575d45d8af702cc460d93b38d16f57784e86b5c5cfcdba202ec",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/stella/Stella.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/T_Messenger/T_Messenger.ini",
+      "sha256": "9f1610c2b1dbcec86aed49e3b537f7189af2f430d59887e9450d203c1feee8b5",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/T_Messenger/T_Messenger.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/TN-001/TN-001.INI",
+      "sha256": "ec926b393acc6f7aae50f3122158a95912cf77f197570df842b2fcb2c2ed11f8",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/TN-001/TN-001.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/TN-002/TN-002.INI",
+      "sha256": "4d0375b54255471df93879cd7b8eb940d93edb9ed8af6ec462936922c2e1cb80",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/TN-002/TN-002.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/TN-002/TN-013.INI",
+      "sha256": "5d6742bcabe7884625e6deaa2bace497893a6de7563776c69bc1371eb32b5911",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/TN-002/TN-013.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/TN-003/TN-003.ini",
+      "sha256": "304089a2664a1c8ac5ef00171f4d84229b12961a42931da34620788153890b68",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/TN-003/TN-003.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/TN-004/TN-004.ini",
+      "sha256": "4cd8527973fbf7dcae0a430e3fa4b780d081e418211459a0f4a20683c2259f23",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/TN-004/TN-004.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/TN-005/TN-005.ini",
+      "sha256": "126a750168db2a468bd1d120bb4efdc738c92566460f91e8561480354fff706c",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/TN-005/TN-005.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/TN-006/TN-006.INI",
+      "sha256": "7b71a161909a1b42aa3485379f1b35aa806ad8b952eef52bbcf9d9676f6b22f9",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/TN-006/TN-006.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/TN-007/TN-007.ini",
+      "sha256": "453f35a77c5cea4beedf83aa053dbd103b1d7733f432b28199ef8cd2fd75ca90",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/TN-007/TN-007.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/TN-008/TN-008.INI",
+      "sha256": "ee0e9d6ed5574bb17db18e76d2f448ffddbc6d7f632bd862f92aedf83a274ea4",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/TN-008/TN-008.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/TN-009/TN-009.INI",
+      "sha256": "46b2835222722fa4934ffb2f7e709f7cf4af11a0c333ccd4070de77d2adda2a3",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/TN-009/TN-009.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/TN-010/TN-010.INI",
+      "sha256": "ea33ac6e2ef503a1d3f9f5b36e2d9cdcfffc1da31b85ab8faa0b7ddc64dec9be",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/TN-010/TN-010.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/TN-011/TN-011.INI",
+      "sha256": "de8c9af292c3fb0748c02a2676d09002aefe6d195228be82778fe816097166f1",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/TN-011/TN-011.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/TN-012/TN-012.INI",
+      "sha256": "e3f04a4bd83dc9ac42ceb03c03c5caed6b6d3719098683191b5e5a9d635427d4",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/TN-012/TN-012.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/TN-014/TN-014.ini",
+      "sha256": "d8f33105d180dcec8cef21810fe6c87dc78ce16a01ed0283b2ec4c169752f281",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/TN-014/TN-014.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/TN-015/TN-015.ini",
+      "sha256": "6d6ec9d784409e8afa0d1265acd31061e1db53ea74017219af44a16e8fe30b21",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/TN-015/TN-015.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/TN-016/TN-016.INI",
+      "sha256": "afdd2c3e6266d6f47aff6d6358fa56e7154fa12ac36faee3b475252f345483a9",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/TN-016/TN-016.INI",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/npc/TN-017/TN-017.ini",
+      "sha256": "7e0ff3d21c1f95d8b70c7bb9d6ef30c3ac1c7bb9d37b05be5daaba9a6c171674",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Server-v4220/char/npc/TN-017/TN-017.ini",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/tmABCD/CmfbB11.smd",
+      "sha256": "f3ffc154f5c1ca19a6516b8598de7a78d30ec53fccd239df0a5e109f90d78101",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Client-v4220/char/tmABCD/CmfbB11.smd",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/tmABCD/CmfbC11.smd",
+      "sha256": "9a2dce7474ec05e947ca3d32088f349fd28a4201d82ed8aab8c16bbf038c05a5",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Client-v4220/char/tmABCD/CmfbC11.smd",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/tmABCD/CmmbA11.smd",
+      "sha256": "b8203ff1cd09c093ec1c5a7d5d0713c923e7d5bc2958b29614bb17f590ac76f0",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Client-v4220/char/tmABCD/CmmbA11.smd",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/tmABCD/CmmbD11.smd",
+      "sha256": "5ce3235489b4f6297819170ced9065280b60359ec9e7582c32e1558836ed73ea",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Client-v4220/char/tmABCD/CmmbD11.smd",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/tmABCD/CmmbE11.smd",
+      "sha256": "caae5d1b602be6dc846051030c57829f3e48a93efc8d6fced19382d19d58119b",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Client-v4220/char/tmABCD/CmmbE11.smd",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/tmABCD/CtfbD11.smd",
+      "sha256": "885d5f026f0ceea9a39a52e135adbbbf906fb7434e2de904c060084ebb12767f",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Client-v4220/char/tmABCD/CtfbD11.smd",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/tmABCD/CtfbE11.smd",
+      "sha256": "bb421ee06327467080504348977ce6f8fe249c0d20641ce433068280214db5e8",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Client-v4220/char/tmABCD/CtfbE11.smd",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/tmABCD/CtmbA11.smd",
+      "sha256": "b84dbdf782b4e7796f411efdb4fe2306e5b2c254f9bb7f16edcf75431cc81dc7",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Client-v4220/char/tmABCD/CtmbA11.smd",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/tmABCD/CtmbB11.smd",
+      "sha256": "11eeddf02840ec7f53d357da429fb46741d2eb51c641b79d8ecd8b2ec7050cd1",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Client-v4220/char/tmABCD/CtmbB11.smd",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "char/tmABCD/CtmbC11.smd",
+      "sha256": "74a8576d3456b01da3a6b9b7f52964b5e995126f5a1d342e747c94bb31554ebc",
+      "source": "/home/gabriel/Área de Trabalho/coisas do priston/otherSource/PristonTale_Brazil_Client-v4220/char/tmABCD/CtmbC11.smd",
+      "code": null,
+      "action": "ALREADY_PRESENT"
+    },
+    {
+      "destination": "image/Sinimage/Items/Defense/itCA563.BMP",
+      "sha256": "07dfe41f98d354b74913e7ee0d1fb218d91826c805ca096816b96bed0414eb69",
+      "source": "/home/gabriel/summit_auditorias/zenit_atlas_oficial_20261029/ZENIT/IMAGENS_ORIGINAIS/itca563.png",
+      "code": "CA563",
+      "action": "REPLACE_WITH_OFFICIAL"
+    },
+    {
+      "destination": "image/Sinimage/Items/Defense/itCA564.BMP",
+      "sha256": "0bef54f2db629e1d1df8f5fc92cd998321051ae74d63f98e17895b5ee4a1a8ae",
+      "source": "/home/gabriel/summit_auditorias/zenit_atlas_oficial_20261029/ZENIT/IMAGENS_ORIGINAIS/itca564.png",
+      "code": "CA564",
+      "action": "REPLACE_WITH_OFFICIAL"
+    },
+    {
+      "destination": "image/Sinimage/Items/Premium/itBI151.BMP",
+      "sha256": "540c73bd0ed14415ca4b398a5f20074036f234f14939f5e9c3cdd5ec84b2bfb0",
+      "source": "/home/gabriel/summit_auditorias/zenit_atlas_oficial_20261029/ZENIT/IMAGENS_ORIGINAIS/itbi151.png",
+      "code": "BI151",
+      "action": "REPLACE_WITH_OFFICIAL"
+    }
+  ]
+}

@@ -23870,7 +23870,7 @@
         "Servidor/GameServer/OpenItem/CA115.txt",
         "GameServer/OpenItem/CA115.txt"
       ],
-      "legacy_sha256": "97b4ad89807a75fb29827deb9de2b089b8801e8c8fca9c35e91dce81f301744f"
+      "legacy_sha256": "fa27b558cad3d6764d6f6a27b4d7a02834c994a73edda9ee1fba62e3999fd02e"
     },
     {
       "id": "item.ca116",
@@ -26103,7 +26103,7 @@
         "Servidor/GameServer/OpenItem/CA715.txt",
         "GameServer/OpenItem/CA715.txt"
       ],
-      "legacy_sha256": "a9bf0e24a69077203a1f7880f1d9f8b0287f7588de28e2c832d12c0b42940f8e"
+      "legacy_sha256": "2c228de49adb70f0a11739213e45bff1a6710e51bc1bc8e9900470dcf0f1b192"
     },
     {
       "id": "item.ca716",
@@ -61865,6 +61865,1546 @@
         "GameServer/OpenItem/ZQuest_WT121.txt"
       ],
       "legacy_sha256": "86ad5b44a3a975f4a609e9c3ce48d87cb602592d5511788ec87a9a70a0800dea"
+    },
+    {
+      "id": "item.ca871",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CA871.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CA871.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CA871.txt",
+        "GameServer/OpenItem/CA871.txt"
+      ],
+      "legacy_sha256": "8c29a7b6940a09b1ec89bab68d59a180212bcda2bf18ee87c9663a3966b05aef"
+    },
+    {
+      "id": "item.ca872",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CA872.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CA872.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CA872.txt",
+        "GameServer/OpenItem/CA872.txt"
+      ],
+      "legacy_sha256": "813304c8a02a54c3482b7f6e65677b07e578f23de999710262b3ea2e2e4796db"
+    },
+    {
+      "id": "item.ca873",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CA873.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CA873.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CA873.txt",
+        "GameServer/OpenItem/CA873.txt"
+      ],
+      "legacy_sha256": "da565a4b77bb57e1153265c4e5bbe993ca37045122c41c1f42f93438e649571b"
+    },
+    {
+      "id": "item.ca874",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CA874.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CA874.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CA874.txt",
+        "GameServer/OpenItem/CA874.txt"
+      ],
+      "legacy_sha256": "e95ac5be6302813f7e5c5d5aadd3ca688351beabb78cb650f406dd09205b0e86"
+    },
+    {
+      "id": "item.ci101",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI101.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI101.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI101.txt",
+        "GameServer/OpenItem/CI101.txt"
+      ],
+      "legacy_sha256": "473fd3e9cac4c84ef42f59569c416b02920eae30be03cabeecf54bc8ae717c14"
+    },
+    {
+      "id": "item.ci102",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI102.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI102.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI102.txt",
+        "GameServer/OpenItem/CI102.txt"
+      ],
+      "legacy_sha256": "69b4e6a43c8c877b78b5d232ae128887aa083195b7efeaa48249e724b5b26f31"
+    },
+    {
+      "id": "item.ci103",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI103.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI103.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI103.txt",
+        "GameServer/OpenItem/CI103.txt"
+      ],
+      "legacy_sha256": "286d83137d09ccea6138756c5320fc7a4fbb5fea37187f1f204ba1346339d4b3"
+    },
+    {
+      "id": "item.ci104",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI104.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI104.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI104.txt",
+        "GameServer/OpenItem/CI104.txt"
+      ],
+      "legacy_sha256": "efe9ac1fe9a50e2c63921cb5fc88c5211fb49e265a6cf1affc956f69da749373"
+    },
+    {
+      "id": "item.ci105",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI105.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI105.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI105.txt",
+        "GameServer/OpenItem/CI105.txt"
+      ],
+      "legacy_sha256": "33d79769def49102bda994810213ba9db823f4463a0677ba29381a2a5728b933"
+    },
+    {
+      "id": "item.ci106",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI106.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI106.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI106.txt",
+        "GameServer/OpenItem/CI106.txt"
+      ],
+      "legacy_sha256": "3f90d4f97944f2e88c731b6c1b1f5b1e003d0e70d388ce527ca5e0518a4ba672"
+    },
+    {
+      "id": "item.ci107",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI107.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI107.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI107.txt",
+        "GameServer/OpenItem/CI107.txt"
+      ],
+      "legacy_sha256": "df6bc4f433aa689c6173be195bab6d323338905c9d1f7fd5f4b50d1b4420b921"
+    },
+    {
+      "id": "item.ci108",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI108.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI108.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI108.txt",
+        "GameServer/OpenItem/CI108.txt"
+      ],
+      "legacy_sha256": "127653666e47edab4138fdfc5710b2362f387192d901869c905e47d7caeb1a50"
+    },
+    {
+      "id": "item.ci109",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI109.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI109.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI109.txt",
+        "GameServer/OpenItem/CI109.txt"
+      ],
+      "legacy_sha256": "7a455e6dd47606d63f0e4cb9f176ea376007bb5a046779ebc8f527be4365b56f"
+    },
+    {
+      "id": "item.ci110",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI110.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI110.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI110.txt",
+        "GameServer/OpenItem/CI110.txt"
+      ],
+      "legacy_sha256": "11185aeb4d56e23c10a40668c7ba3f6919ea8201b206dfa9b0a60f5a6cc4cd2d"
+    },
+    {
+      "id": "item.ci111",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI111.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI111.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI111.txt",
+        "GameServer/OpenItem/CI111.txt"
+      ],
+      "legacy_sha256": "afe7af2f2bbd6fd48527ebddd903ca7d27e4e53b8bc9013c8f742c91b1608e71"
+    },
+    {
+      "id": "item.ci112",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI112.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI112.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI112.txt",
+        "GameServer/OpenItem/CI112.txt"
+      ],
+      "legacy_sha256": "b734adc43e63b0c6d24b4617d2122b316a1fea7b12b0b6641d28f05aaace9d41"
+    },
+    {
+      "id": "item.ci113",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI113.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI113.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI113.txt",
+        "GameServer/OpenItem/CI113.txt"
+      ],
+      "legacy_sha256": "81a2208130fb99c5b23e9926d1a79d7e327546286ef2c8354693815fe39ce65a"
+    },
+    {
+      "id": "item.ci114",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI114.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI114.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI114.txt",
+        "GameServer/OpenItem/CI114.txt"
+      ],
+      "legacy_sha256": "e00178304e109bb7814d68d29969f07040f96d01cdf20be9caf120c70f52990a"
+    },
+    {
+      "id": "item.ci115",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI115.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI115.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI115.txt",
+        "GameServer/OpenItem/CI115.txt"
+      ],
+      "legacy_sha256": "4b5b744ea3656ab2038c75dc6f2947ab96c06524b55da5d31703360ad9dac9d6"
+    },
+    {
+      "id": "item.ci116",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI116.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI116.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI116.txt",
+        "GameServer/OpenItem/CI116.txt"
+      ],
+      "legacy_sha256": "d6230cb91d3d76c277240c3723c25057449ba47e30fc831f0d79ee836be446fc"
+    },
+    {
+      "id": "item.ci117",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI117.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI117.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI117.txt",
+        "GameServer/OpenItem/CI117.txt"
+      ],
+      "legacy_sha256": "c640e422b55ba2d82c9cce8a56b880e6429d1517ff337173d33a30c7ae8705c5"
+    },
+    {
+      "id": "item.ci118",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI118.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI118.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI118.txt",
+        "GameServer/OpenItem/CI118.txt"
+      ],
+      "legacy_sha256": "f96706895970f80b31b07b84068d32aded598369f3eded65a8bd3199001bcf53"
+    },
+    {
+      "id": "item.ci119",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI119.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI119.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI119.txt",
+        "GameServer/OpenItem/CI119.txt"
+      ],
+      "legacy_sha256": "af2b5f3efdba1d1492f0899222291fab04ee91cbe0e58271ef3a0bdc97dcd8d6"
+    },
+    {
+      "id": "item.ci120",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI120.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI120.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI120.txt",
+        "GameServer/OpenItem/CI120.txt"
+      ],
+      "legacy_sha256": "cf22f269cf170dd81bfc1fc8ee2a68c2527dad82226557eac659947cebeddf7a"
+    },
+    {
+      "id": "item.ci121",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI121.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI121.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI121.txt",
+        "GameServer/OpenItem/CI121.txt"
+      ],
+      "legacy_sha256": "d3dc4ed3b33643559491690239d103e5afe5ee50f55d6a0539256631d44f62e2"
+    },
+    {
+      "id": "item.ci122",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI122.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI122.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI122.txt",
+        "GameServer/OpenItem/CI122.txt"
+      ],
+      "legacy_sha256": "fe4fda947199448cbf34e5a8bd8622f4a65c59ca578cb1bc226db84c5ccee3bd"
+    },
+    {
+      "id": "item.ci123",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI123.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI123.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI123.txt",
+        "GameServer/OpenItem/CI123.txt"
+      ],
+      "legacy_sha256": "2875b9f00c91cc55ed814853589e5d99992576e456b7e9b2c674cc1523a84c61"
+    },
+    {
+      "id": "item.ci124",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI124.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI124.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI124.txt",
+        "GameServer/OpenItem/CI124.txt"
+      ],
+      "legacy_sha256": "bd2bc317ed7b9396113cd069f33d61520407aa47493a5439aeeaec4917fb6eef"
+    },
+    {
+      "id": "item.ci125",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI125.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI125.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI125.txt",
+        "GameServer/OpenItem/CI125.txt"
+      ],
+      "legacy_sha256": "92000e0b59b2945058f9451eb0f32e22ae3a5d358c7066e15dd6f32db9c78383"
+    },
+    {
+      "id": "item.ci126",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI126.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI126.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI126.txt",
+        "GameServer/OpenItem/CI126.txt"
+      ],
+      "legacy_sha256": "a1a5694996529bcb1cf337356783bd38d027f0d595af2153945283219517c718"
+    },
+    {
+      "id": "item.ci127",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI127.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI127.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI127.txt",
+        "GameServer/OpenItem/CI127.txt"
+      ],
+      "legacy_sha256": "ed79cd18305069ea2bcbb29959720def064522c0cb0bc1b3cfcfd5119f2c192f"
+    },
+    {
+      "id": "item.ci128",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI128.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI128.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI128.txt",
+        "GameServer/OpenItem/CI128.txt"
+      ],
+      "legacy_sha256": "611e3d83245df20f78a257f66fbfc48faa96837286778d7346c472dbc3387502"
+    },
+    {
+      "id": "item.ci129",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI129.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI129.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI129.txt",
+        "GameServer/OpenItem/CI129.txt"
+      ],
+      "legacy_sha256": "4a8efd867f5b9fe46f2f9d127848868a04e52940b68ffec3bbeccdee31fc8888"
+    },
+    {
+      "id": "item.ci130",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI130.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI130.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI130.txt",
+        "GameServer/OpenItem/CI130.txt"
+      ],
+      "legacy_sha256": "6a904b0e486d55241d1794480d0736d7feaf6da43cd2541895d25ce8595b01e4"
+    },
+    {
+      "id": "item.ci131",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI131.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI131.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI131.txt",
+        "GameServer/OpenItem/CI131.txt"
+      ],
+      "legacy_sha256": "1701472448a2d5cc623d0f160672b787decc2439e42c5b50595011fb9b2b6212"
+    },
+    {
+      "id": "item.ci132",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI132.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI132.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI132.txt",
+        "GameServer/OpenItem/CI132.txt"
+      ],
+      "legacy_sha256": "b9ff7a8971a400377a0730d59b046fc48fd34d161a29177a7be3d3e4279268b7"
+    },
+    {
+      "id": "item.ci133",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI133.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI133.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI133.txt",
+        "GameServer/OpenItem/CI133.txt"
+      ],
+      "legacy_sha256": "60c4487d28d59bc8534fe9373083108e8bed50a0e8f5456d018ec47ad84fba7b"
+    },
+    {
+      "id": "item.ci134",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI134.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI134.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI134.txt",
+        "GameServer/OpenItem/CI134.txt"
+      ],
+      "legacy_sha256": "366cb2495242274e9b5b4660440069e02f4afe05ce82f9dcb09de4a811830d13"
+    },
+    {
+      "id": "item.ci135",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI135.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI135.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI135.txt",
+        "GameServer/OpenItem/CI135.txt"
+      ],
+      "legacy_sha256": "c46eafd6e56c742d5a6d7cffd054a25b4e0caa01ca36b8879670299d65189452"
+    },
+    {
+      "id": "item.ci136",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI136.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI136.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI136.txt",
+        "GameServer/OpenItem/CI136.txt"
+      ],
+      "legacy_sha256": "4c84e2d1198e37743ddb11d5199d201de105f701a06d1c67ba0661fdc32db1cd"
+    },
+    {
+      "id": "item.ci137",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI137.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI137.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI137.txt",
+        "GameServer/OpenItem/CI137.txt"
+      ],
+      "legacy_sha256": "fcec70b4de50504c56af88be1e087f2c0685ceb99b64aa10d37dd7ad732dbba1"
+    },
+    {
+      "id": "item.ci138",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI138.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI138.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI138.txt",
+        "GameServer/OpenItem/CI138.txt"
+      ],
+      "legacy_sha256": "d32f0445c1204895db4f1541d0bfd60aa9d9034aee4b7b2f45925d19059ef291"
+    },
+    {
+      "id": "item.ci139",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI139.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI139.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI139.txt",
+        "GameServer/OpenItem/CI139.txt"
+      ],
+      "legacy_sha256": "8e26e2b774ac09061c323ab14734433f447537b839a1605853eb4d149efbdb79"
+    },
+    {
+      "id": "item.ci140",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI140.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI140.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI140.txt",
+        "GameServer/OpenItem/CI140.txt"
+      ],
+      "legacy_sha256": "a6a855125946e13512cd01f854623ce3cd73b6e2afc1e221be8dbe1e26ec11fd"
+    },
+    {
+      "id": "item.ci141",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI141.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI141.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI141.txt",
+        "GameServer/OpenItem/CI141.txt"
+      ],
+      "legacy_sha256": "7fa68c5cbfdeb5c36e24cb9d2caedacea4fcaa53916c44fef1e8fb95129898a0"
+    },
+    {
+      "id": "item.ci142",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI142.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI142.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI142.txt",
+        "GameServer/OpenItem/CI142.txt"
+      ],
+      "legacy_sha256": "87cca0f87b7e44760abce4bb721326497c57212be4a0d1dd2c00c63899dda84d"
+    },
+    {
+      "id": "item.ci143",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI143.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI143.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI143.txt",
+        "GameServer/OpenItem/CI143.txt"
+      ],
+      "legacy_sha256": "7fa3d2c025fe7714fa35c4a709c7349dd1e5ec65adb83ffb13b2115192088b63"
+    },
+    {
+      "id": "item.ci144",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI144.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI144.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI144.txt",
+        "GameServer/OpenItem/CI144.txt"
+      ],
+      "legacy_sha256": "a2b900f2b34acb0b77d658a014477bc82c55fcabef1c8b5cb71890efb7256ded"
+    },
+    {
+      "id": "item.ci145",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI145.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI145.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI145.txt",
+        "GameServer/OpenItem/CI145.txt"
+      ],
+      "legacy_sha256": "48bd2d358c67fcfbba3a3455eadd207eee27ba72d61c16b7a124224dc3b64284"
+    },
+    {
+      "id": "item.ci146",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI146.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI146.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI146.txt",
+        "GameServer/OpenItem/CI146.txt"
+      ],
+      "legacy_sha256": "9de8a9298fa748fc6332dcd6877229ba5661abf067e5bc5ae1d37ceb9f5df90e"
+    },
+    {
+      "id": "item.ci147",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI147.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI147.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI147.txt",
+        "GameServer/OpenItem/CI147.txt"
+      ],
+      "legacy_sha256": "31626e0fc877f311c2ddb926176a928204b68750aa45b82d4348091dd2625b7c"
+    },
+    {
+      "id": "item.ci148",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI148.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI148.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI148.txt",
+        "GameServer/OpenItem/CI148.txt"
+      ],
+      "legacy_sha256": "9c1940ae01e08e09662ae5d6e7391abd51f770c6e4776282655a733a90f7bdde"
+    },
+    {
+      "id": "item.ci149",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI149.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI149.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI149.txt",
+        "GameServer/OpenItem/CI149.txt"
+      ],
+      "legacy_sha256": "1dfe7636e7aef5df7d892eca822aae53591eb3b4aaa1b6d89afaced5ceeb0332"
+    },
+    {
+      "id": "item.ci150",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI150.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI150.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI150.txt",
+        "GameServer/OpenItem/CI150.txt"
+      ],
+      "legacy_sha256": "fa5408e599fdfc258165cb8850a6ea57b9fa7a09eb1edb079f63882eb551d6cd"
+    },
+    {
+      "id": "item.ci151",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI151.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI151.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI151.txt",
+        "GameServer/OpenItem/CI151.txt"
+      ],
+      "legacy_sha256": "3ea20c0f5eec1fc8dc81f836f6940e765d4ad2b02eafe0f282e3bce64eb6c17b"
+    },
+    {
+      "id": "item.ci152",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI152.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI152.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI152.txt",
+        "GameServer/OpenItem/CI152.txt"
+      ],
+      "legacy_sha256": "84569dd0d018873144cf4cf1d9ecc414d636206c5dbe31b680a2349139c038ae"
+    },
+    {
+      "id": "item.ci153",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI153.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI153.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI153.txt",
+        "GameServer/OpenItem/CI153.txt"
+      ],
+      "legacy_sha256": "30816f810ab85cdf55f1a4a3091814350a36f082cbae075aff5d28f733f83c2c"
+    },
+    {
+      "id": "item.ci154",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI154.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI154.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI154.txt",
+        "GameServer/OpenItem/CI154.txt"
+      ],
+      "legacy_sha256": "09a0d35190f0639308f4ac76f07cb44ea3ec237959986504fc42c898bd6a4180"
+    },
+    {
+      "id": "item.ci155",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI155.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI155.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI155.txt",
+        "GameServer/OpenItem/CI155.txt"
+      ],
+      "legacy_sha256": "c4e1c5517155975a4db971524bbb6927ad838b09a7db16b518ea5ffcd32d12fc"
+    },
+    {
+      "id": "item.ci156",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI156.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI156.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI156.txt",
+        "GameServer/OpenItem/CI156.txt"
+      ],
+      "legacy_sha256": "43b594e160eedbf0d69b1861b65759e6f7faffd000e9a1416cd4c2c242f407c3"
+    },
+    {
+      "id": "item.ci157",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI157.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI157.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI157.txt",
+        "GameServer/OpenItem/CI157.txt"
+      ],
+      "legacy_sha256": "6a96c3ca736f28dbbadd2fc73f2c80e2565c7cb657ad61b4e0d4a8596c0b0fc5"
+    },
+    {
+      "id": "item.ci158",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI158.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI158.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI158.txt",
+        "GameServer/OpenItem/CI158.txt"
+      ],
+      "legacy_sha256": "16185e09f82086282d5b9807082e29ac225bf41af863f194c641295cebff3535"
+    },
+    {
+      "id": "item.ci159",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI159.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI159.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI159.txt",
+        "GameServer/OpenItem/CI159.txt"
+      ],
+      "legacy_sha256": "a651e07bcf13f450919dd95537f3765c0947f929e614ffcaf8e5260cb244b58e"
+    },
+    {
+      "id": "item.ci160",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI160.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI160.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI160.txt",
+        "GameServer/OpenItem/CI160.txt"
+      ],
+      "legacy_sha256": "63bb7ca3353e0cc1903a16859903f32986632e1ac85d5ede6aa2a55da61e34f1"
+    },
+    {
+      "id": "item.ci161",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI161.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI161.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI161.txt",
+        "GameServer/OpenItem/CI161.txt"
+      ],
+      "legacy_sha256": "4b4591af4015c10150a1ec1981c312a1c60a3cd91b7b93bfc9db9fedccc6afe8"
+    },
+    {
+      "id": "item.ci162",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI162.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI162.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI162.txt",
+        "GameServer/OpenItem/CI162.txt"
+      ],
+      "legacy_sha256": "7e2fda2378c7e731c89089a6291b661d48e013d1947b5c7caee8e046c17b4cc0"
+    },
+    {
+      "id": "item.ci163",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI163.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI163.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI163.txt",
+        "GameServer/OpenItem/CI163.txt"
+      ],
+      "legacy_sha256": "ca81a875bc9571113b92b29d8f8abf42ed8ad60e48cf6b63912d980b38e2b9fb"
+    },
+    {
+      "id": "item.ci164",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI164.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI164.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI164.txt",
+        "GameServer/OpenItem/CI164.txt"
+      ],
+      "legacy_sha256": "1af12ad2e4821a4cb8f6363c9110143a00c036e2f24030848e17db2dc6d8c271"
+    },
+    {
+      "id": "item.ci165",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI165.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI165.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI165.txt",
+        "GameServer/OpenItem/CI165.txt"
+      ],
+      "legacy_sha256": "8a72723352be6ac26a23cad14d595f44c79e589d11cbe09ac8314ea8efbd9989"
+    },
+    {
+      "id": "item.ci166",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI166.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI166.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI166.txt",
+        "GameServer/OpenItem/CI166.txt"
+      ],
+      "legacy_sha256": "bee7d327a108a6727c41ac80be2a322f09c117a3a91c487aea901118ac3463ec"
+    },
+    {
+      "id": "item.ci167",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI167.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI167.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI167.txt",
+        "GameServer/OpenItem/CI167.txt"
+      ],
+      "legacy_sha256": "bacc26d2eeea07f53986942db152041257ed48f4843c5d69ccaa6b2d6b329abe"
+    },
+    {
+      "id": "item.ci168",
+      "kind": "open_item_definition",
+      "legacy_path": "Servidor/GameServer/OpenItem/CI168.txt",
+      "json_path": "resources/Servidor/GameServer/OpenItem/CI168.txt.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/CI168.txt",
+        "GameServer/OpenItem/CI168.txt"
+      ],
+      "legacy_sha256": "a15d2708a652d8e0371627298fd2ef60085328648f4ae246b52f56208c3f1a99"
+    },
+    {
+      "id": "text.ci101",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI101.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI101.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI101.zhoon",
+        "GameServer/OpenItem/name/CI101.zhoon"
+      ],
+      "legacy_sha256": "b0d3853c9e148dabfdf84e007d76e9159bb93c36a48d5e9285950f1ac549729e"
+    },
+    {
+      "id": "text.ci102",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI102.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI102.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI102.zhoon",
+        "GameServer/OpenItem/name/CI102.zhoon"
+      ],
+      "legacy_sha256": "36f409ed049082720bc88ea2df327f1a9f8f27e18b7122b596884dfbcabfa0cb"
+    },
+    {
+      "id": "text.ci103",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI103.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI103.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI103.zhoon",
+        "GameServer/OpenItem/name/CI103.zhoon"
+      ],
+      "legacy_sha256": "77228bb0cfad0caec4d34788b2bcc1b0dda62b45011512fb634b1fc3d8a6653f"
+    },
+    {
+      "id": "text.ci104",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI104.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI104.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI104.zhoon",
+        "GameServer/OpenItem/name/CI104.zhoon"
+      ],
+      "legacy_sha256": "cd16d5bba342438fa3dc48f6d783517015b5053ede1aa624079fd8e6ca9aab3b"
+    },
+    {
+      "id": "text.ci105",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI105.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI105.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI105.zhoon",
+        "GameServer/OpenItem/name/CI105.zhoon"
+      ],
+      "legacy_sha256": "3d855a96ffeff18f48a6ccfc0a2e69dfc26d0d9283b7adeaa33e01b9bfa51829"
+    },
+    {
+      "id": "text.ci106",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI106.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI106.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI106.zhoon",
+        "GameServer/OpenItem/name/CI106.zhoon"
+      ],
+      "legacy_sha256": "f705a8baf8b59bb8436951e2cb0d1e6729a06f5622bc73af729f42544464dafe"
+    },
+    {
+      "id": "text.ci107",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI107.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI107.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI107.zhoon",
+        "GameServer/OpenItem/name/CI107.zhoon"
+      ],
+      "legacy_sha256": "64f3660e4203867188dd11b9da1889f4620261fea3d3953845581eaf8a5e36a9"
+    },
+    {
+      "id": "text.ci108",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI108.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI108.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI108.zhoon",
+        "GameServer/OpenItem/name/CI108.zhoon"
+      ],
+      "legacy_sha256": "d5ddf114c5a211149291c2a59396945918e2ea565792c060ff725b31c712bc9e"
+    },
+    {
+      "id": "text.ci109",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI109.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI109.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI109.zhoon",
+        "GameServer/OpenItem/name/CI109.zhoon"
+      ],
+      "legacy_sha256": "2161f0dc937fdf7067da95133eb484cd742ac327f018f33e4ad5dd1801356ec1"
+    },
+    {
+      "id": "text.ci110",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI110.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI110.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI110.zhoon",
+        "GameServer/OpenItem/name/CI110.zhoon"
+      ],
+      "legacy_sha256": "23c9169cc8cd0dd39127e215ba31db2f0842f9a3aa48f2144ab9c2437cb8ed9a"
+    },
+    {
+      "id": "text.ci111",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI111.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI111.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI111.zhoon",
+        "GameServer/OpenItem/name/CI111.zhoon"
+      ],
+      "legacy_sha256": "b591c7eb2b2aacb6b8d0d1edd62f5e7580f52fb588ab2a23b6b77ac17532df49"
+    },
+    {
+      "id": "text.ci112",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI112.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI112.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI112.zhoon",
+        "GameServer/OpenItem/name/CI112.zhoon"
+      ],
+      "legacy_sha256": "11833f6ee293fc01225ab0404bb004529288af0a8500d5c9b609d49fbac94126"
+    },
+    {
+      "id": "text.ci113",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI113.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI113.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI113.zhoon",
+        "GameServer/OpenItem/name/CI113.zhoon"
+      ],
+      "legacy_sha256": "5da2d672d5d8a52f6f46bc71fb7b308e5eef60e307a909e6e405e0acae889356"
+    },
+    {
+      "id": "text.ci114",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI114.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI114.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI114.zhoon",
+        "GameServer/OpenItem/name/CI114.zhoon"
+      ],
+      "legacy_sha256": "9f9c4b34d55b226e88681d271af6fe8c99b1c001df9074e58693f02fcdcdaae8"
+    },
+    {
+      "id": "text.ci115",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI115.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI115.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI115.zhoon",
+        "GameServer/OpenItem/name/CI115.zhoon"
+      ],
+      "legacy_sha256": "eedbfda972bb782e39db40fda8985195883a576d81434a5ce15b174dd2a06fd3"
+    },
+    {
+      "id": "text.ci116",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI116.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI116.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI116.zhoon",
+        "GameServer/OpenItem/name/CI116.zhoon"
+      ],
+      "legacy_sha256": "de3bd246b141563d744097a4832bb16bc35c844633433e891545efe1acb8366d"
+    },
+    {
+      "id": "text.ci117",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI117.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI117.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI117.zhoon",
+        "GameServer/OpenItem/name/CI117.zhoon"
+      ],
+      "legacy_sha256": "5916bb64c49a4586ba63fc9e6f082163d1f94593fd0868ed03d55200b23e8b89"
+    },
+    {
+      "id": "text.ci118",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI118.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI118.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI118.zhoon",
+        "GameServer/OpenItem/name/CI118.zhoon"
+      ],
+      "legacy_sha256": "124af03d0a81d175b01e64e3fc64644a25f264a2adfc95db98ed1b1cd54d0bf8"
+    },
+    {
+      "id": "text.ci119",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI119.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI119.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI119.zhoon",
+        "GameServer/OpenItem/name/CI119.zhoon"
+      ],
+      "legacy_sha256": "4e962564a9c8e519367e3f8d069fc092253b059b551dd5a01d45c7925c976f23"
+    },
+    {
+      "id": "text.ci120",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI120.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI120.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI120.zhoon",
+        "GameServer/OpenItem/name/CI120.zhoon"
+      ],
+      "legacy_sha256": "2a76222fb31e8976efda28f2fc35b979e94ae5e5cf39442fa8b9e581223ab16d"
+    },
+    {
+      "id": "text.ci121",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI121.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI121.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI121.zhoon",
+        "GameServer/OpenItem/name/CI121.zhoon"
+      ],
+      "legacy_sha256": "b561d16e88f53f161734bba402579ec2c78514d071febc1b505cb83a6e251e35"
+    },
+    {
+      "id": "text.ci122",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI122.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI122.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI122.zhoon",
+        "GameServer/OpenItem/name/CI122.zhoon"
+      ],
+      "legacy_sha256": "005a666bf4033b7dfa68e9753c8cbbd7ae791f51b828f20cf88e8508b9e28b8d"
+    },
+    {
+      "id": "text.ci123",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI123.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI123.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI123.zhoon",
+        "GameServer/OpenItem/name/CI123.zhoon"
+      ],
+      "legacy_sha256": "ef87c5bc07a83ecd004be5f11f374be225471449960b2350177d7a45958ce627"
+    },
+    {
+      "id": "text.ci124",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI124.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI124.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI124.zhoon",
+        "GameServer/OpenItem/name/CI124.zhoon"
+      ],
+      "legacy_sha256": "b291a0bab4cbcf299858149a781a5adce479c78223106053f8947b6ef71555aa"
+    },
+    {
+      "id": "text.ci125",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI125.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI125.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI125.zhoon",
+        "GameServer/OpenItem/name/CI125.zhoon"
+      ],
+      "legacy_sha256": "62977217d60342e76affea2f2916f74434296c11ad091183674da402245b6f8c"
+    },
+    {
+      "id": "text.ci126",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI126.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI126.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI126.zhoon",
+        "GameServer/OpenItem/name/CI126.zhoon"
+      ],
+      "legacy_sha256": "792aa3a47e8cfa012d6c78489f0f7f6e66d31c637792cd74369c2fc5949b08f7"
+    },
+    {
+      "id": "text.ci127",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI127.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI127.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI127.zhoon",
+        "GameServer/OpenItem/name/CI127.zhoon"
+      ],
+      "legacy_sha256": "80e32571b3c281b69dd74f250e84f77f3c6296cb81206d15c63b99a8094443d2"
+    },
+    {
+      "id": "text.ci128",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI128.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI128.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI128.zhoon",
+        "GameServer/OpenItem/name/CI128.zhoon"
+      ],
+      "legacy_sha256": "4663e1d94531e4a8ece8b424d675a2358d1cb6a34118b83ea790d157fc428908"
+    },
+    {
+      "id": "text.ci129",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI129.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI129.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI129.zhoon",
+        "GameServer/OpenItem/name/CI129.zhoon"
+      ],
+      "legacy_sha256": "1df690adb4d58399b51faf5de04438e490cb9cb4da0c29af954aa2adcfcf275a"
+    },
+    {
+      "id": "text.ci130",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI130.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI130.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI130.zhoon",
+        "GameServer/OpenItem/name/CI130.zhoon"
+      ],
+      "legacy_sha256": "1dc88ce1fd76343d68798eddbe1c51706470e8b2da7de153ac9f6fbcce245033"
+    },
+    {
+      "id": "text.ci131",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI131.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI131.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI131.zhoon",
+        "GameServer/OpenItem/name/CI131.zhoon"
+      ],
+      "legacy_sha256": "d5cbe2ad31e68ceeeb5cb428e473685f875d7c27912c04bb8faf52e69a236941"
+    },
+    {
+      "id": "text.ci132",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI132.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI132.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI132.zhoon",
+        "GameServer/OpenItem/name/CI132.zhoon"
+      ],
+      "legacy_sha256": "154c364965b00944e2a88c1435a81f2387266ebecd23a0a56e04aaa91f9e0832"
+    },
+    {
+      "id": "text.ci133",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI133.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI133.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI133.zhoon",
+        "GameServer/OpenItem/name/CI133.zhoon"
+      ],
+      "legacy_sha256": "25bdfe9aa67cdd3eb5ae885477e227022ef9923539166c73983a884c30e99ef6"
+    },
+    {
+      "id": "text.ci134",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI134.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI134.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI134.zhoon",
+        "GameServer/OpenItem/name/CI134.zhoon"
+      ],
+      "legacy_sha256": "23dc6a65819ca938d4ea9f5131afe42a4069c21613fea9e634b473ccbd0a8e9f"
+    },
+    {
+      "id": "text.ci135",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI135.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI135.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI135.zhoon",
+        "GameServer/OpenItem/name/CI135.zhoon"
+      ],
+      "legacy_sha256": "18cc08c504bab596ca54eac3d531bd64a8ac7e5403912df1843cccaf583c4020"
+    },
+    {
+      "id": "text.ci136",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI136.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI136.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI136.zhoon",
+        "GameServer/OpenItem/name/CI136.zhoon"
+      ],
+      "legacy_sha256": "cfd1cc7c9b381dbdc5a3a3190bcd5ebd2212c526ac89c4660ee0842271dc6fa7"
+    },
+    {
+      "id": "text.ci137",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI137.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI137.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI137.zhoon",
+        "GameServer/OpenItem/name/CI137.zhoon"
+      ],
+      "legacy_sha256": "509ecda3ea2e12db5ffc8df5b55629e73960e40ad4f515572a49510e6ad29d79"
+    },
+    {
+      "id": "text.ci138",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI138.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI138.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI138.zhoon",
+        "GameServer/OpenItem/name/CI138.zhoon"
+      ],
+      "legacy_sha256": "5fcbfc3ad11b961bf9634b64e3cb4e2801531efb546eeef2af06a97b0b29a517"
+    },
+    {
+      "id": "text.ci139",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI139.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI139.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI139.zhoon",
+        "GameServer/OpenItem/name/CI139.zhoon"
+      ],
+      "legacy_sha256": "5571057876967b5d13584dd1b974bfbfc134dcee583e0f0b305ada00211b7010"
+    },
+    {
+      "id": "text.ci140",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI140.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI140.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI140.zhoon",
+        "GameServer/OpenItem/name/CI140.zhoon"
+      ],
+      "legacy_sha256": "397483908b2034637840aae66ab1b636867f8f3093e1a7346f6570e10e4e13f6"
+    },
+    {
+      "id": "text.ci141",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI141.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI141.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI141.zhoon",
+        "GameServer/OpenItem/name/CI141.zhoon"
+      ],
+      "legacy_sha256": "06666521dd958e015c7149f33394621913037f972a8c36bb318099d5f4978441"
+    },
+    {
+      "id": "text.ci142",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI142.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI142.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI142.zhoon",
+        "GameServer/OpenItem/name/CI142.zhoon"
+      ],
+      "legacy_sha256": "6d05e5ab97d831c6e47ca0cce94f73ae245127a8b58b71196b172d80f1058ef6"
+    },
+    {
+      "id": "text.ci143",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI143.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI143.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI143.zhoon",
+        "GameServer/OpenItem/name/CI143.zhoon"
+      ],
+      "legacy_sha256": "094008d2153241edf713d8f7ee88735f3991cdd954fcacc3735d9a3912489e14"
+    },
+    {
+      "id": "text.ci144",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI144.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI144.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI144.zhoon",
+        "GameServer/OpenItem/name/CI144.zhoon"
+      ],
+      "legacy_sha256": "b2a3aa89e06a07c5d5d647cf6f65e3cfb1fc64aa5a7a839f627ec4fad443c77b"
+    },
+    {
+      "id": "text.ci145",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI145.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI145.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI145.zhoon",
+        "GameServer/OpenItem/name/CI145.zhoon"
+      ],
+      "legacy_sha256": "500a6b3e20dc76a64082e8ff0616ff0d52e8fad767b48122d6bdc60865564725"
+    },
+    {
+      "id": "text.ci146",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI146.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI146.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI146.zhoon",
+        "GameServer/OpenItem/name/CI146.zhoon"
+      ],
+      "legacy_sha256": "7c3b30264afe7da000dc9b7001a04271e0298afad429eb2df2251c851f55faef"
+    },
+    {
+      "id": "text.ci147",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI147.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI147.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI147.zhoon",
+        "GameServer/OpenItem/name/CI147.zhoon"
+      ],
+      "legacy_sha256": "a17d0c8b73a652cef8aa700252a05ba138fb8d9537cd3261d99b2a2afa604350"
+    },
+    {
+      "id": "text.ci148",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI148.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI148.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI148.zhoon",
+        "GameServer/OpenItem/name/CI148.zhoon"
+      ],
+      "legacy_sha256": "477ca2ef2d59997f6be38b168469040644d2c412d45bca44c6897b22a89b059b"
+    },
+    {
+      "id": "text.ci149",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI149.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI149.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI149.zhoon",
+        "GameServer/OpenItem/name/CI149.zhoon"
+      ],
+      "legacy_sha256": "17cb83ce365f8237e36a586122db7b3ce1d2d34799b5d425e4f185aee154ad79"
+    },
+    {
+      "id": "text.ci150",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI150.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI150.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI150.zhoon",
+        "GameServer/OpenItem/name/CI150.zhoon"
+      ],
+      "legacy_sha256": "eb7be4b447196e77f99ef309bc7af5ac6bedc5634e44003069f6ce971890c60a"
+    },
+    {
+      "id": "text.ci151",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI151.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI151.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI151.zhoon",
+        "GameServer/OpenItem/name/CI151.zhoon"
+      ],
+      "legacy_sha256": "e303df7d1d5b7d9a946166e81cd4fcd7c34c339b9163492f9b2e2547025db815"
+    },
+    {
+      "id": "text.ci152",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI152.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI152.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI152.zhoon",
+        "GameServer/OpenItem/name/CI152.zhoon"
+      ],
+      "legacy_sha256": "e60a6eb826efd8fee622d91fb7c7fa088924aba52b6d287cd344f84f65535520"
+    },
+    {
+      "id": "text.ci153",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI153.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI153.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI153.zhoon",
+        "GameServer/OpenItem/name/CI153.zhoon"
+      ],
+      "legacy_sha256": "f908ba216a5e362f5787d620b4c27efb045939b3b1927d5b73ae3bae1fb4c151"
+    },
+    {
+      "id": "text.ci154",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI154.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI154.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI154.zhoon",
+        "GameServer/OpenItem/name/CI154.zhoon"
+      ],
+      "legacy_sha256": "938114810c4d88abb943bc58f30c2b8e7c86300bc6eb527e90d48aeb19a43703"
+    },
+    {
+      "id": "text.ci155",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI155.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI155.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI155.zhoon",
+        "GameServer/OpenItem/name/CI155.zhoon"
+      ],
+      "legacy_sha256": "701cea6a15bb13b7f7fad063156bedff15c4dcd499bf47bee577e1865ffc113e"
+    },
+    {
+      "id": "text.ci156",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI156.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI156.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI156.zhoon",
+        "GameServer/OpenItem/name/CI156.zhoon"
+      ],
+      "legacy_sha256": "6f2e3ea40c1dddd30f1ac4f903b5af64e80a211d8e34fdf7f3a6034d3cdf6277"
+    },
+    {
+      "id": "text.ci157",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI157.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI157.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI157.zhoon",
+        "GameServer/OpenItem/name/CI157.zhoon"
+      ],
+      "legacy_sha256": "07be04d45c00a59c523424ea73ec8e2bfa2eb93fee49d25fdddb7536fc20e752"
+    },
+    {
+      "id": "text.ci158",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI158.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI158.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI158.zhoon",
+        "GameServer/OpenItem/name/CI158.zhoon"
+      ],
+      "legacy_sha256": "93f2711ed03651580f5a86cbb5e0ed1ec290030cc7fb372a4154cc94b0121f0d"
+    },
+    {
+      "id": "text.ci159",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI159.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI159.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI159.zhoon",
+        "GameServer/OpenItem/name/CI159.zhoon"
+      ],
+      "legacy_sha256": "3cfcc93bbd31eac3c686ca118e550af863b03a281bf0aa157ec9cd232c9480f0"
+    },
+    {
+      "id": "text.ci160",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI160.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI160.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI160.zhoon",
+        "GameServer/OpenItem/name/CI160.zhoon"
+      ],
+      "legacy_sha256": "3c7d324059b794266e0cd3bfd81135a60b2d52f87975a683f610533279eb0377"
+    },
+    {
+      "id": "text.ci161",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI161.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI161.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI161.zhoon",
+        "GameServer/OpenItem/name/CI161.zhoon"
+      ],
+      "legacy_sha256": "4a581ac0e4f11569154ee0c6e1b37063f7e930e28aecc57b7c701b18762866f7"
+    },
+    {
+      "id": "text.ci162",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI162.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI162.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI162.zhoon",
+        "GameServer/OpenItem/name/CI162.zhoon"
+      ],
+      "legacy_sha256": "aa24d979799371b192a9b2c7a0d1008eb02bfa00494018ece50a58b55312ca7a"
+    },
+    {
+      "id": "text.ci163",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI163.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI163.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI163.zhoon",
+        "GameServer/OpenItem/name/CI163.zhoon"
+      ],
+      "legacy_sha256": "ce2854c9fceeeaafad27a2099558b1295e73da6bff3c542a7e8cd43a15277f9a"
+    },
+    {
+      "id": "text.ci164",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI164.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI164.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI164.zhoon",
+        "GameServer/OpenItem/name/CI164.zhoon"
+      ],
+      "legacy_sha256": "7988447b97a4015d174f42702344d8a2f38089d5435bd131efb74c1d37ec4e43"
+    },
+    {
+      "id": "text.ci165",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI165.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI165.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI165.zhoon",
+        "GameServer/OpenItem/name/CI165.zhoon"
+      ],
+      "legacy_sha256": "04245b2f3bc7b95bc7865e419f5706927d98d431a832af97caabe143bd23775b"
+    },
+    {
+      "id": "text.ci166",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI166.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI166.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI166.zhoon",
+        "GameServer/OpenItem/name/CI166.zhoon"
+      ],
+      "legacy_sha256": "e2b72c26e24b285dbd15fd5b39e3e7f84197dd3057dbae182b648178fffc6e92"
+    },
+    {
+      "id": "text.ci167",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI167.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI167.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI167.zhoon",
+        "GameServer/OpenItem/name/CI167.zhoon"
+      ],
+      "legacy_sha256": "c77433fb5ba2c72f2993994d68724a831e52f4ba2813c61342178c9f924d4a35"
+    },
+    {
+      "id": "text.ci168",
+      "kind": "localization_resource",
+      "legacy_path": "Servidor/GameServer/OpenItem/name/CI168.zhoon",
+      "json_path": "resources/Servidor/GameServer/OpenItem/name/CI168.zhoon.json",
+      "runtime_paths": [
+        "Servidor/GameServer/OpenItem/name/CI168.zhoon",
+        "GameServer/OpenItem/name/CI168.zhoon"
+      ],
+      "legacy_sha256": "bc0837dc458212171d6bd46d90c95556f8141a3ecf684e41f6e4989c644ef0a5"
     }
   ]
 }

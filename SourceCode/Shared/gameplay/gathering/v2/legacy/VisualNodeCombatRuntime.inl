@@ -238,7 +238,12 @@ static void SummitVisualNodeAnnounceNearby(std::uint32_t now)
             state.lastSendAt = now;
             ++state.attempts;
 
-            char presenceBuffer[sizeof(smPLAYDATA_GROUP) + sizeof(smPLAYDATA)];
+            // The legacy PLAYDATAGROUP reader looks for an optional trailing
+            // smTRANS_COMMAND after the declared PlayDataCnt entries. Include
+            // an explicit zero command, rather than making it read beyond the
+            // logical packet length. This is only for managed visual nodes.
+            char presenceBuffer[sizeof(smPLAYDATA_GROUP) + sizeof(smPLAYDATA) +
+                                sizeof(smTRANS_COMMAND)];
             ZeroMemory(presenceBuffer, sizeof(presenceBuffer));
             smPLAYDATA_GROUP* group = reinterpret_cast<smPLAYDATA_GROUP*>(presenceBuffer);
             smPLAYDATA* presence = reinterpret_cast<smPLAYDATA*>(presenceBuffer + sizeof(smPLAYDATA_GROUP));
@@ -393,8 +398,12 @@ static void SummitVisualNodeAnnounceNearby(std::uint32_t now)
     hadPlayerIn58 = (inMap58 != 0);
 }
 
+// # SUMMIT386A GMSP JSON GM XYZ
+#include "gameplay/gathering/v2/legacy/GmSpawnRuntime386.inl"
+
 static void SummitVisualNodeCombatTick(std::uint32_t now)
 {
+    SummitGMTick386(now);
     static bool bootLogged = false;
     if (!bootLogged)
     {
@@ -429,10 +438,15 @@ static void SummitVisualNodeCombatTick(std::uint32_t now)
             }
             if (living)
             {
-                // Keep ONLY these four managed instances alive when the map is
-                // empty. No global monster settings or spawn points are changed.
+                // Keep ONLY these managed gathering instances alive. In the
+                // legacy srAutoCharMain an ActionPattern=5 character is culled
+                // once dwLastTransTime is older than 5 minutes. NearPlayCount
+                // alone does NOT prevent that independent timeout. Refresh the
+                // timestamp while the logical node is still registered, but
+                // never when killed (Kill already clears slot.serial).
                 living->NearPlayCount = 256;
                 living->ReopenCount = REOPEN_COUNT_NUM;
+                living->dwLastTransTime = dwPlayServTime;
                 continue;
             }
             // A stale serial is not a valid spawn. Recover immediately, while
@@ -447,7 +461,7 @@ static void SummitVisualNodeCombatTick(std::uint32_t now)
         }
         if (now < slot.retryAt)
             continue;
-        if (!SummitVisualCombatNodeMatches(spec))
+        if (!spec.physicalOnly && !SummitVisualCombatNodeMatches(spec))
         {
             fprintf(stderr, "[SUMMIT_NODE_3D] WAIT node=%u reason=sqlite-resource-or-coordinates-mismatch map=%d xyz=%d,%d,%d\n",
                 static_cast<unsigned int>(spec.nodeId), spec.map, spec.x, spec.y, spec.z);
@@ -513,6 +527,21 @@ static bool SummitVisualNodeCombatKill(smCHAR* monster, rsPLAYINFO* killer,
         if (!player.Valid())
             return true;
 
+        // SUMMIT417A_BASE_NODES: only registered node serials enter this branch.
+        // Consume the death serial above; never credit SQLite or generic monster loot.
+        if (spec.physicalOnly)
+        {
+            const unsigned int roll = static_cast<unsigned int>(rand()) % 10000u;
+            if (roll < spec.itemChancePer10000)
+            {
+                const int granted = rsPutItemChecked(killer, spec.legacyItemCode);
+                fprintf(stderr, "[SUMMIT417] BASE_DROP node=%u item=%s numeric=0x%08X physical=%d sqlite=0\n",
+                    static_cast<unsigned int>(spec.nodeId), spec.itemTextCode,
+                    static_cast<unsigned int>(spec.legacyItemCode), granted ? 1 : 0);
+                fflush(stderr);
+            }
+            return true;
+        }
         gameplay::gathering::HarvestResult harvest;
         const std::uint32_t roll = static_cast<std::uint32_t>(rand());
         if (spec.kind == summit_professions::kMining)

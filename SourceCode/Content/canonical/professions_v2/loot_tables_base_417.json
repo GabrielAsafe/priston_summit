@@ -1,0 +1,317 @@
+{
+  "schema": "summit.base-node-loot/v1",
+  "tables": [
+    {
+      "id": "base.arcane_wood",
+      "rewards": [
+        {
+          "resource_key": "arcane_wood",
+          "native_code": "CI120",
+          "quantity": 1,
+          "chance_bp": 10000,
+          "storage": "physical"
+        }
+      ]
+    },
+    {
+      "id": "base.common_logs",
+      "rewards": [
+        {
+          "resource_key": "common_logs",
+          "native_code": "CI113",
+          "quantity": 1,
+          "chance_bp": 10000,
+          "storage": "physical"
+        }
+      ]
+    },
+    {
+      "id": "base.dark_essence",
+      "rewards": [
+        {
+          "resource_key": "dark_essence",
+          "native_code": "CI151",
+          "quantity": 1,
+          "chance_bp": 10000,
+          "storage": "physical"
+        }
+      ]
+    },
+    {
+      "id": "base.dense_resin",
+      "rewards": [
+        {
+          "resource_key": "dense_resin",
+          "native_code": "CI117",
+          "quantity": 1,
+          "chance_bp": 10000,
+          "storage": "physical"
+        }
+      ]
+    },
+    {
+      "id": "base.energetic_sap",
+      "rewards": [
+        {
+          "resource_key": "energetic_sap",
+          "native_code": "CI119",
+          "quantity": 1,
+          "chance_bp": 10000,
+          "storage": "physical"
+        }
+      ]
+    },
+    {
+      "id": "base.illusory_essence",
+      "rewards": [
+        {
+          "resource_key": "illusory_essence",
+          "native_code": "CI153",
+          "quantity": 1,
+          "chance_bp": 10000,
+          "storage": "physical"
+        }
+      ]
+    },
+    {
+      "id": "base.mystic_resin",
+      "rewards": [
+        {
+          "resource_key": "mystic_resin",
+          "native_code": "CI121",
+          "quantity": 1,
+          "chance_bp": 10000,
+          "storage": "physical"
+        }
+      ]
+    },
+    {
+      "id": "base.ore_amethyst",
+      "rewards": [
+        {
+          "resource_key": "ore_amethyst",
+          "native_code": "CI123",
+          "quantity": 1,
+          "chance_bp": 10000,
+          "storage": "physical"
+        }
+      ]
+    },
+    {
+      "id": "base.ore_citrine",
+      "rewards": [
+        {
+          "resource_key": "ore_citrine",
+          "native_code": "CI128",
+          "quantity": 1,
+          "chance_bp": 10000,
+          "storage": "physical"
+        }
+      ]
+    },
+    {
+      "id": "base.ore_emerald",
+      "rewards": [
+        {
+          "resource_key": "ore_emerald",
+          "native_code": "CI130",
+          "quantity": 1,
+          "chance_bp": 10000,
+          "storage": "physical"
+        }
+      ]
+    },
+    {
+      "id": "base.ore_gold",
+      "rewards": [
+        {
+          "resource_key": "ore_gold",
+          "native_code": "CI125",
+          "quantity": 1,
+          "chance_bp": 10000,
+          "storage": "physical"
+        }
+      ]
+    },
+    {
+      "id": "base.ore_ruby",
+      "rewards": [
+        {
+          "resource_key": "ore_ruby",
+          "native_code": "CI129",
+          "quantity": 1,
+          "chance_bp": 10000,
+          "storage": "physical"
+        }
+      ]
+    },
+    {
+      "id": "base.ore_sapphire",
+      "rewards": [
+        {
+          "resource_key": "ore_sapphire",
+          "native_code": "CI127",
+          "quantity": 1,
+          "chance_bp": 10000,
+          "storage": "physical"
+        }
+      ]
+    },
+    {
+      "id": "base.ore_silver",
+      "rewards": [
+        {
+          "resource_key": "ore_silver",
+          "native_code": "CI124",
+          "quantity": 1,
+          "chance_bp": 10000,
+          "storage": "physical"
+        }
+      ]
+    },
+    {
+      "id": "base.ore_topaz",
+      "rewards": [
+        {
+          "resource_key": "ore_topaz",
+          "native_code": "CI126",
+          "quantity": 1,
+          "chance_bp": 10000,
+          "storage": "physical"
+        }
+      ]
+    },
+    {
+      "id": "base.purified_salt",
+      "rewards": [
+        {
+          "resource_key": "purified_salt",
+          "native_code": "CI152",
+          "quantity": 1,
+          "chance_bp": 10000,
+          "storage": "physical"
+        }
+      ]
+    },
+    {
+      "id": "base.raw_ore_arcane",
+      "rewards": [
+        {
+          "resource_key": "raw_ore_arcane",
+          "native_code": "CI107",
+          "quantity": 1,
+          "chance_bp": 10000,
+          "storage": "physical"
+        }
+      ]
+    },
+    {
+      "id": "base.raw_ore_crystalline",
+      "rewards": [
+        {
+          "resource_key": "raw_ore_crystalline",
+          "native_code": "CI101",
+          "quantity": 1,
+          "chance_bp": 10000,
+          "storage": "physical"
+        }
+      ]
+    },
+    {
+      "id": "base.raw_ore_deep",
+      "rewards": [
+        {
+          "resource_key": "raw_ore_deep",
+          "native_code": "CI105",
+          "quantity": 1,
+          "chance_bp": 10000,
+          "storage": "physical"
+        }
+      ]
+    },
+    {
+      "id": "base.raw_ore_energetic",
+      "rewards": [
+        {
+          "resource_key": "raw_ore_energetic",
+          "native_code": "CI103",
+          "quantity": 1,
+          "chance_bp": 10000,
+          "storage": "physical"
+        }
+      ]
+    },
+    {
+      "id": "base.raw_ore_primordial",
+      "rewards": [
+        {
+          "resource_key": "raw_ore_primordial",
+          "native_code": "CI111",
+          "quantity": 1,
+          "chance_bp": 10000,
+          "storage": "physical"
+        }
+      ]
+    },
+    {
+      "id": "base.raw_ore_runic",
+      "rewards": [
+        {
+          "resource_key": "raw_ore_runic",
+          "native_code": "CI109",
+          "quantity": 1,
+          "chance_bp": 10000,
+          "storage": "physical"
+        }
+      ]
+    },
+    {
+      "id": "base.resistant_logs",
+      "rewards": [
+        {
+          "resource_key": "resistant_logs",
+          "native_code": "CI116",
+          "quantity": 1,
+          "chance_bp": 10000,
+          "storage": "physical"
+        }
+      ]
+    },
+    {
+      "id": "base.sap",
+      "rewards": [
+        {
+          "resource_key": "sap",
+          "native_code": "CI114",
+          "quantity": 1,
+          "chance_bp": 10000,
+          "storage": "physical"
+        }
+      ]
+    },
+    {
+      "id": "base.tree_heart",
+      "rewards": [
+        {
+          "resource_key": "tree_heart",
+          "native_code": "CI122",
+          "quantity": 1,
+          "chance_bp": 10000,
+          "storage": "physical"
+        }
+      ]
+    },
+    {
+      "id": "base.war_fragment",
+      "rewards": [
+        {
+          "resource_key": "war_fragment",
+          "native_code": "CI155",
+          "quantity": 1,
+          "chance_bp": 10000,
+          "storage": "physical"
+        }
+      ]
+    }
+  ]
+}

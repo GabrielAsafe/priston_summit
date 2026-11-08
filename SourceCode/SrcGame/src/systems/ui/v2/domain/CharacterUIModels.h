@@ -123,6 +123,10 @@ struct InventoryItemSnapshot
     int gridY = -1;
     int equipmentSlot = 0; // legacy ItemPosition, 1-based. 0 == bag.
     int potionCount = 0;
+    // SUMMIT442A: UI-only CI hints. NOT authentication or crafting authority.
+    bool nativeCiQuantity = false;
+    bool ciQuantityInvalid = false;
+    bool ciMutationBlocked = false;
     int levelRequirement = 0;
     int weight = 0;
     int durabilityCurrent = 0;

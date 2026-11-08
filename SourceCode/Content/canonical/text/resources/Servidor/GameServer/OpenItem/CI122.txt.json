@@ -1,0 +1,127 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "item.ci122",
+  "kind": "open_item_definition",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/CI122.txt",
+    "GameServer/OpenItem/CI122.txt"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/CI122.txt",
+    "legacy_sha256": "fe4fda947199448cbf34e5a8bd8622f4a65c59ca578cb1bc226db84c5ccee3bd",
+    "legacy_size": 194
+  },
+  "semantic": {
+    "fields": {
+      "code": "CI122",
+      "name": "Coração de Árvore",
+      "english_name": "Coração de Árvore",
+      "weight": 1,
+      "price": 0,
+      "linked_file": "Name\\CI122.zhoon"
+    },
+    "directives": [
+      {
+        "line": 2,
+        "key": "code",
+        "legacy_token": "*코드",
+        "legacy_token_hex": "2ac4dab5e5",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          "CI122"
+        ],
+        "raw_values_hex": [
+          "4349313232"
+        ],
+        "quoted": [
+          true
+        ]
+      },
+      {
+        "line": 5,
+        "key": "name",
+        "legacy_token": "*이름",
+        "legacy_token_hex": "2ac0ccb8a7",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          "Coração de Árvore"
+        ],
+        "raw_values_hex": [
+          "436f7261e7e36f20646520c172766f7265"
+        ],
+        "quoted": [
+          true
+        ]
+      },
+      {
+        "line": 8,
+        "key": "english_name",
+        "legacy_token": "*Name",
+        "legacy_token_hex": "2a4e616d65",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          "Coração de Árvore"
+        ],
+        "raw_values_hex": [
+          "436f7261e7e36f20646520c172766f7265"
+        ],
+        "quoted": [
+          true
+        ]
+      },
+      {
+        "line": 11,
+        "key": "weight",
+        "legacy_token": "*무게",
+        "legacy_token_hex": "2ab9abb0d4",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          1
+        ],
+        "raw_values_hex": [
+          "31"
+        ]
+      },
+      {
+        "line": 14,
+        "key": "price",
+        "legacy_token": "*가격",
+        "legacy_token_hex": "2ab0a1b0dd",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          0
+        ],
+        "raw_values_hex": [
+          "30"
+        ]
+      },
+      {
+        "line": 17,
+        "key": "linked_file",
+        "legacy_token": "*연결파일",
+        "legacy_token_hex": "2abfacb0e1c6c4c0cf",
+        "loader_status": "supported_mapped",
+        "values": [
+          "Name\\CI122.zhoon"
+        ],
+        "raw_values_hex": [
+          "4e616d655c43493132322e7a686f6f6e"
+        ],
+        "quoted": [
+          true
+        ]
+      }
+    ],
+    "unknown_tokens": {}
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9JRA0KKsTateUgIkNJMTIyIg0KDQovL0tvcmVhbiBOYW1lDQoqwMy4pyAiQ29yYefjbyBkZSDBcnZvcmUiDQoNCi8vRW5nbGlzaCBOYW1lDQoqTmFtZSAiQ29yYefjbyBkZSDBcnZvcmUiDQoNCi8vV2VpZ2h0DQoquauw1CAxDQoNCi8vUHJpY2UNCiqwobDdIDANCg0KLy9OYW1lIEZpbGUNCiq/rLDhxsTAzyAiTmFtZVxDSTEyMi56aG9vbiI="
+  },
+  "runtime_profiles": [
+    "client",
+    "server"
+  ]
+}

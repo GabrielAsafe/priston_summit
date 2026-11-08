@@ -4,9 +4,11 @@
 // changing, delaying or vetoing writes. It is NOT a durable transaction lock.
 // In particular, it cannot authorize a trade or authenticate client item bytes.
 #include <atomic>
+#include <cstdio>  // SUMMIT451A: privacy-safe peer receipt diagnostics
 #include <cstddef>
 #include <cstdint>
 #include <map>
+#include <cstdint>
 
 namespace gameplay { namespace companions { namespace v2 {
 
@@ -53,6 +55,27 @@ private:
     SaveFenceSpinLock& lock_;
 };
 
+// SUMMIT448A: reason codes for an ONLINE craft lease refusal; no account data.
+enum class SaveLeaseReason448 {
+    Ready, InvalidSession, NotSaved, IncompleteSave, Receiving,
+    Flushing, Mutating, Reserved, Sealed, UntrackedWriter
+};
+inline const char* SaveLeaseReasonName448(SaveLeaseReason448 v) {
+    switch(v) {
+      case SaveLeaseReason448::Ready: return "ready";
+      case SaveLeaseReason448::InvalidSession: return "invalid_session";
+      case SaveLeaseReason448::NotSaved: return "no_validated_save";
+      case SaveLeaseReason448::IncompleteSave: return "incomplete_save";
+      case SaveLeaseReason448::Receiving: return "save_receiving";
+      case SaveLeaseReason448::Flushing: return "dat_flushing";
+      case SaveLeaseReason448::Mutating: return "save_writer_active";
+      case SaveLeaseReason448::Reserved: return "session_reserved";
+      case SaveLeaseReason448::Sealed: return "session_sealed";
+      case SaveLeaseReason448::UntrackedWriter: return "untracked_writer_active";
+    }
+    return "unknown";
+}
+
 class SaveActivityFence final {
 public:
     // A bounded registry: an exhausted registry fails closed for observations,
@@ -87,14 +110,17 @@ public:
         return true;
     }
 
-    void EndReceive(SaveSessionKey key, bool validatedComplete, bool finalPart) {
-        if (!key.Valid()) return;
+    // SUMMIT451A: return true ONLY when this final fragment has just issued
+    // a fresh, validated receipt (never reuse a previous accepted sequence).
+    bool EndReceive(SaveSessionKey key, bool validatedComplete, bool finalPart) {
+        if (!key.Valid()) return false;
         SaveFenceGuard lock(mutex_);
         const auto found = sessions_.find(key);
-        if (found == sessions_.end() || !found->second.receivers) return;
+        if (found == sessions_.end() || !found->second.receivers) return false;
         State& state = found->second;
-        if (validatedComplete && finalPart && state.sequenceValid &&
-            state.expectedPart == state.declaredTotal) {
+        const bool acceptedNow = validatedComplete && finalPart &&
+            state.sequenceValid && state.expectedPart == state.declaredTotal;
+        if (acceptedNow) {
             state.incomplete = false;
             state.expectedPart = 0;
             state.declaredTotal = 0;
@@ -110,6 +136,7 @@ public:
         }
         --state.receivers;
         state.revision = Next();
+        return acceptedNow;
     }
 
     bool BeginFlush(SaveSessionKey key) {
@@ -153,16 +180,137 @@ public:
     }
 
     void EndMutation(SaveSessionKey key, bool tracked) {
+        bool credited451=false;
+        bool refused451=false;
+        {
+            SaveFenceGuard lock(mutex_);
+            if (!tracked) {
+                if (untrackedWriters_) --untrackedWriters_;
+                return;
+            }
+            const auto it = sessions_.find(key);
+            if (it != sessions_.end() && it->second.writers) {
+                State& source=it->second;
+                --source.writers;
+                source.revision=Next();
+                // SUMMIT451A: save receive scope ends BEFORE this writer guard.
+                // Credit the other authenticated socket only after this LAST
+                // writer is gone. Never bypass the existing lease requirements.
+                if (!source.writers && source.pendingPeer451.Valid()) {
+                    const SaveSessionKey peer=source.pendingPeer451;
+                    const std::uint64_t witness=source.pendingSequence451;
+                    source.pendingPeer451=SaveSessionKey();
+                    source.pendingSequence451=0u;
+                    refused451=true;
+                    if (peer.Valid() && !(peer.serial==key.serial &&
+                         peer.generation==key.generation) && !untrackedWriters_ &&
+                        Idle(source) && source.acceptedSaveSequence==witness) {
+                        // Do not evict the source receipt if registry is full.
+                        State* target=nullptr;
+                        const auto existing=sessions_.find(peer);
+                        if(existing!=sessions_.end()) target=&existing->second;
+                        else if(sessions_.size()<kMaximumSessions)
+                            target=FindOrCreate(peer);
+                        if(target && !target->reserved && !target->sealedForReconnect &&
+                           !target->receivers && !target->flushes &&
+                           !target->writers && !target->incomplete) {
+                            target->completed=true;
+                            target->acceptedSaveSequence=Next();
+                            target->revision=Next();
+                            credited451=true;
+                            refused451=false;
+                        }
+                    }
+                }
+            }
+        }
+        // No character name, account, socket pointer or item bytes in logs.
+        if(credited451) std::fprintf(stderr,
+            "[SUMMIT451][SAVE] peer_receipt=credited_after_writer\n");
+        else if(refused451) std::fprintf(stderr,
+            "[SUMMIT451][SAVE] peer_receipt=refused_after_writer\n");
+    }
+
+    // A completed receive may queue a witness while its legacy save writer
+    // still owns the source. Do not copy receipt here: EndMutation verifies
+    // that the writer really finished and the receipt did not change.
+    bool QueueValidatedPeer451(SaveSessionKey sourceKey, SaveSessionKey peer) {
+        if(!sourceKey.Valid() || !peer.Valid() ||
+           (sourceKey.serial==peer.serial && sourceKey.generation==peer.generation))
+            return false;
         SaveFenceGuard lock(mutex_);
-        if (!tracked) {
-            if (untrackedWriters_) --untrackedWriters_;
-            return;
+        if(untrackedWriters_) return false;
+        const auto sourceIt=sessions_.find(sourceKey);
+        if(sourceIt==sessions_.end()) return false;
+        State& source=sourceIt->second;
+        if(!source.completed || source.incomplete || source.receivers ||
+           source.flushes || source.writers!=1u || source.reserved ||
+           source.sealedForReconnect || !source.acceptedSaveSequence ||
+           source.pendingPeer451.Valid()) return false;
+        source.pendingPeer451=peer;
+        source.pendingSequence451=source.acceptedSaveSequence;
+        return true;
+    }
+
+    // SUMMIT452A: the server itself binds its authenticated /craft request to
+    // the next validated legacy save for the SAME owned participant.
+    // The source DATA socket need not be discoverable using FindUserFromName.
+    // This registry NEVER grants a lease or credits a receipt on registration.
+    bool ExpectValidatedCraftSave452(std::uint64_t participant,SaveSessionKey target,
+                                      std::uint32_t tick) {
+        if(!participant || !target.Valid()) return false;
+        SaveFenceGuard lock(mutex_);
+        if(untrackedWriters_)return false;
+        State* s=FindOrCreate(target);
+        if(!s||s->reserved||s->sealedForReconnect||s->receivers||s->writers||s->flushes)
+            return false;
+        if(expectedCraft452_.size()>=kMaximumSessions &&
+           expectedCraft452_.find(participant)==expectedCraft452_.end())return false;
+        ExpectedCraft452 request;
+        request.target=target;
+        request.sinceSequence=serial_;
+        request.tick=tick;
+        expectedCraft452_[participant]=request;
+        return true;
+    }
+
+    enum class ParticipantReceipt452 { NoRequest, Queued, SameSocket, Refused, Expired };
+    // Called ONLY after the legacy record validator accepted its FINAL part.
+    // Source is still inside its sole SaveMutationAdmission writer; real credit
+    // will occur in EndMutation after that writer is released (SUMMIT451A).
+    ParticipantReceipt452 QueueValidatedCraftSave452(SaveSessionKey source,
+           std::uint64_t participant,std::uint32_t tick) {
+        if(!source.Valid()||!participant)return ParticipantReceipt452::Refused;
+        SaveFenceGuard lock(mutex_);
+        const auto it=expectedCraft452_.find(participant);
+        if(it==expectedCraft452_.end())return ParticipantReceipt452::NoRequest;
+        const ExpectedCraft452 expected=it->second;
+        if(static_cast<std::uint32_t>(tick-expected.tick)>120000u) {
+            expectedCraft452_.erase(it);return ParticipantReceipt452::Expired;
         }
-        const auto it = sessions_.find(key);
-        if (it != sessions_.end() && it->second.writers) {
-            --it->second.writers;
-            it->second.revision = Next();
+        const auto si=sessions_.find(source);
+        if(si==sessions_.end()||untrackedWriters_)return ParticipantReceipt452::Refused;
+        State& s=si->second;
+        if(!s.completed||s.incomplete||s.receivers||s.flushes||s.writers!=1u||
+           s.reserved||s.sealedForReconnect||!s.acceptedSaveSequence||
+           s.acceptedSaveSequence<=expected.sinceSequence)
+            return ParticipantReceipt452::Refused;
+        const SaveSessionKey target=expected.target;
+        if(target.serial==source.serial && target.generation==source.generation) {
+            expectedCraft452_.erase(it);
+            return ParticipantReceipt452::SameSocket;
         }
+        if(s.pendingPeer451.Valid())return ParticipantReceipt452::Refused;
+        // Verify the target is still a valid unsealed fence session. Final
+        // authentication of the live socket is checked again by CraftHost.Session.
+        const auto ti=sessions_.find(target);
+        if(ti==sessions_.end()||ti->second.reserved||ti->second.sealedForReconnect||
+           ti->second.receivers||ti->second.flushes||ti->second.writers||
+           ti->second.incomplete) return ParticipantReceipt452::Refused;
+        s.pendingPeer451=target;
+        s.pendingSequence451=s.acceptedSaveSequence;
+        expectedCraft452_.erase(it);
+        return ParticipantReceipt452::Queued;
     }
 
     // A lease can only be acquired after a fully validated save and when the
@@ -178,6 +326,45 @@ public:
         found->second.leaseToken = Next();
         found->second.revision = Next();
         leaseToken = found->second.leaseToken;
+        return true;
+    }
+
+    // SUMMIT448A: a read-only diagnostic snapshot under the same fence lock.
+    // Never interprets lack of a save as authorisation to mutate the DAT.
+    SaveLeaseReason448 DiagnoseLease448(SaveSessionKey key) const {
+        if(!key.Valid()) return SaveLeaseReason448::InvalidSession;
+        SaveFenceGuard lock(mutex_);
+        if(untrackedWriters_) return SaveLeaseReason448::UntrackedWriter;
+        const auto it=sessions_.find(key);
+        if(it==sessions_.end()) return SaveLeaseReason448::NotSaved;
+        const State& s=it->second;
+        if(s.sealedForReconnect) return SaveLeaseReason448::Sealed;
+        if(s.reserved) return SaveLeaseReason448::Reserved;
+        if(s.receivers) return SaveLeaseReason448::Receiving;
+        if(s.flushes) return SaveLeaseReason448::Flushing;
+        if(s.writers) return SaveLeaseReason448::Mutating;
+        if(s.incomplete) return SaveLeaseReason448::IncompleteSave;
+        if(!s.completed || !s.acceptedSaveSequence) return SaveLeaseReason448::NotSaved;
+        return SaveLeaseReason448::Ready;
+    }
+
+    // Rate-limited request admission. This NEVER grants a craft lease; it
+    // merely allows the server to ask a connected client for an ordinary save.
+    // A subsequent validated client record remains mandatory for TryReserve.
+    bool TryRequestFreshSave448(SaveSessionKey key, std::uint32_t tickMs,
+                                std::uint32_t minimumDelayMs=8000u) {
+        if(!key.Valid() || minimumDelayMs<1000u) return false;
+        SaveFenceGuard lock(mutex_);
+        if(untrackedWriters_) return false;
+        State* s=FindOrCreate(key);
+        if(!s || s->reserved || s->sealedForReconnect || s->receivers ||
+           s->flushes || s->writers) return false;
+        if(s->completed && !s->incomplete && s->acceptedSaveSequence) return false;
+        if(s->refreshRequested &&
+           static_cast<std::uint32_t>(tickMs-s->lastRefreshTick)<minimumDelayMs) return false;
+        s->lastRefreshTick=tickMs;
+        s->refreshRequested=true;
+        // No save state is marked accepted here, and no revision is trusted.
         return true;
     }
 
@@ -252,6 +439,31 @@ public:
         return true;
     }
 
+    // SUMMIT449A: the normal legacy client may send its authenticated DAT
+    // fragments on a DATA socket while /craft make uses the PLAY socket.
+    // Credit the play-session fence ONLY AFTER the original source session
+    // has completed its fully validated final fragment. The caller must
+    // independently authenticate that both sockets own the SAME character.
+    // This is a save receipt, not permission to rewrite item bytes or DAT.
+    bool CreditPeerValidatedSave449(SaveSessionKey source, SaveSessionKey peer) {
+        if(!source.Valid() || !peer.Valid() ||
+           (source.serial==peer.serial && source.generation==peer.generation))
+            return false;
+        SaveFenceGuard lock(mutex_);
+        if(untrackedWriters_) return false;
+        const auto sourceIt=sessions_.find(source);
+        if(sourceIt==sessions_.end() || !Idle(sourceIt->second) ||
+           !sourceIt->second.acceptedSaveSequence) return false;
+        State* target=FindOrCreate(peer);
+        if(!target || target->reserved || target->sealedForReconnect ||
+           target->receivers || target->flushes || target->writers ||
+           target->incomplete) return false;
+        target->completed=true;
+        target->acceptedSaveSequence=Next();
+        target->revision=Next();
+        return true;
+    }
+
     // SUMMIT350I: the legacy save writer may attest which accepted ingress
     // sequence it is physically flushing. This is observation only: it does
     // NOT grant a trade lease and cannot make an unverified DAT authoritative.
@@ -302,6 +514,11 @@ public:
     }
 
 private:
+    struct ExpectedCraft452 {
+        SaveSessionKey target;
+        std::uint64_t sinceSequence=0;
+        std::uint32_t tick=0;
+    };
     struct State {
         std::uint64_t revision = 0;
         std::uint32_t receivers = 0;
@@ -316,6 +533,10 @@ private:
         bool sequenceValid = false;
         bool incomplete = false;
         bool completed = false;
+        bool refreshRequested = false; // SUMMIT448A: request throttle only
+        std::uint32_t lastRefreshTick = 0u;
+        SaveSessionKey pendingPeer451;
+        std::uint64_t pendingSequence451 = 0u;
     };
     static bool Idle(const State& state) {
         return state.completed && !state.receivers && !state.flushes &&
@@ -345,6 +566,7 @@ private:
     }
     mutable SaveFenceSpinLock mutex_;
     std::map<SaveSessionKey, State> sessions_;
+    std::map<std::uint64_t, ExpectedCraft452> expectedCraft452_;
     std::uint64_t serial_;
     std::uint32_t untrackedWriters_;
 };
@@ -408,16 +630,65 @@ public:
                              int index, int total)
         : fence_(fence), session_(session), active_(fence_.BeginReceive(session, index, total)),
           complete_(false), finalPart_(total > 0 && index >= 0 && index == total - 1) {}
-    ~SaveReceiveActivityScope() { if (active_) fence_.EndReceive(session_, complete_, finalPart_); }
+    ~SaveReceiveActivityScope() {
+        if(active_) {
+            const bool freshAccepted451=fence_.EndReceive(session_,complete_,finalPart_);
+            if(freshAccepted451) {
+                bool handled452=false;
+                if(participant452_) {
+                    const auto result452=fence_.QueueValidatedCraftSave452(
+                        session_,participant452_,participantTick452_);
+                    if(result452==SaveActivityFence::ParticipantReceipt452::Queued) {
+                        std::fprintf(stderr,"[SUMMIT452][SAVE] requested_participant=queued\n");
+                        handled452=true;
+                    } else if(result452==SaveActivityFence::ParticipantReceipt452::SameSocket) {
+                        std::fprintf(stderr,"[SUMMIT452][SAVE] requested_participant=same_socket\n");
+                        handled452=true;
+                    } else {
+                        std::fprintf(stderr,"[SUMMIT452][SAVE] requested_participant=no_match_or_refused code=%d\n",
+                            static_cast<int>(result452));
+                    }
+                }
+                if(!handled452 && peer449_.Valid()) {
+                    if(fence_.QueueValidatedPeer451(session_,peer449_)) {
+                        std::fprintf(stderr,"[SUMMIT451][SAVE] peer_receipt=queued_until_writer_end\n");
+                        handled452=true;
+                    } else {
+                        std::fprintf(stderr,"[SUMMIT451][SAVE] peer_receipt=queue_refused\n");
+                    }
+                }
+                if(!handled452) {
+                    // The source socket still retains its own valid receipt.
+                    std::fprintf(stderr,"[SUMMIT451][SAVE] validated_final=1 peer_candidate=0\n");
+                }
+            } else if(complete_ && finalPart_) {
+                // The legacy validator returned success, but the observed
+                // save fragment sequence did not form a fresh fence receipt.
+                std::fprintf(stderr,
+                    "[SUMMIT451][SAVE] final_receipt=sequence_refused\n");
+            }
+        }
+    }
     SaveReceiveActivityScope(const SaveReceiveActivityScope&) = delete;
     SaveReceiveActivityScope& operator=(const SaveReceiveActivityScope&) = delete;
     void MarkValidatedComplete() { complete_ = true; }
+    // Only the already validated final fragment may name an authenticated
+    // counterpart; credit is deferred until EndReceive has issued a receipt.
+    void DeferValidatedPeer449(SaveSessionKey peer) {
+        if(active_ && complete_ && finalPart_ && peer.Valid()) peer449_=peer;
+    }
+    void DeferValidatedParticipant452(std::uint64_t participant,std::uint32_t tick) {
+        if(active_ && complete_ && finalPart_ && participant) { participant452_=participant; participantTick452_=tick; }
+    }
 private:
     SaveActivityFence& fence_;
     SaveSessionKey session_;
     bool active_;
     bool complete_;
     bool finalPart_;
+    SaveSessionKey peer449_;
+    std::uint64_t participant452_=0u;
+    std::uint32_t participantTick452_=0u;
 };
 
 class SaveFlushActivityScope final {

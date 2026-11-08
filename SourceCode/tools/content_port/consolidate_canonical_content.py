@@ -164,6 +164,8 @@ def main() -> int:
         "--out-root", content,
     )
 
+    # SUMMIT_ITEM_VISUAL_REGISTRY_PIPELINE_V1: geracao do mapa C++ a partir do Content.
+    run(sys.executable, tools / "compile_item_visual_registry.py", "--repo-root", repo)
     run(sys.executable, tools / "validate_compiled_item_materialization.py", "--source-root", source)
     run(sys.executable, tools / "validate_internal_runtime_contract.py", "--source-root", source)
 

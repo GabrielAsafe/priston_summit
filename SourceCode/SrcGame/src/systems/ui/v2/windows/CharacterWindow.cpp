@@ -5,6 +5,7 @@
 #include "systems/ui/v2/pages/InventoryPage.h"
 #include "systems/ui/v2/pages/CompanionsPage.h"
 #include "systems/ui/v2/pages/CovenantsPage.h"
+#include "systems/ui/v2/pages/CraftingPage392.h" // SUMMIT392_C_INCLUDE
 #include "systems/ui/v2/pages/SkillsPage.h"
 #include "systems/ui/v2/theme/UITheme.h"
 #include "systems/ui/v2/widgets/Button.h"
@@ -35,10 +36,33 @@ CharacterWindow::CharacterWindow(ICharacterStatsGateway& statsGateway,
     companionsPage_ = &companions;
     auto& covenants = AddChild<CovenantsPage>(covenantGateway, 514);
     covenantsPage_ = &covenants;
+    auto& crafting = AddChild<CraftingPage392>(515); // SUMMIT392_C_CREATE
+    craftingPage_ = &crafting;
+    crafting.SetInventoryGateway(&inventoryGateway); // SUMMIT410A: real client backpack
 
     BuildChrome();
     Layout();
     SetActiveTab(CharacterTab::Attributes, false);
+}
+
+// SUMMIT462A: expose only the active lookup to the existing legacy key pump.
+bool CharacterWindow::HasCraftingSearch462() const {
+    return activeTab_==CharacterTab::Crafting && craftingPage_ &&
+           craftingPage_->IsVisible() && craftingPage_->IsSearchActive462();
+}
+bool CharacterWindow::HandleCraftingSearchKey462(std::uint32_t key) {
+    return HasCraftingSearch462() && craftingPage_->HandleSearchKey462(key);
+}
+void CharacterWindow::AcceptCraftingLive407(const std::string& frame) {
+    if(craftingPage_)craftingPage_->AcceptLive407(frame);
+}
+
+void CharacterWindow::SetCraftingContext(std::function<std::string()> characterName,
+                                        std::function<bool(const std::string&)> sender)
+{
+    if (!craftingPage_) return; // SUMMIT392_C_CONTEXT
+    craftingPage_->SetCharacterName(std::move(characterName));
+    craftingPage_->SetSender(std::move(sender));
 }
 
 void CharacterWindow::BuildChrome()
@@ -62,6 +86,9 @@ void CharacterWindow::BuildChrome()
     auto& covenants = AddChild<Button>(505, "Pactos");
     covenants.SetOnClick([this](const UIEvent&) { SetActiveTab(CharacterTab::Covenants); });
     covenantsTab_ = &covenants;
+    auto& crafting = AddChild<Button>(506, "Crafting"); // SUMMIT392_C_TAB
+    crafting.SetOnClick([this](const UIEvent&) { SetActiveTab(CharacterTab::Crafting); });
+    craftingTab_ = &crafting;
 
     auto& close = AddChild<Button>(503, "X");
     close.SetOnClick([this](const UIEvent&)
@@ -77,11 +104,13 @@ void CharacterWindow::Layout()
 {
     const Rect bounds = Bounds();
     constexpr int top = 38;
-    attributesTab_->SetBounds({14, top, 116, 30});
-    skillsTab_->SetBounds({136, top, 116, 30});
-    inventoryTab_->SetBounds({258, top, 116, 30});
-    companionsTab_->SetBounds({380, top, 126, 30});
-    covenantsTab_->SetBounds({512, top, 126, 30});
+    // SUMMIT392_C_LAYOUT: six tabs, same CharacterWindow chrome.
+    attributesTab_->SetBounds({14, top, 108, 30});
+    skillsTab_->SetBounds({128, top, 108, 30});
+    inventoryTab_->SetBounds({242, top, 108, 30});
+    companionsTab_->SetBounds({356, top, 115, 30});
+    covenantsTab_->SetBounds({477, top, 108, 30});
+    craftingTab_->SetBounds({591, top, 111, 30});
     closeButton_->SetBounds({bounds.width - 42, 5, 30, 24});
 
     const Rect pageBounds{8, 74, bounds.width - 16, bounds.height - 82};
@@ -90,6 +119,7 @@ void CharacterWindow::Layout()
     inventoryPage_->SetBounds(pageBounds);
     companionsPage_->SetBounds(pageBounds);
     covenantsPage_->SetBounds(pageBounds);
+    craftingPage_->SetBounds(pageBounds); // SUMMIT392_C_BOUNDS
 }
 
 void CharacterWindow::SetActiveTab(CharacterTab tab, bool notify)
@@ -101,6 +131,8 @@ void CharacterWindow::SetActiveTab(CharacterTab tab, bool notify)
         companionsPage_->ForceRefresh();
     if (tab == CharacterTab::Covenants && covenantsPage_)
         covenantsPage_->ForceRefresh();
+    if (tab == CharacterTab::Crafting && craftingPage_) // SUMMIT392_C_REFRESH
+        craftingPage_->ForceRefresh();
 
     activeTab_ = tab;
     attributesPage_->SetVisible(tab == CharacterTab::Attributes);
@@ -108,12 +140,14 @@ void CharacterWindow::SetActiveTab(CharacterTab tab, bool notify)
     inventoryPage_->SetVisible(tab == CharacterTab::Inventory);
     companionsPage_->SetVisible(tab == CharacterTab::Companions);
     covenantsPage_->SetVisible(tab == CharacterTab::Covenants);
+    craftingPage_->SetVisible(tab == CharacterTab::Crafting); // SUMMIT392_C_VISIBLE
 
     attributesTab_->SetSelected(tab == CharacterTab::Attributes);
     skillsTab_->SetSelected(tab == CharacterTab::Skills);
     inventoryTab_->SetSelected(tab == CharacterTab::Inventory);
     companionsTab_->SetSelected(tab == CharacterTab::Companions);
     covenantsTab_->SetSelected(tab == CharacterTab::Covenants);
+    craftingTab_->SetSelected(tab == CharacterTab::Crafting); // SUMMIT392_C_SELECTED
 
     if (notify && onTabChanged_)
         onTabChanged_(tab);

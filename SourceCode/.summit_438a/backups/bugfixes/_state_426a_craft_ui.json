@@ -1,0 +1,14 @@
+{
+  "installed": {
+    "SourceCode/SrcGame/src/systems/ui/v2/legacy/LegacyUIV2Bridge.cpp": "13f59758160a7c62921328a8a4a4800885cb954e34195458ff4b08643b8a688a",
+    "SourceCode/SrcGame/src/systems/ui/v2/pages/CraftUiRegistry426.generated.h": "6e45af597a1e794aa5e39f50165d1056f2eec0a51c95f6c5b7496b0b706b7430",
+    "SourceCode/SrcGame/src/systems/ui/v2/pages/CraftingPage392.h": "014bcf3d05c5462541df8a1846dd0c41f3d668141d18298f4e6fb99780260f19"
+  },
+  "originals": {
+    "SourceCode/SrcGame/src/systems/ui/v2/legacy/LegacyUIV2Bridge.cpp": "b19c69af3fd34412514a0f4f0872d8a9d3f099eb63a777383cf0dd8659851dca",
+    "SourceCode/SrcGame/src/systems/ui/v2/pages/CraftingPage392.h": "c9e35a2ef6feaec09120b49c307fbe0c4a8641b0d063e4f7e7cded03a0438947"
+  },
+  "schema": "summit.patch426a/v1",
+  "status": "APPLIED",
+  "utc": "2026-11-02T12:32:47.752275+00:00"
+}

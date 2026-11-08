@@ -1,0 +1,18 @@
+{
+  "schema": "summit.stage-spawn/v1",
+  "schema_version": 1,
+  "id": "spawn.stararena_58",
+  "logical_path": "GameServer/Field/StarArena.ASE.spm",
+  "legacy_source": {
+    "path": "SUMMIT364_CONTENT_SYNTHETIC_NO_LEGACY_SPM",
+    "sha256": "e226effb57d95972d8511489ec8a8d135cd3875c15cba6346d6bcfacf4befa83"
+  },
+  "limit_max": 10,
+  "delay": {
+    "shift": 5,
+    "milliseconds": 30000
+  },
+  "open_limit": 0,
+  "actors": [],
+  "bosses": []
+}

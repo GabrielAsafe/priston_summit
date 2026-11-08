@@ -35,8 +35,18 @@ def main():
         key=tag.decode('ascii'); sections[key]={'version':sv,'bytes':size,'sha256':hashlib.sha256(payload).hexdigest()}
         if tag==b'SPPT': sections[key].update(read_inner(payload,b'SPPT',MAP,POINT))
         if tag==b'SPCN': sections[key].update(read_inner(payload,b'SPCN',MAP,NPC))
+        if tag==b'GMSP':
+            gh=struct.Struct('<4sHHII32s')
+            gr=struct.Struct('<IIiiiIII64s')
+            if len(payload)<gh.size:raise SystemExit('GM section too small')
+            mg,version,flags,n,stride,sd=gh.unpack_from(payload,0)
+            if mg!=b'GMS1' or version!=1 or flags!=0 or stride!=gr.size or n>96 or len(payload)!=gh.size+n*gr.size:
+                raise SystemExit('bad GM section layout')
+            check_digest(payload[gh.size:],sd,'GMS1')
+            sections[key]['points']=n
         if tag==b'SSPB' and payload[:4]!=b'SSPB': raise SystemExit('embedded SSPB invalid')
-    required={'SSPB','SPPT','SPCN'}
+    # # SUMMIT386A GMSP JSON GM XYZ
+    required={'SSPB','SPPT','SPCN','GMSP'}
     if set(sections)!=required: raise SystemExit(f'SFLD sections mismatch: {sorted(sections)}')
     print(json.dumps({'status':'PASS','format':'SFLD','version':ver,'bytes':len(data),'sections':sections},ensure_ascii=False))
 if __name__=='__main__': main()

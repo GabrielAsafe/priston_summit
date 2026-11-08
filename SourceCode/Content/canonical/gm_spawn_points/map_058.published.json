@@ -1,0 +1,347 @@
+{
+  "map_id": 58,
+  "points": [
+    {
+      "content_key": "monplant",
+      "density": "low",
+      "id": "gm.plan_000001",
+      "kind": "monster",
+      "map_id": 58,
+      "max_alive": 2,
+      "model_file": "char\\monster\\monplant\\monplant-d.ini",
+      "model_reference": {
+        "candidates": [
+          "char.monster.monplant.monplant.a.json",
+          "char.monster.monplant.monplant.b.json",
+          "char.monster.monplant.monplant.c.json",
+          "char.monster.monplant.monplant.d.json",
+          "char.monster.monplant.mudygolem.json"
+        ],
+        "status": "model_variant_ambiguous"
+      },
+      "monster_id": "monster.chefe_14_u00c1rvore_maldita",
+      "monster_name": "Árvore Maldita",
+      "plan_id": 1,
+      "position": {
+        "x": 250385,
+        "y": 721,
+        "z": 225276
+      },
+      "radius": 160,
+      "respawn_seconds": 30,
+      "runtime_enabled": true,
+      "source_created_at": "2026-10-29 08:22:03",
+      "source_point_sha256": "020d4a312845803ac236fc4b92ad18d1e470e63562c67f59915112e2656fde0a",
+      "status": "published_gmsp_386a"
+    },
+    {
+      "content_key": "monplant",
+      "density": "low",
+      "id": "gm.plan_000002",
+      "kind": "monster",
+      "map_id": 58,
+      "max_alive": 2,
+      "model_file": "char\\monster\\monplant\\monplant-d.ini",
+      "model_reference": {
+        "candidates": [
+          "char.monster.monplant.monplant.a.json",
+          "char.monster.monplant.monplant.b.json",
+          "char.monster.monplant.monplant.c.json",
+          "char.monster.monplant.monplant.d.json",
+          "char.monster.monplant.mudygolem.json"
+        ],
+        "status": "model_variant_ambiguous"
+      },
+      "monster_id": "monster.chefe_14_u00c1rvore_maldita",
+      "monster_name": "Árvore Maldita",
+      "plan_id": 2,
+      "position": {
+        "x": 250357,
+        "y": 721,
+        "z": 225432
+      },
+      "radius": 160,
+      "respawn_seconds": 30,
+      "runtime_enabled": true,
+      "source_created_at": "2026-10-29 08:22:11",
+      "source_point_sha256": "ec11654a0925744ad1a8b76ad7c207a7d503fe59080feaa92ef8fa8e51bca912",
+      "status": "published_gmsp_386a"
+    },
+    {
+      "content_key": "monplant",
+      "density": "low",
+      "id": "gm.plan_000003",
+      "kind": "monster",
+      "map_id": 58,
+      "max_alive": 2,
+      "model_file": "char\\monster\\monplant\\monplant-d.ini",
+      "model_reference": {
+        "candidates": [
+          "char.monster.monplant.monplant.a.json",
+          "char.monster.monplant.monplant.b.json",
+          "char.monster.monplant.monplant.c.json",
+          "char.monster.monplant.monplant.d.json",
+          "char.monster.monplant.mudygolem.json"
+        ],
+        "status": "model_variant_ambiguous"
+      },
+      "monster_id": "monster.chefe_14_u00c1rvore_maldita",
+      "monster_name": "Árvore Maldita",
+      "plan_id": 3,
+      "position": {
+        "x": 250369,
+        "y": 721,
+        "z": 225440
+      },
+      "radius": 160,
+      "respawn_seconds": 30,
+      "runtime_enabled": true,
+      "source_created_at": "2026-10-29 08:22:13",
+      "source_point_sha256": "a538842630f97535289fe009370c5acd4d62b2d825025d27804417f2dfb4bbbd",
+      "status": "published_gmsp_386a"
+    },
+    {
+      "content_key": "monplant",
+      "density": "low",
+      "id": "gm.plan_000004",
+      "kind": "monster",
+      "map_id": 58,
+      "max_alive": 2,
+      "model_file": "char\\monster\\monplant\\monplant-d.ini",
+      "model_reference": {
+        "candidates": [
+          "char.monster.monplant.monplant.a.json",
+          "char.monster.monplant.monplant.b.json",
+          "char.monster.monplant.monplant.c.json",
+          "char.monster.monplant.monplant.d.json",
+          "char.monster.monplant.mudygolem.json"
+        ],
+        "status": "model_variant_ambiguous"
+      },
+      "monster_id": "monster.chefe_14_u00c1rvore_maldita",
+      "monster_name": "Árvore Maldita",
+      "plan_id": 4,
+      "position": {
+        "x": 250381,
+        "y": 721,
+        "z": 225448
+      },
+      "radius": 160,
+      "respawn_seconds": 30,
+      "runtime_enabled": true,
+      "source_created_at": "2026-10-29 08:22:13",
+      "source_point_sha256": "b8e86f7335ec456d0a263108ba87b60cea867d81e5027860f7dd0623242cd025",
+      "status": "published_gmsp_386a"
+    },
+    {
+      "content_key": "undeadminer",
+      "density": "high",
+      "id": "gm.plan_000005",
+      "kind": "monster",
+      "map_id": 58,
+      "max_alive": 12,
+      "model_file": "char\\monster\\undeadminer\\undeadminer.ini",
+      "model_reference": {
+        "candidates": [
+          "char.monster.undeadminer.undeadminer.json"
+        ],
+        "status": "model_family_candidate_only"
+      },
+      "monster_id": "monster.111_mineiro_das_cinzas",
+      "monster_name": "Mineiro das Cinzas",
+      "plan_id": 5,
+      "position": {
+        "x": 250389,
+        "y": 817,
+        "z": 226422
+      },
+      "radius": 160,
+      "respawn_seconds": 30,
+      "runtime_enabled": true,
+      "source_created_at": "2026-10-29 08:22:35",
+      "source_point_sha256": "4d00542dcf348762eaf3dee315a50f9397514de4eef048b7e1da7c11ca82c097",
+      "status": "published_gmsp_386a"
+    },
+    {
+      "content_key": "undeadminer",
+      "density": "high",
+      "id": "gm.plan_000006",
+      "kind": "monster",
+      "map_id": 58,
+      "max_alive": 12,
+      "model_file": "char\\monster\\undeadminer\\undeadminer.ini",
+      "model_reference": {
+        "candidates": [
+          "char.monster.undeadminer.undeadminer.json"
+        ],
+        "status": "model_family_candidate_only"
+      },
+      "monster_id": "monster.111_mineiro_das_cinzas",
+      "monster_name": "Mineiro das Cinzas",
+      "plan_id": 6,
+      "position": {
+        "x": 250306,
+        "y": 810,
+        "z": 226671
+      },
+      "radius": 160,
+      "respawn_seconds": 30,
+      "runtime_enabled": true,
+      "source_created_at": "2026-10-29 08:22:39",
+      "source_point_sha256": "cda3676dd5043e2d68e494708995e8597a69ad595338ac47350eef3aa05b62d5",
+      "status": "published_gmsp_386a"
+    },
+    {
+      "content_key": "undeadminer",
+      "density": "high",
+      "id": "gm.plan_000007",
+      "kind": "monster",
+      "map_id": 58,
+      "max_alive": 12,
+      "model_file": "char\\monster\\undeadminer\\undeadminer.ini",
+      "model_reference": {
+        "candidates": [
+          "char.monster.undeadminer.undeadminer.json"
+        ],
+        "status": "model_family_candidate_only"
+      },
+      "monster_id": "monster.111_mineiro_das_cinzas",
+      "monster_name": "Mineiro das Cinzas",
+      "plan_id": 7,
+      "position": {
+        "x": 250399,
+        "y": 810,
+        "z": 226748
+      },
+      "radius": 160,
+      "respawn_seconds": 30,
+      "runtime_enabled": true,
+      "source_created_at": "2026-10-29 08:22:41",
+      "source_point_sha256": "a7d51f960cc802e76b73b722fe9ebc3672a1080980bc433bf1a616b8f2d0feb8",
+      "status": "published_gmsp_386a"
+    },
+    {
+      "content_key": "monplant",
+      "density": "low",
+      "id": "gm.plan_000008",
+      "kind": "monster",
+      "map_id": 58,
+      "max_alive": 2,
+      "model_file": "char\\monster\\monplant\\monplant-d.ini",
+      "model_reference": {
+        "candidates": [
+          "char.monster.monplant.monplant.a.json",
+          "char.monster.monplant.monplant.b.json",
+          "char.monster.monplant.monplant.c.json",
+          "char.monster.monplant.monplant.d.json",
+          "char.monster.monplant.mudygolem.json"
+        ],
+        "status": "model_variant_ambiguous"
+      },
+      "monster_id": "monster.chefe_14_u00c1rvore_maldita",
+      "monster_name": "Árvore Maldita",
+      "plan_id": 8,
+      "position": {
+        "x": 250369,
+        "y": 810,
+        "z": 226667
+      },
+      "radius": 160,
+      "respawn_seconds": 30,
+      "runtime_enabled": true,
+      "source_created_at": "2026-10-30 06:57:05",
+      "source_point_sha256": "18bcb715e6a4000189a3454a680f41fe1e3e594a11a9ecb94c1e3620666b9968",
+      "status": "published_gmsp_386a"
+    },
+    {
+      "content_key": "undeadminer",
+      "density": "low",
+      "id": "gm.plan_000009",
+      "kind": "monster",
+      "map_id": 58,
+      "max_alive": 2,
+      "model_file": "char\\monster\\undeadminer\\undeadminer.ini",
+      "model_reference": {
+        "candidates": [
+          "char.monster.undeadminer.undeadminer.json"
+        ],
+        "status": "model_family_candidate_only"
+      },
+      "monster_id": "monster.111_mineiro_das_cinzas",
+      "monster_name": "Mineiro das Cinzas",
+      "plan_id": 9,
+      "position": {
+        "x": 250277,
+        "y": 810,
+        "z": 226824
+      },
+      "radius": 160,
+      "respawn_seconds": 30,
+      "runtime_enabled": true,
+      "source_created_at": "2026-10-30 21:29:17",
+      "source_point_sha256": "8653761796938d64a2c1805dd8ee8c2bb93ba04dba9b86bb29926b5f292594cf",
+      "status": "published_gmsp_386a"
+    },
+    {
+      "content_key": "undeadminer",
+      "density": "low",
+      "id": "gm.plan_000010",
+      "kind": "monster",
+      "map_id": 58,
+      "max_alive": 2,
+      "model_file": "char\\monster\\undeadminer\\undeadminer.ini",
+      "model_reference": {
+        "candidates": [
+          "char.monster.undeadminer.undeadminer.json"
+        ],
+        "status": "model_family_candidate_only"
+      },
+      "monster_id": "monster.111_mineiro_das_cinzas",
+      "monster_name": "Mineiro das Cinzas",
+      "plan_id": 10,
+      "position": {
+        "x": 250306,
+        "y": 810,
+        "z": 226852
+      },
+      "radius": 160,
+      "respawn_seconds": 30,
+      "runtime_enabled": true,
+      "source_created_at": "2026-10-30 21:29:19",
+      "source_point_sha256": "5244d2946e9feabfec89c67d9ff1fe57d2410a7a9d2e5ab885dcf610c9c7440c",
+      "status": "published_gmsp_386a"
+    },
+    {
+      "content_key": "turtlecannon",
+      "density": "medium",
+      "id": "gm.plan_000011",
+      "kind": "monster",
+      "map_id": 58,
+      "max_alive": 6,
+      "model_file": "char\\monster\\turtlecannon\\turtlecannon.ini",
+      "model_reference": {
+        "candidates": [
+          "char.monster.turtlecannon.turtlecannon.json",
+          "char.monster.turtlecannon.turtledragon.json"
+        ],
+        "status": "model_variant_ambiguous"
+      },
+      "monster_id": "monster.89_tartaruga_blindada",
+      "monster_name": "Tartaruga Blindada",
+      "plan_id": 11,
+      "position": {
+        "x": 250468,
+        "y": 810,
+        "z": 226882
+      },
+      "radius": 160,
+      "respawn_seconds": 30,
+      "runtime_enabled": true,
+      "source_created_at": "2026-10-31 14:46:13",
+      "source_point_sha256": "87b0f68e03ec68df8073ac51aa4344ef1b47b29b415bd0055ebc9969bc001244",
+      "status": "published_gmsp_386a"
+    }
+  ],
+  "schema": "summit.gm-spawn-published/v1",
+  "source_draft_sha256": "a0e7566575f37b1dd904a9b97122ced5d06825563c8218ce3845acc9fdba6c19"
+}

@@ -1,0 +1,22 @@
+{
+  "new": {
+    "SourceCode/.summit_438a/state.json": "4413e52ddfa1f405635c9ab3b824355853ee067c47235c58b5e89af4faf28ddc",
+    "SourceCode/SrcGame/src/systems/ui/v2/pages/CraftingPage392.h": "66e27ed09cb2e64d76f681d735599a5a9768e849186ffff3a9b4d4cd4cf99132",
+    "bugfixes/SUMMIT_PATCH_438A_CRAFT_JSON_ACK_2026-11-03/SHA256SUMS.txt": "f5a24c7f51ed106cc92aa294a30818ae6cfbdc68986ead767cff84504fcc248e",
+    "bugfixes/SUMMIT_PATCH_438A_CRAFT_JSON_ACK_2026-11-03/fixtures/client_after_438.bin": "66e27ed09cb2e64d76f681d735599a5a9768e849186ffff3a9b4d4cd4cf99132",
+    "bugfixes/_state_426a_craft_ui.json": "1fac10b50947677515db0681c82d9bd4ae73e86b42d86deda39ef3a883f8e425",
+    "bugfixes/_state_427a_craft_ui.json": "c4b9711a6b5513376162f30a834f33d96b4d9016c399de82c3fb82d04a1b1929",
+    "bugfixes/_state_427b_craft_names.json": "caef4628a0590bc6f206a92fcbbc6bd51a3675f95008f12d3d8315a399242a72"
+  },
+  "old": {
+    "SourceCode/.summit_438a/state.json": "8048b64351119e160c6a59aee889cd91f9e293130a572e172cee86c651048e15",
+    "SourceCode/SrcGame/src/systems/ui/v2/pages/CraftingPage392.h": "c1fb13935095646bb400f7149ebe57b1f4f07ef6cf2828634c931c5d13eb032a",
+    "bugfixes/SUMMIT_PATCH_438A_CRAFT_JSON_ACK_2026-11-03/SHA256SUMS.txt": "45ee22c0f35a2d8fde63ed53a43bb337092c13b1dd9e86ac5a56f27c0167a95b",
+    "bugfixes/SUMMIT_PATCH_438A_CRAFT_JSON_ACK_2026-11-03/fixtures/client_after_438.bin": "c1fb13935095646bb400f7149ebe57b1f4f07ef6cf2828634c931c5d13eb032a",
+    "bugfixes/_state_426a_craft_ui.json": "2e77b46bc98469ea4d7d118f1d67b077e5d30ba68432270bb94ebf8eafd65837",
+    "bugfixes/_state_427a_craft_ui.json": "c77ae81971978060ca1d831b9fb6ee2423f668e3512e26a8c3fa412f4b0d4f48",
+    "bugfixes/_state_427b_craft_names.json": "b6da1b5040d2c0086223e043140b0b4eb904cb4056250da532b0866f5817b9b8"
+  },
+  "schema": "summit438b/v1",
+  "status": "APPLIED"
+}

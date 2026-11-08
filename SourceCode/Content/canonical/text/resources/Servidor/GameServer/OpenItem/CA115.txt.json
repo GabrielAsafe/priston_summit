@@ -10,23 +10,13 @@
   ],
   "source": {
     "legacy_path": "Servidor/GameServer/OpenItem/CA115.txt",
-    "legacy_sha256": "97b4ad89807a75fb29827deb9de2b089b8801e8c8fca9c35e91dce81f301744f",
-    "legacy_size": 379
+    "legacy_sha256": "fa27b558cad3d6764d6f6a27b4d7a02834c994a73edda9ee1fba62e3999fd02e",
+    "legacy_size": 329
   },
   "semantic": {
     "fields": {
-      "name": {
-        "$repeated": [
-          "Traje de Futebol",
-          "Traje de Futebol"
-        ]
-      },
-      "code": {
-        "$repeated": [
-          "CA115",
-          "DA147"
-        ]
-      },
+      "name": "Traje de Futebol",
+      "code": "CA115",
       "english_name": "Traje de Futebol",
       "defence": [
         200,
@@ -47,22 +37,6 @@
     },
     "directives": [
       {
-        "line": 2,
-        "key": "name",
-        "legacy_token": "*이름",
-        "legacy_token_hex": "2ac0ccb8a7",
-        "loader_status": "not_consumed_by_active_loader",
-        "values": [
-          "Traje de Futebol"
-        ],
-        "raw_values_hex": [
-          "5472616a652064652046757465626f6c"
-        ],
-        "quoted": [
-          true
-        ]
-      },
-      {
         "line": 3,
         "key": "code",
         "legacy_token": "*코드",
@@ -73,22 +47,6 @@
         ],
         "raw_values_hex": [
           "4341313135"
-        ],
-        "quoted": [
-          true
-        ]
-      },
-      {
-        "line": 6,
-        "key": "code",
-        "legacy_token": "*코드",
-        "legacy_token_hex": "2ac4dab5e5",
-        "loader_status": "not_consumed_by_active_loader",
-        "values": [
-          "DA147"
-        ],
-        "raw_values_hex": [
-          "4441313437"
         ],
         "quoted": [
           true
@@ -231,6 +189,6 @@
   },
   "compatibility": {
     "encoding": "base64",
-    "legacy_payload_base64": "Ly8gTk9NRSBFIENPRCBETyBJVEVNDQoqwMy4pwkJIlRyYWplIGRlIEZ1dGVib2wiDQoqxNq15QkJIkNBMTE1Ig0KDQovL0lEDQoqxNq15SAiREExNDciDQoNCi8vS29yZWFuIE5hbWUNCirAzLinICJUcmFqZSBkZSBGdXRlYm9sIg0KDQovL0VuZ2xpc2ggTmFtZQ0KKk5hbWUgIlRyYWplIGRlIEZ1dGVib2wiDQoNCi8vRGVmZW5zZQ0KKrnmvu63wiAyMDAgMjAwDQoNCi8vQWJzb3JwdGlvbg0KKsjtvPa3wiA2LjAgNi4wDQoNCi8vQmxvY2sNCiq67bewwLIgMy4wIDMuMA0KDQovL0xldmVsDQoqt7m6pyAyMA0KDQovL1dlaWdodA0KKrmrsNQgMTAwDQoNCi8vUHJpY2UNCiqwobDdIDIwMDAwMA0KDQovL05hbWUgRmlsZQ0KKr+ssOHGxMDPICJOYW1lXENBMTE1Lnpob29uIg=="
+    "legacy_payload_base64": "Ly8gTk9NRSBFIENPRCBETyBJVEVNDQoqxNq15QkJIkNBMTE1Ig0KDQovL0tvcmVhbiBOYW1lDQoqwMy4pyAiVHJhamUgZGUgRnV0ZWJvbCINCg0KLy9FbmdsaXNoIE5hbWUNCipOYW1lICJUcmFqZSBkZSBGdXRlYm9sIg0KDQovL0RlZmVuc2UNCiq55r7ut8IgMjAwIDIwMA0KDQovL0Fic29ycHRpb24NCirI7bz2t8IgNi4wIDYuMA0KDQovL0Jsb2NrDQoquu23sMCyIDMuMCAzLjANCg0KLy9MZXZlbA0KKre5uqcgMjANCg0KLy9XZWlnaHQNCiq5q7DUIDEwMA0KDQovL1ByaWNlDQoqsKGw3SAyMDAwMDANCg0KLy9OYW1lIEZpbGUNCiq/rLDhxsTAzyAiTmFtZVxDQTExNS56aG9vbiI="
   }
 }

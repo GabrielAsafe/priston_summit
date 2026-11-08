@@ -1,4 +1,5 @@
 #include <cstring>
+#include "ItemCodeJsonRuntime381B.h"
 
 
 #include "core/server/legacy_sin_runtime/sinLinkHeader.h"
@@ -81,6 +82,20 @@ static const MINGW_ITEM_CODE_MAP_ENTRY g_MingwItemCodeMap[] =
 
 static int MingwPopulateItemCodeMap()
 {
+    // SUMMIT381B: JSON is authoritative when present. Legacy map remains a
+    // compatibility fallback ONLY when the JSON runtime file is absent.
+    int jsonCount381B=0;
+    bool jsonPresent381B=false;
+    if(summit_item_codes_381b::load(sItem,MAX_ITEM,&jsonCount381B,&jsonPresent381B))
+        return jsonCount381B;
+    if(jsonPresent381B) {
+        // Invalid JSON must never be followed by partially initialized items.
+        std::fprintf(stderr,"[ITEM_CODE_JSON] FATAL invalid manifest; server stopped before item loading\n");
+        std::fflush(stderr);
+        std::abort();
+    }
+    std::printf("[ITEM_CODE_JSON] MISSING fallback=legacy_C++\n");
+
 	const int mapCount =
 		(int)(sizeof(g_MingwItemCodeMap) /
 		      sizeof(g_MingwItemCodeMap[0]));

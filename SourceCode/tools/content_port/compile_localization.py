@@ -19,12 +19,9 @@ QUALITY_FLAGS = {
 }
 
 
-def main() -> None:
-    ap = argparse.ArgumentParser(description='Compile stable-key Summit localization catalog')
-    ap.add_argument('canonical', type=Path)
-    ap.add_argument('output', type=Path)
-    args = ap.parse_args()
-    root = args.canonical.resolve()
+def build_sloc_bytes(root: Path) -> tuple[bytes, dict]:
+    """Deterministic compiled catalog for embedding into a single SRES v2 pack."""
+    root = root.resolve()
     index_path = root / 'localization' / 'index.json'
     if not index_path.is_file():
         raise SystemExit('canonical localization/index.json is missing; run materialize_localization_catalog.py')
@@ -78,19 +75,26 @@ def main() -> None:
         0, 0, 0, 0, 0,
         digest,
     )
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_bytes(header + body)
+    data = bytes(header + body)
     report = {
-        'format': 'SLOC',
-        'version': VERSION,
-        'entries': len(records),
-        'keys': len(all_keys),
-        'english_keys': len(en_keys),
-        'locales': locale_counts,
-        'bytes': args.output.stat().st_size,
-        'sha256': hashlib.sha256(args.output.read_bytes()).hexdigest(),
+        'format': 'SLOC', 'version': VERSION,
+        'entries': len(records), 'keys': len(all_keys),
+        'english_keys': len(en_keys), 'locales': locale_counts,
+        'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest(),
     }
-    args.output.with_suffix(args.output.suffix + '.report.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    return data, report
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser(description='Legacy standalone SLOC compiler (SRES compiler embeds directly)')
+    ap.add_argument('canonical', type=Path)
+    ap.add_argument('output', type=Path)
+    args = ap.parse_args()
+    data, report = build_sloc_bytes(args.canonical)
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_bytes(data)
+    args.output.with_suffix(args.output.suffix + '.report.json').write_text(
+        json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(json.dumps(report, ensure_ascii=False))
 
 

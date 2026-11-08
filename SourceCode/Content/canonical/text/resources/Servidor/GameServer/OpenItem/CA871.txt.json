@@ -1,0 +1,207 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "item.ca871",
+  "kind": "open_item_definition",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/CA871.txt",
+    "GameServer/OpenItem/CA871.txt"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/CA871.txt",
+    "legacy_sha256": "8c29a7b6940a09b1ec89bab68d59a180212bcda2bf18ee87c9663a3966b05aef",
+    "legacy_size": 236
+  },
+  "semantic": {
+    "fields": {
+      "code": "CA871",
+      "name": "Traje Dragão Ancestral Masculino (7D)",
+      "english_name": "Traje Dragão Ancestral Masculino (7D)",
+      "defence": [
+        100,
+        100
+      ],
+      "absorb": [
+        15.0,
+        15.0
+      ],
+      "life_regen_alt": [
+        5.0,
+        5.0
+      ],
+      "life_add_alt": [
+        300,
+        300
+      ],
+      "level": 20,
+      "weight": 1,
+      "price": 1000
+    },
+    "directives": [
+      {
+        "line": 2,
+        "key": "code",
+        "legacy_token": "*코드",
+        "legacy_token_hex": "2ac4dab5e5",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          "CA871"
+        ],
+        "raw_values_hex": [
+          "4341383731"
+        ],
+        "quoted": [
+          true
+        ]
+      },
+      {
+        "line": 5,
+        "key": "name",
+        "legacy_token": "*이름",
+        "legacy_token_hex": "2ac0ccb8a7",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          "Traje Dragão Ancestral Masculino (7D)"
+        ],
+        "raw_values_hex": [
+          "5472616a652044726167e36f20416e6365737472616c204d617363756c696e6f2028374429"
+        ],
+        "quoted": [
+          true
+        ]
+      },
+      {
+        "line": 8,
+        "key": "english_name",
+        "legacy_token": "*Name",
+        "legacy_token_hex": "2a4e616d65",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          "Traje Dragão Ancestral Masculino (7D)"
+        ],
+        "raw_values_hex": [
+          "5472616a652044726167e36f20416e6365737472616c204d617363756c696e6f2028374429"
+        ],
+        "quoted": [
+          true
+        ]
+      },
+      {
+        "line": 11,
+        "key": "defence",
+        "legacy_token": "*방어력",
+        "legacy_token_hex": "2ab9e6beeeb7c2",
+        "loader_status": "supported_mapped",
+        "values": [
+          100,
+          100
+        ],
+        "raw_values_hex": [
+          "313030",
+          "313030"
+        ]
+      },
+      {
+        "line": 14,
+        "key": "absorb",
+        "legacy_token": "*흡수력",
+        "legacy_token_hex": "2ac8edbcf6b7c2",
+        "loader_status": "supported_mapped",
+        "values": [
+          15.0,
+          15.0
+        ],
+        "raw_values_hex": [
+          "31352e30",
+          "31352e30"
+        ]
+      },
+      {
+        "line": 17,
+        "key": "life_regen_alt",
+        "legacy_token": "*생명력재생",
+        "legacy_token_hex": "2abbfdb8edb7c2c0e7bbfd",
+        "loader_status": "supported_mapped",
+        "values": [
+          5.0,
+          5.0
+        ],
+        "raw_values_hex": [
+          "352e30",
+          "352e30"
+        ]
+      },
+      {
+        "line": 20,
+        "key": "life_add_alt",
+        "legacy_token": "*생명력추가",
+        "legacy_token_hex": "2abbfdb8edb7c2c3dfb0a1",
+        "loader_status": "supported_mapped",
+        "values": [
+          300,
+          300
+        ],
+        "raw_values_hex": [
+          "333030",
+          "333030"
+        ]
+      },
+      {
+        "line": 23,
+        "key": "level",
+        "legacy_token": "*레벨",
+        "legacy_token_hex": "2ab7b9baa7",
+        "loader_status": "supported_mapped",
+        "values": [
+          20
+        ],
+        "raw_values_hex": [
+          "3230"
+        ]
+      },
+      {
+        "line": 26,
+        "key": "weight",
+        "legacy_token": "*무게",
+        "legacy_token_hex": "2ab9abb0d4",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          1
+        ],
+        "raw_values_hex": [
+          "31"
+        ]
+      },
+      {
+        "line": 29,
+        "key": "price",
+        "legacy_token": "*가격",
+        "legacy_token_hex": "2ab0a1b0dd",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          1000
+        ],
+        "raw_values_hex": [
+          "31303030"
+        ]
+      }
+    ],
+    "unknown_tokens": {}
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "KsTateUgIkNBODcxIg0KDQoqwMy4pyAiVHJhamUgRHJhZ+NvIEFuY2VzdHJhbCBNYXNjdWxpbm8gKDdEKSINCg0KKk5hbWUgIlRyYWplIERyYWfjbyBBbmNlc3RyYWwgTWFzY3VsaW5vICg3RCkiDQoNCiq55r7ut8IgMTAwIDEwMA0KDQoqyO289rfCIDE1LjAgMTUuMA0KDQoqu/247bfCwOe7/SA1LjAgNS4wDQoNCiq7/bjtt8LD37ChIDMwMCAzMDANCg0KKre5uqcgMjANCg0KKrmrsNQgMQ0KDQoqsKGw3SAxMDAwDQo="
+  },
+  "runtime_profiles": [
+    "client",
+    "server"
+  ],
+  "assets": {
+    "icon": {
+      "logical_path": "image/Sinimage/Items/Defense/itCA871",
+      "runtime_format": "dds",
+      "runtime_required": true
+    }
+  }
+}

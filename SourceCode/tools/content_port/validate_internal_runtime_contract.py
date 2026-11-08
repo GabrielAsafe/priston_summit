@@ -37,7 +37,6 @@ def main() -> int:
         texts[rel] = text
         allowed_env = {
             'SUMMIT_LOCALIZATION_STRICT',
-            'SUMMIT_LOCALIZATION_PACK',
             'SUMMIT_LOCALE',
         }
         env_names = re.findall(r"getenv\([\"'](SUMMIT_[A-Z0-9_]+)[\"']\)", text)
@@ -78,7 +77,7 @@ def main() -> int:
 
     expected = {
         'Shared/content/v1/text_resource/content/TextResourceRuntime.h': 'ResolveRuntimePackPath("text_resources.sres")',
-        'Shared/content/v1/localization/content/LocalizationRuntime.h': 'ResolveRuntimePackPath("localization.sloc")',
+        'Shared/content/v1/localization/content/LocalizationRuntime.h': 'ActiveTextResourceSource()',
         'Shared/content/v1/gameplay_config/content/GameplayConfigRuntime.h': 'ResolveRuntimePackPath("gameplay_config.sgcf")',
         'Shared/content/v1/gameplay_reference/content/GameplayReferenceRuntime.h': 'ResolveRuntimePackPath("gameplay_reference.sgrf")',
         'Shared/content/v1/skin_reform/content/SkinReformRuntime.h': 'ResolveRuntimePackPath("skin_reforms.sskm")',

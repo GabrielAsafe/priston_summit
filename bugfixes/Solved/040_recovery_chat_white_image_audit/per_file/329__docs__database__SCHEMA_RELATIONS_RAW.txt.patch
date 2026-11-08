@@ -1,8 +1,0 @@
-diff --git a/docs/database/SCHEMA_RELATIONS_RAW.txt b/docs/database/SCHEMA_RELATIONS_RAW.txt
-deleted file mode 100644
-index aa839f6..0000000
---- a/docs/database/SCHEMA_RELATIONS_RAW.txt
-+++ /dev/null
-@@ -1,2 +0,0 @@
--database_name|foreign_key_name|child_schema|child_table|child_column|parent_schema|parent_table|parent_column
---------------|----------------|------------|-----------|------------|-------------|------------|-------------

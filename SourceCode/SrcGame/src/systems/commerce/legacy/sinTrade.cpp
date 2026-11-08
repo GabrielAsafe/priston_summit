@@ -2158,7 +2158,7 @@ void cTRADE::LButtonDown(int x, int y)
 					}
 				}
 
-				if (CraftItemButtonIndex == 1 && sSkinChangeItem.SkinChangeItem[1].Flag)
+				if (CraftItemButtonIndex == 1 && sSkinChangeItem.SkinChangeItem[0].Flag && sSkinChangeItem.SkinChangeItem[1].Flag)
 				{
 					if (cCraftItem.CraftCheckEmptyArea(&sSkinChangeItem.SkinChangeItem[0]))
 					{
@@ -7995,7 +7995,8 @@ int cSKINSYSTEM::SetSkinChangeAreaCheck(sITEM* pItem)
 		}
 	}
 
-	return TRUE;
+	// SUMMIT_SKIN_CHANGE_GUARD_20261027: nao aceitar colocacoes fora de uma area valida.
+	return FALSE;
 }
 
 int cSKINSYSTEM::CheckSkinChangeItemForm()
@@ -8089,7 +8090,27 @@ int cSKINSYSTEM::PickUpSkinChangeItem(int x, int y, int PickUpFlag, int Kind)
 
 int cSKINSYSTEM::LastSetSkinChangeItem(sITEM* pItem, int kind)
 {
-
+    // SUMMIT_SKIN_CHANGE_GUARD_20261027: validar a skin antes de remover o item do cursor.
+    if (!pItem || !pItem->Flag) return FALSE;
+    if (kind == 1)
+    {
+        const DWORD family = pItem->sItemInfo.CODE & sinITEM_MASK2;
+        const int skinClass = family == sinSK1 ? 1 : family == sinSK2 ? 2 :
+                              family == sinSK3 ? 3 : family == sinSK4 ? 4 : 0;
+        if (!skinClass || !sSkinChangeItem.SkinChangeItem[0].Flag ||
+            sSkinChangeItem.SkinChangeItem[1].Flag || skinClass != ItemClass ||
+            pItem->SoundIndex != ItemType) return FALSE;
+    }
+    else if (kind == 2)
+    {
+        const DWORD family = pItem->sItemInfo.CODE & sinITEM_MASK2;
+        const bool equipment = family == sinWA1 || family == sinWH1 || family == sinWC1 ||
+            family == sinWM1 || family == sinWP1 || family == sinWT1 ||
+            family == sinWS1 || family == sinWS2 || family == sinDA1 ||
+            family == sinDA2 || family == sinDA3 || family == sinDA4 || family == sinDS1;
+        if (!equipment || sSkinChangeItem.SkinChangeItem[0].Flag) return FALSE;
+    }
+    else return FALSE;
 
 	if (kind == 1)
 	{
@@ -8120,7 +8141,7 @@ int cSKINSYSTEM::LastSetSkinChangeItem(sITEM* pItem, int kind)
 		}
 	}
 
-	return TRUE;
+	return FALSE;
 }
 
 int cSKINSYSTEM::CancelSkinChange(int Flag)
@@ -8147,7 +8168,9 @@ int cSKINSYSTEM::CancelSkinChange(int Flag)
 
 int cSKINSYSTEM::sinSendSkinChange()
 {
-	if (MixItemNoCopyFlag)
+	// SUMMIT_SKIN_CHANGE_GUARD_20261027: nunca enviar conversao incompleta.
+	if (MixItemNoCopyFlag || !sSkinChangeItem.SkinChangeItem[0].Flag ||
+	    !sSkinChangeItem.SkinChangeItem[1].Flag)
 		return FALSE;
 
 	memcpy(&sSkinChangeItemBackUp, &sSkinChangeItem, sizeof(sSKIN_CHANGE));

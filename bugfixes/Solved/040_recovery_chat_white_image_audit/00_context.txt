@@ -1,9 +1,0 @@
-HEAD=22f79f193f1bf32e29e495a6be3bdf44028dee8e
-CURRENT=/home/gabriel/Área de Trabalho/summit/SourceCode
-RECOVERY=/home/gabriel/Transferências/recovery_pre_reset_20260824_0958
-RECOVERY_PATCH=/home/gabriel/Transferências/recovery_pre_reset_20260824_0958/working_tree_vs_HEAD.patch
-
-IMPORTANT:
-- READ-ONLY audit
-- no source modifications
-- server monster fix state is intentionally preserved

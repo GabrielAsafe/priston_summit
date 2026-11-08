@@ -55,15 +55,18 @@ inline TradeClientStageStatus PrepareCommittedLiveInventory351F(
             const auto& r=snapshot.records[i];
             if(r.recordIndex!=i || r.inSecondaryBag!=(i>=snapshot.primaryCount))
                 return TradeClientStageStatus::InvalidOrdering;
-            if(r.position<0 || r.position>16 ||
-               !r.itemCode || !r.itemKey || !r.itemChecksum)
+            // Passive potion/legacy records may have no unique key/checksum.
+            // They are immutable and never selectable; a committed live image
+            // still has to stage them when another item is transferred.
+            if(r.position<0 || r.position>16 || !r.itemCode)
                 return TradeClientStageStatus::UnsafeSnapshot;
-            for(std::size_t j=0;j<i;++j) {
-                const auto& other=snapshot.records[j];
-                if(other.itemCode==r.itemCode && other.itemKey==r.itemKey &&
-                   other.itemChecksum==r.itemChecksum)
-                    return TradeClientStageStatus::DuplicateIdentity;
-            }
+            if(HasCompleteTradeIdentity350O(r.itemCode,r.itemKey,r.itemChecksum))
+                for(std::size_t j=0;j<i;++j) {
+                    const auto& other=snapshot.records[j];
+                    if(other.itemCode==r.itemCode && other.itemKey==r.itemKey &&
+                       other.itemChecksum==r.itemChecksum)
+                        return TradeClientStageStatus::DuplicateIdentity;
+                }
             CompanionTradeDecodedItem identity;
             if(!decode(r.encodedRecord.data(),r.encodedRecord.size(),
                        decoded[i].item,decoded[i].slot,identity))

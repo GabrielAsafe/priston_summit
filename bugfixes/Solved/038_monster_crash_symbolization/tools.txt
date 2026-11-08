@@ -1,3 +1,0 @@
-ADDR2LINE=i686-w64-mingw32-addr2line
-OBJDUMP=i686-w64-mingw32-objdump
-NM=i686-w64-mingw32-nm

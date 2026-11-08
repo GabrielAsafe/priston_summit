@@ -205,6 +205,9 @@ def build_container(sections: list[tuple[bytes, int, bytes]]) -> bytes:
     return header + body
 
 
+# SUMMIT386A GMSP JSON GM XYZ
+from build_gm_spawn_runtime_386a import compile_gm
+
 def main() -> int:
     ap = argparse.ArgumentParser(description='Compile editable field JSON families into one Summit field_runtime.sfld pack')
     ap.add_argument('--canonical-spawns', type=Path, required=True)
@@ -227,10 +230,12 @@ def main() -> int:
 
     start_data, start_report = build_start_points(args.canonical_start_points.resolve())
     npc_data, npc_report = build_fixed_npcs(args.canonical_fixed_npcs.resolve(), args.canonical_text.resolve())
+    gm_data, gm_report = compile_gm(args.canonical_spawns.resolve().parent / 'gm_spawn_points', args.canonical_text.resolve())
     result = build_container([
         (b'SSPB', 2, spawn_data),
         (b'SPPT', SPPT_VERSION, start_data),
         (b'SPCN', SPCN_VERSION, npc_data),
+        (b'GMSP', 1, gm_data),
     ])
     args.output.write_bytes(result)
     report = {
@@ -239,6 +244,7 @@ def main() -> int:
             'stage_spawns': {'tag': 'SSPB', 'bytes': len(spawn_data), 'sha256': sha_hex(spawn_data)},
             'stage_start_points': start_report,
             'fixed_npcs': npc_report,
+            'gm_spawn_points': gm_report,
         },
         'bytes': len(result), 'sha256': sha_hex(result),
     }

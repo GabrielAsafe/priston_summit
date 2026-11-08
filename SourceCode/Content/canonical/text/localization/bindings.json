@@ -3173,6 +3173,34 @@
       "linked_resource_id": "text.ca723"
     },
     {
+      "content_id": "item.ca871",
+      "kind": "open_item_definition",
+      "name_key": "item.ca871.name",
+      "chat_keys": [],
+      "linked_resource_id": null
+    },
+    {
+      "content_id": "item.ca872",
+      "kind": "open_item_definition",
+      "name_key": "item.ca872.name",
+      "chat_keys": [],
+      "linked_resource_id": null
+    },
+    {
+      "content_id": "item.ca873",
+      "kind": "open_item_definition",
+      "name_key": "item.ca873.name",
+      "chat_keys": [],
+      "linked_resource_id": null
+    },
+    {
+      "content_id": "item.ca874",
+      "kind": "open_item_definition",
+      "name_key": "item.ca874.name",
+      "chat_keys": [],
+      "linked_resource_id": null
+    },
+    {
       "content_id": "item.ch101",
       "kind": "open_item_definition",
       "name_key": "item.ch101.name",
@@ -3199,6 +3227,482 @@
       "name_key": "item.ch104.name",
       "chat_keys": [],
       "linked_resource_id": "text.ch104"
+    },
+    {
+      "content_id": "item.ci101",
+      "kind": "open_item_definition",
+      "name_key": "item.ci101.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci101"
+    },
+    {
+      "content_id": "item.ci102",
+      "kind": "open_item_definition",
+      "name_key": "item.ci102.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci102"
+    },
+    {
+      "content_id": "item.ci103",
+      "kind": "open_item_definition",
+      "name_key": "item.ci103.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci103"
+    },
+    {
+      "content_id": "item.ci104",
+      "kind": "open_item_definition",
+      "name_key": "item.ci104.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci104"
+    },
+    {
+      "content_id": "item.ci105",
+      "kind": "open_item_definition",
+      "name_key": "item.ci105.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci105"
+    },
+    {
+      "content_id": "item.ci106",
+      "kind": "open_item_definition",
+      "name_key": "item.ci106.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci106"
+    },
+    {
+      "content_id": "item.ci107",
+      "kind": "open_item_definition",
+      "name_key": "item.ci107.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci107"
+    },
+    {
+      "content_id": "item.ci108",
+      "kind": "open_item_definition",
+      "name_key": "item.ci108.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci108"
+    },
+    {
+      "content_id": "item.ci109",
+      "kind": "open_item_definition",
+      "name_key": "item.ci109.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci109"
+    },
+    {
+      "content_id": "item.ci110",
+      "kind": "open_item_definition",
+      "name_key": "item.ci110.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci110"
+    },
+    {
+      "content_id": "item.ci111",
+      "kind": "open_item_definition",
+      "name_key": "item.ci111.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci111"
+    },
+    {
+      "content_id": "item.ci112",
+      "kind": "open_item_definition",
+      "name_key": "item.ci112.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci112"
+    },
+    {
+      "content_id": "item.ci113",
+      "kind": "open_item_definition",
+      "name_key": "item.ci113.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci113"
+    },
+    {
+      "content_id": "item.ci114",
+      "kind": "open_item_definition",
+      "name_key": "item.ci114.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci114"
+    },
+    {
+      "content_id": "item.ci115",
+      "kind": "open_item_definition",
+      "name_key": "item.ci115.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci115"
+    },
+    {
+      "content_id": "item.ci116",
+      "kind": "open_item_definition",
+      "name_key": "item.ci116.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci116"
+    },
+    {
+      "content_id": "item.ci117",
+      "kind": "open_item_definition",
+      "name_key": "item.ci117.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci117"
+    },
+    {
+      "content_id": "item.ci118",
+      "kind": "open_item_definition",
+      "name_key": "item.ci118.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci118"
+    },
+    {
+      "content_id": "item.ci119",
+      "kind": "open_item_definition",
+      "name_key": "item.ci119.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci119"
+    },
+    {
+      "content_id": "item.ci120",
+      "kind": "open_item_definition",
+      "name_key": "item.ci120.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci120"
+    },
+    {
+      "content_id": "item.ci121",
+      "kind": "open_item_definition",
+      "name_key": "item.ci121.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci121"
+    },
+    {
+      "content_id": "item.ci122",
+      "kind": "open_item_definition",
+      "name_key": "item.ci122.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci122"
+    },
+    {
+      "content_id": "item.ci123",
+      "kind": "open_item_definition",
+      "name_key": "item.ci123.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci123"
+    },
+    {
+      "content_id": "item.ci124",
+      "kind": "open_item_definition",
+      "name_key": "item.ci124.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci124"
+    },
+    {
+      "content_id": "item.ci125",
+      "kind": "open_item_definition",
+      "name_key": "item.ci125.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci125"
+    },
+    {
+      "content_id": "item.ci126",
+      "kind": "open_item_definition",
+      "name_key": "item.ci126.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci126"
+    },
+    {
+      "content_id": "item.ci127",
+      "kind": "open_item_definition",
+      "name_key": "item.ci127.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci127"
+    },
+    {
+      "content_id": "item.ci128",
+      "kind": "open_item_definition",
+      "name_key": "item.ci128.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci128"
+    },
+    {
+      "content_id": "item.ci129",
+      "kind": "open_item_definition",
+      "name_key": "item.ci129.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci129"
+    },
+    {
+      "content_id": "item.ci130",
+      "kind": "open_item_definition",
+      "name_key": "item.ci130.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci130"
+    },
+    {
+      "content_id": "item.ci131",
+      "kind": "open_item_definition",
+      "name_key": "item.ci131.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci131"
+    },
+    {
+      "content_id": "item.ci132",
+      "kind": "open_item_definition",
+      "name_key": "item.ci132.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci132"
+    },
+    {
+      "content_id": "item.ci133",
+      "kind": "open_item_definition",
+      "name_key": "item.ci133.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci133"
+    },
+    {
+      "content_id": "item.ci134",
+      "kind": "open_item_definition",
+      "name_key": "item.ci134.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci134"
+    },
+    {
+      "content_id": "item.ci135",
+      "kind": "open_item_definition",
+      "name_key": "item.ci135.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci135"
+    },
+    {
+      "content_id": "item.ci136",
+      "kind": "open_item_definition",
+      "name_key": "item.ci136.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci136"
+    },
+    {
+      "content_id": "item.ci137",
+      "kind": "open_item_definition",
+      "name_key": "item.ci137.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci137"
+    },
+    {
+      "content_id": "item.ci138",
+      "kind": "open_item_definition",
+      "name_key": "item.ci138.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci138"
+    },
+    {
+      "content_id": "item.ci139",
+      "kind": "open_item_definition",
+      "name_key": "item.ci139.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci139"
+    },
+    {
+      "content_id": "item.ci140",
+      "kind": "open_item_definition",
+      "name_key": "item.ci140.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci140"
+    },
+    {
+      "content_id": "item.ci141",
+      "kind": "open_item_definition",
+      "name_key": "item.ci141.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci141"
+    },
+    {
+      "content_id": "item.ci142",
+      "kind": "open_item_definition",
+      "name_key": "item.ci142.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci142"
+    },
+    {
+      "content_id": "item.ci143",
+      "kind": "open_item_definition",
+      "name_key": "item.ci143.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci143"
+    },
+    {
+      "content_id": "item.ci144",
+      "kind": "open_item_definition",
+      "name_key": "item.ci144.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci144"
+    },
+    {
+      "content_id": "item.ci145",
+      "kind": "open_item_definition",
+      "name_key": "item.ci145.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci145"
+    },
+    {
+      "content_id": "item.ci146",
+      "kind": "open_item_definition",
+      "name_key": "item.ci146.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci146"
+    },
+    {
+      "content_id": "item.ci147",
+      "kind": "open_item_definition",
+      "name_key": "item.ci147.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci147"
+    },
+    {
+      "content_id": "item.ci148",
+      "kind": "open_item_definition",
+      "name_key": "item.ci148.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci148"
+    },
+    {
+      "content_id": "item.ci149",
+      "kind": "open_item_definition",
+      "name_key": "item.ci149.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci149"
+    },
+    {
+      "content_id": "item.ci150",
+      "kind": "open_item_definition",
+      "name_key": "item.ci150.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci150"
+    },
+    {
+      "content_id": "item.ci151",
+      "kind": "open_item_definition",
+      "name_key": "item.ci151.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci151"
+    },
+    {
+      "content_id": "item.ci152",
+      "kind": "open_item_definition",
+      "name_key": "item.ci152.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci152"
+    },
+    {
+      "content_id": "item.ci153",
+      "kind": "open_item_definition",
+      "name_key": "item.ci153.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci153"
+    },
+    {
+      "content_id": "item.ci154",
+      "kind": "open_item_definition",
+      "name_key": "item.ci154.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci154"
+    },
+    {
+      "content_id": "item.ci155",
+      "kind": "open_item_definition",
+      "name_key": "item.ci155.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci155"
+    },
+    {
+      "content_id": "item.ci156",
+      "kind": "open_item_definition",
+      "name_key": "item.ci156.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci156"
+    },
+    {
+      "content_id": "item.ci157",
+      "kind": "open_item_definition",
+      "name_key": "item.ci157.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci157"
+    },
+    {
+      "content_id": "item.ci158",
+      "kind": "open_item_definition",
+      "name_key": "item.ci158.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci158"
+    },
+    {
+      "content_id": "item.ci159",
+      "kind": "open_item_definition",
+      "name_key": "item.ci159.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci159"
+    },
+    {
+      "content_id": "item.ci160",
+      "kind": "open_item_definition",
+      "name_key": "item.ci160.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci160"
+    },
+    {
+      "content_id": "item.ci161",
+      "kind": "open_item_definition",
+      "name_key": "item.ci161.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci161"
+    },
+    {
+      "content_id": "item.ci162",
+      "kind": "open_item_definition",
+      "name_key": "item.ci162.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci162"
+    },
+    {
+      "content_id": "item.ci163",
+      "kind": "open_item_definition",
+      "name_key": "item.ci163.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci163"
+    },
+    {
+      "content_id": "item.ci164",
+      "kind": "open_item_definition",
+      "name_key": "item.ci164.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci164"
+    },
+    {
+      "content_id": "item.ci165",
+      "kind": "open_item_definition",
+      "name_key": "item.ci165.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci165"
+    },
+    {
+      "content_id": "item.ci166",
+      "kind": "open_item_definition",
+      "name_key": "item.ci166.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci166"
+    },
+    {
+      "content_id": "item.ci167",
+      "kind": "open_item_definition",
+      "name_key": "item.ci167.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci167"
+    },
+    {
+      "content_id": "item.ci168",
+      "kind": "open_item_definition",
+      "name_key": "item.ci168.name",
+      "chat_keys": [],
+      "linked_resource_id": "text.ci168"
     },
     {
       "content_id": "item.cx101",

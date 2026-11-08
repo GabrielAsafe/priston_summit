@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <cstdint>
+#include <cstdio>
 #include <cstring>
 #include <string>
 
@@ -310,6 +311,15 @@ const char* CoinSectionName(int section)
         default: return "Catalogo";
     }
 }
+
+// The Time Shop uses the current canonical catalog: section 6 is Services,
+// section 7 is reserved for premium items. Coin Shop labels remain unchanged.
+const char* TimeSectionName(int section)
+{
+    if (section == 6) return "Servicos";
+    if (section == 7) return "Itens premium";
+    return CoinSectionName(section);
+}
 }
 
 // Merchant UI invalidation is a cheap revision probe, NOT a snapshot rebuild.
@@ -507,7 +517,7 @@ ContextSnapshot LegacyContextGateway::GetSnapshot() const
         const int section = cCoinShop_T.GetSectionForUI();
         const int page = cCoinShop_T.GetPageForUI();
         const int pages = std::max(1, cCoinShop_T.GetPageCountForUI());
-        out.subtitle = std::string(CoinSectionName(section)) + " - pagina " +
+        out.subtitle = std::string(TimeSectionName(section)) + " - pagina " +
                        std::to_string(page + 1) + "/" + std::to_string(pages);
         const int count = cCoinShop_T.GetItemCountForUI();
         const int begin = std::max(0, page * 12);
@@ -717,11 +727,48 @@ ContextSnapshot LegacyContextGateway::GetSnapshot() const
         out.valid = true;
         out.kind = ContextKind::SkinChange;
         out.title = "Alteração de Visual";
-        out.subtitle = "Item principal + pedra de visual compatível. As validações continuam no sistema original.";
+        // SUMMIT_SKIN_CHANGE_UIV2_SLOTS_20261028: keep both sockets visible even when empty.
+        // The V2 inventory uses right-click (AcceptInventoryItem) for insertion.
+        out.subtitle = "Botao direito: primeiro o equipamento, depois a skin SK compativel.";
+        out.gridColumns = 8;
+        out.gridRows = 4;
+        out.showEmptyGrid = false;
+
+        ContextSlotSnapshot equipmentSlot;
+        equipmentSlot.gridX = 0;
+        equipmentSlot.gridY = 0;
+        equipmentSlot.gridWidth = 3;
+        equipmentSlot.gridHeight = 4;
+        equipmentSlot.label = "Equipamento";
+        equipmentSlot.required = true;
+        out.slots.push_back(std::move(equipmentSlot));
+
+        ContextSlotSnapshot skinSlot;
+        skinSlot.gridX = 5;
+        skinSlot.gridY = 0;
+        skinSlot.gridWidth = 3;
+        skinSlot.gridHeight = 4;
+        skinSlot.label = "Skin SK";
+        skinSlot.required = true;
+        out.slots.push_back(std::move(skinSlot));
+
         for (int i = 0; i < 2; ++i)
-            if (HasItem(sSkinChangeItem.SkinChangeItem[i]))
-                out.items.push_back(MakeItem(i, sSkinChangeItem.SkinChangeItem[i], true, false, i == 0 ? "Item" : "Visual"));
-        AddAction(out, 40, "Aplicar Visual", sSkinChangeItem.SkinChangeItem[1].Flag != 0);
+        {
+            const sITEM& item = sSkinChangeItem.SkinChangeItem[i];
+            if (!HasItem(item))
+                continue;
+            ContextItemSnapshot entry = MakeItem(i, item, true, false, i == 0 ? "Equipamento" : "Skin SK");
+            const int columns = std::clamp((item.w + 21) / 22, 1, 3);
+            const int rows = std::clamp((item.h + 21) / 22, 1, 4);
+            entry.gridX = (i == 0 ? 0 : 5) + (3 - columns) / 2;
+            entry.gridY = (4 - rows) / 2;
+            entry.gridWidth = columns;
+            entry.gridHeight = rows;
+            out.items.push_back(std::move(entry));
+        }
+        // Empty slots must not offer a conversion action.
+        AddAction(out, 40, "Aplicar Visual", sSkinChangeItem.SkinChangeItem[0].Flag != 0 &&
+                                             sSkinChangeItem.SkinChangeItem[1].Flag != 0);
         AddAction(out, 41, "Cancelar");
         return out;
     }
@@ -1254,6 +1301,17 @@ bool LegacyContextGateway::InvokeAction(int actionId)
     {
         const bool time = state.kind == ContextKind::TimeCoinShop;
         auto section = [&]() { return time ? cCoinShop_T.GetSectionForUI() : cCoinShop.GetSectionForUI(); };
+        // V2 consumes this action path, not the old TGA button IDs.
+        if (time && (actionId == 70 || actionId == 71))
+        {
+            const int from = cCoinShop_T.GetSectionForUI();
+            const int target = actionId == 70 ? std::max(1, from - 1) : std::min(7, from + 1);
+            const bool ok = cCoinShop_T.SelectSectionForUI(target);
+            std::printf("[TIMESHOP][UIV2] action=%d from=%d requested=%d current=%d items=%d ok=%d\n",
+                        actionId, from, target, cCoinShop_T.GetSectionForUI(),
+                        cCoinShop_T.GetItemCountForUI(), ok ? 1 : 0);
+            return ok;
+        }
         switch (actionId)
         {
             case 70: return time ? cCoinShop_T.SelectSectionForUI(std::max(1, section() - 1))

@@ -1,3 +1,5 @@
+// SUMMIT466A central client font scaling
+#include "../../../../../Shared/ui/fonts/FontSettings466.h"
 #include <math.h>
 #include <stdio.h>
 
@@ -207,7 +209,7 @@ BOOL SetDisplayMode(HWND hWnd, DWORD Width, DWORD Height, DWORD BPP)
 		return false;
 	}
 
-	D3DXCreateFont(d3ddev, 25, 0, FW_MEDIUM, 1, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Tahoma", &FontDamageShadow);
+	D3DXCreateFont(d3ddev, summit466::FontSettings466::Height((25), summit466::FontSettings466::World), 0, FW_MEDIUM, 1, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Tahoma", &FontDamageShadow);
 
 	return TRUE;
 }

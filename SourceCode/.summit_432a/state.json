@@ -1,0 +1,8 @@
+{
+  "catalog_sha256": "8fc9d389a0508d76897d26e143b4de2afa0af019564e4f3443ca42a6012a6408",
+  "helper_sha256": "47e883d7e8fbac8e57ae2d1a11b6790e8cb54fa639f8eb1ae2b785e7640f14d8",
+  "ingress_sha256": "0c9ccfbd7f105251c38bf9e3699407f71d200b1747c604968665127dff561e4a",
+  "old_sha256": "e38ee1d3e134763661c4ff7eeef43bafa4ffa756a89bbbd2ad746640fe81c06d",
+  "status": "APPLIED",
+  "version": 1
+}

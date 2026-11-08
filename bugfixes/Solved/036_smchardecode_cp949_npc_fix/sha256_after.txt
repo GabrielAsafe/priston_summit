@@ -1,1 +1,0 @@
-a4c5d51661551bdd4bed240581b567fd11943e44dab7a0bb841038260c7cb726  /home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp

@@ -1,0 +1,14 @@
+{
+  "schema": "summit.craft-physical-xp/v1",
+  "xp_by_minimum_profession_level": [
+    {"minimum_level": 0, "xp": 4},
+    {"minimum_level": 5, "xp": 6},
+    {"minimum_level": 10, "xp": 8},
+    {"minimum_level": 15, "xp": 10},
+    {"minimum_level": 20, "xp": 12},
+    {"minimum_level": 25, "xp": 14}
+  ],
+  "WA103_override": {"profession_type": 2, "xp": 6},
+  "enforce_profession_type_server_side": true,
+  "claim_on_server_validated_save_only": true
+}

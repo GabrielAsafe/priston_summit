@@ -1,5 +1,0 @@
-VALIDATED_FULL_SET=YES
-smCharDecode_hunks=63
-changed_lines=+96/-96
-cp949_hex_literals=100
-patch_sha256=8ec4ebfb2b6b49cd8bcb7f38ec902a5a482101fbd44a8fea2f2e29b39d159fef

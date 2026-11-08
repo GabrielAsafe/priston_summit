@@ -1,8 +1,0 @@
-*EQUIPPED_WEAPON     -> 11 expected=11 PASS
-*APPLICABLE_JOB      -> 12 expected=12 PASS
-*LOCATION            -> 13 expected=13 PASS
-*APPLICABLE_SKILL    -> 14 expected=14 PASS
-ALL  -> 1
-NONE -> 2
-TOWN -> 1
-FIELD -> 2

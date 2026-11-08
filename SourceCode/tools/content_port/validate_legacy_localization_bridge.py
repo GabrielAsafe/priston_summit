@@ -4,6 +4,8 @@ from __future__ import annotations
 import argparse
 import struct
 from pathlib import Path
+from sres_embedded_localization import extract_sloc_bytes
+from sres_embedded_localization import extract_sloc_bytes
 
 SCFG_HEADER = struct.Struct('<4sHH10I32s')
 SCFG_RECORD = struct.Struct('<5I')
@@ -22,7 +24,7 @@ def unquote(raw: bytes) -> bytes:
 
 
 def parse_sloc(path: Path) -> dict[tuple[str, str], str]:
-    data = path.read_bytes()
+    data = extract_sloc_bytes(path) if path.suffix.lower() == '.sres' else path.read_bytes()
     magic, version, flags, count, record_offset, record_size, string_offset, string_size, *_ = SLOC_HEADER.unpack_from(data, 0)
     if magic != b'SLOC' or version != 2 or flags or record_size != SLOC_RECORD.size:
         raise ValueError(f'invalid SLOC: {path}')
@@ -82,7 +84,7 @@ def main() -> int:
     errors: list[str] = []
 
     try:
-        localization = parse_sloc(packs / 'localization.sloc')
+        localization = parse_sloc(packs / 'text_resources.sres')
     except (OSError, ValueError) as exc:
         print(f'ERROR={exc}')
         print('RESULT=FAIL')

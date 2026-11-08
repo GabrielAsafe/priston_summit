@@ -8,6 +8,7 @@ class LegacyInventoryGateway final : public IInventoryGateway
 {
 public:
     [[nodiscard]] InventorySnapshot GetSnapshot() const override;
+    [[nodiscard]] std::vector<InventoryItemSnapshot> GetInactiveBagForCrafting427() const override; // SUMMIT427A
     [[nodiscard]] std::vector<DetailLineSnapshot> GetItemDetails(int itemIndex) const override;
 
     bool BeginDrag(int itemIndex) override;

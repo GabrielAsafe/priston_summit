@@ -24,6 +24,8 @@ public:
     bool LoadContent(std::vector<ResourceDefinition>& resources,
                      std::vector<GatheringNodeDefinition>& nodes);
     bool AddInventory(const std::string& playerKey, const std::string& resourceKey, int amount);
+    bool AddHarvestBundle(const std::string& playerKey, const std::string& resourceKey,
+                          int amount, std::uint32_t roll, int defaultXP, int& experienceAward);
     bool GetInventory(const std::string& playerKey, std::vector<GatheringInventoryEntry>& out);
     bool AddNode(GatheringNodeDefinition& node);
 };

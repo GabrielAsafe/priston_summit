@@ -78,7 +78,8 @@ enum class HarvestStatus
     TooFar,
     WrongProfession,
     ProfessionLevelTooLow,
-    Depleted
+    Depleted,
+    PersistenceFailed
 };
 
 struct HarvestResult

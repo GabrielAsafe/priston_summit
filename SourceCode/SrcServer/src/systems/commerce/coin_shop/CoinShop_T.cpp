@@ -1,4 +1,6 @@
 #include <cstring>
+#include <cstdio>
+#include <cstddef>
 #include "gameplay/commerce/v2/PremiumPurchaseWire.h"
 #include "systems/network/protocol/server/opcodes.h"
 #include "systems/commerce/coin_shop/CoinShop_T.h"
@@ -147,8 +149,18 @@ void cCOINSHOP_T::LoadItems()
 					delete pItemShop;
 			}
 		}
+		std::printf("[TIMESHOP][LOAD] source=canonical pack=%s entries=",
+            summit::content::commerce::coin_shop::CoinShopPackPath());
+        for (int section = 0; section < 7; ++section)
+            std::printf("%s%d:%lu", section ? "," : "", section + 1,
+                        static_cast<unsigned long>(vItemShop[section].size()));
+        std::printf("\n");
 		return; // Valid canonical pack is authoritative, including an intentionally empty catalog.
 	}
+
+    std::printf("[TIMESHOP][LOAD][WARNING] canonical pack unavailable path=%s reason=%s; using legacy DB fallback\n",
+                summit::content::commerce::coin_shop::CoinShopPackPath(),
+                catalog ? catalog->LastError().c_str() : "no catalog object");
 
 	// Rollback compatibility only: if the compiled canonical pack is missing or
 	// invalid, keep the legacy static DB catalog readable. Wallet state remains DB-backed.
@@ -180,6 +192,11 @@ void cCOINSHOP_T::LoadItems()
 		}
 		db->Close();
 	}
+    std::printf("[TIMESHOP][LOAD] source=legacy_db entries=");
+    for (int section = 0; section < 7; ++section)
+        std::printf("%s%d:%lu", section ? "," : "", section + 1,
+                    static_cast<unsigned long>(vItemShop[section].size()));
+    std::printf("\n");
 }
 
 #define	DEF_ITEM_MAX		2000
@@ -197,75 +214,137 @@ struct psITEM
 int	rsRegist_ItemSecCode(rsPLAYINFO* lpPlayInfo, TRANS_ITEMINFO* lpTransItemInfo, int NewItem);
 int CreateItem(psITEM* lpsItem, char* dwCode, int JobCode);
 
-void cCOINSHOP_T::RecvGetItemShop(rsPLAYINFO* lpPlayInfo, smTRANS_COMMAND * lpTransCommand)
+void cCOINSHOP_T::RecvGetItemShop(rsPLAYINFO* lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 {
-	if (lpTransCommand->WParam <= 0 || lpTransCommand->WParam > 7 || !lpPlayInfo->lpsmSock)
-		return;
+    if (!lpPlayInfo || !lpTransCommand || !lpPlayInfo->lpsmSock ||
+        lpTransCommand->WParam < 1 || lpTransCommand->WParam > 7)
+        return;
 
+    const int requestedSection = lpTransCommand->WParam;
+    const int section = requestedSection - 1;
+    const bool canonical = summit::content::commerce::coin_shop::CompiledCoinShopReady();
+    smTRANS_SHOPDATA packet = {};
+    const unsigned int batchCapacity = static_cast<unsigned int>(
+        sizeof(packet.sCompItem) / sizeof(packet.sCompItem[0]));
+    if (!batchCapacity)
+        return;
+    packet.code = OpCode::OPCODE_GET_SHOPITEM_T;
+    packet.size = sizeof(packet);
+    packet.Section = requestedSection;
 
+    int packed = 0;
+    int totalSent = 0;
+    int sentPackets = 0;
+    int errorsSend = 0;
+    int missingCode = 0;
+    int missingDef = 0;
+    int invalidCompressed = 0;
+    int uniqueFallback = 0;
+    const int bound = DefaultItemCount < DEF_ITEM_MAX ? DefaultItemCount : DEF_ITEM_MAX;
+    for (auto itemShop : vItemShop[section])
+    {
+        if (!itemShop || !itemShop->szItemCode[0])
+            continue;
+        DWORD numericCode = 0;
+        for (int i = 0; i < MAX_ITEM; ++i)
+        {
+            if (!lstrcmpi(itemShop->szItemCode, sItem[i].LastCategory))
+            {
+                numericCode = sItem[i].CODE;
+                break;
+            }
+        }
+        if (!numericCode)
+        {
+            ++missingCode;
+            std::printf("[TIMESHOP][SKIP] section=%d code=%s reason=NO_RUNTIME_ITEM_CODE\n",
+                        requestedSection, itemShop->szItemCode);
+            continue;
+        }
 
-	int Section = lpTransCommand->WParam - 1;
-	int cnt = 0;
-	int itemCount = 0;
-	DWORD dwCode = 0;
-	sDEF_ITEMINFO* lpDefItem = 0;
-	smTRANS_SHOPDATA TransShopData = {};
+        // Preferred: normal compressed definition.  Canonical-only fallback:
+        // service stones with UniqueItem!=0 were previously hidden unconditionally.
+        // No fallback from an untrusted legacy DB catalog.
+        sDEF_ITEMINFO* normal = 0;
+        sDEF_ITEMINFO* unique = 0;
+        bool hadDefinition = false;
+        for (int i = 0; i < bound; ++i)
+        {
+            sDEF_ITEMINFO& def = DefaultItems[i];
+            if (def.Item.CODE != numericCode)
+                continue;
+            hadDefinition = true;
+            if (def.DefCompressDataLen <= 0 ||
+                static_cast<std::size_t>(def.DefCompressDataLen) > sizeof(packet.sCompItem[0]))
+                continue;
+            if (!def.Item.UniqueItem)
+            {
+                normal = &def;
+                break;
+            }
+            if (!unique)
+                unique = &def;
+        }
+        sDEF_ITEMINFO* selected = normal;
+        if (!selected && unique && canonical)
+        {
+            // The live signed canonical catalog is the authority for products.
+            // This only changes listing visibility, never purchase/grant rules.
+            summit::content::commerce::coin_shop::CoinShopCatalogEntry verified;
+            if (summit::content::commerce::coin_shop::ActiveCoinShopSource()->Find(
+                    summit::content::commerce::coin_shop::COIN_SHOP_KIND_TIME,
+                    itemShop->szItemCode, verified) && verified.section == requestedSection)
+            {
+                selected = unique;
+                ++uniqueFallback;
+                std::printf("[TIMESHOP][INFO] section=%d code=%s UNIQUE_DEFINITION_VISIBLE\n",
+                            requestedSection, itemShop->szItemCode);
+            }
+        }
+        if (!selected)
+        {
+            if (hadDefinition)
+                ++invalidCompressed;
+            else
+                ++missingDef;
+            std::printf("[TIMESHOP][SKIP] section=%d code=%s numeric=0x%08lX reason=%s\n",
+                        requestedSection, itemShop->szItemCode,
+                        static_cast<unsigned long>(numericCode),
+                        hadDefinition ? "NO_ELIGIBLE_COMPRESSED_DEFINITION" : "NO_DEFAULT_ITEM");
+            continue;
+        }
 
-	if (vItemShop[Section].size())
-	{
-		TransShopData.code = OpCode::OPCODE_GET_SHOPITEM_T;
-		TransShopData.size = sizeof(smTRANS_SHOPDATA);
-		TransShopData.Section = lpTransCommand->WParam;
-
-		for (auto& itemShop : vItemShop[Section])
-		{
-			dwCode = 0;
-			lpDefItem = 0;
-			if (itemShop && itemShop->szItemCode[0])
-			{
-				for (cnt = 0; cnt < MAX_ITEM; cnt++)
-				{
-					if (!lstrcmpi(itemShop->szItemCode, sItem[cnt].LastCategory))
-					{
-						dwCode = sItem[cnt].CODE;
-						break;
-					}
-				}
-
-				if (dwCode)
-				{
-					for (cnt = 0; cnt < DefaultItemCount; cnt++) {
-						if (!DefaultItems[cnt].Item.UniqueItem && dwCode == DefaultItems[cnt].Item.CODE) {
-							lpDefItem = &DefaultItems[cnt];
-							break;
-						}
-					}
-
-					if (!lpDefItem)
-						continue;
-
-					memcpy(&TransShopData.sCompItem[itemCount], lpDefItem->DefCompressData, lpDefItem->DefCompressDataLen);
-					TransShopData.sCompItem[itemCount].Price = itemShop->Price;
-					itemCount++;
-
-					if (itemCount >= 15)
-					{
-						TransShopData.Count = itemCount;
-						SummitCoinShopTSend(lpPlayInfo, &TransShopData, TransShopData.size);
-						ZeroMemory(TransShopData.sCompItem, sizeof(TransShopData.sCompItem));
-						itemCount = 0;
-						TransShopData.Count = 0;
-					}
-				}
-			}
-		}
-
-		if (itemCount > 0)
-		{
-			TransShopData.Count = itemCount;
-			SummitCoinShopTSend(lpPlayInfo, &TransShopData, TransShopData.size);
-		}
-	}
+        std::memcpy(&packet.sCompItem[packed], selected->DefCompressData,
+                    static_cast<std::size_t>(selected->DefCompressDataLen));
+        packet.sCompItem[packed].Price = itemShop->Price;
+        ++packed;
+        if (static_cast<unsigned int>(packed) == batchCapacity)
+        {
+            packet.Count = packed;
+            if (SummitCoinShopTSend(lpPlayInfo, &packet, packet.size))
+                totalSent += packed;
+            else
+                ++errorsSend;
+            ++sentPackets;
+            packed = 0;
+            std::memset(packet.sCompItem, 0, sizeof(packet.sCompItem));
+            packet.Count = 0;
+        }
+    }
+    if (packed)
+    {
+        packet.Count = packed;
+        if (SummitCoinShopTSend(lpPlayInfo, &packet, packet.size))
+            totalSent += packed;
+        else
+            ++errorsSend;
+        ++sentPackets;
+    }
+    std::printf("[TIMESHOP][SECTION] section=%d catalog=%lu sent=%d packets=%d failed_sends=%d"
+                " missing_code=%d missing_default=%d invalid_definition=%d unique_fallback=%d canonical=%d\n",
+                requestedSection, static_cast<unsigned long>(vItemShop[section].size()),
+                totalSent, sentPackets, errorsSend, missingCode, missingDef,
+                invalidCompressed, uniqueFallback, canonical ? 1 : 0);
 }
 
 void cCOINSHOP_T::RecvGetItemCoin(rsPLAYINFO * lpPlayInfo)

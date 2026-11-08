@@ -2,10 +2,10 @@
   "format": "SCFG",
   "version": 1,
   "profile": "server",
-  "definitions": 2368,
-  "directives": 42598,
-  "flattened_links": 1840,
-  "filtered_open_items": 132,
+  "definitions": 2442,
+  "directives": 43066,
+  "flattened_links": 1910,
+  "filtered_open_items": 130,
   "filtered_open_item_rows": [
     {
       "id": "item.2_wd109",
@@ -23,18 +23,6 @@
       "id": "item.bi901",
       "path": "GameServer/OpenItem/BI901.txt",
       "code": "bi901",
-      "filter_source": "legacy_profile_fallback"
-    },
-    {
-      "id": "item.ca115",
-      "path": "GameServer/OpenItem/CA115.txt",
-      "code": "ca115",
-      "filter_source": "legacy_profile_fallback"
-    },
-    {
-      "id": "item.ca715",
-      "path": "GameServer/OpenItem/CA715.txt",
-      "code": "ca715",
       "filter_source": "legacy_profile_fallback"
     },
     {
@@ -800,7 +788,7 @@
       "filter_source": "legacy_profile_fallback"
     }
   ],
-  "canonical_profile_overrides": 2,
+  "canonical_profile_overrides": 74,
   "canonical_profile_override_rows": [
     {
       "id": "item.sp123",
@@ -816,6 +804,726 @@
       "id": "item.sp179",
       "path": "GameServer/OpenItem/SP179.txt",
       "code": "sp179",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ca871",
+      "path": "GameServer/OpenItem/CA871.txt",
+      "code": "ca871",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ca872",
+      "path": "GameServer/OpenItem/CA872.txt",
+      "code": "ca872",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ca873",
+      "path": "GameServer/OpenItem/CA873.txt",
+      "code": "ca873",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ca874",
+      "path": "GameServer/OpenItem/CA874.txt",
+      "code": "ca874",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci101",
+      "path": "GameServer/OpenItem/CI101.txt",
+      "code": "ci101",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci102",
+      "path": "GameServer/OpenItem/CI102.txt",
+      "code": "ci102",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci103",
+      "path": "GameServer/OpenItem/CI103.txt",
+      "code": "ci103",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci104",
+      "path": "GameServer/OpenItem/CI104.txt",
+      "code": "ci104",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci105",
+      "path": "GameServer/OpenItem/CI105.txt",
+      "code": "ci105",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci106",
+      "path": "GameServer/OpenItem/CI106.txt",
+      "code": "ci106",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci107",
+      "path": "GameServer/OpenItem/CI107.txt",
+      "code": "ci107",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci108",
+      "path": "GameServer/OpenItem/CI108.txt",
+      "code": "ci108",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci109",
+      "path": "GameServer/OpenItem/CI109.txt",
+      "code": "ci109",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci110",
+      "path": "GameServer/OpenItem/CI110.txt",
+      "code": "ci110",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci111",
+      "path": "GameServer/OpenItem/CI111.txt",
+      "code": "ci111",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci112",
+      "path": "GameServer/OpenItem/CI112.txt",
+      "code": "ci112",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci113",
+      "path": "GameServer/OpenItem/CI113.txt",
+      "code": "ci113",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci114",
+      "path": "GameServer/OpenItem/CI114.txt",
+      "code": "ci114",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci115",
+      "path": "GameServer/OpenItem/CI115.txt",
+      "code": "ci115",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci116",
+      "path": "GameServer/OpenItem/CI116.txt",
+      "code": "ci116",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci117",
+      "path": "GameServer/OpenItem/CI117.txt",
+      "code": "ci117",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci118",
+      "path": "GameServer/OpenItem/CI118.txt",
+      "code": "ci118",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci119",
+      "path": "GameServer/OpenItem/CI119.txt",
+      "code": "ci119",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci120",
+      "path": "GameServer/OpenItem/CI120.txt",
+      "code": "ci120",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci121",
+      "path": "GameServer/OpenItem/CI121.txt",
+      "code": "ci121",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci122",
+      "path": "GameServer/OpenItem/CI122.txt",
+      "code": "ci122",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci123",
+      "path": "GameServer/OpenItem/CI123.txt",
+      "code": "ci123",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci124",
+      "path": "GameServer/OpenItem/CI124.txt",
+      "code": "ci124",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci125",
+      "path": "GameServer/OpenItem/CI125.txt",
+      "code": "ci125",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci126",
+      "path": "GameServer/OpenItem/CI126.txt",
+      "code": "ci126",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci127",
+      "path": "GameServer/OpenItem/CI127.txt",
+      "code": "ci127",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci128",
+      "path": "GameServer/OpenItem/CI128.txt",
+      "code": "ci128",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci129",
+      "path": "GameServer/OpenItem/CI129.txt",
+      "code": "ci129",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci130",
+      "path": "GameServer/OpenItem/CI130.txt",
+      "code": "ci130",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci131",
+      "path": "GameServer/OpenItem/CI131.txt",
+      "code": "ci131",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci132",
+      "path": "GameServer/OpenItem/CI132.txt",
+      "code": "ci132",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci133",
+      "path": "GameServer/OpenItem/CI133.txt",
+      "code": "ci133",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci134",
+      "path": "GameServer/OpenItem/CI134.txt",
+      "code": "ci134",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci135",
+      "path": "GameServer/OpenItem/CI135.txt",
+      "code": "ci135",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci136",
+      "path": "GameServer/OpenItem/CI136.txt",
+      "code": "ci136",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci137",
+      "path": "GameServer/OpenItem/CI137.txt",
+      "code": "ci137",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci138",
+      "path": "GameServer/OpenItem/CI138.txt",
+      "code": "ci138",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci139",
+      "path": "GameServer/OpenItem/CI139.txt",
+      "code": "ci139",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci140",
+      "path": "GameServer/OpenItem/CI140.txt",
+      "code": "ci140",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci141",
+      "path": "GameServer/OpenItem/CI141.txt",
+      "code": "ci141",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci142",
+      "path": "GameServer/OpenItem/CI142.txt",
+      "code": "ci142",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci143",
+      "path": "GameServer/OpenItem/CI143.txt",
+      "code": "ci143",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci144",
+      "path": "GameServer/OpenItem/CI144.txt",
+      "code": "ci144",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci145",
+      "path": "GameServer/OpenItem/CI145.txt",
+      "code": "ci145",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci146",
+      "path": "GameServer/OpenItem/CI146.txt",
+      "code": "ci146",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci147",
+      "path": "GameServer/OpenItem/CI147.txt",
+      "code": "ci147",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci148",
+      "path": "GameServer/OpenItem/CI148.txt",
+      "code": "ci148",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci149",
+      "path": "GameServer/OpenItem/CI149.txt",
+      "code": "ci149",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci150",
+      "path": "GameServer/OpenItem/CI150.txt",
+      "code": "ci150",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci151",
+      "path": "GameServer/OpenItem/CI151.txt",
+      "code": "ci151",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci152",
+      "path": "GameServer/OpenItem/CI152.txt",
+      "code": "ci152",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci153",
+      "path": "GameServer/OpenItem/CI153.txt",
+      "code": "ci153",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci154",
+      "path": "GameServer/OpenItem/CI154.txt",
+      "code": "ci154",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci155",
+      "path": "GameServer/OpenItem/CI155.txt",
+      "code": "ci155",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci156",
+      "path": "GameServer/OpenItem/CI156.txt",
+      "code": "ci156",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci157",
+      "path": "GameServer/OpenItem/CI157.txt",
+      "code": "ci157",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci158",
+      "path": "GameServer/OpenItem/CI158.txt",
+      "code": "ci158",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci159",
+      "path": "GameServer/OpenItem/CI159.txt",
+      "code": "ci159",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci160",
+      "path": "GameServer/OpenItem/CI160.txt",
+      "code": "ci160",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci161",
+      "path": "GameServer/OpenItem/CI161.txt",
+      "code": "ci161",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci162",
+      "path": "GameServer/OpenItem/CI162.txt",
+      "code": "ci162",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci163",
+      "path": "GameServer/OpenItem/CI163.txt",
+      "code": "ci163",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci164",
+      "path": "GameServer/OpenItem/CI164.txt",
+      "code": "ci164",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci165",
+      "path": "GameServer/OpenItem/CI165.txt",
+      "code": "ci165",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci166",
+      "path": "GameServer/OpenItem/CI166.txt",
+      "code": "ci166",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci167",
+      "path": "GameServer/OpenItem/CI167.txt",
+      "code": "ci167",
+      "runtime_profiles": [
+        "client",
+        "server"
+      ],
+      "decision": "include"
+    },
+    {
+      "id": "item.ci168",
+      "path": "GameServer/OpenItem/CI168.txt",
+      "code": "ci168",
       "runtime_profiles": [
         "client",
         "server"
@@ -2830,6 +3538,6 @@
       "target": "gameserver/openitem/name/ws260.zhoon"
     }
   ],
-  "bytes": 860085,
-  "sha256": "e3866c4179c73ff0f5de5f1a77bd561876ebfd9c4d2679a8f62504fed93e9338"
+  "bytes": 872192,
+  "sha256": "509abacf4b31e3614031eeab7e5a086d64950267ef6d7fdd0e99f6643fdc0f52"
 }

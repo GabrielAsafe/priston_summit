@@ -27,6 +27,7 @@ struct LocalizationEntry {
 class CompiledLocalizationSource {
 public:
     explicit CompiledLocalizationSource(const char *path):valid_(false){if(path)path_=path;Load();}
+    explicit CompiledLocalizationSource(const std::vector<unsigned char>&bytes):valid_(false){LoadBytes(bytes);}
     bool IsValid()const{return valid_;}
     const std::string& LastError()const{return error_;}
 
@@ -78,6 +79,12 @@ private:
         FILE*f=std::fopen(path_.c_str(),"rb");if(!f){error_="localization pack not found";return false;}
         std::fseek(f,0,SEEK_END);long size=std::ftell(f);if(size<80||std::fseek(f,0,SEEK_SET)!=0){std::fclose(f);error_="localization pack too small";return false;}
         data_.resize(static_cast<std::size_t>(size));if(std::fread(&data_[0],1,data_.size(),f)!=data_.size()){std::fclose(f);error_="cannot read localization pack";return false;}std::fclose(f);
+        return LoadBytes(data_);
+    }
+    bool LoadBytes(const std::vector<unsigned char>&bytes){
+        valid_=false;error_.clear();
+        data_=bytes;
+        if(data_.size()<80){error_="localization bytes too small";return false;}
         const unsigned char*p=&data_[0];if(std::memcmp(p,"SLOC",4)!=0){error_="localization magic mismatch";return false;}
         h_.version=U16(p+4);h_.flags=U16(p+6);h_.recordCount=U32(p+8);h_.recordOffset=U32(p+12);h_.recordSize=U32(p+16);h_.stringOffset=U32(p+20);h_.stringSize=U32(p+24);h_.z0=U32(p+28);h_.z1=U32(p+32);h_.z2=U32(p+36);h_.z3=U32(p+40);h_.z4=U32(p+44);std::memcpy(h_.digest,p+48,32);
         const std::uint64_t strings=80ull+static_cast<std::uint64_t>(h_.recordCount)*20ull;

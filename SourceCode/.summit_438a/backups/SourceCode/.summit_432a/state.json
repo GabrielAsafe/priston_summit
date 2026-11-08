@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "status": "APPLIED",
+  "catalog_sha256": "8fc9d389a0508d76897d26e143b4de2afa0af019564e4f3443ca42a6012a6408",
+  "old_sha256": "e38ee1d3e134763661c4ff7eeef43bafa4ffa756a89bbbd2ad746640fe81c06d",
+  "ingress_sha256": "6c6092cdd67fd4e992be232812bec0a15ea46f76b3ece2c20936c3904459b9ae",
+  "helper_sha256": "47e883d7e8fbac8e57ae2d1a11b6790e8cb54fa639f8eb1ae2b785e7640f14d8"
+}

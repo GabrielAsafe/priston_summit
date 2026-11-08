@@ -1,0 +1,1578 @@
+{
+  "authority": "ARCHIVE_ONLY_NOT_RUNTIME",
+  "created_utc": "2026-11-03T06:15:25+00:00",
+  "definitions_sha256": "90f51accb03e9c2dafea411c99b38b21082149f37ef0498e491a0c1f04607e8e",
+  "notes": [
+    "Historical exact SQL definition values; never execute as recipe costs.",
+    "Only the active all_item_recipes_424.json registry defines executable crafting.",
+    "Legacy SQL balances and player identities are deliberately excluded.",
+    "No SQL or DAT data were mutated by this export."
+  ],
+  "runtime_activation": "BLOCKED",
+  "schema": "summit.crafting-legacy-sql-archive/v1",
+  "source_database_name": "summit.sqlite3",
+  "source_schema": {
+    "tables": {
+      "ingredients_361": {
+        "columns": [
+          "RecipeKey",
+          "ResourceKey",
+          "Quantity"
+        ],
+        "rows": [
+          {
+            "Quantity": 1,
+            "RecipeKey": "arcanist_orb_1",
+            "ResourceKey": "herb_bundle"
+          },
+          {
+            "Quantity": 1,
+            "RecipeKey": "arcanist_ring_1",
+            "ResourceKey": "mystic_crystal"
+          },
+          {
+            "Quantity": 1,
+            "RecipeKey": "arcanist_staff_1",
+            "ResourceKey": "mystic_crystal"
+          },
+          {
+            "Quantity": 1,
+            "RecipeKey": "artisan_amulet_1",
+            "ResourceKey": "mystic_crystal"
+          },
+          {
+            "Quantity": 1,
+            "RecipeKey": "artisan_amulet_1",
+            "ResourceKey": "timber"
+          },
+          {
+            "Quantity": 1,
+            "RecipeKey": "artisan_boots_1",
+            "ResourceKey": "ancient_resin"
+          },
+          {
+            "Quantity": 1,
+            "RecipeKey": "artisan_gloves_1",
+            "ResourceKey": "ancient_resin"
+          },
+          {
+            "Quantity": 1,
+            "RecipeKey": "blacksmith_axe_1",
+            "ResourceKey": "timber"
+          },
+          {
+            "Quantity": 1,
+            "RecipeKey": "blacksmith_claw_1",
+            "ResourceKey": "timber"
+          },
+          {
+            "Quantity": 2,
+            "RecipeKey": "arcanist_orb_1",
+            "ResourceKey": "mystic_crystal"
+          },
+          {
+            "Quantity": 2,
+            "RecipeKey": "arcanist_ring_1",
+            "ResourceKey": "copper_ore"
+          },
+          {
+            "Quantity": 2,
+            "RecipeKey": "arcanist_staff_1",
+            "ResourceKey": "timber"
+          },
+          {
+            "Quantity": 2,
+            "RecipeKey": "artisan_armor_1",
+            "ResourceKey": "timber"
+          },
+          {
+            "Quantity": 2,
+            "RecipeKey": "artisan_gloves_1",
+            "ResourceKey": "timber"
+          },
+          {
+            "Quantity": 2,
+            "RecipeKey": "blacksmith_sword_1",
+            "ResourceKey": "timber"
+          },
+          {
+            "Quantity": 3,
+            "RecipeKey": "artisan_armor_1",
+            "ResourceKey": "iron_ore"
+          },
+          {
+            "Quantity": 3,
+            "RecipeKey": "artisan_boots_1",
+            "ResourceKey": "copper_ore"
+          },
+          {
+            "Quantity": 3,
+            "RecipeKey": "blacksmith_axe_1",
+            "ResourceKey": "iron_ore"
+          },
+          {
+            "Quantity": 3,
+            "RecipeKey": "blacksmith_claw_1",
+            "ResourceKey": "copper_ore"
+          },
+          {
+            "Quantity": 4,
+            "RecipeKey": "blacksmith_sword_1",
+            "ResourceKey": "iron_ore"
+          }
+        ],
+        "sqlite_name": "ServerDB__ProfessionCraftIngredient361"
+      },
+      "ingredients_378": {
+        "columns": [
+          "RecipeKey",
+          "ResourceKey",
+          "Amount"
+        ],
+        "rows": [
+          {
+            "Amount": 1,
+            "RecipeKey": "arcanist.distill_arcane_essence",
+            "ResourceKey": "herb_bundle"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "arcanist.distill_arcane_essence",
+            "ResourceKey": "sap"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "arcanist.potion_hp",
+            "ResourceKey": "purified_resin"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "arcanist.potion_hp",
+            "ResourceKey": "sap"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "arcanist.potion_mp",
+            "ResourceKey": "energetic_sap"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "arcanist.potion_mp",
+            "ResourceKey": "mystic_solvent"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "arcanist.potion_stamina",
+            "ResourceKey": "arcane_ash"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "arcanist.potion_stamina",
+            "ResourceKey": "crystalline_sap"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.make_arcane_ash",
+            "ResourceKey": "arcane_wood"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.make_arcane_ash",
+            "ResourceKey": "charcoal"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.make_arcane_charcoal",
+            "ResourceKey": "arcane_essence"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.make_arcane_essence",
+            "ResourceKey": "crystalline_sap"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.make_crystalline_sap",
+            "ResourceKey": "purified_resin"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.make_dark_resin",
+            "ResourceKey": "dark_essence"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.make_dark_resin",
+            "ResourceKey": "dense_resin"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.make_iron_ingot",
+            "ResourceKey": "charcoal"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.make_mystic_solvent",
+            "ResourceKey": "crystalline_sap"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.make_mystic_solvent",
+            "ResourceKey": "purified_resin"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.make_primordial_essence",
+            "ResourceKey": "core_primordial"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.make_primordial_essence",
+            "ResourceKey": "tree_heart"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.make_purified_gold",
+            "ResourceKey": "charcoal"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.make_purified_resin",
+            "ResourceKey": "charcoal"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.make_reinforced_handle",
+            "ResourceKey": "iron_ingot"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.make_scroll_blank",
+            "ResourceKey": "sap"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.make_scroll_blank",
+            "ResourceKey": "treated_planks"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.make_scroll_enhancement",
+            "ResourceKey": "arcane_ash"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.make_scroll_enhancement",
+            "ResourceKey": "ground_citrine"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.make_scroll_enhancement",
+            "ResourceKey": "scroll_blank"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.make_tool_reinforced",
+            "ResourceKey": "reinforced_handle"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.make_treated_planks",
+            "ResourceKey": "dense_resin"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.process_gold_dust",
+            "ResourceKey": "ore_gold"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.process_ground_amethyst",
+            "ResourceKey": "ore_amethyst"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.process_ground_citrine",
+            "ResourceKey": "ore_citrine"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.process_ground_emerald",
+            "ResourceKey": "ore_emerald"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.process_ground_ruby",
+            "ResourceKey": "ore_ruby"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.process_ground_sapphire",
+            "ResourceKey": "ore_sapphire"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.process_silver_dust",
+            "ResourceKey": "ore_silver"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.process_topaz_dust",
+            "ResourceKey": "ore_topaz"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.refine_core_arcane",
+            "ResourceKey": "crystalline_sap"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.refine_core_deep",
+            "ResourceKey": "purified_resin"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.refine_core_energetic",
+            "ResourceKey": "charcoal"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.refine_core_primordial",
+            "ResourceKey": "arcane_ash"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.refine_core_runic",
+            "ResourceKey": "arcane_charcoal"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_bellum",
+            "ResourceKey": "core_runic"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_bellum",
+            "ResourceKey": "sheltom_inferna"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_bellum",
+            "ResourceKey": "war_fragment"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_celesto",
+            "ResourceKey": "core_deep"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_celesto",
+            "ResourceKey": "ground_sapphire"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_celesto",
+            "ResourceKey": "sheltom_sparky"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_devine",
+            "ResourceKey": "core_deep"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_devine",
+            "ResourceKey": "purified_salt"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_devine",
+            "ResourceKey": "sheltom_raident"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_enigma",
+            "ResourceKey": "arcane_essence"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_enigma",
+            "ResourceKey": "core_arcane"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_enigma",
+            "ResourceKey": "sheltom_celesto"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_fadeo",
+            "ResourceKey": "core_crystalline"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_fadeo",
+            "ResourceKey": "ground_amethyst"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_gemma",
+            "ResourceKey": "core_runic"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_gemma",
+            "ResourceKey": "ground_emerald"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_gemma",
+            "ResourceKey": "sheltom_mirage"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_inferna",
+            "ResourceKey": "core_arcane"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_inferna",
+            "ResourceKey": "ground_ruby"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_inferna",
+            "ResourceKey": "sheltom_devine"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_lucidi",
+            "ResourceKey": "core_crystalline"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_mirage",
+            "ResourceKey": "core_arcane"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_mirage",
+            "ResourceKey": "illusory_essence"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_mirage",
+            "ResourceKey": "sheltom_murky"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_murky",
+            "ResourceKey": "core_deep"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_murky",
+            "ResourceKey": "dark_essence"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_murky",
+            "ResourceKey": "sheltom_transparo"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_ordo",
+            "ResourceKey": "core_runic"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_ordo",
+            "ResourceKey": "purified_gold"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_ordo",
+            "ResourceKey": "sheltom_enigma"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_purus",
+            "ResourceKey": "core_primordial"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_purus",
+            "ResourceKey": "sheltom_gemma"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_purus",
+            "ResourceKey": "sheltom_ordo"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_raident",
+            "ResourceKey": "core_energetic"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_raident",
+            "ResourceKey": "gold_dust"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_raident",
+            "ResourceKey": "sheltom_sereneo"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_sereneo",
+            "ResourceKey": "core_crystalline"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_sereneo",
+            "ResourceKey": "silver_dust"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_sparky",
+            "ResourceKey": "core_energetic"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_sparky",
+            "ResourceKey": "sheltom_lucidi"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_transparo",
+            "ResourceKey": "core_energetic"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_transparo",
+            "ResourceKey": "sheltom_fadeo"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_transparo",
+            "ResourceKey": "topaz_dust"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_veritas",
+            "ResourceKey": "core_primordial"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_veritas",
+            "ResourceKey": "primordial_essence"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_veritas",
+            "ResourceKey": "sheltom_bellum"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "artisan.sheltom_veritas",
+            "ResourceKey": "sheltom_purus"
+          },
+          {
+            "Amount": 1,
+            "RecipeKey": "blacksmith.smelt_iron_ingot",
+            "ResourceKey": "common_logs"
+          },
+          {
+            "Amount": 2,
+            "RecipeKey": "artisan.make_arcane_charcoal",
+            "ResourceKey": "arcane_wood"
+          },
+          {
+            "Amount": 2,
+            "RecipeKey": "artisan.make_arcane_essence",
+            "ResourceKey": "mystic_resin"
+          },
+          {
+            "Amount": 2,
+            "RecipeKey": "artisan.make_charcoal",
+            "ResourceKey": "common_logs"
+          },
+          {
+            "Amount": 2,
+            "RecipeKey": "artisan.make_crystalline_sap",
+            "ResourceKey": "energetic_sap"
+          },
+          {
+            "Amount": 2,
+            "RecipeKey": "artisan.make_iron_ingot",
+            "ResourceKey": "raw_ore_crystalline"
+          },
+          {
+            "Amount": 2,
+            "RecipeKey": "artisan.make_machine_treated",
+            "ResourceKey": "iron_ingot"
+          },
+          {
+            "Amount": 2,
+            "RecipeKey": "artisan.make_planks",
+            "ResourceKey": "common_logs"
+          },
+          {
+            "Amount": 2,
+            "RecipeKey": "artisan.make_purified_gold",
+            "ResourceKey": "gold_dust"
+          },
+          {
+            "Amount": 2,
+            "RecipeKey": "artisan.make_reinforced_handle",
+            "ResourceKey": "resistant_planks"
+          },
+          {
+            "Amount": 2,
+            "RecipeKey": "artisan.make_resistant_planks",
+            "ResourceKey": "resistant_logs"
+          },
+          {
+            "Amount": 2,
+            "RecipeKey": "artisan.make_tool_reinforced",
+            "ResourceKey": "iron_ingot"
+          },
+          {
+            "Amount": 2,
+            "RecipeKey": "artisan.refine_core_arcane",
+            "ResourceKey": "raw_ore_arcane"
+          },
+          {
+            "Amount": 2,
+            "RecipeKey": "artisan.refine_core_crystalline",
+            "ResourceKey": "raw_ore_crystalline"
+          },
+          {
+            "Amount": 2,
+            "RecipeKey": "artisan.refine_core_deep",
+            "ResourceKey": "raw_ore_deep"
+          },
+          {
+            "Amount": 2,
+            "RecipeKey": "artisan.refine_core_energetic",
+            "ResourceKey": "raw_ore_energetic"
+          },
+          {
+            "Amount": 2,
+            "RecipeKey": "artisan.refine_core_primordial",
+            "ResourceKey": "raw_ore_primordial"
+          },
+          {
+            "Amount": 2,
+            "RecipeKey": "artisan.refine_core_runic",
+            "ResourceKey": "raw_ore_runic"
+          },
+          {
+            "Amount": 2,
+            "RecipeKey": "blacksmith.equip_da106",
+            "ResourceKey": "iron_ingot"
+          },
+          {
+            "Amount": 2,
+            "RecipeKey": "blacksmith.equip_da106",
+            "ResourceKey": "treated_planks"
+          },
+          {
+            "Amount": 2,
+            "RecipeKey": "blacksmith.equip_wa103",
+            "ResourceKey": "iron_ingot"
+          },
+          {
+            "Amount": 2,
+            "RecipeKey": "blacksmith.equip_wa103",
+            "ResourceKey": "reinforced_handle"
+          },
+          {
+            "Amount": 2,
+            "RecipeKey": "blacksmith.equip_wm110",
+            "ResourceKey": "iron_ingot"
+          },
+          {
+            "Amount": 2,
+            "RecipeKey": "blacksmith.equip_wm110",
+            "ResourceKey": "mystic_solvent"
+          },
+          {
+            "Amount": 2,
+            "RecipeKey": "blacksmith.equip_ws103",
+            "ResourceKey": "iron_ingot"
+          },
+          {
+            "Amount": 2,
+            "RecipeKey": "blacksmith.equip_ws103",
+            "ResourceKey": "planks"
+          },
+          {
+            "Amount": 2,
+            "RecipeKey": "blacksmith.smelt_iron_ingot",
+            "ResourceKey": "raw_ore_crystalline"
+          },
+          {
+            "Amount": 3,
+            "RecipeKey": "artisan.make_machine_treated",
+            "ResourceKey": "treated_planks"
+          },
+          {
+            "Amount": 3,
+            "RecipeKey": "artisan.make_purified_resin",
+            "ResourceKey": "sap"
+          },
+          {
+            "Amount": 3,
+            "RecipeKey": "artisan.make_treated_planks",
+            "ResourceKey": "planks"
+          }
+        ],
+        "sqlite_name": "ServerDB__ProfessionIngredient378"
+      },
+      "recipes_361": {
+        "columns": [
+          "RecipeKey",
+          "ProfessionType",
+          "DisplayName",
+          "RequiredLevel",
+          "ResultItemCode",
+          "ResultQuantity",
+          "Enabled",
+          "DefinitionSource"
+        ],
+        "rows": [
+          {
+            "DefinitionSource": "SUMMIT-original-test",
+            "DisplayName": "Amuleto simples",
+            "Enabled": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan_amulet_1",
+            "RequiredLevel": 0,
+            "ResultItemCode": "0x03030100",
+            "ResultQuantity": 1
+          },
+          {
+            "DefinitionSource": "SUMMIT-original-test",
+            "DisplayName": "Anel simples",
+            "Enabled": 0,
+            "ProfessionType": 1,
+            "RecipeKey": "arcanist_ring_1",
+            "RequiredLevel": 0,
+            "ResultItemCode": "0x03040100",
+            "ResultQuantity": 1
+          },
+          {
+            "DefinitionSource": "SUMMIT-original-test",
+            "DisplayName": "Armadura simples",
+            "Enabled": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan_armor_1",
+            "RequiredLevel": 0,
+            "ResultItemCode": "0x02010100",
+            "ResultQuantity": 1
+          },
+          {
+            "DefinitionSource": "SUMMIT-original-test",
+            "DisplayName": "Botas simples",
+            "Enabled": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan_boots_1",
+            "RequiredLevel": 0,
+            "ResultItemCode": "0x02020100",
+            "ResultQuantity": 1
+          },
+          {
+            "DefinitionSource": "SUMMIT-original-test",
+            "DisplayName": "Cajado simples",
+            "Enabled": 0,
+            "ProfessionType": 1,
+            "RecipeKey": "arcanist_staff_1",
+            "RequiredLevel": 0,
+            "ResultItemCode": "0x01040100",
+            "ResultQuantity": 1
+          },
+          {
+            "DefinitionSource": "SUMMIT-original-test",
+            "DisplayName": "Espada simples",
+            "Enabled": 0,
+            "ProfessionType": 2,
+            "RecipeKey": "blacksmith_sword_1",
+            "RequiredLevel": 0,
+            "ResultItemCode": "0x01060100",
+            "ResultQuantity": 1
+          },
+          {
+            "DefinitionSource": "SUMMIT-original-test",
+            "DisplayName": "Garra simples",
+            "Enabled": 0,
+            "ProfessionType": 2,
+            "RecipeKey": "blacksmith_claw_1",
+            "RequiredLevel": 0,
+            "ResultItemCode": "0x01020100",
+            "ResultQuantity": 1
+          },
+          {
+            "DefinitionSource": "SUMMIT-original-test",
+            "DisplayName": "Luvas simples",
+            "Enabled": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan_gloves_1",
+            "RequiredLevel": 0,
+            "ResultItemCode": "0x02030100",
+            "ResultQuantity": 1
+          },
+          {
+            "DefinitionSource": "SUMMIT-original-test",
+            "DisplayName": "Machado simples",
+            "Enabled": 0,
+            "ProfessionType": 2,
+            "RecipeKey": "blacksmith_axe_1",
+            "RequiredLevel": 0,
+            "ResultItemCode": "0x01010100",
+            "ResultQuantity": 1
+          },
+          {
+            "DefinitionSource": "SUMMIT-original-test",
+            "DisplayName": "Orbe simples",
+            "Enabled": 0,
+            "ProfessionType": 1,
+            "RecipeKey": "arcanist_orb_1",
+            "RequiredLevel": 0,
+            "ResultItemCode": "0x03010100",
+            "ResultQuantity": 1
+          }
+        ],
+        "sqlite_name": "ServerDB__ProfessionCraftRecipe361"
+      },
+      "recipes_378": {
+        "columns": [
+          "RecipeKey",
+          "ProfessionType",
+          "MinLevel",
+          "OutputKey",
+          "OutputCount",
+          "Physical",
+          "LegacyItemCode",
+          "XP",
+          "Enabled",
+          "SourceVersion"
+        ],
+        "rows": [
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 0,
+            "OutputCount": 1,
+            "OutputKey": "arcane_essence",
+            "Physical": 0,
+            "ProfessionType": 1,
+            "RecipeKey": "arcanist.distill_arcane_essence",
+            "SourceVersion": "407A",
+            "XP": 4
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 0,
+            "OutputCount": 1,
+            "OutputKey": "charcoal",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.make_charcoal",
+            "SourceVersion": "366A-378",
+            "XP": 4
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 0,
+            "OutputCount": 1,
+            "OutputKey": "core_crystalline",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.refine_core_crystalline",
+            "SourceVersion": "366A-378",
+            "XP": 4
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 0,
+            "OutputCount": 1,
+            "OutputKey": "gold_dust",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.process_gold_dust",
+            "SourceVersion": "366A-378",
+            "XP": 4
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 0,
+            "OutputCount": 1,
+            "OutputKey": "ground_amethyst",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.process_ground_amethyst",
+            "SourceVersion": "366A-378",
+            "XP": 4
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 0,
+            "OutputCount": 1,
+            "OutputKey": "ground_citrine",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.process_ground_citrine",
+            "SourceVersion": "366A-378",
+            "XP": 4
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 0,
+            "OutputCount": 1,
+            "OutputKey": "ground_emerald",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.process_ground_emerald",
+            "SourceVersion": "366A-378",
+            "XP": 4
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 0,
+            "OutputCount": 1,
+            "OutputKey": "ground_ruby",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.process_ground_ruby",
+            "SourceVersion": "366A-378",
+            "XP": 4
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 0,
+            "OutputCount": 1,
+            "OutputKey": "ground_sapphire",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.process_ground_sapphire",
+            "SourceVersion": "366A-378",
+            "XP": 4
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 0,
+            "OutputCount": 1,
+            "OutputKey": "iron_ingot",
+            "Physical": 0,
+            "ProfessionType": 2,
+            "RecipeKey": "blacksmith.smelt_iron_ingot",
+            "SourceVersion": "407A",
+            "XP": 4
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 0,
+            "OutputCount": 1,
+            "OutputKey": "iron_ingot",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.make_iron_ingot",
+            "SourceVersion": "366A-378",
+            "XP": 4
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 0,
+            "OutputCount": 1,
+            "OutputKey": "planks",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.make_planks",
+            "SourceVersion": "366A-378",
+            "XP": 4
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 0,
+            "OutputCount": 1,
+            "OutputKey": "potion_hp_enhanced",
+            "Physical": 1,
+            "ProfessionType": 1,
+            "RecipeKey": "arcanist.potion_hp",
+            "SourceVersion": "366A-378",
+            "XP": 4
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 0,
+            "OutputCount": 1,
+            "OutputKey": "sheltom_lucidi",
+            "Physical": 1,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.sheltom_lucidi",
+            "SourceVersion": "366A-378",
+            "XP": 4
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 0,
+            "OutputCount": 1,
+            "OutputKey": "silver_dust",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.process_silver_dust",
+            "SourceVersion": "366A-378",
+            "XP": 4
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 0,
+            "OutputCount": 1,
+            "OutputKey": "topaz_dust",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.process_topaz_dust",
+            "SourceVersion": "366A-378",
+            "XP": 4
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 10,
+            "OutputCount": 1,
+            "OutputKey": "core_deep",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.refine_core_deep",
+            "SourceVersion": "366A-378",
+            "XP": 8
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 10,
+            "OutputCount": 1,
+            "OutputKey": "crystalline_sap",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.make_crystalline_sap",
+            "SourceVersion": "366A-378",
+            "XP": 8
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 10,
+            "OutputCount": 1,
+            "OutputKey": "dark_resin",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.make_dark_resin",
+            "SourceVersion": "366A-378",
+            "XP": 8
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 10,
+            "OutputCount": 1,
+            "OutputKey": "machine_treated",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.make_machine_treated",
+            "SourceVersion": "366A-378",
+            "XP": 8
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 10,
+            "OutputCount": 1,
+            "OutputKey": "mystic_solvent",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.make_mystic_solvent",
+            "SourceVersion": "366A-378",
+            "XP": 8
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 10,
+            "OutputCount": 1,
+            "OutputKey": "potion_stamina_enhanced",
+            "Physical": 1,
+            "ProfessionType": 1,
+            "RecipeKey": "arcanist.potion_stamina",
+            "SourceVersion": "366A-378",
+            "XP": 8
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 10,
+            "OutputCount": 1,
+            "OutputKey": "tool_reinforced",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.make_tool_reinforced",
+            "SourceVersion": "366A-378",
+            "XP": 8
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 15,
+            "OutputCount": 1,
+            "OutputKey": "arcane_ash",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.make_arcane_ash",
+            "SourceVersion": "366A-378",
+            "XP": 10
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 15,
+            "OutputCount": 1,
+            "OutputKey": "arcane_charcoal",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.make_arcane_charcoal",
+            "SourceVersion": "366A-378",
+            "XP": 10
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 15,
+            "OutputCount": 1,
+            "OutputKey": "arcane_essence",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.make_arcane_essence",
+            "SourceVersion": "366A-378",
+            "XP": 10
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 15,
+            "OutputCount": 1,
+            "OutputKey": "core_arcane",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.refine_core_arcane",
+            "SourceVersion": "366A-378",
+            "XP": 10
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 15,
+            "OutputCount": 1,
+            "OutputKey": "scroll_enhancement",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.make_scroll_enhancement",
+            "SourceVersion": "366A-378",
+            "XP": 10
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 20,
+            "OutputCount": 1,
+            "OutputKey": "core_runic",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.refine_core_runic",
+            "SourceVersion": "366A-378",
+            "XP": 12
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 20,
+            "OutputCount": 1,
+            "OutputKey": "purified_gold",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.make_purified_gold",
+            "SourceVersion": "366A-378",
+            "XP": 12
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 25,
+            "OutputCount": 1,
+            "OutputKey": "core_primordial",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.refine_core_primordial",
+            "SourceVersion": "366A-378",
+            "XP": 14
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 25,
+            "OutputCount": 1,
+            "OutputKey": "primordial_essence",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.make_primordial_essence",
+            "SourceVersion": "366A-378",
+            "XP": 14
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 5,
+            "OutputCount": 1,
+            "OutputKey": "core_energetic",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.refine_core_energetic",
+            "SourceVersion": "366A-378",
+            "XP": 6
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 5,
+            "OutputCount": 1,
+            "OutputKey": "potion_mp_enhanced",
+            "Physical": 1,
+            "ProfessionType": 1,
+            "RecipeKey": "arcanist.potion_mp",
+            "SourceVersion": "366A-378",
+            "XP": 6
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 5,
+            "OutputCount": 1,
+            "OutputKey": "purified_resin",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.make_purified_resin",
+            "SourceVersion": "366A-378",
+            "XP": 6
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 5,
+            "OutputCount": 1,
+            "OutputKey": "reinforced_handle",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.make_reinforced_handle",
+            "SourceVersion": "366A-378",
+            "XP": 6
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 5,
+            "OutputCount": 1,
+            "OutputKey": "resistant_planks",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.make_resistant_planks",
+            "SourceVersion": "366A-378",
+            "XP": 6
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 5,
+            "OutputCount": 1,
+            "OutputKey": "scroll_blank",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.make_scroll_blank",
+            "SourceVersion": "366A-378",
+            "XP": 6
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "",
+            "MinLevel": 5,
+            "OutputCount": 1,
+            "OutputKey": "treated_planks",
+            "Physical": 0,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.make_treated_planks",
+            "SourceVersion": "366A-378",
+            "XP": 6
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "DA106",
+            "MinLevel": 5,
+            "OutputCount": 1,
+            "OutputKey": "crafted_da106",
+            "Physical": 1,
+            "ProfessionType": 2,
+            "RecipeKey": "blacksmith.equip_da106",
+            "SourceVersion": "366A-378",
+            "XP": 6
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "OS102",
+            "MinLevel": 0,
+            "OutputCount": 1,
+            "OutputKey": "sheltom_sereneo",
+            "Physical": 1,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.sheltom_sereneo",
+            "SourceVersion": "366A-378",
+            "XP": 4
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "OS103",
+            "MinLevel": 0,
+            "OutputCount": 1,
+            "OutputKey": "sheltom_fadeo",
+            "Physical": 1,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.sheltom_fadeo",
+            "SourceVersion": "366A-378",
+            "XP": 4
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "OS104",
+            "MinLevel": 5,
+            "OutputCount": 1,
+            "OutputKey": "sheltom_sparky",
+            "Physical": 1,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.sheltom_sparky",
+            "SourceVersion": "366A-378",
+            "XP": 6
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "OS105",
+            "MinLevel": 5,
+            "OutputCount": 1,
+            "OutputKey": "sheltom_raident",
+            "Physical": 1,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.sheltom_raident",
+            "SourceVersion": "366A-378",
+            "XP": 6
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "OS106",
+            "MinLevel": 5,
+            "OutputCount": 1,
+            "OutputKey": "sheltom_transparo",
+            "Physical": 1,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.sheltom_transparo",
+            "SourceVersion": "366A-378",
+            "XP": 6
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "OS107",
+            "MinLevel": 10,
+            "OutputCount": 1,
+            "OutputKey": "sheltom_murky",
+            "Physical": 1,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.sheltom_murky",
+            "SourceVersion": "366A-378",
+            "XP": 8
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "OS108",
+            "MinLevel": 10,
+            "OutputCount": 1,
+            "OutputKey": "sheltom_devine",
+            "Physical": 1,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.sheltom_devine",
+            "SourceVersion": "366A-378",
+            "XP": 8
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "OS109",
+            "MinLevel": 10,
+            "OutputCount": 1,
+            "OutputKey": "sheltom_celesto",
+            "Physical": 1,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.sheltom_celesto",
+            "SourceVersion": "366A-378",
+            "XP": 8
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "OS110",
+            "MinLevel": 15,
+            "OutputCount": 1,
+            "OutputKey": "sheltom_mirage",
+            "Physical": 1,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.sheltom_mirage",
+            "SourceVersion": "366A-378",
+            "XP": 10
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "OS111",
+            "MinLevel": 15,
+            "OutputCount": 1,
+            "OutputKey": "sheltom_inferna",
+            "Physical": 1,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.sheltom_inferna",
+            "SourceVersion": "366A-378",
+            "XP": 10
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "OS112",
+            "MinLevel": 15,
+            "OutputCount": 1,
+            "OutputKey": "sheltom_enigma",
+            "Physical": 1,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.sheltom_enigma",
+            "SourceVersion": "366A-378",
+            "XP": 10
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "OS113",
+            "MinLevel": 20,
+            "OutputCount": 1,
+            "OutputKey": "sheltom_bellum",
+            "Physical": 1,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.sheltom_bellum",
+            "SourceVersion": "366A-378",
+            "XP": 12
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "OS114",
+            "MinLevel": 20,
+            "OutputCount": 1,
+            "OutputKey": "sheltom_ordo",
+            "Physical": 1,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.sheltom_ordo",
+            "SourceVersion": "366A-378",
+            "XP": 12
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "OS115",
+            "MinLevel": 20,
+            "OutputCount": 1,
+            "OutputKey": "sheltom_gemma",
+            "Physical": 1,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.sheltom_gemma",
+            "SourceVersion": "366A-378",
+            "XP": 12
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "OS116",
+            "MinLevel": 25,
+            "OutputCount": 1,
+            "OutputKey": "sheltom_purus",
+            "Physical": 1,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.sheltom_purus",
+            "SourceVersion": "366A-378",
+            "XP": 14
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "OS117",
+            "MinLevel": 25,
+            "OutputCount": 1,
+            "OutputKey": "sheltom_veritas",
+            "Physical": 1,
+            "ProfessionType": 5,
+            "RecipeKey": "artisan.sheltom_veritas",
+            "SourceVersion": "366A-378",
+            "XP": 14
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "WA103",
+            "MinLevel": 5,
+            "OutputCount": 1,
+            "OutputKey": "crafted_wa103",
+            "Physical": 1,
+            "ProfessionType": 2,
+            "RecipeKey": "blacksmith.equip_wa103",
+            "SourceVersion": "366A-378",
+            "XP": 6
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "WM110",
+            "MinLevel": 10,
+            "OutputCount": 1,
+            "OutputKey": "crafted_wm110",
+            "Physical": 1,
+            "ProfessionType": 2,
+            "RecipeKey": "blacksmith.equip_wm110",
+            "SourceVersion": "366A-378",
+            "XP": 8
+          },
+          {
+            "Enabled": 1,
+            "LegacyItemCode": "WS103",
+            "MinLevel": 0,
+            "OutputCount": 1,
+            "OutputKey": "crafted_ws103",
+            "Physical": 1,
+            "ProfessionType": 2,
+            "RecipeKey": "blacksmith.equip_ws103",
+            "SourceVersion": "366A-378",
+            "XP": 4
+          }
+        ],
+        "sqlite_name": "ServerDB__ProfessionRecipe378"
+      }
+    }
+  }
+}

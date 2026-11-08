@@ -9,7 +9,6 @@ COMMON_PACKS = (
     'field_runtime.sfld',
     'skin_reforms.sskm',
     'text_resources.sres',
-    'localization.sloc',
     'gameplay_config.sgcf',
 )
 ROLE_PACKS = {
@@ -40,11 +39,17 @@ def main() -> int:
     print(f'SOURCE_ROOT={source_root}')
     print(f'SOURCE_PACK_ROOT={source_packs}')
 
+    # SRES is now the sole deployed text pack.
+    if (source_packs / 'localization.sloc').exists():
+        errors.append('obsolete source localization.sloc remains: rebuild canonical content')
+
     runtime_roots = (('client', repo / 'cliente'), ('server', repo / 'Servidor'))
     deployment_available = any(runtime_root.is_dir() for _, runtime_root in runtime_roots)
     for role, runtime_root in runtime_roots:
         pack_root = runtime_root / 'Content' / 'packs'
         print(f'ROLE={role} RUNTIME_PACK_ROOT={pack_root}')
+        if (pack_root / 'localization.sloc').exists():
+            errors.append(f'obsolete deployed localization.sloc remains: {pack_root}')
         for name in ROLE_PACKS[role]:
             source = source_packs / name
             source_exists = source.is_file()

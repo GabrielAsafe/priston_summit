@@ -23,6 +23,7 @@ bool OpenSocialWindow();
 bool OpenFriendsWindow();
 bool OpenQuestJournalWindow();
 [[nodiscard]] bool IsSettingsWindowOpen();
+bool HandleProfessionTestPanelKey(unsigned int key); // SUMMIT_387_DECL
 bool HandleModalHotkeys();
 void OnResolutionChanged(int width, int height);
 

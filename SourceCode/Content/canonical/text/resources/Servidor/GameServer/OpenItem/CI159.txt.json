@@ -1,0 +1,127 @@
+{
+  "schema": "summit.canonical-text-resource/v1",
+  "schema_version": 1,
+  "id": "item.ci159",
+  "kind": "open_item_definition",
+  "selection_reason": "runtime_text_family",
+  "runtime_paths": [
+    "Servidor/GameServer/OpenItem/CI159.txt",
+    "GameServer/OpenItem/CI159.txt"
+  ],
+  "source": {
+    "legacy_path": "Servidor/GameServer/OpenItem/CI159.txt",
+    "legacy_sha256": "a651e07bcf13f450919dd95537f3765c0947f929e614ffcaf8e5260cb244b58e",
+    "legacy_size": 192
+  },
+  "semantic": {
+    "fields": {
+      "code": "CI159",
+      "name": "Solvente Místico",
+      "english_name": "Solvente Místico",
+      "weight": 1,
+      "price": 0,
+      "linked_file": "Name\\CI159.zhoon"
+    },
+    "directives": [
+      {
+        "line": 2,
+        "key": "code",
+        "legacy_token": "*코드",
+        "legacy_token_hex": "2ac4dab5e5",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          "CI159"
+        ],
+        "raw_values_hex": [
+          "4349313539"
+        ],
+        "quoted": [
+          true
+        ]
+      },
+      {
+        "line": 5,
+        "key": "name",
+        "legacy_token": "*이름",
+        "legacy_token_hex": "2ac0ccb8a7",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          "Solvente Místico"
+        ],
+        "raw_values_hex": [
+          "536f6c76656e7465204ded737469636f"
+        ],
+        "quoted": [
+          true
+        ]
+      },
+      {
+        "line": 8,
+        "key": "english_name",
+        "legacy_token": "*Name",
+        "legacy_token_hex": "2a4e616d65",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          "Solvente Místico"
+        ],
+        "raw_values_hex": [
+          "536f6c76656e7465204ded737469636f"
+        ],
+        "quoted": [
+          true
+        ]
+      },
+      {
+        "line": 11,
+        "key": "weight",
+        "legacy_token": "*무게",
+        "legacy_token_hex": "2ab9abb0d4",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          1
+        ],
+        "raw_values_hex": [
+          "31"
+        ]
+      },
+      {
+        "line": 14,
+        "key": "price",
+        "legacy_token": "*가격",
+        "legacy_token_hex": "2ab0a1b0dd",
+        "loader_status": "not_consumed_by_active_loader",
+        "values": [
+          0
+        ],
+        "raw_values_hex": [
+          "30"
+        ]
+      },
+      {
+        "line": 17,
+        "key": "linked_file",
+        "legacy_token": "*연결파일",
+        "legacy_token_hex": "2abfacb0e1c6c4c0cf",
+        "loader_status": "supported_mapped",
+        "values": [
+          "Name\\CI159.zhoon"
+        ],
+        "raw_values_hex": [
+          "4e616d655c43493135392e7a686f6f6e"
+        ],
+        "quoted": [
+          true
+        ]
+      }
+    ],
+    "unknown_tokens": {}
+  },
+  "compatibility": {
+    "encoding": "base64",
+    "legacy_payload_base64": "Ly9JRA0KKsTateUgIkNJMTU5Ig0KDQovL0tvcmVhbiBOYW1lDQoqwMy4pyAiU29sdmVudGUgTe1zdGljbyINCg0KLy9FbmdsaXNoIE5hbWUNCipOYW1lICJTb2x2ZW50ZSBN7XN0aWNvIg0KDQovL1dlaWdodA0KKrmrsNQgMQ0KDQovL1ByaWNlDQoqsKGw3SAwDQoNCi8vTmFtZSBGaWxlDQoqv6yw4cbEwM8gIk5hbWVcQ0kxNTkuemhvb24i"
+  },
+  "runtime_profiles": [
+    "client",
+    "server"
+  ]
+}

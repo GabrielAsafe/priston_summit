@@ -73,7 +73,6 @@ def main() -> None:
         'text_resources': packs / 'text_resources.sres',
         'definitions_client': packs / 'definitions_client.scfg',
         'definitions_server': packs / 'definitions_server.scfg',
-        'localization': packs / 'localization.sloc',
         'gameplay_config': packs / 'gameplay_config.sgcf',
         'gameplay_reference': packs / 'gameplay_reference.sgrf',
         'coin_shop': packs / 'coin_shop.scsp',
@@ -85,6 +84,33 @@ def main() -> None:
 
     run(py, here / 'compile_text_resources.py', text, outputs['text_resources'])
     run(py, here / 'inspect_text_resources.py', outputs['text_resources'])
+    # Remove the obsolete second pack only once the merged SRES passes both inspectors.
+    run(py, here / 'inspect_localization.py', outputs['text_resources'])
+    legacy_sloc = packs / 'localization.sloc'
+    if legacy_sloc.exists():
+        if not legacy_sloc.is_file() or legacy_sloc.is_symlink():
+            raise SystemExit('refusing to delete non-regular legacy localization pack')
+        # Keep the old format outside Content for explicit rollback.
+        old_backup = here.parents[2] / 'bugfixes' / '.summit_sres_merge' / 'source_localization.sloc'
+        old_backup.parent.mkdir(parents=True, exist_ok=True)
+        if old_backup.exists():
+            if old_backup.is_symlink() or not old_backup.is_file() or sha256(old_backup) != sha256(legacy_sloc):
+                raise SystemExit(f'legacy backup already exists with different bytes: {old_backup}')
+        else:
+            old_backup.write_bytes(legacy_sloc.read_bytes())
+        legacy_sloc.unlink()
+    legacy_report = packs / 'localization.sloc.report.json'
+    if legacy_report.exists():
+        if legacy_report.is_symlink() or not legacy_report.is_file():
+            raise SystemExit('refusing to delete non-regular legacy report')
+        report_backup = here.parents[2] / 'bugfixes' / '.summit_sres_merge' / 'source_localization.sloc.report.json'
+        report_backup.parent.mkdir(parents=True, exist_ok=True)
+        if report_backup.exists():
+            if report_backup.is_symlink() or not report_backup.is_file() or sha256(report_backup) != sha256(legacy_report):
+                raise SystemExit(f'conflicting localization report backup: {report_backup}')
+        else:
+            report_backup.write_bytes(legacy_report.read_bytes())
+        legacy_report.unlink()
     npc_shop_overrides = commerce / 'npc_shop_overrides.json'
     if not npc_shop_overrides.is_file():
         raise SystemExit(f'missing canonical NPC shop overrides: {npc_shop_overrides}')
@@ -97,8 +123,6 @@ def main() -> None:
         run(py, here / 'compile_definitions.py', text, output, '--item-profile', profile_catalog, '--npc-shop-overrides', npc_shop_overrides)
         run(py, here / 'inspect_definitions.py', output)
     run(py, here / 'validate_item_profile_pack.py', '--source-root', here.parent.parent, '--content-root', out, '--canonical-item-profiles', item_profiles, '--canonical-text', text, '--profile', 'both')
-    run(py, here / 'compile_localization.py', text, outputs['localization'])
-    run(py, here / 'inspect_localization.py', outputs['localization'])
     run(py, here / 'compile_gameplay_config.py', text, outputs['gameplay_config'])
     run(py, here / 'inspect_gameplay_config.py', outputs['gameplay_config'])
     coin_shop_catalog = commerce / 'coin_shop.json'

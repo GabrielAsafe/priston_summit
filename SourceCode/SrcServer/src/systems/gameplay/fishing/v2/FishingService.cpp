@@ -66,24 +66,11 @@ gathering::HarvestResult FishingService::Fish(const FishingRequest& request)
         const double adjusted = covenantBridge_->ApplyModifierValue(
             request.playerName, "gathering.yield", "fishing", static_cast<double>(result.amount));
         result.amount = std::max(1, static_cast<int>(adjusted));
-        (void)covenantBridge_->RecordActivity(request.playerName, "gathering.harvest", 1);
+        // Runtime records this activity only after durable material persistence.
     }
 
-    // Fisher is a V2 profession identity only. Do not map it to any guessed legacy JOB_CODE.
-    (void)professions_.AddExperience(request.playerName, professions::ProfessionType::Fisher,
-                                     static_cast<std::uint64_t>(result.amount));
-
-    if (eventHub_)
-    {
-        events::FishCaughtEvent event;
-        event.playerName = request.playerName;
-        event.nodeId = result.nodeId;
-        event.resourceId = result.resourceId;
-        event.resourceKey = result.resourceKey;
-        event.amount = result.amount;
-        event.area = result.area;
-        eventHub_->Publish(event);
-    }
+    // Persistence and Fisher XP are committed by FishingRuntime after
+    // AddInventory succeeds. Avoid awarding XP on uncommitted catches.
     return result;
 }
 }

@@ -1,0 +1,37 @@
+{
+  "schema": "summit.stage-start-points/v1",
+  "id": "start_points.stararena_58",
+  "logical_path": "GameServer/Field/StarArena.ASE.spp",
+  "points": [
+    {
+      "slot": 0,
+      "state": 1,
+      "x": 251671,
+      "z": 225035
+    },
+    {
+      "slot": 1,
+      "state": 1,
+      "x": 251524,
+      "z": 225037
+    },
+    {
+      "slot": 2,
+      "state": 1,
+      "x": 251360,
+      "z": 225033
+    },
+    {
+      "slot": 3,
+      "state": 1,
+      "x": 251380,
+      "z": 226790
+    }
+  ],
+  "provenance": {
+    "source": "Content/canonical/professions_v2/nodes3d.experimental.json",
+    "purpose": "reference points for four test gathering nodes; NOT automatic monster activation",
+    "synthetic": true,
+    "verified_in_world": false
+  }
+}

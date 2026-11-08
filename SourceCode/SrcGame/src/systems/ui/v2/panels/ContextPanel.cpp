@@ -107,6 +107,23 @@ ContextPanel::ContextPanel(IContextGateway& gateway, UIId id) : Container(id), g
                         BeginInventoryAcceptance(inventoryIndex);
                     }
                 }
+                else if ((snapshot_.kind == ContextKind::CoinShop ||
+                          snapshot_.kind == ContextKind::TimeCoinShop) &&
+                         (action == 72 || action == 73))
+                {
+                    // O painel exibe uma subpagina da pagina legacy de 12 itens.
+                    // As setas do canto e os botoes Pagina usam a mesma rota.
+                    if (action == 72 && itemPage_ > 0)
+                        --itemPage_;
+                    else if (action == 73 && itemPage_ + 1 < ItemPageCount())
+                        ++itemPage_;
+                    else if (snapshot_.actions[i].enabled)
+                    {
+                        gateway_.InvokeAction(action);
+                        itemPage_ = action == 72 ? 1000000 : 0;
+                    }
+                    hoveredIndex_ = -1;
+                }
                 else
                 {
                     if (snapshot_.kind == ContextKind::Merchant && (action == 14 || action == 15))
@@ -123,7 +140,21 @@ ContextPanel::ContextPanel(IContextGateway& gateway, UIId id) : Container(id), g
     previous.SetVisible(false);
     previous.SetOnClick([this](const UIEvent&)
     {
-        if (itemPage_ > 0) --itemPage_;
+        const bool premium = snapshot_.kind == ContextKind::CoinShop ||
+                             snapshot_.kind == ContextKind::TimeCoinShop;
+        if (itemPage_ > 0)
+            --itemPage_;
+        else if (premium)
+        {
+            for (const auto& action : snapshot_.actions)
+                if (action.id == 72 && action.enabled)
+                {
+                    gateway_.InvokeAction(72);
+                    itemPage_ = 1000000; // Refresh ajusta para a ultima subpagina.
+                    Refresh();
+                    break;
+                }
+        }
         hoveredIndex_ = -1;
         LayoutPaging();
     });
@@ -133,8 +164,21 @@ ContextPanel::ContextPanel(IContextGateway& gateway, UIId id) : Container(id), g
     next.SetVisible(false);
     next.SetOnClick([this](const UIEvent&)
     {
-        const int pages = ItemPageCount();
-        if (itemPage_ + 1 < pages) ++itemPage_;
+        const bool premium = snapshot_.kind == ContextKind::CoinShop ||
+                             snapshot_.kind == ContextKind::TimeCoinShop;
+        if (itemPage_ + 1 < ItemPageCount())
+            ++itemPage_;
+        else if (premium)
+        {
+            for (const auto& action : snapshot_.actions)
+                if (action.id == 73 && action.enabled)
+                {
+                    gateway_.InvokeAction(73);
+                    itemPage_ = 0;
+                    Refresh();
+                    break;
+                }
+        }
         hoveredIndex_ = -1;
         LayoutPaging();
     });
@@ -235,8 +279,14 @@ void ContextPanel::LayoutActions()
         button->SetVisible(true);
         // Merchant sale is not a global mouse mode. It requires an explicit
         // inventory selection (the source item is never moved on selection).
-        button->SetEnabled(action.enabled && !(snapshot_.kind == ContextKind::Merchant &&
-                                               action.id == 12 && selectedInventoryIndex_ < 0));
+        const bool premium = snapshot_.kind == ContextKind::CoinShop ||
+                             snapshot_.kind == ContextKind::TimeCoinShop;
+        const bool localPage = premium &&
+            ((action.id == 72 && itemPage_ > 0) ||
+             (action.id == 73 && itemPage_ + 1 < ItemPageCount()));
+        button->SetEnabled((action.enabled || localPage) &&
+                           !(snapshot_.kind == ContextKind::Merchant &&
+                             action.id == 12 && selectedInventoryIndex_ < 0));
         button->SetSelected(action.selected);
         button->SetText(action.label);
         button->SetBounds({10 + col * (buttonWidth + gap), startY + row * 34, buttonWidth, 28});
@@ -248,12 +298,23 @@ void ContextPanel::LayoutPaging()
     if (!previousPageButton_ || !nextPageButton_)
         return;
     const int pages = ItemPageCount();
-    const bool visible = pages > 1;
+    const bool premium = snapshot_.kind == ContextKind::CoinShop ||
+                         snapshot_.kind == ContextKind::TimeCoinShop;
+    bool legacyPrevious = false, legacyNext = false;
+    if (premium)
+        for (const auto& action : snapshot_.actions)
+        {
+            if (action.id == 72) legacyPrevious = action.enabled;
+            if (action.id == 73) legacyNext = action.enabled;
+        }
+    const bool canPrevious = itemPage_ > 0 || legacyPrevious;
+    const bool canNext = itemPage_ + 1 < pages || legacyNext;
+    const bool visible = pages > 1 || legacyPrevious || legacyNext;
     const int width = std::max(1, Bounds().width);
     previousPageButton_->SetVisible(visible);
     nextPageButton_->SetVisible(visible);
-    previousPageButton_->SetEnabled(itemPage_ > 0);
-    nextPageButton_->SetEnabled(itemPage_ + 1 < pages);
+    previousPageButton_->SetEnabled(canPrevious);
+    nextPageButton_->SetEnabled(canNext);
     previousPageButton_->SetBounds({width - 82, 7, 32, 24});
     nextPageButton_->SetBounds({width - 44, 7, 32, 24});
 }

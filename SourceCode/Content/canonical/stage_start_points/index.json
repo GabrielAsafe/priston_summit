@@ -322,6 +322,11 @@
       "json_path": "points/GameServer/Field/sod-1.ASE.spp.json"
     },
     {
+      "id": "start_points.stararena_58",
+      "logical_path": "GameServer/Field/StarArena.ASE.spp",
+      "json_path": "points/GameServer/Field/StarArena.ASE.spp.json"
+    },
+    {
       "id": "start_points.stemple",
       "logical_path": "GameServer/Field/Stemple.ASE.spp",
       "json_path": "points/GameServer/Field/Stemple.ASE.spp.json"

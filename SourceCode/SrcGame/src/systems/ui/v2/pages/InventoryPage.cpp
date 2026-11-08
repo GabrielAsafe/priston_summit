@@ -323,6 +323,18 @@ const InventoryItemSnapshot* InventoryPage::ItemAt(Point pointer) const noexcept
             continue;
         if (!ItemVisibleInCurrentView(item))
             continue;
+        // SUMMIT441A: CODE=0 must not be activated, traded or dragged via V2.
+        // Keep the record visible for diagnosis; never mutate its DAT/inventory.
+        if (item.code == 0)
+        {
+            static bool loggedInvalidCode = false;
+            if (!loggedInvalidCode)
+            {
+                LogInventoryPointer("native-code-zero", pointer, global, item.index, -1, -1, -1, false);
+                loggedInvalidCode = true;
+            }
+            continue;
+        }
         const Rect rect = ItemRectLocal(item);
         if (!rect.IsEmpty() && rect.Contains(local))
             return &item;
@@ -568,9 +580,19 @@ void InventoryPage::DrawBag(UIRenderContext& context)
             r.DrawTextUtf8(FontHandle{}, "?", rect, TextStyle{UITheme::TextMuted, true, TextAlign::Center});
         if (hovered || selected)
             DrawBorder(r, rect, hovered ? UITheme::Accent : UITheme::Border);
-        if (item.potionCount > 1)
+        // SUMMIT442A: CI always shows a quantity (even x1); suspicious metadata
+        // never silently falls back to x1. The hint is not server-authenticated.
+        if (item.nativeCiQuantity && item.ciQuantityInvalid)
+        {
+            r.DrawTextUtf8(FontHandle{}, "!", {rect.x + 2, rect.y + rect.height - 18, rect.width - 4, 16},
+                           TextStyle{UITheme::Danger, true, TextAlign::Right});
+            DrawBorder(r, rect, UITheme::Danger);
+        }
+        else if ((item.nativeCiQuantity && item.potionCount > 0) || item.potionCount > 1)
             r.DrawTextUtf8(FontHandle{}, std::to_string(item.potionCount), {rect.x + 2, rect.y + rect.height - 18, rect.width - 4, 16},
                            TextStyle{UITheme::Text, true, TextAlign::Right});
+        if (item.ciMutationBlocked && !item.ciQuantityInvalid)
+            DrawBorder(r, rect, UITheme::Warning); // legacy interaction blocked until server supports stacks
         if (item.listedForPersonalShop)
         {
             DrawBorder(r, rect, UITheme::Accent);

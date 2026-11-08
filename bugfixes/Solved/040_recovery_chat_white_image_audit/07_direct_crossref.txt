@@ -1,7 +1,0 @@
-[027] DIRECT_CROSSREF APPLY_CLEAN SourceCode/SrcGame/src/sinbaram/sinInterFace.cpp
-[016] DIRECT_CROSSREF APPLY_CLEAN SourceCode/SrcGame/src/Winmain.bak2.cpp
-[026] DIRECT_CROSSREF APPLY_CLEAN SourceCode/SrcGame/src/sinbaram/sinHelpPet.cpp
-[017] DIRECT_CROSSREF CONFLICT_OR_DIVERGED SourceCode/SrcGame/src/Winmain.cpp
-[018] DIRECT_CROSSREF CONFLICT_OR_DIVERGED SourceCode/SrcGame/src/cSettingsWindow.cpp
-[030] DIRECT_CROSSREF CONFLICT_OR_DIVERGED SourceCode/SrcGame/src/smLib3d/smRead3d.cpp
-[013] DIRECT_CROSSREF APPLY_CLEAN SourceCode/SrcGame/src/Settings/Settings.cpp

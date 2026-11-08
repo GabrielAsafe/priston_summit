@@ -1,3 +1,5 @@
+// SUMMIT466A central client font scaling
+#include "../../../../../../../Shared/ui/fonts/FontSettings466.h"
 
 
 
@@ -253,7 +255,7 @@ void CreateBellatraFontEffect(void)
 	GetPrivateProfileString("FontG", "Type", "", dwFontGame, 32, ".//game//font//Config.ini");
 
 #ifdef _LANGUAGE_BRAZIL
-	s_EventScore_Font = ::CreateFont(16, 0, 0, 0, FW_THIN, FALSE, FALSE, FALSE, ANSI_CHARSET | FS_LATIN1, OUT_TT_PRECIS, CLIP_DEFAULT_PRECIS, ANTIALIASED_QUALITY, DEFAULT_PITCH | FF_DONTCARE, dwFontGame);
+	s_EventScore_Font = ::CreateFont( summit466::FontSettings466::Height((16), summit466::FontSettings466::Events), 0, 0, 0, FW_THIN, FALSE, FALSE, FALSE, ANSI_CHARSET | FS_LATIN1, OUT_TT_PRECIS, CLIP_DEFAULT_PRECIS, ANTIALIASED_QUALITY, DEFAULT_PITCH | FF_DONTCARE, dwFontGame);
 #endif
 
 	s_IsBellatraFontEffect = 1;

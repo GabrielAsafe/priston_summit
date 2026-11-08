@@ -1,0 +1,1557 @@
+{
+  "schema": "summit.crafting-legacy-import-drafts/v1",
+  "authority": "AUTHORING_ONLY_NOT_RUNTIME",
+  "source": "SourceCode/Database/migrations/049_professions_bundle_372_378.sql",
+  "runtime_activation": "DISABLED",
+  "recipes": [
+    {
+      "legacy_recipe_id": "arcanist.potion_hp",
+      "profession_type": 1,
+      "minimum_level": 0,
+      "output": {
+        "resource_key": "potion_hp_enhanced",
+        "item_code": null,
+        "quantity": 1,
+        "physical": true
+      },
+      "ingredients": [
+        {
+          "resource_key": "purified_resin",
+          "item_code": "CI145",
+          "quantity": 0
+        },
+        {
+          "resource_key": "sap",
+          "item_code": "CI114",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "arcanist.potion_mp",
+      "profession_type": 1,
+      "minimum_level": 5,
+      "output": {
+        "resource_key": "potion_mp_enhanced",
+        "item_code": null,
+        "quantity": 1,
+        "physical": true
+      },
+      "ingredients": [
+        {
+          "resource_key": "energetic_sap",
+          "item_code": "CI119",
+          "quantity": 0
+        },
+        {
+          "resource_key": "mystic_solvent",
+          "item_code": "CI159",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "arcanist.potion_stamina",
+      "profession_type": 1,
+      "minimum_level": 10,
+      "output": {
+        "resource_key": "potion_stamina_enhanced",
+        "item_code": null,
+        "quantity": 1,
+        "physical": true
+      },
+      "ingredients": [
+        {
+          "resource_key": "arcane_ash",
+          "item_code": "CI149",
+          "quantity": 0
+        },
+        {
+          "resource_key": "crystalline_sap",
+          "item_code": "CI147",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.make_arcane_ash",
+      "profession_type": 5,
+      "minimum_level": 15,
+      "output": {
+        "resource_key": "arcane_ash",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "arcane_wood",
+          "item_code": "CI120",
+          "quantity": 0
+        },
+        {
+          "resource_key": "charcoal",
+          "item_code": "CI143",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.make_arcane_charcoal",
+      "profession_type": 5,
+      "minimum_level": 15,
+      "output": {
+        "resource_key": "arcane_charcoal",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "arcane_essence",
+          "item_code": "CI154",
+          "quantity": 0
+        },
+        {
+          "resource_key": "arcane_wood",
+          "item_code": "CI120",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.make_arcane_essence",
+      "profession_type": 5,
+      "minimum_level": 15,
+      "output": {
+        "resource_key": "arcane_essence",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "crystalline_sap",
+          "item_code": "CI147",
+          "quantity": 0
+        },
+        {
+          "resource_key": "mystic_resin",
+          "item_code": "CI121",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.make_charcoal",
+      "profession_type": 5,
+      "minimum_level": 0,
+      "output": {
+        "resource_key": "charcoal",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "common_logs",
+          "item_code": "CI113",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.make_crystalline_sap",
+      "profession_type": 5,
+      "minimum_level": 10,
+      "output": {
+        "resource_key": "crystalline_sap",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "energetic_sap",
+          "item_code": "CI119",
+          "quantity": 0
+        },
+        {
+          "resource_key": "purified_resin",
+          "item_code": "CI145",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.make_dark_resin",
+      "profession_type": 5,
+      "minimum_level": 10,
+      "output": {
+        "resource_key": "dark_resin",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "dark_essence",
+          "item_code": "CI151",
+          "quantity": 0
+        },
+        {
+          "resource_key": "dense_resin",
+          "item_code": "CI117",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.make_iron_ingot",
+      "profession_type": 5,
+      "minimum_level": 0,
+      "output": {
+        "resource_key": "iron_ingot",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "charcoal",
+          "item_code": "CI143",
+          "quantity": 0
+        },
+        {
+          "resource_key": "raw_ore_crystalline",
+          "item_code": "CI101",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.make_machine_treated",
+      "profession_type": 5,
+      "minimum_level": 10,
+      "output": {
+        "resource_key": "machine_treated",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "iron_ingot",
+          "item_code": "CI139",
+          "quantity": 0
+        },
+        {
+          "resource_key": "treated_planks",
+          "item_code": "CI142",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.make_mystic_solvent",
+      "profession_type": 5,
+      "minimum_level": 10,
+      "output": {
+        "resource_key": "mystic_solvent",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "crystalline_sap",
+          "item_code": "CI147",
+          "quantity": 0
+        },
+        {
+          "resource_key": "purified_resin",
+          "item_code": "CI145",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.make_planks",
+      "profession_type": 5,
+      "minimum_level": 0,
+      "output": {
+        "resource_key": "planks",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "common_logs",
+          "item_code": "CI113",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.make_primordial_essence",
+      "profession_type": 5,
+      "minimum_level": 25,
+      "output": {
+        "resource_key": "primordial_essence",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "core_primordial",
+          "item_code": "CI112",
+          "quantity": 0
+        },
+        {
+          "resource_key": "tree_heart",
+          "item_code": "CI122",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.make_purified_gold",
+      "profession_type": 5,
+      "minimum_level": 20,
+      "output": {
+        "resource_key": "purified_gold",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "charcoal",
+          "item_code": "CI143",
+          "quantity": 0
+        },
+        {
+          "resource_key": "gold_dust",
+          "item_code": "CI133",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.make_purified_resin",
+      "profession_type": 5,
+      "minimum_level": 5,
+      "output": {
+        "resource_key": "purified_resin",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "charcoal",
+          "item_code": "CI143",
+          "quantity": 0
+        },
+        {
+          "resource_key": "sap",
+          "item_code": "CI114",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.make_reinforced_handle",
+      "profession_type": 5,
+      "minimum_level": 5,
+      "output": {
+        "resource_key": "reinforced_handle",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "iron_ingot",
+          "item_code": "CI139",
+          "quantity": 0
+        },
+        {
+          "resource_key": "resistant_planks",
+          "item_code": "CI141",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.make_resistant_planks",
+      "profession_type": 5,
+      "minimum_level": 5,
+      "output": {
+        "resource_key": "resistant_planks",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "resistant_logs",
+          "item_code": "CI116",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.make_scroll_blank",
+      "profession_type": 5,
+      "minimum_level": 5,
+      "output": {
+        "resource_key": "scroll_blank",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "sap",
+          "item_code": "CI114",
+          "quantity": 0
+        },
+        {
+          "resource_key": "treated_planks",
+          "item_code": "CI142",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.make_scroll_enhancement",
+      "profession_type": 5,
+      "minimum_level": 15,
+      "output": {
+        "resource_key": "scroll_enhancement",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "arcane_ash",
+          "item_code": "CI149",
+          "quantity": 0
+        },
+        {
+          "resource_key": "ground_citrine",
+          "item_code": "CI136",
+          "quantity": 0
+        },
+        {
+          "resource_key": "scroll_blank",
+          "item_code": "CI157",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.make_tool_reinforced",
+      "profession_type": 5,
+      "minimum_level": 10,
+      "output": {
+        "resource_key": "tool_reinforced",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "iron_ingot",
+          "item_code": "CI139",
+          "quantity": 0
+        },
+        {
+          "resource_key": "reinforced_handle",
+          "item_code": "CI144",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.make_treated_planks",
+      "profession_type": 5,
+      "minimum_level": 5,
+      "output": {
+        "resource_key": "treated_planks",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "dense_resin",
+          "item_code": "CI117",
+          "quantity": 0
+        },
+        {
+          "resource_key": "planks",
+          "item_code": "CI140",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.process_gold_dust",
+      "profession_type": 5,
+      "minimum_level": 0,
+      "output": {
+        "resource_key": "gold_dust",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "ore_gold",
+          "item_code": "CI125",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.process_ground_amethyst",
+      "profession_type": 5,
+      "minimum_level": 0,
+      "output": {
+        "resource_key": "ground_amethyst",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "ore_amethyst",
+          "item_code": "CI123",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.process_ground_citrine",
+      "profession_type": 5,
+      "minimum_level": 0,
+      "output": {
+        "resource_key": "ground_citrine",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "ore_citrine",
+          "item_code": "CI128",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.process_ground_emerald",
+      "profession_type": 5,
+      "minimum_level": 0,
+      "output": {
+        "resource_key": "ground_emerald",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "ore_emerald",
+          "item_code": "CI130",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.process_ground_ruby",
+      "profession_type": 5,
+      "minimum_level": 0,
+      "output": {
+        "resource_key": "ground_ruby",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "ore_ruby",
+          "item_code": "CI129",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.process_ground_sapphire",
+      "profession_type": 5,
+      "minimum_level": 0,
+      "output": {
+        "resource_key": "ground_sapphire",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "ore_sapphire",
+          "item_code": "CI127",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.process_silver_dust",
+      "profession_type": 5,
+      "minimum_level": 0,
+      "output": {
+        "resource_key": "silver_dust",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "ore_silver",
+          "item_code": "CI124",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.process_topaz_dust",
+      "profession_type": 5,
+      "minimum_level": 0,
+      "output": {
+        "resource_key": "topaz_dust",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "ore_topaz",
+          "item_code": "CI126",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.refine_core_arcane",
+      "profession_type": 5,
+      "minimum_level": 15,
+      "output": {
+        "resource_key": "core_arcane",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "crystalline_sap",
+          "item_code": "CI147",
+          "quantity": 0
+        },
+        {
+          "resource_key": "raw_ore_arcane",
+          "item_code": "CI107",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.refine_core_crystalline",
+      "profession_type": 5,
+      "minimum_level": 0,
+      "output": {
+        "resource_key": "core_crystalline",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "raw_ore_crystalline",
+          "item_code": "CI101",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.refine_core_deep",
+      "profession_type": 5,
+      "minimum_level": 10,
+      "output": {
+        "resource_key": "core_deep",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "purified_resin",
+          "item_code": "CI145",
+          "quantity": 0
+        },
+        {
+          "resource_key": "raw_ore_deep",
+          "item_code": "CI105",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.refine_core_energetic",
+      "profession_type": 5,
+      "minimum_level": 5,
+      "output": {
+        "resource_key": "core_energetic",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "charcoal",
+          "item_code": "CI143",
+          "quantity": 0
+        },
+        {
+          "resource_key": "raw_ore_energetic",
+          "item_code": "CI103",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.refine_core_primordial",
+      "profession_type": 5,
+      "minimum_level": 25,
+      "output": {
+        "resource_key": "core_primordial",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "arcane_ash",
+          "item_code": "CI149",
+          "quantity": 0
+        },
+        {
+          "resource_key": "raw_ore_primordial",
+          "item_code": "CI111",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.refine_core_runic",
+      "profession_type": 5,
+      "minimum_level": 20,
+      "output": {
+        "resource_key": "core_runic",
+        "item_code": null,
+        "quantity": 1,
+        "physical": false
+      },
+      "ingredients": [
+        {
+          "resource_key": "arcane_charcoal",
+          "item_code": "CI146",
+          "quantity": 0
+        },
+        {
+          "resource_key": "raw_ore_runic",
+          "item_code": "CI109",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.sheltom_bellum",
+      "profession_type": 5,
+      "minimum_level": 20,
+      "output": {
+        "resource_key": "sheltom_bellum",
+        "item_code": "OS113",
+        "quantity": 1,
+        "physical": true
+      },
+      "ingredients": [
+        {
+          "resource_key": "core_runic",
+          "item_code": "CI110",
+          "quantity": 0
+        },
+        {
+          "resource_key": "sheltom_inferna",
+          "item_code": "OS111",
+          "quantity": 0
+        },
+        {
+          "resource_key": "war_fragment",
+          "item_code": "CI155",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.sheltom_celesto",
+      "profession_type": 5,
+      "minimum_level": 10,
+      "output": {
+        "resource_key": "sheltom_celesto",
+        "item_code": "OS109",
+        "quantity": 1,
+        "physical": true
+      },
+      "ingredients": [
+        {
+          "resource_key": "core_deep",
+          "item_code": "CI106",
+          "quantity": 0
+        },
+        {
+          "resource_key": "ground_sapphire",
+          "item_code": "CI135",
+          "quantity": 0
+        },
+        {
+          "resource_key": "sheltom_sparky",
+          "item_code": "OS104",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.sheltom_devine",
+      "profession_type": 5,
+      "minimum_level": 10,
+      "output": {
+        "resource_key": "sheltom_devine",
+        "item_code": "OS108",
+        "quantity": 1,
+        "physical": true
+      },
+      "ingredients": [
+        {
+          "resource_key": "core_deep",
+          "item_code": "CI106",
+          "quantity": 0
+        },
+        {
+          "resource_key": "purified_salt",
+          "item_code": "CI152",
+          "quantity": 0
+        },
+        {
+          "resource_key": "sheltom_raident",
+          "item_code": "OS105",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.sheltom_enigma",
+      "profession_type": 5,
+      "minimum_level": 15,
+      "output": {
+        "resource_key": "sheltom_enigma",
+        "item_code": "OS112",
+        "quantity": 1,
+        "physical": true
+      },
+      "ingredients": [
+        {
+          "resource_key": "arcane_essence",
+          "item_code": "CI154",
+          "quantity": 0
+        },
+        {
+          "resource_key": "core_arcane",
+          "item_code": "CI108",
+          "quantity": 0
+        },
+        {
+          "resource_key": "sheltom_celesto",
+          "item_code": "OS109",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.sheltom_fadeo",
+      "profession_type": 5,
+      "minimum_level": 0,
+      "output": {
+        "resource_key": "sheltom_fadeo",
+        "item_code": "OS103",
+        "quantity": 1,
+        "physical": true
+      },
+      "ingredients": [
+        {
+          "resource_key": "core_crystalline",
+          "item_code": "CI102",
+          "quantity": 0
+        },
+        {
+          "resource_key": "ground_amethyst",
+          "item_code": "CI132",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.sheltom_gemma",
+      "profession_type": 5,
+      "minimum_level": 20,
+      "output": {
+        "resource_key": "sheltom_gemma",
+        "item_code": "OS115",
+        "quantity": 1,
+        "physical": true
+      },
+      "ingredients": [
+        {
+          "resource_key": "core_runic",
+          "item_code": "CI110",
+          "quantity": 0
+        },
+        {
+          "resource_key": "ground_emerald",
+          "item_code": "CI138",
+          "quantity": 0
+        },
+        {
+          "resource_key": "sheltom_mirage",
+          "item_code": "OS110",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.sheltom_inferna",
+      "profession_type": 5,
+      "minimum_level": 15,
+      "output": {
+        "resource_key": "sheltom_inferna",
+        "item_code": "OS111",
+        "quantity": 1,
+        "physical": true
+      },
+      "ingredients": [
+        {
+          "resource_key": "core_arcane",
+          "item_code": "CI108",
+          "quantity": 0
+        },
+        {
+          "resource_key": "ground_ruby",
+          "item_code": "CI137",
+          "quantity": 0
+        },
+        {
+          "resource_key": "sheltom_devine",
+          "item_code": "OS108",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.sheltom_lucidi",
+      "profession_type": 5,
+      "minimum_level": 0,
+      "output": {
+        "resource_key": "sheltom_lucidi",
+        "item_code": null,
+        "quantity": 1,
+        "physical": true
+      },
+      "ingredients": [
+        {
+          "resource_key": "core_crystalline",
+          "item_code": "CI102",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.sheltom_mirage",
+      "profession_type": 5,
+      "minimum_level": 15,
+      "output": {
+        "resource_key": "sheltom_mirage",
+        "item_code": "OS110",
+        "quantity": 1,
+        "physical": true
+      },
+      "ingredients": [
+        {
+          "resource_key": "core_arcane",
+          "item_code": "CI108",
+          "quantity": 0
+        },
+        {
+          "resource_key": "illusory_essence",
+          "item_code": "CI153",
+          "quantity": 0
+        },
+        {
+          "resource_key": "sheltom_murky",
+          "item_code": "OS107",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.sheltom_murky",
+      "profession_type": 5,
+      "minimum_level": 10,
+      "output": {
+        "resource_key": "sheltom_murky",
+        "item_code": "OS107",
+        "quantity": 1,
+        "physical": true
+      },
+      "ingredients": [
+        {
+          "resource_key": "core_deep",
+          "item_code": "CI106",
+          "quantity": 0
+        },
+        {
+          "resource_key": "dark_essence",
+          "item_code": "CI151",
+          "quantity": 0
+        },
+        {
+          "resource_key": "sheltom_transparo",
+          "item_code": "OS106",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.sheltom_ordo",
+      "profession_type": 5,
+      "minimum_level": 20,
+      "output": {
+        "resource_key": "sheltom_ordo",
+        "item_code": "OS114",
+        "quantity": 1,
+        "physical": true
+      },
+      "ingredients": [
+        {
+          "resource_key": "core_runic",
+          "item_code": "CI110",
+          "quantity": 0
+        },
+        {
+          "resource_key": "purified_gold",
+          "item_code": "CI156",
+          "quantity": 0
+        },
+        {
+          "resource_key": "sheltom_enigma",
+          "item_code": "OS112",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.sheltom_purus",
+      "profession_type": 5,
+      "minimum_level": 25,
+      "output": {
+        "resource_key": "sheltom_purus",
+        "item_code": "OS116",
+        "quantity": 1,
+        "physical": true
+      },
+      "ingredients": [
+        {
+          "resource_key": "core_primordial",
+          "item_code": "CI112",
+          "quantity": 0
+        },
+        {
+          "resource_key": "sheltom_gemma",
+          "item_code": "OS115",
+          "quantity": 0
+        },
+        {
+          "resource_key": "sheltom_ordo",
+          "item_code": "OS114",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.sheltom_raident",
+      "profession_type": 5,
+      "minimum_level": 5,
+      "output": {
+        "resource_key": "sheltom_raident",
+        "item_code": "OS105",
+        "quantity": 1,
+        "physical": true
+      },
+      "ingredients": [
+        {
+          "resource_key": "core_energetic",
+          "item_code": "CI104",
+          "quantity": 0
+        },
+        {
+          "resource_key": "gold_dust",
+          "item_code": "CI133",
+          "quantity": 0
+        },
+        {
+          "resource_key": "sheltom_sereneo",
+          "item_code": "OS102",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.sheltom_sereneo",
+      "profession_type": 5,
+      "minimum_level": 0,
+      "output": {
+        "resource_key": "sheltom_sereneo",
+        "item_code": "OS102",
+        "quantity": 1,
+        "physical": true
+      },
+      "ingredients": [
+        {
+          "resource_key": "core_crystalline",
+          "item_code": "CI102",
+          "quantity": 0
+        },
+        {
+          "resource_key": "silver_dust",
+          "item_code": "CI131",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.sheltom_sparky",
+      "profession_type": 5,
+      "minimum_level": 5,
+      "output": {
+        "resource_key": "sheltom_sparky",
+        "item_code": "OS104",
+        "quantity": 1,
+        "physical": true
+      },
+      "ingredients": [
+        {
+          "resource_key": "core_energetic",
+          "item_code": "CI104",
+          "quantity": 0
+        },
+        {
+          "resource_key": "sheltom_lucidi",
+          "item_code": "OS101",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.sheltom_transparo",
+      "profession_type": 5,
+      "minimum_level": 5,
+      "output": {
+        "resource_key": "sheltom_transparo",
+        "item_code": "OS106",
+        "quantity": 1,
+        "physical": true
+      },
+      "ingredients": [
+        {
+          "resource_key": "core_energetic",
+          "item_code": "CI104",
+          "quantity": 0
+        },
+        {
+          "resource_key": "sheltom_fadeo",
+          "item_code": "OS103",
+          "quantity": 0
+        },
+        {
+          "resource_key": "topaz_dust",
+          "item_code": "CI134",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "artisan.sheltom_veritas",
+      "profession_type": 5,
+      "minimum_level": 25,
+      "output": {
+        "resource_key": "sheltom_veritas",
+        "item_code": "OS117",
+        "quantity": 1,
+        "physical": true
+      },
+      "ingredients": [
+        {
+          "resource_key": "core_primordial",
+          "item_code": "CI112",
+          "quantity": 0
+        },
+        {
+          "resource_key": "primordial_essence",
+          "item_code": "CI150",
+          "quantity": 0
+        },
+        {
+          "resource_key": "sheltom_bellum",
+          "item_code": "OS113",
+          "quantity": 0
+        },
+        {
+          "resource_key": "sheltom_purus",
+          "item_code": "OS116",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "blacksmith.equip_da106",
+      "profession_type": 2,
+      "minimum_level": 5,
+      "output": {
+        "resource_key": "crafted_da106",
+        "item_code": "DA106",
+        "quantity": 1,
+        "physical": true
+      },
+      "ingredients": [
+        {
+          "resource_key": "iron_ingot",
+          "item_code": "CI139",
+          "quantity": 0
+        },
+        {
+          "resource_key": "treated_planks",
+          "item_code": "CI142",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "blacksmith.equip_wa103",
+      "profession_type": 2,
+      "minimum_level": 5,
+      "output": {
+        "resource_key": "crafted_wa103",
+        "item_code": "WA103",
+        "quantity": 1,
+        "physical": true
+      },
+      "ingredients": [
+        {
+          "resource_key": "iron_ingot",
+          "item_code": "CI139",
+          "quantity": 0
+        },
+        {
+          "resource_key": "reinforced_handle",
+          "item_code": "CI144",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "blacksmith.equip_wm110",
+      "profession_type": 2,
+      "minimum_level": 10,
+      "output": {
+        "resource_key": "crafted_wm110",
+        "item_code": "WM110",
+        "quantity": 1,
+        "physical": true
+      },
+      "ingredients": [
+        {
+          "resource_key": "iron_ingot",
+          "item_code": "CI139",
+          "quantity": 0
+        },
+        {
+          "resource_key": "mystic_solvent",
+          "item_code": "CI159",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    },
+    {
+      "legacy_recipe_id": "blacksmith.equip_ws103",
+      "profession_type": 2,
+      "minimum_level": 0,
+      "output": {
+        "resource_key": "crafted_ws103",
+        "item_code": "WS103",
+        "quantity": 1,
+        "physical": true
+      },
+      "ingredients": [
+        {
+          "resource_key": "iron_ingot",
+          "item_code": "CI139",
+          "quantity": 0
+        },
+        {
+          "resource_key": "planks",
+          "item_code": "CI140",
+          "quantity": 0
+        }
+      ],
+      "enabled": false,
+      "status": "DRAFT_UNCONFIGURED",
+      "legacy_source_was_enabled": true,
+      "note": "Quantidade original permanece na migracao 049; este rascunho comeca em zero."
+    }
+  ]
+}

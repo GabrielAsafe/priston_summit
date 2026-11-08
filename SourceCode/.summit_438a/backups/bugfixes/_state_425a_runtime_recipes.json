@@ -1,0 +1,12 @@
+{
+  "files": {
+    "SourceCode/SrcServer/src/systems/gameplay/crafting/v2/CraftJsonPlan425.h": "2bb89e50f44f41c91427c14c12f527c1606757d95ffc7698c47542f3517838ea",
+    "SourceCode/SrcServer/src/systems/gameplay/crafting/v2/CraftPhysicalSelection425.h": "7d1e7a61e228f96991ab9974aa27540be28f07d687a10c36390167fcb7c7b2f4",
+    "SourceCode/SrcServer/src/systems/gameplay/crafting/v2/CraftRegistry425.generated.h": "81e34d57476dcdf3c4c4605fe52f0e6558c7df882a817d6d9ef84b2813fd7168",
+    "SourceCode/SrcServer/src/systems/network/v2/legacy/LegacyModernChatIngressAdapter.inl": "6c6092cdd67fd4e992be232812bec0a15ea46f76b3ece2c20936c3904459b9ae"
+  },
+  "schema": "summit.425a/v1",
+  "source_catalog_sha256": "8fc9d389a0508d76897d26e143b4de2afa0af019564e4f3443ca42a6012a6408",
+  "source_ingress_sha256": "80d1a8063b8820ba89994933ef53f20d3bd133c950eacd1376857a9b9c230fbc",
+  "status": "APPLIED"
+}

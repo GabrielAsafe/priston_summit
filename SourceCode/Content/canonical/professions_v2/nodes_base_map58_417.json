@@ -1,0 +1,620 @@
+{
+  "schema": "summit.base-node-spawns/v1",
+  "map_id": 58,
+  "recipe_source": "SourceCode/Content/canonical/professions_v2/ecosystem_366/professions_ecosystem_366.json",
+  "recipe_origin": "366 snapshot, 57 proposed recipes; must check live authoritative recipes before deployment",
+  "recipe_count": 57,
+  "base_rule": "inputs_in_recipes_minus_resource_outputs_in_recipes",
+  "placement_validation": "417C: turtle 910004 anchored; in-game collision check still required",
+  "existing_nodes_policy": "keep 910001..910004 and 415A miner drop unchanged",
+  "nodes": [
+    {
+      "node_id": 920001,
+      "logical_id": "map58_base_arcane_wood",
+      "map_id": 58,
+      "position": {
+        "x": 251260,
+        "y": 866,
+        "z": 226694
+      },
+      "position_provenance": "417c_cluster_around_existing_turtle_910004_not_terrain_certified",
+      "visual": {
+        "monster_template": "Árvore Maldita",
+        "model_path": "char/monster/monplant/monplant-d.ini"
+      },
+      "interaction": "combat_on_death",
+      "origin_profession": "Lumberjack",
+      "runtime_kind": "kWoodcutting",
+      "resource_key": "arcane_wood",
+      "loot_table": "base.arcane_wood",
+      "enabled": true,
+      "respawn_ms": 30000,
+      "test_only": true
+    },
+    {
+      "node_id": 920002,
+      "logical_id": "map58_base_common_logs",
+      "map_id": 58,
+      "position": {
+        "x": 251308,
+        "y": 866,
+        "z": 226694
+      },
+      "position_provenance": "417c_cluster_around_existing_turtle_910004_not_terrain_certified",
+      "visual": {
+        "monster_template": "Árvore Maldita",
+        "model_path": "char/monster/monplant/monplant-d.ini"
+      },
+      "interaction": "combat_on_death",
+      "origin_profession": "Lumberjack",
+      "runtime_kind": "kWoodcutting",
+      "resource_key": "common_logs",
+      "loot_table": "base.common_logs",
+      "enabled": true,
+      "respawn_ms": 30000,
+      "test_only": true
+    },
+    {
+      "node_id": 920003,
+      "logical_id": "map58_base_dark_essence",
+      "map_id": 58,
+      "position": {
+        "x": 251356,
+        "y": 866,
+        "z": 226694
+      },
+      "position_provenance": "417c_cluster_around_existing_turtle_910004_not_terrain_certified",
+      "visual": {
+        "monster_template": "Mineiro das Cinzas",
+        "model_path": "char/monster/undeadminer/undeadminer.ini"
+      },
+      "interaction": "combat_on_death",
+      "origin_profession": "Artisan",
+      "runtime_kind": "kForaging",
+      "resource_key": "dark_essence",
+      "loot_table": "base.dark_essence",
+      "enabled": true,
+      "respawn_ms": 30000,
+      "test_only": true
+    },
+    {
+      "node_id": 920004,
+      "logical_id": "map58_base_dense_resin",
+      "map_id": 58,
+      "position": {
+        "x": 251404,
+        "y": 866,
+        "z": 226694
+      },
+      "position_provenance": "417c_cluster_around_existing_turtle_910004_not_terrain_certified",
+      "visual": {
+        "monster_template": "Árvore Maldita",
+        "model_path": "char/monster/monplant/monplant-d.ini"
+      },
+      "interaction": "combat_on_death",
+      "origin_profession": "Lumberjack",
+      "runtime_kind": "kWoodcutting",
+      "resource_key": "dense_resin",
+      "loot_table": "base.dense_resin",
+      "enabled": true,
+      "respawn_ms": 30000,
+      "test_only": true
+    },
+    {
+      "node_id": 920005,
+      "logical_id": "map58_base_energetic_sap",
+      "map_id": 58,
+      "position": {
+        "x": 251452,
+        "y": 866,
+        "z": 226694
+      },
+      "position_provenance": "417c_cluster_around_existing_turtle_910004_not_terrain_certified",
+      "visual": {
+        "monster_template": "Árvore Maldita",
+        "model_path": "char/monster/monplant/monplant-d.ini"
+      },
+      "interaction": "combat_on_death",
+      "origin_profession": "Lumberjack",
+      "runtime_kind": "kWoodcutting",
+      "resource_key": "energetic_sap",
+      "loot_table": "base.energetic_sap",
+      "enabled": true,
+      "respawn_ms": 30000,
+      "test_only": true
+    },
+    {
+      "node_id": 920006,
+      "logical_id": "map58_base_illusory_essence",
+      "map_id": 58,
+      "position": {
+        "x": 251500,
+        "y": 866,
+        "z": 226694
+      },
+      "position_provenance": "417c_cluster_around_existing_turtle_910004_not_terrain_certified",
+      "visual": {
+        "monster_template": "Mineiro das Cinzas",
+        "model_path": "char/monster/undeadminer/undeadminer.ini"
+      },
+      "interaction": "combat_on_death",
+      "origin_profession": "Artisan",
+      "runtime_kind": "kForaging",
+      "resource_key": "illusory_essence",
+      "loot_table": "base.illusory_essence",
+      "enabled": true,
+      "respawn_ms": 30000,
+      "test_only": true
+    },
+    {
+      "node_id": 920007,
+      "logical_id": "map58_base_mystic_resin",
+      "map_id": 58,
+      "position": {
+        "x": 251260,
+        "y": 866,
+        "z": 226742
+      },
+      "position_provenance": "417c_cluster_around_existing_turtle_910004_not_terrain_certified",
+      "visual": {
+        "monster_template": "Árvore Maldita",
+        "model_path": "char/monster/monplant/monplant-d.ini"
+      },
+      "interaction": "combat_on_death",
+      "origin_profession": "Lumberjack",
+      "runtime_kind": "kWoodcutting",
+      "resource_key": "mystic_resin",
+      "loot_table": "base.mystic_resin",
+      "enabled": true,
+      "respawn_ms": 30000,
+      "test_only": true
+    },
+    {
+      "node_id": 920008,
+      "logical_id": "map58_base_ore_amethyst",
+      "map_id": 58,
+      "position": {
+        "x": 251308,
+        "y": 866,
+        "z": 226742
+      },
+      "position_provenance": "417c_cluster_around_existing_turtle_910004_not_terrain_certified",
+      "visual": {
+        "monster_template": "Mineiro das Cinzas",
+        "model_path": "char/monster/undeadminer/undeadminer.ini"
+      },
+      "interaction": "combat_on_death",
+      "origin_profession": "Miner",
+      "runtime_kind": "kMining",
+      "resource_key": "ore_amethyst",
+      "loot_table": "base.ore_amethyst",
+      "enabled": true,
+      "respawn_ms": 30000,
+      "test_only": true
+    },
+    {
+      "node_id": 920009,
+      "logical_id": "map58_base_ore_citrine",
+      "map_id": 58,
+      "position": {
+        "x": 251452,
+        "y": 866,
+        "z": 226742
+      },
+      "position_provenance": "417c_cluster_around_existing_turtle_910004_not_terrain_certified",
+      "visual": {
+        "monster_template": "Mineiro das Cinzas",
+        "model_path": "char/monster/undeadminer/undeadminer.ini"
+      },
+      "interaction": "combat_on_death",
+      "origin_profession": "Miner",
+      "runtime_kind": "kMining",
+      "resource_key": "ore_citrine",
+      "loot_table": "base.ore_citrine",
+      "enabled": true,
+      "respawn_ms": 30000,
+      "test_only": true
+    },
+    {
+      "node_id": 920010,
+      "logical_id": "map58_base_ore_emerald",
+      "map_id": 58,
+      "position": {
+        "x": 251500,
+        "y": 866,
+        "z": 226742
+      },
+      "position_provenance": "417c_cluster_around_existing_turtle_910004_not_terrain_certified",
+      "visual": {
+        "monster_template": "Mineiro das Cinzas",
+        "model_path": "char/monster/undeadminer/undeadminer.ini"
+      },
+      "interaction": "combat_on_death",
+      "origin_profession": "Miner",
+      "runtime_kind": "kMining",
+      "resource_key": "ore_emerald",
+      "loot_table": "base.ore_emerald",
+      "enabled": true,
+      "respawn_ms": 30000,
+      "test_only": true
+    },
+    {
+      "node_id": 920011,
+      "logical_id": "map58_base_ore_gold",
+      "map_id": 58,
+      "position": {
+        "x": 251260,
+        "y": 866,
+        "z": 226790
+      },
+      "position_provenance": "417c_cluster_around_existing_turtle_910004_not_terrain_certified",
+      "visual": {
+        "monster_template": "Mineiro das Cinzas",
+        "model_path": "char/monster/undeadminer/undeadminer.ini"
+      },
+      "interaction": "combat_on_death",
+      "origin_profession": "Miner",
+      "runtime_kind": "kMining",
+      "resource_key": "ore_gold",
+      "loot_table": "base.ore_gold",
+      "enabled": true,
+      "respawn_ms": 30000,
+      "test_only": true
+    },
+    {
+      "node_id": 920012,
+      "logical_id": "map58_base_ore_ruby",
+      "map_id": 58,
+      "position": {
+        "x": 251308,
+        "y": 866,
+        "z": 226790
+      },
+      "position_provenance": "417c_cluster_around_existing_turtle_910004_not_terrain_certified",
+      "visual": {
+        "monster_template": "Mineiro das Cinzas",
+        "model_path": "char/monster/undeadminer/undeadminer.ini"
+      },
+      "interaction": "combat_on_death",
+      "origin_profession": "Miner",
+      "runtime_kind": "kMining",
+      "resource_key": "ore_ruby",
+      "loot_table": "base.ore_ruby",
+      "enabled": true,
+      "respawn_ms": 30000,
+      "test_only": true
+    },
+    {
+      "node_id": 920013,
+      "logical_id": "map58_base_ore_sapphire",
+      "map_id": 58,
+      "position": {
+        "x": 251452,
+        "y": 866,
+        "z": 226790
+      },
+      "position_provenance": "417c_cluster_around_existing_turtle_910004_not_terrain_certified",
+      "visual": {
+        "monster_template": "Mineiro das Cinzas",
+        "model_path": "char/monster/undeadminer/undeadminer.ini"
+      },
+      "interaction": "combat_on_death",
+      "origin_profession": "Miner",
+      "runtime_kind": "kMining",
+      "resource_key": "ore_sapphire",
+      "loot_table": "base.ore_sapphire",
+      "enabled": true,
+      "respawn_ms": 30000,
+      "test_only": true
+    },
+    {
+      "node_id": 920014,
+      "logical_id": "map58_base_ore_silver",
+      "map_id": 58,
+      "position": {
+        "x": 251500,
+        "y": 866,
+        "z": 226790
+      },
+      "position_provenance": "417c_cluster_around_existing_turtle_910004_not_terrain_certified",
+      "visual": {
+        "monster_template": "Mineiro das Cinzas",
+        "model_path": "char/monster/undeadminer/undeadminer.ini"
+      },
+      "interaction": "combat_on_death",
+      "origin_profession": "Miner",
+      "runtime_kind": "kMining",
+      "resource_key": "ore_silver",
+      "loot_table": "base.ore_silver",
+      "enabled": true,
+      "respawn_ms": 30000,
+      "test_only": true
+    },
+    {
+      "node_id": 920015,
+      "logical_id": "map58_base_ore_topaz",
+      "map_id": 58,
+      "position": {
+        "x": 251260,
+        "y": 866,
+        "z": 226838
+      },
+      "position_provenance": "417c_cluster_around_existing_turtle_910004_not_terrain_certified",
+      "visual": {
+        "monster_template": "Mineiro das Cinzas",
+        "model_path": "char/monster/undeadminer/undeadminer.ini"
+      },
+      "interaction": "combat_on_death",
+      "origin_profession": "Miner",
+      "runtime_kind": "kMining",
+      "resource_key": "ore_topaz",
+      "loot_table": "base.ore_topaz",
+      "enabled": true,
+      "respawn_ms": 30000,
+      "test_only": true
+    },
+    {
+      "node_id": 920016,
+      "logical_id": "map58_base_purified_salt",
+      "map_id": 58,
+      "position": {
+        "x": 251308,
+        "y": 866,
+        "z": 226838
+      },
+      "position_provenance": "417c_cluster_around_existing_turtle_910004_not_terrain_certified",
+      "visual": {
+        "monster_template": "Mineiro das Cinzas",
+        "model_path": "char/monster/undeadminer/undeadminer.ini"
+      },
+      "interaction": "combat_on_death",
+      "origin_profession": "Artisan",
+      "runtime_kind": "kForaging",
+      "resource_key": "purified_salt",
+      "loot_table": "base.purified_salt",
+      "enabled": true,
+      "respawn_ms": 30000,
+      "test_only": true
+    },
+    {
+      "node_id": 920017,
+      "logical_id": "map58_base_raw_ore_arcane",
+      "map_id": 58,
+      "position": {
+        "x": 251356,
+        "y": 866,
+        "z": 226838
+      },
+      "position_provenance": "417c_cluster_around_existing_turtle_910004_not_terrain_certified",
+      "visual": {
+        "monster_template": "Mineiro das Cinzas",
+        "model_path": "char/monster/undeadminer/undeadminer.ini"
+      },
+      "interaction": "combat_on_death",
+      "origin_profession": "Miner",
+      "runtime_kind": "kMining",
+      "resource_key": "raw_ore_arcane",
+      "loot_table": "base.raw_ore_arcane",
+      "enabled": true,
+      "respawn_ms": 30000,
+      "test_only": true
+    },
+    {
+      "node_id": 920018,
+      "logical_id": "map58_base_raw_ore_crystalline",
+      "map_id": 58,
+      "position": {
+        "x": 251404,
+        "y": 866,
+        "z": 226838
+      },
+      "position_provenance": "417c_cluster_around_existing_turtle_910004_not_terrain_certified",
+      "visual": {
+        "monster_template": "Mineiro das Cinzas",
+        "model_path": "char/monster/undeadminer/undeadminer.ini"
+      },
+      "interaction": "combat_on_death",
+      "origin_profession": "Miner",
+      "runtime_kind": "kMining",
+      "resource_key": "raw_ore_crystalline",
+      "loot_table": "base.raw_ore_crystalline",
+      "enabled": true,
+      "respawn_ms": 30000,
+      "test_only": true
+    },
+    {
+      "node_id": 920019,
+      "logical_id": "map58_base_raw_ore_deep",
+      "map_id": 58,
+      "position": {
+        "x": 251452,
+        "y": 866,
+        "z": 226838
+      },
+      "position_provenance": "417c_cluster_around_existing_turtle_910004_not_terrain_certified",
+      "visual": {
+        "monster_template": "Mineiro das Cinzas",
+        "model_path": "char/monster/undeadminer/undeadminer.ini"
+      },
+      "interaction": "combat_on_death",
+      "origin_profession": "Miner",
+      "runtime_kind": "kMining",
+      "resource_key": "raw_ore_deep",
+      "loot_table": "base.raw_ore_deep",
+      "enabled": true,
+      "respawn_ms": 30000,
+      "test_only": true
+    },
+    {
+      "node_id": 920020,
+      "logical_id": "map58_base_raw_ore_energetic",
+      "map_id": 58,
+      "position": {
+        "x": 251500,
+        "y": 866,
+        "z": 226838
+      },
+      "position_provenance": "417c_cluster_around_existing_turtle_910004_not_terrain_certified",
+      "visual": {
+        "monster_template": "Mineiro das Cinzas",
+        "model_path": "char/monster/undeadminer/undeadminer.ini"
+      },
+      "interaction": "combat_on_death",
+      "origin_profession": "Miner",
+      "runtime_kind": "kMining",
+      "resource_key": "raw_ore_energetic",
+      "loot_table": "base.raw_ore_energetic",
+      "enabled": true,
+      "respawn_ms": 30000,
+      "test_only": true
+    },
+    {
+      "node_id": 920021,
+      "logical_id": "map58_base_raw_ore_primordial",
+      "map_id": 58,
+      "position": {
+        "x": 251260,
+        "y": 866,
+        "z": 226886
+      },
+      "position_provenance": "417c_cluster_around_existing_turtle_910004_not_terrain_certified",
+      "visual": {
+        "monster_template": "Mineiro das Cinzas",
+        "model_path": "char/monster/undeadminer/undeadminer.ini"
+      },
+      "interaction": "combat_on_death",
+      "origin_profession": "Miner",
+      "runtime_kind": "kMining",
+      "resource_key": "raw_ore_primordial",
+      "loot_table": "base.raw_ore_primordial",
+      "enabled": true,
+      "respawn_ms": 30000,
+      "test_only": true
+    },
+    {
+      "node_id": 920022,
+      "logical_id": "map58_base_raw_ore_runic",
+      "map_id": 58,
+      "position": {
+        "x": 251308,
+        "y": 866,
+        "z": 226886
+      },
+      "position_provenance": "417c_cluster_around_existing_turtle_910004_not_terrain_certified",
+      "visual": {
+        "monster_template": "Mineiro das Cinzas",
+        "model_path": "char/monster/undeadminer/undeadminer.ini"
+      },
+      "interaction": "combat_on_death",
+      "origin_profession": "Miner",
+      "runtime_kind": "kMining",
+      "resource_key": "raw_ore_runic",
+      "loot_table": "base.raw_ore_runic",
+      "enabled": true,
+      "respawn_ms": 30000,
+      "test_only": true
+    },
+    {
+      "node_id": 920023,
+      "logical_id": "map58_base_resistant_logs",
+      "map_id": 58,
+      "position": {
+        "x": 251356,
+        "y": 866,
+        "z": 226886
+      },
+      "position_provenance": "417c_cluster_around_existing_turtle_910004_not_terrain_certified",
+      "visual": {
+        "monster_template": "Árvore Maldita",
+        "model_path": "char/monster/monplant/monplant-d.ini"
+      },
+      "interaction": "combat_on_death",
+      "origin_profession": "Lumberjack",
+      "runtime_kind": "kWoodcutting",
+      "resource_key": "resistant_logs",
+      "loot_table": "base.resistant_logs",
+      "enabled": true,
+      "respawn_ms": 30000,
+      "test_only": true
+    },
+    {
+      "node_id": 920024,
+      "logical_id": "map58_base_sap",
+      "map_id": 58,
+      "position": {
+        "x": 251404,
+        "y": 866,
+        "z": 226886
+      },
+      "position_provenance": "417c_cluster_around_existing_turtle_910004_not_terrain_certified",
+      "visual": {
+        "monster_template": "Árvore Maldita",
+        "model_path": "char/monster/monplant/monplant-d.ini"
+      },
+      "interaction": "combat_on_death",
+      "origin_profession": "Lumberjack",
+      "runtime_kind": "kWoodcutting",
+      "resource_key": "sap",
+      "loot_table": "base.sap",
+      "enabled": true,
+      "respawn_ms": 30000,
+      "test_only": true
+    },
+    {
+      "node_id": 920025,
+      "logical_id": "map58_base_tree_heart",
+      "map_id": 58,
+      "position": {
+        "x": 251452,
+        "y": 866,
+        "z": 226886
+      },
+      "position_provenance": "417c_cluster_around_existing_turtle_910004_not_terrain_certified",
+      "visual": {
+        "monster_template": "Árvore Maldita",
+        "model_path": "char/monster/monplant/monplant-d.ini"
+      },
+      "interaction": "combat_on_death",
+      "origin_profession": "Lumberjack",
+      "runtime_kind": "kWoodcutting",
+      "resource_key": "tree_heart",
+      "loot_table": "base.tree_heart",
+      "enabled": true,
+      "respawn_ms": 30000,
+      "test_only": true
+    },
+    {
+      "node_id": 920026,
+      "logical_id": "map58_base_war_fragment",
+      "map_id": 58,
+      "position": {
+        "x": 251500,
+        "y": 866,
+        "z": 226886
+      },
+      "position_provenance": "417c_cluster_around_existing_turtle_910004_not_terrain_certified",
+      "visual": {
+        "monster_template": "Mineiro das Cinzas",
+        "model_path": "char/monster/undeadminer/undeadminer.ini"
+      },
+      "interaction": "combat_on_death",
+      "origin_profession": "Artisan",
+      "runtime_kind": "kForaging",
+      "resource_key": "war_fragment",
+      "loot_table": "base.war_fragment",
+      "enabled": true,
+      "respawn_ms": 30000,
+      "test_only": true
+    }
+  ],
+  "placement_anchor_417c": {
+    "node_id": 910004,
+    "position": {
+      "x": 251380,
+      "y": 866,
+      "z": 226790
+    },
+    "spacing": 48,
+    "terrain_certified": false
+  }
+}

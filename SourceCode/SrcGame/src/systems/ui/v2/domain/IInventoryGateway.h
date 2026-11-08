@@ -9,6 +9,8 @@ class IInventoryGateway
 public:
     virtual ~IInventoryGateway() = default;
     [[nodiscard]] virtual InventorySnapshot GetSnapshot() const = 0;
+    // SUMMIT427A read-only view of inactive bag. Not an authority for crafting.
+    [[nodiscard]] virtual std::vector<InventoryItemSnapshot> GetInactiveBagForCrafting427() const { return {}; }
     [[nodiscard]] virtual std::vector<DetailLineSnapshot> GetItemDetails(int itemIndex) const { (void)itemIndex; return {}; }
 
     virtual bool BeginDrag(int itemIndex) = 0;

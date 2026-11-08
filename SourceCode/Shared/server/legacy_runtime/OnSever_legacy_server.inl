@@ -14383,6 +14383,18 @@ int InitAll()
 
 	Server_AllocMemory();
 
+	// SUMMIT453A: initialize the existing legacy save queue at server startup.
+	// The crafting DAT transaction MUST hold the same cSaveDataSection as
+	// legacy character-save writers. Never bypass a missing save queue.
+	if(!rsInitDataBase())
+	{
+		fprintf(stderr, "[SUMMIT453][SAVE] init_queue=FAILED\n");
+		fflush(stderr);
+		return FALSE;
+	}
+	fprintf(stderr, "[SUMMIT453][SAVE] init_queue=READY\n");
+	fflush(stderr);
+
 	if(rsServerConfig.UseRecorMemory)
 	{
 		rsRecordDataBuff = new char[(srRECORD_MEMORY_SIZE + 256)*CONNECTMAX];
@@ -30547,6 +30559,12 @@ if(cnt >= CONNECTMAX)
 						}
 					}
 					break;
+
+        // SUMMIT456L: the authenticated DATA connection replies to the
+        // live craft PREPARE/COMMIT request; never trust a character in bytes.
+        case summit456l::kReplyOpcode:
+            summit456l::ReceiveReply(lpPlayInfo,SockInfo->Buff,dwTransSize);
+            break;
 
 		case OpCode::OPCODE_CRAFTITEM:
 		{

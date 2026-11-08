@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string> // SUMMIT392_H_STRING
 #include <functional>
 #include <utility>
 #include "systems/ui/v2/core/Window.h"
@@ -18,6 +19,7 @@ class ICompanionGateway;
 class ICovenantGateway;
 class CompanionsPage;
 class CovenantsPage;
+class CraftingPage392; // SUMMIT392_H_PAGE
 
 enum class CharacterTab
 {
@@ -25,7 +27,8 @@ enum class CharacterTab
     Skills,
     Inventory,
     Companions,
-    Covenants
+    Covenants,
+    Crafting // SUMMIT392_H_ENUM
 };
 
 class CharacterWindow final : public Window
@@ -53,6 +56,13 @@ public:
     [[nodiscard]] bool HasModalInput() const noexcept;
     bool HandleModalKey(std::uint32_t key);
 
+    // SUMMIT462A: scoped Crafting lookup key routing; never consumes chat keys
+    // unless Crafting is open and its search dialog is active.
+    bool HasCraftingSearch462() const;
+    bool HandleCraftingSearchKey462(std::uint32_t key);
+    void AcceptCraftingLive407(const std::string& frame);
+    void SetCraftingContext(std::function<std::string()> characterName,
+                            std::function<bool(const std::string&)> sender); // SUMMIT392_H_CONTEXT
     void SetViewport(int width, int height);
 
 private:
@@ -65,12 +75,14 @@ private:
     Button* inventoryTab_ = nullptr;
     Button* companionsTab_ = nullptr;
     Button* covenantsTab_ = nullptr;
+    Button* craftingTab_ = nullptr; // SUMMIT392_H_BUTTON
     Button* closeButton_ = nullptr;
     AttributesPage* attributesPage_ = nullptr;
     SkillsPage* skillsPage_ = nullptr;
     InventoryPage* inventoryPage_ = nullptr;
     CompanionsPage* companionsPage_ = nullptr;
     CovenantsPage* covenantsPage_ = nullptr;
+    CraftingPage392* craftingPage_ = nullptr; // SUMMIT392_H_POINTER
     CloseHandler onClose_;
     TabChangedHandler onTabChanged_;
 };

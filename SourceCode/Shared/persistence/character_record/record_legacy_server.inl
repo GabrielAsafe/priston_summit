@@ -36,6 +36,8 @@
 #include "gameplay/companions/v2/CompanionTradePostSaveEquivalence351G.h" // SUMMIT351G
 #include "gameplay/companions/v2/CompanionTradeDiskJournal.h"
 #include "gameplay/companions/v2/CompanionTradeExactRecordStore.h"
+#include "gameplay/crafting/v2/CraftServerApi446.h" // SUMMIT446A
+#include "gameplay/crafting/v2/CraftLegacyLiveApi456.h" // SUMMIT456L
 #include "core/gameplay/legacy_support/playsub.h"
 
 #include "systems/world/field/field.h"
@@ -2407,6 +2409,12 @@ int rsRECORD_DBASE::SendRecordDataToClient(rsPLAYINFO *lpPlayInfo, char *szName,
 	   !SummitRecoverTradesBeforeCharacterLoad(lpPlayInfo->getAccount(),szName))
 		return FALSE;
 
+    // SUMMIT446A: the 350B login guard is already held. Recover a sealed
+    // craft DAT intent BEFORE exposing the record to this login session.
+    if(Mode==0 && lpPlayInfo && lpPlayInfo->getAccount() && szName && *szName &&
+       !summit446::CraftRecoverBeforeLogin446(lpPlayInfo->getAccount(),szName,lpPlayInfo))
+        return FALSE;
+
 	switch(Mode)
 	{
 	case 0:
@@ -2441,7 +2449,11 @@ int rsRECORD_DBASE::SendRecordDataToClient(rsPLAYINFO *lpPlayInfo, char *szName,
 	if(sRecDataBuff) EnterCriticalSection(&cSaveDataSection);
 
 
-	if(CheckRecWaitData(szName) == TRUE) return FALSE;
+	if(CheckRecWaitData(szName) == TRUE) {
+        // SUMMIT445A: release before refusing; legacy held cSaveDataSection.
+        if(sRecDataBuff) LeaveCriticalSection(&cSaveDataSection);
+        return FALSE;
+    }
 
 	lpTransRecord->code = 0;
 	lpTransRecord->size = 0;
@@ -3316,7 +3328,48 @@ int rsRECORD_DBASE::RecvRecordDataFromClient(TRANS_RECORD_DATAS *lpTransRecord, 
         }
         gameplay::companions::v2::ServerTradeLiveFirstSave350Q().MarkAccepted(summit350eSession);
         gameplay::companions::v2::ServerTradePostSave351G().MarkAccepted(summit350eSession);
-		summit327Receive.MarkValidatedComplete();
+        summit327Receive.MarkValidatedComplete();
+        // SUMMIT456L: only an accepted final legacy save can complete a live craft.
+        summit456l::ValidatedSave(lpPlayInfo,&TransRecordData);
+        // SUMMIT452A: link the VALIDATED legacy save to an outstanding /craft
+        // request by authenticated participant, not FindUserFromName().
+        // This is not item authority or a DAT grant; the fence still requires
+        // the sole writer to finish before crediting the requested PLAY key.
+        const char* ownAcct452=lpPlayInfo->getAccount();
+        const char* ownChar452=TransRecordData.smCharInfo.szName;
+        if(ownAcct452 && *ownAcct452 && ownChar452[0] &&
+           memchr(ownChar452,0,sizeof(TransRecordData.smCharInfo.szName)) &&
+           rsCheckAccountChar(ownAcct452,const_cast<char*>(ownChar452))) {
+            summit327Receive.DeferValidatedParticipant452(
+                gameplay::companions::v2::TradeParticipantId(ownAcct452,ownChar452),
+                static_cast<std::uint32_t>(GetTickCount()));
+        }
+        // SUMMIT449A: a validated save may arrive on a DATA connection while
+        // CraftServerBind446 reserves the authenticated PLAY connection.
+        // Reuse the EXISTING save receipt only if both connections refer to
+        // exactly the same owned character. No client-supplied receipt.
+        const char* sourceAccount449=lpPlayInfo->getAccount();
+        const char* sourceName449=lpPlayInfo->getName();
+        const char* savedName449=TransRecordData.smCharInfo.szName;
+        if(sourceAccount449 && *sourceAccount449 && sourceName449 &&
+           lstrcmpiA(sourceName449,savedName449)==0 &&
+           rsCheckAccountChar(sourceAccount449,
+                             const_cast<char*>(savedName449))) {
+            rsPLAYINFO* playPeer449=FindUserFromName(
+                const_cast<char*>(savedName449));
+            if(playPeer449 && playPeer449!=lpPlayInfo &&
+               playPeer449->lpsmSock &&
+               playPeer449->getAccount() && playPeer449->getName() &&
+               lstrcmpiA(playPeer449->getAccount(),sourceAccount449)==0 &&
+               lstrcmpiA(playPeer449->getName(),savedName449)==0) {
+                const gameplay::companions::v2::SaveSessionKey peerKey449(
+                    static_cast<std::uint32_t>(playPeer449->dwObjectSerial),
+                    static_cast<std::uint32_t>(playPeer449->dwConnectCount));
+                summit327Receive.DeferValidatedPeer449(peerKey449);
+                std::fprintf(stderr,
+                    "[SUMMIT449][SAVE] validated_peer_candidate=1 receipt=deferred\n");
+            }
+        }
 		TransRecordData.code = 0;
 		R25_REC_DIAG("complete", TRUE);
 		return TRUE;
@@ -4840,6 +4893,8 @@ int rsLoadAccountCharacterRecord(const char *szID, const char *szName, TRANS_REC
 
 
 #include "gameplay/companions/v2/CompanionDiagnostic315.h"
+#include "gameplay/companions/v2/CompanionEquipReturnSlot357.h"
+#include "gameplay/companions/v2/CompanionEquipmentSafety359.h"
 // Offline companion equipment: preserve the exact legacy DAT layout and every
 // item instance. Slot changes are committed only after the entire rebuilt
 // record can be checked, written, flushed and atomically replaced. No client
@@ -4886,7 +4941,6 @@ int rsSetOfflineCompanionEquipmentSlot(const char *account, const char *name,
            data.ItemCount <= 0 || data.ItemCount > RECORD_ITEM_MAX ||
            data.ItemSubStart < 0 || data.ItemSubStart > data.ItemCount ||
            data.DataSize <= 0 || data.DataSize > (int)sizeof(data.Data) ||
-           (recordIndex >= 0 && recordIndex >= data.ItemSubStart) ||
            data.ItemSubStart == 0) return -15;
 
         stage = "decode-items";
@@ -4998,12 +5052,34 @@ int rsSetOfflineCompanionEquipmentSlot(const char *account, const char *name,
                     return -19;
                 return -17;
             }
+            // SUMMIT357: an equipped item's saved ItemCount need not be a
+            // free bag-array slot. Assign a unique index for the returned
+            // physical item; otherwise LIVE rebase and subsequent post-save
+            // can fail with DuplicateSlot even though the DAT commit worked.
+            std::vector<int> reservedBagIndices;
+            for(int i=0; i<data.ItemSubStart; ++i)
+                if(i!=chosen && i!=movedOut && items[i].ItemPosition==0)
+                    reservedBagIndices.push_back(items[i].ItemCount);
+            const int freeBagIndex = gameplay::companions::v2::
+                FindUnoccupiedUnequipSlot357(reservedBagIndices,INVENTORY_MAXITEM);
+            if(freeBagIndex<0) return -19;
+            items[movedOut].ItemCount = freeBagIndex;
             items[movedOut].x = fit.x;
             items[movedOut].y = fit.y;
             items[movedOut].ItemPosition = 0;
         }
-        if(recordIndex >= 0)
+        if(recordIndex >= 0) {
             items[chosen].ItemPosition = targetSlot;
+            if(chosen>=data.ItemSubStart) {
+                // SUMMIT359: a physical item picked from bag B is moved
+                // into A's equipped-item segment. Its bytes remain intact;
+                // this never invents an extra item or changes its identity.
+                int boundary=data.ItemSubStart;
+                if(!gameplay::companions::v2::PromoteSecondaryEquipment359(
+                      items,boundary,chosen,INVENTORY_MAXITEM)) return -19;
+                data.ItemSubStart=boundary;
+            }
+        }
         // Recompress the entire validated record, without touching the item
         // identity, codes, stats, drop/quest flags, money or progression.
         BYTE rebuilt[sizeof(data.Data)] = {};
@@ -6544,9 +6620,19 @@ int rsSaveRecData(TRANS_RECORD_DATA *lpTransRecordData, rsPLAYINFO *lpPlayInfo,
 
 int CheckRecWaitData(char *szName)
 {
-
-
-	return FALSE;
+    // SUMMIT445A: report enqueued writes instead of unconditionally FALSE.
+    // Called with cSaveDataSection held during DAT load, so in-flight worker
+    // flushes are excluded. New writer admissions still need the craft lease.
+    if(!szName || !*szName) return TRUE;
+    if(!sRecDataBuff) return FALSE;
+    EnterCriticalSection(&cRecDataSection);
+    const int count=sRecDataBuffCount;
+    int pending=FALSE;
+    for(int n=0;n<count && n<REC_DATABUFF_MAX;++n) {
+        if(!lstrcmpiA(sRecDataBuff[n].szName,szName)) { pending=TRUE;break; }
+    }
+    LeaveCriticalSection(&cRecDataSection);
+    return pending;
 }
 
 
@@ -7544,3 +7630,8 @@ int	rsCheck_LoginServerSafeKey(smCHAR_INFO *lpCharInfo, DWORD dwSpdSumCode)
 
 
 
+
+// SUMMIT446A - craft runtime adapter after legacy records are defined.
+#include "gameplay/crafting/v2/CraftServerBind446.inl"
+// SUMMIT456L: online legacy inventory orchestration, never DAT decode/commit.
+#include "gameplay/crafting/v2/CraftLegacyLiveServer456.inl"
